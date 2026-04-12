@@ -1,0 +1,572 @@
+[
+  {
+    "id": "school_01",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "Im Deutschunterricht",
+    "title_en": "In German Class",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Meine Deutschklasse ist groß. Es gibt fünfzehn Schüler. Wir lernen heute Zahlen und Farben. Das macht Spaß, aber die Grammatik ist ein bisschen schwer.",
+    "passage_en": "My German class is big. There are fifteen students. Today we are learning numbers and colours. That is fun, but the grammar is a little difficult.",
+    "questions": [
+      {
+        "id": "school_01_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "How many students are in the class?",
+        "model_answer_en": "There are fifteen students.",
+        "accepted_keywords": ["15", "fifteen"]
+      },
+      {
+        "id": "school_01_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "How does the student feel about the lesson?",
+        "model_answer_en": "The student enjoys it but finds grammar difficult.",
+        "accepted_keywords": ["fun", "enjoy", "grammar", "difficult"]
+      },
+      {
+        "id": "school_01_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "Which tense is used in 'Wir lernen heute Zahlen und Farben'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "school_02",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "Herr Schmidt",
+    "title_en": "Mr Schmidt",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Mein Lehrer heißt Herr Schmidt. Er ist sehr nett und spricht langsam. Er schreibt die neuen Wörter an die Tafel. Ich verstehe fast alles.",
+    "passage_en": "My teacher is called Mr Schmidt. He is very nice and speaks slowly. He writes the new words on the board. I understand almost everything.",
+    "questions": [
+      {
+        "id": "school_02_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What is the teacher's name?",
+        "model_answer_en": "Herr Schmidt.",
+        "accepted_keywords": ["schmidt"]
+      },
+      {
+        "id": "school_02_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Why can the student understand the teacher?",
+        "model_answer_en": "Because he speaks slowly.",
+        "accepted_keywords": ["slowly", "slow"]
+      },
+      {
+        "id": "school_02_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What person is 'spricht'?",
+        "model_answer_en": "3rd person singular.",
+        "accepted_keywords": ["3rd", "third", "singular"],
+        "grammar_focus": "verb_conjugation"
+      }
+    ]
+  },
+  {
+    "id": "school_03",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "Hausaufgaben am Nachmittag",
+    "title_en": "Homework in the Afternoon",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Am Nachmittag mache ich meine Hausaufgaben. Ich lese einen Text und lerne zehn Vokabeln. Mein Vater hilft mir. Er sagt: 'Gut gemacht!'",
+    "passage_en": "In the afternoon I do my homework. I read a text and learn ten words. My father helps me. He says, 'Well done!'",
+    "questions": [
+      {
+        "id": "school_03_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What does the student do in the afternoon?",
+        "model_answer_en": "Homework.",
+        "accepted_keywords": ["homework"]
+      },
+      {
+        "id": "school_03_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "What does this show about the father?",
+        "model_answer_en": "He is supportive.",
+        "accepted_keywords": ["supportive", "helpful", "help"]
+      },
+      {
+        "id": "school_03_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'Ich lese einen Text'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "school_04",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "Mein Lieblingsfach",
+    "title_en": "My Favourite Subject",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Mein Lieblingsfach ist Deutsch. Ich mag Fremdsprachen sehr gern. Mathe finde ich langweilig, aber Sprachen sind wichtig für den Urlaub.",
+    "passage_en": "My favourite subject is German. I like foreign languages very much. I find maths boring, but languages are important for holidays.",
+    "questions": [
+      {
+        "id": "school_04_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What is the student's favourite subject?",
+        "model_answer_en": "German.",
+        "accepted_keywords": ["german"]
+      },
+      {
+        "id": "school_04_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Why are languages important?",
+        "model_answer_en": "Because they are useful for travel.",
+        "accepted_keywords": ["travel", "holiday", "holidays"]
+      },
+      {
+        "id": "school_04_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What structure is 'Ich mag...?'",
+        "model_answer_en": "It is a present tense verb expressing opinion.",
+        "accepted_keywords": ["present", "opinion", "verb"],
+        "grammar_focus": "opinion_expression"
+      }
+    ]
+  },
+  {
+    "id": "school_05",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "In der Bibliothek",
+    "title_en": "In the Library",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Ich gehe in die Bibliothek. Dort ist es ruhig. Ich suche ein Buch über Frankfurt. Ich lese gerne Geschichten auf Deutsch.",
+    "passage_en": "I go to the library. It is quiet there. I am looking for a book about Frankfurt. I like reading stories in German.",
+    "questions": [
+      {
+        "id": "school_05_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "Where does the student go?",
+        "model_answer_en": "To the library.",
+        "accepted_keywords": ["library"]
+      },
+      {
+        "id": "school_05_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Why does the student go there?",
+        "model_answer_en": "To read and find books.",
+        "accepted_keywords": ["read", "reading", "book", "books"]
+      },
+      {
+        "id": "school_05_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'Ich gehe'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "school_06",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "Musik beim Lernen",
+    "title_en": "Music While Learning",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Ich höre deutsche Musik auf meinem Handy. Das hilft mir beim Lernen. Ich singe die Lieder leise mit. So lerne ich die Aussprache.",
+    "passage_en": "I listen to German music on my phone. That helps me with learning. I quietly sing along with the songs. That is how I learn pronunciation.",
+    "questions": [
+      {
+        "id": "school_06_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What does the student listen to?",
+        "model_answer_en": "German music.",
+        "accepted_keywords": ["music"]
+      },
+      {
+        "id": "school_06_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "How does music help the student?",
+        "model_answer_en": "It helps with pronunciation.",
+        "accepted_keywords": ["pronunciation"]
+      },
+      {
+        "id": "school_06_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What type of verb is 'höre'?",
+        "model_answer_en": "Present tense first person.",
+        "accepted_keywords": ["present", "first person"],
+        "grammar_focus": "verb_conjugation"
+      }
+    ]
+  },
+  {
+    "id": "school_07",
+    "chapter": "Dino lernt Deutsch",
+    "section": "School",
+    "title_de": "Die Schulpause",
+    "title_en": "The School Break",
+    "level": "Y7",
+    "topic": "school",
+    "passage_de": "Die Schule beginnt um acht Uhr. Wir haben eine Pause um zehn Uhr. In der Pause esse ich einen Apfel und spreche mit meinen Freunden.",
+    "passage_en": "School starts at eight o'clock. We have a break at ten o'clock. During the break I eat an apple and speak with my friends.",
+    "questions": [
+      {
+        "id": "school_07_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "When does school start?",
+        "model_answer_en": "At eight o'clock.",
+        "accepted_keywords": ["8", "eight"]
+      },
+      {
+        "id": "school_07_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "What does the student do during the break?",
+        "model_answer_en": "Eat and talk with friends.",
+        "accepted_keywords": ["eat", "apple", "talk", "friends"]
+      },
+      {
+        "id": "school_07_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'Die Schule beginnt'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "routine_01",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Am Morgen",
+    "title_en": "In the Morning",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Mein Wecker klingelt um sieben Uhr. Ich bin noch müde. Ich bleibe fünf Minuten im Bett und stehe dann auf.",
+    "passage_en": "My alarm clock rings at seven o'clock. I am still tired. I stay in bed for five minutes and then get up.",
+    "questions": [
+      {
+        "id": "routine_01_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "When does the alarm ring?",
+        "model_answer_en": "At seven o'clock.",
+        "accepted_keywords": ["7", "seven"]
+      },
+      {
+        "id": "routine_01_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "How does the student feel?",
+        "model_answer_en": "Tired.",
+        "accepted_keywords": ["tired"]
+      },
+      {
+        "id": "routine_01_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'Ich bin müde'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "routine_02",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Frühstück",
+    "title_en": "Breakfast",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Zum Frühstück esse ich Müsli mit Milch. Ich trinke Orangensaft. Das Frühstück ist wichtig.",
+    "passage_en": "For breakfast I eat muesli with milk. I drink orange juice. Breakfast is important.",
+    "questions": [
+      {
+        "id": "routine_02_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What does the student eat?",
+        "model_answer_en": "Muesli.",
+        "accepted_keywords": ["muesli", "musli"]
+      },
+      {
+        "id": "routine_02_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Why is breakfast important?",
+        "model_answer_en": "Because it is good for the day.",
+        "accepted_keywords": ["important", "good", "day"]
+      },
+      {
+        "id": "routine_02_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What structure is 'Das Frühstück ist wichtig'?",
+        "model_answer_en": "Present tense with 'sein'.",
+        "accepted_keywords": ["sein", "present"],
+        "grammar_focus": "sein_verb"
+      }
+    ]
+  },
+  {
+    "id": "routine_03",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Mit dem Bus",
+    "title_en": "By Bus",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Ich fahre mit dem Bus zur Schule. Die Fahrt dauert zwanzig Minuten.",
+    "passage_en": "I travel to school by bus. The journey takes twenty minutes.",
+    "questions": [
+      {
+        "id": "routine_03_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "How does the student travel?",
+        "model_answer_en": "By bus.",
+        "accepted_keywords": ["bus"]
+      },
+      {
+        "id": "routine_03_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Is the journey long?",
+        "model_answer_en": "No, it is short.",
+        "accepted_keywords": ["short", "not long"]
+      },
+      {
+        "id": "routine_03_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What verb is used in 'Ich fahre'?",
+        "model_answer_en": "Present tense of fahren.",
+        "accepted_keywords": ["fahren", "present"],
+        "grammar_focus": "verb_conjugation"
+      }
+    ]
+  },
+  {
+    "id": "routine_04",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Nach der Schule",
+    "title_en": "After School",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Um vier Uhr komme ich nach Hause. Dann spiele ich Computer.",
+    "passage_en": "At four o'clock I come home. Then I play on the computer.",
+    "questions": [
+      {
+        "id": "routine_04_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "When does the student go home?",
+        "model_answer_en": "At four o'clock.",
+        "accepted_keywords": ["4", "four"]
+      },
+      {
+        "id": "routine_04_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "What does the student do after school?",
+        "model_answer_en": "Plays computer games.",
+        "accepted_keywords": ["computer", "game", "games"]
+      },
+      {
+        "id": "routine_04_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'komme'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "routine_05",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Abendessen",
+    "title_en": "Evening Meal",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Wir essen um halb sieben zu Abend. Meine Mutter kocht Pizza.",
+    "passage_en": "We eat dinner at half past six. My mother cooks pizza.",
+    "questions": [
+      {
+        "id": "routine_05_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What time do they eat?",
+        "model_answer_en": "Half past six.",
+        "accepted_keywords": ["half past six", "6:30", "six thirty"]
+      },
+      {
+        "id": "routine_05_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Who cooks?",
+        "model_answer_en": "The mother.",
+        "accepted_keywords": ["mother", "mum", "mom"]
+      },
+      {
+        "id": "routine_05_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'kocht'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "routine_06",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Zu Hause helfen",
+    "title_en": "Helping at Home",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Ich räume den Tisch ab. Mein Bruder wäscht das Geschirr.",
+    "passage_en": "I clear the table. My brother washes the dishes.",
+    "questions": [
+      {
+        "id": "routine_06_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What does the student do?",
+        "model_answer_en": "Clear the table.",
+        "accepted_keywords": ["table", "clear"]
+      },
+      {
+        "id": "routine_06_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "Is the family helpful?",
+        "model_answer_en": "Yes.",
+        "accepted_keywords": ["yes", "help", "helpful"]
+      },
+      {
+        "id": "routine_06_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What person is 'wäscht'?",
+        "model_answer_en": "3rd person singular.",
+        "accepted_keywords": ["3rd", "third", "singular"],
+        "grammar_focus": "verb_conjugation"
+      }
+    ]
+  },
+  {
+    "id": "routine_07",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Daily Routine",
+    "title_de": "Vor dem Schlafen",
+    "title_en": "Before Bed",
+    "level": "Y7",
+    "topic": "daily_routine",
+    "passage_de": "Ich putze meine Zähne und gehe ins Bett.",
+    "passage_en": "I brush my teeth and go to bed.",
+    "questions": [
+      {
+        "id": "routine_07_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "What does the student do before bed?",
+        "model_answer_en": "Brushes teeth.",
+        "accepted_keywords": ["teeth", "brush"]
+      },
+      {
+        "id": "routine_07_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "What happens next?",
+        "model_answer_en": "Goes to bed.",
+        "accepted_keywords": ["bed", "sleep"]
+      },
+      {
+        "id": "routine_07_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is used?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  },
+  {
+    "id": "social_01",
+    "chapter": "Dino lernt Deutsch",
+    "section": "Social",
+    "title_de": "Im Café",
+    "title_en": "At the Cafe",
+    "level": "Y7",
+    "topic": "social",
+    "passage_de": "Ich treffe meine Freundin im Café. Wir bestellen zwei heiße Schokoladen.",
+    "passage_en": "I meet my friend in the cafe. We order two hot chocolates.",
+    "questions": [
+      {
+        "id": "social_01_q1",
+        "type": "fact",
+        "difficulty": "easy",
+        "question_en": "Where do they meet?",
+        "model_answer_en": "At a cafe.",
+        "accepted_keywords": ["cafe", "café"]
+      },
+      {
+        "id": "social_01_q2",
+        "type": "inference",
+        "difficulty": "medium",
+        "question_en": "What are they doing?",
+        "model_answer_en": "Meeting and talking.",
+        "accepted_keywords": ["meeting", "talking", "chatting"]
+      },
+      {
+        "id": "social_01_q3",
+        "type": "grammar",
+        "difficulty": "hard",
+        "question_en": "What tense is 'treffe'?",
+        "model_answer_en": "Present tense.",
+        "accepted_keywords": ["present", "tense"],
+        "grammar_focus": "present_tense"
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "learning-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:data": "python3 scripts/generate_manifest.py",
+    "start": "python3 -m http.server 4173"
+  }
+}
