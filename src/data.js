@@ -53,7 +53,10 @@ export async function loadVocabItems(manifest, datasetId) {
 
 export async function loadSentencePools(manifest, datasetId) {
   const dataset = findDataset(manifest, datasetId);
-  const coreSentences = splitJsonl(await fetchText(`./${manifest.core.sentencePath}`));
+  const shouldMergeCore = dataset.id === manifest.core.id || dataset.mergeCoreSentences !== false;
+  const coreSentences = shouldMergeCore && manifest.core.sentencePath
+    ? splitJsonl(await fetchText(`./${manifest.core.sentencePath}`))
+    : [];
   const selectedSentences = dataset.sentencePath ? splitJsonl(await fetchText(`./${dataset.sentencePath}`)) : [];
   const combined = uniqueBy([...selectedSentences, ...coreSentences], (item) => item.id);
   return {

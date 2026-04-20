@@ -6,6 +6,7 @@ Browser-based study app ported from the local Swift `learningGerman` project.
 
 - vocabulary browser with pack/year/search filters
 - quiz flow with mixed question modes
+- stage-aware language packs, including Latin <-> English vocab drills
 - reading practice from passage packs
 - sentence builder drill
 - local progress, mastered-word tracking, and review lists
@@ -16,12 +17,22 @@ The app reuses the copied seed data under `data/` from:
 
 - `/Users/charlestan/project/learningGerman/Sources/LearningGermanCore/Resources/Seed`
 
+It can also import additional datasets into the shared web format. The Cambridge Latin vocab import reads:
+
+- `/Users/charlestan/learning/generated/cambridge-latin-vocab/all_stages.csv`
+
 ## Run locally
 
 1. Generate the data manifest:
 
 ```bash
 python3 scripts/generate_manifest.py
+```
+
+If you want to refresh the Cambridge Latin dataset first:
+
+```bash
+python3 scripts/import_cambridge_latin_vocab.py
 ```
 
 2. Start a local web server:

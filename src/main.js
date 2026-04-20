@@ -11,8 +11,9 @@ import {
   loadVocabItems,
 } from "./data.js";
 import {
-  QUESTION_MODES,
   createQuizSession,
+  getDefaultQuestionModes,
+  getQuestionModes,
   gradeQuestion,
   makeBuildState,
 } from "./quiz.js";
@@ -39,7 +40,6 @@ import {
   humanizeLabel,
   levelMatches,
   normalizeForCompare,
-  sampleSize,
   shuffle,
   speakText,
 } from "./utils.js";
@@ -75,6 +75,78 @@ function fallback(value, defaultValue) {
 
 function displayNameOr(value, defaultValue) {
   return value && value.displayName ? value.displayName : defaultValue;
+}
+
+function getStudyLanguageLabel(dataset) {
+  return fallback(dataset && dataset.sourceLanguageLabel, "German");
+}
+
+function getTargetLanguageLabel(dataset) {
+  return fallback(dataset && dataset.targetLanguageLabel, "English");
+}
+
+function getStudyLanguageCode(dataset) {
+  return fallback(dataset && dataset.speechLanguage, fallback(dataset && dataset.sourceLanguageCode, "de-DE"));
+}
+
+function getDatasetStageOptions(dataset) {
+  return Array.isArray(dataset && dataset.stageOptions) ? dataset.stageOptions.map((stage) => String(stage)) : [];
+}
+
+function usesStageSelection(dataset) {
+  return getDatasetStageOptions(dataset).length > 0;
+}
+
+function getSelectedStages(prefSection, dataset) {
+  const stageOptions = getDatasetStageOptions(dataset);
+  if (!stageOptions.length) {
+    return [];
+  }
+  const current = Array.isArray(prefSection.stages) ? prefSection.stages.map((stage) => String(stage)) : [];
+  const valid = current.filter((stage) => stageOptions.includes(stage));
+  return valid.length ? valid : [...stageOptions];
+}
+
+function describeScope(dataset, prefSection) {
+  if (usesStageSelection(dataset)) {
+    const selectedStages = getSelectedStages(prefSection, dataset);
+    return `Stages ${selectedStages.join(", ")}`;
+  }
+  return fallback(prefSection.year, "ALL");
+}
+
+function filterWordsForScope(words, dataset, prefSection) {
+  if (usesStageSelection(dataset)) {
+    const selectedStages = new Set(getSelectedStages(prefSection, dataset));
+    return words.filter((word) => selectedStages.has(String(word.stage)));
+  }
+  return words.filter((word) => levelMatches(word.level, prefSection.year));
+}
+
+function applyDatasetDefaults(sectionKey, options = {}) {
+  const prefSection = persisted.prefs[sectionKey];
+  const dataset = findDataset(runtime.manifest, prefSection.datasetId);
+  const stageOptions = getDatasetStageOptions(dataset);
+
+  if ("stages" in prefSection) {
+    prefSection.stages = stageOptions.length
+      ? (options.resetStages ? [...stageOptions] : getSelectedStages(prefSection, dataset))
+      : [];
+  }
+
+  if ("year" in prefSection && stageOptions.length) {
+    prefSection.year = "ALL";
+  }
+
+  if (sectionKey === "quiz") {
+    const supportedModes = new Set(getQuestionModes(dataset).map((mode) => mode.id));
+    const currentModes = Array.isArray(prefSection.modes)
+      ? prefSection.modes.filter((modeId) => supportedModes.has(modeId))
+      : [];
+    prefSection.modes = options.resetQuizModes || !currentModes.length
+      ? getDefaultQuestionModes(dataset)
+      : currentModes;
+  }
 }
 
 init().catch((error) => {
@@ -121,6 +193,9 @@ function ensurePreferenceDefaults() {
   if (!persisted.prefs.review.datasetId) {
     persisted.prefs.review.datasetId = DEFAULT_STATE.prefs.review.datasetId;
   }
+
+  applyDatasetDefaults("vocab");
+  applyDatasetDefaults("quiz");
 
   saveStoredState(persisted);
 }
@@ -318,10 +393,10 @@ async function renderVocabTab() {
   const prefs = persisted.prefs.vocab;
   const dataset = findDataset(runtime.manifest, prefs.datasetId);
   const words = await loadVocabItems(runtime.manifest, dataset.id);
-  const partOfSpeechOptions = [...new Set(words.map((word) => fallback(word.part_of_speech, fallback(word.pos, "")).trim()).filter(Boolean))].sort();
-  const categoryOptions = [...new Set([].concat(...words.map((word) => word.categories || [])))].sort();
-  const filtered = words
-    .filter((word) => levelMatches(word.level, prefs.year))
+  const scopedWords = filterWordsForScope(words, dataset, prefs);
+  const partOfSpeechOptions = [...new Set(scopedWords.map((word) => fallback(word.part_of_speech, fallback(word.pos, "")).trim()).filter(Boolean))].sort();
+  const categoryOptions = [...new Set([].concat(...scopedWords.map((word) => word.categories || [])))].sort();
+  const filtered = scopedWords
     .filter((word) => !prefs.partOfSpeech || fallback(word.part_of_speech, fallback(word.pos, "")) === prefs.partOfSpeech)
     .filter((word) => !prefs.category || (word.categories || []).includes(prefs.category))
     .filter((word) => {
@@ -336,6 +411,7 @@ async function renderVocabTab() {
     });
   const visibleWords = filtered.slice(0, 120);
   const mastered = countMasteredWords(persisted, filtered);
+  const searchPlaceholder = `Type ${getStudyLanguageLabel(dataset)}, ${getTargetLanguageLabel(dataset)}, topic, or tag and press Enter`;
 
   return `
     <div class="section-stack">
@@ -353,12 +429,14 @@ async function renderVocabTab() {
         </div>
         <div class="form-grid" style="margin-top:18px;">
           ${renderDatasetSelect("vocab-dataset", prefs.datasetId)}
-          ${renderYearSelect("vocab-year", prefs.year)}
+          ${usesStageSelection(dataset)
+            ? renderStageFieldset("vocab", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
+            : renderYearSelect("vocab-year", prefs.year)}
           ${renderSelectField("vocab-pos", "Part of speech", [{ value: "", label: "All parts of speech" }, ...partOfSpeechOptions.map((item) => ({ value: item, label: item }))], prefs.partOfSpeech)}
           ${renderSelectField("vocab-category", "Category", [{ value: "", label: "All categories" }, ...categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)}
           <div class="field" style="grid-column:1/-1;">
             <label for="vocab-search">Search</label>
-            <input id="vocab-search" class="input" value="${escapeHtml(prefs.search)}" placeholder="Type German, English, topic, or tag and press Enter" />
+            <input id="vocab-search" class="input" value="${escapeHtml(prefs.search)}" placeholder="${escapeHtml(searchPlaceholder)}" />
           </div>
         </div>
       </section>
@@ -380,7 +458,7 @@ async function renderVocabTab() {
                     <span class="badge blue">${escapeHtml(word.level)}</span>
                     <span class="badge amber">${escapeHtml(word.topic)}</span>
                   </div>
-                  <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="de-DE">Speak</button>
+                  <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">Speak</button>
                 </div>
                 <div>
                   <h3>${escapeHtml(word.de)}</h3>
@@ -412,8 +490,9 @@ async function renderQuizTab() {
   const prefs = persisted.prefs.quiz;
   const dataset = findDataset(runtime.manifest, prefs.datasetId);
   const words = await loadVocabItems(runtime.manifest, dataset.id);
-  const filteredWords = words.filter((word) => levelMatches(word.level, prefs.year));
+  const filteredWords = filterWordsForScope(words, dataset, prefs);
   const mastered = countMasteredWords(persisted, filteredWords);
+  const questionModes = getQuestionModes(dataset);
 
   if (runtime.currentQuiz && runtime.currentQuiz.completed) {
     const last = runtime.currentQuiz;
@@ -430,7 +509,7 @@ async function renderQuizTab() {
         <div class="question-meta">
           <div>
             <h2>Quiz setup</h2>
-            <p class="muted tiny">Mixed question modes inspired by the original iPad quiz flow.</p>
+            <p class="muted tiny">Build a mixed quiz using ${escapeHtml(getStudyLanguageLabel(dataset))} and ${escapeHtml(getTargetLanguageLabel(dataset))} practice.</p>
           </div>
           <div class="chip-row">
             <span class="count-pill blue">${filteredWords.length} words in scope</span>
@@ -440,7 +519,9 @@ async function renderQuizTab() {
 
         <div class="form-grid" style="margin-top:18px;">
           ${renderDatasetSelect("quiz-dataset", prefs.datasetId)}
-          ${renderYearSelect("quiz-year", prefs.year)}
+          ${usesStageSelection(dataset)
+            ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
+            : renderYearSelect("quiz-year", prefs.year)}
           ${renderSelectField("quiz-question-count", "Questions", [12, 18, 24, 30].map((value) => ({ value: String(value), label: String(value) })), String(prefs.questionCount))}
           <div class="field">
             <label for="quiz-exclude-mastered">Word pool</label>
@@ -454,19 +535,20 @@ async function renderQuizTab() {
         <div class="field" style="margin-top:18px;">
           <div class="fieldset-title">Question mix</div>
           <div class="question-mode-list">
-            ${QUESTION_MODES.map(
+            ${questionModes.map(
               (mode) => `
                 <label class="mode-check">
                   <input type="checkbox" data-mode-id="${mode.id}" name="quiz-mode" ${prefs.modes.includes(mode.id) ? "checked" : ""} />
                   <span>
                     <strong>${escapeHtml(mode.title)}</strong><br />
-                    <span class="muted tiny">${mode.kind === "choice" ? "tap options" : mode.kind === "typed" ? "type the answer" : "build from tiles"}</span>
+                    <span class="muted tiny">${escapeHtml(mode.help)}</span>
                   </span>
                 </label>
               `,
             ).join("")}
           </div>
         </div>
+        ${dataset.supportsSentences === false ? `<p class="muted tiny" style="margin-top:12px;">This pack is word-only, so sentence modes are hidden automatically.</p>` : ""}
 
         <div class="action-row" style="margin-top:18px;">
           <button class="button" data-action="start-quiz">Start quiz</button>
@@ -486,7 +568,7 @@ async function renderQuizTab() {
                       <div class="session-item">
                         <div>
                           <strong>${escapeHtml(fallback(session.label, "Quiz"))}</strong>
-                          <p class="muted tiny">${escapeHtml(findDataset(runtime.manifest, fallback(session.datasetId, "core")).displayName)} · ${escapeHtml(fallback(session.year, "ALL"))} · ${formatDateTime(session.timestamp)}</p>
+                          <p class="muted tiny">${escapeHtml(findDataset(runtime.manifest, fallback(session.datasetId, "core")).displayName)} · ${escapeHtml(fallback(session.scopeLabel, fallback(session.year, "ALL")))} · ${formatDateTime(session.timestamp)}</p>
                         </div>
                         <span class="badge ${session.score / Math.max(session.totalQuestions, 1) >= 0.7 ? "green" : "amber"}">
                           ${session.score}/${session.totalQuestions}
@@ -635,7 +717,7 @@ function renderQuizSummary(session) {
                 <strong>${escapeHtml(answer.prompt)}</strong>
                 <span class="muted tiny">Correct answer: ${escapeHtml(answer.expected)}</span>
               </div>
-              ${answer.speechText ? `<button class="button ghost" data-action="speak" data-text="${escapeHtml(answer.speechText)}" data-language="de-DE">Speak</button>` : ""}
+              ${answer.speechText ? `<button class="button ghost" data-action="speak" data-text="${escapeHtml(answer.speechText)}" data-language="${escapeHtml(fallback(answer.speechLanguage, "de-DE"))}">Speak</button>` : ""}
             </div>
           `,
         )
@@ -651,7 +733,7 @@ function renderQuizSummary(session) {
         <div class="chip-row" style="margin:12px 0 18px;">
           <span class="badge ${accuracy >= 0.75 ? "green" : accuracy >= 0.5 ? "amber" : "coral"}">${formatPercent(accuracy)} accuracy</span>
           <span class="badge blue">${escapeHtml(findDataset(runtime.manifest, session.config.datasetId).displayName)}</span>
-          <span class="badge amber">${escapeHtml(session.config.year)}</span>
+          <span class="badge amber">${escapeHtml(fallback(session.config.scopeLabel, session.config.year))}</span>
         </div>
         <div class="action-row">
           <button class="button" data-action="restart-quiz">Run again</button>
@@ -885,7 +967,8 @@ async function renderReadingTab() {
 
 async function renderReviewTab() {
   const prefs = persisted.prefs.review;
-  const words = await loadVocabItems(runtime.manifest, prefs.datasetId);
+  const dataset = findDataset(runtime.manifest, prefs.datasetId);
+  const words = await loadVocabItems(runtime.manifest, dataset.id);
   const reviewedWords = words.filter((word) => {
     const progress = getWordProgress(persisted, word.id);
     return progress.correct || progress.wrong;
@@ -927,13 +1010,13 @@ async function renderReviewTab() {
         <article class="review-card">
           <h3>Needs review</h3>
           <div class="review-list" style="margin-top:16px;">
-            ${hardest.length ? hardest.map(renderReviewWordCard).join("") : `<p class="muted tiny">No hard words yet. Take a quiz first.</p>`}
+            ${hardest.length ? hardest.map((word) => renderReviewWordCard(word, dataset)).join("") : `<p class="muted tiny">No hard words yet. Take a quiz first.</p>`}
           </div>
         </article>
         <article class="review-card">
           <h3>Mastered</h3>
           <div class="review-list" style="margin-top:16px;">
-            ${mastered.length ? mastered.map(renderReviewWordCard).join("") : `<p class="muted tiny">No mastered words yet.</p>`}
+            ${mastered.length ? mastered.map((word) => renderReviewWordCard(word, dataset)).join("") : `<p class="muted tiny">No mastered words yet.</p>`}
           </div>
         </article>
       </section>
@@ -941,7 +1024,7 @@ async function renderReviewTab() {
   `;
 }
 
-function renderReviewWordCard(word) {
+function renderReviewWordCard(word, dataset) {
   const progress = getWordProgress(persisted, word.id);
   return `
     <div class="review-item">
@@ -949,7 +1032,7 @@ function renderReviewWordCard(word) {
         <strong>${escapeHtml(word.de)}</strong>
         <span class="muted tiny">${escapeHtml(word.en)} · correct ${progress.correct} · wrong ${progress.wrong}</span>
       </div>
-      <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="de-DE">Speak</button>
+      <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">Speak</button>
     </div>
   `;
 }
@@ -985,6 +1068,31 @@ function renderYearSelect(id, currentValue) {
     YEAR_OPTIONS.map((year) => ({ value: year, label: year })),
     currentValue,
   );
+}
+
+function renderStageFieldset(sectionKey, stageOptions, selectedStages) {
+  return `
+    <div class="field stage-field" style="grid-column:1/-1;">
+      <div class="fieldset-title">Stages</div>
+      <div class="stage-check-list">
+        ${stageOptions
+          .map(
+            (stage) => `
+              <label class="mode-check stage-check">
+                <input
+                  type="checkbox"
+                  name="${escapeHtml(sectionKey)}-stage"
+                  data-stage="${escapeHtml(stage)}"
+                  ${selectedStages.includes(String(stage)) ? "checked" : ""}
+                />
+                <span><strong>Stage ${escapeHtml(stage)}</strong></span>
+              </label>
+            `,
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
 }
 
 function renderSelectField(id, label, options, currentValue) {
@@ -1136,6 +1244,26 @@ async function handleClick(event) {
   }
 }
 
+function updateStageSelection(sectionKey, input) {
+  const prefSection = persisted.prefs[sectionKey];
+  const dataset = findDataset(runtime.manifest, prefSection.datasetId);
+  const stageOptions = getDatasetStageOptions(dataset);
+  if (!stageOptions.length) {
+    return;
+  }
+
+  const nextStages = new Set(getSelectedStages(prefSection, dataset));
+  const stageValue = String(input.dataset.stage);
+  if (input.checked) {
+    nextStages.add(stageValue);
+  } else if (nextStages.size > 1) {
+    nextStages.delete(stageValue);
+  } else {
+    input.checked = true;
+  }
+  prefSection.stages = stageOptions.filter((stage) => nextStages.has(stage));
+}
+
 async function handleChange(event) {
   const { id, value } = event.target;
   switch (id) {
@@ -1143,6 +1271,7 @@ async function handleChange(event) {
       persisted.prefs.vocab.datasetId = value;
       persisted.prefs.vocab.partOfSpeech = "";
       persisted.prefs.vocab.category = "";
+      applyDatasetDefaults("vocab", { resetStages: true });
       break;
     case "vocab-year":
       persisted.prefs.vocab.year = value;
@@ -1155,6 +1284,7 @@ async function handleChange(event) {
       break;
     case "quiz-dataset":
       persisted.prefs.quiz.datasetId = value;
+      applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
       break;
     case "quiz-year":
       persisted.prefs.quiz.year = value;
@@ -1211,6 +1341,10 @@ async function handleChange(event) {
           nextModes.delete(modeId);
         }
         persisted.prefs.quiz.modes = [...nextModes];
+      } else if (event.target.name === "vocab-stage") {
+        updateStageSelection("vocab", event.target);
+      } else if (event.target.name === "quiz-stage") {
+        updateStageSelection("quiz", event.target);
       }
       break;
   }
@@ -1239,7 +1373,9 @@ async function startQuiz(customWords = null, label = null) {
     return;
   }
   const prefs = persisted.prefs.quiz;
-  const words = await loadVocabItems(runtime.manifest, prefs.datasetId);
+  const dataset = findDataset(runtime.manifest, prefs.datasetId);
+  const allWords = await loadVocabItems(runtime.manifest, dataset.id);
+  const words = filterWordsForScope(allWords, dataset, prefs);
   const sentencePools = await loadSentencePools(runtime.manifest, prefs.datasetId);
   const sourceWords = customWords && customWords.length ? customWords : words;
   const session = createQuizSession({
@@ -1249,9 +1385,12 @@ async function startQuiz(customWords = null, label = null) {
     persistedState: persisted,
     customWords,
     label,
+    dataset,
   });
   session.config = { ...prefs };
   session.config.datasetId = prefs.datasetId;
+  session.config.scopeLabel = describeScope(dataset, prefs);
+  session.config.stages = getSelectedStages(prefs, dataset);
   session.sourceWords = sourceWords;
   session.missedWords = [];
   if (session.questions[0] && session.questions[0].kind === "build") {
@@ -1280,6 +1419,7 @@ async function answerQuizQuestion(response) {
     correct: result.correct,
     wordId: question.wordId,
     speechText: question.speechText,
+    speechLanguage: question.speechLanguage,
   });
   if (result.correct) {
     session.score += 1;
@@ -1311,6 +1451,7 @@ function nextQuizQuestion() {
       label: session.label,
       datasetId: session.config.datasetId,
       year: session.config.year,
+      scopeLabel: session.config.scopeLabel,
       score: session.score,
       totalQuestions: session.questions.length,
       timestamp: new Date().toISOString(),

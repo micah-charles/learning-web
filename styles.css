@@ -122,6 +122,7 @@ body {
 .chip-row,
 .option-stack,
 .question-mode-list,
+.stage-check-list,
 .tile-row,
 .action-row,
 .toggle-row,
@@ -560,6 +561,10 @@ body {
 
 .mode-check input {
   margin-top: 3px;
+}
+
+.stage-check {
+  min-width: 120px;
 }
 
 .vocab-card {

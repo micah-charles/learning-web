@@ -1,33 +1,109 @@
-import { humanizeLabel, levelMatches, normalizeForCompare, sampleSize, shuffle, tokenizeSentence } from "./utils.js";
+import { levelMatches, normalizeForCompare, shuffle, tokenizeSentence } from "./utils.js";
 import { isWordMastered } from "./storage.js";
 
-export const QUESTION_MODES = [
+const MODE_DEFINITIONS = [
   {
     id: "englishWordChooseGerman",
-    title: "1) English word -> choose German",
     kind: "choice",
+    family: "word",
+    direction: "targetToStudy",
   },
   {
-    id: "englishSentenceBuildGerman",
-    title: "2) English sentence -> build German",
-    kind: "build",
-  },
-  {
-    id: "germanSentenceBuildEnglish",
-    title: "3) German sentence -> build English",
-    kind: "build",
+    id: "germanWordChooseEnglish",
+    kind: "choice",
+    family: "word",
+    direction: "studyToTarget",
   },
   {
     id: "englishWordTypeGerman",
-    title: "4) English word -> type German",
     kind: "typed",
+    family: "word",
+    direction: "targetToStudy",
+  },
+  {
+    id: "germanWordTypeEnglish",
+    kind: "typed",
+    family: "word",
+    direction: "studyToTarget",
+  },
+  {
+    id: "englishSentenceBuildGerman",
+    kind: "build",
+    family: "sentence",
+    direction: "targetToStudy",
+  },
+  {
+    id: "germanSentenceBuildEnglish",
+    kind: "build",
+    family: "sentence",
+    direction: "studyToTarget",
   },
   {
     id: "englishSentenceTypeGerman",
-    title: "5) English sentence -> type German",
     kind: "typed",
+    family: "sentence",
+    direction: "targetToStudy",
   },
 ];
+
+function datasetLabels(dataset = null) {
+  return {
+    studyLabel: dataset && dataset.sourceLanguageLabel ? dataset.sourceLanguageLabel : "German",
+    targetLabel: dataset && dataset.targetLanguageLabel ? dataset.targetLanguageLabel : "English",
+    studyCode: dataset && dataset.sourceLanguageCode ? dataset.sourceLanguageCode : "de-DE",
+    speechLanguage: dataset && dataset.speechLanguage ? dataset.speechLanguage : (dataset && dataset.sourceLanguageCode ? dataset.sourceLanguageCode : "de-DE"),
+  };
+}
+
+function buildModeTitle(definition, labels) {
+  const promptLabel = definition.direction === "targetToStudy" ? labels.targetLabel : labels.studyLabel;
+  const answerLabel = definition.direction === "targetToStudy" ? labels.studyLabel : labels.targetLabel;
+  const noun = definition.family === "sentence" ? "sentence" : "word";
+  const verb = definition.kind === "choice" ? "choose" : definition.kind === "build" ? "build" : "type";
+  return `${promptLabel} ${noun} -> ${verb} ${answerLabel}`;
+}
+
+function buildModeHelp(definition) {
+  if (definition.kind === "choice") {
+    return "tap options";
+  }
+  if (definition.kind === "build") {
+    return "build from tiles";
+  }
+  return "type the answer";
+}
+
+function buildSupportedModes(dataset = null) {
+  const supportsSentences = !dataset || dataset.supportsSentences !== false;
+  return MODE_DEFINITIONS
+    .filter((definition) => supportsSentences || definition.family !== "sentence")
+    .map((definition) => {
+      const labels = datasetLabels(dataset);
+      return {
+        ...definition,
+        title: buildModeTitle(definition, labels),
+        help: buildModeHelp(definition),
+      };
+    });
+}
+
+function dedupeStrings(items) {
+  const seen = new Set();
+  const output = [];
+  for (const item of items) {
+    const text = String(item || "").trim();
+    if (!text) {
+      continue;
+    }
+    const key = normalizeForCompare(text);
+    if (!key || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    output.push(text);
+  }
+  return output;
+}
 
 function cyclePick(items, count) {
   if (!items.length || count <= 0) {
@@ -68,6 +144,10 @@ function selectWordPool(words, config, persistedState) {
 }
 
 function selectSentencePool(words, sentencePools, config) {
+  if (!sentencePools.combined.length) {
+    return [];
+  }
+
   const wordIds = new Set(words.map((word) => word.id));
   const topics = new Set(words.map((word) => String(word.topic || "").toLowerCase()));
   const related = sentencePools.combined.filter((sentence) => {
@@ -94,55 +174,87 @@ function selectSentencePool(words, sentencePools, config) {
   return yearFiltered.length ? yearFiltered : sentencePools.combined;
 }
 
-function makeWordChoiceQuestions(words, count, allWords) {
+function buildSubtitle(item) {
+  return [item.stage_label, item.topic].filter(Boolean).join(" · ");
+}
+
+function takeDistractorValues(words, field, expectedValue, excludedId) {
+  const values = shuffle(
+    words
+      .filter((candidate) => candidate.id !== excludedId)
+      .map((candidate) => candidate[field])
+      .filter((value) => normalizeForCompare(value) !== normalizeForCompare(expectedValue)),
+  );
+  return dedupeStrings(values).slice(0, 3);
+}
+
+function collectAcceptedAnswers(primary, extras) {
+  return dedupeStrings([primary, ...(Array.isArray(extras) ? extras : [])]);
+}
+
+function makeWordChoiceQuestions(words, count, allWords, dataset, modeId) {
   const picks = cyclePick(words, count);
+  const labels = datasetLabels(dataset);
+  const isReverse = modeId === "germanWordChooseEnglish";
   return picks.map((word, index) => {
-    const distractors = sampleSize(
-      allWords.filter((candidate) => candidate.id !== word.id && candidate.de !== word.de),
-      3,
-    );
-    const options = shuffle([word.de, ...distractors.map((item) => item.de)]);
+    const prompt = isReverse ? word.de : word.en;
+    const answer = isReverse ? word.en : word.de;
+    const optionField = isReverse ? "en" : "de";
+    const options = shuffle([answer, ...takeDistractorValues(allWords, optionField, answer, word.id)]);
+    const definition = buildSupportedModes(dataset).find((mode) => mode.id === modeId);
+
     return {
-      id: `choice-${word.id}-${index}`,
-      modeId: "englishWordChooseGerman",
-      modeTitle: humanizeLabel("english word choose german"),
+      id: `choice-${modeId}-${word.id}-${index}`,
+      modeId,
+      modeTitle: definition ? definition.title : buildModeTitle(MODE_DEFINITIONS[0], labels),
       kind: "choice",
-      prompt: word.en,
-      answer: word.de,
+      prompt,
+      answer,
       options,
       wordId: word.id,
       topic: word.topic,
-      subtitle: word.topic,
+      subtitle: buildSubtitle(word),
       speechText: word.de,
-      speechLanguage: "de-DE",
+      speechLanguage: labels.speechLanguage,
     };
   });
 }
 
-function makeWordTypedQuestions(words, count) {
+function makeWordTypedQuestions(words, count, dataset, modeId) {
   const picks = cyclePick(words, count);
+  const labels = datasetLabels(dataset);
+  const isReverse = modeId === "germanWordTypeEnglish";
+  const definition = buildSupportedModes(dataset).find((mode) => mode.id === modeId);
+
   return picks.map((word, index) => ({
-    id: `typed-word-${word.id}-${index}`,
-    modeId: "englishWordTypeGerman",
-    modeTitle: humanizeLabel("english word type german"),
+    id: `typed-${modeId}-${word.id}-${index}`,
+    modeId,
+    modeTitle: definition ? definition.title : buildModeTitle(MODE_DEFINITIONS[0], labels),
     kind: "typed",
-    prompt: word.en,
-    answer: word.de,
+    prompt: isReverse ? word.de : word.en,
+    answer: isReverse ? word.en : word.de,
+    acceptedAnswers: isReverse
+      ? collectAcceptedAnswers(word.en, word.accepted_translations)
+      : collectAcceptedAnswers(word.de, word.accepted_answers),
     wordId: word.id,
     topic: word.topic,
-    subtitle: word.topic,
+    subtitle: buildSubtitle(word),
     speechText: word.de,
-    speechLanguage: "de-DE",
-    placeholder: "Type the German answer",
+    speechLanguage: labels.speechLanguage,
+    placeholder: `Type the ${isReverse ? labels.targetLabel : labels.studyLabel} answer`,
   }));
 }
 
-function buildSentenceQuestion(sentence, modeId, index) {
+function buildSentenceQuestion(sentence, modeId, dataset, index) {
+  const labels = datasetLabels(dataset);
+  const definition = buildSupportedModes(dataset).find((mode) => mode.id === modeId);
   const question = {
     id: `${modeId}-${sentence.id}-${index}`,
     modeId,
+    modeTitle: definition ? definition.title : buildModeTitle(MODE_DEFINITIONS[4], labels),
     kind: modeId.includes("Build") ? "build" : "typed",
     answer: modeId === "germanSentenceBuildEnglish" ? sentence.en : sentence.de,
+    acceptedAnswers: [modeId === "germanSentenceBuildEnglish" ? sentence.en : sentence.de],
     wordId: sentence.target_vocab_id || (Array.isArray(sentence.vocab_ids) && sentence.vocab_ids.length ? sentence.vocab_ids[0] : null),
     subtitle: Array.isArray(sentence.topics) ? sentence.topics.join(", ") : "",
   };
@@ -150,38 +262,35 @@ function buildSentenceQuestion(sentence, modeId, index) {
   if (modeId === "englishSentenceBuildGerman") {
     return {
       ...question,
-      modeTitle: "English sentence -> build German",
       prompt: sentence.en,
       tiles: shuffle(tokenizeSentence(sentence.de)),
       speechText: sentence.de,
-      speechLanguage: "de-DE",
+      speechLanguage: labels.speechLanguage,
     };
   }
 
   if (modeId === "germanSentenceBuildEnglish") {
     return {
       ...question,
-      modeTitle: "German sentence -> build English",
       prompt: sentence.de,
       tiles: shuffle(tokenizeSentence(sentence.en)),
       speechText: sentence.de,
-      speechLanguage: "de-DE",
+      speechLanguage: labels.speechLanguage,
     };
   }
 
   return {
     ...question,
-    modeTitle: "English sentence -> type German",
     prompt: sentence.en,
     speechText: sentence.de,
-    speechLanguage: "de-DE",
-    placeholder: "Type the German sentence",
+    speechLanguage: labels.speechLanguage,
+    placeholder: `Type the ${labels.studyLabel} sentence`,
   };
 }
 
-function makeSentenceQuestions(sentences, modeId, count) {
+function makeSentenceQuestions(sentences, modeId, count, dataset) {
   const picks = cyclePick(sentences, count);
-  return picks.map((sentence, index) => buildSentenceQuestion(sentence, modeId, index));
+  return picks.map((sentence, index) => buildSentenceQuestion(sentence, modeId, dataset, index));
 }
 
 function interleave(questionGroups) {
@@ -197,37 +306,59 @@ function interleave(questionGroups) {
   return merged;
 }
 
-export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null }) {
-  const activeModes = QUESTION_MODES.filter((mode) => config.modes.includes(mode.id));
+export function getQuestionModes(dataset = null) {
+  return buildSupportedModes(dataset);
+}
+
+export function getDefaultQuestionModes(dataset = null) {
+  const supportedModeIds = new Set(getQuestionModes(dataset).map((mode) => mode.id));
+  const requested = Array.isArray(dataset && dataset.defaultQuizModes) && dataset.defaultQuizModes.length
+    ? dataset.defaultQuizModes
+    : ["englishWordChooseGerman", "englishSentenceBuildGerman", "germanSentenceBuildEnglish"];
+  const filtered = requested.filter((modeId) => supportedModeIds.has(modeId));
+  return filtered.length ? filtered : getQuestionModes(dataset).slice(0, 3).map((mode) => mode.id);
+}
+
+export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null }) {
+  const availableModes = getQuestionModes(dataset);
+  const activeModes = availableModes.filter((mode) => config.modes.includes(mode.id));
   if (!activeModes.length) {
-    throw new Error("Choose at least one question mode.");
+    throw new Error("Choose at least one compatible question mode for this dataset.");
   }
 
   const candidateWords = customWords && customWords.length ? customWords : words;
   const wordPool = selectWordPool(candidateWords, config, persistedState);
-  const sentencePool = selectSentencePool(wordPool, sentencePools, config);
+  const needsSentences = activeModes.some((mode) => mode.family === "sentence");
+  const sentencePool = needsSentences ? selectSentencePool(wordPool, sentencePools, config) : [];
   const counts = distribute(Math.max(activeModes.length * 3, config.questionCount), activeModes.length);
 
   const questionGroups = activeModes.map((mode, index) => {
     const count = counts[index];
     switch (mode.id) {
       case "englishWordChooseGerman":
-        return makeWordChoiceQuestions(wordPool, count, wordPool);
+      case "germanWordChooseEnglish":
+        return makeWordChoiceQuestions(wordPool, count, wordPool, dataset, mode.id);
       case "englishWordTypeGerman":
-        return makeWordTypedQuestions(wordPool, count);
+      case "germanWordTypeEnglish":
+        return makeWordTypedQuestions(wordPool, count, dataset, mode.id);
       case "englishSentenceBuildGerman":
       case "germanSentenceBuildEnglish":
       case "englishSentenceTypeGerman":
-        return makeSentenceQuestions(sentencePool, mode.id, count);
+        return makeSentenceQuestions(sentencePool, mode.id, count, dataset);
       default:
         return [];
     }
   });
 
+  const questions = interleave(questionGroups);
+  if (!questions.length) {
+    throw new Error("No questions could be generated for the current pack. Try a different stage selection or question mix.");
+  }
+
   return {
     id: `quiz-${Date.now()}`,
     label: label || "Quiz Cycle",
-    questions: interleave(questionGroups),
+    questions,
     index: 0,
     score: 0,
     answers: [],
@@ -249,10 +380,13 @@ export function makeBuildState(question) {
 }
 
 export function gradeQuestion(question, response) {
-  const expected = normalizeForCompare(question.answer);
   const actual = normalizeForCompare(response);
+  const acceptedAnswers = Array.isArray(question.acceptedAnswers) && question.acceptedAnswers.length
+    ? question.acceptedAnswers
+    : [question.answer];
+  const expectedNormalized = acceptedAnswers.map((value) => normalizeForCompare(value)).filter(Boolean);
   return {
-    correct: expected === actual,
+    correct: expectedNormalized.includes(actual),
     expected: question.answer,
     actual: response,
   };

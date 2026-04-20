@@ -51,18 +51,20 @@ export function splitJsonl(text) {
     .map((line) => JSON.parse(line));
 }
 
-function foldGerman(value) {
+function foldText(value) {
   return stringValue(value)
-    .normalize("NFKC")
+    .normalize("NFC")
     .toLowerCase()
     .replace(/ß/g, "ss")
     .replace(/ä/g, "ae")
     .replace(/ö/g, "oe")
-    .replace(/ü/g, "ue");
+    .replace(/ü/g, "ue")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 export function normalizeForCompare(value) {
-  return foldGerman(value)
+  return foldText(value)
     .replace(/[^a-z0-9\s]/g, " ")
     .replace(/\s+/g, " ")
     .trim();

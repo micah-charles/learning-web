@@ -8,6 +8,7 @@ export const DEFAULT_STATE = {
     vocab: {
       datasetId: "core",
       year: "ALL",
+      stages: [],
       search: "",
       partOfSpeech: "",
       category: "",
@@ -15,6 +16,7 @@ export const DEFAULT_STATE = {
     quiz: {
       datasetId: "core",
       year: "Y7",
+      stages: [],
       excludeMastered: true,
       questionCount: 18,
       modes: [
