@@ -42,6 +42,7 @@ import {
   normalizeForCompare,
   shuffle,
   speakText,
+  stopSpeaking,
 } from "./utils.js";
 
 const TABS = [
@@ -837,6 +838,110 @@ async function renderBuilderTab() {
   `;
 }
 
+function isPassageMultipleChoice(question) {
+  return Array.isArray(question && question.options) && question.options.length > 1;
+}
+
+function getPassageCorrectAnswer(question) {
+  const options = Array.isArray(question && question.options) ? question.options : [];
+  const index = Number.isInteger(question && question.correct_option_index) ? question.correct_option_index : -1;
+  if (index >= 0 && index < options.length) {
+    return options[index];
+  }
+  return fallback(question && question.correct_answer, fallback(question && question.model_answer_en, ""));
+}
+
+function shufflePassageQuestion(question) {
+  if (!isPassageMultipleChoice(question)) {
+    return { ...question };
+  }
+
+  const correctAnswer = getPassageCorrectAnswer(question);
+  const options = shuffle(question.options);
+  let correctOptionIndex = options.findIndex((option) => option === correctAnswer);
+  if (correctOptionIndex === -1) {
+    correctOptionIndex = options.findIndex((option) => normalizeForCompare(option) === normalizeForCompare(correctAnswer));
+  }
+
+  return {
+    ...question,
+    options,
+    correct_option_index: correctOptionIndex,
+    correct_answer: correctAnswer,
+  };
+}
+
+function preparePassageForSession(passage) {
+  return {
+    ...passage,
+    questions: Array.isArray(passage && passage.questions) ? passage.questions.map((question) => shufflePassageQuestion(question)) : [],
+  };
+}
+
+function renderPassageQuestionInput(question, passages) {
+  const selectedAnswer = fallback(passages.answers[question.id], "");
+  if (!isPassageMultipleChoice(question)) {
+    return `<textarea class="textarea" data-question-id="${escapeHtml(question.id)}" placeholder="Type your answer in English">${escapeHtml(selectedAnswer)}</textarea>`;
+  }
+
+  return `
+    <div class="option-grid" style="margin-top:12px;">
+      ${question.options
+        .map((option, index) => {
+          const selected = normalizeForCompare(selectedAnswer) === normalizeForCompare(option);
+          const correct = passages.revealed && normalizeForCompare(option) === normalizeForCompare(getPassageCorrectAnswer(question));
+          const wrong = passages.revealed && selected && !correct;
+          const classes = ["option-button"];
+          if (selected) {
+            classes.push("is-selected");
+          }
+          if (correct) {
+            classes.push("is-correct");
+          }
+          if (wrong) {
+            classes.push("is-wrong");
+          }
+          return `
+            <button
+              class="${classes.join(" ")}"
+              data-action="passage-choice"
+              data-question-id="${escapeHtml(question.id)}"
+              data-option-index="${index}"
+              ${passages.revealed ? "disabled" : ""}
+            >
+              ${escapeHtml(option)}
+            </button>
+          `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function renderPassageQuestionReveal(question, passages) {
+  const correctAnswer = getPassageCorrectAnswer(question);
+  const selectedAnswer = fallback(passages.answers[question.id], "");
+  const hasAnswer = Boolean(normalizeForCompare(selectedAnswer));
+  const correct = hasAnswer && normalizeForCompare(selectedAnswer) === normalizeForCompare(correctAnswer);
+  const tone = hasAnswer ? (correct ? "correct" : "wrong") : "info";
+
+  return `
+    <div class="feedback ${tone}" style="margin-top:12px;">
+      <strong>${isPassageMultipleChoice(question) ? (correct ? "Correct" : "Answer review") : "Model answer"}</strong>
+      ${
+        isPassageMultipleChoice(question)
+          ? `
+            ${hasAnswer ? `<p class="tiny">Your choice: ${escapeHtml(selectedAnswer)}</p>` : `<p class="tiny">No choice selected.</p>`}
+            <p class="tiny">Correct answer: ${escapeHtml(correctAnswer)}</p>
+          `
+          : ""
+      }
+      <p class="tiny">${escapeHtml(question.model_answer_en)}</p>
+      ${Array.isArray(question.accepted_keywords) && question.accepted_keywords.length ? `<p class="tiny muted">Keywords: ${escapeHtml(question.accepted_keywords.join(", "))}</p>` : ""}
+    </div>
+  `;
+}
+
 async function renderReadingTab() {
   const prefs = persisted.prefs.passages;
   const groups = listPassageGroups(runtime.manifest);
@@ -859,7 +964,7 @@ async function renderReadingTab() {
           <div class="question-meta">
             <div>
               <h2>Reading practice</h2>
-              <p class="muted tiny">Listen first, answer in English, then reveal the translation and model responses.</p>
+              <p class="muted tiny">Listen first, answer in English or choose the best option, then reveal the translation and model responses.</p>
             </div>
             <span class="count-pill blue">${stats.passagesCompleted} completed</span>
           </div>
@@ -877,11 +982,11 @@ async function renderReadingTab() {
           <div class="toggle-row" style="margin-top:18px;">
             <label class="mode-check">
               <input type="checkbox" id="passage-show-german" ${prefs.showGerman ? "checked" : ""} />
-              <span><strong>Show German text</strong><br /><span class="muted tiny">Hide it by default if you want a listening-first flow.</span></span>
+              <span><strong>Show source text</strong><br /><span class="muted tiny">Hide it by default if you want a listening-first flow.</span></span>
             </label>
             <label class="mode-check">
               <input type="checkbox" id="passage-voice" ${prefs.voiceEnabled ? "checked" : ""} />
-              <span><strong>Autoplay voice</strong><br /><span class="muted tiny">Use browser speech synthesis for the German passage.</span></span>
+              <span><strong>Autoplay voice</strong><br /><span class="muted tiny">Use browser speech synthesis for the source passage.</span></span>
             </label>
           </div>
           <div class="action-row" style="margin-top:18px;">
@@ -895,6 +1000,7 @@ async function renderReadingTab() {
 
   const current = passages.current;
   const visibleQuestions = getVisibleQuestions(current, prefs.difficulty);
+  const speechSupported = "speechSynthesis" in window;
 
   return `
     <div class="section-stack">
@@ -907,10 +1013,11 @@ async function renderReadingTab() {
           </div>
           <div class="chip-row">
             <span class="count-pill blue">${passages.completedThisSession} completed this session</span>
-            <button class="button ghost" data-action="play-passage">Play German</button>
+            <button class="button ghost" data-action="play-passage">Play source text</button>
+            ${speechSupported ? `<button class="button ghost" data-action="stop-passage">Stop audio</button>` : ""}
           </div>
         </div>
-        ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.passage_de)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">German text hidden. Listen first, then reveal when you need it.</p>`}
+        ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.passage_de)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">Source text hidden. Listen first, then reveal when you need it.</p>`}
       </section>
 
       <section class="passage-shell">
@@ -925,18 +1032,8 @@ async function renderReadingTab() {
                     ${question.difficulty ? `<span class="badge amber">${escapeHtml(question.difficulty)}</span>` : ""}
                   </div>
                   <p><strong>${escapeHtml(question.question_en)}</strong></p>
-                  <textarea class="textarea" data-question-id="${escapeHtml(question.id)}" placeholder="Type your answer in English">${escapeHtml(fallback(passages.answers[question.id], ""))}</textarea>
-                  ${
-                    passages.revealed
-                      ? `
-                        <div class="feedback info" style="margin-top:12px;">
-                          <strong>Model answer</strong>
-                          <p class="tiny">${escapeHtml(question.model_answer_en)}</p>
-                          ${Array.isArray(question.accepted_keywords) && question.accepted_keywords.length ? `<p class="tiny muted">Keywords: ${escapeHtml(question.accepted_keywords.join(", "))}</p>` : ""}
-                        </div>
-                      `
-                      : ""
-                  }
+                  ${renderPassageQuestionInput(question, passages)}
+                  ${passages.revealed ? renderPassageQuestionReveal(question, passages) : ""}
                 </article>
               `,
             )
@@ -948,7 +1045,7 @@ async function renderReadingTab() {
         passages.revealed
           ? `
             <section class="passage-shell">
-              <h2>English reveal</h2>
+              <h2>Translation / reveal</h2>
               <blockquote style="margin-top:16px;">${escapeHtml(current.passage_en)}</blockquote>
             </section>
           `
@@ -957,7 +1054,7 @@ async function renderReadingTab() {
 
       <section class="passage-shell">
         <div class="action-row">
-          ${!passages.revealed ? `<button class="button" data-action="reading-reveal">Reveal English + model answers</button>` : `<button class="button" data-action="reading-next">Next passage</button>`}
+          ${!passages.revealed ? `<button class="button" data-action="reading-reveal">Reveal translation + model answers</button>` : `<button class="button" data-action="reading-next">Next passage</button>`}
           <button class="button ghost" data-action="reading-reset">Back to setup</button>
         </div>
       </section>
@@ -1117,6 +1214,7 @@ function renderSelectField(id, label, options, currentValue) {
 async function handleClick(event) {
   const tabButton = event.target.closest("[data-tab]");
   if (tabButton) {
+    stopSpeaking();
     persisted.activeTab = tabButton.dataset.tab;
     saveStoredState(persisted);
     runtime.currentQuiz = runtime.currentQuiz && runtime.currentQuiz.completed ? null : runtime.currentQuiz;
@@ -1214,6 +1312,19 @@ async function handleClick(event) {
       advanceBuilderCard(true);
       await renderApp();
       return;
+    case "passage-choice": {
+      if (!runtime.passages || runtime.passages.revealed || !runtime.passages.current) {
+        return;
+      }
+      const question = runtime.passages.current.questions.find((item) => item.id === actionButton.dataset.questionId);
+      const optionIndex = Number(actionButton.dataset.optionIndex);
+      if (!question || !Array.isArray(question.options) || !Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= question.options.length) {
+        return;
+      }
+      runtime.passages.answers[question.id] = question.options[optionIndex];
+      await renderApp();
+      return;
+    }
     case "reading-start":
       startReadingSession();
       await renderApp();
@@ -1221,15 +1332,20 @@ async function handleClick(event) {
     case "play-passage":
       playCurrentPassage();
       return;
+    case "stop-passage":
+      stopSpeaking();
+      return;
     case "reading-reveal":
       revealCurrentPassage();
       await renderApp();
       return;
     case "reading-next":
+      stopSpeaking();
       advancePassage();
       await renderApp();
       return;
     case "reading-reset":
+      stopSpeaking();
       runtime.passages.started = false;
       await renderApp();
       return;
@@ -1640,7 +1756,8 @@ function getPlayablePassages() {
 }
 
 function startReadingSession() {
-  const playable = shuffle(getPlayablePassages());
+  stopSpeaking();
+  const playable = shuffle(getPlayablePassages()).map((passage) => preparePassageForSession(passage));
   if (!playable.length) {
     runtime.passages.message = "No passages match the current category and difficulty filters.";
     runtime.passages.started = false;
@@ -1662,7 +1779,7 @@ function playCurrentPassage() {
   if (!current) {
     return;
   }
-  speakText(current.passage_de, "de-DE");
+  speakText(current.passage_de, fallback(current.speech_language, "de-DE"));
 }
 
 function revealCurrentPassage() {
@@ -1677,7 +1794,7 @@ function revealCurrentPassage() {
 
 function advancePassage() {
   if (!runtime.passages.deck.length) {
-    runtime.passages.deck = shuffle(getPlayablePassages());
+    runtime.passages.deck = shuffle(getPlayablePassages()).map((passage) => preparePassageForSession(passage));
   }
   runtime.passages.current = runtime.passages.deck.shift();
   runtime.passages.answers = {};
