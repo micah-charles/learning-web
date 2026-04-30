@@ -100,6 +100,14 @@ export function speakText(text, language = "de-DE") {
   return true;
 }
 
+export function stopSpeaking() {
+  if (!("speechSynthesis" in window)) {
+    return false;
+  }
+  window.speechSynthesis.cancel();
+  return true;
+}
+
 export function byDisplayName(a, b) {
   const left = a && a.displayName ? String(a.displayName) : "";
   const right = b && b.displayName ? String(b.displayName) : "";
