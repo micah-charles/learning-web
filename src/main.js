@@ -9,6 +9,9 @@ import {
   loadSentenceBuilderPack,
   loadSentencePools,
   loadVocabItems,
+  loadSequenceItems,
+  loadCategorySortItems,
+  loadFillBlankItems,
 } from "./data.js";
 import {
   createQuizSession,
@@ -16,6 +19,9 @@ import {
   getQuestionModes,
   gradeQuestion,
   makeBuildState,
+  makeSequenceQuestions,
+  makeCategorySortQuestions,
+  makeFillBlankQuestions,
 } from "./quiz.js";
 import {
   DEFAULT_STATE,
@@ -730,6 +736,106 @@ function renderQuestionControls(question, buildState, awaitingNext) {
       </div>
       <div class="action-row">
         <button class="button" data-action="quiz-check-typed" ${awaitingNext ? "disabled" : ""}>Check answer</button>
+      </div>
+    `;
+  }
+
+  if (question.kind === "gap") {
+    if (question.options && question.options.length > 0) {
+      return `
+        <div class="option-grid" style="margin-top:12px;">
+          ${question.options
+            .map((option) => `
+              <button class="option-button" data-action="quiz-gap-choice" data-value="${escapeHtml(option)}" ${awaitingNext ? "disabled" : ""}>
+                ${escapeHtml(option)}
+              </button>
+            `)
+            .join("")}
+        </div>
+      `;
+    }
+    return `
+      <div class="field" style="margin-top:12px;">
+        <label for="quiz-gap-typed">Your answer</label>
+        <textarea id="quiz-gap-typed" class="textarea" placeholder="Type your answer" ${awaitingNext ? "disabled" : ""}></textarea>
+      </div>
+      <div class="action-row">
+        <button class="button" data-action="quiz-check-gap" ${awaitingNext ? "disabled" : ""}>Check answer</button>
+      </div>
+    `;
+  }
+
+  if (question.kind === "sequence") {
+    const userOrder = (buildState && buildState.userOrder) ? buildState.userOrder : question.shuffledOrder;
+    const selectedIdx = buildState && buildState.selectedIndex;
+    return `
+      ${question.instruction ? `<p class="muted tiny" style="margin-bottom:12px;">${escapeHtml(question.instruction)}</p>` : ""}
+      <div class="sequence-arena">
+        ${userOrder.map((item, index) => {
+          const isSelected = selectedIdx === index;
+          return `
+            <div class="sequence-item ${isSelected ? "is-selected" : ""}" data-action="quiz-seq-select" data-index="${index}" ${awaitingNext ? "disabled" : ""}>
+              <span class="sequence-num">${index + 1}</span>
+              <span class="sequence-text">${escapeHtml(item)}</span>
+              <span class="seq-move-hint muted tiny">${isSelected ? "tap another to swap" : "tap to select"}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
+      <div class="action-row" style="margin-top:14px;">
+        <button class="button secondary" data-action="quiz-seq-shuffle" ${awaitingNext ? "disabled" : ""}>Shuffle</button>
+        <button class="button" data-action="quiz-check-sequence" ${awaitingNext ? "disabled" : ""}>Check order</button>
+      </div>
+    `;
+  }
+
+  if (question.kind === "sort") {
+    const placedItems = buildState && buildState.placedItems ? buildState.placedItems : [];
+    const unplacedItems = buildState && buildState.unplacedItems ? buildState.unplacedItems : question.items;
+    const selectedIdx = buildState && buildState.selectedItemIndex;
+    return `
+      ${question.instruction ? `<p class="muted tiny" style="margin-bottom:12px;">${escapeHtml(question.instruction)}</p>` : ""}
+      <div class="sort-arena">
+        <div class="sort-item-pool">
+          ${unplacedItems.map((item, uIdx) => {
+            const realIdx = question.items.indexOf(item);
+            const isSelected = selectedIdx === realIdx;
+            return `
+              <button class="sort-item ${isSelected ? "is-selected" : ""}"
+                data-action="quiz-sort-select-item"
+                data-item-index="${realIdx}"
+                ${awaitingNext ? "disabled" : ""}>
+                ${escapeHtml(typeof item === "string" ? item : item.text)}
+              </button>
+            `;
+          }).join("")}
+        </div>
+        ${question.categories.map((cat, catIdx) => {
+          const catItems = placedItems.filter(p => p.categoryIndex === catIdx);
+          return `
+            <div class="sort-category-zone ${buildState && buildState.selectedCategoryIndex === catIdx ? "is-selected" : ""}">
+              <h4>${escapeHtml(cat)}</h4>
+              <div class="sort-placed-list">
+                ${catItems.map(p => `
+                  <div class="sort-placed-item">
+                    <span>${escapeHtml(p.text)}</span>
+                    <button class="sort-remove-btn" data-action="quiz-sort-remove" data-placed-idx="${placedItems.indexOf(p)}" ${awaitingNext ? "disabled" : ""}>×</button>
+                  </div>
+                `).join("")}
+              </div>
+              <button class="button ghost" style="margin-top:8px;font-size:0.85rem;padding:7px 10px;"
+                data-action="quiz-sort-place"
+                data-category-index="${catIdx}"
+                ${selectedIdx === null || awaitingNext ? "disabled" : ""}>
+                Place here
+              </button>
+            </div>
+          `;
+        }).join("")}
+      </div>
+      <div class="action-row" style="margin-top:14px;">
+        <button class="button secondary" data-action="quiz-sort-reset" ${awaitingNext ? "disabled" : ""}>Reset</button>
+        <button class="button" data-action="quiz-check-sort" ${awaitingNext ? "disabled" : ""}>Check sorting</button>
       </div>
     `;
   }
@@ -1454,6 +1560,123 @@ async function handleClick(event) {
     case "review-mastered":
       await startQuiz(runtime.reviewContext.mastered, "Mastered words refresh");
       return;
+
+    // --- New geography game type handlers ---
+    case "quiz-seq-select": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const idx = Number(actionButton.dataset.index);
+      const bs = session.buildState;
+      if (bs.selectedIndex === null) {
+        bs.selectedIndex = idx;
+      } else if (bs.selectedIndex === idx) {
+        bs.selectedIndex = null;
+      } else {
+        // swap
+        const a = bs.selectedIndex, b = idx;
+        [bs.userOrder[a], bs.userOrder[b]] = [bs.userOrder[b], bs.userOrder[a]];
+        bs.selectedIndex = null;
+      }
+      await renderApp();
+      return;
+    }
+    case "quiz-seq-shuffle": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      session.buildState.userOrder = shuffle([...session.questions[session.index].shuffledOrder]);
+      session.buildState.selectedIndex = null;
+      await renderApp();
+      return;
+    }
+    case "quiz-check-sequence": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const question = session.questions[session.index];
+      const userOrder = session.buildState.userOrder;
+      const correct = normalizeForCompare(userOrder.join(" ")) === normalizeForCompare(question.correctOrder.join(" "));
+      await answerQuizQuestion(userOrder.join(" || "), { isSequence: true, correctOrder: question.correctOrder });
+      return;
+    }
+    case "quiz-sort-select-item": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const itemIndex = Number(actionButton.dataset.itemIndex);
+      session.buildState.selectedItemIndex = itemIndex;
+      session.buildState.selectedCategoryIndex = null;
+      await renderApp();
+      return;
+    }
+    case "quiz-sort-place": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const catIdx = Number(actionButton.dataset.categoryIndex);
+      const itemIndex = session.buildState.selectedItemIndex;
+      if (itemIndex === null) return;
+      const question = session.questions[session.index];
+      const item = question.items[itemIndex];
+      // Remove from unplaced
+      session.buildState.unplacedItems = session.buildState.unplacedItems.filter((_, i) => {
+        const realIdx = question.items.indexOf(item);
+        return realIdx !== itemIndex;
+      });
+      // Add to placed
+      session.buildState.placedItems.push({
+        text: typeof item === "string" ? item : item.text,
+        categoryIndex: catIdx,
+        category: question.categories[catIdx],
+      });
+      session.buildState.selectedItemIndex = null;
+      await renderApp();
+      return;
+    }
+    case "quiz-sort-remove": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const placedIdx = Number(actionButton.dataset.placedIdx);
+      const removed = session.buildState.placedItems.splice(placedIdx, 1)[0];
+      session.buildState.unplacedItems.push(
+        question.items.find(i => (typeof i === "string" ? i : i.text) === removed.text) || removed.text,
+      );
+      await renderApp();
+      return;
+    }
+    case "quiz-sort-reset": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const question = session.questions[session.index];
+      session.buildState = {
+        selectedItemIndex: null,
+        placedItems: [],
+        unplacedItems: [...question.items],
+      };
+      await renderApp();
+      return;
+    }
+    case "quiz-check-sort": {
+      const session = runtime.currentQuiz;
+      if (!session || session.awaitingNext) return;
+      const question = session.questions[session.index];
+      const placed = session.buildState.placedItems;
+      const correctItems = question.items.filter(i => typeof i === "object" && "text" in i);
+      const allCorrect = placed.every(p => {
+        const realItem = correctItems.find(i => i.text === p.text);
+        return realItem && realItem.category === p.category;
+      }) && placed.length === correctItems.length;
+      await answerQuizQuestion(
+        placed.map(p => `${p.text}|${p.category}`).join(" || "),
+        { isSort: true },
+      );
+      return;
+    }
+    case "quiz-gap-choice":
+      await answerQuizQuestion(actionButton.dataset.value);
+      return;
+    case "quiz-check-gap": {
+      const input = document.querySelector("#quiz-gap-typed");
+      await answerQuizQuestion(input ? input.value : "");
+      return;
+    }
+
     default:
       return;
   }
@@ -1593,6 +1816,9 @@ async function startQuiz(customWords = null, label = null) {
   const words = filterWordsForScope(allWords, dataset, prefs);
   const sentencePools = await loadSentencePools(runtime.manifest, prefs.datasetId);
   const sourceWords = customWords && customWords.length ? customWords : words;
+  const sequenceItems = await loadSequenceItems(runtime.manifest, prefs.datasetId);
+  const categorySortItems = await loadCategorySortItems(runtime.manifest, prefs.datasetId);
+  const fillBlankItems = await loadFillBlankItems(runtime.manifest, prefs.datasetId);
   const session = createQuizSession({
     words,
     sentencePools,
@@ -1601,6 +1827,9 @@ async function startQuiz(customWords = null, label = null) {
     customWords,
     label,
     dataset,
+    sequenceItems,
+    categorySortItems,
+    fillBlankItems,
   });
   session.config = { ...prefs };
   session.config.datasetId = prefs.datasetId;
@@ -1608,8 +1837,28 @@ async function startQuiz(customWords = null, label = null) {
   session.config.stages = getSelectedStages(prefs, dataset);
   session.sourceWords = sourceWords;
   session.missedWords = [];
-  if (session.questions[0] && session.questions[0].kind === "build") {
-    session.buildState = makeBuildState(session.questions[0]);
+  const firstQ = session.questions[0];
+  if (firstQ) {
+    if (firstQ.kind === "build") {
+      session.buildState = makeBuildState(firstQ);
+    } else if (firstQ.kind === "sequence") {
+      session.buildState = {
+        selectedIndex: null,
+        userOrder: [...firstQ.shuffledOrder],
+      };
+    } else if (firstQ.kind === "sort") {
+      session.buildState = {
+        selectedItemIndex: null,
+        placedItems: [],
+        unplacedItems: [...firstQ.items],
+      };
+    } else if (firstQ.kind === "match") {
+      session.buildState = {
+        selectedTerm: null,
+        selectedDef: null,
+        matchedPairs: [],
+      };
+    }
   }
   runtime.currentQuiz = session;
   persisted.activeTab = "quiz";
@@ -1617,13 +1866,13 @@ async function startQuiz(customWords = null, label = null) {
   await renderApp();
 }
 
-async function answerQuizQuestion(response) {
+async function answerQuizQuestion(response, extra = null) {
   const session = runtime.currentQuiz;
   if (!session || session.awaitingNext) {
     return;
   }
   const question = session.questions[session.index];
-  const result = gradeQuestion(question, response);
+  const result = gradeQuestion(question, response, extra);
   session.awaitingNext = true;
   session.feedback = result;
   session.answers.push({
@@ -1676,6 +1925,14 @@ function nextQuizQuestion() {
   }
   if (session.questions[session.index].kind === "build") {
     session.buildState = makeBuildState(session.questions[session.index]);
+  } else if (session.questions[session.index].kind === "sequence") {
+    const q = session.questions[session.index];
+    session.buildState = { selectedIndex: null, userOrder: shuffle([...q.shuffledOrder]) };
+  } else if (session.questions[session.index].kind === "sort") {
+    const q = session.questions[session.index];
+    session.buildState = { selectedItemIndex: null, placedItems: [], unplacedItems: [...q.items], selectedCategoryIndex: null };
+  } else if (session.questions[session.index].kind === "match") {
+    session.buildState = { selectedTerm: null, selectedDef: null, matchedPairs: [] };
   }
 }
 

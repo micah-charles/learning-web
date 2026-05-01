@@ -78,6 +78,24 @@ export async function loadSentenceBuilderPack(manifest, packId) {
   return splitJsonl(await fetchText(`./${pack.path}`));
 }
 
+export async function loadSequenceItems(manifest, packId) {
+  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
+  if (!pack || !pack.sequencePath) return [];
+  return splitJsonl(await fetchText(`./${pack.sequencePath}`));
+}
+
+export async function loadCategorySortItems(manifest, packId) {
+  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
+  if (!pack || !pack.categorySortPath) return [];
+  return splitJsonl(await fetchText(`./${pack.categorySortPath}`));
+}
+
+export async function loadFillBlankItems(manifest, packId) {
+  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
+  if (!pack || !pack.fillBlankPath) return [];
+  return splitJsonl(await fetchText(`./${pack.fillBlankPath}`));
+}
+
 export function listPassageGroups(manifest) {
   return manifest.passageGroups || [];
 }

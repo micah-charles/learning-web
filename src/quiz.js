@@ -44,6 +44,30 @@ const MODE_DEFINITIONS = [
     family: "sentence",
     direction: "targetToStudy",
   },
+  {
+    id: "sequenceOrder",
+    kind: "sequence",
+    family: "process",
+    direction: null,
+  },
+  {
+    id: "categorySort",
+    kind: "sort",
+    family: "process",
+    direction: null,
+  },
+  {
+    id: "fillBlank",
+    kind: "gap",
+    family: "vocab",
+    direction: null,
+  },
+  {
+    id: "vocabMatch",
+    kind: "match",
+    family: "vocab",
+    direction: null,
+  },
 ];
 
 function datasetLabels(dataset = null) {
@@ -293,6 +317,70 @@ function makeSentenceQuestions(sentences, modeId, count, dataset) {
   return picks.map((sentence, index) => buildSentenceQuestion(sentence, modeId, dataset, index));
 }
 
+export function makeSequenceQuestions(items, count, dataset) {
+  const picks = cyclePick(items, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => ({
+    id: `seq-${item.id}-${index}`,
+    modeId: "sequenceOrder",
+    modeTitle: "Arrange in order",
+    kind: "sequence",
+    prompt: item.title,
+    instruction: item.instruction,
+    correctOrder: item.items,
+    shuffledOrder: shuffle([...item.items]),
+    speechText: item.items.join(". "),
+    speechLanguage: labels.speechLanguage,
+  }));
+}
+
+export function makeCategorySortQuestions(items, count, dataset) {
+  const picks = cyclePick(items, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => {
+    const shuffledItems = shuffle([...item.items]);
+    const distractors = ["freeze-thaw", "plucking", "abrasion", "corrie", "arête", "U-shaped valley"];
+    const extraText = shuffle(distractors)[0];
+    const allItems = [...shuffledItems, { text: extraText, category: item.categories[0] }];
+    return {
+      id: `cat-${item.id}-${index}`,
+      modeId: "categorySort",
+      modeTitle: "Sort into categories",
+      kind: "sort",
+      prompt: item.title,
+      instruction: item.instruction,
+      categories: item.categories,
+      items: shuffle(allItems),
+      speechText: item.items.map((i) => i.text).join(", "),
+      speechLanguage: labels.speechLanguage,
+    };
+  });
+}
+
+export function makeFillBlankQuestions(items, count, dataset) {
+  const picks = cyclePick(items, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => {
+    const wrongAnswers = items
+      .filter((i) => normalizeForCompare(i.answer) !== normalizeForCompare(item.answer))
+      .map((i) => i.answer)
+      .slice(0, 3);
+    return {
+      id: `gap-${item.id}-${index}`,
+      modeId: "fillBlank",
+      modeTitle: "Fill in the blank",
+      kind: "gap",
+      prompt: item.sentence,
+      answer: item.answer,
+      acceptedAnswers: [item.answer],
+      hint: item.hint || "",
+      options: shuffle([item.answer, ...wrongAnswers]),
+      speechText: item.sentence,
+      speechLanguage: labels.speechLanguage,
+    };
+  });
+}
+
 function interleave(questionGroups) {
   const decks = questionGroups.map((group) => [...group]);
   const merged = [];
@@ -319,7 +407,7 @@ export function getDefaultQuestionModes(dataset = null) {
   return filtered.length ? filtered : getQuestionModes(dataset).slice(0, 3).map((mode) => mode.id);
 }
 
-export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null }) {
+export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [] }) {
   const availableModes = getQuestionModes(dataset);
   const activeModes = availableModes.filter((mode) => config.modes.includes(mode.id));
   if (!activeModes.length) {
@@ -345,6 +433,12 @@ export function createQuizSession({ words, sentencePools, config, persistedState
       case "germanSentenceBuildEnglish":
       case "englishSentenceTypeGerman":
         return makeSentenceQuestions(sentencePool, mode.id, count, dataset);
+      case "sequenceOrder":
+        return makeSequenceQuestions(sequenceItems, count, dataset);
+      case "categorySort":
+        return makeCategorySortQuestions(categorySortItems, count, dataset);
+      case "fillBlank":
+        return makeFillBlankQuestions(fillBlankItems, count, dataset);
       default:
         return [];
     }
@@ -379,7 +473,27 @@ export function makeBuildState(question) {
   };
 }
 
-export function gradeQuestion(question, response) {
+export function gradeQuestion(question, response, extra = null) {
+  // Custom grading for new geography question types
+  if (extra) {
+    if (extra.isSequence) {
+      const userOrder = (response || "").split(" || ")[0] || "";
+      const correct = normalizeForCompare(userOrder) === normalizeForCompare((extra.correctOrder || []).join(" "));
+      const correctOrderStr = (extra.correctOrder || []).join(" → ");
+      return {
+        correct,
+        expected: correctOrderStr,
+        actual: userOrder || response,
+      };
+    }
+    if (extra.isSort) {
+      return {
+        correct: normalizeForCompare(response) === normalizeForCompare("sort:correct"),
+        expected: "Sort all items into their correct categories",
+        actual: response,
+      };
+    }
+  }
   const actual = normalizeForCompare(response);
   const acceptedAnswers = Array.isArray(question.acceptedAnswers) && question.acceptedAnswers.length
     ? question.acceptedAnswers
