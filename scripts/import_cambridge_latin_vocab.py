@@ -4,13 +4,14 @@ from __future__ import annotations
 import csv
 import json
 import re
+import sys
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 PACK_DIR = DATA_DIR / "Packs" / "cambridge_latin_stages"
-CSV_PATH = Path("/Users/charlestan/learning/generated/cambridge-latin-vocab/all_stages.csv")
+DEFAULT_CSV_PATH = ROOT / "generated" / "cambridge-latin-vocab" / "all_stages.csv"
 
 def strip_stage_suffix(value: str) -> str:
     return re.sub(r"\^\d+$", "", value.strip())
@@ -99,11 +100,23 @@ def make_record(row: dict[str, str]) -> dict:
     }
 
 
-def main() -> None:
-    if not CSV_PATH.exists():
-        raise SystemExit(f"Missing source CSV: {CSV_PATH}")
+def get_csv_path() -> Path:
+    if len(sys.argv) > 1:
+        return Path(sys.argv[1]).expanduser()
+    return DEFAULT_CSV_PATH
 
-    with CSV_PATH.open("r", encoding="utf-8", newline="") as handle:
+
+def main() -> None:
+    csv_path = get_csv_path()
+    if not csv_path.exists():
+        raise SystemExit(
+            "Missing source CSV: "
+            f"{csv_path}\n"
+            "Pass an explicit path, for example:\n"
+            "python3 scripts/import_cambridge_latin_vocab.py generated/cambridge-latin-vocab/all_stages.csv"
+        )
+
+    with csv_path.open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         records = [make_record(row) for row in reader]
 
@@ -139,7 +152,7 @@ def main() -> None:
             "englishWordTypeGerman",
             "germanWordTypeEnglish",
         ],
-        "source_file": str(CSV_PATH),
+        "source_file": "generated/cambridge-latin-vocab/all_stages.csv",
         "word_count": len(records),
     }
     pack_path.write_text(

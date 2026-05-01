@@ -1,6 +1,40 @@
 # Learning Web
 
-Browser-based study app ported from the local Swift `learningGerman` project.
+Learning Web is a browser-based study app built to turn everyday learning materials into interactive revision tools.
+
+## Personal Story
+
+This project began as a practical tool to help my son study more efficiently. Over time, it evolved into a broader platform for personalised learning powered by technology and AI.
+
+Originally inspired by supporting my child's academic journey, I wanted a better way to turn school materials into efficient and enjoyable revision resources tailored to his specific needs.
+
+Rather than relying on generic one-size-fits-all learning apps, Learning Web focuses on custom content. It enables parents, teachers, and students to create learning games and revision tools directly from their own study materials.
+
+## Vision
+
+Learning Web is a personal education platform designed to transform everyday study materials into interactive learning experiences.
+
+The goal is to help students learn faster and smarter by converting textbooks, worksheets, PDFs, images, and notes into engaging revision tools such as:
+
+- multiple choice quizzes
+- flashcards
+- vocabulary trainers
+- exam revision packs
+- progress tracking
+- AI-generated practice questions
+- personalised learning packs
+
+## In Progress
+
+The platform is currently under active development, with ongoing work focused on:
+
+- smarter AI-generated question packs
+- multi-language learning support
+- a growing library of game-based learning modes
+
+## Long-Term Mission
+
+To make personalised, high-quality learning tools accessible to every family, turning ordinary study materials into engaging digital learning experiences.
 
 ## Included in this first web version
 
@@ -15,11 +49,11 @@ Browser-based study app ported from the local Swift `learningGerman` project.
 
 The app reuses the copied seed data under `data/` from:
 
-- `/Users/charlestan/project/learningGerman/Sources/LearningGermanCore/Resources/Seed`
+- the original local Swift `learningGerman` seed resources
 
 It can also import additional datasets into the shared web format. The Cambridge Latin vocab import reads:
 
-- `/Users/charlestan/learning/generated/cambridge-latin-vocab/all_stages.csv`
+- `generated/cambridge-latin-vocab/all_stages.csv`
 
 ## Run locally
 

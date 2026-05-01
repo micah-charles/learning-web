@@ -272,6 +272,78 @@ function renderNav() {
   `;
 }
 
+function renderEmptyStateCard({ eyebrow = "Learning Web", title, body, actionLabel = null, action = null }) {
+  return `
+    <div class="empty-state-card">
+      <div class="empty-state-illustration" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="14" width="40" height="36" rx="10" fill="rgba(21, 102, 168, 0.12)" stroke="rgba(21, 102, 168, 0.22)" stroke-width="2"/>
+          <path d="M22 22H42" stroke="rgba(21, 102, 168, 0.72)" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M22 30H38" stroke="rgba(21, 102, 168, 0.42)" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M22 38H34" stroke="rgba(21, 102, 168, 0.42)" stroke-width="2.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="eyebrow" style="color:#1566a8;">${escapeHtml(eyebrow)}</p>
+      <h2>${escapeHtml(title)}</h2>
+      <p class="tiny">${escapeHtml(body)}</p>
+      ${actionLabel && action ? `<button class="button" data-action="${escapeHtml(action)}">${escapeHtml(actionLabel)}</button>` : ""}
+    </div>
+  `;
+}
+
+function renderFeedbackBanner({ tone = "info", title, body, extra = "" }) {
+  const icon = tone === "correct" ? "✓" : tone === "wrong" ? "!" : "?";
+  return `
+    <div class="feedback ${escapeHtml(tone)}">
+      <div class="feedback-header">
+        <span class="feedback-icon" aria-hidden="true">${icon}</span>
+        <strong>${escapeHtml(title)}</strong>
+      </div>
+      <p class="tiny">${escapeHtml(body)}</p>
+      ${extra}
+    </div>
+  `;
+}
+
+function renderQuestionBox({ eyebrow = "", modeLabel = "", prompt, subtitle = "", sideContent = "" }) {
+  return `
+    <div class="question-box">
+      <div class="question-box-top">
+        <div class="question-box-copy">
+          ${eyebrow ? `<p class="eyebrow" style="color:#1566a8;">${escapeHtml(eyebrow)}</p>` : ""}
+          ${modeLabel ? `<span class="mode-chip blue">${escapeHtml(modeLabel)}</span>` : ""}
+          <div class="question-prompt">${escapeHtml(prompt)}</div>
+          ${subtitle ? `<p class="muted tiny">${escapeHtml(subtitle)}</p>` : ""}
+        </div>
+        ${sideContent}
+      </div>
+    </div>
+  `;
+}
+
+function describeQuizMode(question) {
+  if (question.kind === "choice") {
+    return "Multiple choice";
+  }
+  if (question.kind === "typed") {
+    return "Type your answer";
+  }
+  return "Build the sentence";
+}
+
+function getBuilderAnswerStateClass(builder) {
+  if (!builder || !builder.feedback) {
+    return "";
+  }
+  if (builder.feedback.tone === "correct") {
+    return "answer-correct";
+  }
+  if (builder.feedback.tone === "wrong") {
+    return "answer-wrong";
+  }
+  return "";
+}
+
 async function renderTabContent() {
   switch (persisted.activeTab) {
     case "vocab":
@@ -344,7 +416,7 @@ async function renderHomeTab() {
         </article>
       </section>
 
-      <section class="section-card">
+      <section class="section-card lead">
         <h2>Featured revision packs</h2>
         <p class="muted tiny">Pulled from the copied Seed/Packs data and ready to browse or quiz.</p>
         <div class="quick-grid" style="margin-top:16px;">
@@ -506,7 +578,7 @@ async function renderQuizTab() {
 
   return `
     <div class="section-stack">
-      <section class="session-card">
+      <section class="session-card lead">
         <div class="question-meta">
           <div>
             <h2>Quiz setup</h2>
@@ -578,7 +650,11 @@ async function renderQuizTab() {
                     `,
                   )
                   .join("")
-              : `<p class="muted tiny">No quiz sessions saved yet.</p>`
+              : renderEmptyStateCard({
+                  eyebrow: "Quiz",
+                  title: "No sessions yet",
+                  body: "Pick a pack and hit Start to build your first run.",
+                })
           }
         </div>
       </section>
@@ -593,29 +669,29 @@ function renderQuizSession(session) {
   session.buildState = buildState;
 
   const feedback = session.feedback
-    ? `
-      <div class="feedback ${session.feedback.correct ? "correct" : "wrong"}">
-        <strong>${session.feedback.correct ? "Correct" : "Not quite"}</strong>
-        <p class="tiny">${escapeHtml(session.feedback.correct ? `Answer: ${question.answer}` : `Expected: ${question.answer}`)}</p>
-      </div>
-    `
+    ? renderFeedbackBanner({
+        tone: session.feedback.correct ? "correct" : "wrong",
+        title: session.feedback.correct ? "Correct" : "Not quite",
+        body: session.feedback.correct ? `Answer: ${question.answer}` : `Expected: ${question.answer}`,
+      })
     : "";
 
   return `
     <div class="section-stack">
-      <section class="question-shell">
-        <div class="question-meta">
-          <div>
-            <p class="eyebrow" style="color:#1566a8;">${escapeHtml(question.modeTitle)}</p>
-            <div class="question-prompt">${escapeHtml(question.prompt)}</div>
-            ${question.subtitle ? `<p class="muted tiny">${escapeHtml(question.subtitle)}</p>` : ""}
-          </div>
-          <div class="chip-row">
-            <span class="count-pill blue">${progressText}</span>
-            <span class="count-pill green">${session.score} correct</span>
-            <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">Speak</button>
-          </div>
-        </div>
+      <section class="question-shell lead">
+        ${renderQuestionBox({
+          eyebrow: question.modeTitle,
+          modeLabel: describeQuizMode(question),
+          prompt: question.prompt,
+          subtitle: question.subtitle || "",
+          sideContent: `
+            <div class="chip-row">
+              <span class="count-pill blue">${escapeHtml(progressText)}</span>
+              <span class="count-pill green">${session.score} correct</span>
+              <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">Speak</button>
+            </div>
+          `,
+        })}
         ${renderQuestionControls(question, buildState, session.awaitingNext)}
         ${feedback}
         <div class="action-row">
@@ -771,7 +847,7 @@ async function renderBuilderTab() {
 
   return `
     <div class="section-stack">
-      <section class="builder-shell">
+      <section class="builder-shell lead">
         <div class="question-meta">
           <div>
             <h2>Sentence builder</h2>
@@ -795,18 +871,25 @@ async function renderBuilderTab() {
       </section>
 
       <section class="builder-shell">
-        <div class="question-meta">
-          <div>
-            <p class="eyebrow" style="color:#1566a8;">${escapeHtml(humanizeLabel(builder.currentCard.type))}</p>
-            <div class="question-prompt">${escapeHtml(builder.currentCard.prompt)}</div>
-          </div>
-          <span class="badge blue">${escapeHtml(builder.currentCard.level)}</span>
-        </div>
-        ${builder.feedback ? `<div class="feedback ${builder.feedback.tone}"><strong>${escapeHtml(builder.feedback.title)}</strong><p class="tiny">${escapeHtml(builder.feedback.body)}</p></div>` : ""}
+        ${renderQuestionBox({
+          eyebrow: humanizeLabel(builder.currentCard.type),
+          modeLabel: "Sentence builder",
+          prompt: builder.currentCard.prompt,
+          sideContent: `<span class="badge blue">${escapeHtml(builder.currentCard.level)}</span>`,
+        })}
+        ${
+          builder.feedback
+            ? renderFeedbackBanner({
+                tone: builder.feedback.tone,
+                title: builder.feedback.title,
+                body: builder.feedback.body,
+              })
+            : ""
+        }
         <div class="tile-row">
           <div class="field" style="flex:1 1 320px;">
             <label>Answer bar</label>
-            <div class="tile-area">
+            <div class="tile-area ${getBuilderAnswerStateClass(builder)}">
               <div class="tile-row">
                 ${builder.answerTiles.length
                   ? builder.answerTiles
@@ -925,9 +1008,11 @@ function renderPassageQuestionReveal(question, passages) {
   const correct = hasAnswer && normalizeForCompare(selectedAnswer) === normalizeForCompare(correctAnswer);
   const tone = hasAnswer ? (correct ? "correct" : "wrong") : "info";
 
-  return `
-    <div class="feedback ${tone}" style="margin-top:12px;">
-      <strong>${isPassageMultipleChoice(question) ? (correct ? "Correct" : "Answer review") : "Model answer"}</strong>
+  return renderFeedbackBanner({
+    tone,
+    title: isPassageMultipleChoice(question) ? (correct ? "Correct" : "Answer review") : "Model answer",
+    body: question.model_answer_en,
+    extra: `
       ${
         isPassageMultipleChoice(question)
           ? `
@@ -936,10 +1021,9 @@ function renderPassageQuestionReveal(question, passages) {
           `
           : ""
       }
-      <p class="tiny">${escapeHtml(question.model_answer_en)}</p>
       ${Array.isArray(question.accepted_keywords) && question.accepted_keywords.length ? `<p class="tiny muted">Keywords: ${escapeHtml(question.accepted_keywords.join(", "))}</p>` : ""}
-    </div>
-  `;
+    `,
+  });
 }
 
 async function renderReadingTab() {
@@ -960,7 +1044,7 @@ async function renderReadingTab() {
   if (!passages.started) {
     return `
       <div class="section-stack">
-        <section class="passage-shell">
+        <section class="passage-shell lead">
           <div class="question-meta">
             <div>
               <h2>Reading practice</h2>
@@ -1004,19 +1088,20 @@ async function renderReadingTab() {
 
   return `
     <div class="section-stack">
-      <section class="passage-shell">
-        <div class="question-meta">
-          <div>
-            <p class="eyebrow" style="color:#1566a8;">${escapeHtml(current.chapter)} · ${escapeHtml(current.section)}</p>
-            <div class="question-prompt">${escapeHtml(current.title_de)}</div>
-            <p class="muted tiny">${escapeHtml(current.title_en)} · ${escapeHtml(current.level)} · ${escapeHtml(current.topic)}</p>
-          </div>
-          <div class="chip-row">
-            <span class="count-pill blue">${passages.completedThisSession} completed this session</span>
-            <button class="button ghost" data-action="play-passage">Play source text</button>
-            ${speechSupported ? `<button class="button ghost" data-action="stop-passage">Stop audio</button>` : ""}
-          </div>
-        </div>
+      <section class="passage-shell lead">
+        ${renderQuestionBox({
+          eyebrow: `${current.chapter} · ${current.section}`,
+          modeLabel: "Reading practice",
+          prompt: current.title_de,
+          subtitle: `${current.title_en} · ${current.level} · ${current.topic}`,
+          sideContent: `
+            <div class="chip-row">
+              <span class="count-pill blue">${passages.completedThisSession} completed this session</span>
+              <button class="button ghost" data-action="play-passage">Play source text</button>
+              ${speechSupported ? `<button class="button ghost" data-action="stop-passage">Stop audio</button>` : ""}
+            </div>
+          `,
+        })}
         ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.passage_de)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">Source text hidden. Listen first, then reveal when you need it.</p>`}
       </section>
 
@@ -1083,7 +1168,7 @@ async function renderReviewTab() {
 
   return `
     <div class="section-stack">
-      <section class="review-card">
+      <section class="review-card lead">
         <div class="question-meta">
           <div>
             <h2>Review desk</h2>
@@ -1107,13 +1192,25 @@ async function renderReviewTab() {
         <article class="review-card">
           <h3>Needs review</h3>
           <div class="review-list" style="margin-top:16px;">
-            ${hardest.length ? hardest.map((word) => renderReviewWordCard(word, dataset)).join("") : `<p class="muted tiny">No hard words yet. Take a quiz first.</p>`}
+            ${hardest.length
+              ? hardest.map((word) => renderReviewWordCard(word, dataset)).join("")
+              : renderEmptyStateCard({
+                  eyebrow: "Review",
+                  title: "No hard words yet",
+                  body: "Take a quiz first to populate your review list.",
+                })}
           </div>
         </article>
         <article class="review-card">
           <h3>Mastered</h3>
           <div class="review-list" style="margin-top:16px;">
-            ${mastered.length ? mastered.map((word) => renderReviewWordCard(word, dataset)).join("") : `<p class="muted tiny">No mastered words yet.</p>`}
+            ${mastered.length
+              ? mastered.map((word) => renderReviewWordCard(word, dataset)).join("")
+              : renderEmptyStateCard({
+                  eyebrow: "Review",
+                  title: "No mastered words yet",
+                  body: "Your strongest words will appear here after a few sessions.",
+                })}
           </div>
         </article>
       </section>
@@ -1138,9 +1235,11 @@ function renderUnavailable(message) {
   return `
     <section class="empty-state">
       <div class="empty-card">
-        <p class="eyebrow" style="color:#1566a8;">Learning Web</p>
-        <h1>Not available yet</h1>
-        <p>${escapeHtml(message)}</p>
+        ${renderEmptyStateCard({
+          eyebrow: "Learning Web",
+          title: "Not available yet",
+          body: message,
+        })}
       </div>
     </section>
   `;
