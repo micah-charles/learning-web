@@ -12,6 +12,8 @@ import {
   loadSequenceItems,
   loadCategorySortItems,
   loadFillBlankItems,
+  loadUnifiedPack,
+  filterUnifiedItems,
 } from "./data.js";
 import {
   createQuizSession,
@@ -1816,9 +1818,15 @@ async function startQuiz(customWords = null, label = null) {
   const words = filterWordsForScope(allWords, dataset, prefs);
   const sentencePools = await loadSentencePools(runtime.manifest, prefs.datasetId);
   const sourceWords = customWords && customWords.length ? customWords : words;
+
+  // Load old-format files (fallback when unified pack is unavailable)
   const sequenceItems = await loadSequenceItems(runtime.manifest, prefs.datasetId);
   const categorySortItems = await loadCategorySortItems(runtime.manifest, prefs.datasetId);
   const fillBlankItems = await loadFillBlankItems(runtime.manifest, prefs.datasetId);
+
+  // Try to load unified pack (preferred path)
+  const unifiedPack = await loadUnifiedPack(runtime.manifest, prefs.datasetId);
+
   const session = createQuizSession({
     words,
     sentencePools,
@@ -1830,6 +1838,7 @@ async function startQuiz(customWords = null, label = null) {
     sequenceItems,
     categorySortItems,
     fillBlankItems,
+    unifiedPack,
   });
   session.config = { ...prefs };
   session.config.datasetId = prefs.datasetId;

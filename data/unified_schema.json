@@ -1,0 +1,393 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Learning Web Pack",
+  "description": "Unified JSON schema for the learning-web project. One file per pack containing all item types.",
+  "type": "object",
+  "required": ["packId", "title", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "packId": {
+      "type": "string",
+      "description": "Unique identifier for this pack, e.g. 'ks3_geography_glaciation_1'"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable pack title"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject area, e.g. 'Geography', 'German', 'Latin'"
+    },
+    "level": {
+      "type": "string",
+      "description": "Year level or proficiency, e.g. 'Y7', 'A2', 'GCSE'"
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary language of the pack content, e.g. 'English', 'German'"
+    },
+    "topics": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Topic labels for filtering, e.g. ['Glaciation', 'Erosion']"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional tags, e.g. ['KS3', 'cat:geography']"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the pack"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "default": "1.0",
+      "description": "Schema version for future-proofing"
+    },
+    "sourceLanguageLabel": {
+      "type": "string",
+      "description": "Display label for the source language, e.g. 'German'"
+    },
+    "sourceLanguageCode": {
+      "type": "string",
+      "description": "BCP 47 language code, e.g. 'de-DE'"
+    },
+    "targetLanguageLabel": {
+      "type": "string",
+      "description": "Display label for the target language, e.g. 'English'"
+    },
+    "targetLanguageCode": {
+      "type": "string",
+      "description": "BCP 47 language code, e.g. 'en-GB'"
+    },
+    "speechLanguage": {
+      "type": "string",
+      "description": "Language code for text-to-speech, e.g. 'de-DE'"
+    },
+    "items": {
+      "type": "array",
+      "description": "Array of LearningItem objects — one per vocabulary word, sentence, game, etc.",
+      "items": { "$ref": "#/definitions/LearningItem" }
+    }
+  },
+  "definitions": {
+    "LearningItem": {
+      "type": "object",
+      "required": ["id", "type", "data"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier within this pack, e.g. 'vocab_001', 'seq_001'"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "vocab",
+            "sentence",
+            "sequence",
+            "categorySort",
+            "fillBlank",
+            "sentenceBuilder",
+            "passage"
+          ],
+          "description": "Determines the shape of the 'data' field. Each type maps to a specific game mode."
+        },
+        "level": {
+          "type": "string",
+          "description": "Year level for this specific item (overrides pack-level level)"
+        },
+        "topics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Topics relevant to this item"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Additional tags for this item"
+        },
+        "data": {
+          "description": "Type-specific fields. See definitions below.",
+          "oneOf": [
+            { "$ref": "#/definitions/VocabData" },
+            { "$ref": "#/definitions/SentenceData" },
+            { "$ref": "#/definitions/SequenceData" },
+            { "$ref": "#/definitions/CategorySortData" },
+            { "$ref": "#/definitions/FillBlankData" },
+            { "$ref": "#/definitions/SentenceBuilderData" },
+            { "$ref": "#/definitions/PassageData" }
+          ]
+        }
+      }
+    },
+
+    "VocabData": {
+      "type": "object",
+      "description": "Used by: Vocabulary browser, Quiz word modes (choice, typed, build)",
+      "additionalProperties": false,
+      "required": ["sourceWord", "targetWord"],
+      "properties": {
+        "sourceWord": {
+          "type": "string",
+          "description": "The word/sentence to study, e.g. 'glacier' or 'das'"
+        },
+        "targetWord": {
+          "type": "string",
+          "description": "The translation/answer, e.g. 'a large mass of ice that moves slowly' or 'the (nt)'"
+        },
+        "sourceLanguage": {
+          "type": "string",
+          "description": "Language code for sourceWord, e.g. 'en' or 'de'"
+        },
+        "targetLanguage": {
+          "type": "string",
+          "description": "Language code for targetWord, e.g. 'en' or 'de'"
+        },
+        "partOfSpeech": {
+          "type": "string",
+          "description": "Part of speech, e.g. 'noun', 'verb', 'det', 'adjective'"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Noun gender: 'n' (neuter), 'm' (masculine), 'f' (feminine)"
+        },
+        "plural": {
+          "type": "string",
+          "description": "Noun plural form"
+        },
+        "exampleSource": {
+          "type": "string",
+          "description": "Example sentence in the source language"
+        },
+        "exampleTarget": {
+          "type": "string",
+          "description": "Example sentence in the target language"
+        }
+      }
+    },
+
+    "SentenceData": {
+      "type": "object",
+      "description": "Used by: Quiz sentence modes (build, type)",
+      "additionalProperties": false,
+      "required": ["sourceSentence", "targetSentence"],
+      "properties": {
+        "sourceSentence": {
+          "type": "string",
+          "description": "Sentence in the source language, e.g. German"
+        },
+        "targetSentence": {
+          "type": "string",
+          "description": "Sentence in the target language, e.g. English"
+        },
+        "sourceLanguage": {
+          "type": "string"
+        },
+        "targetLanguage": {
+          "type": "string"
+        }
+      }
+    },
+
+    "SequenceData": {
+      "type": "object",
+      "description": "Used by: Quiz sequence ordering game",
+      "additionalProperties": false,
+      "required": ["title", "items"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Question prompt shown to the student"
+        },
+        "instruction": {
+          "type": "string",
+          "description": "Instruction text shown below the title"
+        },
+        "items": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ordered array of steps. UI shuffles at runtime. Must be arranged in correct order by the student."
+        },
+        "shuffle": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to shuffle items at runtime (always true unless debugging)"
+        }
+      }
+    },
+
+    "CategorySortData": {
+      "type": "object",
+      "description": "Used by: Quiz category sorting game",
+      "additionalProperties": false,
+      "required": ["title", "categories", "pairs"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Question prompt, e.g. 'Weathering or Erosion?'"
+        },
+        "instruction": {
+          "type": "string",
+          "description": "Instruction shown below the title"
+        },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Column headers, e.g. ['Weathering', 'Erosion']"
+        },
+        "pairs": {
+          "type": "array",
+          "description": "Items to be sorted. The 'category' field is the correct answer (hidden from student).",
+          "items": {
+            "type": "object",
+            "required": ["text", "category"],
+            "additionalProperties": false,
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "The item text to be placed, e.g. 'freeze-thaw'"
+              },
+              "category": {
+                "type": "string",
+                "description": "The correct category for this item, e.g. 'Weathering'"
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "FillBlankData": {
+      "type": "object",
+      "description": "Used by: Quiz fill-in-the-blank game",
+      "additionalProperties": false,
+      "required": ["sentence", "answer"],
+      "properties": {
+        "sentence": {
+          "type": "string",
+          "description": "Sentence with a placeholder. Use '____' for the blank, e.g. 'The build-up of snow where more falls than melts is called ____.'"
+        },
+        "answer": {
+          "type": "string",
+          "description": "The correct answer to fill in the blank"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Optional hint shown to the student"
+        }
+      }
+    },
+
+    "SentenceBuilderData": {
+      "type": "object",
+      "description": "Used by: Builder tab (standalone tile drill)",
+      "additionalProperties": false,
+      "required": ["prompt", "answer", "tiles"],
+      "properties": {
+        "cardType": {
+          "type": "string",
+          "description": "Card category for filtering, e.g. 'key_date', 'key_term', 'example_sentence'"
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Short prompt shown to the student, e.g. '331BC'"
+        },
+        "answer": {
+          "type": "string",
+          "description": "The complete correct answer sentence"
+        },
+        "tiles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Word fragments shuffled into the tile bank. Student reassembles them."
+        }
+      }
+    },
+
+    "PassageData": {
+      "type": "object",
+      "description": "Used by: Reading tab",
+      "additionalProperties": false,
+      "required": ["sourceTitle", "sourcePassage", "questions"],
+      "properties": {
+        "chapter": {
+          "type": "string",
+          "description": "Chapter label, e.g. 'Chapter 1'"
+        },
+        "section": {
+          "type": "string",
+          "description": "Section label, e.g. 'Abschnitt A'"
+        },
+        "sourceTitle": {
+          "type": "string",
+          "description": "Passage title in the source language"
+        },
+        "targetTitle": {
+          "type": "string",
+          "description": "Passage title in the target language"
+        },
+        "sourcePassage": {
+          "type": "string",
+          "description": "Full passage text in the source language (used for TTS)"
+        },
+        "targetPassage": {
+          "type": "string",
+          "description": "Full passage text in the target language (translation)"
+        },
+        "speechLanguage": {
+          "type": "string",
+          "description": "BCP 47 code for text-to-speech, e.g. 'de-DE'"
+        },
+        "questions": {
+          "type": "array",
+          "description": "Comprehension questions for this passage",
+          "items": {
+            "type": "object",
+            "required": ["id", "questionType", "question"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique question ID within this passage"
+              },
+              "questionType": {
+                "type": "string",
+                "enum": ["open", "multipleChoice"],
+                "description": "'open' = typed answer with keyword marking; 'multipleChoice' = option buttons"
+              },
+              "difficulty": {
+                "type": "string",
+                "enum": ["easy", "medium", "hard"],
+                "description": "Difficulty level of this question"
+              },
+              "question": {
+                "type": "string",
+                "description": "The question text"
+              },
+              "options": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "MCQ options. Required only when questionType is 'multipleChoice'"
+              },
+              "correctOptionIndex": {
+                "type": "integer",
+                "description": "Zero-based index of the correct option. Required for 'multipleChoice'."
+              },
+              "modelAnswer": {
+                "type": "string",
+                "description": "Model answer for open questions"
+              },
+              "acceptedKeywords": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Keywords for keyword-based marking of open answers"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

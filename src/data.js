@@ -116,3 +116,34 @@ export async function loadPassagePack(manifest, groupId, packId) {
   const parsed = await fetchJson(`./${pack.path}`);
   return Array.isArray(parsed) ? parsed : (parsed.passages || []);
 }
+
+// ─── Unified pack loading ────────────────────────────────────────────
+
+export async function loadUnifiedPack(manifest, packId) {
+  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
+  if (!pack || !pack.unifiedPath) return null;
+  try {
+    return await fetchJson(`./${pack.unifiedPath}`);
+  } catch (_err) {
+    return null;
+  }
+}
+
+export async function loadCoreUnifiedPack(manifest) {
+  const path = manifest.coreUnifiedPath || "data/core_unified.json";
+  try {
+    return await fetchJson(`./${path}`);
+  } catch (_err) {
+    return null;
+  }
+}
+
+export function filterUnifiedItems(unifiedPack, type) {
+  if (!unifiedPack || !Array.isArray(unifiedPack.items)) return [];
+  return unifiedPack.items.filter((item) => item.type === type);
+}
+
+export async function loadUnifiedItemsByType(manifest, packId, type) {
+  const pack = await loadUnifiedPack(manifest, packId);
+  return filterUnifiedItems(pack, type);
+}

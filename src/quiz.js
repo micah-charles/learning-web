@@ -381,6 +381,129 @@ export function makeFillBlankQuestions(items, count, dataset) {
   });
 }
 
+// ─── Unified pack factory functions ──────────────────────────────────
+
+export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId) {
+  const vocab = unifiedItems.filter((item) => item.type === "vocab");
+  const picks = cyclePick(vocab, count);
+  const labels = datasetLabels(dataset);
+  const isReverse = modeId === "germanWordChooseEnglish";
+  return picks.map((item, index) => {
+    const src = item.data.sourceWord || item.data.de || "";
+    const tgt = item.data.targetWord || item.data.en || "";
+    const prompt = isReverse ? tgt : src;
+    const answer = isReverse ? src : tgt;
+    const optionField = isReverse ? src : tgt;
+    const wrongAnswers = vocab
+      .filter((v) => v.id !== item.id)
+      .map((v) => isReverse ? (v.data.sourceWord || v.data.de || "") : (v.data.targetWord || v.data.en || ""))
+      .filter((v) => normalizeForCompare(v) !== normalizeForCompare(answer));
+    const options = shuffle(dedupeStrings([answer, ...wrongAnswers]).slice(0, 4));
+    return {
+      id: `choice-${modeId}-${item.id}-${index}`,
+      modeId,
+      modeTitle: buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "studyToTarget" : "targetToStudy" }, labels),
+      kind: "choice",
+      prompt,
+      answer,
+      options,
+      wordId: item.id,
+      topic: Array.isArray(item.topics) ? item.topics[0] : (item.tags && item.tags[0]) || "",
+      subtitle: item.level || "",
+      speechText: src,
+      speechLanguage: labels.speechLanguage,
+    };
+  });
+}
+
+export function makeSequenceFromUnified(unifiedItems, count, dataset) {
+  const sequences = unifiedItems.filter((item) => item.type === "sequence");
+  const picks = cyclePick(sequences, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => ({
+    id: `seq-${item.id}-${index}`,
+    modeId: "sequenceOrder",
+    modeTitle: item.data.title || "Arrange in order",
+    kind: "sequence",
+    prompt: item.data.title || "",
+    instruction: item.data.instruction || "",
+    correctOrder: item.data.items || [],
+    shuffledOrder: shuffle([...(item.data.items || [])]),
+    speechText: (item.data.items || []).join(". "),
+    speechLanguage: labels.speechLanguage,
+  }));
+}
+
+export function makeCategorySortFromUnified(unifiedItems, count, dataset) {
+  const sorts = unifiedItems.filter((item) => item.type === "categorySort");
+  const picks = cyclePick(sorts, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => {
+    const pairs = item.data.pairs || [];
+    return {
+      id: `cat-${item.id}-${index}`,
+      modeId: "categorySort",
+      modeTitle: item.data.title || "Sort into categories",
+      kind: "sort",
+      prompt: item.data.title || "",
+      instruction: item.data.instruction || "",
+      categories: item.data.categories || [],
+      items: shuffle([...pairs]),
+      speechText: pairs.map((p) => p.text).join(", "),
+      speechLanguage: labels.speechLanguage,
+    };
+  });
+}
+
+export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
+  const gaps = unifiedItems.filter((item) => item.type === "fillBlank");
+  const picks = cyclePick(gaps, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => {
+    const wrongAnswers = gaps
+      .filter((g) => g.id !== item.id)
+      .map((g) => g.data.answer)
+      .slice(0, 3);
+    return {
+      id: `gap-${item.id}-${index}`,
+      modeId: "fillBlank",
+      modeTitle: "Fill in the blank",
+      kind: "gap",
+      prompt: item.data.sentence || "",
+      answer: item.data.answer || "",
+      acceptedAnswers: [item.data.answer],
+      hint: item.data.hint || "",
+      options: shuffle([item.data.answer, ...wrongAnswers]),
+      speechText: item.data.sentence || "",
+      speechLanguage: labels.speechLanguage,
+    };
+  });
+}
+
+export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
+  const sentences = unifiedItems.filter((item) => item.type === "sentence");
+  const picks = cyclePick(sentences, count);
+  const labels = datasetLabels(dataset);
+  return picks.map((item, index) => {
+    const src = item.data.sourceSentence || item.data.de || "";
+    const tgt = item.data.targetSentence || item.data.en || "";
+    const isBuild = modeId.includes("Build");
+    return {
+      id: `${modeId}-${item.id}-${index}`,
+      modeId,
+      modeTitle: buildModeTitle({ id: modeId, kind: isBuild ? "build" : "typed", family: "sentence", direction: null }, labels),
+      kind: isBuild ? "build" : "typed",
+      prompt: isBuild ? (modeId === "englishSentenceBuildGerman" ? tgt : src) : src,
+      answer: isBuild ? (modeId === "englishSentenceBuildGerman" ? src : tgt) : tgt,
+      acceptedAnswers: [isBuild ? (modeId === "englishSentenceBuildGerman" ? src : tgt) : tgt],
+      tiles: shuffle(tokenizeSentence(isBuild ? (modeId === "englishSentenceBuildGerman" ? src : tgt) : src)),
+      speechText: src,
+      speechLanguage: labels.speechLanguage,
+      placeholder: `Type the ${labels.studyLabel} sentence`,
+    };
+  });
+}
+
 function interleave(questionGroups) {
   const decks = questionGroups.map((group) => [...group]);
   const merged = [];
@@ -407,7 +530,7 @@ export function getDefaultQuestionModes(dataset = null) {
   return filtered.length ? filtered : getQuestionModes(dataset).slice(0, 3).map((mode) => mode.id);
 }
 
-export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [] }) {
+export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null }) {
   const availableModes = getQuestionModes(dataset);
   const activeModes = availableModes.filter((mode) => config.modes.includes(mode.id));
   if (!activeModes.length) {
@@ -418,6 +541,7 @@ export function createQuizSession({ words, sentencePools, config, persistedState
   const wordPool = selectWordPool(candidateWords, config, persistedState);
   const needsSentences = activeModes.some((mode) => mode.family === "sentence");
   const sentencePool = needsSentences ? selectSentencePool(wordPool, sentencePools, config) : [];
+  const unifiedItems = unifiedPack && Array.isArray(unifiedPack.items) ? unifiedPack.items : null;
   const counts = distribute(Math.max(activeModes.length * 3, config.questionCount), activeModes.length);
 
   const questionGroups = activeModes.map((mode, index) => {
@@ -425,6 +549,9 @@ export function createQuizSession({ words, sentencePools, config, persistedState
     switch (mode.id) {
       case "englishWordChooseGerman":
       case "germanWordChooseEnglish":
+        if (unifiedItems) {
+          return makeVocabChoiceFromUnified(unifiedItems, count, dataset, mode.id);
+        }
         return makeWordChoiceQuestions(wordPool, count, wordPool, dataset, mode.id);
       case "englishWordTypeGerman":
       case "germanWordTypeEnglish":
@@ -432,12 +559,24 @@ export function createQuizSession({ words, sentencePools, config, persistedState
       case "englishSentenceBuildGerman":
       case "germanSentenceBuildEnglish":
       case "englishSentenceTypeGerman":
+        if (unifiedItems && unifiedItems.some(i => i.type === "sentence")) {
+          return makeSentenceFromUnified(unifiedItems, count, dataset, mode.id);
+        }
         return makeSentenceQuestions(sentencePool, mode.id, count, dataset);
       case "sequenceOrder":
+        if (unifiedItems) {
+          return makeSequenceFromUnified(unifiedItems, count, dataset);
+        }
         return makeSequenceQuestions(sequenceItems, count, dataset);
       case "categorySort":
+        if (unifiedItems) {
+          return makeCategorySortFromUnified(unifiedItems, count, dataset);
+        }
         return makeCategorySortQuestions(categorySortItems, count, dataset);
       case "fillBlank":
+        if (unifiedItems) {
+          return makeFillBlankFromUnified(unifiedItems, count, dataset);
+        }
         return makeFillBlankQuestions(fillBlankItems, count, dataset);
       default:
         return [];
