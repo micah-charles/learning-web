@@ -45,8 +45,9 @@ def check_pack(pack_id, unified_path):
         if not pack.get(field):
             errors.append(f"  ✗ {pack_id}: missing top-level field '{field}'")
 
-    if pack.get("schemaVersion") != "1.0":
-        errors.append(f"  ✗ {pack_id}: unexpected schemaVersion '{pack.get('schemaVersion')}'")
+    schema_v = pack.get("schemaVersion")
+    if schema_v not in ("1.0", "1.1"):
+        errors.append(f"  ✗ {pack_id}: unexpected schemaVersion '{schema_v}' (expected '1.0' or '1.1')")
 
     items = pack.get("items")
     if not isinstance(items, list):
@@ -70,11 +71,17 @@ def check_pack(pack_id, unified_path):
             errors.append(f"  ✗ {iid}: 'data' must be an object"); continue
 
         if itype == "vocab":
-            for f in ("sourceWord", "targetWord"):
-                if not data.get(f): errors.append(f"  ✗ {iid} (vocab): missing data.{f}")
+            # Accept either new 'translations' dict or legacy sourceWord/targetWord
+            has_translations = isinstance(data.get("translations"), dict) and len(data.get("translations", {})) >= 1
+            has_legacy = bool(data.get("sourceWord") and data.get("targetWord"))
+            if not (has_translations or has_legacy):
+                errors.append(f"  ✗ {iid} (vocab): must have data.translations or both data.sourceWord and data.targetWord")
         elif itype == "sentence":
-            for f in ("sourceSentence", "targetSentence"):
-                if not data.get(f): errors.append(f"  ✗ {iid} (sentence): missing data.{f}")
+            # Accept either new 'translations' dict or legacy sourceSentence/targetSentence
+            has_translations = isinstance(data.get("translations"), dict) and len(data.get("translations", {})) >= 1
+            has_legacy = bool(data.get("sourceSentence") and data.get("targetSentence"))
+            if not (has_translations or has_legacy):
+                errors.append(f"  ✗ {iid} (sentence): must have data.translations or both data.sourceSentence and data.targetSentence")
         elif itype == "sequence":
             if not isinstance(data.get("items"), list):
                 errors.append(f"  ✗ {iid} (sequence): data.items must be a list")

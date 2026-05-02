@@ -1,7 +1,8 @@
 # Data Structures in `learning-web`
 
 > A complete reference of every data format used in the project, what each field means, and which feature uses it.
-> Generated: 2026-05-01
+> Generated: 2026-05-02  
+> Schema version: 1.1 (multilingual translations)
 
 ---
 
@@ -10,6 +11,11 @@
 ```json
 { "generatedAt", "core", "revisionPacks", "sentenceBuilderPacks", "passageGroups" }
 ```
+
+**All packs use the unified format** (`data/unified_schema.json`). The `unifiedPath` field
+in each manifest entry is the single source of truth — no legacy `vocabPath`/`sentencePath`
+etc. are loaded at runtime. Legacy source files (e.g. `vocab.json`, `sequence.jsonl`) are
+archived but not used.
 
 Every file in the project is referenced from here. It's the root of everything — the app loads the manifest first, then uses it to locate all other data.
 
@@ -351,3 +357,57 @@ When registering a new pack in `data/generated/manifest.json` (under `revisionPa
 ```
 
 > **Note:** legacy source paths can still exist as conversion inputs, but app runtime should read `unifiedPath` only.
+
+---
+
+## 9. Multilingual Vocab & Sentences (`translations` dict)
+
+**Schema version: 1.1** — All vocab and sentence items now support a multilingual
+`translations` dictionary keyed by BCP-47 language codes (e.g. `de-DE`, `en-GB`, `fr-FR`).
+
+This replaces the old flat `sourceWord`/`targetWord` and `sourceSentence`/`targetSentence`
+fields with a structure that can hold any number of language pairs.
+
+### VocabData (new format — preferred)
+
+```json
+{
+  "translations": { "de-DE": "Gletscher", "en-GB": "glacier" },
+  "examples":     { "de-DE": "Der Gletscher bewegt sich talwärts." },
+  "partOfSpeech": "noun",
+  "gender": "m",
+  "plural": "Gletscher"
+}
+```
+
+### VocabData (legacy format — still supported via backwards-compat fallbacks)
+
+```json
+{
+  "sourceWord": "glacier",
+  "targetWord": "Gletscher"
+}
+```
+
+### SentenceData (new format — preferred)
+
+```json
+{
+  "translations": {
+    "de-DE": "In meiner Familie gibt es fünf Personen.",
+    "en-GB": "In my family there are five people."
+  }
+}
+```
+
+### Backwards compatibility
+
+The loaders in `src/quiz.js` (`makeVocabChoiceFromUnified`, `makeSentenceFromUnified`)
+and `src/react/utils/packAdapters.js` (`normaliseUnifiedItem`) all check for `translations`
+first, then fall back to legacy fields. Existing packs continue to work without migration.
+
+To migrate a pack to schema 1.1:
+
+```bash
+python3 scripts/migrate_vocab_translations.py --apply
+```
