@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-02T02:35:00.000000+00:00",
+  "generatedAt": "2026-05-02T09:04:38.127374+00:00",
   "core": {
     "id": "core",
     "displayName": "Core GCSE",
@@ -23,34 +23,31 @@
   },
   "revisionPacks": [
     {
-      "id": "ks3_geography_glaciation_1",
-      "displayName": "KS3 Geography - Glaciation 1",
-      "topic": "glaciation",
-      "sectionTitleEn": "Physical Geography",
-      "topicEn": "Glaciation - Glaciers and Landforms",
-      "grammarFocusEn": "Sequence ordering, category sorting, vocab matching, fill-in-the-blank",
-      "quizBucket": "ks3_geography_glaciation_1",
-      "sourceLanguageLabel": "Geography",
+      "id": "black_death",
+      "displayName": "The Black Death",
+      "topic": "black_death",
+      "sectionTitleEn": null,
+      "sectionTitleDe": null,
+      "topicEn": "The Black Death",
+      "grammarFocusEn": "Key terms, dates, causes, symptoms, beliefs, treatments and consequences for KS3 revision on the Black Death",
+      "quizBucket": "black_death",
+      "sourceLanguageLabel": "English",
       "sourceLanguageCode": "en-GB",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "en-GB",
-      "supportsSentences": false,
+      "supportsSentences": true,
       "mergeCoreSentences": false,
       "stageOptions": [],
       "defaultQuizModes": [
-        "sequenceOrder",
-        "categorySort",
-        "fillBlank",
-        "germanWordChooseEnglish"
+        "englishWordChooseGerman",
+        "germanWordChooseEnglish",
+        "englishSentenceBuildGerman",
+        "englishSentenceTypeGerman"
       ],
-      "vocabPath": "data/Packs/ks3_geography_glaciation_1/vocab.json",
-      "sentencePath": null,
-      "sequencePath": "data/Packs/ks3_geography_glaciation_1/sequence.jsonl",
-      "categorySortPath": "data/Packs/ks3_geography_glaciation_1/category_sort.jsonl",
-      "fillBlankPath": "data/Packs/ks3_geography_glaciation_1/fill_blank.jsonl",
-      "wordCount": 18,
-      "unifiedPath": "data/Packs/ks3_geography_glaciation_1/pack_unified.json"
+      "vocabPath": "data/Packs/black_death/vocab.json",
+      "sentencePath": "data/Packs/black_death/sentences.jsonl",
+      "wordCount": 61
     },
     {
       "id": "cambridge_latin_stages",
@@ -90,8 +87,29 @@
       ],
       "vocabPath": "data/Packs/cambridge_latin_stages/vocab.json",
       "sentencePath": null,
-      "wordCount": 656,
-      "unifiedPath": "data/Packs/cambridge_latin_stages/pack_unified.json"
+      "wordCount": 656
+    },
+    {
+      "id": "ks3_geography_glaciation_1",
+      "displayName": "Ks3 Geography Glaciation 1",
+      "topic": null,
+      "sectionTitleEn": null,
+      "sectionTitleDe": null,
+      "topicEn": null,
+      "grammarFocusEn": null,
+      "quizBucket": null,
+      "sourceLanguageLabel": "German",
+      "sourceLanguageCode": "de-DE",
+      "targetLanguageLabel": "English",
+      "targetLanguageCode": "en-GB",
+      "speechLanguage": "de-DE",
+      "supportsSentences": true,
+      "mergeCoreSentences": true,
+      "stageOptions": [],
+      "defaultQuizModes": [],
+      "vocabPath": "data/Packs/ks3_geography_glaciation_1/vocab.json",
+      "sentencePath": null,
+      "wordCount": 18
     },
     {
       "id": "tiffin10-19",
@@ -113,8 +131,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/tiffin10-19/vocab.json",
       "sentencePath": "data/Packs/tiffin10-19/sentences.jsonl",
-      "wordCount": 119,
-      "unifiedPath": "data/Packs/tiffin10-19/pack_unified.json"
+      "wordCount": 119
     },
     {
       "id": "y7_birthdays_and_months",
@@ -136,8 +153,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_birthdays_and_months/vocab.json",
       "sentencePath": null,
-      "wordCount": 22,
-      "unifiedPath": "data/Packs/y7_birthdays_and_months/pack_unified.json"
+      "wordCount": 22
     },
     {
       "id": "y7_chapter2_review",
@@ -159,8 +175,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_chapter2_review/vocab.json",
       "sentencePath": null,
-      "wordCount": 21,
-      "unifiedPath": "data/Packs/y7_chapter2_review/pack_unified.json"
+      "wordCount": 21
     },
     {
       "id": "y7_colours_and_appearance",
@@ -182,8 +197,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_colours_and_appearance/vocab.json",
       "sentencePath": null,
-      "wordCount": 23,
-      "unifiedPath": "data/Packs/y7_colours_and_appearance/pack_unified.json"
+      "wordCount": 23
     },
     {
       "id": "y7_days_and_times",
@@ -205,8 +219,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_days_and_times/vocab.json",
       "sentencePath": null,
-      "wordCount": 24,
-      "unifiedPath": "data/Packs/y7_days_and_times/pack_unified.json"
+      "wordCount": 24
     },
     {
       "id": "y7_family_and_age",
@@ -228,8 +241,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_family_and_age/vocab.json",
       "sentencePath": null,
-      "wordCount": 28,
-      "unifiedPath": "data/Packs/y7_family_and_age/pack_unified.json"
+      "wordCount": 28
     },
     {
       "id": "y7_learning_goals_test",
@@ -251,8 +263,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_learning_goals_test/vocab.json",
       "sentencePath": null,
-      "wordCount": 23,
-      "unifiedPath": "data/Packs/y7_learning_goals_test/pack_unified.json"
+      "wordCount": 23
     },
     {
       "id": "y7_pets",
@@ -274,8 +285,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_pets/vocab.json",
       "sentencePath": null,
-      "wordCount": 21,
-      "unifiedPath": "data/Packs/y7_pets/pack_unified.json"
+      "wordCount": 21
     },
     {
       "id": "y7_school_subjects",
@@ -297,8 +307,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_school_subjects/vocab.json",
       "sentencePath": null,
-      "wordCount": 27,
-      "unifiedPath": "data/Packs/y7_school_subjects/pack_unified.json"
+      "wordCount": 27
     },
     {
       "id": "y7_speaking_family",
@@ -320,8 +329,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_speaking_family/vocab.json",
       "sentencePath": null,
-      "wordCount": 20,
-      "unifiedPath": "data/Packs/y7_speaking_family/pack_unified.json"
+      "wordCount": 20
     },
     {
       "id": "y7_superpets",
@@ -343,8 +351,7 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_superpets/vocab.json",
       "sentencePath": null,
-      "wordCount": 21,
-      "unifiedPath": "data/Packs/y7_superpets/pack_unified.json"
+      "wordCount": 21
     },
     {
       "id": "y7_teachers_and_possessives",
@@ -366,17 +373,21 @@
       "defaultQuizModes": [],
       "vocabPath": "data/Packs/y7_teachers_and_possessives/vocab.json",
       "sentencePath": null,
-      "wordCount": 21,
-      "unifiedPath": "data/Packs/y7_teachers_and_possessives/pack_unified.json"
+      "wordCount": 21
     }
   ],
   "sentenceBuilderPacks": [
     {
+      "id": "black_death",
+      "displayName": "Black Death",
+      "path": "data/SentenceBuilderPacks/black_death.jsonl",
+      "cardCount": 22
+    },
+    {
       "id": "silk_road_y7",
       "displayName": "Silk Road Y7",
       "path": "data/SentenceBuilderPacks/silk_road_y7.jsonl",
-      "cardCount": 23,
-      "unifiedPath": "data/SentenceBuilderPacks/pack_unified.json"
+      "cardCount": 23
     }
   ],
   "passageGroups": [
@@ -390,11 +401,17 @@
           "path": "data/PassagePacks/bbc_bitesize_gcse_german/careers_adaptive.json",
           "resourceName": "careers_adaptive",
           "fileType": "json",
-          "passageCount": 15,
-          "unifiedPath": "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json"
+          "passageCount": 15
+        },
+        {
+          "id": "bbc_bitesize_gcse_german::pack_unified",
+          "displayName": "Pack Unified",
+          "path": "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json",
+          "resourceName": "pack_unified",
+          "fileType": "json",
+          "passageCount": 0
         }
-      ],
-      "unifiedPath": "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json"
+      ]
     },
     {
       "id": "deutsche_welle_nicos_weg",
@@ -406,27 +423,39 @@
           "path": "data/PassagePacks/deutsche_welle_nicos_weg/nicos_weg_full.json",
           "resourceName": "nicos_weg_full",
           "fileType": "json",
-          "passageCount": 15,
-          "unifiedPath": "data/PassagePacks/deutsche_welle_nicos_weg/pack_unified.json"
+          "passageCount": 15
+        },
+        {
+          "id": "deutsche_welle_nicos_weg::pack_unified",
+          "displayName": "Pack Unified",
+          "path": "data/PassagePacks/deutsche_welle_nicos_weg/pack_unified.json",
+          "resourceName": "pack_unified",
+          "fileType": "json",
+          "passageCount": 0
         }
-      ],
-      "unifiedPath": "data/PassagePacks/deutsche_welle_nicos_weg/pack_unified.json"
+      ]
     },
     {
       "id": "dino_lernt_deutsch",
       "displayName": "Dino Lernt Deutsch",
       "packs": [
         {
+          "id": "dino_lernt_deutsch::pack_unified",
+          "displayName": "Pack Unified",
+          "path": "data/PassagePacks/dino_lernt_deutsch/pack_unified.json",
+          "resourceName": "pack_unified",
+          "fileType": "json",
+          "passageCount": 0
+        },
+        {
           "id": "dino_lernt_deutsch::school_routine_social",
           "displayName": "School Routine Social",
           "path": "data/PassagePacks/dino_lernt_deutsch/school_routine_social.json",
           "resourceName": "school_routine_social",
           "fileType": "json",
-          "passageCount": 15,
-          "unifiedPath": "data/PassagePacks/dino_lernt_deutsch/pack_unified.json"
+          "passageCount": 15
         }
-      ],
-      "unifiedPath": "data/PassagePacks/dino_lernt_deutsch/pack_unified.json"
+      ]
     },
     {
       "id": "ferien_in_frankfurt",
@@ -438,27 +467,53 @@
           "path": "data/PassagePacks/ferien_in_frankfurt/frankfurt_trip.json",
           "resourceName": "frankfurt_trip",
           "fileType": "json",
-          "passageCount": 10,
-          "unifiedPath": "data/PassagePacks/ferien_in_frankfurt/pack_unified.json"
+          "passageCount": 10
+        },
+        {
+          "id": "ferien_in_frankfurt::pack_unified",
+          "displayName": "Pack Unified",
+          "path": "data/PassagePacks/ferien_in_frankfurt/pack_unified.json",
+          "resourceName": "pack_unified",
+          "fileType": "json",
+          "passageCount": 0
         }
-      ],
-      "unifiedPath": "data/PassagePacks/ferien_in_frankfurt/pack_unified.json"
+      ]
     },
     {
       "id": "gcse_geography",
       "displayName": "GCSE Geography",
       "packs": [
         {
+          "id": "gcse_geography::pack_unified",
+          "displayName": "Pack Unified",
+          "path": "data/PassagePacks/gcse_geography/pack_unified.json",
+          "resourceName": "pack_unified",
+          "fileType": "json",
+          "passageCount": 0
+        },
+        {
           "id": "gcse_geography::settlements_gcse_mcq",
           "displayName": "Settlements GCSE Mcq",
           "path": "data/PassagePacks/gcse_geography/settlements_gcse_mcq.json",
           "resourceName": "settlements_gcse_mcq",
           "fileType": "json",
-          "passageCount": 1,
-          "unifiedPath": "data/PassagePacks/gcse_geography/pack_unified.json"
+          "passageCount": 1
         }
-      ],
-      "unifiedPath": "data/PassagePacks/gcse_geography/pack_unified.json"
+      ]
+    },
+    {
+      "id": "ks3_history",
+      "displayName": "Ks3 History",
+      "packs": [
+        {
+          "id": "ks3_history::black_death",
+          "displayName": "Black Death",
+          "path": "data/PassagePacks/ks3_history/black_death.json",
+          "resourceName": "black_death",
+          "fileType": "json",
+          "passageCount": 6
+        }
+      ]
     },
     {
       "id": "others",
@@ -470,13 +525,17 @@
           "path": "data/PassagePacks/others/missing_gcse_topics_40_passages.json",
           "resourceName": "missing_gcse_topics_40_passages",
           "fileType": "json",
-          "passageCount": 40,
-          "unifiedPath": "data/PassagePacks/others/pack_unified.json"
+          "passageCount": 40
+        },
+        {
+          "id": "others::pack_unified",
+          "displayName": "Pack Unified",
+          "path": "data/PassagePacks/others/pack_unified.json",
+          "resourceName": "pack_unified",
+          "fileType": "json",
+          "passageCount": 0
         }
-      ],
-      "unifiedPath": "data/PassagePacks/others/pack_unified.json"
+      ]
     }
-  ],
-  "schemaVersion": "1.0",
-  "coreUnifiedPath": "data/core_unified.json"
+  ]
 }
