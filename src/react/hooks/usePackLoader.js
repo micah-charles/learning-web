@@ -110,9 +110,8 @@ export function usePackLoader({
           }
           const packMeta = findPackInManifest(man, packId);
           if (!packMeta) throw new Error(`Pack not found in manifest: ${packId}`);
-          const packPath = packMeta.unifiedPath || packMeta.vocabPath;
-          if (!packPath) throw new Error(`No data path found for pack: ${packId}`);
-          raw = await fetchJSON(`./${packPath}`);
+          if (!packMeta.unifiedPath) throw new Error(`No unifiedPath for pack: ${packId}`);
+          raw = await fetchJSON(`./${packMeta.unifiedPath}`);
         }
 
         if (cancelled) return;

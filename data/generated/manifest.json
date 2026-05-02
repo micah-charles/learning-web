@@ -1,70 +1,44 @@
 {
-  "generatedAt": "2026-05-02T09:04:38.127374+00:00",
+  "generatedAt": "2026-05-02T10:00:00.000000+00:00",
+  "schemaVersion": "1.0",
+  "coreUnifiedPath": "data/core_unified.json",
   "core": {
     "id": "core",
     "displayName": "Core GCSE",
-    "vocabPath": "data/vocab.json",
-    "sentencePath": "data/gcse_sentences.jsonl",
-    "wordCount": 879,
-    "sentenceCount": 100,
     "sourceLanguageLabel": "German",
     "sourceLanguageCode": "de-DE",
     "targetLanguageLabel": "English",
     "targetLanguageCode": "en-GB",
     "speechLanguage": "de-DE",
-    "supportsSentences": true,
-    "mergeCoreSentences": true,
-    "stageOptions": [],
-    "defaultQuizModes": [
-      "englishWordChooseGerman",
-      "englishSentenceBuildGerman",
-      "germanSentenceBuildEnglish"
-    ]
+    "wordCount": 879,
+    "sentenceCount": 100
   },
   "revisionPacks": [
     {
       "id": "black_death",
       "displayName": "The Black Death",
       "topic": "black_death",
-      "sectionTitleEn": null,
-      "sectionTitleDe": null,
-      "topicEn": "The Black Death",
       "grammarFocusEn": "Key terms, dates, causes, symptoms, beliefs, treatments and consequences for KS3 revision on the Black Death",
-      "quizBucket": "black_death",
       "sourceLanguageLabel": "English",
       "sourceLanguageCode": "en-GB",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "en-GB",
-      "supportsSentences": true,
-      "mergeCoreSentences": false,
       "stageOptions": [],
-      "defaultQuizModes": [
-        "englishWordChooseGerman",
-        "germanWordChooseEnglish",
-        "englishSentenceBuildGerman",
-        "englishSentenceTypeGerman"
-      ],
-      "vocabPath": "data/Packs/black_death/vocab.json",
-      "sentencePath": "data/Packs/black_death/sentences.jsonl",
-      "wordCount": 61
+      "unifiedPath": "data/Packs/black_death/pack_unified.json",
+      "wordCount": 61,
+      "sentenceCount": 28
     },
     {
       "id": "cambridge_latin_stages",
       "displayName": "Cambridge Latin Stages 1-12",
       "topic": "latin_vocab",
-      "sectionTitleEn": null,
-      "sectionTitleDe": null,
-      "topicEn": "Cambridge Latin Course vocabulary",
       "grammarFocusEn": "Stage-based Latin to English and English to Latin vocabulary practice",
-      "quizBucket": "cambridge_latin_stages",
       "sourceLanguageLabel": "Latin",
       "sourceLanguageCode": "la",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "la",
-      "supportsSentences": false,
-      "mergeCoreSentences": false,
       "stageOptions": [
         1,
         2,
@@ -79,314 +53,213 @@
         11,
         12
       ],
-      "defaultQuizModes": [
-        "englishWordChooseGerman",
-        "germanWordChooseEnglish",
-        "englishWordTypeGerman",
-        "germanWordTypeEnglish"
-      ],
-      "vocabPath": "data/Packs/cambridge_latin_stages/vocab.json",
-      "sentencePath": null,
-      "wordCount": 656
+      "unifiedPath": "data/Packs/cambridge_latin_stages/pack_unified.json",
+      "wordCount": 656,
+      "sentenceCount": 0
     },
     {
       "id": "ks3_geography_glaciation_1",
       "displayName": "Ks3 Geography Glaciation 1",
-      "topic": null,
-      "sectionTitleEn": null,
-      "sectionTitleDe": null,
-      "topicEn": null,
-      "grammarFocusEn": null,
-      "quizBucket": null,
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/ks3_geography_glaciation_1/vocab.json",
-      "sentencePath": null,
-      "wordCount": 18
+      "unifiedPath": "data/Packs/ks3_geography_glaciation_1/pack_unified.json",
+      "wordCount": 18,
+      "sentenceCount": 0
     },
     {
       "id": "tiffin10-19",
       "displayName": "Tiffin10 19",
-      "topic": null,
-      "sectionTitleEn": null,
-      "sectionTitleDe": null,
-      "topicEn": null,
-      "grammarFocusEn": null,
-      "quizBucket": null,
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/tiffin10-19/vocab.json",
-      "sentencePath": "data/Packs/tiffin10-19/sentences.jsonl",
-      "wordCount": 119
+      "unifiedPath": "data/Packs/tiffin10-19/pack_unified.json",
+      "wordCount": 119,
+      "sentenceCount": 100
     },
     {
       "id": "y7_birthdays_and_months",
       "displayName": "Y7 Birthdays and Months",
       "topic": "birthdays",
-      "sectionTitleEn": "Best wishes!",
-      "sectionTitleDe": "Alles Gute!",
-      "topicEn": "Talking about birthdays",
       "grammarFocusEn": "Using ordinal numbers",
-      "quizBucket": "chapter2_ordinals",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_birthdays_and_months/vocab.json",
-      "sentencePath": null,
-      "wordCount": 22
+      "unifiedPath": "data/Packs/y7_birthdays_and_months/pack_unified.json",
+      "wordCount": 22,
+      "sentenceCount": 0
     },
     {
       "id": "y7_chapter2_review",
       "displayName": "Y7 Chapter 2 Review",
       "topic": "revision",
-      "sectionTitleEn": "Review",
-      "sectionTitleDe": "Wiederholung",
-      "topicEn": "Chapter review",
       "grammarFocusEn": "Revision of animals, colours, appearance and character",
-      "quizBucket": "chapter2_review",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_chapter2_review/vocab.json",
-      "sentencePath": null,
-      "wordCount": 21
+      "unifiedPath": "data/Packs/y7_chapter2_review/pack_unified.json",
+      "wordCount": 21,
+      "sentenceCount": 0
     },
     {
       "id": "y7_colours_and_appearance",
       "displayName": "Y7 Colours and Appearance",
       "topic": "appearance",
-      "sectionTitleEn": "The colours of the world",
-      "sectionTitleDe": "Die Farben der Welt",
-      "topicEn": "Describing family members",
       "grammarFocusEn": "Using adjectives with nouns",
-      "quizBucket": "chapter2_adjectives",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_colours_and_appearance/vocab.json",
-      "sentencePath": null,
-      "wordCount": 23
+      "unifiedPath": "data/Packs/y7_colours_and_appearance/pack_unified.json",
+      "wordCount": 23,
+      "sentenceCount": 0
     },
     {
       "id": "y7_days_and_times",
       "displayName": "Y7 Days and Times",
       "topic": "time",
-      "sectionTitleEn": "What and when?",
-      "sectionTitleDe": "Was und wann?",
-      "topicEn": "Talking about days and times",
       "grammarFocusEn": "More about word order",
-      "quizBucket": "chapter4_word_order",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_days_and_times/vocab.json",
-      "sentencePath": null,
-      "wordCount": 24
+      "unifiedPath": "data/Packs/y7_days_and_times/pack_unified.json",
+      "wordCount": 24,
+      "sentenceCount": 0
     },
     {
       "id": "y7_family_and_age",
       "displayName": "Y7 Family and Age",
       "topic": "family",
-      "sectionTitleEn": "My family",
-      "sectionTitleDe": "Meine Familie",
-      "topicEn": "Talking about family members and age",
       "grammarFocusEn": "More practice of present tense verbs",
-      "quizBucket": "chapter2_present_tense",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_family_and_age/vocab.json",
-      "sentencePath": null,
-      "wordCount": 28
+      "unifiedPath": "data/Packs/y7_family_and_age/pack_unified.json",
+      "wordCount": 28,
+      "sentenceCount": 0
     },
     {
       "id": "y7_learning_goals_test",
       "displayName": "Y7 Learning Goals Test",
       "topic": "revision",
-      "sectionTitleEn": "Learning goals test",
-      "sectionTitleDe": "Lernzieltest",
-      "topicEn": "Self-check assessment",
       "grammarFocusEn": "Review of pets, plurals, adjectives and key structures",
-      "quizBucket": "chapter2_lernzieltest",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_learning_goals_test/vocab.json",
-      "sentencePath": null,
-      "wordCount": 23
+      "unifiedPath": "data/Packs/y7_learning_goals_test/pack_unified.json",
+      "wordCount": 23,
+      "sentenceCount": 0
     },
     {
       "id": "y7_pets",
       "displayName": "Y7 Pets",
       "topic": "pets",
-      "sectionTitleEn": "Extreme Pets",
-      "sectionTitleDe": "Extreme Haustiere",
-      "topicEn": "Talking about pets",
       "grammarFocusEn": "Using pronouns",
-      "quizBucket": "chapter2_pronouns",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_pets/vocab.json",
-      "sentencePath": null,
-      "wordCount": 21
+      "unifiedPath": "data/Packs/y7_pets/pack_unified.json",
+      "wordCount": 21,
+      "sentenceCount": 0
     },
     {
       "id": "y7_school_subjects",
       "displayName": "Y7 School Subjects",
       "topic": "school",
-      "sectionTitleEn": "I like German!",
-      "sectionTitleDe": "Ich mag Deutsch!",
-      "topicEn": "Talking about school subjects",
       "grammarFocusEn": "Using weil to give reasons and opinions",
-      "quizBucket": "chapter4_grammar_reasoning",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_school_subjects/vocab.json",
-      "sentencePath": null,
-      "wordCount": 27
+      "unifiedPath": "data/Packs/y7_school_subjects/pack_unified.json",
+      "wordCount": 27,
+      "sentenceCount": 0
     },
     {
       "id": "y7_speaking_family",
       "displayName": "Y7 Speaking Family Questions",
       "topic": "speaking",
-      "sectionTitleEn": "A super family",
-      "sectionTitleDe": "Eine Superfamilie",
-      "topicEn": "Developing speaking skills",
       "grammarFocusEn": "Practising asking and answering questions",
-      "quizBucket": "chapter2_speaking_skills",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_speaking_family/vocab.json",
-      "sentencePath": null,
-      "wordCount": 20
+      "unifiedPath": "data/Packs/y7_speaking_family/pack_unified.json",
+      "wordCount": 20,
+      "sentenceCount": 0
     },
     {
       "id": "y7_superpets",
       "displayName": "Y7 Superpets",
       "topic": "animals",
-      "sectionTitleEn": "Superpets",
-      "sectionTitleDe": "Supertiere",
-      "topicEn": "Talking about 'superpets'",
       "grammarFocusEn": "Using kann + infinitive",
-      "quizBucket": "chapter2_modal_verbs",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_superpets/vocab.json",
-      "sentencePath": null,
-      "wordCount": 21
+      "unifiedPath": "data/Packs/y7_superpets/pack_unified.json",
+      "wordCount": 21,
+      "sentenceCount": 0
     },
     {
       "id": "y7_teachers_and_possessives",
       "displayName": "Y7 Teachers and Possessives",
       "topic": "school",
-      "sectionTitleEn": "Teachers",
-      "sectionTitleDe": "Lehrer und Lehrerinnen",
-      "topicEn": "Describing your teachers",
       "grammarFocusEn": "Using sein (his) and ihr (her)",
-      "quizBucket": "chapter4_possessives",
       "sourceLanguageLabel": "German",
       "sourceLanguageCode": "de-DE",
       "targetLanguageLabel": "English",
       "targetLanguageCode": "en-GB",
       "speechLanguage": "de-DE",
-      "supportsSentences": true,
-      "mergeCoreSentences": true,
       "stageOptions": [],
-      "defaultQuizModes": [],
-      "vocabPath": "data/Packs/y7_teachers_and_possessives/vocab.json",
-      "sentencePath": null,
-      "wordCount": 21
+      "unifiedPath": "data/Packs/y7_teachers_and_possessives/pack_unified.json",
+      "wordCount": 21,
+      "sentenceCount": 0
     }
   ],
   "sentenceBuilderPacks": [
     {
       "id": "black_death",
       "displayName": "Black Death",
-      "path": "data/SentenceBuilderPacks/black_death.jsonl",
+      "unifiedPath": "data/SentenceBuilderPacks/black_death_unified.json",
       "cardCount": 22
     },
     {
       "id": "silk_road_y7",
       "displayName": "Silk Road Y7",
-      "path": "data/SentenceBuilderPacks/silk_road_y7.jsonl",
+      "unifiedPath": "data/SentenceBuilderPacks/silk_road_y7_unified.json",
       "cardCount": 23
     }
   ],
@@ -394,148 +267,37 @@
     {
       "id": "bbc_bitesize_gcse_german",
       "displayName": "BBC Bitesize GCSE German",
-      "packs": [
-        {
-          "id": "bbc_bitesize_gcse_german::careers_adaptive",
-          "displayName": "Careers Adaptive",
-          "path": "data/PassagePacks/bbc_bitesize_gcse_german/careers_adaptive.json",
-          "resourceName": "careers_adaptive",
-          "fileType": "json",
-          "passageCount": 15
-        },
-        {
-          "id": "bbc_bitesize_gcse_german::pack_unified",
-          "displayName": "Pack Unified",
-          "path": "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json",
-          "resourceName": "pack_unified",
-          "fileType": "json",
-          "passageCount": 0
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json"
     },
     {
       "id": "deutsche_welle_nicos_weg",
       "displayName": "Deutsche Welle Nicos Weg",
-      "packs": [
-        {
-          "id": "deutsche_welle_nicos_weg::nicos_weg_full",
-          "displayName": "Nicos Weg Full",
-          "path": "data/PassagePacks/deutsche_welle_nicos_weg/nicos_weg_full.json",
-          "resourceName": "nicos_weg_full",
-          "fileType": "json",
-          "passageCount": 15
-        },
-        {
-          "id": "deutsche_welle_nicos_weg::pack_unified",
-          "displayName": "Pack Unified",
-          "path": "data/PassagePacks/deutsche_welle_nicos_weg/pack_unified.json",
-          "resourceName": "pack_unified",
-          "fileType": "json",
-          "passageCount": 0
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/deutsche_welle_nicos_weg/pack_unified.json"
     },
     {
       "id": "dino_lernt_deutsch",
       "displayName": "Dino Lernt Deutsch",
-      "packs": [
-        {
-          "id": "dino_lernt_deutsch::pack_unified",
-          "displayName": "Pack Unified",
-          "path": "data/PassagePacks/dino_lernt_deutsch/pack_unified.json",
-          "resourceName": "pack_unified",
-          "fileType": "json",
-          "passageCount": 0
-        },
-        {
-          "id": "dino_lernt_deutsch::school_routine_social",
-          "displayName": "School Routine Social",
-          "path": "data/PassagePacks/dino_lernt_deutsch/school_routine_social.json",
-          "resourceName": "school_routine_social",
-          "fileType": "json",
-          "passageCount": 15
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/dino_lernt_deutsch/pack_unified.json"
     },
     {
       "id": "ferien_in_frankfurt",
       "displayName": "Ferien In Frankfurt",
-      "packs": [
-        {
-          "id": "ferien_in_frankfurt::frankfurt_trip",
-          "displayName": "Frankfurt Trip",
-          "path": "data/PassagePacks/ferien_in_frankfurt/frankfurt_trip.json",
-          "resourceName": "frankfurt_trip",
-          "fileType": "json",
-          "passageCount": 10
-        },
-        {
-          "id": "ferien_in_frankfurt::pack_unified",
-          "displayName": "Pack Unified",
-          "path": "data/PassagePacks/ferien_in_frankfurt/pack_unified.json",
-          "resourceName": "pack_unified",
-          "fileType": "json",
-          "passageCount": 0
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/ferien_in_frankfurt/pack_unified.json"
     },
     {
       "id": "gcse_geography",
       "displayName": "GCSE Geography",
-      "packs": [
-        {
-          "id": "gcse_geography::pack_unified",
-          "displayName": "Pack Unified",
-          "path": "data/PassagePacks/gcse_geography/pack_unified.json",
-          "resourceName": "pack_unified",
-          "fileType": "json",
-          "passageCount": 0
-        },
-        {
-          "id": "gcse_geography::settlements_gcse_mcq",
-          "displayName": "Settlements GCSE Mcq",
-          "path": "data/PassagePacks/gcse_geography/settlements_gcse_mcq.json",
-          "resourceName": "settlements_gcse_mcq",
-          "fileType": "json",
-          "passageCount": 1
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/gcse_geography/pack_unified.json"
     },
     {
       "id": "ks3_history",
       "displayName": "Ks3 History",
-      "packs": [
-        {
-          "id": "ks3_history::black_death",
-          "displayName": "Black Death",
-          "path": "data/PassagePacks/ks3_history/black_death.json",
-          "resourceName": "black_death",
-          "fileType": "json",
-          "passageCount": 6
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/ks3_history/pack_unified.json"
     },
     {
       "id": "others",
       "displayName": "Others",
-      "packs": [
-        {
-          "id": "others::missing_gcse_topics_40_passages",
-          "displayName": "Missing GCSE Topics 40 Passages",
-          "path": "data/PassagePacks/others/missing_gcse_topics_40_passages.json",
-          "resourceName": "missing_gcse_topics_40_passages",
-          "fileType": "json",
-          "passageCount": 40
-        },
-        {
-          "id": "others::pack_unified",
-          "displayName": "Pack Unified",
-          "path": "data/PassagePacks/others/pack_unified.json",
-          "resourceName": "pack_unified",
-          "fileType": "json",
-          "passageCount": 0
-        }
-      ]
+      "unifiedPath": "data/PassagePacks/others/pack_unified.json"
     }
   ]
 }

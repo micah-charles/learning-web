@@ -187,7 +187,8 @@ function bindEvents() {
 
 function ensurePreferenceDefaults() {
   const builderPacks = listSentenceBuilderPacks(runtime.manifest);
-  if (!persisted.prefs.builder.packId && builderPacks.length) {
+  const builderPackIds = new Set(builderPacks.map((pack) => pack.id));
+  if ((!persisted.prefs.builder.packId || !builderPackIds.has(persisted.prefs.builder.packId)) && builderPacks.length) {
     persisted.prefs.builder.packId = builderPacks[0].id;
   }
 
@@ -224,7 +225,7 @@ async function renderApp() {
 
 function renderHero() {
   const totalWordCount =
-    runtime.manifest.core.wordCount +
+    fallback(runtime.manifest.core.wordCount, 0) +
     (runtime.manifest.revisionPacks || []).reduce((sum, pack) => sum + fallback(pack.wordCount, 0), 0);
   const masteredCount = Object.values(persisted.progress.words).filter(isMasteredProgress).length;
   const lastSession = persisted.progress.sessions[0];
@@ -970,7 +971,10 @@ async function renderBuilderTab() {
           </div>
         </div>
         <div class="form-grid" style="margin-top:18px;">
-          ${renderSelectField("builder-pack", "Pack", packs.map((pack) => ({ value: pack.id, label: `${pack.displayName} (${pack.cardCount})` })), packId)}
+          ${renderSelectField("builder-pack", "Pack", packs.map((pack) => ({
+            value: pack.id,
+            label: `${pack.displayName}${pack.cardCount ? ` (${pack.cardCount})` : ""}`,
+          })), packId)}
           ${renderSelectField("builder-filter", "Filter", [
             { value: "all", label: "All" },
             { value: "key_date", label: "Key Dates" },

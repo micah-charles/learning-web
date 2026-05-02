@@ -11,7 +11,6 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { isCorrectAnswer, calculateScore, getAccuracy } from "../utils/scoring.js";
-import { normaliseQuizQuestion } from "../utils/packAdapters.js";
 
 // ─── Helpers ────────────────────────────────────────────────────────
 
@@ -56,17 +55,11 @@ function withDistractors(questions, distractorCount = 3) {
  * @returns {object} quiz engine state and actions
  */
 export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", count = 12, shuffleQ = true } = {}) {
-  // Normalise all questions to common shape
-  const normalised = useMemo(
-    () => rawQuestions.map(normaliseQuizQuestion),
-    [rawQuestions]
-  );
-
-  // Shuffle and cap
+  // Questions are already normalised by usePackLoader; just shuffle and cap
   const questions = useMemo(() => {
-    const all = shuffleQ ? shuffle(normalised) : normalised;
+    const all = shuffleQ ? shuffle(rawQuestions) : rawQuestions;
     return all.slice(0, count || Infinity);
-  }, [normalised, count, shuffleQ]);
+  }, [rawQuestions, count, shuffleQ]);
 
   // State
   const [index, setIndex] = useState(0);

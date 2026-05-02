@@ -293,7 +293,7 @@ def convert_sentence_builder_packs(manifest):
                 }
             })
 
-        # Write to a pack_unified.json in the same directory
+        # Write one unified artifact per sentence builder pack.
         pack_dir = pack_path.parent
         pack = {
             "packId": sb_pack["id"],
@@ -313,7 +313,7 @@ def convert_sentence_builder_packs(manifest):
             "items": items,
         }
 
-        out_path = pack_dir / "pack_unified.json"
+        out_path = pack_dir / f"{sb_pack['id']}_unified.json"
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(pack, f, ensure_ascii=False, indent=2)
 
