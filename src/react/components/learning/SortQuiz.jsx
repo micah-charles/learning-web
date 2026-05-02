@@ -48,15 +48,14 @@ export function SortQuiz({
           <p className={styles.poolEmpty}>All items placed ✓</p>
         ) : (
           unplacedItems.map((item, rawIdx) => {
-            const realIdx = items.indexOf(item);
             return (
               <div
                 key={rawIdx}
-                className={`${styles.chip} ${selectedItemIndex === realIdx ? styles.selected : ""}`}
-                onClick={() => handleSelectItem(realIdx)}
+                className={`${styles.chip} ${selectedItemIndex === rawIdx ? styles.selected : ""}`}
+                onClick={() => handleSelectItem(rawIdx)}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && handleSelectItem(realIdx)}
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && handleSelectItem(rawIdx)}
               >
                 {typeof item === "string" ? item : item.text || String(item)}
               </div>

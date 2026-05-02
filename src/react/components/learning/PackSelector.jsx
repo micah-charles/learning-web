@@ -19,15 +19,16 @@ export function PackSelector({ packs = [], onSelectPack, selectedPackId }) {
   return (
     <div className={styles.grid}>
       {packs.map((pack) => {
-        const isSelected = pack.id === selectedPackId;
+        const runtimeId = pack.runtimeId || pack.id;
+        const isSelected = runtimeId === selectedPackId;
         return (
           <div
-            key={pack.id}
+            key={runtimeId}
             className={`${styles.card} ${isSelected ? styles.selected : ""}`}
-            onClick={() => onSelectPack(pack.id)}
+            onClick={() => onSelectPack(runtimeId)}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onSelectPack(pack.id)}
+            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onSelectPack(runtimeId)}
           >
             <h3>{pack.displayName || pack.title || pack.id}</h3>
             <p>{pack.grammarFocusEn || pack.topicEn || pack.subject || "Study pack"}</p>

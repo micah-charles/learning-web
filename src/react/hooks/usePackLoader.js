@@ -1,69 +1,40 @@
-/**
- * usePackLoader.js
- *
- * Reusable hook to load a learning pack by path or pack id.
- * Handles loading state, error state, and normalisation.
- *
- * Supports three loading modes:
- *  1. load by URL path  (pass `url` prop)
- *  2. load from the app manifest (pass `manifest` + `packId`)
- *  3. pass a raw pack object directly (pass `pack` prop)
- */
-
 import { useState, useEffect, useCallback } from "react";
 import { normalisePack, getQuestionsForMode } from "../utils/packAdapters.js";
 
-// ─── Manifest-aware loader ──────────────────────────────────────────
-
-/**
- * Fetch JSON with caching.
- */
-async function fetchJSON(url) {
-  const cached = sessionStorage.getItem(url);
+async function fetchJSON(url, { cache = true } = {}) {
+  const cached = cache ? sessionStorage.getItem(url) : null;
   if (cached) return JSON.parse(cached);
-  const res = await fetch(url);
+
+  const res = await fetch(url, cache ? undefined : { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
+
   const data = await res.json();
-  sessionStorage.setItem(url, JSON.stringify(data));
+  if (cache) sessionStorage.setItem(url, JSON.stringify(data));
   return data;
 }
 
-/**
- * Find a pack in the manifest by id and return its unifiedPath.
- */
 function findPackInManifest(manifest, packId) {
   if (!manifest || !packId) return null;
-  // Try revision packs
-  const rev = (manifest.revisionPacks || []).find((p) => p.id === packId);
-  if (rev) return rev;
-  // Try sentence builder packs
-  const sb = (manifest.sentenceBuilderPacks || []).find((p) => p.id === packId);
-  if (sb) return sb;
+  const [kind, id] = packId.includes(":") ? packId.split(":", 2) : [null, packId];
+
+  const revision = (!kind || kind === "revision")
+    ? (manifest.revisionPacks || []).find((pack) => pack.id === id)
+    : null;
+  if (revision) return revision;
+
+  const builder = (!kind || kind === "builder")
+    ? (manifest.sentenceBuilderPacks || []).find((pack) => pack.id === id)
+    : null;
+  if (builder) return builder;
+
+  const passageGroup = (!kind || kind === "passage")
+    ? (manifest.passageGroups || []).find((group) => group.id === id)
+    : null;
+  if (passageGroup) return passageGroup;
+
   return null;
 }
 
-// ─── Main hook ─────────────────────────────────────────────────────
-
-/**
- * @typedef {Object} UsePackLoaderOptions
- * @property {string}   [url]         - direct URL to a pack JSON file
- * @property {object}   [manifest]   - loaded manifest (required for packId mode)
- * @property {string}   [packId]      - pack id (requires manifest)
- * @property {object}   [rawPack]     - pass a raw pack object directly
- * @property {string}   [mode]        - game mode to normalise questions for: "mcq"|"typing"|"flashcard"|"sequence"|"sort"|"gap"|"passage"
- * @property {number}   [count]       - max questions to return (default: all)
- */
-
-/**
- * @returns {{
- *   pack: object|null,
- *   loading: boolean,
- *   error: string|null,
- *   questions: Array,
- *   manifest: object|null,
- *   reload: () => void
- * }}
- */
 export function usePackLoader({
   url,
   manifest: manifestProp,
@@ -82,7 +53,8 @@ export function usePackLoader({
 
   useEffect(() => {
     if (!url && !packId && !rawPackProp) {
-      setError("usePackLoader: provide url, packId, or rawPack");
+      setPack(null);
+      setError(null);
       setLoading(false);
       return;
     }
@@ -96,41 +68,44 @@ export function usePackLoader({
         let raw = null;
 
         if (rawPackProp) {
-          // Mode 3: raw pack object passed directly
-          raw = rawPackProp;
+          raw = rawPackProp.items && rawPackProp.byType ? null : rawPackProp;
         } else if (url) {
-          // Mode 1: load by URL
           raw = await fetchJSON(url);
         } else if (packId) {
-          // Mode 2: load from manifest
-          let man = manifestData;
-          if (!man) {
-            man = await fetchJSON("./data/generated/manifest.json");
-            if (!cancelled) setManifestData(man);
+          let manifest = manifestData;
+          if (!manifest) {
+            manifest = await fetchJSON("./data/generated/manifest.json", { cache: false });
+            if (!cancelled) setManifestData(manifest);
           }
-          const packMeta = findPackInManifest(man, packId);
+
+          const packMeta = findPackInManifest(manifest, packId);
           if (!packMeta) throw new Error(`Pack not found in manifest: ${packId}`);
           if (!packMeta.unifiedPath) throw new Error(`No unifiedPath for pack: ${packId}`);
+
           raw = await fetchJSON(`./${packMeta.unifiedPath}`);
         }
 
         if (cancelled) return;
 
-        const normalised = normalisePack(raw);
-        if (!normalised) throw new Error("Failed to normalise pack data");
+        const normalised = raw ? normalisePack(raw) : rawPackProp;
+        if (!normalised) throw new Error("Failed to normalise unified pack data");
         setPack(normalised);
       } catch (err) {
-        if (!cancelled) setError(err.message || "Failed to load pack");
+        if (!cancelled) {
+          setPack(null);
+          setError(err.message || "Failed to load pack");
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
 
     load();
-    return () => { cancelled = true; };
-  }, [url, packId, rawPackProp, tick]);
+    return () => {
+      cancelled = true;
+    };
+  }, [url, packId, rawPackProp, manifestData, tick]);
 
-  // Derive questions filtered by game mode
   const questions = pack ? getQuestionsForMode(pack, mode, { count }) : [];
 
   return {
@@ -143,8 +118,6 @@ export function usePackLoader({
   };
 }
 
-// ─── Convenience: load manifest ──────────────────────────────────
-
 export function useManifest() {
   const [manifest, setManifest] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -152,30 +125,50 @@ export function useManifest() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("./data/generated/manifest.json")
-      .then((r) => r.json())
-      .then((data) => { if (!cancelled) setManifest(data); })
-      .catch((e) => { if (!cancelled) setError(e.message); })
-      .finally(() => { if (!cancelled) setLoading(false); });
-    return () => { cancelled = true; };
+
+    fetchJSON("./data/generated/manifest.json", { cache: false })
+      .then((data) => {
+        if (!cancelled) setManifest(data);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return { manifest, loading, error };
 }
 
-// ─── Convenience: load a pack list from manifest ──────────────────
-
 export function usePackList() {
   const { manifest, loading, error } = useManifest();
 
-  const revisionPacks = manifest?.revisionPacks || [];
-  const sentenceBuilderPacks = manifest?.sentenceBuilderPacks || [];
-  const passageGroups = manifest?.passageGroups || [];
-
   return {
-    revisionPacks,
-    sentenceBuilderPacks,
-    passageGroups,
+    revisionPacks: manifest?.revisionPacks || [],
+    sentenceBuilderPacks: manifest?.sentenceBuilderPacks || [],
+    passageGroups: manifest?.passageGroups || [],
+    allPacks: [
+      ...(manifest?.revisionPacks || []).map((pack) => ({
+        ...pack,
+        packKind: "revision",
+        runtimeId: `revision:${pack.id}`,
+      })),
+      ...(manifest?.sentenceBuilderPacks || []).map((pack) => ({
+        ...pack,
+        packKind: "builder",
+        runtimeId: `builder:${pack.id}`,
+      })),
+      ...(manifest?.passageGroups || []).map((pack) => ({
+        ...pack,
+        packKind: "passage",
+        runtimeId: `passage:${pack.id}`,
+      })),
+    ],
     loading,
     error,
   };

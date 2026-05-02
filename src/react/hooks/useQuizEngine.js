@@ -1,18 +1,7 @@
-/**
- * useQuizEngine.js
- *
- * Reusable hook for quiz behaviour. Works with any question type that
- * has been normalised via packAdapters.js.
- *
- * Usage:
- *   const engine = useQuizEngine({ questions, mode: "mcq", count: 12 });
- *   // then use: engine.currentQuestion, engine.answerQuestion, etc.
- */
-
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { isCorrectAnswer, calculateScore, getAccuracy } from "../utils/scoring.js";
 
-// ─── Helpers ────────────────────────────────────────────────────────
+const EMPTY_QUESTIONS = [];
 
 function shuffle(arr) {
   const a = [...arr];
@@ -23,72 +12,71 @@ function shuffle(arr) {
   return a;
 }
 
-/**
- * Apply distractor injection for gap/choice questions.
- * Adds shuffled options if the question has none.
- */
-function withDistractors(questions, distractorCount = 3) {
-  return questions.map((q) => {
-    if (q.options && q.options.length >= 2) return q;
-    // Collect distractors from other questions of same type
-    const pool = questions
-      .filter((o) => o.id !== q.id && o.correctAnswer)
-      .slice(0, distractorCount * 2)
-      .map((o) => o.correctAnswer)
-      .filter((v, i, arr) => arr.indexOf(v) === i)
-      .slice(0, distractorCount);
-    return { ...q, options: shuffle([q.correctAnswer, ...pool]) };
-  });
+function initialBuildState(question) {
+  if (!question) return null;
+
+  if (question.type === "sequence") {
+    return {
+      selectedIndex: null,
+      userOrder: [...(question.shuffledOrder || question.options || [])],
+    };
+  }
+
+  if (question.type === "sort") {
+    return {
+      selectedItemIndex: null,
+      selectedCategoryIndex: null,
+      placedItems: [],
+      unplacedItems: [...(question.sortItems || [])],
+    };
+  }
+
+  return null;
 }
 
-// ─── Main hook ────────────────────────────────────────────────────
-
-/**
- * @typedef {Object} UseQuizEngineOptions
- * @property {Array}    questions     - array of common-shape questions (from packAdapters)
- * @property {string}   [mode]        - "mcq"|"typing"|"flashcard"|"sequence"|"sort"|"gap"
- * @property {number}  [count]       - max questions (default: all)
- * @property {boolean} [shuffleQ]    - shuffle questions (default: true)
- */
-
-/**
- * @returns {object} quiz engine state and actions
- */
-export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", count = 12, shuffleQ = true } = {}) {
-  // Questions are already normalised by usePackLoader; just shuffle and cap
+export function useQuizEngine({
+  questions: rawQuestions = EMPTY_QUESTIONS,
+  mode = "mcq",
+  count = 12,
+  shuffleQ = true,
+} = {}) {
   const questions = useMemo(() => {
-    const all = shuffleQ ? shuffle(rawQuestions) : rawQuestions;
+    const all = shuffleQ ? shuffle(rawQuestions) : [...rawQuestions];
     return all.slice(0, count || Infinity);
   }, [rawQuestions, count, shuffleQ]);
 
-  // State
   const [index, setIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
-  // For sequence/sort: custom user state per question
   const [buildState, setBuildState] = useState(null);
-  // For flashcard flip
   const [flipped, setFlipped] = useState(false);
 
   const currentQuestion = questions[index] || null;
   const totalQuestions = questions.length;
-  const { score, total } = calculateScore(answers);
+  const { score } = calculateScore(answers);
 
-  // ─── Actions ─────────────────────────────────────────────────────
+  useEffect(() => {
+    setIndex(0);
+    setSelectedAnswer(null);
+    setShowFeedback(false);
+    setAnswers([]);
+    setIsFinished(false);
+    setBuildState(initialBuildState(questions[0] || null));
+    setFlipped(false);
+  }, [questions, mode]);
 
   const answerQuestion = useCallback(
     (selected) => {
       if (!currentQuestion || showFeedback) return;
       setSelectedAnswer(selected);
 
-      const correct =
-        currentQuestion.acceptedAnswers?.length
-          ? selected
-              ? isCorrectAnswer(selected, currentQuestion.acceptedAnswers)
-              : false
-          : isCorrectAnswer(selected, currentQuestion.correctAnswer);
+      const correct = currentQuestion.acceptedAnswers?.length
+        ? selected
+          ? isCorrectAnswer(selected, currentQuestion.acceptedAnswers)
+          : false
+        : isCorrectAnswer(selected, currentQuestion.correctAnswer);
 
       setAnswers((prev) => [
         ...prev,
@@ -111,29 +99,20 @@ export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", coun
 
   const nextQuestion = useCallback(() => {
     if (!currentQuestion) return;
+
+    const nextIndex = index + 1;
     setShowFeedback(false);
     setSelectedAnswer(null);
     setFlipped(false);
 
-    // For sequence/sort: initialise buildState on new question
-    if (currentQuestion.type === "sequence") {
-      setBuildState({ selectedIndex: null, userOrder: [...currentQuestion.shuffledOrder] });
-    } else if (currentQuestion.type === "sort") {
-      setBuildState({
-        selectedItemIndex: null,
-        placedItems: [],
-        unplacedItems: [...(currentQuestion.sortItems || [])],
-      });
-    } else {
-      setBuildState(null);
-    }
-
-    if (index + 1 >= totalQuestions) {
+    if (nextIndex >= totalQuestions) {
       setIsFinished(true);
+      setBuildState(null);
     } else {
-      setIndex((i) => i + 1);
+      setIndex(nextIndex);
+      setBuildState(initialBuildState(questions[nextIndex] || null));
     }
-  }, [currentQuestion, index, totalQuestions]);
+  }, [currentQuestion, index, questions, totalQuestions]);
 
   const resetQuiz = useCallback(() => {
     setIndex(0);
@@ -141,105 +120,104 @@ export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", coun
     setShowFeedback(false);
     setAnswers([]);
     setIsFinished(false);
-    setBuildState(null);
+    setBuildState(initialBuildState(questions[0] || null));
     setFlipped(false);
-  }, []);
-
-  // ─── Sequence helpers ──────────────────────────────────────────
+  }, [questions]);
 
   const selectSequenceIndex = useCallback(
     (seqIdx) => {
-      if (!buildState) {
-        setBuildState({ selectedIndex: seqIdx, userOrder: currentQuestion?.shuffledOrder || [] });
-        return;
-      }
-      const { selectedIndex, userOrder } = buildState;
-      if (selectedIndex === null) {
-        setBuildState({ ...buildState, selectedIndex: seqIdx });
-      } else if (selectedIndex === seqIdx) {
-        setBuildState({ ...buildState, selectedIndex: null });
-      } else {
-        // Swap
+      if (!currentQuestion) return;
+
+      setBuildState((prev) => {
+        const state = prev || initialBuildState(currentQuestion);
+        const { selectedIndex, userOrder } = state;
+
+        if (selectedIndex === null) {
+          return { ...state, selectedIndex: seqIdx };
+        }
+
+        if (selectedIndex === seqIdx) {
+          return { ...state, selectedIndex: null };
+        }
+
         const next = [...userOrder];
         [next[selectedIndex], next[seqIdx]] = [next[seqIdx], next[selectedIndex]];
-        setBuildState({ selectedIndex: null, userOrder: next });
-      }
+        return { ...state, selectedIndex: null, userOrder: next };
+      });
     },
-    [buildState, currentQuestion]
+    [currentQuestion]
   );
 
   const shuffleSequence = useCallback(() => {
     if (!currentQuestion?.shuffledOrder) return;
     setBuildState({
       selectedIndex: null,
-      userOrder: shuffle([...currentQuestion.shuffledOrder]),
+      userOrder: shuffle(currentQuestion.shuffledOrder),
     });
   }, [currentQuestion]);
 
   const checkSequenceAnswer = useCallback(
     (userOrder) => {
-      const correct = currentQuestion?.correctOrder
-        ? userOrder.join(" | ") === currentQuestion.correctOrder.join(" | ")
-        : false;
-      answerQuestion(userOrder.join(" | "));
-      return correct;
+      const selected = (userOrder || []).join(" | ");
+      answerQuestion(selected);
+      return selected === (currentQuestion?.correctOrder || []).join(" | ");
     },
-    [currentQuestion, answerQuestion]
+    [answerQuestion, currentQuestion]
   );
 
-  // ─── Sort helpers ───────────────────────────────────────────────
-
-  const selectSortItem = useCallback(
-    (itemIndex) => {
-      setBuildState((prev) => ({
-        ...prev,
-        selectedItemIndex: itemIndex,
-        selectedCategoryIndex: null,
-      }));
-    },
-    []
-  );
+  const selectSortItem = useCallback((itemIndex) => {
+    setBuildState((prev) => ({
+      ...(prev || {}),
+      selectedItemIndex: itemIndex,
+      selectedCategoryIndex: null,
+    }));
+  }, []);
 
   const placeSortItem = useCallback(
     (categoryIndex) => {
-      if (!buildState || buildState.selectedItemIndex === null) return;
-      const { selectedItemIndex, unplacedItems, placedItems } = buildState;
-      const rawItems = currentQuestion?.sortItems || [];
-      const item = rawItems[selectedItemIndex];
-      if (!item) return;
-      const itemText = item.text || String(item);
-      const placed = {
-        text: itemText,
-        categoryIndex,
-        category: (currentQuestion?.sortCategories || [])[categoryIndex] || "",
-      };
-      setBuildState({
-        selectedItemIndex: null,
-        selectedCategoryIndex: null,
-        placedItems: [...placedItems, placed],
-        unplacedItems: unplacedItems.filter(
-          (_, i) => rawItems.indexOf(rawItems[i]) !== selectedItemIndex
-        ),
+      if (!currentQuestion) return;
+
+      setBuildState((prev) => {
+        const state = prev || initialBuildState(currentQuestion);
+        if (state.selectedItemIndex === null) return state;
+
+        const item = state.unplacedItems[state.selectedItemIndex];
+        if (!item) return state;
+
+        const placed = {
+          text: item.text || String(item),
+          categoryIndex,
+          category: (currentQuestion.sortCategories || [])[categoryIndex] || "",
+        };
+
+        return {
+          selectedItemIndex: null,
+          selectedCategoryIndex: null,
+          placedItems: [...state.placedItems, placed],
+          unplacedItems: state.unplacedItems.filter((candidate) => candidate !== item),
+        };
       });
     },
-    [buildState, currentQuestion]
+    [currentQuestion]
   );
 
   const removeSortItem = useCallback(
     (placedIndex) => {
+      if (!currentQuestion) return;
+
       setBuildState((prev) => {
-        const removed = prev.placedItems[placedIndex];
-        if (!removed) return prev;
-        const rawItems = currentQuestion?.sortItems || [];
-        const originalItem = rawItems.find(
-          (i) => (i.text || String(i)) === removed.text
+        const state = prev || initialBuildState(currentQuestion);
+        const removed = state.placedItems[placedIndex];
+        if (!removed) return state;
+
+        const originalItem = (currentQuestion.sortItems || []).find(
+          (item) => (item.text || String(item)) === removed.text
         );
+
         return {
-          ...prev,
-          placedItems: prev.placedItems.filter((_, i) => i !== placedIndex),
-          unplacedItems: originalItem
-            ? [...prev.unplacedItems, originalItem]
-            : prev.unplacedItems,
+          ...state,
+          placedItems: state.placedItems.filter((_, i) => i !== placedIndex),
+          unplacedItems: originalItem ? [...state.unplacedItems, originalItem] : state.unplacedItems,
         };
       });
     },
@@ -247,35 +225,28 @@ export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", coun
   );
 
   const resetSort = useCallback(() => {
-    if (!currentQuestion?.sortItems) return;
-    setBuildState({
-      selectedItemIndex: null,
-      placedItems: [],
-      unplacedItems: [...currentQuestion.sortItems],
-    });
+    setBuildState(initialBuildState(currentQuestion));
   }, [currentQuestion]);
 
   const checkSortAnswer = useCallback(
     (placedItems) => {
       const correct =
-        placedItems?.every((p) => {
+        placedItems?.length === (currentQuestion?.sortItems || []).length &&
+        placedItems.every((placed) => {
           const raw = (currentQuestion?.sortItems || []).find(
-            (i) => (i.text || String(i)) === p.text
+            (item) => (item.text || String(item)) === placed.text
           );
-          return raw && (raw.category || "") === (p.category || "");
-        }) && placedItems.length === (currentQuestion?.sortItems || []).length;
-      answerQuestion(
-        placedItems.map((p) => `${p.text}|${p.category}`).join(" || ")
-      );
+          return raw && (raw.category || "") === (placed.category || "");
+        });
+
+      answerQuestion((placedItems || []).map((p) => `${p.text}|${p.category}`).join(" || "));
       return correct;
     },
-    [currentQuestion, answerQuestion]
+    [answerQuestion, currentQuestion]
   );
 
-  // ─── Flashcard helpers ──────────────────────────────────────────
-
   const flipCard = useCallback(() => {
-    setFlipped((f) => !f);
+    setFlipped((value) => !value);
     setShowFeedback(false);
   }, []);
 
@@ -284,13 +255,10 @@ export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", coun
       if (!currentQuestion) return;
       answerQuestion(known ? currentQuestion.correctAnswer : "__skip__");
     },
-    [currentQuestion, answerQuestion]
+    [answerQuestion, currentQuestion]
   );
 
-  // ─── Return ────────────────────────────────────────────────────
-
   return {
-    // State
     currentQuestion,
     currentQuestionIndex: index,
     totalQuestions,
@@ -302,21 +270,17 @@ export function useQuizEngine({ questions: rawQuestions = [], mode = "mcq", coun
     accuracy: getAccuracy(answers),
     buildState,
     flipped,
-    // Actions
     answerQuestion,
     nextQuestion,
     resetQuiz,
-    // Sequence
     selectSequenceIndex,
     shuffleSequence,
     checkSequenceAnswer,
-    // Sort
     selectSortItem,
     placeSortItem,
     removeSortItem,
     resetSort,
     checkSortAnswer,
-    // Flashcard
     flipCard,
     markFlashcardKnown,
   };
