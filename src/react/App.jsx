@@ -16,6 +16,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { usePackList, usePackLoader } from "./hooks/usePackLoader.js";
 import { useQuizEngine } from "./hooks/useQuizEngine.js";
+import { getQuestionsForMode } from "./utils/packAdapters.js";
 import { QuizCard } from "./components/learning/QuizCard.jsx";
 import { Flashcard } from "./components/learning/Flashcard.jsx";
 import { SequenceQuiz } from "./components/learning/SequenceQuiz.jsx";
@@ -109,11 +110,79 @@ function ModeSelector({ modes, selectedMode, onChange }) {
   );
 }
 
+function defaultLanguageDirection(pack) {
+  if (!pack) return { sourceLang: "", targetLang: "" };
+  return {
+    sourceLang: pack.sourceLanguageCode || pack.languages?.[0]?.code || "",
+    targetLang: pack.targetLanguageCode || pack.languages?.[1]?.code || pack.languages?.[0]?.code || "",
+  };
+}
+
+function LanguageSelector({ languages = [], sourceLang, targetLang, onChange }) {
+  if (languages.length < 2) return null;
+
+  const nextDifferentLanguage = (selectedCode) =>
+    languages.find((language) => language.code !== selectedCode)?.code || selectedCode;
+
+  const handleSourceChange = (nextSourceLang) => {
+    onChange({
+      sourceLang: nextSourceLang,
+      targetLang: nextSourceLang === targetLang ? nextDifferentLanguage(nextSourceLang) : targetLang,
+    });
+  };
+
+  const handleTargetChange = (nextTargetLang) => {
+    onChange({
+      sourceLang: nextTargetLang === sourceLang ? nextDifferentLanguage(nextTargetLang) : sourceLang,
+      targetLang: nextTargetLang,
+    });
+  };
+
+  return (
+    <div className="lw-language-panel" aria-label="Translation direction">
+      <div>
+        <label className="lw-field-label" htmlFor="lw-source-lang">From</label>
+        <select
+          id="lw-source-lang"
+          className="lw-select"
+          value={sourceLang}
+          onChange={(event) => handleSourceChange(event.target.value)}
+        >
+          {languages.map((language) => (
+            <option key={language.code} value={language.code}>{language.label}</option>
+          ))}
+        </select>
+      </div>
+      <button
+        className="lw-btn lw-btn-ghost"
+        onClick={() => onChange({ sourceLang: targetLang, targetLang: sourceLang })}
+        type="button"
+      >
+        Swap
+      </button>
+      <div>
+        <label className="lw-field-label" htmlFor="lw-target-lang">To</label>
+        <select
+          id="lw-target-lang"
+          className="lw-select"
+          value={targetLang}
+          onChange={(event) => handleTargetChange(event.target.value)}
+        >
+          {languages.map((language) => (
+            <option key={language.code} value={language.code}>{language.label}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+}
+
 // ─── Quiz page (MCQ + Sequence + Sort + Passage) ─────────────────
 
 function QuizPage({ pack }) {
   const availableModes = useMemo(() => getAvailableModes(pack), [pack]);
   const [mode, setMode] = useState("mcq");
+  const [languageDirection, setLanguageDirection] = useState(defaultLanguageDirection(pack));
 
   useEffect(() => {
     if (!availableModes.length) return;
@@ -122,7 +191,20 @@ function QuizPage({ pack }) {
     }
   }, [availableModes, mode]);
 
-  const questions = pack?.byType?.[mode] || EMPTY_QUESTIONS;
+  useEffect(() => {
+    setLanguageDirection(defaultLanguageDirection(pack));
+  }, [pack?.packId]);
+
+  const canChooseLanguages = ["mcq", "typing", "flashcard"].includes(mode) && (pack?.languages?.length || 0) > 1;
+  const sourceLang = languageDirection.sourceLang || pack?.sourceLanguageCode || "";
+  const targetLang = languageDirection.targetLang || pack?.targetLanguageCode || "";
+  const questions = useMemo(() => {
+    if (!pack) return EMPTY_QUESTIONS;
+    return getQuestionsForMode(pack, mode, {
+      sourceLang: canChooseLanguages ? sourceLang : undefined,
+      targetLang: canChooseLanguages ? targetLang : undefined,
+    });
+  }, [pack, mode, canChooseLanguages, sourceLang, targetLang]);
 
   const engine = useQuizEngine({ questions, mode, count: 12 });
 
@@ -175,6 +257,14 @@ function QuizPage({ pack }) {
     return (
       <div className="lw-page">
         <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
+        {canChooseLanguages && (
+          <LanguageSelector
+            languages={pack.languages}
+            sourceLang={sourceLang}
+            targetLang={targetLang}
+            onChange={setLanguageDirection}
+          />
+        )}
         <div className="lw-card">
           <ReviewPanel answers={answers} onRetry={resetQuiz} />
         </div>
@@ -278,6 +368,14 @@ function QuizPage({ pack }) {
   return (
     <div className="lw-page">
       <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
+      {canChooseLanguages && (
+        <LanguageSelector
+          languages={pack.languages}
+          sourceLang={sourceLang}
+          targetLang={targetLang}
+          onChange={setLanguageDirection}
+        />
+      )}
       <QuizCard
         question={currentQuestion}
         options={currentQuestion.options || []}
@@ -297,7 +395,22 @@ function QuizPage({ pack }) {
 // ─── Flashcard page ───────────────────────────────────────────────
 
 function FlashcardPage({ pack }) {
-  const questions = pack?.byType?.mcq || [];
+  const [languageDirection, setLanguageDirection] = useState(defaultLanguageDirection(pack));
+
+  useEffect(() => {
+    setLanguageDirection(defaultLanguageDirection(pack));
+  }, [pack?.packId]);
+
+  const canChooseLanguages = (pack?.languages?.length || 0) > 1;
+  const sourceLang = languageDirection.sourceLang || pack?.sourceLanguageCode || "";
+  const targetLang = languageDirection.targetLang || pack?.targetLanguageCode || "";
+  const questions = useMemo(() => {
+    if (!pack) return EMPTY_QUESTIONS;
+    return getQuestionsForMode(pack, "flashcard", {
+      sourceLang: canChooseLanguages ? sourceLang : undefined,
+      targetLang: canChooseLanguages ? targetLang : undefined,
+    });
+  }, [pack, canChooseLanguages, sourceLang, targetLang]);
   const engine = useQuizEngine({ questions, mode: "flashcard", count: 12 });
 
   const { currentQuestion, currentQuestionIndex, totalQuestions, isFinished, flipped, flipCard, nextQuestion, resetQuiz } = engine;
@@ -325,6 +438,14 @@ function FlashcardPage({ pack }) {
 
   return (
     <div className="lw-page">
+      {canChooseLanguages && (
+        <LanguageSelector
+          languages={pack.languages}
+          sourceLang={sourceLang}
+          targetLang={targetLang}
+          onChange={setLanguageDirection}
+        />
+      )}
       <div className="lw-card">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
           <span style={{ color: "var(--lw-muted)", fontSize: "0.88rem" }}>

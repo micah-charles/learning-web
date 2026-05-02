@@ -150,6 +150,30 @@ Runtime React loading is unified-only. New source formats should be converted in
 `pack_unified.json` during data generation, then handled by `normaliseUnifiedItem()`.
 Do not add `vocabPath`, `jsonlPath`, or legacy JSONL fallbacks to `usePackLoader()`.
 
+Vocab and sentence items may provide a multilingual shape:
+
+```json
+{
+  "type": "vocab",
+  "data": {
+    "sourceLang": "de-DE",
+    "targetLang": "en-GB",
+    "translations": {
+      "de-DE": "der Gletscher",
+      "en-GB": "glacier"
+    },
+    "examples": {
+      "de-DE": "Der Gletscher bewegt sich langsam.",
+      "en-GB": "The glacier moves slowly."
+    }
+  }
+}
+```
+
+When a loaded pack exposes more than one language, the React quiz shows “From”
+and “To” selectors for translation-based modes and renders the prompt and answer
+through the selected language pair.
+
 ---
 
 ## Example Pack Items
@@ -277,3 +301,4 @@ npm run preview # serve the build locally
 - [ ] Add a routing layer (e.g. react-router) for direct URL navigation
 - [ ] Add mode selector UI (MCQ / Flashcard / Sequence / Sort tabs within Quiz page)
 - [ ] Migrate one tab from vanilla `main.js` to React, verifying no regressions
+- [ ] Add automated interaction tests for language direction controls

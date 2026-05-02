@@ -129,6 +129,32 @@
       "additionalProperties": false,
       "required": ["sourceWord", "targetWord"],
       "properties": {
+        "translations": {
+          "type": "object",
+          "description": "Language-agnostic word values keyed by ISO/BCP-47 language code.",
+          "patternProperties": {
+            "^[a-z]{2}(-[A-Za-z]{2})?$": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "examples": {
+          "type": "object",
+          "description": "Optional example sentences keyed by ISO/BCP-47 language code.",
+          "patternProperties": {
+            "^[a-z]{2}(-[A-Za-z]{2})?$": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "sourceLang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Za-z]{2})?$",
+          "description": "Language code to show as the prompt for generated translation questions."
+        },
+        "targetLang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Za-z]{2})?$",
+          "description": "Language code to expect as the answer for generated translation questions."
+        },
         "sourceWord": {
           "type": "string",
           "description": "The word/sentence to study, e.g. 'glacier' or 'das'"
@@ -174,6 +200,22 @@
       "additionalProperties": false,
       "required": ["sourceSentence", "targetSentence"],
       "properties": {
+        "translations": {
+          "type": "object",
+          "description": "Language-agnostic sentence values keyed by ISO/BCP-47 language code.",
+          "patternProperties": {
+            "^[a-z]{2}(-[A-Za-z]{2})?$": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "sourceLang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Za-z]{2})?$"
+        },
+        "targetLang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Za-z]{2})?$"
+        },
         "sourceSentence": {
           "type": "string",
           "description": "Sentence in the source language, e.g. German"
