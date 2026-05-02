@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { normalisePack, getQuestionsForMode } from "../utils/packAdapters.js";
 
-async function fetchJSON(url) {
-  const cached = sessionStorage.getItem(url);
+async function fetchJSON(url, { cache = true } = {}) {
+  const cached = cache ? sessionStorage.getItem(url) : null;
   if (cached) return JSON.parse(cached);
 
-  const res = await fetch(url);
+  const res = await fetch(url, cache ? undefined : { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
 
   const data = await res.json();
-  sessionStorage.setItem(url, JSON.stringify(data));
+  if (cache) sessionStorage.setItem(url, JSON.stringify(data));
   return data;
 }
 
@@ -74,7 +74,7 @@ export function usePackLoader({
         } else if (packId) {
           let manifest = manifestData;
           if (!manifest) {
-            manifest = await fetchJSON("./data/generated/manifest.json");
+            manifest = await fetchJSON("./data/generated/manifest.json", { cache: false });
             if (!cancelled) setManifestData(manifest);
           }
 
@@ -126,7 +126,7 @@ export function useManifest() {
   useEffect(() => {
     let cancelled = false;
 
-    fetchJSON("./data/generated/manifest.json")
+    fetchJSON("./data/generated/manifest.json", { cache: false })
       .then((data) => {
         if (!cancelled) setManifest(data);
       })
