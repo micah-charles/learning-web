@@ -320,7 +320,133 @@ def convert_sentence_builder_packs(manifest):
         print(f"  ✓ sentenceBuilder/{sb_pack['id']} — {len(items)} items")
 
 
-# ─── Main ─────────────────────────────────────────────────────────────
+# ─── Passage packs ────────────────────────────────────────────────────
+
+# Known source language per passage group (infer from content if not in file)
+PASSAGE_GROUP_LANGS = {
+    "bbc_bitesize_gcse_german":    {"sourceLanguageCode": "de-DE", "sourceLanguageLabel": "German",    "speechLanguage": "de-DE"},
+    "deutsche_welle_nicos_weg":   {"sourceLanguageCode": "de-DE", "sourceLanguageLabel": "German",    "speechLanguage": "de-DE"},
+    "dino_lernt_deutsch":          {"sourceLanguageCode": "de-DE", "sourceLanguageLabel": "German",    "speechLanguage": "de-DE"},
+    "ferien_in_frankfurt":         {"sourceLanguageCode": "de-DE", "sourceLanguageLabel": "German",    "speechLanguage": "de-DE"},
+    "gcse_geography":              {"sourceLanguageCode": "en-GB", "sourceLanguageLabel": "English",   "speechLanguage": "en-GB"},
+    "others":                      {"sourceLanguageCode": "de-DE", "sourceLanguageLabel": "German",    "speechLanguage": "de-DE"},
+}
+
+def convert_passage_packs(manifest):
+    """Convert PassagePacks/*/*.{json,jsonl} into pack_unified.json per passage group."""
+    groups = manifest.get("passageGroups", [])
+    if not groups:
+        print("  (no passage groups in manifest)")
+        return
+
+    for group in groups:
+        packs = group.get("packs", [])
+        if not packs:
+            continue
+
+        lang_meta = PASSAGE_GROUP_LANGS.get(group["id"], {
+            "sourceLanguageCode": "de-DE",
+            "sourceLanguageLabel": "German",
+            "speechLanguage": "de-DE",
+        })
+
+        # Collect all passages across all packs in this group
+        all_items = []
+        for pack_meta in packs:
+            path = pack_meta.get("path", "")
+            full_path = BASE / path
+            # Normalise: if path doesn't exist and doesn't start with "data/", try prepending "data/"
+            if not full_path.exists():
+                alt = BASE / "data" / path
+                if alt.exists():
+                    full_path = alt
+
+            if not full_path.exists():
+                print(f"  ✗ passage {pack_meta['id']} — not found: {path}")
+                continue
+
+            with open(full_path, encoding="utf-8") as pf:
+                raw = json.load(pf)
+
+            passages = raw if isinstance(raw, list) else [raw]
+            for passage in passages:
+                q = passage.get("questions", [])
+                items_q = []
+                for question in q:
+                    q_item = {
+                        "id": question.get("id", f"q_{len(items_q)}"),
+                        "questionType": question.get("type") or question.get("questionType") or "open",
+                        "question": question.get("question_en") or question.get("question") or "",
+                        "difficulty": question.get("difficulty", "medium"),
+                    }
+                    if question.get("options"):
+                        q_item["options"] = question["options"]
+                        q_item["correctOptionIndex"] = question.get("correct_option_index") or question.get("correctOptionIndex", 0)
+                    if question.get("model_answer_en") or question.get("modelAnswer"):
+                        q_item["modelAnswer"] = question.get("model_answer_en") or question.get("modelAnswer", "")
+                    if question.get("accepted_keywords") or question.get("acceptedKeywords"):
+                        q_item["acceptedKeywords"] = question.get("accepted_keywords") or question.get("acceptedKeywords", [])
+                    items_q.append(q_item)
+
+                all_items.append({
+                    "id": passage.get("id", f"passage_{len(all_items)}"),
+                    "type": "passage",
+                    "level": passage.get("level"),
+                    "topics": [passage.get("topic")] if passage.get("topic") else [],
+                    "tags": [],
+                    "data": {
+                        "chapter": passage.get("chapter", ""),
+                        "section": passage.get("section", ""),
+                        "sourceTitle": passage.get("title_de") or passage.get("title_en", ""),
+                        "targetTitle": passage.get("title_en") or passage.get("title_de", ""),
+                        "sourcePassage": passage.get("passage_de") or passage.get("sourcePassage", ""),
+                        "targetPassage": passage.get("passage_en") or passage.get("targetPassage", ""),
+                        "speechLanguage": passage.get("speech_language") or passage.get("speechLanguage") or lang_meta["speechLanguage"],
+                        "questions": items_q,
+                    }
+                })
+
+        if not all_items:
+            print(f"  (group {group['id']} — no passages found)")
+            continue
+
+        # Derive target language. For single-language content (e.g. English geography
+        # passages) leave target fields empty. For bilingual content (e.g. German passages
+        # with English translations) the target is the translation language.
+        src_code = lang_meta["sourceLanguageCode"]
+        if src_code == "en-GB":
+            tgt_code = ""
+            tgt_label = ""
+        else:
+            tgt_code = "en-GB"
+            tgt_label = "English"
+
+        pack = {
+            "packId": f"passages_{group['id']}",
+            "title": f"{group['displayName']} — Reading Passages",
+            "subject": group.get("displayName", "Reading"),
+            "level": "ALL",
+            "language": lang_meta["sourceLanguageLabel"],
+            "topics": [group["id"]],
+            "tags": [],
+            "description": f"Reading passages: {group['displayName']}",
+            "schemaVersion": "1.0",
+            "sourceLanguageLabel": lang_meta["sourceLanguageLabel"],
+            "sourceLanguageCode": lang_meta["sourceLanguageCode"],
+            "targetLanguageLabel": tgt_label,
+            "targetLanguageCode": tgt_code,
+            "speechLanguage": lang_meta["speechLanguage"],
+            "items": all_items,
+        }
+
+        # Write to data/PassagePacks/[group_id]/pack_unified.json
+        out_dir = BASE / "data" / "PassagePacks" / group["id"]
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_path = out_dir / "pack_unified.json"
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(pack, f, ensure_ascii=False, indent=2)
+
+        print(f"  ✓ passages/{group['id']} — {len(all_items)} passages  (lang={lang_meta['sourceLanguageCode']})")
 
 def main():
     manifest = load_json(MANIFEST_PATH)
@@ -347,8 +473,12 @@ def main():
     print("\n[Sentence builder packs]")
     convert_sentence_builder_packs(manifest)
 
+    # Passage packs
+    print("\n[Passage packs]")
+    convert_passage_packs(manifest)
+
     print(f"\n{'=' * 60}")
-    print(f"Done. Total items converted: {total} (excl. sentence builder)")
+    print(f"Done. Total items converted: {total} (excl. sentence builder + passages)")
 
 
 if __name__ == "__main__":

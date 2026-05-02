@@ -70,12 +70,30 @@ export function listSentenceBuilderPacks(manifest) {
   return manifest.sentenceBuilderPacks || [];
 }
 
+// ─── Sentence builder: old-format fallback ────────────────────────
+
 export async function loadSentenceBuilderPack(manifest, packId) {
   const pack = listSentenceBuilderPacks(manifest).find((item) => item.id === packId);
   if (!pack) {
     throw new Error(`Unknown sentence builder pack: ${packId}`);
   }
   return splitJsonl(await fetchText(`./${pack.path}`));
+}
+
+// ─── Sentence builder: unified pack loader ─────────────────────────
+
+/**
+ * Load the sentence builder pack from its unified pack file.
+ * Falls back to null if unifiedPath is absent or the file is not found.
+ */
+export async function loadSentenceBuilderUnifiedPack(manifest, packId) {
+  const pack = listSentenceBuilderPacks(manifest).find((item) => item.id === packId);
+  if (!pack || !pack.unifiedPath) return null;
+  try {
+    return await fetchJson(`./${pack.unifiedPath}`);
+  } catch (_) {
+    return null;
+  }
 }
 
 export async function loadSequenceItems(manifest, packId) {
@@ -115,6 +133,21 @@ export async function loadPassagePack(manifest, groupId, packId) {
   }
   const parsed = await fetchJson(`./${pack.path}`);
   return Array.isArray(parsed) ? parsed : (parsed.passages || []);
+}
+
+/**
+ * Load a passage group's unified pack file.
+ * This consolidates all passages from every pack in the group into one source.
+ * Falls back to null if unifiedPath is absent or the file is not found.
+ */
+export async function loadPassageUnifiedPack(manifest, groupId) {
+  const group = listPassageGroups(manifest).find((g) => g.id === groupId);
+  if (!group || !group.unifiedPath) return null;
+  try {
+    return await fetchJson(`./${group.unifiedPath}`);
+  } catch (_) {
+    return null;
+  }
 }
 
 // ─── Unified pack loading ────────────────────────────────────────────
