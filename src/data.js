@@ -1,16 +1,19 @@
-import { splitJsonl, uniqueBy } from "./utils.js";
+/**
+ * data.js — unified-only loaders
+ *
+ * Single loading path for all pack data.
+ * Only the unified pack format is supported.
+ * Legacy paths (vocabPath, sentencePath, etc.) are never loaded.
+ */
 
 const jsonCache = new Map();
-const textCache = new Map();
 
 async function fetchJson(path) {
   if (!jsonCache.has(path)) {
     jsonCache.set(
       path,
       fetch(path).then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to load ${path}`);
-        }
+        if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
         return response.json();
       }),
     );
@@ -18,157 +21,21 @@ async function fetchJson(path) {
   return jsonCache.get(path);
 }
 
-async function fetchText(path) {
-  if (!textCache.has(path)) {
-    textCache.set(
-      path,
-      fetch(path).then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to load ${path}`);
-        }
-        return response.text();
-      }),
-    );
-  }
-  return textCache.get(path);
-}
-
 export async function loadManifest() {
   return fetchJson("./data/generated/manifest.json");
 }
 
-export function listDatasets(manifest) {
-  return [manifest.core].concat(manifest.revisionPacks || []);
-}
-
-export function findDataset(manifest, datasetId) {
-  const found = listDatasets(manifest).find((dataset) => dataset.id === datasetId);
-  return found || manifest.core;
-}
-
-export async function loadVocabItems(manifest, datasetId) {
-  const dataset = findDataset(manifest, datasetId);
-  return fetchJson(`./${dataset.vocabPath}`);
-}
-
-export async function loadSentencePools(manifest, datasetId) {
-  const dataset = findDataset(manifest, datasetId);
-  const shouldMergeCore = dataset.id === manifest.core.id || dataset.mergeCoreSentences !== false;
-  const coreSentences = shouldMergeCore && manifest.core.sentencePath
-    ? splitJsonl(await fetchText(`./${manifest.core.sentencePath}`))
-    : [];
-  const selectedSentences = dataset.sentencePath ? splitJsonl(await fetchText(`./${dataset.sentencePath}`)) : [];
-  const combined = uniqueBy([...selectedSentences, ...coreSentences], (item) => item.id);
-  return {
-    core: coreSentences,
-    selected: selectedSentences,
-    combined,
-  };
-}
-
-export function listSentenceBuilderPacks(manifest) {
-  return manifest.sentenceBuilderPacks || [];
-}
-
-// ─── Sentence builder: old-format fallback ────────────────────────
-
-export async function loadSentenceBuilderPack(manifest, packId) {
-  const pack = listSentenceBuilderPacks(manifest).find((item) => item.id === packId);
-  if (!pack) {
-    throw new Error(`Unknown sentence builder pack: ${packId}`);
-  }
-  return splitJsonl(await fetchText(`./${pack.path}`));
-}
-
-// ─── Sentence builder: unified pack loader ─────────────────────────
-
-/**
- * Load the sentence builder pack from its unified pack file.
- * Falls back to null if unifiedPath is absent or the file is not found.
- */
-export async function loadSentenceBuilderUnifiedPack(manifest, packId) {
-  const pack = listSentenceBuilderPacks(manifest).find((item) => item.id === packId);
-  if (!pack || !pack.unifiedPath) return null;
-  try {
-    return await fetchJson(`./${pack.unifiedPath}`);
-  } catch (_) {
-    return null;
-  }
-}
-
-export async function loadSequenceItems(manifest, packId) {
-  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
-  if (!pack || !pack.sequencePath) return [];
-  return splitJsonl(await fetchText(`./${pack.sequencePath}`));
-}
-
-export async function loadCategorySortItems(manifest, packId) {
-  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
-  if (!pack || !pack.categorySortPath) return [];
-  return splitJsonl(await fetchText(`./${pack.categorySortPath}`));
-}
-
-export async function loadFillBlankItems(manifest, packId) {
-  const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
-  if (!pack || !pack.fillBlankPath) return [];
-  return splitJsonl(await fetchText(`./${pack.fillBlankPath}`));
-}
-
-export function listPassageGroups(manifest) {
-  return manifest.passageGroups || [];
-}
-
-export function listPassagePacks(manifest, groupId) {
-  const group = listPassageGroups(manifest).find((item) => item.id === groupId);
-  return group ? group.packs || [] : [];
-}
-
-export async function loadPassagePack(manifest, groupId, packId) {
-  const pack = listPassagePacks(manifest, groupId).find((item) => item.id === packId);
-  if (!pack) {
-    throw new Error(`Unknown passage pack: ${packId}`);
-  }
-  if (pack.fileType === "jsonl") {
-    return splitJsonl(await fetchText(`./${pack.path}`));
-  }
-  const parsed = await fetchJson(`./${pack.path}`);
-  return Array.isArray(parsed) ? parsed : (parsed.passages || []);
-}
-
-/**
- * Load a passage group's unified pack file.
- * This consolidates all passages from every pack in the group into one source.
- * Falls back to null if unifiedPath is absent or the file is not found.
- */
-export async function loadPassageUnifiedPack(manifest, groupId) {
-  const group = listPassageGroups(manifest).find((g) => g.id === groupId);
-  if (!group || !group.unifiedPath) return null;
-  try {
-    return await fetchJson(`./${group.unifiedPath}`);
-  } catch (_) {
-    return null;
-  }
-}
-
-// ─── Unified pack loading ────────────────────────────────────────────
+// ─── Revision packs ─────────────────────────────────────────────────
 
 export async function loadUnifiedPack(manifest, packId) {
   const pack = (manifest.revisionPacks || []).find((p) => p.id === packId);
-  if (!pack || !pack.unifiedPath) return null;
-  try {
-    return await fetchJson(`./${pack.unifiedPath}`);
-  } catch (_err) {
-    return null;
-  }
+  if (!pack || !pack.unifiedPath) throw new Error(`No unifiedPath for pack: ${packId}`);
+  return fetchJson(`./${pack.unifiedPath}`);
 }
 
 export async function loadCoreUnifiedPack(manifest) {
   const path = manifest.coreUnifiedPath || "data/core_unified.json";
-  try {
-    return await fetchJson(`./${path}`);
-  } catch (_err) {
-    return null;
-  }
+  return fetchJson(`./${path}`);
 }
 
 export function filterUnifiedItems(unifiedPack, type) {
@@ -179,4 +46,28 @@ export function filterUnifiedItems(unifiedPack, type) {
 export async function loadUnifiedItemsByType(manifest, packId, type) {
   const pack = await loadUnifiedPack(manifest, packId);
   return filterUnifiedItems(pack, type);
+}
+
+// ─── Sentence builder ──────────────────────────────────────────────
+
+export async function loadSentenceBuilderUnifiedPack(manifest, packId) {
+  const pack = (manifest.sentenceBuilderPacks || []).find((p) => p.id === packId);
+  if (!pack || !pack.unifiedPath) throw new Error(`No unifiedPath for sentence builder pack: ${packId}`);
+  return fetchJson(`./${pack.unifiedPath}`);
+}
+
+export function listSentenceBuilderPacks(manifest) {
+  return manifest.sentenceBuilderPacks || [];
+}
+
+// ─── Passage packs ─────────────────────────────────────────────────
+
+export async function loadPassageUnifiedPack(manifest, groupId) {
+  const group = (manifest.passageGroups || []).find((g) => g.id === groupId);
+  if (!group || !group.unifiedPath) throw new Error(`No unifiedPath for passage group: ${groupId}`);
+  return fetchJson(`./${group.unifiedPath}`);
+}
+
+export function listPassageGroups(manifest) {
+  return manifest.passageGroups || [];
 }
