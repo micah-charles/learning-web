@@ -1,0 +1,80 @@
+.arena { display: flex; flex-direction: column; gap: 0; }
+.instruction { font-size: 0.88rem; color: var(--lw-muted); margin-bottom: 12px; }
+
+.pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--lw-radius-sm);
+  border: 1.5px dashed rgba(24,34,45,0.2);
+  background: rgba(255,255,255,0.6);
+  margin-bottom: 0;
+  min-height: 52px;
+}
+.poolEmpty { font-size: 0.88rem; color: var(--lw-green); width: 100%; text-align: center; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--lw-blue);
+  background: var(--lw-blue-soft);
+  color: var(--lw-blue);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 160ms ease;
+  user-select: none;
+}
+.chip:hover { transform: translateY(-1px); }
+.chip.selected { background: var(--lw-blue); color: #fff; border-color: var(--lw-blue); }
+
+.zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.zone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: var(--lw-radius);
+  border: 1.5px solid var(--lw-line);
+  background: var(--lw-panel);
+  min-height: 120px;
+  transition: border-color 200ms, box-shadow 200ms;
+}
+.zone.zoneSelected { border-color: var(--lw-blue); box-shadow: 0 0 0 3px var(--lw-blue-soft); }
+.zone h4 { font-size: 0.9rem; color: var(--lw-muted); font-weight: 600; margin-bottom: 4px; }
+
+.placedList { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.placedItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--lw-green-soft);
+  color: var(--lw-green);
+  font-size: 0.88rem;
+  border: 1px solid rgba(38,116,75,0.3);
+}
+.removeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--lw-green);
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.actions { display: flex; gap: 10px; margin-top: 16px; }
+
+@media (max-width: 500px) { .zones { grid-template-columns: 1fr; } }

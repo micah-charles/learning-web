@@ -1,0 +1,69 @@
+.card {
+  perspective: 1200px;
+  width: 100%;
+  height: 260px;
+  margin-top: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.flipped .inner { transform: rotateY(180deg); }
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: var(--lw-radius);
+  background: var(--lw-panel);
+  border: 1.5px solid var(--lw-line);
+  box-shadow: var(--lw-shadow);
+  backface-visibility: hidden;
+  text-align: center;
+  gap: 10px;
+}
+.back { transform: rotateY(180deg); }
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--lw-muted);
+}
+.word {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-family: var(--lw-font);
+  color: var(--lw-ink);
+  font-weight: 700;
+}
+.hint {
+  font-size: 0.85rem;
+  color: var(--lw-blue);
+  font-style: italic;
+}
+.example {
+  font-size: 0.88rem;
+  color: var(--lw-muted);
+  margin-top: 6px;
+  border-top: 1px solid var(--lw-line);
+  padding-top: 8px;
+  width: 100%;
+  text-align: left;
+}
+.flipHint {
+  font-size: 0.78rem;
+  color: var(--lw-muted);
+  opacity: 0.7;
+  position: absolute;
+  bottom: 16px;
+}
