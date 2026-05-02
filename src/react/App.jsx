@@ -24,6 +24,8 @@ import { ReviewPanel } from "./components/learning/ReviewPanel.jsx";
 import { PackSelector } from "./components/learning/PackSelector.jsx";
 import { PassageReader } from "./components/learning/PassageReader.jsx";
 
+const EMPTY_QUESTIONS = [];
+
 // ─── Nav pills ───────────────────────────────────────────────────────
 
 const TABS = [
@@ -120,7 +122,7 @@ function QuizPage({ pack }) {
     }
   }, [availableModes, mode]);
 
-  const questions = pack?.byType?.[mode] || [];
+  const questions = pack?.byType?.[mode] || EMPTY_QUESTIONS;
 
   const engine = useQuizEngine({ questions, mode, count: 12 });
 

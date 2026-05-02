@@ -1,6 +1,8 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { isCorrectAnswer, calculateScore, getAccuracy } from "../utils/scoring.js";
 
+const EMPTY_QUESTIONS = [];
+
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -33,7 +35,7 @@ function initialBuildState(question) {
 }
 
 export function useQuizEngine({
-  questions: rawQuestions = [],
+  questions: rawQuestions = EMPTY_QUESTIONS,
   mode = "mcq",
   count = 12,
   shuffleQ = true,

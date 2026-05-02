@@ -15,14 +15,21 @@ async function fetchJSON(url) {
 
 function findPackInManifest(manifest, packId) {
   if (!manifest || !packId) return null;
+  const [kind, id] = packId.includes(":") ? packId.split(":", 2) : [null, packId];
 
-  const revision = (manifest.revisionPacks || []).find((pack) => pack.id === packId);
+  const revision = (!kind || kind === "revision")
+    ? (manifest.revisionPacks || []).find((pack) => pack.id === id)
+    : null;
   if (revision) return revision;
 
-  const builder = (manifest.sentenceBuilderPacks || []).find((pack) => pack.id === packId);
+  const builder = (!kind || kind === "builder")
+    ? (manifest.sentenceBuilderPacks || []).find((pack) => pack.id === id)
+    : null;
   if (builder) return builder;
 
-  const passageGroup = (manifest.passageGroups || []).find((group) => group.id === packId);
+  const passageGroup = (!kind || kind === "passage")
+    ? (manifest.passageGroups || []).find((group) => group.id === id)
+    : null;
   if (passageGroup) return passageGroup;
 
   return null;
@@ -146,9 +153,21 @@ export function usePackList() {
     sentenceBuilderPacks: manifest?.sentenceBuilderPacks || [],
     passageGroups: manifest?.passageGroups || [],
     allPacks: [
-      ...(manifest?.revisionPacks || []).map((pack) => ({ ...pack, packKind: "revision" })),
-      ...(manifest?.sentenceBuilderPacks || []).map((pack) => ({ ...pack, packKind: "builder" })),
-      ...(manifest?.passageGroups || []).map((pack) => ({ ...pack, packKind: "passage" })),
+      ...(manifest?.revisionPacks || []).map((pack) => ({
+        ...pack,
+        packKind: "revision",
+        runtimeId: `revision:${pack.id}`,
+      })),
+      ...(manifest?.sentenceBuilderPacks || []).map((pack) => ({
+        ...pack,
+        packKind: "builder",
+        runtimeId: `builder:${pack.id}`,
+      })),
+      ...(manifest?.passageGroups || []).map((pack) => ({
+        ...pack,
+        packKind: "passage",
+        runtimeId: `passage:${pack.id}`,
+      })),
     ],
     loading,
     error,
