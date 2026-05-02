@@ -329,17 +329,13 @@ Passage groups with multiple files each. Each passage has an optional audio list
 
 ## Manifest Entry: Revision Pack Fields
 
-When registering a new pack in `data/generated/manifest.json` (under `revisionPacks`), all available path fields are:
+When registering a new pack in `data/generated/manifest.json` (under `revisionPacks`), runtime entries should point at unified data:
 
 ```json
 {
   "id": "pack_id",
   "displayName": "Human-readable Pack Title",
-  "vocabPath": "data/Packs/[pack]/vocab.json",
-  "sentencePath": "data/Packs/[pack]/sentences.jsonl",
-  "sequencePath": "data/Packs/[pack]/sequence.jsonl",
-  "categorySortPath": "data/Packs/[pack]/category_sort.jsonl",
-  "fillBlankPath": "data/Packs/[pack]/fill_blank.jsonl",
+  "unifiedPath": "data/Packs/[pack]/pack_unified.json",
   "sourceLanguageLabel": "German",
   "sourceLanguageCode": "de-DE",
   "targetLanguageLabel": "English",
@@ -349,8 +345,9 @@ When registering a new pack in `data/generated/manifest.json` (under `revisionPa
   "mergeCoreSentences": true,
   "stageOptions": [],
   "defaultQuizModes": ["englishWordChooseGerman", "sequenceOrder", "categorySort"],
-  "wordCount": 50
+  "wordCount": 50,
+  "sentenceCount": 12
 }
 ```
 
-> **Note:** `sentencePath`, `sequencePath`, `categorySortPath`, and `fillBlankPath` are all optional. If a field is absent, the corresponding quiz mode is silently skipped without error.
+> **Note:** legacy source paths can still exist as conversion inputs, but app runtime should read `unifiedPath` only.

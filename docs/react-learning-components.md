@@ -18,12 +18,12 @@ src/
     App.jsx               ← Root component + routing
     main.jsx              ← React mount point
     index.html            ← React HTML entry
-    components/learning/  ← 9 reusable UI components
+    components/learning/  ← 10 reusable UI components
     hooks/
       usePackLoader.js    ← Pack loading + normalisation
       useQuizEngine.js   ← Quiz state machine
     utils/
-      packAdapters.js    ← Normalise all formats → common shape
+      packAdapters.js    ← Normalise unified items → common shape
       scoring.js          ← Pure scoring utilities
   data.js                 ← Existing data layer (unchanged)
   quiz.js                 ← Existing quiz logic (unchanged)
@@ -60,7 +60,7 @@ They share the same `data/` files. The vanilla app is unaffected.
 ### `usePackLoader`
 ```javascript
 const { pack, loading, error, questions, reload } = usePackLoader({
-  packId: "ks3_geography_glaciation_1",  // load from manifest
+  packId: "revision:ks3_geography_glaciation_1",  // load from manifest
   // OR
   url: "./data/Packs/my_pack/pack_unified.json",  // direct URL
   // OR
@@ -75,7 +75,7 @@ Loads, caches in `sessionStorage`, normalises via `packAdapters.js`, and returns
 ```javascript
 const engine = useQuizEngine({
   questions: normalisedQuestions,  // array from packAdapters
-  mode: "mcq",                    // or "typing", "flashcard", "sequence", "sort"
+  mode: "mcq",                    // or "typing", "flashcard", "sequence", "sort", "passage"
   count: 12,
   shuffleQ: true,
 });
@@ -89,7 +89,8 @@ Returns full quiz state: `currentQuestion`, `selectedAnswer`, `showFeedback`, `s
 ```
 manifest.json
   → usePackLoader({ packId })
-      → fetch("./data/Packs/[id]/pack_unified.json")
+      → find revision/builder/passage entry by runtime id
+      → fetch(entry.unifiedPath)
           → normalisePack(raw)
               → groupByType(items)
                   → getQuestionsForMode(pack, mode)
@@ -145,23 +146,9 @@ Extend `useQuizEngine` to handle new interaction state (e.g. `dragOrder`, `conne
 
 ## Adding a New Pack Adapter
 
-`packAdapters.js` has three normaliser entry points:
-
-| Function | When to use |
-|---------|-------------|
-| `normaliseVocabEntry()` | Old `vocab.json` format (de/en fields) |
-| `normaliseQuizQuestion()` | Questions from existing `quiz.js` factory functions |
-| `normaliseUnifiedItem()` | Unified pack format (`{type, data}`) |
-
-For a new source format, add a new normaliser and call it from `normalisePack()`:
-```javascript
-export function normalisePack(rawPack) {
-  if (isNewFormat(rawPack)) {
-    return normaliseNewFormat(rawPack);
-  }
-  // ... existing paths
-}
-```
+Runtime React loading is unified-only. New source formats should be converted into
+`pack_unified.json` during data generation, then handled by `normaliseUnifiedItem()`.
+Do not add `vocabPath`, `jsonlPath`, or legacy JSONL fallbacks to `usePackLoader()`.
 
 ---
 
@@ -285,7 +272,7 @@ npm run preview # serve the build locally
 ## TODOs / Future Work
 
 - [ ] Wire gap-fill (typing) mode to `QuizCard` + text input
-- [ ] Connect `PassageReader` to passage mode in the quiz engine
+- [x] Connect `PassageReader` to passage mode in the quiz engine
 - [ ] Persist React quiz session to localStorage (reuse `storage.js` logic)
 - [ ] Add a routing layer (e.g. react-router) for direct URL navigation
 - [ ] Add mode selector UI (MCQ / Flashcard / Sequence / Sort tabs within Quiz page)
