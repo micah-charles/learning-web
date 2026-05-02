@@ -47,6 +47,55 @@ def slugify(text):
     return text.lower().replace(" ", "_").replace("-", "_")
 
 
+def lang_code(code, fallback):
+    """Resolve short language ids to the pack-level BCP-47 code where possible."""
+    raw = (code or fallback or "").strip()
+    if not raw:
+        return ""
+    if "-" in raw:
+        return raw
+    if fallback and fallback.lower().startswith(f"{raw.lower()}-"):
+        return fallback
+    if raw == "de":
+        return "de-DE"
+    if raw == "en":
+        return "en-GB"
+    if raw == "fr":
+        return "fr-FR"
+    return raw
+
+
+def translation_fields(entry, source_value, target_value, source_code, target_code):
+    """Build backwards-compatible multilingual fields for vocab/sentence items."""
+    source_lang = lang_code(entry.get("sourceLanguage") or entry.get("sourceLang"), source_code)
+    target_lang = lang_code(entry.get("targetLanguage") or entry.get("targetLang"), target_code)
+    translations = {}
+    examples = {}
+
+    if source_lang and source_value:
+        translations[source_lang] = source_value
+    if target_lang and target_value:
+        translations[target_lang] = target_value
+    if source_lang and entry.get("exampleDe"):
+        examples[source_lang] = entry.get("exampleDe")
+    if target_lang and entry.get("exampleEn"):
+        examples[target_lang] = entry.get("exampleEn")
+
+    return {
+        "sourceLang": source_lang,
+        "targetLang": target_lang,
+        "translations": translations,
+        "examples": examples,
+    }
+
+
+def pack_source_path(pack_meta, key, filename):
+    """Return a legacy conversion input path without requiring runtime manifest fields."""
+    if pack_meta.get(key):
+        return BASE / pack_meta[key]
+    return BASE / "data" / "Packs" / pack_meta["id"] / filename
+
+
 # ─── Core pack conversion ────────────────────────────────────────────
 
 def convert_core_pack(manifest):
@@ -56,9 +105,13 @@ def convert_core_pack(manifest):
     items = []
 
     # Core vocab.json
-    vocab = load_json(BASE / core["vocabPath"])
+    vocab = load_json(BASE / core.get("vocabPath", "data/vocab.json"))
     if vocab:
         for entry in vocab:
+            source_word = entry.get("de") or entry.get("sourceWord", "")
+            target_word = entry.get("en") or entry.get("targetWord", "")
+            source_code = core.get("sourceLanguageCode", "de-DE")
+            target_code = core.get("targetLanguageCode", "en-GB")
             items.append({
                 "id": entry.get("id", f"vocab_core_{len(items)}"),
                 "type": "vocab",
@@ -66,10 +119,11 @@ def convert_core_pack(manifest):
                 "topics": [entry.get("topic")] if entry.get("topic") else [],
                 "tags": entry.get("tags", []),
                 "data": {
-                    "sourceLanguage": core.get("sourceLanguageCode", "de-DE").split("-")[0],
-                    "targetLanguage": core.get("targetLanguageCode", "en-GB").split("-")[0],
-                    "sourceWord": entry.get("de") or entry.get("sourceWord", ""),
-                    "targetWord": entry.get("en") or entry.get("targetWord", ""),
+                    **translation_fields(entry, source_word, target_word, source_code, target_code),
+                    "sourceLanguage": source_code.split("-")[0],
+                    "targetLanguage": target_code.split("-")[0],
+                    "sourceWord": source_word,
+                    "targetWord": target_word,
                     "partOfSpeech": entry.get("pos") or entry.get("part_of_speech"),
                     "gender": entry.get("gender"),
                     "plural": entry.get("plural"),
@@ -79,9 +133,14 @@ def convert_core_pack(manifest):
             })
 
     # Core gcse_sentences.jsonl
-    if core.get("sentencePath"):
-        sentences = load_jsonl(BASE / core["sentencePath"])
+    sentence_path = core.get("sentencePath", "data/gcse_sentences.jsonl")
+    if sentence_path:
+        sentences = load_jsonl(BASE / sentence_path)
         for entry in sentences:
+            source_sentence = entry.get("de") or entry.get("sourceSentence", "")
+            target_sentence = entry.get("en") or entry.get("targetSentence", "")
+            source_code = core.get("sourceLanguageCode", "de-DE")
+            target_code = core.get("targetLanguageCode", "en-GB")
             items.append({
                 "id": entry.get("id", f"sent_core_{len(items)}"),
                 "type": "sentence",
@@ -89,10 +148,11 @@ def convert_core_pack(manifest):
                 "topics": entry.get("topics", []),
                 "tags": [],
                 "data": {
-                    "sourceLanguage": core.get("sourceLanguageCode", "de-DE").split("-")[0],
-                    "targetLanguage": core.get("targetLanguageCode", "en-GB").split("-")[0],
-                    "sourceSentence": entry.get("de") or entry.get("sourceSentence", ""),
-                    "targetSentence": entry.get("en") or entry.get("targetSentence", ""),
+                    **translation_fields(entry, source_sentence, target_sentence, source_code, target_code),
+                    "sourceLanguage": source_code.split("-")[0],
+                    "targetLanguage": target_code.split("-")[0],
+                    "sourceSentence": source_sentence,
+                    "targetSentence": target_sentence,
                 }
             })
 
@@ -129,9 +189,13 @@ def convert_revision_pack(pack_meta):
     items = []
 
     # --- Vocab (required for all packs)
-    vocab = load_json(BASE / pack_meta["vocabPath"])
+    vocab = load_json(pack_source_path(pack_meta, "vocabPath", "vocab.json"))
     if vocab:
         for entry in vocab:
+            source_word = entry.get("de") or entry.get("sourceWord", "")
+            target_word = entry.get("en") or entry.get("targetWord", "")
+            source_code = pack_meta.get("sourceLanguageCode", "en-GB")
+            target_code = pack_meta.get("targetLanguageCode", "en-GB")
             items.append({
                 "id": entry.get("id", f"vocab_{len(items)}"),
                 "type": "vocab",
@@ -139,10 +203,11 @@ def convert_revision_pack(pack_meta):
                 "topics": [entry.get("topic")] if entry.get("topic") else [],
                 "tags": entry.get("tags", []),
                 "data": {
-                    "sourceLanguage": pack_meta.get("sourceLanguageCode", "en-GB").split("-")[0],
-                    "targetLanguage": pack_meta.get("targetLanguageCode", "en-GB").split("-")[0],
-                    "sourceWord": entry.get("de") or entry.get("sourceWord", ""),
-                    "targetWord": entry.get("en") or entry.get("targetWord", ""),
+                    **translation_fields(entry, source_word, target_word, source_code, target_code),
+                    "sourceLanguage": source_code.split("-")[0],
+                    "targetLanguage": target_code.split("-")[0],
+                    "sourceWord": source_word,
+                    "targetWord": target_word,
                     "partOfSpeech": entry.get("pos") or entry.get("part_of_speech"),
                     "gender": entry.get("gender"),
                     "plural": entry.get("plural"),
@@ -152,9 +217,14 @@ def convert_revision_pack(pack_meta):
             })
 
     # --- Sentences (JSONL)
-    if pack_meta.get("sentencePath"):
-        sentences = load_jsonl(BASE / pack_meta["sentencePath"])
+    sentence_path = pack_source_path(pack_meta, "sentencePath", "sentences.jsonl")
+    if sentence_path.exists():
+        sentences = load_jsonl(sentence_path)
         for entry in sentences:
+            source_sentence = entry.get("de") or entry.get("sourceSentence", "")
+            target_sentence = entry.get("en") or entry.get("targetSentence", "")
+            source_code = pack_meta.get("sourceLanguageCode", "de-DE")
+            target_code = pack_meta.get("targetLanguageCode", "en-GB")
             items.append({
                 "id": entry.get("id", f"sent_{len(items)}"),
                 "type": "sentence",
@@ -162,16 +232,18 @@ def convert_revision_pack(pack_meta):
                 "topics": entry.get("topics", []),
                 "tags": [],
                 "data": {
-                    "sourceLanguage": pack_meta.get("sourceLanguageCode", "de-DE").split("-")[0],
-                    "targetLanguage": pack_meta.get("targetLanguageCode", "en-GB").split("-")[0],
-                    "sourceSentence": entry.get("de") or entry.get("sourceSentence", ""),
-                    "targetSentence": entry.get("en") or entry.get("targetSentence", ""),
+                    **translation_fields(entry, source_sentence, target_sentence, source_code, target_code),
+                    "sourceLanguage": source_code.split("-")[0],
+                    "targetLanguage": target_code.split("-")[0],
+                    "sourceSentence": source_sentence,
+                    "targetSentence": target_sentence,
                 }
             })
 
     # --- Sequence ordering
-    if pack_meta.get("sequencePath"):
-        sequences = load_jsonl(BASE / pack_meta["sequencePath"])
+    sequence_path = pack_source_path(pack_meta, "sequencePath", "sequence.jsonl")
+    if sequence_path.exists():
+        sequences = load_jsonl(sequence_path)
         for entry in sequences:
             items.append({
                 "id": entry.get("id", f"seq_{len(items)}"),
@@ -188,8 +260,9 @@ def convert_revision_pack(pack_meta):
             })
 
     # --- Category sort
-    if pack_meta.get("categorySortPath"):
-        sorts = load_jsonl(BASE / pack_meta["categorySortPath"])
+    category_sort_path = pack_source_path(pack_meta, "categorySortPath", "category_sort.jsonl")
+    if category_sort_path.exists():
+        sorts = load_jsonl(category_sort_path)
         for entry in sorts:
             # Rename 'items' to 'pairs' (key is 'pairs' in schema)
             raw_items = entry.get("items", [])
@@ -214,8 +287,9 @@ def convert_revision_pack(pack_meta):
             })
 
     # --- Fill in the blank
-    if pack_meta.get("fillBlankPath"):
-        gaps = load_jsonl(BASE / pack_meta["fillBlankPath"])
+    fill_blank_path = pack_source_path(pack_meta, "fillBlankPath", "fill_blank.jsonl")
+    if fill_blank_path.exists():
+        gaps = load_jsonl(fill_blank_path)
         for entry in gaps:
             items.append({
                 "id": entry.get("id", f"gap_{len(items)}"),
@@ -271,9 +345,9 @@ def convert_sentence_builder_packs(manifest):
         return
 
     for sb_pack in sb_packs:
-        pack_path = BASE / sb_pack["path"]
+        pack_path = BASE / sb_pack.get("path", f"data/SentenceBuilderPacks/{sb_pack['id']}.jsonl")
         if not pack_path.exists():
-            print(f"  ✗ {sb_pack['id']} — file not found: {sb_pack['path']}")
+            print(f"  ✗ {sb_pack['id']} — file not found: {pack_path}")
             continue
 
         entries = load_jsonl(pack_path)
@@ -341,6 +415,13 @@ def convert_passage_packs(manifest):
 
     for group in groups:
         packs = group.get("packs", [])
+        if not packs:
+            group_dir = BASE / "data" / "PassagePacks" / group["id"]
+            packs = [
+                {"path": str(path.relative_to(BASE))}
+                for path in sorted(group_dir.glob("*"))
+                if path.is_file() and path.name != "pack_unified.json" and path.suffix in {".json", ".jsonl"}
+            ]
         if not packs:
             continue
 

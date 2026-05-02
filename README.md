@@ -51,7 +51,34 @@ The app reuses the copied seed data under `data/` from:
 
 - the original local Swift `learningGerman` seed resources
 
-It can also import additional datasets into the shared web format. The Cambridge Latin vocab import reads:
+Runtime study packs are loaded through unified JSON files such as
+`data/Packs/[pack]/pack_unified.json`. Vocabulary and sentence items can include
+language-agnostic `translations` and `examples` objects keyed by BCP-47 language
+codes, for example:
+
+```json
+{
+  "type": "vocab",
+  "data": {
+    "sourceLang": "de-DE",
+    "targetLang": "en-GB",
+    "translations": {
+      "de-DE": "das Eis",
+      "en-GB": "ice"
+    },
+    "examples": {
+      "de-DE": "Das Eis ist kalt.",
+      "en-GB": "The ice is cold."
+    }
+  }
+}
+```
+
+Use standard ISO 639 / BCP-47 codes such as `de-DE`, `en-GB`, `en-US`, `fr-FR`,
+or `la`. Legacy source files can still feed the conversion scripts, but app
+runtime should use manifest `unifiedPath` entries.
+
+Learning Web can also import additional datasets into the shared web format. The Cambridge Latin vocab import reads:
 
 - `generated/cambridge-latin-vocab/all_stages.csv`
 

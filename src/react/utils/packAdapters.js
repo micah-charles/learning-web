@@ -7,6 +7,13 @@
  */
 
 const QUESTION_TYPES = ["mcq", "typing", "flashcard", "sequence", "sort", "gap", "passage"];
+const LANGUAGE_LABELS = {
+  "de-DE": "German",
+  "en-GB": "English",
+  "en-US": "English",
+  "fr-FR": "French",
+  la: "Latin",
+};
 
 function shuffle(arr) {
   const a = [...arr];
@@ -25,6 +32,45 @@ function compactOptions(options) {
   return (options || []).filter((option) => option !== undefined && option !== null && option !== "");
 }
 
+function normaliseLanguageCode(code, fallback = "") {
+  const raw = (code || fallback || "").trim();
+  if (!raw) return "";
+  if (raw.includes("-")) return raw;
+  if (fallback.toLowerCase().startsWith(`${raw.toLowerCase()}-`)) return fallback;
+  if (raw === "de") return "de-DE";
+  if (raw === "en") return "en-GB";
+  if (raw === "fr") return "fr-FR";
+  return raw;
+}
+
+export function getLanguageLabel(code) {
+  return LANGUAGE_LABELS[code] || code || "Unknown";
+}
+
+function translationMap(d, sourceValue, targetValue, pack) {
+  const sourceLang = normaliseLanguageCode(
+    d.sourceLang || d.sourceLanguage,
+    pack?.sourceLanguageCode || "de-DE",
+  );
+  const targetLang = normaliseLanguageCode(
+    d.targetLang || d.targetLanguage,
+    pack?.targetLanguageCode || "en-GB",
+  );
+  const translations = { ...(d.translations || {}) };
+
+  if (sourceLang && sourceValue && !translations[sourceLang]) translations[sourceLang] = sourceValue;
+  if (targetLang && targetValue && !translations[targetLang]) translations[targetLang] = targetValue;
+
+  return { sourceLang, targetLang, translations };
+}
+
+function exampleMap(d, sourceLang, targetLang) {
+  const examples = { ...(d.examples || {}) };
+  if (sourceLang && d.exampleSource && !examples[sourceLang]) examples[sourceLang] = d.exampleSource;
+  if (targetLang && d.exampleTarget && !examples[targetLang]) examples[targetLang] = d.exampleTarget;
+  return examples;
+}
+
 export function groupByType(items) {
   return QUESTION_TYPES.reduce((acc, type) => {
     acc[type] = items.filter((item) => item.type === type);
@@ -35,7 +81,7 @@ export function groupByType(items) {
 /**
  * Normalise one unified LearningItem into the common question shape.
  */
-export function normaliseUnifiedItem(item) {
+export function normaliseUnifiedItem(item, pack = {}) {
   if (!item || !item.type) return null;
 
   const d = item.data || {};
@@ -52,6 +98,8 @@ export function normaliseUnifiedItem(item) {
     case "vocab": {
       const source = d.sourceWord || "";
       const target = d.targetWord || "";
+      const { sourceLang, targetLang, translations } = translationMap(d, source, target, pack);
+      const examples = exampleMap(d, sourceLang, targetLang);
       return {
         ...common,
         type: "mcq",
@@ -62,15 +110,21 @@ export function normaliseUnifiedItem(item) {
         acceptedAnswers: compactOptions([target]),
         options: [],
         hint: d.gender ? `Gender: ${d.gender}` : "",
-        explanation: d.exampleSource && d.exampleTarget
-          ? `${d.exampleSource}\n${d.exampleTarget}`
+        explanation: examples[sourceLang] && examples[targetLang]
+          ? `${examples[sourceLang]}\n${examples[targetLang]}`
           : "",
+        translations,
+        examples,
+        sourceLang,
+        targetLang,
       };
     }
 
     case "sentence": {
       const source = d.sourceSentence || "";
       const target = d.targetSentence || "";
+      const { sourceLang, targetLang, translations } = translationMap(d, source, target, pack);
+      const examples = exampleMap(d, sourceLang, targetLang);
       return {
         ...common,
         type: "typing",
@@ -82,6 +136,10 @@ export function normaliseUnifiedItem(item) {
         options: [],
         hint: "",
         explanation: "",
+        translations,
+        examples,
+        sourceLang,
+        targetLang,
       };
     }
 
@@ -227,7 +285,15 @@ export function normalisePack(pack) {
 
   if (!Array.isArray(pack.items)) return null;
 
-  const items = pack.items.map(normaliseUnifiedItem).filter(Boolean);
+  const items = pack.items.map((item) => normaliseUnifiedItem(item, pack)).filter(Boolean);
+  const languageSet = new Set(
+    [
+      pack.sourceLanguageCode,
+      pack.targetLanguageCode,
+      ...items.flatMap((item) => Object.keys(item.translations || {})),
+    ].filter(Boolean),
+  );
+
   return {
     packId: pack.packId || pack.id || "unknown",
     title: pack.title || pack.displayName || "Pack",
@@ -238,8 +304,35 @@ export function normalisePack(pack) {
     sourceLanguageCode: pack.sourceLanguageCode || "de-DE",
     targetLanguageCode: pack.targetLanguageCode || "en-GB",
     speechLanguage: pack.speechLanguage || "de-DE",
+    languages: [...languageSet].map((code) => ({ code, label: getLanguageLabel(code) })),
     items,
     byType: groupByType(items),
+  };
+}
+
+function applyLanguageDirection(question, sourceLang, targetLang) {
+  if (!sourceLang || !targetLang || sourceLang === targetLang || !question.translations) return question;
+
+  const source = question.translations[sourceLang];
+  const target = question.translations[targetLang];
+  if (!source || !target) return question;
+
+  const sourceExample = question.examples?.[sourceLang];
+  const targetExample = question.examples?.[targetLang];
+
+  return {
+    ...question,
+    question: source,
+    source,
+    target,
+    correctAnswer: target,
+    acceptedAnswers: compactOptions([target]),
+    speechLanguage: sourceLang,
+    sourceLang,
+    targetLang,
+    explanation: sourceExample && targetExample
+      ? `${sourceExample}\n${targetExample}`
+      : question.explanation,
   };
 }
 
@@ -264,19 +357,29 @@ function addDistractors(questions, distractorCount) {
  */
 export function getQuestionsForMode(pack, mode, opts = {}) {
   if (!pack || !pack.byType) return [];
-  const { count = Infinity, distractorCount = 3 } = opts;
+  const { count = Infinity, distractorCount = 3, sourceLang, targetLang } = opts;
   const byType = pack.byType;
 
   let questions;
   switch (mode) {
     case "mcq":
-      questions = addDistractors(byType.mcq, distractorCount);
+      questions = addDistractors(
+        byType.mcq.map((question) => applyLanguageDirection(question, sourceLang, targetLang)),
+        distractorCount,
+      );
       break;
     case "typing":
-      questions = [...byType.typing, ...byType.gap].map((q) => ({ ...q, options: [] }));
+      questions = [...byType.typing, ...byType.gap]
+        .map((question) => applyLanguageDirection(question, sourceLang, targetLang))
+        .map((q) => ({ ...q, options: [] }));
       break;
     case "flashcard":
-      questions = [...byType.flashcard, ...byType.mcq.map((q) => ({ ...q, type: "flashcard" }))];
+      questions = [
+        ...byType.flashcard,
+        ...byType.mcq
+          .map((question) => applyLanguageDirection(question, sourceLang, targetLang))
+          .map((q) => ({ ...q, type: "flashcard" })),
+      ];
       break;
     case "sequence":
       questions = byType.sequence;

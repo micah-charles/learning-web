@@ -133,6 +133,44 @@ body {
 .lw-btn-ghost:hover { border-color: var(--lw-muted); color: var(--lw-ink); }
 .lw-btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
 
+/* ── Language controls ─────────────────────────────────────────────── */
+.lw-language-panel {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(255, 251, 245, 0.72);
+  border: 1.5px solid var(--lw-line);
+  border-radius: var(--lw-radius);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  box-shadow: var(--lw-shadow);
+}
+.lw-field-label {
+  display: block;
+  color: var(--lw-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.lw-select {
+  min-width: 150px;
+  appearance: none;
+  background: var(--lw-panel);
+  border: 1.5px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  color: var(--lw-ink);
+  font: inherit;
+  font-weight: 650;
+  padding: 9px 34px 9px 12px;
+}
+.lw-select:focus {
+  border-color: var(--lw-blue);
+  outline: 3px solid var(--lw-blue-soft);
+}
+
 /* ── Option buttons ─────────────────────────────────────────────────── */
 .lw-option-grid {
   display: grid;
