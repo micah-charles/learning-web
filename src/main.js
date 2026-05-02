@@ -6,7 +6,9 @@ import {
   listSentenceBuilderPacks,
   loadManifest,
   loadPassagePack,
+  loadPassageUnifiedPack,
   loadSentenceBuilderPack,
+  loadSentenceBuilderUnifiedPack,
   loadSentencePools,
   loadVocabItems,
   loadSequenceItems,
@@ -1984,7 +1986,31 @@ function useQuizHint() {
 }
 
 async function resetBuilderRuntime(packId) {
-  const cards = await loadSentenceBuilderPack(runtime.manifest, packId);
+  // Try unified pack first
+  let cards = null;
+  try {
+    const unified = await loadSentenceBuilderUnifiedPack(runtime.manifest, packId);
+    if (unified && Array.isArray(unified.items)) {
+      cards = unified.items
+        .filter((item) => item.type === "sentenceBuilder")
+        .map((item) => ({
+          id: item.id,
+          type: item.data?.cardType || item.tags?.[0] || "unknown",
+          prompt: item.data?.prompt || "",
+          answer: item.data?.answer || "",
+          tiles: item.data?.tiles || [],
+          level: item.level || "",
+        }));
+    }
+  } catch (_) {
+    cards = null;
+  }
+
+  // Fall back to old JSONL loader
+  if (!cards) {
+    cards = await loadSentenceBuilderPack(runtime.manifest, packId);
+  }
+
   const filter = persisted.prefs.builder.filter;
   const filteredCards = cards.filter((card) => filter === "all" || card.type === filter);
   const deck = shuffle(filteredCards.length ? filteredCards : cards);
@@ -2084,7 +2110,50 @@ function advanceBuilderCard(countSkip) {
 }
 
 async function resetPassageRuntime(groupId, packId) {
-  const allPassages = await loadPassagePack(runtime.manifest, groupId, packId);
+  // Try unified pack first (consolidated across all sub-packs in the group)
+  let allPassages = null;
+  try {
+    const unified = await loadPassageUnifiedPack(runtime.manifest, groupId);
+    if (unified && Array.isArray(unified.items)) {
+      allPassages = unified.items
+        .filter((item) => item.type === "passage")
+        .map((item) => {
+          // Normalise unified passage shape back to the flat passage shape expected
+          // by preparePassageForSession and the reading tab
+          const d = item.data || {};
+          return {
+            id: item.id,
+            topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
+            level: item.level || "",
+            passage_de: d.sourcePassage || "",
+            passage_en: d.targetPassage || "",
+            speech_language: d.speechLanguage || "de-DE",
+            chapter: d.chapter || "",
+            section: d.section || "",
+            title_de: d.sourceTitle || d.title_de || "",
+            title_en: d.targetTitle || d.title_en || "",
+            questions: (d.questions || []).map((q) => ({
+              id: q.id,
+              type: q.questionType || "open",
+              question: q.question || q.question_en || "",
+              difficulty: q.difficulty || "medium",
+              options: q.options || [],
+              correct_option_index: q.correctOptionIndex,
+              model_answer_en: q.modelAnswer || "",
+              accepted_keywords: q.acceptedKeywords || [],
+            })),
+          };
+        });
+    }
+  } catch (_) {
+    allPassages = null;
+  }
+
+  // Fall back to old pack-per-file loading
+  if (!allPassages) {
+    allPassages = await loadPassagePack(runtime.manifest, groupId, packId);
+  }
+
   const categoryOptions = [...new Set(allPassages.map((passage) => passage.topic).filter(Boolean))].sort();
   runtime.passages = {
     groupId,
