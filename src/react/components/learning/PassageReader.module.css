@@ -1,0 +1,41 @@
+.block { display: flex; flex-direction: column; gap: 16px; }
+
+.header { display: flex; flex-direction: column; gap: 6px; }
+.title  { font-size: 1.3rem; font-weight: 700; font-family: var(--lw-font); }
+.subtitle { font-size: 0.9rem; color: var(--lw-muted); }
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.langLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lw-muted);
+}
+.passageText {
+  background: var(--lw-blue-soft);
+  border: 1.5px solid rgba(21,102,168,0.15);
+  border-radius: var(--lw-radius);
+  padding: 20px 22px;
+  font-family: var(--lw-font);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--lw-ink);
+}
+
+.translation .passageText { background: var(--lw-green-soft); border-color: rgba(38,116,75,0.2); }
+
+.questions { display: flex; flex-direction: column; gap: 12px; }
+.questionsTitle { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.question {
+  padding: 14px 16px;
+  border-radius: var(--lw-radius-sm);
+  border: 1.5px solid var(--lw-line);
+  background: var(--lw-panel);
+}
+.questionText { font-size: 0.95rem; margin-bottom: 10px; }
+.optionGrid { display: flex; flex-direction: column; gap: 6px; }
