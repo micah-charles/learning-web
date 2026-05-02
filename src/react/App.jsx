@@ -13,7 +13,7 @@
  * independently. This React app shares the same data/ files.
  */
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { usePackList, usePackLoader } from "./hooks/usePackLoader.js";
 import { useQuizEngine } from "./hooks/useQuizEngine.js";
 import { QuizCard } from "./components/learning/QuizCard.jsx";
@@ -22,6 +22,7 @@ import { SequenceQuiz } from "./components/learning/SequenceQuiz.jsx";
 import { SortQuiz } from "./components/learning/SortQuiz.jsx";
 import { ReviewPanel } from "./components/learning/ReviewPanel.jsx";
 import { PackSelector } from "./components/learning/PackSelector.jsx";
+import { PassageReader } from "./components/learning/PassageReader.jsx";
 
 // ─── Nav pills ───────────────────────────────────────────────────────
 
@@ -75,23 +76,51 @@ function HomePage({ packs, onSelectPack, selectedPackId }) {
   );
 }
 
-// ─── Quiz page (MCQ + Sequence + Sort) ───────────────────────────
+function getAvailableModes(pack) {
+  if (!pack?.byType) return [];
+
+  return [
+    pack.byType.mcq?.length ? { id: "mcq", label: "Multiple choice" } : null,
+    pack.byType.sequence?.length ? { id: "sequence", label: "Sequence" } : null,
+    pack.byType.sort?.length ? { id: "sort", label: "Sort" } : null,
+    pack.byType.passage?.length ? { id: "passage", label: "Reading" } : null,
+    pack.byType.flashcard?.length ? { id: "flashcard", label: "Sentence builder" } : null,
+  ].filter(Boolean);
+}
+
+function ModeSelector({ modes, selectedMode, onChange }) {
+  if (modes.length <= 1) return null;
+
+  return (
+    <div className="lw-nav-pills" style={{ marginBottom: "16px" }}>
+      {modes.map((mode) => (
+        <button
+          key={mode.id}
+          className={`lw-nav-pill ${selectedMode === mode.id ? "active" : ""}`}
+          onClick={() => onChange(mode.id)}
+          type="button"
+        >
+          {mode.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ─── Quiz page (MCQ + Sequence + Sort + Passage) ─────────────────
 
 function QuizPage({ pack }) {
-  // For now, pick a mode based on what's in the pack
-  const mode = pack?.byType?.sequence?.length
-    ? "sequence"
-    : pack?.byType?.sort?.length
-    ? "sort"
-    : "mcq";
+  const availableModes = useMemo(() => getAvailableModes(pack), [pack]);
+  const [mode, setMode] = useState("mcq");
 
-  const questions = pack
-    ? (mode === "sequence"
-      ? pack.byType.sequence
-      : mode === "sort"
-      ? pack.byType.sort
-      : pack.byType.mcq)
-    : [];
+  useEffect(() => {
+    if (!availableModes.length) return;
+    if (!availableModes.some((availableMode) => availableMode.id === mode)) {
+      setMode(availableModes[0].id);
+    }
+  }, [availableModes, mode]);
+
+  const questions = pack?.byType?.[mode] || [];
 
   const engine = useQuizEngine({ questions, mode, count: 12 });
 
@@ -129,9 +158,21 @@ function QuizPage({ pack }) {
     );
   }
 
+  if (!availableModes.length) {
+    return (
+      <div className="lw-page">
+        <div className="lw-empty">
+          <h3>No playable content</h3>
+          <p>This unified pack loaded, but it does not contain React-supported study modes yet.</p>
+        </div>
+      </div>
+    );
+  }
+
   if (isFinished || !currentQuestion) {
     return (
       <div className="lw-page">
+        <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
         <div className="lw-card">
           <ReviewPanel answers={answers} onRetry={resetQuiz} />
         </div>
@@ -142,6 +183,7 @@ function QuizPage({ pack }) {
   if (mode === "sequence") {
     return (
       <div className="lw-page">
+        <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
         <div className="lw-card">
           <h2 className="lw-section-title">{currentQuestion.question || "Arrange in order"}</h2>
           <SequenceQuiz
@@ -164,6 +206,7 @@ function QuizPage({ pack }) {
   if (mode === "sort") {
     return (
       <div className="lw-page">
+        <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
         <div className="lw-card">
           <h2 className="lw-section-title">{currentQuestion.question || "Sort into categories"}</h2>
           <SortQuiz
@@ -187,9 +230,52 @@ function QuizPage({ pack }) {
     );
   }
 
+  if (mode === "passage") {
+    return (
+      <div className="lw-page">
+        <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
+        <div className="lw-card">
+          <PassageReader
+            passage={currentQuestion.passage}
+            showTranslation
+            showQuestions
+            questions={currentQuestion.passage?.questions || []}
+          />
+          <div className="lw-btn-group" style={{ marginTop: "18px" }}>
+            <button className="lw-btn lw-btn-primary" onClick={nextQuestion} type="button">
+              {currentQuestionIndex + 1 >= totalQuestions ? "Finish" : "Next passage"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === "flashcard") {
+    return (
+      <div className="lw-page">
+        <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
+        <div className="lw-card">
+          <Flashcard
+            front={currentQuestion.source || currentQuestion.question}
+            back={currentQuestion.target || currentQuestion.correctAnswer}
+            hint={currentQuestion.hint}
+            example={currentQuestion.explanation}
+          />
+          <div className="lw-btn-group" style={{ marginTop: "18px" }}>
+            <button className="lw-btn lw-btn-primary" onClick={nextQuestion} type="button">
+              {currentQuestionIndex + 1 >= totalQuestions ? "Finish" : "Next card"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // MCQ mode
   return (
     <div className="lw-page">
+      <ModeSelector modes={availableModes} selectedMode={mode} onChange={setMode} />
       <QuizCard
         question={currentQuestion}
         options={currentQuestion.options || []}
@@ -300,7 +386,7 @@ function ReviewPage({ pack }) {
 export default function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [selectedPackId, setSelectedPackId] = useState(null);
-  const { revisionPacks, loading: packsLoading, error: packsError } = usePackList();
+  const { allPacks, loading: packsLoading, error: packsError } = usePackList();
 
   // Load the selected pack
   const { pack, loading: packLoading, error: packError } = usePackLoader({
@@ -317,20 +403,25 @@ export default function App() {
     <div>
       <Nav active={activeTab} onChange={setActiveTab} />
 
+      {packsLoading && <div className="lw-page"><p>Loading study packs...</p></div>}
+      {packsError && <div className="lw-page"><p style={{ color: "var(--lw-coral)" }}>{packsError}</p></div>}
+      {packLoading && selectedPackId && <div className="lw-page"><p>Loading selected pack...</p></div>}
+      {packError && selectedPackId && <div className="lw-page"><p style={{ color: "var(--lw-coral)" }}>{packError}</p></div>}
+
       {activeTab === "home" && (
         <HomePage
-          packs={revisionPacks}
+          packs={allPacks}
           onSelectPack={handleSelectPack}
           selectedPackId={selectedPackId}
         />
       )}
-      {activeTab === "quiz" && (
+      {activeTab === "quiz" && !packLoading && !packError && (
         <QuizPage pack={pack} />
       )}
-      {activeTab === "flashcard" && (
+      {activeTab === "flashcard" && !packLoading && !packError && (
         <FlashcardPage pack={pack} />
       )}
-      {activeTab === "review" && (
+      {activeTab === "review" && !packLoading && !packError && (
         <ReviewPage pack={pack} />
       )}
     </div>

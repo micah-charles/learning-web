@@ -1,18 +1,12 @@
 /**
  * packAdapters.js
  *
- * Normalises unified pack items (LearningItem[]) into the common question shape
- * used by React learning components.
- *
- * Target common question shape:
- * {
- *   id, type, question, source, target,
- *   correctAnswer, acceptedAnswers, options,
- *   hint, explanation, topic, difficulty, level, speechLanguage, passage, tags
- * }
+ * Normalises unified LearningItem packs into the common question shape used by
+ * React learning components. Runtime loading intentionally supports only the
+ * unified schema; legacy vocab/jsonl fallbacks belong in conversion scripts.
  */
 
-// ─── Helpers ───────────────────────────────────────────────────────
+const QUESTION_TYPES = ["mcq", "typing", "flashcard", "sequence", "sort", "gap", "passage"];
 
 function shuffle(arr) {
   const a = [...arr];
@@ -23,142 +17,175 @@ function shuffle(arr) {
   return a;
 }
 
-function groupByType(items) {
-  return {
-    mcq:       items.filter((i) => i.type === "mcq"),
-    typing:    items.filter((i) => i.type === "typing"),
-    flashcard: items.filter((i) => i.type === "flashcard"),
-    sequence:  items.filter((i) => i.type === "sequence"),
-    sort:      items.filter((i) => i.type === "sort"),
-    gap:       items.filter((i) => i.type === "gap"),
-    passage:   items.filter((i) => i.type === "passage"),
-  };
+function firstTopic(item) {
+  return Array.isArray(item.topics) ? item.topics[0] || "" : item.topics || "";
 }
 
-// ─── Core normaliser ────────────────────────────────────────────────
+function compactOptions(options) {
+  return (options || []).filter((option) => option !== undefined && option !== null && option !== "");
+}
+
+export function groupByType(items) {
+  return QUESTION_TYPES.reduce((acc, type) => {
+    acc[type] = items.filter((item) => item.type === type);
+    return acc;
+  }, {});
+}
 
 /**
- * Normalise a unified LearningItem into the common question shape.
- * @param {object} item - { id, type, level, topics, tags, data }
- * @returns {object|null} common-shape question or null
+ * Normalise one unified LearningItem into the common question shape.
  */
 export function normaliseUnifiedItem(item) {
   if (!item || !item.type) return null;
+
   const d = item.data || {};
+  const common = {
+    id: item.id,
+    topic: firstTopic(item),
+    difficulty: item.level || "",
+    level: item.level || "",
+    speechLanguage: d.speechLanguage || item.speechLanguage || "de-DE",
+    tags: item.tags || [],
+  };
 
   switch (item.type) {
-    case "vocab":
+    case "vocab": {
+      const source = d.sourceWord || "";
+      const target = d.targetWord || "";
       return {
-        id: item.id,
+        ...common,
         type: "mcq",
-        question: d.sourceWord || "",
-        source: d.sourceWord || "",
-        target: d.targetWord || "",
-        correctAnswer: d.targetWord || "",
+        question: source,
+        source,
+        target,
+        correctAnswer: target,
+        acceptedAnswers: compactOptions([target]),
         options: [],
-        acceptedAnswers: [d.targetWord || ""],
         hint: d.gender ? `Gender: ${d.gender}` : "",
         explanation: d.exampleSource && d.exampleTarget
           ? `${d.exampleSource}\n${d.exampleTarget}`
           : "",
-        topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
-        difficulty: item.level || "",
-        level: item.level || "",
-        speechLanguage: d.speechLanguage || "de-DE",
-        tags: item.tags || [],
       };
+    }
 
-    case "sentence":
+    case "sentence": {
+      const source = d.sourceSentence || "";
+      const target = d.targetSentence || "";
       return {
-        id: item.id,
+        ...common,
         type: "typing",
-        question: d.sourceSentence || "",
-        source: d.sourceSentence || "",
-        target: d.targetSentence || "",
-        correctAnswer: d.targetSentence || "",
-        acceptedAnswers: [d.targetSentence || ""],
+        question: source,
+        source,
+        target,
+        correctAnswer: target,
+        acceptedAnswers: compactOptions([target]),
+        options: [],
         hint: "",
         explanation: "",
-        topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
-        level: item.level || "",
-        speechLanguage: d.speechLanguage || "de-DE",
-        tags: item.tags || [],
       };
+    }
 
-    case "sequence":
+    case "sequence": {
+      const correctOrder = d.items || d.correctOrder || [];
+      const shuffledOrder = d.shuffledOrder || shuffle(correctOrder);
       return {
-        id: item.id,
+        ...common,
         type: "sequence",
-        question: d.title || "",
+        question: d.title || "Arrange in order",
         source: d.instruction || "",
-        correctAnswer: d.items || [],
-        acceptedAnswers: [d.items?.join(" ") || ""],
-        options: shuffle([...(d.items || [])]),
+        target: correctOrder.join(" | "),
+        correctAnswer: correctOrder.join(" | "),
+        acceptedAnswers: compactOptions([correctOrder.join(" | ")]),
+        options: shuffledOrder,
         hint: "",
         explanation: d.instruction || "",
-        topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
-        level: item.level || "",
-        speechLanguage: d.speechLanguage || "de-DE",
-        tags: item.tags || [],
+        correctOrder,
+        shuffledOrder,
       };
+    }
 
-    case "categorySort":
+    case "categorySort": {
+      const sortItems = d.items || d.pairs || [];
+      const sortCategories = d.categories || [];
       return {
-        id: item.id,
+        ...common,
         type: "sort",
-        question: d.title || "",
+        question: d.title || "Sort into categories",
         source: d.instruction || "",
-        correctAnswer: d.categories || [],
-        acceptedAnswers: (d.pairs || []).map((p) => `${p.text}|${p.category}`),
-        options: shuffle([...(d.pairs || [])]),
+        target: "",
+        correctAnswer: sortItems.map((p) => `${p.text}|${p.category}`).join(" || "),
+        acceptedAnswers: sortItems.map((p) => `${p.text}|${p.category}`),
+        options: sortItems,
         hint: "",
         explanation: d.instruction || "",
-        topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
-        level: item.level || "",
-        speechLanguage: d.speechLanguage || "de-DE",
-        tags: item.tags || [],
+        sortCategories,
+        sortItems,
       };
+    }
 
-    case "fillBlank":
+    case "fillBlank": {
+      const answer = d.answer || "";
       return {
-        id: item.id,
+        ...common,
         type: "gap",
         question: d.sentence || "",
         source: d.sentence || "",
-        target: d.answer || "",
-        correctAnswer: d.answer || "",
-        acceptedAnswers: [d.answer || ""],
-        options: [],
+        target: answer,
+        correctAnswer: answer,
+        acceptedAnswers: compactOptions([answer]),
+        options: compactOptions(d.options),
         hint: d.hint || "",
-        explanation: `The answer is: ${d.answer}`,
-        topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
-        level: item.level || "",
+        explanation: answer ? `The answer is: ${answer}` : "",
         speechLanguage: d.speechLanguage || "en-GB",
-        tags: item.tags || [],
       };
+    }
 
-    case "sentenceBuilder":
+    case "sentenceBuilder": {
+      const prompt = d.prompt || "";
+      const answer = d.answer || "";
       return {
-        id: item.id,
+        ...common,
         type: "flashcard",
-        question: d.prompt || "",
-        source: d.prompt || "",
-        target: d.answer || "",
-        correctAnswer: d.answer || "",
+        question: prompt,
+        source: prompt,
+        target: answer,
+        correctAnswer: answer,
+        acceptedAnswers: compactOptions([answer]),
         options: d.tiles || [],
         hint: d.cardType || "",
         explanation: "",
-        topic: item.tags?.[0] || "",
-        level: item.level || "",
+        topic: item.tags?.[0] || firstTopic(item),
         speechLanguage: "en-GB",
-        tags: item.tags || [],
       };
+    }
 
-    case "passage":
+    case "passage": {
+      const questions = (d.questions || []).map((q, index) => {
+        const correctOptionIndex = Number.isInteger(q.correctOptionIndex)
+          ? q.correctOptionIndex
+          : undefined;
+        const correctAnswer =
+          q.correctAnswer ||
+          q.modelAnswer ||
+          (correctOptionIndex !== undefined ? q.options?.[correctOptionIndex] : "");
+
+        return {
+          id: q.id || `${item.id}_q${index + 1}`,
+          questionType: q.questionType || (q.options?.length ? "mcq" : "open"),
+          question: q.question || "",
+          options: q.options || [],
+          correctOptionIndex,
+          correctAnswer: correctAnswer || "",
+          modelAnswer: q.modelAnswer || correctAnswer || "",
+          acceptedKeywords: q.acceptedKeywords || [],
+          difficulty: q.difficulty || "medium",
+        };
+      });
+
       return {
-        id: item.id,
+        ...common,
         type: "passage",
-        question: d.sourceTitle || "",
+        question: d.sourceTitle || d.title || "Passage",
         source: d.sourcePassage || "",
         target: d.targetPassage || "",
         correctAnswer: "",
@@ -166,29 +193,18 @@ export function normaliseUnifiedItem(item) {
         options: [],
         hint: "",
         explanation: "",
-        topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
-        level: item.level || "",
-        speechLanguage: d.speechLanguage || "de-DE",
         passage: {
-          sourceTitle: d.sourceTitle || "",
+          sourceTitle: d.sourceTitle || d.title || "",
           targetTitle: d.targetTitle || "",
           sourcePassage: d.sourcePassage || "",
           targetPassage: d.targetPassage || "",
           chapter: d.chapter || "",
           section: d.section || "",
-          questions: (d.questions || []).map((q) => ({
-            id: q.id,
-            questionType: q.questionType || "open",
-            question: q.question || "",
-            options: q.options || [],
-            correctOptionIndex: q.correctOptionIndex,
-            modelAnswer: q.modelAnswer || "",
-            acceptedKeywords: q.acceptedKeywords || [],
-            difficulty: q.difficulty || "medium",
-          })),
+          level: item.level || "",
+          questions,
         },
-        tags: item.tags || [],
       };
+    }
 
     default:
       return null;
@@ -196,17 +212,21 @@ export function normaliseUnifiedItem(item) {
 }
 
 /**
- * Normalise an entire unified pack into the common shape.
- * @param {object} pack - unified pack { packId, title, items, ... }
- * @returns {{ packId, title, items, byType }|null}
+ * Normalise an entire unified pack. Arrays are accepted only when they already
+ * contain unified LearningItems with a `type`; legacy arrays intentionally
+ * normalise to null so runtime callers notice bad data paths immediately.
  */
 export function normalisePack(pack) {
   if (!pack) return null;
+
   if (Array.isArray(pack)) {
+    if (!pack.every((item) => item && item.type)) return null;
     const items = pack.map(normaliseUnifiedItem).filter(Boolean);
     return { packId: "unknown", title: "Pack", items, byType: groupByType(items) };
   }
-  if (!pack.items) return null;
+
+  if (!Array.isArray(pack.items)) return null;
+
   const items = pack.items.map(normaliseUnifiedItem).filter(Boolean);
   return {
     packId: pack.packId || pack.id || "unknown",
@@ -223,79 +243,66 @@ export function normalisePack(pack) {
   };
 }
 
+function addDistractors(questions, distractorCount) {
+  return questions.map((q) => {
+    if (q.options && q.options.length >= 2) return q;
+    const distractors = questions
+      .filter((other) => other.id !== q.id && other.correctAnswer)
+      .map((other) => other.correctAnswer)
+      .filter((value, index, arr) => arr.indexOf(value) === index)
+      .slice(0, distractorCount);
+
+    return {
+      ...q,
+      options: shuffle(compactOptions([q.correctAnswer, ...distractors])),
+    };
+  });
+}
+
 /**
  * Get questions filtered and shuffled for a specific game mode.
- * Distractor options are generated for MCQ and gap types.
- *
- * @param {object} pack  - result of normalisePack()
- * @param {string} mode  - "mcq"|"typing"|"flashcard"|"sequence"|"sort"|"gap"|"passage"
- * @param {object} opts
- * @param {number} [opts.count]          - max questions (default: all)
- * @param {number} [opts.distractorCount] - MCQ distractors (default: 3)
- * @returns {Array}
  */
 export function getQuestionsForMode(pack, mode, opts = {}) {
   if (!pack || !pack.byType) return [];
   const { count = Infinity, distractorCount = 3 } = opts;
   const byType = pack.byType;
 
+  let questions;
   switch (mode) {
     case "mcq":
-      return shuffle(
-        byType.mcq.map((q) => {
-          if (q.options && q.options.length >= 2) return q;
-          const others = byType.mcq.filter((o) => o.id !== q.id).slice(0, distractorCount);
-          return {
-            ...q,
-            options: shuffle([q.correctAnswer, ...others.map((o) => o.correctAnswer)]),
-          };
-        }),
-      ).slice(0, count);
-
+      questions = addDistractors(byType.mcq, distractorCount);
+      break;
     case "typing":
-      return shuffle([...byType.typing, ...byType.gap].map((q) => ({ ...q, options: [] }))).slice(0, count);
-
+      questions = [...byType.typing, ...byType.gap].map((q) => ({ ...q, options: [] }));
+      break;
     case "flashcard":
-      return shuffle([...byType.flashcard, ...byType.mcq.map((q) => ({ ...q, type: "flashcard" }))]).slice(0, count);
-
+      questions = [...byType.flashcard, ...byType.mcq.map((q) => ({ ...q, type: "flashcard" }))];
+      break;
     case "sequence":
-      return shuffle(byType.sequence).slice(0, count);
-
+      questions = byType.sequence;
+      break;
     case "sort":
-      return shuffle(byType.sort).slice(0, count);
-
+      questions = byType.sort;
+      break;
     case "gap":
-      return shuffle(
-        byType.gap.map((q) => {
-          if (q.options && q.options.length >= 2) return q;
-          const others = byType.gap.filter((o) => o.id !== q.id).slice(0, distractorCount);
-          return {
-            ...q,
-            options: shuffle([q.correctAnswer, ...others.map((o) => o.correctAnswer)]),
-          };
-        }),
-      ).slice(0, count);
-
+      questions = addDistractors(byType.gap, distractorCount);
+      break;
     case "passage":
-      return shuffle(byType.passage).slice(0, count);
-
+      questions = byType.passage;
+      break;
     default:
-      return shuffle(byType.mcq).slice(0, count);
+      questions = addDistractors(byType.mcq, distractorCount);
+      break;
   }
+
+  return shuffle(questions).slice(0, count);
 }
 
-/**
- * Build a flat list of correct answers for use as MCQ distractors.
- * @param {object} pack
- * @param {string} excludeId
- * @param {number} count
- * @returns {string[]}
- */
 export function getDistractors(pack, excludeId, count = 3) {
+  if (!pack?.byType?.mcq) return [];
   return pack.byType.mcq
     .filter((q) => q.id !== excludeId)
-    .slice(0, count * 3)
     .map((q) => q.correctAnswer)
-    .filter((v, i, arr) => arr.indexOf(v) === i)
+    .filter((value, index, arr) => value && arr.indexOf(value) === index)
     .slice(0, count);
 }
