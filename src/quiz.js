@@ -3,6 +3,7 @@ import { isWordMastered } from "./storage.js";
 import { normLang } from "./lang-utils.js";
 
 const MODE_DEFINITIONS = [
+  // ── German modes ───────────────────────────────────────────────────────
   {
     id: "englishWordChooseGerman",
     kind: "choice",
@@ -63,6 +64,10 @@ const MODE_DEFINITIONS = [
     family: "vocab",
     direction: null,
   },
+  // Note: additional language modes (latinWordChooseEnglish, etc.) are
+  // automatically supported by the generic isReverse parser in makeVocabChoiceFromUnified.
+  // No MODE_DEFINITIONS entry needed for them.
+  // ── Generic modes ─────────────────────────────────────────────────────
   {
     id: "vocabMatch",
     kind: "match",
@@ -84,8 +89,9 @@ function datasetLabels(dataset = null) {
 }
 
 function buildModeTitle(definition, labels) {
-  const promptLabel = definition.direction === "targetToStudy" ? labels.targetLabel : labels.studyLabel;
-  const answerLabel = definition.direction === "targetToStudy" ? labels.studyLabel : labels.targetLabel;
+  // The prompt always shows the STUDY language; the user types/builds the TARGET language.
+  const promptLabel = labels.studyLabel;
+  const answerLabel = labels.targetLabel;
   const noun = definition.family === "sentence" ? "sentence" : "word";
   const verb = definition.kind === "choice" ? "choose" : definition.kind === "build" ? "build" : "type";
   return `${promptLabel} ${noun} -> ${verb} ${answerLabel}`;
@@ -394,7 +400,16 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
   const vocab = unifiedItems.filter((item) => item.type === "vocab");
   const picks = cyclePick(vocab, count);
   const labels = datasetLabels(dataset);
-  const isReverse = modeId === "germanWordChooseEnglish";
+
+  // Parse the direction from the mode ID string itself — truly generic, no hardcoded languages.
+  // Mode ID format: "{wordShown}Choose{wordChosen}"
+  // e.g. "germanWordChooseEnglish"  → shown=German,  chosen=English
+  // e.g. "englishWordChooseGerman"  → shown=English, chosen=German
+  // e.g. "latinWordChooseEnglish"   → shown=Latin,  chosen=English
+  // isReverse = the mode shows the TARGET language (prompt = target, user picks study).
+  // We detect this by checking if the shown language matches the target label.
+  const shownLang = modeId.replace(/^(.+?)(Choose|Type|Build)(.+)$/, "$1");
+  const isReverse = shownLang.toLowerCase() === labels.targetLabel.toLowerCase();
 
   return picks.map((item, index) => {
     // ── Read translations (new format) with legacy fallback ──────────────
