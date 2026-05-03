@@ -365,10 +365,13 @@ export function makeFillBlankQuestions(items, count, dataset) {
   const picks = cyclePick(items, count);
   const labels = datasetLabels(dataset);
   return picks.map((item, index) => {
-    const wrongAnswers = items
-      .filter((i) => normalizeForCompare(i.answer) !== normalizeForCompare(item.answer))
-      .map((i) => i.answer)
-      .slice(0, 3);
+    const wrongAnswers = shuffle(
+      dedupeStrings(
+        items
+          .filter((i) => normalizeForCompare(i.answer) !== normalizeForCompare(item.answer))
+          .map((i) => i.answer),
+      ),
+    ).slice(0, 3);
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
@@ -426,7 +429,8 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
       })
       .filter((v) => normalizeForCompare(v) !== normalizeForCompare(answer));
 
-    const options = shuffle(dedupeStrings([answer, ...wrongAnswers]).slice(0, 4));
+    const distractors = shuffle(dedupeStrings(wrongAnswers)).slice(0, 3);
+    const options = shuffle([answer, ...distractors]);
 
     // ── Read example via new 'examples' dict with legacy fallback ─────────
     const examples = item.data.examples || {};
@@ -498,10 +502,14 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
   const picks = cyclePick(gaps, count);
   const labels = datasetLabels(dataset);
   return picks.map((item, index) => {
-    const wrongAnswers = gaps
-      .filter((g) => g.id !== item.id)
-      .map((g) => g.data.answer)
-      .slice(0, 3);
+    const wrongAnswers = shuffle(
+      dedupeStrings(
+        gaps
+          .filter((g) => g.id !== item.id)
+          .map((g) => g.data.answer)
+          .filter((v) => normalizeForCompare(v) !== normalizeForCompare(item.data.answer || "")),
+      ),
+    ).slice(0, 3);
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
