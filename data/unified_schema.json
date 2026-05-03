@@ -127,15 +127,43 @@
       "type": "object",
       "description": "Used by: Vocabulary browser, Quiz word modes (choice, typed, build)",
       "additionalProperties": false,
-      "required": ["sourceWord", "targetWord"],
+      "required": ["translations"],
       "properties": {
+        "translations": {
+          "type": "object",
+          "description": "Dictionary of BCP-47 language codes to translated word forms. Required. Must contain at least two language entries (e.g. {\"de-DE\": \"Gletscher\", \"en-GB\": \"glacier\"}).",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "examples": [
+            {
+              "de-DE": "Gletscher",
+              "en-GB": "glacier"
+            }
+          ]
+        },
+        "examples": {
+          "type": "object",
+          "description": "Dictionary of BCP-47 language codes to example sentences. Optional. Follows the same BCP-47 dict pattern as translations for consistency.",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "examples": [
+            {
+              "de-DE": "Der Gletscher bewegt sich langsam talwärts.",
+              "en-GB": "The glacier moves slowly down the valley."
+            }
+          ]
+        },
         "sourceWord": {
           "type": "string",
-          "description": "The word/sentence to study, e.g. 'glacier' or 'das'"
+          "description": "[DEPRECATED — use translations instead] Alias for the source-language word. Kept for backwards compatibility.",
+          "deprecated": true
         },
         "targetWord": {
           "type": "string",
-          "description": "The translation/answer, e.g. 'a large mass of ice that moves slowly' or 'the (nt)'"
+          "description": "[DEPRECATED — use translations instead] Alias for the target-language word. Kept for backwards compatibility.",
+          "deprecated": true
         },
         "sourceLanguage": {
           "type": "string",
@@ -159,11 +187,13 @@
         },
         "exampleSource": {
           "type": "string",
-          "description": "Example sentence in the source language"
+          "description": "[DEPRECATED — use examples instead] Example sentence in the source language. Kept for backwards compatibility.",
+          "deprecated": true
         },
         "exampleTarget": {
           "type": "string",
-          "description": "Example sentence in the target language"
+          "description": "[DEPRECATED — use examples instead] Example sentence in the target language. Kept for backwards compatibility.",
+          "deprecated": true
         }
       }
     },
@@ -172,15 +202,37 @@
       "type": "object",
       "description": "Used by: Quiz sentence modes (build, type)",
       "additionalProperties": false,
-      "required": ["sourceSentence", "targetSentence"],
+      "required": ["translations"],
       "properties": {
+        "translations": {
+          "type": "object",
+          "description": "Dictionary of BCP-47 language codes to sentence forms. Required. Must contain at least two language entries.",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "examples": [
+            {
+              "de-DE": "In meiner Familie gibt es fünf Personen.",
+              "en-GB": "In my family there are five people."
+            }
+          ]
+        },
+        "examples": {
+          "type": "object",
+          "description": "Dictionary of BCP-47 language codes to example/alternative sentences. Optional.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
         "sourceSentence": {
           "type": "string",
-          "description": "Sentence in the source language, e.g. German"
+          "description": "[DEPRECATED — use translations instead] Alias for the source-language sentence. Kept for backwards compatibility.",
+          "deprecated": true
         },
         "targetSentence": {
           "type": "string",
-          "description": "Sentence in the target language, e.g. English"
+          "description": "[DEPRECATED — use translations instead] Alias for the target-language sentence. Kept for backwards compatibility.",
+          "deprecated": true
         },
         "sourceLanguage": {
           "type": "string"

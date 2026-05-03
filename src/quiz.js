@@ -1,5 +1,6 @@
 import { levelMatches, normalizeForCompare, shuffle, tokenizeSentence } from "./utils.js";
 import { isWordMastered } from "./storage.js";
+import { normLang } from "./lang-utils.js";
 
 const MODE_DEFINITIONS = [
   {
@@ -72,10 +73,13 @@ const MODE_DEFINITIONS = [
 
 function datasetLabels(dataset = null) {
   return {
-    studyLabel: dataset && dataset.sourceLanguageLabel ? dataset.sourceLanguageLabel : "German",
-    targetLabel: dataset && dataset.targetLanguageLabel ? dataset.targetLanguageLabel : "English",
-    studyCode: dataset && dataset.sourceLanguageCode ? dataset.sourceLanguageCode : "de-DE",
-    speechLanguage: dataset && dataset.speechLanguage ? dataset.speechLanguage : (dataset && dataset.sourceLanguageCode ? dataset.sourceLanguageCode : "de-DE"),
+    studyLabel:    dataset && dataset.sourceLanguageLabel  ? dataset.sourceLanguageLabel  : "German",
+    targetLabel:   dataset && dataset.targetLanguageLabel ? dataset.targetLanguageLabel : "English",
+    studyCode:     normLang(dataset && dataset.sourceLanguageCode) || "de-DE",
+    targetCode:    normLang(dataset && dataset.targetLanguageCode) || "en-GB",
+    speechLanguage: normLang(dataset && dataset.speechLanguage)
+                 || normLang(dataset && dataset.sourceLanguageCode)
+                 || "de-DE",
   };
 }
 
@@ -388,30 +392,64 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
   const picks = cyclePick(vocab, count);
   const labels = datasetLabels(dataset);
   const isReverse = modeId === "germanWordChooseEnglish";
+
   return picks.map((item, index) => {
-    const src = item.data.sourceWord || item.data.de || "";
-    const tgt = item.data.targetWord || item.data.en || "";
-    const prompt = isReverse ? tgt : src;
-    const answer = isReverse ? src : tgt;
-    const optionField = isReverse ? src : tgt;
+    // ── Read translations (new format) with legacy fallback ──────────────
+    const translations = item.data.translations || {};
+    const src = translations[labels.studyCode]
+             || translations[labels.speechLanguage]
+             || translations["de-DE"]
+             || translations["en-GB"]
+             || item.data.sourceWord
+             || item.data.de
+             || "";
+    const tgt = translations[labels.targetCode]
+             || translations["en-GB"]
+             || translations["de-DE"]
+             || item.data.targetWord
+             || item.data.en
+             || "";
+
+    const prompt   = isReverse ? tgt : src;
+    const answer   = isReverse ? src : tgt;
+    const optionF  = isReverse ? src : tgt;
+
     const wrongAnswers = vocab
       .filter((v) => v.id !== item.id)
-      .map((v) => isReverse ? (v.data.sourceWord || v.data.de || "") : (v.data.targetWord || v.data.en || ""))
+      .map((v) => {
+        const t = v.data.translations || {};
+        const s = t[labels.studyCode] || t[labels.speechLanguage]
+               || t["de-DE"] || t["en-GB"] || v.data.sourceWord || v.data.de || "";
+        const g = t[labels.targetCode] || t["en-GB"] || t["de-DE"]
+               || v.data.targetWord || v.data.en || "";
+        return isReverse ? s : g;
+      })
       .filter((v) => normalizeForCompare(v) !== normalizeForCompare(answer));
+
     const options = shuffle(dedupeStrings([answer, ...wrongAnswers]).slice(0, 4));
+
+    // ── Read example via new 'examples' dict with legacy fallback ─────────
+    const examples = item.data.examples || {};
+    const exampleSrc = examples[labels.studyCode]
+                    || examples[labels.speechLanguage]
+                    || examples["de-DE"]
+                    || item.data.exampleSource
+                    || null;
+
     return {
-      id: `choice-${modeId}-${item.id}-${index}`,
+      id:          `choice-${modeId}-${item.id}-${index}`,
       modeId,
-      modeTitle: buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "studyToTarget" : "targetToStudy" }, labels),
-      kind: "choice",
+      modeTitle:   buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "studyToTarget" : "targetToStudy" }, labels),
+      kind:        "choice",
       prompt,
       answer,
       options,
-      wordId: item.id,
-      topic: Array.isArray(item.topics) ? item.topics[0] : (item.tags && item.tags[0]) || "",
-      subtitle: item.level || "",
-      speechText: src,
+      wordId:      item.id,
+      topic:       Array.isArray(item.topics) ? item.topics[0] : (item.tags && item.tags[0]) || "",
+      subtitle:    item.level || "",
+      speechText:  src,
       speechLanguage: labels.speechLanguage,
+      example:     exampleSrc,
     };
   });
 }
@@ -484,22 +522,42 @@ export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
   const sentences = unifiedItems.filter((item) => item.type === "sentence");
   const picks = cyclePick(sentences, count);
   const labels = datasetLabels(dataset);
+  const isBuild = modeId.includes("Build");
+
   return picks.map((item, index) => {
-    const src = item.data.sourceSentence || item.data.de || "";
-    const tgt = item.data.targetSentence || item.data.en || "";
-    const isBuild = modeId.includes("Build");
+    // ── Read translations (new format) with legacy fallback ──────────────
+    const translations = item.data.translations || {};
+    const src = translations[labels.studyCode]
+             || translations[labels.speechLanguage]
+             || translations["de-DE"]
+             || translations["en-GB"]
+             || item.data.sourceSentence
+             || "";
+    const tgt = translations[labels.targetCode]
+             || translations["en-GB"]
+             || translations["de-DE"]
+             || item.data.targetSentence
+             || "";
+
+    const prompt = isBuild
+      ? (modeId === "englishSentenceBuildGerman" ? tgt : src)
+      : src;
+    const answer = isBuild
+      ? (modeId === "englishSentenceBuildGerman" ? src : tgt)
+      : tgt;
+
     return {
-      id: `${modeId}-${item.id}-${index}`,
+      id:             `${modeId}-${item.id}-${index}`,
       modeId,
-      modeTitle: buildModeTitle({ id: modeId, kind: isBuild ? "build" : "typed", family: "sentence", direction: null }, labels),
-      kind: isBuild ? "build" : "typed",
-      prompt: isBuild ? (modeId === "englishSentenceBuildGerman" ? tgt : src) : src,
-      answer: isBuild ? (modeId === "englishSentenceBuildGerman" ? src : tgt) : tgt,
-      acceptedAnswers: [isBuild ? (modeId === "englishSentenceBuildGerman" ? src : tgt) : tgt],
-      tiles: shuffle(tokenizeSentence(isBuild ? (modeId === "englishSentenceBuildGerman" ? src : tgt) : src)),
-      speechText: src,
+      modeTitle:      buildModeTitle({ id: modeId, kind: isBuild ? "build" : "typed", family: "sentence", direction: null }, labels),
+      kind:           isBuild ? "build" : "typed",
+      prompt,
+      answer,
+      acceptedAnswers: [answer],
+      tiles:          shuffle(tokenizeSentence(answer)),
+      speechText:     src,
       speechLanguage: labels.speechLanguage,
-      placeholder: `Type the ${labels.studyLabel} sentence`,
+      placeholder:    `Type the ${labels.studyLabel} sentence`,
     };
   });
 }

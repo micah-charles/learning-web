@@ -50,8 +50,23 @@ export function normaliseUnifiedItem(item) {
 
   switch (item.type) {
     case "vocab": {
-      const source = d.sourceWord || "";
-      const target = d.targetWord || "";
+      // New: read from translations dict (BCP-47 keys). Legacy fallback preserved.
+      const translations = d.translations || {};
+      const examples     = d.examples     || {};
+      const srcCode = item._srcCode || "de-DE";
+      const tgtCode = item._tgtCode || "en-GB";
+      const source = translations[srcCode]
+                  || Object.values(translations)[0]
+                  || d.sourceWord
+                  || "";
+      const target = translations[tgtCode]
+                  || Object.values(translations).slice(1)[0]
+                  || d.targetWord
+                  || "";
+      const exSrc = examples[srcCode]
+                 || Object.values(examples)[0]
+                 || d.exampleSource
+                 || null;
       return {
         ...common,
         type: "mcq",
@@ -62,15 +77,23 @@ export function normaliseUnifiedItem(item) {
         acceptedAnswers: compactOptions([target]),
         options: [],
         hint: d.gender ? `Gender: ${d.gender}` : "",
-        explanation: d.exampleSource && d.exampleTarget
-          ? `${d.exampleSource}\n${d.exampleTarget}`
-          : "",
+        explanation: exSrc || "",
       };
     }
 
     case "sentence": {
-      const source = d.sourceSentence || "";
-      const target = d.targetSentence || "";
+      // New: read from translations dict (BCP-47 keys). Legacy fallback preserved.
+      const translations = d.translations || {};
+      const srcCode = item._srcCode || "de-DE";
+      const tgtCode = item._tgtCode || "en-GB";
+      const source = translations[srcCode]
+                  || Object.values(translations)[0]
+                  || d.sourceSentence
+                  || "";
+      const target = translations[tgtCode]
+                  || Object.values(translations).slice(1)[0]
+                  || d.targetSentence
+                  || "";
       return {
         ...common,
         type: "typing",

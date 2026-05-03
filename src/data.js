@@ -5,6 +5,7 @@
  * loader resolves through manifest unifiedPath entries. Legacy path fields are
  * not fetched at runtime.
  */
+import { normLang, packSrcLang, packTgtLang } from "./lang-utils.js";
 
 const jsonCache = new Map();
 
@@ -62,12 +63,15 @@ function vocabFromItem(item) {
 
 function sentenceFromItem(item) {
   const data = item.data || {};
+  const translations = data.translations || {};
+  const srcCode = item._srcCode || "de-DE";
+  const tgtCode = item._tgtCode || "en-GB";
   return {
     id: item.id,
     level: item.level || "",
     topics: item.topics || [],
-    de: data.sourceSentence || data.de || "",
-    en: data.targetSentence || data.en || "",
+    de:    translations[srcCode] || Object.values(translations)[0] || data.sourceSentence || data.de || "",
+    en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || data.targetSentence || data.en || "",
     target_vocab_id: data.targetVocabId || data.target_vocab_id,
     vocab_ids: data.vocabIds || data.vocab_ids || [],
   };
@@ -186,9 +190,42 @@ export async function loadUnifiedItemsByType(manifest, packId, type) {
   return filterUnifiedItems(pack, type);
 }
 
+// loadVocabItems returns raw vocab items compatible with the old flat shape that
+// selectWordPool and isWordMastered in quiz.js expect.
+// Fields: id, de, en, level, topic, tags, etc. come from the unified item.
+// The unified data (translations, gender, examples) is preserved under .data for quiz.js.
+
 export async function loadVocabItems(manifest, datasetId) {
   const pack = await loadUnifiedPack(manifest, datasetId);
-  return filterUnifiedItems(pack, "vocab").map(vocabFromItem);
+  const srcCode = packSrcLang(pack);
+  const tgtCode = packTgtLang(pack);
+  return filterUnifiedItems(pack, "vocab").map((item) => {
+    const d = item.data || {};
+    const translations = d.translations || {};
+    return {
+      id: item.id,
+      de:    translations[srcCode] || Object.values(translations)[0] || d.sourceWord || d.de || "",
+      en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || d.en || "",
+      pos:   d.partOfSpeech || d.pos || "",
+      gender:    d.gender    || null,
+      plural:    d.plural    || null,
+      exampleDe: d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null,
+      exampleEn: d.examples?.[tgtCode] || d.exampleTarget || d.exampleEn || null,
+      topic:     Array.isArray(item.topics) ? item.topics[0] || "" : "",
+      tags:      item.tags || [],
+      level:     item.level || "",
+      // Derive numeric stage from level string (e.g. "Stage 1" -> 1)
+      // Needed by filterWordsForScope for Cambridge Latin Stages
+      stage:     parseInt(String(item.level || "").replace("Stage ", ""), 10) || d.stage || null,
+      part_of_speech: d.partOfSpeech || d.pos || "",
+      headword:  translations[srcCode] || d.sourceWord || d.de || "",
+      english_equivalent: translations[tgtCode] || d.targetWord || d.en || "",
+      stage_label: d.stageLabel || d.stage_label,
+      categories: item.topics || [],
+      // Keep the original unified item data for quiz.js
+      _unified: item,
+    };
+  });
 }
 
 export async function loadSentencePools(manifest, datasetId) {
