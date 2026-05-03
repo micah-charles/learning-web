@@ -611,6 +611,42 @@ export function getDefaultQuestionModes(dataset = null) {
   return filtered.length ? filtered : getQuestionModes(dataset).slice(0, 3).map((mode) => mode.id);
 }
 
+// ─── Subject First adapter ────────────────────────────────────────────────
+//
+// Translates the new high-level UI selections — { subject, direction, answerMode }
+// — into the legacy mode-ID array that createQuizSession() consumes. Keeps the
+// engine itself untouched; the UI never has to know the legacy IDs.
+//
+// Legacy mode-ID names still say "german"/"english" even when the pack is
+// Latin/French/etc. — that's a naming hangover from before PR #11 made the
+// engine generic. Internally the engine treats them as direction tokens
+// (studyToTarget / targetToStudy), not language tokens.
+//
+//   subject:    "language" | "history" | "geography" | "science"
+//   direction:  "studyToTarget" | "targetToStudy"   (language packs only)
+//   answerMode: "mcq" | "typed" | "mixed"
+export function resolveQuizModesForUI({ subject = "language", direction = "studyToTarget", answerMode = "mixed" }) {
+  const isReverse = direction === "targetToStudy";
+
+  // Word-level choice/type mode IDs. The engine treats these as direction
+  // tokens regardless of the literal "german"/"english" in the name.
+  const choiceMode = isReverse ? "englishWordChooseGerman" : "germanWordChooseEnglish";
+  const typedMode  = isReverse ? "englishWordTypeGerman"   : "germanWordTypeEnglish";
+
+  if (subject === "language") {
+    if (answerMode === "mcq")   return [choiceMode];
+    if (answerMode === "typed") return [typedMode];
+    return [choiceMode, typedMode]; // mixed
+  }
+
+  // Non-language packs: direction is ignored (prompt language matches the
+  // pack's source). Use studyToTarget word modes; the engine will pull MCQ
+  // options or typed answers from whatever vocab the pack has.
+  if (answerMode === "mcq")   return ["germanWordChooseEnglish"];
+  if (answerMode === "typed") return ["germanWordTypeEnglish"];
+  return ["germanWordChooseEnglish", "germanWordTypeEnglish"];
+}
+
 export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null }) {
   const availableModes = getQuestionModes(dataset);
   const activeModes = availableModes.filter((mode) => config.modes.includes(mode.id));

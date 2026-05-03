@@ -1391,3 +1391,113 @@ body {
   background: var(--blue-soft);
   color: var(--blue);
 }
+
+/* ─── Subject First UI (Quiz Setup refactor) ─────────────────────────── */
+
+.subject-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px 14px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+}
+
+.subject-card:hover:not(:disabled) {
+  border-color: var(--color-info-border);
+  transform: translateY(-1px);
+}
+
+.subject-card.is-active {
+  border-color: var(--color-info);
+  background: var(--color-info-bg);
+}
+
+.subject-card.is-empty,
+.subject-card:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--surface-alt);
+}
+
+.subject-card .subject-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.subject-card .subject-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.subject-card .subject-meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Pill rows used for both Direction and Answer Mode */
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pill-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px 18px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.pill-button:hover {
+  border-color: var(--color-info-border);
+}
+
+.pill-button.is-active {
+  border-color: var(--color-info);
+  background: var(--color-info-bg);
+}
+
+.mode-pill {
+  flex: 1 1 0;
+  min-width: 160px;
+}
+
+.mode-pill strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .subject-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mode-pill {
+    flex-basis: 100%;
+  }
+}

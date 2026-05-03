@@ -14,11 +14,19 @@ export const DEFAULT_STATE = {
       category: "",
     },
     quiz: {
+      // Subject First selections (added in the Subject First refactor)
+      subject: "language",                    // language | history | geography | science
+      direction: "studyToTarget",             // studyToTarget | targetToStudy (language packs only)
+      answerMode: "mixed",                    // mcq | typed | mixed
+      // Existing fields
       datasetId: "core",
       year: "Y7",
       stages: [],
       excludeMastered: true,
       questionCount: 18,
+      // Legacy mode IDs are kept internally for the question engine; they are
+      // derived from (subject, direction, answerMode) via the adapter at
+      // session-build time. Persisted here only as a safety net.
       modes: [
         "englishWordChooseGerman",
         "englishSentenceBuildGerman",

@@ -167,6 +167,66 @@ export function findDataset(manifest, datasetId) {
   return found || asDisplayPack(manifest.core);
 }
 
+// ─── Subject First helpers ──────────────────────────────────────────────
+//
+// `subject` is a top-level pack tag added in the Subject First refactor.
+// Allowed values: "language" | "history" | "geography" | "science".
+// Older packs may not declare it; the inference fallback below assigns a
+// best-guess subject so legacy packs still appear in the right bucket.
+
+export const SUBJECTS = ["language", "history", "geography", "science"];
+
+const LANGUAGE_HINT_CODES = ["de", "fr", "es", "it", "la", "zh", "ja", "ko", "ru", "ar", "el", "pt", "nl"];
+
+function inferSubject(dataset) {
+  if (!dataset) return "language";
+  const explicit = String(dataset.subject || "").toLowerCase();
+  if (SUBJECTS.includes(explicit)) return explicit;
+
+  const id = String(dataset.id || "").toLowerCase();
+  if (id.includes("geography") || id.includes("glaciation") || id.includes("rivers") || id.includes("coast")) {
+    return "geography";
+  }
+  if (id.includes("history") || id.includes("black_death") || id.includes("tudors") || id.includes("ww1") || id.includes("norman")) {
+    return "history";
+  }
+  if (id.includes("science") || id.includes("physics") || id.includes("biology") || id.includes("chemistry")) {
+    return "science";
+  }
+
+  // Translation-language fallback: anything where the source-language code
+  // is a non-English BCP-47 language gets bucketed as "language".
+  const src = String(dataset.sourceLanguageCode || "").toLowerCase().split("-")[0];
+  const tgt = String(dataset.targetLanguageCode || "").toLowerCase().split("-")[0];
+  if (LANGUAGE_HINT_CODES.includes(src) || LANGUAGE_HINT_CODES.includes(tgt)) {
+    return "language";
+  }
+  return "language";
+}
+
+export function getDatasetSubject(dataset) {
+  return inferSubject(dataset);
+}
+
+export function listDatasetsBySubject(manifest, subject) {
+  return listDatasets(manifest).filter((d) => getDatasetSubject(d) === subject);
+}
+
+// Returns [{ id, label, isReverse }] for the two "direction" buttons shown when
+// the selected subject is "language". For non-language packs returns [].
+//
+// `isReverse` matches the existing quiz.js convention: false = study→target
+// (e.g. German prompt → English answer), true = target→study.
+export function getDatasetDirections(dataset) {
+  if (getDatasetSubject(dataset) !== "language") return [];
+  const study = dataset.sourceLanguageLabel || "Study";
+  const target = dataset.targetLanguageLabel || "English";
+  return [
+    { id: "studyToTarget", label: `${study} → ${target}`, isReverse: false },
+    { id: "targetToStudy", label: `${target} → ${study}`, isReverse: true },
+  ];
+}
+
 export async function loadCoreUnifiedPack(manifest) {
   return fetchJson(`./${getCorePath(manifest)}`);
 }
