@@ -1,5 +1,6 @@
 import { levelMatches, normalizeForCompare, shuffle, tokenizeSentence } from "./utils.js";
 import { isWordMastered } from "./storage.js";
+import { normLang } from "./lang-utils.js";
 
 const MODE_DEFINITIONS = [
   {
@@ -74,9 +75,11 @@ function datasetLabels(dataset = null) {
   return {
     studyLabel:    dataset && dataset.sourceLanguageLabel  ? dataset.sourceLanguageLabel  : "German",
     targetLabel:   dataset && dataset.targetLanguageLabel ? dataset.targetLanguageLabel : "English",
-    studyCode:     dataset && dataset.sourceLanguageCode   ? dataset.sourceLanguageCode   : "de-DE",
-    targetCode:    dataset && dataset.targetLanguageCode  ? dataset.targetLanguageCode  : "en-GB",
-    speechLanguage: dataset && dataset.speechLanguage     ? dataset.speechLanguage     : (dataset && dataset.sourceLanguageCode ? dataset.sourceLanguageCode : "de-DE"),
+    studyCode:     normLang(dataset && dataset.sourceLanguageCode) || "de-DE",
+    targetCode:    normLang(dataset && dataset.targetLanguageCode) || "en-GB",
+    speechLanguage: normLang(dataset && dataset.speechLanguage)
+                 || normLang(dataset && dataset.sourceLanguageCode)
+                 || "de-DE",
   };
 }
 

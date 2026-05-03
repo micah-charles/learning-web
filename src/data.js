@@ -5,6 +5,7 @@
  * loader resolves through manifest unifiedPath entries. Legacy path fields are
  * not fetched at runtime.
  */
+import { normLang, packSrcLang, packTgtLang } from "./lang-utils.js";
 
 const jsonCache = new Map();
 
@@ -193,10 +194,11 @@ export async function loadUnifiedItemsByType(manifest, packId, type) {
 // selectWordPool and isWordMastered in quiz.js expect.
 // Fields: id, de, en, level, topic, tags, etc. come from the unified item.
 // The unified data (translations, gender, examples) is preserved under .data for quiz.js.
+
 export async function loadVocabItems(manifest, datasetId) {
   const pack = await loadUnifiedPack(manifest, datasetId);
-  const srcCode = pack.sourceLanguageCode || "de-DE";
-  const tgtCode = pack.targetLanguageCode || "en-GB";
+  const srcCode = packSrcLang(pack);
+  const tgtCode = packTgtLang(pack);
   return filterUnifiedItems(pack, "vocab").map((item) => {
     const d = item.data || {};
     const translations = d.translations || {};

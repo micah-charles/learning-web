@@ -75,7 +75,7 @@ LANG_MAP = {
     "es": "es-ES",
     "it": "it-IT",
     "pt": "pt-BR",
-    "la": "la",
+    "la": "la-Latn",
     "nl": "nl-NL",
     "el": "el-GR",
     "ru": "ru-RU",
