@@ -269,11 +269,12 @@ export function normalisePack(pack) {
 function addDistractors(questions, distractorCount) {
   return questions.map((q) => {
     if (q.options && q.options.length >= 2) return q;
-    const distractors = questions
+    const distractorPool = questions
       .filter((other) => other.id !== q.id && other.correctAnswer)
       .map((other) => other.correctAnswer)
-      .filter((value, index, arr) => arr.indexOf(value) === index)
-      .slice(0, distractorCount);
+      .filter((value) => value !== q.correctAnswer)
+      .filter((value, index, arr) => arr.indexOf(value) === index);
+    const distractors = shuffle(distractorPool).slice(0, distractorCount);
 
     return {
       ...q,
