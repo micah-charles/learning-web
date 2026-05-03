@@ -1,413 +1,531 @@
 # Data Structures in `learning-web`
 
-> A complete reference of every data format used in the project, what each field means, and which feature uses it.
-> Generated: 2026-05-02  
+> Complete reference for every data format used in the project.
+> Generated: 2026-05-03
 > Schema version: 1.1 (multilingual translations)
 
 ---
 
-## Top-level: `manifest.json` — The Master Index
+## Architecture Overview
 
-```json
-{ "generatedAt", "core", "revisionPacks", "sentenceBuilderPacks", "passageGroups" }
-```
+Every file is referenced from `data/generated/manifest.json`. The app loads the manifest first, then resolves all pack and passage data via `unifiedPath` entries.
 
-**All packs use the unified format** (`data/unified_schema.json`). The `unifiedPath` field
-in each manifest entry is the single source of truth — no legacy `vocabPath`/`sentencePath`
-etc. are loaded at runtime. Legacy source files (e.g. `vocab.json`, `sequence.jsonl`) are
-archived but not used.
+There are two data layers:
 
-Every file in the project is referenced from here. It's the root of everything — the app loads the manifest first, then uses it to locate all other data.
+- **Unified packs** (`pack_unified.json`) — the runtime format for revision packs, sentence builder packs, and passage packs. Single file per pack containing a typed array of items.
+- **Legacy source files** (e.g. `vocab.json`, `sentences.jsonl`) — conversion inputs only. The app never loads them at runtime.
 
 ---
 
-## 1. `data/vocab.json` — Core Vocabulary (JSON, single file)
-
-**Used by:** Vocabulary browser, Quiz (word modes: multiple choice, typed, build)
-
-An array of vocabulary word objects. **879 entries** in the core dataset.
+## Top-level: `manifest.json`
 
 ```json
 {
-  "id": "aqa_f_0002",
-  "de": "das",
-  "en": "the (nt)",
-  "pos": "det",
-  "gender": "n",
-  "plural": null,
-  "exampleDe": null,
-  "exampleEn": null,
-  "topic": "grammar_core",
-  "tags": ["Y7", "cat:grammar_core", "foundation"],
-  "level": "Y7",
-  "rank_frequency": null,
-  "part_of_speech": "det",
-  "headword": "das",
-  "english_equivalent": "the (nt)",
-  "tier": "F",
-  "selection_principle": "R",
-  "categories": ["grammar_core"]
+  "generatedAt":    "2026-05-02T…",
+  "schemaVersion":  "1.1",
+  "coreUnifiedPath": "data/core_unified.json",
+  "core":           { …revision-pack-entry… },
+  "revisionPacks":  [ …revision-pack-entry…, … ],
+  "sentenceBuilderPacks": [ …builder-pack-entry…, … ],
+  "passageGroups":  [ …passage-group-entry…, … ]
 }
 ```
 
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Unique identifier (e.g. `aqa_f_0002`) |
-| `de` | string | German word — displayed as the "study" side |
-| `en` | string | English translation — displayed as the "target" side |
-| `pos` | string | Part of speech (det, noun, verb…) |
-| `gender` | string | Noun gender: `n` (neuter), `m` (masculine), `f` (feminine) |
-| `plural` | string? | Noun plural form (nullable) |
-| `exampleDe` | string? | German example sentence (nullable) |
-| `exampleEn` | string? | English example sentence (nullable) |
-| `topic` | string | Topic label, e.g. `"grammar_core"`, `"family"` |
-| `tags` | string[] | Array of tags like `["Y7", "cat:grammar_core", "foundation"]` |
-| `level` | string | Year level filter: `"Y7"`, `"Y8"`, `"ALL"` |
-| `rank_frequency` | number? | Frequency rank (optional) |
-| `part_of_speech` | string | Alternative part-of-speech label |
-| `headword` | string | Base form of the word |
-| `english_equivalent` | string | Short English gloss |
-| `tier` | string | Difficulty tier: `F` (foundation), `H` (higher) |
-| `selection_principle` | string | Selection reason code |
-| `categories` | string[] | Category labels for filtering |
-
 ---
 
-## 2. `data/gcse_sentences.jsonl` — Sentence Pools (JSONL, one JSON per line)
+## Manifest: Revision Pack Entry
 
-**Used by:** Quiz (sentence build + sentence type modes)
+Every entry in `revisionPacks[]`:
 
 ```json
 {
-  "id": "B1-0001",
-  "level": "Y7",
-  "topics": ["Identity", "Personal details"],
-  "de": "Ich heiße Tom und ich bin zwölf Jahre alt.",
-  "en": "My name is Tom and I am twelve years old."
-}
-```
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Sentence ID (e.g. `B1-0001`) |
-| `level` | string | Year filter: `"Y7"`, `"Y8"`… |
-| `topics` | string[] | Topics linking this sentence to vocab words |
-| `de` | string | German sentence |
-| `en` | string | English sentence |
-
-Each revision pack can also have its own `sentences.jsonl` at its `sentencePath`.
-
----
-
-## 3. `data/Packs/[pack]/vocab.json` — Revision Pack Vocab (JSON, per-pack)
-
-**Used by:** Vocab browser (per-pack view), Quiz (when that pack is selected)
-
-Same shape as the core `vocab.json` above. Every pack has its own independent vocab file.
-
-| Pack ID | Language | Notes |
-|---------|----------|-------|
-| `ks3_geography_glaciation_1` | Geography/English | **New** — 18 terms, glaciation topics |
-| `cambridge_latin_stages` | Latin | Stage-based (1–12), stage options, no sentences |
-| `y7_birthdays_and_months` | German | Y7 — ordinals, months |
-| `y7_school_subjects` | German | Y7 — school vocabulary |
-| `y7_family_and_age` | German | Y7 — family members, numbers |
-| `y7_colours_and_appearance` | German | Y7 — colours, describing people |
-| `y7_days_and_times` | German | Y7 — days, telling time |
-| `y7_chapter2_review` | German | Y7 — mixed revision |
-| `y7_learning_goals_test` | German | Y7 — test preparation |
-| `y7_pets` | German | Y7 — animals, "Ich habe…" |
-| `y7_superpets` | German | Y7 — extended pets vocabulary |
-| `y7_teachers_and_possessives` | German | Y7 — possessive adjectives |
-| `tiffin10-19` | German | Higher tier, Tiffin School Y10 |
-
----
-
-## 4. `data/Packs/[pack]/sequence.jsonl` — Sequence Ordering (JSONL) *(new)*
-
-**Used by:** Quiz (sequenceOrder mode)
-
-User sees shuffled steps and must arrange them in the correct order by tapping to swap.
-
-```json
-{
-  "id": "seq_001",
-  "title": "How a Glacier Forms",
-  "instruction": "Put the glacier formation steps in the correct order.",
-  "items": [
-    "More snow falls than melts.",
-    "Snow builds up. This is called accumulation.",
-    "Layers of snow are compressed.",
-    "The snow becomes dense firn.",
-    "Over hundreds of years, firn becomes glacier ice.",
-    "The ice slides downhill due to gravity."
-  ]
-}
-```
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Sequence ID (e.g. `seq_001`) |
-| `title` | string | Shown as the question prompt |
-| `instruction` | string | Shown below the title as guidance |
-| `items` | string[] | **Ordered** array of process steps; shuffled on load |
-
-Currently **2 sequences** in the glaciation pack.
-
----
-
-## 5. `data/Packs/[pack]/category_sort.jsonl` — Category Sort (JSONL) *(new)*
-
-**Used by:** Quiz (categorySort mode)
-
-User sorts items into correct categories (e.g. Weathering vs Erosion).
-
-```json
-{
-  "id": "cat_001",
-  "title": "Weathering or Erosion?",
-  "instruction": "Sort each process into the correct category.",
-  "categories": ["Weathering", "Erosion"],
-  "items": [
-    { "text": "freeze-thaw",                "category": "Weathering" },
-    { "text": "plucking",                   "category": "Erosion"    },
-    { "text": "abrasion",                   "category": "Erosion"    },
-    { "text": "rock broken in cracks by ice","category": "Weathering" },
-    { "text": "rocks scraped along valley floor", "category": "Erosion" }
-  ]
-}
-```
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Sort activity ID |
-| `title` | string | Question prompt |
-| `instruction` | string | Guidance shown to student |
-| `categories` | string[] | Column headers (e.g. 2 or more category names) |
-| `items` | object[] | Array of `{text, category}` — correct answer is hidden from user |
-
-Currently **2 sort games** in the glaciation pack.
-
----
-
-## 6. `data/Packs/[pack]/fill_blank.jsonl` — Fill in the Blank (JSONL) *(new)*
-
-**Used by:** Quiz (fillBlank mode)
-
-Presented as either multiple choice (with options) or typed answer.
-
-```json
-{
-  "id": "gap_001",
-  "sentence": "The build-up of snow where more falls than melts is called ____.",
-  "answer": "accumulation",
-  "hint": "Starts with 'a'"
-}
-```
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Gap-fill ID |
-| `sentence` | string | Prompt with `____` placeholder for the missing word |
-| `answer` | string | Correct answer |
-| `hint` | string | Optional hint; shown to student on request |
-
-Currently **8 gap-fill items** in the glaciation pack.
-
----
-
-## 7. `data/SentenceBuilderPacks/*.jsonl` — Sentence Builder Cards (JSONL)
-
-**Used by:** Builder tab (standalone tile-drill, independent from quiz flow)
-
-```json
-{
-  "id": "SR-DATE-0001",
-  "type": "key_date",
-  "prompt": "331BC",
-  "level": "Y7",
-  "answer": "The Macedonians defeat the Persians at the battle of Gaugamela",
-  "tiles": ["The", "Macedonians", "defeat", "the", "Persians", "at", "the", "battle", "of", "Gaugamela"]
-}
-```
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Card ID |
-| `type` | string | Card category: `key_date`, `key_term`, `example_sentence`… |
-| `prompt` | string | Short prompt or date shown to student |
-| `level` | string | Year filter: `"Y7"`, `"Y8"`… |
-| `answer` | string | The complete correct sentence |
-| `tiles` | string[] | Word fragments shuffled into the tile bank |
-
-Currently **1 pack**: `silk_road_y7.jsonl` (history topic).
-
----
-
-## 8. `data/PassagePacks/[group]/[file]` — Reading Passage Packs (JSON or JSONL)
-
-**Used by:** Reading tab
-
-Passage groups with multiple files each. Each passage has an optional audio listen step and comprehension questions.
-
-```json
-{
-  "id": "fif_s01_p01",
-  "chapter": "Kapitel 1",
-  "section": "Abschnitt A",
-  "title_de": "Ferien in Frankfurt",
-  "title_en": "Holidays in Frankfurt",
-  "passage_de": "In den Sommerferien fahre ich immer zu meiner Oma nach Frankfurt...",
-  "passage_en": "In the summer holidays I always go to my grandma's in Frankfurt...",
-  "speech_language": "de-DE",
-  "level": "Y9",
-  "topic": "Holidays",
-  "questions": [
-    {
-      "id": "q1",
-      "type": "open",
-      "difficulty": "medium",
-      "question_en": "What does the student do during the summer?",
-      "options": ["A", "B", "C"],
-      "correct_option_index": 0,
-      "model_answer_en": "They go to their grandma's in Frankfurt.",
-      "accepted_keywords": ["grandma", "Frankfurt", "Oma"]
-    }
-  ]
-}
-```
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Passage ID |
-| `chapter` | string | Chapter label |
-| `section` | string | Section label |
-| `title_de` | string | German passage title |
-| `title_en` | string | English passage title |
-| `passage_de` | string | Full German text (TTS plays this) |
-| `passage_en` | string | English translation |
-| `speech_language` | string | TTS language code, e.g. `"de-DE"` |
-| `level` | string | Year level |
-| `topic` | string | Topic label for filtering |
-| `questions` | object[] | Comprehension questions |
-
-**Question object:**
-
-| Field | Type | Purpose |
-|-------|------|---------|
-| `id` | string | Question ID |
-| `type` | string | `"open"` (typed) or `"mcq"` (multiple choice) |
-| `difficulty` | string | `"easy"`, `"medium"`, `"hard"` |
-| `question_en` | string | The question text |
-| `options` | string[]? | MCQ options (present only if `type === "mcq"`) |
-| `correct_option_index` | number? | Index of correct option (MCQ only) |
-| `model_answer_en` | string | Model answer for open questions |
-| `accepted_keywords` | string[] | Keywords used for keyword-based marking |
-
-**Current passage groups:**
-
-| Group | Description |
-|-------|-------------|
-| `bbc_bitesize_gcse_german` | BBC Bitesize GCSE German topics |
-| `ferien_in_frankfurt` | Ferien in Frankfurt course |
-| `schule_und_alltag` | Schule und Alltag reading texts |
-| `dino_lernt_deutsch` | Dino Lernt Deutsch beginner series |
-| `gcse_geography` | GCSE Geography settlement MCQ |
-| `others` | Miscellaneous passages |
-| `deutsche_welle_nicos_weg` | Deutsche Welle Nicos Weg |
-
----
-
-## Summary Table
-
-| # | File pattern | Format | Used by |
-|---|-------------|--------|---------|
-| 1 | `data/vocab.json` | JSON (array) | Vocab browser, Quiz word modes |
-| 2 | `data/gcse_sentences.jsonl` + `[pack]/sentences.jsonl` | JSONL | Quiz sentence modes |
-| 3 | `data/Packs/[name]/vocab.json` | JSON (array) | Per-pack vocab + quiz |
-| 4 | `[pack]/sequence.jsonl` | JSONL | **Quiz — sequenceOrder mode** |
-| 5 | `[pack]/category_sort.jsonl` | JSONL | **Quiz — categorySort mode** |
-| 6 | `[pack]/fill_blank.jsonl` | JSONL | **Quiz — fillBlank mode** |
-| 7 | `data/SentenceBuilderPacks/*.jsonl` | JSONL | Builder tab (standalone) |
-| 8 | `data/PassagePacks/[group]/[file]` | JSON | Reading tab |
-
----
-
-## Manifest Entry: Revision Pack Fields
-
-When registering a new pack in `data/generated/manifest.json` (under `revisionPacks`), runtime entries should point at unified data:
-
-```json
-{
-  "id": "pack_id",
-  "displayName": "Human-readable Pack Title",
-  "unifiedPath": "data/Packs/[pack]/pack_unified.json",
+  "id":                  "y7_german_full",
+  "displayName":         "Y7 German — Full Course",
+  "subject":             "language",
+  "level":               "Y7",
+  "unifiedPath":         "data/Packs/y7_german_full/pack_unified.json",
   "sourceLanguageLabel": "German",
-  "sourceLanguageCode": "de-DE",
+  "sourceLanguageCode":  "de-DE",
   "targetLanguageLabel": "English",
-  "targetLanguageCode": "en-GB",
-  "speechLanguage": "de-DE",
-  "supportsSentences": true,
-  "mergeCoreSentences": true,
-  "stageOptions": [],
-  "defaultQuizModes": ["englishWordChooseGerman", "sequenceOrder", "categorySort"],
-  "wordCount": 50,
-  "sentenceCount": 12
+  "targetLanguageCode":  "en-GB",
+  "speechLanguage":      "de-DE",
+  "supportsSentences":   true,
+  "stageOptions":        [],
+  "defaultQuizModes":    [],
+  "wordCount":           426,
+  "sentenceCount":       37
 }
 ```
 
-> **Note:** legacy source paths can still exist as conversion inputs, but app runtime should read `unifiedPath` only.
+| Field | Type | Purpose |
+|-------|------|---------|
+| `id` | string | Unique pack ID |
+| `displayName` | string | Human-readable title shown in the UI |
+| `subject` | string | Subject bucket: `language` \| `history` \| `geography` \| `science` |
+| `level` | string | Suggested year level (used as a default filter) |
+| `unifiedPath` | string | Path to the pack's `pack_unified.json` |
+| `sourceLanguageLabel` | string | Display label for the study language (shown in quiz prompts) |
+| `sourceLanguageCode` | string | BCP-47 code for the study language (e.g. `de-DE`, `la-Latn`, `en-GB`) |
+| `targetLanguageLabel` | string | Display label for the target language |
+| `targetLanguageCode` | string | BCP-47 code for the target language |
+| `speechLanguage` | string | BCP-47 code for TTS (often matches `sourceLanguageCode`) |
+| `supportsSentences` | boolean | `false` for packs that have only vocab items — prevents the quiz engine from trying to build sentence questions from an empty pool |
+| `stageOptions` | string[] | Set when a pack has named stages (e.g. Cambridge Latin Stages has `["Stage 1", …, "Stage 12"]`) |
+| `defaultQuizModes` | string[] | Preferred mode IDs for this pack (empty = use app defaults) |
+| `wordCount` | number | Approximate vocab item count |
+| `sentenceCount` | number | Sentence item count |
+
+### Subject field
+
+The `subject` field groups packs in the Quiz Setup UI (Subject First flow). It describes the **subject matter**, not the language of instruction.
+
+| Value | Meaning |
+|-------|---------|
+| `language` | Language learning packs (German, Latin, etc.) — shows the direction toggle in Quiz Setup |
+| `history` | History knowledge packs |
+| `geography` | Geography knowledge packs |
+| `science` | Science packs |
 
 ---
 
-## 9. Multilingual Vocab & Sentences (`translations` dict)
+## Manifest: Core Pack Entry
 
-**Schema version: 1.1** — All vocab and sentence items now support a multilingual
-`translations` dictionary keyed by BCP-47 language codes (e.g. `de-DE`, `en-GB`, `fr-FR`).
+The `core` entry follows the same shape as a revision pack entry, with `id: "core"`. It is listed alongside revision packs in the dataset dropdown.
 
-This replaces the old flat `sourceWord`/`targetWord` and `sourceSentence`/`targetSentence`
-fields with a structure that can hold any number of language pairs.
+---
 
-### VocabData (new format — preferred)
+## Manifest: Sentence Builder Pack Entry
 
 ```json
 {
-  "translations": { "de-DE": "Gletscher", "en-GB": "glacier" },
-  "examples":     { "de-DE": "Der Gletscher bewegt sich talwärts." },
-  "partOfSpeech": "noun",
-  "gender": "m",
-  "plural": "Gletscher"
+  "id":           "black_death",
+  "displayName":  "Black Death",
+  "unifiedPath":  "data/SentenceBuilderPacks/black_death_unified.json"
 }
 ```
 
-### VocabData (legacy format — still supported via backwards-compat fallbacks)
+---
+
+## Manifest: Passage Group Entry
 
 ```json
 {
-  "sourceWord": "glacier",
-  "targetWord": "Gletscher"
+  "id":           "bbc_bitesize_gcse_german",
+  "displayName":  "BBC Bitesize GCSE German",
+  "unifiedPath":  "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json"
 }
 ```
 
-### SentenceData (new format — preferred)
+---
+
+## Unified Pack Format (`pack_unified.json`)
+
+Every unified pack has the same header structure regardless of type:
 
 ```json
 {
-  "translations": {
-    "de-DE": "In meiner Familie gibt es fünf Personen.",
-    "en-GB": "In my family there are five people."
+  "packId":              "y7_german_full",
+  "subject":             "language",
+  "title":               "Y7 German — Full Course",
+  "subtitle":            "All 11 Y7 German packs merged",
+  "level":               "Y7",
+  "language":            "German",
+  "topics":              ["birthdays & months", "colours & appearance", …],
+  "tags":                ["Y7", "German", "beginner", "full-course"],
+  "description":          "A complete Y7 German vocabulary course…",
+  "schemaVersion":       "1.1",
+  "sourceLanguageLabel":  "German",
+  "sourceLanguageCode":   "de-DE",
+  "targetLanguageLabel":  "English",
+  "targetLanguageCode":   "en-GB",
+  "speechLanguage":       "de-DE",
+  "items":               [ … ]
+}
+```
+
+All fields mirror the manifest entry. The pack header fields are repeated so individual pack files are self-describing.
+
+---
+
+## Unified Item Format
+
+Every item in a unified pack has a fixed outer envelope:
+
+```json
+{
+  "id":     "y7_birthdays_and_months_001",
+  "type":   "vocab",
+  "level":  "Y7",
+  "topics": ["birthdays", "birthdays & months"],
+  "tags":   ["Y7", "custom", "cat:months"],
+  "data":   { …type-specific-fields… }
+}
+```
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `id` | string | Unique item ID within the pack |
+| `type` | string | Item kind — see table below |
+| `level` | string | Year level (e.g. `"Y7"`, `"Stage 1"`) |
+| `topics` | string[] | Topic labels for filtering |
+| `tags` | string[] | Additional labels (origin, category, etc.) |
+| `data` | object | Polymorphic payload — shape depends on `type` |
+
+### Valid item `type` values
+
+| Type | Used by | Quiz mode |
+|------|---------|-----------|
+| `vocab` | Revision packs, core | Word choice, word type, fill-blank |
+| `sentence` | Revision packs, core | Sentence build, sentence type |
+| `sequence` | Revision packs | Sequence ordering |
+| `categorySort` | Revision packs | Category sorting |
+| `fillBlank` | Revision packs | Gap-fill |
+| `sentenceBuilder` | Sentence builder packs | Builder tab (standalone) |
+| `passage` | Passage packs | Reading tab |
+
+---
+
+## Item Types: `vocab`
+
+```json
+{
+  "id":     "y7_birthdays_and_months_001",
+  "type":   "vocab",
+  "level":  "Y7",
+  "topics": ["birthdays", "birthdays & months"],
+  "tags":   ["Y7", "custom", "cat:months"],
+  "data": {
+    "partOfSpeech": "noun",
+    "gender":       "m",
+    "plural":       "die Geburtstage",
+    "translations": {
+      "de-DE": "der Geburtstag",
+      "en-GB": "birthday"
+    }
   }
 }
 ```
 
-### Backwards compatibility
+| Data field | Type | Notes |
+|------------|------|-------|
+| `translations` | `Record<code, string>` | **Preferred (schema 1.1).** BCP-47 keys. Prefer `de-DE`/`en-GB` over `de`/`en` for clarity. |
+| `examples` | `Record<code, string>` | Example sentence per language |
+| `partOfSpeech` | string | e.g. `"noun"`, `"verb"`, `"det"` |
+| `gender` | string? | Noun gender: `m` \| `f` \| `n`; `null` for non-nouns |
+| `plural` | string? | Noun plural form |
+| `sourceWord` | string | **Legacy fallback.** Used if `translations` is absent. |
+| `targetWord` | string | **Legacy fallback.** |
 
-The loaders in `src/quiz.js` (`makeVocabChoiceFromUnified`, `makeSentenceFromUnified`)
-and `src/react/utils/packAdapters.js` (`normaliseUnifiedItem`) all check for `translations`
-first, then fall back to legacy fields. Existing packs continue to work without migration.
+> **Language code priority:** The quiz engine reads `translations[sourceLanguageCode]` for the study side and `translations[targetLanguageCode]` for the target side, falling back to `translations["de-DE"]` → `translations["en-GB"]` → `sourceWord`/`targetWord` in order.
 
-To migrate a pack to schema 1.1:
+---
 
-```bash
-python3 scripts/migrate_vocab_translations.py --apply
+## Item Types: `sentence`
+
+```json
+{
+  "id":     "Y7-SENT-0001",
+  "type":   "sentence",
+  "level":  "Y7",
+  "topics": ["family", "tiffin 10-19"],
+  "tags":   [],
+  "data": {
+    "translations": {
+      "de-DE": "In meiner Familie gibt es fünf Personen…",
+      "en-GB": "In my family there are five people…"
+    }
+  }
+}
 ```
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `translations` | `Record<code, string>` | **Preferred (schema 1.1).** |
+| `sourceSentence` | string | **Legacy fallback.** |
+| `targetSentence` | string | **Legacy fallback.** |
+| `sourceLanguage` | string | **Legacy.** Non-BCP-47 code (`"de"`, `"en"`). |
+| `targetLanguage` | string | **Legacy.** |
+
+---
+
+## Item Types: `sequence`
+
+```json
+{
+  "id":     "seq_001",
+  "type":   "sequence",
+  "level":  "Y7",
+  "topics": [],
+  "tags":   [],
+  "data": {
+    "title":       "How a Glacier Forms",
+    "instruction": "Put the glacier formation steps in the correct order.",
+    "items": [
+      "More snow falls than melts.",
+      "Snow builds up. This is called accumulation.",
+      "Layers of snow are compressed.",
+      "The snow becomes dense firn.",
+      "Over hundreds of years, firn becomes glacier ice.",
+      "The ice slides downhill due to gravity."
+    ],
+    "shuffle": true
+  }
+}
+```
+
+The `items` array is shown to the user in shuffled order. They tap two items to swap positions until the order is correct.
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `title` | string | Question prompt |
+| `instruction` | string | Guidance shown below the title |
+| `items` | string[] | Ordered steps; UI shuffles on load |
+| `shuffle` | boolean | Whether to shuffle on load (default: `true`) |
+
+---
+
+## Item Types: `categorySort`
+
+```json
+{
+  "id":     "cat_001",
+  "type":   "categorySort",
+  "level":  "Y7",
+  "topics": [],
+  "tags":   [],
+  "data": {
+    "title":       "Weathering or Erosion?",
+    "instruction": "Sort each process into the correct category.",
+    "categories":  ["Weathering", "Erosion"],
+    "pairs": [
+      { "text": "freeze-thaw",                   "category": "Weathering" },
+      { "text": "plucking",                      "category": "Erosion"    },
+      { "text": "abrasion",                      "category": "Erosion"    },
+      { "text": "rock broken in cracks by ice", "category": "Weathering" },
+      { "text": "rocks scraped along valley floor", "category": "Erosion" }
+    ]
+  }
+}
+```
+
+The UI shows all `pairs[].text` values in a tile pool. The user taps a tile to select it, then taps a category column to place it.
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `title` | string | Question prompt |
+| `instruction` | string | Guidance |
+| `categories` | string[] | Column headers — any number of columns supported |
+| `pairs` | `Array<{text, category}>` | `text` shown to user; `category` is the correct column |
+
+> Note: `pairs` is used for backwards compatibility. New exports should use `items` as an alias.
+
+---
+
+## Item Types: `fillBlank`
+
+```json
+{
+  "id":     "gap_001",
+  "type":   "fillBlank",
+  "level":  "Y7",
+  "topics": [],
+  "tags":   [],
+  "data": {
+    "sentence": "The build-up of snow where more falls than melts is called ____.",
+    "answer":   "accumulation",
+    "hint":     "Starts with 'a'"
+  }
+}
+```
+
+Rendered as either a typed input or a button-grid of options (the UI picks based on what `options` are present — see variant below).
+
+```json
+"data": {
+  "sentence": "The build-up of snow where more falls than melts is called ____.",
+  "answer":   "accumulation",
+  "options":  ["accumulation", "abrasion", "plucking", "firn"]
+}
+```
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `sentence` | string | Prompt with `____` placeholder |
+| `answer` | string | Correct answer (used for typed mode) |
+| `hint` | string? | Optional hint shown to the student |
+| `options` | string[]? | Multiple-choice options; if present, rendered as a button grid |
+
+---
+
+## Item Types: `sentenceBuilder`
+
+```json
+{
+  "id":     "black_death_builder_001",
+  "type":   "sentenceBuilder",
+  "level":  "KS3 / Year 7",
+  "topics": [],
+  "tags":   ["key_date"],
+  "data": {
+    "cardType": "key_date",
+    "prompt":   "When did the Black Death arrive in England?",
+    "answer":   "The Black Death arrived in England in June 1348.",
+    "tiles": [
+      "The", "Black", "Death", "arrived", "in", "England", "in", "June", "1348."
+    ]
+  }
+}
+```
+
+Used by the **Builder tab** (standalone tile drill, independent of quiz flow).
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `cardType` | string | Card category: `key_date`, `key_term`, `example_sentence`… |
+| `prompt` | string | Short prompt or date shown above the tile bank |
+| `answer` | string | The complete correct sentence |
+| `tiles` | string[] | Word fragments — shuffled into the tile bank on load |
+
+---
+
+## Item Types: `passage`
+
+```json
+{
+  "id":     "careers_01",
+  "type":   "passage",
+  "level":  "GCSE",
+  "topics": ["careers"],
+  "tags":   [],
+  "data": {
+    "chapter":       "BBC Bitesize - GCSE German",
+    "section":       "Careers",
+    "sourceTitle":   "Arzt im Krankenhaus",
+    "targetTitle":   "Doctor",
+    "sourcePassage": "Ich möchte als Arzt arbeiten…",
+    "targetPassage": "I would like to work as a doctor…",
+    "speechLanguage": "de-DE",
+    "questions": [
+      {
+        "id":                  "q1",
+        "questionType":        "multiple_choice",
+        "difficulty":          "medium",
+        "question_en":         "What does the student want to be?",
+        "options":             ["A doctor", "A teacher", "A farmer", "A driver"],
+        "correctOptionIndex":   0,
+        "modelAnswer":         "A doctor",
+        "acceptedKeywords":    ["doctor"]
+      }
+    ]
+  }
+}
+```
+
+Used by the **Reading tab**.
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `chapter` | string | Chapter label (shown as eyebrow above title) |
+| `section` | string | Section label |
+| `sourceTitle` | string | Title in the source language |
+| `targetTitle` | string | Title in the target language |
+| `sourcePassage` | string | Full source-language text (TTS reads this) |
+| `targetPassage` | string | Target-language translation |
+| `speechLanguage` | string | BCP-47 TTS language code (e.g. `"de-DE"`, `"en-GB"`) |
+| `questions` | `PassageQuestion[]` | Comprehension questions |
+
+### PassageQuestion
+
+```json
+{
+  "id":                  "q1",
+  "questionType":        "multiple_choice",
+  "difficulty":          "medium",
+  "question_en":         "What does the student want to be?",
+  "options":             ["A doctor", "A teacher", "A farmer", "A driver"],
+  "correctOptionIndex":   0,
+  "modelAnswer":         "A doctor",
+  "acceptedKeywords":    ["doctor"]
+}
+```
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | string | Question ID |
+| `questionType` | string | `"open"` (typed) or `"multiple_choice"` |
+| `difficulty` | string | `"easy"` \| `"medium"` \| `"hard"` |
+| `question_en` | string | The question text |
+| `options` | string[] | MCQ options (required if `questionType === "multiple_choice"`) |
+| `correctOptionIndex` | number | 0-based index of the correct option |
+| `modelAnswer` | string | Model answer for open questions |
+| `acceptedKeywords` | string[] | Keywords for keyword-based marking |
+
+---
+
+## Subject First Quiz Flow
+
+The Quiz Setup UI (introduced in PR #13) uses `subject` to group packs into four buckets: Language, History, Geography, Science.
+
+For **Language packs** (`subject === "language"`), an additional direction toggle appears in Quiz Setup:
+
+```
+[ German → English ]   [ English → German ]
+```
+
+This sets the quiz direction (`studyToTarget` vs `targetToStudy`), which controls whether vocab prompts show the source word or the target word.
+
+For **non-language packs** (`history`, `geography`, `science`), the direction toggle is hidden — prompts always show the pack's `sourceLanguageLabel`. Only one quiz direction is valid for knowledge-revision packs.
+
+---
+
+## Current Packs Summary
+
+### Revision packs
+
+| ID | Subject | Source | Target | Items |
+|----|---------|--------|--------|-------|
+| `core` | language | German (de-DE) | English (en-GB) | 979 (879 vocab + 100 sentences) |
+| `y7_german_full` | language | German (de-DE) | English (en-GB) | 426 (326 vocab + 100 sentences) |
+| `y7_chapter2_review` | language | German (de-DE) | English (en-GB) | 21 vocab |
+| `y7_learning_goals_test` | language | German (de-DE) | English (en-GB) | 0 (mock test) |
+| `cambridge_latin_stages` | language | Latin (la-Latn) | English (en-GB) | 656 vocab (12 stages) |
+| `black_death` | history | English (en-GB) | English (en-GB) | 89 (61 vocab + 28 sentences) |
+| `ks3_geography_glaciation_1` | geography | English (en-GB) | German (de-DE) | 32 (18 vocab + 2 seq + 2 sort + 10 gaps) |
+
+### Sentence builder packs
+
+| ID | Display name | Items |
+|----|-------------|-------|
+| `black_death` | Black Death | 22 |
+| `silk_road_y7` | Silk Road Y7 | 23 |
+
+### Passage groups
+
+| ID | Display name | Passages |
+|----|-------------|---------|
+| `bbc_bitesize_gcse_german` | BBC Bitesize GCSE German | 16 |
+| `dino_lernt_deutsch` | Dino Lernt Deutsch | 16 |
+| `ferien_in_frankfurt` | Ferien in Frankfurt | — |
+| `gcse_geography` | GCSE Geography | 2 |
+| `ks3_history` | KS3 History | — |
+| `deutsche_welle_nicos_weg` | Deutsche Welle Nicos Weg | — |
+| `others` | Others | — |
+
+---
+
+## Schema Version History
+
+| Version | Date | Change |
+|---------|------|--------|
+| 1.0 | 2026-05-01 | Initial unified schema: single `pack_unified.json` per pack, basic `translations` dict |
+| 1.1 | 2026-05-02 | `examples` dict for per-language example sentences; `questionType` renamed from `type`; `PassageQuestion.correctOptionIndex` (numeric) replaces `correct_option_index` (legacy snake-case alias retained) |
+
+---
+
+## Adding a New Pack
+
+1. Create the pack directory: `data/Packs/[pack-id]/`
+2. Create `pack_unified.json` with the [unified pack header](#unified-pack-format-pack_unifiedjson) and items
+3. Add an entry to `revisionPacks[]` in `data/generated/manifest.json`
+4. Set `supportsSentences: false` if the pack has no sentence items
+5. Run `python3 scripts/validate_unified.py` to check the pack
