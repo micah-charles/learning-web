@@ -214,10 +214,12 @@ export async function loadVocabItems(manifest, datasetId) {
       topic:     Array.isArray(item.topics) ? item.topics[0] || "" : "",
       tags:      item.tags || [],
       level:     item.level || "",
+      // Derive numeric stage from level string (e.g. "Stage 1" -> 1)
+      // Needed by filterWordsForScope for Cambridge Latin Stages
+      stage:     parseInt(String(item.level || "").replace("Stage ", ""), 10) || d.stage || null,
       part_of_speech: d.partOfSpeech || d.pos || "",
       headword:  translations[srcCode] || d.sourceWord || d.de || "",
       english_equivalent: translations[tgtCode] || d.targetWord || d.en || "",
-      stage:     d.stage,
       stage_label: d.stageLabel || d.stage_label,
       categories: item.topics || [],
       // Keep the original unified item data for quiz.js

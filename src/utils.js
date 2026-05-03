@@ -81,6 +81,16 @@ export function levelMatches(level, selectedYear) {
   if (!selectedYear || selectedYear === "ALL") {
     return true;
   }
+  // Handle stage-based packs (e.g. "Stage 1") vs year-based ("Y7")
+  // "Stage 1" matches when year is "Stage 1" or when selectedYear is numeric "1"
+  const stageMatch = String(level || "").match(/^Stage\s+(\d+)$/i);
+  if (stageMatch) {
+    const itemStage = stageMatch[1];
+    // Match against a numeric year selection (e.g. "1" matches "Stage 1")
+    if (selectedYear.replace(/\D/g, "") === itemStage) {
+      return true;
+    }
+  }
   return stringValue(level).toUpperCase().includes(selectedYear.toUpperCase());
 }
 
