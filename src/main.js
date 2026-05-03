@@ -16,6 +16,10 @@ import {
   loadFillBlankItems,
   loadUnifiedPack,
   filterUnifiedItems,
+  SUBJECTS,
+  getDatasetSubject,
+  listDatasetsBySubject,
+  getDatasetDirections,
 } from "./data.js";
 import {
   createQuizSession,
@@ -26,6 +30,7 @@ import {
   makeSequenceQuestions,
   makeCategorySortQuestions,
   makeFillBlankQuestions,
+  resolveQuizModesForUI,
 } from "./quiz.js";
 import {
   DEFAULT_STATE,
@@ -571,12 +576,28 @@ async function renderVocabTab() {
 }
 
 async function renderQuizTab() {
+  // Sanitize prefs: prefs.subject is the source of truth for which subject card
+  // is highlighted, but if it ever drifts out of sync with the selected
+  // dataset's subject, the dataset wins. Also default fields if missing
+  // (older persisted state from before the Subject First refactor).
   const prefs = persisted.prefs.quiz;
-  const dataset = findDataset(runtime.manifest, prefs.datasetId);
+  if (!prefs.subject) prefs.subject = "language";
+  if (!prefs.direction) prefs.direction = "studyToTarget";
+  if (!prefs.answerMode) prefs.answerMode = "mixed";
+
+  let dataset = findDataset(runtime.manifest, prefs.datasetId);
+  const datasetSubject = getDatasetSubject(dataset);
+  if (datasetSubject !== prefs.subject) {
+    // Either the user just clicked a subject and we haven't switched dataset
+    // yet (handled in the click handler), or we hit some inconsistency.
+    // Trust the dataset and snap subject to match it.
+    prefs.subject = datasetSubject;
+    saveStoredState(persisted);
+  }
+
   const words = await loadVocabItems(runtime.manifest, dataset.id);
   const filteredWords = filterWordsForScope(words, dataset, prefs);
   const mastered = countMasteredWords(persisted, filteredWords);
-  const questionModes = getQuestionModes(dataset);
 
   if (runtime.currentQuiz && runtime.currentQuiz.completed) {
     const last = runtime.currentQuiz;
@@ -593,7 +614,7 @@ async function renderQuizTab() {
         <div class="question-meta">
           <div>
             <h2>Quiz setup</h2>
-            <p class="muted tiny">Build a mixed quiz using ${escapeHtml(getStudyLanguageLabel(dataset))} and ${escapeHtml(getTargetLanguageLabel(dataset))} practice.</p>
+            <p class="muted tiny">Build a clean quiz from your selected topic.</p>
           </div>
           <div class="chip-row">
             <span class="count-pill blue">${filteredWords.length} words in scope</span>
@@ -601,8 +622,10 @@ async function renderQuizTab() {
           </div>
         </div>
 
+        ${renderSubjectCardGrid(prefs.subject)}
+
         <div class="form-grid" style="margin-top:18px;">
-          ${renderDatasetSelect("quiz-dataset", prefs.datasetId)}
+          ${renderDatasetSelectFiltered("quiz-dataset", prefs.datasetId, prefs.subject)}
           ${usesStageSelection(dataset)
             ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : renderYearSelect("quiz-year", prefs.year)}
@@ -616,23 +639,9 @@ async function renderQuizTab() {
           </div>
         </div>
 
-        <div class="field" style="margin-top:18px;">
-          <div class="fieldset-title">Question mix</div>
-          <div class="question-mode-list">
-            ${questionModes.map(
-              (mode) => `
-                <label class="mode-check">
-                  <input type="checkbox" data-mode-id="${mode.id}" name="quiz-mode" ${prefs.modes.includes(mode.id) ? "checked" : ""} />
-                  <span>
-                    <strong>${escapeHtml(mode.title)}</strong><br />
-                    <span class="muted tiny">${escapeHtml(mode.help)}</span>
-                  </span>
-                </label>
-              `,
-            ).join("")}
-          </div>
-        </div>
-        ${dataset.supportsSentences === false ? `<p class="muted tiny" style="margin-top:12px;">This pack is word-only, so sentence modes are hidden automatically.</p>` : ""}
+        ${prefs.subject === "language" ? renderDirectionToggle(dataset, prefs.direction) : ""}
+
+        ${renderAnswerModePills(prefs.answerMode)}
 
         <div class="action-row" style="margin-top:18px;">
           <button class="button" data-action="start-quiz">Start quiz</button>
@@ -1371,6 +1380,113 @@ function renderDatasetSelect(id, currentValue) {
   );
 }
 
+// ─── Subject First render helpers ───────────────────────────────────────
+
+const SUBJECT_LABELS = {
+  language:  { label: "Language",  icon: "🌐" },
+  history:   { label: "History",   icon: "📜" },
+  geography: { label: "Geography", icon: "🌍" },
+  science:   { label: "Science",   icon: "🔬" },
+};
+
+function renderSubjectCardGrid(activeSubject) {
+  const cards = SUBJECTS.map((subject) => {
+    const meta = SUBJECT_LABELS[subject];
+    const datasets = listDatasetsBySubject(runtime.manifest, subject);
+    const isActive = subject === activeSubject;
+    const isEmpty = datasets.length === 0;
+    const classes = ["subject-card"];
+    if (isActive) classes.push("is-active");
+    if (isEmpty) classes.push("is-empty");
+    const button = isEmpty ? "" : `data-action="select-subject" data-value="${escapeHtml(subject)}"`;
+    return `
+      <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
+        <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
+        <span class="subject-label">${escapeHtml(meta.label)}</span>
+        ${isEmpty
+          ? `<span class="subject-meta">Coming soon</span>`
+          : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">What are you learning?</div>
+      <div class="subject-card-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function renderDatasetSelectFiltered(id, currentValue, subject) {
+  const datasets = listDatasetsBySubject(runtime.manifest, subject);
+  if (!datasets.length) {
+    return `
+      <div class="field">
+        <label>Dataset</label>
+        <p class="muted tiny" style="margin-top:6px;">No datasets yet for this subject.</p>
+      </div>
+    `;
+  }
+  return renderSelectField(
+    id,
+    "Dataset",
+    datasets.map((dataset) => ({
+      value: dataset.id,
+      label: `${dataset.displayName}${dataset.wordCount ? ` (${dataset.wordCount})` : ""}`,
+    })),
+    currentValue,
+  );
+}
+
+function renderDirectionToggle(dataset, currentDirection) {
+  const directions = getDatasetDirections(dataset);
+  if (!directions.length) return "";
+  const buttons = directions.map((dir) => {
+    const isActive = dir.id === currentDirection;
+    return `
+      <button type="button"
+              class="pill-button ${isActive ? "is-active" : ""}"
+              data-action="select-direction"
+              data-value="${escapeHtml(dir.id)}">
+        ${escapeHtml(dir.label)}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">Direction</div>
+      <div class="pill-row">${buttons}</div>
+    </div>
+  `;
+}
+
+const ANSWER_MODE_LABELS = [
+  { id: "mcq",   label: "Multiple Choice", help: "Pick from options" },
+  { id: "typed", label: "Type Answer",     help: "Type the answer" },
+  { id: "mixed", label: "Mixed Mode",      help: "A bit of both" },
+];
+
+function renderAnswerModePills(currentMode) {
+  const buttons = ANSWER_MODE_LABELS.map((mode) => {
+    const isActive = mode.id === currentMode;
+    return `
+      <button type="button"
+              class="pill-button mode-pill ${isActive ? "is-active" : ""}"
+              data-action="select-answer-mode"
+              data-value="${escapeHtml(mode.id)}">
+        <strong>${escapeHtml(mode.label)}</strong>
+        <span class="muted tiny">${escapeHtml(mode.help)}</span>
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">How to answer?</div>
+      <div class="pill-row mode-pill-row">${buttons}</div>
+    </div>
+  `;
+}
+
 function renderYearSelect(id, currentValue) {
   return renderSelectField(
     id,
@@ -1455,6 +1571,28 @@ async function handleClick(event) {
       return;
     case "start-quiz":
       await startQuiz();
+      return;
+    case "select-subject": {
+      // Switch to a new subject and pick its first dataset automatically.
+      const nextSubject = actionButton.dataset.value;
+      const datasets = listDatasetsBySubject(runtime.manifest, nextSubject);
+      if (!datasets.length) return; // disabled card was clicked somehow
+      persisted.prefs.quiz.subject = nextSubject;
+      persisted.prefs.quiz.datasetId = datasets[0].id;
+      applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-direction":
+      persisted.prefs.quiz.direction = actionButton.dataset.value;
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    case "select-answer-mode":
+      persisted.prefs.quiz.answerMode = actionButton.dataset.value;
+      saveStoredState(persisted);
+      await renderApp();
       return;
     case "quiz-choice":
       await answerQuizQuestion(actionButton.dataset.value);
@@ -1728,10 +1866,14 @@ async function handleChange(event) {
     case "vocab-category":
       persisted.prefs.vocab.category = value;
       break;
-    case "quiz-dataset":
+    case "quiz-dataset": {
       persisted.prefs.quiz.datasetId = value;
+      // Subject First: keep prefs.subject in lockstep with the dataset.
+      const newDataset = findDataset(runtime.manifest, value);
+      persisted.prefs.quiz.subject = getDatasetSubject(newDataset);
       applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
       break;
+    }
     case "quiz-year":
       persisted.prefs.quiz.year = value;
       break;
@@ -1833,10 +1975,20 @@ async function startQuiz(customWords = null, label = null) {
   // Try to load unified pack (preferred path)
   const unifiedPack = await loadUnifiedPack(runtime.manifest, prefs.datasetId);
 
+  // Subject First adapter: translate the high-level UI selections into the
+  // legacy mode-ID array the question engine expects. This replaces the old
+  // checkbox-driven `prefs.modes` for the running session, while still
+  // persisting prefs.modes as a safety net.
+  const resolvedModes = resolveQuizModesForUI({
+    subject: getDatasetSubject(dataset),
+    direction: prefs.direction,
+    answerMode: prefs.answerMode,
+  });
+
   const session = createQuizSession({
     words,
     sentencePools,
-    config: prefs,
+    config: { ...prefs, modes: resolvedModes },
     persistedState: persisted,
     customWords,
     label,
