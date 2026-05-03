@@ -28,10 +28,20 @@ const LANG_NORM = {
  * @param {string|null|undefined} code
  * @returns {string} BCP-47 code, e.g. "de-DE", "en-GB", "la-Latn"
  */
+/**
+ * Normalise a language code string to BCP-47 form.
+ * Short codes (de, en, la) are mapped to canonical BCP-47 (de-DE, en-GB, la-Latn).
+ * Already-normalised codes (en-GB, la-Latn) are returned as-is (case preserved).
+ * @param {string|null|undefined} code
+ * @returns {string} BCP-47 code, e.g. "de-DE", "en-GB", "la-Latn"
+ */
 export function normLang(code) {
   if (!code) return "de-DE";
-  const lower = String(code).toLowerCase().replace("_", "-");
-  return LANG_NORM[lower] || lower;
+  const normalized = String(code).toLowerCase().replace("_", "-");
+  const mapped = LANG_NORM[normalized];
+  // If we have a mapping (short form like "de", "en", "la"), use it.
+  // Otherwise return the original string to preserve case (e.g. "en-GB").
+  return mapped || code;
 }
 
 /**
