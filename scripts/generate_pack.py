@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_pack.py — call an AI (Anthropic or OpenAI) to generate a Learning
+generate_pack.py — call an AI (Anthropic, OpenAI, or Codex) to generate a Learning
 Web pack, parse the response, validate it, and stage it for review.
 
 The system prompt is loaded from `docs/pack-generation-prompt.md` (the
@@ -63,11 +63,16 @@ Environment
 
     ANTHROPIC_API_KEY   required when --provider anthropic
     OPENAI_API_KEY      required when --provider openai
+    CODEX_API_KEY       required when --provider codex
 
 Install
 -------
 
     pip3 install anthropic openai --break-system-packages
+
+    # Codex CLI (for --provider codex):
+    npm i -g @openai/codex
+    codex  # login / auth first
 
 Exit codes
 ----------
@@ -123,9 +128,9 @@ def parse_args() -> argparse.Namespace:
     # Template variables
     p.add_argument("--subject", required=True, choices=sorted(ALLOWED_SUBJECTS),
                    help="Subject bucket")
-    p.add_argument("--topic", required=True, help="Topic title (e.g. 'The Black Death')")
-    p.add_argument("--level", required=True, help="Year level (e.g. 'Y7', 'GCSE', 'KS3 / Year 7')")
-    p.add_argument("--pack-id", required=True, help="snake_case pack ID")
+    p.add_argument("--topic", default=None, help="Topic title (e.g. 'The Black Death')")
+    p.add_argument("--level", default=None, help="Year level (e.g. 'Y7', 'GCSE', 'KS3 / Year 7')")
+    p.add_argument("--pack-id", default=None, help="snake_case pack ID")
     p.add_argument("--group-id", default="",
                    help="snake_case passage-group ID (empty = skip passage pack)")
     p.add_argument("--curriculum", default="",
@@ -144,11 +149,17 @@ def parse_args() -> argparse.Namespace:
                    help="BCP-47 TTS code (default: same as --source-code)")
 
     # AI provider
-    p.add_argument("--provider", choices=["anthropic", "openai"], default="anthropic",
+    p.add_argument("--provider", choices=["anthropic", "openai", "codex"], default="anthropic",
                    help="AI provider (default: anthropic)")
     p.add_argument("--model", default=None,
                    help=f"Model override. Defaults: anthropic={DEFAULT_ANTHROPIC_MODEL}, "
                         f"openai={DEFAULT_OPENAI_MODEL}")
+    p.add_argument("--reasoning-effort", default=None,
+                   help="OpenAI reasoning effort (low|medium|high). Optional.")
+    p.add_argument("--log-dir", default=None, metavar="DIR",
+                   help="Directory for timestamped log files. Created if absent.")
+    p.add_argument("--log-file", default=None, metavar="PATH",
+                   help="Exact path for the log file. Overrides --log-dir.")
 
     # Source materials
     p.add_argument("--source", action="append", default=[], metavar="PATH",
@@ -167,6 +178,21 @@ def parse_args() -> argparse.Namespace:
                    help="Print the rendered prompt and full response")
 
     args = p.parse_args()
+    # For Anthropic/OpenAI, topic/level/pack-id are required
+    if args.provider in ("anthropic", "openai"):
+        missing = [name for name, val in
+                   [("topic", args.topic), ("level", args.level), ("pack-id", args.pack_id)]
+                   if not val]
+        if missing:
+            p.error(f"--topic, --level, --pack-id are required when --provider is {args.provider}. "
+                    "For Codex (--provider codex), these are optional — Codex infers them from source files.")
+    # For Codex, fill in placeholders if not provided so the template renders
+    if args.provider == "codex":
+        args.topic   = args.topic   or "INFER_FROM_SOURCE"
+        args.level    = args.level    or "INFER_FROM_SOURCE"
+        args.pack_id  = args.pack_id  or "INFER_FROM_SOURCE"
+        args.group_id = args.group_id or "INFER_FROM_SOURCE"
+
     if not args.speech_code:
         args.speech_code = args.source_code
     return args
@@ -606,6 +632,338 @@ def dim(s):   return f"\033[2m{s}\033[0m"
 
 # ─── Main ─────────────────────────────────────────────────────────────────
 
+
+# ─── Codex prompt builder ─────────────────────────────────────────────────
+
+def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
+    """Build the text prompt passed to `codex exec`.
+
+    Loads the master template from:
+      REPO_ROOT / "docs" / "pack-generation-prompt.md"
+
+    Substitutes all determinable {{VARIABLES}} then appends:
+      - Source file paths / content
+      - Strict safety rules (write only to generated_packs/<pack_id>/)
+      - STOP instruction
+
+    Variables that cannot be derived from args (e.g. item counts) are left
+    as-is so Codex fills them in as part of generation.
+    """
+    import re as _re
+    import pathlib as _pathlib
+
+    prompt_path = REPO_ROOT / "docs" / "pack-generation-prompt.md"
+    if not prompt_path.exists():
+        raise FileNotFoundError(
+            "Master prompt file not found: "
+            + str(prompt_path)
+            + "\nDownload from:\n"
+            + str(REPO_ROOT / "docs" / "pack-generation-prompt.md")
+        )
+    raw = prompt_path.read_text(encoding="utf-8")
+    m = _re.search(
+        r"(?:^## BEGIN PROMPT\s*\n)(.+?)(?:\s*^## END PROMPT)",
+        raw,
+        _re.DOTALL | _re.MULTILINE,
+    )
+    if m is None:
+        raise ValueError(
+            "Could not find BEGIN PROMPT / END PROMPT fences in " + str(prompt_path)
+        )
+    tmpl = m.group(1).rstrip()
+
+    # ── Build variable substitutions ─────────────────────────────────────
+    group_title = (
+        args.level + " " + args.subject.capitalize() + " \u2014 " + args.topic
+        if not args.group_id
+        else args.group_id.replace("_", " ").title()
+    )
+    file_list = (
+        "\n".join(f"- {att.path}  [{att.kind}]" for att in attachments)
+        if attachments
+        else "(no source files attached \u2014 generate from topic + level)"
+    )
+
+    subs = {
+        "{{SUBJECT}}":              args.subject.capitalize(),
+        "{{SUBJECT_LOWERCASE}}":    args.subject.lower(),
+        "{{TOPIC}}":                (args.topic if args.topic and args.topic != "INFER_FROM_SOURCE" else "{{TOPIC}}"),
+        "{{LEVEL}}":                (args.level  if args.level  and args.level  != "INFER_FROM_SOURCE" else "{{LEVEL}}"),
+        "{{CURRICULUM_CONTEXT}}":   (args.curriculum or "(not specified)"),
+        "{{PACK_ID}}":              (args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "{{PACK_ID}}"),
+        "{{GROUP_ID}}":            (args.group_id if args.group_id and args.group_id != "INFER_FROM_SOURCE" else "{{GROUP_ID}}"),
+        "{{SOURCE_LABEL}}":        args.source_label,
+        "{{SOURCE_CODE}}":         args.source_code,
+        "{{TARGET_LABEL}}":        args.target_label,
+        "{{TARGET_CODE}}":         args.target_code,
+        "{{SPEECH_CODE}}":         (args.speech_code or args.source_code),
+        # Derived
+        "{{HUMAN_TITLE}}":          args.level + " " + args.subject.capitalize() + " \u2014 " + args.topic,
+        "{{SHORT_SUBTITLE_OPTIONAL}}": "Revision pack for " + args.topic,
+        "{{HUMAN_GROUP_TITLE}}":   group_title,
+        # Source file listing
+        "{{SOURCE_FILE_LIST}}":    file_list,
+    }
+
+    # Apply substitutions; leave unknown {{VARIABLES}} as-is
+    def _repl(mo):
+        return subs.get(mo.group(0), mo.group(0))
+
+    prompt_text = _re.sub(r"\{\{[^}]+\}\}", _repl, tmpl)
+
+    # ── Append source materials ───────────────────────────────────────────
+    # Resolve pack_id — INFER_FROM_SOURCE means Codex decides
+    actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<choose-a-pack-id>"
+    out_lines = [prompt_text, ""]
+    out_lines.append("=" * 60)
+    out_lines.append("SOURCE MATERIALS FOR THIS RUN")
+    out_lines.append("=" * 60)
+
+    if attachments:
+        out_lines.append(
+            "The following source files are available on disk. "
+            "Read them directly from their paths."
+        )
+        out_lines.append("")
+        for att in attachments:
+            out_lines.append("  File: " + str(att.path) + "  [kind=" + att.kind + "]")
+            if att.kind != "image":
+                snippet = (att.text or "")
+                limit = 4000
+                for chunk in _chunk(snippet, 500):
+                    out_lines.append("  " + chunk)
+                if len(snippet) > limit:
+                    out_lines.append(
+                        "  [... " + str(len(snippet) - limit) + " more chars truncated ...]"
+                    )
+                out_lines.append("")
+            else:
+                out_lines.append(
+                    "  [IMAGE FILE \u2014 describe what you see in this image for context]"
+                )
+                out_lines.append("  Image path: " + str(att.path))
+                out_lines.append("")
+    else:
+        out_lines.append("No source files attached.")
+        out_lines.append("Use your curriculum knowledge to fill gaps accurately.")
+        out_lines.append("")
+
+    # ── Append safety + output rules ─────────────────────────────────────
+    out_lines.append("=" * 60)
+    out_lines.append("OUTPUT RULES (STRICT \u2014 VIOLATION WILL CAUSE DATA LOSS)")
+    out_lines.append("=" * 60)
+    out_lines.append("")
+    out_lines.append("Write ALL files to the STAGING FOLDER ONLY:")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/")
+    out_lines.append("")
+    out_lines.append("PERMITTED files to create inside that folder:")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/pack_unified.json")
+    out_lines.append(
+        "  generated_packs/" + actual_pack_id + "/sentence_builder_unified.json"
+    )
+    out_lines.append("  generated_packs/" + actual_pack_id + "/passage_unified.json")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/generation_report.md")
+    out_lines.append("")
+    out_lines.append("NEVER write to any of these locations:")
+    out_lines.append("  src/")
+    out_lines.append("  data/")
+    out_lines.append("  public/data/")
+    out_lines.append("  manifest.json")
+    out_lines.append("  docs/")
+    out_lines.append("  Any existing pack folders")
+    out_lines.append("")
+    out_lines.append("After writing all files, STOP. Do not output any more text.")
+    out_lines.append("")
+    out_lines.append(
+        "Do not modify manifest.json or any existing application files."
+    )
+    out_lines.append("")
+    out_lines.append(
+        'Valid JSON only. schemaVersion must be "1.1" on every pack header.'
+    )
+    out_lines.append("British English throughout. No invented dates or quotes.")
+    out_lines.append("")
+
+    return "\n".join(out_lines)
+
+
+def _chunk(text: str, width: int = 500) -> list[str]:
+    """Split text into chunks of at most `width` chars at whitespace boundaries."""
+    words: list[str] = []
+    current = ""
+    for word in text.split():
+        if len(current) + len(word) + 1 <= width:
+            current = (current + " " + word).strip()
+        else:
+            if current:
+                words.append(current)
+            current = word
+    if current:
+        words.append(current)
+    return words
+
+
+# ─── Codex runner ─────────────────────────────────────────────────────────
+
+def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
+    """Run `codex exec <prompt>` as a subprocess with real-time streaming output.
+
+    Each line from Codex is printed immediately to stderr, prefixed with
+    [Codex]. A heartbeat timer prints a "." to stderr every 60 seconds of
+    silence so the caller knows the process is not stuck.
+
+    Args:
+        prompt:  The full text prompt for Codex.
+        timeout: Seconds before killing the subprocess (default 1200 = 20 min).
+
+    Returns:
+        (stdout_text, meta_dict) — stdout_text is the full concatenated output.
+
+    Raises:
+        RuntimeError if the codex command is not found or returns non-zero.
+    """
+    import shutil as _shutil
+    import subprocess as _subprocess
+    import time as _time
+
+    if not _shutil.which("codex"):
+        raise RuntimeError(
+            "Codex CLI not found. Install and login first:\n"
+            "  npm i -g @openai/codex\n"
+            "  codex\n"
+            "Then set CODEX_API_KEY in your environment."
+        )
+
+    repo_root = str(REPO_ROOT)
+    print(f"-> Calling Codex (streaming) in {repo_root}...", file=sys.stderr)
+    print(f"  Prompt: {len(prompt):,} chars  |  Timeout: {timeout}s ({timeout // 60} min)", file=sys.stderr)
+    print(f"  Streaming output below — one [Codex] line per line of output.", file=sys.stderr)
+    print("-" * 60, file=sys.stderr)
+
+    stdout_lines: list[str] = []
+    heartbeat_interval = 60  # seconds between heartbeat dots
+
+    try:
+        process = _subprocess.Popen(
+            ["codex", "exec", prompt],
+            cwd=repo_root,
+            stdout=_subprocess.PIPE,
+            stderr=_subprocess.STDOUT,  # merge stderr into stdout stream
+            text=True,
+            bufsize=1,
+        )
+
+        last_seen = _time.time()
+        first_line = True
+
+        while True:
+            line = process.stdout.readline()
+            if line == "":
+                break  # EOF
+
+            line = line.rstrip()
+            stdout_lines.append(line)
+
+            if first_line and heartbeat_interval:
+                # Give Codex a moment to start before enabling heartbeat
+                first_line = False
+                last_seen = _time.time()
+
+            # Print every line immediately
+            print(f"[Codex] {line}", file=sys.stderr)
+
+            # Heartbeat: dot every heartbeat_interval seconds of silence
+            if heartbeat_interval:
+                now = _time.time()
+                if now - last_seen >= heartbeat_interval:
+                    elapsed = int(now - _time.time() + last_seen)  # rough gap
+                    print(f"[Codex] ... (still running, {elapsed}s since last output)", file=sys.stderr)
+                    last_seen = now
+
+        process.wait(timeout=timeout)
+
+    except _subprocess.TimeoutExpired:
+        process.kill()
+        process.wait()
+        raise RuntimeError(
+            f"Codex timed out after {timeout}s ({timeout // 60} min).\n"
+            f"Output so far ({len(stdout_lines)} lines) saved to generated_packs/."
+        ) from None
+    except OSError as exc:
+        raise RuntimeError(
+            f"Failed to run `codex exec`: {exc}\n"
+            "Make sure the Codex CLI is installed and on your PATH."
+        ) from exc
+
+    print("-" * 60, file=sys.stderr)
+    if process.returncode != 0:
+        raise RuntimeError(
+            f"Codex exited with code {process.returncode}.\n"
+            f"stdout: {stdout_lines[-1]!r}" if stdout_lines else "No stdout captured."
+        )
+
+    return "\n".join(stdout_lines), {"returncode": process.returncode, "timeout": timeout}
+
+
+# ─── Post-Codex validation ────────────────────────────────────────────────
+
+def check_codex_output(pack_id: str) -> list[str]:
+    """Check that Codex wrote the expected files into the staging folder.
+
+    Returns a list of warnings (empty = clean). Does not raise.
+    """
+    warnings: list[str] = []
+    staging = REPO_ROOT / "generated_packs" / pack_id
+
+    if not staging.exists():
+        warnings.append(
+            "Staging folder missing: " + str(staging) + "\n"
+            "Codex may not have written any files."
+        )
+        return warnings
+
+    pack_path = staging / "pack_unified.json"
+    if not pack_path.exists():
+        warnings.append(
+            "Expected file not found: generated_packs/" + pack_id + "/pack_unified.json"
+        )
+    else:
+        try:
+            json.loads(pack_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            warnings.append(
+                "Invalid JSON in generated_packs/" + pack_id + "/pack_unified.json: " + str(exc)
+            )
+
+    json_files = list(staging.glob("*.json"))
+    if not json_files:
+        warnings.append(
+            "No .json files found in staging folder.\n"
+            "Codex may not have created any pack files."
+        )
+
+    if not (staging / "generation_report.md").exists():
+        warnings.append(
+            "generation_report.md not found (optional but recommended)."
+        )
+
+    if staging.exists():
+        print("\nStaging contents (" + str(staging) + "):", file=sys.stderr)
+        for f in sorted(staging.iterdir()):
+            size = f.stat().st_size
+            note = ""
+            if f.suffix == ".json":
+                try:
+                    d = json.loads(f.read_text(encoding="utf-8"))
+                    note = "  [" + str(len(d.get("items", []))) + " items]" if isinstance(d, dict) else ""
+                except Exception:
+                    note = "  [invalid JSON]"
+            print(f"  - {f.name}  ({size:,} bytes){note}", file=sys.stderr)
+
+    return warnings
+
+
+
 def main() -> int:
     args = parse_args()
 
@@ -630,8 +988,20 @@ def main() -> int:
     try:
         if args.provider == "anthropic":
             response_text, api_meta = call_anthropic(rendered_prompt, user_blocks, model)
-        else:
+        elif args.provider == "openai":
             response_text, api_meta = call_openai(rendered_prompt, user_blocks, model)
+        elif args.provider == "codex":
+            codex_prompt = build_codex_prompt(args, attachments)
+            if args.verbose:
+                print(dim("--- codex prompt ---"), file=sys.stderr)
+                print(codex_prompt[:2000], file=sys.stderr)
+                print(dim("... [truncated]"), file=sys.stderr)
+                print(dim("--- end prompt ---"), file=sys.stderr)
+            codex_out, codex_meta = call_codex_agent(codex_prompt)
+            response_text = codex_out
+            api_meta = {"provider": "codex", **codex_meta}
+        else:
+            die(f"Unknown provider: {args.provider}", code=1)
     except SystemExit:
         raise
     except Exception as e:
@@ -652,9 +1022,9 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "provider": args.provider,
         "model": model,
-        "args": {k: v for k, v in vars(args).items() if k != "source"},
+        "args": {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items() if k != "source"},
         "sources": [str(a.path) for a in attachments],
-        "api_meta": api_meta,
+        "api_meta": {k: v for k, v in api_meta.items() if k != "cwd"},
     }
 
     try:
@@ -710,6 +1080,26 @@ def main() -> int:
         print(red(f"{len(all_warnings)} validation warning(s) above. Review before promoting."),
               file=sys.stderr)
         # Don't fail the run on warnings — they're advisory.
+
+    # ── Codex post-check ────────────────────────────────────────────────
+    if args.provider == "codex":
+        print("", file=sys.stderr)
+        print(dim("--- Codex post-check ---"), file=sys.stderr)
+        codex_warnings = check_codex_output(args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<check-staging-folder>")
+        for w in codex_warnings:
+            print(f"  {red("!")} {w}", file=sys.stderr)
+        if not codex_warnings:
+            print(f"  {green('+')} Staging folder looks good.", file=sys.stderr)
+
+        print("", file=sys.stderr)
+        print(green("Codex generation completed."), file=sys.stderr)
+        actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<pack-id-from-pack_decision.json>"
+        print("Staging folder: generated_packs/" + actual_pack_id, file=sys.stderr)
+        print("", file=sys.stderr)
+        print("Next step:", file=sys.stderr)
+        actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<pack-id-from-pack_decision.json>"
+        print("  python3 scripts/validate_pack.py generated_packs/" + actual_pack_id, file=sys.stderr)
+        print("  python3 scripts/promote_pack.py generated_packs/" + actual_pack_id, file=sys.stderr)
 
     return 0
 
