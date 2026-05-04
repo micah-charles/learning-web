@@ -818,8 +818,6 @@ def _chunk(text: str, width: int = 500) -> list[str]:
 def call_codex_agent(
     prompt: str,
     timeout: int = 1200,
-    model: Optional[str] = None,
-    reasoning_effort: Optional[str] = None,
 ) -> tuple[str, dict]:
     """Run `codex exec <prompt>` as a subprocess with real-time streaming output.
 
@@ -860,12 +858,11 @@ def call_codex_agent(
 
     try:
         start_time = _time.time()
-        cmd = ["codex", "exec", "--sandbox", "workspace-write", "--cd", repo_root]
-        if model:
-            cmd.extend(["--model", model])
-        if reasoning_effort:
-            cmd.extend(["-c", f'model_reasoning_effort="{reasoning_effort}"'])
-        cmd.append(prompt)
+        # Do not forward --model/--reasoning-effort yet. Older Codex CLI/app
+        # versions reject newer model names such as gpt-5.5 before the prompt
+        # can run. Keep those CLI flags as run metadata until provider-version
+        # detection is added.
+        cmd = ["codex", "exec", "--sandbox", "workspace-write", "--cd", repo_root, prompt]
 
         process = _subprocess.Popen(
             cmd,
@@ -1098,11 +1095,7 @@ def main() -> int:
                 print(codex_prompt[:2000], file=sys.stderr)
                 print(dim("... [truncated]"), file=sys.stderr)
                 print(dim("--- end prompt ---"), file=sys.stderr)
-            codex_out, codex_meta = call_codex_agent(
-                codex_prompt,
-                model=args.model,
-                reasoning_effort=args.reasoning_effort,
-            )
+            codex_out, codex_meta = call_codex_agent(codex_prompt)
             response_text = codex_out
             api_meta = {"provider": "codex", **codex_meta}
         else:
