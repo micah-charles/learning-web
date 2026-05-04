@@ -957,9 +957,9 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "provider": args.provider,
         "model": model,
-        "args": {k: v for k, v in vars(args).items() if k != "source"},
+        "args": {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(args).items() if k != "source"},
         "sources": [str(a.path) for a in attachments],
-        "api_meta": api_meta,
+        "api_meta": {k: v for k, v in api_meta.items() if k != "cwd"},
     }
 
     try:
