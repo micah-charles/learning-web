@@ -815,7 +815,12 @@ def _chunk(text: str, width: int = 500) -> list[str]:
 
 # ─── Codex runner ─────────────────────────────────────────────────────────
 
-def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
+def call_codex_agent(
+    prompt: str,
+    timeout: int = 1200,
+    model: Optional[str] = None,
+    reasoning_effort: Optional[str] = None,
+) -> tuple[str, dict]:
     """Run `codex exec <prompt>` as a subprocess with real-time streaming output.
 
     Each line from Codex is printed immediately to stderr, prefixed with
@@ -855,8 +860,15 @@ def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
 
     try:
         start_time = _time.time()
+        cmd = ["codex", "exec", "--sandbox", "workspace-write", "--cd", repo_root]
+        if model:
+            cmd.extend(["--model", model])
+        if reasoning_effort:
+            cmd.extend(["-c", f'model_reasoning_effort="{reasoning_effort}"'])
+        cmd.append(prompt)
+
         process = _subprocess.Popen(
-            ["codex", "exec", prompt],
+            cmd,
             cwd=repo_root,
             stdout=_subprocess.PIPE,
             stderr=_subprocess.STDOUT,  # merge stderr into stdout stream
@@ -958,26 +970,30 @@ def check_codex_output(pack_id: str) -> list[str]:
     return warnings
 
 
-def snapshot_staging_dirs(out_root: Path) -> dict[Path, float]:
+def snapshot_staging_dirs(out_root: Path) -> dict[Path, int]:
     if not out_root.exists():
         return {}
     return {
-        child.resolve(): child.stat().st_mtime
+        child.resolve(): (child / "pack_unified.json").stat().st_mtime_ns
         for child in out_root.iterdir()
-        if child.is_dir()
+        if child.is_dir() and (child / "pack_unified.json").exists()
     }
 
 
-def discover_codex_staging_dir(out_root: Path, pack_id: str, before: dict[Path, float]) -> Optional[Path]:
+def discover_codex_staging_dir(out_root: Path, pack_id: str, before: dict[Path, int]) -> Optional[Path]:
     """Find the folder Codex actually wrote when pack id was inferred."""
     if pack_id and pack_id != "INFER_FROM_SOURCE":
         explicit = (out_root / pack_id).resolve()
-        return explicit if explicit.exists() else None
+        pack_path = explicit / "pack_unified.json"
+        if not pack_path.exists():
+            return None
+        before_mtime = before.get(explicit, 0)
+        return explicit if explicit not in before or pack_path.stat().st_mtime_ns > before_mtime else None
 
     if not out_root.exists():
         return None
 
-    candidates: list[tuple[float, Path]] = []
+    candidates: list[tuple[int, Path]] = []
     for child in out_root.iterdir():
         if not child.is_dir():
             continue
@@ -988,11 +1004,10 @@ def discover_codex_staging_dir(out_root: Path, pack_id: str, before: dict[Path, 
         if not pack_path.exists():
             continue
         before_mtime = before.get(resolved, 0)
-        dir_mtime = child.stat().st_mtime
-        pack_mtime = pack_path.stat().st_mtime
-        changed = resolved not in before or dir_mtime >= before_mtime or pack_mtime >= before_mtime
+        pack_mtime = pack_path.stat().st_mtime_ns
+        changed = resolved not in before or pack_mtime > before_mtime
         if changed:
-            candidates.append((max(dir_mtime, pack_mtime), resolved))
+            candidates.append((pack_mtime, resolved))
 
     if not candidates:
         return None
@@ -1036,6 +1051,22 @@ def write_codex_trace(staging: Path, response_text: str, inputs_meta: dict) -> N
     (staging / "inputs.json").write_text(json.dumps(inputs_meta, indent=2), encoding="utf-8")
 
 
+def codex_reported_write_failure(response_text: str) -> bool:
+    lower = response_text.lower()
+    failure_markers = [
+        "could not complete the write step",
+        "operation not permitted",
+        "writing outside of the project",
+        "read-only",
+        "read only",
+        "blocked operations",
+        "filesystem guard",
+        "approval policy is `never`",
+        "approval policy is never",
+    ]
+    return any(marker in lower for marker in failure_markers)
+
+
 
 def main() -> int:
     args = parse_args()
@@ -1067,7 +1098,11 @@ def main() -> int:
                 print(codex_prompt[:2000], file=sys.stderr)
                 print(dim("... [truncated]"), file=sys.stderr)
                 print(dim("--- end prompt ---"), file=sys.stderr)
-            codex_out, codex_meta = call_codex_agent(codex_prompt)
+            codex_out, codex_meta = call_codex_agent(
+                codex_prompt,
+                model=args.model,
+                reasoning_effort=args.reasoning_effort,
+            )
             response_text = codex_out
             api_meta = {"provider": "codex", **codex_meta}
         else:
@@ -1098,6 +1133,16 @@ def main() -> int:
     }
 
     if args.provider == "codex":
+        if codex_reported_write_failure(response_text):
+            failure_dir = (args.out / f"_failed_codex_run_{datetime.now().strftime('%Y%m%d_%H%M%S')}").resolve()
+            write_codex_trace(failure_dir, response_text, inputs_meta)
+            die(
+                "Codex reported that it could not write staged files. "
+                "No existing pack folder was validated as a substitute.\n"
+                f"Raw Codex output saved to {failure_dir / 'raw_response.txt'}",
+                code=3,
+            )
+
         staging = discover_codex_staging_dir(args.out.resolve(), args.pack_id, codex_before)
         if not staging:
             fallback = (args.out / args.pack_id).resolve()
