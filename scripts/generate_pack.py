@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-generate_pack.py — call an AI (Anthropic, OpenAI, or Codex) to generate a Learning
-Web pack, parse the response, validate it, and stage it for review.
+generate_pack.py — call Codex CLI to generate a Learning Web pack, validate the
+staged files it writes, and leave them under generated_packs/ for review.
 
 The system prompt is loaded from `docs/pack-generation-prompt.md` (the
 section between `## BEGIN PROMPT` / `## END PROMPT` markers). Template
@@ -15,26 +15,15 @@ intentionally NOT updated by this script — a separate merge step does that.
 Usage examples
 --------------
 
-    # Anthropic (default), dry-run a History pack
+    # Codex CLI, with source materials (image + notes)
     python3 scripts/generate_pack.py \\
-        --subject history \\
-        --topic "Norman Conquest" \\
-        --level GCSE \\
-        --pack-id norman_conquest \\
-        --group-id ks3_history \\
-        --curriculum "GCSE History — Medieval" \\
-        --dry-run
-
-    # OpenAI, with source materials (image + notes)
-    python3 scripts/generate_pack.py \\
-        --provider openai \\
+        --provider codex \\
+        --model gpt-5.5 \\
+        --reasoning-effort medium \\
         --subject geography \\
-        --topic "Rivers" \\
-        --level Y8 \\
-        --pack-id ks3_geography_rivers \\
-        --group-id ks3_geography \\
         --source ~/textbook_p47.jpg \\
-        --source ~/notes.md
+        --source ~/notes.md \\
+        --log-file ./logs/run_geography.log
 
     # Folder of source materials — recursively picks up all supported
     # files (images + text), skipping hidden files. Cap is 20 per run;
@@ -58,28 +47,26 @@ Usage examples
         --target-label English --target-code en-GB \\
         --speech-code de-DE
 
-Environment
------------
-
-    ANTHROPIC_API_KEY   required when --provider anthropic
-    OPENAI_API_KEY      required when --provider openai
-    CODEX_API_KEY       required when --provider codex
-
 Install
 -------
 
-    pip3 install anthropic openai --break-system-packages
-
-    # Codex CLI (for --provider codex):
     npm i -g @openai/codex
     codex  # login / auth first
+
+Future provider notes
+---------------------
+
+    Anthropic Claude API and OpenAI API generation were prototyped earlier, but
+    are intentionally disabled in the CLI for now because this project is only
+    tested with Codex CLI. Re-enable them later only when API keys and tests are
+    available.
 
 Exit codes
 ----------
 
     0  success, files written (or printed if --dry-run)
-    1  invalid CLI args / missing prompt / missing API key
-    2  AI call failed
+    1  invalid CLI args / missing prompt / missing Codex CLI
+    2  Codex call failed
     3  parse / validation failed (raw response saved to staging folder)
 """
 
@@ -108,11 +95,50 @@ SUPPORTED_IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "im
                          ".gif": "image/gif", ".webp": "image/webp"}
 SUPPORTED_TEXT_TYPES = {".txt", ".md", ".markdown", ".csv", ".json", ".yaml", ".yml"}
 
-# Default models (override with --model). Choose strong-context, high-quality.
-DEFAULT_ANTHROPIC_MODEL = "claude-opus-4-6"
-DEFAULT_OPENAI_MODEL = "gpt-4o"
-
 MAX_OUTPUT_TOKENS = 16384
+
+
+# ─── Logging ───────────────────────────────────────────────────────────────
+
+class TeeStream:
+    """Mirror stderr/stdout to a log file without changing caller behaviour."""
+
+    def __init__(self, primary, log_handle):
+        self.primary = primary
+        self.log_handle = log_handle
+
+    def write(self, data: str) -> int:
+        self.primary.write(data)
+        self.log_handle.write(data)
+        self.log_handle.flush()
+        return len(data)
+
+    def flush(self) -> None:
+        self.primary.flush()
+        self.log_handle.flush()
+
+
+def configure_logging(args: argparse.Namespace):
+    """Enable tee logging when --log-file or --log-dir is supplied."""
+    log_path: Optional[Path] = None
+    if args.log_file:
+        log_path = Path(args.log_file).expanduser()
+    elif args.log_dir:
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_path = Path(args.log_dir).expanduser() / f"generate_pack_{stamp}.log"
+
+    if not log_path:
+        return None
+
+    if not log_path.is_absolute():
+        log_path = (REPO_ROOT / log_path).resolve()
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    handle = log_path.open("a", encoding="utf-8")
+    handle.write(f"\n===== generate_pack.py {datetime.now(timezone.utc).isoformat()} =====\n")
+    sys.stderr = TeeStream(sys.stderr, handle)
+    sys.stdout = TeeStream(sys.stdout, handle)
+    print(f"Log file: {log_path}", file=sys.stderr)
+    return handle
 
 
 # ─── CLI ──────────────────────────────────────────────────────────────────
@@ -120,7 +146,7 @@ MAX_OUTPUT_TOKENS = 16384
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         prog="generate_pack.py",
-        description="Generate a Learning Web pack via Anthropic or OpenAI.",
+        description="Generate a Learning Web pack via Codex CLI.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
@@ -148,14 +174,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--speech-code", default=None,
                    help="BCP-47 TTS code (default: same as --source-code)")
 
-    # AI provider
-    p.add_argument("--provider", choices=["anthropic", "openai", "codex"], default="anthropic",
-                   help="AI provider (default: anthropic)")
+    # AI provider. Only Codex is currently supported/tested.
+    p.add_argument("--provider", choices=["codex"], default="codex",
+                   help="AI provider (only codex is currently supported)")
     p.add_argument("--model", default=None,
-                   help=f"Model override. Defaults: anthropic={DEFAULT_ANTHROPIC_MODEL}, "
-                        f"openai={DEFAULT_OPENAI_MODEL}")
+                   help="Codex model override, e.g. gpt-5.5")
     p.add_argument("--reasoning-effort", default=None,
-                   help="OpenAI reasoning effort (low|medium|high). Optional.")
+                   help="Codex reasoning effort (low|medium|high). Optional.")
     p.add_argument("--log-dir", default=None, metavar="DIR",
                    help="Directory for timestamped log files. Created if absent.")
     p.add_argument("--log-file", default=None, metavar="PATH",
@@ -178,20 +203,11 @@ def parse_args() -> argparse.Namespace:
                    help="Print the rendered prompt and full response")
 
     args = p.parse_args()
-    # For Anthropic/OpenAI, topic/level/pack-id are required
-    if args.provider in ("anthropic", "openai"):
-        missing = [name for name, val in
-                   [("topic", args.topic), ("level", args.level), ("pack-id", args.pack_id)]
-                   if not val]
-        if missing:
-            p.error(f"--topic, --level, --pack-id are required when --provider is {args.provider}. "
-                    "For Codex (--provider codex), these are optional — Codex infers them from source files.")
-    # For Codex, fill in placeholders if not provided so the template renders
-    if args.provider == "codex":
-        args.topic   = args.topic   or "INFER_FROM_SOURCE"
-        args.level    = args.level    or "INFER_FROM_SOURCE"
-        args.pack_id  = args.pack_id  or "INFER_FROM_SOURCE"
-        args.group_id = args.group_id or "INFER_FROM_SOURCE"
+    # For Codex, fill in placeholders if not provided so the template renders.
+    args.topic   = args.topic   or "INFER_FROM_SOURCE"
+    args.level    = args.level    or "INFER_FROM_SOURCE"
+    args.pack_id  = args.pack_id  or "INFER_FROM_SOURCE"
+    args.group_id = args.group_id or "INFER_FROM_SOURCE"
 
     if not args.speech_code:
         args.speech_code = args.source_code
@@ -360,81 +376,20 @@ def load_attachments(paths: list[str]) -> list[Attachment]:
     return attachments
 
 
-# ─── Provider clients ─────────────────────────────────────────────────────
+# ─── Future provider clients ───────────────────────────────────────────────
 
-def call_anthropic(system_prompt: str, user_blocks: list, model: str) -> tuple[str, dict]:
-    try:
-        import anthropic  # type: ignore
-    except ImportError:
-        die("`anthropic` not installed. Run: pip3 install anthropic --break-system-packages", code=1)
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        die("ANTHROPIC_API_KEY not set", code=1)
-
-    client = anthropic.Anthropic(api_key=api_key)
-    print(f"→ Calling Anthropic ({model})…", file=sys.stderr)
-    response = client.messages.create(
-        model=model,
-        max_tokens=MAX_OUTPUT_TOKENS,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_blocks}],
-    )
-    text = "".join(block.text for block in response.content if block.type == "text")
-    meta = {
-        "input_tokens": getattr(response.usage, "input_tokens", None),
-        "output_tokens": getattr(response.usage, "output_tokens", None),
-        "stop_reason": getattr(response, "stop_reason", None),
-    }
-    return text, meta
-
-
-def call_openai(system_prompt: str, user_blocks: list, model: str) -> tuple[str, dict]:
-    try:
-        import openai  # type: ignore
-    except ImportError:
-        die("`openai` not installed. Run: pip3 install openai --break-system-packages", code=1)
-
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        die("OPENAI_API_KEY not set", code=1)
-
-    # OpenAI's chat API uses a different content-block schema for images:
-    # {"type": "image_url", "image_url": {"url": "data:image/png;base64,..."}}
-    converted: list = []
-    for block in user_blocks:
-        if block.get("type") == "image":
-            src = block["source"]
-            converted.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:{src['media_type']};base64,{src['data']}"},
-            })
-        else:
-            converted.append({"type": "text", "text": block["text"]})
-
-    client = openai.OpenAI(api_key=api_key)
-    print(f"→ Calling OpenAI ({model})…", file=sys.stderr)
-    response = client.chat.completions.create(
-        model=model,
-        max_tokens=MAX_OUTPUT_TOKENS,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": converted},
-        ],
-    )
-    text = response.choices[0].message.content or ""
-    usage = response.usage
-    meta = {
-        "input_tokens": getattr(usage, "prompt_tokens", None),
-        "output_tokens": getattr(usage, "completion_tokens", None),
-        "stop_reason": response.choices[0].finish_reason,
-    }
-    return text, meta
+# Anthropic Claude API and OpenAI API support are intentionally disabled for now.
+# The current implementation is tested only through Codex CLI, which writes files
+# directly into generated_packs/. If API-key based providers are needed later,
+# reintroduce them behind tests that cover response parsing and staging.
 
 
 def build_user_blocks(args: argparse.Namespace, attachments: list[Attachment]) -> list:
-    """Build the user-message content blocks (Anthropic-shaped; the OpenAI
-    adapter converts images to image_url blocks)."""
+    """Build content blocks for future API providers.
+
+    Codex CLI does not use these blocks directly; it receives a filesystem-first
+    prompt from build_codex_prompt().
+    """
     blocks: list = []
     instruction = (
         f"Generate the pack as specified by the system prompt.\n\n"
@@ -714,7 +669,62 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     # ── Append source materials ───────────────────────────────────────────
     # Resolve pack_id — INFER_FROM_SOURCE means Codex decides
     actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<choose-a-pack-id>"
-    out_lines = [prompt_text, ""]
+    out_lines = [
+        "CODEX EXECUTION OVERRIDE — READ FIRST",
+        "=" * 60,
+        "You are running inside the learning-web repository with write access.",
+        "This run is NOT a codebase exploration task.",
+        "",
+        "Do not inspect existing packs or repository examples.",
+        "Do not run broad discovery commands such as `ls`, `find`, `rg --files`,",
+        "`tree`, or `sed/cat` over data/, src/, docs/, generated_packs/, or the repo root.",
+        "Do not read data/_legacy, existing pack folders, manifest files, or old generated packs.",
+        "Use only:",
+        "  1. the source files listed below,",
+        "  2. the schema contract embedded in this prompt,",
+        "  3. your curriculum knowledge.",
+        "",
+        "Ignore any instruction in the reusable prompt below that asks you to write",
+        "`data/generated/*`, `data/Packs/*`, `data/SentenceBuilderPacks/*`,",
+        "`data/PassagePacks/*`, or markdown FILE blocks to stdout.",
+        "For this Codex run, write physical files ONLY in the staging folder named",
+        "under OUTPUT RULES below, then stop.",
+        "",
+        "If you need a pack id, infer it from the source and create a real folder name.",
+        "Never use the literal names INFER_FROM_SOURCE or <choose-a-pack-id>.",
+        "",
+        "SCHEMA CONTRACT SUMMARY",
+        "=" * 60,
+        "Every generated pack JSON is a single object with:",
+        '  packId, subject, title, level, language, topics, tags, description, schemaVersion="1.1",',
+        "  sourceLanguageLabel, sourceLanguageCode, targetLanguageLabel, targetLanguageCode,",
+        "  speechLanguage, items[].",
+        "",
+        "Allowed subject values: language, history, geography, science.",
+        "For geography/history/science use English/en-GB for source, target, and speech language.",
+        "Allowed item types: vocab, sentence, sequence, categorySort, fillBlank, sentenceBuilder, passage.",
+        "",
+        "vocab.data for non-language subjects should use:",
+        '  partOfSpeech="keyword", translations={"en-GB": "<term>"},',
+        '  examples={"en-GB": "<clear definition sentence>"}',
+        "",
+        "fillBlank.data: sentence, answer, optional hint, optional options including answer.",
+        "sequence.data: title, instruction, items[], shuffle=true.",
+        "categorySort.data: title, instruction, categories[], pairs[{text, category}].",
+        "passage.data: sourceTitle, targetTitle, sourcePassage, targetPassage,",
+        "  speechLanguage, questions[{id, questionType, question, options, correctOptionIndex,",
+        "  modelAnswer, acceptedKeywords, difficulty}].",
+        "sentenceBuilder.data: cardType, prompt, answer, tiles[].",
+        "",
+        "Required staging files:",
+        "  pack_unified.json",
+        "  passage_unified.json when useful reading passages are generated",
+        "  sentence_builder_unified.json only for language packs or explicit builder drills",
+        "  generation_report.md",
+        "",
+        prompt_text,
+        "",
+    ]
     out_lines.append("=" * 60)
     out_lines.append("SOURCE MATERIALS FOR THIS RUN")
     out_lines.append("=" * 60)
@@ -805,7 +815,10 @@ def _chunk(text: str, width: int = 500) -> list[str]:
 
 # ─── Codex runner ─────────────────────────────────────────────────────────
 
-def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
+def call_codex_agent(
+    prompt: str,
+    timeout: int = 1200,
+) -> tuple[str, dict]:
     """Run `codex exec <prompt>` as a subprocess with real-time streaming output.
 
     Each line from Codex is printed immediately to stderr, prefixed with
@@ -838,14 +851,21 @@ def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
     print(f"-> Calling Codex (streaming) in {repo_root}...", file=sys.stderr)
     print(f"  Prompt: {len(prompt):,} chars  |  Timeout: {timeout}s ({timeout // 60} min)", file=sys.stderr)
     print(f"  Streaming output below — one [Codex] line per line of output.", file=sys.stderr)
+    print("  Note: Codex provider is validated from staged files, not parsed stdout.", file=sys.stderr)
     print("-" * 60, file=sys.stderr)
 
     stdout_lines: list[str] = []
-    heartbeat_interval = 60  # seconds between heartbeat dots
 
     try:
+        start_time = _time.time()
+        # Do not forward --model/--reasoning-effort yet. Older Codex CLI/app
+        # versions reject newer model names such as gpt-5.5 before the prompt
+        # can run. Keep those CLI flags as run metadata until provider-version
+        # detection is added.
+        cmd = ["codex", "exec", "--sandbox", "workspace-write", "--cd", repo_root, prompt]
+
         process = _subprocess.Popen(
-            ["codex", "exec", prompt],
+            cmd,
             cwd=repo_root,
             stdout=_subprocess.PIPE,
             stderr=_subprocess.STDOUT,  # merge stderr into stdout stream
@@ -853,41 +873,25 @@ def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
             bufsize=1,
         )
 
-        last_seen = _time.time()
-        first_line = True
-
         while True:
             line = process.stdout.readline()
-            if line == "":
-                break  # EOF
-
-            line = line.rstrip()
-            stdout_lines.append(line)
-
-            if first_line and heartbeat_interval:
-                # Give Codex a moment to start before enabling heartbeat
-                first_line = False
-                last_seen = _time.time()
-
-            # Print every line immediately
-            print(f"[Codex] {line}", file=sys.stderr)
-
-            # Heartbeat: dot every heartbeat_interval seconds of silence
-            if heartbeat_interval:
-                now = _time.time()
-                if now - last_seen >= heartbeat_interval:
-                    elapsed = int(now - _time.time() + last_seen)  # rough gap
-                    print(f"[Codex] ... (still running, {elapsed}s since last output)", file=sys.stderr)
-                    last_seen = now
-
-        process.wait(timeout=timeout)
+            if line:
+                line = line.rstrip()
+                stdout_lines.append(line)
+                print(f"[Codex] {line}", file=sys.stderr)
+                continue
+            if process.poll() is not None:
+                break
+            if _time.time() - start_time > timeout:
+                raise _subprocess.TimeoutExpired(process.args, timeout)
+            _time.sleep(0.2)
 
     except _subprocess.TimeoutExpired:
         process.kill()
         process.wait()
         raise RuntimeError(
             f"Codex timed out after {timeout}s ({timeout // 60} min).\n"
-            f"Output so far ({len(stdout_lines)} lines) saved to generated_packs/."
+            f"Output so far ({len(stdout_lines)} lines) is in the log/raw response."
         ) from None
     except OSError as exc:
         raise RuntimeError(
@@ -963,9 +967,108 @@ def check_codex_output(pack_id: str) -> list[str]:
     return warnings
 
 
+def snapshot_staging_dirs(out_root: Path) -> dict[Path, int]:
+    if not out_root.exists():
+        return {}
+    return {
+        child.resolve(): (child / "pack_unified.json").stat().st_mtime_ns
+        for child in out_root.iterdir()
+        if child.is_dir() and (child / "pack_unified.json").exists()
+    }
+
+
+def discover_codex_staging_dir(out_root: Path, pack_id: str, before: dict[Path, int]) -> Optional[Path]:
+    """Find the folder Codex actually wrote when pack id was inferred."""
+    if pack_id and pack_id != "INFER_FROM_SOURCE":
+        explicit = (out_root / pack_id).resolve()
+        pack_path = explicit / "pack_unified.json"
+        if not pack_path.exists():
+            return None
+        before_mtime = before.get(explicit, 0)
+        return explicit if explicit not in before or pack_path.stat().st_mtime_ns > before_mtime else None
+
+    if not out_root.exists():
+        return None
+
+    candidates: list[tuple[int, Path]] = []
+    for child in out_root.iterdir():
+        if not child.is_dir():
+            continue
+        resolved = child.resolve()
+        if child.name == "INFER_FROM_SOURCE":
+            continue
+        pack_path = child / "pack_unified.json"
+        if not pack_path.exists():
+            continue
+        before_mtime = before.get(resolved, 0)
+        pack_mtime = pack_path.stat().st_mtime_ns
+        changed = resolved not in before or pack_mtime > before_mtime
+        if changed:
+            candidates.append((pack_mtime, resolved))
+
+    if not candidates:
+        return None
+    candidates.sort(reverse=True)
+    return candidates[0][1]
+
+
+def validate_codex_staged_files(staging: Path, expected_subject: str, expected_pack_id: str) -> list[str]:
+    warnings: list[str] = []
+    required = ["pack_unified.json", "generation_report.md"]
+    for filename in required:
+        if not (staging / filename).exists():
+            warnings.append(f"missing {filename}")
+
+    for filename in ["pack_unified.json", "sentence_builder_unified.json", "passage_unified.json"]:
+        path = staging / filename
+        if not path.exists():
+            continue
+        try:
+            parsed = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            warnings.append(f"{filename}: invalid JSON: {exc}")
+            continue
+        role = "revision"
+        if filename.startswith("sentence_builder"):
+            role = "sentence_builder"
+        elif filename.startswith("passage"):
+            role = "passage"
+        warnings.extend(validate_pack(
+            parsed,
+            expected_subject=expected_subject,
+            expected_pack_id=expected_pack_id if role == "revision" and expected_pack_id != "INFER_FROM_SOURCE" else None,
+            context=filename,
+        ))
+    return warnings
+
+
+def write_codex_trace(staging: Path, response_text: str, inputs_meta: dict) -> None:
+    staging.mkdir(parents=True, exist_ok=True)
+    (staging / "raw_response.txt").write_text(response_text, encoding="utf-8")
+    (staging / "inputs.json").write_text(json.dumps(inputs_meta, indent=2), encoding="utf-8")
+
+
+def codex_reported_write_failure(response_text: str) -> bool:
+    lower = response_text.lower()
+    failure_markers = [
+        "could not complete the write step",
+        "operation not permitted",
+        "writing outside of the project",
+        "read-only",
+        "read only",
+        "blocked operations",
+        "filesystem guard",
+        "approval policy is `never`",
+        "approval policy is never",
+    ]
+    return any(marker in lower for marker in failure_markers)
+
+
 
 def main() -> int:
     args = parse_args()
+    log_handle = configure_logging(args)
+    codex_before = snapshot_staging_dirs(args.out.resolve()) if args.provider == "codex" else {}
 
     # 1. Load + render prompt
     prompt_template = load_prompt_template()
@@ -983,14 +1086,9 @@ def main() -> int:
 
     # 3. Build user blocks + call provider
     user_blocks = build_user_blocks(args, attachments)
-    model = args.model or (DEFAULT_ANTHROPIC_MODEL if args.provider == "anthropic"
-                           else DEFAULT_OPENAI_MODEL)
+    model = args.model or "codex-default"
     try:
-        if args.provider == "anthropic":
-            response_text, api_meta = call_anthropic(rendered_prompt, user_blocks, model)
-        elif args.provider == "openai":
-            response_text, api_meta = call_openai(rendered_prompt, user_blocks, model)
-        elif args.provider == "codex":
+        if args.provider == "codex":
             codex_prompt = build_codex_prompt(args, attachments)
             if args.verbose:
                 print(dim("--- codex prompt ---"), file=sys.stderr)
@@ -1001,7 +1099,7 @@ def main() -> int:
             response_text = codex_out
             api_meta = {"provider": "codex", **codex_meta}
         else:
-            die(f"Unknown provider: {args.provider}", code=1)
+            die(f"Unsupported provider: {args.provider}. Current implementation supports only codex.", code=1)
     except SystemExit:
         raise
     except Exception as e:
@@ -1026,6 +1124,56 @@ def main() -> int:
         "sources": [str(a.path) for a in attachments],
         "api_meta": {k: v for k, v in api_meta.items() if k != "cwd"},
     }
+
+    if args.provider == "codex":
+        if codex_reported_write_failure(response_text):
+            failure_dir = (args.out / f"_failed_codex_run_{datetime.now().strftime('%Y%m%d_%H%M%S')}").resolve()
+            write_codex_trace(failure_dir, response_text, inputs_meta)
+            die(
+                "Codex reported that it could not write staged files. "
+                "No existing pack folder was validated as a substitute.\n"
+                f"Raw Codex output saved to {failure_dir / 'raw_response.txt'}",
+                code=3,
+            )
+
+        staging = discover_codex_staging_dir(args.out.resolve(), args.pack_id, codex_before)
+        if not staging:
+            fallback = (args.out / args.pack_id).resolve()
+            write_codex_trace(fallback, response_text, inputs_meta)
+            die(
+                "Codex completed but no staged pack folder containing pack_unified.json was found.\n"
+                f"Raw Codex output saved to {fallback / 'raw_response.txt'}",
+                code=3,
+            )
+
+        write_codex_trace(staging, response_text, inputs_meta)
+        warnings = validate_codex_staged_files(staging, args.subject, args.pack_id)
+
+        print("", file=sys.stderr)
+        print(dim("--- Codex staged-file validation ---"), file=sys.stderr)
+        print(f"Staging folder: {staging.relative_to(REPO_ROOT)}", file=sys.stderr)
+        for filename in ["pack_unified.json", "sentence_builder_unified.json", "passage_unified.json", "generation_report.md"]:
+            path = staging / filename
+            if path.exists():
+                note = ""
+                if path.suffix == ".json":
+                    try:
+                        parsed = json.loads(path.read_text(encoding="utf-8"))
+                        note = f" ({len(parsed.get('items', []))} items)" if isinstance(parsed, dict) else ""
+                    except Exception:
+                        note = " (invalid JSON)"
+                print(f"  • {filename}{note}", file=sys.stderr)
+
+        if warnings:
+            for warning in warnings:
+                print(f"  {red('!')} {warning}", file=sys.stderr)
+            die(f"Codex staged files have {len(warnings)} validation warning(s). Review before promoting.", code=3)
+
+        print(f"  {green('+')} Codex staged files look good.", file=sys.stderr)
+        print("", file=sys.stderr)
+        print(green("Codex generation completed."), file=sys.stderr)
+        print(f"Log/raw trace: {staging.relative_to(REPO_ROOT) / 'raw_response.txt'}", file=sys.stderr)
+        return 0
 
     try:
         files = parse_response(response_text)
@@ -1080,26 +1228,6 @@ def main() -> int:
         print(red(f"{len(all_warnings)} validation warning(s) above. Review before promoting."),
               file=sys.stderr)
         # Don't fail the run on warnings — they're advisory.
-
-    # ── Codex post-check ────────────────────────────────────────────────
-    if args.provider == "codex":
-        print("", file=sys.stderr)
-        print(dim("--- Codex post-check ---"), file=sys.stderr)
-        codex_warnings = check_codex_output(args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<check-staging-folder>")
-        for w in codex_warnings:
-            print(f"  {red("!")} {w}", file=sys.stderr)
-        if not codex_warnings:
-            print(f"  {green('+')} Staging folder looks good.", file=sys.stderr)
-
-        print("", file=sys.stderr)
-        print(green("Codex generation completed."), file=sys.stderr)
-        actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<pack-id-from-pack_decision.json>"
-        print("Staging folder: generated_packs/" + actual_pack_id, file=sys.stderr)
-        print("", file=sys.stderr)
-        print("Next step:", file=sys.stderr)
-        actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<pack-id-from-pack_decision.json>"
-        print("  python3 scripts/validate_pack.py generated_packs/" + actual_pack_id, file=sys.stderr)
-        print("  python3 scripts/promote_pack.py generated_packs/" + actual_pack_id, file=sys.stderr)
 
     return 0
 
