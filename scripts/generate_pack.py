@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generate_pack.py — call an AI (Anthropic or OpenAI) to generate a Learning
+generate_pack.py — call an AI (Anthropic, OpenAI, or Codex) to generate a Learning
 Web pack, parse the response, validate it, and stage it for review.
 
 The system prompt is loaded from `docs/pack-generation-prompt.md` (the
@@ -63,11 +63,16 @@ Environment
 
     ANTHROPIC_API_KEY   required when --provider anthropic
     OPENAI_API_KEY      required when --provider openai
+    CODEX_API_KEY       required when --provider codex
 
 Install
 -------
 
     pip3 install anthropic openai --break-system-packages
+
+    # Codex CLI (for --provider codex):
+    npm i -g @openai/codex
+    codex  # login / auth first
 
 Exit codes
 ----------
@@ -144,7 +149,7 @@ def parse_args() -> argparse.Namespace:
                    help="BCP-47 TTS code (default: same as --source-code)")
 
     # AI provider
-    p.add_argument("--provider", choices=["anthropic", "openai"], default="anthropic",
+    p.add_argument("--provider", choices=["anthropic", "openai", "codex"], default="anthropic",
                    help="AI provider (default: anthropic)")
     p.add_argument("--model", default=None,
                    help=f"Model override. Defaults: anthropic={DEFAULT_ANTHROPIC_MODEL}, "
@@ -606,6 +611,247 @@ def dim(s):   return f"\033[2m{s}\033[0m"
 
 # ─── Main ─────────────────────────────────────────────────────────────────
 
+
+# ─── Codex prompt builder ─────────────────────────────────────────────────
+
+def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
+    """Build the text prompt passed to `codex exec`. Source files are embedded
+    inline so Codex can read them directly from disk.
+
+    The prompt instructs Codex to:
+      1. Read source files from the specified paths
+      2. Generate Learning Web pack files into generated_packs/<pack_id>/
+      3. Stop — do NOT modify src/, data/, manifest.json, or React UI
+    """
+    blocks: list[str] = []
+
+    blocks.append("You are working inside a Learning Web repository on the local machine.")
+    blocks.append("")
+    blocks.append("REPOSITORY ROOT: /Volumes/ExtremePro/project/learning-web")
+    blocks.append("STAGING OUTPUT: generated_packs/" + args.pack_id + "/")
+    blocks.append("")
+    blocks.append("DO NOT modify any existing files in src/, data/, public/data/,")
+    blocks.append("manifest.json, or any React/UI files.")
+    blocks.append("DO NOT update manifest.json. Only write files inside")
+    blocks.append("generated_packs/" + args.pack_id + "/.")
+    blocks.append("After writing all files, stop.")
+    blocks.append("")
+
+    blocks.append("=" * 60)
+    blocks.append("PACK SPECIFICATION")
+    blocks.append("=" * 60)
+    blocks.append("Pack ID:            " + args.pack_id)
+    blocks.append("Subject:            " + args.subject)
+    blocks.append("Topic:              " + args.topic)
+    blocks.append("Level:              " + args.level)
+    if args.curriculum:
+        blocks.append("Curriculum context: " + args.curriculum)
+    blocks.append("Source language:    " + args.source_label + " (" + args.source_code + ")")
+    blocks.append("Target language:    " + args.target_label + " (" + args.target_code + ")")
+    blocks.append("Speech language:    " + args.speech_code)
+    if args.group_id:
+        blocks.append("Passage group ID:   " + args.group_id)
+    blocks.append("")
+
+    if attachments:
+        blocks.append("=" * 60)
+        blocks.append("SOURCE MATERIALS")
+        blocks.append("=" * 60)
+        for att in attachments:
+            blocks.append("File: " + att.path)
+            blocks.append("-" * 40)
+            if att.kind == "image":
+                blocks.append("[IMAGE FILE - describe what you see in this image for context]")
+                blocks.append("Image path: " + att.path)
+            else:
+                snippet = (att.text or "")[:3000]
+                blocks.append(snippet)
+                if len(att.text or "") > 3000:
+                    blocks.append("[... " + str(len(att.text) - 3000) + " chars truncated ...]")
+            blocks.append("")
+    else:
+        blocks.append("No source files attached. Generate the pack from the topic and level alone.")
+        blocks.append("")
+
+    blocks.append("=" * 60)
+    blocks.append("EXPECTED OUTPUT FILES")
+    blocks.append("=" * 60)
+    blocks.append("")
+    blocks.append("Create files inside: generated_packs/" + args.pack_id + "/")
+    blocks.append("")
+    blocks.append("1. pack_unified.json  —  required. Main revision pack.")
+    blocks.append("   Must contain vocab items (and sentence items if language pack).")
+    blocks.append("   Use topic labels from the source material. Tag each item.")
+    if args.subject == "language":
+        blocks.append("")
+        blocks.append("   For language packs also create:")
+        blocks.append("2. sentence_builder_unified.json  —  sentence-builder tile cards")
+    if args.group_id:
+        blocks.append("")
+        blocks.append("2. passage_unified.json  —  reading passages with questions")
+    blocks.append("")
+    blocks.append("3. generation_report.md  —  what was generated, decisions made")
+    blocks.append("")
+
+    blocks.append("=" * 60)
+    blocks.append("LEARNING WEB UNIFIED SCHEMA (required reading)")
+    blocks.append("=" * 60)
+    blocks.append("")
+    blocks.append("pack_unified.json header fields: packId, subject, title, subtitle, level,")
+    blocks.append("language, topics, tags, description, schemaVersion (1.1), sourceLanguageLabel,")
+    blocks.append("sourceLanguageCode, targetLanguageLabel, targetLanguageCode, speechLanguage, items")
+    blocks.append("")
+    blocks.append("Item shapes:")
+    blocks.append("  vocab:        { id, type:vocab, level, topics, tags, data: { partOfSpeech, translations:{src:word, tgt:trans}, gender, plural, examples } }")
+    blocks.append("  sentence:     { id, type:sentence, level, topics, tags, data: { translations:{src:sentence, tgt:trans} } }")
+    blocks.append("  sequence:     { id, type:sequence, level, topics:[], tags:[], data: { title, instruction, items:[steps], shuffle:true } }")
+    blocks.append("  categorySort: { id, type:categorySort, level, topics:[], tags:[], data: { title, instruction, categories:[A,B], pairs:[{text,category}] } }")
+    blocks.append("  fillBlank:   { id, type:fillBlank, level, topics:[], tags:[], data: { sentence, answer, hint } }")
+    blocks.append("  passage:      { id, type:passage, level, topics, tags:[], data: { chapter, section, sourceTitle, targetTitle, sourcePassage, targetPassage, speechLanguage, questions:[...] } }")
+    blocks.append("  sentenceBuilder: { id, type:sentenceBuilder, level, topics:[], tags:[cardType], data: { cardType, prompt, answer, tiles } }")
+    blocks.append("")
+    blocks.append("Language codes: de-DE, en-GB, la-Latn (Latin). Subject: language|history|geography|science")
+    blocks.append("")
+
+    blocks.append("=" * 60)
+    blocks.append("GENERATION RULES")
+    blocks.append("=" * 60)
+    blocks.append("")
+    blocks.append("- Generate at least 15 vocab items per pack (20+ for a full topic)")
+    blocks.append("- Each item id must be unique within the pack")
+    blocks.append("- Use the exact language codes from the pack specification")
+    blocks.append("- Add topics to items so students can filter by section")
+    blocks.append("- Include both translations dict AND sourceWord/targetWord for language packs")
+    blocks.append("- Validate all JSON before writing files")
+    blocks.append("- Use real vocabulary from the source material")
+    blocks.append("- Add 3-5 sentence items for language packs")
+    blocks.append("- Include at least one sequence or categorySort item for geography/history packs")
+    blocks.append("")
+    blocks.append("STOP after writing files to generated_packs/" + args.pack_id + "/.")
+    blocks.append("Do not modify any other files. Do not update manifest.json.")
+
+    return "\n".join(blocks)
+
+
+# ─── Codex runner ─────────────────────────────────────────────────────────
+
+def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
+    """Run `codex exec <prompt>` as a subprocess.
+
+    Args:
+        prompt:  The full text prompt for Codex.
+        timeout: Seconds before killing the subprocess (default 1200 = 20 min).
+
+    Returns:
+        (stdout_text, meta_dict)
+
+    Raises:
+        RuntimeError if the codex command is not found or returns non-zero.
+    """
+    import shutil as _shutil
+    import subprocess as _subprocess
+
+    if not _shutil.which("codex"):
+        raise RuntimeError(
+            "Codex CLI not found. Install and login first:\n"
+            "  npm i -g @openai/codex\n"
+            "  codex\n"
+            "Then set CODEX_API_KEY in your environment."
+        )
+
+    repo_root = str(REPO_ROOT)
+    print(f"-> Calling Codex (codex exec) in {repo_root}...", file=sys.stderr)
+    print(f"  Prompt length: {len(prompt):,} chars", file=sys.stderr)
+    print(f"  Timeout: {timeout}s ({timeout // 60} min)", file=sys.stderr)
+
+    try:
+        result = _subprocess.run(
+            ["codex", "exec", prompt],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+    except _subprocess.TimeoutExpired:
+        raise RuntimeError(
+            f"Codex timed out after {timeout}s ({timeout // 60} min).\n"
+            f"Try reducing source files or increasing the timeout."
+        ) from None
+    except OSError as exc:
+        raise RuntimeError(
+            f"Failed to run `codex exec`: {exc}\n"
+            "Make sure the Codex CLI is installed and on your PATH."
+        ) from exc
+
+    if result.returncode != 0:
+        stderr = result.stderr.strip() if result.stderr else "(no stderr)"
+        raise RuntimeError(
+            f"Codex exited with code {result.returncode}.\n"
+            f"stderr: {stderr}"
+        )
+
+    return result.stdout, {"returncode": result.returncode, "timeout": timeout}
+
+
+# ─── Post-Codex validation ────────────────────────────────────────────────
+
+def check_codex_output(pack_id: str) -> list[str]:
+    """Check that Codex wrote the expected files into the staging folder.
+
+    Returns a list of warnings (empty = clean). Does not raise.
+    """
+    warnings: list[str] = []
+    staging = REPO_ROOT / "generated_packs" / pack_id
+
+    if not staging.exists():
+        warnings.append(
+            "Staging folder missing: " + str(staging) + "\n"
+            "Codex may not have written any files."
+        )
+        return warnings
+
+    pack_path = staging / "pack_unified.json"
+    if not pack_path.exists():
+        warnings.append(
+            "Expected file not found: generated_packs/" + pack_id + "/pack_unified.json"
+        )
+    else:
+        try:
+            json.loads(pack_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            warnings.append(
+                "Invalid JSON in generated_packs/" + pack_id + "/pack_unified.json: " + str(exc)
+            )
+
+    json_files = list(staging.glob("*.json"))
+    if not json_files:
+        warnings.append(
+            "No .json files found in staging folder.\n"
+            "Codex may not have created any pack files."
+        )
+
+    if not (staging / "generation_report.md").exists():
+        warnings.append(
+            "generation_report.md not found (optional but recommended)."
+        )
+
+    if staging.exists():
+        print("\nStaging contents (" + str(staging) + "):", file=sys.stderr)
+        for f in sorted(staging.iterdir()):
+            size = f.stat().st_size
+            note = ""
+            if f.suffix == ".json":
+                try:
+                    d = json.loads(f.read_text(encoding="utf-8"))
+                    note = "  [" + str(len(d.get("items", []))) + " items]" if isinstance(d, dict) else ""
+                except Exception:
+                    note = "  [invalid JSON]"
+            print(f"  - {f.name}  ({size:,} bytes){note}", file=sys.stderr)
+
+    return warnings
+
+
+
 def main() -> int:
     args = parse_args()
 
@@ -630,8 +876,20 @@ def main() -> int:
     try:
         if args.provider == "anthropic":
             response_text, api_meta = call_anthropic(rendered_prompt, user_blocks, model)
-        else:
+        elif args.provider == "openai":
             response_text, api_meta = call_openai(rendered_prompt, user_blocks, model)
+        elif args.provider == "codex":
+            codex_prompt = build_codex_prompt(args, attachments)
+            if args.verbose:
+                print(dim("--- codex prompt ---"), file=sys.stderr)
+                print(codex_prompt[:2000], file=sys.stderr)
+                print(dim("... [truncated]"), file=sys.stderr)
+                print(dim("--- end prompt ---"), file=sys.stderr)
+            codex_out, codex_meta = call_codex_agent(codex_prompt)
+            response_text = codex_out
+            api_meta = {"provider": "codex", **codex_meta}
+        else:
+            die(f"Unknown provider: {args.provider}", code=1)
     except SystemExit:
         raise
     except Exception as e:
@@ -710,6 +968,24 @@ def main() -> int:
         print(red(f"{len(all_warnings)} validation warning(s) above. Review before promoting."),
               file=sys.stderr)
         # Don't fail the run on warnings — they're advisory.
+
+    # ── Codex post-check ────────────────────────────────────────────────
+    if args.provider == "codex":
+        print("", file=sys.stderr)
+        print(dim("--- Codex post-check ---"), file=sys.stderr)
+        codex_warnings = check_codex_output(args.pack_id)
+        for w in codex_warnings:
+            print(f"  {red("!")} {w}", file=sys.stderr)
+        if not codex_warnings:
+            print(f"  {green('+')} Staging folder looks good.", file=sys.stderr)
+
+        print("", file=sys.stderr)
+        print(green("Codex generation completed."), file=sys.stderr)
+        print("Staging folder: generated_packs/" + args.pack_id, file=sys.stderr)
+        print("", file=sys.stderr)
+        print("Next step:", file=sys.stderr)
+        print("  python3 scripts/validate_pack.py generated_packs/" + args.pack_id, file=sys.stderr)
+        print("  python3 scripts/promote_pack.py generated_packs/" + args.pack_id, file=sys.stderr)
 
     return 0
 
