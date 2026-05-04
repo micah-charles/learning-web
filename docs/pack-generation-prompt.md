@@ -196,6 +196,29 @@ This summary helps you verify immediately whether the source material was
 understood correctly. It is required — do not skip it.
 
 
+## Question Volume Rule
+
+For source-faithful lesson packs, generate enough items for repeated practice,
+not just a summary. Err on the side of more content — students benefit from
+variation and spaced repetition.
+
+**Default minimums:**
+
+- **35–45** vocab / key-term items where possible
+- **15–20** fillBlank items
+- **3–4** sequence or process items where relevant
+- **2–3** categorySort items
+- **20–25** sentenceBuilder cards
+- **4–5** reading passages
+- **4–6** questions per passage
+
+Only reduce these numbers if the source material is very small (e.g. a single
+brief page). If in doubt, include more rather than fewer.
+
+**Prioritise quality and avoid duplicates.** A pack with 40 varied, accurate
+items is better than a pack with 40 near-duplicates. Spread difficulty across
+easy / medium / harder.
+
 ## Output contract
 
 Return the result as **a Source Coverage Summary** followed by
