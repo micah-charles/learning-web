@@ -128,9 +128,9 @@ def parse_args() -> argparse.Namespace:
     # Template variables
     p.add_argument("--subject", required=True, choices=sorted(ALLOWED_SUBJECTS),
                    help="Subject bucket")
-    p.add_argument("--topic", required=True, help="Topic title (e.g. 'The Black Death')")
-    p.add_argument("--level", required=True, help="Year level (e.g. 'Y7', 'GCSE', 'KS3 / Year 7')")
-    p.add_argument("--pack-id", required=True, help="snake_case pack ID")
+    p.add_argument("--topic", default=None, help="Topic title (e.g. 'The Black Death')")
+    p.add_argument("--level", default=None, help="Year level (e.g. 'Y7', 'GCSE', 'KS3 / Year 7')")
+    p.add_argument("--pack-id", default=None, help="snake_case pack ID")
     p.add_argument("--group-id", default="",
                    help="snake_case passage-group ID (empty = skip passage pack)")
     p.add_argument("--curriculum", default="",
@@ -172,6 +172,21 @@ def parse_args() -> argparse.Namespace:
                    help="Print the rendered prompt and full response")
 
     args = p.parse_args()
+    # For Anthropic/OpenAI, topic/level/pack-id are required
+    if args.provider in ("anthropic", "openai"):
+        missing = [name for name, val in
+                   [("topic", args.topic), ("level", args.level), ("pack-id", args.pack_id)]
+                   if not val]
+        if missing:
+            p.error(f"--topic, --level, --pack-id are required when --provider is {args.provider}. "
+                    "For Codex (--provider codex), these are optional — Codex infers them from source files.")
+    # For Codex, fill in placeholders if not provided so the template renders
+    if args.provider == "codex":
+        args.topic   = args.topic   or "INFER_FROM_SOURCE"
+        args.level    = args.level    or "INFER_FROM_SOURCE"
+        args.pack_id  = args.pack_id  or "INFER_FROM_SOURCE"
+        args.group_id = args.group_id or "INFER_FROM_SOURCE"
+
     if not args.speech_code:
         args.speech_code = args.source_code
     return args
@@ -666,11 +681,11 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     subs = {
         "{{SUBJECT}}":              args.subject.capitalize(),
         "{{SUBJECT_LOWERCASE}}":    args.subject.lower(),
-        "{{TOPIC}}":                args.topic,
-        "{{LEVEL}}":                args.level,
+        "{{TOPIC}}":                (args.topic if args.topic and args.topic != "INFER_FROM_SOURCE" else "{{TOPIC}}"),
+        "{{LEVEL}}":                (args.level  if args.level  and args.level  != "INFER_FROM_SOURCE" else "{{LEVEL}}"),
         "{{CURRICULUM_CONTEXT}}":   (args.curriculum or "(not specified)"),
-        "{{PACK_ID}}":              args.pack_id,
-        "{{GROUP_ID}}":            (args.group_id or ""),
+        "{{PACK_ID}}":              (args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "{{PACK_ID}}"),
+        "{{GROUP_ID}}":            (args.group_id if args.group_id and args.group_id != "INFER_FROM_SOURCE" else "{{GROUP_ID}}"),
         "{{SOURCE_LABEL}}":        args.source_label,
         "{{SOURCE_CODE}}":         args.source_code,
         "{{TARGET_LABEL}}":        args.target_label,
@@ -691,6 +706,8 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     prompt_text = _re.sub(r"\{\{[^}]+\}\}", _repl, tmpl)
 
     # ── Append source materials ───────────────────────────────────────────
+    # Resolve pack_id — INFER_FROM_SOURCE means Codex decides
+    actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<choose-a-pack-id>"
     out_lines = [prompt_text, ""]
     out_lines.append("=" * 60)
     out_lines.append("SOURCE MATERIALS FOR THIS RUN")
@@ -731,15 +748,15 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     out_lines.append("=" * 60)
     out_lines.append("")
     out_lines.append("Write ALL files to the STAGING FOLDER ONLY:")
-    out_lines.append("  generated_packs/" + args.pack_id + "/")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/")
     out_lines.append("")
     out_lines.append("PERMITTED files to create inside that folder:")
-    out_lines.append("  generated_packs/" + args.pack_id + "/pack_unified.json")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/pack_unified.json")
     out_lines.append(
-        "  generated_packs/" + args.pack_id + "/sentence_builder_unified.json"
+        "  generated_packs/" + actual_pack_id + "/sentence_builder_unified.json"
     )
-    out_lines.append("  generated_packs/" + args.pack_id + "/passage_unified.json")
-    out_lines.append("  generated_packs/" + args.pack_id + "/generation_report.md")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/passage_unified.json")
+    out_lines.append("  generated_packs/" + actual_pack_id + "/generation_report.md")
     out_lines.append("")
     out_lines.append("NEVER write to any of these locations:")
     out_lines.append("  src/")
@@ -1062,7 +1079,7 @@ def main() -> int:
     if args.provider == "codex":
         print("", file=sys.stderr)
         print(dim("--- Codex post-check ---"), file=sys.stderr)
-        codex_warnings = check_codex_output(args.pack_id)
+        codex_warnings = check_codex_output(args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<check-staging-folder>")
         for w in codex_warnings:
             print(f"  {red("!")} {w}", file=sys.stderr)
         if not codex_warnings:
@@ -1070,11 +1087,13 @@ def main() -> int:
 
         print("", file=sys.stderr)
         print(green("Codex generation completed."), file=sys.stderr)
-        print("Staging folder: generated_packs/" + args.pack_id, file=sys.stderr)
+        actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<pack-id-from-pack_decision.json>"
+        print("Staging folder: generated_packs/" + actual_pack_id, file=sys.stderr)
         print("", file=sys.stderr)
         print("Next step:", file=sys.stderr)
-        print("  python3 scripts/validate_pack.py generated_packs/" + args.pack_id, file=sys.stderr)
-        print("  python3 scripts/promote_pack.py generated_packs/" + args.pack_id, file=sys.stderr)
+        actual_pack_id = args.pack_id if args.pack_id and args.pack_id != "INFER_FROM_SOURCE" else "<pack-id-from-pack_decision.json>"
+        print("  python3 scripts/validate_pack.py generated_packs/" + actual_pack_id, file=sys.stderr)
+        print("  python3 scripts/promote_pack.py generated_packs/" + actual_pack_id, file=sys.stderr)
 
     return 0
 
