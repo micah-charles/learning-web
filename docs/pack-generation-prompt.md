@@ -1,0 +1,857 @@
+# Learning Web — Pack Generation Prompt
+
+> Paste the section between the `BEGIN PROMPT` / `END PROMPT` fences below
+> into a fresh chat (Claude / ChatGPT / Gemini), fill in the
+> `{{TEMPLATE_VARIABLES}}` at the top, attach any source materials
+> (screenshots, textbook photos, OCR, worksheets, notes), and ask for
+> the pack you want.
+>
+> The assistant will produce up to **three** complete `pack_unified.json`
+> files plus their manifest entries — one for the revision pack, one for the
+> sentence-builder pack, and one for the passage pack — covering all four
+> Learning Web modes in a single response.
+>
+> **Schema reference:** matches `learning-web` schema **1.1** — unified
+> packs, BCP-47 translation codes, top-level `subject` field for the
+> Subject First Quiz Setup flow. See [`data-structures.md`](data-structures.md)
+> for the full schema reference; this prompt is the operational version
+> for handing to an assistant that has no other context.
+
+---
+
+## BEGIN PROMPT
+
+You are generating a complete, curriculum-aligned dataset for the
+**Learning Web** app. The app is a vocabulary / revision / reading study
+hub for KS3 and GCSE students. It supports four study modes —
+**Vocabulary**, **Quiz**, **Reading**, **Builder** — and groups packs into
+four Subject First buckets in the Quiz Setup UI: **Language**, **History**,
+**Geography**, **Science**.
+
+## Task — fill these in before generating
+
+```
+Subject:               {{SUBJECT}}              # Language | History | Geography | Science
+Topic:                 {{TOPIC}}                # e.g. "The Black Death", "Y8 Rivers", "AQA GCSE German Theme 1"
+Level:                 {{LEVEL}}                # e.g. "Y7", "Y8", "GCSE", "KS3 / Year 7", "Stage 4"
+Curriculum context:    {{CURRICULUM_CONTEXT}}   # e.g. "AQA GCSE German Theme 1: People and Lifestyle"
+Pack ID:               {{PACK_ID}}              # snake_case slug; if omitted, derive from topic
+Passage group ID:      {{GROUP_ID}}             # snake_case slug for the wider subject group; if omitted, derive
+Source language:       {{SOURCE_LABEL}}         # e.g. "German", "Latin", "French", or "English" for non-language subjects
+Source language code:  {{SOURCE_CODE}}          # BCP-47, e.g. de-DE, la-Latn, fr-FR, en-GB
+Target language:       {{TARGET_LABEL}}         # usually "English"
+Target language code:  {{TARGET_CODE}}          # usually en-GB
+Speech language:       {{SPEECH_CODE}}          # BCP-47 for TTS; usually equals SOURCE_CODE
+```
+
+**Example fill:**
+
+```
+Subject:              History
+Topic:                The Black Death
+Level:                GCSE
+Curriculum context:   GCSE History — British / Medieval topic
+Pack ID:              black_death
+Passage group ID:     ks3_history
+Source language:      English
+Source language code: en-GB
+Target language:      English
+Target language code: en-GB
+Speech language:      en-GB
+```
+
+## Source-grounding rule
+
+I may attach screenshots, textbook photos, worksheets, notes, or OCR
+extracts. **Use them as grounding material, terminology guidance, and
+factual anchors — but do not limit the dataset only to the attached
+source.** Expand with accurate curriculum-relevant knowledge so the pack is
+complete, coherent, and useful for revision. If the attached materials
+contain a specific teacher/class emphasis, reflect that where appropriate.
+If source materials are incomplete, fill the gaps with accurate standard
+curriculum content. **Never invent dates, quotes, or facts.**
+
+## Output contract
+
+Return the result as **three labelled JSON code blocks**, one per file,
+followed by a fourth block with the manifest entries to add. Include a one
+line `FILE: <path>` header before each block so I can paste each into the
+right place. Do not add prose between files. Do not add markdown comments
+inside the JSON.
+
+Order:
+
+1. `FILE: data/Packs/{{PACK_ID}}/pack_unified.json`
+   — the **revision pack** (vocab + optional sentence + optional sequence /
+   categorySort / fillBlank items). Used by the Vocabulary tab and the Quiz
+   tab.
+
+2. `FILE: data/SentenceBuilderPacks/{{PACK_ID}}_unified.json`
+   — the **sentence builder pack** (sentenceBuilder items only). Used by
+   the Builder tab.
+
+3. `FILE: data/PassagePacks/{{GROUP_ID}}/{{PACK_ID}}.json`
+   — the **passage pack** appended to the existing group (passage items
+   only, with comprehension questions). Used by the Reading tab.
+
+4. `FILE: data/generated/manifest.json (entries to add)`
+   — three small JSON objects that the user pastes into the existing
+   manifest's `revisionPacks[]`, `sentenceBuilderPacks[]`, and
+   `passageGroups[]` arrays.
+
+If a pack type doesn't apply (e.g. you only want revision items, or the
+topic doesn't suit a passage), omit that file and say so in a short line
+**outside** the code blocks at the very end.
+
+## Hard rules
+
+1. **Valid JSON only.** Pretty-printed, 2-space indent, UTF-8, no trailing
+   commas, no JS-style comments. Each file must parse with `json.loads`
+   without modification.
+2. **`schemaVersion`** is always `"1.1"` on every pack header.
+3. **`subject`** is **lowercase** and exactly one of `language`, `history`,
+   `geography`, `science`.
+4. **`translations` uses BCP-47 keys.** Always `de-DE`, `en-GB`, `la-Latn`,
+   `fr-FR`, etc. Never bare `de` / `en`.
+5. **For non-language subjects (history / geography / science),** set both
+   source and target codes to `en-GB`. Do not abuse the `de-DE` slot to
+   hold an English term — use proper `translations: { "en-GB": "..." }`.
+6. **Every item has a unique stable `id`** scoped to the pack.
+7. **One concept per item.** Don't bundle two vocab words or two facts
+   into one entry.
+8. **No duplicates within a pack** — same translation pair, same gap
+   answer, same builder sentence, same passage question.
+9. **British English.** Single quotes for inner quotes if needed.
+10. **Curriculum-safe content.** Match the stated `level` for vocab depth,
+    sentence length, and topic sensitivity.
+11. **No placeholder content.** No "TODO", no "Lorem ipsum", no duplicate
+    strings across items.
+
+## Pack header (required on every `pack_unified.json`)
+
+```json
+{
+  "packId":              "{{PACK_ID}}",
+  "subject":             "{{SUBJECT_LOWERCASE}}",
+  "title":               "{{HUMAN_TITLE}}",
+  "subtitle":            "{{SHORT_SUBTITLE_OPTIONAL}}",
+  "level":               "{{LEVEL}}",
+  "language":            "{{SOURCE_LABEL}}",
+  "topics":              ["{{TOPIC}}"],
+  "tags":                ["{{LEVEL}}", "{{SUBJECT}}", "{{TOPIC}}"],
+  "description":         "Two or three sentence revision-friendly summary.",
+  "schemaVersion":       "1.1",
+  "sourceLanguageLabel": "{{SOURCE_LABEL}}",
+  "sourceLanguageCode":  "{{SOURCE_CODE}}",
+  "targetLanguageLabel": "{{TARGET_LABEL}}",
+  "targetLanguageCode":  "{{TARGET_CODE}}",
+  "speechLanguage":      "{{SPEECH_CODE}}",
+  "items":               [ /* … */ ]
+}
+```
+
+## Manifest entries
+
+Three entries the user pastes into `data/generated/manifest.json`:
+
+```json
+// Revision pack — push to revisionPacks[]
+{
+  "id":                  "{{PACK_ID}}",
+  "displayName":         "{{HUMAN_TITLE}}",
+  "subject":             "{{SUBJECT_LOWERCASE}}",
+  "level":               "{{LEVEL}}",
+  "unifiedPath":         "data/Packs/{{PACK_ID}}/pack_unified.json",
+  "sourceLanguageLabel": "{{SOURCE_LABEL}}",
+  "sourceLanguageCode":  "{{SOURCE_CODE}}",
+  "targetLanguageLabel": "{{TARGET_LABEL}}",
+  "targetLanguageCode":  "{{TARGET_CODE}}",
+  "speechLanguage":      "{{SPEECH_CODE}}",
+  "supportsSentences":   <true if any sentence items, else false>,
+  "stageOptions":        [],
+  "defaultQuizModes":    [],
+  "wordCount":           <count of vocab items>,
+  "sentenceCount":       <count of sentence items>
+}
+
+// Sentence builder pack — push to sentenceBuilderPacks[]
+{
+  "id":          "{{PACK_ID}}",
+  "displayName": "{{HUMAN_TITLE}}",
+  "unifiedPath": "data/SentenceBuilderPacks/{{PACK_ID}}_unified.json"
+}
+
+// Passage pack — append to the matching passageGroups[].packs (or create the group)
+{
+  "id":          "{{GROUP_ID}}",
+  "displayName": "{{HUMAN_GROUP_TITLE}}",
+  "unifiedPath": "data/PassagePacks/{{GROUP_ID}}/pack_unified.json"
+}
+```
+
+## Coverage requirements
+
+For the topic, the full dataset must cover:
+
+- **who** — key people / actors / authors
+- **what** — definitions of key terms, processes, concepts
+- **when** — key dates, sequences, chronology
+- **where** — places, regions, countries
+- **why** — causes, motivations, drivers
+- **consequences** — short- and long-term effects
+- **significance** — why this topic matters, exam-relevance
+- **common misconceptions** if relevant
+- **likely exam knowledge points** for the stated curriculum context
+
+Spread items across **easy / medium / harder** difficulty within the level.
+
+## Quality bar
+
+The output should feel like something a teacher or strong curriculum
+designer would produce. Do not make it generic. Do not make all items the
+same shape. Do not rely only on the attached images if they are partial.
+Use the attached materials plus wider accurate curriculum knowledge. Avoid
+weak filler.
+
+## Item envelope
+
+Every entry in `items[]` has this outer shape:
+
+```json
+{
+  "id":     "<unique-id>",
+  "type":   "<one of the types below>",
+  "level":  "<usually matches the pack level>",
+  "topics": ["<topic>"],
+  "tags":   ["<tag>"],
+  "data":   { /* type-specific */ }
+}
+```
+
+## Item type: `vocab`
+
+The default for language packs and for term-↔-definition cards in
+History / Geography / Science.
+
+```json
+{
+  "id":     "y7_birthdays_001",
+  "type":   "vocab",
+  "level":  "Y7",
+  "topics": ["birthdays & months"],
+  "tags":   ["Y7", "noun", "cat:months"],
+  "data": {
+    "partOfSpeech": "noun",
+    "gender":       "m",
+    "plural":       "die Geburtstage",
+    "translations": {
+      "de-DE": "der Geburtstag",
+      "en-GB": "birthday"
+    },
+    "examples": {
+      "de-DE": "Mein Geburtstag ist im Mai.",
+      "en-GB": "My birthday is in May."
+    }
+  }
+}
+```
+
+| `data` field | Required | Notes |
+|---|---|---|
+| `translations` | yes | BCP-47 keyed dict; must contain entries for the pack's source and target codes |
+| `examples` | optional | Same shape as `translations` |
+| `partOfSpeech` | optional | `"noun"`, `"verb"`, `"adj"`, `"adv"`, `"det"`, `"prep"`, `"phrase"`, or `"keyword"` for non-language packs |
+| `gender` | optional | German: `"m"` / `"f"` / `"n"`; `null` for non-nouns or non-language packs |
+| `plural` | optional | Plural form if relevant |
+
+For non-language packs, use `vocab` to capture **term ↔ definition** pairs.
+Both `translations` keys are `"en-GB"` — the engine reads
+`translations[sourceLanguageCode]` for the prompt side and
+`translations[targetLanguageCode]` for the answer side, and since both are
+`en-GB` for non-language packs, store them in the dict twice with slightly
+different content (term vs definition):
+
+```json
+"data": {
+  "partOfSpeech": "keyword",
+  "translations": {
+    "en-GB": "accumulation"
+  },
+  "examples": {
+    "en-GB": "Accumulation is the build-up of snow where more falls than melts."
+  }
+}
+```
+
+> **Tip for non-language packs:** if you want a clear "term → definition"
+> drill where prompt and answer differ, prefer a `fillBlank` item. Vocab
+> items work best for short term-definition pairs that fit a flashcard.
+
+### Useful `tags` for non-language packs
+
+Use **categorisation tags** so filters and analytics can surface clusters:
+
+| Tag prefix | Meaning |
+|------------|---------|
+| `cat:causes` | this is a cause |
+| `cat:consequences` | this is a consequence |
+| `cat:people` | a key person |
+| `cat:dates` | a key date |
+| `cat:events` | a key event |
+| `cat:places` | a key location |
+| `cat:treatments` | medical / political response |
+| `cat:beliefs` | religious / cultural belief |
+| `cat:impact` | broader societal impact |
+
+## Item type: `sentence`
+
+Used in language packs for sentence-build and sentence-type drills. Don't
+use for non-language packs (use `fillBlank` instead).
+
+```json
+{
+  "id":     "Y7-SENT-0001",
+  "type":   "sentence",
+  "level":  "Y7",
+  "topics": ["family"],
+  "tags":   [],
+  "data": {
+    "translations": {
+      "de-DE": "In meiner Familie gibt es fünf Personen.",
+      "en-GB": "In my family there are five people."
+    }
+  }
+}
+```
+
+Aim for sentences that are 6–14 words long. Short enough to build from
+tiles, long enough to drill grammar. **Strong sentence types:**
+
+- cause-and-effect
+- explanation of a key term
+- significance of an individual
+- chronological fact
+- short exam-style knowledge statement
+- comparison statement
+
+## Item type: `sequence`
+
+Used for processes, narratives, anything where order matters.
+
+```json
+{
+  "id":     "seq_001",
+  "type":   "sequence",
+  "level":  "Y7",
+  "topics": ["glaciation"],
+  "tags":   [],
+  "data": {
+    "title":       "How a Glacier Forms",
+    "instruction": "Put the glacier formation steps in the correct order.",
+    "items": [
+      "More snow falls than melts.",
+      "Snow builds up. This is called accumulation.",
+      "Layers of snow are compressed.",
+      "The snow becomes dense firn.",
+      "Over hundreds of years, firn becomes glacier ice.",
+      "The ice slides downhill due to gravity."
+    ],
+    "shuffle": true
+  }
+}
+```
+
+Aim for 4–7 steps. Each step a single sentence, factually correct, clearly
+distinct from its neighbours.
+
+## Item type: `categorySort`
+
+Used for "Which kind is this?" classification. 2–3 columns, 6–10 items.
+
+```json
+{
+  "id":     "cat_001",
+  "type":   "categorySort",
+  "level":  "Y7",
+  "topics": ["weathering vs erosion"],
+  "tags":   [],
+  "data": {
+    "title":       "Weathering or Erosion?",
+    "instruction": "Sort each process into the correct category.",
+    "categories":  ["Weathering", "Erosion"],
+    "pairs": [
+      { "text": "freeze-thaw",                       "category": "Weathering" },
+      { "text": "plucking",                          "category": "Erosion"    },
+      { "text": "abrasion",                          "category": "Erosion"    },
+      { "text": "rock broken in cracks by ice",      "category": "Weathering" },
+      { "text": "rocks scraped along valley floor",  "category": "Erosion"    }
+    ]
+  }
+}
+```
+
+Use the field name `pairs` (the runtime reads it).
+
+## Item type: `fillBlank`
+
+Used for testing recall of a single key term in context. Two flavours:
+
+**Typed** (no `options`):
+
+```json
+{
+  "id":     "gap_001",
+  "type":   "fillBlank",
+  "level":  "Y7",
+  "topics": ["glaciation"],
+  "tags":   [],
+  "data": {
+    "sentence": "The build-up of snow where more falls than melts is called ____.",
+    "answer":   "accumulation",
+    "hint":     "Starts with 'a'"
+  }
+}
+```
+
+**Multiple-choice** (with `options`, must include the answer):
+
+```json
+"data": {
+  "sentence": "The dense, old snow that is not yet ice is called ____.",
+  "answer":   "firn",
+  "options":  ["firn", "moraine", "till", "scree"]
+}
+```
+
+Always use `____` (four underscores) as the gap placeholder. Distractors
+in `options[]` must be plausible and topic-related.
+
+## Item type: `sentenceBuilder` (Builder tab — separate file)
+
+Lives at `data/SentenceBuilderPacks/{{PACK_ID}}_unified.json`. The pack
+header is the same shape as a revision pack. Items:
+
+```json
+{
+  "id":     "black_death_builder_001",
+  "type":   "sentenceBuilder",
+  "level":  "KS3 / Year 7",
+  "topics": [],
+  "tags":   ["key_date"],
+  "data": {
+    "cardType": "key_date",
+    "prompt":   "When did the Black Death arrive in England?",
+    "answer":   "The Black Death arrived in England in June 1348.",
+    "tiles": [
+      "The", "Black", "Death", "arrived", "in", "England", "in", "June", "1348."
+    ]
+  }
+}
+```
+
+`tiles` joined with spaces must reconstruct `answer` exactly. Punctuation
+attaches to the preceding word (`"1348."` not `"1348"` `"."`).
+
+`cardType` examples (consistent across cards in the same pack helps the UI
+group them): `"key_date"`, `"key_term"`, `"example_sentence"`, `"cause"`,
+`"consequence"`, `"belief"`, `"treatment"`, `"significance"`,
+`"key_person"`.
+
+## Item type: `passage` (Reading tab — separate file)
+
+Lives at `data/PassagePacks/{{GROUP_ID}}/pack_unified.json`. Pack header is
+the same shape as a revision pack but `subject` should match the group
+(e.g. `"history"` for a history passage group). Items:
+
+```json
+{
+  "id":     "careers_01",
+  "type":   "passage",
+  "level":  "GCSE",
+  "topics": ["careers"],
+  "tags":   [],
+  "data": {
+    "chapter":       "BBC Bitesize - GCSE German",
+    "section":       "Careers",
+    "sourceTitle":   "Arzt im Krankenhaus",
+    "targetTitle":   "Doctor",
+    "sourcePassage": "Ich möchte als Arzt arbeiten…",
+    "targetPassage": "I would like to work as a doctor…",
+    "speechLanguage": "de-DE",
+    "questions": [
+      {
+        "id":                "careers_01_q1",
+        "questionType":      "multiple_choice",
+        "difficulty":        "medium",
+        "question":          "What does the student want to be?",
+        "options":           ["A doctor", "A teacher", "A farmer", "A driver"],
+        "correctOptionIndex": 0,
+        "modelAnswer":       "A doctor",
+        "acceptedKeywords":  ["doctor"]
+      },
+      {
+        "id":                "careers_01_q2",
+        "questionType":      "open",
+        "difficulty":        "easy",
+        "question":          "Why does the student want this job?",
+        "modelAnswer":       "He wants to help sick people and finds biology interesting.",
+        "acceptedKeywords":  ["help", "sick", "biology"]
+      }
+    ]
+  }
+}
+```
+
+`questionType` values: `"multiple_choice"`, `"open"`, `"fact"`. Use
+`question` (not `question_en`) — that's what the runtime reads. For
+non-language passage packs, `sourcePassage` and `targetPassage` may hold
+the same text and `speechLanguage` should be `"en-GB"`.
+
+**Passage subtopic suggestions** (mix at least 4 of these per pack):
+
+- background / context
+- causes / drivers
+- key people
+- key events / chronology
+- symptoms and treatments (history / science / medicine)
+- beliefs and religion (history)
+- government / authority response
+- impact on society
+- short source-style or interpretation-style reading
+
+**Question type mix per passage** (3–6 questions): include at least one
+**fact retrieval**, one **inference**, and one **explanation /
+significance** question.
+
+## Sizing guidance
+
+Adjust by topic size; these are good defaults for a complete pack:
+
+| File | Item count | Notes |
+|------|------------|-------|
+| Revision pack `vocab` items | 30–80 | Cover key people, dates, events, terms, causes, consequences |
+| Revision pack `sentence` items | 20–40 | Only for language packs, or cause-and-effect statements for history/science |
+| Revision pack `sequence` items | 0–4 | One per process; geography and science benefit most |
+| Revision pack `categorySort` items | 0–4 | One per "X vs Y" distinction |
+| Revision pack `fillBlank` items | 0–20 | Strong fit for non-language packs; mix typed and multiple-choice |
+| Sentence builder pack `sentenceBuilder` items | 15–30 | Group by `cardType` |
+| Passage pack `passage` items | 4–8 | Each passage 80–220 words depending on level |
+| Per-passage `questions` | 3–6 | Mix difficulties and types |
+
+## Subject-specific guidance
+
+### Language packs (`subject: "language"`)
+
+- Source = the language being learned; target = English (typically).
+- The Quiz Setup UI shows a direction toggle so the student can drill
+  in either direction.
+- Default mix: `vocab` heavy, plus `sentence` items for sentence-build/
+  sentence-type drills. Set `supportsSentences: true` if any sentence
+  items exist.
+- Use BCP-47 codes precisely: `de-DE`, `fr-FR`, `es-ES`, `la-Latn`,
+  `it-IT`, `zh-Hans`, `ja-JP`, etc.
+
+### History packs (`subject: "history"`)
+
+- Source = target = `"en-GB"`. Set `supportsSentences: true` only if you
+  include cause-and-effect or knowledge-statement sentences.
+- Strong mix: `vocab` (key people / dates / terms), `fillBlank` (key
+  causes / consequences / dates), and a sentence-builder pack for
+  exam-style sentence reconstruction.
+- Keep dates explicit ("1348", not "the mid-14th century").
+- Tag historical sensitivity carefully — factual but neutral phrasing.
+
+### Geography packs (`subject: "geography"`)
+
+- Source = target = `"en-GB"` for KS3 packs. `supportsSentences: false`
+  unless writing case-study sentences.
+- Strong fit for `categorySort` (weathering vs erosion, push vs pull),
+  `sequence` (water cycle, glacier formation), and `fillBlank`.
+- Use units consistently (km, m³, °C).
+
+### Science packs (`subject: "science"`)
+
+- Source = target = `"en-GB"`. `supportsSentences: false` unless you have
+  textbook-style sentences.
+- Strong fit for `vocab` (units, formulae, key terms), `sequence`
+  (cellular respiration, photosynthesis steps), `categorySort` (organic
+  vs inorganic, kingdom classification).
+- Specify Biology / Chemistry / Physics in the title.
+
+## Worked example — History (GCSE Black Death, abridged)
+
+Showing **three files plus manifest entries** for the multi-file output
+pattern. (The real generation should be longer; counts here are abridged
+to keep the example readable.)
+
+```
+FILE: data/Packs/black_death/pack_unified.json
+```
+```json
+{
+  "packId":              "black_death",
+  "subject":             "history",
+  "title":               "GCSE History — The Black Death",
+  "subtitle":            "Causes, symptoms, beliefs, treatments, consequences",
+  "level":               "GCSE",
+  "language":            "English",
+  "topics":              ["the black death", "medieval medicine"],
+  "tags":                ["GCSE", "History", "KS3", "the black death"],
+  "description":         "GCSE / KS3 revision pack on the Black Death (1348–1350) — key terms, dates, causes, symptoms, medieval beliefs, treatments, and consequences for English society.",
+  "schemaVersion":       "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode":  "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode":  "en-GB",
+  "speechLanguage":      "en-GB",
+  "items": [
+    {
+      "id":     "bd_vocab_001",
+      "type":   "vocab",
+      "level":  "GCSE",
+      "topics": ["the black death"],
+      "tags":   ["GCSE", "key_term", "cat:events"],
+      "data": {
+        "partOfSpeech": "keyword",
+        "translations": {
+          "en-GB": "Black Death"
+        },
+        "examples": {
+          "en-GB": "A severe outbreak of bubonic plague that affected England from 1348 to 1350."
+        }
+      }
+    },
+    {
+      "id":     "bd_vocab_002",
+      "type":   "vocab",
+      "level":  "GCSE",
+      "topics": ["the black death"],
+      "tags":   ["GCSE", "key_date", "cat:dates"],
+      "data": {
+        "partOfSpeech": "keyword",
+        "translations": {
+          "en-GB": "1348"
+        },
+        "examples": {
+          "en-GB": "The year the Black Death first arrived in England, reaching the south coast through the port of Melcombe Regis."
+        }
+      }
+    },
+    {
+      "id":     "bd_gap_001",
+      "type":   "fillBlank",
+      "level":  "GCSE",
+      "topics": ["causes"],
+      "tags":   ["cat:causes"],
+      "data": {
+        "sentence": "Many medieval people believed the plague was a punishment from ____.",
+        "answer":   "God",
+        "options":  ["God", "the King", "the stars", "the moon"]
+      }
+    }
+  ]
+}
+```
+
+```
+FILE: data/SentenceBuilderPacks/black_death_unified.json
+```
+```json
+{
+  "packId":              "black_death",
+  "subject":             "history",
+  "title":               "Black Death — Sentence Builder",
+  "level":               "KS3 / Year 7",
+  "language":            "English",
+  "topics":              ["the black death"],
+  "tags":                ["KS3", "Y7", "History"],
+  "description":         "Sentence-builder cards for the Black Death — key dates, causes, consequences, and exam-style sentences.",
+  "schemaVersion":       "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode":  "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode":  "en-GB",
+  "speechLanguage":      "en-GB",
+  "items": [
+    {
+      "id":     "black_death_builder_001",
+      "type":   "sentenceBuilder",
+      "level":  "KS3 / Year 7",
+      "topics": [],
+      "tags":   ["key_date"],
+      "data": {
+        "cardType": "key_date",
+        "prompt":   "When did the Black Death arrive in England?",
+        "answer":   "The Black Death arrived in England in June 1348.",
+        "tiles": [
+          "The", "Black", "Death", "arrived", "in", "England", "in", "June", "1348."
+        ]
+      }
+    }
+  ]
+}
+```
+
+```
+FILE: data/PassagePacks/ks3_history/pack_unified.json (append item)
+```
+```json
+{
+  "packId":              "ks3_history",
+  "subject":             "history",
+  "title":               "KS3 History — Passages",
+  "level":               "KS3",
+  "language":            "English",
+  "topics":              ["history"],
+  "tags":                ["KS3"],
+  "description":         "KS3 history reading passages with comprehension questions.",
+  "schemaVersion":       "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode":  "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode":  "en-GB",
+  "speechLanguage":      "en-GB",
+  "items": [
+    {
+      "id":     "black_death_p1",
+      "type":   "passage",
+      "level":  "KS3",
+      "topics": ["the black death"],
+      "tags":   [],
+      "data": {
+        "chapter":       "KS3 History",
+        "section":       "The Black Death",
+        "sourceTitle":   "The Plague Arrives",
+        "targetTitle":   "The Plague Arrives",
+        "sourcePassage": "In June 1348, a ship from Gascony docked at the small port of Melcombe Regis in Dorset…",
+        "targetPassage": "In June 1348, a ship from Gascony docked at the small port of Melcombe Regis in Dorset…",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id":                "black_death_p1_q1",
+            "questionType":      "fact",
+            "difficulty":        "easy",
+            "question":          "In what year did the Black Death first arrive in England?",
+            "modelAnswer":       "1348",
+            "acceptedKeywords":  ["1348"]
+          },
+          {
+            "id":                "black_death_p1_q2",
+            "questionType":      "multiple_choice",
+            "difficulty":        "medium",
+            "question":          "Where did the plague first land?",
+            "options":           ["Melcombe Regis", "London", "Bristol", "York"],
+            "correctOptionIndex": 0,
+            "modelAnswer":       "Melcombe Regis",
+            "acceptedKeywords":  ["Melcombe", "Dorset"]
+          },
+          {
+            "id":                "black_death_p1_q3",
+            "questionType":      "open",
+            "difficulty":        "hard",
+            "question":          "Why did the disease spread so quickly through medieval ports?",
+            "modelAnswer":       "Trade routes brought infected sailors, fleas, and rats into densely populated towns with poor sanitation.",
+            "acceptedKeywords":  ["trade", "rats", "fleas", "sanitation", "ports"]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+```
+FILE: data/generated/manifest.json (entries to add)
+```
+```json
+{
+  "revisionPack": {
+    "id":                  "black_death",
+    "displayName":         "GCSE History — The Black Death",
+    "subject":             "history",
+    "level":               "GCSE",
+    "unifiedPath":         "data/Packs/black_death/pack_unified.json",
+    "sourceLanguageLabel": "English",
+    "sourceLanguageCode":  "en-GB",
+    "targetLanguageLabel": "English",
+    "targetLanguageCode":  "en-GB",
+    "speechLanguage":      "en-GB",
+    "supportsSentences":   false,
+    "stageOptions":        [],
+    "defaultQuizModes":    [],
+    "wordCount":           2,
+    "sentenceCount":       0
+  },
+  "sentenceBuilderPack": {
+    "id":          "black_death",
+    "displayName": "Black Death",
+    "unifiedPath": "data/SentenceBuilderPacks/black_death_unified.json"
+  },
+  "passageGroup": {
+    "id":          "ks3_history",
+    "displayName": "KS3 History",
+    "unifiedPath": "data/PassagePacks/ks3_history/pack_unified.json"
+  }
+}
+```
+
+## Self-check before responding
+
+Run through this mentally before sending:
+
+- [ ] `schemaVersion` is `"1.1"` on every pack header.
+- [ ] `subject` is one of `language`, `history`, `geography`, `science` —
+      lowercase.
+- [ ] Every pack header has all language label/code pairs and they're
+      consistent.
+- [ ] Every item has a unique `id`.
+- [ ] Every `vocab` and `sentence` item has a `translations` dict that
+      includes the pack's source and target codes.
+- [ ] No duplicates: same translation pair, same gap answer, same builder
+      sentence, same passage question.
+- [ ] If any `sentence` items exist, manifest entry has
+      `supportsSentences: true`. Otherwise `false`.
+- [ ] `wordCount` and `sentenceCount` in the manifest entry match actual
+      counts.
+- [ ] Coverage hits **who / what / when / where / why / consequences /
+      significance** plus likely exam knowledge points.
+- [ ] Difficulty spread: easy / medium / harder items present.
+- [ ] British English throughout. No invented dates or quotes.
+- [ ] Every JSON block parses without modification.
+
+## Interaction protocol
+
+If the user's first message leaves any of these unclear, ask **one**
+clarifying message before generating:
+
+1. Subject bucket (language / history / geography / science).
+2. Pack title and `packId`.
+3. Source / target language (or "English-only" for non-language packs).
+4. Year level.
+5. Approximate item count and which item types to include.
+6. Any specific curriculum reference or teacher emphasis.
+7. Whether to generate all three files (revision pack + builder pack +
+   passage pack) or only some.
+
+If the user gave you everything in their first message, skip the
+clarifier and produce the files.
+
+## What NOT to do
+
+- ❌ Don't dump partial JSON — every code block must validate as-is.
+- ❌ Don't use bare `"de"` / `"en"` keys; always BCP-47 (`"de-DE"` /
+      `"en-GB"`).
+- ❌ Don't capitalise `subject`.
+- ❌ Don't put `passage` items in a revision pack (`data/Packs/`) —
+      passages live in `data/PassagePacks/<group>/pack_unified.json`.
+- ❌ Don't put `sentenceBuilder` items in a revision pack — they live in
+      `data/SentenceBuilderPacks/<id>_unified.json`.
+- ❌ Don't include comments or markdown inside the JSON code blocks.
+- ❌ Don't generate `options` arrays where the answer isn't included.
+- ❌ Don't repeat content. Each item should teach one distinct thing.
+- ❌ Don't make all items the same shape — vary types per the pack-type
+      guidance above.
+- ❌ Don't rely only on attached images if they are partial; expand
+      with accurate curriculum knowledge.
+
+## END PROMPT
