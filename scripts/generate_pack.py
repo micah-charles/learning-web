@@ -36,6 +36,17 @@ Usage examples
         --source ~/textbook_p47.jpg \\
         --source ~/notes.md
 
+    # Folder of source materials — recursively picks up all supported
+    # files (images + text), skipping hidden files. Cap is 20 per run;
+    # override with LW_PACK_MAX_ATTACHMENTS env var.
+    python3 scripts/generate_pack.py \\
+        --subject history \\
+        --topic "Tudors" \\
+        --level GCSE \\
+        --pack-id tudors \\
+        --group-id ks3_history \\
+        --source ~/curriculum/tudors/
+
     # Language pack (German)
     python3 scripts/generate_pack.py \\
         --subject language \\
@@ -141,7 +152,11 @@ def parse_args() -> argparse.Namespace:
 
     # Source materials
     p.add_argument("--source", action="append", default=[], metavar="PATH",
-                   help="Attach a source file (image or text). Repeatable.")
+                   help="Attach a source file or folder. Files: image (.png/.jpg/"
+                        ".jpeg/.gif/.webp) or text (.txt/.md/.csv/.json/.yaml). "
+                        "Folders: walked recursively, supported files attached, "
+                        "hidden files skipped. Repeatable. Cap of 20 files per run "
+                        "(override with LW_PACK_MAX_ATTACHMENTS env var).")
 
     # Output
     p.add_argument("--out", type=Path, default=DEFAULT_OUT,
@@ -222,12 +237,80 @@ class Attachment:
     image_b64: Optional[str]
 
 
-def load_attachments(paths: list[str]) -> list[Attachment]:
-    attachments: list[Attachment] = []
-    for raw in paths:
+# Cap on attachments per run — guards against an accidentally huge folder.
+# Override with LW_PACK_MAX_ATTACHMENTS env var.
+DEFAULT_MAX_ATTACHMENTS = 20
+
+
+def _is_supported_file(path: Path) -> bool:
+    """True if a single file looks like something we know how to attach."""
+    if not path.is_file():
+        return False
+    if path.name.startswith("."):
+        return False
+    suffix = path.suffix.lower()
+    return suffix in SUPPORTED_IMAGE_TYPES or suffix in SUPPORTED_TEXT_TYPES
+
+
+def _expand_source_paths(raw_paths: list[str]) -> list[Path]:
+    """Resolve each --source argument to a list of concrete files. Each entry
+    can be either a file or a directory:
+
+      * file → kept as-is (errors if missing)
+      * directory → recursively walked; supported files are included.
+        Hidden files (starting with '.') are skipped. Unsupported types are
+        skipped silently with a single summary warning to stderr.
+
+    Order is preserved across multiple --source flags; within each directory
+    files are sorted alphabetically for determinism.
+    """
+    expanded: list[Path] = []
+    for raw in raw_paths:
         path = Path(raw).expanduser()
         if not path.exists():
             die(f"Source attachment not found: {path}", code=1)
+        if path.is_file():
+            expanded.append(path)
+            continue
+        if path.is_dir():
+            picked: list[Path] = []
+            skipped = 0
+            for child in sorted(path.rglob("*")):
+                if not child.is_file():
+                    continue
+                if any(part.startswith(".") for part in child.relative_to(path).parts):
+                    continue  # skip hidden files / dot-folders
+                if _is_supported_file(child):
+                    picked.append(child)
+                else:
+                    skipped += 1
+            if not picked:
+                die(f"Source folder {path} contained no supported files "
+                    f"(images: {sorted(SUPPORTED_IMAGE_TYPES)}; "
+                    f"text: {sorted(SUPPORTED_TEXT_TYPES)})", code=1)
+            print(f"  Expanded {path}/ → {len(picked)} file(s) "
+                  f"({skipped} skipped as unsupported)", file=sys.stderr)
+            expanded.extend(picked)
+            continue
+        die(f"Source path is neither file nor directory: {path}", code=1)
+    return expanded
+
+
+def load_attachments(paths: list[str]) -> list[Attachment]:
+    files = _expand_source_paths(paths)
+
+    cap_raw = os.environ.get("LW_PACK_MAX_ATTACHMENTS", str(DEFAULT_MAX_ATTACHMENTS))
+    try:
+        cap = int(cap_raw)
+    except ValueError:
+        cap = DEFAULT_MAX_ATTACHMENTS
+    if len(files) > cap:
+        die(f"{len(files)} attachments exceeds the safety cap of {cap}. "
+            f"Narrow the --source path(s) or override with "
+            f"LW_PACK_MAX_ATTACHMENTS={len(files)}.", code=1)
+
+    attachments: list[Attachment] = []
+    for path in files:
         suffix = path.suffix.lower()
         if suffix in SUPPORTED_IMAGE_TYPES:
             data = path.read_bytes()
