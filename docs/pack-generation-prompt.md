@@ -6,7 +6,9 @@
 > (screenshots, textbook photos, OCR, worksheets, notes), and ask for
 > the pack you want.
 >
-> The assistant will produce up to **three** complete `pack_unified.json`
+> The assistant produces all output **inside `BEGIN_GENERATED_PACK_FILES` /
+> `END_GENERATED_PACK_FILES` markers**. Python parses only content inside those
+> markers. The worked example at the end is for reference only.
 > files plus their manifest entries — one for the revision pack, one for the
 > sentence-builder pack, and one for the passage pack — covering all four
 > Learning Web modes in a single response.
@@ -221,7 +223,35 @@ easy / medium / harder.
 
 ## Output contract
 
-Return the result as **a Source Coverage Summary** followed by
+Return the result as:
+1. A **Source Coverage Summary** (plain text, no JSON).
+2. Then wrap **all JSON output** between these exact markers:
+
+```
+BEGIN_GENERATED_PACK_FILES
+FILE: <path>
+```json
+{ ... }
+```
+FILE: <path>
+```json
+{ ... }
+```
+END_GENERATED_PACK_FILES
+```
+
+**Rules:**
+- Include a `FILE: <path>` header before each JSON code block.
+- Do **not** add prose inside the markers.
+- The **worked example** at the end is reference only — do not include it in output.
+- Python parses only content **inside** `BEGIN_GENERATED_PACK_FILES` /
+  `END_GENERATED_PACK_FILES`. Everything outside is ignored.
+- `pack_decision.json` must be the **first** FILE block inside the markers.
+- Python validates `pack_decision.json` before writing any pack files.
+- If `pack_decision.json` is missing or invalid, **no pack files are written**.
+- `validation_report.json` (optional) is written on failure.
+- If Python errors with "No BEGIN_GENERATED_PACK_FILES markers found", wrap
+  your JSON output between those markers and retry.
 **labelled JSON code blocks**. Include a one-line `FILE: <path>` header
 before each block. Do not add prose between files. Do not add markdown
 comments inside the JSON.
@@ -745,248 +775,6 @@ Adjust by topic size; these are good defaults for a complete pack:
   (cellular respiration, photosynthesis steps), `categorySort` (organic
   vs inorganic, kingdom classification).
 - Specify Biology / Chemistry / Physics in the title.
-
-## Worked example — History (GCSE Black Death, abridged)
-
-Showing **three files plus manifest entries** for the multi-file output
-pattern. (The real generation should be longer; counts here are abridged
-to keep the example readable.)
-
-```
-FILE: data/Packs/black_death/pack_unified.json
-```
-```json
-{
-  "packId":              "black_death",
-  "subject":             "history",
-  "title":               "GCSE History — The Black Death",
-  "subtitle":            "Causes, symptoms, beliefs, treatments, consequences",
-  "level":               "GCSE",
-  "language":            "English",
-  "topics":              ["the black death", "medieval medicine"],
-  "tags":                ["GCSE", "History", "KS3", "the black death"],
-  "description":         "GCSE / KS3 revision pack on the Black Death (1348–1350) — key terms, dates, causes, symptoms, medieval beliefs, treatments, and consequences for English society.",
-  "schemaVersion":       "1.1",
-  "sourceLanguageLabel": "English",
-  "sourceLanguageCode":  "en-GB",
-  "targetLanguageLabel": "English",
-  "targetLanguageCode":  "en-GB",
-  "speechLanguage":      "en-GB",
-  "items": [
-    {
-      "id":     "bd_vocab_001",
-      "type":   "vocab",
-      "level":  "GCSE",
-      "topics": ["the black death"],
-      "tags":   ["GCSE", "key_term", "cat:events"],
-      "data": {
-        "partOfSpeech": "keyword",
-        "translations": {
-          "en-GB": "Black Death"
-        },
-        "examples": {
-          "en-GB": "A severe outbreak of bubonic plague that affected England from 1348 to 1350."
-        }
-      }
-    },
-    {
-      "id":     "bd_vocab_002",
-      "type":   "vocab",
-      "level":  "GCSE",
-      "topics": ["the black death"],
-      "tags":   ["GCSE", "key_date", "cat:dates"],
-      "data": {
-        "partOfSpeech": "keyword",
-        "translations": {
-          "en-GB": "1348"
-        },
-        "examples": {
-          "en-GB": "The year the Black Death first arrived in England, reaching the south coast through the port of Melcombe Regis."
-        }
-      }
-    },
-    {
-      "id":     "bd_gap_001",
-      "type":   "fillBlank",
-      "level":  "GCSE",
-      "topics": ["causes"],
-      "tags":   ["cat:causes"],
-      "data": {
-        "sentence": "Many medieval people believed the plague was a punishment from ____.",
-        "answer":   "God",
-        "options":  ["God", "the King", "the stars", "the moon"]
-      }
-    }
-  ]
-}
-```
-
-```
-FILE: data/SentenceBuilderPacks/black_death_unified.json
-```
-```json
-{
-  "packId":              "black_death",
-  "subject":             "history",
-  "title":               "Black Death — Sentence Builder",
-  "level":               "KS3 / Year 7",
-  "language":            "English",
-  "topics":              ["the black death"],
-  "tags":                ["KS3", "Y7", "History"],
-  "description":         "Sentence-builder cards for the Black Death — key dates, causes, consequences, and exam-style sentences.",
-  "schemaVersion":       "1.1",
-  "sourceLanguageLabel": "English",
-  "sourceLanguageCode":  "en-GB",
-  "targetLanguageLabel": "English",
-  "targetLanguageCode":  "en-GB",
-  "speechLanguage":      "en-GB",
-  "items": [
-    {
-      "id":     "black_death_builder_001",
-      "type":   "sentenceBuilder",
-      "level":  "KS3 / Year 7",
-      "topics": [],
-      "tags":   ["key_date"],
-      "data": {
-        "cardType": "key_date",
-        "prompt":   "When did the Black Death arrive in England?",
-        "answer":   "The Black Death arrived in England in June 1348.",
-        "tiles": [
-          "The", "Black", "Death", "arrived", "in", "England", "in", "June", "1348."
-        ]
-      }
-    }
-  ]
-}
-```
-
-```
-FILE: data/PassagePacks/ks3_history/pack_unified.json (append item)
-```
-```json
-{
-  "packId":              "ks3_history",
-  "subject":             "history",
-  "title":               "KS3 History — Passages",
-  "level":               "KS3",
-  "language":            "English",
-  "topics":              ["history"],
-  "tags":                ["KS3"],
-  "description":         "KS3 history reading passages with comprehension questions.",
-  "schemaVersion":       "1.1",
-  "sourceLanguageLabel": "English",
-  "sourceLanguageCode":  "en-GB",
-  "targetLanguageLabel": "English",
-  "targetLanguageCode":  "en-GB",
-  "speechLanguage":      "en-GB",
-  "items": [
-    {
-      "id":     "black_death_p1",
-      "type":   "passage",
-      "level":  "KS3",
-      "topics": ["the black death"],
-      "tags":   [],
-      "data": {
-        "chapter":       "KS3 History",
-        "section":       "The Black Death",
-        "sourceTitle":   "The Plague Arrives",
-        "targetTitle":   "The Plague Arrives",
-        "sourcePassage": "In June 1348, a ship from Gascony docked at the small port of Melcombe Regis in Dorset…",
-        "targetPassage": "In June 1348, a ship from Gascony docked at the small port of Melcombe Regis in Dorset…",
-        "speechLanguage": "en-GB",
-        "questions": [
-          {
-            "id":                "black_death_p1_q1",
-            "questionType":      "fact",
-            "difficulty":        "easy",
-            "question":          "In what year did the Black Death first arrive in England?",
-            "modelAnswer":       "1348",
-            "acceptedKeywords":  ["1348"]
-          },
-          {
-            "id":                "black_death_p1_q2",
-            "questionType":      "multiple_choice",
-            "difficulty":        "medium",
-            "question":          "Where did the plague first land?",
-            "options":           ["Melcombe Regis", "London", "Bristol", "York"],
-            "correctOptionIndex": 0,
-            "modelAnswer":       "Melcombe Regis",
-            "acceptedKeywords":  ["Melcombe", "Dorset"]
-          },
-          {
-            "id":                "black_death_p1_q3",
-            "questionType":      "open",
-            "difficulty":        "hard",
-            "question":          "Why did the disease spread so quickly through medieval ports?",
-            "modelAnswer":       "Trade routes brought infected sailors, fleas, and rats into densely populated towns with poor sanitation.",
-            "acceptedKeywords":  ["trade", "rats", "fleas", "sanitation", "ports"]
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-```
-FILE: data/generated/manifest.json (entries to add)
-```
-```json
-{
-  "revisionPack": {
-    "id":                  "black_death",
-    "displayName":         "GCSE History — The Black Death",
-    "subject":             "history",
-    "level":               "GCSE",
-    "unifiedPath":         "data/Packs/black_death/pack_unified.json",
-    "sourceLanguageLabel": "English",
-    "sourceLanguageCode":  "en-GB",
-    "targetLanguageLabel": "English",
-    "targetLanguageCode":  "en-GB",
-    "speechLanguage":      "en-GB",
-    "supportsSentences":   false,
-    "stageOptions":        [],
-    "defaultQuizModes":    [],
-    "wordCount":           2,
-    "sentenceCount":       0
-  },
-  "sentenceBuilderPack": {
-    "id":          "black_death",
-    "displayName": "Black Death",
-    "unifiedPath": "data/SentenceBuilderPacks/black_death_unified.json"
-  },
-  "passageGroup": {
-    "id":          "ks3_history",
-    "displayName": "KS3 History",
-    "unifiedPath": "data/PassagePacks/ks3_history/pack_unified.json"
-  }
-}
-```
-
-## Self-check before responding
-
-Run through this mentally before sending:
-
-- [ ] `schemaVersion` is `"1.1"` on every pack header.
-- [ ] `subject` is one of `language`, `history`, `geography`, `science` —
-      lowercase.
-- [ ] Every pack header has all language label/code pairs and they're
-      consistent.
-- [ ] Every item has a unique `id`.
-- [ ] Every `vocab` and `sentence` item has a `translations` dict that
-      includes the pack's source and target codes.
-- [ ] No duplicates: same translation pair, same gap answer, same builder
-      sentence, same passage question.
-- [ ] If any `sentence` items exist, manifest entry has
-      `supportsSentences: true`. Otherwise `false`.
-- [ ] `wordCount` and `sentenceCount` in the manifest entry match actual
-      counts.
-- [ ] Coverage hits **who / what / when / where / why / consequences /
-      significance** plus likely exam knowledge points.
-- [ ] Difficulty spread: easy / medium / harder items present.
-- [ ] British English throughout. No invented dates or quotes.
-- [ ] Every JSON block parses without modification.
-
 
 ## Automation Mode
 

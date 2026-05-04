@@ -154,6 +154,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--model", default=None,
                    help=f"Model override. Defaults: anthropic={DEFAULT_ANTHROPIC_MODEL}, "
                         f"openai={DEFAULT_OPENAI_MODEL}")
+    p.add_argument("--reasoning-effort", default=None,
+                   help="OpenAI reasoning effort (low|medium|high). Optional.")
+    p.add_argument("--log-dir", default=None, metavar="DIR",
+                   help="Directory for timestamped log files. Created if absent.")
+    p.add_argument("--log-file", default=None, metavar="PATH",
+                   help="Exact path for the log file. Overrides --log-dir.")
 
     # Source materials
     p.add_argument("--source", action="append", default=[], metavar="PATH",
