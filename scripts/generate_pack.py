@@ -618,7 +618,7 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     """Build the text prompt passed to `codex exec`.
 
     Loads the master template from:
-      /Volumes/ExtremePro/ClaudeAI/ClaudeAI/Learning-Web-Pack-Generation-Prompt.md
+      REPO_ROOT / "docs" / "pack-generation-prompt.md"
 
     Substitutes all determinable {{VARIABLES}} then appends:
       - Source file paths / content
@@ -631,16 +631,13 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     import re as _re
     import pathlib as _pathlib
 
-    # ── Load master template ─────────────────────────────────────────────
-    prompt_path = _pathlib.Path(
-        "/Volumes/ExtremePro/ClaudeAI/ClaudeAI/Learning-Web-Pack-Generation-Prompt.md"
-    )
+    prompt_path = REPO_ROOT / "docs" / "pack-generation-prompt.md"
     if not prompt_path.exists():
         raise FileNotFoundError(
             "Master prompt file not found: "
             + str(prompt_path)
             + "\nDownload from:\n"
-            "  /Volumes/ExtremePro/ClaudeAI/ClaudeAI/Learning-Web-Pack-Generation-Prompt.md"
+            + str(REPO_ROOT / "docs" / "pack-generation-prompt.md")
         )
     raw = prompt_path.read_text(encoding="utf-8")
     m = _re.search(
