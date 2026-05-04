@@ -783,20 +783,25 @@ def _chunk(text: str, width: int = 500) -> list[str]:
 # ─── Codex runner ─────────────────────────────────────────────────────────
 
 def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
-    """Run `codex exec <prompt>` as a subprocess.
+    """Run `codex exec <prompt>` as a subprocess with real-time streaming output.
+
+    Each line from Codex is printed immediately to stderr, prefixed with
+    [Codex]. A heartbeat timer prints a "." to stderr every 60 seconds of
+    silence so the caller knows the process is not stuck.
 
     Args:
         prompt:  The full text prompt for Codex.
         timeout: Seconds before killing the subprocess (default 1200 = 20 min).
 
     Returns:
-        (stdout_text, meta_dict)
+        (stdout_text, meta_dict) — stdout_text is the full concatenated output.
 
     Raises:
         RuntimeError if the codex command is not found or returns non-zero.
     """
     import shutil as _shutil
     import subprocess as _subprocess
+    import time as _time
 
     if not _shutil.which("codex"):
         raise RuntimeError(
@@ -807,22 +812,59 @@ def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
         )
 
     repo_root = str(REPO_ROOT)
-    print(f"-> Calling Codex (codex exec) in {repo_root}...", file=sys.stderr)
-    print(f"  Prompt length: {len(prompt):,} chars", file=sys.stderr)
-    print(f"  Timeout: {timeout}s ({timeout // 60} min)", file=sys.stderr)
+    print(f"-> Calling Codex (streaming) in {repo_root}...", file=sys.stderr)
+    print(f"  Prompt: {len(prompt):,} chars  |  Timeout: {timeout}s ({timeout // 60} min)", file=sys.stderr)
+    print(f"  Streaming output below — one [Codex] line per line of output.", file=sys.stderr)
+    print("-" * 60, file=sys.stderr)
+
+    stdout_lines: list[str] = []
+    heartbeat_interval = 60  # seconds between heartbeat dots
 
     try:
-        result = _subprocess.run(
+        process = _subprocess.Popen(
             ["codex", "exec", prompt],
             cwd=repo_root,
-            capture_output=True,
+            stdout=_subprocess.PIPE,
+            stderr=_subprocess.STDOUT,  # merge stderr into stdout stream
             text=True,
-            timeout=timeout,
+            bufsize=1,
         )
+
+        last_seen = _time.time()
+        first_line = True
+
+        while True:
+            line = process.stdout.readline()
+            if line == "":
+                break  # EOF
+
+            line = line.rstrip()
+            stdout_lines.append(line)
+
+            if first_line and heartbeat_interval:
+                # Give Codex a moment to start before enabling heartbeat
+                first_line = False
+                last_seen = _time.time()
+
+            # Print every line immediately
+            print(f"[Codex] {line}", file=sys.stderr)
+
+            # Heartbeat: dot every heartbeat_interval seconds of silence
+            if heartbeat_interval:
+                now = _time.time()
+                if now - last_seen >= heartbeat_interval:
+                    elapsed = int(now - _time.time() + last_seen)  # rough gap
+                    print(f"[Codex] ... (still running, {elapsed}s since last output)", file=sys.stderr)
+                    last_seen = now
+
+        process.wait(timeout=timeout)
+
     except _subprocess.TimeoutExpired:
+        process.kill()
+        process.wait()
         raise RuntimeError(
             f"Codex timed out after {timeout}s ({timeout // 60} min).\n"
-            f"Try reducing source files or increasing the timeout."
+            f"Output so far ({len(stdout_lines)} lines) saved to generated_packs/."
         ) from None
     except OSError as exc:
         raise RuntimeError(
@@ -830,14 +872,14 @@ def call_codex_agent(prompt: str, timeout: int = 1200) -> tuple[str, dict]:
             "Make sure the Codex CLI is installed and on your PATH."
         ) from exc
 
-    if result.returncode != 0:
-        stderr = result.stderr.strip() if result.stderr else "(no stderr)"
+    print("-" * 60, file=sys.stderr)
+    if process.returncode != 0:
         raise RuntimeError(
-            f"Codex exited with code {result.returncode}.\n"
-            f"stderr: {stderr}"
+            f"Codex exited with code {process.returncode}.\n"
+            f"stdout: {stdout_lines[-1]!r}" if stdout_lines else "No stdout captured."
         )
 
-    return result.stdout, {"returncode": result.returncode, "timeout": timeout}
+    return "\n".join(stdout_lines), {"returncode": process.returncode, "timeout": timeout}
 
 
 # ─── Post-Codex validation ────────────────────────────────────────────────
