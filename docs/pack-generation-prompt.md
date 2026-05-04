@@ -71,6 +71,52 @@ contain a specific teacher/class emphasis, reflect that where appropriate.
 If source materials are incomplete, fill the gaps with accurate standard
 curriculum content. **Never invent dates, quotes, or facts.**
 
+
+## Source Scope Rule
+
+Before generating, decide the source scope.
+
+**Source-faithful lesson pack** *(default)* — use mostly what is in the
+uploaded photos/pages. At least 75% of generated content must be directly
+based on the attached source. Up to 25% may be wider curriculum knowledge,
+but only to explain, reinforce, or assess the source material.
+
+**Wider unit pack** *(only if requested)* — treat the source as a starting
+point and expand into the full topic. Triggered only when the user says
+"Generate a full unit pack, not just a source-faithful pack."
+
+**Do not turn a narrow lesson page into a full-topic pack.** If the source
+title is more specific than the user topic, prefer the source title for the
+pack focus.
+
+Example: if the user says "Glaciation" but the source page says
+"Glaciation 2: Depositional Landforms", generate a pack focused on
+depositional landforms, not the whole glaciation unit.
+
+When wider knowledge is added, it must:
+- be accurate for the stated year level,
+- support the source lesson,
+- not distract from the main source topic,
+- not introduce a large new subtopic unless needed for understanding.
+
+If a full wider unit pack is desired, the user should explicitly say:
+"Generate a full unit pack, not just a source-faithful pack."
+
+## Source Coverage Summary
+
+Before the JSON files, include a short source coverage summary as plain
+text (not inside any code block):
+
+```
+Source title detected:
+Main concepts found in the source:
+Wider curriculum concepts added:
+Scope decision: source-faithful lesson pack / wider unit pack / split recommended
+```
+
+This summary helps you verify immediately whether the source material was
+understood correctly. It is required — do not skip it.
+
 ## Output contract
 
 Return the result as **three labelled JSON code blocks**, one per file,
@@ -204,6 +250,18 @@ For the topic, the full dataset must cover:
 - **likely exam knowledge points** for the stated curriculum context
 
 Spread items across **easy / medium / harder** difficulty within the level.
+
+### Split packs
+
+If the source material covers more than one distinct subtopic (e.g. both
+glacier formation *and* glacial deposits), consider recommending a split in
+the Source Coverage Summary. Each JSON file should focus on one coherent
+subtopic. Items that belong to a different subtopic should not be forced
+into the same pack just for convenience — better to produce two focused
+packs than one muddled one.
+
+If in doubt, prefer a narrower pack that the source fully justifies over a
+broader pack that the source only partially covers.
 
 ## Quality bar
 
