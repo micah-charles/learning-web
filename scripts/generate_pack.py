@@ -615,122 +615,172 @@ def dim(s):   return f"\033[2m{s}\033[0m"
 # ─── Codex prompt builder ─────────────────────────────────────────────────
 
 def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
-    """Build the text prompt passed to `codex exec`. Source files are embedded
-    inline so Codex can read them directly from disk.
+    """Build the text prompt passed to `codex exec`.
 
-    The prompt instructs Codex to:
-      1. Read source files from the specified paths
-      2. Generate Learning Web pack files into generated_packs/<pack_id>/
-      3. Stop — do NOT modify src/, data/, manifest.json, or React UI
+    Loads the master template from:
+      /Volumes/ExtremePro/ClaudeAI/ClaudeAI/Learning-Web-Pack-Generation-Prompt.md
+
+    Substitutes all determinable {{VARIABLES}} then appends:
+      - Source file paths / content
+      - Strict safety rules (write only to generated_packs/<pack_id>/)
+      - STOP instruction
+
+    Variables that cannot be derived from args (e.g. item counts) are left
+    as-is so Codex fills them in as part of generation.
     """
-    blocks: list[str] = []
+    import re as _re
+    import pathlib as _pathlib
 
-    blocks.append("You are working inside a Learning Web repository on the local machine.")
-    blocks.append("")
-    blocks.append("REPOSITORY ROOT: /Volumes/ExtremePro/project/learning-web")
-    blocks.append("STAGING OUTPUT: generated_packs/" + args.pack_id + "/")
-    blocks.append("")
-    blocks.append("DO NOT modify any existing files in src/, data/, public/data/,")
-    blocks.append("manifest.json, or any React/UI files.")
-    blocks.append("DO NOT update manifest.json. Only write files inside")
-    blocks.append("generated_packs/" + args.pack_id + "/.")
-    blocks.append("After writing all files, stop.")
-    blocks.append("")
+    # ── Load master template ─────────────────────────────────────────────
+    prompt_path = _pathlib.Path(
+        "/Volumes/ExtremePro/ClaudeAI/ClaudeAI/Learning-Web-Pack-Generation-Prompt.md"
+    )
+    if not prompt_path.exists():
+        raise FileNotFoundError(
+            "Master prompt file not found: "
+            + str(prompt_path)
+            + "\nDownload from:\n"
+            "  /Volumes/ExtremePro/ClaudeAI/ClaudeAI/Learning-Web-Pack-Generation-Prompt.md"
+        )
+    raw = prompt_path.read_text(encoding="utf-8")
+    m = _re.search(
+        r"(?:^## BEGIN PROMPT\s*\n)(.+?)(?:\s*^## END PROMPT)",
+        raw,
+        _re.DOTALL | _re.MULTILINE,
+    )
+    if m is None:
+        raise ValueError(
+            "Could not find BEGIN PROMPT / END PROMPT fences in " + str(prompt_path)
+        )
+    tmpl = m.group(1).rstrip()
 
-    blocks.append("=" * 60)
-    blocks.append("PACK SPECIFICATION")
-    blocks.append("=" * 60)
-    blocks.append("Pack ID:            " + args.pack_id)
-    blocks.append("Subject:            " + args.subject)
-    blocks.append("Topic:              " + args.topic)
-    blocks.append("Level:              " + args.level)
-    if args.curriculum:
-        blocks.append("Curriculum context: " + args.curriculum)
-    blocks.append("Source language:    " + args.source_label + " (" + args.source_code + ")")
-    blocks.append("Target language:    " + args.target_label + " (" + args.target_code + ")")
-    blocks.append("Speech language:    " + args.speech_code)
-    if args.group_id:
-        blocks.append("Passage group ID:   " + args.group_id)
-    blocks.append("")
+    # ── Build variable substitutions ─────────────────────────────────────
+    group_title = (
+        args.level + " " + args.subject.capitalize() + " \u2014 " + args.topic
+        if not args.group_id
+        else args.group_id.replace("_", " ").title()
+    )
+    file_list = (
+        "\n".join(f"- {att.path}  [{att.kind}]" for att in attachments)
+        if attachments
+        else "(no source files attached \u2014 generate from topic + level)"
+    )
+
+    subs = {
+        "{{SUBJECT}}":              args.subject.capitalize(),
+        "{{SUBJECT_LOWERCASE}}":    args.subject.lower(),
+        "{{TOPIC}}":                args.topic,
+        "{{LEVEL}}":                args.level,
+        "{{CURRICULUM_CONTEXT}}":   (args.curriculum or "(not specified)"),
+        "{{PACK_ID}}":              args.pack_id,
+        "{{GROUP_ID}}":            (args.group_id or ""),
+        "{{SOURCE_LABEL}}":        args.source_label,
+        "{{SOURCE_CODE}}":         args.source_code,
+        "{{TARGET_LABEL}}":        args.target_label,
+        "{{TARGET_CODE}}":         args.target_code,
+        "{{SPEECH_CODE}}":         (args.speech_code or args.source_code),
+        # Derived
+        "{{HUMAN_TITLE}}":          args.level + " " + args.subject.capitalize() + " \u2014 " + args.topic,
+        "{{SHORT_SUBTITLE_OPTIONAL}}": "Revision pack for " + args.topic,
+        "{{HUMAN_GROUP_TITLE}}":   group_title,
+        # Source file listing
+        "{{SOURCE_FILE_LIST}}":    file_list,
+    }
+
+    # Apply substitutions; leave unknown {{VARIABLES}} as-is
+    def _repl(mo):
+        return subs.get(mo.group(0), mo.group(0))
+
+    prompt_text = _re.sub(r"\{\{[^}]+\}\}", _repl, tmpl)
+
+    # ── Append source materials ───────────────────────────────────────────
+    out_lines = [prompt_text, ""]
+    out_lines.append("=" * 60)
+    out_lines.append("SOURCE MATERIALS FOR THIS RUN")
+    out_lines.append("=" * 60)
 
     if attachments:
-        blocks.append("=" * 60)
-        blocks.append("SOURCE MATERIALS")
-        blocks.append("=" * 60)
+        out_lines.append(
+            "The following source files are available on disk. "
+            "Read them directly from their paths."
+        )
+        out_lines.append("")
         for att in attachments:
-            blocks.append("File: " + att.path)
-            blocks.append("-" * 40)
-            if att.kind == "image":
-                blocks.append("[IMAGE FILE - describe what you see in this image for context]")
-                blocks.append("Image path: " + att.path)
+            out_lines.append("  File: " + str(att.path) + "  [kind=" + att.kind + "]")
+            if att.kind != "image":
+                snippet = (att.text or "")
+                limit = 4000
+                for chunk in _chunk(snippet, 500):
+                    out_lines.append("  " + chunk)
+                if len(snippet) > limit:
+                    out_lines.append(
+                        "  [... " + str(len(snippet) - limit) + " more chars truncated ...]"
+                    )
+                out_lines.append("")
             else:
-                snippet = (att.text or "")[:3000]
-                blocks.append(snippet)
-                if len(att.text or "") > 3000:
-                    blocks.append("[... " + str(len(att.text) - 3000) + " chars truncated ...]")
-            blocks.append("")
+                out_lines.append(
+                    "  [IMAGE FILE \u2014 describe what you see in this image for context]"
+                )
+                out_lines.append("  Image path: " + str(att.path))
+                out_lines.append("")
     else:
-        blocks.append("No source files attached. Generate the pack from the topic and level alone.")
-        blocks.append("")
+        out_lines.append("No source files attached.")
+        out_lines.append("Use your curriculum knowledge to fill gaps accurately.")
+        out_lines.append("")
 
-    blocks.append("=" * 60)
-    blocks.append("EXPECTED OUTPUT FILES")
-    blocks.append("=" * 60)
-    blocks.append("")
-    blocks.append("Create files inside: generated_packs/" + args.pack_id + "/")
-    blocks.append("")
-    blocks.append("1. pack_unified.json  —  required. Main revision pack.")
-    blocks.append("   Must contain vocab items (and sentence items if language pack).")
-    blocks.append("   Use topic labels from the source material. Tag each item.")
-    if args.subject == "language":
-        blocks.append("")
-        blocks.append("   For language packs also create:")
-        blocks.append("2. sentence_builder_unified.json  —  sentence-builder tile cards")
-    if args.group_id:
-        blocks.append("")
-        blocks.append("2. passage_unified.json  —  reading passages with questions")
-    blocks.append("")
-    blocks.append("3. generation_report.md  —  what was generated, decisions made")
-    blocks.append("")
+    # ── Append safety + output rules ─────────────────────────────────────
+    out_lines.append("=" * 60)
+    out_lines.append("OUTPUT RULES (STRICT \u2014 VIOLATION WILL CAUSE DATA LOSS)")
+    out_lines.append("=" * 60)
+    out_lines.append("")
+    out_lines.append("Write ALL files to the STAGING FOLDER ONLY:")
+    out_lines.append("  generated_packs/" + args.pack_id + "/")
+    out_lines.append("")
+    out_lines.append("PERMITTED files to create inside that folder:")
+    out_lines.append("  generated_packs/" + args.pack_id + "/pack_unified.json")
+    out_lines.append(
+        "  generated_packs/" + args.pack_id + "/sentence_builder_unified.json"
+    )
+    out_lines.append("  generated_packs/" + args.pack_id + "/passage_unified.json")
+    out_lines.append("  generated_packs/" + args.pack_id + "/generation_report.md")
+    out_lines.append("")
+    out_lines.append("NEVER write to any of these locations:")
+    out_lines.append("  src/")
+    out_lines.append("  data/")
+    out_lines.append("  public/data/")
+    out_lines.append("  manifest.json")
+    out_lines.append("  docs/")
+    out_lines.append("  Any existing pack folders")
+    out_lines.append("")
+    out_lines.append("After writing all files, STOP. Do not output any more text.")
+    out_lines.append("")
+    out_lines.append(
+        "Do not modify manifest.json or any existing application files."
+    )
+    out_lines.append("")
+    out_lines.append(
+        'Valid JSON only. schemaVersion must be "1.1" on every pack header.'
+    )
+    out_lines.append("British English throughout. No invented dates or quotes.")
+    out_lines.append("")
 
-    blocks.append("=" * 60)
-    blocks.append("LEARNING WEB UNIFIED SCHEMA (required reading)")
-    blocks.append("=" * 60)
-    blocks.append("")
-    blocks.append("pack_unified.json header fields: packId, subject, title, subtitle, level,")
-    blocks.append("language, topics, tags, description, schemaVersion (1.1), sourceLanguageLabel,")
-    blocks.append("sourceLanguageCode, targetLanguageLabel, targetLanguageCode, speechLanguage, items")
-    blocks.append("")
-    blocks.append("Item shapes:")
-    blocks.append("  vocab:        { id, type:vocab, level, topics, tags, data: { partOfSpeech, translations:{src:word, tgt:trans}, gender, plural, examples } }")
-    blocks.append("  sentence:     { id, type:sentence, level, topics, tags, data: { translations:{src:sentence, tgt:trans} } }")
-    blocks.append("  sequence:     { id, type:sequence, level, topics:[], tags:[], data: { title, instruction, items:[steps], shuffle:true } }")
-    blocks.append("  categorySort: { id, type:categorySort, level, topics:[], tags:[], data: { title, instruction, categories:[A,B], pairs:[{text,category}] } }")
-    blocks.append("  fillBlank:   { id, type:fillBlank, level, topics:[], tags:[], data: { sentence, answer, hint } }")
-    blocks.append("  passage:      { id, type:passage, level, topics, tags:[], data: { chapter, section, sourceTitle, targetTitle, sourcePassage, targetPassage, speechLanguage, questions:[...] } }")
-    blocks.append("  sentenceBuilder: { id, type:sentenceBuilder, level, topics:[], tags:[cardType], data: { cardType, prompt, answer, tiles } }")
-    blocks.append("")
-    blocks.append("Language codes: de-DE, en-GB, la-Latn (Latin). Subject: language|history|geography|science")
-    blocks.append("")
+    return "\n".join(out_lines)
 
-    blocks.append("=" * 60)
-    blocks.append("GENERATION RULES")
-    blocks.append("=" * 60)
-    blocks.append("")
-    blocks.append("- Generate at least 15 vocab items per pack (20+ for a full topic)")
-    blocks.append("- Each item id must be unique within the pack")
-    blocks.append("- Use the exact language codes from the pack specification")
-    blocks.append("- Add topics to items so students can filter by section")
-    blocks.append("- Include both translations dict AND sourceWord/targetWord for language packs")
-    blocks.append("- Validate all JSON before writing files")
-    blocks.append("- Use real vocabulary from the source material")
-    blocks.append("- Add 3-5 sentence items for language packs")
-    blocks.append("- Include at least one sequence or categorySort item for geography/history packs")
-    blocks.append("")
-    blocks.append("STOP after writing files to generated_packs/" + args.pack_id + "/.")
-    blocks.append("Do not modify any other files. Do not update manifest.json.")
 
-    return "\n".join(blocks)
+def _chunk(text: str, width: int = 500) -> list[str]:
+    """Split text into chunks of at most `width` chars at whitespace boundaries."""
+    words: list[str] = []
+    current = ""
+    for word in text.split():
+        if len(current) + len(word) + 1 <= width:
+            current = (current + " " + word).strip()
+        else:
+            if current:
+                words.append(current)
+            current = word
+    if current:
+        words.append(current)
+    return words
 
 
 # ─── Codex runner ─────────────────────────────────────────────────────────
