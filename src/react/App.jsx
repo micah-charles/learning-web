@@ -54,7 +54,7 @@ function Nav({ active, onChange }) {
 
 // ─── Home page ───────────────────────────────────────────────────
 
-function HomePage({ packs, onSelectPack, selectedPackId }) {
+function HomePage({ packs, passageGroupIds, onSelectPack, selectedPackId }) {
   return (
     <div className="lw-page">
       <div className="lw-card lw-lead-card">
@@ -72,7 +72,7 @@ function HomePage({ packs, onSelectPack, selectedPackId }) {
 
       <div className="lw-section lw-card">
         <h2 className="lw-section-title">Choose a pack</h2>
-        <PackSelector packs={packs} onSelectPack={onSelectPack} selectedPackId={selectedPackId} />
+        <PackSelector packs={packs} passageGroupIds={passageGroupIds} onSelectPack={onSelectPack} selectedPackId={selectedPackId} />
       </div>
     </div>
   );
@@ -388,7 +388,8 @@ function ReviewPage({ pack }) {
 export default function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [selectedPackId, setSelectedPackId] = useState(null);
-  const { allPacks, loading: packsLoading, error: packsError } = usePackList();
+  const { allPacks, passageGroups, loading: packsLoading, error: packsError } = usePackList();
+  const passageGroupIds = useMemo(() => new Set((passageGroups || []).map((g) => g.id)), [passageGroups]);
 
   // Load the selected pack
   const { pack, loading: packLoading, error: packError } = usePackLoader({
@@ -413,6 +414,7 @@ export default function App() {
       {activeTab === "home" && (
         <HomePage
           packs={allPacks}
+          passageGroupIds={passageGroupIds}
           onSelectPack={handleSelectPack}
           selectedPackId={selectedPackId}
         />

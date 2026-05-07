@@ -20,6 +20,8 @@ import {
   getDatasetSubject,
   listDatasetsBySubject,
   getDatasetDirections,
+  getPassageGroupSubject,
+  listPassageGroupsBySubject,
 } from "./data.js";
 import {
   createQuizSession,
@@ -1152,9 +1154,32 @@ function renderPassageQuestionReveal(question, passages) {
 async function renderReadingTab() {
   const prefs = persisted.prefs.passages;
   const groups = listPassageGroups(runtime.manifest);
-  const packs = listPassagePacks(runtime.manifest, prefs.groupId);
-  if (!groups.length || !packs.length) {
+  if (!groups.length) {
     return renderUnavailable("No reading passage packs were found.");
+  }
+
+  // Bootstrap subject pref from current groupId if not yet set.
+  if (!prefs.subject) {
+    const currentGroup = groups.find((g) => g.id === prefs.groupId);
+    prefs.subject = currentGroup ? getPassageGroupSubject(currentGroup) : "language";
+  }
+
+  // If the stored groupId belongs to a different subject, snap to first group
+  // for the current subject (happens when subject card is clicked).
+  const storedGroupSubject = getPassageGroupSubject(groups.find((g) => g.id === prefs.groupId));
+  if (storedGroupSubject !== prefs.subject) {
+    const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, prefs.subject);
+    if (groupsForSubject.length) {
+      prefs.groupId = groupsForSubject[0].id;
+      const newPacks = listPassagePacks(runtime.manifest, prefs.groupId);
+      prefs.packId = newPacks[0] ? newPacks[0].id : "";
+      runtime.passages = null;
+    }
+  }
+
+  const packs = listPassagePacks(runtime.manifest, prefs.groupId);
+  if (!packs.length) {
+    return renderUnavailable("No reading packs found for the selected book.");
   }
 
   if (!runtime.passages || runtime.passages.groupId !== prefs.groupId || runtime.passages.packId !== prefs.packId) {
@@ -1175,9 +1200,12 @@ async function renderReadingTab() {
             </div>
             <span class="count-pill blue">${stats.passagesCompleted} completed</span>
           </div>
+
+          ${renderPassageSubjectCardGrid(prefs.subject)}
+
           <div class="form-grid" style="margin-top:18px;">
-            ${renderSelectField("passage-group", "Book / Group", groups.map((group) => ({ value: group.id, label: group.displayName })), prefs.groupId)}
-            ${renderSelectField("passage-pack", "Set", packs.map((pack) => ({ value: pack.id, label: `${pack.displayName} (${pack.passageCount})` })), prefs.packId)}
+            ${renderPassageGroupSelectFiltered(prefs.groupId, prefs.subject)}
+            ${renderSelectField("passage-pack", "Set", packs.map((pack) => ({ value: pack.id, label: `${pack.displayName} (${pack.passageCount ?? ""})` })), prefs.packId)}
             ${renderSelectField("passage-category", "Category", [{ value: "all", label: "All categories" }, ...passages.categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)}
             ${renderSelectField("passage-difficulty", "Difficulty", [
               { value: "all", label: "All questions" },
@@ -1417,6 +1445,52 @@ function renderSubjectCardGrid(activeSubject) {
   `;
 }
 
+function renderPassageSubjectCardGrid(activeSubject) {
+  const cards = SUBJECTS.map((subject) => {
+    const meta = SUBJECT_LABELS[subject];
+    const groups = listPassageGroupsBySubject(runtime.manifest, subject);
+    const isActive = subject === activeSubject;
+    const isEmpty = groups.length === 0;
+    const classes = ["subject-card"];
+    if (isActive) classes.push("is-active");
+    if (isEmpty) classes.push("is-empty");
+    const button = isEmpty ? "" : `data-action="select-passage-subject" data-value="${escapeHtml(subject)}"`;
+    return `
+      <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
+        <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
+        <span class="subject-label">${escapeHtml(meta.label)}</span>
+        ${isEmpty
+          ? `<span class="subject-meta">No packs yet</span>`
+          : `<span class="subject-meta">${groups.length} book${groups.length === 1 ? "" : "s"}</span>`}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">What are you studying?</div>
+      <div class="subject-card-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function renderPassageGroupSelectFiltered(currentValue, subject) {
+  const groups = listPassageGroupsBySubject(runtime.manifest, subject);
+  if (!groups.length) {
+    return `
+      <div class="field">
+        <label>Book / Group</label>
+        <p class="muted tiny" style="margin-top:6px;">No reading packs yet for this subject.</p>
+      </div>
+    `;
+  }
+  return renderSelectField(
+    "passage-group",
+    "Book / Group",
+    groups.map((group) => ({ value: group.id, label: group.displayName })),
+    currentValue,
+  );
+}
+
 function renderDatasetSelectFiltered(id, currentValue, subject) {
   const datasets = listDatasetsBySubject(runtime.manifest, subject);
   if (!datasets.length) {
@@ -1580,6 +1654,19 @@ async function handleClick(event) {
       persisted.prefs.quiz.subject = nextSubject;
       persisted.prefs.quiz.datasetId = datasets[0].id;
       applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-passage-subject": {
+      const nextSubject = actionButton.dataset.value;
+      const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, nextSubject);
+      if (!groupsForSubject.length) return;
+      persisted.prefs.passages.subject = nextSubject;
+      persisted.prefs.passages.groupId = groupsForSubject[0].id;
+      const firstPacks = listPassagePacks(runtime.manifest, groupsForSubject[0].id);
+      persisted.prefs.passages.packId = firstPacks[0] ? firstPacks[0].id : "";
+      runtime.passages = null;
       saveStoredState(persisted);
       await renderApp();
       return;
@@ -1893,6 +1980,9 @@ async function handleChange(event) {
       break;
     case "passage-group": {
       persisted.prefs.passages.groupId = value;
+      const groups = listPassageGroups(runtime.manifest);
+      const selectedGroup = groups.find((g) => g.id === value);
+      if (selectedGroup) persisted.prefs.passages.subject = getPassageGroupSubject(selectedGroup);
       const packs = listPassagePacks(runtime.manifest, value);
       persisted.prefs.passages.packId = packs[0] ? packs[0].id : "";
       runtime.passages = null;
