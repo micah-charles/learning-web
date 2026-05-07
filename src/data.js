@@ -334,6 +334,21 @@ export function listPassageGroups(manifest) {
   return manifest.passageGroups || [];
 }
 
+export function getPassageGroupSubject(group) {
+  if (!group) return "language";
+  const explicit = String(group.subject || "").toLowerCase();
+  if (SUBJECTS.includes(explicit)) return explicit;
+  const id = String(group.id || "").toLowerCase();
+  if (id.includes("geography") || id.includes("glaciation") || id.includes("geology") || id.includes("gcse_geo")) return "geography";
+  if (id.includes("histor") || id.includes("black_death")) return "history";
+  if (id.includes("science")) return "science";
+  return "language";
+}
+
+export function listPassageGroupsBySubject(manifest, subject) {
+  return listPassageGroups(manifest).filter((group) => getPassageGroupSubject(group) === subject);
+}
+
 export function listPassagePacks(manifest, groupId) {
   const group = listPassageGroups(manifest).find((item) => item.id === groupId);
   if (!group) return [];
