@@ -170,11 +170,11 @@ export function findDataset(manifest, datasetId) {
 // ─── Subject First helpers ──────────────────────────────────────────────
 //
 // `subject` is a top-level pack tag added in the Subject First refactor.
-// Allowed values: "language" | "history" | "geography" | "science".
+// Allowed values: "language" | "history" | "geography" | "science" | "literature".
 // Older packs may not declare it; the inference fallback below assigns a
 // best-guess subject so legacy packs still appear in the right bucket.
 
-export const SUBJECTS = ["language", "history", "geography", "science"];
+export const SUBJECTS = ["language", "history", "geography", "science", "literature"];
 
 const LANGUAGE_HINT_CODES = ["de", "fr", "es", "it", "la", "zh", "ja", "ko", "ru", "ar", "el", "pt", "nl"];
 
@@ -192,6 +192,9 @@ function inferSubject(dataset) {
   }
   if (id.includes("science") || id.includes("physics") || id.includes("biology") || id.includes("chemistry")) {
     return "science";
+  }
+  if (id.includes("literature") || id.includes("novel") || id.includes("poem") || id.includes("animal_farm") || id.includes("shakespeare")) {
+    return "literature";
   }
 
   // Translation-language fallback: anything where the source-language code
@@ -342,6 +345,7 @@ export function getPassageGroupSubject(group) {
   if (id.includes("geography") || id.includes("glaciation") || id.includes("geology") || id.includes("gcse_geo")) return "geography";
   if (id.includes("histor") || id.includes("black_death")) return "history";
   if (id.includes("science")) return "science";
+  if (id.includes("literature") || id.includes("novel") || id.includes("poem") || id.includes("animal_farm") || id.includes("shakespeare")) return "literature";
   return "language";
 }
 

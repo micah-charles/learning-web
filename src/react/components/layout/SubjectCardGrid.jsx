@@ -1,10 +1,11 @@
 import styles from "./SubjectCardGrid.module.css";
 
 const SUBJECT_META = {
-  language:  { label: "Language",  icon: "🌐" },
-  history:   { label: "History",   icon: "📜" },
-  geography: { label: "Geography", icon: "🌍" },
-  science:   { label: "Science",   icon: "🔬" },
+  language:   { label: "Language",   icon: "🌐" },
+  history:    { label: "History",    icon: "📜" },
+  geography:  { label: "Geography",  icon: "🌍" },
+  science:    { label: "Science",    icon: "🔬" },
+  literature: { label: "Literature", icon: "📖" },
 };
 
 export function SubjectCardGrid({ subjects, activeSubject, onSelect }) {
