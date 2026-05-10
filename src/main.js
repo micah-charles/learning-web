@@ -252,37 +252,46 @@ function renderHero() {
 
   return `
     <header class="hero">
-      <div class="hero-top">
-        <div class="hero-copy">
-          <p class="eyebrow">Swift port -> browser study desk</p>
-          <h1>Learning Web</h1>
-          <p>
-            A web-first study hub built from your local learning project, tuned for iPad and iMac use,
-            with quick drills, reading packs, review loops, and saved progress.
-          </p>
-        </div>
-        <div class="hero-badges">
-          <span class="hero-badge">${runtime.manifest.revisionPacks.length} revision packs</span>
-          <span class="hero-badge">${runtime.manifest.passageGroups.length} reading groups</span>
-          <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder packs</span>
-        </div>
+      <div class="hero-brand">
+        <img
+          src="./brand/logo.png"
+          alt="FoxChild Idea — Fox Tutor and Girl Tutor"
+          class="hero-logo"
+        />
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>${totalWordCount}</strong>
-          <span>portable vocab items</span>
+      <div class="hero-body">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <p class="eyebrow">powered by FoxChild Idea</p>
+            <h1>Learning Web</h1>
+            <p>
+              Your personal study desk — vocabulary drills, reading practice,
+              sentence builder and progress tracking, all in one place.
+            </p>
+          </div>
+          <div class="hero-badges">
+            <span class="hero-badge">${runtime.manifest.revisionPacks.length} packs</span>
+            <span class="hero-badge">${runtime.manifest.passageGroups.length} reading groups</span>
+            <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
+          </div>
         </div>
-        <div class="hero-stat">
-          <strong>${masteredCount}</strong>
-          <span>mastered words tracked locally</span>
-        </div>
-        <div class="hero-stat">
-          <strong>${persisted.progress.sessions.length}</strong>
-          <span>recent quiz sessions saved</span>
-        </div>
-        <div class="hero-stat">
-          <strong>${lastSession ? `${lastSession.score}/${lastSession.totalQuestions}` : "No run yet"}</strong>
-          <span>${lastSession ? `last quiz on ${formatDateTime(lastSession.timestamp)}` : "start with any tab below"}</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>${totalWordCount}</strong>
+            <span>vocab items</span>
+          </div>
+          <div class="hero-stat">
+            <strong>${masteredCount}</strong>
+            <span>words mastered</span>
+          </div>
+          <div class="hero-stat">
+            <strong>${persisted.progress.sessions.length}</strong>
+            <span>quiz sessions</span>
+          </div>
+          <div class="hero-stat">
+            <strong>${lastSession ? `${lastSession.score}/${lastSession.totalQuestions}` : "–"}</strong>
+            <span>${lastSession ? `last quiz ${formatDateTime(lastSession.timestamp)}` : "no quiz yet"}</span>
+          </div>
         </div>
       </div>
     </header>
@@ -303,18 +312,17 @@ function renderNav() {
   `;
 }
 
-function renderEmptyStateCard({ eyebrow = "Learning Web", title, body, actionLabel = null, action = null }) {
+function foxFace(expression = "calm") {
+  return `<img src="./brand/fox-tutor/transparent/${expression}.png" class="fox-mascot" alt="Fox Tutor — ${expression}" aria-hidden="true" />`;
+}
+
+function renderEmptyStateCard({ eyebrow = "FoxChild Idea", title, body, actionLabel = null, action = null }) {
   return `
     <div class="empty-state-card">
       <div class="empty-state-illustration" aria-hidden="true">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="12" y="14" width="40" height="36" rx="10" fill="rgba(21, 102, 168, 0.12)" stroke="rgba(21, 102, 168, 0.22)" stroke-width="2"/>
-          <path d="M22 22H42" stroke="rgba(21, 102, 168, 0.72)" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M22 30H38" stroke="rgba(21, 102, 168, 0.42)" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M22 38H34" stroke="rgba(21, 102, 168, 0.42)" stroke-width="2.6" stroke-linecap="round"/>
-        </svg>
+        ${foxFace("calm")}
       </div>
-      <p class="eyebrow" style="color:#1566a8;">${escapeHtml(eyebrow)}</p>
+      <p class="eyebrow" style="color:var(--fox-teal);">${escapeHtml(eyebrow)}</p>
       <h2>${escapeHtml(title)}</h2>
       <p class="tiny">${escapeHtml(body)}</p>
       ${actionLabel && action ? `<button class="button" data-action="${escapeHtml(action)}">${escapeHtml(actionLabel)}</button>` : ""}
@@ -323,11 +331,13 @@ function renderEmptyStateCard({ eyebrow = "Learning Web", title, body, actionLab
 }
 
 function renderFeedbackBanner({ tone = "info", title, body, extra = "" }) {
-  const icon = tone === "correct" ? "✓" : tone === "wrong" ? "!" : "?";
+  const foxExpr = tone === "correct" ? "happy" : tone === "wrong" ? "sad" : "thinking";
   return `
     <div class="feedback ${escapeHtml(tone)}">
       <div class="feedback-header">
-        <span class="feedback-icon" aria-hidden="true">${icon}</span>
+        <span class="feedback-icon" aria-hidden="true">
+          ${foxFace(foxExpr)}
+        </span>
         <strong>${escapeHtml(title)}</strong>
       </div>
       <p class="tiny">${escapeHtml(body)}</p>
