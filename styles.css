@@ -638,6 +638,27 @@ body {
   letter-spacing: -0.01em;
 }
 
+.passage-question-copy {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.passage-question-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-info);
+}
+
+.passage-question-prompt {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
 .feedback {
   display: grid;
   gap: 6px;

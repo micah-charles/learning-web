@@ -3,6 +3,12 @@ import { isWordMastered } from "./storage.js";
 import { normLang } from "./lang-utils.js";
 
 const MODE_DEFINITIONS = [
+  {
+    id: "passageQuestionChooseAnswer",
+    kind: "choice",
+    family: "passage",
+    direction: null,
+  },
   // ── German modes ───────────────────────────────────────────────────────
   {
     id: "englishWordChooseGerman",
@@ -89,6 +95,9 @@ function datasetLabels(dataset = null) {
 }
 
 function buildModeTitle(definition, labels) {
+  if (definition.family === "passage") {
+    return "Question -> choose answer";
+  }
   // The prompt always shows the STUDY language; the user types/builds the TARGET language.
   const promptLabel = labels.studyLabel;
   const answerLabel = labels.targetLabel;
@@ -137,6 +146,10 @@ function dedupeStrings(items) {
     output.push(text);
   }
   return output;
+}
+
+function firstTopic(item) {
+  return Array.isArray(item && item.topics) ? item.topics[0] || "" : "";
 }
 
 function cyclePick(items, count) {
@@ -541,6 +554,54 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
   });
 }
 
+export function makePassageChoiceFromUnified(unifiedItems, count, dataset) {
+  const labels = datasetLabels(dataset);
+  const questions = [];
+
+  for (const item of unifiedItems) {
+    if (item.type !== "passage") {
+      continue;
+    }
+    const data = item.data || {};
+    const sourceTitle = data.sourceTitle || data.title || firstTopic(item) || "Passage";
+    const rawQuestions = Array.isArray(data.questions) ? data.questions : [];
+
+    for (const question of rawQuestions) {
+      const options = dedupeStrings(question.options || []);
+      const correctOptionIndex = Number.isInteger(question.correctOptionIndex)
+        ? question.correctOptionIndex
+        : Number.isInteger(question.correct_option_index)
+          ? question.correct_option_index
+          : -1;
+      const correctAnswer = question.correctAnswer
+        || question.correct_answer
+        || question.modelAnswer
+        || question.model_answer_en
+        || (correctOptionIndex >= 0 ? options[correctOptionIndex] : "");
+
+      if (!question.question || options.length < 2 || !correctAnswer) {
+        continue;
+      }
+
+      questions.push({
+        id: `passage-choice-${item.id}-${question.id || questions.length}`,
+        modeId: "passageQuestionChooseAnswer",
+        modeTitle: "Question -> choose answer",
+        kind: "choice",
+        prompt: question.question,
+        answer: correctAnswer,
+        options,
+        subtitle: sourceTitle,
+        topic: firstTopic(item),
+        speechText: question.question,
+        speechLanguage: labels.speechLanguage,
+      });
+    }
+  }
+
+  return cyclePick(questions, count);
+}
+
 export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
   const sentences = unifiedItems.filter((item) => item.type === "sentence");
   const picks = cyclePick(sentences, count);
@@ -639,6 +700,12 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
     return [choiceMode, typedMode]; // mixed
   }
 
+  if (subject === "literature") {
+    if (answerMode === "mcq")   return ["passageQuestionChooseAnswer"];
+    if (answerMode === "typed") return ["fillBlank"];
+    return ["passageQuestionChooseAnswer", "fillBlank", "categorySort"];
+  }
+
   // Non-language packs: direction is ignored (prompt language matches the
   // pack's source). Use studyToTarget word modes; the engine will pull MCQ
   // options or typed answers from whatever vocab the pack has.
@@ -647,7 +714,7 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
   return ["germanWordChooseEnglish", "germanWordTypeEnglish"];
 }
 
-export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null }) {
+export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null, passageUnifiedPack = null }) {
   const availableModes = getQuestionModes(dataset);
   const activeModes = availableModes.filter((mode) => config.modes.includes(mode.id));
   if (!activeModes.length) {
@@ -664,6 +731,11 @@ export function createQuizSession({ words, sentencePools, config, persistedState
   const questionGroups = activeModes.map((mode, index) => {
     const count = counts[index];
     switch (mode.id) {
+      case "passageQuestionChooseAnswer":
+        if (passageUnifiedPack && Array.isArray(passageUnifiedPack.items)) {
+          return makePassageChoiceFromUnified(passageUnifiedPack.items, count, dataset);
+        }
+        return [];
       case "englishWordChooseGerman":
       case "germanWordChooseEnglish":
         if (unifiedItems) {
