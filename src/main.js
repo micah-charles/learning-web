@@ -16,6 +16,7 @@ import {
   loadFillBlankItems,
   loadUnifiedPack,
   filterUnifiedItems,
+  registerPackInCache,
   SUBJECTS,
   getDatasetSubject,
   listDatasetsBySubject,
@@ -23,6 +24,13 @@ import {
   getPassageGroupSubject,
   listPassageGroupsBySubject,
 } from "./data.js";
+import {
+  hydrateManifest,
+  listUploadedPacks,
+  saveUploadedPack,
+  deleteUploadedPack,
+  validatePack,
+} from "./admin-storage.js";
 import {
   createQuizSession,
   getDefaultQuestionModes,
@@ -63,12 +71,13 @@ import {
 } from "./utils.js";
 
 const TABS = [
-  { id: "home", title: "Home" },
-  { id: "vocab", title: "Vocabulary" },
-  { id: "quiz", title: "Quiz" },
-  { id: "reading", title: "Reading" },
-  { id: "builder", title: "Builder" },
-  { id: "review", title: "Review" },
+  { id: "home",    title: "Home"       },
+  { id: "vocab",   title: "Vocabulary" },
+  { id: "quiz",    title: "Quiz"       },
+  { id: "reading", title: "Reading"    },
+  { id: "builder", title: "Builder"    },
+  { id: "review",  title: "Review"     },
+  { id: "admin",   title: "⚙ Admin"   },
 ];
 
 const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"];
@@ -84,6 +93,8 @@ const runtime = {
     hardest: [],
     mastered: [],
   },
+  // Admin tab upload status: null | { ok: boolean, message: string, entry?: object }
+  adminUploadStatus: null,
 };
 let searchRenderTimer = null;
 
@@ -181,6 +192,8 @@ init().catch((error) => {
 
 async function init() {
   runtime.manifest = await loadManifest();
+  // Inject any previously-uploaded packs into the live manifest before rendering.
+  hydrateManifest(runtime.manifest, registerPackInCache);
   ensurePreferenceDefaults();
   bindEvents();
   await renderApp();
@@ -374,6 +387,8 @@ async function renderTabContent() {
       return renderBuilderTab();
     case "review":
       return renderReviewTab();
+    case "admin":
+      return renderAdminTab();
     case "home":
     default:
       return renderHomeTab();
@@ -1411,10 +1426,11 @@ function renderDatasetSelect(id, currentValue) {
 // ─── Subject First render helpers ───────────────────────────────────────
 
 const SUBJECT_LABELS = {
-  language:  { label: "Language",  icon: "🌐" },
-  history:   { label: "History",   icon: "📜" },
-  geography: { label: "Geography", icon: "🌍" },
-  science:   { label: "Science",   icon: "🔬" },
+  language:   { label: "Language",   icon: "🌐" },
+  history:    { label: "History",    icon: "📜" },
+  geography:  { label: "Geography",  icon: "🌍" },
+  science:    { label: "Science",    icon: "🔬" },
+  literature: { label: "Literature", icon: "📖" },
 };
 
 function renderSubjectCardGrid(activeSubject) {
@@ -1614,6 +1630,233 @@ function renderSelectField(id, label, options, currentValue) {
   `;
 }
 
+// ─── Admin tab ────────────────────────────────────────────────────────────────
+
+const ITEM_TYPE_LABELS = {
+  vocab:           "Vocab",
+  sentence:        "Sentences",
+  sequence:        "Sequences",
+  categorySort:    "Sort",
+  fillBlank:       "Fill-blank",
+  sentenceBuilder: "Builder cards",
+  passage:         "Passages",
+};
+
+const SECTION_LABELS = {
+  revisionPacks:        "Quiz / Vocab",
+  passageGroups:        "Reading",
+  sentenceBuilderPacks: "Sentence Builder",
+};
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function renderAdminTab() {
+  const packs = listUploadedPacks();
+  const status = runtime.adminUploadStatus;
+
+  // Compute rough storage used
+  const totalBytes = packs.reduce((sum, p) => sum + (p.sizeBytes || 0), 0);
+
+  const statusHtml = status
+    ? `
+      <div class="admin-status ${status.ok ? "admin-status-ok" : "admin-status-error"}">
+        <span class="admin-status-icon" aria-hidden="true">${status.ok ? "✓" : "✗"}</span>
+        <div>
+          <strong>${status.ok ? "Pack uploaded successfully" : "Upload failed"}</strong>
+          <p class="tiny">${escapeHtml(status.message)}</p>
+        </div>
+      </div>
+    `
+    : "";
+
+  const packListHtml = packs.length === 0
+    ? `<p class="muted tiny" style="margin-top:8px;">No packs uploaded yet.</p>`
+    : packs.map((entry) => {
+        const typeChips = Object.entries(entry.typeCounts || {})
+          .filter(([t]) => ITEM_TYPE_LABELS[t])
+          .map(([t, count]) =>
+            `<span class="chip blue">${ITEM_TYPE_LABELS[t]}: ${count}</span>`,
+          )
+          .join(" ");
+        const sectionChips = (entry.sections || [])
+          .map((s) => `<span class="chip">${SECTION_LABELS[s] || s}</span>`)
+          .join(" ");
+        const addedDate = entry.addedAt
+          ? new Date(entry.addedAt).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })
+          : "Unknown date";
+
+        return `
+          <div class="admin-pack-card">
+            <div class="admin-pack-header">
+              <div>
+                <div class="admin-pack-name">${escapeHtml(entry.displayName)}</div>
+                <div class="admin-pack-id muted tiny">${escapeHtml(entry.id)}</div>
+              </div>
+              <button
+                class="button button-ghost button-sm button-danger"
+                data-action="admin-delete-pack"
+                data-pack-id="${escapeHtml(entry.id)}"
+                title="Delete this uploaded pack"
+              >Delete</button>
+            </div>
+            <div class="admin-pack-chips" style="margin-top:10px;">
+              ${typeChips}
+            </div>
+            <div class="admin-pack-chips" style="margin-top:6px;">
+              ${sectionChips}
+            </div>
+            <div class="admin-pack-meta muted tiny" style="margin-top:8px;">
+              ${entry.subject ? `Subject: <strong>${escapeHtml(entry.subject)}</strong> &middot; ` : ""}
+              ${entry.itemCount} items &middot; ${formatBytes(entry.sizeBytes)} &middot; Added ${addedDate}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+  return `
+    <div class="section-stack">
+      <section class="section-card">
+        <h2>Pack Admin</h2>
+        <p class="muted tiny">
+          Upload a unified pack JSON file to add it directly to the app — no server required.
+          The pack will appear in all compatible game modes (Quiz, Vocab, Reading, Builder)
+          immediately and will persist across page reloads via browser storage.
+        </p>
+
+        <div class="admin-drop-zone" id="admin-drop-zone">
+          <div class="admin-drop-icon" aria-hidden="true">📂</div>
+          <p class="admin-drop-label">Drop a <strong>pack_unified.json</strong> file here, or click to browse</p>
+          <p class="muted tiny">Accepts any unified pack JSON with an <code>items</code> array</p>
+          <input
+            type="file"
+            id="admin-file-upload"
+            accept=".json,application/json"
+            style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;"
+          />
+        </div>
+
+        ${statusHtml}
+      </section>
+
+      <section class="section-card">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <h2 style="margin:0;">Uploaded Packs <span class="chip">${packs.length}</span></h2>
+          ${packs.length > 0 ? `<span class="muted tiny">${formatBytes(totalBytes)} used in browser storage</span>` : ""}
+        </div>
+        <div class="admin-pack-list" style="margin-top:16px;">
+          ${packListHtml}
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Pack JSON format</h2>
+        <p class="muted tiny">
+          Your JSON file needs an <code>items</code> array. Each item needs a <code>type</code> field.
+          The pack is automatically routed to the right game modes based on the item types present.
+        </p>
+        <div class="admin-format-grid">
+          ${Object.entries(SECTION_LABELS).map(([section, label]) => {
+            const typesForSection = {
+              revisionPacks:        ["vocab", "sentence", "sequence", "categorySort", "fillBlank"],
+              passageGroups:        ["passage"],
+              sentenceBuilderPacks: ["sentenceBuilder"],
+            }[section] || [];
+            return `
+              <div class="admin-format-card">
+                <div class="admin-format-label">${escapeHtml(label)}</div>
+                <div class="admin-pack-chips" style="margin-top:8px;">
+                  ${typesForSection.map((t) => `<span class="chip">${ITEM_TYPE_LABELS[t]}</span>`).join(" ")}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <pre class="admin-schema-preview"><code>{
+  "packId": "my_pack_id",          <span class="muted">// or "id"</span>
+  "title": "My Custom Pack",
+  "subject": "history",            <span class="muted">// language|history|geography|science|literature</span>
+  "sourceLanguageCode": "de-DE",   <span class="muted">// optional</span>
+  "targetLanguageCode": "en-GB",   <span class="muted">// optional</span>
+  "items": [
+    {
+      "id": "item_001",
+      "type": "vocab",             <span class="muted">// see types above</span>
+      "level": "Y8",
+      "topics": ["animals"],
+      "data": { "sourceWord": "der Hund", "targetWord": "the dog" }
+    }
+  ]
+}</code></pre>
+      </section>
+    </div>
+  `;
+}
+
+// ─── Admin file upload handler ────────────────────────────────────────────────
+
+async function handleAdminFileUpload(file) {
+  if (!file) return;
+  runtime.adminUploadStatus = null;
+
+  const text = await file.text().catch(() => null);
+  if (!text) {
+    runtime.adminUploadStatus = { ok: false, message: "Could not read file." };
+    await renderApp();
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch (e) {
+    runtime.adminUploadStatus = { ok: false, message: `Invalid JSON: ${e.message}` };
+    await renderApp();
+    return;
+  }
+
+  // Quick pre-validation before saving
+  const validation = validatePack(parsed);
+  if (!validation.ok) {
+    runtime.adminUploadStatus = { ok: false, message: validation.error };
+    await renderApp();
+    return;
+  }
+
+  const result = saveUploadedPack(parsed, file.name);
+  if (!result.ok) {
+    runtime.adminUploadStatus = { ok: false, message: result.error };
+    await renderApp();
+    return;
+  }
+
+  // Inject new pack into live manifest + cache so game modes see it immediately.
+  hydrateManifest(runtime.manifest, registerPackInCache);
+  ensurePreferenceDefaults();
+
+  const { entry } = result;
+  const typesSummary = Object.entries(entry.typeCounts || {})
+    .filter(([t]) => ITEM_TYPE_LABELS[t])
+    .map(([t, n]) => `${n} ${ITEM_TYPE_LABELS[t]}`)
+    .join(", ");
+  const sectionsSummary = (entry.sections || [])
+    .map((s) => SECTION_LABELS[s] || s)
+    .join(", ");
+
+  runtime.adminUploadStatus = {
+    ok: true,
+    message:
+      `"${entry.displayName}" loaded with ${typesSummary}. ` +
+      `Available in: ${sectionsSummary}.`,
+    entry,
+  };
+
+  await renderApp();
+}
+
 async function handleClick(event) {
   const tabButton = event.target.closest("[data-tab]");
   if (tabButton) {
@@ -1638,6 +1881,18 @@ async function handleClick(event) {
   }
 
   switch (action) {
+    case "admin-delete-pack": {
+      const packId = actionButton.dataset.packId;
+      if (packId && window.confirm(`Delete uploaded pack "${packId}"? This cannot be undone.`)) {
+        deleteUploadedPack(packId);
+        // Rebuild manifest without the deleted pack
+        runtime.manifest = await loadManifest();
+        hydrateManifest(runtime.manifest, registerPackInCache);
+        runtime.adminUploadStatus = null;
+        await renderApp();
+      }
+      return;
+    }
     case "open-review":
       persisted.activeTab = "review";
       saveStoredState(persisted);
@@ -1936,6 +2191,12 @@ function updateStageSelection(sectionKey, input) {
 }
 
 async function handleChange(event) {
+  // File upload is handled separately (async, does its own renderApp call).
+  if (event.target.id === "admin-file-upload") {
+    await handleAdminFileUpload(event.target.files && event.target.files[0]);
+    return;
+  }
+
   const { id, value } = event.target;
   switch (id) {
     case "vocab-dataset":
