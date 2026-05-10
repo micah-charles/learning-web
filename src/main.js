@@ -2325,6 +2325,14 @@ async function startQuiz(customWords = null, label = null) {
 
   // Try to load unified pack (preferred path)
   const unifiedPack = await loadUnifiedPack(runtime.manifest, prefs.datasetId);
+  let passageUnifiedPack = null;
+  if (getDatasetSubject(dataset) === "literature") {
+    try {
+      passageUnifiedPack = await loadPassageUnifiedPack(runtime.manifest, prefs.datasetId);
+    } catch (_error) {
+      passageUnifiedPack = null;
+    }
+  }
 
   // Subject First adapter: translate the high-level UI selections into the
   // legacy mode-ID array the question engine expects. This replaces the old
@@ -2348,6 +2356,7 @@ async function startQuiz(customWords = null, label = null) {
     categorySortItems,
     fillBlankItems,
     unifiedPack,
+    passageUnifiedPack,
   });
   session.config = { ...prefs };
   session.config.datasetId = prefs.datasetId;

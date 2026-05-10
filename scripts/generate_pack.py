@@ -88,6 +88,7 @@ from typing import Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PROMPT_PATH = REPO_ROOT / "docs" / "pack-generation-prompt.md"
+LITERATURE_PROMPT_PATH = REPO_ROOT / "prompts" / "pack-generation-literature-prompt.md"
 DEFAULT_OUT = REPO_ROOT / "generated_packs"
 
 ALLOWED_SUBJECTS = {"language", "history", "geography", "science"}
@@ -216,17 +217,24 @@ def parse_args() -> argparse.Namespace:
 
 # ─── Prompt loading + variable substitution ───────────────────────────────
 
-def load_prompt_template() -> str:
-    if not PROMPT_PATH.exists():
-        die(f"Prompt template not found at {PROMPT_PATH}", code=1)
-    text = PROMPT_PATH.read_text(encoding="utf-8")
+def get_prompt_path(subject: str) -> Path:
+    if subject == "literature" and LITERATURE_PROMPT_PATH.exists():
+        return LITERATURE_PROMPT_PATH
+    return PROMPT_PATH
+
+
+def load_prompt_template(subject: str) -> str:
+    prompt_path = get_prompt_path(subject)
+    if not prompt_path.exists():
+        die(f"Prompt template not found at {prompt_path}", code=1)
+    text = prompt_path.read_text(encoding="utf-8")
     # Extract the section between `## BEGIN PROMPT` / `## END PROMPT`.
     match = re.search(
         r"^##\s+BEGIN\s+PROMPT\s*\n(.*?)\n^##\s+END\s+PROMPT\s*$",
         text, re.MULTILINE | re.DOTALL,
     )
     if not match:
-        die("Prompt template missing '## BEGIN PROMPT' / '## END PROMPT' fences", code=1)
+        die(f"Prompt template missing '## BEGIN PROMPT' / '## END PROMPT' fences: {prompt_path}", code=1)
     return match.group(1).strip()
 
 
@@ -1071,7 +1079,7 @@ def main() -> int:
     codex_before = snapshot_staging_dirs(args.out.resolve()) if args.provider == "codex" else {}
 
     # 1. Load + render prompt
-    prompt_template = load_prompt_template()
+    prompt_template = load_prompt_template(args.subject)
     rendered_prompt = render_prompt(prompt_template, args)
     if args.verbose:
         print(dim("--- system prompt (rendered) ---"), file=sys.stderr)
