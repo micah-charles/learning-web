@@ -615,6 +615,30 @@ async function renderQuizTab() {
   const words = await loadVocabItems(runtime.manifest, dataset.id);
   const filteredWords = filterWordsForScope(words, dataset, prefs);
   const mastered = countMasteredWords(persisted, filteredWords);
+  const unifiedPack = await loadUnifiedPack(runtime.manifest, prefs.datasetId);
+  let passageUnifiedPack = null;
+  if (getDatasetSubject(dataset) === "literature") {
+    try {
+      passageUnifiedPack = await loadPassageUnifiedPack(runtime.manifest, prefs.datasetId);
+    } catch (_error) {
+      passageUnifiedPack = null;
+    }
+  }
+  const maxQuestionCount = getQuizMaxQuestionCount({
+    dataset,
+    prefs,
+    filteredWords,
+    unifiedPack,
+    passageUnifiedPack,
+  });
+  const questionCountOptions = buildQuestionCountOptions(maxQuestionCount);
+  if (questionCountOptions.length) {
+    const largestAvailable = Number(questionCountOptions[questionCountOptions.length - 1].value);
+    if (prefs.questionCount > largestAvailable) {
+      prefs.questionCount = largestAvailable;
+      saveStoredState(persisted);
+    }
+  }
 
   if (runtime.currentQuiz && runtime.currentQuiz.completed) {
     const last = runtime.currentQuiz;
@@ -646,7 +670,12 @@ async function renderQuizTab() {
           ${usesStageSelection(dataset)
             ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : renderYearSelect("quiz-year", prefs.year)}
-          ${renderSelectField("quiz-question-count", "Questions", [12, 18, 24, 30].map((value) => ({ value: String(value), label: String(value) })), String(prefs.questionCount))}
+          ${renderSelectField(
+            "quiz-question-count",
+            `Questions${maxQuestionCount ? ` (max ${maxQuestionCount})` : ""}`,
+            questionCountOptions.length ? questionCountOptions : [{ value: "0", label: "0" }],
+            String(questionCountOptions.length ? prefs.questionCount : 0),
+          )}
           <div class="field">
             <label for="quiz-exclude-mastered">Word pool</label>
             <select id="quiz-exclude-mastered" class="select">
@@ -661,9 +690,10 @@ async function renderQuizTab() {
         ${renderAnswerModePills(prefs.answerMode)}
 
         <div class="action-row" style="margin-top:18px;">
-          <button class="button" data-action="start-quiz">Start quiz</button>
+          <button class="button" data-action="start-quiz" ${maxQuestionCount <= 0 ? "disabled" : ""}>Start quiz</button>
           <button class="button secondary" data-action="open-review">Open review desk</button>
         </div>
+        ${maxQuestionCount > 0 ? `<p class="muted tiny" style="margin-top:12px;">This setup currently has up to ${maxQuestionCount} questions available.</p>` : `<p class="muted tiny" style="margin-top:12px;">No quiz questions are available for the current setup.</p>`}
       </section>
 
       <section class="section-card">
@@ -1196,6 +1226,7 @@ async function renderReadingTab() {
   if (!packs.length) {
     return renderUnavailable("No reading packs found for the selected book.");
   }
+  const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, prefs.subject);
 
   if (!runtime.passages || runtime.passages.groupId !== prefs.groupId || runtime.passages.packId !== prefs.packId) {
     await resetPassageRuntime(prefs.groupId, prefs.packId);
@@ -1203,6 +1234,14 @@ async function renderReadingTab() {
 
   const passages = runtime.passages;
   const stats = getPassageStats(persisted, prefs.packId);
+  const playableCount = getPlayablePassages().length;
+  const setupMessage = playableCount > 0 ? "" : "No passages match the current category and difficulty filters.";
+  const shouldShowCompletedCount = playableCount > 0;
+  const shouldShowGroupSelect = groupsForSubject.length > 1;
+  const shouldShowPackSelect = packs.length > 1;
+  const setField = shouldShowPackSelect
+    ? renderSelectField("passage-pack", "Set", packs.map((pack) => ({ value: pack.id, label: pack.displayName })), prefs.packId)
+    : "";
 
   if (!passages.started) {
     return `
@@ -1213,14 +1252,14 @@ async function renderReadingTab() {
               <h2>Reading practice</h2>
               <p class="muted tiny">Listen first, answer in English or choose the best option, then reveal the translation and model responses.</p>
             </div>
-            <span class="count-pill blue">${stats.passagesCompleted} completed</span>
+            ${shouldShowCompletedCount ? `<span class="count-pill blue">${stats.passagesCompleted} completed</span>` : ""}
           </div>
 
           ${renderPassageSubjectCardGrid(prefs.subject)}
 
           <div class="form-grid" style="margin-top:18px;">
-            ${renderPassageGroupSelectFiltered(prefs.groupId, prefs.subject)}
-            ${renderSelectField("passage-pack", "Set", packs.map((pack) => ({ value: pack.id, label: `${pack.displayName} (${pack.passageCount ?? ""})` })), prefs.packId)}
+            ${shouldShowGroupSelect ? renderPassageGroupSelectFiltered(prefs.groupId, prefs.subject) : ""}
+            ${setField}
             ${renderSelectField("passage-category", "Category", [{ value: "all", label: "All categories" }, ...passages.categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)}
             ${renderSelectField("passage-difficulty", "Difficulty", [
               { value: "all", label: "All questions" },
@@ -1242,7 +1281,7 @@ async function renderReadingTab() {
           <div class="action-row" style="margin-top:18px;">
             <button class="button" data-action="reading-start">Start reading practice</button>
           </div>
-          ${passages.message ? `<p class="muted tiny" style="margin-top:12px;">${escapeHtml(passages.message)}</p>` : ""}
+          ${setupMessage ? `<p class="muted tiny" style="margin-top:12px;">${escapeHtml(setupMessage)}</p>` : ""}
         </section>
       </div>
     `;
@@ -1276,13 +1315,16 @@ async function renderReadingTab() {
         <div class="section-stack" style="margin-top:16px;">
           ${visibleQuestions
             .map(
-              (question) => `
+              (question, index) => `
                 <article class="section-card">
                   <div class="chip-row" style="margin-bottom:10px;">
                     ${question.type ? `<span class="badge blue">${escapeHtml(question.type)}</span>` : ""}
                     ${question.difficulty ? `<span class="badge amber">${escapeHtml(question.difficulty)}</span>` : ""}
                   </div>
-                  <p><strong>${escapeHtml(question.question_en)}</strong></p>
+                  <div class="passage-question-copy">
+                    <div class="passage-question-label">Question ${index + 1}</div>
+                    <div class="passage-question-prompt">${escapeHtml(fallback(question.question_en, fallback(question.question, "Question prompt missing")))}</div>
+                  </div>
                   ${renderPassageQuestionInput(question, passages)}
                   ${passages.revealed ? renderPassageQuestionReveal(question, passages) : ""}
                 </article>
@@ -1409,6 +1451,74 @@ function renderUnavailable(message) {
       </div>
     </section>
   `;
+}
+
+function countPassageMcqQuestions(unifiedPack) {
+  if (!unifiedPack || !Array.isArray(unifiedPack.items)) {
+    return 0;
+  }
+  let total = 0;
+  for (const item of unifiedPack.items) {
+    if (item.type !== "passage") {
+      continue;
+    }
+    const questions = Array.isArray(item.data && item.data.questions) ? item.data.questions : [];
+    for (const question of questions) {
+      const options = Array.isArray(question.options) ? question.options.filter(Boolean) : [];
+      const correctAnswer = question.correctAnswer
+        || question.correct_answer
+        || question.modelAnswer
+        || question.model_answer_en
+        || (Number.isInteger(question.correctOptionIndex) ? options[question.correctOptionIndex] : "")
+        || (Number.isInteger(question.correct_option_index) ? options[question.correct_option_index] : "");
+      if (question.question && options.length >= 2 && correctAnswer) {
+        total += 1;
+      }
+    }
+  }
+  return total;
+}
+
+function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, passageUnifiedPack }) {
+  const modes = resolveQuizModesForUI({
+    subject: getDatasetSubject(dataset),
+    direction: prefs.direction,
+    answerMode: prefs.answerMode,
+  });
+
+  return modes.reduce((total, modeId) => {
+    switch (modeId) {
+      case "englishWordChooseGerman":
+      case "germanWordChooseEnglish":
+      case "englishWordTypeGerman":
+      case "germanWordTypeEnglish":
+        return total + filteredWords.length;
+      case "englishSentenceBuildGerman":
+      case "germanSentenceBuildEnglish":
+      case "englishSentenceTypeGerman":
+        return total + filterUnifiedItems(unifiedPack, "sentence").length;
+      case "sequenceOrder":
+        return total + filterUnifiedItems(unifiedPack, "sequence").length;
+      case "categorySort":
+        return total + filterUnifiedItems(unifiedPack, "categorySort").length;
+      case "fillBlank":
+        return total + filterUnifiedItems(unifiedPack, "fillBlank").length;
+      case "passageQuestionChooseAnswer":
+        return total + countPassageMcqQuestions(passageUnifiedPack);
+      default:
+        return total;
+    }
+  }, 0);
+}
+
+function buildQuestionCountOptions(maxQuestionCount) {
+  const defaults = [12, 18, 24, 30];
+  const limited = defaults.filter((value) => value <= maxQuestionCount);
+  if (maxQuestionCount > 0 && !limited.includes(maxQuestionCount)) {
+    limited.push(maxQuestionCount);
+  }
+  const options = [...new Set(limited)].sort((a, b) => a - b);
+  return options.map((value) => ({ value: String(value), label: String(value) }));
 }
 
 function renderDatasetSelect(id, currentValue) {
@@ -1921,6 +2031,8 @@ async function handleClick(event) {
       persisted.prefs.passages.groupId = groupsForSubject[0].id;
       const firstPacks = listPassagePacks(runtime.manifest, groupsForSubject[0].id);
       persisted.prefs.passages.packId = firstPacks[0] ? firstPacks[0].id : "";
+      persisted.prefs.passages.category = "all";
+      persisted.prefs.passages.difficulty = "all";
       runtime.passages = null;
       saveStoredState(persisted);
       await renderApp();
@@ -2246,20 +2358,26 @@ async function handleChange(event) {
       if (selectedGroup) persisted.prefs.passages.subject = getPassageGroupSubject(selectedGroup);
       const packs = listPassagePacks(runtime.manifest, value);
       persisted.prefs.passages.packId = packs[0] ? packs[0].id : "";
+      persisted.prefs.passages.category = "all";
+      persisted.prefs.passages.difficulty = "all";
       runtime.passages = null;
       break;
     }
     case "passage-pack":
       persisted.prefs.passages.packId = value;
+      persisted.prefs.passages.category = "all";
+      persisted.prefs.passages.difficulty = "all";
       runtime.passages = null;
       break;
     case "passage-category":
       persisted.prefs.passages.category = value;
       runtime.passages.started = false;
+      runtime.passages.message = "";
       break;
     case "passage-difficulty":
       persisted.prefs.passages.difficulty = value;
       runtime.passages.started = false;
+      runtime.passages.message = "";
       break;
     case "review-dataset":
       persisted.prefs.review.datasetId = value;
@@ -2333,6 +2451,14 @@ async function startQuiz(customWords = null, label = null) {
       passageUnifiedPack = null;
     }
   }
+  const maxQuestionCount = getQuizMaxQuestionCount({
+    dataset,
+    prefs,
+    filteredWords: words,
+    unifiedPack,
+    passageUnifiedPack,
+  });
+  const boundedQuestionCount = maxQuestionCount > 0 ? Math.min(prefs.questionCount, maxQuestionCount) : prefs.questionCount;
 
   // Subject First adapter: translate the high-level UI selections into the
   // legacy mode-ID array the question engine expects. This replaces the old
@@ -2347,7 +2473,7 @@ async function startQuiz(customWords = null, label = null) {
   const session = createQuizSession({
     words,
     sentencePools,
-    config: { ...prefs, modes: resolvedModes },
+    config: { ...prefs, modes: resolvedModes, questionCount: boundedQuestionCount },
     persistedState: persisted,
     customWords,
     label,
