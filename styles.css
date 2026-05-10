@@ -1,32 +1,54 @@
 :root {
-  /* Core surfaces */
-  --bg: #f4efe3;
-  --bg-deep: #d9e4eb;
-  --surface: rgba(255, 251, 244, 0.88);
-  --surface-alt: rgba(250, 244, 235, 0.72);
-  --surface-strong: rgba(255, 253, 249, 0.96);
-  --surface-accent: rgba(22, 102, 168, 0.06);
-  --ink: #18222d;
-  --muted: #5c6872;
-  --hint: rgba(92, 104, 114, 0.68);
-  --line: rgba(24, 34, 45, 0.12);
-  --line-strong: rgba(24, 34, 45, 0.22);
+  /* ── FoxChild Idea brand palette ───────────────────────────────────────────
+   * Warm cream backgrounds, fox-orange accent, logo-teal primary,
+   * golden-yellow highlight — extracted from logo.png & expression-sheet.png
+   */
 
-  /* Semantic tones */
-  --color-info: #1566a8;
-  --color-info-bg: rgba(21, 102, 168, 0.14);
-  --color-info-border: rgba(21, 102, 168, 0.24);
-  --color-success: #26744b;
-  --color-success-bg: rgba(38, 116, 75, 0.15);
-  --color-success-border: rgba(38, 116, 75, 0.24);
-  --color-attention: #b27b15;
-  --color-attention-bg: rgba(178, 123, 21, 0.16);
-  --color-attention-border: rgba(178, 123, 21, 0.24);
-  --color-error: #b5533f;
-  --color-error-bg: rgba(181, 83, 63, 0.14);
-  --color-error-border: rgba(181, 83, 63, 0.24);
+  /* Core surfaces — warm parchment */
+  --bg: #fdf4e3;
+  --bg-deep: #f5e8c8;
+  --surface: rgba(255, 252, 242, 0.92);
+  --surface-alt: rgba(253, 246, 228, 0.80);
+  --surface-strong: rgba(255, 254, 248, 0.98);
+  --surface-accent: rgba(61, 158, 165, 0.07);
 
-  /* Legacy aliases kept for existing markup */
+  /* Text — warm dark brown (not cold navy) */
+  --ink: #2d1e0f;
+  --muted: #7a6552;
+  --hint: rgba(122, 101, 82, 0.65);
+  --line: rgba(61, 43, 31, 0.12);
+  --line-strong: rgba(61, 43, 31, 0.22);
+
+  /* Primary interactive — logo teal */
+  --color-info: #2f8f96;
+  --color-info-bg: rgba(47, 143, 150, 0.12);
+  --color-info-border: rgba(47, 143, 150, 0.28);
+
+  /* Success — leaf green */
+  --color-success: #3d8a3a;
+  --color-success-bg: rgba(61, 138, 58, 0.13);
+  --color-success-border: rgba(61, 138, 58, 0.26);
+
+  /* Attention — fox orange */
+  --color-attention: #c97a1a;
+  --color-attention-bg: rgba(201, 122, 26, 0.13);
+  --color-attention-border: rgba(201, 122, 26, 0.28);
+
+  /* Error — warm coral */
+  --color-error: #c04e36;
+  --color-error-bg: rgba(192, 78, 54, 0.12);
+  --color-error-border: rgba(192, 78, 54, 0.26);
+
+  /* FoxChild brand extras */
+  --fox-orange: #e8841a;
+  --fox-orange-light: rgba(232, 132, 26, 0.15);
+  --fox-orange-border: rgba(232, 132, 26, 0.30);
+  --fox-yellow: #edb832;
+  --fox-yellow-light: rgba(237, 184, 50, 0.15);
+  --fox-teal: #3d9ea5;
+  --fox-teal-light: rgba(61, 158, 165, 0.15);
+
+  /* Legacy aliases — kept for existing markup */
   --blue: var(--color-info);
   --blue-soft: var(--color-info-bg);
   --green: var(--color-success);
@@ -36,8 +58,8 @@
   --coral: var(--color-error);
   --coral-soft: var(--color-error-bg);
 
-  --shadow: 0 20px 52px rgba(29, 47, 61, 0.16);
-  --shadow-soft: 0 12px 30px rgba(29, 47, 61, 0.1);
+  --shadow: 0 20px 52px rgba(61, 43, 31, 0.14);
+  --shadow-soft: 0 10px 28px rgba(61, 43, 31, 0.09);
   --radius-xl: 28px;
   --radius-lg: 20px;
   --radius-md: 16px;
@@ -51,8 +73,8 @@
   --space-2xl: 48px;
   --font-ui: "Avenir Next", "Trebuchet MS", "Gill Sans", sans-serif;
   --font-display: "Georgia", "Palatino", "Times New Roman", serif;
-  --focus-ring: 0 0 0 3px rgba(21, 102, 168, 0.12);
-  --select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.25L6 6.25L11 1.25' stroke='%235c6872' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --focus-ring: 0 0 0 3px rgba(47, 143, 150, 0.18);
+  --select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.25L6 6.25L11 1.25' stroke='%237a6552' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 * {
@@ -71,10 +93,12 @@ html {
 
 body {
   color: var(--ink);
+  /* FoxChild: warm cream base with fox-orange and teal bokeh accents */
   background:
-    radial-gradient(circle at top left, rgba(255, 214, 176, 0.64), transparent 28%),
-    radial-gradient(circle at top right, rgba(147, 198, 255, 0.42), transparent 24%),
-    linear-gradient(180deg, var(--bg) 0%, #edf2f5 100%);
+    radial-gradient(circle at top left,  rgba(232, 132, 26, 0.20), transparent 30%),
+    radial-gradient(circle at top right, rgba(61, 158, 165, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(237, 184, 50, 0.12), transparent 34%),
+    linear-gradient(180deg, var(--bg) 0%, #f5ead0 100%);
   font-family: var(--font-ui);
 }
 
@@ -83,9 +107,9 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.55), transparent 18%),
-    radial-gradient(circle at 84% 18%, rgba(255, 244, 213, 0.38), transparent 16%),
-    radial-gradient(circle at 80% 82%, rgba(130, 177, 226, 0.16), transparent 22%);
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.50), transparent 18%),
+    radial-gradient(circle at 84% 18%, rgba(253, 240, 195, 0.40), transparent 16%),
+    radial-gradient(circle at 75% 80%, rgba(61, 158, 165, 0.10), transparent 22%);
 }
 
 .app-shell {
@@ -123,13 +147,49 @@ body {
 }
 
 .hero {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  /* FoxChild teal — matches the logo background bokeh */
+  background:
+    radial-gradient(circle at 20% 55%, rgba(255, 255, 255, 0.14), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(237, 184, 50, 0.22), transparent 30%),
+    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.08), transparent 22%),
+    linear-gradient(135deg, #2b7e85 0%, #3d9ea5 45%, #4fb3ba 100%);
+  color: #f7f7f3;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Logo image panel — left side of hero */
+.hero-brand {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 260px;
+  padding: 0 0 0 8px;
+  position: relative;
+}
+
+.hero-logo {
+  display: block;
+  width: 260px;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  /* Slight shadow so characters stand out from teal */
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.20));
+}
+
+/* Content panel — right side of hero */
+.hero-body {
+  flex: 1 1 0;
   display: grid;
   gap: 18px;
-  padding: 26px;
-  background:
-    linear-gradient(135deg, rgba(14, 71, 116, 0.96), rgba(38, 116, 75, 0.94)),
-    linear-gradient(135deg, #12588d, #1c7b58);
-  color: #f7f7f3;
+  padding: 28px 28px 28px 16px;
+  min-width: 0;
 }
 
 .hero-top {
@@ -143,7 +203,7 @@ body {
 .hero-copy h1 {
   margin: 8px 0 10px;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
   line-height: 1.02;
   letter-spacing: -0.01em;
 }
@@ -269,9 +329,12 @@ body {
 }
 
 .nav-pill.is-active {
-  background: linear-gradient(135deg, #fbf2dd, #fffaf1);
-  border-color: rgba(21, 102, 168, 0.3);
-  box-shadow: inset 0 -3px 0 var(--color-info), inset 0 0 0 1px rgba(21, 102, 168, 0.08);
+  /* FoxChild: warm cream + fox-orange underline */
+  background: linear-gradient(135deg, #fdf4e3, #fff8ec);
+  border-color: var(--fox-orange-border);
+  box-shadow: inset 0 -3px 0 var(--fox-orange), inset 0 0 0 1px rgba(232, 132, 26, 0.10);
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .content {
@@ -489,29 +552,31 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #0f629e, #1672b1);
+  /* FoxChild teal primary button */
+  background: linear-gradient(135deg, #2b8a91, #3d9ea5);
   color: #fff;
-  border-color: rgba(15, 98, 158, 0.2);
+  border-color: rgba(43, 138, 145, 0.25);
 }
 
 .button.secondary {
-  background: linear-gradient(135deg, #f8efe1, #fff9f0);
+  background: linear-gradient(135deg, #fdf4e3, #fff9ee);
   color: var(--ink);
-  border-color: rgba(24, 34, 45, 0.1);
+  border-color: rgba(61, 43, 31, 0.12);
 }
 
 .button.ghost {
-  background: rgba(255, 255, 255, 0.74);
+  background: rgba(255, 252, 242, 0.80);
   color: var(--ink);
-  border-color: rgba(24, 34, 45, 0.12);
+  border-color: rgba(61, 43, 31, 0.12);
 }
 
 .button.success {
-  background: linear-gradient(135deg, #1b7d50, #2f915f);
+  background: linear-gradient(135deg, #2e7a2b, #3d8a3a);
 }
 
 .button.warn {
-  background: linear-gradient(135deg, #cb6b43, #da7b52);
+  /* Fox orange for warnings */
+  background: linear-gradient(135deg, #c97a1a, #e08820);
 }
 
 .button:disabled,
@@ -1430,23 +1495,26 @@ body {
   gap: 6px;
   padding: 18px 14px;
   border: 1.5px solid var(--line);
-  background: #fff;
+  background: var(--surface-strong);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease, box-shadow 120ms ease;
   font: inherit;
   color: inherit;
   text-align: center;
 }
 
 .subject-card:hover:not(:disabled) {
-  border-color: var(--color-info-border);
-  transform: translateY(-1px);
+  border-color: var(--fox-orange-border);
+  background: var(--fox-orange-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(232, 132, 26, 0.14);
 }
 
 .subject-card.is-active {
-  border-color: var(--color-info);
-  background: var(--color-info-bg);
+  border-color: var(--fox-orange);
+  background: var(--fox-orange-light);
+  box-shadow: 0 0 0 3px rgba(232, 132, 26, 0.10);
 }
 
 .subject-card.is-empty,
@@ -1496,12 +1564,13 @@ body {
 }
 
 .pill-button:hover {
-  border-color: var(--color-info-border);
+  border-color: var(--fox-orange-border);
+  background: var(--fox-orange-light);
 }
 
 .pill-button.is-active {
-  border-color: var(--color-info);
-  background: var(--color-info-bg);
+  border-color: var(--fox-orange);
+  background: var(--fox-orange-light);
 }
 
 .mode-pill {
@@ -1543,8 +1612,8 @@ body {
 }
 
 .admin-drop-zone:hover {
-  border-color: var(--color-info);
-  background: var(--color-info-bg);
+  border-color: var(--fox-teal);
+  background: var(--fox-teal-light);
 }
 
 .admin-drop-icon {
@@ -1694,5 +1763,74 @@ body {
 @media (max-width: 600px) {
   .admin-format-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ─── FoxChild character mascots ─────────────────────────────────────────────── */
+
+/* Fox face shown in feedback banners + empty states */
+.fox-mascot {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  /* Crisp rendering for the watercolour art */
+  image-rendering: auto;
+}
+
+/* Larger fox in empty-state illustrations */
+.empty-state-illustration .fox-mascot {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+}
+
+/* Feedback icon now hosts the fox face — override size */
+.feedback-icon {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-icon .fox-mascot {
+  width: 64px;
+  height: 64px;
+}
+
+/* ─── Hero responsive — FoxChild logo layout ─────────────────────────────────── */
+
+@media (max-width: 860px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero-brand {
+    width: 100%;
+    justify-content: center;
+    padding: 20px 0 0;
+    order: -1;
+  }
+  .hero-logo {
+    width: 200px;
+  }
+  .hero-body {
+    padding: 12px 20px 24px;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .hero-logo {
+    width: 160px;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
