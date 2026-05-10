@@ -1501,3 +1501,177 @@ body {
     flex-basis: 100%;
   }
 }
+
+/* ─── Admin tab ─────────────────────────────────────────────────────────────── */
+
+.admin-drop-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 36px 24px;
+  margin-top: 20px;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.admin-drop-zone:hover {
+  border-color: var(--color-info);
+  background: var(--color-info-bg);
+}
+
+.admin-drop-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.admin-drop-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Upload status feedback */
+.admin-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+}
+
+.admin-status-ok {
+  background: var(--color-success-bg);
+  border: 1.5px solid var(--color-success-border);
+  color: var(--color-success);
+}
+
+.admin-status-error {
+  background: var(--color-error-bg);
+  border: 1.5px solid var(--color-error-border);
+  color: var(--color-error);
+}
+
+.admin-status-icon {
+  font-size: 1.1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.admin-status p {
+  margin: 4px 0 0;
+}
+
+/* Pack cards in the uploaded list */
+.admin-pack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-pack-card {
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.admin-pack-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-pack-name {
+  font-weight: 600;
+  font-size: 0.97rem;
+  color: var(--ink);
+}
+
+.admin-pack-id {
+  margin-top: 2px;
+  font-family: monospace;
+  font-size: 0.76rem;
+}
+
+.admin-pack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-pack-meta {
+  color: var(--muted);
+}
+
+/* Danger button variant */
+.button-danger {
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+.button-danger:hover {
+  background: #fff1f2;
+  border-color: #f87171;
+}
+
+/* Format reference grid */
+.admin-format-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.admin-format-card {
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+}
+
+.admin-format-label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+/* Schema preview code block */
+.admin-schema-preview {
+  margin: 0;
+  padding: 14px 16px;
+  background: var(--surface-alt);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--ink);
+}
+
+.admin-schema-preview code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.admin-schema-preview .muted {
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .admin-format-grid {
+    grid-template-columns: 1fr;
+  }
+}

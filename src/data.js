@@ -154,6 +154,15 @@ function passageFromItem(item) {
   };
 }
 
+/**
+ * Pre-populate the fetchJson cache for a given path.
+ * Used by admin-storage.js to inject uploaded pack blobs so that
+ * loadUnifiedPack() returns in-memory data instead of fetching a URL.
+ */
+export function registerPackInCache(path, data) {
+  jsonCache.set(path, Promise.resolve(data));
+}
+
 export async function loadManifest() {
   return fetchJson("./data/generated/manifest.json");
 }
