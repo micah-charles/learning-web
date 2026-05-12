@@ -1,0 +1,904 @@
+{
+  "packId": "ks3_geography_coasts_waves_landforms_management",
+  "subject": "geography",
+  "title": "KS3 Geography — Coasts: Waves, Landforms and Management",
+  "level": "KS3",
+  "language": "English",
+  "topics": [
+    "Coasts",
+    "Waves",
+    "Coastal landforms",
+    "Coastal management"
+  ],
+  "tags": [
+    "KS3",
+    "Geography",
+    "Coasts",
+    "Waves",
+    "Coastal management"
+  ],
+  "description": "Revision pack on how waves form, how coastal landforms develop, how sediment is moved by longshore drift, and how different groups manage changing coastlines. It focuses on the lesson content from Rivers and Coasts 2 while adding a small amount of wider curriculum knowledge for reinforcement.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_coasts_vocab_001",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coasts"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "coast",
+        "targetWord": "the narrow zone where the land meets the sea",
+        "examples": {
+          "en-GB": "A coast is the narrow zone where the land meets the sea."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_002",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal processes"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "weathering",
+        "targetWord": "the breakdown of rock in place without the rock being moved away",
+        "examples": {
+          "en-GB": "Weathering breaks rock down in place before erosion can move it."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_003",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal processes"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "erosion",
+        "targetWord": "the wearing away and removal of rock by moving waves, water or sediment",
+        "examples": {
+          "en-GB": "Wave erosion removes material from the coastline."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_004",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rock and coastline type"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "differential erosion",
+        "targetWord": "erosion happening at different rates because some rocks are harder than others",
+        "examples": {
+          "en-GB": "Differential erosion can create bays in softer rock and headlands in harder rock."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_005",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rock and coastline type"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "discordant coastline",
+        "targetWord": "a coastline where bands of hard and soft rock lie at right angles to the sea, creating bays and headlands",
+        "examples": {
+          "en-GB": "A discordant coastline often has alternating bays and headlands."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_006",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Headlands and bays"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "headland",
+        "targetWord": "an area of harder rock that sticks out into the sea and is hit by waves with greater force",
+        "examples": {
+          "en-GB": "Caves and arches often form on a headland where wave attack is strongest."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_007",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Headlands and bays"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bay",
+        "targetWord": "a curved inlet where softer rock has been eroded more quickly, often leaving a beach",
+        "examples": {
+          "en-GB": "Waves are usually less powerful inside a bay, so beaches can build up there."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_008",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Wave formation"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "friction",
+        "targetWord": "the force that transfers energy from wind to the sea surface and from shallow sea water to the sea floor",
+        "examples": {
+          "en-GB": "Friction helps the wind create waves and also makes waves steepen near the shore."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_009",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Wave types"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "destructive wave",
+        "targetWord": "a high-energy wave with a stronger backwash than swash, so it removes beach material",
+        "examples": {
+          "en-GB": "Destructive waves are linked to erosion because the backwash is more powerful than the swash."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_010",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Wave types"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "constructive wave",
+        "targetWord": "a lower-energy wave with a stronger swash than backwash, so it helps build up beaches",
+        "examples": {
+          "en-GB": "Constructive waves add material to beaches because the swash is stronger than the backwash."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_011",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "wave-cut notch",
+        "targetWord": "a hollow cut into the base of a cliff by wave erosion",
+        "examples": {
+          "en-GB": "A wave-cut notch forms first and weakens the cliff above it."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_012",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "wave-cut platform",
+        "targetWord": "a flat rocky surface left behind as a cliff retreats through repeated erosion and collapse",
+        "examples": {
+          "en-GB": "At low tide, a wave-cut platform can be seen in front of the retreating cliff."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_013",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "arch",
+        "targetWord": "a coastal feature formed when a cave is eroded through a headland",
+        "examples": {
+          "en-GB": "An arch forms after continued erosion enlarges a cave right through the rock."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_014",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "stack",
+        "targetWord": "a tall pillar of rock left behind after the roof of an arch collapses",
+        "examples": {
+          "en-GB": "A stack stands offshore after the arch roof has fallen in."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_015",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "stump",
+        "targetWord": "the low remnant of a stack after further erosion and weathering",
+        "examples": {
+          "en-GB": "A stack is eventually worn down into a stump."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_016",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Sediment transport"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "longshore drift",
+        "targetWord": "the movement of sediment along a coast by angled swash and straight backwash",
+        "examples": {
+          "en-GB": "Longshore drift moves sand along the coastline in a zig-zag pattern."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_017",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal management"
+      ],
+      "tags": [
+        "KS3",
+        "cat:impact"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "hard engineering",
+        "targetWord": "large built structures used to control waves and erosion, such as sea walls and groynes",
+        "examples": {
+          "en-GB": "Hard engineering can protect property but is often expensive."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_vocab_018",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Coastal management"
+      ],
+      "tags": [
+        "KS3",
+        "cat:impact"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "soft engineering",
+        "targetWord": "managing the coast by working with natural processes, such as beach nourishment or managed retreat",
+        "examples": {
+          "en-GB": "Soft engineering often aims to be more sustainable and natural-looking."
+        }
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_001",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Wave formation"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "Wind transfers energy to the sea surface by ____.",
+        "answer": "friction",
+        "hint": "It is a force caused by rubbing surfaces."
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_002",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Wave formation"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "As waves reach shallow water, the base meets the sea floor and wave ____ increases.",
+        "answer": "height",
+        "options": [
+          "height",
+          "temperature",
+          "colour",
+          "salinity"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_003",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Headlands and bays"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "Softer rock is worn away faster to form a ____.",
+        "answer": "bay",
+        "options": [
+          "bay",
+          "stack",
+          "cliff",
+          "reef"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_004",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Headlands and bays"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "Harder rock left sticking out into the sea forms a ____.",
+        "answer": "headland",
+        "hint": "It receives strong wave attack."
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_005",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rock and coastline type"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "Bays and headlands on a discordant coastline are produced by ____ erosion.",
+        "answer": "differential",
+        "hint": "The word means the rates are not the same."
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_006",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Wave types"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "In a destructive wave, the ____ is stronger than the swash.",
+        "answer": "backwash",
+        "options": [
+          "backwash",
+          "tide",
+          "spray",
+          "current"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_007",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Wave types"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "In a constructive wave, the ____ is stronger than the backwash.",
+        "answer": "swash",
+        "options": [
+          "swash",
+          "undertow",
+          "tide",
+          "spray"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_008",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "A hollow cut into the base of a cliff by wave erosion is called a wave-cut ____.",
+        "answer": "notch",
+        "options": [
+          "notch",
+          "arch",
+          "ridge",
+          "delta"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_009",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "When the roof of an arch collapses, it leaves a ____.",
+        "answer": "stack",
+        "options": [
+          "stack",
+          "bay",
+          "beach",
+          "bar"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_010",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "The flat rocky surface revealed at low tide after cliff retreat is a wave-cut ____.",
+        "answer": "platform",
+        "hint": "It is a broad, level surface."
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_011",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Sediment transport"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "Sediment moved along the coastline in a zig-zag pattern is being transported by ____ ____.",
+        "answer": "longshore drift",
+        "hint": "The second word means movement."
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_012",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Sediment transport"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "In longshore drift, the swash moves material up the beach at an ____.",
+        "answer": "angle",
+        "options": [
+          "angle",
+          "arc",
+          "edge",
+          "interval"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_013",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Coastal management"
+      ],
+      "tags": [
+        "KS3",
+        "cat:impact"
+      ],
+      "data": {
+        "sentence": "A curved sea wall is an example of ____ engineering.",
+        "answer": "hard",
+        "options": [
+          "hard",
+          "soft",
+          "managed",
+          "natural"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_014",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Coastal management"
+      ],
+      "tags": [
+        "KS3",
+        "cat:impact"
+      ],
+      "data": {
+        "sentence": "Beach nourishment is an example of ____ engineering.",
+        "answer": "soft",
+        "options": [
+          "soft",
+          "hard",
+          "structural",
+          "offshore"
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_fill_015",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Coastal management"
+      ],
+      "tags": [
+        "KS3",
+        "cat:people",
+        "cat:impact"
+      ],
+      "data": {
+        "sentence": "People who want a more natural coastline may prefer ____ retreat.",
+        "answer": "managed",
+        "hint": "This approach allows some shoreline movement."
+      }
+    },
+    {
+      "id": "ks3_coasts_seq_001",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Wave formation"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "title": "How Waves Form and Break",
+        "instruction": "Put the stages of wave formation in the correct order.",
+        "items": [
+          "Wind blows across the sea surface.",
+          "Friction transfers energy from the wind to the water.",
+          "The water begins moving in a circular rolling motion.",
+          "Wave energy travels forwards towards the coast.",
+          "The base of the wave meets the sea floor in shallow water.",
+          "The top of the wave moves faster and topples over as a breaker."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_coasts_seq_002",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Coastal landforms"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "title": "From Crack to Stump",
+        "instruction": "Put the headland erosion stages in the correct order.",
+        "items": [
+          "Destructive waves attack a headland.",
+          "Weaknesses in the rock widen into cracks.",
+          "Continued erosion enlarges the crack into a cave.",
+          "Further erosion cuts through the headland to form an arch.",
+          "The arch roof collapses and leaves a stack.",
+          "Ongoing erosion reduces the stack to a stump."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_coasts_seq_003",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Wave-cut platform"
+      ],
+      "tags": [
+        "KS3",
+        "cat:processes"
+      ],
+      "data": {
+        "title": "Formation of a Wave-cut Platform",
+        "instruction": "Put the stages of cliff retreat in the correct order.",
+        "items": [
+          "Waves attack the base of the cliff at high tide.",
+          "A wave-cut notch forms at the cliff base.",
+          "Undercutting and weathering weaken the cliff above.",
+          "The cliff collapses.",
+          "The sea removes the fallen material.",
+          "Repeated retreat leaves a flat wave-cut platform visible at low tide."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_coasts_sort_001",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Wave types"
+      ],
+      "tags": [
+        "KS3"
+      ],
+      "data": {
+        "title": "Constructive or Destructive?",
+        "instruction": "Sort each description into the correct wave type.",
+        "categories": [
+          "Constructive waves",
+          "Destructive waves"
+        ],
+        "pairs": [
+          {
+            "text": "Swash stronger than backwash",
+            "category": "Constructive waves"
+          },
+          {
+            "text": "Backwash stronger than swash",
+            "category": "Destructive waves"
+          },
+          {
+            "text": "Builds up beach material",
+            "category": "Constructive waves"
+          },
+          {
+            "text": "Removes beach sediment",
+            "category": "Destructive waves"
+          },
+          {
+            "text": "Lower-energy wave",
+            "category": "Constructive waves"
+          },
+          {
+            "text": "High-energy wave",
+            "category": "Destructive waves"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_sort_002",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Headlands and bays"
+      ],
+      "tags": [
+        "KS3"
+      ],
+      "data": {
+        "title": "Headland or Bay?",
+        "instruction": "Sort each feature into the correct coastal location.",
+        "categories": [
+          "Headland",
+          "Bay"
+        ],
+        "pairs": [
+          {
+            "text": "Hard rock such as chalk",
+            "category": "Headland"
+          },
+          {
+            "text": "Soft rock such as clay",
+            "category": "Bay"
+          },
+          {
+            "text": "Waves hit with greater force",
+            "category": "Headland"
+          },
+          {
+            "text": "Waves are refracted into this area",
+            "category": "Bay"
+          },
+          {
+            "text": "Caves, arches, stacks and stumps are common",
+            "category": "Headland"
+          },
+          {
+            "text": "Beaches often develop here",
+            "category": "Bay"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_coasts_sort_003",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Coastal management"
+      ],
+      "tags": [
+        "KS3"
+      ],
+      "data": {
+        "title": "Hard or Soft Engineering?",
+        "instruction": "Sort each management strategy into the correct category.",
+        "categories": [
+          "Hard engineering",
+          "Soft engineering"
+        ],
+        "pairs": [
+          {
+            "text": "Curved sea wall",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "Rock armour",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "Groynes",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "Offshore reef",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "Beach nourishment",
+            "category": "Soft engineering"
+          },
+          {
+            "text": "Dune nourishment",
+            "category": "Soft engineering"
+          },
+          {
+            "text": "Managed retreat",
+            "category": "Soft engineering"
+          }
+        ]
+      }
+    }
+  ]
+}
