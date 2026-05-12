@@ -88,9 +88,10 @@ from typing import Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PROMPT_PATH = REPO_ROOT / "docs" / "pack-generation-prompt.md"
+LITERATURE_PROMPT_PATH = REPO_ROOT / "prompts" / "pack-generation-literature-prompt.md"
 DEFAULT_OUT = REPO_ROOT / "generated_packs"
 
-ALLOWED_SUBJECTS = {"language", "history", "geography", "science"}
+ALLOWED_SUBJECTS = {"language", "history", "geography", "literature", "science"}
 SUPPORTED_IMAGE_TYPES = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
                          ".gif": "image/gif", ".webp": "image/webp"}
 SUPPORTED_TEXT_TYPES = {".txt", ".md", ".markdown", ".csv", ".json", ".yaml", ".yml"}
@@ -216,17 +217,24 @@ def parse_args() -> argparse.Namespace:
 
 # ─── Prompt loading + variable substitution ───────────────────────────────
 
-def load_prompt_template() -> str:
-    if not PROMPT_PATH.exists():
-        die(f"Prompt template not found at {PROMPT_PATH}", code=1)
-    text = PROMPT_PATH.read_text(encoding="utf-8")
+def get_prompt_path(subject: str) -> Path:
+    if subject == "literature" and LITERATURE_PROMPT_PATH.exists():
+        return LITERATURE_PROMPT_PATH
+    return PROMPT_PATH
+
+
+def load_prompt_template(subject: str) -> str:
+    prompt_path = get_prompt_path(subject)
+    if not prompt_path.exists():
+        die(f"Prompt template not found at {prompt_path}", code=1)
+    text = prompt_path.read_text(encoding="utf-8")
     # Extract the section between `## BEGIN PROMPT` / `## END PROMPT`.
     match = re.search(
         r"^##\s+BEGIN\s+PROMPT\s*\n(.*?)\n^##\s+END\s+PROMPT\s*$",
         text, re.MULTILINE | re.DOTALL,
     )
     if not match:
-        die("Prompt template missing '## BEGIN PROMPT' / '## END PROMPT' fences", code=1)
+        die(f"Prompt template missing '## BEGIN PROMPT' / '## END PROMPT' fences: {prompt_path}", code=1)
     return match.group(1).strip()
 
 
@@ -513,7 +521,28 @@ def validate_pack(parsed: object, expected_subject: str, expected_pack_id: Optio
                 warnings.append(f"{context}: duplicate item id {iid!r}")
             elif iid:
                 seen_ids.add(iid)
+            if subject == "literature" and item.get("type") == "vocab":
+                data = item.get("data") if isinstance(item.get("data"), dict) else {}
+                translations = data.get("translations") if isinstance(data.get("translations"), dict) else {}
+                src_code = parsed.get("sourceLanguageCode") or "en-GB"
+                tgt_code = parsed.get("targetLanguageCode") or "en-GB"
+                source = translations.get(src_code) or next(iter(translations.values()), None) or data.get("sourceWord")
+                remaining = [value for key, value in translations.items() if key != src_code]
+                target = translations.get(tgt_code) or (remaining[0] if remaining else None) or data.get("targetWord")
+                if _normalise_text_for_comparison(source) == _normalise_text_for_comparison(target):
+                    warnings.append(
+                        f"{context}: literature vocab item {iid!r} has identical prompt and answer"
+                    )
+                if translations and src_code == tgt_code and not data.get("targetWord"):
+                    warnings.append(
+                        f"{context}: literature vocab item {iid!r} uses translations only with matching "
+                        "source/target language; use sourceWord + targetWord or a fillBlank item"
+                    )
     return warnings
+
+
+def _normalise_text_for_comparison(value: object) -> str:
+    return " ".join(str(value or "").strip().lower().split())
 
 
 def detect_role(declared_path: str) -> str:
@@ -700,13 +729,20 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
         "  sourceLanguageLabel, sourceLanguageCode, targetLanguageLabel, targetLanguageCode,",
         "  speechLanguage, items[].",
         "",
-        "Allowed subject values: language, history, geography, science.",
-        "For geography/history/science use English/en-GB for source, target, and speech language.",
+        "Allowed subject values: language, history, geography, literature, science.",
+        "For geography/history/literature/science use English/en-GB for source, target, and speech language.",
         "Allowed item types: vocab, sentence, sequence, categorySort, fillBlank, sentenceBuilder, passage.",
         "",
-        "vocab.data for non-language subjects should use:",
-        '  partOfSpeech="keyword", translations={"en-GB": "<term>"},',
+        "vocab.data for non-language subjects should use sourceWord for the prompt",
+        "  and targetWord for the answer/definition. Do not create same-word cards",
+        '  with only translations={"en-GB": "<term>"} because source and target are both en-GB.',
+        '  Example: partOfSpeech="keyword", sourceWord="<term>", targetWord="<definition>",',
         '  examples={"en-GB": "<clear definition sentence>"}',
+        "",
+        "Literature packs must test interpretation, evidence, character, theme,",
+        "  symbolism, and narrative purpose. Prefer fillBlank/categorySort/sequence/",
+        "  passage questions over vocab. If using vocab, the answer must explain the",
+        "  term/character/motif; it must never repeat the prompt word.",
         "",
         "fillBlank.data: sentence, answer, optional hint, optional options including answer.",
         "sequence.data: title, instruction, items[], shuffle=true.",
@@ -835,11 +871,11 @@ def call_codex_agent(
     Raises:
         RuntimeError if the codex command is not found or returns non-zero.
     """
-    import shutil as _shutil
     import subprocess as _subprocess
     import time as _time
 
-    if not _shutil.which("codex"):
+    codex_bin = find_codex_binary()
+    if not codex_bin:
         raise RuntimeError(
             "Codex CLI not found. Install and login first:\n"
             "  npm i -g @openai/codex\n"
@@ -862,16 +898,19 @@ def call_codex_agent(
         # versions reject newer model names such as gpt-5.5 before the prompt
         # can run. Keep those CLI flags as run metadata until provider-version
         # detection is added.
-        cmd = ["codex", "exec", "--sandbox", "workspace-write", "--cd", repo_root, prompt]
+        cmd = [codex_bin, "exec", "--sandbox", "workspace-write", "--cd", repo_root, "-"]
 
         process = _subprocess.Popen(
             cmd,
             cwd=repo_root,
+            stdin=_subprocess.PIPE,
             stdout=_subprocess.PIPE,
             stderr=_subprocess.STDOUT,  # merge stderr into stdout stream
             text=True,
             bufsize=1,
         )
+        process.stdin.write(prompt)
+        process.stdin.close()
 
         while True:
             line = process.stdout.readline()
@@ -907,6 +946,19 @@ def call_codex_agent(
         )
 
     return "\n".join(stdout_lines), {"returncode": process.returncode, "timeout": timeout}
+
+
+def find_codex_binary() -> str | None:
+    import shutil as _shutil
+
+    candidates = [
+        "/Applications/Codex.app/Contents/Resources/codex",
+        _shutil.which("codex"),
+    ]
+    for candidate in candidates:
+        if candidate and Path(candidate).exists():
+            return str(candidate)
+    return None
 
 
 # ─── Post-Codex validation ────────────────────────────────────────────────
@@ -1071,7 +1123,7 @@ def main() -> int:
     codex_before = snapshot_staging_dirs(args.out.resolve()) if args.provider == "codex" else {}
 
     # 1. Load + render prompt
-    prompt_template = load_prompt_template()
+    prompt_template = load_prompt_template(args.subject)
     rendered_prompt = render_prompt(prompt_template, args)
     if args.verbose:
         print(dim("--- system prompt (rendered) ---"), file=sys.stderr)

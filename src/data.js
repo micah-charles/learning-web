@@ -174,7 +174,7 @@ export function findDataset(manifest, datasetId) {
 // Older packs may not declare it; the inference fallback below assigns a
 // best-guess subject so legacy packs still appear in the right bucket.
 
-export const SUBJECTS = ["language", "history", "geography", "science"];
+export const SUBJECTS = ["language", "history", "geography", "literature", "science"];
 
 const LANGUAGE_HINT_CODES = ["de", "fr", "es", "it", "la", "zh", "ja", "ko", "ru", "ar", "el", "pt", "nl"];
 
@@ -189,6 +189,9 @@ function inferSubject(dataset) {
   }
   if (id.includes("history") || id.includes("black_death") || id.includes("tudors") || id.includes("ww1") || id.includes("norman")) {
     return "history";
+  }
+  if (id.includes("literature") || id.includes("poetry") || id.includes("novel") || id.includes("shakespeare")) {
+    return "literature";
   }
   if (id.includes("science") || id.includes("physics") || id.includes("biology") || id.includes("chemistry")) {
     return "science";
