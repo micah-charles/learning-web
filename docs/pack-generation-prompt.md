@@ -60,13 +60,13 @@ You are generating a complete, curriculum-aligned dataset for the
 **Learning Web** app. The app is a vocabulary / revision / reading study
 hub for KS3 and GCSE students. It supports four study modes —
 **Vocabulary**, **Quiz**, **Reading**, **Builder** — and groups packs into
-four Subject First buckets in the Quiz Setup UI: **Language**, **History**,
-**Geography**, **Science**.
+five Subject First buckets in the Quiz Setup UI: **Language**, **History**,
+**Geography**, **Science**, **Literature**.
 
 ## Task — fill these in before generating
 
 ```
-Subject:               {{SUBJECT}}              # Language | History | Geography | Science
+Subject:               {{SUBJECT}}              # Language | History | Geography | Science | Literature
 Topic:                 {{TOPIC}}                # e.g. "The Black Death", "Y8 Rivers", "AQA GCSE German Theme 1"
 Level:                 {{LEVEL}}                # e.g. "Y7", "Y8", "GCSE", "KS3 / Year 7", "Stage 4"
 Curriculum context:    {{CURRICULUM_CONTEXT}}   # e.g. "AQA GCSE German Theme 1: People and Lifestyle"
@@ -112,7 +112,7 @@ curriculum content. **Never invent dates, quotes, or facts.**
 
 The user may only provide:
 - source photos, OCR files, PDFs or notes from a mobile capture workflow, and
-- a subject bucket (language / history / geography / science).
+- a subject bucket (language / history / geography / literature / science).
 
 **You must infer all other metadata from the source material.** Do not ask
 the user to fill in gaps. If metadata is uncertain, infer the safest
@@ -296,10 +296,10 @@ Order:
    without modification.
 2. **`schemaVersion`** is always `"1.1"` on every pack header.
 3. **`subject`** is **lowercase** and exactly one of `language`, `history`,
-   `geography`, `science`.
+   `geography`, `literature`, `science`.
 4. **`translations` uses BCP-47 keys.** Always `de-DE`, `en-GB`, `la-Latn`,
    `fr-FR`, etc. Never bare `de` / `en`.
-5. **For non-language subjects (history / geography / science),** set both
+5. **For non-language subjects (history / geography / science / literature),** set both
    source and target codes to `en-GB`. Do not abuse the `de-DE` slot to
    hold an English term — use proper `translations: { "en-GB": "..." }`.
 6. **Every item has a unique stable `id`** scoped to the pack.
@@ -462,19 +462,18 @@ History / Geography / Science.
 | `gender` | optional | German: `"m"` / `"f"` / `"n"`; `null` for non-nouns or non-language packs |
 | `plural` | optional | Plural form if relevant |
 
-For non-language packs, use `vocab` to capture **term ↔ definition** pairs.
-Both `translations` keys are `"en-GB"` — the engine reads
-`translations[sourceLanguageCode]` for the prompt side and
-`translations[targetLanguageCode]` for the answer side, and since both are
-`en-GB` for non-language packs, store them in the dict twice with slightly
-different content (term vs definition):
+For non-language packs, use `vocab` sparingly to capture **term → definition**
+pairs. Because non-language packs use `sourceLanguageCode: "en-GB"` and
+`targetLanguageCode: "en-GB"`, a single `translations["en-GB"]` value can make
+the quiz prompt and answer identical. To avoid same-word drills, use
+`sourceWord` for the term and `targetWord` for the definition when a non-language
+vocab card needs a prompt/answer pair:
 
 ```json
 "data": {
   "partOfSpeech": "keyword",
-  "translations": {
-    "en-GB": "accumulation"
-  },
+  "sourceWord": "accumulation",
+  "targetWord": "the build-up of snow where more falls than melts",
   "examples": {
     "en-GB": "Accumulation is the build-up of snow where more falls than melts."
   }
@@ -482,8 +481,8 @@ different content (term vs definition):
 ```
 
 > **Tip for non-language packs:** if you want a clear "term → definition"
-> drill where prompt and answer differ, prefer a `fillBlank` item. Vocab
-> items work best for short term-definition pairs that fit a flashcard.
+> drill where prompt and answer differ, prefer a `fillBlank` item. Never create
+> a vocab card whose question is the same word as its answer.
 
 ### Useful `tags` for non-language packs
 
@@ -766,6 +765,29 @@ Adjust by topic size; these are good defaults for a complete pack:
 - Strong fit for `categorySort` (weathering vs erosion, push vs pull),
   `sequence` (water cycle, glacier formation), and `fillBlank`.
 - Use units consistently (km, m³, °C).
+
+### Literature packs (`subject: "literature"`)
+
+- Source = target = `"en-GB"`. Literature packs should test reading,
+  interpretation, and evidence — not plain vocabulary recall.
+- Default mix: mostly `fillBlank`, `categorySort`, `sequence`, and passage
+  comprehension. Use `vocab` only for a small number of genuinely useful
+  literary terms, character names, or motifs where the answer is a definition
+  or explanation, never the same word.
+- For `vocab`, do **not** put only `translations: { "en-GB": "<word>" }`.
+  That creates same-word question/answer cards. Use `sourceWord` for the prompt
+  and `targetWord` for the answer, for example `sourceWord: "Old Major"` and
+  `targetWord: "the elderly boar whose speech introduces the rebellion"`.
+- Good literature `fillBlank` items ask students to complete analytical
+  statements: themes, character presentation, narrative purpose, symbolism,
+  and cause/effect. The blank should be a meaningful concept or short phrase,
+  not a giveaway copied from the question.
+- Good literature passage questions ask "how", "why", "what does this suggest",
+  "which evidence supports", or "what changes between..." Avoid questions where
+  the question text and answer are the same word.
+- If the source includes exact quotations, use short quotations accurately. If
+  the exact wording is not visible, do not invent quotations; paraphrase and
+  mark the task as inference or summary.
 
 ### Science packs (`subject: "science"`)
 

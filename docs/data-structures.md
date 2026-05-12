@@ -61,7 +61,7 @@ Every entry in `revisionPacks[]`:
 |-------|------|---------|
 | `id` | string | Unique pack ID |
 | `displayName` | string | Human-readable title shown in the UI |
-| `subject` | string | Subject bucket: `language` \| `history` \| `geography` \| `science` |
+| `subject` | string | Subject bucket: `language` \| `history` \| `geography` \| `science` \| `literature` |
 | `level` | string | Suggested year level (used as a default filter) |
 | `unifiedPath` | string | Path to the pack's `pack_unified.json` |
 | `sourceLanguageLabel` | string | Display label for the study language (shown in quiz prompts) |

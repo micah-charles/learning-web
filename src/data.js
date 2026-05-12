@@ -199,6 +199,9 @@ function inferSubject(dataset) {
   if (id.includes("history") || id.includes("black_death") || id.includes("tudors") || id.includes("ww1") || id.includes("norman")) {
     return "history";
   }
+  if (id.includes("literature") || id.includes("poetry") || id.includes("novel") || id.includes("shakespeare")) {
+    return "literature";
+  }
   if (id.includes("science") || id.includes("physics") || id.includes("biology") || id.includes("chemistry")) {
     return "science";
   }
