@@ -9,7 +9,19 @@ import { normLang, packSrcLang, packTgtLang } from "./lang-utils.js";
 
 const jsonCache = new Map();
 
+function normalizeCachePath(path) {
+  const value = String(path || "");
+  if (value.startsWith("./uploaded://")) {
+    return value.slice(2);
+  }
+  return value;
+}
+
 async function fetchJson(path) {
+  const cacheKey = normalizeCachePath(path);
+  if (jsonCache.has(cacheKey)) {
+    return jsonCache.get(cacheKey);
+  }
   if (!jsonCache.has(path)) {
     jsonCache.set(
       path,
@@ -160,7 +172,12 @@ function passageFromItem(item) {
  * loadUnifiedPack() returns in-memory data instead of fetching a URL.
  */
 export function registerPackInCache(path, data) {
-  jsonCache.set(path, Promise.resolve(data));
+  const payload = Promise.resolve(data);
+  jsonCache.set(path, payload);
+  jsonCache.set(normalizeCachePath(path), payload);
+  if (!String(path).startsWith("./")) {
+    jsonCache.set(`./${path}`, payload);
+  }
 }
 
 export async function loadManifest() {
