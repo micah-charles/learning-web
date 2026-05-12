@@ -38,6 +38,7 @@ export const DEFAULT_STATE = {
       filter: "all",
     },
     passages: {
+      subject: "",
       groupId: "",
       packId: "",
       category: "all",

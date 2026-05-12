@@ -1,0 +1,9 @@
+.wrap { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+.zone { flex: 1 1 280px; }
+.zoneLabel { display: block; font-size: 0.8rem; font-weight: 600; color: var(--lw-muted); margin-bottom: 6px; }
+.area { min-height: 60px; padding: 10px; border: 1.5px solid var(--lw-line); border-radius: var(--lw-radius); display: flex; flex-wrap: wrap; gap: 6px; background: var(--lw-panel); }
+.area.empty { align-items: center; justify-content: center; }
+.hint { font-size: 0.82rem; color: var(--lw-muted); }
+.tile { padding: 6px 12px; border: 1.5px solid var(--lw-line); border-radius: 6px; background: var(--lw-bg); font-size: 0.9rem; cursor: pointer; transition: all 120ms ease; font-family: inherit; }
+.tile:hover:not(:disabled) { border-color: var(--lw-blue); background: var(--lw-blue-soft); }
+.answer { background: var(--lw-blue-soft); border-color: var(--lw-blue); color: var(--lw-blue); }

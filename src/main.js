@@ -16,11 +16,21 @@ import {
   loadFillBlankItems,
   loadUnifiedPack,
   filterUnifiedItems,
+  registerPackInCache,
   SUBJECTS,
   getDatasetSubject,
   listDatasetsBySubject,
   getDatasetDirections,
+  getPassageGroupSubject,
+  listPassageGroupsBySubject,
 } from "./data.js";
+import {
+  hydrateManifest,
+  listUploadedPacks,
+  saveUploadedPack,
+  deleteUploadedPack,
+  validatePack,
+} from "./admin-storage.js";
 import {
   createQuizSession,
   getDefaultQuestionModes,
@@ -61,12 +71,13 @@ import {
 } from "./utils.js";
 
 const TABS = [
-  { id: "home", title: "Home" },
-  { id: "vocab", title: "Vocabulary" },
-  { id: "quiz", title: "Quiz" },
-  { id: "reading", title: "Reading" },
-  { id: "builder", title: "Builder" },
-  { id: "review", title: "Review" },
+  { id: "home",    title: "Home"       },
+  { id: "vocab",   title: "Vocabulary" },
+  { id: "quiz",    title: "Quiz"       },
+  { id: "reading", title: "Reading"    },
+  { id: "builder", title: "Builder"    },
+  { id: "review",  title: "Review"     },
+  { id: "admin",   title: "⚙ Admin"   },
 ];
 
 const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"];
@@ -82,6 +93,8 @@ const runtime = {
     hardest: [],
     mastered: [],
   },
+  // Admin tab upload status: null | { ok: boolean, message: string, entry?: object }
+  adminUploadStatus: null,
 };
 let searchRenderTimer = null;
 
@@ -179,6 +192,8 @@ init().catch((error) => {
 
 async function init() {
   runtime.manifest = await loadManifest();
+  // Inject any previously-uploaded packs into the live manifest before rendering.
+  hydrateManifest(runtime.manifest, registerPackInCache);
   ensurePreferenceDefaults();
   bindEvents();
   await renderApp();
@@ -237,37 +252,46 @@ function renderHero() {
 
   return `
     <header class="hero">
-      <div class="hero-top">
-        <div class="hero-copy">
-          <p class="eyebrow">Swift port -> browser study desk</p>
-          <h1>Learning Web</h1>
-          <p>
-            A web-first study hub built from your local learning project, tuned for iPad and iMac use,
-            with quick drills, reading packs, review loops, and saved progress.
-          </p>
-        </div>
-        <div class="hero-badges">
-          <span class="hero-badge">${runtime.manifest.revisionPacks.length} revision packs</span>
-          <span class="hero-badge">${runtime.manifest.passageGroups.length} reading groups</span>
-          <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder packs</span>
-        </div>
+      <div class="hero-brand">
+        <img
+          src="./brand/logo.png"
+          alt="FoxChild Idea — Fox Tutor and Girl Tutor"
+          class="hero-logo"
+        />
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>${totalWordCount}</strong>
-          <span>portable vocab items</span>
+      <div class="hero-body">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <p class="eyebrow">powered by FoxChild Idea</p>
+            <h1>Learning Web</h1>
+            <p>
+              Your personal study desk — vocabulary drills, reading practice,
+              sentence builder and progress tracking, all in one place.
+            </p>
+          </div>
+          <div class="hero-badges">
+            <span class="hero-badge">${runtime.manifest.revisionPacks.length} packs</span>
+            <span class="hero-badge">${runtime.manifest.passageGroups.length} reading groups</span>
+            <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
+          </div>
         </div>
-        <div class="hero-stat">
-          <strong>${masteredCount}</strong>
-          <span>mastered words tracked locally</span>
-        </div>
-        <div class="hero-stat">
-          <strong>${persisted.progress.sessions.length}</strong>
-          <span>recent quiz sessions saved</span>
-        </div>
-        <div class="hero-stat">
-          <strong>${lastSession ? `${lastSession.score}/${lastSession.totalQuestions}` : "No run yet"}</strong>
-          <span>${lastSession ? `last quiz on ${formatDateTime(lastSession.timestamp)}` : "start with any tab below"}</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>${totalWordCount}</strong>
+            <span>vocab items</span>
+          </div>
+          <div class="hero-stat">
+            <strong>${masteredCount}</strong>
+            <span>words mastered</span>
+          </div>
+          <div class="hero-stat">
+            <strong>${persisted.progress.sessions.length}</strong>
+            <span>quiz sessions</span>
+          </div>
+          <div class="hero-stat">
+            <strong>${lastSession ? `${lastSession.score}/${lastSession.totalQuestions}` : "–"}</strong>
+            <span>${lastSession ? `last quiz ${formatDateTime(lastSession.timestamp)}` : "no quiz yet"}</span>
+          </div>
         </div>
       </div>
     </header>
@@ -288,18 +312,17 @@ function renderNav() {
   `;
 }
 
-function renderEmptyStateCard({ eyebrow = "Learning Web", title, body, actionLabel = null, action = null }) {
+function foxFace(expression = "calm") {
+  return `<img src="./brand/fox-tutor/transparent/${expression}.png" class="fox-mascot" alt="Fox Tutor — ${expression}" aria-hidden="true" />`;
+}
+
+function renderEmptyStateCard({ eyebrow = "FoxChild Idea", title, body, actionLabel = null, action = null }) {
   return `
     <div class="empty-state-card">
       <div class="empty-state-illustration" aria-hidden="true">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="12" y="14" width="40" height="36" rx="10" fill="rgba(21, 102, 168, 0.12)" stroke="rgba(21, 102, 168, 0.22)" stroke-width="2"/>
-          <path d="M22 22H42" stroke="rgba(21, 102, 168, 0.72)" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M22 30H38" stroke="rgba(21, 102, 168, 0.42)" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M22 38H34" stroke="rgba(21, 102, 168, 0.42)" stroke-width="2.6" stroke-linecap="round"/>
-        </svg>
+        ${foxFace("calm")}
       </div>
-      <p class="eyebrow" style="color:#1566a8;">${escapeHtml(eyebrow)}</p>
+      <p class="eyebrow" style="color:var(--fox-teal);">${escapeHtml(eyebrow)}</p>
       <h2>${escapeHtml(title)}</h2>
       <p class="tiny">${escapeHtml(body)}</p>
       ${actionLabel && action ? `<button class="button" data-action="${escapeHtml(action)}">${escapeHtml(actionLabel)}</button>` : ""}
@@ -308,11 +331,13 @@ function renderEmptyStateCard({ eyebrow = "Learning Web", title, body, actionLab
 }
 
 function renderFeedbackBanner({ tone = "info", title, body, extra = "" }) {
-  const icon = tone === "correct" ? "✓" : tone === "wrong" ? "!" : "?";
+  const foxExpr = tone === "correct" ? "happy" : tone === "wrong" ? "sad" : "thinking";
   return `
     <div class="feedback ${escapeHtml(tone)}">
       <div class="feedback-header">
-        <span class="feedback-icon" aria-hidden="true">${icon}</span>
+        <span class="feedback-icon" aria-hidden="true">
+          ${foxFace(foxExpr)}
+        </span>
         <strong>${escapeHtml(title)}</strong>
       </div>
       <p class="tiny">${escapeHtml(body)}</p>
@@ -372,6 +397,8 @@ async function renderTabContent() {
       return renderBuilderTab();
     case "review":
       return renderReviewTab();
+    case "admin":
+      return renderAdminTab();
     case "home":
     default:
       return renderHomeTab();
@@ -598,6 +625,30 @@ async function renderQuizTab() {
   const words = await loadVocabItems(runtime.manifest, dataset.id);
   const filteredWords = filterWordsForScope(words, dataset, prefs);
   const mastered = countMasteredWords(persisted, filteredWords);
+  const unifiedPack = await loadUnifiedPack(runtime.manifest, prefs.datasetId);
+  let passageUnifiedPack = null;
+  if (getDatasetSubject(dataset) === "literature") {
+    try {
+      passageUnifiedPack = await loadPassageUnifiedPack(runtime.manifest, prefs.datasetId);
+    } catch (_error) {
+      passageUnifiedPack = null;
+    }
+  }
+  const maxQuestionCount = getQuizMaxQuestionCount({
+    dataset,
+    prefs,
+    filteredWords,
+    unifiedPack,
+    passageUnifiedPack,
+  });
+  const questionCountOptions = buildQuestionCountOptions(maxQuestionCount);
+  if (questionCountOptions.length) {
+    const largestAvailable = Number(questionCountOptions[questionCountOptions.length - 1].value);
+    if (prefs.questionCount > largestAvailable) {
+      prefs.questionCount = largestAvailable;
+      saveStoredState(persisted);
+    }
+  }
 
   if (runtime.currentQuiz && runtime.currentQuiz.completed) {
     const last = runtime.currentQuiz;
@@ -629,7 +680,12 @@ async function renderQuizTab() {
           ${usesStageSelection(dataset)
             ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : renderYearSelect("quiz-year", prefs.year)}
-          ${renderSelectField("quiz-question-count", "Questions", [12, 18, 24, 30].map((value) => ({ value: String(value), label: String(value) })), String(prefs.questionCount))}
+          ${renderSelectField(
+            "quiz-question-count",
+            `Questions${maxQuestionCount ? ` (max ${maxQuestionCount})` : ""}`,
+            questionCountOptions.length ? questionCountOptions : [{ value: "0", label: "0" }],
+            String(questionCountOptions.length ? prefs.questionCount : 0),
+          )}
           <div class="field">
             <label for="quiz-exclude-mastered">Word pool</label>
             <select id="quiz-exclude-mastered" class="select">
@@ -644,9 +700,10 @@ async function renderQuizTab() {
         ${renderAnswerModePills(prefs.answerMode)}
 
         <div class="action-row" style="margin-top:18px;">
-          <button class="button" data-action="start-quiz">Start quiz</button>
+          <button class="button" data-action="start-quiz" ${maxQuestionCount <= 0 ? "disabled" : ""}>Start quiz</button>
           <button class="button secondary" data-action="open-review">Open review desk</button>
         </div>
+        ${maxQuestionCount > 0 ? `<p class="muted tiny" style="margin-top:12px;">This setup currently has up to ${maxQuestionCount} questions available.</p>` : `<p class="muted tiny" style="margin-top:12px;">No quiz questions are available for the current setup.</p>`}
       </section>
 
       <section class="section-card">
@@ -1152,10 +1209,34 @@ function renderPassageQuestionReveal(question, passages) {
 async function renderReadingTab() {
   const prefs = persisted.prefs.passages;
   const groups = listPassageGroups(runtime.manifest);
-  const packs = listPassagePacks(runtime.manifest, prefs.groupId);
-  if (!groups.length || !packs.length) {
+  if (!groups.length) {
     return renderUnavailable("No reading passage packs were found.");
   }
+
+  // Bootstrap subject pref from current groupId if not yet set.
+  if (!prefs.subject) {
+    const currentGroup = groups.find((g) => g.id === prefs.groupId);
+    prefs.subject = currentGroup ? getPassageGroupSubject(currentGroup) : "language";
+  }
+
+  // If the stored groupId belongs to a different subject, snap to first group
+  // for the current subject (happens when subject card is clicked).
+  const storedGroupSubject = getPassageGroupSubject(groups.find((g) => g.id === prefs.groupId));
+  if (storedGroupSubject !== prefs.subject) {
+    const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, prefs.subject);
+    if (groupsForSubject.length) {
+      prefs.groupId = groupsForSubject[0].id;
+      const newPacks = listPassagePacks(runtime.manifest, prefs.groupId);
+      prefs.packId = newPacks[0] ? newPacks[0].id : "";
+      runtime.passages = null;
+    }
+  }
+
+  const packs = listPassagePacks(runtime.manifest, prefs.groupId);
+  if (!packs.length) {
+    return renderUnavailable("No reading packs found for the selected book.");
+  }
+  const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, prefs.subject);
 
   if (!runtime.passages || runtime.passages.groupId !== prefs.groupId || runtime.passages.packId !== prefs.packId) {
     await resetPassageRuntime(prefs.groupId, prefs.packId);
@@ -1163,6 +1244,14 @@ async function renderReadingTab() {
 
   const passages = runtime.passages;
   const stats = getPassageStats(persisted, prefs.packId);
+  const playableCount = getPlayablePassages().length;
+  const setupMessage = playableCount > 0 ? "" : "No passages match the current category and difficulty filters.";
+  const shouldShowCompletedCount = playableCount > 0;
+  const shouldShowGroupSelect = groupsForSubject.length > 1;
+  const shouldShowPackSelect = packs.length > 1;
+  const setField = shouldShowPackSelect
+    ? renderSelectField("passage-pack", "Set", packs.map((pack) => ({ value: pack.id, label: pack.displayName })), prefs.packId)
+    : "";
 
   if (!passages.started) {
     return `
@@ -1173,11 +1262,14 @@ async function renderReadingTab() {
               <h2>Reading practice</h2>
               <p class="muted tiny">Listen first, answer in English or choose the best option, then reveal the translation and model responses.</p>
             </div>
-            <span class="count-pill blue">${stats.passagesCompleted} completed</span>
+            ${shouldShowCompletedCount ? `<span class="count-pill blue">${stats.passagesCompleted} completed</span>` : ""}
           </div>
+
+          ${renderPassageSubjectCardGrid(prefs.subject)}
+
           <div class="form-grid" style="margin-top:18px;">
-            ${renderSelectField("passage-group", "Book / Group", groups.map((group) => ({ value: group.id, label: group.displayName })), prefs.groupId)}
-            ${renderSelectField("passage-pack", "Set", packs.map((pack) => ({ value: pack.id, label: `${pack.displayName} (${pack.passageCount})` })), prefs.packId)}
+            ${shouldShowGroupSelect ? renderPassageGroupSelectFiltered(prefs.groupId, prefs.subject) : ""}
+            ${setField}
             ${renderSelectField("passage-category", "Category", [{ value: "all", label: "All categories" }, ...passages.categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)}
             ${renderSelectField("passage-difficulty", "Difficulty", [
               { value: "all", label: "All questions" },
@@ -1199,7 +1291,7 @@ async function renderReadingTab() {
           <div class="action-row" style="margin-top:18px;">
             <button class="button" data-action="reading-start">Start reading practice</button>
           </div>
-          ${passages.message ? `<p class="muted tiny" style="margin-top:12px;">${escapeHtml(passages.message)}</p>` : ""}
+          ${setupMessage ? `<p class="muted tiny" style="margin-top:12px;">${escapeHtml(setupMessage)}</p>` : ""}
         </section>
       </div>
     `;
@@ -1233,13 +1325,16 @@ async function renderReadingTab() {
         <div class="section-stack" style="margin-top:16px;">
           ${visibleQuestions
             .map(
-              (question) => `
+              (question, index) => `
                 <article class="section-card">
                   <div class="chip-row" style="margin-bottom:10px;">
                     ${question.type ? `<span class="badge blue">${escapeHtml(question.type)}</span>` : ""}
                     ${question.difficulty ? `<span class="badge amber">${escapeHtml(question.difficulty)}</span>` : ""}
                   </div>
-                  <p><strong>${escapeHtml(question.question_en)}</strong></p>
+                  <div class="passage-question-copy">
+                    <div class="passage-question-label">Question ${index + 1}</div>
+                    <div class="passage-question-prompt">${escapeHtml(fallback(question.question_en, fallback(question.question, "Question prompt missing")))}</div>
+                  </div>
                   ${renderPassageQuestionInput(question, passages)}
                   ${passages.revealed ? renderPassageQuestionReveal(question, passages) : ""}
                 </article>
@@ -1368,6 +1463,74 @@ function renderUnavailable(message) {
   `;
 }
 
+function countPassageMcqQuestions(unifiedPack) {
+  if (!unifiedPack || !Array.isArray(unifiedPack.items)) {
+    return 0;
+  }
+  let total = 0;
+  for (const item of unifiedPack.items) {
+    if (item.type !== "passage") {
+      continue;
+    }
+    const questions = Array.isArray(item.data && item.data.questions) ? item.data.questions : [];
+    for (const question of questions) {
+      const options = Array.isArray(question.options) ? question.options.filter(Boolean) : [];
+      const correctAnswer = question.correctAnswer
+        || question.correct_answer
+        || question.modelAnswer
+        || question.model_answer_en
+        || (Number.isInteger(question.correctOptionIndex) ? options[question.correctOptionIndex] : "")
+        || (Number.isInteger(question.correct_option_index) ? options[question.correct_option_index] : "");
+      if (question.question && options.length >= 2 && correctAnswer) {
+        total += 1;
+      }
+    }
+  }
+  return total;
+}
+
+function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, passageUnifiedPack }) {
+  const modes = resolveQuizModesForUI({
+    subject: getDatasetSubject(dataset),
+    direction: prefs.direction,
+    answerMode: prefs.answerMode,
+  });
+
+  return modes.reduce((total, modeId) => {
+    switch (modeId) {
+      case "englishWordChooseGerman":
+      case "germanWordChooseEnglish":
+      case "englishWordTypeGerman":
+      case "germanWordTypeEnglish":
+        return total + filteredWords.length;
+      case "englishSentenceBuildGerman":
+      case "germanSentenceBuildEnglish":
+      case "englishSentenceTypeGerman":
+        return total + filterUnifiedItems(unifiedPack, "sentence").length;
+      case "sequenceOrder":
+        return total + filterUnifiedItems(unifiedPack, "sequence").length;
+      case "categorySort":
+        return total + filterUnifiedItems(unifiedPack, "categorySort").length;
+      case "fillBlank":
+        return total + filterUnifiedItems(unifiedPack, "fillBlank").length;
+      case "passageQuestionChooseAnswer":
+        return total + countPassageMcqQuestions(passageUnifiedPack);
+      default:
+        return total;
+    }
+  }, 0);
+}
+
+function buildQuestionCountOptions(maxQuestionCount) {
+  const defaults = [12, 18, 24, 30];
+  const limited = defaults.filter((value) => value <= maxQuestionCount);
+  if (maxQuestionCount > 0 && !limited.includes(maxQuestionCount)) {
+    limited.push(maxQuestionCount);
+  }
+  const options = [...new Set(limited)].sort((a, b) => a - b);
+  return options.map((value) => ({ value: String(value), label: String(value) }));
+}
+
 function renderDatasetSelect(id, currentValue) {
   return renderSelectField(
     id,
@@ -1383,11 +1546,11 @@ function renderDatasetSelect(id, currentValue) {
 // ─── Subject First render helpers ───────────────────────────────────────
 
 const SUBJECT_LABELS = {
-  language:  { label: "Language",  icon: "🌐" },
-  history:   { label: "History",   icon: "📜" },
-  geography: { label: "Geography", icon: "🌍" },
-  literature:{ label: "Literature",icon: "📚" },
-  science:   { label: "Science",   icon: "🔬" },
+  language:   { label: "Language",   icon: "🌐" },
+  history:    { label: "History",    icon: "📜" },
+  geography:  { label: "Geography",  icon: "🌍" },
+  science:    { label: "Science",    icon: "🔬" },
+  literature: { label: "Literature", icon: "📖" },
 };
 
 function renderSubjectCardGrid(activeSubject) {
@@ -1416,6 +1579,52 @@ function renderSubjectCardGrid(activeSubject) {
       <div class="subject-card-grid">${cards}</div>
     </div>
   `;
+}
+
+function renderPassageSubjectCardGrid(activeSubject) {
+  const cards = SUBJECTS.map((subject) => {
+    const meta = SUBJECT_LABELS[subject];
+    const groups = listPassageGroupsBySubject(runtime.manifest, subject);
+    const isActive = subject === activeSubject;
+    const isEmpty = groups.length === 0;
+    const classes = ["subject-card"];
+    if (isActive) classes.push("is-active");
+    if (isEmpty) classes.push("is-empty");
+    const button = isEmpty ? "" : `data-action="select-passage-subject" data-value="${escapeHtml(subject)}"`;
+    return `
+      <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
+        <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
+        <span class="subject-label">${escapeHtml(meta.label)}</span>
+        ${isEmpty
+          ? `<span class="subject-meta">No packs yet</span>`
+          : `<span class="subject-meta">${groups.length} book${groups.length === 1 ? "" : "s"}</span>`}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">What are you studying?</div>
+      <div class="subject-card-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function renderPassageGroupSelectFiltered(currentValue, subject) {
+  const groups = listPassageGroupsBySubject(runtime.manifest, subject);
+  if (!groups.length) {
+    return `
+      <div class="field">
+        <label>Book / Group</label>
+        <p class="muted tiny" style="margin-top:6px;">No reading packs yet for this subject.</p>
+      </div>
+    `;
+  }
+  return renderSelectField(
+    "passage-group",
+    "Book / Group",
+    groups.map((group) => ({ value: group.id, label: group.displayName })),
+    currentValue,
+  );
 }
 
 function renderDatasetSelectFiltered(id, currentValue, subject) {
@@ -1541,6 +1750,233 @@ function renderSelectField(id, label, options, currentValue) {
   `;
 }
 
+// ─── Admin tab ────────────────────────────────────────────────────────────────
+
+const ITEM_TYPE_LABELS = {
+  vocab:           "Vocab",
+  sentence:        "Sentences",
+  sequence:        "Sequences",
+  categorySort:    "Sort",
+  fillBlank:       "Fill-blank",
+  sentenceBuilder: "Builder cards",
+  passage:         "Passages",
+};
+
+const SECTION_LABELS = {
+  revisionPacks:        "Quiz / Vocab",
+  passageGroups:        "Reading",
+  sentenceBuilderPacks: "Sentence Builder",
+};
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function renderAdminTab() {
+  const packs = listUploadedPacks();
+  const status = runtime.adminUploadStatus;
+
+  // Compute rough storage used
+  const totalBytes = packs.reduce((sum, p) => sum + (p.sizeBytes || 0), 0);
+
+  const statusHtml = status
+    ? `
+      <div class="admin-status ${status.ok ? "admin-status-ok" : "admin-status-error"}">
+        <span class="admin-status-icon" aria-hidden="true">${status.ok ? "✓" : "✗"}</span>
+        <div>
+          <strong>${status.ok ? "Pack uploaded successfully" : "Upload failed"}</strong>
+          <p class="tiny">${escapeHtml(status.message)}</p>
+        </div>
+      </div>
+    `
+    : "";
+
+  const packListHtml = packs.length === 0
+    ? `<p class="muted tiny" style="margin-top:8px;">No packs uploaded yet.</p>`
+    : packs.map((entry) => {
+        const typeChips = Object.entries(entry.typeCounts || {})
+          .filter(([t]) => ITEM_TYPE_LABELS[t])
+          .map(([t, count]) =>
+            `<span class="chip blue">${ITEM_TYPE_LABELS[t]}: ${count}</span>`,
+          )
+          .join(" ");
+        const sectionChips = (entry.sections || [])
+          .map((s) => `<span class="chip">${SECTION_LABELS[s] || s}</span>`)
+          .join(" ");
+        const addedDate = entry.addedAt
+          ? new Date(entry.addedAt).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })
+          : "Unknown date";
+
+        return `
+          <div class="admin-pack-card">
+            <div class="admin-pack-header">
+              <div>
+                <div class="admin-pack-name">${escapeHtml(entry.displayName)}</div>
+                <div class="admin-pack-id muted tiny">${escapeHtml(entry.id)}</div>
+              </div>
+              <button
+                class="button button-ghost button-sm button-danger"
+                data-action="admin-delete-pack"
+                data-pack-id="${escapeHtml(entry.id)}"
+                title="Delete this uploaded pack"
+              >Delete</button>
+            </div>
+            <div class="admin-pack-chips" style="margin-top:10px;">
+              ${typeChips}
+            </div>
+            <div class="admin-pack-chips" style="margin-top:6px;">
+              ${sectionChips}
+            </div>
+            <div class="admin-pack-meta muted tiny" style="margin-top:8px;">
+              ${entry.subject ? `Subject: <strong>${escapeHtml(entry.subject)}</strong> &middot; ` : ""}
+              ${entry.itemCount} items &middot; ${formatBytes(entry.sizeBytes)} &middot; Added ${addedDate}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+  return `
+    <div class="section-stack">
+      <section class="section-card">
+        <h2>Pack Admin</h2>
+        <p class="muted tiny">
+          Upload a unified pack JSON file to add it directly to the app — no server required.
+          The pack will appear in all compatible game modes (Quiz, Vocab, Reading, Builder)
+          immediately and will persist across page reloads via browser storage.
+        </p>
+
+        <div class="admin-drop-zone" id="admin-drop-zone">
+          <div class="admin-drop-icon" aria-hidden="true">📂</div>
+          <p class="admin-drop-label">Drop a <strong>pack_unified.json</strong> file here, or click to browse</p>
+          <p class="muted tiny">Accepts any unified pack JSON with an <code>items</code> array</p>
+          <input
+            type="file"
+            id="admin-file-upload"
+            accept=".json,application/json"
+            style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;"
+          />
+        </div>
+
+        ${statusHtml}
+      </section>
+
+      <section class="section-card">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <h2 style="margin:0;">Uploaded Packs <span class="chip">${packs.length}</span></h2>
+          ${packs.length > 0 ? `<span class="muted tiny">${formatBytes(totalBytes)} used in browser storage</span>` : ""}
+        </div>
+        <div class="admin-pack-list" style="margin-top:16px;">
+          ${packListHtml}
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Pack JSON format</h2>
+        <p class="muted tiny">
+          Your JSON file needs an <code>items</code> array. Each item needs a <code>type</code> field.
+          The pack is automatically routed to the right game modes based on the item types present.
+        </p>
+        <div class="admin-format-grid">
+          ${Object.entries(SECTION_LABELS).map(([section, label]) => {
+            const typesForSection = {
+              revisionPacks:        ["vocab", "sentence", "sequence", "categorySort", "fillBlank"],
+              passageGroups:        ["passage"],
+              sentenceBuilderPacks: ["sentenceBuilder"],
+            }[section] || [];
+            return `
+              <div class="admin-format-card">
+                <div class="admin-format-label">${escapeHtml(label)}</div>
+                <div class="admin-pack-chips" style="margin-top:8px;">
+                  ${typesForSection.map((t) => `<span class="chip">${ITEM_TYPE_LABELS[t]}</span>`).join(" ")}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <pre class="admin-schema-preview"><code>{
+  "packId": "my_pack_id",          <span class="muted">// or "id"</span>
+  "title": "My Custom Pack",
+  "subject": "history",            <span class="muted">// language|history|geography|science|literature</span>
+  "sourceLanguageCode": "de-DE",   <span class="muted">// optional</span>
+  "targetLanguageCode": "en-GB",   <span class="muted">// optional</span>
+  "items": [
+    {
+      "id": "item_001",
+      "type": "vocab",             <span class="muted">// see types above</span>
+      "level": "Y8",
+      "topics": ["animals"],
+      "data": { "sourceWord": "der Hund", "targetWord": "the dog" }
+    }
+  ]
+}</code></pre>
+      </section>
+    </div>
+  `;
+}
+
+// ─── Admin file upload handler ────────────────────────────────────────────────
+
+async function handleAdminFileUpload(file) {
+  if (!file) return;
+  runtime.adminUploadStatus = null;
+
+  const text = await file.text().catch(() => null);
+  if (!text) {
+    runtime.adminUploadStatus = { ok: false, message: "Could not read file." };
+    await renderApp();
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(text);
+  } catch (e) {
+    runtime.adminUploadStatus = { ok: false, message: `Invalid JSON: ${e.message}` };
+    await renderApp();
+    return;
+  }
+
+  // Quick pre-validation before saving
+  const validation = validatePack(parsed);
+  if (!validation.ok) {
+    runtime.adminUploadStatus = { ok: false, message: validation.error };
+    await renderApp();
+    return;
+  }
+
+  const result = saveUploadedPack(parsed, file.name);
+  if (!result.ok) {
+    runtime.adminUploadStatus = { ok: false, message: result.error };
+    await renderApp();
+    return;
+  }
+
+  // Inject new pack into live manifest + cache so game modes see it immediately.
+  hydrateManifest(runtime.manifest, registerPackInCache);
+  ensurePreferenceDefaults();
+
+  const { entry } = result;
+  const typesSummary = Object.entries(entry.typeCounts || {})
+    .filter(([t]) => ITEM_TYPE_LABELS[t])
+    .map(([t, n]) => `${n} ${ITEM_TYPE_LABELS[t]}`)
+    .join(", ");
+  const sectionsSummary = (entry.sections || [])
+    .map((s) => SECTION_LABELS[s] || s)
+    .join(", ");
+
+  runtime.adminUploadStatus = {
+    ok: true,
+    message:
+      `"${entry.displayName}" loaded with ${typesSummary}. ` +
+      `Available in: ${sectionsSummary}.`,
+    entry,
+  };
+
+  await renderApp();
+}
+
 async function handleClick(event) {
   const tabButton = event.target.closest("[data-tab]");
   if (tabButton) {
@@ -1565,6 +2001,18 @@ async function handleClick(event) {
   }
 
   switch (action) {
+    case "admin-delete-pack": {
+      const packId = actionButton.dataset.packId;
+      if (packId && window.confirm(`Delete uploaded pack "${packId}"? This cannot be undone.`)) {
+        deleteUploadedPack(packId);
+        // Rebuild manifest without the deleted pack
+        runtime.manifest = await loadManifest();
+        hydrateManifest(runtime.manifest, registerPackInCache);
+        runtime.adminUploadStatus = null;
+        await renderApp();
+      }
+      return;
+    }
     case "open-review":
       persisted.activeTab = "review";
       saveStoredState(persisted);
@@ -1581,6 +2029,21 @@ async function handleClick(event) {
       persisted.prefs.quiz.subject = nextSubject;
       persisted.prefs.quiz.datasetId = datasets[0].id;
       applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-passage-subject": {
+      const nextSubject = actionButton.dataset.value;
+      const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, nextSubject);
+      if (!groupsForSubject.length) return;
+      persisted.prefs.passages.subject = nextSubject;
+      persisted.prefs.passages.groupId = groupsForSubject[0].id;
+      const firstPacks = listPassagePacks(runtime.manifest, groupsForSubject[0].id);
+      persisted.prefs.passages.packId = firstPacks[0] ? firstPacks[0].id : "";
+      persisted.prefs.passages.category = "all";
+      persisted.prefs.passages.difficulty = "all";
+      runtime.passages = null;
       saveStoredState(persisted);
       await renderApp();
       return;
@@ -1850,6 +2313,12 @@ function updateStageSelection(sectionKey, input) {
 }
 
 async function handleChange(event) {
+  // File upload is handled separately (async, does its own renderApp call).
+  if (event.target.id === "admin-file-upload") {
+    await handleAdminFileUpload(event.target.files && event.target.files[0]);
+    return;
+  }
+
   const { id, value } = event.target;
   switch (id) {
     case "vocab-dataset":
@@ -1894,22 +2363,31 @@ async function handleChange(event) {
       break;
     case "passage-group": {
       persisted.prefs.passages.groupId = value;
+      const groups = listPassageGroups(runtime.manifest);
+      const selectedGroup = groups.find((g) => g.id === value);
+      if (selectedGroup) persisted.prefs.passages.subject = getPassageGroupSubject(selectedGroup);
       const packs = listPassagePacks(runtime.manifest, value);
       persisted.prefs.passages.packId = packs[0] ? packs[0].id : "";
+      persisted.prefs.passages.category = "all";
+      persisted.prefs.passages.difficulty = "all";
       runtime.passages = null;
       break;
     }
     case "passage-pack":
       persisted.prefs.passages.packId = value;
+      persisted.prefs.passages.category = "all";
+      persisted.prefs.passages.difficulty = "all";
       runtime.passages = null;
       break;
     case "passage-category":
       persisted.prefs.passages.category = value;
       runtime.passages.started = false;
+      runtime.passages.message = "";
       break;
     case "passage-difficulty":
       persisted.prefs.passages.difficulty = value;
       runtime.passages.started = false;
+      runtime.passages.message = "";
       break;
     case "review-dataset":
       persisted.prefs.review.datasetId = value;
@@ -1983,6 +2461,14 @@ async function startQuiz(customWords = null, label = null) {
       passageUnifiedPack = null;
     }
   }
+  const maxQuestionCount = getQuizMaxQuestionCount({
+    dataset,
+    prefs,
+    filteredWords: words,
+    unifiedPack,
+    passageUnifiedPack,
+  });
+  const boundedQuestionCount = maxQuestionCount > 0 ? Math.min(prefs.questionCount, maxQuestionCount) : prefs.questionCount;
 
   // Subject First adapter: translate the high-level UI selections into the
   // legacy mode-ID array the question engine expects. This replaces the old
@@ -1997,7 +2483,7 @@ async function startQuiz(customWords = null, label = null) {
   const session = createQuizSession({
     words,
     sentencePools,
-    config: { ...prefs, modes: resolvedModes },
+    config: { ...prefs, modes: resolvedModes, questionCount: boundedQuestionCount },
     persistedState: persisted,
     customWords,
     label,
