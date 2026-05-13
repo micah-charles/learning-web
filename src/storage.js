@@ -140,8 +140,9 @@ export function recordWordAnswer(state, wordId, wasCorrect) {
 export function recordQuizSession(state, sessionRecord) {
   // Cap answers at 60 entries to keep localStorage lean; degrade gracefully on old records
   const answers = Array.isArray(sessionRecord.answers)
-    ? sessionRecord.answers.slice(0, 60).map(({ prompt, expected, userAnswer, correct, speechText, speechLanguage }) => ({
+    ? sessionRecord.answers.slice(0, 60).map(({ prompt, expected, userAnswer, correct, speechText, speechLanguage, wordId }) => ({
         prompt, expected, userAnswer, correct,
+        ...(wordId ? { wordId } : {}),
         ...(speechText ? { speechText } : {}),
         ...(speechLanguage ? { speechLanguage } : {}),
       }))

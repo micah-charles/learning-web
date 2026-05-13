@@ -1124,7 +1124,7 @@ function renderSessionHistoryAll() {
             </div>
             <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
               <span class="badge ${badgeClass}">${session.score}/${session.totalQuestions}</span>
-              <button class="button ghost" style="padding:3px 10px;font-size:0.78rem;" data-action="session-detail" data-session-id="${escapeHtml(session.id)}">Details</button>
+              <button class="button ghost" style="padding:3px 10px;font-size:0.78rem;" data-action="session-detail" data-session-id="${escapeHtml(session.id)}" data-from-all="true">Details</button>
               <button class="button ghost button-danger" style="padding:3px 8px;font-size:0.78rem;" data-action="session-delete" data-session-id="${escapeHtml(session.id)}" title="Delete">✕</button>
             </div>
           </div>
@@ -2202,7 +2202,8 @@ async function handleClick(event) {
   switch (action) {
     // ── Session history actions ────────────────────────────────────────────
     case "session-detail": {
-      runtime.sessionDetail = { sessionId: actionButton.dataset.sessionId, view: "detail" };
+      const fromAll = actionButton.dataset.fromAll === "true";
+      runtime.sessionDetail = { sessionId: actionButton.dataset.sessionId, view: "detail", fromAll };
       persisted.activeTab = "home";
       saveStoredState(persisted);
       await renderApp();
@@ -2254,10 +2255,19 @@ async function handleClick(event) {
       if (!s || !Array.isArray(s.answers)) return;
       const wrongAnswers = s.answers.filter((a) => !a.correct);
       if (!wrongAnswers.length) return;
-      // Build a minimal word-list from missed answer prompts for re-quiz
-      const missedWords = wrongAnswers.map((a) => ({ id: a.wordId || a.prompt, studyWord: a.expected, targetWord: a.prompt })).filter((w) => w.id);
+      // Collect the wordIds from wrong answers; fall back gracefully if none were recorded
+      const missedWordIds = new Set(wrongAnswers.map((a) => a.wordId).filter(Boolean));
+      let customWords = null;
+      if (missedWordIds.size > 0) {
+        // Look up real vocab items from the session's dataset so the quiz engine
+        // gets properly shaped records (de, en, id, etc.)
+        const sessionDataset = findDataset(runtime.manifest, fallback(s.datasetId, "core"));
+        const allVocab = await loadVocabItems(runtime.manifest, sessionDataset.id);
+        const matched = allVocab.filter((w) => missedWordIds.has(w.id));
+        if (matched.length) customWords = matched;
+      }
       runtime.sessionDetail = null;
-      await startQuiz(missedWords.length ? missedWords : null, `Re-quiz: ${fallback(s.label, "missed words")}`);
+      await startQuiz(customWords, `Re-quiz: ${fallback(s.label, "missed words")}`);
       return;
     }
     // ── Admin: progress management ────────────────────────────────────────
