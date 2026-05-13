@@ -244,6 +244,63 @@ export function listDatasetsBySubject(manifest, subject) {
   return listDatasets(manifest).filter((d) => getDatasetSubject(d) === subject);
 }
 
+// ─── Curriculum helpers ──────────────────────────────────────────────────────
+//
+// `curriculum` is a top-level tag on each pack entry: "ks3" | "gcse" | "other".
+// Older packs may not carry it; the inference fallback reads it from the pack ID.
+
+export const CURRICULUMS = ["ks3", "gcse", "other"];
+
+export const CURRICULUM_LABELS = {
+  ks3:   "KS3",
+  gcse:  "GCSE",
+  other: "Other",
+};
+
+function inferCurriculum(dataset) {
+  if (!dataset) return "other";
+  const explicit = String(dataset.curriculum || "").toLowerCase();
+  if (CURRICULUMS.includes(explicit)) return explicit;
+
+  const id = String(dataset.id || "").toLowerCase();
+  if (id.startsWith("ks3_") || id.startsWith("y7_") || id.startsWith("y8_") || id.startsWith("y9_")) {
+    return "ks3";
+  }
+  if (id.startsWith("gcse_") || id.startsWith("tiffin10")) {
+    return "gcse";
+  }
+  // Language packs without a curriculum prefix stay as "other"
+  return "other";
+}
+
+export function getDatasetCurriculum(dataset) {
+  return inferCurriculum(dataset);
+}
+
+export function listDatasetsByCurriculum(manifest, curriculum) {
+  return listDatasets(manifest).filter((d) => getDatasetCurriculum(d) === curriculum);
+}
+
+export function listDatasetsBySubjectAndCurriculum(manifest, subject, curriculum) {
+  return listDatasets(manifest).filter(
+    (d) => getDatasetSubject(d) === subject &&
+           (curriculum === "all" || getDatasetCurriculum(d) === curriculum),
+  );
+}
+
+export function listPassageGroupsByCurriculum(manifest, curriculum) {
+  return (manifest.passageGroups || []).filter(
+    (g) => curriculum === "all" || inferCurriculum(g) === curriculum,
+  );
+}
+
+export function listPassageGroupsBySubjectAndCurriculum(manifest, subject, curriculum) {
+  return (manifest.passageGroups || []).filter(
+    (g) => getPassageGroupSubject(g) === subject &&
+           (curriculum === "all" || inferCurriculum(g) === curriculum),
+  );
+}
+
 // Returns [{ id, label, isReverse }] for the two "direction" buttons shown when
 // the selected subject is "language". For non-language packs returns [].
 //
