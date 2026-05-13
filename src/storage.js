@@ -16,6 +16,7 @@ export const DEFAULT_STATE = {
     quiz: {
       // Subject First selections (added in the Subject First refactor)
       subject: "language",                    // language | history | geography | science
+      curriculum: "all",                      // ks3 | gcse | other | all
       direction: "studyToTarget",             // studyToTarget | targetToStudy (language packs only)
       answerMode: "mixed",                    // mcq | typed | mixed
       // Existing fields
@@ -39,6 +40,7 @@ export const DEFAULT_STATE = {
     },
     passages: {
       subject: "",
+      curriculum: "all",                      // ks3 | gcse | other | all
       groupId: "",
       packId: "",
       category: "all",

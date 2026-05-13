@@ -18,11 +18,16 @@ import {
   filterUnifiedItems,
   registerPackInCache,
   SUBJECTS,
+  CURRICULUMS,
+  CURRICULUM_LABELS,
   getDatasetSubject,
+  getDatasetCurriculum,
   listDatasetsBySubject,
+  listDatasetsBySubjectAndCurriculum,
   getDatasetDirections,
   getPassageGroupSubject,
   listPassageGroupsBySubject,
+  listPassageGroupsBySubjectAndCurriculum,
 } from "./data.js";
 import {
   hydrateManifest,
@@ -685,9 +690,10 @@ async function renderQuizTab() {
         </div>
 
         ${renderSubjectCardGrid(prefs.subject)}
+        ${renderCurriculumPills(prefs.curriculum || "all")}
 
         <div class="form-grid" style="margin-top:18px;">
-          ${renderDatasetSelectFiltered("quiz-dataset", prefs.datasetId, prefs.subject)}
+          ${renderDatasetSelectFiltered("quiz-dataset", prefs.datasetId, prefs.subject, prefs.curriculum || "all")}
           ${usesStageSelection(dataset)
             ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : renderYearSelect("quiz-year", prefs.year)}
@@ -1487,6 +1493,7 @@ async function renderReadingTab() {
           </div>
 
           ${renderPassageSubjectCardGrid(prefs.subject)}
+          ${renderCurriculumPills(prefs.curriculum || "all", "select-passage-curriculum")}
 
           <div class="form-grid" style="margin-top:18px;">
             ${shouldShowGroupSelect ? renderPassageGroupSelectFiltered(prefs.groupId, prefs.subject) : ""}
@@ -1848,19 +1855,42 @@ function renderPassageGroupSelectFiltered(currentValue, subject) {
   );
 }
 
-function renderDatasetSelectFiltered(id, currentValue, subject) {
-  const datasets = listDatasetsBySubject(runtime.manifest, subject);
+// ─── Curriculum pill row ─────────────────────────────────────────────────────
+
+function renderCurriculumPills(activeCurriculum, action = "select-curriculum") {
+  const options = [{ id: "all", label: "All" }, ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] }))];
+  const buttons = options.map((opt) => {
+    const isActive = opt.id === (activeCurriculum || "all");
+    return `
+      <button type="button"
+              class="pill-button ${isActive ? "is-active" : ""}"
+              data-action="${escapeHtml(action)}"
+              data-value="${escapeHtml(opt.id)}">
+        ${escapeHtml(opt.label)}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:12px;">
+      <div class="fieldset-title">Curriculum</div>
+      <div class="pill-row">${buttons}</div>
+    </div>
+  `;
+}
+
+function renderDatasetSelectFiltered(id, currentValue, subject, curriculum = "all") {
+  const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
   if (!datasets.length) {
     return `
       <div class="field">
         <label>Dataset</label>
-        <p class="muted tiny" style="margin-top:6px;">No datasets yet for this subject.</p>
+        <p class="muted tiny" style="margin-top:6px;">No packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.</p>
       </div>
     `;
   }
   return renderSelectField(
     id,
-    "Dataset",
+    "Pack",
     datasets.map((dataset) => ({
       value: dataset.id,
       label: `${dataset.displayName}${dataset.wordCount ? ` (${dataset.wordCount})` : ""}`,
@@ -2396,12 +2426,28 @@ async function handleClick(event) {
       await startQuiz();
       return;
     case "select-subject": {
-      // Switch to a new subject and pick its first dataset automatically.
+      // Switch to a new subject — keep curriculum filter, pick first matching dataset.
       const nextSubject = actionButton.dataset.value;
-      const datasets = listDatasetsBySubject(runtime.manifest, nextSubject);
-      if (!datasets.length) return; // disabled card was clicked somehow
+      const curriculum = persisted.prefs.quiz.curriculum || "all";
+      const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
+      // If no datasets match the current curriculum, fall back to "all"
+      const fallbackDatasets = datasets.length ? datasets : listDatasetsBySubject(runtime.manifest, nextSubject);
+      if (!fallbackDatasets.length) return;
+      if (!datasets.length) persisted.prefs.quiz.curriculum = "all";
       persisted.prefs.quiz.subject = nextSubject;
-      persisted.prefs.quiz.datasetId = datasets[0].id;
+      persisted.prefs.quiz.datasetId = fallbackDatasets[0].id;
+      applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-curriculum": {
+      // Filter pack dropdown by curriculum level; auto-pick first matching dataset.
+      const nextCurriculum = actionButton.dataset.value;
+      persisted.prefs.quiz.curriculum = nextCurriculum;
+      const subject = persisted.prefs.quiz.subject || "language";
+      const filtered = listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, nextCurriculum);
+      if (filtered.length) persisted.prefs.quiz.datasetId = filtered[0].id;
       applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
       saveStoredState(persisted);
       await renderApp();
@@ -2409,14 +2455,34 @@ async function handleClick(event) {
     }
     case "select-passage-subject": {
       const nextSubject = actionButton.dataset.value;
-      const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, nextSubject);
-      if (!groupsForSubject.length) return;
+      const curriculum = persisted.prefs.passages.curriculum || "all";
+      const groupsForSubject = listPassageGroupsBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
+      const fallbackGroups = groupsForSubject.length ? groupsForSubject : listPassageGroupsBySubject(runtime.manifest, nextSubject);
+      if (!fallbackGroups.length) return;
+      if (!groupsForSubject.length) persisted.prefs.passages.curriculum = "all";
       persisted.prefs.passages.subject = nextSubject;
-      persisted.prefs.passages.groupId = groupsForSubject[0].id;
-      const firstPacks = listPassagePacks(runtime.manifest, groupsForSubject[0].id);
+      persisted.prefs.passages.groupId = fallbackGroups[0].id;
+      const firstPacks = listPassagePacks(runtime.manifest, fallbackGroups[0].id);
       persisted.prefs.passages.packId = firstPacks[0] ? firstPacks[0].id : "";
       persisted.prefs.passages.category = "all";
       persisted.prefs.passages.difficulty = "all";
+      runtime.passages = null;
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-passage-curriculum": {
+      const nextCurriculum = actionButton.dataset.value;
+      persisted.prefs.passages.curriculum = nextCurriculum;
+      const subject = persisted.prefs.passages.subject || "";
+      if (subject) {
+        const groups = listPassageGroupsBySubjectAndCurriculum(runtime.manifest, subject, nextCurriculum);
+        if (groups.length) {
+          persisted.prefs.passages.groupId = groups[0].id;
+          const packs = listPassagePacks(runtime.manifest, groups[0].id);
+          persisted.prefs.passages.packId = packs[0] ? packs[0].id : "";
+        }
+      }
       runtime.passages = null;
       saveStoredState(persisted);
       await renderApp();
