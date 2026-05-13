@@ -138,7 +138,35 @@ export function recordWordAnswer(state, wordId, wasCorrect) {
 }
 
 export function recordQuizSession(state, sessionRecord) {
-  state.progress.sessions = [sessionRecord, ...state.progress.sessions].slice(0, 24);
+  // Cap answers at 60 entries to keep localStorage lean; degrade gracefully on old records
+  const answers = Array.isArray(sessionRecord.answers)
+    ? sessionRecord.answers.slice(0, 60).map(({ prompt, expected, userAnswer, correct, speechText, speechLanguage, wordId }) => ({
+        prompt, expected, userAnswer, correct,
+        ...(wordId ? { wordId } : {}),
+        ...(speechText ? { speechText } : {}),
+        ...(speechLanguage ? { speechLanguage } : {}),
+      }))
+    : null;
+  state.progress.sessions = [
+    { ...sessionRecord, ...(answers !== null ? { answers } : {}) },
+    ...state.progress.sessions,
+  ].slice(0, 50);
+}
+
+export function deleteSession(state, sessionId) {
+  state.progress.sessions = state.progress.sessions.filter((s) => s.id !== sessionId);
+}
+
+export function clearAllSessions(state) {
+  state.progress.sessions = [];
+}
+
+export function resetWordProgress(state, wordId) {
+  delete state.progress.words[wordId];
+}
+
+export function clearAllWordProgress(state) {
+  state.progress.words = {};
 }
 
 function ensureBuilderStats(state, packId) {

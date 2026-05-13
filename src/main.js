@@ -44,7 +44,10 @@ import {
 } from "./quiz.js";
 import {
   DEFAULT_STATE,
+  clearAllSessions,
+  clearAllWordProgress,
   countMasteredWords,
+  deleteSession,
   getBuilderStats,
   getPassageStats,
   getWordProgress,
@@ -56,6 +59,7 @@ import {
   recordPassageCompletion,
   recordQuizSession,
   recordWordAnswer,
+  resetWordProgress,
   saveStoredState,
 } from "./storage.js";
 import {
@@ -95,6 +99,8 @@ const runtime = {
   },
   // Admin tab upload status: null | { ok: boolean, message: string, entry?: object }
   adminUploadStatus: null,
+  // Session detail overlay: null | { sessionId: string }
+  sessionDetail: null,
 };
 let searchRenderTimer = null;
 
@@ -401,6 +407,11 @@ async function renderTabContent() {
       return renderAdminTab();
     case "home":
     default:
+      if (runtime.sessionDetail) {
+        if (runtime.sessionDetail.view === "all") return renderSessionHistoryAll();
+        const detailSession = persisted.progress.sessions.find((s) => s.id === runtime.sessionDetail.sessionId);
+        return detailSession ? renderSessionDetail(detailSession) : renderHomeTab();
+      }
       return renderHomeTab();
   }
 }
@@ -707,25 +718,34 @@ async function renderQuizTab() {
       </section>
 
       <section class="section-card">
-        <h2>Recent sessions</h2>
-        <div class="session-list" style="margin-top:16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+          <h2 style="margin:0;">Recent sessions</h2>
+          ${persisted.progress.sessions.length > 6
+            ? `<button class="button ghost" style="font-size:0.8rem;padding:4px 10px;" data-action="session-history-all">View all (${persisted.progress.sessions.length})</button>`
+            : ""}
+        </div>
+        <div class="session-list" style="margin-top:12px;">
           ${
             persisted.progress.sessions.length
               ? persisted.progress.sessions
                   .slice(0, 6)
-                  .map(
-                    (session) => `
-                      <div class="session-item">
-                        <div>
+                  .map((session) => {
+                    const pct = session.score / Math.max(session.totalQuestions, 1);
+                    const badgeClass = pct >= 0.75 ? "green" : pct >= 0.5 ? "amber" : "coral";
+                    return `
+                      <div class="session-item" style="align-items:center;">
+                        <div style="flex:1;min-width:0;">
                           <strong>${escapeHtml(fallback(session.label, "Quiz"))}</strong>
-                          <p class="muted tiny">${escapeHtml(findDataset(runtime.manifest, fallback(session.datasetId, "core")).displayName)} · ${escapeHtml(fallback(session.scopeLabel, fallback(session.year, "ALL")))} · ${formatDateTime(session.timestamp)}</p>
+                          <p class="muted tiny" style="margin:2px 0 0;">${escapeHtml(findDataset(runtime.manifest, fallback(session.datasetId, "core")).displayName)} · ${escapeHtml(fallback(session.scopeLabel, fallback(session.year, "ALL")))} · ${formatDateTime(session.timestamp)}</p>
                         </div>
-                        <span class="badge ${session.score / Math.max(session.totalQuestions, 1) >= 0.7 ? "green" : "amber"}">
-                          ${session.score}/${session.totalQuestions}
-                        </span>
+                        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                          <span class="badge ${badgeClass}">${session.score}/${session.totalQuestions}</span>
+                          <button class="button ghost" style="padding:3px 10px;font-size:0.78rem;" data-action="session-detail" data-session-id="${escapeHtml(session.id)}">Details</button>
+                          <button class="button ghost button-danger" style="padding:3px 8px;font-size:0.78rem;" data-action="session-delete" data-session-id="${escapeHtml(session.id)}" title="Delete this session">✕</button>
+                        </div>
                       </div>
-                    `,
-                  )
+                    `;
+                  })
                   .join("")
               : renderEmptyStateCard({
                   eyebrow: "Quiz",
@@ -1001,6 +1021,126 @@ function renderQuizSummary(session) {
         <div class="review-list" style="margin-top:16px;">
           ${wrongHtml}
         </div>
+      </section>
+    </div>
+  `;
+}
+
+// ─── Session detail view ──────────────────────────────────────────────────────
+
+function renderSessionDetail(session) {
+  const pct = session.score / Math.max(session.totalQuestions, 1);
+  const badgeClass = pct >= 0.75 ? "green" : pct >= 0.5 ? "amber" : "coral";
+  const date = session.timestamp
+    ? new Date(session.timestamp).toLocaleString(undefined, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })
+    : "Unknown date";
+
+  let answersHtml;
+  if (!Array.isArray(session.answers)) {
+    answersHtml = `<p class="muted tiny">No answer detail — this session was recorded before detailed history was enabled. Future sessions will show full breakdowns.</p>`;
+  } else {
+    const correct = session.answers.filter((a) => a.correct);
+    const wrong   = session.answers.filter((a) => !a.correct);
+
+    const wrongHtml = wrong.length
+      ? wrong.map((a) => `
+          <div class="review-item" style="border-left:3px solid #e55;padding-left:12px;margin-bottom:10px;">
+            <div class="review-item-main">
+              <strong>${escapeHtml(a.prompt)}</strong>
+              <p class="muted tiny" style="margin:3px 0 1px;">Your answer: <em>${escapeHtml(a.userAnswer || "—")}</em></p>
+              <p class="muted tiny" style="color:#1a7a3a;">Correct: <strong>${escapeHtml(a.expected)}</strong></p>
+            </div>
+            ${a.speechText ? `<button class="button ghost" style="margin-top:4px;" data-action="speak" data-text="${escapeHtml(a.speechText)}" data-language="${escapeHtml(a.speechLanguage || "en-GB")}">▶ Speak</button>` : ""}
+          </div>
+        `).join("")
+      : `<p class="muted tiny">Perfect — no mistakes this session. 🎉</p>`;
+
+    const correctHtml = correct.length
+      ? correct.map((a) => `
+          <div style="display:flex;align-items:baseline;gap:8px;padding:5px 0;border-bottom:1px solid #f0f0f0;">
+            <span style="color:#1a7a3a;font-weight:700;flex-shrink:0;">✓</span>
+            <span class="tiny">${escapeHtml(a.prompt)}</span>
+            <span class="muted tiny" style="margin-left:auto;flex-shrink:0;">${escapeHtml(a.expected)}</span>
+          </div>
+        `).join("")
+      : `<p class="muted tiny">No correct answers recorded.</p>`;
+
+    answersHtml = `
+      <section class="section-card">
+        <h2 style="color:#c00;">✗ Wrong (${wrong.length})</h2>
+        <div style="margin-top:12px;">${wrongHtml}</div>
+      </section>
+      <section class="section-card">
+        <details>
+          <summary style="cursor:pointer;font-weight:600;font-size:1rem;list-style:none;display:flex;align-items:center;gap:6px;">
+            <span style="color:#1a7a3a;">✓</span> Correct (${correct.length}) <span class="muted tiny" style="margin-left:4px;">— click to expand</span>
+          </summary>
+          <div style="margin-top:12px;">${correctHtml}</div>
+        </details>
+      </section>
+    `;
+  }
+
+  return `
+    <div class="section-stack">
+      <div style="margin-bottom:4px;">
+        <button class="button ghost" style="padding:4px 10px;font-size:0.85rem;" data-action="session-detail-back">← Back</button>
+      </div>
+
+      <section class="section-card">
+        <p class="eyebrow" style="color:#1566a8;">Session detail</p>
+        <h2>${escapeHtml(fallback(session.label, "Quiz"))}</h2>
+        <p class="muted tiny" style="margin-top:4px;">${escapeHtml(date)}</p>
+        <div style="margin:14px 0 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span style="font-size:2rem;font-weight:700;">${session.score}/${session.totalQuestions}</span>
+          <span class="badge ${badgeClass}" style="font-size:0.95rem;">${formatPercent(pct)} accuracy</span>
+        </div>
+        <div class="action-row">
+          <button class="button secondary" data-action="session-requiz" data-session-id="${escapeHtml(session.id)}" ${Array.isArray(session.answers) && session.answers.some((a) => !a.correct) ? "" : "disabled"}>Re-quiz wrong answers</button>
+          <button class="button ghost button-danger" data-action="session-delete" data-session-id="${escapeHtml(session.id)}">🗑 Delete session</button>
+        </div>
+      </section>
+
+      ${answersHtml}
+    </div>
+  `;
+}
+
+function renderSessionHistoryAll() {
+  const sessions = persisted.progress.sessions;
+
+  const rows = sessions.length
+    ? sessions.map((session) => {
+        const pct = session.score / Math.max(session.totalQuestions, 1);
+        const badgeClass = pct >= 0.75 ? "green" : pct >= 0.5 ? "amber" : "coral";
+        const date = session.timestamp
+          ? new Date(session.timestamp).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
+          : "—";
+        return `
+          <div class="session-item" style="align-items:center;">
+            <div style="flex:1;min-width:0;">
+              <strong>${escapeHtml(fallback(session.label, "Quiz"))}</strong>
+              <p class="muted tiny" style="margin:2px 0 0;">${escapeHtml(findDataset(runtime.manifest, fallback(session.datasetId, "core")).displayName)} · ${escapeHtml(date)}</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+              <span class="badge ${badgeClass}">${session.score}/${session.totalQuestions}</span>
+              <button class="button ghost" style="padding:3px 10px;font-size:0.78rem;" data-action="session-detail" data-session-id="${escapeHtml(session.id)}" data-from-all="true">Details</button>
+              <button class="button ghost button-danger" style="padding:3px 8px;font-size:0.78rem;" data-action="session-delete" data-session-id="${escapeHtml(session.id)}" title="Delete">✕</button>
+            </div>
+          </div>
+        `;
+      }).join("")
+    : `<p class="muted tiny">No sessions recorded yet.</p>`;
+
+  return `
+    <div class="section-stack">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+        <button class="button ghost" style="padding:4px 10px;font-size:0.85rem;" data-action="session-detail-back">← Back</button>
+        ${sessions.length ? `<button class="button ghost button-danger" style="font-size:0.8rem;" data-action="session-clear-all">Clear all sessions</button>` : ""}
+      </div>
+      <section class="section-card">
+        <h2>All sessions (${sessions.length})</h2>
+        <div class="session-list" style="margin-top:12px;">${rows}</div>
       </section>
     </div>
   `;
@@ -1837,8 +1977,67 @@ function renderAdminTab() {
         `;
       }).join("");
 
+  // ── Progress management data ──────────────────────────────────────────────
+  const wordEntries = Object.entries(persisted.progress.words)
+    .map(([id, p]) => ({ id, ...p }))
+    .sort((a, b) => (b.wrong - b.correct) - (a.wrong - a.correct))
+    .slice(0, 20);
+
+  const wordTableHtml = wordEntries.length
+    ? `
+      <div style="overflow-x:auto;margin-top:12px;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+          <thead>
+            <tr style="border-bottom:2px solid #e0e0e0;text-align:left;">
+              <th style="padding:6px 8px;">Word / ID</th>
+              <th style="padding:6px 8px;text-align:center;">✓ Right</th>
+              <th style="padding:6px 8px;text-align:center;">✗ Wrong</th>
+              <th style="padding:6px 8px;text-align:center;">Streak</th>
+              <th style="padding:6px 8px;text-align:center;">Mastered</th>
+              <th style="padding:6px 8px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${wordEntries.map((w) => {
+              const mastered = w.correct >= 3 && w.streak >= 2;
+              return `
+                <tr style="border-bottom:1px solid #f0f0f0;">
+                  <td style="padding:5px 8px;" class="muted tiny">${escapeHtml(w.id)}</td>
+                  <td style="padding:5px 8px;text-align:center;color:#1a7a3a;">${w.correct}</td>
+                  <td style="padding:5px 8px;text-align:center;color:#c00;">${w.wrong}</td>
+                  <td style="padding:5px 8px;text-align:center;">${w.streak}</td>
+                  <td style="padding:5px 8px;text-align:center;">${mastered ? "✓" : "—"}</td>
+                  <td style="padding:5px 8px;text-align:right;">
+                    <button class="button ghost button-danger" style="font-size:0.75rem;padding:2px 8px;" data-action="admin-reset-word" data-word-id="${escapeHtml(w.id)}" title="Reset progress for this word">Reset</button>
+                  </td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+    `
+    : `<p class="muted tiny" style="margin-top:8px;">No word progress recorded yet.</p>`;
+
   return `
     <div class="section-stack">
+
+      <section class="section-card">
+        <h2>Progress Management</h2>
+        <p class="muted tiny">Clear stored quiz history or reset word mastery. This affects only this browser — nothing is sent anywhere.</p>
+        <div class="action-row" style="margin-top:14px;flex-wrap:wrap;gap:10px;">
+          <button class="button secondary" data-action="admin-clear-sessions" ${persisted.progress.sessions.length === 0 ? "disabled" : ""}>
+            Clear all sessions (${persisted.progress.sessions.length})
+          </button>
+          <button class="button secondary" data-action="admin-clear-words" ${wordEntries.length === 0 ? "disabled" : ""}>
+            Reset all word progress (${Object.keys(persisted.progress.words).length} words)
+          </button>
+        </div>
+
+        <h3 style="margin-top:20px;font-size:0.95rem;">Most struggled words (top 20)</h3>
+        ${wordTableHtml}
+      </section>
+
       <section class="section-card">
         <h2>Pack Admin</h2>
         <p class="muted tiny">
@@ -2001,6 +2200,100 @@ async function handleClick(event) {
   }
 
   switch (action) {
+    // ── Session history actions ────────────────────────────────────────────
+    case "session-detail": {
+      const fromAll = actionButton.dataset.fromAll === "true";
+      runtime.sessionDetail = { sessionId: actionButton.dataset.sessionId, view: "detail", fromAll };
+      persisted.activeTab = "home";
+      saveStoredState(persisted);
+      await renderApp();
+      window.scrollTo(0, 0);
+      return;
+    }
+    case "session-detail-back": {
+      // If we came from "all sessions" sub-view go back to it, otherwise back to home
+      const wasAll = runtime.sessionDetail && runtime.sessionDetail.view === "detail" && runtime.sessionDetail.fromAll;
+      runtime.sessionDetail = wasAll ? { view: "all" } : null;
+      await renderApp();
+      window.scrollTo(0, 0);
+      return;
+    }
+    case "session-history-all": {
+      runtime.sessionDetail = { view: "all" };
+      persisted.activeTab = "home";
+      saveStoredState(persisted);
+      await renderApp();
+      window.scrollTo(0, 0);
+      return;
+    }
+    case "session-delete": {
+      const sid = actionButton.dataset.sessionId;
+      if (!sid) return;
+      const s = persisted.progress.sessions.find((x) => x.id === sid);
+      const label = s ? fallback(s.label, "this session") : "this session";
+      if (!window.confirm(`Delete "${label}"? This cannot be undone.`)) return;
+      deleteSession(persisted, sid);
+      saveStoredState(persisted);
+      // If we were in the detail view for this session, go back
+      if (runtime.sessionDetail && runtime.sessionDetail.sessionId === sid) {
+        runtime.sessionDetail = null;
+      }
+      await renderApp();
+      return;
+    }
+    case "session-clear-all": {
+      if (!window.confirm(`Delete all ${persisted.progress.sessions.length} sessions? This cannot be undone.`)) return;
+      clearAllSessions(persisted);
+      saveStoredState(persisted);
+      runtime.sessionDetail = null;
+      await renderApp();
+      return;
+    }
+    case "session-requiz": {
+      const sid = actionButton.dataset.sessionId;
+      const s = persisted.progress.sessions.find((x) => x.id === sid);
+      if (!s || !Array.isArray(s.answers)) return;
+      const wrongAnswers = s.answers.filter((a) => !a.correct);
+      if (!wrongAnswers.length) return;
+      // Collect the wordIds from wrong answers; fall back gracefully if none were recorded
+      const missedWordIds = new Set(wrongAnswers.map((a) => a.wordId).filter(Boolean));
+      let customWords = null;
+      if (missedWordIds.size > 0) {
+        // Look up real vocab items from the session's dataset so the quiz engine
+        // gets properly shaped records (de, en, id, etc.)
+        const sessionDataset = findDataset(runtime.manifest, fallback(s.datasetId, "core"));
+        const allVocab = await loadVocabItems(runtime.manifest, sessionDataset.id);
+        const matched = allVocab.filter((w) => missedWordIds.has(w.id));
+        if (matched.length) customWords = matched;
+      }
+      runtime.sessionDetail = null;
+      await startQuiz(customWords, `Re-quiz: ${fallback(s.label, "missed words")}`);
+      return;
+    }
+    // ── Admin: progress management ────────────────────────────────────────
+    case "admin-clear-sessions": {
+      if (!window.confirm(`Delete all ${persisted.progress.sessions.length} quiz sessions? This cannot be undone.`)) return;
+      clearAllSessions(persisted);
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "admin-clear-words": {
+      const count = Object.keys(persisted.progress.words).length;
+      if (!window.confirm(`Reset progress for all ${count} word(s)? Streaks, correct counts, and mastery will be cleared.`)) return;
+      clearAllWordProgress(persisted);
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "admin-reset-word": {
+      const wordId = actionButton.dataset.wordId;
+      if (!wordId) return;
+      resetWordProgress(persisted, wordId);
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
     case "admin-delete-pack": {
       const packId = actionButton.dataset.packId;
       if (packId && window.confirm(`Delete uploaded pack "${packId}"? This cannot be undone.`)) {
@@ -2582,6 +2875,7 @@ function nextQuizQuestion() {
       score: session.score,
       totalQuestions: session.questions.length,
       timestamp: new Date().toISOString(),
+      answers: session.answers,
     });
     saveStoredState(persisted);
     return;
