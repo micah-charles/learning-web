@@ -160,6 +160,11 @@ function filterWordsForScope(words, dataset, prefSection) {
     const selectedStages = new Set(getSelectedStages(prefSection, dataset));
     return words.filter((word) => selectedStages.has(String(word.stage)));
   }
+  // Year filtering (Y7 / Y8 / Y9 / ALL) is only meaningful for language packs.
+  // Non-language packs (history, geography, science, etc.) tag items with
+  // curriculum-level strings like "KS3" or "KS3 / Year 7", which would never
+  // match a Y-year filter and would silently produce 0 words.
+  if (getDatasetSubject(dataset) !== "language") return words;
   return words.filter((word) => levelMatches(word.level, prefSection.year));
 }
 
@@ -563,7 +568,9 @@ async function renderVocabTab() {
           ${renderDatasetSelect("vocab-dataset", prefs.datasetId)}
           ${usesStageSelection(dataset)
             ? renderStageFieldset("vocab", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
-            : renderYearSelect("vocab-year", prefs.year)}
+            : getDatasetSubject(dataset) === "language"
+              ? renderYearSelect("vocab-year", prefs.year)
+              : ""}
           ${renderSelectField("vocab-pos", "Part of speech", [{ value: "", label: "All parts of speech" }, ...partOfSpeechOptions.map((item) => ({ value: item, label: item }))], prefs.partOfSpeech)}
           ${renderSelectField("vocab-category", "Category", [{ value: "", label: "All categories" }, ...categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)}
           <div class="field" style="grid-column:1/-1;">
@@ -696,7 +703,9 @@ async function renderQuizTab() {
           ${renderDatasetSelectFiltered("quiz-dataset", prefs.datasetId, prefs.subject, prefs.curriculum || "all")}
           ${usesStageSelection(dataset)
             ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
-            : renderYearSelect("quiz-year", prefs.year)}
+            : getDatasetSubject(dataset) === "language"
+              ? renderYearSelect("quiz-year", prefs.year)
+              : ""}
           ${renderSelectField(
             "quiz-question-count",
             `Questions${maxQuestionCount ? ` (max ${maxQuestionCount})` : ""}`,
