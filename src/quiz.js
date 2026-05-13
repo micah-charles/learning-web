@@ -482,6 +482,7 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
       speechText:  src,
       speechLanguage: labels.speechLanguage,
       example:     exampleSrc,
+      stimulus:    item.data.stimulus || null,
     };
   });
 }
@@ -501,6 +502,7 @@ export function makeSequenceFromUnified(unifiedItems, count, dataset) {
     shuffledOrder: shuffle([...(item.data.items || [])]),
     speechText: (item.data.items || []).join(". "),
     speechLanguage: labels.speechLanguage,
+    stimulus: item.data.stimulus || null,
   }));
 }
 
@@ -521,6 +523,7 @@ export function makeCategorySortFromUnified(unifiedItems, count, dataset) {
       items: shuffle([...pairs]),
       speechText: pairs.map((p) => p.text).join(", "),
       speechLanguage: labels.speechLanguage,
+      stimulus: item.data.stimulus || null,
     };
   });
 }
@@ -550,6 +553,7 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
       options: shuffle([item.data.answer, ...wrongAnswers]),
       speechText: item.data.sentence || "",
       speechLanguage: labels.speechLanguage,
+      stimulus: item.data.stimulus || null,
     };
   });
 }
@@ -595,6 +599,7 @@ export function makePassageChoiceFromUnified(unifiedItems, count, dataset) {
         topic: firstTopic(item),
         speechText: question.question,
         speechLanguage: labels.speechLanguage,
+        stimulus: data.stimulus || null,
       });
     }
   }
@@ -642,6 +647,7 @@ export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
       speechText:     src,
       speechLanguage: labels.speechLanguage,
       placeholder:    `Type the ${labels.studyLabel} sentence`,
+      stimulus:       item.data.stimulus || null,
     };
   });
 }
