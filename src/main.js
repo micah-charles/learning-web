@@ -759,6 +759,86 @@ async function renderQuizTab() {
   `;
 }
 
+// ─── Stimulus rendering ───────────────────────────────────────────────────────
+//
+// A stimulus block is optional context attached to any question item —
+// a diagram, source extract, or data table that the student reads before
+// answering. Rendered above the question prompt.
+//
+// Supported stimulus.type values (Phase 1):
+//   asciiDiagram  — monospaced text diagram (map, grid, OS symbols, etc.)
+//   mapExtract    — alias for asciiDiagram
+//   sourceExtract — quoted primary/secondary source text
+//   table         — simple 2-D table with optional header row
+//   dataTable     — alias for table (e.g. climate data, traffic survey)
+
+function renderStimulus(stimulus) {
+  if (!stimulus || typeof stimulus !== "object") return "";
+
+  const title = stimulus.title
+    ? `<p class="stimulus-title">${escapeHtml(stimulus.title)}</p>`
+    : "";
+
+  const type = String(stimulus.type || "").toLowerCase();
+
+  // ── ASCII / map diagram ──────────────────────────────────────────────────
+  if (type === "asciidigram" || type === "mapextract") {
+    const key = Array.isArray(stimulus.key) && stimulus.key.length
+      ? `<ul class="stimulus-key">${stimulus.key.map((k) => `<li>${escapeHtml(k)}</li>`).join("")}</ul>`
+      : "";
+    return `
+      <div class="stimulus-block stimulus-diagram">
+        ${title}
+        <pre class="diagram-block">${escapeHtml(stimulus.content || "")}</pre>
+        ${key}
+      </div>`;
+  }
+
+  // ── Source extract / quote ───────────────────────────────────────────────
+  if (type === "sourceextract" || type === "source_extract") {
+    return `
+      <div class="stimulus-block stimulus-extract">
+        ${title}
+        <blockquote class="source-extract-block">${escapeHtml(stimulus.content || "")}</blockquote>
+      </div>`;
+  }
+
+  // ── Table / data table ───────────────────────────────────────────────────
+  if (type === "table" || type === "datatable" || type === "data_table") {
+    const headers = Array.isArray(stimulus.headers) ? stimulus.headers : [];
+    const rows = Array.isArray(stimulus.rows)
+      ? stimulus.rows
+      : Array.isArray(stimulus.content)
+        ? stimulus.content
+        : [];
+    const headerHtml = headers.length
+      ? `<thead><tr>${headers.map((h) => `<th>${escapeHtml(String(h))}</th>`).join("")}</tr></thead>`
+      : "";
+    const bodyHtml = rows
+      .map((row) => {
+        const cells = Array.isArray(row) ? row : [row];
+        return `<tr>${cells.map((c) => `<td>${escapeHtml(String(c ?? ""))}</td>`).join("")}</tr>`;
+      })
+      .join("");
+    return `
+      <div class="stimulus-block stimulus-table">
+        ${title}
+        <div class="data-table-wrap"><table class="data-table-block">${headerHtml}<tbody>${bodyHtml}</tbody></table></div>
+      </div>`;
+  }
+
+  // ── Fallback: plain text ─────────────────────────────────────────────────
+  if (stimulus.content) {
+    return `
+      <div class="stimulus-block">
+        ${title}
+        <p class="muted tiny" style="white-space:pre-wrap;">${escapeHtml(String(stimulus.content))}</p>
+      </div>`;
+  }
+
+  return "";
+}
+
 function renderQuizSession(session) {
   const question = session.questions[session.index];
   const progressText = `${session.index + 1} / ${session.questions.length}`;
@@ -776,6 +856,7 @@ function renderQuizSession(session) {
   return `
     <div class="section-stack">
       <section class="question-shell lead">
+        ${question.stimulus ? renderStimulus(question.stimulus) : ""}
         ${renderQuestionBox({
           eyebrow: question.modeTitle,
           modeLabel: describeQuizMode(question),

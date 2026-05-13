@@ -724,6 +724,89 @@ body {
   color: var(--ink);
 }
 
+/* ── Stimulus block ─────────────────────────────────────────────────────── */
+
+.stimulus-block {
+  display: grid;
+  gap: 8px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.stimulus-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-info, #1566a8);
+  margin: 0;
+}
+
+/* ASCII diagram / map extract */
+.diagram-block {
+  white-space: pre;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 0;
+}
+
+.stimulus-key {
+  margin: 0;
+  padding: 0 0 0 1.1em;
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Source extract / quote */
+.source-extract-block {
+  border-left: 3px solid var(--color-info, #1566a8);
+  margin: 0;
+  padding: 10px 14px;
+  font-style: italic;
+  color: #444;
+  background: #fff;
+  border-radius: 0 8px 8px 0;
+  white-space: pre-wrap;
+}
+
+/* Data table */
+.data-table-wrap {
+  overflow-x: auto;
+}
+
+.data-table-block {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.data-table-block th,
+.data-table-block td {
+  padding: 6px 10px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.data-table-block th {
+  background: #eef4fb;
+  font-weight: 700;
+}
+
+.data-table-block tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+/* ── End stimulus block ──────────────────────────────────────────────────── */
+
 .feedback {
   display: grid;
   gap: 6px;
