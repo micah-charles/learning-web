@@ -171,6 +171,70 @@ Every item in a unified pack has a fixed outer envelope:
 | `tags` | string[] | Additional labels (origin, category, etc.) |
 | `data` | object | Polymorphic payload — shape depends on `type` |
 
+### Optional `data.stimulus`
+
+Quiz-facing items may include an optional `data.stimulus` object when the
+student should refer to a diagram, map extract, table, worked example, or
+quoted source **above the question prompt**.
+
+This is especially useful for geography, history, literature, and science
+packs where flattening the source into plain text would lose important
+structure.
+
+Supported shape:
+
+```json
+"data": {
+  "stimulus": {
+    "type": "asciiDiagram",
+    "title": "Invented Grid Map",
+    "content": "Northings\n 14  +---+---+---+\n     |   | S |   |\n 13  +---+---+---+",
+    "key": ["S = school"]
+  }
+}
+```
+
+Supported `stimulus.type` values:
+
+| `stimulus.type` | Rendered as | Typical use |
+|---|---|---|
+| `asciiDiagram` | Monospaced `<pre>` block + optional key list | Compass rose, sketch map, cross-section, grid diagram |
+| `mapExtract` | Same as `asciiDiagram` | Simple map-like source block |
+| `sourceExtract` | Styled blockquote | Quoted evidence, short source extract, worked explanation |
+| `table` | Responsive HTML table | Comparison table, values table, worked conversion table |
+| `dataTable` | Same as `table` | Climate, traffic, fieldwork, or numerical data |
+
+Table example:
+
+```json
+"data": {
+  "stimulus": {
+    "type": "table",
+    "title": "Scale conversions",
+    "headers": ["Map scale", "1 cm represents", "4 cm represents"],
+    "rows": [
+      ["1:25,000", "250 m", "1 km"],
+      ["1:50,000", "500 m", "2 km"]
+    ]
+  }
+}
+```
+
+Source extract example:
+
+```json
+"data": {
+  "stimulus": {
+    "type": "sourceExtract",
+    "title": "Fieldwork conclusion",
+    "content": "Traffic was highest near the town centre at 08:30."
+  }
+}
+```
+
+Use stimulus selectively. It should be present only when the visual or quoted
+context materially improves the question.
+
 ### Valid item `type` values
 
 | Type | Used by | Quiz mode |
@@ -245,6 +309,7 @@ Every item in a unified pack has a fixed outer envelope:
 | `targetSentence` | string | **Legacy fallback.** |
 | `sourceLanguage` | string | **Legacy.** Non-BCP-47 code (`"de"`, `"en"`). |
 | `targetLanguage` | string | **Legacy.** |
+| `stimulus` | object? | Optional diagram / source / table shown above the prompt |
 
 ---
 
@@ -281,6 +346,7 @@ The `items` array is shown to the user in shuffled order. They tap two items to 
 | `instruction` | string | Guidance shown below the title |
 | `items` | string[] | Ordered steps; UI shuffles on load |
 | `shuffle` | boolean | Whether to shuffle on load (default: `true`) |
+| `stimulus` | object? | Optional diagram / source / table shown above the prompt |
 
 ---
 
@@ -316,6 +382,7 @@ The UI shows all `pairs[].text` values in a tile pool. The user taps a tile to s
 | `instruction` | string | Guidance |
 | `categories` | string[] | Column headers — any number of columns supported |
 | `pairs` | `Array<{text, category}>` | `text` shown to user; `category` is the correct column |
+| `stimulus` | object? | Optional diagram / source / table shown above the prompt |
 
 > Note: `pairs` is used for backwards compatibility. New exports should use `items` as an alias.
 
@@ -354,6 +421,7 @@ Rendered as either a typed input or a button-grid of options (the UI picks based
 | `answer` | string | Correct answer (used for typed mode) |
 | `hint` | string? | Optional hint shown to the student |
 | `options` | string[]? | Multiple-choice options; if present, rendered as a button grid |
+| `stimulus` | object? | Optional diagram / source / table shown above the prompt |
 
 ---
 
@@ -433,6 +501,7 @@ Used by the **Reading tab**.
 | `targetPassage` | string | Target-language translation |
 | `speechLanguage` | string | BCP-47 TTS language code (e.g. `"de-DE"`, `"en-GB"`) |
 | `questions` | `PassageQuestion[]` | Comprehension questions |
+| `stimulus` | object? | Optional diagram / source / table shown above the prompt |
 
 ### PassageQuestion
 
