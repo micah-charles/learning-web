@@ -782,7 +782,7 @@ function renderStimulus(stimulus) {
   const type = String(stimulus.type || "").toLowerCase();
 
   // ── ASCII / map diagram ──────────────────────────────────────────────────
-  if (type === "asciidigram" || type === "mapextract") {
+  if (type === "asciidiagram" || type === "mapextract") {
     const key = Array.isArray(stimulus.key) && stimulus.key.length
       ? `<ul class="stimulus-key">${stimulus.key.map((k) => `<li>${escapeHtml(k)}</li>`).join("")}</ul>`
       : "";

@@ -599,6 +599,7 @@ export function makePassageChoiceFromUnified(unifiedItems, count, dataset) {
         topic: firstTopic(item),
         speechText: question.question,
         speechLanguage: labels.speechLanguage,
+        stimulus: data.stimulus || null,
       });
     }
   }
@@ -646,6 +647,7 @@ export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
       speechText:     src,
       speechLanguage: labels.speechLanguage,
       placeholder:    `Type the ${labels.studyLabel} sentence`,
+      stimulus:       item.data.stimulus || null,
     };
   });
 }
