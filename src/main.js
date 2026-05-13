@@ -4,6 +4,9 @@ import {
   listPassageGroups,
   listPassagePacks,
   listSentenceBuilderPacks,
+  listSentenceBuilderPacksBySubject,
+  listSentenceBuilderPacksBySubjectAndCurriculum,
+  getBuilderPackSubject,
   loadManifest,
   loadPassagePack,
   loadPassageUnifiedPack,
@@ -528,6 +531,8 @@ async function renderHomeTab() {
 
 async function renderVocabTab() {
   const prefs = persisted.prefs.vocab;
+  if (!prefs.subject) prefs.subject = "language";
+  if (!prefs.curriculum) prefs.curriculum = "all";
   const dataset = findDataset(runtime.manifest, prefs.datasetId);
   const words = await loadVocabItems(runtime.manifest, dataset.id);
   const scopedWords = filterWordsForScope(words, dataset, prefs);
@@ -564,8 +569,11 @@ async function renderVocabTab() {
             <span class="count-pill amber">${fallback(dataset.wordCount, words.length)} total in pack</span>
           </div>
         </div>
+        ${renderSubjectCardGrid(prefs.subject, "select-vocab-subject")}
+        ${renderCurriculumPills(prefs.curriculum, "select-vocab-curriculum")}
+
         <div class="form-grid" style="margin-top:18px;">
-          ${renderDatasetSelect("vocab-dataset", prefs.datasetId)}
+          ${renderDatasetSelectFiltered("vocab-dataset", prefs.datasetId, prefs.subject, prefs.curriculum)}
           ${usesStageSelection(dataset)
             ? renderStageFieldset("vocab", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : getDatasetSubject(dataset) === "language"
@@ -1243,8 +1251,15 @@ function renderSessionHistoryAll() {
 }
 
 async function renderBuilderTab() {
-  const packs = listSentenceBuilderPacks(runtime.manifest);
   const prefs = persisted.prefs.builder;
+  if (!prefs.subject) prefs.subject = "history";
+  if (!prefs.curriculum) prefs.curriculum = "all";
+  // Determine which packs are available for the current subject+curriculum
+  const subjectPacks = listSentenceBuilderPacksBySubjectAndCurriculum(
+    runtime.manifest, prefs.subject, prefs.curriculum,
+  );
+  const allPacks = listSentenceBuilderPacks(runtime.manifest);
+  const packs = subjectPacks.length ? subjectPacks : allPacks;
   const packId = prefs.packId || (packs[0] ? packs[0].id : "");
   if (!packId) {
     return renderUnavailable("No sentence builder packs were found.");
@@ -1272,11 +1287,11 @@ async function renderBuilderTab() {
             <span class="count-pill amber">streak ${stats.streak}</span>
           </div>
         </div>
+        ${renderBuilderSubjectCardGrid(prefs.subject)}
+        ${renderCurriculumPills(prefs.curriculum, "select-builder-curriculum")}
+
         <div class="form-grid" style="margin-top:18px;">
-          ${renderSelectField("builder-pack", "Pack", packs.map((pack) => ({
-            value: pack.id,
-            label: `${pack.displayName}${pack.cardCount ? ` (${pack.cardCount})` : ""}`,
-          })), packId)}
+          ${renderBuilderPackSelectFiltered(packId, prefs.subject, prefs.curriculum)}
           ${renderSelectField("builder-filter", "Filter", [
             { value: "all", label: "All" },
             { value: "key_date", label: "Key Dates" },
@@ -1790,7 +1805,7 @@ const SUBJECT_LABELS = {
   literature: { label: "Literature", icon: "📖" },
 };
 
-function renderSubjectCardGrid(activeSubject) {
+function renderSubjectCardGrid(activeSubject, action = "select-subject") {
   const cards = SUBJECTS.map((subject) => {
     const meta = SUBJECT_LABELS[subject];
     const datasets = listDatasetsBySubject(runtime.manifest, subject);
@@ -1799,7 +1814,7 @@ function renderSubjectCardGrid(activeSubject) {
     const classes = ["subject-card"];
     if (isActive) classes.push("is-active");
     if (isEmpty) classes.push("is-empty");
-    const button = isEmpty ? "" : `data-action="select-subject" data-value="${escapeHtml(subject)}"`;
+    const button = isEmpty ? "" : `data-action="${action}" data-value="${escapeHtml(subject)}"`;
     return `
       <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
         <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
@@ -1807,6 +1822,34 @@ function renderSubjectCardGrid(activeSubject) {
         ${isEmpty
           ? `<span class="subject-meta">Coming soon</span>`
           : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">What are you learning?</div>
+      <div class="subject-card-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function renderBuilderSubjectCardGrid(activeSubject) {
+  const cards = SUBJECTS.map((subject) => {
+    const meta = SUBJECT_LABELS[subject];
+    const packs = listSentenceBuilderPacksBySubject(runtime.manifest, subject);
+    const isActive = subject === activeSubject;
+    const isEmpty = packs.length === 0;
+    const classes = ["subject-card"];
+    if (isActive) classes.push("is-active");
+    if (isEmpty) classes.push("is-empty");
+    const button = isEmpty ? "" : `data-action="select-builder-subject" data-value="${escapeHtml(subject)}"`;
+    return `
+      <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
+        <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
+        <span class="subject-label">${escapeHtml(meta.label)}</span>
+        ${isEmpty
+          ? `<span class="subject-meta">No packs yet</span>`
+          : `<span class="subject-meta">${packs.length} pack${packs.length === 1 ? "" : "s"}</span>`}
       </button>
     `;
   }).join("");
@@ -1903,6 +1946,27 @@ function renderDatasetSelectFiltered(id, currentValue, subject, curriculum = "al
     datasets.map((dataset) => ({
       value: dataset.id,
       label: `${dataset.displayName}${dataset.wordCount ? ` (${dataset.wordCount})` : ""}`,
+    })),
+    currentValue,
+  );
+}
+
+function renderBuilderPackSelectFiltered(currentValue, subject, curriculum = "all") {
+  const packs = listSentenceBuilderPacksBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
+  if (!packs.length) {
+    return `
+      <div class="field">
+        <label>Pack</label>
+        <p class="muted tiny" style="margin-top:6px;">No builder packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.</p>
+      </div>
+    `;
+  }
+  return renderSelectField(
+    "builder-pack",
+    "Pack",
+    packs.map((pack) => ({
+      value: pack.id,
+      label: `${pack.displayName}${pack.cardCount ? ` (${pack.cardCount})` : ""}`,
     })),
     currentValue,
   );
@@ -2300,7 +2364,25 @@ async function handleClick(event) {
   const tabButton = event.target.closest("[data-tab]");
   if (tabButton) {
     stopSpeaking();
-    persisted.activeTab = tabButton.dataset.tab;
+    const newTab = tabButton.dataset.tab;
+    const currentTab = persisted.activeTab;
+
+    // Clicking the already-active tab: confirm before resetting to setup view
+    if (newTab === currentTab && newTab !== "home") {
+      const tabLabel = TABS.find((t) => t.id === newTab)?.title || newTab;
+      const hasActiveSession =
+        (newTab === "quiz"    && runtime.currentQuiz && !runtime.currentQuiz.completed) ||
+        (newTab === "reading" && runtime.passages    && !runtime.passages.completed);
+      const message = hasActiveSession
+        ? `Abandon the current session and return to ${tabLabel} setup?`
+        : `Return to the ${tabLabel} main screen?`;
+      if (!window.confirm(message)) return;
+      // Reset any in-progress state for that tab
+      if (newTab === "quiz")    runtime.currentQuiz = null;
+      if (newTab === "reading") runtime.passages    = null;
+    }
+
+    persisted.activeTab = newTab;
     saveStoredState(persisted);
     runtime.currentQuiz = runtime.currentQuiz && runtime.currentQuiz.completed ? null : runtime.currentQuiz;
     await renderApp();
@@ -2493,6 +2575,60 @@ async function handleClick(event) {
         }
       }
       runtime.passages = null;
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-vocab-subject": {
+      const nextSubject = actionButton.dataset.value;
+      const curriculum = persisted.prefs.vocab.curriculum || "all";
+      const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
+      const fallbackDatasets = datasets.length ? datasets : listDatasetsBySubject(runtime.manifest, nextSubject);
+      if (!fallbackDatasets.length) return;
+      if (!datasets.length) persisted.prefs.vocab.curriculum = "all";
+      persisted.prefs.vocab.subject = nextSubject;
+      persisted.prefs.vocab.datasetId = fallbackDatasets[0].id;
+      persisted.prefs.vocab.search = "";
+      persisted.prefs.vocab.partOfSpeech = "";
+      persisted.prefs.vocab.category = "";
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-vocab-curriculum": {
+      const nextCurriculum = actionButton.dataset.value;
+      persisted.prefs.vocab.curriculum = nextCurriculum;
+      const subject = persisted.prefs.vocab.subject || "language";
+      const filtered = listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, nextCurriculum);
+      if (filtered.length) persisted.prefs.vocab.datasetId = filtered[0].id;
+      persisted.prefs.vocab.search = "";
+      persisted.prefs.vocab.partOfSpeech = "";
+      persisted.prefs.vocab.category = "";
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-builder-subject": {
+      const nextSubject = actionButton.dataset.value;
+      const curriculum = persisted.prefs.builder.curriculum || "all";
+      const packs = listSentenceBuilderPacksBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
+      const fallbackPacks = packs.length ? packs : listSentenceBuilderPacksBySubject(runtime.manifest, nextSubject);
+      if (!fallbackPacks.length) return;
+      if (!packs.length) persisted.prefs.builder.curriculum = "all";
+      persisted.prefs.builder.subject = nextSubject;
+      persisted.prefs.builder.packId = fallbackPacks[0].id;
+      runtime.builder = null;
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-builder-curriculum": {
+      const nextCurriculum = actionButton.dataset.value;
+      persisted.prefs.builder.curriculum = nextCurriculum;
+      const subject = persisted.prefs.builder.subject || "history";
+      const filtered = listSentenceBuilderPacksBySubjectAndCurriculum(runtime.manifest, subject, nextCurriculum);
+      if (filtered.length) persisted.prefs.builder.packId = filtered[0].id;
+      runtime.builder = null;
       saveStoredState(persisted);
       await renderApp();
       return;
@@ -2770,12 +2906,16 @@ async function handleChange(event) {
 
   const { id, value } = event.target;
   switch (id) {
-    case "vocab-dataset":
+    case "vocab-dataset": {
       persisted.prefs.vocab.datasetId = value;
       persisted.prefs.vocab.partOfSpeech = "";
       persisted.prefs.vocab.category = "";
+      // Keep subject in sync when user manually picks a dataset
+      const vocabDataset = findDataset(runtime.manifest, value);
+      persisted.prefs.vocab.subject = getDatasetSubject(vocabDataset);
       applyDatasetDefaults("vocab", { resetStages: true });
       break;
+    }
     case "vocab-year":
       persisted.prefs.vocab.year = value;
       break;
@@ -2802,10 +2942,15 @@ async function handleChange(event) {
     case "quiz-exclude-mastered":
       persisted.prefs.quiz.excludeMastered = value === "true";
       break;
-    case "builder-pack":
+    case "builder-pack": {
       persisted.prefs.builder.packId = value;
+      // Keep subject in sync when user manually picks a builder pack
+      const allBuilderPacks = listSentenceBuilderPacks(runtime.manifest);
+      const chosenBuilderPack = allBuilderPacks.find((p) => p.id === value);
+      if (chosenBuilderPack) persisted.prefs.builder.subject = getBuilderPackSubject(chosenBuilderPack);
       runtime.builder = null;
       break;
+    }
     case "builder-filter":
       persisted.prefs.builder.filter = value;
       runtime.builder = null;

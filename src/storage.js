@@ -7,6 +7,8 @@ export const DEFAULT_STATE = {
   prefs: {
     vocab: {
       datasetId: "core",
+      subject: "language",                      // language | history | geography | science
+      curriculum: "all",                        // ks3 | gcse | other | all
       year: "ALL",
       stages: [],
       search: "",
@@ -37,6 +39,8 @@ export const DEFAULT_STATE = {
     builder: {
       packId: "",
       filter: "all",
+      subject: "history",                       // history | language | geography | science
+      curriculum: "all",                        // ks3 | gcse | other | all
     },
     passages: {
       subject: "",

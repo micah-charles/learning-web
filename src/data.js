@@ -408,6 +408,30 @@ export function listSentenceBuilderPacks(manifest) {
   return manifest.sentenceBuilderPacks || [];
 }
 
+export function getBuilderPackSubject(pack) {
+  if (!pack) return "history";
+  const explicit = String(pack.subject || "").toLowerCase();
+  if (SUBJECTS.includes(explicit)) return explicit;
+  const id = String(pack.id || "").toLowerCase();
+  if (id.includes("geograph") || id.includes("glaciat")) return "geography";
+  if (id.includes("histor") || id.includes("black_death") || id.includes("silk_road")) return "history";
+  if (id.includes("science")) return "science";
+  if (id.includes("literature") || id.includes("novel") || id.includes("poem")) return "literature";
+  return "history";
+}
+
+export function listSentenceBuilderPacksBySubject(manifest, subject) {
+  return listSentenceBuilderPacks(manifest).filter(
+    (p) => getBuilderPackSubject(p) === subject,
+  );
+}
+
+export function listSentenceBuilderPacksBySubjectAndCurriculum(manifest, subject, curriculum) {
+  const bySubject = listSentenceBuilderPacksBySubject(manifest, subject);
+  if (!curriculum || curriculum === "all") return bySubject;
+  return bySubject.filter((p) => inferCurriculum(p) === curriculum);
+}
+
 export async function loadSentenceBuilderUnifiedPack(manifest, packId) {
   const pack = (manifest.sentenceBuilderPacks || []).find((item) => item.id === packId);
   if (!pack || !pack.unifiedPath) throw new Error(`No unifiedPath for sentence builder pack: ${packId}`);
