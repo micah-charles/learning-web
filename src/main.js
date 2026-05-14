@@ -365,11 +365,7 @@ function renderFeedbackBanner({ tone = "info", title, body, extra = "" }) {
   `;
 }
 
-function renderQuestionBox({ eyebrow = "", modeLabel = "", prompt, subtitle = "", meta = [], sideContent = "" }) {
-  const metaChips = meta
-    .filter(Boolean)
-    .map(({ label, style = "blue" }) => `<span class="badge ${escapeHtml(style)}">${escapeHtml(label)}</span>`)
-    .join("");
+function renderQuestionBox({ eyebrow = "", modeLabel = "", prompt, subtitle = "", sideContent = "" }) {
   return `
     <div class="question-box">
       <div class="question-box-top">
@@ -378,7 +374,6 @@ function renderQuestionBox({ eyebrow = "", modeLabel = "", prompt, subtitle = ""
           ${modeLabel ? `<span class="mode-chip blue">${escapeHtml(modeLabel)}</span>` : ""}
           <div class="question-prompt">${escapeHtml(prompt)}</div>
           ${subtitle ? `<p class="muted tiny">${escapeHtml(subtitle)}</p>` : ""}
-          ${metaChips ? `<div class="badge-row" style="margin-top:6px;gap:6px;">${metaChips}</div>` : ""}
         </div>
         ${sideContent}
       </div>
@@ -554,13 +549,8 @@ async function renderVocabTab() {
     ? [...new Set(scopedWords.map((w) => fallback(w.part_of_speech, fallback(w.pos, "")).trim()).filter(Boolean))].sort()
     : [];
 
-  // Language-pack categories: only for packs without stage selection (e.g. German; Latin uses stages)
-  const usesCategoryCheckboxes = isLanguage && !usesStageSelection(dataset);
-  const categoryOptions = usesCategoryCheckboxes
-    ? [...new Set([].concat(...scopedWords.map((w) => w.categories || [])))].filter(Boolean).sort()
-    : [];
-  const selectedCategories = usesCategoryCheckboxes
-    ? getSelectedCategories(prefs, categoryOptions)
+  const categoryOptions = isLanguage
+    ? [...new Set([].concat(...scopedWords.map((w) => w.categories || [])))].sort()
     : [];
 
   // Literature "Type" options: extracted from cat:* tags, displayed without prefix
@@ -574,13 +564,10 @@ async function renderVocabTab() {
   const filtered = scopedWords
     .filter((word) => !isLanguage || !prefs.partOfSpeech || fallback(word.part_of_speech, fallback(word.pos, "")) === prefs.partOfSpeech)
     .filter((word) => {
-      if (isLiterature) return !prefs.category || (word.tags || []).includes(prefs.category);
-      if (usesCategoryCheckboxes) {
-        // pass if word has no category assignment, or its category is in the selected set
-        const cats = word.categories || [];
-        return !cats.length || cats.some((c) => selectedCategories.includes(c));
-      }
-      return true; // geography / history / science — no category filter
+      if (!prefs.category) return true;
+      if (isLiterature) return (word.tags || []).includes(prefs.category);
+      if (isLanguage) return (word.categories || []).includes(prefs.category);
+      return true; // geography/history/science — no category filter
     })
     .filter((word) => {
       const query = prefs.search.trim().toLowerCase();
@@ -600,11 +587,11 @@ async function renderVocabTab() {
 
   // ── Render filter controls ────────────────────────────────────────────────
   const posField = isLanguage
-    ? renderSelectField("vocab-pos", "Part of speech", [{ value: "", label: "All parts of speech" }, ...partOfSpeechOptions.map((item) => ({ value: item, label: POS_LABELS[item] || humanizeLabel(item) }))], prefs.partOfSpeech)
+    ? renderSelectField("vocab-pos", "Part of speech", [{ value: "", label: "All parts of speech" }, ...partOfSpeechOptions.map((item) => ({ value: item, label: item }))], prefs.partOfSpeech)
     : "";
 
-  const categoryField = usesCategoryCheckboxes && categoryOptions.length
-    ? renderCategoryFieldset("vocab", categoryOptions, selectedCategories)
+  const categoryField = isLanguage
+    ? renderSelectField("vocab-category", "Category", [{ value: "", label: "All categories" }, ...categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)
     : isLiterature && literatureTypeOptions.length
       ? renderSelectField("vocab-category", "Type", [{ value: "", label: "All types" }, ...literatureTypeOptions], prefs.category)
       : "";
@@ -943,29 +930,19 @@ function renderQuizSession(session) {
     <div class="section-stack">
       <section class="question-shell lead">
         ${question.stimulus ? renderStimulus(question.stimulus) : ""}
-        ${(() => {
-          const posRaw = question.pos || "";
-          const posLabel = posRaw ? (POS_LABELS[posRaw] || humanizeLabel(posRaw)) : "";
-          const topicLabel = question.topic || "";
-          const questionMeta = [
-            posLabel   ? { label: posLabel,   style: "blue"  } : null,
-            topicLabel ? { label: topicLabel, style: "amber" } : null,
-          ].filter(Boolean);
-          return renderQuestionBox({
-            eyebrow: question.modeTitle,
-            modeLabel: describeQuizMode(question),
-            prompt: question.prompt,
-            subtitle: question.subtitle || "",
-            meta: questionMeta,
-            sideContent: `
-              <div class="chip-row">
-                <span class="count-pill blue">${escapeHtml(progressText)}</span>
-                <span class="count-pill green">${session.score} correct</span>
-                <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">Speak</button>
-              </div>
-            `,
-          });
-        })()}
+        ${renderQuestionBox({
+          eyebrow: question.modeTitle,
+          modeLabel: describeQuizMode(question),
+          prompt: question.prompt,
+          subtitle: question.subtitle || "",
+          sideContent: `
+            <div class="chip-row">
+              <span class="count-pill blue">${escapeHtml(progressText)}</span>
+              <span class="count-pill green">${session.score} correct</span>
+              <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">Speak</button>
+            </div>
+          `,
+        })}
         ${renderQuestionControls(question, buildState, session.awaitingNext)}
         ${feedback}
         <div class="action-row">
@@ -1878,18 +1855,6 @@ const SUBJECT_LABELS = {
   literature: { label: "Literature", icon: "📖" },
 };
 
-// Maps single-letter PoS abbreviations (used by Latin pack) to full display labels.
-const POS_LABELS = {
-  n: "Noun",
-  v: "Verb",
-  a: "Adjective",
-  d: "Adverb",
-  r: "Preposition",
-  p: "Pronoun",
-  c: "Conjunction",
-  i: "Interjection",
-};
-
 function renderSubjectCardGrid(activeSubject, action = "select-subject") {
   const cards = SUBJECTS.map((subject) => {
     const meta = SUBJECT_LABELS[subject];
@@ -2131,31 +2096,6 @@ function renderStageFieldset(sectionKey, stageOptions, selectedStages) {
                   ${selectedStages.includes(String(stage)) ? "checked" : ""}
                 />
                 <span><strong>Stage ${escapeHtml(stage)}</strong></span>
-              </label>
-            `,
-          )
-          .join("")}
-      </div>
-    </div>
-  `;
-}
-
-function renderCategoryFieldset(sectionKey, categoryOptions, selectedCategories) {
-  return `
-    <div class="field stage-field" style="grid-column:1/-1;">
-      <div class="fieldset-title">Category</div>
-      <div class="stage-check-list">
-        ${categoryOptions
-          .map(
-            (cat) => `
-              <label class="mode-check stage-check">
-                <input
-                  type="checkbox"
-                  name="${escapeHtml(sectionKey)}-category"
-                  data-category="${escapeHtml(cat)}"
-                  ${selectedCategories.includes(cat) ? "checked" : ""}
-                />
-                <span>${escapeHtml(humanizeLabel(cat))}</span>
               </label>
             `,
           )
@@ -2701,7 +2641,6 @@ async function handleClick(event) {
       persisted.prefs.vocab.search = "";
       persisted.prefs.vocab.partOfSpeech = "";
       persisted.prefs.vocab.category = "";
-      persisted.prefs.vocab.categories = [];
       saveStoredState(persisted);
       await renderApp();
       return;
@@ -2715,7 +2654,6 @@ async function handleClick(event) {
       persisted.prefs.vocab.search = "";
       persisted.prefs.vocab.partOfSpeech = "";
       persisted.prefs.vocab.category = "";
-      persisted.prefs.vocab.categories = [];
       saveStoredState(persisted);
       await renderApp();
       return;
@@ -3009,31 +2947,6 @@ function updateStageSelection(sectionKey, input) {
   prefSection.stages = stageOptions.filter((stage) => nextStages.has(stage));
 }
 
-// ── Category checkbox helpers (language packs without stage selection, e.g. German) ──
-
-function getSelectedCategories(prefSection, categoryOptions) {
-  if (!categoryOptions.length) return [];
-  const current = Array.isArray(prefSection.categories) ? prefSection.categories : [];
-  const valid = current.filter((c) => categoryOptions.includes(c));
-  return valid.length ? valid : [...categoryOptions]; // default: all selected
-}
-
-function updateCategorySelection(sectionKey, input) {
-  const prefSection = persisted.prefs[sectionKey];
-  const catValue = input.dataset.category;
-  const allOptions = [...document.querySelectorAll(`input[name="${sectionKey}-category"]`)]
-    .map((el) => el.dataset.category);
-  const nextCategories = new Set(getSelectedCategories(prefSection, allOptions));
-  if (input.checked) {
-    nextCategories.add(catValue);
-  } else if (nextCategories.size > 1) {
-    nextCategories.delete(catValue);
-  } else {
-    input.checked = true; // prevent deselecting the last one
-  }
-  prefSection.categories = allOptions.filter((c) => nextCategories.has(c));
-}
-
 async function handleChange(event) {
   // File upload is handled separately (async, does its own renderApp call).
   if (event.target.id === "admin-file-upload") {
@@ -3047,7 +2960,6 @@ async function handleChange(event) {
       persisted.prefs.vocab.datasetId = value;
       persisted.prefs.vocab.partOfSpeech = "";
       persisted.prefs.vocab.category = "";
-      persisted.prefs.vocab.categories = [];
       // Keep subject in sync when user manually picks a dataset
       const vocabDataset = findDataset(runtime.manifest, value);
       persisted.prefs.vocab.subject = getDatasetSubject(vocabDataset);
@@ -3144,8 +3056,6 @@ async function handleChange(event) {
         updateStageSelection("vocab", event.target);
       } else if (event.target.name === "quiz-stage") {
         updateStageSelection("quiz", event.target);
-      } else if (event.target.name === "vocab-category") {
-        updateCategorySelection("vocab", event.target);
       }
       break;
   }
