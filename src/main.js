@@ -534,26 +534,67 @@ async function renderVocabTab() {
   if (!prefs.subject) prefs.subject = "language";
   if (!prefs.curriculum) prefs.curriculum = "all";
   const dataset = findDataset(runtime.manifest, prefs.datasetId);
+  const subject = getDatasetSubject(dataset);
+  const isLanguage = subject === "language";
+  const isLiterature = subject === "literature";
+
   const words = await loadVocabItems(runtime.manifest, dataset.id);
   const scopedWords = filterWordsForScope(words, dataset, prefs);
-  const partOfSpeechOptions = [...new Set(scopedWords.map((word) => fallback(word.part_of_speech, fallback(word.pos, "")).trim()).filter(Boolean))].sort();
-  const categoryOptions = [...new Set([].concat(...scopedWords.map((word) => word.categories || [])))].sort();
+
+  // ── Filter options — vary by subject ──────────────────────────────────────
+  // Language: Part of speech + Category (topics)
+  // Literature: Type filter from cat:* tags (e.g. Theme, Character, Technique)
+  // Geography / History / Science: Search only — pack already IS the topic
+  const partOfSpeechOptions = isLanguage
+    ? [...new Set(scopedWords.map((w) => fallback(w.part_of_speech, fallback(w.pos, "")).trim()).filter(Boolean))].sort()
+    : [];
+
+  const categoryOptions = isLanguage
+    ? [...new Set([].concat(...scopedWords.map((w) => w.categories || [])))].sort()
+    : [];
+
+  // Literature "Type" options: extracted from cat:* tags, displayed without prefix
+  const literatureTypeOptions = isLiterature
+    ? [...new Set([].concat(...scopedWords.map((w) => (w.tags || []).filter((t) => t.startsWith("cat:")))))]
+        .sort()
+        .map((t) => ({ value: t, label: humanizeLabel(t.replace(/^cat:/, "")) }))
+    : [];
+
+  // ── Apply filters ─────────────────────────────────────────────────────────
   const filtered = scopedWords
-    .filter((word) => !prefs.partOfSpeech || fallback(word.part_of_speech, fallback(word.pos, "")) === prefs.partOfSpeech)
-    .filter((word) => !prefs.category || (word.categories || []).includes(prefs.category))
+    .filter((word) => !isLanguage || !prefs.partOfSpeech || fallback(word.part_of_speech, fallback(word.pos, "")) === prefs.partOfSpeech)
+    .filter((word) => {
+      if (!prefs.category) return true;
+      if (isLiterature) return (word.tags || []).includes(prefs.category);
+      if (isLanguage) return (word.categories || []).includes(prefs.category);
+      return true; // geography/history/science — no category filter
+    })
     .filter((word) => {
       const query = prefs.search.trim().toLowerCase();
-      if (!query) {
-        return true;
-      }
+      if (!query) return true;
       return [word.de, word.en, word.topic].concat(word.tags || [])
         .join(" ")
         .toLowerCase()
         .includes(query);
     });
+
   const visibleWords = filtered.slice(0, 120);
   const mastered = countMasteredWords(persisted, filtered);
-  const searchPlaceholder = `Type ${getStudyLanguageLabel(dataset)}, ${getTargetLanguageLabel(dataset)}, topic, or tag and press Enter`;
+
+  const searchPlaceholder = isLanguage
+    ? `Type ${getStudyLanguageLabel(dataset)}, ${getTargetLanguageLabel(dataset)}, topic, or tag and press Enter`
+    : `Type term, definition, or tag and press Enter`;
+
+  // ── Render filter controls ────────────────────────────────────────────────
+  const posField = isLanguage
+    ? renderSelectField("vocab-pos", "Part of speech", [{ value: "", label: "All parts of speech" }, ...partOfSpeechOptions.map((item) => ({ value: item, label: item }))], prefs.partOfSpeech)
+    : "";
+
+  const categoryField = isLanguage
+    ? renderSelectField("vocab-category", "Category", [{ value: "", label: "All categories" }, ...categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)
+    : isLiterature && literatureTypeOptions.length
+      ? renderSelectField("vocab-category", "Type", [{ value: "", label: "All types" }, ...literatureTypeOptions], prefs.category)
+      : "";
 
   return `
     <div class="section-stack">
@@ -576,11 +617,11 @@ async function renderVocabTab() {
           ${renderDatasetSelectFiltered("vocab-dataset", prefs.datasetId, prefs.subject, prefs.curriculum)}
           ${usesStageSelection(dataset)
             ? renderStageFieldset("vocab", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
-            : getDatasetSubject(dataset) === "language"
+            : isLanguage
               ? renderYearSelect("vocab-year", prefs.year)
               : ""}
-          ${renderSelectField("vocab-pos", "Part of speech", [{ value: "", label: "All parts of speech" }, ...partOfSpeechOptions.map((item) => ({ value: item, label: item }))], prefs.partOfSpeech)}
-          ${renderSelectField("vocab-category", "Category", [{ value: "", label: "All categories" }, ...categoryOptions.map((item) => ({ value: item, label: humanizeLabel(item) }))], prefs.category)}
+          ${posField}
+          ${categoryField}
           <div class="field" style="grid-column:1/-1;">
             <label for="vocab-search">Search</label>
             <input id="vocab-search" class="input" value="${escapeHtml(prefs.search)}" placeholder="${escapeHtml(searchPlaceholder)}" />
@@ -597,13 +638,22 @@ async function renderVocabTab() {
               : progress.correct || progress.wrong
                 ? { label: "Practising", tone: "amber" }
                 : { label: "New", tone: "blue" };
+            // For Literature: find the first cat:* tag to show as a type badge
+            const typeTag = isLiterature
+              ? (word.tags || []).find((t) => t.startsWith("cat:"))
+              : null;
+            const typeBadge = typeTag
+              ? `<span class="badge blue">${escapeHtml(humanizeLabel(typeTag.replace(/^cat:/, "")))}</span>`
+              : "";
+
             return `
               <article class="vocab-card">
                 <div class="status-bar">
                   <div class="chip-row">
                     <span class="badge ${status.tone}">${status.label}</span>
-                    <span class="badge blue">${escapeHtml(word.level)}</span>
-                    <span class="badge amber">${escapeHtml(word.topic)}</span>
+                    ${word.level ? `<span class="badge blue">${escapeHtml(word.level)}</span>` : ""}
+                    ${isLanguage && word.topic ? `<span class="badge amber">${escapeHtml(word.topic)}</span>` : ""}
+                    ${typeBadge}
                   </div>
                   <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">Speak</button>
                 </div>
@@ -615,10 +665,10 @@ async function renderVocabTab() {
                   ${word.gender ? `<span class="badge coral">gender: ${escapeHtml(word.gender)}</span>` : ""}
                   ${word.plural ? `<span class="badge blue">plural: ${escapeHtml(word.plural)}</span>` : ""}
                 </div>
-                ${word.example_de || word.example_en ? `
+                ${word.exampleDe || word.exampleEn ? `
                   <div class="divider"></div>
-                  <p class="tiny muted">${escapeHtml(fallback(word.example_de, ""))}</p>
-                  <p class="tiny muted">${escapeHtml(fallback(word.example_en, ""))}</p>
+                  ${word.exampleDe ? `<p class="tiny muted">${escapeHtml(word.exampleDe)}</p>` : ""}
+                  ${word.exampleEn ? `<p class="tiny muted">${escapeHtml(word.exampleEn)}</p>` : ""}
                 ` : ""}
                 <div class="meta-row">
                   <span class="tiny muted">correct ${progress.correct} · wrong ${progress.wrong}</span>

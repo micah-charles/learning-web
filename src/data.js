@@ -60,7 +60,7 @@ function vocabFromItem(item) {
     gender: data.gender || null,
     plural: data.plural || null,
     exampleDe: data.exampleSource || data.exampleDe || null,
-    exampleEn: data.exampleTarget || data.exampleEn || null,
+    exampleEn: data.exampleTarget || data.exampleEn || data.examples?.["en-GB"] || null,
     topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
     tags: item.tags || [],
     level: item.level || "",
