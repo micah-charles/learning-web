@@ -358,7 +358,10 @@ export async function loadVocabItems(manifest, datasetId) {
       pos:   d.partOfSpeech || d.pos || "",
       gender:    d.gender    || null,
       plural:    d.plural    || null,
-      exampleDe: d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null,
+      // Only populate exampleDe when the pack has distinct src/target languages
+      // (i.e. true language packs). When srcCode === tgtCode (Science, Geography…)
+      // the same examples entry would otherwise appear in both fields and render twice.
+      exampleDe: srcCode !== tgtCode ? (d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null) : null,
       exampleEn: d.examples?.[tgtCode] || d.exampleTarget || d.exampleEn || null,
       topic:     Array.isArray(item.topics) ? item.topics[0] || "" : "",
       tags:      item.tags || [],
