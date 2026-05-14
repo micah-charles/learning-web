@@ -13,7 +13,8 @@ export const DEFAULT_STATE = {
       stages: [],
       search: "",
       partOfSpeech: "",
-      category: "",
+      category: "",       // used by Literature "Type" dropdown only
+      categories: [],     // used by language-pack category checkboxes ([] = all selected)
     },
     quiz: {
       // Subject First selections (added in the Subject First refactor)
