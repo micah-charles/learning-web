@@ -1,0 +1,1435 @@
+{
+  "packId": "ks3_science_physics_forces",
+  "subject": "science",
+  "title": "KS3 / Year 7-9 Science \u2014 Physics Forces",
+  "subtitle": "Forces, resultant forces, friction, resistance, gravity, mass, weight and practical skills.",
+  "level": "KS3 / Year 7-9",
+  "language": "English",
+  "topics": [
+    "KS3 Science: physics forces"
+  ],
+  "tags": [
+    "KS3 / Year 7-9",
+    "Science",
+    "Physics",
+    "Forces"
+  ],
+  "description": "A KS3 physics revision pack on forces as pushes, pulls, twists, stretches and squeezes. It covers contact and non-contact forces, force diagrams, balanced and unbalanced forces, resultant force calculations, resistance forces, gravity, mass, weight and working scientifically through a friction investigation.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_science_physics_forces_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "force",
+        "targetWord": "a push, pull, twist, stretch or squeeze that can change an object's speed, direction or shape",
+        "examples": {
+          "en-GB": "A force can make a football speed up, slow down, change direction or briefly change shape."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:units",
+        "cat:forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Newton",
+        "targetWord": "the unit of force, written as N",
+        "examples": {
+          "en-GB": "A force meter measures force in Newtons."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:forces",
+        "cat:diagrams"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "force arrow",
+        "targetWord": "an arrow used in a force diagram to show the direction and relative size of a force",
+        "examples": {
+          "en-GB": "A longer force arrow represents a larger force."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:forces",
+        "cat:resultant"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "resultant force",
+        "targetWord": "the single overall force after all forces on an object have been combined",
+        "examples": {
+          "en-GB": "A 50 N push right and 20 N friction left give a resultant force of 30 N right."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:forces",
+        "cat:motion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "balanced forces",
+        "targetWord": "equal and opposite forces that cancel to give a resultant force of 0 N",
+        "examples": {
+          "en-GB": "Balanced forces can act on a stationary object or on an object moving at steady speed."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:forces",
+        "cat:motion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "unbalanced forces",
+        "targetWord": "forces that do not cancel, giving a non-zero resultant force",
+        "examples": {
+          "en-GB": "Unbalanced forces can make an object speed up, slow down, turn or change shape."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "contact force",
+        "targetWord": "a force that acts when objects touch each other",
+        "examples": {
+          "en-GB": "Friction is a contact force because it acts between touching surfaces."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:non_contact_forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "non-contact force",
+        "targetWord": "a force that acts at a distance without objects touching",
+        "examples": {
+          "en-GB": "Gravity is a non-contact force because Earth pulls objects down without touching them directly."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces",
+        "cat:friction"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "friction",
+        "targetWord": "a contact force that opposes sliding or attempted sliding between surfaces",
+        "examples": {
+          "en-GB": "Friction between shoes and the ground helps a person walk without slipping."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "air resistance",
+        "targetWord": "a contact force that opposes motion through air",
+        "examples": {
+          "en-GB": "Air resistance acts against a cyclist moving through air."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "water resistance",
+        "targetWord": "a contact force that opposes motion through water",
+        "examples": {
+          "en-GB": "Water resistance slows a swimmer or boat moving through water."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces",
+        "cat:surfaces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "normal contact force",
+        "targetWord": "the force from a surface pushing on an object touching it",
+        "examples": {
+          "en-GB": "A table provides an upward normal contact force on a book."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "tension",
+        "targetWord": "a pulling force in a stretched rope, string, cable or chain",
+        "examples": {
+          "en-GB": "Tension acts in the rope when it pulls a sledge."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces",
+        "cat:fluids"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "upthrust",
+        "targetWord": "an upward force from a fluid such as water or air",
+        "examples": {
+          "en-GB": "Upthrust from water helps a boat float."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "applied push or pull",
+        "targetWord": "a contact force applied by a person or object pushing or pulling another object",
+        "examples": {
+          "en-GB": "A person pushing a trolley applies a forward contact force."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:non_contact_forces",
+        "cat:gravity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "gravity",
+        "targetWord": "a non-contact force of attraction between masses",
+        "examples": {
+          "en-GB": "Near Earth, gravity pulls objects towards the centre of the Earth."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:non_contact_forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "magnetic force",
+        "targetWord": "a non-contact force that acts between magnets and magnetic materials",
+        "examples": {
+          "en-GB": "A magnet attracting a steel paperclip is an example of magnetic force."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:non_contact_forces"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "electrostatic force",
+        "targetWord": "a non-contact force between charged objects",
+        "examples": {
+          "en-GB": "A rubbed balloon attracting hair shows electrostatic force."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:gravity",
+        "cat:mass_weight"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mass",
+        "targetWord": "the amount of matter in an object, measured in kilograms",
+        "examples": {
+          "en-GB": "Mass is measured in kilograms and does not change just because gravity changes."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:gravity",
+        "cat:mass_weight"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "weight",
+        "targetWord": "the force of gravity acting on an object, measured in Newtons",
+        "examples": {
+          "en-GB": "A person's weight would be smaller on the Moon because the Moon's gravity is weaker."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:instruments",
+        "cat:practical"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "force meter",
+        "targetWord": "an instrument used to measure force in Newtons",
+        "examples": {
+          "en-GB": "In the friction investigation, the force meter measures the force needed to pull the block."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:instruments",
+        "cat:mass_weight"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "balance",
+        "targetWord": "an instrument used to measure mass",
+        "examples": {
+          "en-GB": "A balance measures mass, whereas a force meter measures weight or force."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:units",
+        "cat:mass_weight"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "kilogram",
+        "targetWord": "the unit of mass, written as kg",
+        "examples": {
+          "en-GB": "A bag with a mass of 3 kg has mass measured in kilograms."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:friction",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "streamlined shape",
+        "targetWord": "a shape that reduces resistance when moving through a fluid",
+        "examples": {
+          "en-GB": "A streamlined cyclist or swimmer experiences less air or water resistance."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:friction",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "surface area",
+        "targetWord": "the amount of exposed surface; a larger surface area can increase air or water resistance",
+        "examples": {
+          "en-GB": "A parachute increases surface area and so increases air resistance."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:motion",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "steady speed",
+        "targetWord": "constant speed in a straight line when the resultant force is 0 N",
+        "examples": {
+          "en-GB": "A moving cyclist can continue at steady speed when the forward and backward forces are balanced."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:motion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "acceleration",
+        "targetWord": "speeding up, which happens when there is a resultant force in the direction of motion",
+        "examples": {
+          "en-GB": "A bus accelerates when the forward driving force is larger than the backward resistance forces."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:motion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "deceleration",
+        "targetWord": "slowing down, which happens when the resultant force acts opposite to motion",
+        "examples": {
+          "en-GB": "A car decelerates when braking forces and air resistance act backwards more strongly than the driving force."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_029",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:safety",
+        "cat:motion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "stopping time",
+        "targetWord": "the time taken for an object or person to stop",
+        "examples": {
+          "en-GB": "Seat belts and crumple zones can increase stopping time so the stopping force is smaller."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_030",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:space",
+        "cat:gravity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "orbit",
+        "targetWord": "the path of an object around another object when gravity keeps changing its direction",
+        "examples": {
+          "en-GB": "A satellite stays in orbit because gravity keeps changing its direction."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_031",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "independent variable",
+        "targetWord": "the variable deliberately changed in an investigation",
+        "examples": {
+          "en-GB": "In the friction investigation, the surface type is the independent variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_032",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dependent variable",
+        "targetWord": "the variable measured in an investigation",
+        "examples": {
+          "en-GB": "The force needed to pull the block is the dependent variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_033",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "control variable",
+        "targetWord": "a variable kept the same to make a test fair",
+        "examples": {
+          "en-GB": "Using the same block each time is a control variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_034",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:reliability"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "reliability",
+        "targetWord": "how trustworthy results are, often improved by repeating measurements",
+        "examples": {
+          "en-GB": "Repeating each surface test improves the reliability of the friction investigation."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_035",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:reliability"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "repeatability",
+        "targetWord": "getting similar results when the same method is repeated",
+        "examples": {
+          "en-GB": "A repeatable method should give similar force readings when another student follows it carefully."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_036",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:measurement"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "accuracy",
+        "targetWord": "how close a measurement is to the true value",
+        "examples": {
+          "en-GB": "Checking that a force meter starts at zero can help improve accuracy."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_037",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:measurement"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "precision",
+        "targetWord": "how close repeated measurements are to each other",
+        "examples": {
+          "en-GB": "Readings of 2.0 N, 2.1 N and 2.2 N are more precise than readings spread far apart."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_038",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "anomalous result",
+        "targetWord": "a result that does not fit the pattern of the other results",
+        "examples": {
+          "en-GB": "The 7.9 N sandpaper reading is anomalous because it is much higher than the other sandpaper readings."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_039",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mean",
+        "targetWord": "an average found by adding readings and dividing by the number of readings",
+        "examples": {
+          "en-GB": "The mean of 2.0 N, 2.1 N and 2.2 N is 2.1 N."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_vocab_040",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "trend",
+        "targetWord": "a pattern shown by results or data",
+        "examples": {
+          "en-GB": "The air resistance data shows a trend: as speed increases, air resistance increases."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "sentence": "A force is a push, pull, twist, stretch or ____.",
+        "answer": "squeeze",
+        "hint": "It starts with s.",
+        "options": [
+          "squeeze",
+          "shadow",
+          "surface",
+          "symbol"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:units"
+      ],
+      "data": {
+        "sentence": "Force is measured in ____.",
+        "answer": "Newtons",
+        "hint": "The symbol is N.",
+        "options": [
+          "Newtons",
+          "kilograms",
+          "metres",
+          "seconds"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:diagrams"
+      ],
+      "data": {
+        "sentence": "In a force diagram, a longer arrow shows a ____ force.",
+        "answer": "larger",
+        "hint": "Think about arrow length."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resultant"
+      ],
+      "data": {
+        "sentence": "The single overall force after combining forces is the ____ force.",
+        "answer": "resultant",
+        "hint": "It means the final overall force.",
+        "options": [
+          "resultant",
+          "magnetic",
+          "control",
+          "surface"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:balanced"
+      ],
+      "data": {
+        "sentence": "Forces are ____ when the resultant force is 0 N.",
+        "answer": "balanced",
+        "hint": "Equal and opposite forces cancel."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:unbalanced"
+      ],
+      "data": {
+        "sentence": "If the resultant force is not zero, the forces are ____.",
+        "answer": "unbalanced",
+        "hint": "The forces do not cancel."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces"
+      ],
+      "data": {
+        "sentence": "____ opposes sliding or attempted sliding between surfaces.",
+        "answer": "Friction",
+        "hint": "It helps shoes grip the ground.",
+        "options": [
+          "Friction",
+          "Gravity",
+          "Mass",
+          "Tension"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:non_contact_forces"
+      ],
+      "data": {
+        "sentence": "____ is a non-contact force that pulls masses towards each other.",
+        "answer": "Gravity",
+        "hint": "It pulls objects towards Earth.",
+        "options": [
+          "Gravity",
+          "Friction",
+          "Tension",
+          "Upthrust"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:mass_weight"
+      ],
+      "data": {
+        "sentence": "Mass is measured in kilograms, but weight is measured in ____.",
+        "answer": "Newtons",
+        "hint": "Weight is a force."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:mass_weight"
+      ],
+      "data": {
+        "sentence": "The amount of matter in an object is called its ____.",
+        "answer": "mass",
+        "hint": "It is measured in kg.",
+        "options": [
+          "mass",
+          "weight",
+          "force",
+          "upthrust"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:mass_weight"
+      ],
+      "data": {
+        "sentence": "The force of gravity acting on an object is called its ____.",
+        "answer": "weight",
+        "hint": "It is measured in N.",
+        "options": [
+          "weight",
+          "mass",
+          "precision",
+          "surface area"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resistance"
+      ],
+      "data": {
+        "sentence": "Air resistance acts ____ to motion through air.",
+        "answer": "opposite",
+        "hint": "It resists the motion."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resistance"
+      ],
+      "data": {
+        "sentence": "A parachute increases air resistance because it has a large ____.",
+        "answer": "surface area",
+        "hint": "More air particles are pushed against."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resultant",
+        "cat:calculation"
+      ],
+      "data": {
+        "sentence": "A 60 N push right and 25 N friction left give a resultant force of ____ N to the right.",
+        "answer": "35",
+        "hint": "Subtract the smaller force from the larger force.",
+        "options": [
+          "35",
+          "85",
+          "25",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resultant",
+        "cat:calculation"
+      ],
+      "data": {
+        "sentence": "Two equal opposite forces of 80 N left and 80 N right give a resultant force of ____ N.",
+        "answer": "0",
+        "hint": "Equal and opposite forces cancel.",
+        "options": [
+          "0",
+          "80",
+          "160",
+          "40"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "sentence": "In the surface friction investigation, the surface type is the ____ variable.",
+        "answer": "independent",
+        "hint": "It is deliberately changed.",
+        "options": [
+          "independent",
+          "dependent",
+          "control",
+          "anomalous"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "sentence": "The force needed to pull the block is the ____ variable.",
+        "answer": "dependent",
+        "hint": "It is measured."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "A result that does not fit the pattern is called an ____ result.",
+        "answer": "anomalous",
+        "hint": "The source example was 7.9 N for sandpaper."
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resultant",
+        "cat:calculation"
+      ],
+      "data": {
+        "title": "Calculating Opposite Forces",
+        "instruction": "Put the steps for calculating a resultant force from opposite forces in the correct order.",
+        "items": [
+          "Identify the two forces and their directions.",
+          "Find which force is larger.",
+          "Subtract the smaller force from the larger force.",
+          "State the size of the resultant force.",
+          "Give the direction of the larger force as the resultant force direction."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:practical",
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "title": "Investigating Surface Type and Friction",
+        "instruction": "Put the friction investigation method in the correct order.",
+        "items": [
+          "Place the block on the first surface.",
+          "Attach a force meter to the block.",
+          "Pull steadily so the block moves at a slow constant speed.",
+          "Record the force shown on the force meter in Newtons.",
+          "Repeat three times for the same surface.",
+          "Repeat the method for each surface.",
+          "Calculate a mean force for each surface and compare the results."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_seq_003",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:resistance",
+        "cat:parachute"
+      ],
+      "data": {
+        "title": "Forces on a Parachutist",
+        "instruction": "Put the events for a parachutist opening a parachute in the correct order.",
+        "items": [
+          "The parachutist falls with weight acting downwards and air resistance upwards.",
+          "As speed increases, air resistance increases.",
+          "The parachute opens and greatly increases surface area.",
+          "Air resistance becomes much larger for a short time.",
+          "The upward resultant force makes the parachutist slow down.",
+          "The forces may become balanced again at a lower steady speed."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_seq_004",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:motion",
+        "cat:cyclist"
+      ],
+      "data": {
+        "title": "Cyclist Motion",
+        "instruction": "Put the force situations for a cyclist journey in a sensible order.",
+        "items": [
+          "The cyclist starts from rest.",
+          "The forward driving force is larger than friction and air resistance.",
+          "The cyclist speeds up because the resultant force is forwards.",
+          "At steady speed, the forward and backward forces are equal.",
+          "When braking, backward forces are larger than the forward force.",
+          "The cyclist slows down because the resultant force is backwards."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:contact_forces",
+        "cat:non_contact_forces"
+      ],
+      "data": {
+        "title": "Contact or Non-Contact Force?",
+        "instruction": "Sort each force into the correct category.",
+        "categories": [
+          "Contact force",
+          "Non-contact force"
+        ],
+        "pairs": [
+          {
+            "text": "Friction",
+            "category": "Contact force"
+          },
+          {
+            "text": "Air resistance",
+            "category": "Contact force"
+          },
+          {
+            "text": "Water resistance",
+            "category": "Contact force"
+          },
+          {
+            "text": "Normal contact force",
+            "category": "Contact force"
+          },
+          {
+            "text": "Tension",
+            "category": "Contact force"
+          },
+          {
+            "text": "Upthrust",
+            "category": "Contact force"
+          },
+          {
+            "text": "Gravity",
+            "category": "Non-contact force"
+          },
+          {
+            "text": "Magnetic force",
+            "category": "Non-contact force"
+          },
+          {
+            "text": "Electrostatic force",
+            "category": "Non-contact force"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:balanced",
+        "cat:unbalanced"
+      ],
+      "data": {
+        "title": "Balanced or Unbalanced?",
+        "instruction": "Sort each situation into the correct category.",
+        "categories": [
+          "Balanced forces",
+          "Unbalanced forces"
+        ],
+        "pairs": [
+          {
+            "text": "A book rests on a table with 8 N up and 8 N down",
+            "category": "Balanced forces"
+          },
+          {
+            "text": "A boat moves at steady speed with equal engine force and water resistance",
+            "category": "Balanced forces"
+          },
+          {
+            "text": "A cyclist travels in a straight line at steady speed",
+            "category": "Balanced forces"
+          },
+          {
+            "text": "A box is pushed right with 60 N while friction is 25 N left",
+            "category": "Unbalanced forces"
+          },
+          {
+            "text": "A skateboard slows down on a rough path",
+            "category": "Unbalanced forces"
+          },
+          {
+            "text": "A cyclist turns a corner",
+            "category": "Unbalanced forces"
+          },
+          {
+            "text": "A bus accelerates away from a stop",
+            "category": "Unbalanced forces"
+          },
+          {
+            "text": "Two teams pull a rope with equal force in opposite directions",
+            "category": "Balanced forces"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_forces_sort_003",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics forces"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "title": "Variables in the Friction Investigation",
+        "instruction": "Sort each feature into the correct variable category.",
+        "categories": [
+          "Independent variable",
+          "Dependent variable",
+          "Control variable"
+        ],
+        "pairs": [
+          {
+            "text": "Surface type",
+            "category": "Independent variable"
+          },
+          {
+            "text": "Force needed to pull the block",
+            "category": "Dependent variable"
+          },
+          {
+            "text": "Same block",
+            "category": "Control variable"
+          },
+          {
+            "text": "Same added mass",
+            "category": "Control variable"
+          },
+          {
+            "text": "Same pulling speed",
+            "category": "Control variable"
+          },
+          {
+            "text": "Same force meter",
+            "category": "Control variable"
+          },
+          {
+            "text": "Same distance pulled",
+            "category": "Control variable"
+          }
+        ]
+      }
+    }
+  ],
+  "curriculum": "ks3"
+}
