@@ -358,7 +358,10 @@ export async function loadVocabItems(manifest, datasetId) {
       pos:   d.partOfSpeech || d.pos || "",
       gender:    d.gender    || null,
       plural:    d.plural    || null,
-      exampleDe: d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null,
+      // Only set exampleDe when src and target are different languages; when they
+      // are the same (Science, Geography, History: en-GB → en-GB) both fields would
+      // resolve to the same string and the card would render the example twice.
+      exampleDe: srcCode !== tgtCode ? (d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null) : null,
       exampleEn: d.examples?.[tgtCode] || d.exampleTarget || d.exampleEn || null,
       topic:     Array.isArray(item.topics) ? item.topics[0] || "" : "",
       tags:      item.tags || [],
