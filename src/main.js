@@ -132,6 +132,13 @@ function getStudyLanguageCode(dataset) {
   return fallback(dataset && dataset.speechLanguage, fallback(dataset && dataset.sourceLanguageCode, "de-DE"));
 }
 
+// Returns the Speak button label. Latin has no TTS voice on any OS/browser,
+// so the browser falls back to English — warn the user with "(EN only)".
+function speakLabel(languageCode) {
+  const code = String(languageCode || "").toLowerCase();
+  return code === "la" || code.startsWith("la-") ? "Speak (EN only)" : "Speak";
+}
+
 function getDatasetStageOptions(dataset) {
   return Array.isArray(dataset && dataset.stageOptions) ? dataset.stageOptions.map((stage) => String(stage)) : [];
 }
@@ -668,7 +675,7 @@ async function renderVocabTab() {
                     ${isLanguage && word.topic ? `<span class="badge amber">${escapeHtml(word.topic)}</span>` : ""}
                     ${typeBadge}
                   </div>
-                  <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">Speak</button>
+                  <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">${escapeHtml(speakLabel(getStudyLanguageCode(dataset)))}</button>
                 </div>
                 <div>
                   <h3>${escapeHtml(word.de)}</h3>
@@ -960,7 +967,7 @@ function renderQuizSession(session) {
               <div class="chip-row">
                 <span class="count-pill blue">${escapeHtml(progressText)}</span>
                 <span class="count-pill green">${session.score} correct</span>
-                <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">Speak</button>
+                <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">${escapeHtml(speakLabel(fallback(question.speechLanguage, "de-DE")))}</button>
               </div>
             `,
           });
@@ -1167,7 +1174,7 @@ function renderQuizSummary(session) {
                 <strong>${escapeHtml(answer.prompt)}</strong>
                 <span class="muted tiny">Correct answer: ${escapeHtml(answer.expected)}</span>
               </div>
-              ${answer.speechText ? `<button class="button ghost" data-action="speak" data-text="${escapeHtml(answer.speechText)}" data-language="${escapeHtml(fallback(answer.speechLanguage, "de-DE"))}">Speak</button>` : ""}
+              ${answer.speechText ? `<button class="button ghost" data-action="speak" data-text="${escapeHtml(answer.speechText)}" data-language="${escapeHtml(fallback(answer.speechLanguage, "de-DE"))}">${escapeHtml(speakLabel(fallback(answer.speechLanguage, "de-DE")))}</button>` : ""}
             </div>
           `,
         )
@@ -1226,7 +1233,7 @@ function renderSessionDetail(session) {
               <p class="muted tiny" style="margin:3px 0 1px;">Your answer: <em>${escapeHtml(a.userAnswer || "—")}</em></p>
               <p class="muted tiny" style="color:#1a7a3a;">Correct: <strong>${escapeHtml(a.expected)}</strong></p>
             </div>
-            ${a.speechText ? `<button class="button ghost" style="margin-top:4px;" data-action="speak" data-text="${escapeHtml(a.speechText)}" data-language="${escapeHtml(a.speechLanguage || "en-GB")}">▶ Speak</button>` : ""}
+            ${a.speechText ? `<button class="button ghost" style="margin-top:4px;" data-action="speak" data-text="${escapeHtml(a.speechText)}" data-language="${escapeHtml(a.speechLanguage || "en-GB")}">▶ ${escapeHtml(speakLabel(a.speechLanguage || "en-GB"))}</button>` : ""}
           </div>
         `).join("")
       : `<p class="muted tiny">Perfect — no mistakes this session. 🎉</p>`;
@@ -1768,7 +1775,7 @@ function renderReviewWordCard(word, dataset) {
         <strong>${escapeHtml(word.de)}</strong>
         <span class="muted tiny">${escapeHtml(word.en)} · correct ${progress.correct} · wrong ${progress.wrong}</span>
       </div>
-      <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">Speak</button>
+      <button class="button ghost" data-action="speak" data-text="${escapeHtml(word.de)}" data-language="${escapeHtml(getStudyLanguageCode(dataset))}">${escapeHtml(speakLabel(getStudyLanguageCode(dataset)))}</button>
     </div>
   `;
 }
