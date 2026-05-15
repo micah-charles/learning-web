@@ -4,13 +4,15 @@
  * React root component — full port of the vanilla learning-web app.
  * Six tabs: Home, Vocabulary, Quiz, Reading, Builder, Review.
  *
- * LEGACY NOTE: The vanilla main.js app (index.html) continues to work
- * independently. This React app shares the same data/ files.
+ * Layout:
+ *   1. <Hero>   — persistent watercolour banner with mascot + stats
+ *   2. <NavBar> — sticky pill-tab navigation (warm cream background)
+ *   3. <main>   — per-tab page content
  */
-
 import { useState, useCallback } from "react";
 import { ManifestProvider } from "./context/ManifestContext.jsx";
 import { ProgressProvider } from "./context/ProgressContext.jsx";
+import Hero from "./components/layout/Hero.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import VocabPage from "./pages/VocabPage.jsx";
 import QuizPage from "./pages/QuizPage.jsx";
@@ -19,33 +21,36 @@ import BuilderPage from "./pages/BuilderPage.jsx";
 import ReviewPage from "./pages/ReviewPage.jsx";
 
 const TABS = [
-  { id: "home",    label: "Home" },
+  { id: "home",    label: "Home"       },
   { id: "vocab",   label: "Vocabulary" },
-  { id: "quiz",    label: "Quiz" },
-  { id: "reading", label: "Reading" },
-  { id: "builder", label: "Builder" },
-  { id: "review",  label: "Review" },
+  { id: "quiz",    label: "Quiz"       },
+  { id: "reading", label: "Reading"    },
+  { id: "builder", label: "Builder"    },
+  { id: "review",  label: "Review"     },
 ];
 
-function Nav({ active, onChange }) {
+function NavBar({ active, onChange }) {
   return (
-    <div className="lw-nav-pills" style={{ marginBottom: "20px", padding: "12px 16px 0", maxWidth: "860px", margin: "0 auto" }}>
-      {TABS.map(t => (
-        <button
-          key={t.id}
-          className={`lw-nav-pill ${active === t.id ? "active" : ""}`}
-          onClick={() => onChange(t.id)}
-          type="button"
-        >
-          {t.label}
-        </button>
-      ))}
-    </div>
+    <nav className="lw-nav-bar" aria-label="Main navigation">
+      <div className="lw-nav-inner">
+        {TABS.map((t) => (
+          <button
+            key={t.id}
+            className={`lw-nav-pill${active === t.id ? " active" : ""}`}
+            onClick={() => onChange(t.id)}
+            type="button"
+            aria-current={active === t.id ? "page" : undefined}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+    </nav>
   );
 }
 
 function AppContent() {
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab]         = useState("home");
   const [quizCustomWords, setQuizCustomWords] = useState(null);
 
   const handleNavigate = useCallback((tab, opts = {}) => {
@@ -63,15 +68,22 @@ function AppContent() {
   }
 
   return (
-    <div>
-      <Nav active={activeTab} onChange={handleTabChange} />
+    <div className="lw-app">
+      {/* Persistent watercolour hero */}
+      <Hero />
 
-      {activeTab === "home"    && <HomePage    onNavigate={handleNavigate} />}
-      {activeTab === "vocab"   && <VocabPage   />}
-      {activeTab === "quiz"    && <QuizPage    initialCustomWords={quizCustomWords} />}
-      {activeTab === "reading" && <ReadingPage />}
-      {activeTab === "builder" && <BuilderPage />}
-      {activeTab === "review"  && <ReviewPage  onNavigate={handleNavigate} />}
+      {/* Sticky pill nav */}
+      <NavBar active={activeTab} onChange={handleTabChange} />
+
+      {/* Page content */}
+      <main className="lw-main">
+        {activeTab === "home"    && <HomePage    onNavigate={handleNavigate} />}
+        {activeTab === "vocab"   && <VocabPage   />}
+        {activeTab === "quiz"    && <QuizPage    initialCustomWords={quizCustomWords} />}
+        {activeTab === "reading" && <ReadingPage />}
+        {activeTab === "builder" && <BuilderPage />}
+        {activeTab === "review"  && <ReviewPage  onNavigate={handleNavigate} />}
+      </main>
     </div>
   );
 }
