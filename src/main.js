@@ -769,7 +769,7 @@ async function renderQuizTab() {
             <p class="muted tiny">Build a clean quiz from your selected topic.</p>
           </div>
           <div class="chip-row">
-            <span class="count-pill blue">${filteredWords.length} words in scope</span>
+            <span class="count-pill blue">${filteredWords.length || filterUnifiedItems(unifiedPack, "fillBlank").length} ${filteredWords.length ? "words" : "questions"} in scope</span>
             <span class="count-pill green">${mastered} mastered here</span>
           </div>
         </div>
@@ -1821,10 +1821,13 @@ function countPassageMcqQuestions(unifiedPack) {
 }
 
 function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, passageUnifiedPack }) {
+  const fillBlankCount = filterUnifiedItems(unifiedPack, "fillBlank").length;
   const modes = resolveQuizModesForUI({
     subject: getDatasetSubject(dataset),
     direction: prefs.direction,
     answerMode: prefs.answerMode,
+    fillBlankCount,
+    vocabCount: filteredWords.length,
   });
 
   return modes.reduce((total, modeId) => {
@@ -3219,6 +3222,8 @@ async function startQuiz(customWords = null, label = null) {
     subject: getDatasetSubject(dataset),
     direction: prefs.direction,
     answerMode: prefs.answerMode,
+    fillBlankCount: filterUnifiedItems(unifiedPack, "fillBlank").length,
+    vocabCount: words.length,
   });
 
   const session = createQuizSession({

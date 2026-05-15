@@ -535,14 +535,22 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
   const picks = cyclePick(gaps, count);
   const labels = datasetLabels(dataset);
   return picks.map((item, index) => {
-    const wrongAnswers = shuffle(
-      dedupeStrings(
-        gaps
-          .filter((g) => g.id !== item.id)
-          .map((g) => g.data.answer)
-          .filter((v) => normalizeForCompare(v) !== normalizeForCompare(item.data.answer || "")),
-      ),
-    ).slice(0, 3);
+    // Use explicit options from item data when provided (e.g. grammar packs with
+    // predefined MCQ choices); fall back to picking wrong answers from the pool.
+    let options;
+    if (Array.isArray(item.data.options) && item.data.options.length >= 2) {
+      options = shuffle([...item.data.options]);
+    } else {
+      const wrongAnswers = shuffle(
+        dedupeStrings(
+          gaps
+            .filter((g) => g.id !== item.id)
+            .map((g) => g.data.answer)
+            .filter((v) => normalizeForCompare(v) !== normalizeForCompare(item.data.answer || "")),
+        ),
+      ).slice(0, 3);
+      options = shuffle([item.data.answer, ...wrongAnswers]);
+    }
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
@@ -552,7 +560,7 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
       answer: item.data.answer || "",
       acceptedAnswers: [item.data.answer],
       hint: item.data.hint || "",
-      options: shuffle([item.data.answer, ...wrongAnswers]),
+      options,
       speechText: item.data.sentence || "",
       speechLanguage: labels.speechLanguage,
       stimulus: item.data.stimulus || null,
@@ -694,7 +702,7 @@ export function getDefaultQuestionModes(dataset = null) {
 //   subject:    "language" | "history" | "geography" | "science"
 //   direction:  "studyToTarget" | "targetToStudy"   (language packs only)
 //   answerMode: "mcq" | "typed" | "mixed"
-export function resolveQuizModesForUI({ subject = "language", direction = "studyToTarget", answerMode = "mixed" }) {
+export function resolveQuizModesForUI({ subject = "language", direction = "studyToTarget", answerMode = "mixed", fillBlankCount = 0, vocabCount = -1 }) {
   const isReverse = direction === "targetToStudy";
 
   // Word-level choice/type mode IDs. The engine treats these as direction
@@ -703,6 +711,11 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
   const typedMode  = isReverse ? "englishWordTypeGerman"   : "germanWordTypeEnglish";
 
   if (subject === "language") {
+    // Grammar-challenge packs: no vocab items, only fillBlank (e.g. Latin grammar challenges).
+    // Route entirely to fillBlank mode so questions are generated correctly.
+    if (fillBlankCount > 0 && vocabCount === 0) {
+      return ["fillBlank"];
+    }
     if (answerMode === "mcq")   return [choiceMode];
     if (answerMode === "typed") return [typedMode];
     return [choiceMode, typedMode]; // mixed
@@ -733,7 +746,23 @@ export function createQuizSession({ words, sentencePools, config, persistedState
   const wordPool = selectWordPool(candidateWords, config, persistedState);
   const needsSentences = activeModes.some((mode) => mode.family === "sentence");
   const sentencePool = needsSentences ? selectSentencePool(wordPool, sentencePools, config) : [];
-  const unifiedItems = unifiedPack && Array.isArray(unifiedPack.items) ? unifiedPack.items : null;
+  const rawUnifiedItems = unifiedPack && Array.isArray(unifiedPack.items) ? unifiedPack.items : null;
+
+  // For stage-based packs (e.g. Cambridge Latin), filter non-vocab unified items
+  // (fillBlank, sequence, etc.) to only the selected stages.  Vocab items are
+  // already filtered upstream by filterWordsForScope; this mirrors that filtering
+  // for the unified-item path so Stage selection works for grammar packs too.
+  const selectedStages = Array.isArray(config.stages) && config.stages.length > 0
+    ? new Set(config.stages.map(String))
+    : null;
+  const unifiedItems = rawUnifiedItems && selectedStages
+    ? rawUnifiedItems.filter((item) => {
+        if (item.type === "vocab") return true; // vocab already filtered via words
+        const stageStr = String(item.level || "").replace(/^Stage\s+/i, "").trim();
+        return !stageStr || isNaN(Number(stageStr)) || selectedStages.has(stageStr);
+      })
+    : rawUnifiedItems;
+
   const counts = distribute(Math.max(activeModes.length * 3, config.questionCount), activeModes.length);
 
   const questionGroups = activeModes.map((mode, index) => {
