@@ -271,15 +271,13 @@ function renderHero() {
 
   return `
     <header class="hero">
-      <div class="hero-brand">
-        <img
-          src="./brand/logo.png"
-          alt="FoxChild Idea — Fox Tutor and Girl Tutor"
-          class="hero-logo"
-        />
-      </div>
       <div class="hero-body">
         <div class="hero-top">
+          <img
+            src="./brand/logo.png"
+            alt="FoxChild Idea — Fox Tutor and Girl Tutor"
+            class="hero-logo"
+          />
           <div class="hero-copy">
             <p class="eyebrow">powered by FoxChild Idea</p>
             <h1>Learning Web</h1>

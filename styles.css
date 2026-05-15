@@ -162,33 +162,23 @@ body {
   position: relative;
 }
 
-/* Logo image panel — left side of hero */
-.hero-brand {
-  flex-shrink: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 260px;
-  padding: 0 0 0 8px;
-  position: relative;
-}
-
+/* Logo — flex item to the left of the copy text inside hero-top */
 .hero-logo {
-  display: block;
-  width: 260px;
+  flex-shrink: 0;
+  width: 120px;
   height: auto;
   object-fit: contain;
-  object-position: bottom center;
-  /* Slight shadow so characters stand out from teal */
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.20));
+  align-self: center;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.18));
+  pointer-events: none;
 }
 
-/* Content panel — right side of hero */
+/* Content panel — full width of hero */
 .hero-body {
   flex: 1 1 0;
   display: grid;
   gap: 18px;
-  padding: 28px 28px 28px 16px;
+  padding: 28px 28px 28px 28px;
   min-width: 0;
 }
 
@@ -1889,20 +1879,11 @@ body {
 /* ─── Hero responsive — FoxChild logo layout ─────────────────────────────────── */
 
 @media (max-width: 860px) {
-  .hero {
-    flex-direction: column;
-  }
-  .hero-brand {
-    width: 100%;
-    justify-content: center;
-    padding: 20px 0 0;
-    order: -1;
-  }
   .hero-logo {
-    width: 200px;
+    width: 90px;
   }
   .hero-body {
-    padding: 12px 20px 24px;
+    padding: 16px 20px 24px;
   }
   .hero-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1911,7 +1892,7 @@ body {
 
 @media (max-width: 540px) {
   .hero-logo {
-    width: 160px;
+    width: 70px;
   }
   .hero-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
