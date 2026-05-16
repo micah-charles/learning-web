@@ -295,7 +295,7 @@ async function renderApp() {
 function renderHero() {
   const totalWordCount =
     fallback(runtime.manifest.core.wordCount, 0) +
-    (runtime.manifest.revisionPacks || []).reduce((sum, pack) => sum + fallback(pack.wordCount, 0), 0);
+    (runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).reduce((sum, pack) => sum + fallback(pack.wordCount, 0), 0);
   const masteredCount = Object.values(persisted.progress.words).filter(isMasteredProgress).length;
   const lastSession = persisted.progress.sessions[0];
 
@@ -319,8 +319,8 @@ function renderHero() {
             </p>
           </div>
           <div class="hero-badges">
-            <span class="hero-badge">${runtime.manifest.revisionPacks.length} packs</span>
-            <span class="hero-badge">${runtime.manifest.passageGroups.length} reading groups</span>
+            <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).length} packs</span>
+            <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("passages")).length} reading groups</span>
             <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
           </div>
         </div>
@@ -465,7 +465,7 @@ async function renderTabContent() {
 }
 
 async function renderHomeTab() {
-  const featuredPacks = runtime.manifest.revisionPacks.slice(0, 4);
+  const featuredPacks = (runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).slice(0, 4);
   const builderPack = listSentenceBuilderPacks(runtime.manifest)[0];
   const firstGroup = listPassageGroups(runtime.manifest)[0];
   const lastSession = persisted.progress.sessions[0];

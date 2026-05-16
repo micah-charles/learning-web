@@ -51,9 +51,9 @@ provide the task type and subject bucket — you must infer the rest.
 
 **Files to write (in order):**
 1. `data/generated/pack_decision.json` — metadata + scope decision (required)
-2. `data/Packs/<packId>/pack_unified.json` — revision pack
-3. `data/SentenceBuilderPacks/<packId>_unified.json` — sentence builder (omit if not language)
-4. `data/PassagePacks/<groupId>/<packId>.json` — passage pack (omit if no reading passages)
+2. `data/Packs/<curriculum>/<subject>/<packId>/pack_unified.json` — revision pack
+3. `data/Packs/<curriculum>/<subject>/<packId>/passages.json` — passage pack (omit if no reading passages)
+4. `data/SentenceBuilderPacks/<packId>/pack_unified.json` — sentence builder (omit if not applicable)
 5. `data/generated/validation_report.json` — validation results (recommended)
 6. `data/generated/manifest_entries.json` — manifest entries for promotion
 You are generating a complete, curriculum-aligned dataset for the
@@ -267,18 +267,19 @@ Order:
    this file to validate the decision before promoting packs to the live
    app. Write this file first, before any pack JSON.
 
-2. `FILE: data/Packs/<packId>/pack_unified.json`
+2. `FILE: data/Packs/<curriculum>/<subject>/<packId>/pack_unified.json`
    — the **revision pack** (vocab + optional sentence + optional sequence /
    categorySort / fillBlank items). Pack header fields use the values
    inferred in `pack_decision.json`.
 
-3. `FILE: data/SentenceBuilderPacks/<packId>_unified.json`
-   — the **sentence builder pack** (sentenceBuilder items only). Omit if
-   the source is not a language pack.
-
-4. `FILE: data/PassagePacks/<groupId>/<packId>.json`
+3. `FILE: data/Packs/<curriculum>/<subject>/<packId>/passages.json`
    — the **passage pack** (passage items with comprehension questions).
-   Omit if the source does not contain reading passages.
+   Omit if the source does not contain reading passages. Lives in the
+   **same folder** as the revision pack.
+
+4. `FILE: data/SentenceBuilderPacks/<packId>/pack_unified.json`
+   — the **sentence builder pack** (sentenceBuilder items only). Omit if
+   the source is not applicable.
 
 5. `FILE: data/generated/validation_report.json`
    — **optional but recommended.** Records post-generation validation:
@@ -338,16 +339,20 @@ Order:
 
 ## Manifest entries
 
-Three entries the user pastes into `data/generated/manifest.json`:
+One entry per topic pushed to `packs[]` in `data/generated/manifest.json`.
+Add `"passagePath"` and `"passages"` in `capabilities` only when a `passages.json` exists.
+Add a separate entry under `sentenceBuilderPacks[]` when a sentence builder pack exists.
 
 ```json
-// Revision pack — push to revisionPacks[]
+// Main pack entry — push to packs[]
 {
   "id":                  "{{PACK_ID}}",
   "displayName":         "{{HUMAN_TITLE}}",
   "subject":             "{{SUBJECT_LOWERCASE}}",
+  "curriculum":          "{{CURRICULUM}}",
   "level":               "{{LEVEL}}",
-  "unifiedPath":         "data/Packs/{{PACK_ID}}/pack_unified.json",
+  "capabilities":        ["revision"],
+  "unifiedPath":         "data/Packs/{{CURRICULUM}}/{{SUBJECT_LOWERCASE}}/{{PACK_ID}}/pack_unified.json",
   "sourceLanguageLabel": "{{SOURCE_LABEL}}",
   "sourceLanguageCode":  "{{SOURCE_CODE}}",
   "targetLanguageLabel": "{{TARGET_LABEL}}",
@@ -360,18 +365,15 @@ Three entries the user pastes into `data/generated/manifest.json`:
   "sentenceCount":       <count of sentence items>
 }
 
-// Sentence builder pack — push to sentenceBuilderPacks[]
+// If a passages.json was also generated, add these fields to the same entry:
+//   "capabilities": ["revision", "passages"],
+//   "passagePath": "data/Packs/{{CURRICULUM}}/{{SUBJECT_LOWERCASE}}/{{PACK_ID}}/passages.json"
+
+// Sentence builder pack (if generated) — push to sentenceBuilderPacks[]
 {
   "id":          "{{PACK_ID}}",
   "displayName": "{{HUMAN_TITLE}}",
-  "unifiedPath": "data/SentenceBuilderPacks/{{PACK_ID}}_unified.json"
-}
-
-// Passage pack — append to the matching passageGroups[].packs (or create the group)
-{
-  "id":          "{{GROUP_ID}}",
-  "displayName": "{{HUMAN_GROUP_TITLE}}",
-  "unifiedPath": "data/PassagePacks/{{GROUP_ID}}/pack_unified.json"
+  "unifiedPath": "data/SentenceBuilderPacks/{{PACK_ID}}/pack_unified.json"
 }
 ```
 
@@ -625,7 +627,7 @@ in `options[]` must be plausible and topic-related.
 
 ## Item type: `sentenceBuilder` (Builder tab — separate file)
 
-Lives at `data/SentenceBuilderPacks/{{PACK_ID}}_unified.json`. The pack
+Lives at `data/SentenceBuilderPacks/{{PACK_ID}}/pack_unified.json`. The pack
 header is the same shape as a revision pack. Items:
 
 ```json
@@ -656,9 +658,9 @@ group them): `"key_date"`, `"key_term"`, `"example_sentence"`, `"cause"`,
 
 ## Item type: `passage` (Reading tab — separate file)
 
-Lives at `data/PassagePacks/{{GROUP_ID}}/pack_unified.json`. Pack header is
-the same shape as a revision pack but `subject` should match the group
-(e.g. `"history"` for a history passage group). Items:
+Lives at `data/Packs/{{CURRICULUM}}/{{SUBJECT_LOWERCASE}}/{{PACK_ID}}/passages.json` —
+in the **same folder** as the revision pack. Pack header is the same shape
+as a revision pack. Items:
 
 ```json
 {
@@ -821,10 +823,12 @@ If confidence is low, still generate the pack — record the uncertainty in
 - ❌ Don't use bare `"de"` / `"en"` keys; always BCP-47 (`"de-DE"` /
       `"en-GB"`).
 - ❌ Don't capitalise `subject`.
-- ❌ Don't put `passage` items in a revision pack (`data/Packs/`) —
-      passages live in `data/PassagePacks/<group>/pack_unified.json`.
-- ❌ Don't put `sentenceBuilder` items in a revision pack — they live in
-      `data/SentenceBuilderPacks/<id>_unified.json`.
+- ❌ Don't put `passage` items in `pack_unified.json` — they live in
+      `passages.json` in the same pack folder.
+- ❌ Don't put `sentenceBuilder` items in `pack_unified.json` — they live in
+      `data/SentenceBuilderPacks/<id>/pack_unified.json`.
+- ❌ Don't use the old `data/PassagePacks/` tree — passages now live inside
+      the pack folder as `passages.json`.
 - ❌ Don't include comments or markdown inside the JSON code blocks.
 - ❌ Don't generate `options` arrays where the answer isn't included.
 - ❌ Don't repeat content. Each item should teach one distinct thing.

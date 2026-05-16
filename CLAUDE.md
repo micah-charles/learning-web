@@ -57,8 +57,8 @@ src/
 data/
   generated/manifest.json          — THE source of truth for what the app serves
   Packs/<curriculum>/<subject>/<id>/pack_unified.json   — vocab/fillBlank/sequence/categorySort
-  PassagePacks/<curriculum>/<subject>/<id>/pack_unified.json — passage items
-  SentenceBuilderPacks/…           — sentence builder card packs
+  Packs/<curriculum>/<subject>/<id>/passages.json       — passage items (optional, same folder)
+  SentenceBuilderPacks/<id>/pack_unified.json           — sentence builder card packs
   core_unified.json                — legacy core German pack
 
 generated_packs/                   — ⚠ GITIGNORED — AI-generated drafts, never served
@@ -76,13 +76,12 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 
 ```json
 {
-  "revisionPacks": [ … ],    // vocab/quiz/fillBlank/sequence/categorySort packs
-  "passageGroups":  [ … ],   // reading/passage packs
-  "sentenceBuilderPacks": [ … ]
+  "packs": [ … ],               // all revision + passage packs
+  "sentenceBuilderPacks": [ … ] // builder-tab packs
 }
 ```
 
-### Required fields per `revisionPacks` entry
+### Required fields per `packs[]` entry
 
 | Field | Purpose |
 |---|---|
@@ -90,7 +89,9 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 | `subject` | `language` / `history` / `geography` / `science` / `literature` |
 | `curriculum` | `ks3` / `gcse` / `other` |
 | `displayName` | Shown in the UI dropdown |
+| `capabilities` | `["revision"]` or `["revision", "passages"]` |
 | `unifiedPath` | Path from repo root to `pack_unified.json` |
+| `passagePath` | Path to `passages.json` — only when `capabilities` includes `"passages"` |
 | `sourceLanguageCode` | e.g. `de-DE`, `la`, `en-GB` |
 | `targetLanguageCode` | e.g. `en-GB` |
 | `wordCount` | Integer — shown in the UI |
@@ -265,21 +266,23 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 ## 10. Adding a new pack — checklist
 
 1. **Create** `data/Packs/<curriculum>/<subject>/<id>/pack_unified.json`
-2. **Register** in `data/generated/manifest.json` under `revisionPacks` with all required fields
-3. **Verify** `id` is unique across all packs in the manifest
-4. **Check** `sourceLanguageCode` and `targetLanguageCode`:
+2. If the pack has reading content, **create** `data/Packs/<curriculum>/<subject>/<id>/passages.json`
+3. **Register** in `data/generated/manifest.json` under `packs[]` with all required fields
+4. Set `capabilities: ["revision"]` or `["revision", "passages"]` and include `passagePath` if applicable
+5. **Verify** `id` is unique across all entries in `packs[]`
+6. **Check** `sourceLanguageCode` and `targetLanguageCode`:
    - Non-language: both `"en-GB"`
    - Language: correct language codes
-5. **Confirm** no `targetWord === sourceWord` in vocab items (broken definition)
-6. **Confirm** `partOfSpeech` uses full words for language packs, `"keyword"` for non-language
-7. **Do NOT** leave the pack only in `generated_packs/` — it is gitignored and the app will not see it
+7. **Confirm** no `targetWord === sourceWord` in vocab items (broken definition)
+8. **Confirm** `partOfSpeech` uses full words for language packs, `"keyword"` for non-language
+9. **Do NOT** leave the pack only in `generated_packs/` — it is gitignored and the app will not see it
 
 ---
 
 ## 11. Removing a pack — checklist
 
-1. Remove the entry from `manifest.json`
-2. `git rm` the pack directory from `data/Packs/` (or `PassagePacks/`)
+1. Remove the entry from `packs[]` in `manifest.json`
+2. `git rm` the pack directory from `data/Packs/<curriculum>/<subject>/<id>/`
 3. Verify no other pack in the manifest references the removed `id`
 4. If the removed pack was the default `datasetId` in `DEFAULT_STATE`, update that too
 
@@ -298,7 +301,7 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 
 | Bug | Cause | Fix |
 |---|---|---|
-| Pack not showing in app | Not in `manifest.json` | Add to `revisionPacks` |
+| Pack not showing in app | Not in `manifest.json` | Add to `packs[]` |
 | `undefined` on first load for new prefs key | Missing from `DEFAULT_STATE` | Add to `storage.js` |
 | Example sentence renders twice | `srcCode === tgtCode` but both `exampleDe` + `exampleEn` set | Only set `exampleDe` when `srcCode !== tgtCode` |
 | PoS dropdown shows `a, c, d…` | Abbreviations in pack data | Update pack JSON to use full words; `POS_LABELS` is the fallback |
@@ -340,6 +343,6 @@ The manifest is **not** auto-generated on `npm run dev`. After adding/removing p
 | `src/quiz.js` | Hand-maintained |
 | `src/storage.js` | Hand-maintained — always update `DEFAULT_STATE` when adding prefs |
 | `data/generated/manifest.json` | Hand-maintained (generator script exists but is rarely run) |
-| `data/Packs/**/pack_unified.json` | Hand-maintained JSON — schema v1.1 |
+| `data/Packs/**/*.json` | Hand-maintained JSON — schema v1.1 (`pack_unified.json` + `passages.json`) |
 | `generated_packs/` | AI draft output — **gitignored**, never committed |
 | `dist/` | Vite build output — **gitignored** |

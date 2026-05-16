@@ -184,8 +184,13 @@ export async function loadManifest() {
   return fetchJson("./data/generated/manifest.json");
 }
 
+function packsWithCapability(manifest, cap) {
+  return (manifest.packs || []).filter((p) => (p.capabilities || []).includes(cap));
+}
+
 export function listDatasets(manifest) {
-  return [manifest.core, ...(manifest.revisionPacks || [])].filter(Boolean).map(asDisplayPack);
+  const revision = packsWithCapability(manifest, "revision");
+  return [manifest.core, ...revision].filter(Boolean).map(asDisplayPack);
 }
 
 export function findDataset(manifest, datasetId) {
@@ -289,13 +294,13 @@ export function listDatasetsBySubjectAndCurriculum(manifest, subject, curriculum
 }
 
 export function listPassageGroupsByCurriculum(manifest, curriculum) {
-  return (manifest.passageGroups || []).filter(
+  return listPassageGroups(manifest).filter(
     (g) => curriculum === "all" || inferCurriculum(g) === curriculum,
   );
 }
 
 export function listPassageGroupsBySubjectAndCurriculum(manifest, subject, curriculum) {
-  return (manifest.passageGroups || []).filter(
+  return listPassageGroups(manifest).filter(
     (g) => getPassageGroupSubject(g) === subject &&
            (curriculum === "all" || inferCurriculum(g) === curriculum),
   );
@@ -324,7 +329,7 @@ export async function loadUnifiedPack(manifest, packId) {
   if (!packId || packId === "core") {
     return loadCoreUnifiedPack(manifest);
   }
-  const pack = (manifest.revisionPacks || []).find((item) => item.id === packId);
+  const pack = (manifest.packs || []).find((item) => item.id === packId);
   if (!pack || !pack.unifiedPath) {
     // Pack no longer exists (e.g. removed or merged into another pack).
     // Fall back to the core pack gracefully rather than crashing.
@@ -451,7 +456,7 @@ export async function loadSentenceBuilderPack(manifest, packId) {
 }
 
 export function listPassageGroups(manifest) {
-  return manifest.passageGroups || [];
+  return packsWithCapability(manifest, "passages");
 }
 
 export function getPassageGroupSubject(group) {
@@ -471,23 +476,15 @@ export function listPassageGroupsBySubject(manifest, subject) {
 }
 
 export function listPassagePacks(manifest, groupId) {
-  const group = listPassageGroups(manifest).find((item) => item.id === groupId);
-  if (!group) return [];
-  if (Array.isArray(group.packs)) return group.packs;
-  return [
-    {
-      id: group.id,
-      displayName: group.displayName,
-      resourceName: group.id,
-      unifiedPath: group.unifiedPath,
-    },
-  ];
+  const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
+  if (!pack) return [];
+  return [{ id: pack.id, displayName: pack.displayName, resourceName: pack.id, passagePath: pack.passagePath }];
 }
 
 export async function loadPassageUnifiedPack(manifest, groupId) {
-  const group = (manifest.passageGroups || []).find((item) => item.id === groupId);
-  if (!group || !group.unifiedPath) throw new Error(`No unifiedPath for passage group: ${groupId}`);
-  return fetchJson(`./${group.unifiedPath}`);
+  const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
+  if (!pack?.passagePath) throw new Error(`No passagePath for pack: ${groupId}`);
+  return fetchJson(`./${pack.passagePath}`);
 }
 
 export async function loadPassagePack(manifest, groupId, packId = null) {
