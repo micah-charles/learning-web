@@ -5,6 +5,34 @@ Read this before touching any file.
 
 ---
 
+## 0. Mandatory UI Context Loading
+
+When working on **any frontend / UI-related task** for Learning Web:
+
+1. **First read:** `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md`
+2. **Summarise** the key constraints internally before making any changes.
+3. **Validate** all proposed UI changes against:
+   - existing vanilla JS architecture
+   - mobile usability
+   - pack compatibility (all subjects and curricula)
+   - mode consistency (`resolveQuizModesForUI` ↔ `createQuizSession` ↔ badge counts)
+   - accessibility
+   - GCSE / educational workflow requirements
+4. **Avoid:**
+   - unnecessary framework rewrites
+   - duplicate component systems
+   - inconsistent interaction patterns
+   - breaking existing pack JSON contracts
+   - overengineering
+5. **Prefer:**
+   - reusable render helpers
+   - schema-driven rendering
+   - progressive enhancement
+   - offline-first compatibility
+   - educational usability over visual novelty
+
+---
+
 ## 1. What this project is
 
 A browser-only vocabulary and revision app (no backend, no framework) for KS3–KS4 students.

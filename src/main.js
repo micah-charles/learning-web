@@ -3249,7 +3249,7 @@ async function startQuiz(customWords = null, label = null) {
     subject: getDatasetSubject(dataset),
     direction: prefs.direction,
     answerMode: prefs.answerMode,
-    fillBlankCount: filterUnifiedItems(unifiedPack, "fillBlank").length,
+    fillBlankCount: filterFillBlankByStage(unifiedPack, prefs, dataset).length,
     vocabCount: words.length,
   });
 
