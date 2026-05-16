@@ -212,8 +212,15 @@ function applyDatasetDefaults(sectionKey, options = {}) {
       : [];
   }
 
-  if ("year" in prefSection && stageOptions.length) {
-    prefSection.year = "ALL";
+  if ("year" in prefSection) {
+    if (stageOptions.length) {
+      prefSection.year = "ALL";
+    } else {
+      const yearOptions = Array.isArray(dataset && dataset.yearOptions) ? dataset.yearOptions : YEAR_OPTIONS;
+      if (!yearOptions.includes(prefSection.year)) {
+        prefSection.year = "ALL";
+      }
+    }
   }
 
   if (sectionKey === "quiz") {
@@ -661,7 +668,7 @@ async function renderVocabTab() {
           ${usesStageSelection(dataset)
             ? renderStageFieldset("vocab", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : isLanguage
-              ? renderYearSelect("vocab-year", prefs.year)
+              ? renderYearSelect("vocab-year", prefs.year, dataset)
               : ""}
           ${posField}
           ${categoryField}
@@ -805,7 +812,7 @@ async function renderQuizTab() {
           ${usesStageSelection(dataset)
             ? renderStageFieldset("quiz", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
             : getDatasetSubject(dataset) === "language"
-              ? renderYearSelect("quiz-year", prefs.year)
+              ? renderYearSelect("quiz-year", prefs.year, dataset)
               : ""}
           ${renderSelectField(
             "quiz-question-count",
@@ -2143,12 +2150,15 @@ function renderAnswerModePills(currentMode) {
   `;
 }
 
-function renderYearSelect(id, currentValue) {
+function renderYearSelect(id, currentValue, dataset) {
+  const options = (Array.isArray(dataset && dataset.yearOptions) && dataset.yearOptions.length)
+    ? dataset.yearOptions
+    : YEAR_OPTIONS;
   return renderSelectField(
     id,
     "Year",
-    YEAR_OPTIONS.map((year) => ({ value: year, label: year })),
-    currentValue,
+    options.map((year) => ({ value: year, label: year })),
+    options.includes(currentValue) ? currentValue : "ALL",
   );
 }
 
