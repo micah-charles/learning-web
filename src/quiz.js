@@ -530,17 +530,24 @@ export function makeCategorySortFromUnified(unifiedItems, count, dataset) {
   });
 }
 
-export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
+export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMode = "mixed") {
   const gaps = unifiedItems.filter((item) => item.type === "fillBlank");
   const picks = cyclePick(gaps, count);
   const labels = datasetLabels(dataset);
   return picks.map((item, index) => {
-    // Use explicit options from item data when provided (e.g. grammar packs with
-    // predefined MCQ choices); fall back to picking wrong answers from the pool.
+    // Respect the user's answerMode selection:
+    //   "typed"  → never show MCQ buttons; always render as free-text
+    //   "mcq"    → always show MCQ buttons; generate options from pool when not explicit
+    //   "mixed"  → MCQ only for items that carry explicit options; typed for the rest
+    // The renderer uses `options.length > 0` to decide MCQ vs textarea.
+    const hasExplicitOptions = Array.isArray(item.data.options) && item.data.options.length >= 2;
     let options;
-    if (Array.isArray(item.data.options) && item.data.options.length >= 2) {
+    if (answerMode === "typed") {
+      options = []; // force textarea regardless of item data
+    } else if (hasExplicitOptions && (answerMode === "mcq" || answerMode === "mixed")) {
       options = shuffle([...item.data.options]);
-    } else {
+    } else if (answerMode === "mcq") {
+      // No explicit options: generate distractors from the pool
       const wrongAnswers = shuffle(
         dedupeStrings(
           gaps
@@ -550,6 +557,9 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
         ),
       ).slice(0, 3);
       options = shuffle([item.data.answer, ...wrongAnswers]);
+    } else {
+      // mixed, no explicit options → typed
+      options = [];
     }
     return {
       id: `gap-${item.id}-${index}`,
@@ -801,7 +811,7 @@ export function createQuizSession({ words, sentencePools, config, persistedState
         return makeCategorySortQuestions(categorySortItems, count, dataset);
       case "fillBlank":
         if (unifiedItems) {
-          return makeFillBlankFromUnified(unifiedItems, count, dataset);
+          return makeFillBlankFromUnified(unifiedItems, count, dataset, config.answerMode);
         }
         return makeFillBlankQuestions(fillBlankItems, count, dataset);
       default:

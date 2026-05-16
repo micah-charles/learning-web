@@ -178,6 +178,20 @@ function filterWordsForScope(words, dataset, prefSection) {
   return words.filter((word) => levelMatches(word.level, prefSection.year));
 }
 
+// Returns the fillBlank items from unifiedPack filtered to the currently selected
+// stages (mirrors the unifiedItems stage filter in createQuizSession).
+// For packs without stage selection the full item list is returned.
+function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
+  const all = filterUnifiedItems(unifiedPack, "fillBlank");
+  if (!usesStageSelection(dataset)) return all;
+  const selectedStages = new Set(getSelectedStages(prefSection, dataset).map(String));
+  if (!selectedStages.size) return all;
+  return all.filter((item) => {
+    const stageStr = String(item.level || "").replace(/^Stage\s+/i, "").trim();
+    return !stageStr || isNaN(Number(stageStr)) || selectedStages.has(stageStr);
+  });
+}
+
 function applyDatasetDefaults(sectionKey, options = {}) {
   const prefSection = persisted.prefs[sectionKey];
   const dataset = findDataset(runtime.manifest, prefSection.datasetId);
@@ -769,7 +783,7 @@ async function renderQuizTab() {
             <p class="muted tiny">Build a clean quiz from your selected topic.</p>
           </div>
           <div class="chip-row">
-            <span class="count-pill blue">${filteredWords.length || filterUnifiedItems(unifiedPack, "fillBlank").length} ${filteredWords.length ? "words" : "questions"} in scope</span>
+            <span class="count-pill blue">${filteredWords.length || filterFillBlankByStage(unifiedPack, prefs, dataset).length} ${filteredWords.length ? "words" : "questions"} in scope</span>
             <span class="count-pill green">${mastered} mastered here</span>
           </div>
         </div>
@@ -1821,7 +1835,11 @@ function countPassageMcqQuestions(unifiedPack) {
 }
 
 function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, passageUnifiedPack }) {
-  const fillBlankCount = filterUnifiedItems(unifiedPack, "fillBlank").length;
+  // Stage-filtered fillBlank count is used both for mode-detection and the
+  // fillBlank question-count calculation so the question-count dropdown and the
+  // "questions in scope" badge stay in sync with the stage checkboxes.
+  const filteredFillBlankItems = filterFillBlankByStage(unifiedPack, prefs, dataset);
+  const fillBlankCount = filteredFillBlankItems.length;
   const modes = resolveQuizModesForUI({
     subject: getDatasetSubject(dataset),
     direction: prefs.direction,
@@ -1846,7 +1864,7 @@ function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, p
       case "categorySort":
         return total + filterUnifiedItems(unifiedPack, "categorySort").length;
       case "fillBlank":
-        return total + filterUnifiedItems(unifiedPack, "fillBlank").length;
+        return total + fillBlankCount; // already stage-filtered above
       case "passageQuestionChooseAnswer":
         return total + countPassageMcqQuestions(passageUnifiedPack);
       default:
