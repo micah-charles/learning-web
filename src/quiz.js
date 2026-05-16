@@ -753,7 +753,8 @@ export function createQuizSession({ words, sentencePools, config, persistedState
   }
 
   const candidateWords = customWords && customWords.length ? customWords : words;
-  const wordPool = selectWordPool(candidateWords, config, persistedState);
+  const needsWordPool = activeModes.some((mode) => mode.family === "word" || mode.family === "sentence");
+  const wordPool = needsWordPool ? selectWordPool(candidateWords, config, persistedState) : [];
   const needsSentences = activeModes.some((mode) => mode.family === "sentence");
   const sentencePool = needsSentences ? selectSentencePool(wordPool, sentencePools, config) : [];
   const rawUnifiedItems = unifiedPack && Array.isArray(unifiedPack.items) ? unifiedPack.items : null;
