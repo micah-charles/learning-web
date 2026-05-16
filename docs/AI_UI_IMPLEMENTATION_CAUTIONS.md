@@ -184,6 +184,39 @@ After changing pack JSON or manifest, a normal refresh may still serve the old c
 
 ---
 
+### ⚠️ 11. Mode ID regex for direction detection must stop before the kind token ("Word"/"Sentence")
+
+**Mistake made:** `makeVocabChoiceFromUnified` used this regex to extract the shown language from a mode ID:
+
+```js
+// BAD — stops at "Choose/Type/Build", capturing "englishWord" not "english"
+const shownLang = modeId.replace(/^(.+?)(Choose|Type|Build)(.+)$/, "$1");
+// "englishWordChooseGerman" → shownLang = "englishWord"
+// "englishword" === "english" → false  ← isReverse always false!
+```
+
+Both `"germanWordChooseEnglish"` and `"englishWordChooseGerman"` resolved `isReverse = false`, so the direction toggle had zero effect on choice questions — both directions showed the study-language (Latin/German) as the prompt.
+
+**Rule:** The regex must stop before the kind token (`Word` / `Sentence`), not before the action token (`Choose` / `Type` / `Build`):
+
+```js
+// GOOD — stops at "Word"/"Sentence", extracting just "english" or "german"
+const shownLang = modeId.replace(/^(.+?)(Word|Sentence)(Choose|Type|Build)(.+)$/, "$1");
+// "englishWordChooseGerman" → shownLang = "english"
+// "english" === "english" → true  ← isReverse correctly true for English → Latin
+```
+
+**Also fix:** The `direction` field passed to `buildModeTitle` inside `makeVocabChoiceFromUnified` was inverted — `isReverse ? "studyToTarget"` should be `isReverse ? "targetToStudy"`. When the prompt is the target language (English), the mode direction is `targetToStudy`.
+
+**Checklist when adding or modifying a question generator that parses modeId:**
+- [ ] Verify the regex captures only the language name, not trailing kind tokens
+- [ ] Test both directions in the UI after any change to mode ID parsing
+- [ ] Confirm `isReverse = true` → prompt shows target language, answer requires study language
+- [ ] Confirm `isReverse = false` → prompt shows study language, answer requires target language
+- [ ] `modeTitle` direction matches the actual prompt/answer orientation
+
+---
+
 ## PART B — React (general cautions if this project is ever migrated)
 
 These apply if the app is ever rewritten in React or a React-based framework (Next.js, Remix, etc.).

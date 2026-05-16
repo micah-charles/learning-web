@@ -417,13 +417,15 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
   const labels = datasetLabels(dataset);
 
   // Parse the direction from the mode ID string itself — truly generic, no hardcoded languages.
-  // Mode ID format: "{wordShown}Choose{wordChosen}"
-  // e.g. "germanWordChooseEnglish"  → shown=German,  chosen=English
-  // e.g. "englishWordChooseGerman"  → shown=English, chosen=German
-  // e.g. "latinWordChooseEnglish"   → shown=Latin,  chosen=English
-  // isReverse = the mode shows the TARGET language (prompt = target, user picks study).
-  // We detect this by checking if the shown language matches the target label.
-  const shownLang = modeId.replace(/^(.+?)(Choose|Type|Build)(.+)$/, "$1");
+  // Mode ID format: "{language}Word{Action}{language}"
+  // e.g. "germanWordChooseEnglish"  → shown=German,  chosen=English  (studyToTarget)
+  // e.g. "englishWordChooseGerman"  → shown=English, chosen=German   (targetToStudy)
+  // e.g. "latinWordChooseEnglish"   → shown=Latin,   chosen=English  (studyToTarget)
+  //
+  // IMPORTANT: the regex must stop before "Word" or "Sentence" — NOT at "Choose/Type/Build" —
+  // otherwise "englishWord" is captured instead of "english", making the label comparison fail.
+  const shownLang = modeId.replace(/^(.+?)(Word|Sentence)(Choose|Type|Build)(.+)$/, "$1");
+  // isReverse = the prompt is the TARGET language (English shown, user picks study language).
   const isReverse = shownLang.toLowerCase() === labels.targetLabel.toLowerCase();
 
   return picks.map((item, index) => {
@@ -473,7 +475,7 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
     return {
       id:          `choice-${modeId}-${item.id}-${index}`,
       modeId,
-      modeTitle:   buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "studyToTarget" : "targetToStudy" }, labels),
+      modeTitle:   buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "targetToStudy" : "studyToTarget" }, labels),
       kind:        "choice",
       prompt,
       answer,
