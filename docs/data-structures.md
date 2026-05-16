@@ -24,26 +24,31 @@ There are two data layers:
   "generatedAt":    "2026-05-02T…",
   "schemaVersion":  "1.1",
   "coreUnifiedPath": "data/core_unified.json",
-  "core":           { …revision-pack-entry… },
-  "revisionPacks":  [ …revision-pack-entry…, … ],
-  "sentenceBuilderPacks": [ …builder-pack-entry…, … ],
-  "passageGroups":  [ …passage-group-entry…, … ]
+  "core":           { …pack-entry… },
+  "packs":          [ …pack-entry…, … ],
+  "sentenceBuilderPacks": [ …builder-pack-entry…, … ]
 }
 ```
 
+> **`revisionPacks` and `passageGroups` are removed.** All content packs
+> (revision and passages) are now registered in the single `packs[]` array.
+> The `capabilities` field on each entry declares what the pack supports.
+
 ---
 
-## Manifest: Revision Pack Entry
+## Manifest: Pack Entry
 
-Every entry in `revisionPacks[]`:
+Every entry in `packs[]`:
 
 ```json
 {
   "id":                  "y7_german_full",
   "displayName":         "Y7 German — Full Course",
   "subject":             "language",
+  "curriculum":          "ks3",
   "level":               "Y7",
-  "unifiedPath":         "data/Packs/y7_german_full/pack_unified.json",
+  "capabilities":        ["revision"],
+  "unifiedPath":         "data/Packs/ks3/language/y7_german_full/pack_unified.json",
   "sourceLanguageLabel": "German",
   "sourceLanguageCode":  "de-DE",
   "targetLanguageLabel": "English",
@@ -57,13 +62,25 @@ Every entry in `revisionPacks[]`:
 }
 ```
 
+When the pack also has a `passages.json`, add:
+
+```json
+{
+  "capabilities": ["revision", "passages"],
+  "passagePath":  "data/Packs/ks3/language/y7_german_full/passages.json"
+}
+```
+
 | Field | Type | Purpose |
 |-------|------|---------|
 | `id` | string | Unique pack ID |
 | `displayName` | string | Human-readable title shown in the UI |
 | `subject` | string | Subject bucket: `language` \| `history` \| `geography` \| `science` \| `literature` |
+| `curriculum` | string | `ks3` \| `gcse` \| `other` |
 | `level` | string | Suggested year level (used as a default filter) |
+| `capabilities` | string[] | Declares which tabs this pack supports: `"revision"` \| `"passages"` |
 | `unifiedPath` | string | Path to the pack's `pack_unified.json` |
+| `passagePath` | string? | Path to the pack's `passages.json` — only present when `capabilities` includes `"passages"` |
 | `sourceLanguageLabel` | string | Display label for the study language (shown in quiz prompts) |
 | `sourceLanguageCode` | string | BCP-47 code for the study language (e.g. `de-DE`, `la-Latn`, `en-GB`) |
 | `targetLanguageLabel` | string | Display label for the target language |
@@ -85,12 +102,13 @@ The `subject` field groups packs in the Quiz Setup UI (Subject First flow). It d
 | `history` | History knowledge packs |
 | `geography` | Geography knowledge packs |
 | `science` | Science packs |
+| `literature` | Literature and text analysis packs |
 
 ---
 
 ## Manifest: Core Pack Entry
 
-The `core` entry follows the same shape as a revision pack entry, with `id: "core"`. It is listed alongside revision packs in the dataset dropdown.
+The `core` entry follows the same shape as a pack entry, with `id: "core"`. It is listed alongside packs in the dataset dropdown.
 
 ---
 
@@ -100,19 +118,7 @@ The `core` entry follows the same shape as a revision pack entry, with `id: "cor
 {
   "id":           "black_death",
   "displayName":  "Black Death",
-  "unifiedPath":  "data/SentenceBuilderPacks/black_death_unified.json"
-}
-```
-
----
-
-## Manifest: Passage Group Entry
-
-```json
-{
-  "id":           "bbc_bitesize_gcse_german",
-  "displayName":  "BBC Bitesize GCSE German",
-  "unifiedPath":  "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json"
+  "unifiedPath":  "data/SentenceBuilderPacks/black_death/pack_unified.json"
 }
 ```
 
@@ -522,10 +528,110 @@ For **non-language packs** (`history`, `geography`, `science`), the direction to
 
 ---
 
+## Folder structure
+
+```
+data/
+  Packs/<curriculum>/<subject>/<id>/
+    pack_unified.json    ← vocab, fillBlank, sequence, categorySort items
+    passages.json        ← passage items (optional — only if Reading tab content exists)
+  SentenceBuilderPacks/<id>/
+    pack_unified.json    ← sentenceBuilder items only
+  core_unified.json      ← legacy core German pack
+  generated/
+    manifest.json
+```
+
+Valid `<curriculum>` values: `ks3` | `gcse` | `other`
+Valid `<subject>` values: `language` | `history` | `geography` | `science` | `literature`
+
+---
+
+## Validator Constraints (`scripts/validate_pack.py`)
+
+`validate_pack.py` enforces the values below. Violations produce either a hard **ERROR** (exit 1) or a **WARNING** (exit 0). AI agents must run the validator and reach 0 errors before committing a pack.
+
+### Allowed `subject` values
+
+```
+language  history  geography  science  literature
+```
+
+- Must be **lowercase**. `"Geography"` or `"GCSE Geography"` are both errors.
+- These are the only accepted values — free-text subject names are rejected.
+
+### Allowed `schemaVersion` values
+
+```
+1.0   1.1
+```
+
+New packs must use `"1.1"`. `"1.0"` is accepted for legacy packs only.
+
+### Allowed item `type` values
+
+```
+vocab  sentence  sequence  categorySort  fillBlank  sentenceBuilder  passage
+```
+
+Any other string is an error.
+
+### Passage `questionType` values
+
+Used in `passages.json` items inside `data.questions[].questionType`.
+
+| Value | Status | Behaviour |
+|-------|--------|-----------|
+| `open` | ✓ use this | Renders a text area; marked against `modelAnswer` |
+| `multiple_choice` | ✓ use this | Renders an option grid; requires `options[]` and `correctOptionIndex` |
+| `fact` | ✓ semantic label | Treated as `open` — describes the question's cognitive level |
+| `inference` | ✓ semantic label | Treated as `open` |
+| `grammar` | ✓ semantic label | Treated as `open` |
+| `explanation` | ✓ semantic label | Treated as `open` |
+| `comprehension` | ✓ semantic label | Treated as `open` |
+| `mcq` | ⚠ alias | Identical to `multiple_choice` — avoid in new packs |
+| `choice` | ⚠ alias | Identical to `multiple_choice` — avoid in new packs |
+| `gap` | ⚠ wrong context | A quiz question `kind` (set by `quiz.js`), not a passage type — do not use in `passages.json` |
+| `typing` | ⚠ wrong context | Same as `gap` — quiz-only |
+
+> **Rendering note:** The app does not branch on `questionType` for display. It calls `isPassageMultipleChoice(question)`, which returns `true` when `options.length > 1`, regardless of the type string. The `questionType` field is semantic metadata only.
+
+Unknown values outside this table produce a **warning** (not an error) — but they will cause confusion for future authors and should be avoided.
+
+### `partOfSpeech` abbreviation check (language packs only)
+
+For packs where `sourceLanguageCode ≠ targetLanguageCode`, the validator rejects single-letter `partOfSpeech` values:
+
+```
+n  v  a  d  r  p  c  i
+```
+
+Use the full English word instead: `noun`, `verb`, `adjective`, `adverb`, `preposition`, `pronoun`, `conjunction`, `interjection`.
+
+Non-language packs should use `"keyword"` for all vocab items.
+
+### Same-word vocab check
+
+| Pack type | Behaviour |
+|-----------|-----------|
+| Non-language (`srcCode === tgtCode`) | **ERROR** — `targetWord` repeating `sourceWord` means no definition was written |
+| Language (`srcCode ≠ tgtCode`) | **WARNING** — identical source/target is allowed for cognates (e.g. Latin `toga` → English `toga`) |
+
+### `sentenceBuilder` tile check
+
+`" ".join(tiles)` must exactly equal `answer`. Common causes of failure:
+
+- Terminal punctuation as a separate tile: `[…, "organisms", "."]` → merge to `[…, "organisms."]`
+- Word-spelled numbers vs digits: `"seventy"` vs `"70"` — match whatever the `answer` uses
+- Missing commas: tiles `["income", "health"]` vs answer `"income, health"` — add commas to the tiles
+
+---
+
 ## Adding a New Pack
 
-1. Create the pack directory: `data/Packs/[pack-id]/`
-2. Create `pack_unified.json` with the [unified pack header](#unified-pack-format-pack_unifiedjson) and items
-3. Add an entry to `revisionPacks[]` in `data/generated/manifest.json`
-4. Set `supportsSentences: false` if the pack has no sentence items
-5. Run `python3 scripts/validate_unified.py` to check the pack
+1. Create the pack directory: `data/Packs/<curriculum>/<subject>/<id>/`
+2. Create `pack_unified.json` with the [unified pack header](#unified-pack-format-pack_unifiedjson) and revision items
+3. If the pack has passage content, create `passages.json` in the same directory
+4. Add one entry to `packs[]` in `data/generated/manifest.json`; include `passagePath` and `"passages"` in `capabilities` if `passages.json` exists
+5. Set `supportsSentences: false` if the pack has no sentence items
+6. Run `python3 scripts/validate_pack.py data/Packs/<curriculum>/<subject>/<id>/pack_unified.json` to check the pack
