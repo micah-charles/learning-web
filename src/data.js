@@ -325,7 +325,11 @@ export async function loadUnifiedPack(manifest, packId) {
     return loadCoreUnifiedPack(manifest);
   }
   const pack = (manifest.revisionPacks || []).find((item) => item.id === packId);
-  if (!pack || !pack.unifiedPath) throw new Error(`No unifiedPath for pack: ${packId}`);
+  if (!pack || !pack.unifiedPath) {
+    // Pack no longer exists (e.g. removed or merged into another pack).
+    // Fall back to the core pack gracefully rather than crashing.
+    return loadCoreUnifiedPack(manifest);
+  }
   return fetchJson(`./${pack.unifiedPath}`);
 }
 
