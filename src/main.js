@@ -194,6 +194,15 @@ function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
 
 function applyDatasetDefaults(sectionKey, options = {}) {
   const prefSection = persisted.prefs[sectionKey];
+
+  // Reset stale datasetId when the stored pack no longer exists in the manifest.
+  if (prefSection.datasetId && prefSection.datasetId !== "core") {
+    const knownIds = new Set(listDatasets(runtime.manifest).map((d) => d.id));
+    if (!knownIds.has(prefSection.datasetId)) {
+      prefSection.datasetId = "core";
+    }
+  }
+
   const dataset = findDataset(runtime.manifest, prefSection.datasetId);
   const stageOptions = getDatasetStageOptions(dataset);
 
