@@ -721,14 +721,18 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
   const typedMode  = isReverse ? "englishWordTypeGerman"   : "germanWordTypeEnglish";
 
   if (subject === "language") {
-    // Grammar-challenge packs: no vocab items, only fillBlank (e.g. Latin grammar challenges).
-    // Route entirely to fillBlank mode so questions are generated correctly.
+    // Grammar-only packs: no vocab items, only fillBlank (e.g. a standalone grammar challenge pack).
     if (fillBlankCount > 0 && vocabCount === 0) {
       return ["fillBlank"];
     }
-    if (answerMode === "mcq")   return [choiceMode];
-    if (answerMode === "typed") return [typedMode];
-    return [choiceMode, typedMode]; // mixed
+
+    // Mixed packs: vocab + fillBlank items (e.g. Cambridge Latin Stages after grammar merge).
+    // Include "fillBlank" alongside the vocab modes so grammar questions are generated too.
+    const vocabModes =
+      answerMode === "mcq"   ? [choiceMode] :
+      answerMode === "typed" ? [typedMode]  :
+      [choiceMode, typedMode];
+    return fillBlankCount > 0 ? [...vocabModes, "fillBlank"] : vocabModes;
   }
 
   if (subject === "literature") {
