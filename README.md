@@ -2,27 +2,35 @@
 
 Learning Web is a browser-based study app built to turn everyday learning materials into interactive revision tools.
 
-## Personal Story
+![Learning Web overview](docs/images/learning-web-overview.png)
 
-This project began as a practical tool to help my son study more efficiently. Over time, it evolved into a broader platform for personalised learning powered by technology and AI.
+## About This Project
 
-Originally inspired by supporting my child's academic journey, I wanted a better way to turn school materials into efficient and enjoyable revision resources tailored to his specific needs.
+This project started from a very simple personal idea:
 
-Rather than relying on generic one-size-fits-all learning apps, Learning Web focuses on custom content. It enables parents, teachers, and students to create learning games and revision tools directly from their own study materials.
+**Can AI help parents and students turn their own study materials into interactive revision exercises automatically?**
 
-## Vision
+When helping my child revise subjects like Geography, German, and History, I noticed that most revision is still very passive — reading notes repeatedly, memorising vocabulary lists, or manually creating questions.
 
-Learning Web is a personal education platform designed to transform everyday study materials into interactive learning experiences.
+At the same time, modern AI models are already very good at understanding educational content.
 
-The goal is to help students learn faster and smarter by converting textbooks, worksheets, PDFs, images, and notes into engaging revision tools such as:
+So I started building an experimental local-first learning platform called Learning Web.
 
-- multiple choice quizzes
-- flashcards
-- vocabulary trainers
-- exam revision packs
-- progress tracking
-- AI-generated practice questions
-- personalised learning packs
+The goal is not to replace teachers or schools.
+
+The goal is to make revision more interactive, more personalised, and easier for families to create themselves.
+
+## Why This Project Matters
+
+Many AI education projects focus on cloud platforms, enterprise systems, or futuristic AI marketing concepts.
+
+This project focuses on something smaller but practical:
+
+**Helping ordinary families create their own interactive revision content using AI on their local machine.**
+
+The long-term vision is to allow anyone — even without programming experience — to generate personalised learning activities from their own materials with minimal effort.
+
+The project is still experimental and evolving, but it already demonstrates how AI can assist in transforming raw educational content into reusable learning experiences.
 
 ## In Progress
 

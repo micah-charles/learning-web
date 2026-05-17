@@ -89,6 +89,7 @@ const TABS = [
   { id: "reading", title: "Reading"    },
   { id: "builder", title: "Builder"    },
   { id: "review",  title: "Review"     },
+  { id: "about",   title: "About"      },
   { id: "admin",   title: "⚙ Admin"   },
 ];
 
@@ -458,6 +459,8 @@ async function renderTabContent() {
       return renderBuilderTab();
     case "review":
       return renderReviewTab();
+    case "about":
+      return renderAboutTab();
     case "admin":
       return renderAdminTab();
     case "home":
@@ -566,6 +569,42 @@ async function renderHomeTab() {
             <div class="session-item"><span>Stored review sessions</span><strong>${persisted.progress.sessions.length}</strong></div>
           </div>
         </article>
+      </section>
+    </div>
+  `;
+}
+
+async function renderAboutTab() {
+  return `
+    <div class="section-stack about-page">
+      <section class="section-card lead about-intro">
+        <div class="about-layout">
+          <div class="about-copy">
+            <p class="eyebrow" style="color:var(--fox-teal);">Learning Web</p>
+            <h2>About This Project</h2>
+            <p>This project started from a very simple personal idea:</p>
+            <p class="about-question">Can AI help parents and students turn their own study materials into interactive revision exercises automatically?</p>
+            <p>When helping my child revise subjects like Geography, German, and History, I noticed that most revision is still very passive — reading notes repeatedly, memorising vocabulary lists, or manually creating questions.</p>
+            <p>At the same time, modern AI models are already very good at understanding educational content.</p>
+            <p>So I started building an experimental local-first learning platform called Learning Web.</p>
+            <p>The goal is not to replace teachers or schools.</p>
+            <p>The goal is to make revision more interactive, more personalised, and easier for families to create themselves.</p>
+          </div>
+          <figure class="about-visual">
+            <a href="./brand/learning-web-overview.png" target="_blank" rel="noreferrer">
+              <img src="./brand/learning-web-overview.png" alt="Learning Web project overview showing local study materials transformed into interactive revision activities" />
+            </a>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-card about-prose">
+        <h2>Why This Project Matters</h2>
+        <p>Many AI education projects focus on cloud platforms, enterprise systems, or futuristic AI marketing concepts.</p>
+        <p>This project focuses on something smaller but practical:</p>
+        <p class="about-callout">Helping ordinary families create their own interactive revision content using AI on their local machine.</p>
+        <p>The long-term vision is to allow anyone — even without programming experience — to generate personalised learning activities from their own materials with minimal effort.</p>
+        <p>The project is still experimental and evolving, but it already demonstrates how AI can assist in transforming raw educational content into reusable learning experiences.</p>
       </section>
     </div>
   `;
