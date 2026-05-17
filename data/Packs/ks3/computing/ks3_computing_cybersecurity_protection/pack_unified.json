@@ -1,0 +1,1366 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_cybersecurity_protection",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Cybersecurity Protection & Safe Practices",
+  "subtitle": "Firewalls, encryption, antivirus, 2FA, software updates, and safe digital practices.",
+  "items": [
+    {
+      "id": "cyber_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "firewall",
+        "targetWord": "software or hardware that monitors network traffic and blocks connections that do not match permitted rules",
+        "examples": {
+          "en-GB": "The company's firewall blocked thousands of unauthorised connection attempts each day."
+        }
+      }
+    },
+    {
+      "id": "cyber_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "encryption",
+        "targetWord": "the process of converting plaintext (readable data) into ciphertext (scrambled data) using an algorithm and a key so only authorised users can read it",
+        "examples": {
+          "en-GB": "Encryption ensures that even if an attacker intercepts your data, they cannot read it without the key."
+        }
+      }
+    },
+    {
+      "id": "cyber_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "antivirus",
+        "targetWord": "software that scans files and processes on a device, comparing them against a database of known malware signatures to detect and remove threats",
+        "examples": {
+          "en-GB": "The antivirus software detected and quarantined a suspicious file that had been downloaded by email."
+        }
+      }
+    },
+    {
+      "id": "cyber_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "patch",
+        "targetWord": "a software update that fixes a known security vulnerability or bug in a program",
+        "examples": {
+          "en-GB": "The company applied the security patch immediately to prevent attackers from exploiting the known vulnerability."
+        }
+      }
+    },
+    {
+      "id": "cyber_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "software update",
+        "targetWord": "a new version of software released by developers that may include security patches, bug fixes, and new features",
+        "examples": {
+          "en-GB": "Enabling automatic software updates ensures your device receives security patches as soon as they are released."
+        }
+      }
+    },
+    {
+      "id": "cyber_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "two-factor authentication (2FA)",
+        "targetWord": "a security process requiring users to provide two separate forms of identity verification before access is granted, such as a password and a one-time code",
+        "examples": {
+          "en-GB": "With 2FA enabled, an attacker who steals your password still cannot log in without the code sent to your phone."
+        }
+      }
+    },
+    {
+      "id": "cyber_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "VPN",
+        "targetWord": "Virtual Private Network — software that creates an encrypted tunnel for all internet traffic from a device, masking the user's IP address and protecting data on public networks",
+        "examples": {
+          "en-GB": "Using a VPN on public Wi-Fi prevents attackers from intercepting your unencrypted data."
+        }
+      }
+    },
+    {
+      "id": "cyber_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "SSL",
+        "targetWord": "Secure Sockets Layer — an encryption protocol that secures data transmitted between a browser and a web server; largely replaced by TLS but the term is still widely used",
+        "examples": {
+          "en-GB": "The bank's website uses SSL to ensure login credentials cannot be intercepted in transit."
+        }
+      }
+    },
+    {
+      "id": "cyber_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "TLS",
+        "targetWord": "Transport Layer Security — the modern encryption protocol used by HTTPS to secure data in transit between browsers and servers, replacing the older SSL protocol",
+        "examples": {
+          "en-GB": "TLS ensures that data sent between your browser and a secure website is encrypted and cannot be read by third parties."
+        }
+      }
+    },
+    {
+      "id": "cyber_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "HTTPS",
+        "targetWord": "HyperText Transfer Protocol Secure — the secure version of HTTP that uses SSL/TLS to encrypt all data exchanged between browser and web server",
+        "examples": {
+          "en-GB": "Always check for HTTPS and a padlock icon before entering passwords or payment details on a website."
+        }
+      }
+    },
+    {
+      "id": "cyber_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "password",
+        "targetWord": "a secret string of characters used to authenticate a user's identity and grant access to a system, account, or device",
+        "examples": {
+          "en-GB": "A strong password uses a mixture of uppercase letters, lowercase letters, numbers, and symbols and is at least 12 characters long."
+        }
+      }
+    },
+    {
+      "id": "cyber_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "password manager",
+        "targetWord": "software that generates, stores, and auto-fills unique, complex passwords for every account, secured in an encrypted vault requiring only one master password",
+        "examples": {
+          "en-GB": "Using a password manager means you can have a different strong password for every website without having to remember them all."
+        }
+      }
+    },
+    {
+      "id": "cyber_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "MAC address filtering",
+        "targetWord": "a network security measure that configures a router or switch to only allow connections from devices whose MAC addresses have been pre-approved",
+        "examples": {
+          "en-GB": "The school network uses MAC address filtering to prevent unauthorised devices from connecting to the Wi-Fi."
+        }
+      }
+    },
+    {
+      "id": "cyber_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "SSID",
+        "targetWord": "Service Set Identifier — the name of a Wi-Fi network that is broadcast publicly; hiding it means the network does not appear in lists of available networks",
+        "examples": {
+          "en-GB": "The home router's SSID was hidden so that casual users could not see the network, though this does not prevent determined attackers."
+        }
+      }
+    },
+    {
+      "id": "cyber_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "backup",
+        "targetWord": "a copy of data stored separately from the original so that it can be restored if the original is lost, corrupted, or encrypted by ransomware",
+        "examples": {
+          "en-GB": "Following the 3-2-1 rule, the organisation kept one backup stored offsite so ransomware could not reach it."
+        }
+      }
+    },
+    {
+      "id": "cyber_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "principle of least privilege",
+        "targetWord": "the security principle that users should only be granted the minimum level of access rights needed to perform their role, limiting damage if an account is compromised",
+        "examples": {
+          "en-GB": "Under the principle of least privilege, a student account cannot install software or access other users' files."
+        }
+      }
+    },
+    {
+      "id": "cyber_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "authentication",
+        "targetWord": "the process of verifying that a user is who they claim to be, typically through something they know, have, or are",
+        "examples": {
+          "en-GB": "Authentication using a fingerprint scanner is faster and more secure than a simple four-digit PIN."
+        }
+      }
+    },
+    {
+      "id": "cyber_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "authorisation",
+        "targetWord": "the process of determining what resources or actions an authenticated user is permitted to access or perform on a system",
+        "examples": {
+          "en-GB": "After authentication, authorisation controls determine whether the user can read, write, or delete files."
+        }
+      }
+    },
+    {
+      "id": "cyber_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "network security",
+        "targetWord": "the set of policies, practices, and technologies designed to protect a computer network and its data from unauthorised access, misuse, or attack",
+        "examples": {
+          "en-GB": "Network security measures include firewalls, encryption, MAC address filtering, and intrusion detection systems."
+        }
+      }
+    },
+    {
+      "id": "cyber_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "hardware firewall",
+        "targetWord": "a physical device, typically integrated into a router, that monitors and filters all network traffic entering and leaving an entire network",
+        "examples": {
+          "en-GB": "A hardware firewall sits between the internet and the internal network, protecting all devices on the network simultaneously."
+        }
+      }
+    },
+    {
+      "id": "cyber_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "software firewall",
+        "targetWord": "a program installed on an individual device that monitors and filters that specific device's incoming and outgoing network traffic",
+        "examples": {
+          "en-GB": "Windows Defender includes a software firewall that protects the individual laptop even when used away from the office."
+        }
+      }
+    },
+    {
+      "id": "cyber_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ciphertext",
+        "targetWord": "data that has been encrypted and appears as meaningless characters; it cannot be read without the correct decryption key",
+        "examples": {
+          "en-GB": "An attacker who intercepts the message will only see ciphertext, which is unreadable without the key."
+        }
+      }
+    },
+    {
+      "id": "cyber_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "plaintext",
+        "targetWord": "data in its original, readable form before encryption has been applied",
+        "examples": {
+          "en-GB": "The message was plaintext before being encrypted; only the intended recipient could convert the ciphertext back to plaintext."
+        }
+      }
+    },
+    {
+      "id": "cyber_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decryption",
+        "targetWord": "the process of converting ciphertext back into readable plaintext using the correct key",
+        "examples": {
+          "en-GB": "Only the recipient with the private key can perform decryption and read the original message."
+        }
+      }
+    },
+    {
+      "id": "cyber_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "encryption key",
+        "targetWord": "a piece of data used by an encryption algorithm to convert plaintext into ciphertext or ciphertext back into plaintext",
+        "examples": {
+          "en-GB": "Without the correct encryption key, the stolen data file is completely unreadable."
+        }
+      }
+    },
+    {
+      "id": "cyber_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "signature database",
+        "targetWord": "a database maintained by antivirus software containing unique code patterns of known malware, used to identify infected files",
+        "examples": {
+          "en-GB": "The antivirus signature database must be updated regularly to recognise the latest known malware threats."
+        }
+      }
+    },
+    {
+      "id": "cyber_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "quarantine",
+        "targetWord": "the isolation of a suspected malicious file by antivirus software so it cannot cause harm while it is being investigated or awaiting removal",
+        "examples": {
+          "en-GB": "The antivirus placed the infected download in quarantine to prevent it from spreading to other files."
+        }
+      }
+    },
+    {
+      "id": "cyber_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "zero-day",
+        "targetWord": "a previously unknown software vulnerability that is being exploited by attackers before the developer has had a chance to release a fix",
+        "examples": {
+          "en-GB": "Antivirus software cannot protect against a zero-day attack because there is no signature in its database yet."
+        }
+      }
+    },
+    {
+      "id": "cyber_v29",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "biometric",
+        "targetWord": "a physical or behavioural characteristic unique to an individual — such as a fingerprint, face, or iris pattern — used as an authentication factor",
+        "examples": {
+          "en-GB": "Biometric authentication using a fingerprint scan is an example of 'something you are' as a second factor."
+        }
+      }
+    },
+    {
+      "id": "cyber_v30",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "access control",
+        "targetWord": "the mechanisms and policies that restrict which users can access which resources or perform which actions on a system",
+        "examples": {
+          "en-GB": "Access control on the school network prevents students from accessing staff files or installing software."
+        }
+      }
+    },
+    {
+      "id": "cyber_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A firewall monitors and ____ incoming and outgoing network traffic based on a set of rules.",
+        "answer": "filters",
+        "options": [
+          "filters",
+          "stores",
+          "encrypts",
+          "deletes"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A hardware firewall protects the entire ____ by sitting between the internet and internal devices.",
+        "answer": "network",
+        "options": [
+          "network",
+          "device",
+          "password",
+          "website"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A software firewall is installed on an individual ____ and only protects that specific machine.",
+        "answer": "device",
+        "options": [
+          "device",
+          "router",
+          "server",
+          "network"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Antivirus software works by comparing files against a ____ of known malware signatures.",
+        "answer": "signature database",
+        "options": [
+          "signature database",
+          "firewall ruleset",
+          "encryption key",
+          "backup copy"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Encryption converts ____ (readable data) into ciphertext that cannot be read without the key.",
+        "answer": "plaintext",
+        "options": [
+          "plaintext",
+          "metadata",
+          "source code",
+          "packets"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "HTTPS uses ____ to encrypt data passing between a browser and a web server.",
+        "answer": "SSL/TLS",
+        "options": [
+          "SSL/TLS",
+          "HTTP",
+          "DNS",
+          "FTP"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Two-factor authentication requires users to provide ____ separate forms of identity verification.",
+        "answer": "two",
+        "options": [
+          "two",
+          "one",
+          "three",
+          "four"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Software ____ fix known security vulnerabilities and should be applied promptly to prevent exploitation.",
+        "answer": "patches",
+        "options": [
+          "patches",
+          "firewalls",
+          "backups",
+          "keys"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "The 3-2-1 backup rule states that one copy of data must be stored ____ or off-network to protect against ransomware.",
+        "answer": "offsite",
+        "options": [
+          "offsite",
+          "online",
+          "on the same device",
+          "in plaintext"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A VPN creates an encrypted ____ for all internet traffic, hiding the user's IP address.",
+        "answer": "tunnel",
+        "options": [
+          "tunnel",
+          "firewall",
+          "database",
+          "signature"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "The principle of least ____ means users only receive the minimum access rights needed for their role.",
+        "answer": "privilege",
+        "options": [
+          "privilege",
+          "encryption",
+          "authentication",
+          "redundancy"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "If antivirus detects a suspicious file it places it in ____ to prevent it spreading to other files.",
+        "answer": "quarantine",
+        "options": [
+          "quarantine",
+          "encryption",
+          "backup",
+          "a firewall"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A ____ attack exploits a vulnerability before the developer has released a fix, so antivirus has no signature for it.",
+        "answer": "zero-day",
+        "options": [
+          "zero-day",
+          "phishing",
+          "brute-force",
+          "denial-of-service"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A ____ manager generates and stores unique complex passwords for each account in an encrypted vault.",
+        "answer": "password",
+        "options": [
+          "password",
+          "network",
+          "firewall",
+          "biometric"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Encryption in ____ protects data while it is being sent across a network, for example via HTTPS.",
+        "answer": "transit",
+        "options": [
+          "transit",
+          "rest",
+          "quarantine",
+          "plaintext"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Encryption at ____ protects data stored on a device, such as an encrypted hard drive on a stolen laptop.",
+        "answer": "rest",
+        "options": [
+          "rest",
+          "transit",
+          "source",
+          "destination"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "MAC address ____ only allows devices with pre-approved hardware addresses to connect to a network.",
+        "answer": "filtering",
+        "options": [
+          "filtering",
+          "encryption",
+          "scanning",
+          "patching"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Using a ____ means a stolen password alone is not enough for an attacker to access your account.",
+        "answer": "2FA",
+        "options": [
+          "2FA",
+          "VPN",
+          "patch",
+          "backup"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Credential stuffing uses stolen usernames and passwords to attempt logins on ____ websites.",
+        "answer": "other",
+        "options": [
+          "other",
+          "encrypted",
+          "firewall",
+          "patched"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "A strong password should be at least ____ characters long and mix letters, numbers, and symbols.",
+        "answer": "12",
+        "options": [
+          "12",
+          "4",
+          "6",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb21",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "Something you ____ is a biometric authentication factor — for example, a fingerprint or face scan.",
+        "answer": "are",
+        "options": [
+          "are",
+          "know",
+          "have",
+          "own"
+        ]
+      }
+    },
+    {
+      "id": "cyber_fb22",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "sentence": "The 3-2-1 backup rule requires three copies of data across two different storage ____ with one copy offsite.",
+        "answer": "media",
+        "options": [
+          "media",
+          "passwords",
+          "firewalls",
+          "keys"
+        ]
+      }
+    },
+    {
+      "id": "cyber_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "title": "How 2FA login works",
+        "instruction": "Arrange these steps in the correct order to show how two-factor authentication works.",
+        "items": [
+          "User enters their username and password",
+          "System verifies the password is correct",
+          "System sends a one-time code to the user's phone or authenticator app",
+          "User enters the one-time code",
+          "System verifies the code and grants access"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "cyber_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "title": "How HTTPS encryption protects data in transit",
+        "instruction": "Arrange these steps in the correct order to show how HTTPS protects data sent over a network.",
+        "items": [
+          "Browser requests a secure connection to the web server",
+          "Server sends its SSL/TLS certificate to the browser",
+          "Browser verifies the certificate is valid and trusted",
+          "Browser and server agree on an encryption key",
+          "All data sent between browser and server is encrypted using that key",
+          "An interceptor sees only meaningless ciphertext"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "cyber_cat01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "title": "Technical measure, human measure, or user behaviour?",
+        "instruction": "Sort each security measure into the correct category.",
+        "categories": [
+          "Technical measure",
+          "Human / policy measure",
+          "User behaviour"
+        ],
+        "pairs": [
+          {
+            "text": "Firewall",
+            "category": "Technical measure"
+          },
+          {
+            "text": "Antivirus software",
+            "category": "Technical measure"
+          },
+          {
+            "text": "Encryption",
+            "category": "Technical measure"
+          },
+          {
+            "text": "Two-factor authentication",
+            "category": "Technical measure"
+          },
+          {
+            "text": "Staff security training",
+            "category": "Human / policy measure"
+          },
+          {
+            "text": "Principle of least privilege policy",
+            "category": "Human / policy measure"
+          },
+          {
+            "text": "Reporting suspected phishing emails",
+            "category": "Human / policy measure"
+          },
+          {
+            "text": "Using a strong, unique password for every account",
+            "category": "User behaviour"
+          },
+          {
+            "text": "Not clicking unknown links in emails",
+            "category": "User behaviour"
+          },
+          {
+            "text": "Keeping software updated",
+            "category": "User behaviour"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cyber_cat02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "title": "Encryption in transit or at rest?",
+        "instruction": "Sort each scenario into whether it describes encryption in transit or encryption at rest.",
+        "categories": [
+          "Encryption in transit",
+          "Encryption at rest"
+        ],
+        "pairs": [
+          {
+            "text": "HTTPS encrypting data between a browser and a web server",
+            "category": "Encryption in transit"
+          },
+          {
+            "text": "A VPN encrypting all traffic sent over public Wi-Fi",
+            "category": "Encryption in transit"
+          },
+          {
+            "text": "Encrypting an email as it travels between mail servers",
+            "category": "Encryption in transit"
+          },
+          {
+            "text": "Encrypting a laptop's hard drive with BitLocker",
+            "category": "Encryption at rest"
+          },
+          {
+            "text": "Encrypting files stored in cloud storage",
+            "category": "Encryption at rest"
+          },
+          {
+            "text": "Encrypting a USB drive so stolen data cannot be read",
+            "category": "Encryption at rest"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cyber_cat03",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Cybersecurity: Protection"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "cybersecurity"
+      ],
+      "data": {
+        "title": "Strong or weak password practice?",
+        "instruction": "Sort each password habit into strong (good) practice or weak (bad) practice.",
+        "categories": [
+          "Strong password practice",
+          "Weak password practice"
+        ],
+        "pairs": [
+          {
+            "text": "Using your pet's name as your password",
+            "category": "Weak password practice"
+          },
+          {
+            "text": "Reusing the same password on multiple websites",
+            "category": "Weak password practice"
+          },
+          {
+            "text": "Using a password shorter than 8 characters",
+            "category": "Weak password practice"
+          },
+          {
+            "text": "Using your date of birth as a PIN",
+            "category": "Weak password practice"
+          },
+          {
+            "text": "Using a different unique password for every account",
+            "category": "Strong password practice"
+          },
+          {
+            "text": "Mixing uppercase letters, numbers, and symbols",
+            "category": "Strong password practice"
+          },
+          {
+            "text": "Using a password manager to generate and store passwords",
+            "category": "Strong password practice"
+          },
+          {
+            "text": "Making a password at least 12 characters long",
+            "category": "Strong password practice"
+          }
+        ]
+      }
+    }
+  ]
+}

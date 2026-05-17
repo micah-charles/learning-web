@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_variables_datatypes",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Variables, Data Types & Input/Output (Passages)",
+  "items": [
+    {
+      "id": "vdt_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Variables and Data Types"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "Variables and Memory",
+        "targetTitle": "Variables and Memory",
+        "sourcePassage": "Every time a program needs to remember something — a player's score, a user's name, the result of a calculation — it stores that information in a variable. A variable is a named location in the computer's memory where a value can be kept and changed while the program is running. Think of memory as a large set of labelled boxes: the label is the variable's name, and the contents of the box is its current value.\n\nWhen a programmer writes score = 0, they are creating a box labelled 'score' and putting the value 0 inside it. Later in the program, writing score = score + 1 takes the current contents (0), adds 1, and puts the new value (1) back in the same box. The name 'score' stays the same; only the value changes.\n\nA constant is similar to a variable, but once its value is set it never changes during the program's execution. Constants are written in UPPERCASE by convention — for example, MAX_ATTEMPTS = 3. This makes it easy for anyone reading the code to know that this value must not be altered. Using constants instead of typing the same number repeatedly throughout the code also makes programs easier to maintain: if the value needs updating, you change it in one place only.",
+        "targetPassage": "Every time a program needs to remember something — a player's score, a user's name, the result of a calculation — it stores that information in a variable. A variable is a named location in the computer's memory where a value can be kept and changed while the program is running. Think of memory as a large set of labelled boxes: the label is the variable's name, and the contents of the box is its current value.\n\nWhen a programmer writes score = 0, they are creating a box labelled 'score' and putting the value 0 inside it. Later in the program, writing score = score + 1 takes the current contents (0), adds 1, and puts the new value (1) back in the same box. The name 'score' stays the same; only the value changes.\n\nA constant is similar to a variable, but once its value is set it never changes during the program's execution. Constants are written in UPPERCASE by convention — for example, MAX_ATTEMPTS = 3. This makes it easy for anyone reading the code to know that this value must not be altered. Using constants instead of typing the same number repeatedly throughout the code also makes programs easier to maintain: if the value needs updating, you change it in one place only.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "vdt_p01_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a variable?",
+            "options": [
+              "A named location in memory where a value can be stored and changed",
+              "A value that can never be altered once set",
+              "A type of calculation performed by the CPU",
+              "The label printed on a computer keyboard key"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A named location in memory where a value can be stored and changed",
+            "acceptedKeywords": ["named", "memory", "value", "changed"]
+          },
+          {
+            "id": "vdt_p01_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "By convention, how are constant names written to distinguish them from variables?",
+            "options": [
+              "In UPPERCASE letters",
+              "In lowercase letters",
+              "With a # symbol at the start",
+              "Enclosed in square brackets"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "In UPPERCASE letters",
+            "acceptedKeywords": ["UPPERCASE", "uppercase", "capital"]
+          },
+          {
+            "id": "vdt_p01_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "After the statement score = score + 1, what happens to the variable named 'score'?",
+            "options": [
+              "Its value increases by 1",
+              "A new variable called 'score' is created",
+              "The variable is deleted and recreated",
+              "Its name changes to 'score + 1'"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Its value increases by 1",
+            "acceptedKeywords": ["increases", "value", "1"]
+          },
+          {
+            "id": "vdt_p01_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain one benefit of using a constant instead of typing the same number directly into the code in multiple places.",
+            "modelAnswer": "If the value needs to change, you only need to update it in one place (where the constant is defined) rather than finding and changing every occurrence throughout the code. This makes the program easier to maintain and reduces the chance of errors.",
+            "acceptedKeywords": ["one place", "maintain", "update", "easier", "change"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "vdt_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Variables and Data Types"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "Data Types and Why They Matter",
+        "targetTitle": "Data Types and Why They Matter",
+        "sourcePassage": "Every value in a program belongs to a data type, which tells the computer what kind of information it is and what can be done with it. The four most important data types at KS3 are integer (whole numbers such as 42), float (decimal numbers such as 3.14), string (text enclosed in quotes such as \"Hello\"), and Boolean (the logical values True or False).\n\nData types matter because they determine which operations are valid. You can add two integers or two floats, but you cannot add an integer and a string without converting one of them first. For example, \"42\" + 1 causes a TypeError in Python because \"42\" is a string, not a number. The solution is type casting: converting a value from one type to another using functions such as int(), float(), or str().\n\nA particularly important case is user input. In Python, the input() function always returns a string — even if the user types a number. If a program needs to do arithmetic with the input, the programmer must cast it immediately, writing int(input(\"Enter age: \")) rather than just input(\"Enter age: \"). Forgetting to cast input is one of the most common beginner programming errors, and it always produces a TypeError at the moment arithmetic is attempted.",
+        "targetPassage": "Every value in a program belongs to a data type, which tells the computer what kind of information it is and what can be done with it. The four most important data types at KS3 are integer (whole numbers such as 42), float (decimal numbers such as 3.14), string (text enclosed in quotes such as \"Hello\"), and Boolean (the logical values True or False).\n\nData types matter because they determine which operations are valid. You can add two integers or two floats, but you cannot add an integer and a string without converting one of them first. For example, \"42\" + 1 causes a TypeError in Python because \"42\" is a string, not a number. The solution is type casting: converting a value from one type to another using functions such as int(), float(), or str().\n\nA particularly important case is user input. In Python, the input() function always returns a string — even if the user types a number. If a program needs to do arithmetic with the input, the programmer must cast it immediately, writing int(input(\"Enter age: \")) rather than just input(\"Enter age: \"). Forgetting to cast input is one of the most common beginner programming errors, and it always produces a TypeError at the moment arithmetic is attempted.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "vdt_p02_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What data type is the value \"42\" (enclosed in quotes)?",
+            "options": [
+              "string",
+              "integer",
+              "float",
+              "Boolean"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "string",
+            "acceptedKeywords": ["string", "str"]
+          },
+          {
+            "id": "vdt_p02_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What type of error occurs if you try to add a string and an integer in Python?",
+            "options": [
+              "TypeError",
+              "SyntaxError",
+              "NameError",
+              "ValueError"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "TypeError",
+            "acceptedKeywords": ["TypeError", "type error"]
+          },
+          {
+            "id": "vdt_p02_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A programmer writes: age = input(\"Enter age: \"). What data type does 'age' hold after this line?",
+            "options": [
+              "string",
+              "integer",
+              "float",
+              "Boolean"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "string",
+            "acceptedKeywords": ["string", "str", "text"]
+          },
+          {
+            "id": "vdt_p02_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain what type casting is and give one example of when a programmer would need to use it.",
+            "modelAnswer": "Type casting is converting a value from one data type to another. A programmer would need to use it when accepting user input, because input() always returns a string. If they need to do arithmetic with the input, they must cast it to an integer or float first using int() or float().",
+            "acceptedKeywords": ["converting", "data type", "input", "integer", "float", "int()", "cast"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "vdt_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Input and Output"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "Input and Output in Programs",
+        "targetTitle": "Input and Output in Programs",
+        "sourcePassage": "Almost every useful program communicates with its user in some way. It might ask for a name, display a result, show a menu, or print a report. The two mechanisms that make this communication possible are input and output.\n\nOutput is the simpler of the two. In Python, the print() function sends data to the screen. You can print a string directly — print(\"Hello!\") — or print the value of a variable — print(score) — or combine text and variables: print(\"Your score is:\", score). In pseudocode, the keyword OUTPUT is used in the same way.\n\nInput is slightly more complex. In Python, input() pauses the program and waits for the user to type something on the keyboard. Whatever they type is stored as a string. The programmer can provide a prompt — a message that appears on screen to tell the user what to type — by putting it inside the brackets: input(\"Enter your name: \"). In pseudocode, the keyword USERINPUT represents this action. A critical rule is that input() always returns a string, so any numerical value must be converted with int() or float() before arithmetic can be performed on it. Combining input and output allows programs to become interactive, responding differently depending on what the user provides.",
+        "targetPassage": "Almost every useful program communicates with its user in some way. It might ask for a name, display a result, show a menu, or print a report. The two mechanisms that make this communication possible are input and output.\n\nOutput is the simpler of the two. In Python, the print() function sends data to the screen. You can print a string directly — print(\"Hello!\") — or print the value of a variable — print(score) — or combine text and variables: print(\"Your score is:\", score). In pseudocode, the keyword OUTPUT is used in the same way.\n\nInput is slightly more complex. In Python, input() pauses the program and waits for the user to type something on the keyboard. Whatever they type is stored as a string. The programmer can provide a prompt — a message that appears on screen to tell the user what to type — by putting it inside the brackets: input(\"Enter your name: \"). In pseudocode, the keyword USERINPUT represents this action. A critical rule is that input() always returns a string, so any numerical value must be converted with int() or float() before arithmetic can be performed on it. Combining input and output allows programs to become interactive, responding differently depending on what the user provides.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "vdt_p03_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which Python function is used to display data to the user on screen?",
+            "options": [
+              "print()",
+              "input()",
+              "output()",
+              "display()"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "print()",
+            "acceptedKeywords": ["print", "print()"]
+          },
+          {
+            "id": "vdt_p03_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does input() do in Python?",
+            "options": [
+              "Pauses the program and waits for the user to type something, then stores it as a string",
+              "Reads a number from the keyboard and stores it as an integer",
+              "Displays a message on the screen",
+              "Converts a string to an integer"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Pauses the program and waits for the user to type something, then stores it as a string",
+            "acceptedKeywords": ["pauses", "string", "keyboard", "waits"]
+          },
+          {
+            "id": "vdt_p03_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the pseudocode equivalent of Python's input() function?",
+            "options": [
+              "USERINPUT",
+              "INPUT",
+              "READ",
+              "KEYBOARD"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "USERINPUT",
+            "acceptedKeywords": ["USERINPUT"]
+          },
+          {
+            "id": "vdt_p03_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "A programmer wants to ask the user for their age and then calculate their age in 10 years. Write the two Python lines needed and explain why casting is necessary.",
+            "modelAnswer": "age = int(input(\"Enter your age: \"))\nfuture_age = age + 10\nCasting is necessary because input() always returns a string. Without int(), adding 10 to the string would cause a TypeError because you cannot perform arithmetic on text.",
+            "acceptedKeywords": ["int(", "input(", "TypeError", "string", "cast", "arithmetic"]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -6,6 +6,8 @@ const SUBJECT_META = {
   geography:  { label: "Geography",  icon: "🌍" },
   science:    { label: "Science",    icon: "🔬" },
   literature: { label: "Literature", icon: "📖" },
+  computing:  { label: "Computing",  icon: "💻" },
+  other:      { label: "Other",      icon: "🗂️" },
 };
 
 export function SubjectCardGrid({ subjects, activeSubject, onSelect }) {

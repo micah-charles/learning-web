@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_decomposition_abstraction",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "displayName": "KS3 Computing — Decomposition & Abstraction",
+  "subtitle": "Breaking problems into sub-problems and removing irrelevant detail.",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": [
+    "KS3",
+    "computing",
+    "computational thinking"
+  ],
+  "items": [
+    {
+      "id": "ks3_computing_decomp_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "computational thinking",
+        "targetWord": "a structured approach to problem-solving used in computer science, involving decomposition, abstraction, pattern recognition, and algorithm design",
+        "examples": {
+          "en-GB": "Computational thinking helps programmers break down complex problems before writing any code."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decomposition",
+        "targetWord": "breaking a large, complex problem into smaller, more manageable sub-problems that are each easier to understand, solve, and test",
+        "examples": {
+          "en-GB": "Using decomposition, a programmer splits a school website project into layout, content, navigation, and testing tasks."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sub-problem",
+        "targetWord": "a smaller, more manageable part of a larger problem created by applying decomposition",
+        "examples": {
+          "en-GB": "Designing the navigation menu is one sub-problem when building a school website."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "modular design",
+        "targetWord": "designing software as a collection of self-contained, reusable modules or subroutines, each solving one sub-problem",
+        "examples": {
+          "en-GB": "Modular design allowed the team to assign each sub-problem to a different programmer."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "subroutine",
+        "targetWord": "a named, self-contained block of code that performs a specific task and can be called from other parts of a program",
+        "examples": {
+          "en-GB": "The subroutine calculateAverageScore() is called once for each student without repeating the calculation logic."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "abstraction",
+        "targetWord": "removing unnecessary or irrelevant detail from a problem or model so that only the important features remain",
+        "examples": {
+          "en-GB": "A map uses abstraction by showing roads as lines and omitting details like road texture or the presence of people."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "model",
+        "targetWord": "a simplified representation of a real-world system that emphasises relevant features and hides irrelevant ones",
+        "examples": {
+          "en-GB": "A road map is a model of the real landscape, showing only what a traveller needs."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "interface",
+        "targetWord": "the visible part of a subroutine or system — its name, inputs, and outputs — which hides the internal implementation detail",
+        "examples": {
+          "en-GB": "The interface of calculateArea(length, width) shows what goes in and what comes out, without revealing how the calculation is done."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "encapsulation",
+        "targetWord": "bundling data and the code that processes it inside a single unit so that internal details are hidden from outside code",
+        "examples": {
+          "en-GB": "Encapsulation means the variable playerScore is only modified through the approved functions, not directly from anywhere in the program."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "top-down design",
+        "targetWord": "a design approach that starts with the overall problem and repeatedly decomposes it into smaller sub-problems until each is simple enough to code",
+        "examples": {
+          "en-GB": "Using top-down design, the programmer first defined the main modules, then broke each one into smaller tasks."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "module",
+        "targetWord": "a self-contained unit of code that performs one specific function and can be developed and tested independently",
+        "examples": {
+          "en-GB": "Each module in the library program handled one task: storing books, searching, or recording loans."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "generalisation",
+        "targetWord": "creating a solution broad enough to apply to many similar problems, not just the specific case it was first written for",
+        "examples": {
+          "en-GB": "A calculateArea(length, width) function is a generalisation — it works for any rectangle, not just one specific size."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "reusability",
+        "targetWord": "the ability of a piece of code or module to be used in multiple programs or multiple places in the same program without rewriting it",
+        "examples": {
+          "en-GB": "Good reusability means the validateInput() subroutine can be used in the student record system and the library system."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "variable",
+        "targetWord": "a named storage location in a program that holds a value, abstracting away the underlying memory address and binary representation",
+        "examples": {
+          "en-GB": "The variable score holds the player's points without the programmer needing to know which memory address stores it."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "API",
+        "targetWord": "application programming interface — a set of abstracted functions that lets programmers use a service without knowing its internal workings",
+        "examples": {
+          "en-GB": "Using a weather API, the programmer requests forecast data without understanding how the weather server collects or stores it."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "divide and conquer",
+        "targetWord": "a problem-solving strategy where a problem is split into smaller independent sub-problems, each solved separately, then combined",
+        "examples": {
+          "en-GB": "Divide and conquer is why teams of programmers can work on different modules of the same application simultaneously."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "abstraction layer",
+        "targetWord": "a level in a computer system that hides the complexity of the layer below and provides a simpler interface to the layer above",
+        "examples": {
+          "en-GB": "The operating system is an abstraction layer between application software and the physical hardware."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "operating system",
+        "targetWord": "system software that abstracts the hardware and provides a standard interface for application programs to run on any compatible computer",
+        "examples": {
+          "en-GB": "Because of the operating system, a programmer can write to a file without knowing which physical disk sectors store the data."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decomposition tree",
+        "targetWord": "a hierarchical diagram that shows how a problem is broken down into sub-problems, with the main problem at the top and sub-problems branching below",
+        "examples": {
+          "en-GB": "The decomposition tree for the quiz app showed three main branches: load questions, run quiz loop, and show results."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "algorithm",
+        "targetWord": "a finite, unambiguous sequence of steps designed to solve a problem or complete a task",
+        "examples": {
+          "en-GB": "The algorithm for checking a student's score and awarding a grade was tested before being translated into code."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "function",
+        "targetWord": "a subroutine that performs a specific task and returns a value to the part of the program that called it",
+        "examples": {
+          "en-GB": "The function calculateTax(income) takes an income value and returns the tax owed."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "information hiding",
+        "targetWord": "the practice of concealing the internal workings of a module so that other parts of the program only interact with its interface",
+        "examples": {
+          "en-GB": "Information hiding means a programmer can change how sendEmail() works internally without affecting any code that calls it."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "independent testing",
+        "targetWord": "testing each module or sub-problem separately to confirm it works correctly before combining it with the rest of the program",
+        "examples": {
+          "en-GB": "Independent testing let the team find the bug in the calculateScore() module before it affected the whole program."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "relevant detail",
+        "targetWord": "information that is needed for the task at hand and must be kept in the abstract model or representation",
+        "examples": {
+          "en-GB": "On a tube map, station names and connections are relevant detail; the exact curves of the tunnels are not."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "irrelevant detail",
+        "targetWord": "information that is not needed for the current task and should be removed during abstraction to create a cleaner model",
+        "examples": {
+          "en-GB": "The texture of road surfaces is irrelevant detail on a navigation map and is therefore abstracted away."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "car dashboard",
+        "targetWord": "a real-world example of abstraction: it shows only the information the driver needs (speed, fuel, temperature) and hides thousands of underlying sensor readings",
+        "examples": {
+          "en-GB": "A car dashboard abstracts away engine diagnostics and shows only speed and fuel level."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "map abstraction",
+        "targetWord": "the process by which a map removes three-dimensional, textural, and human detail from the real world to produce a navigable two-dimensional representation",
+        "examples": {
+          "en-GB": "Map abstraction converts physical tarmac roads into simple lines so travellers can plan routes easily."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "maintainability",
+        "targetWord": "how easily a program can be updated, corrected, or extended after it is first written, improved by decomposition into independent modules",
+        "examples": {
+          "en-GB": "Good maintainability means fixing a bug in the displayResults() module does not require changes anywhere else."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_029",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "scalability",
+        "targetWord": "the ability of a system to grow and handle more work without requiring a complete redesign, made possible by well-decomposed modular structure",
+        "examples": {
+          "en-GB": "Because the social media platform was well decomposed into modules, adding a stories feature required only a new module."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_vocab_030",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ATM abstraction",
+        "targetWord": "a real-world example where a cash machine presents a simple touchscreen interface while hiding secure bank authentication, server communication, and note-counting mechanisms",
+        "examples": {
+          "en-GB": "ATM abstraction means a user withdraws cash by tapping buttons, completely unaware of the authentication and server requests happening underneath."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Breaking a complex problem into smaller, more manageable parts is called ____.",
+        "answer": "decomposition",
+        "options": [
+          "decomposition",
+          "abstraction",
+          "iteration",
+          "compilation"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Removing unnecessary detail from a problem so that only important features remain is called ____.",
+        "answer": "abstraction",
+        "options": [
+          "abstraction",
+          "decomposition",
+          "generalisation",
+          "recursion"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A smaller part created by breaking down a large problem is called a ____.",
+        "answer": "sub-problem",
+        "options": [
+          "sub-problem",
+          "function call",
+          "loop",
+          "variable"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Decomposition allows different programmers to work on different sub-problems ____, saving time on large projects.",
+        "answer": "simultaneously",
+        "options": [
+          "simultaneously",
+          "sequentially",
+          "randomly",
+          "manually"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In programming, decomposition is implemented using ____, which are named blocks of code that each solve one sub-problem.",
+        "answer": "subroutines",
+        "options": [
+          "subroutines",
+          "variables",
+          "comments",
+          "data types"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A map is an example of abstraction because it removes ____ detail such as road texture and the presence of people.",
+        "answer": "irrelevant",
+        "options": [
+          "irrelevant",
+          "important",
+          "numerical",
+          "technical"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A car ____ abstracts away thousands of sensor readings and shows only speed, fuel level, and engine temperature.",
+        "answer": "dashboard",
+        "options": [
+          "dashboard",
+          "engine",
+          "gearbox",
+          "battery"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "When a programmer writes score = 10, the variable name abstracts away the underlying binary ____ address.",
+        "answer": "memory",
+        "options": [
+          "memory",
+          "network",
+          "input",
+          "processor"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A subroutine's name, inputs, and outputs form its ____, which is all that other parts of the program need to know.",
+        "answer": "interface",
+        "options": [
+          "interface",
+          "algorithm",
+          "trace table",
+          "module"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An API is an example of abstraction because it lets programmers use a service without understanding its ____ workings.",
+        "answer": "internal",
+        "options": [
+          "internal",
+          "external",
+          "visual",
+          "sequential"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Designing software as a collection of self-contained, reusable sub-programs is called ____ design.",
+        "answer": "modular",
+        "options": [
+          "modular",
+          "sequential",
+          "linear",
+          "circular"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "One benefit of decomposition is that if a bug is found in one module, only that ____ needs to be fixed.",
+        "answer": "module",
+        "options": [
+          "module",
+          "variable",
+          "loop",
+          "comment"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A completed subroutine can be ____ in other projects, saving development time.",
+        "answer": "reused",
+        "options": [
+          "reused",
+          "deleted",
+          "compiled",
+          "abstracted"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The operating system is an abstraction ____ that sits between application software and the physical hardware.",
+        "answer": "layer",
+        "options": [
+          "layer",
+          "loop",
+          "table",
+          "branch"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_fillblank_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Decomposition and abstraction are always used together: decomposition divides the problem and abstraction ____ unnecessary detail within each part.",
+        "answer": "hides",
+        "options": [
+          "hides",
+          "reveals",
+          "duplicates",
+          "loops"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps to decompose a problem into a program",
+        "instruction": "Put these stages of the decomposition process in the correct order.",
+        "items": [
+          "Identify the overall problem",
+          "Break the problem into major sub-problems",
+          "Break each sub-problem into smaller tasks",
+          "Write a subroutine for each task",
+          "Test each subroutine independently",
+          "Combine subroutines into the complete program"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Layers of abstraction in a computer system",
+        "instruction": "Put these layers in order from the highest abstraction (user-facing) to the lowest (physical hardware).",
+        "items": [
+          "User — sees icons, windows, and menus",
+          "Application software — uses OS functions and file system",
+          "Operating system — manages hardware instructions",
+          "Hardware — physical circuits and electrical signals"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_catsort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition",
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Decomposition or Abstraction?",
+        "instruction": "Sort each example into the correct computational thinking pillar.",
+        "categories": [
+          "Decomposition",
+          "Abstraction"
+        ],
+        "pairs": [
+          {
+            "text": "Splitting a school website project into layout, content, navigation, and testing tasks",
+            "category": "Decomposition"
+          },
+          {
+            "text": "A map showing roads as lines and removing people and road texture",
+            "category": "Abstraction"
+          },
+          {
+            "text": "Writing separate subroutines for getStudentData(), calculateScore(), and displayResults()",
+            "category": "Decomposition"
+          },
+          {
+            "text": "A car dashboard showing only speed and fuel level instead of all sensor data",
+            "category": "Abstraction"
+          },
+          {
+            "text": "Breaking a quiz app into: load questions, run loop, and show results",
+            "category": "Decomposition"
+          },
+          {
+            "text": "Using a variable called score instead of a memory address",
+            "category": "Abstraction"
+          },
+          {
+            "text": "Assigning different sub-problems to different team members simultaneously",
+            "category": "Decomposition"
+          },
+          {
+            "text": "A function called sendEmail(recipient, subject, body) that hides the email protocol",
+            "category": "Abstraction"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_catsort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Decomposition",
+        "Computational Thinking: Abstraction"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Which computational thinking pillar?",
+        "instruction": "Sort each example into the correct pillar of computational thinking.",
+        "categories": [
+          "Decomposition",
+          "Abstraction",
+          "Pattern Recognition"
+        ],
+        "pairs": [
+          {
+            "text": "Breaking a library program into: store books, search, borrow/return, and overdue reports",
+            "category": "Decomposition"
+          },
+          {
+            "text": "An ATM hiding bank authentication and note-counting behind a simple touchscreen",
+            "category": "Abstraction"
+          },
+          {
+            "text": "Noticing that 10 enemies in a game share the same structure and using a loop",
+            "category": "Pattern Recognition"
+          },
+          {
+            "text": "Dividing a machine-learning pipeline into: collect data, clean data, train, evaluate, deploy",
+            "category": "Decomposition"
+          },
+          {
+            "text": "Using the name playerScore instead of a binary memory address",
+            "category": "Abstraction"
+          },
+          {
+            "text": "Recognising that the same calculate-average code appears three times and writing a function",
+            "category": "Pattern Recognition"
+          }
+        ]
+      }
+    }
+  ]
+}

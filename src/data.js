@@ -205,7 +205,7 @@ export function findDataset(manifest, datasetId) {
 // Older packs may not declare it; the inference fallback below assigns a
 // best-guess subject so legacy packs still appear in the right bucket.
 
-export const SUBJECTS = ["language", "history", "geography", "science", "literature"];
+export const SUBJECTS = ["language", "history", "geography", "science", "literature", "computing", "other"];
 
 const LANGUAGE_HINT_CODES = ["de", "fr", "es", "it", "la", "zh", "ja", "ko", "ru", "ar", "el", "pt", "nl"];
 
@@ -230,6 +230,9 @@ function inferSubject(dataset) {
   if (id.includes("literature") || id.includes("novel") || id.includes("poem") || id.includes("animal_farm") || id.includes("shakespeare")) {
     return "literature";
   }
+  if (id.includes("computing") || id.includes("ks3_computing") || id.includes("gcse_computing")) {
+    return "computing";
+  }
 
   // Translation-language fallback: anything where the source-language code
   // is a non-English BCP-47 language gets bucketed as "language".
@@ -238,7 +241,7 @@ function inferSubject(dataset) {
   if (LANGUAGE_HINT_CODES.includes(src) || LANGUAGE_HINT_CODES.includes(tgt)) {
     return "language";
   }
-  return "language";
+  return "other";
 }
 
 export function getDatasetSubject(dataset) {

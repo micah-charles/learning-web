@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_binary_hexadecimal",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_binary_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Binary & Hexadecimal"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Binary & Hexadecimal",
+        "sourceTitle": "Why Computers Use Binary: Bits and Bytes",
+        "targetTitle": "Why Computers Use Binary: Bits and Bytes",
+        "sourcePassage": "Every piece of data a computer processes — a word, a photo, a video, a program — is ultimately stored as a sequence of 0s and 1s. To understand why, you need to understand how computer hardware works at its most basic level.\n\nA modern computer processor contains billions of tiny electronic switches called transistors. Each transistor has exactly two stable states: conducting (on) or not conducting (off). Engineers represent these two states as the digits 1 and 0. Because hardware can only reliably detect two states, all data must be encoded using just two symbols. This is why binary — the base-2 number system using only 0 and 1 — is the natural language of computers.\n\nA single binary digit is called a bit. A bit can represent two possible values: 0 or 1. On its own, a bit can store very little information. So bits are grouped together. Four bits form a nibble, and eight bits form a byte. A byte can hold 256 different values (2⁸), ranging from 00000000 to 11111111 in binary (0 to 255 in denary). The byte is the standard unit for storing a single character of text. Larger units include kilobytes (1,024 bytes), megabytes (1,024 KB), and gigabytes (1,024 MB).",
+        "targetPassage": "Every piece of data a computer processes — a word, a photo, a video, a program — is ultimately stored as a sequence of 0s and 1s. To understand why, you need to understand how computer hardware works at its most basic level.\n\nA modern computer processor contains billions of tiny electronic switches called transistors. Each transistor has exactly two stable states: conducting (on) or not conducting (off). Engineers represent these two states as the digits 1 and 0. Because hardware can only reliably detect two states, all data must be encoded using just two symbols. This is why binary — the base-2 number system using only 0 and 1 — is the natural language of computers.\n\nA single binary digit is called a bit. A bit can represent two possible values: 0 or 1. On its own, a bit can store very little information. So bits are grouped together. Four bits form a nibble, and eight bits form a byte. A byte can hold 256 different values (2⁸), ranging from 00000000 to 11111111 in binary (0 to 255 in denary). The byte is the standard unit for storing a single character of text. Larger units include kilobytes (1,024 bytes), megabytes (1,024 KB), and gigabytes (1,024 MB).",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_binary_p1_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Why do computers use binary to represent all data?",
+            "options": [
+              "Because transistors have two states — on and off — matching the digits 0 and 1",
+              "Because binary is easier for humans to read than denary",
+              "Because computers were invented before denary was developed",
+              "Because binary numbers are always shorter than denary numbers"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Because transistors have two states — on and off — matching the digits 0 and 1",
+            "acceptedKeywords": ["transistors", "two states", "on", "off"]
+          },
+          {
+            "id": "ks3_computing_binary_p1_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How many bits are in one byte?",
+            "options": ["8", "4", "16", "2"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "8",
+            "acceptedKeywords": ["8", "eight"]
+          },
+          {
+            "id": "ks3_computing_binary_p1_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the maximum denary value that can be stored in a single byte?",
+            "options": ["255", "256", "128", "127"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "255",
+            "acceptedKeywords": ["255", "11111111"]
+          },
+          {
+            "id": "ks3_computing_binary_p1_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why computers use binary rather than denary, referring to transistors in your answer.",
+            "modelAnswer": "Computers are built from transistors, which are tiny electronic switches. A transistor has exactly two stable states: it is either on (conducting) or off (not conducting). These two states are represented as the binary digits 1 and 0. Because hardware can only reliably distinguish between two states, it is only possible to encode data using two symbols. This makes binary — the base-2 number system — the natural and only practical choice for computer hardware. Denary would require hardware that could reliably detect ten distinct states, which is far more difficult to build reliably.",
+            "acceptedKeywords": ["transistors", "two states", "on", "off", "binary", "0 and 1"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Binary & Hexadecimal"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Binary & Hexadecimal",
+        "sourceTitle": "Hexadecimal and Why It Is Used in Computing",
+        "targetTitle": "Hexadecimal and Why It Is Used in Computing",
+        "sourcePassage": "Binary is essential for computers, but it is not convenient for humans. The binary pattern 11001010 is difficult to read, remember, and write without making errors. Hexadecimal — base 16 — was developed as a compact and human-friendly alternative that maps directly onto binary.\n\nHexadecimal uses sixteen symbols: the digits 0 through 9 (with their usual values) and the letters A through F to represent the values 10 through 15. This means A=10, B=11, C=12, D=13, E=14, and F=15. The crucial property is that one hexadecimal digit represents exactly four binary digits (one nibble). To convert binary to hexadecimal, split the binary number into groups of four bits from the right and replace each group with its hex equivalent. The 8-bit binary number 11001010 splits into 1100 and 1010, which are C (12) and A (10) respectively, giving the hex value CA.\n\nHexadecimal is used throughout computing. Web designers use six-digit hex codes to specify colours: #FF5733 means maximum red (FF=255), moderate green (57=87), and low blue (33=51). Programmers encounter hex in memory addresses (such as 0x1A3F) and error codes. In every case the motivation is the same: hex is much more compact and readable than the equivalent binary string.",
+        "targetPassage": "Binary is essential for computers, but it is not convenient for humans. The binary pattern 11001010 is difficult to read, remember, and write without making errors. Hexadecimal — base 16 — was developed as a compact and human-friendly alternative that maps directly onto binary.\n\nHexadecimal uses sixteen symbols: the digits 0 through 9 (with their usual values) and the letters A through F to represent the values 10 through 15. This means A=10, B=11, C=12, D=13, E=14, and F=15. The crucial property is that one hexadecimal digit represents exactly four binary digits (one nibble). To convert binary to hexadecimal, split the binary number into groups of four bits from the right and replace each group with its hex equivalent. The 8-bit binary number 11001010 splits into 1100 and 1010, which are C (12) and A (10) respectively, giving the hex value CA.\n\nHexadecimal is used throughout computing. Web designers use six-digit hex codes to specify colours: #FF5733 means maximum red (FF=255), moderate green (57=87), and low blue (33=51). Programmers encounter hex in memory addresses (such as 0x1A3F) and error codes. In every case the motivation is the same: hex is much more compact and readable than the equivalent binary string.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_binary_p2_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What denary value does the hexadecimal digit C represent?",
+            "options": ["12", "13", "11", "14"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "12",
+            "acceptedKeywords": ["12", "twelve"]
+          },
+          {
+            "id": "ks3_computing_binary_p2_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How many binary bits does a single hexadecimal digit represent?",
+            "options": ["4", "8", "2", "16"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "4",
+            "acceptedKeywords": ["4", "four", "nibble"]
+          },
+          {
+            "id": "ks3_computing_binary_p2_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the hexadecimal equivalent of the binary number 11001010?",
+            "options": ["CA", "BC", "CB", "AC"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "CA",
+            "acceptedKeywords": ["CA"]
+          },
+          {
+            "id": "ks3_computing_binary_p2_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain two reasons why hexadecimal is used by programmers instead of writing binary directly.",
+            "modelAnswer": "First, hexadecimal is much more compact than binary. Each hex digit represents exactly four binary digits, so an 8-bit binary number like 11001010 can be written as just two hex digits (CA) instead of eight digits. This makes it faster to write, read, and remember. Second, hex is less error-prone for humans. A long binary string is easy to misread or miscopy — for example, confusing 11001010 with 11001100. The shorter hex representation reduces these mistakes. Hex is used for colour codes, memory addresses, and error codes for these same reasons.",
+            "acceptedKeywords": ["compact", "shorter", "readable", "nibble", "four bits", "error-prone"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Binary & Hexadecimal"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Binary & Hexadecimal",
+        "sourceTitle": "Binary Addition and Overflow",
+        "targetTitle": "Binary Addition and Overflow",
+        "sourcePassage": "Binary addition works column by column from right to left, just like denary addition. There are four basic rules: 0+0=0, 0+1=1, 1+0=1, and 1+1=10 (write down 0 and carry 1 to the next column). A fifth situation arises when a carry arrives on top of two 1s: 1+1+1=11 (write down 1 and carry 1).\n\nConsider adding 01101101 (109) and 00110110 (54). Working from right to left, you apply each rule, carrying when necessary. The result is 10100011, which equals 128+32+2+1 = 163 in denary — matching 109+54=163.\n\nOverflow is an important problem that arises when the result of an addition is too large to fit in the available bits. For an 8-bit system, the maximum storable value is 255 (11111111). If you try to add 11111111 (255) and 00000001 (1), the true answer is 100000000 (256), which requires 9 bits. The 9th bit — the 1 at the far left — cannot be stored in an 8-bit register, so it is lost. The stored result becomes 00000000, which incorrectly represents 0. This is an overflow error and can cause serious bugs in programs that do not check for it.",
+        "targetPassage": "Binary addition works column by column from right to left, just like denary addition. There are four basic rules: 0+0=0, 0+1=1, 1+0=1, and 1+1=10 (write down 0 and carry 1 to the next column). A fifth situation arises when a carry arrives on top of two 1s: 1+1+1=11 (write down 1 and carry 1).\n\nConsider adding 01101101 (109) and 00110110 (54). Working from right to left, you apply each rule, carrying when necessary. The result is 10100011, which equals 128+32+2+1 = 163 in denary — matching 109+54=163.\n\nOverflow is an important problem that arises when the result of an addition is too large to fit in the available bits. For an 8-bit system, the maximum storable value is 255 (11111111). If you try to add 11111111 (255) and 00000001 (1), the true answer is 100000000 (256), which requires 9 bits. The 9th bit — the 1 at the far left — cannot be stored in an 8-bit register, so it is lost. The stored result becomes 00000000, which incorrectly represents 0. This is an overflow error and can cause serious bugs in programs that do not check for it.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_binary_p3_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the result of 1 + 1 in binary?",
+            "options": ["10 (write 0, carry 1)", "2", "11", "0"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "10 (write 0, carry 1)",
+            "acceptedKeywords": ["10", "carry", "write 0"]
+          },
+          {
+            "id": "ks3_computing_binary_p3_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is overflow in binary arithmetic?",
+            "options": [
+              "When the result is too large to store in the available bits",
+              "When a number is converted to the wrong base",
+              "When a carry is passed to the next column",
+              "When the result is negative"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "When the result is too large to store in the available bits",
+            "acceptedKeywords": ["too large", "bits", "available", "overflow"]
+          },
+          {
+            "id": "ks3_computing_binary_p3_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What incorrect value does an 8-bit system store when overflow occurs adding 255 + 1?",
+            "options": ["0 (00000000)", "1 (00000001)", "256 (100000000)", "255 (11111111)"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "0 (00000000)",
+            "acceptedKeywords": ["0", "00000000", "zero"]
+          },
+          {
+            "id": "ks3_computing_binary_p3_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain what overflow is and why it can cause serious problems in computer programs.",
+            "modelAnswer": "Overflow occurs in binary arithmetic when the result of a calculation is too large to be stored in the number of bits available. For an 8-bit system, the maximum value is 255. If you add two numbers whose sum exceeds 255, the result requires more than 8 bits, and the extra bit(s) are simply lost. The stored value becomes completely wrong — for example, 255+1 would be stored as 0 instead of 256. This can cause serious bugs in programs because calculations silently produce wrong values without any error message. Programs that fail to check for overflow can produce incorrect results in financial calculations, control systems, or any situation where numbers grow large.",
+            "acceptedKeywords": ["too large", "bits lost", "wrong value", "silent", "incorrect", "8-bit", "256"]
+          }
+        ]
+      }
+    }
+  ]
+}

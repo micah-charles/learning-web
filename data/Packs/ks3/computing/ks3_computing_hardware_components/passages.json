@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_hardware_components",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Hardware Components",
+  "passages": [
+    {
+      "id": "ks3_computing_hw_passage_001",
+      "chapter": "Hardware Components",
+      "section": "CPU, RAM, and ROM",
+      "sourceTitle": "The CPU, RAM, and ROM",
+      "targetTitle": "The CPU, RAM, and ROM",
+      "sourcePassage": "Every computer is built around three core components: the CPU, RAM, and ROM. Together they handle all the processing and immediate memory needs of the computer.\n\nThe CPU, or Central Processing Unit, is the brain of the computer. It carries out all the instructions that make programs run — fetching them from memory, decoding what they mean, and then executing the required operations. Modern CPUs contain multiple cores, each capable of processing instructions independently, which allows several tasks to run at the same time.\n\nRAM, or Random Access Memory, is the computer's working memory. It holds the data and instructions for programs that are currently running. When you open a document or launch a game, the operating system loads it from secondary storage into RAM so the CPU can access it quickly. RAM is volatile: all its contents are permanently lost the moment the power is removed. This is why unsaved work disappears during a power cut.\n\nROM, or Read-Only Memory, contains the BIOS — the firmware instructions the computer follows when it first switches on. Unlike RAM, ROM is non-volatile: its contents are permanently retained without power. The BIOS checks all the hardware and begins the process of loading the operating system each time the computer boots.",
+      "targetPassage": "Every computer is built around three core components: the CPU, RAM, and ROM. Together they handle all the processing and immediate memory needs of the computer.\n\nThe CPU, or Central Processing Unit, is the brain of the computer. It carries out all the instructions that make programs run — fetching them from memory, decoding what they mean, and then executing the required operations. Modern CPUs contain multiple cores, each capable of processing instructions independently, which allows several tasks to run at the same time.\n\nRAM, or Random Access Memory, is the computer's working memory. It holds the data and instructions for programs that are currently running. When you open a document or launch a game, the operating system loads it from secondary storage into RAM so the CPU can access it quickly. RAM is volatile: all its contents are permanently lost the moment the power is removed. This is why unsaved work disappears during a power cut.\n\nROM, or Read-Only Memory, contains the BIOS — the firmware instructions the computer follows when it first switches on. Unlike RAM, ROM is non-volatile: its contents are permanently retained without power. The BIOS checks all the hardware and begins the process of loading the operating system each time the computer boots.",
+      "speechLanguage": "en-GB",
+      "questions": [
+        {
+          "id": "ks3_computing_hw_passage_001_q1",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What does the passage say happens to the contents of RAM when the power is removed?",
+          "options": [
+            "They are saved automatically to the HDD",
+            "They are permanently lost",
+            "They are transferred to ROM",
+            "They remain intact until the next boot"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "According to the passage, RAM is volatile — all its contents are permanently lost the moment the power is removed."
+        },
+        {
+          "id": "ks3_computing_hw_passage_001_q2",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What does the BIOS stored in ROM do when the computer first switches on?",
+          "options": [
+            "It loads documents from the HDD",
+            "It runs the user's applications",
+            "It checks all the hardware and begins loading the operating system",
+            "It stores the user's files permanently"
+          ],
+          "correctOptionIndex": 2,
+          "modelAnswer": "The BIOS checks all the hardware and begins the process of loading the operating system each time the computer boots."
+        },
+        {
+          "id": "ks3_computing_hw_passage_001_q3",
+          "questionType": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Why is it important that ROM is non-volatile?",
+          "options": [
+            "So that user files are saved automatically",
+            "So that the boot instructions are still present every time the computer powers on",
+            "So that RAM can be faster",
+            "So that the GPU can render graphics"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "ROM must be non-volatile so that the BIOS boot instructions are still present every time the computer powers on. If ROM lost its data when switched off, the computer would have no instructions to start up."
+        },
+        {
+          "id": "ks3_computing_hw_passage_001_q4",
+          "questionType": "open",
+          "difficulty": "medium",
+          "question": "Explain the difference between RAM and ROM in terms of volatility and purpose.",
+          "modelAnswer": "RAM is volatile, meaning it loses all its data when power is removed. Its purpose is to hold data and instructions for programs that are currently running, providing the CPU with fast access to working data. ROM is non-volatile, meaning it retains its contents permanently without power. Its purpose is to store the BIOS firmware — the permanent boot instructions the computer needs every time it starts up.",
+          "acceptedKeywords": ["volatile", "non-volatile", "RAM", "ROM", "BIOS", "currently running", "boot"]
+        }
+      ]
+    },
+    {
+      "id": "ks3_computing_hw_passage_002",
+      "chapter": "Hardware Components",
+      "section": "HDD vs SSD",
+      "sourceTitle": "Hard Disk Drives and Solid State Drives",
+      "targetTitle": "Hard Disk Drives and Solid State Drives",
+      "sourcePassage": "Secondary storage provides the permanent, non-volatile memory that holds the operating system, installed applications, and all user files. The two most common types of secondary storage in modern computers are the Hard Disk Drive and the Solid State Drive.\n\nA Hard Disk Drive, or HDD, stores data on spinning magnetic platters. A mechanical read/write head moves across the surface of the platter to read or write data. Because the head must physically move to the correct position, HDDs are relatively slow. They also contain moving parts, which makes them vulnerable to damage if dropped or jolted. On the positive side, HDDs are cheap per gigabyte, making them suitable for storing large quantities of data at low cost.\n\nA Solid State Drive, or SSD, stores data in flash memory chips with no moving parts at all. Because data is accessed electronically, SSDs are much faster than HDDs — a computer with an SSD can boot in seconds rather than minutes. SSDs are also silent, lighter, and far more resistant to physical shock. Their main disadvantage is that they cost more per gigabyte than HDDs.\n\nFor most modern computers, an SSD is used to run the operating system and applications, while an HDD may provide additional cheap bulk storage for large files such as videos and backups.",
+      "targetPassage": "Secondary storage provides the permanent, non-volatile memory that holds the operating system, installed applications, and all user files. The two most common types of secondary storage in modern computers are the Hard Disk Drive and the Solid State Drive.\n\nA Hard Disk Drive, or HDD, stores data on spinning magnetic platters. A mechanical read/write head moves across the surface of the platter to read or write data. Because the head must physically move to the correct position, HDDs are relatively slow. They also contain moving parts, which makes them vulnerable to damage if dropped or jolted. On the positive side, HDDs are cheap per gigabyte, making them suitable for storing large quantities of data at low cost.\n\nA Solid State Drive, or SSD, stores data in flash memory chips with no moving parts at all. Because data is accessed electronically, SSDs are much faster than HDDs — a computer with an SSD can boot in seconds rather than minutes. SSDs are also silent, lighter, and far more resistant to physical shock. Their main disadvantage is that they cost more per gigabyte than HDDs.\n\nFor most modern computers, an SSD is used to run the operating system and applications, while an HDD may provide additional cheap bulk storage for large files such as videos and backups.",
+      "speechLanguage": "en-GB",
+      "questions": [
+        {
+          "id": "ks3_computing_hw_passage_002_q1",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "How does an HDD store data?",
+          "options": [
+            "In flash memory chips with no moving parts",
+            "On spinning magnetic platters using a read/write head",
+            "In the CPU's registers",
+            "In ROM chips on the motherboard"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "An HDD stores data on spinning magnetic platters. A mechanical read/write head moves across the platter surface to read or write data."
+        },
+        {
+          "id": "ks3_computing_hw_passage_002_q2",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What is stated as the main disadvantage of SSDs compared to HDDs?",
+          "options": [
+            "SSDs are slower",
+            "SSDs have moving parts that can break",
+            "SSDs cost more per gigabyte",
+            "SSDs cannot store operating systems"
+          ],
+          "correctOptionIndex": 2,
+          "modelAnswer": "The passage states that the main disadvantage of SSDs is that they cost more per gigabyte than HDDs."
+        },
+        {
+          "id": "ks3_computing_hw_passage_002_q3",
+          "questionType": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Why is an SSD more durable than an HDD?",
+          "options": [
+            "SSDs use thicker metal casing",
+            "SSDs have no moving parts, making them resistant to physical shock",
+            "SSDs store data in ROM rather than flash memory",
+            "SSDs use lower voltage and therefore last longer"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "SSDs have no moving parts — data is stored electronically in flash memory chips. This makes them far more resistant to damage from drops or jolts compared to HDDs, which have mechanical read/write heads that can be damaged by physical shock."
+        },
+        {
+          "id": "ks3_computing_hw_passage_002_q4",
+          "questionType": "open",
+          "difficulty": "medium",
+          "question": "Compare HDDs and SSDs. Include at least three features in your answer.",
+          "modelAnswer": "HDDs use spinning magnetic platters and have moving mechanical parts, making them slower and more vulnerable to damage from drops. SSDs use flash memory chips with no moving parts, making them much faster, silent, and more durable. HDDs are cheaper per gigabyte, making them good for large bulk storage, while SSDs are more expensive but better suited for running the operating system and applications because of their speed.",
+          "acceptedKeywords": ["magnetic", "flash", "moving parts", "faster", "cheaper", "durable", "HDD", "SSD"]
+        }
+      ]
+    },
+    {
+      "id": "ks3_computing_hw_passage_003",
+      "chapter": "Hardware Components",
+      "section": "Peripherals and Data Units",
+      "sourceTitle": "Peripheral Devices and Data Units",
+      "targetTitle": "Peripheral Devices and Data Units",
+      "sourcePassage": "A peripheral is any device connected to a computer to extend its capabilities. Peripherals are classified by the direction in which they transfer data. Input devices send data into the computer: a keyboard converts key presses into text, a mouse sends pointer position and click events, and a microphone converts sound into digital audio data. Output devices send processed data out of the computer: a monitor displays visual information, speakers output sound, and a printer produces a paper copy of a document. Some devices are both input and output: a touchscreen displays images (output) while also detecting touch gestures (input).\n\nAll the data processed and stored by computers is measured in units based on powers of two. The smallest unit is a bit, which holds a single binary digit — either 0 or 1. Eight bits make one byte, which is enough to store a single character. One thousand and twenty-four bytes make one kilobyte, one thousand and twenty-four kilobytes make one megabyte, and so on up to gigabytes and terabytes. It is important to remember that each unit is one thousand and twenty-four times the previous, not one thousand, because computers work in base two.",
+      "targetPassage": "A peripheral is any device connected to a computer to extend its capabilities. Peripherals are classified by the direction in which they transfer data. Input devices send data into the computer: a keyboard converts key presses into text, a mouse sends pointer position and click events, and a microphone converts sound into digital audio data. Output devices send processed data out of the computer: a monitor displays visual information, speakers output sound, and a printer produces a paper copy of a document. Some devices are both input and output: a touchscreen displays images (output) while also detecting touch gestures (input).\n\nAll the data processed and stored by computers is measured in units based on powers of two. The smallest unit is a bit, which holds a single binary digit — either 0 or 1. Eight bits make one byte, which is enough to store a single character. One thousand and twenty-four bytes make one kilobyte, one thousand and twenty-four kilobytes make one megabyte, and so on up to gigabytes and terabytes. It is important to remember that each unit is one thousand and twenty-four times the previous, not one thousand, because computers work in base two.",
+      "speechLanguage": "en-GB",
+      "questions": [
+        {
+          "id": "ks3_computing_hw_passage_003_q1",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "According to the passage, why is a touchscreen classified as both an input and an output device?",
+          "options": [
+            "Because it is wireless",
+            "Because it displays images and also detects touch gestures",
+            "Because it can replace a keyboard and mouse",
+            "Because it connects to both the CPU and the GPU"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "A touchscreen is both input and output because it displays images (output function) while also detecting the user's touch gestures and sending them as input data to the computer."
+        },
+        {
+          "id": "ks3_computing_hw_passage_003_q2",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "How many bits are in one byte?",
+          "options": [
+            "4",
+            "16",
+            "8",
+            "1024"
+          ],
+          "correctOptionIndex": 2,
+          "modelAnswer": "One byte consists of 8 bits."
+        },
+        {
+          "id": "ks3_computing_hw_passage_003_q3",
+          "questionType": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Why does each data unit equal 1,024 of the previous unit rather than 1,000?",
+          "options": [
+            "Because data units were invented before the metric system",
+            "Because computers work in base two, and 1,024 is 2 to the power of 10",
+            "Because 1,024 is easier to remember than 1,000",
+            "Because hard drives are always manufactured in multiples of 1,024"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "Computers work in binary (base two), so data units are based on powers of two. 1,024 is 2 to the power of 10, which is the closest power of two to 1,000, so each data unit is defined as 1,024 of the previous unit."
+        },
+        {
+          "id": "ks3_computing_hw_passage_003_q4",
+          "questionType": "open",
+          "difficulty": "medium",
+          "question": "Classify each of the following as input, output, or both, and briefly explain why: (a) printer, (b) microphone, (c) monitor.",
+          "modelAnswer": "(a) Printer — output device. It receives digital data from the computer and produces a physical paper copy of documents or images. Data flows out of the computer. (b) Microphone — input device. It converts sound waves into digital audio data and sends that data into the computer. Data flows into the computer. (c) Monitor — output device. It receives processed visual data from the CPU and displays it as images and text on screen. Data flows out of the computer.",
+          "acceptedKeywords": ["output", "input", "printer", "microphone", "monitor", "sound", "displays", "paper"]
+        }
+      ]
+    }
+  ]
+}

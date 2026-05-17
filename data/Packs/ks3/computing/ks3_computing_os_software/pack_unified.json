@@ -1,0 +1,1026 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_os_software",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "displayName": "KS3 Computing — Operating Systems & Software",
+  "subtitle": "How operating systems manage hardware and resources, and the difference between system and application software.",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": [
+    "KS3",
+    "computing",
+    "computer systems"
+  ],
+  "items": [
+    {
+      "id": "ks3_computing_os_software_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "operating system",
+        "targetWord": "system software that manages all hardware resources and provides a platform for application software to run on",
+        "examples": {
+          "en-GB": "Windows 11 is an operating system that manages the CPU, RAM, and storage on a laptop."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "kernel",
+        "targetWord": "the core component of an operating system that has direct control over hardware and manages low-level system operations",
+        "examples": {
+          "en-GB": "The kernel allocates CPU time to each running process and manages access to RAM."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "multitasking",
+        "targetWord": "the ability of an operating system to run multiple processes apparently simultaneously by rapidly switching CPU time between them",
+        "examples": {
+          "en-GB": "Multitasking allows you to listen to music, browse the web, and type a document at the same time."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "memory management",
+        "targetWord": "the OS function that allocates portions of RAM to each running program and ensures programs do not overwrite each other's data",
+        "examples": {
+          "en-GB": "Memory management ensures that your video editor and music app each get their own separate area of RAM."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "user interface",
+        "targetWord": "the means by which a user interacts with a computer, which may be graphical (GUI) or text-based (CLI)",
+        "examples": {
+          "en-GB": "The user interface on a smartphone uses touchscreen icons and menus rather than typed commands."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "GUI",
+        "targetWord": "Graphical User Interface — an interface using visual elements such as windows, icons, menus, and a pointer to allow users to interact with a computer",
+        "examples": {
+          "en-GB": "The GUI on Windows lets users drag files into folders by moving the mouse rather than typing commands."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "CLI",
+        "targetWord": "Command Line Interface — a text-based interface where the user types precise commands and the OS responds with text output",
+        "examples": {
+          "en-GB": "A server administrator uses a CLI to manage the web server by typing commands like ls and mkdir."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "WIMP",
+        "targetWord": "Windows, Icons, Menus, Pointer — the four visual elements that make up a graphical user interface",
+        "examples": {
+          "en-GB": "WIMP describes how you interact with a desktop OS: clicking icons, opening menus, and dragging windows with a pointer."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "file management",
+        "targetWord": "the OS function that organises, creates, reads, writes, and deletes files and folders on storage devices using a file system",
+        "examples": {
+          "en-GB": "File management keeps track of where every document is stored on the hard drive so you can find it by name."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "device driver",
+        "targetWord": "a small piece of software that acts as a translator between the operating system and a specific hardware device, allowing them to communicate",
+        "examples": {
+          "en-GB": "A printer driver translates print commands from the OS into the specific instructions that a particular printer model understands."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "system software",
+        "targetWord": "software that manages and controls the hardware, providing the platform on which application software runs; includes the OS, drivers, and utilities",
+        "examples": {
+          "en-GB": "The operating system, device drivers, and antivirus software are all examples of system software."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "application software",
+        "targetWord": "software designed to help users perform specific tasks such as word processing, web browsing, or playing games; runs on top of the OS",
+        "examples": {
+          "en-GB": "Microsoft Word, Google Chrome, and Spotify are all examples of application software."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "utility software",
+        "targetWord": "a sub-category of system software that performs maintenance, optimisation, and security tasks to keep the computer running smoothly",
+        "examples": {
+          "en-GB": "Antivirus software and disk defragmenters are utility software that maintain and protect the computer system."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "process",
+        "targetWord": "a program that is currently being executed by the CPU, including the program code and all data it is using at that moment",
+        "examples": {
+          "en-GB": "When you open a web browser, the OS creates a process for it and allocates CPU time and RAM to run it."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "interrupt",
+        "targetWord": "a signal sent to the CPU by hardware or software indicating that an event needs immediate attention, causing the CPU to pause its current task",
+        "examples": {
+          "en-GB": "When you press a key, the keyboard sends an interrupt to the CPU so it can process your keystroke immediately."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "virtual memory",
+        "targetWord": "a technique where the OS uses part of the secondary storage (hard drive) as extra RAM when physical RAM is full, allowing more programs to run than RAM alone would permit",
+        "examples": {
+          "en-GB": "When all your RAM is used, virtual memory lets the OS move less-used data to the hard drive to free up space for active programs."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "open source",
+        "targetWord": "software whose source code is publicly available for anyone to view, modify, and redistribute, often developed collaboratively by a community",
+        "examples": {
+          "en-GB": "Linux is open source software — anyone can read its code, suggest improvements, or create their own version."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "proprietary software",
+        "targetWord": "software whose source code is kept secret and owned by the developing company; users cannot view or modify it and usually must pay to use it",
+        "examples": {
+          "en-GB": "Microsoft Windows is proprietary software — only Microsoft employees can see and modify its source code."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "firmware",
+        "targetWord": "permanent software programmed directly into a hardware device's read-only memory that controls its basic functions",
+        "examples": {
+          "en-GB": "The firmware in a router controls how it routes network traffic, and is stored in the device's built-in memory."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "hardware abstraction",
+        "targetWord": "the OS hiding the complexity of hardware from application programs, so applications can work without knowing the specific details of each hardware device",
+        "examples": {
+          "en-GB": "Hardware abstraction means a word processor can print to any printer without needing to know that printer's specific communication protocol."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "file system",
+        "targetWord": "the method the OS uses to organise, store, and track files on a storage device, using a hierarchical folder structure",
+        "examples": {
+          "en-GB": "NTFS is the file system used by Windows to organise files on a hard drive into folders and subfolders."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "process scheduling",
+        "targetWord": "the OS function that decides which process gets CPU time and for how long, enabling multiple processes to share the processor fairly",
+        "examples": {
+          "en-GB": "Process scheduling ensures the music player and web browser both get enough CPU time to run smoothly at the same time."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "disk defragmenter",
+        "targetWord": "utility software that reorganises fragmented files on a hard disk drive so that related data is stored together, improving read speed",
+        "examples": {
+          "en-GB": "Running the disk defragmenter after months of use can make a hard drive noticeably faster by reducing fragmentation."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "antivirus",
+        "targetWord": "utility software that detects, blocks, and removes malicious software from a computer system",
+        "examples": {
+          "en-GB": "Antivirus software scans downloaded files and emails to detect and remove viruses before they can cause damage."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [
+        "KS3",
+        "computing"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "backup software",
+        "targetWord": "utility software that automatically creates copies of files and stores them safely so data can be recovered if the originals are lost or damaged",
+        "examples": {
+          "en-GB": "Backup software copies your photos and documents to an external drive each night so nothing is lost if the main drive fails."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "A computer has hardware and software. Software that manages the hardware is called system software."
+        },
+        "answer": "operating system",
+        "options": [
+          "operating system",
+          "application software",
+          "device driver",
+          "file system"
+        ],
+        "sentence": "The ____ is system software that acts as an intermediary between the user, applications, and the hardware."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Hardware devices each use different communication protocols, so software is needed to bridge the gap."
+        },
+        "answer": "device driver",
+        "options": [
+          "device driver",
+          "utility program",
+          "kernel",
+          "process"
+        ],
+        "sentence": "A ____ is software that allows the OS to communicate with a specific hardware device."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Consider a user interface that uses windows, icons, menus, and a pointer."
+        },
+        "answer": "WIMP",
+        "options": [
+          "WIMP",
+          "CLI",
+          "BIOS",
+          "API"
+        ],
+        "sentence": "A graphical user interface that uses Windows, Icons, Menus and Pointer is known by the acronym ____."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "When RAM is full, the operating system needs another way to keep programs running."
+        },
+        "answer": "virtual",
+        "options": [
+          "virtual",
+          "cache",
+          "ROM",
+          "flash"
+        ],
+        "sentence": "The OS can use part of the hard drive as extra RAM — this is called ____ memory."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Software can be classified by whether the source code is public or private."
+        },
+        "answer": "open",
+        "options": [
+          "open",
+          "proprietary",
+          "utility",
+          "application"
+        ],
+        "sentence": "Software whose source code is freely available for anyone to view and modify is called ____ source software."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Microsoft Windows and Adobe Photoshop are owned by companies who keep their code secret."
+        },
+        "answer": "proprietary",
+        "options": [
+          "proprietary",
+          "open source",
+          "utility",
+          "freeware"
+        ],
+        "sentence": "Software whose source code is kept secret and owned by the developer is called ____ software."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Google Chrome, Spotify, and Minecraft all help users do specific things."
+        },
+        "answer": "application",
+        "options": [
+          "application",
+          "system",
+          "utility",
+          "firmware"
+        ],
+        "sentence": "Software designed to help users complete specific tasks, such as browsing or gaming, is called ____ software."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Antivirus tools, disk defragmenters, and backup programs all maintain the health of the computer."
+        },
+        "answer": "utility",
+        "options": [
+          "utility",
+          "application",
+          "open source",
+          "assembly"
+        ],
+        "sentence": "Software that performs maintenance and optimisation tasks on the computer system is called ____ software."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "The OS must share the CPU among many running programs."
+        },
+        "answer": "scheduling",
+        "options": [
+          "scheduling",
+          "allocation",
+          "interruption",
+          "threading"
+        ],
+        "sentence": "The OS function that decides which process gets CPU time is called process ____."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "A program that is currently running on the CPU uses system resources."
+        },
+        "answer": "process",
+        "options": [
+          "process",
+          "thread",
+          "driver",
+          "file"
+        ],
+        "sentence": "A program that is currently being executed by the CPU is called a ____."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "A CLI requires users to interact with the computer in a specific way."
+        },
+        "answer": "commands",
+        "options": [
+          "commands",
+          "icons",
+          "menus",
+          "gestures"
+        ],
+        "sentence": "In a CLI, the user interacts with the computer by typing text ____."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "The OS organises files on storage devices using a structured method."
+        },
+        "answer": "file",
+        "options": [
+          "file",
+          "memory",
+          "process",
+          "interrupt"
+        ],
+        "sentence": "The method used by the OS to organise files on a storage device is called the ____ system."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Permanent software stored inside a hardware device controls its basic operations."
+        },
+        "answer": "firmware",
+        "options": [
+          "firmware",
+          "freeware",
+          "shareware",
+          "middleware"
+        ],
+        "sentence": "Software permanently stored inside a hardware device, controlling its basic functions, is called ____."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "A CLI is favoured by IT professionals for certain tasks over a GUI."
+        },
+        "answer": "fewer",
+        "options": [
+          "fewer",
+          "more",
+          "similar",
+          "random"
+        ],
+        "sentence": "Compared to a GUI, a CLI uses significantly ____ system resources because it requires no graphics."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "The OS hides the complexity of hardware from applications."
+        },
+        "answer": "abstraction",
+        "options": [
+          "abstraction",
+          "allocation",
+          "fragmentation",
+          "interruption"
+        ],
+        "sentence": "The OS hiding hardware complexity from application programs via drivers is called hardware ____."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "stimulus": {
+          "type": "text",
+          "content": "Linux, LibreOffice, and Firefox all share one important characteristic regarding their code."
+        },
+        "answer": "open",
+        "options": [
+          "open",
+          "proprietary",
+          "closed",
+          "licensed"
+        ],
+        "sentence": "Linux is an example of ____ source software because its code is publicly available and can be modified."
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Put these steps in the correct order for what the OS does when a program is launched:",
+        "items": [
+          "The user double-clicks the program icon or runs the program command",
+          "The OS creates a new process for the program",
+          "The OS allocates a block of RAM to the process",
+          "The OS loads the program code from storage into RAM",
+          "The OS scheduler gives the process CPU time to execute",
+          "The program begins running and its user interface appears on screen"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Put these steps in the correct order for how the OS handles virtual memory when RAM is full:",
+        "items": [
+          "All available physical RAM is used up by running processes",
+          "A new program is opened and requires additional memory",
+          "The OS identifies the least recently used data currently in RAM",
+          "The OS moves that data from RAM to a designated area of the hard drive (the swap file)",
+          "The freed RAM space is allocated to the new program",
+          "If the swapped-out data is needed again, the OS moves it back from the hard drive to RAM"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_cat_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "question": "Sort each item into the correct software category:",
+        "categories": [
+          "System Software",
+          "Application Software"
+        ],
+        "pairs": [
+          {
+            "category": "System Software",
+            "text": "Windows 11"
+          },
+          {
+            "category": "System Software",
+            "text": "Device driver"
+          },
+          {
+            "category": "System Software",
+            "text": "Antivirus program"
+          },
+          {
+            "category": "System Software",
+            "text": "Disk defragmenter"
+          },
+          {
+            "category": "Application Software",
+            "text": "Google Chrome"
+          },
+          {
+            "category": "Application Software",
+            "text": "Microsoft Word"
+          },
+          {
+            "category": "Application Software",
+            "text": "Spotify"
+          },
+          {
+            "category": "Application Software",
+            "text": "Minecraft"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_cat_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Operating Systems & Software"
+      ],
+      "tags": [],
+      "data": {
+        "question": "Sort each feature into the correct user interface type:",
+        "categories": [
+          "GUI",
+          "CLI"
+        ],
+        "pairs": [
+          {
+            "category": "GUI",
+            "text": "Uses windows, icons, and menus"
+          },
+          {
+            "category": "GUI",
+            "text": "Controlled primarily with a mouse or touchscreen"
+          },
+          {
+            "category": "GUI",
+            "text": "Low learning curve — intuitive for beginners"
+          },
+          {
+            "category": "GUI",
+            "text": "Higher resource usage due to graphics"
+          },
+          {
+            "category": "CLI",
+            "text": "User types precise text commands"
+          },
+          {
+            "category": "CLI",
+            "text": "Very low resource usage — no graphics required"
+          },
+          {
+            "category": "CLI",
+            "text": "Faster for expert users who know the commands"
+          },
+          {
+            "category": "CLI",
+            "text": "Ideal for scripting and automation of tasks"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1919,6 +1919,8 @@ const SUBJECT_LABELS = {
   geography:  { label: "Geography",  icon: "🌍" },
   science:    { label: "Science",    icon: "🔬" },
   literature: { label: "Literature", icon: "📖" },
+  computing:  { label: "Computing",  icon: "💻" },
+  other:      { label: "Other",      icon: "🗂️" },
 };
 
 // Maps single-letter PoS abbreviations (legacy Latin pack data) to full display labels.

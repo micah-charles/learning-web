@@ -23,7 +23,7 @@ VALID_ITEM_TYPES = {
     "fillBlank", "sentenceBuilder", "passage",
 }
 
-VALID_SUBJECTS = {"language", "history", "geography", "science", "literature"}
+VALID_SUBJECTS = {"language", "history", "geography", "science", "literature", "computing", "other"}
 VALID_SCHEMA_VERSIONS = {"1.0", "1.1"}
 VALID_Q_TYPES = {
     # canonical types

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_logic_gates_boolean",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Logic Gates & Boolean Logic",
+  "subtitle": "Boolean values, logic gates (NOT, AND, OR, NAND, NOR, XOR), and truth tables.",
+  "items": [
+    {
+      "id": "lg_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Logic Gates & Boolean Logic"],
+      "tags": ["KS3", "computing", "boolean"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Boolean Logic and How It Underpins Computing",
+        "targetTitle": "Boolean Logic and How It Underpins Computing",
+        "sourcePassage": "Boolean logic was developed by mathematician George Boole in the 19th century. It is a system of logic where every value is either True (represented as 1) or False (represented as 0). There are no values in between. This makes Boolean logic perfect for digital computers, because every component inside a computer is either on (1) or off (0). Even the tiniest transistor in a processor is a two-state switch. Every calculation your computer makes, every condition your program checks, and every pixel on your screen is ultimately the result of billions of these simple true-or-false decisions. When you write a condition in code — such as 'IF age >= 18 AND hasTicket = TRUE THEN allowEntry' — you are using Boolean logic. The AND in that code corresponds directly to an AND gate in the hardware that executes it. Boolean logic connects the world of programming to the world of circuits.",
+        "targetPassage": "Boolean logic was developed by mathematician George Boole in the 19th century. It is a system of logic where every value is either True (represented as 1) or False (represented as 0). There are no values in between. This makes Boolean logic perfect for digital computers, because every component inside a computer is either on (1) or off (0). Even the tiniest transistor in a processor is a two-state switch. Every calculation your computer makes, every condition your program checks, and every pixel on your screen is ultimately the result of billions of these simple true-or-false decisions. When you write a condition in code — such as 'IF age >= 18 AND hasTicket = TRUE THEN allowEntry' — you are using Boolean logic. The AND in that code corresponds directly to an AND gate in the hardware that executes it. Boolean logic connects the world of programming to the world of circuits.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "lg_p01_q1",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "Who developed Boolean logic?",
+            "options": ["Ada Lovelace", "George Boole", "Alan Turing", "Charles Babbage"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Boolean logic was developed by mathematician George Boole in the 19th century.",
+            "acceptedKeywords": ["Boole", "George Boole"]
+          },
+          {
+            "id": "lg_p01_q2",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "What are the only two values in Boolean logic?",
+            "options": ["Yes and No", "On and Off", "True (1) and False (0)", "High and Low"],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Boolean logic only uses two values: True (1) and False (0).",
+            "acceptedKeywords": ["True", "False", "1", "0"]
+          },
+          {
+            "id": "lg_p01_q3",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "Why is Boolean logic well suited to digital computers?",
+            "options": [
+              "Because computers use analogue signals with many values",
+              "Because every computer component is either on (1) or off (0)",
+              "Because Boolean logic was invented for computers",
+              "Because it uses decimal numbers"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Boolean logic is ideal for computers because every transistor and component is a two-state switch — either on (1) or off (0), which directly maps to True and False.",
+            "acceptedKeywords": ["on", "off", "two-state", "transistor"]
+          },
+          {
+            "id": "lg_p01_q4",
+            "questionType": "short-answer",
+            "difficulty": "medium",
+            "question": "Explain how the AND operator in a programming condition relates to hardware.",
+            "modelAnswer": "The AND in a programming condition corresponds directly to an AND gate in the CPU hardware that executes the code. When the CPU evaluates the condition, it uses an AND logic gate to combine the two Boolean values.",
+            "acceptedKeywords": ["AND gate", "hardware", "CPU", "executes"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "lg_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Logic Gates & Boolean Logic"],
+      "tags": ["KS3", "computing", "boolean"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "NOT, AND, and OR Gates",
+        "targetTitle": "NOT, AND, and OR Gates",
+        "sourcePassage": "The three most fundamental logic gates are NOT, AND, and OR. The NOT gate has a single input and simply inverts it: input 0 gives output 1, and input 1 gives output 0. It is also called an inverter. Its truth table has just two rows. The AND gate has two inputs and outputs 1 only when both inputs are 1; any input of 0 gives output 0. With two inputs, its truth table has four rows — only the final row, where both A and B are 1, gives a 1 output. The OR gate also has two inputs, but outputs 1 whenever at least one input is 1; it only outputs 0 when both inputs are 0. A helpful memory trick: AND means ALL inputs must be 1, while OR means ANY single 1 is enough. Truth tables are a systematic way to show all possible input combinations. For n inputs, a truth table always has exactly 2^n rows, because each input can be 0 or 1.",
+        "targetPassage": "The three most fundamental logic gates are NOT, AND, and OR. The NOT gate has a single input and simply inverts it: input 0 gives output 1, and input 1 gives output 0. It is also called an inverter. Its truth table has just two rows. The AND gate has two inputs and outputs 1 only when both inputs are 1; any input of 0 gives output 0. With two inputs, its truth table has four rows — only the final row, where both A and B are 1, gives a 1 output. The OR gate also has two inputs, but outputs 1 whenever at least one input is 1; it only outputs 0 when both inputs are 0. A helpful memory trick: AND means ALL inputs must be 1, while OR means ANY single 1 is enough. Truth tables are a systematic way to show all possible input combinations. For n inputs, a truth table always has exactly 2^n rows, because each input can be 0 or 1.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "lg_p02_q1",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "What is the output of a NOT gate when its input is 0?",
+            "options": ["0", "1", "2", "undefined"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A NOT gate inverts its input, so input 0 gives output 1.",
+            "acceptedKeywords": ["1", "inverts"]
+          },
+          {
+            "id": "lg_p02_q2",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "When does an AND gate output 1?",
+            "options": [
+              "When at least one input is 1",
+              "When all inputs are 0",
+              "Only when ALL inputs are 1",
+              "When inputs are different"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "An AND gate only outputs 1 when ALL of its inputs are 1.",
+            "acceptedKeywords": ["ALL", "both", "all inputs"]
+          },
+          {
+            "id": "lg_p02_q3",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "A logic gate has 3 inputs. How many rows does its complete truth table need?",
+            "options": ["3", "6", "8", "9"],
+            "correctOptionIndex": 2,
+            "modelAnswer": "A truth table for n inputs has 2^n rows. For 3 inputs: 2^3 = 8 rows.",
+            "acceptedKeywords": ["8", "2^3"]
+          },
+          {
+            "id": "lg_p02_q4",
+            "questionType": "short-answer",
+            "difficulty": "medium",
+            "question": "State the output of an OR gate for each of the four possible input combinations (A=0,B=0), (A=0,B=1), (A=1,B=0), (A=1,B=1).",
+            "modelAnswer": "A=0,B=0 → 0; A=0,B=1 → 1; A=1,B=0 → 1; A=1,B=1 → 1. The OR gate only outputs 0 when both inputs are 0.",
+            "acceptedKeywords": ["0,0→0", "0,1→1", "1,0→1", "1,1→1"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "lg_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Logic Gates & Boolean Logic"],
+      "tags": ["KS3", "computing", "boolean"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "NAND, NOR, XOR, and Combined Circuits",
+        "targetTitle": "NAND, NOR, XOR, and Combined Circuits",
+        "sourcePassage": "NAND, NOR, and XOR are three more important logic gates. The NAND gate is the opposite of AND: it outputs 0 only when all inputs are 1, and outputs 1 in all other cases. This makes NAND a universal gate — every other gate can be built from NAND gates alone, which is why NAND gates dominate real chip manufacturing. The NOR gate is the opposite of OR: it outputs 1 only when all inputs are 0. The XOR (Exclusive OR) gate outputs 1 only when its inputs are different. Unlike OR, which outputs 1 even when both inputs are 1, XOR outputs 0 when both inputs are 1. Logic gates can be combined into circuits: the output of one gate feeds into the input of another. For example, connecting an AND gate to a NOT gate produces a combined circuit identical to a NAND gate. To trace any circuit, work left to right, calculating each gate's output in sequence, using the previous gate's output as the next gate's input.",
+        "targetPassage": "NAND, NOR, and XOR are three more important logic gates. The NAND gate is the opposite of AND: it outputs 0 only when all inputs are 1, and outputs 1 in all other cases. This makes NAND a universal gate — every other gate can be built from NAND gates alone, which is why NAND gates dominate real chip manufacturing. The NOR gate is the opposite of OR: it outputs 1 only when all inputs are 0. The XOR (Exclusive OR) gate outputs 1 only when its inputs are different. Unlike OR, which outputs 1 even when both inputs are 1, XOR outputs 0 when both inputs are 1. Logic gates can be combined into circuits: the output of one gate feeds into the input of another. For example, connecting an AND gate to a NOT gate produces a combined circuit identical to a NAND gate. To trace any circuit, work left to right, calculating each gate's output in sequence, using the previous gate's output as the next gate's input.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "lg_p03_q1",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "Why is NAND called a universal gate?",
+            "options": [
+              "Because it works with any number of inputs",
+              "Because every other gate type can be built from NAND gates alone",
+              "Because it is the most common gate in nature",
+              "Because it was invented first"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "NAND is a universal gate because any other logic gate can be constructed using only NAND gates.",
+            "acceptedKeywords": ["universal", "any other gate", "built from"]
+          },
+          {
+            "id": "lg_p03_q2",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "What is the output of an XOR gate when both inputs are 1?",
+            "options": ["1", "0", "2", "undefined"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "XOR outputs 0 when both inputs are the same. When A=1 and B=1, the inputs are the same, so the output is 0.",
+            "acceptedKeywords": ["0", "same", "exclusive"]
+          },
+          {
+            "id": "lg_p03_q3",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "What combined circuit is equivalent to a NAND gate?",
+            "options": [
+              "OR gate followed by NOT gate",
+              "AND gate followed by NOT gate",
+              "NOT gate followed by AND gate",
+              "XOR gate followed by NOT gate"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "An AND gate followed by a NOT gate produces the same truth table as a NAND gate, making them equivalent circuits.",
+            "acceptedKeywords": ["AND", "NOT", "AND then NOT"]
+          },
+          {
+            "id": "lg_p03_q4",
+            "questionType": "short-answer",
+            "difficulty": "hard",
+            "question": "Trace the output of an AND-then-NOT circuit for inputs A=0, B=1. Show your working.",
+            "modelAnswer": "Step 1: AND gate — A=0, B=1 → 0 AND 1 = 0. Step 2: NOT gate — NOT 0 = 1. Final output: 1.",
+            "acceptedKeywords": ["1", "AND output 0", "NOT 0 = 1"]
+          }
+        ]
+      }
+    }
+  ]
+}

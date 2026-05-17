@@ -1,24 +1,26 @@
 import { useState } from "react";
 import styles from "./PackSelector.module.css";
 
-const SUBJECT_ORDER = ["language", "history", "geography", "science", "literature", "other"];
+const SUBJECT_ORDER = ["language", "history", "geography", "science", "literature", "computing", "other"];
 const SUBJECT_LABELS = {
   language:   "Language",
   history:    "History",
   geography:  "Geography",
   science:    "Science",
   literature: "Literature",
+  computing:  "Computing",
   other:      "Other",
 };
 
 function inferSubject(pack) {
-  if (pack.subject) return pack.subject;
+  if (pack.subject && SUBJECT_ORDER.includes(pack.subject)) return pack.subject;
   const text = `${pack.id || ""} ${pack.displayName || ""}`.toLowerCase();
   if (/german|latin|deutsch|nicos|dino|frankfurt|bbc/.test(text)) return "language";
   if (/histor|black.?death|silk.?road/.test(text)) return "history";
   if (/geograph|glaciat|geolog/.test(text)) return "geography";
   if (/science|physics|biology|chemistry/.test(text)) return "science";
   if (/literature|novel|poem|animal.?farm|shakespeare/.test(text)) return "literature";
+  if (/computing/.test(text)) return "computing";
   return "other";
 }
 

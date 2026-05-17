@@ -1,0 +1,1194 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_algorithms_flowcharts",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "displayName": "KS3 Computing — Algorithms, Flowcharts & Pseudocode",
+  "subtitle": "Designing, representing, and evaluating algorithms using flowcharts and pseudocode.",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": [
+    "KS3",
+    "computing",
+    "algorithms",
+    "flowcharts",
+    "pseudocode"
+  ],
+  "items": [
+    {
+      "id": "ks3_computing_algo_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "algorithm",
+        "targetWord": "a finite, unambiguous sequence of steps that solves a problem or performs a task",
+        "examples": {
+          "en-GB": "A recipe is an everyday algorithm: a finite sequence of steps that produces a specific dish."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "flowchart",
+        "targetWord": "a diagram that represents an algorithm using standardised shapes connected by arrows, showing the flow of execution",
+        "examples": {
+          "en-GB": "The flowchart showed a diamond shape for the password check and rectangles for the login and error actions."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "pseudocode",
+        "targetWord": "a structured, language-independent representation of an algorithm using English-like keywords; used to plan programs before writing actual code",
+        "examples": {
+          "en-GB": "The programmer wrote pseudocode using IF, THEN, ELSE, and FOR before translating it into Python."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "trace table",
+        "targetWord": "a table used to manually track the value of each variable at each step as an algorithm executes, used to check correctness or predict output",
+        "examples": {
+          "en-GB": "The trace table showed that after three iterations the variable total held the value 6."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "terminator",
+        "targetWord": "the oval or rounded-rectangle shape in a flowchart that marks the start or end of the algorithm",
+        "examples": {
+          "en-GB": "Every flowchart begins with a START terminator and ends with an END terminator."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "process",
+        "targetWord": "the rectangle shape in a flowchart representing an action or calculation, such as updating a variable or performing arithmetic",
+        "examples": {
+          "en-GB": "The rectangle labelled 'total ← total + score' is a process shape in the flowchart."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decision",
+        "targetWord": "the diamond shape in a flowchart representing a YES/NO question that branches the flow of the algorithm into two paths",
+        "examples": {
+          "en-GB": "The decision diamond asks 'Is score >= 50?' and routes YES to 'Output Pass' and NO to 'Output Fail'."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "parallelogram",
+        "targetWord": "the slanted-rectangle shape in a flowchart representing an input or output operation, such as reading user data or displaying a result",
+        "examples": {
+          "en-GB": "The parallelogram labelled 'Input username' shows that the user types data at that point in the flowchart."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "selection",
+        "targetWord": "a programming construct where different blocks of code are executed depending on whether a condition is true or false; represented by a diamond in a flowchart and IF/ELSE in pseudocode",
+        "examples": {
+          "en-GB": "Selection allows the program to output 'Pass' or 'Fail' depending on whether the student's mark meets the threshold."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "iteration",
+        "targetWord": "a loop within an algorithm — a repeated set of steps that continues until a condition is met or a count is reached",
+        "examples": {
+          "en-GB": "Iteration using a WHILE loop keeps asking for a password until the user enters the correct one."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sequence",
+        "targetWord": "the simplest programming construct: instructions executed one after another in the order they are written",
+        "examples": {
+          "en-GB": "In the sequence construct, the program assigns a value, then prints it, then asks for the next input — each step following the last."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "efficiency",
+        "targetWord": "how few steps, comparisons, or resources an algorithm requires to produce a correct result; a more efficient algorithm completes the same task with fewer operations",
+        "examples": {
+          "en-GB": "Binary search is more efficient than linear search because it finds a value in a sorted list of 1000 items with at most 10 comparisons."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "correctness",
+        "targetWord": "the property of an algorithm that guarantees it produces the right answer for all valid inputs",
+        "examples": {
+          "en-GB": "Correctness was verified by running the algorithm through a trace table with several different test inputs."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "finite",
+        "targetWord": "a required property of a valid algorithm: it must always terminate and come to an end, rather than running forever",
+        "examples": {
+          "en-GB": "An algorithm that loops forever without a termination condition is not finite and is therefore not a valid algorithm."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "unambiguous",
+        "targetWord": "a required property of a valid algorithm: every step has exactly one possible interpretation and leaves no room for guesswork",
+        "examples": {
+          "en-GB": "The step 'add the two numbers' is unambiguous; the step 'do something with the numbers' is not."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "variable",
+        "targetWord": "a named storage location that holds a value which can change during the execution of an algorithm",
+        "examples": {
+          "en-GB": "In the trace table, the variable total started at 0 and increased with each iteration."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "assignment",
+        "targetWord": "storing a value in a variable, written in pseudocode using the left-pointing arrow symbol (←)",
+        "examples": {
+          "en-GB": "The assignment score ← 0 sets the variable score to zero at the start of the program."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "condition",
+        "targetWord": "a Boolean expression in an algorithm that evaluates to either TRUE or FALSE, used in selection (IF) and iteration (WHILE) constructs",
+        "examples": {
+          "en-GB": "The condition score >= 50 evaluates to TRUE when the score is 60 and routes the program to the 'Pass' branch."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "FOR loop",
+        "targetWord": "a count-controlled loop in pseudocode that repeats a block of instructions a specific number of times",
+        "examples": {
+          "en-GB": "FOR i = 1 TO 5 / OUTPUT i / ENDFOR prints the numbers 1 to 5."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "WHILE loop",
+        "targetWord": "a condition-controlled loop in pseudocode that repeats a block of instructions as long as a given condition remains true",
+        "examples": {
+          "en-GB": "WHILE answer != 'quit' keeps asking for user input until the user types 'quit'."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "input",
+        "targetWord": "data received by an algorithm from a user or external source, represented in pseudocode as USERINPUT and in flowcharts as a parallelogram",
+        "examples": {
+          "en-GB": "name ← USERINPUT reads a name typed by the user into the variable name."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "output",
+        "targetWord": "data sent by an algorithm to a display or other destination, written in pseudocode using the keyword OUTPUT and in flowcharts as a parallelogram",
+        "examples": {
+          "en-GB": "OUTPUT 'Your score is: ' + score displays the final score to the user."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "program",
+        "targetWord": "an algorithm written in a specific programming language that a computer can execute",
+        "examples": {
+          "en-GB": "The pseudocode algorithm was translated into a Python program that a computer could run."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dry run",
+        "targetWord": "manually working through an algorithm step by step without using a computer, often recorded in a trace table, to check whether it is correct",
+        "examples": {
+          "en-GB": "The student performed a dry run of the loop algorithm and discovered it produced the output 5, 3, 1."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "flow of control",
+        "targetWord": "the order in which the steps of an algorithm are executed, shown by arrows in a flowchart",
+        "examples": {
+          "en-GB": "The arrows in the flowchart illustrate the flow of control from the START terminator through the decision to the END."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IF statement",
+        "targetWord": "a pseudocode selection construct that executes one block of code when a condition is true and optionally a different block when it is false",
+        "examples": {
+          "en-GB": "IF score >= 50 THEN OUTPUT 'Pass' ELSE OUTPUT 'Fail' ENDIF checks the score and outputs the appropriate result."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "keyword",
+        "targetWord": "a reserved word in pseudocode or a programming language that has a fixed meaning and must not be used as a variable name; examples include IF, FOR, WHILE, OUTPUT",
+        "examples": {
+          "en-GB": "Pseudocode keywords such as IF, THEN, ELSE, ENDIF, FOR, WHILE, and OUTPUT are written in uppercase by convention."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "indentation",
+        "targetWord": "the practice of adding spaces or tabs at the start of lines inside blocks of pseudocode (loops, IF statements) to show the block structure visually",
+        "examples": {
+          "en-GB": "The body of the FOR loop is indented to show it belongs inside the loop and will repeat each iteration."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_029",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "test data",
+        "targetWord": "specific values chosen to check whether an algorithm produces the correct output, including normal values, boundary values, and erroneous values",
+        "examples": {
+          "en-GB": "Test data of 50, 0, 100, and -1 was used to check the grade-awarding algorithm produced correct results in all cases."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_vocab_030",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "two exits",
+        "targetWord": "the rule that a decision diamond in a flowchart must always have exactly two exit paths: one labelled YES and one labelled NO",
+        "examples": {
+          "en-GB": "The decision diamond 'Is N > 0?' has exactly two exits: YES leading to 'Output Positive' and NO leading to 'Output Not positive'."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An algorithm must be ____, meaning it always terminates and never runs forever.",
+        "answer": "finite",
+        "options": [
+          "finite",
+          "infinite",
+          "sequential",
+          "recursive"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An algorithm must be ____, meaning every step has exactly one possible interpretation.",
+        "answer": "unambiguous",
+        "options": [
+          "unambiguous",
+          "recursive",
+          "compiled",
+          "efficient"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The oval shape in a flowchart represents the ____, marking the start or end of the algorithm.",
+        "answer": "terminator",
+        "options": [
+          "terminator",
+          "decision",
+          "process",
+          "input/output"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The ____ shape in a flowchart represents a YES/NO question that splits the flow into two paths.",
+        "answer": "diamond",
+        "options": [
+          "diamond",
+          "oval",
+          "rectangle",
+          "parallelogram"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In a flowchart, the ____ shape is used to represent an input or output operation.",
+        "answer": "parallelogram",
+        "options": [
+          "parallelogram",
+          "diamond",
+          "oval",
+          "rectangle"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The ____ shape in a flowchart represents a process such as a calculation or a variable assignment.",
+        "answer": "rectangle",
+        "options": [
+          "rectangle",
+          "diamond",
+          "oval",
+          "parallelogram"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A decision diamond in a flowchart always has exactly ____ exit paths.",
+        "answer": "two",
+        "options": [
+          "two",
+          "one",
+          "three",
+          "four"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Pseudocode is ____ — it does not use the syntax of any specific programming language.",
+        "answer": "language-independent",
+        "options": [
+          "language-independent",
+          "machine-readable",
+          "compiled",
+          "binary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In pseudocode, keywords such as IF, FOR, OUTPUT, and WHILE are written in ____.",
+        "answer": "uppercase",
+        "options": [
+          "uppercase",
+          "lowercase",
+          "italics",
+          "brackets"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In pseudocode, the symbol ____ is used for assignment, to store a value in a variable.",
+        "answer": "←",
+        "options": [
+          "←",
+          "=",
+          "==",
+          "->"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A ____ table is used to manually track variable values at each step of an algorithm.",
+        "answer": "trace",
+        "options": [
+          "trace",
+          "truth",
+          "decision",
+          "flow"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A trace table can be used to identify ____ in an algorithm by showing unexpected variable values.",
+        "answer": "errors",
+        "options": [
+          "errors",
+          "loops",
+          "variables",
+          "diagrams"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A FOR loop is used when the number of iterations is ____; a WHILE loop is used when it depends on a condition.",
+        "answer": "known",
+        "options": [
+          "known",
+          "unknown",
+          "random",
+          "infinite"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An algorithm is different from a program: an algorithm is the ____ design, while a program is the algorithm written in a specific language.",
+        "answer": "logical",
+        "options": [
+          "logical",
+          "physical",
+          "compiled",
+          "random"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The pseudocode keyword for receiving user input is ____.",
+        "answer": "USERINPUT",
+        "options": [
+          "USERINPUT",
+          "INPUT",
+          "RECEIVE",
+          "SCAN"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The pseudocode block that handles a false condition in a selection statement is ____ ENDIF.",
+        "answer": "ELSE",
+        "options": [
+          "ELSE",
+          "THEN",
+          "ENDIF",
+          "OTHERWISE"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Algorithm ____ means the algorithm produces the right answer for all valid inputs.",
+        "answer": "correctness",
+        "options": [
+          "correctness",
+          "efficiency",
+          "finiteness",
+          "reusability"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A ____ table has one column per variable plus an output column, and one row per step of the algorithm.",
+        "answer": "trace",
+        "options": [
+          "trace",
+          "sort",
+          "comparison",
+          "decision"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Nesting one IF statement inside another allows an algorithm to test ____ conditions in sequence.",
+        "answer": "multiple",
+        "options": [
+          "multiple",
+          "no",
+          "identical",
+          "random"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_fillblank_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Algorithm ____ is measured by the number of steps or comparisons needed to produce the result.",
+        "answer": "efficiency",
+        "options": [
+          "efficiency",
+          "correctness",
+          "abstraction",
+          "decomposition"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps to write an algorithm for a given problem",
+        "instruction": "Put these steps in the correct order for designing an algorithm.",
+        "items": [
+          "Understand the problem and identify the inputs and outputs",
+          "Break the problem into steps using decomposition",
+          "Write the steps in pseudocode or as a flowchart",
+          "Trace through the algorithm manually with test data",
+          "Check the output matches the expected result",
+          "Translate the algorithm into a programming language"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_algo_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Flowchart symbols in order for 'check if a number is positive'",
+        "instruction": "Put these flowchart elements in the correct top-to-bottom order.",
+        "items": [
+          "Oval — START",
+          "Parallelogram — Input N",
+          "Diamond — Is N > 0?",
+          "Parallelogram — Output 'Positive' (YES branch)",
+          "Parallelogram — Output 'Not positive' (NO branch)",
+          "Oval — END"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_algo_seq_003",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Filling in a trace table for a simple counting loop",
+        "instruction": "Put these trace-table steps in the correct order for the pseudocode: total ← 0; FOR i = 1 TO 3; total ← total + i; ENDFOR; OUTPUT total.",
+        "items": [
+          "Initialise: total = 0",
+          "Iteration 1: i = 1, total = 0 + 1 = 1",
+          "Iteration 2: i = 2, total = 1 + 2 = 3",
+          "Iteration 3: i = 3, total = 3 + 3 = 6",
+          "Loop ends (i > 3)",
+          "Output: 6"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_algo_catsort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Which flowchart shape?",
+        "instruction": "Sort each description into the correct flowchart shape.",
+        "categories": [
+          "Oval (Terminator)",
+          "Rectangle (Process)",
+          "Diamond (Decision)",
+          "Parallelogram (Input/Output)"
+        ],
+        "pairs": [
+          {
+            "text": "Marks the beginning of the algorithm",
+            "category": "Oval (Terminator)"
+          },
+          {
+            "text": "Calculates total ← total + score",
+            "category": "Rectangle (Process)"
+          },
+          {
+            "text": "Asks 'Is score >= 50?'",
+            "category": "Diamond (Decision)"
+          },
+          {
+            "text": "Reads the user's name from the keyboard",
+            "category": "Parallelogram (Input/Output)"
+          },
+          {
+            "text": "Marks the end of the algorithm",
+            "category": "Oval (Terminator)"
+          },
+          {
+            "text": "Displays 'You have passed' on screen",
+            "category": "Parallelogram (Input/Output)"
+          },
+          {
+            "text": "Sets the variable count to zero",
+            "category": "Rectangle (Process)"
+          },
+          {
+            "text": "Tests whether the password is correct",
+            "category": "Diamond (Decision)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_catsort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Algorithms"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Algorithm property?",
+        "instruction": "Sort each statement into the correct algorithm property it describes.",
+        "categories": [
+          "Correct",
+          "Efficient",
+          "Finite",
+          "Unambiguous"
+        ],
+        "pairs": [
+          {
+            "text": "The algorithm always terminates and never runs forever",
+            "category": "Finite"
+          },
+          {
+            "text": "Every step has exactly one possible interpretation",
+            "category": "Unambiguous"
+          },
+          {
+            "text": "The algorithm produces the right answer for all valid inputs",
+            "category": "Correct"
+          },
+          {
+            "text": "The algorithm completes the task in as few steps as reasonably possible",
+            "category": "Efficient"
+          },
+          {
+            "text": "The algorithm stops after a set number of iterations",
+            "category": "Finite"
+          },
+          {
+            "text": "Halving the list repeatedly requires fewer comparisons than checking one by one",
+            "category": "Efficient"
+          }
+        ]
+      }
+    }
+  ]
+}

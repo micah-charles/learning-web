@@ -60,13 +60,13 @@ You are generating a complete, curriculum-aligned dataset for the
 **Learning Web** app. The app is a vocabulary / revision / reading study
 hub for KS3 and GCSE students. It supports four study modes —
 **Vocabulary**, **Quiz**, **Reading**, **Builder** — and groups packs into
-five Subject First buckets in the Quiz Setup UI: **Language**, **History**,
-**Geography**, **Science**, **Literature**.
+Subject First buckets in the Quiz Setup UI: **Language**, **History**,
+**Geography**, **Science**, **Literature**, **Computing**, **Other**.
 
 ## Task — fill these in before generating
 
 ```
-Subject:               {{SUBJECT}}              # Language | History | Geography | Science | Literature
+Subject:               {{SUBJECT}}              # Language | History | Geography | Science | Literature | Computing | Other
 Topic:                 {{TOPIC}}                # e.g. "The Black Death", "Y8 Rivers", "AQA GCSE German Theme 1"
 Level:                 {{LEVEL}}                # e.g. "Y7", "Y8", "GCSE", "KS3 / Year 7", "Stage 4"
 Curriculum context:    {{CURRICULUM_CONTEXT}}   # e.g. "AQA GCSE German Theme 1: People and Lifestyle"
@@ -297,7 +297,9 @@ Order:
    without modification.
 2. **`schemaVersion`** is always `"1.1"` on every pack header.
 3. **`subject`** is **lowercase** and exactly one of `language`, `history`,
-   `geography`, `literature`, `science`.
+   `geography`, `literature`, `science`, `computing`, `other`.
+   Use `computing` for any computing, programming, or computer science pack.
+   Use `other` when no other subject fits (e.g. cross-curricular or uploaded packs).
 4. **`translations` uses BCP-47 keys.** Always `de-DE`, `en-GB`, `la-Latn`,
    `fr-FR`, etc. Never bare `de` / `en`.
 5. **For non-language subjects (history / geography / science / literature),** set both
@@ -412,6 +414,24 @@ designer would produce. Do not make it generic. Do not make all items the
 same shape. Do not rely only on the attached images if they are partial.
 Use the attached materials plus wider accurate curriculum knowledge. Avoid
 weak filler.
+
+## ⚠ Field name quick reference — do not deviate
+
+These are the exact field names the runtime and validator require.
+Wrong names cause silent failures or validation errors.
+
+| Item type | Required `data` fields | Common wrong names to avoid |
+|---|---|---|
+| `vocab` | `sourceWord` + `targetWord` (non-language), or `translations` (language) | `term`, `definition`, `word`, `meaning` |
+| `fillBlank` | `sentence` (contains `____`), `answer`, optional `options[]` | ❌ `question`, `text`, `prompt` |
+| `sequence` | `title`, `items` (array of step strings), optional `instruction` | ❌ `question`, `steps`, `order` |
+| `categorySort` | `categories` (array), `pairs` where each pair has `text` + `category`, optional `title` | ❌ `item`, `label`, `value` in pairs |
+| `passage` | `sourceTitle`, `targetTitle`, `sourcePassage`, `targetPassage`, `speechLanguage`, `questions[]` | — |
+| `sentenceBuilder` | `answer`, `tiles` (array), optional `prompt`, `cardType` | — |
+
+**`fillBlank` gap marker:** always four underscores `____` — never `___`, `[blank]`, `<blank>`, or `...`.
+
+---
 
 ## Item envelope
 
@@ -800,6 +820,36 @@ Adjust by topic size; these are good defaults for a complete pack:
   vs inorganic, kingdom classification).
 - Specify Biology / Chemistry / Physics in the title.
 
+### Computing packs (`subject: "computing"`)
+
+- Source = target = `"en-GB"`. Both `sourceLanguageCode` and `targetLanguageCode` must be `"en-GB"`.
+- `supportsSentences: false` for most packs.
+- Use `sourceWord` for the term and `targetWord` for the definition on all `vocab` items — never `translations`.
+- `partOfSpeech` must be `"keyword"` on every `vocab` item.
+- Strong fit for:
+  - `vocab` — key terms, definitions, acronyms
+  - `fillBlank` — pseudocode completion, algorithm tracing, keyword-in-context
+  - `sequence` — algorithm steps, FDE cycle, process stages
+  - `categorySort` — hardware vs software, lossy vs lossless, etc.
+- Pseudocode style: OCR/AQA conventions — uppercase keywords (`IF`, `THEN`, `FOR`, `WHILE`, `OUTPUT`, `USERINPUT`), `←` for assignment.
+- Use a `stimulus` block on `fillBlank` items to provide pseudocode or trace table context:
+  ```json
+  "data": {
+    "stimulus": { "type": "pseudocode", "content": "FOR i = 1 TO 5\n  OUTPUT i\nENDFOR" },
+    "sentence": "The loop above outputs ____ values.",
+    "answer": "5",
+    "options": ["5", "4", "6", "1"]
+  }
+  ```
+- KS3 Computing topic areas: Computational Thinking, Programming, Data Representation, Computer Systems, Networks, Cybersecurity, Databases, Impact of Technology.
+- GCSE Computing adds: file handling, 2D arrays, OOP, Big O notation, encryption algorithms, client-server architecture.
+
+### Other packs (`subject: "other"`)
+
+- Used when no subject bucket fits — e.g. cross-curricular packs or user uploads where the subject is unrecognised.
+- The app displays these in an **Other** bucket so they remain accessible rather than hidden.
+- Follow the same schema rules as non-language packs: `en-GB` / `en-GB`, `partOfSpeech: "keyword"`.
+
 ## Automation Mode
 
 Do **not** ask clarification questions. If metadata is missing, infer the
@@ -823,6 +873,10 @@ If confidence is low, still generate the pack — record the uncertainty in
 - ❌ Don't use bare `"de"` / `"en"` keys; always BCP-47 (`"de-DE"` /
       `"en-GB"`).
 - ❌ Don't capitalise `subject`.
+- ❌ Don't use `"science"` for computing packs — use `"computing"`.
+- ❌ Don't use `"question"` in `fillBlank` data — the field is `"sentence"`.
+- ❌ Don't use `"steps"` in `sequence` data — the field is `"items"`.
+- ❌ Don't use `"item"` in `categorySort` pairs — the field is `"text"`.
 - ❌ Don't put `passage` items in `pack_unified.json` — they live in
       `passages.json` in the same pack folder.
 - ❌ Don't put `sentenceBuilder` items in `pack_unified.json` — they live in

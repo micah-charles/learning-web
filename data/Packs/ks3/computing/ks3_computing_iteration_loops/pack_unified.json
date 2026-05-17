@@ -1,0 +1,1083 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_iteration_loops",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Iteration & Loops",
+  "subtitle": "Using FOR and WHILE loops to repeat instructions efficiently.",
+  "items": [
+    {
+      "id": "iter_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "iteration",
+        "targetWord": "Repeating a block of instructions one or more times; also referred to as a loop",
+        "examples": {
+          "en-GB": "Iteration allows a program to print 100 lines using just a few lines of code instead of writing each print statement separately."
+        }
+      }
+    },
+    {
+      "id": "iter_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "FOR loop",
+        "targetWord": "A count-controlled loop that repeats a block of code a fixed, predetermined number of times",
+        "examples": {
+          "en-GB": "FOR i ← 1 TO 5 repeats the loop body exactly five times with the counter i taking values 1, 2, 3, 4, 5."
+        }
+      }
+    },
+    {
+      "id": "iter_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "WHILE loop",
+        "targetWord": "A condition-controlled loop that repeats a block of code as long as its condition remains True; the number of repetitions is not fixed in advance",
+        "examples": {
+          "en-GB": "WHILE password != \"secret\" DO — keeps asking for input until the correct password is entered."
+        }
+      }
+    },
+    {
+      "id": "iter_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "count-controlled loop",
+        "targetWord": "A loop that repeats a specific, known number of times determined before the loop begins; implemented using a FOR loop",
+        "examples": {
+          "en-GB": "Printing the five-times table is count-controlled: we know exactly that 10 lines will be printed."
+        }
+      }
+    },
+    {
+      "id": "iter_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "condition-controlled loop",
+        "targetWord": "A loop that repeats until a condition becomes False; the number of repetitions is not known in advance; implemented using a WHILE loop",
+        "examples": {
+          "en-GB": "Asking for a valid score until the user enters a number between 0 and 100 is condition-controlled."
+        }
+      }
+    },
+    {
+      "id": "iter_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "loop variable",
+        "targetWord": "The variable in a FOR loop that tracks the current iteration number and changes value with each repetition",
+        "examples": {
+          "en-GB": "In FOR i ← 1 TO 5, i is the loop variable; it holds 1 on the first iteration, 2 on the second, and so on."
+        }
+      }
+    },
+    {
+      "id": "iter_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "counter",
+        "targetWord": "A variable used to count how many times a loop has run or to track a total; often incremented or decremented inside a loop",
+        "examples": {
+          "en-GB": "A counter variable starting at 0 and increasing by 1 each loop iteration can track how many attempts the user has made."
+        }
+      }
+    },
+    {
+      "id": "iter_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "infinite loop",
+        "targetWord": "A loop whose condition never becomes False, causing the program to repeat forever and never move past the loop",
+        "examples": {
+          "en-GB": "Forgetting to increment the counter inside a WHILE loop creates an infinite loop because the condition never changes."
+        }
+      }
+    },
+    {
+      "id": "iter_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "nested loop",
+        "targetWord": "A loop placed inside another loop; the inner loop runs completely through all its iterations for every single iteration of the outer loop",
+        "examples": {
+          "en-GB": "A nested loop with an outer loop of 3 iterations and an inner loop of 4 iterations produces 3 × 4 = 12 total inner executions."
+        }
+      }
+    },
+    {
+      "id": "iter_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "loop body",
+        "targetWord": "The block of code that is repeated on each iteration of a loop; defined by indentation in Python",
+        "examples": {
+          "en-GB": "In a FOR loop that prints numbers 1 to 10, the print statement inside the loop is the loop body."
+        }
+      }
+    },
+    {
+      "id": "iter_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "condition",
+        "targetWord": "The Boolean expression checked by a WHILE loop before each iteration; when it becomes False, the loop ends",
+        "examples": {
+          "en-GB": "The condition count <= 5 in a WHILE loop is checked before every iteration; when count reaches 6 the loop stops."
+        }
+      }
+    },
+    {
+      "id": "iter_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "increment",
+        "targetWord": "Increasing a variable's value by a fixed amount, typically 1; used inside loops to make the loop variable progress towards the exit condition",
+        "examples": {
+          "en-GB": "count ← count + 1 increments the counter by 1 each time the loop body runs."
+        }
+      }
+    },
+    {
+      "id": "iter_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decrement",
+        "targetWord": "Decreasing a variable's value by a fixed amount, typically 1; used in countdown loops and to reduce a variable towards an exit condition",
+        "examples": {
+          "en-GB": "lives ← lives - 1 decrements the lives variable each time the player makes a mistake."
+        }
+      }
+    },
+    {
+      "id": "iter_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "range",
+        "targetWord": "A Python function that generates a sequence of numbers for use with a FOR loop; range(start, stop) produces numbers from start up to but not including stop",
+        "examples": {
+          "en-GB": "range(1, 6) generates the numbers 1, 2, 3, 4, 5 — the stop value 6 is excluded."
+        }
+      }
+    },
+    {
+      "id": "iter_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "index",
+        "targetWord": "A number representing a position in a sequence; commonly used as the loop variable when iterating through items in a list",
+        "examples": {
+          "en-GB": "In range(0, 5), the values 0, 1, 2, 3, 4 can serve as index positions to access elements of a list."
+        }
+      }
+    },
+    {
+      "id": "iter_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "repetition",
+        "targetWord": "The act of executing the same block of code more than once; iteration is the programming mechanism that achieves repetition efficiently",
+        "examples": {
+          "en-GB": "Repetition through a FOR loop avoids writing the same statement ten times; it is written once and repeated automatically."
+        }
+      }
+    },
+    {
+      "id": "iter_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "exit condition",
+        "targetWord": "The condition that must become False for a WHILE loop to stop; ensuring the exit condition will eventually be met prevents an infinite loop",
+        "examples": {
+          "en-GB": "In WHILE count <= 10, the exit condition is count > 10; when count reaches 11 the loop ends."
+        }
+      }
+    },
+    {
+      "id": "iter_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sentinel value",
+        "targetWord": "A special value entered by the user that signals the end of input and causes a WHILE loop to stop",
+        "examples": {
+          "en-GB": "Using -1 as a sentinel value means the program keeps accepting scores until the user types -1 to indicate they are finished."
+        }
+      }
+    },
+    {
+      "id": "iter_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "accumulator",
+        "targetWord": "A variable that collects a running total by having values added to it on each iteration of a loop",
+        "examples": {
+          "en-GB": "total ← total + score adds each score to the accumulator variable total during each loop iteration."
+        }
+      }
+    },
+    {
+      "id": "iter_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "total",
+        "targetWord": "The result of accumulating values across multiple iterations; a variable used to sum up quantities produced inside a loop",
+        "examples": {
+          "en-GB": "After a FOR loop that adds 1, 2, 3, and 4 to a total variable starting at 0, the total is 10."
+        }
+      }
+    },
+    {
+      "id": "iter_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "flag",
+        "targetWord": "A Boolean variable used to record whether a particular condition has occurred; often used to control or exit a WHILE loop",
+        "examples": {
+          "en-GB": "A flag variable 'found' set to False before a loop, and changed to True when an item is found, can be used as the loop exit condition."
+        }
+      }
+    },
+    {
+      "id": "iter_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "iteration count",
+        "targetWord": "The total number of times a loop body executes; for nested loops this is the product of the outer and inner loop counts",
+        "examples": {
+          "en-GB": "A nested loop with an outer count of 5 and an inner count of 3 has an iteration count of 15 for the inner body."
+        }
+      }
+    },
+    {
+      "id": "iter_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "trace table",
+        "targetWord": "A table used to manually track the value of each variable and any output after each step or iteration of a program",
+        "examples": {
+          "en-GB": "A trace table for a FOR loop shows the loop variable and any updated values at the end of each iteration."
+        }
+      }
+    },
+    {
+      "id": "iter_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ENDFOR",
+        "targetWord": "The pseudocode keyword that marks the end of a FOR loop's body, after which the loop variable increments and the condition is re-checked",
+        "examples": {
+          "en-GB": "FOR i ← 1 TO 5 ... ENDFOR — ENDFOR marks where the loop body ends and the next iteration begins."
+        }
+      }
+    },
+    {
+      "id": "iter_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ENDWHILE",
+        "targetWord": "The pseudocode keyword that marks the end of a WHILE loop's body, after which execution returns to the condition check",
+        "examples": {
+          "en-GB": "WHILE count <= 5 DO ... ENDWHILE — execution returns to the WHILE condition after each ENDWHILE."
+        }
+      }
+    },
+    {
+      "id": "iter_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "pre-condition loop",
+        "targetWord": "A loop that checks its condition before executing the body; a WHILE loop is a pre-condition loop and may never run if the condition is False initially",
+        "examples": {
+          "en-GB": "A WHILE loop is a pre-condition loop: if the condition is False before the first check, the body never runs at all."
+        }
+      }
+    },
+    {
+      "id": "iter_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "multiplication table",
+        "targetWord": "A classic example used to demonstrate nested loops: the outer loop controls the row and the inner loop controls the column, printing every product",
+        "examples": {
+          "en-GB": "A nested FOR loop with i from 1 to 3 and j from 1 to 3 can print a 3×3 multiplication table."
+        }
+      }
+    },
+    {
+      "id": "iter_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "password checker",
+        "targetWord": "A classic example used to demonstrate WHILE loops: the program repeatedly asks for a password until the correct one is entered",
+        "examples": {
+          "en-GB": "A password checker using a WHILE loop shows condition-controlled iteration because the number of attempts is unknown in advance."
+        }
+      }
+    },
+    {
+      "id": "iter_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A FOR loop is a ____ loop because the number of repetitions is known before it starts.",
+        "answer": "count-controlled",
+        "options": [
+          "count-controlled",
+          "condition-controlled",
+          "infinite",
+          "nested"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A WHILE loop is a ____ loop because it repeats until a condition becomes False.",
+        "answer": "condition-controlled",
+        "options": [
+          "condition-controlled",
+          "count-controlled",
+          "nested",
+          "infinite"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "You should use a FOR loop when you know the number of repetitions ____, and a WHILE loop when you do not.",
+        "answer": "in advance",
+        "options": [
+          "in advance",
+          "after the loop",
+          "from user input",
+          "at runtime"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An infinite loop occurs when the loop's condition ____ becomes False.",
+        "answer": "never",
+        "options": [
+          "never",
+          "always",
+          "immediately",
+          "sometimes"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The loop variable in a FOR loop takes a new value at the ____ of each iteration.",
+        "answer": "start",
+        "options": [
+          "start",
+          "middle",
+          "end",
+          "condition"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A nested loop with an outer loop running 3 times and an inner loop running 4 times executes the inner body ____ times in total.",
+        "answer": "12",
+        "options": [
+          "12",
+          "7",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A WHILE loop checks its condition ____ the body executes on each iteration.",
+        "answer": "before",
+        "options": [
+          "before",
+          "after",
+          "during",
+          "instead of"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "If a WHILE loop's condition is False ____ the first check, the body never runs at all.",
+        "answer": "before",
+        "options": [
+          "before",
+          "after",
+          "during",
+          "without"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In Python, range(1, 6) generates the numbers 1, 2, 3, 4, ____.",
+        "answer": "5",
+        "options": [
+          "5",
+          "6",
+          "4",
+          "7"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "range(5) in Python generates 0, 1, 2, 3, ____ (five numbers starting from 0).",
+        "answer": "4",
+        "options": [
+          "4",
+          "5",
+          "3",
+          "6"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A variable that collects a running total inside a loop is called an ____.",
+        "answer": "accumulator",
+        "options": [
+          "accumulator",
+          "counter",
+          "flag",
+          "sentinel"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A ____ value is a special input used to signal the end of user data in a WHILE loop.",
+        "answer": "sentinel",
+        "options": [
+          "sentinel",
+          "Boolean",
+          "flag",
+          "counter"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A common cause of an infinite loop is forgetting to ____ the loop variable inside the loop body.",
+        "answer": "update",
+        "options": [
+          "update",
+          "print",
+          "declare",
+          "delete"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A password checker that keeps asking until the correct password is entered is best implemented with a ____ loop.",
+        "answer": "WHILE",
+        "options": [
+          "WHILE",
+          "FOR",
+          "nested",
+          "infinite"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Printing a times table from 1 to 10 is best implemented with a ____ loop because we know the count in advance.",
+        "answer": "FOR",
+        "options": [
+          "FOR",
+          "WHILE",
+          "nested",
+          "infinite"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A multiplication table is an example that uses a ____ loop: one loop for rows, one for columns.",
+        "answer": "nested",
+        "options": [
+          "nested",
+          "single",
+          "infinite",
+          "condition-controlled"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To fix an infinite loop, ensure the variable tested in the condition is ____ correctly inside the loop body.",
+        "answer": "updated",
+        "options": [
+          "updated",
+          "deleted",
+          "printed",
+          "declared"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In pseudocode, the keyword that ends a WHILE loop is ____.",
+        "answer": "ENDWHILE",
+        "options": [
+          "ENDWHILE",
+          "ENDIF",
+          "ENDFOR",
+          "END"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In pseudocode, the keyword that ends a FOR loop is ____.",
+        "answer": "ENDFOR",
+        "options": [
+          "ENDFOR",
+          "ENDWHILE",
+          "ENDIF",
+          "NEXT"
+        ]
+      }
+    },
+    {
+      "id": "iter_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A Boolean variable used to record whether a certain condition has occurred during a loop is called a ____.",
+        "answer": "flag",
+        "options": [
+          "flag",
+          "counter",
+          "accumulator",
+          "sentinel"
+        ]
+      }
+    },
+    {
+      "id": "iter_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Trace a FOR loop counting from 1 to 5",
+        "instruction": "Put these trace steps in the correct order.",
+        "items": [
+          "Set the loop variable i to 1 (the start value)",
+          "Check whether i is less than or equal to 5 — it is, so enter the loop body",
+          "Execute the loop body: print i",
+          "Increment i by 1",
+          "Check whether i is still less than or equal to 5 — repeat until i reaches 6",
+          "When i equals 6, the condition is False and the loop ends"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "iter_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps a WHILE loop follows on each iteration",
+        "instruction": "Put the steps of a WHILE loop's execution in the correct order.",
+        "items": [
+          "Evaluate the condition to see if it is True or False",
+          "If the condition is False, exit the loop and continue after ENDWHILE",
+          "If the condition is True, execute the loop body",
+          "Update the relevant variable(s) inside the loop body",
+          "Return to the condition check at the start of the loop"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "iter_seq03",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps to fix an infinite loop",
+        "instruction": "Put the debugging steps in the correct order.",
+        "items": [
+          "Identify which variable is tested in the WHILE condition",
+          "Trace through the loop body to check whether that variable is ever updated",
+          "If the variable is never updated, add a statement inside the loop body to change it",
+          "Check that the update moves the variable towards making the condition False",
+          "Re-run the program and verify the loop now terminates correctly"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "iter_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "title": "FOR or WHILE loop?",
+        "instruction": "Sort each scenario into the most appropriate loop type.",
+        "categories": [
+          "FOR loop",
+          "WHILE loop"
+        ],
+        "pairs": [
+          {
+            "text": "Print the 7 times table (7 × 1 to 7 × 12)",
+            "category": "FOR loop"
+          },
+          {
+            "text": "Keep asking for a password until the correct one is entered",
+            "category": "WHILE loop"
+          },
+          {
+            "text": "Process each of 30 student names in a register",
+            "category": "FOR loop"
+          },
+          {
+            "text": "Keep a game running until the player loses all three lives",
+            "category": "WHILE loop"
+          },
+          {
+            "text": "Print a countdown from 10 to 1",
+            "category": "FOR loop"
+          },
+          {
+            "text": "Keep reading temperatures until the user enters -999 to stop",
+            "category": "WHILE loop"
+          },
+          {
+            "text": "Repeat a quiz question 5 times",
+            "category": "FOR loop"
+          },
+          {
+            "text": "Keep asking for a valid score between 0 and 100",
+            "category": "WHILE loop"
+          }
+        ]
+      }
+    },
+    {
+      "id": "iter_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Iteration and Loops"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Would this cause an infinite loop?",
+        "instruction": "Sort each loop description into 'infinite loop' or 'terminates correctly'.",
+        "categories": [
+          "infinite loop",
+          "terminates correctly"
+        ],
+        "pairs": [
+          {
+            "text": "count = 1; WHILE count <= 5 DO count = count + 1",
+            "category": "terminates correctly"
+          },
+          {
+            "text": "count = 1; WHILE count > 0 DO count = count + 1",
+            "category": "infinite loop"
+          },
+          {
+            "text": "x = 10; WHILE x > 0 DO x = x - 1",
+            "category": "terminates correctly"
+          },
+          {
+            "text": "x = 0; WHILE x < 10 DO OUTPUT x (no update to x)",
+            "category": "infinite loop"
+          },
+          {
+            "text": "n = 100; WHILE n > 1 DO n = n DIV 2",
+            "category": "terminates correctly"
+          },
+          {
+            "text": "flag = True; WHILE flag == True DO OUTPUT \"hello\" (flag never changed)",
+            "category": "infinite loop"
+          }
+        ]
+      }
+    }
+  ]
+}
