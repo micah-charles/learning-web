@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_algorithms_flowcharts",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "algorithms", "flowcharts", "pseudocode"],
+  "items": [
+    {
+      "id": "ks3_computing_algo_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Algorithms"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "What is an Algorithm?",
+        "targetTitle": "What is an Algorithm?",
+        "sourcePassage": "An algorithm is a finite, unambiguous sequence of steps that solves a problem or performs a task. Every program ever written is built on one or more algorithms. Algorithms exist outside computing too: a recipe is an algorithm for cooking a dish, and an assembly manual is an algorithm for building furniture.\n\nA good algorithm must have four key properties. It must be correct — it produces the right answer for all valid inputs. It must be finite — it always terminates and never runs forever. It must be unambiguous — every step has exactly one interpretation, leaving no room for guesswork. And it should be efficient — it completes the task in as few steps as reasonably possible.\n\nAn algorithm is not the same as a program. An algorithm is the logical design: a description of the steps, often written in pseudocode or shown as a flowchart. A program is the algorithm written in a specific language — such as Python or Java — that a computer can execute. The same algorithm can be translated into any programming language. This separation between design and implementation is one of the most important ideas in computer science.",
+        "targetPassage": "An algorithm is a finite, unambiguous sequence of steps that solves a problem or performs a task. Every program ever written is built on one or more algorithms. Algorithms exist outside computing too: a recipe is an algorithm for cooking a dish, and an assembly manual is an algorithm for building furniture.\n\nA good algorithm must have four key properties. It must be correct — it produces the right answer for all valid inputs. It must be finite — it always terminates and never runs forever. It must be unambiguous — every step has exactly one interpretation, leaving no room for guesswork. And it should be efficient — it completes the task in as few steps as reasonably possible.\n\nAn algorithm is not the same as a program. An algorithm is the logical design: a description of the steps, often written in pseudocode or shown as a flowchart. A program is the algorithm written in a specific language — such as Python or Java — that a computer can execute. The same algorithm can be translated into any programming language. This separation between design and implementation is one of the most important ideas in computer science.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_algo_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is an algorithm?",
+            "options": [
+              "A programming language",
+              "A finite, unambiguous sequence of steps that solves a problem",
+              "A type of flowchart symbol",
+              "A trace table"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A finite, unambiguous sequence of steps that solves a problem or performs a task",
+            "acceptedKeywords": ["finite", "unambiguous", "steps", "solves"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does it mean for an algorithm to be 'finite'?",
+            "options": [
+              "It must use at least five steps",
+              "It must always terminate and never run forever",
+              "It must be written in pseudocode",
+              "It must use only one programming language"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It always terminates and never runs forever",
+            "acceptedKeywords": ["terminates", "ends", "stops", "forever"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the difference between an algorithm and a program?",
+            "options": [
+              "An algorithm is written in Python; a program is written in pseudocode",
+              "An algorithm is the logical design; a program is the algorithm written in a specific language",
+              "An algorithm can only be used once; a program can be reused",
+              "An algorithm is faster than a program"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "An algorithm is the logical design; a program is the algorithm written in a specific programming language for a computer to execute",
+            "acceptedKeywords": ["design", "language", "execute", "pseudocode", "logical"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_001_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Name and explain all four key properties of a good algorithm.",
+            "modelAnswer": "Correct: the algorithm produces the right answer for all valid inputs. Finite: the algorithm always terminates and never runs forever. Unambiguous: every step has exactly one interpretation, leaving no room for guesswork. Efficient: the algorithm completes the task in as few steps as reasonably possible.",
+            "acceptedKeywords": ["correct", "finite", "unambiguous", "efficient", "terminates", "one interpretation"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Algorithms"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Flowcharts and Pseudocode",
+        "targetTitle": "Flowcharts and Pseudocode",
+        "sourcePassage": "Flowcharts and pseudocode are the two most common ways of representing an algorithm before writing actual code. Both show the same logic; they simply use different notations.\n\nA flowchart uses standardised shapes connected by arrows. The oval represents the start or end — called a terminator. The rectangle represents a process: an action or calculation. The parallelogram represents input or output. The diamond represents a decision: a YES or NO question that splits the flow into two paths. A decision diamond must always have exactly two exits — one for YES and one for NO.\n\nPseudocode is structured English that resembles a programming language but is not tied to any specific one. Keywords such as IF, THEN, ELSE, ENDIF, FOR, WHILE, OUTPUT, and USERINPUT are written in uppercase. Variables are assigned using the left-pointing arrow (←). Blocks are indented to show structure, and loops are closed with ENDFOR or ENDWHILE.\n\nBoth representations are equally valid. A programmer might sketch a flowchart to visualise the logic, then write pseudocode to capture the detail before coding. The key advantage of both is that they allow logic errors to be spotted before any code is written — saving significant time during development.",
+        "targetPassage": "Flowcharts and pseudocode are the two most common ways of representing an algorithm before writing actual code. Both show the same logic; they simply use different notations.\n\nA flowchart uses standardised shapes connected by arrows. The oval represents the start or end — called a terminator. The rectangle represents a process: an action or calculation. The parallelogram represents input or output. The diamond represents a decision: a YES or NO question that splits the flow into two paths. A decision diamond must always have exactly two exits — one for YES and one for NO.\n\nPseudocode is structured English that resembles a programming language but is not tied to any specific one. Keywords such as IF, THEN, ELSE, ENDIF, FOR, WHILE, OUTPUT, and USERINPUT are written in uppercase. Variables are assigned using the left-pointing arrow (←). Blocks are indented to show structure, and loops are closed with ENDFOR or ENDWHILE.\n\nBoth representations are equally valid. A programmer might sketch a flowchart to visualise the logic, then write pseudocode to capture the detail before coding. The key advantage of both is that they allow logic errors to be spotted before any code is written — saving significant time during development.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_algo_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What shape is used in a flowchart to represent an input or output operation?",
+            "options": [
+              "Oval",
+              "Rectangle",
+              "Diamond",
+              "Parallelogram"
+            ],
+            "correctOptionIndex": 3,
+            "modelAnswer": "Parallelogram",
+            "acceptedKeywords": ["parallelogram"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How many exit paths must a decision diamond always have?",
+            "options": [
+              "One",
+              "Two",
+              "Three",
+              "As many as needed"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Exactly two — one for YES and one for NO",
+            "acceptedKeywords": ["two", "YES", "NO"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is pseudocode?",
+            "options": [
+              "A programming language that runs on all computers",
+              "Structured English that represents an algorithm without being tied to a specific language",
+              "A diagram using shapes and arrows",
+              "The binary code a processor executes"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Structured English that represents an algorithm without being tied to a specific programming language",
+            "acceptedKeywords": ["structured", "English", "language-independent", "keywords"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_002_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Name all four main flowchart shapes and state what each one represents.",
+            "modelAnswer": "Oval (terminator): marks the start or end of the algorithm. Rectangle (process): represents an action or calculation. Parallelogram (input/output): represents reading user data or displaying output. Diamond (decision): represents a YES/NO question that branches the flow into two paths.",
+            "acceptedKeywords": ["oval", "rectangle", "parallelogram", "diamond", "terminator", "process", "decision", "input", "output"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_algo_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Algorithms"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Trace Tables and Algorithm Testing",
+        "targetTitle": "Trace Tables and Algorithm Testing",
+        "sourcePassage": "Before a program is run on a computer, a programmer can check whether its underlying algorithm is correct by using a trace table. A trace table is a grid with one column for each variable in the algorithm and one row for each step. As the programmer works through the algorithm manually — a process called a dry run — they record the value of each variable after each step.\n\nConsider this algorithm: x ← 5; y ← 2; WHILE x > 0; OUTPUT x; x ← x - y; ENDWHILE. The trace table starts with x = 5 and y = 2. In the first iteration, x is greater than 0, so the loop body runs: 5 is output, then x becomes 3. In the second iteration, 3 is output, then x becomes 1. In the third iteration, 1 is output, then x becomes -1. Now x > 0 is false, so the loop ends. The output is: 5, 3, 1.\n\nTrace tables are especially useful for finding logic errors — situations where the algorithm runs without crashing but produces the wrong output. By recording every variable value at every step, the programmer can pinpoint exactly where the logic went wrong. Trace tables work for any algorithm involving variables, not just loops. They are a fundamental tool for any programmer who wants to verify their algorithm before investing time in writing code.",
+        "targetPassage": "Before a program is run on a computer, a programmer can check whether its underlying algorithm is correct by using a trace table. A trace table is a grid with one column for each variable in the algorithm and one row for each step. As the programmer works through the algorithm manually — a process called a dry run — they record the value of each variable after each step.\n\nConsider this algorithm: x ← 5; y ← 2; WHILE x > 0; OUTPUT x; x ← x - y; ENDWHILE. The trace table starts with x = 5 and y = 2. In the first iteration, x is greater than 0, so the loop body runs: 5 is output, then x becomes 3. In the second iteration, 3 is output, then x becomes 1. In the third iteration, 1 is output, then x becomes -1. Now x > 0 is false, so the loop ends. The output is: 5, 3, 1.\n\nTrace tables are especially useful for finding logic errors — situations where the algorithm runs without crashing but produces the wrong output. By recording every variable value at every step, the programmer can pinpoint exactly where the logic went wrong. Trace tables work for any algorithm involving variables, not just loops. They are a fundamental tool for any programmer who wants to verify their algorithm before investing time in writing code.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_algo_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a trace table?",
+            "options": [
+              "A type of flowchart shape",
+              "A grid used to manually track variable values at each step of an algorithm",
+              "A programming language for writing algorithms",
+              "A chart showing algorithm efficiency"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A grid with one column per variable and one row per step, used to manually track variable values as an algorithm executes",
+            "acceptedKeywords": ["grid", "variable", "values", "step", "track"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the process of working through an algorithm manually called?",
+            "options": [
+              "Compiling",
+              "Debugging",
+              "A dry run",
+              "Pseudocoding"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "A dry run",
+            "acceptedKeywords": ["dry run", "manually"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "According to the passage, what is the output of the algorithm x ← 5; y ← 2; WHILE x > 0; OUTPUT x; x ← x - y; ENDWHILE?",
+            "options": [
+              "5, 3, 1",
+              "2, 4, 6",
+              "5, 4, 3, 2, 1",
+              "3, 1, -1"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "5, 3, 1",
+            "acceptedKeywords": ["5", "3", "1"]
+          },
+          {
+            "id": "ks3_computing_algo_passage_003_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain what a logic error is and how a trace table helps find one.",
+            "modelAnswer": "A logic error is when an algorithm runs without crashing but produces the wrong output — the code is syntactically correct but the logic is flawed. A trace table helps by recording every variable value at every step. The programmer can compare what the variable holds at each point with what it should hold. The step where the actual value first differs from the expected value is where the logic error occurred. This pinpoints the problem precisely without needing to run the program.",
+            "acceptedKeywords": ["logic error", "wrong output", "variable", "step", "pinpoint", "trace"]
+          }
+        ]
+      }
+    }
+  ]
+}

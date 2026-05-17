@@ -1,0 +1,936 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_pattern_recognition",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "displayName": "KS3 Computing — Pattern Recognition",
+  "subtitle": "Identifying repeating structures to create efficient, reusable solutions.",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": [
+    "KS3",
+    "computing",
+    "computational thinking"
+  ],
+  "items": [
+    {
+      "id": "ks3_computing_pattern_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "pattern recognition",
+        "targetWord": "identifying similarities, trends, or repeating structures in problems or data, in order to apply the same solution to multiple similar cases",
+        "examples": {
+          "en-GB": "Pattern recognition helped the programmer notice that the same score-calculation block appeared three times and replace it with a function."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sequence",
+        "targetWord": "an ordered list of values or steps following a rule, such as each number increasing by a fixed amount",
+        "examples": {
+          "en-GB": "The sequence 2, 4, 6, 8, 10 has a pattern: each term increases by 2."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "template",
+        "targetWord": "a reusable structure or format that can be applied to multiple similar problems, saving the programmer from designing a new solution each time",
+        "examples": {
+          "en-GB": "A login form template is reused on every website page that requires authentication."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "generalisation",
+        "targetWord": "creating a solution broad enough to apply to many similar problems, not just the specific case it was originally written for",
+        "examples": {
+          "en-GB": "The calculateArea(length, width) function is a generalisation that works for any rectangle, not just the first one it was tested on."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "iteration",
+        "targetWord": "repeating a set of instructions a number of times — the programming response to recognising a repetition pattern",
+        "examples": {
+          "en-GB": "Iteration using a FOR loop replaces writing the same OUTPUT instruction fifty times."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "repetition pattern",
+        "targetWord": "a situation where the same block of code or action needs to run multiple times, which a programmer resolves by writing a loop",
+        "examples": {
+          "en-GB": "Printing 'Hello' ten times is a repetition pattern — it is resolved with a FOR loop rather than ten separate OUTPUT lines."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "repeated-task pattern",
+        "targetWord": "a situation where the same calculation or process appears in multiple different places in a program, which a programmer resolves by writing a function",
+        "examples": {
+          "en-GB": "A repeated-task pattern for calculating a rectangle's area three times is resolved by writing one calculateArea() function."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "machine learning",
+        "targetWord": "a branch of artificial intelligence where systems identify patterns in large datasets to make predictions or decisions automatically",
+        "examples": {
+          "en-GB": "Machine learning enables a spam filter to recognise patterns in unwanted emails and block them automatically."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "algorithm",
+        "targetWord": "a finite, unambiguous sequence of steps designed to solve a problem, often built around a recognised pattern",
+        "examples": {
+          "en-GB": "Once the programmer recognised the sorting pattern, they implemented the bubble sort algorithm to handle it."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "loop",
+        "targetWord": "a programming construct that repeats a block of instructions, used when a repetition pattern is identified in a problem",
+        "examples": {
+          "en-GB": "A FOR loop iterates through all ten enemies in the game, applying the same draw and update logic to each."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "function",
+        "targetWord": "a named subroutine that performs a specific task and returns a value; the programming response to a repeated-task pattern",
+        "examples": {
+          "en-GB": "Writing a calculateAverage(scores) function avoids repeating the same averaging code in three different places."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "library",
+        "targetWord": "a collection of pre-written, reusable code modules that solve common programming patterns so programmers do not have to rewrite them",
+        "examples": {
+          "en-GB": "The sorting library provides a ready-made solution to the 'sort a list' pattern, saving every programmer from writing their own version."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "reusability",
+        "targetWord": "the ability of code, a function, or a module to be applied to multiple similar problems without being rewritten each time",
+        "examples": {
+          "en-GB": "The reusability of the validateEmail() function means it is called from the registration page, the login page, and the settings page."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data trend",
+        "targetWord": "a pattern visible in a dataset where values change in a consistent, predictable direction over time or across conditions",
+        "examples": {
+          "en-GB": "The data trend in the temperature readings showed a rise of 15 degrees every five minutes."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "prediction",
+        "targetWord": "using a recognised pattern in existing data to calculate or estimate what future data values will be",
+        "examples": {
+          "en-GB": "After identifying the temperature trend, the scientist made a prediction that the temperature at 25 minutes would be 95 degrees."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "similarity",
+        "targetWord": "a shared structure or characteristic between two or more problems or datasets that allows the same solution to be applied to both",
+        "examples": {
+          "en-GB": "The similarity between processing a photo and processing a video frame meant the same compression function could be reused."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "spam filter",
+        "targetWord": "a software system that uses pattern recognition to identify characteristics common to unwanted emails and automatically route them to the spam folder",
+        "examples": {
+          "en-GB": "The spam filter recognised patterns such as 'FREE!!!' in the subject line and flagged those emails automatically."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Fibonacci sequence",
+        "targetWord": "a number sequence where each term is the sum of the two preceding terms: 1, 1, 2, 3, 5, 8, 13…; a classic example of a pattern in data",
+        "examples": {
+          "en-GB": "Once the Fibonacci pattern is recognised, a loop or recursive function can generate any number of terms efficiently."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "FOR loop",
+        "targetWord": "a count-controlled loop that repeats a block of code a fixed number of times; the direct programming response to a repetition pattern",
+        "examples": {
+          "en-GB": "A FOR loop from 1 to 10 generates the even-number sequence 2, 4, 6, 8, 10 without writing each output separately."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "array",
+        "targetWord": "a data structure that stores multiple values of the same type under one name, often used when pattern recognition shows that several items share the same structure",
+        "examples": {
+          "en-GB": "Storing all ten enemy positions in an array makes it possible to use a loop to process them all with the same code."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "web framework",
+        "targetWord": "a pre-built collection of code that provides ready-made solutions to common website-building patterns, such as routing and form handling",
+        "examples": {
+          "en-GB": "Using a web framework means a programmer does not have to re-implement the login or routing pattern every time they build a website."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "structural pattern",
+        "targetWord": "a recurring arrangement or organisation that appears across multiple programs, which can be packaged into a template or library",
+        "examples": {
+          "en-GB": "The structural pattern of reading a file, processing its contents, and writing output appears in many programs and can be reused."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "efficient code",
+        "targetWord": "code that achieves the same result with fewer lines, less repetition, and lower chance of introducing bugs by using loops, functions, and libraries",
+        "examples": {
+          "en-GB": "Using a loop instead of 100 identical OUTPUT lines produces efficient code that is also easier to maintain."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "training data",
+        "targetWord": "a large dataset used to teach a machine learning system to recognise patterns so it can make predictions on new, unseen data",
+        "examples": {
+          "en-GB": "The spam filter was trained on thousands of spam examples, allowing it to recognise patterns in new emails."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "computational thinking"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "pattern in data",
+        "targetWord": "a recurring relationship or trend within a dataset, such as a sequence that increases by a fixed amount each step",
+        "examples": {
+          "en-GB": "A pattern in data was identified: sales always rose by 20% in December each year."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Identifying similarities, trends, and repeating structures in problems or data is called ____.",
+        "answer": "pattern recognition",
+        "options": [
+          "pattern recognition",
+          "decomposition",
+          "abstraction",
+          "iteration"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In the sequence 2, 4, 6, 8, 10, the pattern is that each number increases by ____.",
+        "answer": "2",
+        "options": [
+          "2",
+          "4",
+          "5",
+          "10"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "When the same action needs to repeat a fixed number of times, a programmer uses a ____ to respond to the repetition pattern.",
+        "answer": "loop",
+        "options": [
+          "loop",
+          "function",
+          "variable",
+          "comment"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "When the same calculation appears in multiple places in a program, a programmer creates a ____ to avoid repeating the code.",
+        "answer": "function",
+        "options": [
+          "function",
+          "loop",
+          "comment",
+          "array"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A solution that works for many similar problems, not just one specific case, is called a ____.",
+        "answer": "generalisation",
+        "options": [
+          "generalisation",
+          "decomposition",
+          "trace table",
+          "variable"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In the Fibonacci sequence 1, 1, 2, 3, 5, 8, each number is the ____ of the two numbers before it.",
+        "answer": "sum",
+        "options": [
+          "sum",
+          "product",
+          "difference",
+          "square"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A spam filter uses pattern recognition to identify common characteristics of ____ emails and block them automatically.",
+        "answer": "unwanted",
+        "options": [
+          "unwanted",
+          "important",
+          "encrypted",
+          "large"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Collections of pre-written, reusable code solutions to common programming patterns are called ____.",
+        "answer": "libraries",
+        "options": [
+          "libraries",
+          "arrays",
+          "algorithms",
+          "flowcharts"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "____ learning is a branch of AI where systems identify patterns in large datasets to make predictions.",
+        "answer": "Machine",
+        "options": [
+          "Machine",
+          "Pattern",
+          "Deep",
+          "Logic"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A game needs to draw 10 enemies. Instead of writing separate code for each, a programmer uses a ____ to process all enemies with the same logic.",
+        "answer": "loop",
+        "options": [
+          "loop",
+          "function",
+          "variable",
+          "flowchart"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "If a weather dataset shows temperature rising by 15 degrees every 5 minutes, this ____ in data allows future values to be predicted.",
+        "answer": "pattern",
+        "options": [
+          "pattern",
+          "error",
+          "loop",
+          "variable"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Code that achieves the same result in fewer lines with less repetition is called ____ code.",
+        "answer": "efficient",
+        "options": [
+          "efficient",
+          "compiled",
+          "abstracted",
+          "sequential"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Storing ten enemies in a single ____ allows a loop to process them all with the same code.",
+        "answer": "array",
+        "options": [
+          "array",
+          "function",
+          "variable",
+          "module"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Recognising that the ask-accept-check pattern repeats 10 times in a quiz program allows it to be reduced to a single ____ block.",
+        "answer": "loop",
+        "options": [
+          "loop",
+          "declaration",
+          "comment",
+          "constant"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_fillblank_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Pattern recognition directly determines which programming ____ to use: repetition patterns lead to loops; repeated tasks lead to functions.",
+        "answer": "constructs",
+        "options": [
+          "constructs",
+          "variables",
+          "outputs",
+          "files"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Responding to a repeated pattern in code",
+        "instruction": "Put these steps in the correct order for how a programmer handles a repeated pattern.",
+        "items": [
+          "Identify the repeated block of code or process",
+          "Abstract the repeated logic into a general solution",
+          "Create a function or loop that implements the solution",
+          "Replace each repeated instance with a call to the function or loop",
+          "Test the new function or loop with different inputs",
+          "Reuse the generalised solution wherever the same pattern occurs again"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_catsort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Pattern in data or pattern in code?",
+        "instruction": "Sort each example into the correct category.",
+        "categories": [
+          "Pattern in data",
+          "Pattern in code"
+        ],
+        "pairs": [
+          {
+            "text": "Temperature rises by 15 degrees every 5 minutes in an experiment",
+            "category": "Pattern in data"
+          },
+          {
+            "text": "The same score-calculation block appears three times in a program",
+            "category": "Pattern in code"
+          },
+          {
+            "text": "Sales increase by 20% every December in five years of records",
+            "category": "Pattern in data"
+          },
+          {
+            "text": "Printing 'Hello' five times requires the same OUTPUT line repeated",
+            "category": "Pattern in code"
+          },
+          {
+            "text": "A number sequence follows the rule: each term is the sum of the two before it",
+            "category": "Pattern in data"
+          },
+          {
+            "text": "Ten game enemies share identical attributes and behaviour logic",
+            "category": "Pattern in code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_catsort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Pattern Recognition"
+      ],
+      "tags": [],
+      "data": {
+        "title": "FOR loop or function?",
+        "instruction": "For each programming pattern, decide whether the best response is a FOR loop or a function.",
+        "categories": [
+          "FOR loop",
+          "Function"
+        ],
+        "pairs": [
+          {
+            "text": "The same action needs to repeat exactly 10 times in sequence",
+            "category": "FOR loop"
+          },
+          {
+            "text": "A calculation for average score is needed in three different parts of the program",
+            "category": "Function"
+          },
+          {
+            "text": "Printing each item in a list of 50 names one by one",
+            "category": "FOR loop"
+          },
+          {
+            "text": "Converting temperatures from Celsius to Fahrenheit is required at five places in the code",
+            "category": "Function"
+          },
+          {
+            "text": "Drawing each of 20 stars at different positions on screen one after another",
+            "category": "FOR loop"
+          },
+          {
+            "text": "Validating a password is needed on the login page, registration page, and settings page",
+            "category": "Function"
+          }
+        ]
+      }
+    }
+  ]
+}

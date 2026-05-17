@@ -1,0 +1,1373 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_network_types_hardware",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Network Types & Hardware",
+  "subtitle": "LAN, WAN, network topologies, hardware components, and wired vs wireless connections.",
+  "items": [
+    {
+      "id": "nt_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "network",
+        "targetWord": "Two or more devices connected together so they can share data and resources such as printers, files, and internet access",
+        "examples": {
+          "en-GB": "A school network connects hundreds of computers so staff and pupils can share files, printers, and internet access."
+        }
+      }
+    },
+    {
+      "id": "nt_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "LAN",
+        "targetWord": "Local Area Network — a network covering a small geographical area such as a single building, school, or office, owned and managed by the organisation using it",
+        "examples": {
+          "en-GB": "A school's computer network is a LAN because it covers only the school buildings and is owned by the school."
+        }
+      }
+    },
+    {
+      "id": "nt_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "WAN",
+        "targetWord": "Wide Area Network — a network spanning a large geographical area such as a country or the entire globe, using public infrastructure owned by telecommunications companies",
+        "examples": {
+          "en-GB": "The Internet is the largest WAN in the world, connecting billions of devices across every country."
+        }
+      }
+    },
+    {
+      "id": "nt_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "router",
+        "targetWord": "A network device that connects a LAN to the internet or to other networks, routing data packets toward their destination using IP addresses",
+        "examples": {
+          "en-GB": "The router at home connects the home LAN to the internet and assigns IP addresses to all connected devices via DHCP."
+        }
+      }
+    },
+    {
+      "id": "nt_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "switch",
+        "targetWord": "A network device that connects multiple devices within a LAN and sends incoming data only to the specific destination device, rather than broadcasting to all devices",
+        "examples": {
+          "en-GB": "A switch is more efficient than a hub because it sends each packet only to the device it is addressed to, reducing unnecessary network traffic."
+        }
+      }
+    },
+    {
+      "id": "nt_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "hub",
+        "targetWord": "An older network device that connects devices within a LAN by broadcasting all incoming data to every connected device, regardless of which device it is addressed to",
+        "examples": {
+          "en-GB": "Hubs have largely been replaced by switches because broadcasting to all devices wastes bandwidth and creates a security risk."
+        }
+      }
+    },
+    {
+      "id": "nt_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NIC",
+        "targetWord": "Network Interface Card — the hardware component inside a device that enables it to connect to a network; every NIC has a unique MAC address",
+        "examples": {
+          "en-GB": "Every computer needs a NIC to join a network; it converts data between the computer's internal format and the signal sent over the network."
+        }
+      }
+    },
+    {
+      "id": "nt_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "WAP",
+        "targetWord": "Wireless Access Point — a device connected to a wired network that broadcasts a Wi-Fi signal, allowing wireless devices to join the network",
+        "examples": {
+          "en-GB": "The white boxes mounted on classroom walls are WAPs that allow tablets and laptops to connect wirelessly to the school LAN."
+        }
+      }
+    },
+    {
+      "id": "nt_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Ethernet",
+        "targetWord": "A wired networking technology that uses cables (typically Cat5e or Cat6) to connect devices, offering fast and reliable data transfer",
+        "examples": {
+          "en-GB": "Desktop computers in a school computer lab are connected via Ethernet cables for fast, reliable, and secure network access."
+        }
+      }
+    },
+    {
+      "id": "nt_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Wi-Fi",
+        "targetWord": "A wireless networking technology that allows devices to connect to a network using radio waves rather than physical cables",
+        "examples": {
+          "en-GB": "Wi-Fi lets smartphones and laptops connect to the internet from anywhere within range of a wireless access point."
+        }
+      }
+    },
+    {
+      "id": "nt_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "star topology",
+        "targetWord": "A network layout in which every device is connected individually to a central switch; failure of one device does not affect others, but failure of the switch brings down the whole network",
+        "examples": {
+          "en-GB": "Most modern schools and offices use star topology because it is reliable and easy to add or remove individual devices."
+        }
+      }
+    },
+    {
+      "id": "nt_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bus topology",
+        "targetWord": "A network layout in which all devices connect to a single shared cable called the bus or backbone; a break anywhere in the cable brings down the entire network",
+        "examples": {
+          "en-GB": "Bus topology is cheap to install but unreliable — if the backbone cable is damaged, every device on the network loses connection."
+        }
+      }
+    },
+    {
+      "id": "nt_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ring topology",
+        "targetWord": "A network layout in which devices are connected in a closed loop, each device connecting to the next; data travels around the ring in one direction",
+        "examples": {
+          "en-GB": "Ring topology is less common today; a single break in the ring can disrupt communication for all devices on the network."
+        }
+      }
+    },
+    {
+      "id": "nt_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bandwidth",
+        "targetWord": "The maximum amount of data that can be transmitted over a network connection in a given time, usually measured in megabits per second (Mbps) or gigabits per second (Gbps)",
+        "examples": {
+          "en-GB": "Streaming 4K video requires high bandwidth; if too many users share a connection, each gets a smaller share of the available bandwidth."
+        }
+      }
+    },
+    {
+      "id": "nt_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IP address",
+        "targetWord": "A unique numerical identifier assigned to each device on a network, used by routers to direct data packets to the correct destination",
+        "examples": {
+          "en-GB": "Every device connected to the internet has an IP address, such as 192.168.1.5, which acts like a postal address for data."
+        }
+      }
+    },
+    {
+      "id": "nt_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "MAC address",
+        "targetWord": "Media Access Control address — a unique 48-bit hardware address permanently assigned to every NIC at the time of manufacture, used to identify devices within a LAN",
+        "examples": {
+          "en-GB": "A switch uses MAC addresses to send data only to the correct device; no two NICs share the same MAC address."
+        }
+      }
+    },
+    {
+      "id": "nt_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "DHCP",
+        "targetWord": "Dynamic Host Configuration Protocol — a protocol used by routers to automatically assign IP addresses to devices when they join a network",
+        "examples": {
+          "en-GB": "When your laptop connects to Wi-Fi, the router uses DHCP to automatically give it an IP address without you having to type one in."
+        }
+      }
+    },
+    {
+      "id": "nt_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "packet",
+        "targetWord": "A small chunk of data that a message is broken into before being sent across a network; each packet contains a header with addressing information and a payload with the actual data",
+        "examples": {
+          "en-GB": "When you send an email, it is broken into packets that travel across the network and are reassembled at the destination."
+        }
+      }
+    },
+    {
+      "id": "nt_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "node",
+        "targetWord": "Any device connected to a network — including computers, printers, switches, routers, and servers — that can send or receive data",
+        "examples": {
+          "en-GB": "In a star topology, every computer, printer, and server is a node connected to the central switch."
+        }
+      }
+    },
+    {
+      "id": "nt_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "client",
+        "targetWord": "A device or program that requests services or data from a server on a network — for example, a computer requesting a web page from a web server",
+        "examples": {
+          "en-GB": "Your laptop acts as a client when it requests a web page; it sends the request to a web server and waits for the response."
+        }
+      }
+    },
+    {
+      "id": "nt_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "server",
+        "targetWord": "A powerful computer on a network that provides services, data, or resources to client devices — for example, a file server stores shared files",
+        "examples": {
+          "en-GB": "A school file server stores all pupils' work centrally so it can be accessed from any computer on the network."
+        }
+      }
+    },
+    {
+      "id": "nt_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "firewall",
+        "targetWord": "A network security device or software that monitors and controls incoming and outgoing network traffic, blocking unauthorised access",
+        "examples": {
+          "en-GB": "A school's firewall blocks access to inappropriate websites and prevents unauthorised users from connecting to the school network."
+        }
+      }
+    },
+    {
+      "id": "nt_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ISP",
+        "targetWord": "Internet Service Provider — a company that provides customers with access to the internet, typically via broadband connections",
+        "examples": {
+          "en-GB": "BT, Sky, and Virgin Media are ISPs that provide home broadband connections to millions of UK households."
+        }
+      }
+    },
+    {
+      "id": "nt_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "broadband",
+        "targetWord": "A high-speed internet connection that provides fast data transfer, allowing multiple users to access the internet simultaneously",
+        "examples": {
+          "en-GB": "Fibre optic broadband can deliver speeds over 1 Gbps, making it fast enough to stream video and transfer large files."
+        }
+      }
+    },
+    {
+      "id": "nt_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "network topology",
+        "targetWord": "The physical or logical layout of how devices are connected together in a network — common examples include star, bus, and ring topologies",
+        "examples": {
+          "en-GB": "Choosing the right network topology affects the cost, reliability, and performance of a network."
+        }
+      }
+    },
+    {
+      "id": "nt_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "resource sharing",
+        "targetWord": "A key benefit of networking whereby devices connected to a network can share hardware (such as printers), files, and internet access",
+        "examples": {
+          "en-GB": "Resource sharing means a school only needs one printer per floor because all computers on the network can use it."
+        }
+      }
+    },
+    {
+      "id": "nt_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "infrastructure",
+        "targetWord": "The underlying physical equipment and connections that a network runs on — including cables, routers, switches, and servers",
+        "examples": {
+          "en-GB": "A WAN relies on telecommunications infrastructure such as fibre optic cables and satellites owned by ISPs."
+        }
+      }
+    },
+    {
+      "id": "nt_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "network share",
+        "targetWord": "A folder or resource on a server that is made available to authorised users across a network",
+        "examples": {
+          "en-GB": "Pupils save their work to a network share so it is available from any computer in the school and backed up centrally."
+        }
+      }
+    },
+    {
+      "id": "nt_v29",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "access point",
+        "targetWord": "A device that creates a wireless local area network, typically connected to a wired network and transmitting a Wi-Fi signal for nearby wireless devices",
+        "examples": {
+          "en-GB": "Each floor of the school building has its own access point so that wireless devices can connect throughout the building."
+        }
+      }
+    },
+    {
+      "id": "nt_v30",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "gateway",
+        "targetWord": "A router (or other device) that acts as the entry and exit point connecting a local network to external networks such as the internet",
+        "examples": {
+          "en-GB": "All internet traffic from the school LAN passes through the gateway router before reaching the wider internet."
+        }
+      }
+    },
+    {
+      "id": "nt_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A LAN covers a ____ geographical area, such as a single building or school.",
+        "answer": "small",
+        "options": [
+          "small",
+          "large",
+          "global",
+          "national"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A WAN covers ____ distances and uses public telecommunications infrastructure.",
+        "answer": "large",
+        "options": [
+          "large",
+          "small",
+          "local",
+          "indoor"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "The Internet is the largest ____ in the world.",
+        "answer": "WAN",
+        "options": [
+          "WAN",
+          "LAN",
+          "NIC",
+          "WAP"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A ____ connects a LAN to the internet and routes data packets using IP addresses.",
+        "answer": "router",
+        "options": [
+          "router",
+          "switch",
+          "hub",
+          "NIC"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A switch sends data only to the ____ device, whereas a hub broadcasts to all devices.",
+        "answer": "intended",
+        "options": [
+          "intended",
+          "nearest",
+          "largest",
+          "slowest"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A ____ enables a device to connect to a network and has a unique MAC address.",
+        "answer": "NIC",
+        "options": [
+          "NIC",
+          "WAP",
+          "router",
+          "switch"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "In a star topology, all devices connect individually to a central ____.",
+        "answer": "switch",
+        "options": [
+          "switch",
+          "printer",
+          "server",
+          "monitor"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "In a star topology, if the central switch fails, the ____ network goes down.",
+        "answer": "whole",
+        "options": [
+          "whole",
+          "partial",
+          "wireless",
+          "internet"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "In a bus topology, if the backbone cable breaks, the ____ network fails.",
+        "answer": "entire",
+        "options": [
+          "entire",
+          "wireless",
+          "server",
+          "partial"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "Wired connections are faster and more ____ than wireless connections.",
+        "answer": "reliable",
+        "options": [
+          "reliable",
+          "flexible",
+          "expensive",
+          "colourful"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "Wireless connections are more ____ because devices can connect from anywhere in range.",
+        "answer": "flexible",
+        "options": [
+          "flexible",
+          "secure",
+          "reliable",
+          "fast"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "Wired connections are more ____ than wireless because signals travel through cables, not through the air.",
+        "answer": "secure",
+        "options": [
+          "secure",
+          "portable",
+          "colourful",
+          "slow"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A WAP allows ____ devices to connect to a wired LAN.",
+        "answer": "wireless",
+        "options": [
+          "wireless",
+          "wired",
+          "server",
+          "printer"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A LAN is ____ by the organisation, whereas a WAN uses public infrastructure.",
+        "answer": "owned",
+        "options": [
+          "owned",
+          "rented",
+          "sold",
+          "broadcast"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "DHCP is a protocol that allows a router to automatically assign ____ addresses to devices on the network.",
+        "answer": "IP",
+        "options": [
+          "IP",
+          "MAC",
+          "URL",
+          "DNS"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A switch uses ____ addresses to identify each device and send data to the correct one.",
+        "answer": "MAC",
+        "options": [
+          "MAC",
+          "IP",
+          "URL",
+          "DNS"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "WAN stands for ____ Area Network.",
+        "answer": "Wide",
+        "options": [
+          "Wide",
+          "Wireless",
+          "Wired",
+          "Web"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "In a star topology, if one device fails, the other devices are ____.",
+        "answer": "unaffected",
+        "options": [
+          "unaffected",
+          "switched off",
+          "rebooted",
+          "disconnected"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "Wireless signals can suffer ____ from walls and other electronic devices.",
+        "answer": "interference",
+        "options": [
+          "interference",
+          "amplification",
+          "encryption",
+          "routing"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "A hub is less efficient than a switch because it ____ data to all connected devices.",
+        "answer": "broadcasts",
+        "options": [
+          "broadcasts",
+          "encrypts",
+          "filters",
+          "compresses"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb21",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "The physical layout of how devices are connected in a network is called its ____.",
+        "answer": "topology",
+        "options": [
+          "topology",
+          "protocol",
+          "bandwidth",
+          "firewall"
+        ]
+      }
+    },
+    {
+      "id": "nt_fb22",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "sentence": "NIC stands for Network Interface ____.",
+        "answer": "Card",
+        "options": [
+          "Card",
+          "Connection",
+          "Cable",
+          "Circuit"
+        ]
+      }
+    },
+    {
+      "id": "nt_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "title": "Data Travelling from Computer to Website",
+        "instruction": "Put these steps in the correct order to describe the journey of data from a computer on a LAN to a website on the internet.",
+        "items": [
+          "User's computer sends data via its NIC",
+          "Data travels along the cable to the switch",
+          "Switch forwards the data to the router",
+          "Router sends the data out across the internet",
+          "Data arrives at the web server"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "nt_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "title": "Setting Up a Star Topology Network",
+        "instruction": "Arrange these steps in the correct order to set up a star topology network for a small office.",
+        "items": [
+          "Install a switch in a central location",
+          "Run an Ethernet cable from each computer to the switch",
+          "Connect the switch to the router",
+          "Connect the router to the ISP broadband connection",
+          "Configure DHCP on the router to assign IP addresses",
+          "Test each computer can access the network and internet"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "nt_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "title": "LAN or WAN?",
+        "instruction": "Sort each characteristic or example into LAN or WAN.",
+        "categories": [
+          "LAN",
+          "WAN"
+        ],
+        "pairs": [
+          {
+            "text": "Covers a single school building",
+            "category": "LAN"
+          },
+          {
+            "text": "Uses public telecommunications infrastructure",
+            "category": "WAN"
+          },
+          {
+            "text": "Owned and managed by the organisation",
+            "category": "LAN"
+          },
+          {
+            "text": "The Internet is the largest example",
+            "category": "WAN"
+          },
+          {
+            "text": "Connects offices across different countries",
+            "category": "WAN"
+          },
+          {
+            "text": "Home network connecting a few devices",
+            "category": "LAN"
+          },
+          {
+            "text": "Generally faster with more consistent speeds",
+            "category": "LAN"
+          },
+          {
+            "text": "Relies on ISPs and leased lines",
+            "category": "WAN"
+          },
+          {
+            "text": "A bank linking all its UK branches together",
+            "category": "WAN"
+          },
+          {
+            "text": "A computer lab network in one building",
+            "category": "LAN"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nt_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "title": "Star or Bus Topology?",
+        "instruction": "Sort each advantage or disadvantage into the topology it describes.",
+        "categories": [
+          "Star topology",
+          "Bus topology"
+        ],
+        "pairs": [
+          {
+            "text": "If one device fails, others continue to work",
+            "category": "Star topology"
+          },
+          {
+            "text": "Uses minimal cable — cheapest to install",
+            "category": "Bus topology"
+          },
+          {
+            "text": "If the central switch fails, all devices lose connection",
+            "category": "Star topology"
+          },
+          {
+            "text": "If the main cable breaks, the whole network fails",
+            "category": "Bus topology"
+          },
+          {
+            "text": "Easy to add new devices without disrupting others",
+            "category": "Star topology"
+          },
+          {
+            "text": "All devices share a single backbone cable",
+            "category": "Bus topology"
+          },
+          {
+            "text": "Most commonly used in schools and offices today",
+            "category": "Star topology"
+          },
+          {
+            "text": "Data collisions are possible as devices share one cable",
+            "category": "Bus topology"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nt_cs03",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Network Types & Hardware"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "networks"
+      ],
+      "data": {
+        "title": "Wired or Wireless?",
+        "instruction": "Sort each feature into whether it describes wired (Ethernet) or wireless (Wi-Fi) connections.",
+        "categories": [
+          "Wired (Ethernet)",
+          "Wireless (Wi-Fi)"
+        ],
+        "pairs": [
+          {
+            "text": "More secure — attacker must physically plug in",
+            "category": "Wired (Ethernet)"
+          },
+          {
+            "text": "More flexible — connect from anywhere in range",
+            "category": "Wireless (Wi-Fi)"
+          },
+          {
+            "text": "Faster speeds and more consistent signal",
+            "category": "Wired (Ethernet)"
+          },
+          {
+            "text": "Can suffer interference from walls and other devices",
+            "category": "Wireless (Wi-Fi)"
+          },
+          {
+            "text": "Suitable for mobile devices such as tablets and phones",
+            "category": "Wireless (Wi-Fi)"
+          },
+          {
+            "text": "Best suited to desktop computers and servers",
+            "category": "Wired (Ethernet)"
+          },
+          {
+            "text": "Signal travels through the air and can be intercepted remotely",
+            "category": "Wireless (Wi-Fi)"
+          },
+          {
+            "text": "Requires physical cable infrastructure",
+            "category": "Wired (Ethernet)"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_compression",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Data Compression",
+  "passages": [
+    {
+      "id": "ks3_computing_compression_passage_001",
+      "chapter": "Data Compression",
+      "section": "Why Compression is Needed",
+      "sourceTitle": "Why We Need to Compress Data",
+      "targetTitle": "Why We Need to Compress Data",
+      "sourcePassage": "Modern digital files can be enormous. A single uncompressed 4K video frame can exceed 24 megabytes, and a four-minute song stored as an uncompressed WAV audio file takes up approximately 40 megabytes. Without compression, storing and sharing these files would be hugely impractical.\n\nCompression is the process of encoding data so that it takes up less space than the original. There are two main reasons why compression is essential. The first is storage: compressed files occupy less space on hard drives, SSDs, and cloud services, allowing more files to be stored and reducing cost. The second is transmission: smaller files travel across networks more quickly, which is critical for streaming video, sending email attachments, downloading applications, and loading web pages.\n\nThe key question when choosing a compression method is whether the file needs to be perfectly restored after decompression, or whether a slight reduction in quality is acceptable. The answer determines which type of compression is most appropriate for a given file.",
+      "targetPassage": "Modern digital files can be enormous. A single uncompressed 4K video frame can exceed 24 megabytes, and a four-minute song stored as an uncompressed WAV audio file takes up approximately 40 megabytes. Without compression, storing and sharing these files would be hugely impractical.\n\nCompression is the process of encoding data so that it takes up less space than the original. There are two main reasons why compression is essential. The first is storage: compressed files occupy less space on hard drives, SSDs, and cloud services, allowing more files to be stored and reducing cost. The second is transmission: smaller files travel across networks more quickly, which is critical for streaming video, sending email attachments, downloading applications, and loading web pages.\n\nThe key question when choosing a compression method is whether the file needs to be perfectly restored after decompression, or whether a slight reduction in quality is acceptable. The answer determines which type of compression is most appropriate for a given file.",
+      "speechLanguage": "en-GB",
+      "questions": [
+        {
+          "id": "ks3_computing_compression_passage_001_q1",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "Which of the following is stated as a reason why compression is needed?",
+          "options": [
+            "To make files easier to edit",
+            "To reduce file size for storage and faster transmission",
+            "To improve image quality",
+            "To encrypt files for security"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "Compression is needed to reduce file size, which saves storage space and allows files to be transmitted more quickly across networks."
+        },
+        {
+          "id": "ks3_computing_compression_passage_001_q2",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "Approximately how large is an uncompressed four-minute WAV audio file?",
+          "options": [
+            "4 megabytes",
+            "24 megabytes",
+            "40 megabytes",
+            "400 megabytes"
+          ],
+          "correctOptionIndex": 2,
+          "modelAnswer": "According to the passage, an uncompressed four-minute WAV audio file takes up approximately 40 megabytes."
+        },
+        {
+          "id": "ks3_computing_compression_passage_001_q3",
+          "questionType": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Why is compression particularly important for streaming video?",
+          "options": [
+            "Because streaming improves image resolution",
+            "Because smaller files travel across networks more quickly",
+            "Because video files cannot be stored uncompressed",
+            "Because compression removes duplicate frames automatically"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "Smaller compressed files travel across networks more quickly, which is critical for streaming services where data must be delivered in real time."
+        },
+        {
+          "id": "ks3_computing_compression_passage_001_q4",
+          "questionType": "open",
+          "difficulty": "medium",
+          "question": "What key question should be asked before deciding which type of compression to use?",
+          "modelAnswer": "The key question is whether the file needs to be perfectly restored after decompression, or whether a slight reduction in quality is acceptable. If perfect restoration is required, lossless compression must be used. If some quality loss is acceptable, lossy compression may be appropriate.",
+          "acceptedKeywords": ["perfectly restored", "quality", "acceptable", "lossless", "lossy"]
+        }
+      ]
+    },
+    {
+      "id": "ks3_computing_compression_passage_002",
+      "chapter": "Data Compression",
+      "section": "Lossy vs Lossless Compression",
+      "sourceTitle": "Lossy and Lossless Compression",
+      "targetTitle": "Lossy and Lossless Compression",
+      "sourcePassage": "There are two fundamentally different approaches to compressing data: lossy compression and lossless compression.\n\nLossy compression permanently removes some data from a file in order to achieve a smaller file size. Once the data is removed, it cannot be recovered. The data that is removed is chosen because it is unlikely to be noticed by a human: an MP3 file removes audio frequencies that the human ear is least sensitive to, while a JPEG image removes subtle colour variations that the eye struggles to detect. Lossy compression can reduce file sizes by 80 to 95 percent, making it ideal for sharing photographs on social media or streaming music and video. However, it is completely unsuitable for text documents, programs, or scientific data, where every single byte must be preserved exactly.\n\nLossless compression reduces file size without discarding any data. The original file can be perfectly restored by decompression. Formats such as ZIP, PNG, and GIF use lossless compression. The savings are more modest, typically 40 to 60 percent, but data integrity is guaranteed. Lossless compression is essential for executable programs, text files, and medical images.",
+      "targetPassage": "There are two fundamentally different approaches to compressing data: lossy compression and lossless compression.\n\nLossy compression permanently removes some data from a file in order to achieve a smaller file size. Once the data is removed, it cannot be recovered. The data that is removed is chosen because it is unlikely to be noticed by a human: an MP3 file removes audio frequencies that the human ear is least sensitive to, while a JPEG image removes subtle colour variations that the eye struggles to detect. Lossy compression can reduce file sizes by 80 to 95 percent, making it ideal for sharing photographs on social media or streaming music and video. However, it is completely unsuitable for text documents, programs, or scientific data, where every single byte must be preserved exactly.\n\nLossless compression reduces file size without discarding any data. The original file can be perfectly restored by decompression. Formats such as ZIP, PNG, and GIF use lossless compression. The savings are more modest, typically 40 to 60 percent, but data integrity is guaranteed. Lossless compression is essential for executable programs, text files, and medical images.",
+      "speechLanguage": "en-GB",
+      "questions": [
+        {
+          "id": "ks3_computing_compression_passage_002_q1",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "Which statement correctly describes lossy compression?",
+          "options": [
+            "All original data is preserved and can be perfectly restored",
+            "Some data is permanently removed and cannot be recovered",
+            "Files can only be compressed once",
+            "It is only used for audio files"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "Lossy compression permanently removes some data from a file to achieve smaller file sizes. Once removed, the data cannot be recovered."
+        },
+        {
+          "id": "ks3_computing_compression_passage_002_q2",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "Which of the following is given as an example of a lossless file format?",
+          "options": [
+            "JPEG",
+            "MP3",
+            "MP4",
+            "PNG"
+          ],
+          "correctOptionIndex": 3,
+          "modelAnswer": "PNG is a lossless image format. JPEG and MP3 are lossy formats, and MP4 typically uses lossy compression."
+        },
+        {
+          "id": "ks3_computing_compression_passage_002_q3",
+          "questionType": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Why is lossy compression unsuitable for program files?",
+          "options": [
+            "Programs are too small to benefit from compression",
+            "Programs use a different type of data that cannot be compressed",
+            "Every byte must be preserved exactly, and any data loss could cause the program to malfunction",
+            "Lossy compression makes files larger, not smaller"
+          ],
+          "correctOptionIndex": 2,
+          "modelAnswer": "Programs consist of precise binary instructions where every single byte must be preserved exactly. If any data is lost, even a single changed bit could cause the program to crash or behave incorrectly."
+        },
+        {
+          "id": "ks3_computing_compression_passage_002_q4",
+          "questionType": "open",
+          "difficulty": "hard",
+          "question": "A student wants to compress a photograph for social media and a friend wants to compress their essay to email to a teacher. Which compression type should each use? Justify your answers.",
+          "modelAnswer": "The student sharing a photograph should use lossy compression (such as JPEG). Photographs can tolerate small quality losses because humans cannot detect minor colour variations, and lossy compression greatly reduces file size. The friend emailing an essay should use lossless compression (such as ZIP). A text document must be preserved exactly — even one changed character could alter a word or number, changing the meaning entirely. Lossless compression guarantees perfect restoration.",
+          "acceptedKeywords": ["lossy", "lossless", "photograph", "text", "quality", "exactly", "preserved"]
+        }
+      ]
+    },
+    {
+      "id": "ks3_computing_compression_passage_003",
+      "chapter": "Data Compression",
+      "section": "Run-Length Encoding",
+      "sourceTitle": "Run-Length Encoding (RLE)",
+      "targetTitle": "Run-Length Encoding (RLE)",
+      "sourcePassage": "Run-length encoding, or RLE, is a simple lossless compression algorithm. It works by identifying runs — sequences of consecutive identical values — and replacing each run with just two pieces of information: the number of times the value repeats, and the value itself.\n\nFor example, the string AAAABBBCC contains a run of four As, a run of three Bs, and a run of two Cs. Using RLE, this is encoded as 4A 3B 2C. The original string required 9 bytes of storage, while the encoded version requires only 6 bytes, saving 3 bytes.\n\nRLE is particularly effective for simple images with large areas of a single colour, such as logos, icons, and black-and-white scanned documents. However, RLE performs poorly on complex photographs where adjacent pixels are rarely the same colour. In the worst case, encoding a string like ABCDE produces 1A1B1C1D1E, which is 10 characters — worse than the original 5. This means RLE can actually increase file size when there are no repeated values.\n\nBecause RLE never discards any data, it is always a lossless technique: decompressing the encoded data always perfectly restores the original.",
+      "targetPassage": "Run-length encoding, or RLE, is a simple lossless compression algorithm. It works by identifying runs — sequences of consecutive identical values — and replacing each run with just two pieces of information: the number of times the value repeats, and the value itself.\n\nFor example, the string AAAABBBCC contains a run of four As, a run of three Bs, and a run of two Cs. Using RLE, this is encoded as 4A 3B 2C. The original string required 9 bytes of storage, while the encoded version requires only 6 bytes, saving 3 bytes.\n\nRLE is particularly effective for simple images with large areas of a single colour, such as logos, icons, and black-and-white scanned documents. However, RLE performs poorly on complex photographs where adjacent pixels are rarely the same colour. In the worst case, encoding a string like ABCDE produces 1A1B1C1D1E, which is 10 characters — worse than the original 5. This means RLE can actually increase file size when there are no repeated values.\n\nBecause RLE never discards any data, it is always a lossless technique: decompressing the encoded data always perfectly restores the original.",
+      "speechLanguage": "en-GB",
+      "questions": [
+        {
+          "id": "ks3_computing_compression_passage_003_q1",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "What does RLE replace each run of repeated values with?",
+          "options": [
+            "A binary code for the value",
+            "A count followed by the value",
+            "A compressed pixel",
+            "A zero bit"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "RLE replaces each run of consecutive identical values with a count followed by the value. For example, AAAA becomes 4A."
+        },
+        {
+          "id": "ks3_computing_compression_passage_003_q2",
+          "questionType": "multiple_choice",
+          "difficulty": "easy",
+          "question": "How many bytes does the RLE encoding of AAAABBBCC require?",
+          "options": [
+            "9 bytes",
+            "3 bytes",
+            "6 bytes",
+            "12 bytes"
+          ],
+          "correctOptionIndex": 2,
+          "modelAnswer": "The RLE encoding 4A3B2C requires 6 bytes (three count-value pairs), compared to 9 bytes for the original string."
+        },
+        {
+          "id": "ks3_computing_compression_passage_003_q3",
+          "questionType": "multiple_choice",
+          "difficulty": "medium",
+          "question": "Why is RLE not effective for complex photographs?",
+          "options": [
+            "Photographs are too large to compress",
+            "Adjacent pixels in photographs are rarely the same colour, so there are few long runs",
+            "RLE is a lossy technique and destroys photographic detail",
+            "Photographs must always use JPEG compression"
+          ],
+          "correctOptionIndex": 1,
+          "modelAnswer": "In complex photographs, adjacent pixels are rarely the same colour, so there are very few long runs of identical values. RLE produces a count-value pair for each individual pixel, which can make the encoded data larger than the original."
+        },
+        {
+          "id": "ks3_computing_compression_passage_003_q4",
+          "questionType": "open",
+          "difficulty": "medium",
+          "question": "Explain why RLE is described as a lossless compression technique.",
+          "modelAnswer": "RLE is lossless because it never discards any data. It simply replaces runs of repeated values with a count and value pair. When the encoded data is decompressed, each count-value pair is expanded back into the original run, perfectly restoring every value in the original sequence. No information is permanently removed during RLE encoding.",
+          "acceptedKeywords": ["lossless", "never discards", "perfectly restored", "original", "count", "value", "decompressed"]
+        }
+      ]
+    }
+  ]
+}

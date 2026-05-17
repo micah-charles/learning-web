@@ -1,0 +1,1097 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_text_image_representation",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_teximg_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ASCII",
+        "targetWord": "American Standard Code for Information Interchange; a 7-bit character encoding standard that represents 128 characters including uppercase and lowercase letters, digits 0–9, punctuation, and control characters.",
+        "examples": {
+          "en-GB": "In ASCII, the uppercase letter A is encoded as denary 65 and stored as the binary pattern 1000001."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Unicode",
+        "targetWord": "A universal character encoding standard that supports over 143,000 characters, covering virtually all world writing systems including Arabic, Chinese, Japanese, Hindi, and emoji.",
+        "examples": {
+          "en-GB": "Unicode was created to replace ASCII because ASCII could only represent English and a few other Western characters."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Character set",
+        "targetWord": "A defined mapping between numbers and characters that a computer system can represent; ASCII and Unicode are two different character sets.",
+        "examples": {
+          "en-GB": "The ASCII character set assigns a unique number to each of its 128 characters."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Pixel",
+        "targetWord": "The smallest single coloured unit in a digital image; short for 'picture element'. An image is made up of a rectangular grid of pixels.",
+        "examples": {
+          "en-GB": "When you zoom in to a digital photograph, you can see the individual square pixels that make up the image."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Colour depth",
+        "targetWord": "The number of bits used to represent the colour of a single pixel; more bits means more possible colours and higher image quality, but also a larger file size.",
+        "examples": {
+          "en-GB": "A 1-bit colour depth gives 2 colours (black and white); 8-bit gives 256 colours; 24-bit gives about 16.7 million colours."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Bit depth",
+        "targetWord": "Another term for colour depth — the number of bits used to represent the colour of one pixel in a digital image.",
+        "examples": {
+          "en-GB": "A bit depth of 24 means 24 bits are used per pixel, allowing approximately 16.7 million different colours."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Resolution",
+        "targetWord": "The number of pixels in an image, expressed as width × height in pixels; higher resolution means more detail and a sharper image but a larger file.",
+        "examples": {
+          "en-GB": "A Full HD image has a resolution of 1920 × 1080 pixels, giving approximately 2 million pixels in total."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "File size",
+        "targetWord": "The total amount of storage space required by a file; for an uncompressed image it is calculated as width × height × colour depth (in bits), then divided by 8 to convert to bytes.",
+        "examples": {
+          "en-GB": "A 100 × 200 pixel image with 8-bit colour depth has a file size of 100 × 200 × 8 ÷ 8 = 20,000 bytes."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Binary encoding",
+        "targetWord": "The process of converting data (characters, colours, sounds) into a binary (0s and 1s) representation so that a computer can store and process it.",
+        "examples": {
+          "en-GB": "Binary encoding assigns the binary pattern 01000001 to represent the character A in ASCII."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Character",
+        "targetWord": "A single letter, digit, symbol, punctuation mark, or control code that can be stored and represented by a character encoding such as ASCII or Unicode.",
+        "examples": {
+          "en-GB": "The characters A, a, 0, space, and ! are all single characters with their own ASCII code numbers."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Code point",
+        "targetWord": "A unique numerical value assigned to a character in a character encoding system; for example, the code point for A in ASCII is 65.",
+        "examples": {
+          "en-GB": "Every Unicode character has a unique code point; the code point for the emoji smiley face is U+1F600."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "UTF-8",
+        "targetWord": "The most common implementation of Unicode; uses variable-length encoding of 1 to 4 bytes per character and is backwards-compatible with ASCII for the first 128 characters.",
+        "examples": {
+          "en-GB": "Most web pages use UTF-8 encoding so that text from any language can be displayed correctly in a browser."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Extended ASCII",
+        "targetWord": "An 8-bit extension of ASCII that encodes 256 characters (2⁸); the first 128 are identical to standard ASCII, and the extra 128 add accented letters and currency symbols for Western European languages.",
+        "examples": {
+          "en-GB": "Extended ASCII can represent characters like é, ü, and ñ that standard 7-bit ASCII cannot."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "True colour",
+        "targetWord": "A colour depth of 24 bits per pixel, using 8 bits each for the red, green, and blue channels, allowing approximately 16.7 million different colours.",
+        "examples": {
+          "en-GB": "Digital photographs typically use true colour (24-bit) because the 16.7 million colour options produce smooth, realistic images."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "RGB",
+        "targetWord": "Red-Green-Blue; the colour model used in digital images where each pixel's colour is defined by the intensity of its red, green, and blue components, each stored as one byte (0–255).",
+        "examples": {
+          "en-GB": "The RGB values (255, 0, 0) represent pure red; (0, 255, 0) represents pure green; (255, 255, 255) represents white."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Bitmap",
+        "targetWord": "A digital image format that stores colour information for every individual pixel in a grid; also called a raster image. Bitmap files are uncompressed and typically have large file sizes.",
+        "examples": {
+          "en-GB": "A bitmap image stores every pixel's colour, so a 1920×1080 24-bit bitmap takes about 6 MB of storage."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Raster image",
+        "targetWord": "A digital image that stores data as a grid of pixels; also called a bitmap image. Raster images lose quality when enlarged because you see the individual pixels.",
+        "examples": {
+          "en-GB": "JPEG and PNG files are raster images — enlarging them too much results in a blurry, pixelated appearance."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Image quality",
+        "targetWord": "How detailed and accurate an image appears, determined by both its resolution (number of pixels) and its colour depth (number of bits per pixel); both affect file size.",
+        "examples": {
+          "en-GB": "Increasing resolution and colour depth both improve image quality but also increase the file size."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Metadata",
+        "targetWord": "Data that describes other data; in image files, metadata includes information such as the image dimensions, colour depth, camera settings, and creation date, stored alongside the pixel data.",
+        "examples": {
+          "en-GB": "The metadata in a JPEG photo stores the image resolution, date taken, and camera model."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Byte",
+        "targetWord": "A group of 8 bits; the standard unit for measuring file sizes and character storage. One byte can store 256 different values (0 to 255).",
+        "examples": {
+          "en-GB": "Each character in an ASCII text file occupies exactly one byte of storage."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Kilobyte (KB)",
+        "targetWord": "A unit of digital storage equal to 1,024 bytes; used to measure small files such as plain text documents.",
+        "examples": {
+          "en-GB": "A plain text file with a short paragraph of text might be around 1–2 KB in size."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Megabyte (MB)",
+        "targetWord": "A unit of digital storage equal to 1,024 kilobytes; used to measure medium-sized files such as images and audio tracks.",
+        "examples": {
+          "en-GB": "An uncompressed true-colour photograph at Full HD resolution takes approximately 6 MB of storage."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Digitise",
+        "targetWord": "To convert analogue information (such as a physical photograph or a sound wave) into a digital binary representation that a computer can store and process.",
+        "examples": {
+          "en-GB": "Scanning a printed photograph digitises it — the scanner converts the image into a grid of pixel values stored as binary."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Sampling",
+        "targetWord": "Taking measurements of an analogue signal at regular intervals to create a digital representation; a higher sampling rate captures more detail but produces a larger file.",
+        "examples": {
+          "en-GB": "Audio sampling measures the sound wave thousands of times per second; CD audio uses 44,100 samples per second."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Control character",
+        "targetWord": "A non-printable ASCII character that performs an action rather than displaying a symbol, such as newline (moving to the next line), tab, or carriage return.",
+        "examples": {
+          "en-GB": "When you press Enter, a newline control character is inserted into the text file to mark the end of that line."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Representation (data)",
+        "targetWord": "The way in which a type of data — text, images, sound, video — is encoded and stored as binary numbers inside a computer.",
+        "examples": {
+          "en-GB": "The representation of an image stores each pixel's colour as a binary number using the assigned colour depth."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Compression",
+        "targetWord": "A technique for reducing the file size of data by encoding it more efficiently; important for images because uncompressed files are very large.",
+        "examples": {
+          "en-GB": "JPEG compression reduces image file sizes significantly, though it may slightly reduce image quality."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Backwards compatible",
+        "targetWord": "A property of an encoding system where newer data remains readable by systems that only support the older version; UTF-8 is backwards compatible with ASCII.",
+        "examples": {
+          "en-GB": "UTF-8 is backwards compatible with ASCII — any ASCII file is valid UTF-8 because the first 128 character codes are identical."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "ASCII is a ____ -bit encoding standard that represents 128 characters.",
+        "answer": "7",
+        "options": [
+          "7",
+          "8",
+          "16",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The ASCII code for the uppercase letter A in denary is ____.",
+        "answer": "65",
+        "options": [
+          "65",
+          "97",
+          "48",
+          "90"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The ASCII code for the lowercase letter a is ____.",
+        "answer": "97",
+        "options": [
+          "97",
+          "65",
+          "48",
+          "122"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The ASCII code for the digit character '0' is ____.",
+        "answer": "48",
+        "options": [
+          "48",
+          "0",
+          "65",
+          "57"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Unicode supports over ____ characters from all world writing systems.",
+        "answer": "143,000",
+        "options": [
+          "143,000",
+          "128",
+          "256",
+          "65,536"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A pixel is the ____ single coloured unit in a digital image.",
+        "answer": "smallest",
+        "options": [
+          "smallest",
+          "largest",
+          "brightest",
+          "fastest"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Colour depth is the number of ____ used to represent the colour of a single pixel.",
+        "answer": "bits",
+        "options": [
+          "bits",
+          "bytes",
+          "pixels",
+          "channels"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A colour depth of 1 bit gives ____ possible colours.",
+        "answer": "2",
+        "options": [
+          "2",
+          "1",
+          "4",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A colour depth of 8 bits gives ____ possible colours.",
+        "answer": "256",
+        "options": [
+          "256",
+          "128",
+          "512",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "True colour uses a colour depth of ____ bits — 8 bits each for red, green, and blue.",
+        "answer": "24",
+        "options": [
+          "24",
+          "16",
+          "32",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "True colour (24-bit) can represent approximately ____ million different colours.",
+        "answer": "16.7",
+        "options": [
+          "16.7",
+          "256",
+          "65.5",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The formula for image file size in bits is width × height × ____.",
+        "answer": "colour depth",
+        "options": [
+          "colour depth",
+          "resolution",
+          "file size",
+          "pixel count"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To convert image file size from bits to bytes, divide by ____.",
+        "answer": "8",
+        "options": [
+          "8",
+          "1024",
+          "16",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Higher resolution means a ____ file size.",
+        "answer": "larger",
+        "options": [
+          "larger",
+          "smaller",
+          "unchanged",
+          "faster"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Increasing colour depth increases both the number of colours and the ____ of the file.",
+        "answer": "size",
+        "options": [
+          "size",
+          "speed",
+          "resolution",
+          "quality"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A 100 × 200 pixel image with 8-bit colour depth has a file size of ____ bytes.",
+        "answer": "20,000",
+        "options": [
+          "20,000",
+          "160,000",
+          "2,000",
+          "1,600"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "UTF-8 is ____ compatible with ASCII for the first 128 characters.",
+        "answer": "backwards",
+        "options": [
+          "backwards",
+          "forwards",
+          "not",
+          "partially"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The number of colours possible at a given colour depth is calculated as 2 to the power of ____.",
+        "answer": "colour depth",
+        "options": [
+          "colour depth",
+          "resolution",
+          "file size",
+          "pixels"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "ASCII cannot represent characters from languages such as Chinese, Arabic, or ____ because it only has 128 characters.",
+        "answer": "Japanese",
+        "options": [
+          "Japanese",
+          "French",
+          "Spanish",
+          "German"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In the ASCII table, the difference between the code for uppercase A (65) and lowercase a (97) is ____.",
+        "answer": "32",
+        "options": [
+          "32",
+          "64",
+          "16",
+          "26"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_021",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Extended ASCII uses ____ bits to represent 256 characters.",
+        "answer": "8",
+        "options": [
+          "8",
+          "7",
+          "16",
+          "4"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_fill_022",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Resolution describes the number of ____ in an image.",
+        "answer": "pixels",
+        "options": [
+          "pixels",
+          "bits",
+          "colours",
+          "bytes"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Calculating Image File Size",
+        "instruction": "Put these steps in the correct order to calculate the file size of an image.",
+        "items": [
+          "Find the resolution of the image (width in pixels × height in pixels)",
+          "Find the colour depth of the image in bits per pixel",
+          "Multiply: width × height × colour depth to get the file size in bits",
+          "Divide by 8 to convert bits to bytes",
+          "Divide by 1,024 to convert bytes to kilobytes if needed"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "title": "How a Character Is Stored in a Computer",
+        "instruction": "Put these steps in the correct order to describe how a character is stored in computer memory.",
+        "items": [
+          "The user types a character on the keyboard",
+          "The operating system looks up the character's code point in the character encoding (e.g. ASCII or Unicode)",
+          "The code point number is converted into its binary representation",
+          "The binary pattern is stored in RAM as a pattern of bits",
+          "When the character needs to be displayed, the binary is decoded back to the character using the same encoding"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "title": "ASCII or Unicode?",
+        "instruction": "Sort each scenario into the encoding that would be most appropriate to use.",
+        "categories": [
+          "ASCII is sufficient",
+          "Unicode is needed"
+        ],
+        "pairs": [
+          {
+            "text": "Storing an English-only text file with basic punctuation",
+            "category": "ASCII is sufficient"
+          },
+          {
+            "text": "A web page displaying text in Arabic and English",
+            "category": "Unicode is needed"
+          },
+          {
+            "text": "A Japanese language learning app",
+            "category": "Unicode is needed"
+          },
+          {
+            "text": "An old command-line program with English menus",
+            "category": "ASCII is sufficient"
+          },
+          {
+            "text": "A social media app that supports emoji",
+            "category": "Unicode is needed"
+          },
+          {
+            "text": "A simple password field accepting only A–Z and 0–9",
+            "category": "ASCII is sufficient"
+          },
+          {
+            "text": "A multilingual global e-commerce website",
+            "category": "Unicode is needed"
+          },
+          {
+            "text": "A program that processes English postal codes",
+            "category": "ASCII is sufficient"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_teximg_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Text & Image Representation"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Effect on Image Quality or File Size?",
+        "instruction": "Sort each change to an image into its primary effect.",
+        "categories": [
+          "Increases file size",
+          "Decreases file size"
+        ],
+        "pairs": [
+          {
+            "text": "Increasing the resolution (more pixels)",
+            "category": "Increases file size"
+          },
+          {
+            "text": "Reducing the colour depth from 24-bit to 8-bit",
+            "category": "Decreases file size"
+          },
+          {
+            "text": "Increasing the colour depth from 8-bit to 24-bit",
+            "category": "Increases file size"
+          },
+          {
+            "text": "Reducing the resolution (fewer pixels)",
+            "category": "Decreases file size"
+          },
+          {
+            "text": "Changing from 1-bit to 8-bit colour depth",
+            "category": "Increases file size"
+          },
+          {
+            "text": "Halving the width and height of the image",
+            "category": "Decreases file size"
+          }
+        ]
+      }
+    }
+  ]
+}

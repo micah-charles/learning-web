@@ -1,0 +1,1317 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_internet_protocols_www",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Internet, Protocols & the World Wide Web",
+  "subtitle": "How the internet works, key protocols, DNS, packet switching, and HTTP vs HTTPS.",
+  "items": [
+    {
+      "id": "ip_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "internet",
+        "targetWord": "The global physical and logical infrastructure — the worldwide network of interconnected networks consisting of cables, routers, servers, and billions of connected devices",
+        "examples": {
+          "en-GB": "The internet is like the road network — the physical infrastructure that carries traffic; the World Wide Web is just one of many services that travel on it."
+        }
+      }
+    },
+    {
+      "id": "ip_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "World Wide Web",
+        "targetWord": "A service that runs on top of the internet, consisting of linked web pages accessed via a browser using the HTTP or HTTPS protocol — it is not the same as the internet itself",
+        "examples": {
+          "en-GB": "When you browse a website with a browser, you are using the World Wide Web — but the internet also carries email, video streaming, and gaming."
+        }
+      }
+    },
+    {
+      "id": "ip_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IP address",
+        "targetWord": "A unique numerical identifier assigned to every device on a network, used by routers to direct data packets to the correct destination",
+        "examples": {
+          "en-GB": "An IP address such as 192.168.1.1 works like a postal address, telling routers exactly where to deliver each data packet."
+        }
+      }
+    },
+    {
+      "id": "ip_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IPv4",
+        "targetWord": "Internet Protocol version 4 — the original IP address format using 32 bits, written as four groups of numbers (e.g. 192.168.1.1), providing approximately 4.3 billion unique addresses",
+        "examples": {
+          "en-GB": "IPv4 addresses have nearly all been used up because there are more internet-connected devices than the 4.3 billion IPv4 addresses can accommodate."
+        }
+      }
+    },
+    {
+      "id": "ip_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IPv6",
+        "targetWord": "Internet Protocol version 6 — the replacement for IPv4, using 128 bits to provide approximately 340 undecillion unique addresses, developed to solve IPv4 address exhaustion",
+        "examples": {
+          "en-GB": "IPv6 addresses look like 2001:0db8:85a3::8a2e:0370:7334 and provide so many unique addresses that every device on Earth could have billions of them."
+        }
+      }
+    },
+    {
+      "id": "ip_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "DNS",
+        "targetWord": "Domain Name System — the system that translates human-readable domain names (such as www.bbc.co.uk) into IP addresses that computers use to find servers",
+        "examples": {
+          "en-GB": "DNS works like a phone book for the internet — you look up a name and it gives you the number (IP address) you need to make a connection."
+        }
+      }
+    },
+    {
+      "id": "ip_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "domain name",
+        "targetWord": "A human-readable address for a website or server on the internet, such as www.bbc.co.uk, which DNS translates into an IP address",
+        "examples": {
+          "en-GB": "Domain names like www.google.com are much easier to remember than the numerical IP address 142.250.187.78."
+        }
+      }
+    },
+    {
+      "id": "ip_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "packet",
+        "targetWord": "A small chunk that data is divided into before being sent across a network; each packet contains a header with source and destination IP addresses, a sequence number, a payload of actual data, and a trailer for error checking",
+        "examples": {
+          "en-GB": "A large file is split into thousands of packets; each packet travels independently across the network and is reassembled at the destination."
+        }
+      }
+    },
+    {
+      "id": "ip_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "packet switching",
+        "targetWord": "The method used to send data across the internet, where data is broken into packets that may each take different routes to the destination and are then reassembled in the correct order",
+        "examples": {
+          "en-GB": "Packet switching is efficient because it shares network infrastructure — if one route is busy or broken, packets automatically find alternative paths."
+        }
+      }
+    },
+    {
+      "id": "ip_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "HTTP",
+        "targetWord": "HyperText Transfer Protocol — the protocol used to transfer web pages from a server to a browser; data is sent as unencrypted plain text",
+        "examples": {
+          "en-GB": "HTTP sends data as plain text, so anyone intercepting the connection could read the information — which is why HTTPS should be used for sensitive websites."
+        }
+      }
+    },
+    {
+      "id": "ip_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "HTTPS",
+        "targetWord": "HyperText Transfer Protocol Secure — HTTP with SSL/TLS encryption added, so data is encrypted in transit and cannot be read by anyone intercepting it",
+        "examples": {
+          "en-GB": "Banking and shopping websites must use HTTPS to protect customers' financial details; a padlock icon in the browser confirms the connection is encrypted."
+        }
+      }
+    },
+    {
+      "id": "ip_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "TCP/IP",
+        "targetWord": "The combined protocol suite that forms the foundation of internet communication: TCP splits data into packets and ensures reliable delivery, while IP handles routing packets across networks",
+        "examples": {
+          "en-GB": "TCP/IP is the core protocol of the internet — TCP ensures every packet arrives and is reassembled correctly, while IP tells routers where to send each packet."
+        }
+      }
+    },
+    {
+      "id": "ip_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "SMTP",
+        "targetWord": "Simple Mail Transfer Protocol — the protocol used for sending email from a client to a mail server, or between mail servers",
+        "examples": {
+          "en-GB": "When you click Send in your email app, SMTP is the protocol that transmits the email from your device to the mail server."
+        }
+      }
+    },
+    {
+      "id": "ip_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IMAP",
+        "targetWord": "Internet Message Access Protocol — a protocol for receiving email where messages remain stored on the server, allowing access from multiple devices",
+        "examples": {
+          "en-GB": "IMAP is used by most modern email services because your inbox is stored on the server, so you can read the same emails on your phone, laptop, and tablet."
+        }
+      }
+    },
+    {
+      "id": "ip_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "FTP",
+        "targetWord": "File Transfer Protocol — a protocol for transferring files between computers over a network, commonly used to upload files to a web server",
+        "examples": {
+          "en-GB": "Web developers use FTP to upload their HTML and image files from their computer to the web server that hosts their website."
+        }
+      }
+    },
+    {
+      "id": "ip_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "protocol",
+        "targetWord": "A set of agreed rules that defines how data is formatted, transmitted, and received, allowing different devices and software to communicate reliably",
+        "examples": {
+          "en-GB": "Without protocols, a Windows computer and a Mac would not know how to exchange data, because they would each use different formats and rules."
+        }
+      }
+    },
+    {
+      "id": "ip_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "SSL/TLS",
+        "targetWord": "Secure Sockets Layer / Transport Layer Security — encryption protocols used by HTTPS to encrypt data in transit between a browser and a web server",
+        "examples": {
+          "en-GB": "TLS replaced the older SSL protocol but both are commonly referred to as SSL; they scramble data so interceptors see only meaningless ciphertext."
+        }
+      }
+    },
+    {
+      "id": "ip_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "URL",
+        "targetWord": "Uniform Resource Locator — the full web address used to access a specific resource on the internet, such as https://www.bbc.co.uk/news",
+        "examples": {
+          "en-GB": "A URL includes the protocol (https://), the domain name (www.bbc.co.uk), and the specific path (/news) to locate an exact resource."
+        }
+      }
+    },
+    {
+      "id": "ip_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "web browser",
+        "targetWord": "A program used to access and display web pages from the World Wide Web by making HTTP/HTTPS requests to web servers",
+        "examples": {
+          "en-GB": "Chrome, Firefox, and Safari are web browsers — they send HTTP requests to web servers and render the HTML responses as visible web pages."
+        }
+      }
+    },
+    {
+      "id": "ip_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "web server",
+        "targetWord": "A computer that stores web pages and serves them to browsers in response to HTTP/HTTPS requests",
+        "examples": {
+          "en-GB": "When you type a URL, your browser sends an HTTP request to the web server, which responds by sending back the HTML and images of the requested page."
+        }
+      }
+    },
+    {
+      "id": "ip_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "hyperlink",
+        "targetWord": "A clickable link in a web page that connects to another web page or resource, allowing users to navigate between pages on the World Wide Web",
+        "examples": {
+          "en-GB": "Hyperlinks are what makes the World Wide Web a 'web' — clicking a hyperlink takes you from one page to a related resource anywhere on the internet."
+        }
+      }
+    },
+    {
+      "id": "ip_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "HTML",
+        "targetWord": "HyperText Markup Language — the standard language used to create and structure web pages, defining headings, paragraphs, links, and images",
+        "examples": {
+          "en-GB": "When your browser receives a web page, it receives HTML code that it interprets to display text, images, and hyperlinks as a formatted page."
+        }
+      }
+    },
+    {
+      "id": "ip_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "encryption",
+        "targetWord": "The process of scrambling data into an unreadable format using a key, so that only the intended recipient with the correct key can decode and read it",
+        "examples": {
+          "en-GB": "HTTPS uses encryption so that even if a hacker intercepts your data, they see only scrambled text that is meaningless without the decryption key."
+        }
+      }
+    },
+    {
+      "id": "ip_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "header",
+        "targetWord": "The first section of a data packet, containing control information such as the source IP address, destination IP address, and sequence number",
+        "examples": {
+          "en-GB": "Routers read each packet's header to find the destination IP address and decide which route the packet should take next."
+        }
+      }
+    },
+    {
+      "id": "ip_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "payload",
+        "targetWord": "The section of a data packet that contains the actual data being transmitted — for example, a portion of a web page or file",
+        "examples": {
+          "en-GB": "The payload is the useful content of a packet; the header and trailer are the control information that surrounds it."
+        }
+      }
+    },
+    {
+      "id": "ip_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "trailer",
+        "targetWord": "The final section of a data packet, containing error-checking information (a checksum) used to verify that the packet arrived without corruption",
+        "examples": {
+          "en-GB": "If the checksum in the trailer does not match the received data, the receiving device knows the packet was corrupted and requests it to be resent."
+        }
+      }
+    },
+    {
+      "id": "ip_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "router",
+        "targetWord": "A network device that reads the destination IP address of each incoming packet and forwards it toward its destination, connecting networks together",
+        "examples": {
+          "en-GB": "Internet packets pass through many routers on their journey — each router makes an independent decision about where to send the packet next."
+        }
+      }
+    },
+    {
+      "id": "ip_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ISP",
+        "targetWord": "Internet Service Provider — a company that provides customers with access to the internet, acting as the connection between a home or office network and the wider internet",
+        "examples": {
+          "en-GB": "Your ISP provides the broadband connection that links your home router to the internet infrastructure."
+        }
+      }
+    },
+    {
+      "id": "ip_v29",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "cloud",
+        "targetWord": "Remote servers accessible over the internet that store, manage, and process data, allowing users to access files and run applications without local hardware",
+        "examples": {
+          "en-GB": "Cloud storage services like Google Drive store your files on internet servers so you can access them from any device anywhere in the world."
+        }
+      }
+    },
+    {
+      "id": "ip_v30",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sequence number",
+        "targetWord": "A number in each packet's header that records its position in the original message, allowing the receiving device to reassemble packets in the correct order",
+        "examples": {
+          "en-GB": "Because packets may arrive out of order, the sequence number tells the destination device how to reassemble them into the original message."
+        }
+      }
+    },
+    {
+      "id": "ip_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "The internet is a global network of networks; it is NOT the same as the ____.",
+        "answer": "World Wide Web",
+        "options": [
+          "World Wide Web",
+          "Ethernet",
+          "Bluetooth",
+          "DNS"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "The WWW is a collection of web pages accessed via ____ using a browser.",
+        "answer": "HTTP/HTTPS",
+        "options": [
+          "HTTP/HTTPS",
+          "SMTP",
+          "FTP",
+          "DNS"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "DNS translates ____ names into IP addresses.",
+        "answer": "domain",
+        "options": [
+          "domain",
+          "user",
+          "file",
+          "packet"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "IPv4 uses ____ bits to create IP addresses, giving approximately 4.3 billion unique addresses.",
+        "answer": "32",
+        "options": [
+          "32",
+          "64",
+          "128",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "IPv6 was developed because IPv4 addresses were ____ out.",
+        "answer": "running",
+        "options": [
+          "running",
+          "filling",
+          "breaking",
+          "slowing"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "Before being sent across the internet, data is split into small chunks called ____.",
+        "answer": "packets",
+        "options": [
+          "packets",
+          "frames",
+          "files",
+          "signals"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "In packet switching, different packets in the same message may take ____ routes.",
+        "answer": "different",
+        "options": [
+          "different",
+          "identical",
+          "longer",
+          "slower"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "TCP/IP governs how data is split into packets, routed across the internet, and ____.",
+        "answer": "reassembled",
+        "options": [
+          "reassembled",
+          "deleted",
+          "encrypted",
+          "doubled"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "HTTPS is HTTP with ____ encryption added, protecting data in transit.",
+        "answer": "SSL/TLS",
+        "options": [
+          "SSL/TLS",
+          "DNS",
+          "SMTP",
+          "FTP"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "HTTP sends data as ____ text, meaning anyone intercepting it can read it.",
+        "answer": "plain",
+        "options": [
+          "plain",
+          "encrypted",
+          "binary",
+          "secret"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "DNS acts like a ____ for the internet, matching names to numbers.",
+        "answer": "phone book",
+        "options": [
+          "phone book",
+          "firewall",
+          "server",
+          "browser"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "SMTP is the protocol used to ____ email.",
+        "answer": "send",
+        "options": [
+          "send",
+          "receive",
+          "encrypt",
+          "display"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "IMAP keeps email messages stored on the ____, allowing access from multiple devices.",
+        "answer": "server",
+        "options": [
+          "server",
+          "browser",
+          "client",
+          "printer"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "FTP is used to transfer ____ between computers over a network.",
+        "answer": "files",
+        "options": [
+          "files",
+          "emails",
+          "voice calls",
+          "web pages"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "A protocol is a set of agreed ____ for how data is formatted and transmitted.",
+        "answer": "rules",
+        "options": [
+          "rules",
+          "cables",
+          "devices",
+          "passwords"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "A packet's ____ contains the destination IP address, source IP address, and sequence number.",
+        "answer": "header",
+        "options": [
+          "header",
+          "trailer",
+          "payload",
+          "body"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "Packet switching makes networks fault tolerant because if one router fails, packets can be ____.",
+        "answer": "rerouted",
+        "options": [
+          "rerouted",
+          "deleted",
+          "duplicated",
+          "slowed"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "The browser checks its local ____ first before sending a DNS query, to speed up repeated lookups.",
+        "answer": "cache",
+        "options": [
+          "cache",
+          "database",
+          "memory",
+          "folder"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "IPv6 uses ____ bits, providing vastly more addresses than IPv4.",
+        "answer": "128",
+        "options": [
+          "128",
+          "32",
+          "64",
+          "256"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "Sending an email uses the internet but NOT the ____.",
+        "answer": "World Wide Web",
+        "options": [
+          "World Wide Web",
+          "DNS",
+          "TCP/IP",
+          "IPv4"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb21",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "The section of a packet that contains the actual data being sent is called the ____.",
+        "answer": "payload",
+        "options": [
+          "payload",
+          "header",
+          "trailer",
+          "checksum"
+        ]
+      }
+    },
+    {
+      "id": "ip_fb22",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "sentence": "A web browser is a program that accesses the WWW; it is not the same as the ____.",
+        "answer": "internet",
+        "options": [
+          "internet",
+          "server",
+          "protocol",
+          "DNS"
+        ]
+      }
+    },
+    {
+      "id": "ip_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "title": "Typing a URL to Seeing a Web Page",
+        "instruction": "Put these steps in the correct order to describe what happens from a user typing a URL to the web page appearing on screen.",
+        "items": [
+          "User types www.example.com into the browser",
+          "Browser checks its local DNS cache for the IP address",
+          "Browser sends a DNS query to the DNS server",
+          "DNS server returns the IP address to the browser",
+          "Browser sends an HTTP request to the web server at that IP address",
+          "Web server responds by sending HTML, CSS, and image packets",
+          "Packets are reassembled at the destination",
+          "Browser renders the page and displays it to the user"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ip_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "title": "How DNS Resolves a Domain Name",
+        "instruction": "Arrange these steps in the correct order to show how DNS resolves a domain name.",
+        "items": [
+          "User types a domain name into the browser",
+          "Browser checks its local cache — is the IP address already stored?",
+          "If not cached, browser sends a DNS query to the DNS server",
+          "DNS server looks up the domain name in its records",
+          "DNS server returns the corresponding IP address",
+          "Browser uses the IP address to contact the web server"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ip_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "title": "Internet or World Wide Web?",
+        "instruction": "Sort each description into whether it describes the Internet or the World Wide Web.",
+        "categories": [
+          "Internet",
+          "World Wide Web"
+        ],
+        "pairs": [
+          {
+            "text": "The global physical infrastructure of cables and routers",
+            "category": "Internet"
+          },
+          {
+            "text": "A collection of linked web pages accessed via HTTP",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "Also carries email, gaming, and video streaming",
+            "category": "Internet"
+          },
+          {
+            "text": "Accessed using a web browser",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "Invented by Tim Berners-Lee in 1989",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "The 'road network' that other services travel on",
+            "category": "Internet"
+          },
+          {
+            "text": "Uses hyperlinks to connect pages to each other",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "You use it when sending an email, even though no web page is involved",
+            "category": "Internet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ip_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Internet, Protocols & the WWW"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "internet"
+      ],
+      "data": {
+        "title": "Which Protocol?",
+        "instruction": "Sort each description of what a protocol does into the correct protocol name.",
+        "categories": [
+          "HTTP",
+          "HTTPS",
+          "DNS",
+          "SMTP",
+          "FTP",
+          "TCP/IP"
+        ],
+        "pairs": [
+          {
+            "text": "Transfers web pages as unencrypted plain text",
+            "category": "HTTP"
+          },
+          {
+            "text": "Transfers web pages with SSL/TLS encryption",
+            "category": "HTTPS"
+          },
+          {
+            "text": "Translates domain names into IP addresses",
+            "category": "DNS"
+          },
+          {
+            "text": "Used to send email from a client to a mail server",
+            "category": "SMTP"
+          },
+          {
+            "text": "Used to transfer files between computers",
+            "category": "FTP"
+          },
+          {
+            "text": "Splits data into packets and ensures reliable delivery across the internet",
+            "category": "TCP/IP"
+          },
+          {
+            "text": "Required for any website handling passwords or bank details",
+            "category": "HTTPS"
+          },
+          {
+            "text": "Used by a web developer to upload files to a web server",
+            "category": "FTP"
+          }
+        ]
+      }
+    }
+  ]
+}

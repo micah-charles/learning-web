@@ -1,0 +1,1419 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_logic_gates_boolean",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Logic Gates & Boolean Logic",
+  "subtitle": "Boolean values, logic gates (NOT, AND, OR, NAND, NOR, XOR), and truth tables.",
+  "items": [
+    {
+      "id": "lg_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boolean logic",
+        "targetWord": "A system of logic where every value is either True (1) or False (0), with no values in between — named after mathematician George Boole",
+        "examples": {
+          "en-GB": "Boolean logic underpins all digital computing because transistors can only be on (1) or off (0)."
+        }
+      }
+    },
+    {
+      "id": "lg_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "logic gate",
+        "targetWord": "An electronic component that performs a Boolean operation on one or more binary inputs and produces a single binary output",
+        "examples": {
+          "en-GB": "An AND logic gate outputs 1 only when all of its inputs are 1."
+        }
+      }
+    },
+    {
+      "id": "lg_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "truth table",
+        "targetWord": "A table that shows every possible combination of inputs and the resulting output for a logic gate or circuit — a gate with n inputs has 2^n rows",
+        "examples": {
+          "en-GB": "A truth table for a two-input AND gate has four rows, covering all combinations of 0 and 1."
+        }
+      }
+    },
+    {
+      "id": "lg_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NOT gate",
+        "targetWord": "A logic gate with a single input that inverts it — input 0 gives output 1, and input 1 gives output 0",
+        "examples": {
+          "en-GB": "A NOT gate is also called an inverter because it reverses the value of its input."
+        }
+      }
+    },
+    {
+      "id": "lg_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "AND gate",
+        "targetWord": "A logic gate that outputs 1 only when ALL of its inputs are 1; any input of 0 gives an output of 0",
+        "examples": {
+          "en-GB": "The AND gate models a security door that opens only when both a keycard AND a correct PIN are provided."
+        }
+      }
+    },
+    {
+      "id": "lg_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "OR gate",
+        "targetWord": "A logic gate that outputs 1 when at least one of its inputs is 1; it only outputs 0 when all inputs are 0",
+        "examples": {
+          "en-GB": "A burglar alarm that triggers if either the door sensor OR the window sensor detects movement uses OR gate logic."
+        }
+      }
+    },
+    {
+      "id": "lg_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NAND gate",
+        "targetWord": "A NOT-AND gate that outputs 0 only when all inputs are 1; in all other cases it outputs 1 — the opposite of an AND gate",
+        "examples": {
+          "en-GB": "The NAND gate is a universal gate because any other gate type can be built from combinations of NAND gates."
+        }
+      }
+    },
+    {
+      "id": "lg_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NOR gate",
+        "targetWord": "A NOT-OR gate that outputs 1 only when all inputs are 0; in all other cases it outputs 0 — the opposite of an OR gate",
+        "examples": {
+          "en-GB": "A NOR gate outputs 1 only when there is no activity on any input — it is the only gate that outputs 1 when everything is quiet."
+        }
+      }
+    },
+    {
+      "id": "lg_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "XOR gate",
+        "targetWord": "An Exclusive OR gate that outputs 1 only when its inputs are different (one is 0 and the other is 1); it outputs 0 when both inputs are the same",
+        "examples": {
+          "en-GB": "XOR is used in binary addition because 1 XOR 1 equals 0, mirroring how the sum bit behaves when adding two 1s."
+        }
+      }
+    },
+    {
+      "id": "lg_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "input",
+        "targetWord": "A binary value (0 or 1) fed into a logic gate or circuit to be processed",
+        "examples": {
+          "en-GB": "An AND gate has two inputs; both must be 1 for the output to be 1."
+        }
+      }
+    },
+    {
+      "id": "lg_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "output",
+        "targetWord": "The binary value (0 or 1) produced by a logic gate after it has processed its inputs",
+        "examples": {
+          "en-GB": "The output of a NOT gate is always the opposite of its input."
+        }
+      }
+    },
+    {
+      "id": "lg_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "binary",
+        "targetWord": "A number system that uses only two digits, 0 and 1, which directly represents the two states of electronic components in computers",
+        "examples": {
+          "en-GB": "Logic gates work in binary because each transistor inside a computer can only be in one of two states: on (1) or off (0)."
+        }
+      }
+    },
+    {
+      "id": "lg_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "True",
+        "targetWord": "One of the two Boolean values, represented as 1, indicating that a condition or signal is active or correct",
+        "examples": {
+          "en-GB": "In programming, a condition evaluates to True (1) when it is met, triggering the corresponding branch of code."
+        }
+      }
+    },
+    {
+      "id": "lg_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "False",
+        "targetWord": "One of the two Boolean values, represented as 0, indicating that a condition or signal is inactive or incorrect",
+        "examples": {
+          "en-GB": "When a gate input is False (0), it has no active signal passing through."
+        }
+      }
+    },
+    {
+      "id": "lg_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "complement",
+        "targetWord": "The opposite Boolean value of a given value — the complement of 1 is 0, and the complement of 0 is 1; produced by a NOT gate",
+        "examples": {
+          "en-GB": "A NOT gate produces the complement of its input, so if the input is 1, the complement output is 0."
+        }
+      }
+    },
+    {
+      "id": "lg_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "conjunction",
+        "targetWord": "A Boolean operation that is true only when all conditions are true — corresponds to the AND gate and the AND operator in programming",
+        "examples": {
+          "en-GB": "The statement 'it is raining AND it is cold' is a conjunction — it is only true when both individual conditions are true."
+        }
+      }
+    },
+    {
+      "id": "lg_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "disjunction",
+        "targetWord": "A Boolean operation that is true when at least one condition is true — corresponds to the OR gate and the OR operator in programming",
+        "examples": {
+          "en-GB": "The statement 'it is raining OR it is cloudy' is a disjunction — it is true if either or both conditions are true."
+        }
+      }
+    },
+    {
+      "id": "lg_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "exclusive",
+        "targetWord": "In Boolean logic, referring to operations where the true condition must apply to exactly one input but not both — as in the XOR (Exclusive OR) gate",
+        "examples": {
+          "en-GB": "The XOR gate is exclusive because it outputs 1 only when exactly one input is 1, not when both are 1."
+        }
+      }
+    },
+    {
+      "id": "lg_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "digital circuit",
+        "targetWord": "A circuit built from logic gates that processes binary signals (0s and 1s) to perform a specific logical or arithmetic function",
+        "examples": {
+          "en-GB": "The ALU inside a CPU is a digital circuit made up of thousands of logic gates that perform arithmetic and logic operations."
+        }
+      }
+    },
+    {
+      "id": "lg_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boolean expression",
+        "targetWord": "An algebraic expression using Boolean operators (AND, OR, NOT) and variables that evaluates to either True (1) or False (0)",
+        "examples": {
+          "en-GB": "The Boolean expression 'A AND (NOT B)' evaluates to 1 only when A is 1 and B is 0."
+        }
+      }
+    },
+    {
+      "id": "lg_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "operand",
+        "targetWord": "A value that an operator acts upon — in Boolean logic, operands are the binary inputs (0 or 1) that gates process",
+        "examples": {
+          "en-GB": "In the expression A AND B, the variables A and B are the operands that the AND operation acts upon."
+        }
+      }
+    },
+    {
+      "id": "lg_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bit",
+        "targetWord": "A single binary digit — either 0 or 1 — which is the smallest unit of data processed by a logic gate",
+        "examples": {
+          "en-GB": "Each input and output of a logic gate carries exactly one bit of information."
+        }
+      }
+    },
+    {
+      "id": "lg_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "transistor",
+        "targetWord": "A tiny electronic switch that can be either on (1) or off (0); billions of transistors inside a CPU physically implement logic gates",
+        "examples": {
+          "en-GB": "Modern processors contain billions of transistors, each acting as a microscopic switch that forms part of a logic gate."
+        }
+      }
+    },
+    {
+      "id": "lg_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "universal gate",
+        "targetWord": "A logic gate from which any other gate type can be constructed using combinations of that gate alone — both NAND and NOR are universal gates",
+        "examples": {
+          "en-GB": "Because NAND is a universal gate, the entire instruction set of a CPU could theoretically be built using only NAND gates."
+        }
+      }
+    },
+    {
+      "id": "lg_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "logic circuit",
+        "targetWord": "Multiple connected logic gates where the output of one gate feeds into the input of another to perform a more complex logical function",
+        "examples": {
+          "en-GB": "Connecting an AND gate followed by a NOT gate creates a logic circuit equivalent to a single NAND gate."
+        }
+      }
+    },
+    {
+      "id": "lg_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "two-state",
+        "targetWord": "Describes a system that can only exist in one of two conditions — in digital electronics this means either 0 or 1, off or on",
+        "examples": {
+          "en-GB": "Logic gates are two-state devices; they can only output 0 or 1, never a value in between."
+        }
+      }
+    },
+    {
+      "id": "lg_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "electronic component",
+        "targetWord": "A physical part of an electronic circuit that performs a specific function — logic gates are electronic components that carry out Boolean operations",
+        "examples": {
+          "en-GB": "Each logic gate is an electronic component that takes electrical signals representing 0 or 1 and produces an output signal."
+        }
+      }
+    },
+    {
+      "id": "lg_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "inversion",
+        "targetWord": "The process of reversing a Boolean value from 1 to 0 or from 0 to 1 — performed by a NOT gate",
+        "examples": {
+          "en-GB": "The small circle (bubble) on a gate symbol indicates inversion — that the output has been NOT-ed."
+        }
+      }
+    },
+    {
+      "id": "lg_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "Boolean logic has only two values: True, represented as ____, and False, represented as 0.",
+        "answer": "1",
+        "options": [
+          "1",
+          "2",
+          "0.5",
+          "True"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "A NOT gate ____ its input, so an input of 0 gives an output of 1.",
+        "answer": "inverts",
+        "options": [
+          "inverts",
+          "doubles",
+          "copies",
+          "amplifies"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "An AND gate outputs 1 only when ____ inputs are 1.",
+        "answer": "ALL",
+        "options": [
+          "ALL",
+          "none of the",
+          "at least one",
+          "exactly two of the"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "An OR gate outputs 1 when at least ____ input is 1.",
+        "answer": "one",
+        "options": [
+          "one",
+          "two",
+          "three",
+          "every"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "A NAND gate is a NOT-AND gate, so its output is 0 only when ____ inputs are 1.",
+        "answer": "both",
+        "options": [
+          "both",
+          "neither",
+          "one",
+          "some"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "An XOR gate outputs 1 only when its two inputs are ____.",
+        "answer": "different",
+        "options": [
+          "different",
+          "both 1",
+          "both 0",
+          "the same"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "A truth table for a gate with n inputs must have ____ rows to cover all possible combinations.",
+        "answer": "2^n",
+        "options": [
+          "2^n",
+          "n^2",
+          "2n",
+          "n+2"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "A two-input logic gate has ____ rows in its truth table.",
+        "answer": "4",
+        "options": [
+          "4",
+          "2",
+          "8",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "Logic gates are the building blocks of ____ circuits inside computers.",
+        "answer": "digital",
+        "options": [
+          "digital",
+          "analogue",
+          "optical",
+          "mechanical"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For an AND gate with A=1 and B=0, the output is ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "undefined",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For an OR gate with A=0 and B=0, the output is ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For a NOT gate with input A=1, the output is ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "unchanged"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For a NAND gate with A=1 and B=1, the output is ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For a NOR gate with A=0 and B=0, the output is ____.",
+        "answer": "1",
+        "options": [
+          "1",
+          "0",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For an XOR gate with A=1 and B=1, the output is ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For an XOR gate with A=1 and B=0, the output is ____.",
+        "answer": "1",
+        "options": [
+          "1",
+          "0",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For an OR gate with A=1 and B=1, the output is ____.",
+        "answer": "1",
+        "options": [
+          "1",
+          "0",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For a NOR gate with A=1 and B=0, the output is ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "The NAND gate is called a ____ gate because any other gate type can be built from it alone.",
+        "answer": "universal",
+        "options": [
+          "universal",
+          "special",
+          "compound",
+          "super"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "Boolean logic is named after mathematician George ____.",
+        "answer": "Boole",
+        "options": [
+          "Boole",
+          "Babbage",
+          "Turing",
+          "Gates"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb21",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "The ALU (Arithmetic Logic Unit) inside a CPU is made entirely from ____.",
+        "answer": "logic gates",
+        "options": [
+          "logic gates",
+          "memory chips",
+          "screens",
+          "network cards"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb22",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "In a logic circuit, the output of one gate can become the ____ of the next gate.",
+        "answer": "input",
+        "options": [
+          "input",
+          "operator",
+          "address",
+          "display"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb23",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "An AND gate followed by a NOT gate produces the same output as a ____ gate.",
+        "answer": "NAND",
+        "options": [
+          "NAND",
+          "NOR",
+          "XOR",
+          "OR"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb24",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "For a three-input gate, a complete truth table needs ____ rows.",
+        "answer": "8",
+        "options": [
+          "8",
+          "4",
+          "6",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "lg_fb25",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "sentence": "A standard OR gate outputs 1 when both inputs are 1, whereas an XOR gate outputs ____ when both inputs are 1.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "id": "lg_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "title": "AND Gate Truth Table — in Order",
+        "instruction": "Arrange the four rows of an AND gate truth table in the correct standard order (A=0,B=0 first through to A=1,B=1 last), showing the output for each row.",
+        "items": [
+          "A=0, B=0 → Output: 0",
+          "A=0, B=1 → Output: 0",
+          "A=1, B=0 → Output: 0",
+          "A=1, B=1 → Output: 1"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "lg_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "title": "OR Gate Truth Table — in Order",
+        "instruction": "Arrange the four rows of an OR gate truth table in the correct standard order, showing the correct output for each combination.",
+        "items": [
+          "A=0, B=0 → Output: 0",
+          "A=0, B=1 → Output: 1",
+          "A=1, B=0 → Output: 1",
+          "A=1, B=1 → Output: 1"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "lg_seq03",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "title": "Tracing an AND-then-NOT Circuit (NAND)",
+        "instruction": "Put these steps in the correct order to evaluate the combined circuit: A and B feed into an AND gate whose output then feeds into a NOT gate, for inputs A=1, B=1.",
+        "items": [
+          "Identify inputs: A=1, B=1",
+          "Calculate AND gate output: 1 AND 1 = 1",
+          "Feed AND output into NOT gate: NOT 1 = 0",
+          "Final circuit output: 0"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "lg_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "title": "AND, OR, or NOT?",
+        "instruction": "Sort each description of gate behaviour into the correct gate type.",
+        "categories": [
+          "NOT gate",
+          "AND gate",
+          "OR gate"
+        ],
+        "pairs": [
+          {
+            "text": "Outputs 1 only when ALL inputs are 1",
+            "category": "AND gate"
+          },
+          {
+            "text": "Inverts a single input",
+            "category": "NOT gate"
+          },
+          {
+            "text": "Outputs 1 when AT LEAST ONE input is 1",
+            "category": "OR gate"
+          },
+          {
+            "text": "Has exactly one input",
+            "category": "NOT gate"
+          },
+          {
+            "text": "Outputs 0 only when all inputs are 0",
+            "category": "OR gate"
+          },
+          {
+            "text": "Outputs 0 when any input is 0",
+            "category": "AND gate"
+          },
+          {
+            "text": "Input 1 gives Output 0",
+            "category": "NOT gate"
+          },
+          {
+            "text": "Used for 'both conditions must be true' logic",
+            "category": "AND gate"
+          },
+          {
+            "text": "Used for 'at least one condition is true' logic",
+            "category": "OR gate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lg_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "title": "XOR Output or OR Output?",
+        "instruction": "For each input combination, sort into whether it is an XOR output of 1, OR output of 1, or a combination that gives the same output (0) for both.",
+        "categories": [
+          "XOR = 1, OR = 1 (different)",
+          "XOR = 0, OR = 1 (same inputs, both 1)",
+          "XOR = 0, OR = 0 (both inputs 0)"
+        ],
+        "pairs": [
+          {
+            "text": "A=0, B=1",
+            "category": "XOR = 1, OR = 1 (different)"
+          },
+          {
+            "text": "A=1, B=0",
+            "category": "XOR = 1, OR = 1 (different)"
+          },
+          {
+            "text": "A=1, B=1",
+            "category": "XOR = 0, OR = 1 (same inputs, both 1)"
+          },
+          {
+            "text": "A=0, B=0",
+            "category": "XOR = 0, OR = 0 (both inputs 0)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "lg_cs03",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Logic Gates & Boolean Logic"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "boolean"
+      ],
+      "data": {
+        "title": "Output 0 or Output 1?",
+        "instruction": "Given the gate type and inputs, sort each case into whether the output is 0 or 1.",
+        "categories": [
+          "Output: 0",
+          "Output: 1"
+        ],
+        "pairs": [
+          {
+            "text": "AND gate: A=1, B=1",
+            "category": "Output: 1"
+          },
+          {
+            "text": "AND gate: A=1, B=0",
+            "category": "Output: 0"
+          },
+          {
+            "text": "OR gate: A=0, B=0",
+            "category": "Output: 0"
+          },
+          {
+            "text": "OR gate: A=0, B=1",
+            "category": "Output: 1"
+          },
+          {
+            "text": "NOT gate: A=0",
+            "category": "Output: 1"
+          },
+          {
+            "text": "NOT gate: A=1",
+            "category": "Output: 0"
+          },
+          {
+            "text": "NAND gate: A=1, B=1",
+            "category": "Output: 0"
+          },
+          {
+            "text": "NAND gate: A=0, B=1",
+            "category": "Output: 1"
+          },
+          {
+            "text": "NOR gate: A=0, B=0",
+            "category": "Output: 1"
+          },
+          {
+            "text": "NOR gate: A=1, B=0",
+            "category": "Output: 0"
+          },
+          {
+            "text": "XOR gate: A=1, B=1",
+            "category": "Output: 0"
+          },
+          {
+            "text": "XOR gate: A=1, B=0",
+            "category": "Output: 1"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1267 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_cpu_fde_cycle",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — The CPU & Fetch-Decode-Execute Cycle",
+  "subtitle": "CPU architecture, the fetch-decode-execute cycle, and factors affecting CPU performance.",
+  "items": [
+    {
+      "id": "ks3_computing_cpu_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "CPU",
+        "targetWord": "Central Processing Unit; the main component of a computer that fetches, decodes, and executes all program instructions",
+        "examples": {
+          "en-GB": "The CPU executes billions of instructions per second to run the operating system and all applications."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ALU",
+        "targetWord": "Arithmetic and Logic Unit; the component inside the CPU that performs all arithmetic operations (addition, subtraction) and logical comparisons (AND, OR, NOT)",
+        "examples": {
+          "en-GB": "When the program needs to add two numbers, the ALU performs the calculation and stores the result in the Accumulator."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Control Unit",
+        "targetWord": "the component inside the CPU that manages and coordinates the fetch-decode-execute cycle, directing data flow between the CPU's sub-components and RAM without performing calculations itself",
+        "examples": {
+          "en-GB": "The Control Unit sends signals to the ALU, registers, and memory to coordinate each stage of the FDE cycle."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "cache",
+        "targetWord": "a small, very fast memory store located inside or near the CPU that holds copies of frequently used instructions and data to reduce the number of slower RAM accesses required",
+        "examples": {
+          "en-GB": "The CPU checks the cache first; if the required instruction is there (a cache hit), it is read much faster than fetching from RAM."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "register",
+        "targetWord": "an extremely small, ultra-fast memory location inside the CPU that temporarily holds data or an instruction the processor is actively working with",
+        "examples": {
+          "en-GB": "Registers are the fastest form of memory in a computer because they are built directly into the CPU chip."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Program Counter",
+        "targetWord": "a register inside the CPU that holds the memory address of the next instruction to be fetched from RAM; it is incremented after each fetch",
+        "examples": {
+          "en-GB": "After the CPU fetches the instruction at address 0042, the Program Counter is incremented to 0043 for the next fetch."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Accumulator",
+        "targetWord": "a register inside the CPU that stores the result of the most recent arithmetic or logical operation performed by the ALU",
+        "examples": {
+          "en-GB": "After the ALU adds 5 to 10, the result (15) is stored in the Accumulator ready for the next operation."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "fetch",
+        "targetWord": "the first stage of the FDE cycle in which the CPU reads the address in the Program Counter and retrieves the instruction stored at that address in RAM",
+        "examples": {
+          "en-GB": "During the fetch stage, the Control Unit retrieves the next instruction from the memory address stored in the Program Counter."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decode",
+        "targetWord": "the second stage of the FDE cycle in which the Control Unit interprets the fetched instruction to determine what operation is required and what data is needed",
+        "examples": {
+          "en-GB": "During the decode stage, the Control Unit reads the instruction and identifies it as an addition operation needing two operands."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "execute",
+        "targetWord": "the third stage of the FDE cycle in which the relevant CPU component carries out the decoded instruction, for example the ALU performing a calculation",
+        "examples": {
+          "en-GB": "During the execute stage, the ALU performs the addition and stores the result in the Accumulator."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "FDE cycle",
+        "targetWord": "the Fetch-Decode-Execute cycle; the continuous three-stage process by which a CPU processes every instruction in a program, repeated billions of times per second",
+        "examples": {
+          "en-GB": "Every instruction in every program running on a computer goes through the FDE cycle: fetch, decode, then execute."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "clock speed",
+        "targetWord": "the number of processing cycles a CPU performs per second, measured in GHz; a higher clock speed means more instructions can be processed per second",
+        "examples": {
+          "en-GB": "Upgrading to a CPU with a higher clock speed means the FDE cycle repeats more times every second, so programs run faster."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "GHz",
+        "targetWord": "gigahertz; the unit used to measure CPU clock speed; one GHz equals one billion cycles per second",
+        "examples": {
+          "en-GB": "A CPU running at 3.2 GHz completes 3,200,000,000 clock cycles every second."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "core",
+        "targetWord": "a complete, independent processing unit within a CPU; each core can fetch, decode, and execute instructions simultaneously, allowing true parallel processing",
+        "examples": {
+          "en-GB": "A quad-core CPU has four independent cores, each running its own FDE cycle simultaneously."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "multi-core",
+        "targetWord": "a CPU that contains two or more independent processing cores on a single chip, allowing genuinely parallel execution of multiple tasks",
+        "examples": {
+          "en-GB": "The multi-core processor allows the laptop to run a video, a browser, and a background update all at the same time without slowing down."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Von Neumann architecture",
+        "targetWord": "the design principle underlying modern computers in which program instructions and data are stored together in the same RAM using the same binary format",
+        "examples": {
+          "en-GB": "Because of Von Neumann architecture, the same RAM stores both the word processor program and the document you are writing."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "stored program",
+        "targetWord": "the concept that both a program's instructions and its data are stored in the same memory (RAM) and fetched by the CPU as needed",
+        "examples": {
+          "en-GB": "The stored program concept means the CPU can run any program by fetching instructions from RAM, rather than having fixed wired-in logic."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "instruction",
+        "targetWord": "a single command in a program that the CPU can fetch, decode, and execute; instructions specify operations such as add, move, or jump",
+        "examples": {
+          "en-GB": "An instruction such as ADD 5 tells the CPU to add the value 5 to whatever is currently in the Accumulator."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "RAM",
+        "targetWord": "Random Access Memory; the main volatile memory that stores the instructions and data of currently running programs, accessed by the CPU during the FDE cycle",
+        "examples": {
+          "en-GB": "During the fetch stage, the CPU retrieves the next instruction from the location in RAM pointed to by the Program Counter."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bus",
+        "targetWord": "an electrical pathway on the motherboard that carries data, addresses, or control signals between the CPU and other components such as RAM",
+        "examples": {
+          "en-GB": "The address bus carries the memory address from the CPU to RAM during the fetch stage so the correct instruction can be retrieved."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data bus",
+        "targetWord": "a bus that carries actual data values between the CPU and RAM or other components during the fetch and execute stages",
+        "examples": {
+          "en-GB": "The fetched instruction travels from RAM to the CPU along the data bus."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "address bus",
+        "targetWord": "a bus that carries memory addresses from the CPU to RAM, specifying which location in RAM should be read from or written to",
+        "examples": {
+          "en-GB": "The CPU sends the address stored in the Program Counter to RAM via the address bus during the fetch stage."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "control bus",
+        "targetWord": "a bus that carries control signals from the Control Unit to coordinate the activities of other components, such as telling RAM whether it should perform a read or write operation",
+        "examples": {
+          "en-GB": "The control bus sends a read signal to RAM during the fetch stage, instructing it to output the data at the requested address."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "pipeline",
+        "targetWord": "a technique where the CPU begins fetching the next instruction before the previous one has finished executing, overlapping stages to improve throughput",
+        "examples": {
+          "en-GB": "Pipelining allows the CPU to fetch instruction 2 while decoding instruction 1, increasing the number of instructions completed per second."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "clock cycle",
+        "targetWord": "a single tick of the CPU's clock; the basic unit of time for CPU operations; one clock cycle is the time between two pulses of the clock signal",
+        "examples": {
+          "en-GB": "A CPU running at 1 GHz completes one billion clock cycles per second, with some instructions taking multiple cycles."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "instruction set",
+        "targetWord": "the complete set of binary instructions that a particular CPU is designed to understand and execute",
+        "examples": {
+          "en-GB": "Different processor families have different instruction sets, which is why programs compiled for one CPU may not run on another."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "throughput",
+        "targetWord": "the number of instructions a CPU completes per second; increased by higher clock speed, more cores, and better use of cache",
+        "examples": {
+          "en-GB": "Adding more cores to a CPU increases throughput for multi-threaded tasks by allowing parallel instruction execution."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "latency",
+        "targetWord": "the delay between a request for data and the data becoming available; cache has very low latency compared to RAM, and RAM has lower latency than secondary storage",
+        "examples": {
+          "en-GB": "Storing frequently used data in cache reduces latency because the CPU does not have to wait for a slower RAM access."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The ALU performs all ____ and logical operations inside the CPU.",
+        "answer": "arithmetic",
+        "options": [
+          "arithmetic",
+          "memory",
+          "control",
+          "input"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The ____ Unit coordinates the FDE cycle and directs the flow of data between the CPU's components and RAM.",
+        "answer": "Control",
+        "options": [
+          "Control",
+          "Arithmetic",
+          "Logic",
+          "Program"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "Cache is located inside or near the CPU and is ____ than RAM, allowing faster access to frequently used instructions.",
+        "answer": "faster",
+        "options": [
+          "faster",
+          "slower",
+          "larger",
+          "volatile"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The Program Counter holds the ____ address of the next instruction to be fetched from RAM.",
+        "answer": "memory",
+        "options": [
+          "memory",
+          "binary",
+          "clock",
+          "output"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "During the ____ stage of the FDE cycle, the CPU retrieves an instruction from the memory address held in the Program Counter.",
+        "answer": "fetch",
+        "options": [
+          "fetch",
+          "decode",
+          "execute",
+          "store"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "During the ____ stage, the Control Unit interprets the fetched instruction and works out what operation needs to be carried out.",
+        "answer": "decode",
+        "options": [
+          "decode",
+          "fetch",
+          "execute",
+          "store"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "During the ____ stage, the relevant component (e.g. the ALU) carries out the operation specified by the instruction.",
+        "answer": "execute",
+        "options": [
+          "execute",
+          "fetch",
+          "decode",
+          "cache"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "After the fetch stage, the Program Counter is ____ so that it points to the address of the next instruction.",
+        "answer": "incremented",
+        "options": [
+          "incremented",
+          "decremented",
+          "reset",
+          "cleared"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "CPU clock speed is measured in ____, which stands for gigahertz — billions of cycles per second.",
+        "answer": "GHz",
+        "options": [
+          "GHz",
+          "GB",
+          "MB",
+          "MHz"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "A CPU with more ____ can execute multiple tasks truly simultaneously, one task per core.",
+        "answer": "cores",
+        "options": [
+          "cores",
+          "registers",
+          "buses",
+          "bits"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "A larger ____ reduces the number of times the CPU must access the slower RAM, improving overall performance.",
+        "answer": "cache",
+        "options": [
+          "cache",
+          "register",
+          "bus",
+          "clock"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The Accumulator stores the ____ of the most recent ALU operation.",
+        "answer": "result",
+        "options": [
+          "result",
+          "address",
+          "instruction",
+          "program"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "Von Neumann architecture stores both program ____ and data in the same RAM.",
+        "answer": "instructions",
+        "options": [
+          "instructions",
+          "screens",
+          "drivers",
+          "caches"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "When the CPU finds required data in the cache, this is called a cache ____; when it is not there, the CPU must fetch it from RAM.",
+        "answer": "hit",
+        "options": [
+          "hit",
+          "miss",
+          "fetch",
+          "cycle"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The three stages of the FDE cycle in the correct order are: fetch, ____, execute.",
+        "answer": "decode",
+        "options": [
+          "decode",
+          "store",
+          "cache",
+          "compile"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "More cores improve performance for tasks that can run in ____; a single-threaded program that cannot be parallelised only uses one core.",
+        "answer": "parallel",
+        "options": [
+          "parallel",
+          "sequence",
+          "cache",
+          "series"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The ____ bus carries the memory address from the CPU to RAM to specify which instruction to retrieve.",
+        "answer": "address",
+        "options": [
+          "address",
+          "data",
+          "control",
+          "clock"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The Control Unit does ____ perform calculations; that is the role of the ALU.",
+        "answer": "not",
+        "options": [
+          "not",
+          "always",
+          "sometimes",
+          "frequently"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "Higher clock speed means the FDE cycle repeats more times per second, so more ____ are processed per second.",
+        "answer": "instructions",
+        "options": [
+          "instructions",
+          "files",
+          "registers",
+          "buses"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "Registers are the ____ type of memory in a computer because they are built directly into the CPU.",
+        "answer": "fastest",
+        "options": [
+          "fastest",
+          "largest",
+          "cheapest",
+          "most volatile"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_021",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "Higher clock speed generates more ____, which limits how fast a CPU can be clocked before it overheats.",
+        "answer": "heat",
+        "options": [
+          "heat",
+          "data",
+          "cache",
+          "voltage"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fillblank_022",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "sentence": "The ____ performs logical comparisons such as AND, OR, and NOT inside the CPU.",
+        "answer": "ALU",
+        "options": [
+          "ALU",
+          "Control Unit",
+          "Program Counter",
+          "Cache"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "title": "The Three Stages of the FDE Cycle",
+        "instruction": "Place the three stages of the Fetch-Decode-Execute cycle in the correct order.",
+        "items": [
+          "Fetch: the Control Unit reads the Program Counter and retrieves the instruction from that address in RAM; the Program Counter is incremented",
+          "Decode: the Control Unit interprets the fetched instruction and determines what operation is required and what data is needed",
+          "Execute: the relevant component (e.g. the ALU) carries out the operation; the result may be stored in a register or written back to RAM"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "title": "Detailed Steps of the Fetch Stage",
+        "instruction": "Put these steps of the Fetch stage in the correct order.",
+        "items": [
+          "The Control Unit reads the address stored in the Program Counter (PC)",
+          "The address is sent to RAM via the address bus",
+          "RAM outputs the instruction stored at that address via the data bus",
+          "The instruction is copied into a register inside the CPU",
+          "The Program Counter is incremented to point to the next instruction's address"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_catsort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "title": "Which CPU Component?",
+        "instruction": "Sort each description into the correct CPU component.",
+        "categories": [
+          "ALU",
+          "Control Unit",
+          "Cache",
+          "Registers"
+        ],
+        "pairs": [
+          {
+            "text": "Performs addition, subtraction, and logical comparisons",
+            "category": "ALU"
+          },
+          {
+            "text": "Manages and coordinates the FDE cycle",
+            "category": "Control Unit"
+          },
+          {
+            "text": "Stores copies of frequently used instructions near the CPU",
+            "category": "Cache"
+          },
+          {
+            "text": "Holds the memory address of the next instruction to fetch",
+            "category": "Registers"
+          },
+          {
+            "text": "Stores the result of the last ALU operation",
+            "category": "Registers"
+          },
+          {
+            "text": "Sends control signals to other components",
+            "category": "Control Unit"
+          },
+          {
+            "text": "Much faster than RAM but much smaller",
+            "category": "Cache"
+          },
+          {
+            "text": "Carries out Boolean logic operations (AND, OR, NOT)",
+            "category": "ALU"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_catsort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computer Systems: CPU"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "CPU"
+      ],
+      "data": {
+        "title": "Performance Factor or Not?",
+        "instruction": "Sort each item: does it directly affect CPU performance?",
+        "categories": [
+          "Affects CPU Performance",
+          "Does Not Directly Affect CPU Performance"
+        ],
+        "pairs": [
+          {
+            "text": "Clock speed (GHz)",
+            "category": "Affects CPU Performance"
+          },
+          {
+            "text": "Number of cores",
+            "category": "Affects CPU Performance"
+          },
+          {
+            "text": "Cache size",
+            "category": "Affects CPU Performance"
+          },
+          {
+            "text": "Keyboard brand",
+            "category": "Does Not Directly Affect CPU Performance"
+          },
+          {
+            "text": "Monitor screen size",
+            "category": "Does Not Directly Affect CPU Performance"
+          },
+          {
+            "text": "RAM brand (same capacity)",
+            "category": "Does Not Directly Affect CPU Performance"
+          },
+          {
+            "text": "Having a larger L3 cache",
+            "category": "Affects CPU Performance"
+          },
+          {
+            "text": "Colour of the computer case",
+            "category": "Does Not Directly Affect CPU Performance"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_iteration_loops",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Iteration & Loops (Passages)",
+  "items": [
+    {
+      "id": "iter_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Iteration and Loops"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "FOR Loops and Count-Controlled Iteration",
+        "targetTitle": "FOR Loops and Count-Controlled Iteration",
+        "sourcePassage": "A FOR loop repeats a block of code a fixed, predetermined number of times. Because the number of repetitions is decided before the loop starts, a FOR loop is called count-controlled. It is the natural choice whenever you know in advance how many times something needs to happen — printing the five-times table, processing a set of 30 exam scores, or displaying a countdown from 10 to 1.\n\nIn pseudocode, a FOR loop takes the form FOR i ← 1 TO 5, where i is the loop variable (sometimes called the counter). On the first iteration i equals 1, on the second it equals 2, and so on until it reaches 5. After the fifth iteration the condition fails and the loop ends. In Python, the equivalent uses the range() function: for i in range(1, 6). Crucially, the stop value in range() is exclusive — range(1, 6) generates 1, 2, 3, 4, 5, not 1 to 6.\n\nA common use of a FOR loop is to calculate a running total using an accumulator variable. Setting total = 0 before the loop and then writing total = total + i inside the loop body means that after four iterations with i going from 1 to 4, total holds the value 10 (= 1 + 2 + 3 + 4).",
+        "targetPassage": "A FOR loop repeats a block of code a fixed, predetermined number of times. Because the number of repetitions is decided before the loop starts, a FOR loop is called count-controlled. It is the natural choice whenever you know in advance how many times something needs to happen — printing the five-times table, processing a set of 30 exam scores, or displaying a countdown from 10 to 1.\n\nIn pseudocode, a FOR loop takes the form FOR i ← 1 TO 5, where i is the loop variable (sometimes called the counter). On the first iteration i equals 1, on the second it equals 2, and so on until it reaches 5. After the fifth iteration the condition fails and the loop ends. In Python, the equivalent uses the range() function: for i in range(1, 6). Crucially, the stop value in range() is exclusive — range(1, 6) generates 1, 2, 3, 4, 5, not 1 to 6.\n\nA common use of a FOR loop is to calculate a running total using an accumulator variable. Setting total = 0 before the loop and then writing total = total + i inside the loop body means that after four iterations with i going from 1 to 4, total holds the value 10 (= 1 + 2 + 3 + 4).",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "iter_p01_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Why is a FOR loop called 'count-controlled'?",
+            "options": [
+              "Because the number of repetitions is fixed and known before the loop starts",
+              "Because it counts how many errors the program makes",
+              "Because the loop body includes a counter variable",
+              "Because it uses the range() function to count"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Because the number of repetitions is fixed and known before the loop starts",
+            "acceptedKeywords": ["fixed", "known", "predetermined", "advance"]
+          },
+          {
+            "id": "iter_p01_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What numbers does range(1, 6) generate in Python?",
+            "options": [
+              "1, 2, 3, 4, 5",
+              "1, 2, 3, 4, 5, 6",
+              "0, 1, 2, 3, 4, 5",
+              "2, 3, 4, 5, 6"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "1, 2, 3, 4, 5",
+            "acceptedKeywords": ["1", "2", "3", "4", "5"]
+          },
+          {
+            "id": "iter_p01_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is an accumulator variable in the context of a FOR loop?",
+            "options": [
+              "A variable set to zero before the loop that collects a running total as values are added during each iteration",
+              "The loop variable that counts how many iterations have occurred",
+              "A variable that stores the final output after the loop ends",
+              "A variable that controls how many times the loop runs"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A variable set to zero before the loop that collects a running total as values are added during each iteration",
+            "acceptedKeywords": ["total", "running", "added", "accumulates", "iteration"]
+          },
+          {
+            "id": "iter_p01_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Write a FOR loop in pseudocode that calculates the total of the numbers 1 to 5 using an accumulator, and state what the final value of total will be.",
+            "modelAnswer": "total ← 0\nFOR i ← 1 TO 5\n    total ← total + i\nENDFOR\nThe final value of total will be 15 (1+2+3+4+5 = 15).",
+            "acceptedKeywords": ["total", "FOR", "TO 5", "ENDFOR", "15"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "iter_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Iteration and Loops"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "WHILE Loops and the Password Checker",
+        "targetTitle": "WHILE Loops and the Password Checker",
+        "sourcePassage": "A WHILE loop repeats a block of code as long as its condition remains True. Unlike a FOR loop, the number of repetitions is not fixed — it depends entirely on when the condition becomes False. This makes WHILE loops ideal for situations where the program must respond to unpredictable user input or external events.\n\nThe WHILE loop checks its condition before the body executes on every iteration, including the very first one. This means if the condition is False at the start, the body never runs at all — a key difference from a DO-WHILE loop (which Python does not have natively).\n\nA classic example is a password checker: the program asks the user to enter a password, and if it is wrong it asks again. We cannot know in advance how many attempts the user will need, so a FOR loop would be inappropriate. The WHILE loop continues until the correct password is entered. Inside the loop body, the crucial step is to ask for input again — if input is only collected once before the loop, the variable never changes and the loop runs forever. This is the most common cause of an unintentional infinite loop in WHILE-based programs: the variable tested in the condition is never updated inside the loop body.",
+        "targetPassage": "A WHILE loop repeats a block of code as long as its condition remains True. Unlike a FOR loop, the number of repetitions is not fixed — it depends entirely on when the condition becomes False. This makes WHILE loops ideal for situations where the program must respond to unpredictable user input or external events.\n\nThe WHILE loop checks its condition before the body executes on every iteration, including the very first one. This means if the condition is False at the start, the body never runs at all — a key difference from a DO-WHILE loop (which Python does not have natively).\n\nA classic example is a password checker: the program asks the user to enter a password, and if it is wrong it asks again. We cannot know in advance how many attempts the user will need, so a FOR loop would be inappropriate. The WHILE loop continues until the correct password is entered. Inside the loop body, the crucial step is to ask for input again — if input is only collected once before the loop, the variable never changes and the loop runs forever. This is the most common cause of an unintentional infinite loop in WHILE-based programs: the variable tested in the condition is never updated inside the loop body.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "iter_p02_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "When does a WHILE loop stop repeating?",
+            "options": [
+              "When its condition becomes False",
+              "When its condition becomes True",
+              "After a fixed number of iterations",
+              "When the loop variable reaches its maximum"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "When its condition becomes False",
+            "acceptedKeywords": ["condition", "False", "becomes False"]
+          },
+          {
+            "id": "iter_p02_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What happens if a WHILE loop's condition is False before the very first check?",
+            "options": [
+              "The loop body never runs at all",
+              "The loop body runs exactly once",
+              "Python raises an error",
+              "The loop runs until manually stopped"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The loop body never runs at all",
+            "acceptedKeywords": ["never", "body never runs", "zero times"]
+          },
+          {
+            "id": "iter_p02_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why is a password checker better implemented with a WHILE loop than a FOR loop?",
+            "options": [
+              "Because the number of attempts the user will make is not known in advance",
+              "Because a FOR loop cannot compare strings",
+              "Because a WHILE loop is faster than a FOR loop",
+              "Because a FOR loop always runs at least once"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Because the number of attempts the user will make is not known in advance",
+            "acceptedKeywords": ["not known", "unknown", "advance", "attempts"]
+          },
+          {
+            "id": "iter_p02_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain the most common cause of an infinite loop in a WHILE-based program and describe how to fix it.",
+            "modelAnswer": "The most common cause is that the variable tested in the WHILE condition is never updated inside the loop body, so the condition never changes from True to False. To fix it, add a statement inside the loop body that changes the variable — for example, re-reading user input or incrementing a counter — so that the condition will eventually become False.",
+            "acceptedKeywords": ["never updated", "variable", "condition", "never changes", "update", "fix"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "iter_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Iteration and Loops"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "Nested Loops and Their Uses",
+        "targetTitle": "Nested Loops and Their Uses",
+        "sourcePassage": "A nested loop is a loop placed inside another loop. The inner loop runs completely — completing all its own iterations — every single time the outer loop's body executes. This creates a grid-like pattern of execution useful for problems with two dimensions, such as printing a multiplication table, generating a seating chart, or processing a two-dimensional grid of data.\n\nCalculating the total number of times the inner body executes is straightforward: multiply the number of outer iterations by the number of inner iterations. If the outer loop runs 3 times and the inner loop runs 4 times, the inner body executes 3 × 4 = 12 times in total.\n\nNested loops are powerful but must be used carefully. Each extra level of nesting multiplies the total iterations, so deeply nested loops can become very slow for large data sets. A nested FOR loop that runs 100 × 100 iterations executes the inner body 10,000 times. When tracing a nested loop through a trace table, it helps to record the outer variable and the inner variable separately at each step, working through all inner iterations before incrementing the outer variable. This methodical approach prevents errors and mirrors exactly how the computer processes the loops.",
+        "targetPassage": "A nested loop is a loop placed inside another loop. The inner loop runs completely — completing all its own iterations — every single time the outer loop's body executes. This creates a grid-like pattern of execution useful for problems with two dimensions, such as printing a multiplication table, generating a seating chart, or processing a two-dimensional grid of data.\n\nCalculating the total number of times the inner body executes is straightforward: multiply the number of outer iterations by the number of inner iterations. If the outer loop runs 3 times and the inner loop runs 4 times, the inner body executes 3 × 4 = 12 times in total.\n\nNested loops are powerful but must be used carefully. Each extra level of nesting multiplies the total iterations, so deeply nested loops can become very slow for large data sets. A nested FOR loop that runs 100 × 100 iterations executes the inner body 10,000 times. When tracing a nested loop through a trace table, it helps to record the outer variable and the inner variable separately at each step, working through all inner iterations before incrementing the outer variable. This methodical approach prevents errors and mirrors exactly how the computer processes the loops.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "iter_p03_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How many times does the inner loop body run in a nested loop where the outer loop runs 5 times and the inner loop runs 3 times?",
+            "options": [
+              "15",
+              "8",
+              "5",
+              "3"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "15",
+            "acceptedKeywords": ["15", "5 × 3", "5 * 3"]
+          },
+          {
+            "id": "iter_p03_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "When does the inner loop of a nested loop run all its iterations?",
+            "options": [
+              "Every time the outer loop's body executes",
+              "Only on the first iteration of the outer loop",
+              "Only on the last iteration of the outer loop",
+              "Once for the entire outer loop"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Every time the outer loop's body executes",
+            "acceptedKeywords": ["every time", "each", "outer loop body"]
+          },
+          {
+            "id": "iter_p03_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A nested FOR loop has an outer loop from 1 to 4 and an inner loop from 1 to 4. How many times does the inner body execute in total?",
+            "options": [
+              "16",
+              "8",
+              "4",
+              "12"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "16",
+            "acceptedKeywords": ["16", "4 × 4", "4 * 4"]
+          },
+          {
+            "id": "iter_p03_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why nested loops are useful for printing a multiplication table, and describe the role of the outer and inner loop variables.",
+            "modelAnswer": "A multiplication table has two dimensions: rows and columns. The outer loop variable controls the row (e.g. 1 to 5) and the inner loop variable controls the column (e.g. 1 to 5). For every value of the outer loop variable, the inner loop runs through all its values. Each time the inner body executes, it prints the product of the outer and inner variables, producing one cell of the table. This creates every combination of row and column, filling the entire table.",
+            "acceptedKeywords": ["outer", "inner", "row", "column", "product", "multiplication"]
+          }
+        ]
+      }
+    }
+  ]
+}

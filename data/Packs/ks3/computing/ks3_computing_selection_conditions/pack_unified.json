@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_selection_conditions",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Selection & Conditions",
+  "subtitle": "Using IF, ELIF, and ELSE statements to control program flow based on conditions.",
+  "items": [
+    {
+      "id": "sel_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "selection",
+        "targetWord": "A programming construct that chooses between different execution paths based on whether a condition evaluates to true or false",
+        "examples": {
+          "en-GB": "Selection allows a program to output 'Pass' or 'Fail' depending on whether the score is above 50."
+        }
+      }
+    },
+    {
+      "id": "sel_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "condition",
+        "targetWord": "An expression used in a selection statement that evaluates to either True or False",
+        "examples": {
+          "en-GB": "The condition score >= 50 evaluates to True if score is 50 or above, and False otherwise."
+        }
+      }
+    },
+    {
+      "id": "sel_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IF statement",
+        "targetWord": "A selection statement that executes a block of code only when its condition is True; if the condition is False, the block is skipped",
+        "examples": {
+          "en-GB": "IF score >= 50 THEN OUTPUT \"You passed!\" ENDIF — this only prints the message when the condition is True."
+        }
+      }
+    },
+    {
+      "id": "sel_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ELSE",
+        "targetWord": "The block of code in a selection statement that executes when none of the preceding IF or ELIF conditions are True",
+        "examples": {
+          "en-GB": "The ELSE block runs when the IF condition is False, providing an alternative outcome for the program."
+        }
+      }
+    },
+    {
+      "id": "sel_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ELIF",
+        "targetWord": "Short for 'else if' — an additional condition checked only when all preceding IF and ELIF conditions were False",
+        "examples": {
+          "en-GB": "ELIF temperature > 15 THEN OUTPUT \"Warm\" — this line is only reached if the previous IF condition was False."
+        }
+      }
+    },
+    {
+      "id": "sel_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "comparison operator",
+        "targetWord": "An operator that compares two values and returns a Boolean result of True or False; examples include ==, !=, <, >, <=, >=",
+        "examples": {
+          "en-GB": "The comparison operator >= returns True if the left value is greater than or equal to the right value."
+        }
+      }
+    },
+    {
+      "id": "sel_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "logical operator",
+        "targetWord": "An operator that combines Boolean values or expressions; the three logical operators are AND, OR, and NOT",
+        "examples": {
+          "en-GB": "Using a logical operator such as AND allows two conditions to be combined: score >= 50 AND score < 75."
+        }
+      }
+    },
+    {
+      "id": "sel_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "AND",
+        "targetWord": "A logical operator that returns True only when both of its operand conditions are True; if either is False, the result is False",
+        "examples": {
+          "en-GB": "age >= 18 AND hasTicket == True is True only when both conditions hold at the same time."
+        }
+      }
+    },
+    {
+      "id": "sel_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "OR",
+        "targetWord": "A logical operator that returns True when at least one of its operand conditions is True; it is only False when both are False",
+        "examples": {
+          "en-GB": "colour == \"red\" OR colour == \"amber\" is True when either colour is red or colour is amber."
+        }
+      }
+    },
+    {
+      "id": "sel_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NOT",
+        "targetWord": "A logical operator that inverts a Boolean value: NOT True becomes False, and NOT False becomes True",
+        "examples": {
+          "en-GB": "IF NOT isLoggedIn THEN OUTPUT \"Please log in.\" — the block runs only when isLoggedIn is False."
+        }
+      }
+    },
+    {
+      "id": "sel_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "nested IF",
+        "targetWord": "An IF statement placed inside another IF statement, allowing more complex decision-making with multiple levels of conditions",
+        "examples": {
+          "en-GB": "A nested IF can first check whether a user is old enough, then inside that block check whether they have a ticket."
+        }
+      }
+    },
+    {
+      "id": "sel_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boolean expression",
+        "targetWord": "An expression that evaluates to either True or False; used as the condition in IF statements and WHILE loops",
+        "examples": {
+          "en-GB": "score >= 50 AND score < 75 is a Boolean expression that is True only when the score is in the Merit range."
+        }
+      }
+    },
+    {
+      "id": "sel_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "indentation",
+        "targetWord": "Spaces at the start of a line used in Python to define which statements belong to a particular block; indentation is mandatory and errors will cause a program to fail",
+        "examples": {
+          "en-GB": "In Python, the four spaces before print(\"You passed!\") tell the interpreter that this line is inside the IF block."
+        }
+      }
+    },
+    {
+      "id": "sel_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "branch",
+        "targetWord": "One of the possible execution paths in a selection statement; each IF, ELIF, or ELSE creates a separate branch",
+        "examples": {
+          "en-GB": "An IF-ELIF-ELSE structure with four options creates four branches, but only one branch executes for any given input."
+        }
+      }
+    },
+    {
+      "id": "sel_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "true",
+        "targetWord": "One of the two Boolean values; a condition is true when it correctly describes the current state of the program's data",
+        "examples": {
+          "en-GB": "The condition 10 > 5 is true because ten is indeed greater than five."
+        }
+      }
+    },
+    {
+      "id": "sel_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "false",
+        "targetWord": "One of the two Boolean values; a condition is false when it does not correctly describe the current state of the program's data",
+        "examples": {
+          "en-GB": "The condition 3 > 10 is false because three is not greater than ten."
+        }
+      }
+    },
+    {
+      "id": "sel_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "equality operator (==)",
+        "targetWord": "The comparison operator that tests whether two values are equal and returns True if they are, False if they are not",
+        "examples": {
+          "en-GB": "password == \"secret\" returns True only if the variable password holds exactly the string \"secret\"."
+        }
+      }
+    },
+    {
+      "id": "sel_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "assignment operator (=)",
+        "targetWord": "The operator in Python that stores a value into a variable; it is not a comparison and must not be used inside an IF condition",
+        "examples": {
+          "en-GB": "score = 85 uses the assignment operator to store the value 85 in the variable score."
+        }
+      }
+    },
+    {
+      "id": "sel_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "less than",
+        "targetWord": "The comparison operator < that returns True when the left value is smaller than the right value",
+        "examples": {
+          "en-GB": "age < 18 returns True when age is 17 or below, and False when age is 18 or above."
+        }
+      }
+    },
+    {
+      "id": "sel_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "greater than",
+        "targetWord": "The comparison operator > that returns True when the left value is larger than the right value",
+        "examples": {
+          "en-GB": "score > 100 returns True only when score exceeds 100."
+        }
+      }
+    },
+    {
+      "id": "sel_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "less than or equal",
+        "targetWord": "The comparison operator <= that returns True when the left value is smaller than or exactly equal to the right value",
+        "examples": {
+          "en-GB": "temperature <= 0 returns True for temperatures of 0 degrees and below, including negative values."
+        }
+      }
+    },
+    {
+      "id": "sel_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "greater than or equal",
+        "targetWord": "The comparison operator >= that returns True when the left value is larger than or exactly equal to the right value",
+        "examples": {
+          "en-GB": "score >= 50 returns True for scores of exactly 50 as well as all scores above 50."
+        }
+      }
+    },
+    {
+      "id": "sel_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "not equal",
+        "targetWord": "The comparison operator != that returns True when the two values being compared are different",
+        "examples": {
+          "en-GB": "password != \"correct\" returns True when the user's password does not match, so the program knows to reject the attempt."
+        }
+      }
+    },
+    {
+      "id": "sel_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "block",
+        "targetWord": "A group of statements that belong together and are executed as a unit, defined by indentation in Python",
+        "examples": {
+          "en-GB": "All statements indented under an IF line form a block; they all execute together when the condition is True."
+        }
+      }
+    },
+    {
+      "id": "sel_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "flow control",
+        "targetWord": "The mechanisms that determine the order in which instructions are executed, including sequence, selection, and iteration",
+        "examples": {
+          "en-GB": "Selection is one form of flow control: it directs the program to execute different blocks based on conditions."
+        }
+      }
+    },
+    {
+      "id": "sel_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decision",
+        "targetWord": "A point in a program where the execution path splits based on a condition; represented as a diamond shape in a flowchart",
+        "examples": {
+          "en-GB": "The question 'Is score >= 50?' is a decision point: depending on the answer, the program takes one of two paths."
+        }
+      }
+    },
+    {
+      "id": "sel_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "CASE statement",
+        "targetWord": "A selection construct that matches a variable against a list of specific values and executes the matching block; an alternative to long IF-ELIF chains",
+        "examples": {
+          "en-GB": "A CASE statement can match a day number (1–7) to a day name more clearly than seven separate ELIF conditions."
+        }
+      }
+    },
+    {
+      "id": "sel_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boolean",
+        "targetWord": "A data type with exactly two possible values, True or False; used as the result of conditions in selection and iteration",
+        "examples": {
+          "en-GB": "Every condition in an IF statement produces a Boolean result: it is either True (run the block) or False (skip it)."
+        }
+      }
+    },
+    {
+      "id": "sel_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Selection allows a program to choose between different ____ paths based on a condition.",
+        "answer": "execution",
+        "options": [
+          "execution",
+          "memory",
+          "input",
+          "output"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In Python, the assignment operator is = and the equality comparison operator is ____.",
+        "answer": "==",
+        "options": [
+          "==",
+          "=",
+          "!=",
+          ">="
+        ]
+      }
+    },
+    {
+      "id": "sel_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "AND returns True only when ____ conditions are True.",
+        "answer": "both",
+        "options": [
+          "both",
+          "neither",
+          "only one of the",
+          "at least one of the"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "OR returns True when ____ one of its conditions is True.",
+        "answer": "at least",
+        "options": [
+          "at least",
+          "exactly",
+          "neither",
+          "no more than"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "NOT ____ a Boolean value: NOT True becomes False.",
+        "answer": "inverts",
+        "options": [
+          "inverts",
+          "doubles",
+          "ignores",
+          "copies"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "ELIF only runs when the preceding ____ condition was False.",
+        "answer": "IF",
+        "options": [
+          "IF",
+          "ELSE",
+          "WHILE",
+          "FOR"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In Python, ____ at the start of a line defines which block a statement belongs to.",
+        "answer": "indentation",
+        "options": [
+          "indentation",
+          "punctuation",
+          "capitalisation",
+          "spacing"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "When an IF condition is False and there is no ELSE, the IF block is ____.",
+        "answer": "skipped",
+        "options": [
+          "skipped",
+          "repeated",
+          "reversed",
+          "deleted"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A ____ IF is an IF statement placed inside another IF statement.",
+        "answer": "nested",
+        "options": [
+          "nested",
+          "combined",
+          "double",
+          "linked"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The condition score >= 50 AND score < 75 checks that score is in a ____.",
+        "answer": "range",
+        "options": [
+          "range",
+          "list",
+          "string",
+          "loop"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Python stops evaluating an IF-ELIF chain as soon as it finds the ____ True condition.",
+        "answer": "first",
+        "options": [
+          "first",
+          "last",
+          "only",
+          "largest"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The operator != means ____.",
+        "answer": "not equal to",
+        "options": [
+          "not equal to",
+          "greater than",
+          "less than",
+          "equal to"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An IF-ELSE structure guarantees that exactly ____ of the two blocks will always execute.",
+        "answer": "one",
+        "options": [
+          "one",
+          "both",
+          "neither",
+          "two"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In a flowchart, a decision point (condition) is represented by a ____ shape.",
+        "answer": "diamond",
+        "options": [
+          "diamond",
+          "rectangle",
+          "oval",
+          "circle"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "If score = 80, the condition IF score >= 50 THEN ... ELIF score >= 80 means the ELIF block will ____.",
+        "answer": "never execute",
+        "options": [
+          "never execute",
+          "always execute",
+          "execute twice",
+          "run before IF"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The keyword used in Python for 'else if' is ____.",
+        "answer": "elif",
+        "options": [
+          "elif",
+          "elseif",
+          "else if",
+          "ELIF"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "True AND False evaluates to ____.",
+        "answer": "False",
+        "options": [
+          "False",
+          "True",
+          "None",
+          "Error"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "False OR True evaluates to ____.",
+        "answer": "True",
+        "options": [
+          "True",
+          "False",
+          "None",
+          "Error"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "NOT False evaluates to ____.",
+        "answer": "True",
+        "options": [
+          "True",
+          "False",
+          "None",
+          "Error"
+        ]
+      }
+    },
+    {
+      "id": "sel_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Every condition in an IF statement produces a result of type ____.",
+        "answer": "Boolean",
+        "options": [
+          "Boolean",
+          "integer",
+          "string",
+          "float"
+        ]
+      }
+    },
+    {
+      "id": "sel_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Order of execution in an IF/ELIF/ELSE chain",
+        "instruction": "Put the steps in the correct order showing how Python processes an IF/ELIF/ELSE structure.",
+        "items": [
+          "Evaluate the IF condition — is it True or False?",
+          "If the IF condition is True, execute the IF block and skip all remaining ELIF and ELSE blocks",
+          "If the IF condition is False, move to the first ELIF and evaluate its condition",
+          "If the ELIF condition is True, execute that ELIF block and skip remaining branches",
+          "If all IF and ELIF conditions are False, execute the ELSE block",
+          "Continue with the code after the entire IF/ELIF/ELSE structure"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "sel_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps to trace a selection program for a given input",
+        "instruction": "Put these tracing steps in the correct order.",
+        "items": [
+          "Note the input value that will be used",
+          "Evaluate the IF condition using the input value and determine if it is True or False",
+          "If True, identify which block will execute; if False, move to the next condition",
+          "Continue evaluating ELIF conditions in order until a True one is found",
+          "If no condition is True, identify that the ELSE block will execute",
+          "Record the output that the chosen block produces"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "sel_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "AND, OR, or NOT?",
+        "instruction": "Sort each compound condition by which logical operator it uses.",
+        "categories": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "pairs": [
+          {
+            "text": "age >= 18 AND hasTicket == True",
+            "category": "AND"
+          },
+          {
+            "text": "colour == \"red\" OR colour == \"blue\"",
+            "category": "OR"
+          },
+          {
+            "text": "NOT isLoggedIn",
+            "category": "NOT"
+          },
+          {
+            "text": "score >= 50 AND score < 75",
+            "category": "AND"
+          },
+          {
+            "text": "day == \"Saturday\" OR day == \"Sunday\"",
+            "category": "OR"
+          },
+          {
+            "text": "NOT gameOver",
+            "category": "NOT"
+          },
+          {
+            "text": "x > 0 AND x < 10",
+            "category": "AND"
+          },
+          {
+            "text": "grade == \"A\" OR grade == \"B\"",
+            "category": "OR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sel_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Selection and Conditions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "= or ==?",
+        "instruction": "Sort each statement into assignment or comparison.",
+        "categories": [
+          "assignment (=)",
+          "comparison (==)"
+        ],
+        "pairs": [
+          {
+            "text": "score = 85",
+            "category": "assignment (=)"
+          },
+          {
+            "text": "if score == 85:",
+            "category": "comparison (==)"
+          },
+          {
+            "text": "name = \"Alice\"",
+            "category": "assignment (=)"
+          },
+          {
+            "text": "if name == \"Alice\":",
+            "category": "comparison (==)"
+          },
+          {
+            "text": "total = 0",
+            "category": "assignment (=)"
+          },
+          {
+            "text": "while count == 3:",
+            "category": "comparison (==)"
+          },
+          {
+            "text": "lives = 3",
+            "category": "assignment (=)"
+          },
+          {
+            "text": "if password == \"secret\":",
+            "category": "comparison (==)"
+          }
+        ]
+      }
+    }
+  ]
+}

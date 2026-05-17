@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_cybersecurity_threats",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "cybersecurity"],
+  "items": [
+    {
+      "id": "ks3_computing_cybersecurity_threats_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Cybersecurity Threats & Attacks"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Malware",
+        "sourceTitle": "Malware: Viruses, Worms, and Trojans",
+        "targetTitle": "Malware: Viruses, Worms, and Trojans",
+        "sourcePassage": "Malware is a broad term for any software designed to disrupt, damage, or gain unauthorised access to a computer system. Within this category, viruses, worms, and Trojans each behave in different ways and cause different kinds of harm.\n\nA virus attaches itself to a legitimate file. It does not spread on its own — it relies on a human to share the infected file, for example by forwarding an email attachment or copying a file to a USB drive. Once opened on a new machine, the virus can corrupt or delete data and spread to other files on that device.\n\nA worm is fundamentally different: it is self-replicating. It does not need to attach to a file or wait for a human to share it. Instead, it automatically scans networks for vulnerable devices and copies itself across without any user action. This makes worms capable of spreading across an entire organisation's network within minutes. The WannaCry attack of 2017 used a worm to spread ransomware across NHS computers, disrupting patient care in hospitals across the UK.\n\nA Trojan disguises itself as something legitimate and useful — a free game, a video codec, or a helpful tool. When the user installs it, the Trojan opens a backdoor, giving an attacker remote access to the system. Unlike viruses and worms, Trojans do not self-replicate; they depend entirely on users being tricked into installing them. Once inside, attackers can steal files, install more malware, or use the device as part of a botnet.",
+        "targetPassage": "Malware is a broad term for any software designed to disrupt, damage, or gain unauthorised access to a computer system. Within this category, viruses, worms, and Trojans each behave in different ways and cause different kinds of harm.\n\nA virus attaches itself to a legitimate file. It does not spread on its own — it relies on a human to share the infected file, for example by forwarding an email attachment or copying a file to a USB drive. Once opened on a new machine, the virus can corrupt or delete data and spread to other files on that device.\n\nA worm is fundamentally different: it is self-replicating. It does not need to attach to a file or wait for a human to share it. Instead, it automatically scans networks for vulnerable devices and copies itself across without any user action. This makes worms capable of spreading across an entire organisation's network within minutes. The WannaCry attack of 2017 used a worm to spread ransomware across NHS computers, disrupting patient care in hospitals across the UK.\n\nA Trojan disguises itself as something legitimate and useful — a free game, a video codec, or a helpful tool. When the user installs it, the Trojan opens a backdoor, giving an attacker remote access to the system. Unlike viruses and worms, Trojans do not self-replicate; they depend entirely on users being tricked into installing them. Once inside, attackers can steal files, install more malware, or use the device as part of a botnet.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is malware?",
+            "options": [
+              "Any software that slows down a computer",
+              "Software designed to disrupt, damage, or gain unauthorised access to a system",
+              "A type of antivirus program",
+              "Software used by IT professionals to test networks"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Software designed to disrupt, damage, or gain unauthorised access to a system",
+            "acceptedKeywords": ["disrupt", "damage", "unauthorised access", "malicious"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the key difference between a virus and a worm?",
+            "options": [
+              "A virus causes more damage than a worm",
+              "A worm spreads automatically without user action; a virus requires a human to share the infected file",
+              "A virus targets files; a worm only targets emails",
+              "A worm can only infect Windows computers"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A worm spreads automatically without user action; a virus requires a human to share the infected file",
+            "acceptedKeywords": ["self-replicating", "automatically", "without user action", "human action"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why are worms considered particularly dangerous in an organisation's network?",
+            "options": [
+              "Because they require the user to install them manually",
+              "Because they can spread across every device on a network within minutes without any user involvement",
+              "Because they display advertisements that distract employees",
+              "Because they only target operating systems and not data"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because they can spread across every device on a network within minutes without any user involvement",
+            "acceptedKeywords": ["spread automatically", "no user action", "network", "minutes"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "A Trojan does not self-replicate. Why does this make it no less dangerous than a virus or worm?",
+            "options": [
+              "Because Trojans are immune to antivirus software",
+              "Because once installed it opens a backdoor giving an attacker persistent remote access to steal data, install further malware, or add the device to a botnet",
+              "Because Trojans always arrive via worms rather than being installed by users",
+              "Because Trojans encrypt files in the same way as ransomware"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because once installed it opens a backdoor giving an attacker persistent remote access to steal data, install further malware, or add the device to a botnet",
+            "acceptedKeywords": ["backdoor", "remote access", "steal", "botnet", "persistent"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cybersecurity_threats_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Cybersecurity Threats & Attacks"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Social Engineering",
+        "sourceTitle": "Social Engineering Attacks",
+        "targetTitle": "Social Engineering Attacks",
+        "sourcePassage": "Social engineering attacks exploit human psychology rather than technical vulnerabilities. Even the most secure computer system can be defeated if the people using it can be manipulated into handing over information or granting access. Attackers rely on trust, urgency, fear, and authority to make their victims act without thinking.\n\nPhishing is the most common social engineering attack. The attacker sends an email that appears to come from a trusted organisation — a bank, a government department, or a technology company. The email typically contains urgent language, a suspicious link, and a request for login credentials or personal details. Warning signs include an incorrect sender domain, generic greetings such as \"Dear Customer\", and links whose real destination differs from the displayed text.\n\nSmishing is phishing carried out by SMS. People tend to trust text messages more than emails, and links are harder to inspect on a mobile screen. Vishing uses voice calls — attackers impersonate bank fraud departments or HMRC, creating urgency to keep victims on the line before they can stop and think.\n\nPretexting involves building a more elaborate false backstory. An attacker might call an employee pretending to be an IT technician who urgently needs the employee's password to prevent a system failure. Shoulder surfing requires no technology at all — the attacker simply stands nearby and watches a victim enter a PIN at an ATM or type a password at their desk. All social engineering attacks share one defence: pause, verify through a trusted channel, and never share credentials in response to an unsolicited contact.",
+        "targetPassage": "Social engineering attacks exploit human psychology rather than technical vulnerabilities. Even the most secure computer system can be defeated if the people using it can be manipulated into handing over information or granting access. Attackers rely on trust, urgency, fear, and authority to make their victims act without thinking.\n\nPhishing is the most common social engineering attack. The attacker sends an email that appears to come from a trusted organisation — a bank, a government department, or a technology company. The email typically contains urgent language, a suspicious link, and a request for login credentials or personal details. Warning signs include an incorrect sender domain, generic greetings such as \"Dear Customer\", and links whose real destination differs from the displayed text.\n\nSmishing is phishing carried out by SMS. People tend to trust text messages more than emails, and links are harder to inspect on a mobile screen. Vishing uses voice calls — attackers impersonate bank fraud departments or HMRC, creating urgency to keep victims on the line before they can stop and think.\n\nPretexting involves building a more elaborate false backstory. An attacker might call an employee pretending to be an IT technician who urgently needs the employee's password to prevent a system failure. Shoulder surfing requires no technology at all — the attacker simply stands nearby and watches a victim enter a PIN at an ATM or type a password at their desk. All social engineering attacks share one defence: pause, verify through a trusted channel, and never share credentials in response to an unsolicited contact.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What do social engineering attacks exploit?",
+            "options": [
+              "Weaknesses in firewall software",
+              "Human psychology — trust, urgency, fear, and authority",
+              "Unpatched operating systems",
+              "Slow internet connections"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Human psychology — trust, urgency, fear, and authority",
+            "acceptedKeywords": ["psychology", "human", "trust", "urgency"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is smishing?",
+            "options": [
+              "Phishing carried out via voice call",
+              "Phishing carried out via SMS text message",
+              "Physically watching someone enter their PIN",
+              "A targeted email attack using the victim's real name"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Phishing carried out via SMS text message",
+            "acceptedKeywords": ["SMS", "text message", "phishing via text"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Which of the following is a warning sign that an email may be a phishing attempt?",
+            "options": [
+              "The email uses your actual name in the greeting",
+              "The email comes from a domain matching the real organisation",
+              "The email uses urgent language and the sender domain does not match the claimed organisation",
+              "The email contains a plain-text link with no images"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "The email uses urgent language and the sender domain does not match the claimed organisation",
+            "acceptedKeywords": ["urgent", "wrong domain", "domain", "sender"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "Why are social engineering attacks effective even against organisations with strong technical security?",
+            "options": [
+              "Because antivirus software cannot detect social engineering",
+              "Because firewalls do not work against phone calls",
+              "Because they target people rather than software, and humans can be manipulated through trust, urgency, and authority regardless of technical defences",
+              "Because social engineering always uses encryption to hide the attack"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Because they target people rather than software, and humans can be manipulated through trust, urgency, and authority regardless of technical defences",
+            "acceptedKeywords": ["target people", "human", "trust", "authority", "bypass technical"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cybersecurity_threats_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Cybersecurity Threats & Attacks"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Network Attacks",
+        "sourceTitle": "Denial of Service and Brute Force Attacks",
+        "targetTitle": "Denial of Service and Brute Force Attacks",
+        "sourcePassage": "Not all cyberattacks aim to steal data. Some are designed to disrupt services or force their way into accounts through sheer computational power.\n\nA Denial of Service (DoS) attack floods a web server with so many fake requests per second that it becomes overwhelmed and cannot respond to legitimate users. The effect is that the target service — a website, online banking platform, or gaming server — goes offline. A single machine sends all the traffic in a DoS attack, which makes it easier to block by simply filtering that IP address.\n\nA Distributed Denial of Service (DDoS) attack is far harder to stop. The attacker coordinates thousands or even millions of compromised devices — known as a botnet — to flood the target simultaneously from different IP addresses worldwide. Traffic volumes in major DDoS attacks can reach terabits per second, completely overwhelming any defences. Botnets are assembled by infecting ordinary devices — home routers, webcams, and computers — with Trojan malware, often without the owners' knowledge.\n\nA brute force attack takes a completely different approach to breaking into an account. The attacker's software systematically tries every possible password combination — starting from simple sequences and working through increasingly complex ones — until it finds the correct password. Modern computers can attempt billions of combinations per second, meaning short or simple passwords are cracked almost instantly. Defences include using long, complex passwords of twelve or more characters, enabling account lockouts after a set number of failed attempts, and using multi-factor authentication so that knowing the password alone is not enough to gain access.",
+        "targetPassage": "Not all cyberattacks aim to steal data. Some are designed to disrupt services or force their way into accounts through sheer computational power.\n\nA Denial of Service (DoS) attack floods a web server with so many fake requests per second that it becomes overwhelmed and cannot respond to legitimate users. The effect is that the target service — a website, online banking platform, or gaming server — goes offline. A single machine sends all the traffic in a DoS attack, which makes it easier to block by simply filtering that IP address.\n\nA Distributed Denial of Service (DDoS) attack is far harder to stop. The attacker coordinates thousands or even millions of compromised devices — known as a botnet — to flood the target simultaneously from different IP addresses worldwide. Traffic volumes in major DDoS attacks can reach terabits per second, completely overwhelming any defences. Botnets are assembled by infecting ordinary devices — home routers, webcams, and computers — with Trojan malware, often without the owners' knowledge.\n\nA brute force attack takes a completely different approach to breaking into an account. The attacker's software systematically tries every possible password combination — starting from simple sequences and working through increasingly complex ones — until it finds the correct password. Modern computers can attempt billions of combinations per second, meaning short or simple passwords are cracked almost instantly. Defences include using long, complex passwords of twelve or more characters, enabling account lockouts after a set number of failed attempts, and using multi-factor authentication so that knowing the password alone is not enough to gain access.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the goal of a Denial of Service attack?",
+            "options": [
+              "To steal user passwords from a database",
+              "To make a service unavailable by overwhelming it with fake requests",
+              "To install ransomware on a server",
+              "To intercept communications between users"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "To make a service unavailable by overwhelming it with fake requests",
+            "acceptedKeywords": ["unavailable", "overwhelm", "flood", "offline"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a botnet?",
+            "options": [
+              "A type of firewall used to block DoS attacks",
+              "A network of infected devices controlled by an attacker",
+              "A set of security patches for web servers",
+              "Software that monitors network traffic for threats"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A network of infected devices controlled by an attacker",
+            "acceptedKeywords": ["infected devices", "compromised", "controlled", "botnet"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why is a DDoS attack harder to stop than a DoS attack?",
+            "options": [
+              "Because DDoS attacks use more sophisticated malware",
+              "Because a DoS attack uses encryption but a DDoS does not",
+              "Because DDoS traffic comes from thousands of different IP addresses worldwide, making it impossible to block by filtering a single source",
+              "Because DDoS attacks can only target government websites"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Because DDoS traffic comes from thousands of different IP addresses worldwide, making it impossible to block by filtering a single source",
+            "acceptedKeywords": ["different IP addresses", "thousands", "cannot block single IP", "distributed"]
+          },
+          {
+            "id": "ks3_computing_cybersecurity_threats_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "A user has a six-character password made of lowercase letters only. Why is this particularly vulnerable to a brute force attack, and what is the most effective countermeasure?",
+            "options": [
+              "It is vulnerable because short, simple passwords have few possible combinations and can be cracked in seconds; the most effective countermeasure is to use a long, complex password with mixed characters and enable multi-factor authentication",
+              "It is vulnerable because lowercase letters are not supported by login systems; the fix is to use uppercase only",
+              "It is vulnerable because the password is stored in the browser; the fix is to clear the browser cache",
+              "It is vulnerable only if shared with another person; the fix is to keep it secret"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "It is vulnerable because short, simple passwords have few possible combinations and can be cracked in seconds; the most effective countermeasure is to use a long, complex password with mixed characters and enable multi-factor authentication",
+            "acceptedKeywords": ["short", "few combinations", "cracked", "long password", "multi-factor"]
+          }
+        ]
+      }
+    }
+  ]
+}

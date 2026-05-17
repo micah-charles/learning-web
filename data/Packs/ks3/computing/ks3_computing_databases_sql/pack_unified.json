@@ -1,0 +1,1421 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_databases_sql",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Databases & SQL",
+  "subtitle": "Database concepts, relational databases, SQL queries, and data validation.",
+  "items": [
+    {
+      "id": "db_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "database",
+        "targetWord": "an organised, structured collection of data that enables efficient storage, retrieval, and management of information",
+        "examples": {
+          "en-GB": "The school uses a database to store student names, year groups, and subjects in a structured way."
+        }
+      }
+    },
+    {
+      "id": "db_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "table",
+        "targetWord": "a grid of rows and columns within a database that stores data about one type of entity, such as students or teachers",
+        "examples": {
+          "en-GB": "The Students table contains a separate row for each student and a column for each piece of information stored about them."
+        }
+      }
+    },
+    {
+      "id": "db_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "field",
+        "targetWord": "a single column in a database table representing one attribute or property of the entity being stored",
+        "examples": {
+          "en-GB": "The fields in the Students table include StudentID, Name, Age, and Subject."
+        }
+      }
+    },
+    {
+      "id": "db_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "record",
+        "targetWord": "a single row in a database table containing all the data about one individual entity",
+        "examples": {
+          "en-GB": "Each record in the Students table contains all the information stored about one particular student."
+        }
+      }
+    },
+    {
+      "id": "db_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "primary key",
+        "targetWord": "a field in a database table that uniquely identifies each record; it must be unique for every row and cannot be empty",
+        "examples": {
+          "en-GB": "StudentID is the primary key of the Students table because no two students share the same ID."
+        }
+      }
+    },
+    {
+      "id": "db_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "foreign key",
+        "targetWord": "a field in one database table that holds the primary key value from another table, creating a link (relationship) between the two tables",
+        "examples": {
+          "en-GB": "TeacherID in the Students table is a foreign key that links each student to their teacher's record in the Teachers table."
+        }
+      }
+    },
+    {
+      "id": "db_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "SQL",
+        "targetWord": "Structured Query Language — the standard programming language used to create, query, and manage data in relational databases",
+        "examples": {
+          "en-GB": "SQL is used to retrieve specific records from a database by writing queries using keywords such as SELECT, FROM, and WHERE."
+        }
+      }
+    },
+    {
+      "id": "db_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "SELECT",
+        "targetWord": "the SQL keyword used to specify which fields (columns) should be included in the results of a query",
+        "examples": {
+          "en-GB": "SELECT Name, Age means the query will only return the Name and Age columns, not all fields in the table."
+        }
+      }
+    },
+    {
+      "id": "db_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "FROM",
+        "targetWord": "the SQL keyword used to specify which table the query should retrieve data from",
+        "examples": {
+          "en-GB": "FROM Students tells the database to look in the Students table when running the query."
+        }
+      }
+    },
+    {
+      "id": "db_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "WHERE",
+        "targetWord": "the SQL keyword used to filter records so that only rows matching a specified condition are included in the results",
+        "examples": {
+          "en-GB": "WHERE Age > 14 means only students older than 14 will appear in the query results."
+        }
+      }
+    },
+    {
+      "id": "db_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ORDER BY",
+        "targetWord": "the SQL keyword used to sort the results of a query by a specified field, either ascending or descending",
+        "examples": {
+          "en-GB": "ORDER BY Name ASC sorts the results alphabetically from A to Z by the Name field."
+        }
+      }
+    },
+    {
+      "id": "db_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ASC",
+        "targetWord": "ascending order in SQL — sorts text A to Z or numbers from smallest to largest; this is the default sort direction",
+        "examples": {
+          "en-GB": "ORDER BY Age ASC displays the youngest students first, with the oldest at the bottom."
+        }
+      }
+    },
+    {
+      "id": "db_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "DESC",
+        "targetWord": "descending order in SQL — sorts text Z to A or numbers from largest to smallest",
+        "examples": {
+          "en-GB": "ORDER BY Age DESC shows the oldest students first and the youngest last."
+        }
+      }
+    },
+    {
+      "id": "db_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "AND",
+        "targetWord": "an SQL logical operator used in a WHERE clause to require that both conditions must be true for a record to be included in results",
+        "examples": {
+          "en-GB": "WHERE Age > 14 AND Subject = 'Computing' returns only students who are both over 14 AND study Computing."
+        }
+      }
+    },
+    {
+      "id": "db_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "OR",
+        "targetWord": "an SQL logical operator used in a WHERE clause to require that at least one of the conditions must be true for a record to be included",
+        "examples": {
+          "en-GB": "WHERE Subject = 'Computing' OR Subject = 'Science' returns students studying either Computing or Science."
+        }
+      }
+    },
+    {
+      "id": "db_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "flat-file database",
+        "targetWord": "a database that stores all data in a single table, which causes data redundancy and update anomalies as the same information is repeated across many rows",
+        "examples": {
+          "en-GB": "A flat-file database storing both student and teacher data in one table would repeat the teacher's name in every student row."
+        }
+      }
+    },
+    {
+      "id": "db_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "relational database",
+        "targetWord": "a database that organises data across multiple linked tables to eliminate redundancy, using primary and foreign keys to connect related data",
+        "examples": {
+          "en-GB": "A relational database stores teacher information once in a Teachers table and links student records to it using a foreign key."
+        }
+      }
+    },
+    {
+      "id": "db_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data redundancy",
+        "targetWord": "the unnecessary repetition of the same data in multiple places within a database, causing storage waste and inconsistency",
+        "examples": {
+          "en-GB": "In a flat-file database, data redundancy occurs when the same teacher's name appears in hundreds of student rows."
+        }
+      }
+    },
+    {
+      "id": "db_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "normalisation",
+        "targetWord": "the process of designing a relational database to reduce data redundancy and improve data integrity by organising data into multiple linked tables",
+        "examples": {
+          "en-GB": "Normalisation separates student data and teacher data into two tables linked by a foreign key, removing repeated teacher information."
+        }
+      }
+    },
+    {
+      "id": "db_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "query",
+        "targetWord": "a request made to a database to retrieve, insert, update, or delete specific data, typically written in SQL",
+        "examples": {
+          "en-GB": "The query returned all students in Year 9 who study Computing, sorted alphabetically by surname."
+        }
+      }
+    },
+    {
+      "id": "db_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data type",
+        "targetWord": "the category of data a field can store, such as integer, text, Boolean, or date, which the database enforces for all values in that field",
+        "examples": {
+          "en-GB": "If the Age field has a data type of integer, the database will reject any entry that is not a whole number."
+        }
+      }
+    },
+    {
+      "id": "db_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "validation",
+        "targetWord": "automated checking performed by a system to ensure that data entered meets a set of defined rules before it is stored in the database",
+        "examples": {
+          "en-GB": "Validation rejected the entry because the age entered was -5, which is outside the acceptable range for a student."
+        }
+      }
+    },
+    {
+      "id": "db_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "verification",
+        "targetWord": "checking that data entered into a system is an accurate copy of the original source, typically performed by a human through proofreading or double data entry",
+        "examples": {
+          "en-GB": "Double data entry is a verification method where two people both enter the same data and the system flags any differences."
+        }
+      }
+    },
+    {
+      "id": "db_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "presence check",
+        "targetWord": "a validation rule that ensures a field is not left empty; the record cannot be saved if a required field has no value",
+        "examples": {
+          "en-GB": "A presence check on the StudentID field ensures no student record can be saved without a unique ID."
+        }
+      }
+    },
+    {
+      "id": "db_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "range check",
+        "targetWord": "a validation rule that ensures a numeric value falls within a specified minimum and maximum; values outside that range are rejected",
+        "examples": {
+          "en-GB": "A range check on the Age field rejects values below 5 or above 110 as they fall outside a sensible range."
+        }
+      }
+    },
+    {
+      "id": "db_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "format check",
+        "targetWord": "a validation rule that ensures data entered matches a required pattern or format, such as a date in DD/MM/YYYY or a UK postcode pattern",
+        "examples": {
+          "en-GB": "A format check on the date field rejects 31/13/2023 because month 13 does not exist in the DD/MM/YYYY pattern."
+        }
+      }
+    },
+    {
+      "id": "db_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "type check",
+        "targetWord": "a validation rule that ensures the data entered is of the correct data type, for example rejecting text in a field that only accepts integers",
+        "examples": {
+          "en-GB": "A type check on the Age field rejects 'fourteen' because the field only accepts integer values."
+        }
+      }
+    },
+    {
+      "id": "db_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "length check",
+        "targetWord": "a validation rule that ensures the number of characters entered into a field falls within a specified minimum and maximum length",
+        "examples": {
+          "en-GB": "A length check on the password field rejects passwords shorter than 8 or longer than 20 characters."
+        }
+      }
+    },
+    {
+      "id": "db_v29",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data integrity",
+        "targetWord": "the accuracy, consistency, and reliability of data stored in a database, maintained through validation, foreign key constraints, and normalisation",
+        "examples": {
+          "en-GB": "Using a foreign key constraint maintains data integrity by preventing a student record from linking to a teacher ID that does not exist."
+        }
+      }
+    },
+    {
+      "id": "db_v30",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "entity",
+        "targetWord": "a distinct object or concept about which data is stored in a database table, such as a student, teacher, or subject",
+        "examples": {
+          "en-GB": "In the school database, Student, Teacher, and Subject are each a separate entity with its own table."
+        }
+      }
+    },
+    {
+      "id": "db_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ is a single column in a database table representing one attribute of the entity.",
+        "answer": "field",
+        "options": [
+          "field",
+          "record",
+          "key",
+          "query"
+        ]
+      }
+    },
+    {
+      "id": "db_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ is a single row in a database table containing all data about one individual entity.",
+        "answer": "record",
+        "options": [
+          "record",
+          "field",
+          "primary key",
+          "table"
+        ]
+      }
+    },
+    {
+      "id": "db_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "The ____ key uniquely identifies each record in a table and cannot be empty or repeated.",
+        "answer": "primary",
+        "options": [
+          "primary",
+          "foreign",
+          "sort",
+          "linked"
+        ]
+      }
+    },
+    {
+      "id": "db_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ key in one table holds the primary key value from another table, linking the two tables together.",
+        "answer": "foreign",
+        "options": [
+          "foreign",
+          "primary",
+          "secondary",
+          "compound"
+        ]
+      }
+    },
+    {
+      "id": "db_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "In SQL, the ____ keyword specifies which fields to display in the query results.",
+        "answer": "SELECT",
+        "options": [
+          "SELECT",
+          "FROM",
+          "WHERE",
+          "ORDER BY"
+        ]
+      }
+    },
+    {
+      "id": "db_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "In SQL, the ____ keyword specifies which table to retrieve data from.",
+        "answer": "FROM",
+        "options": [
+          "FROM",
+          "SELECT",
+          "WHERE",
+          "TABLE"
+        ]
+      }
+    },
+    {
+      "id": "db_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "The SQL ____ keyword filters which records are included in the results based on a condition.",
+        "answer": "WHERE",
+        "options": [
+          "WHERE",
+          "FILTER",
+          "ORDER BY",
+          "SELECT"
+        ]
+      }
+    },
+    {
+      "id": "db_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "The SQL ____ keyword sorts the query results by a specified field.",
+        "answer": "ORDER BY",
+        "options": [
+          "ORDER BY",
+          "SORT",
+          "WHERE",
+          "GROUP BY"
+        ]
+      }
+    },
+    {
+      "id": "db_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "ASC stands for ____ order, sorting values from A to Z or smallest to largest.",
+        "answer": "ascending",
+        "options": [
+          "ascending",
+          "descending",
+          "associative",
+          "assorted"
+        ]
+      }
+    },
+    {
+      "id": "db_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "DESC stands for ____ order, sorting values from Z to A or largest to smallest.",
+        "answer": "descending",
+        "options": [
+          "descending",
+          "ascending",
+          "decimal",
+          "decreasing"
+        ]
+      }
+    },
+    {
+      "id": "db_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "SELECT ____ returns all fields from the specified table rather than a named subset.",
+        "answer": "*",
+        "options": [
+          "*",
+          "ALL",
+          "FIELDS",
+          "EVERYTHING"
+        ]
+      }
+    },
+    {
+      "id": "db_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "____ checks that data entered meets a set of rules before it is stored, but does not guarantee the data is correct.",
+        "answer": "Validation",
+        "options": [
+          "Validation",
+          "Verification",
+          "Normalisation",
+          "Encryption"
+        ]
+      }
+    },
+    {
+      "id": "db_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "____ checks that data entered accurately matches the original source document, typically through human review.",
+        "answer": "Verification",
+        "options": [
+          "Verification",
+          "Validation",
+          "Querying",
+          "Indexing"
+        ]
+      }
+    },
+    {
+      "id": "db_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ database stores all data in one table and suffers from data redundancy and update anomalies.",
+        "answer": "flat-file",
+        "options": [
+          "flat-file",
+          "relational",
+          "normalised",
+          "hierarchical"
+        ]
+      }
+    },
+    {
+      "id": "db_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ database uses multiple linked tables to eliminate redundancy and improve consistency.",
+        "answer": "relational",
+        "options": [
+          "relational",
+          "flat-file",
+          "sequential",
+          "binary"
+        ]
+      }
+    },
+    {
+      "id": "db_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ check ensures that a required field is not left empty when a record is saved.",
+        "answer": "presence",
+        "options": [
+          "presence",
+          "range",
+          "format",
+          "type"
+        ]
+      }
+    },
+    {
+      "id": "db_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ check ensures a value is between a specified minimum and maximum, rejecting values like -5 for age.",
+        "answer": "range",
+        "options": [
+          "range",
+          "type",
+          "length",
+          "lookup"
+        ]
+      }
+    },
+    {
+      "id": "db_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ check ensures data matches a required pattern, such as a date in DD/MM/YYYY format.",
+        "answer": "format",
+        "options": [
+          "format",
+          "range",
+          "presence",
+          "lookup"
+        ]
+      }
+    },
+    {
+      "id": "db_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ check ensures data is the correct data type, for example rejecting text in an integer field.",
+        "answer": "type",
+        "options": [
+          "type",
+          "format",
+          "range",
+          "presence"
+        ]
+      }
+    },
+    {
+      "id": "db_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "A ____ check ensures the number of characters in a field falls within a permitted minimum and maximum.",
+        "answer": "length",
+        "options": [
+          "length",
+          "type",
+          "range",
+          "format"
+        ]
+      }
+    },
+    {
+      "id": "db_fb21",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "In SQL, using ____ between two conditions means BOTH conditions must be true for a record to appear.",
+        "answer": "AND",
+        "options": [
+          "AND",
+          "OR",
+          "NOT",
+          "WHERE"
+        ]
+      }
+    },
+    {
+      "id": "db_fb22",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "In SQL, using ____ between two conditions means AT LEAST ONE condition must be true for a record to appear.",
+        "answer": "OR",
+        "options": [
+          "OR",
+          "AND",
+          "NOT",
+          "EITHER"
+        ]
+      }
+    },
+    {
+      "id": "db_fb23",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "Data ____ is the unnecessary repetition of the same data stored in multiple rows, a problem in flat-file databases.",
+        "answer": "redundancy",
+        "options": [
+          "redundancy",
+          "integrity",
+          "normalisation",
+          "encryption"
+        ]
+      }
+    },
+    {
+      "id": "db_fb24",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "An ____ anomaly occurs when data is updated in one place but not in all the other rows where it is stored.",
+        "answer": "update",
+        "options": [
+          "update",
+          "insertion",
+          "deletion",
+          "query"
+        ]
+      }
+    },
+    {
+      "id": "db_fb25",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "sentence": "Double data entry is a method of ____ in which data is entered twice and any differences are flagged.",
+        "answer": "verification",
+        "options": [
+          "verification",
+          "validation",
+          "normalisation",
+          "encryption"
+        ]
+      }
+    },
+    {
+      "id": "db_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "title": "Writing a SQL SELECT query",
+        "instruction": "Arrange these clauses in the correct order to build a valid SQL SELECT query.",
+        "items": [
+          "SELECT (fields to display)",
+          "FROM (table name)",
+          "WHERE (filter condition)",
+          "ORDER BY (sort field and direction)"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "db_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "title": "Steps to validate data before storing in a database",
+        "instruction": "Arrange these steps in the correct order to describe how data validation works.",
+        "items": [
+          "User enters data into the input form",
+          "System applies validation rules to the entered data",
+          "If data fails a rule, an error message is shown to the user",
+          "User corrects and re-enters the data",
+          "Data passes all validation rules and is stored in the database"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "db_cat01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "title": "Field or Record?",
+        "instruction": "Sort each description into whether it describes a field or a record.",
+        "categories": [
+          "Field",
+          "Record"
+        ],
+        "pairs": [
+          {
+            "text": "A column in a database table",
+            "category": "Field"
+          },
+          {
+            "text": "Stores one attribute of an entity, e.g. 'Age'",
+            "category": "Field"
+          },
+          {
+            "text": "The heading of a column such as 'StudentID'",
+            "category": "Field"
+          },
+          {
+            "text": "A row in a database table",
+            "category": "Record"
+          },
+          {
+            "text": "All data about one individual entity",
+            "category": "Record"
+          },
+          {
+            "text": "One student's complete entry in the Students table",
+            "category": "Record"
+          }
+        ]
+      }
+    },
+    {
+      "id": "db_cat02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "title": "Which SQL clause does this describe?",
+        "instruction": "Sort each description into the correct SQL keyword.",
+        "categories": [
+          "SELECT",
+          "FROM",
+          "WHERE",
+          "ORDER BY"
+        ],
+        "pairs": [
+          {
+            "text": "Specifies which fields appear in the results",
+            "category": "SELECT"
+          },
+          {
+            "text": "Use * to return all columns",
+            "category": "SELECT"
+          },
+          {
+            "text": "Names the table to retrieve data from",
+            "category": "FROM"
+          },
+          {
+            "text": "Tells the database which table to look in",
+            "category": "FROM"
+          },
+          {
+            "text": "Filters records based on a condition",
+            "category": "WHERE"
+          },
+          {
+            "text": "Excludes records that do not meet the specified criteria",
+            "category": "WHERE"
+          },
+          {
+            "text": "Sorts the final results alphabetically or numerically",
+            "category": "ORDER BY"
+          },
+          {
+            "text": "Can be followed by ASC or DESC",
+            "category": "ORDER BY"
+          }
+        ]
+      }
+    },
+    {
+      "id": "db_cat03",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Databases: Structure and SQL"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "databases"
+      ],
+      "data": {
+        "title": "Which validation check is this?",
+        "instruction": "Sort each validation rule description into the correct type of check.",
+        "categories": [
+          "Presence check",
+          "Range check",
+          "Format check",
+          "Type check",
+          "Length check"
+        ],
+        "pairs": [
+          {
+            "text": "Ensures the StudentID field is not left blank",
+            "category": "Presence check"
+          },
+          {
+            "text": "Rejects values below 5 or above 110 for an Age field",
+            "category": "Range check"
+          },
+          {
+            "text": "Checks a date is entered as DD/MM/YYYY",
+            "category": "Format check"
+          },
+          {
+            "text": "Rejects the word 'fourteen' in a numeric Age field",
+            "category": "Type check"
+          },
+          {
+            "text": "Rejects passwords shorter than 8 or longer than 20 characters",
+            "category": "Length check"
+          },
+          {
+            "text": "Ensures a required name field cannot be saved as empty",
+            "category": "Presence check"
+          }
+        ]
+      }
+    }
+  ]
+}

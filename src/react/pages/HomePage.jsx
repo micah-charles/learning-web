@@ -33,6 +33,8 @@ const SUBJECT_ICONS = {
   geography:  "🗺️",
   science:    "🔬",
   literature: "📚",
+  computing:  "💻",
+  other:      "🗂️",
 };
 
 function PackCard({ pack, onClick }) {

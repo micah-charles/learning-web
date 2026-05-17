@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_cybersecurity_protection",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Cybersecurity Protection & Safe Practices",
+  "subtitle": "Firewalls, encryption, antivirus, 2FA, software updates, and safe digital practices.",
+  "items": [
+    {
+      "id": "cyber_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Cybersecurity: Protection"],
+      "tags": ["KS3", "computing", "cybersecurity"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Firewalls and How They Work",
+        "targetTitle": "Firewalls and How They Work",
+        "sourcePassage": "A firewall is one of the most fundamental tools in network security. It monitors every packet of data entering and leaving a network and compares each packet against a set of rules. If a packet matches a permitted rule — for example, it comes from a trusted IP address or uses the HTTPS protocol — it is allowed through. If it does not match any permitted rule, it is blocked.\n\nFirewalls come in two main forms. A hardware firewall is a physical device, often built into the router, that protects an entire network. Every device connected to that network benefits from its protection. A software firewall is a program installed on a single device, protecting just that machine.\n\nFirewalls are effective against many types of attack, including unauthorised access attempts and some denial-of-service attacks. However, they have important limitations. A firewall cannot stop phishing attacks, because the user willingly provides their own credentials. It also cannot stop malware that is already installed inside the network.",
+        "targetPassage": "A firewall is one of the most fundamental tools in network security. It monitors every packet of data entering and leaving a network and compares each packet against a set of rules. If a packet matches a permitted rule — for example, it comes from a trusted IP address or uses the HTTPS protocol — it is allowed through. If it does not match any permitted rule, it is blocked.\n\nFirewalls come in two main forms. A hardware firewall is a physical device, often built into the router, that protects an entire network. Every device connected to that network benefits from its protection. A software firewall is a program installed on a single device, protecting just that machine.\n\nFirewalls are effective against many types of attack, including unauthorised access attempts and some denial-of-service attacks. However, they have important limitations. A firewall cannot stop phishing attacks, because the user willingly provides their own credentials. It also cannot stop malware that is already installed inside the network.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "cyber_p01_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does a firewall compare each data packet against?",
+            "options": [
+              "A signature database of known malware",
+              "A set of permitted rules",
+              "An encryption key",
+              "A backup copy of the network"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A firewall compares each data packet against a set of rules. Packets that match permitted rules are allowed through; all others are blocked.",
+            "acceptedKeywords": ["rules", "set of rules", "ruleset", "permitted rules"]
+          },
+          {
+            "id": "cyber_p01_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the key difference between a hardware firewall and a software firewall?",
+            "options": [
+              "A hardware firewall uses encryption; a software firewall does not",
+              "A hardware firewall protects an entire network; a software firewall protects a single device",
+              "A hardware firewall is free; a software firewall costs money",
+              "A hardware firewall blocks viruses; a software firewall blocks hackers"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A hardware firewall is a physical device that protects an entire network. A software firewall is a program installed on a single device that only protects that device.",
+            "acceptedKeywords": ["entire network", "single device", "individual device", "hardware", "software"]
+          },
+          {
+            "id": "cyber_p01_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Which of the following is a limitation of firewalls described in the passage?",
+            "options": [
+              "Firewalls cannot block any denial-of-service attacks",
+              "Firewalls cannot protect hardware devices",
+              "Firewalls cannot stop phishing attacks because users willingly provide credentials",
+              "Firewalls can only protect one device at a time"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "A firewall cannot stop phishing attacks because in a phishing attack the user is tricked into willingly providing their own credentials — the firewall has no way to detect this.",
+            "acceptedKeywords": ["phishing", "willingly", "credentials", "user provides"]
+          },
+          {
+            "id": "cyber_p01_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why a company might need both a hardware firewall and software firewalls on individual devices.",
+            "modelAnswer": "A hardware firewall protects the entire network from external threats, blocking unauthorised connections at the network perimeter. However, if a device is used outside the office (e.g. a laptop taken home), it loses the protection of the hardware firewall. Software firewalls on individual devices provide protection wherever the device is used, adding a second layer of defence even when inside the network.",
+            "acceptedKeywords": ["hardware firewall", "software firewall", "network", "individual device", "outside", "laptop", "two layers", "defence in depth"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cyber_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Cybersecurity: Protection"],
+      "tags": ["KS3", "computing", "cybersecurity"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Encryption and Two-Factor Authentication",
+        "targetTitle": "Encryption and Two-Factor Authentication",
+        "sourcePassage": "Encryption is the process of converting plaintext — readable data — into ciphertext, which appears as meaningless characters. Only someone with the correct key can decrypt the ciphertext and read the original message. This protects data both when it is stored on a device (encryption at rest) and when it travels across a network (encryption in transit). When you visit a website using HTTPS, your browser and the web server use SSL/TLS protocols to encrypt all data exchanged between them. Even if an attacker intercepts the data, they see only ciphertext.\n\nTwo-factor authentication, known as 2FA, adds an extra layer of protection to accounts. After entering a password, the user must also provide a second form of verification — typically a one-time code sent to their phone. The three authentication factors are something you know (a password), something you have (a phone or hardware token), and something you are (a biometric such as a fingerprint). By requiring two of these factors, 2FA ensures that a stolen password alone is not enough to gain access to an account.",
+        "targetPassage": "Encryption is the process of converting plaintext — readable data — into ciphertext, which appears as meaningless characters. Only someone with the correct key can decrypt the ciphertext and read the original message. This protects data both when it is stored on a device (encryption at rest) and when it travels across a network (encryption in transit). When you visit a website using HTTPS, your browser and the web server use SSL/TLS protocols to encrypt all data exchanged between them. Even if an attacker intercepts the data, they see only ciphertext.\n\nTwo-factor authentication, known as 2FA, adds an extra layer of protection to accounts. After entering a password, the user must also provide a second form of verification — typically a one-time code sent to their phone. The three authentication factors are something you know (a password), something you have (a phone or hardware token), and something you are (a biometric such as a fingerprint). By requiring two of these factors, 2FA ensures that a stolen password alone is not enough to gain access to an account.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "cyber_p02_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does encryption convert plaintext into?",
+            "options": [
+              "A backup file",
+              "A password hash",
+              "Ciphertext",
+              "A digital signature"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Encryption converts plaintext (readable data) into ciphertext, which appears as meaningless characters and cannot be read without the correct key.",
+            "acceptedKeywords": ["ciphertext", "scrambled", "encrypted"]
+          },
+          {
+            "id": "cyber_p02_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which protocol does HTTPS use to encrypt data in transit?",
+            "options": [
+              "FTP",
+              "DNS",
+              "SSL/TLS",
+              "HTTP"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "HTTPS uses SSL/TLS (Secure Sockets Layer / Transport Layer Security) protocols to encrypt data exchanged between a browser and a web server.",
+            "acceptedKeywords": ["SSL", "TLS", "SSL/TLS"]
+          },
+          {
+            "id": "cyber_p02_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Which of the following is an example of 'something you are' as an authentication factor?",
+            "options": [
+              "A one-time code sent to your phone",
+              "A password",
+              "A PIN number",
+              "A fingerprint scan"
+            ],
+            "correctOptionIndex": 3,
+            "modelAnswer": "A fingerprint scan is a biometric — it is something you are. Something you know is a password or PIN. Something you have is a phone or hardware token.",
+            "acceptedKeywords": ["fingerprint", "biometric", "something you are", "face scan", "iris"]
+          },
+          {
+            "id": "cyber_p02_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why 2FA makes accounts significantly more secure than a password alone.",
+            "modelAnswer": "With only a password, an attacker who steals or guesses the password can immediately access the account. With 2FA, even knowing the correct password is not enough — the attacker would also need to possess the user's phone (to receive the one-time code) or provide their biometric data. This means two independent security layers must both be compromised, which is much harder to achieve.",
+            "acceptedKeywords": ["stolen password", "second factor", "phone", "one-time code", "two layers", "both factors", "more secure"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "cyber_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Cybersecurity: Protection"],
+      "tags": ["KS3", "computing", "cybersecurity"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Safe Digital Practices: Updates, Backups, and Passwords",
+        "targetTitle": "Safe Digital Practices: Updates, Backups, and Passwords",
+        "sourcePassage": "Three of the most important safe digital practices are keeping software updated, maintaining regular backups, and using strong unique passwords.\n\nWhen software developers discover a security vulnerability, they release a patch to fix it. Once a patch is released, attackers know about the vulnerability and actively target unpatched systems. Organisations that delay applying patches therefore face greater risk. In 2017, the WannaCry ransomware attacked organisations worldwide by exploiting a Windows vulnerability for which a patch had been available for two months.\n\nThe 3-2-1 backup rule recommends keeping three copies of data, across two different media types, with one copy stored offsite or off-network. This ensures that even if ransomware encrypts the main copy, a clean backup remains safe.\n\nStrong passwords should be at least 12 characters long and use a mix of letters, numbers, and symbols. Reusing passwords across multiple sites is dangerous — if one site is breached, attackers can use that password to access other accounts. A password manager generates and stores unique complex passwords for every account, requiring only one master password.",
+        "targetPassage": "Three of the most important safe digital practices are keeping software updated, maintaining regular backups, and using strong unique passwords.\n\nWhen software developers discover a security vulnerability, they release a patch to fix it. Once a patch is released, attackers know about the vulnerability and actively target unpatched systems. Organisations that delay applying patches therefore face greater risk. In 2017, the WannaCry ransomware attacked organisations worldwide by exploiting a Windows vulnerability for which a patch had been available for two months.\n\nThe 3-2-1 backup rule recommends keeping three copies of data, across two different media types, with one copy stored offsite or off-network. This ensures that even if ransomware encrypts the main copy, a clean backup remains safe.\n\nStrong passwords should be at least 12 characters long and use a mix of letters, numbers, and symbols. Reusing passwords across multiple sites is dangerous — if one site is breached, attackers can use that password to access other accounts. A password manager generates and stores unique complex passwords for every account, requiring only one master password.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "cyber_p03_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the passage, what did WannaCry exploit in 2017?",
+            "options": [
+              "A phishing email sent to employees",
+              "A Windows vulnerability for which a patch had been available for two months",
+              "A weak password used by an administrator",
+              "An unencrypted backup drive"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "WannaCry exploited a Windows vulnerability for which Microsoft had already released a patch two months earlier. Organisations that had not applied the patch were attacked.",
+            "acceptedKeywords": ["Windows vulnerability", "patch", "two months", "WannaCry"]
+          },
+          {
+            "id": "cyber_p03_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does the 3-2-1 backup rule state about where one copy of data must be stored?",
+            "options": [
+              "On the same device as the original",
+              "In the cloud only",
+              "Offsite or off-network",
+              "Encrypted on a USB drive kept in the same building"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "The 3-2-1 rule requires one copy to be stored offsite or off-network, so that ransomware or a local disaster cannot reach and destroy all copies.",
+            "acceptedKeywords": ["offsite", "off-network", "separate location", "away from"]
+          },
+          {
+            "id": "cyber_p03_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why is reusing passwords across multiple websites dangerous?",
+            "options": [
+              "Because passwords become easier to guess if used more than once",
+              "Because if one site is breached, attackers can use that password on other accounts",
+              "Because password managers cannot store repeated passwords",
+              "Because websites can share passwords with each other"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "If you reuse a password and one site is breached, attackers obtain that password and try it on every other website — a technique called credential stuffing. Unique passwords mean a breach of one site does not affect others.",
+            "acceptedKeywords": ["breached", "credential stuffing", "other accounts", "same password", "reuse"]
+          },
+          {
+            "id": "cyber_p03_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "Explain why an organisation faces greater risk after a patch is released if it has not yet applied it.",
+            "modelAnswer": "Before a patch is released, only the developer and perhaps the attacker who discovered the vulnerability know about it. Once the patch is released publicly, the vulnerability becomes widely known — other attackers read security bulletins and begin scanning the internet for unpatched systems to exploit. An organisation that has not applied the patch is now a known target, making it more likely to be attacked than it was before the patch was released.",
+            "acceptedKeywords": ["publicly known", "widely known", "attackers", "scanning", "unpatched", "greater risk"]
+          }
+        ]
+      }
+    }
+  ]
+}
