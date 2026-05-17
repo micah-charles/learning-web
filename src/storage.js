@@ -37,6 +37,15 @@ export const DEFAULT_STATE = {
         "germanSentenceBuildEnglish",
       ],
     },
+    crossword: {
+      subject: "language",
+      curriculum: "all",
+      datasetId: "core",
+      year: "ALL",
+      stages: [],
+      excludeMastered: true,
+      wordCount: 10,
+    },
     builder: {
       packId: "",
       filter: "all",

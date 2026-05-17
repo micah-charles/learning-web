@@ -60,6 +60,7 @@ import {
   getPassageStats,
   getWordProgress,
   isMasteredProgress,
+  isWordMastered,
   markBuilderCorrect,
   markBuilderSkip,
   noteBuilderCardAttempt,
@@ -81,11 +82,17 @@ import {
   speakText,
   stopSpeaking,
 } from "./utils.js";
+import {
+  crosswordEntriesFromWords,
+  generateCrossword,
+  normalizeCrosswordAnswer,
+} from "./crossword.js";
 
 const TABS = [
   { id: "home",    title: "Home"       },
   { id: "vocab",   title: "Vocabulary" },
   { id: "quiz",    title: "Quiz"       },
+  { id: "crossword", title: "Crossword" },
   { id: "reading", title: "Reading"    },
   { id: "builder", title: "Builder"    },
   { id: "review",  title: "Review"     },
@@ -100,6 +107,8 @@ const persisted = loadStoredState();
 const runtime = {
   manifest: null,
   currentQuiz: null,
+  crossword: null,
+  crosswordError: "",
   builder: null,
   passages: null,
   reviewContext: {
@@ -260,6 +269,7 @@ function bindEvents() {
   document.addEventListener("click", handleClick);
   document.addEventListener("change", handleChange);
   document.addEventListener("input", handleInput);
+  document.addEventListener("keydown", handleKeyDown);
 }
 
 function ensurePreferenceDefaults() {
@@ -285,6 +295,7 @@ function ensurePreferenceDefaults() {
 
   applyDatasetDefaults("vocab");
   applyDatasetDefaults("quiz");
+  applyDatasetDefaults("crossword");
 
   saveStoredState(persisted);
 }
@@ -453,6 +464,8 @@ async function renderTabContent() {
       return renderVocabTab();
     case "quiz":
       return renderQuizTab();
+    case "crossword":
+      return renderCrosswordTab();
     case "reading":
       return renderReadingTab();
     case "builder":
@@ -918,6 +931,202 @@ async function renderQuizTab() {
         </div>
       </section>
     </div>
+  `;
+}
+
+async function renderCrosswordTab() {
+  const prefs = persisted.prefs.crossword;
+  if (!prefs.subject) prefs.subject = "language";
+  if (!prefs.curriculum) prefs.curriculum = "all";
+  if (!prefs.datasetId) prefs.datasetId = "core";
+  if (!prefs.wordCount) prefs.wordCount = 10;
+
+  let dataset = findDataset(runtime.manifest, prefs.datasetId);
+  if (!isCrosswordDataset(dataset)) {
+    const fallbackDatasets = listCrosswordDatasetsBySubjectAndCurriculum(prefs.subject, prefs.curriculum);
+    if (fallbackDatasets.length) {
+      prefs.datasetId = fallbackDatasets[0].id;
+      dataset = fallbackDatasets[0];
+      applyDatasetDefaults("crossword", { resetStages: true });
+      saveStoredState(persisted);
+    }
+  }
+
+  const datasetSubject = getDatasetSubject(dataset);
+  if (datasetSubject !== prefs.subject) {
+    prefs.subject = datasetSubject;
+    saveStoredState(persisted);
+  }
+
+  if (runtime.crossword) {
+    return renderCrosswordGame(runtime.crossword);
+  }
+
+  const words = await loadVocabItems(runtime.manifest, dataset.id);
+  const filteredWords = filterWordsForScope(words, dataset, prefs);
+  const entries = crosswordEntriesFromWords(filteredWords);
+  const mastered = countMasteredWords(persisted, filteredWords);
+  const wordCountOptions = buildCrosswordWordCountOptions(entries.length);
+  if (wordCountOptions.length) {
+    const largestAvailable = Number(wordCountOptions[wordCountOptions.length - 1].value);
+    if (prefs.wordCount > largestAvailable) {
+      prefs.wordCount = largestAvailable;
+      saveStoredState(persisted);
+    }
+  }
+
+  return `
+    <div class="section-stack">
+      <section class="session-card lead">
+        <div class="question-meta">
+          <div>
+            <h2>Crossword setup</h2>
+            <p class="muted tiny">Pick a vocabulary pack and build a fresh crossword in the browser.</p>
+          </div>
+          <div class="chip-row">
+            <span class="count-pill blue">${entries.length} crossword words</span>
+            <span class="count-pill green">${mastered} mastered here</span>
+          </div>
+        </div>
+
+        ${renderCrosswordSubjectCardGrid(prefs.subject)}
+        ${renderCurriculumPills(prefs.curriculum || "all", "select-crossword-curriculum")}
+
+        <div class="form-grid" style="margin-top:18px;">
+          ${renderCrosswordDatasetSelect(prefs.datasetId, prefs.subject, prefs.curriculum || "all")}
+          ${usesStageSelection(dataset)
+            ? renderStageFieldset("crossword", getDatasetStageOptions(dataset), getSelectedStages(prefs, dataset))
+            : getDatasetSubject(dataset) === "language"
+              ? renderYearSelect("crossword-year", prefs.year, dataset)
+              : ""}
+          ${renderSelectField(
+            "crossword-word-count",
+            "Words",
+            wordCountOptions.length ? wordCountOptions : [{ value: "0", label: "0" }],
+            String(wordCountOptions.length ? prefs.wordCount : 0),
+          )}
+          <div class="field">
+            <label for="crossword-exclude-mastered">Word pool</label>
+            <select id="crossword-exclude-mastered" class="select">
+              <option value="true" ${prefs.excludeMastered ? "selected" : ""}>Exclude mastered words</option>
+              <option value="false" ${!prefs.excludeMastered ? "selected" : ""}>Include all words</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="action-row" style="margin-top:18px;">
+          <button class="button" data-action="start-crossword" ${entries.length < 5 ? "disabled" : ""}>Start game</button>
+          <button class="button secondary" data-action="open-review">Open review desk</button>
+        </div>
+        ${runtime.crosswordError ? `<p class="muted tiny" style="margin-top:12px;color:#cc633f;font-weight:700;">${escapeHtml(runtime.crosswordError)}</p>` : ""}
+        ${entries.length >= 5
+          ? `<p class="muted tiny" style="margin-top:12px;">This setup can generate from ${entries.length} crossword-friendly answers. Random sets are retried automatically if the first layout is weak.</p>`
+          : `<p class="muted tiny" style="margin-top:12px;">No crossword can be built from the current setup yet. Try another pack or include more words.</p>`}
+      </section>
+    </div>
+  `;
+}
+
+function renderCrosswordGame(state) {
+  const { game, dataset, poolSize, letters = {}, checked, revealed, message } = state;
+  const across = game.placedEntries
+    .filter((entry) => entry.direction === "across")
+    .sort((a, b) => a.number - b.number);
+  const down = game.placedEntries
+    .filter((entry) => entry.direction === "down")
+    .sort((a, b) => a.number - b.number);
+
+  const messageClass = message && message.tone === "good" ? "is-good" : message && message.tone === "bad" ? "is-bad" : "";
+
+  return `
+    <div class="section-stack">
+      <section class="session-card lead">
+        <div class="crossword-header">
+          <div>
+            <h2>Crossword</h2>
+            <p class="muted tiny">${escapeHtml(dataset.displayName)}</p>
+            <div class="chip-row" style="margin-top:10px;">
+              <span class="count-pill blue">${game.placedEntries.length} placed</span>
+              <span class="count-pill amber">${poolSize} word pool</span>
+              <span class="count-pill green">${game.grid.length}×${game.grid[0] ? game.grid[0].length : 0} grid</span>
+            </div>
+          </div>
+          <div class="action-row crossword-actions">
+            <button class="button" data-action="crossword-check">Check answers</button>
+            <button class="button secondary" data-action="crossword-reveal">Reveal</button>
+            <button class="button ghost" data-action="crossword-new">New game</button>
+            <button class="button ghost" data-action="crossword-options">Options</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="crossword-layout">
+        ${renderCrosswordBoard(game, letters, checked || revealed)}
+        <aside class="section-card crossword-clues">
+          <div class="crossword-message ${messageClass}">${message ? escapeHtml(message.text) : ""}</div>
+          ${renderCrosswordClues("Across", across, revealed)}
+          ${renderCrosswordClues("Down", down, revealed)}
+        </aside>
+      </section>
+    </div>
+  `;
+}
+
+function renderCrosswordBoard(game, letters, showResults) {
+  const numbers = new Map(game.placedEntries.map((entry) => [`${entry.row}:${entry.col}`, entry.number]));
+  const cols = game.grid[0] ? game.grid[0].length : 0;
+  return `
+    <div class="section-card crossword-board-wrap">
+      <div class="crossword-board" style="grid-template-columns:repeat(${cols}, minmax(30px, 42px));">
+        ${game.grid.map((row, rowIndex) => row.map((answer, colIndex) => {
+          const key = `${rowIndex}:${colIndex}`;
+          const value = letters[key] || "";
+          const isCorrect = value.toUpperCase() === answer;
+          const classes = ["crossword-cell"];
+          if (!answer) classes.push("is-block");
+          if (answer && showResults && isCorrect) classes.push("is-correct");
+          if (answer && showResults && value && !isCorrect) classes.push("is-wrong");
+          return `
+            <div class="${classes.join(" ")}">
+              ${answer && numbers.has(key) ? `<span class="crossword-number">${numbers.get(key)}</span>` : ""}
+              ${answer ? `
+                <input
+                  class="crossword-input"
+                  aria-label="Crossword row ${rowIndex + 1}, column ${colIndex + 1}"
+                  autocomplete="off"
+                  inputmode="text"
+                  maxlength="1"
+                  value="${escapeHtml(value)}"
+                  data-crossword-cell="${escapeHtml(key)}"
+                  data-row="${rowIndex}"
+                  data-col="${colIndex}"
+                />
+              ` : ""}
+            </div>
+          `;
+        }).join("")).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function renderCrosswordClues(title, entries, revealed) {
+  return `
+    <section class="crossword-clue-section">
+      <h3>${escapeHtml(title)}</h3>
+      ${entries.length ? `
+        <ol class="crossword-clue-list">
+          ${entries.map((entry) => `
+            <li value="${entry.number}">
+              ${escapeHtml(entry.clue)}
+              <span class="crossword-answer-meta">
+                (${entry.answer.length} letters${revealed ? `, ${escapeHtml(entry.displayAnswer)}` : ""})
+              </span>
+            </li>
+          `).join("")}
+        </ol>
+      ` : `<p class="muted tiny">No ${escapeHtml(title.toLowerCase())} clues this time.</p>`}
+    </section>
   `;
 }
 
@@ -1938,6 +2147,16 @@ function buildQuestionCountOptions(maxQuestionCount) {
   return options.map((value) => ({ value: String(value), label: String(value) }));
 }
 
+function buildCrosswordWordCountOptions(maxWordCount) {
+  const defaults = [10, 12, 15, 20];
+  const limited = defaults.filter((value) => value <= maxWordCount);
+  if (maxWordCount > 0 && !limited.length) {
+    limited.push(maxWordCount);
+  }
+  const options = [...new Set(limited)].sort((a, b) => a - b);
+  return options.map((value) => ({ value: String(value), label: String(value) }));
+}
+
 function renderDatasetSelect(id, currentValue) {
   return renderSelectField(
     id,
@@ -1975,6 +2194,18 @@ const POS_LABELS = {
   i: "Interjection",
 };
 
+function isCrosswordDataset(dataset) {
+  return Number((dataset && (dataset.wordCount || (dataset.counts && dataset.counts.vocab))) || 0) > 0;
+}
+
+function listCrosswordDatasetsBySubjectAndCurriculum(subject, curriculum = "all") {
+  return listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, curriculum).filter(isCrosswordDataset);
+}
+
+function listCrosswordDatasetsBySubject(subject) {
+  return listDatasetsBySubject(runtime.manifest, subject).filter(isCrosswordDataset);
+}
+
 function renderSubjectCardGrid(activeSubject, action = "select-subject") {
   const cards = SUBJECTS.map((subject) => {
     const meta = SUBJECT_LABELS[subject];
@@ -1991,6 +2222,34 @@ function renderSubjectCardGrid(activeSubject, action = "select-subject") {
         <span class="subject-label">${escapeHtml(meta.label)}</span>
         ${isEmpty
           ? `<span class="subject-meta">Coming soon</span>`
+          : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+      </button>
+    `;
+  }).join("");
+  return `
+    <div class="field" style="margin-top:18px;">
+      <div class="fieldset-title">What are you learning?</div>
+      <div class="subject-card-grid">${cards}</div>
+    </div>
+  `;
+}
+
+function renderCrosswordSubjectCardGrid(activeSubject) {
+  const cards = SUBJECTS.map((subject) => {
+    const meta = SUBJECT_LABELS[subject];
+    const datasets = listCrosswordDatasetsBySubject(subject);
+    const isActive = subject === activeSubject;
+    const isEmpty = datasets.length === 0;
+    const classes = ["subject-card"];
+    if (isActive) classes.push("is-active");
+    if (isEmpty) classes.push("is-empty");
+    const button = isEmpty ? "" : `data-action="select-crossword-subject" data-value="${escapeHtml(subject)}"`;
+    return `
+      <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
+        <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
+        <span class="subject-label">${escapeHtml(meta.label)}</span>
+        ${isEmpty
+          ? `<span class="subject-meta">No vocab packs</span>`
           : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
       </button>
     `;
@@ -2112,6 +2371,28 @@ function renderDatasetSelectFiltered(id, currentValue, subject, curriculum = "al
   }
   return renderSelectField(
     id,
+    "Pack",
+    datasets.map((dataset) => ({
+      value: dataset.id,
+      label: `${dataset.displayName}${dataset.wordCount ? ` (${dataset.wordCount})` : ""}`,
+    })),
+    currentValue,
+    "field-wide",
+  );
+}
+
+function renderCrosswordDatasetSelect(currentValue, subject, curriculum = "all") {
+  const datasets = listCrosswordDatasetsBySubjectAndCurriculum(subject, curriculum);
+  if (!datasets.length) {
+    return `
+      <div class="field field-wide">
+        <label>Pack</label>
+        <p class="muted tiny" style="margin-top:6px;">No vocabulary packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.</p>
+      </div>
+    `;
+  }
+  return renderSelectField(
+    "crossword-dataset",
     "Pack",
     datasets.map((dataset) => ({
       value: dataset.id,
@@ -2571,7 +2852,8 @@ async function handleClick(event) {
       const tabLabel = TABS.find((t) => t.id === newTab)?.title || newTab;
       const hasActiveSession =
         (newTab === "quiz"    && runtime.currentQuiz && !runtime.currentQuiz.completed) ||
-        (newTab === "reading" && runtime.passages    && !runtime.passages.completed);
+        (newTab === "reading" && runtime.passages    && !runtime.passages.completed) ||
+        (newTab === "crossword" && runtime.crossword);
       const message = hasActiveSession
         ? `Abandon the current session and return to ${tabLabel} setup?`
         : `Return to the ${tabLabel} main screen?`;
@@ -2579,6 +2861,7 @@ async function handleClick(event) {
       // Reset any in-progress state for that tab
       if (newTab === "quiz")    runtime.currentQuiz = null;
       if (newTab === "reading") runtime.passages    = null;
+      if (newTab === "crossword") runtime.crossword = null;
     }
 
     persisted.activeTab = newTab;
@@ -2715,6 +2998,24 @@ async function handleClick(event) {
     case "start-quiz":
       await startQuiz();
       return;
+    case "start-crossword":
+      await startCrosswordGame();
+      return;
+    case "crossword-check":
+      checkCrosswordAnswers();
+      await renderApp();
+      return;
+    case "crossword-reveal":
+      revealCrosswordAnswers();
+      await renderApp();
+      return;
+    case "crossword-new":
+      await startCrosswordGame();
+      return;
+    case "crossword-options":
+      runtime.crossword = null;
+      await renderApp();
+      return;
     case "select-subject": {
       // Switch to a new subject — keep curriculum filter, pick first matching dataset.
       const nextSubject = actionButton.dataset.value;
@@ -2727,6 +3028,35 @@ async function handleClick(event) {
       persisted.prefs.quiz.subject = nextSubject;
       persisted.prefs.quiz.datasetId = fallbackDatasets[0].id;
       applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-crossword-subject": {
+      const nextSubject = actionButton.dataset.value;
+      const curriculum = persisted.prefs.crossword.curriculum || "all";
+      const datasets = listCrosswordDatasetsBySubjectAndCurriculum(nextSubject, curriculum);
+      const fallbackDatasets = datasets.length ? datasets : listCrosswordDatasetsBySubject(nextSubject);
+      if (!fallbackDatasets.length) return;
+      if (!datasets.length) persisted.prefs.crossword.curriculum = "all";
+      persisted.prefs.crossword.subject = nextSubject;
+      persisted.prefs.crossword.datasetId = fallbackDatasets[0].id;
+      runtime.crossword = null;
+      runtime.crosswordError = "";
+      applyDatasetDefaults("crossword", { resetStages: true });
+      saveStoredState(persisted);
+      await renderApp();
+      return;
+    }
+    case "select-crossword-curriculum": {
+      const nextCurriculum = actionButton.dataset.value;
+      persisted.prefs.crossword.curriculum = nextCurriculum;
+      const subject = persisted.prefs.crossword.subject || "language";
+      const filtered = listCrosswordDatasetsBySubjectAndCurriculum(subject, nextCurriculum);
+      if (filtered.length) persisted.prefs.crossword.datasetId = filtered[0].id;
+      runtime.crossword = null;
+      runtime.crosswordError = "";
+      applyDatasetDefaults("crossword", { resetStages: true });
       saveStoredState(persisted);
       await renderApp();
       return;
@@ -3169,6 +3499,30 @@ async function handleChange(event) {
     case "quiz-exclude-mastered":
       persisted.prefs.quiz.excludeMastered = value === "true";
       break;
+    case "crossword-dataset": {
+      persisted.prefs.crossword.datasetId = value;
+      const newDataset = findDataset(runtime.manifest, value);
+      persisted.prefs.crossword.subject = getDatasetSubject(newDataset);
+      runtime.crossword = null;
+      runtime.crosswordError = "";
+      applyDatasetDefaults("crossword", { resetStages: true });
+      break;
+    }
+    case "crossword-year":
+      persisted.prefs.crossword.year = value;
+      runtime.crossword = null;
+      runtime.crosswordError = "";
+      break;
+    case "crossword-word-count":
+      persisted.prefs.crossword.wordCount = Number(value);
+      runtime.crossword = null;
+      runtime.crosswordError = "";
+      break;
+    case "crossword-exclude-mastered":
+      persisted.prefs.crossword.excludeMastered = value === "true";
+      runtime.crossword = null;
+      runtime.crosswordError = "";
+      break;
     case "builder-pack": {
       persisted.prefs.builder.packId = value;
       // Keep subject in sync when user manually picks a builder pack
@@ -3233,6 +3587,10 @@ async function handleChange(event) {
         updateStageSelection("vocab", event.target);
       } else if (event.target.name === "quiz-stage") {
         updateStageSelection("quiz", event.target);
+      } else if (event.target.name === "crossword-stage") {
+        updateStageSelection("crossword", event.target);
+        runtime.crossword = null;
+        runtime.crosswordError = "";
       } else if (event.target.name === "vocab-category") {
         updateCategorySelection("vocab", event.target);
       }
@@ -3243,6 +3601,22 @@ async function handleChange(event) {
 }
 
 async function handleInput(event) {
+  if (event.target.dataset.crosswordCell && runtime.crossword) {
+    const letter = normalizeCrosswordAnswer(event.target.value).slice(0, 1);
+    const key = event.target.dataset.crosswordCell;
+    event.target.value = letter;
+    runtime.crossword.letters[key] = letter;
+    runtime.crossword.checked = false;
+    runtime.crossword.revealed = false;
+    runtime.crossword.message = null;
+    const cell = event.target.closest(".crossword-cell");
+    if (cell) cell.classList.remove("is-correct", "is-wrong");
+    if (letter) {
+      focusCrosswordCell(Number(event.target.dataset.row), Number(event.target.dataset.col) + 1);
+    }
+    return;
+  }
+
   if (event.target.id === "vocab-search") {
     persisted.prefs.vocab.search = event.target.value;
     saveStoredState(persisted);
@@ -3255,6 +3629,28 @@ async function handleInput(event) {
   }
   if (event.target.dataset.questionId && runtime.passages) {
     runtime.passages.answers[event.target.dataset.questionId] = event.target.value;
+  }
+}
+
+function handleKeyDown(event) {
+  if (!event.target.dataset.crosswordCell || !runtime.crossword) return;
+  const row = Number(event.target.dataset.row);
+  const col = Number(event.target.dataset.col);
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    focusCrosswordCell(row, col + 1);
+  } else if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    focusCrosswordCell(row, col - 1);
+  } else if (event.key === "ArrowDown") {
+    event.preventDefault();
+    focusCrosswordCell(row + 1, col);
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    focusCrosswordCell(row - 1, col);
+  } else if (event.key === "Backspace" && !event.target.value) {
+    event.preventDefault();
+    focusCrosswordCell(row, col - 1);
   }
 }
 
@@ -3352,6 +3748,97 @@ async function startQuiz(customWords = null, label = null) {
   persisted.activeTab = "quiz";
   saveStoredState(persisted);
   await renderApp();
+}
+
+async function startCrosswordGame() {
+  const prefs = persisted.prefs.crossword;
+  const dataset = findDataset(runtime.manifest, prefs.datasetId);
+  const allWords = await loadVocabItems(runtime.manifest, dataset.id);
+  const scopedWords = filterWordsForScope(allWords, dataset, prefs);
+  const unmasteredWords = scopedWords.filter((word) => !isWordMastered(persisted, word.id));
+  const wordPool = prefs.excludeMastered && unmasteredWords.length >= Math.min(5, scopedWords.length)
+    ? unmasteredWords
+    : scopedWords;
+  const entries = crosswordEntriesFromWords(wordPool);
+
+  if (entries.length < 5) {
+    runtime.crossword = null;
+    runtime.crosswordError = "Not enough crossword-friendly vocabulary in this setup. Try another pack or include mastered words.";
+    await renderApp();
+    return;
+  }
+
+  const requestedCount = Math.min(Number(prefs.wordCount) || 10, entries.length);
+  const game = generateCrossword(entries, { wordCount: requestedCount, attempts: 120 });
+  if (!game.placedEntries.length) {
+    runtime.crossword = null;
+    runtime.crosswordError = "Could not place a crossword from this word set. Try a smaller word count or a different pack.";
+    await renderApp();
+    return;
+  }
+
+  runtime.crosswordError = "";
+  runtime.crossword = {
+    dataset,
+    datasetId: dataset.id,
+    poolSize: entries.length,
+    game,
+    letters: {},
+    checked: false,
+    revealed: false,
+    message: {
+      tone: game.placedEntries.length >= requestedCount ? "good" : "bad",
+      text: `Placed ${game.placedEntries.length} of ${requestedCount} random words.`,
+    },
+  };
+  persisted.activeTab = "crossword";
+  saveStoredState(persisted);
+  await renderApp();
+}
+
+function focusCrosswordCell(row, col) {
+  const input = document.querySelector(`.crossword-input[data-row="${row}"][data-col="${col}"]`);
+  if (input) input.focus();
+}
+
+function checkCrosswordAnswers() {
+  const state = runtime.crossword;
+  if (!state || !state.game) return;
+  let correct = 0;
+  let total = 0;
+
+  state.game.grid.forEach((row, rowIndex) => {
+    row.forEach((answer, colIndex) => {
+      if (!answer) return;
+      total += 1;
+      if ((state.letters[`${rowIndex}:${colIndex}`] || "").toUpperCase() === answer) {
+        correct += 1;
+      }
+    });
+  });
+
+  state.checked = true;
+  state.message = {
+    tone: correct === total ? "good" : "bad",
+    text: correct === total ? "All correct." : `${correct} of ${total} letters correct.`,
+  };
+}
+
+function revealCrosswordAnswers() {
+  const state = runtime.crossword;
+  if (!state || !state.game) return;
+  const letters = {};
+  state.game.grid.forEach((row, rowIndex) => {
+    row.forEach((answer, colIndex) => {
+      if (answer) {
+        letters[`${rowIndex}:${colIndex}`] = answer;
+      }
+    });
+  });
+  state.letters = letters;
+  state.checked = true;
+  state.revealed = true;
+  state.message = { tone: "good", text: "Answers revealed." };
 }
 
 async function answerQuizQuestion(response, extra = null) {
