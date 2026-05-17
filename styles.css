@@ -544,6 +544,11 @@ body {
   gap: 8px;
 }
 
+.field-wide {
+  grid-column: span 2;
+  min-width: min(100%, 420px);
+}
+
 .field label,
 .fieldset-title {
   font-size: 0.88rem;
@@ -1168,6 +1173,11 @@ body {
 
   .about-layout {
     gap: 18px;
+  }
+
+  .field-wide {
+    grid-column: auto;
+    min-width: 0;
   }
 }
 

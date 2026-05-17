@@ -2104,7 +2104,7 @@ function renderDatasetSelectFiltered(id, currentValue, subject, curriculum = "al
   const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
   if (!datasets.length) {
     return `
-      <div class="field">
+      <div class="field field-wide">
         <label>Dataset</label>
         <p class="muted tiny" style="margin-top:6px;">No packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.</p>
       </div>
@@ -2118,6 +2118,7 @@ function renderDatasetSelectFiltered(id, currentValue, subject, curriculum = "al
       label: `${dataset.displayName}${dataset.wordCount ? ` (${dataset.wordCount})` : ""}`,
     })),
     currentValue,
+    "field-wide",
   );
 }
 
@@ -2253,9 +2254,9 @@ function renderCategoryFieldset(sectionKey, categoryOptions, selectedCategories)
   `;
 }
 
-function renderSelectField(id, label, options, currentValue) {
+function renderSelectField(id, label, options, currentValue, fieldClass = "") {
   return `
-    <div class="field">
+    <div class="field ${escapeHtml(fieldClass)}">
       <label for="${escapeHtml(id)}">${escapeHtml(label)}</label>
       <select id="${escapeHtml(id)}" class="select">
         ${options
