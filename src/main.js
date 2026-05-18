@@ -735,6 +735,43 @@ async function renderApp() {
       <section class="content">${content}</section>
     </section>
   `;
+  if (persisted.activeTab === "crossword" && runtime.crossword?.game) {
+    // Double rAF: first frame commits the new DOM, second frame has full layout.
+    requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
+  }
+}
+
+let _cwResizeHandler = null;
+
+function scaleCrosswordToFit() {
+  const wrap  = document.querySelector(".crossword-board-wrap");
+  const board = document.querySelector(".crossword-board");
+  if (!wrap || !board) return;
+
+  // Reset so we can measure the board's natural (unscaled) size
+  board.style.transform       = "";
+  board.style.transformOrigin = "";
+  wrap.style.height           = "";
+
+  const padH      = 32;                       // 16px padding × 2
+  const available = wrap.clientWidth - padH;
+  const natural   = board.scrollWidth;
+
+  if (natural > available && available > 0) {
+    const scale = available / natural;
+    board.style.transformOrigin = "top left";
+    board.style.transform       = `scale(${scale})`;
+    // Collapse wrap to scaled size — transform doesn't affect layout flow
+    wrap.style.height   = `${Math.ceil(board.offsetHeight * scale) + padH}px`;
+    wrap.style.overflow = "hidden";
+  } else {
+    wrap.style.overflow = "";
+  }
+
+  // Keep re-scaling on viewport resize — register once, replace on each render
+  if (_cwResizeHandler) window.removeEventListener("resize", _cwResizeHandler);
+  _cwResizeHandler = () => scaleCrosswordToFit();
+  window.addEventListener("resize", _cwResizeHandler);
 }
 
 function renderHero() {
