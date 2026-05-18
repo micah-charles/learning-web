@@ -2,7 +2,7 @@
 
 > Golden handbook for any agent or developer joining this project.
 > Read this + `docs/data-structures.md` before making any UI or data change.
-> Generated from source: `src/main.js`, `src/data.js`, `src/storage.js`, `src/quiz.js`, `src/crossword.js`
+> Generated from source: `src/main.js`, `src/data.js`, `src/storage.js`, `src/quiz.js`, `src/crossword.js`, `src/study-book.js`
 
 ---
 
@@ -17,6 +17,7 @@
 - Every render is a full re-render of `#app`; there is no virtual DOM. `renderApp()` is called after every state change.
 - `persisted` (loaded from `loadStoredState()`) holds all user prefs and progress. `runtime` holds ephemeral session objects that are **not** persisted.
 - Packs are loaded on demand via `loadVocabItems` / `loadUnifiedPack` etc. from `data.js`; results are cached in `jsonCache`.
+- The **Study Book drawer** lives in `#study-book-root` — a sibling of `#app` in `index.html` — so it survives full `renderApp()` re-renders. It is managed entirely by `src/study-book.js` + the Study Book block in `main.js`. Its state lives in `runtime.studyBook` (never persisted).
 - The quiz mode system has two layers: the high-level UI (`subject`, `direction`, `answerMode`) is translated to internal legacy mode IDs by `resolveQuizModesForUI()` before `createQuizSession()` is called.
 
 ---
@@ -377,6 +378,120 @@ Note: Review uses `renderDatasetSelect` which shows **all** datasets regardless 
 
 ---
 
+## Study Book Drawer (global overlay)
+
+**Not a tab.** A persistent right-side drawer (desktop) or bottom sheet (mobile) that can be opened from any tab. Managed by `src/study-book.js` + the Study Book block in `main.js`.
+
+**Mount point:** `<div id="study-book-root">` in `index.html`, a sibling of `<main id="app">`. The drawer is rendered imperatively into this element and never destroyed by `renderApp()`.
+
+**Entry point:** `openStudyBook(datasetId, { anchor, mdPath })` — the single function called from all tabs and quiz questions. Loads markdown, renders it, and opens the drawer.
+
+**Trigger button factory:** `renderStudyBookButton(dataset, opts)` — returns a ghost button only when `datasetHasStudyBook(dataset)` is true. Tabs call this helper with one line; no tab contains its own open logic.
+
+### When the button appears
+
+The 📖 Study Book button is injected into the chip row of:
+- **Quiz setup** — beside Start quiz
+- **Quiz active question** — in the question sideContent chip row (shows "Jump to [heading]" when `question.sourceRef` is present)
+- **Vocabulary** — in the header chip row
+- **Reading setup** — beside Start reading practice
+- **Builder** — in the header chip row
+- **Review** — in the header chip row
+
+The button renders nothing for packs without `contentMdPath` / `extraMdFiles` in the manifest — no conditional logic in the tab renderers.
+
+### Study Book runtime state (`runtime.studyBook`)
+
+```
+{
+  open: boolean,          // whether the drawer is visible
+  datasetId: string|null, // which pack's notes are loaded
+  activeFile: string|null,// path of the .md file currently shown
+  markdown: string|null,  // raw markdown string
+  html: string|null,      // sanitized rendered HTML (from renderMarkdown)
+  toc: [                  // table of contents extracted from headings
+    { level: 1|2|3, text: string, anchor: string }
+  ],
+  currentAnchor: string|null, // id of the TOC heading currently in view
+  scrollTop: number,          // content scroll position — restored on re-render
+  searchQuery: string,        // live search text
+  searchMatches: number,      // total match count for current query
+  searchMatchIndex: number,   // index of the currently-highlighted match (0-based)
+  pendingAnchor: string|null, // anchor to jump to after open
+}
+```
+
+This state is **never written to `localStorage`**. It resets on every page load.
+
+### Study Book data flow
+
+```
+openStudyBook(datasetId, { anchor, mdPath })
+  → findDataset(manifest, datasetId)
+  → getStudyBookFiles(dataset) — returns [{ title, path }] from contentMdPath + extraMdFiles
+  → loadMarkdownFile(path)     — fetches .md, caches in mdCache (Map)
+  → extractTOC(raw)            — parses headings into toc[]
+  → renderMarkdown(raw)        — marked.parse() → DOMPurify.sanitize() → sanitized HTML
+  → runtime.studyBook updated
+  → renderStudyBookDrawer()
+  → scrollToStudyBookAnchor(anchor) if anchor provided
+```
+
+### Search behaviour
+
+Typing ≥ 2 characters in the search box:
+1. `highlightMatches(html, query)` wraps each match in `<mark class="sb-highlight">`
+2. The drawer re-renders showing the highlighted HTML
+3. `scrollToSearchMatch(0)` jumps to the first match, adding `sb-highlight-active` class
+4. ↑ / ↓ nav buttons cycle through matches; counter shows `X / N`
+5. Clearing the query restores the previous scroll position
+
+### Cross-reference (quiz questions)
+
+Quiz question objects may optionally carry a `sourceRef`:
+
+```json
+{
+  "sourceRef": {
+    "mdFile":  "study_notes.md",
+    "heading": "Binary Search",
+    "anchor":  "binary-search"
+  }
+}
+```
+
+When present, `renderQuizSession` renders a "Jump to [heading]" button instead of the generic Study Book button. Clicking it calls `openStudyBook(datasetId, { anchor, mdPath })` and scrolls directly to that section with a flash animation.
+
+### Study Book controls
+
+| Control | `data-sb-action` | Effect |
+|---------|-----------------|--------|
+| Close (✕) | `close` | Hides drawer, removes `sb-split-mode` |
+| Split view (⊞) | `toggle-split` | Toggles `body.sb-split-mode`; pushes `#app` margin right |
+| TOC link | `toc-jump` | Smooth-scrolls content to heading; flashes target |
+| File tab | `switch-file` | Loads a different `.md` file for the same pack |
+| ↑ prev match | `search-prev` | Goes to previous search match (wraps) |
+| ↓ next match | `search-next` | Goes to next search match (wraps) |
+| Scrim click | `close` | Same as close button |
+| Escape key | `handleKeyDown` | Closes drawer if open |
+| Resize handle | drag | Resizes drawer width (desktop only, 280–760 px) |
+
+### `src/study-book.js` exports
+
+| Function | Purpose |
+|----------|---------|
+| `loadMarkdownFile(path)` | Fetch + cache raw markdown. Throws on HTTP error. |
+| `loadContentMarkdown(dataset)` | Convenience: reads `dataset.contentMdPath`, returns null if absent |
+| `renderMarkdown(raw)` | `marked.parse` → `DOMPurify.sanitize` with a safe tag allowlist |
+| `extractTOC(raw)` | Regex scan of `# / ## / ###` headings → `{ level, text, anchor }[]` |
+| `highlightMatches(html, query)` | Wraps query matches in `<mark class="sb-highlight">`. Returns `{ html, count }` |
+| `datasetHasStudyBook(dataset)` | Returns true if `contentMdPath` or `extraMdFiles` is present |
+| `getStudyBookFiles(dataset)` | Returns ordered `[{ title, path }]` for all .md files on the dataset |
+
+All markdown is cached in module-level `mdCache` (`Map<path, string>`), mirroring `jsonCache` in `data.js`.
+
+---
+
 ## Tab: About
 
 **Route:** `persisted.activeTab === "about"`  
@@ -669,6 +784,12 @@ Placed entries carry `{ answer, clue, displayAnswer, row, col, direction, number
 | `renderStimulus(stimulus)` | Optional stimulus block above question |
 | `renderEmptyStateCard({ eyebrow, title, body, actionLabel, action })` | Empty state placeholder |
 | `foxFace(expression)` | Returns `<img>` for fox mascot (calm/happy/sad/thinking) |
+| `renderStudyBookButton(dataset, opts)` | Study Book trigger button — returns `""` when pack has no markdown |
+| `buildStudyBookHTML()` | Builds complete drawer HTML from `runtime.studyBook` state |
+| `renderStudyBookDrawer()` | Writes drawer HTML to `#study-book-root` and attaches listeners |
+| `openStudyBook(datasetId, opts)` | Opens the drawer, loads markdown if needed, jumps to anchor |
+| `scrollToStudyBookAnchor(anchor)` | Smooth-scrolls to a heading and flashes it |
+| `scrollToSearchMatch(index)` | Scrolls to the nth search highlight mark |
 
 ---
 
@@ -697,3 +818,9 @@ Placed entries carry `{ answer, clue, displayAnswer, row, col, direction, number
 11. **`partOfSpeech` abbreviations are legacy.** `POS_LABELS` in `main.js` maps single-letter abbreviations (`n`, `v`, `a`, etc.) to display labels. New packs must use full English words (`noun`, `verb`, `adjective`, etc.) for language packs or `"keyword"` for non-language packs. The `POS_LABELS` map is a safety net only.
 
 12. **The crossword requires ≥ 5 candidate entries.** `startCrosswordGame` checks `entries.length < 5` and shows an error if so. Small packs, heavy mastery filtering, or narrow stage selection can cause this. The "Start game" button is disabled when `entries.length < 5`.
+
+13. **Study Book drawer survives `renderApp()`.** It is mounted in `#study-book-root`, a sibling of `#app`, so full-page re-renders never destroy it. `renderStudyBookDrawer()` is called independently of `renderApp()` — never merge Study Book rendering into the main render cycle.
+
+14. **Study Book state is runtime-only — never add to `DEFAULT_STATE`.** `runtime.studyBook` is ephemeral session UI state. It must not be written to `localStorage`. There is no `prefs.studyBook` key.
+
+15. **`renderStudyBookButton` returns `""` silently for packs without markdown.** Do not add `if (datasetHasStudyBook(dataset))` guards around calls to `renderStudyBookButton` — the function handles that itself. Just call it and interpolate the result.

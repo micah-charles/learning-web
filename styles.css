@@ -2135,3 +2135,467 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   Study Book Drawer
+   Mounted in #study-book-root (sibling of #app) so it survives renderApp().
+   Desktop: right-side sliding drawer.   Mobile: bottom slide-up sheet.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Drawer shell ─────────────────────────────────────────────────────────── */
+.study-book-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 92vw;
+  height: 100vh;
+  background: var(--surface-strong);
+  box-shadow: -6px 0 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  z-index: 900;
+  transform: translateX(110%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.study-book-drawer[data-open="true"] {
+  transform: translateX(0);
+}
+
+/* ── Scrim (shown on mobile when drawer is open) ─────────────────────────── */
+.sb-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 899;
+  display: none;
+  cursor: pointer;
+}
+
+/* ── Split-mode: push the main app content left ──────────────────────────── */
+body.sb-split-mode #app {
+  margin-right: 420px;
+  transition: margin-right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.sb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 12px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-alt);
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.sb-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--teal, #3d9ea5);
+  white-space: nowrap;
+}
+
+.sb-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sb-close,
+.sb-split-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--muted);
+  padding: 4px 7px;
+  border-radius: 6px;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.sb-close:hover,
+.sb-split-btn:hover {
+  background: var(--surface-accent);
+  color: var(--teal, #3d9ea5);
+}
+
+/* ── File tabs (multiple .md files per pack) ─────────────────────────────── */
+.sb-file-tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.sb-file-tab {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.sb-file-tab:hover {
+  background: var(--surface-accent);
+  border-color: var(--teal, #3d9ea5);
+}
+
+.sb-file-tab.active {
+  background: var(--surface-accent);
+  border-color: var(--teal, #3d9ea5);
+  color: var(--teal, #3d9ea5);
+  font-weight: 600;
+}
+
+/* ── Search bar ──────────────────────────────────────────────────────────── */
+.sb-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  background: var(--surface);
+}
+
+.sb-search-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  font-size: 0.88rem;
+  color: inherit;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  min-width: 0;
+}
+
+.sb-search-input:focus {
+  outline: none;
+  border-color: var(--teal, #3d9ea5);
+  box-shadow: 0 0 0 3px rgba(61, 158, 165, 0.15);
+}
+
+.sb-search-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Inner layout (TOC sidebar + content) ────────────────────────────────── */
+.sb-inner {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Table of contents ───────────────────────────────────────────────────── */
+.sb-toc {
+  width: 158px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 14px 8px 14px 12px;
+  border-right: 1px solid var(--line);
+  font-size: 0.80rem;
+  background: var(--surface-alt);
+}
+
+.sb-toc-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 8px 0;
+}
+
+.sb-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sb-toc-h1 > a,
+.sb-toc-h2 > a,
+.sb-toc-h3 > a {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--muted);
+  transition: background 120ms ease, color 120ms ease;
+  line-height: 1.4;
+}
+
+.sb-toc-h1 > a { font-weight: 600; }
+.sb-toc-h2 > a { padding-left: 14px; }
+.sb-toc-h3 > a { padding-left: 22px; font-size: 0.76rem; }
+
+.sb-toc-h1 > a:hover,
+.sb-toc-h2 > a:hover,
+.sb-toc-h3 > a:hover {
+  background: var(--surface-accent);
+  color: var(--teal, #3d9ea5);
+}
+
+.sb-toc-active > a {
+  color: var(--teal, #3d9ea5);
+  font-weight: 700;
+  background: var(--surface-accent);
+}
+
+/* ── Markdown content area ───────────────────────────────────────────────── */
+.sb-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 22px 40px;
+  scroll-behavior: smooth;
+  line-height: 1.75;
+  font-size: 0.93rem;
+}
+
+/* Typography inside markdown */
+.sb-content h1,
+.sb-content h2,
+.sb-content h3,
+.sb-content h4 {
+  font-family: var(--font-display, Georgia, serif);
+  color: var(--text-heading, #2a2219);
+  margin: 1.4em 0 0.5em;
+  line-height: 1.3;
+}
+
+.sb-content h1 { font-size: 1.4rem; }
+.sb-content h2 {
+  font-size: 1.15rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+.sb-content h3 { font-size: 1.02rem; }
+.sb-content h4 { font-size: 0.95rem; }
+
+.sb-content p {
+  margin: 0 0 0.9em;
+  color: var(--text, #2a2219);
+}
+
+.sb-content ul,
+.sb-content ol {
+  padding-left: 1.4em;
+  margin: 0 0 0.9em;
+}
+
+.sb-content li { margin-bottom: 0.3em; }
+
+.sb-content blockquote {
+  border-left: 3px solid var(--teal, #3d9ea5);
+  margin: 0 0 0.9em;
+  padding: 6px 12px;
+  color: var(--muted);
+  background: var(--surface-accent);
+  border-radius: 0 6px 6px 0;
+}
+
+.sb-content table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-size: 0.88rem;
+  margin-bottom: 1em;
+}
+
+.sb-content th,
+.sb-content td {
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.sb-content th {
+  background: var(--surface-alt);
+  font-weight: 600;
+}
+
+.sb-content tr:nth-child(even) td {
+  background: var(--surface-accent);
+}
+
+.sb-content code {
+  background: var(--surface-alt);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+.sb-content pre {
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.sb-content pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.87rem;
+  display: block;
+}
+
+.sb-content hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 1.5em 0;
+}
+
+.sb-content a {
+  color: var(--teal, #3d9ea5);
+  text-decoration: underline;
+}
+
+/* ── Anchor flash animation ───────────────────────────────────────────────── */
+.sb-anchor-flash {
+  animation: sb-flash 1.6s ease-out;
+  border-radius: 4px;
+}
+
+@keyframes sb-flash {
+  0%   { background: rgba(61, 158, 165, 0.25); }
+  100% { background: transparent; }
+}
+
+/* ── Search highlight ─────────────────────────────────────────────────────── */
+mark.sb-highlight {
+  background: rgba(247, 182, 20, 0.40);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+mark.sb-highlight-active {
+  background: rgba(232, 132, 26, 0.70);
+  outline: 2px solid rgba(232, 132, 26, 0.90);
+  border-radius: 2px;
+}
+
+.sb-search-nav {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 2px 7px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+  flex-shrink: 0;
+}
+
+.sb-search-nav:hover {
+  background: var(--surface-accent);
+  border-color: var(--teal, #3d9ea5);
+  color: var(--teal, #3d9ea5);
+}
+
+.sb-search-none {
+  color: var(--color-error, #c04e36);
+  font-size: 0.78rem;
+}
+
+/* ── Resize handle ────────────────────────────────────────────────────────── */
+.sb-resize-handle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+  transition: background 140ms ease;
+  z-index: 1;
+}
+
+.sb-resize-handle:hover {
+  background: rgba(61, 158, 165, 0.30);
+}
+
+/* ── Trigger button (used in all tabs) ───────────────────────────────────── */
+.sb-trigger {
+  font-size: 0.85rem;
+}
+
+.sb-trigger-sm {
+  font-size: 0.78rem;
+  padding: 3px 9px;
+}
+
+/* ── Mobile: bottom sheet ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .study-book-drawer {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 82vh;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(110%);
+    box-shadow: 0 -6px 32px rgba(0, 0, 0, 0.22);
+  }
+
+  .study-book-drawer[data-open="true"] {
+    transform: translateY(0);
+  }
+
+  /* Show scrim on mobile when drawer is open */
+  .study-book-drawer[data-open="true"] + .sb-scrim {
+    display: block;
+  }
+
+  /* Hide TOC on mobile to maximise reading space */
+  .sb-toc {
+    display: none;
+  }
+
+  /* Resize handle irrelevant on mobile */
+  .sb-resize-handle {
+    display: none;
+  }
+
+  body.sb-split-mode #app {
+    margin-right: 0;
+  }
+}
+
+/* ── Desktop: show scrim only behind drawer in non-split mode ────────────── */
+@media (min-width: 721px) {
+  /* Scrim only shown on desktop if NOT in split mode (purely overlay mode) */
+  body:not(.sb-split-mode) .study-book-drawer[data-open="true"] + .sb-scrim {
+    display: block;
+  }
+}
+
+/* ── Dark mode overrides ──────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  .study-book-drawer {
+    box-shadow: -6px 0 32px rgba(0, 0, 0, 0.48);
+  }
+
+  .sb-content th {
+    background: var(--surface-alt);
+  }
+}

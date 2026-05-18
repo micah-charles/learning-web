@@ -71,6 +71,19 @@ When the pack also has a `passages.json`, add:
 }
 ```
 
+When the pack has a Study Book markdown file, add:
+
+```json
+{
+  "contentMdPath": "data/Packs/ks3/science/biology_cells/study_notes.md",
+  "extraMdFiles": [
+    { "title": "Exam Tips",  "path": "data/Packs/ks3/science/biology_cells/exam_tips.md" }
+  ]
+}
+```
+
+Both `contentMdPath` and `extraMdFiles` are **optional and backward-compatible** — omitting them simply means the Study Book button does not appear for that pack. `extraMdFiles` is only needed when a pack has more than one markdown file; the `contentMdPath` file is always listed first as "Notes" in the file-tab row.
+
 | Field | Type | Purpose |
 |-------|------|---------|
 | `id` | string | Unique pack ID |
@@ -81,6 +94,8 @@ When the pack also has a `passages.json`, add:
 | `capabilities` | string[] | Declares which tabs this pack supports: `"revision"` \| `"passages"` |
 | `unifiedPath` | string | Path to the pack's `pack_unified.json` |
 | `passagePath` | string? | Path to the pack's `passages.json` — only present when `capabilities` includes `"passages"` |
+| `contentMdPath` | string? | Path to the primary Study Book markdown file (relative to repo root) |
+| `extraMdFiles` | `{ title: string, path: string }[]?` | Additional markdown files — shown as tabs in the Study Book drawer |
 | `sourceLanguageLabel` | string | Display label for the study language (shown in quiz prompts) |
 | `sourceLanguageCode` | string | BCP-47 code for the study language (e.g. `de-DE`, `la-Latn`, `en-GB`) |
 | `targetLanguageLabel` | string | Display label for the target language |
@@ -627,11 +642,94 @@ Non-language packs should use `"keyword"` for all vocab items.
 
 ---
 
+## Study Book Markdown Files
+
+Packs may optionally ship one or more Markdown files that are displayed in the **Study Book drawer** — a side panel for reference and revision notes.
+
+### File location
+
+Place `.md` files inside the pack's own directory:
+
+```
+data/Packs/ks3/science/biology_cells/
+  pack_unified.json
+  passages.json          ← optional
+  study_notes.md         ← primary Study Book file
+  exam_tips.md           ← optional additional file
+```
+
+The filename is not constrained by convention, but `study_notes.md` is the established default for KS3 Science packs.
+
+### Manifest registration
+
+```json
+{
+  "id": "ks3_science_biology_cells",
+  "contentMdPath": "data/Packs/ks3/science/biology_cells/study_notes.md",
+  "extraMdFiles": [
+    { "title": "Exam Tips", "path": "data/Packs/ks3/science/biology_cells/exam_tips.md" }
+  ]
+}
+```
+
+`contentMdPath` is always the primary file; `extraMdFiles` is shown as additional tabs in the drawer header. Both fields are optional — omitting them means no Study Book button appears for the pack.
+
+### Markdown format rules
+
+The Study Book renderer uses `marked` (GFM mode) with a custom heading renderer that generates stable heading IDs from the text. Supported elements:
+
+| Element | Notes |
+|---------|-------|
+| `# h1` / `## h2` / `### h3` | Appear in TOC; generate anchor IDs |
+| `#### h4` | Rendered but not in TOC |
+| Paragraphs, bold, italic, links | Standard GFM |
+| Unordered and ordered lists | Standard |
+| Tables | Block-level scroll on mobile |
+| Code blocks (fenced) | Monospace, no syntax highlighting |
+| Blockquotes | Left teal border |
+| Horizontal rules | Section dividers |
+
+**Heading anchor generation:** `text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-")`.
+Example: `## Key Knowledge` → `id="key-knowledge"`.
+
+The same algorithm is used by `extractTOC` and the `marked` custom renderer, so TOC links and `sourceRef.anchor` fields must use this formula.
+
+### Cross-reference in quiz questions
+
+A quiz question item in `pack_unified.json` may carry an optional `sourceRef` field to link directly to a Study Book heading:
+
+```json
+{
+  "id": "q_diffusion",
+  "type": "vocab",
+  "data": { … },
+  "sourceRef": {
+    "mdFile":  "study_notes.md",
+    "heading": "Diffusion",
+    "anchor":  "diffusion"
+  }
+}
+```
+
+`sourceRef` is consumed by `renderQuizSession` to render a "Jump to [heading]" button. The quiz engine ignores it entirely — it is purely UI metadata.
+
+### Migration script
+
+`scripts/migrate_science_study_notes.py` copies KS3 Science `.md` files from the study prompt repo into the correct pack directories and patches `manifest.json`. Run it for new study-note batches:
+
+```bash
+python3 scripts/migrate_science_study_notes.py           # dry-run
+python3 scripts/migrate_science_study_notes.py --apply   # apply
+```
+
+---
+
 ## Adding a New Pack
 
 1. Create the pack directory: `data/Packs/<curriculum>/<subject>/<id>/`
 2. Create `pack_unified.json` with the [unified pack header](#unified-pack-format-pack_unifiedjson) and revision items
 3. If the pack has passage content, create `passages.json` in the same directory
-4. Add one entry to `packs[]` in `data/generated/manifest.json`; include `passagePath` and `"passages"` in `capabilities` if `passages.json` exists
-5. Set `supportsSentences: false` if the pack has no sentence items
-6. Run `python3 scripts/validate_pack.py data/Packs/<curriculum>/<subject>/<id>/pack_unified.json` to check the pack
+4. If the pack has a Study Book, place `study_notes.md` (or similar) in the pack directory and add `contentMdPath` to the manifest entry
+5. Add one entry to `packs[]` in `data/generated/manifest.json`; include `passagePath` and `"passages"` in `capabilities` if `passages.json` exists
+6. Set `supportsSentences: false` if the pack has no sentence items
+7. Run `python3 scripts/validate_pack.py data/Packs/<curriculum>/<subject>/<id>/pack_unified.json` to check the pack
