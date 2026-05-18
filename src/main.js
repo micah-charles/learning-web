@@ -4256,7 +4256,7 @@ async function startCrosswordGame() {
 
 function focusCrosswordCell(row, col) {
   const input = document.querySelector(`.crossword-input[data-row="${row}"][data-col="${col}"]`);
-  if (input) input.focus();
+  if (input) input.focus({ preventScroll: true });
 }
 
 function checkCrosswordAnswers() {
