@@ -50,6 +50,7 @@ provide the task type and subject bucket — you must infer the rest.
 - If confidence is low, still generate — record uncertainty in `pack_decision.json`.
 
 **Files to write (in order):**
+> ⚠ Read each source file **once**, then write all output files for that pack before moving to the next. Never re-read a source file you have already read.
 1. `data/generated/pack_decision.json` — metadata + scope decision (required)
 2. `data/Packs/<curriculum>/<subject>/<packId>/pack_unified.json` — revision pack
 3. `data/Packs/<curriculum>/<subject>/<packId>/passages.json` — passage pack (omit if no reading passages)
