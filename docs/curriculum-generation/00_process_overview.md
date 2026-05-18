@@ -14,8 +14,13 @@ Stage 1 — Architecture Design
   Output: folder structure + topic list + ARCHITECTURE.md
         + per-topic prompt .md files
               ↓
+Stage 1.5 — Topic Prompt Enrichment
+  Prompt: 02_enrichment_of_specific_guidance.md
+  Output: enriched per-topic prompt .md files with concrete knowledge,
+          skills, vocabulary, stimulus, misconceptions, and question styles
+              ↓
 Stage 2 — Study Content Generation
-  Prompt: 02_study_content_master_rules.md
+  Prompt: 02_example_computing_study_content_master_rules.md
          + <topic>.md (one per topic)
   Output: generated_contents/<topic>.md  (one per topic)
               ↓
@@ -60,8 +65,13 @@ Stage 5 — Manifest Registration + Subject Support
 
 ## Stage 2 — Study Content Generation
 
+**Optional enrichment prompt before this stage:** [`02_enrichment_of_specific_guidance.md`](02_enrichment_of_specific_guidance.md)
+
+Use this when the per-topic prompt files from Stage 1 are too generic and need
+more concrete subject guidance before batch content generation.
+
 **Prompt files used together:**
-1. [`02_study_content_master_rules.md`](02_study_content_master_rules.md) — writing style, required sections, vocabulary rules
+1. [`02_example_computing_study_content_master_rules.md`](02_example_computing_study_content_master_rules.md) — example Computing writing style, required sections, vocabulary rules
 2. The individual topic `.md` prompt file (e.g. `01_computational_thinking/01_decomposition_abstraction.md`)
 
 **What it produces** (one file per topic saved to `generated_contents/`):
@@ -167,7 +177,8 @@ Update **all four** of these files — they are each independent and must stay i
 | File | Purpose |
 |---|---|
 | `docs/curriculum-generation/01_curriculum_architecture_generator.md` | Stage 1 — generate topic list and folder structure |
-| `docs/curriculum-generation/02_study_content_master_rules.md` | Stage 2 — writing rules shared across all topics |
+| `docs/curriculum-generation/02_enrichment_of_specific_guidance.md` | Stage 1.5 — enrich generic topic prompt files with concrete generation guidance |
+| `docs/curriculum-generation/02_example_computing_study_content_master_rules.md` | Stage 2 example — Computing writing rules shared across Computing topics |
 | `docs/curriculum-generation/03_ks3_computing_architecture.md` | Stage 2 — KS3 Computing topic map and batch generation notes |
 | `docs/curriculum-generation/04_json_pack_generation_prompt.md` | Stage 3 — canonical Learning Web schema 1.1 JSON generation prompt |
 | `docs/pack-generation-prompt.md` | Same as 04 — the primary operational prompt (kept in docs/ root for backwards compatibility) |
