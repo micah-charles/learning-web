@@ -5,11 +5,25 @@ Read this before touching any file.
 
 ---
 
-## 0. Mandatory UI Context Loading
+## 0. Golden Handbooks — read these first
+
+Two documents cover everything you need to understand this project:
+
+| Document | What it covers |
+|---|---|
+| [`docs/ui-overview.md`](docs/ui-overview.md) | All 9 tabs, every filter/button/dropdown, how UI reads JSON data, quiz engine, crossword, localStorage state shape |
+| [`docs/data-structures.md`](docs/data-structures.md) | Pack JSON schema v1.1, manifest structure, item types and required fields |
+
+**Read both before making any UI or data change.**
+
+---
+
+## 0a. Mandatory UI Context Loading
 
 When working on **any frontend / UI-related task** for Learning Web:
 
-1. **First read:** `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md`
+1. **First read:** `docs/ui-overview.md` and `docs/data-structures.md`
+2. **Also read:** `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md`
 2. **Summarise** the key constraints internally before making any changes.
 3. **Validate** all proposed UI changes against:
    - existing vanilla JS architecture
