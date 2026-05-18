@@ -633,6 +633,39 @@ async function openStudyBook(datasetId, { anchor = null, mdPath = null } = {}) {
  * @param {string} [opts.label]   - override button label text
  * @param {string} [opts.cls]     - extra CSS class(es) on the button
  */
+/**
+ * Returns the dataset currently selected in the active tab, or null if the
+ * active tab has no single-pack concept (home, about, admin, crossword, etc.).
+ */
+function getActiveTabDataset() {
+  const tab = persisted.activeTab;
+  let id = null;
+  if (tab === "vocab")    id = persisted.prefs.vocab.datasetId;
+  else if (tab === "quiz")     id = persisted.prefs.quiz.datasetId;
+  else if (tab === "passages") id = persisted.prefs.passages.packId;
+  else if (tab === "review")   id = persisted.prefs.review.datasetId;
+  return id ? findDataset(runtime.manifest, id) : null;
+}
+
+/**
+ * If the Study Book drawer is open and the active tab has switched to a
+ * different pack, reload (or close) the drawer automatically.
+ */
+async function syncStudyBookToCurrentDataset() {
+  const sb = runtime.studyBook;
+  if (!sb.open) return;
+  const dataset = getActiveTabDataset();
+  if (!dataset || dataset.id === sb.datasetId) return;
+  if (datasetHasStudyBook(dataset)) {
+    await openStudyBook(dataset.id);
+  } else {
+    sb.open = false;
+    renderStudyBookDrawer();
+    document.body.classList.remove("sb-split-mode");
+    document.getElementById("app").style.marginRight = "";
+  }
+}
+
 function renderStudyBookButton(dataset, { anchor = "", mdPath = "", label = "Study Book", cls = "" } = {}) {
   if (!datasetHasStudyBook(dataset)) return "";
   return `
@@ -4014,6 +4047,7 @@ async function handleChange(event) {
   }
   saveStoredState(persisted);
   await renderApp();
+  await syncStudyBookToCurrentDataset();
 }
 
 async function handleInput(event) {
