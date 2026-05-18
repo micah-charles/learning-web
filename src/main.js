@@ -87,6 +87,14 @@ import {
   generateCrossword,
   normalizeCrosswordAnswer,
 } from "./crossword.js";
+import {
+  loadMarkdownFile,
+  renderMarkdown,
+  extractTOC,
+  highlightMatches,
+  datasetHasStudyBook,
+  getStudyBookFiles,
+} from "./study-book.js";
 
 const TABS = [
   { id: "home",    title: "Home"       },
@@ -119,6 +127,21 @@ const runtime = {
   adminUploadStatus: null,
   // Session detail overlay: null | { sessionId: string }
   sessionDetail: null,
+  // Study Book drawer — ephemeral session UI state, never persisted to localStorage
+  studyBook: {
+    open: false,
+    datasetId: null,     // which pack's notes are loaded
+    activeFile: null,    // path of currently displayed .md file
+    markdown: null,      // raw markdown string
+    html: null,          // sanitized rendered HTML
+    toc: [],             // [{ level, text, anchor }]
+    currentAnchor: null, // id of the TOC entry currently in view
+    scrollTop: 0,        // content scroll position remembered across re-renders
+    searchQuery: "",
+    searchMatches: 0,
+    searchMatchIndex: 0, // which match is currently scrolled into view (0-based)
+    pendingAnchor: null, // anchor to jump to immediately after open
+  },
 };
 let searchRenderTimer = null;
 
@@ -256,12 +279,382 @@ init().catch((error) => {
   `;
 });
 
+// ── Study Book ─────────────────────────────────────────────────────────────
+// The drawer is mounted in #study-book-root (a sibling of #app in index.html)
+// so that renderApp() full-rerenders never destroy it.
+
+const sbRoot = document.getElementById("study-book-root");
+
+/**
+ * Re-renders the Study Book drawer into sbRoot.
+ * Restores scroll position and attaches all event listeners after each render.
+ */
+function renderStudyBookDrawer() {
+  const savedScroll = runtime.studyBook.scrollTop;
+  sbRoot.innerHTML = buildStudyBookHTML();
+  attachStudyBookListeners();
+  const contentEl = document.getElementById("sb-content-area");
+  if (!contentEl) return;
+  if (runtime.studyBook.searchQuery.length >= 2) {
+    // Jump to the current match instead of restoring old scroll position
+    scrollToSearchMatch(runtime.studyBook.searchMatchIndex);
+  } else if (savedScroll) {
+    contentEl.scrollTop = savedScroll;
+  }
+}
+
+/**
+ * Builds the full drawer HTML string from runtime.studyBook state.
+ * Called by renderStudyBookDrawer(); never writes to the DOM directly.
+ */
+function buildStudyBookHTML() {
+  const sb = runtime.studyBook;
+  if (!sb.open) {
+    return `<aside class="study-book-drawer" data-open="false" aria-hidden="true"></aside><div class="sb-scrim"></div>`;
+  }
+
+  let displayHtml = sb.html || "";
+  let matchCount = 0;
+  if (sb.searchQuery.length >= 2) {
+    const result = highlightMatches(displayHtml, sb.searchQuery);
+    displayHtml = result.html;
+    matchCount = result.count;
+    sb.searchMatches = matchCount;
+    // Clamp index in case a new shorter query has fewer matches
+    if (sb.searchMatchIndex >= matchCount) sb.searchMatchIndex = 0;
+  } else {
+    sb.searchMatches = 0;
+    sb.searchMatchIndex = 0;
+  }
+
+  return `
+    <aside class="study-book-drawer" data-open="true" role="complementary" aria-label="Study Book">
+      <div class="sb-header">
+        <span class="sb-title">&#128218; Study Book</span>
+        <div class="sb-header-actions">
+          ${renderSBFileTabs(sb)}
+          <button class="sb-split-btn" data-sb-action="toggle-split" title="Toggle split view" aria-label="Toggle split view">&#9707;</button>
+          <button class="sb-close" data-sb-action="close" aria-label="Close Study Book">&#x2715;</button>
+        </div>
+      </div>
+      <div class="sb-search-bar">
+        <input
+          type="search"
+          class="sb-search-input"
+          placeholder="Search notes…"
+          aria-label="Search study notes"
+          value="${escapeHtml(sb.searchQuery)}"
+          autocomplete="off"
+        />
+        ${matchCount > 0 ? `
+          <span class="sb-search-count">${sb.searchMatchIndex + 1} / ${matchCount}</span>
+          <button class="sb-search-nav" data-sb-action="search-prev" aria-label="Previous match" title="Previous match">&#8593;</button>
+          <button class="sb-search-nav" data-sb-action="search-next" aria-label="Next match" title="Next match">&#8595;</button>
+        ` : (sb.searchQuery.length >= 2 ? `<span class="sb-search-count sb-search-none">no matches</span>` : "")}
+      </div>
+      <div class="sb-inner">
+        ${sb.toc.length ? `
+          <nav class="sb-toc" aria-label="Table of contents">
+            <p class="sb-toc-title">Contents</p>
+            ${renderSBTOC(sb.toc, sb.currentAnchor)}
+          </nav>` : ""}
+        <div class="sb-content" id="sb-content-area" tabindex="0">
+          ${displayHtml || `<p class="muted" style="padding:20px;">No content loaded.</p>`}
+        </div>
+      </div>
+      <div class="sb-resize-handle" aria-hidden="true"></div>
+    </aside>
+    <div class="sb-scrim" data-sb-action="close" aria-hidden="true"></div>
+  `;
+}
+
+/** Renders the TOC list HTML. */
+function renderSBTOC(toc, currentAnchor) {
+  const items = toc.map(({ level, text, anchor }) => `
+    <li class="sb-toc-h${level}${anchor === currentAnchor ? " sb-toc-active" : ""}">
+      <a href="#${escapeHtml(anchor)}" data-sb-action="toc-jump" data-anchor="${escapeHtml(anchor)}">${escapeHtml(text)}</a>
+    </li>`).join("");
+  return `<ul class="sb-toc-list">${items}</ul>`;
+}
+
+/** Renders file-tab buttons when a dataset has multiple .md files. */
+function renderSBFileTabs(sb) {
+  if (!sb.datasetId || !runtime.manifest) return "";
+  const dataset = findDataset(runtime.manifest, sb.datasetId);
+  const files = getStudyBookFiles(dataset);
+  if (files.length <= 1) return "";
+  return `<div class="sb-file-tabs">${
+    files.map(f => `
+      <button class="sb-file-tab${f.path === sb.activeFile ? " active" : ""}"
+              data-sb-action="switch-file"
+              data-sb-path="${escapeHtml(f.path)}">${escapeHtml(f.title)}</button>
+    `).join("")
+  }</div>`;
+}
+
+/**
+ * Attaches all Study Book event listeners after each drawer render.
+ * Old listeners are automatically GC'd because the old DOM nodes are replaced.
+ */
+function attachStudyBookListeners() {
+  if (!sbRoot) return;
+
+  // Delegate all data-sb-action clicks inside the drawer root
+  sbRoot.addEventListener("click", handleStudyBookClick);
+
+  const contentEl = document.getElementById("sb-content-area");
+  if (!contentEl) return;
+
+  // Remember scroll position
+  contentEl.addEventListener("scroll", () => {
+    runtime.studyBook.scrollTop = contentEl.scrollTop;
+  }, { passive: true });
+
+  // Track active heading via IntersectionObserver
+  const headings = contentEl.querySelectorAll("h1[id], h2[id], h3[id]");
+  if (headings.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter(e => e.isIntersecting);
+        if (!visible.length) return;
+        const anchor = visible[0].target.id;
+        if (anchor === runtime.studyBook.currentAnchor) return;
+        runtime.studyBook.currentAnchor = anchor;
+        // Partial-update only the TOC list to avoid losing scroll
+        const tocEl = sbRoot.querySelector(".sb-toc-list");
+        if (tocEl) tocEl.outerHTML = renderSBTOC(runtime.studyBook.toc, anchor);
+      },
+      { root: contentEl, rootMargin: "-10% 0px -60% 0px" }
+    );
+    headings.forEach(h => io.observe(h));
+  }
+
+  // Live search — reset match index on every new query, then re-render+jump
+  const searchEl = sbRoot.querySelector(".sb-search-input");
+  if (searchEl) {
+    searchEl.addEventListener("input", (e) => {
+      runtime.studyBook.searchQuery = e.target.value;
+      runtime.studyBook.searchMatchIndex = 0;
+      renderStudyBookDrawer();
+      const newInput = sbRoot.querySelector(".sb-search-input");
+      if (newInput) {
+        newInput.focus();
+        const len = newInput.value.length;
+        newInput.setSelectionRange(len, len);
+      }
+    });
+  }
+
+  // Resize handle (desktop drag)
+  const handle = sbRoot.querySelector(".sb-resize-handle");
+  const drawer = sbRoot.querySelector(".study-book-drawer");
+  if (handle && drawer) {
+    let startX, startWidth;
+    handle.addEventListener("mousedown", (e) => {
+      startX = e.clientX;
+      startWidth = parseInt(getComputedStyle(drawer).width, 10);
+      const onDrag = (ev) => {
+        const delta = startX - ev.clientX;
+        const newW = Math.max(280, Math.min(760, startWidth + delta));
+        drawer.style.width = newW + "px";
+        if (document.body.classList.contains("sb-split-mode")) {
+          document.getElementById("app").style.marginRight = newW + "px";
+        }
+      };
+      const stopDrag = () => {
+        document.removeEventListener("mousemove", onDrag);
+        document.removeEventListener("mouseup", stopDrag);
+      };
+      document.addEventListener("mousemove", onDrag);
+      document.addEventListener("mouseup", stopDrag);
+    });
+  }
+}
+
+/** Handles all data-sb-action clicks delegated from sbRoot. */
+function handleStudyBookClick(e) {
+  const el = e.target.closest("[data-sb-action]");
+  if (!el) return;
+  const sbAction = el.dataset.sbAction;
+
+  if (sbAction === "close") {
+    runtime.studyBook.open = false;
+    renderStudyBookDrawer();
+    document.body.classList.remove("sb-split-mode");
+    document.getElementById("app").style.marginRight = "";
+    return;
+  }
+
+  if (sbAction === "toggle-split") {
+    const wasSplit = document.body.classList.toggle("sb-split-mode");
+    const drawer = sbRoot.querySelector(".study-book-drawer");
+    if (wasSplit && drawer) {
+      document.getElementById("app").style.marginRight = getComputedStyle(drawer).width;
+    } else {
+      document.getElementById("app").style.marginRight = "";
+    }
+    return;
+  }
+
+  if (sbAction === "toc-jump") {
+    e.preventDefault();
+    const anchor = el.dataset.anchor;
+    runtime.studyBook.currentAnchor = anchor;
+    scrollToStudyBookAnchor(anchor);
+    return;
+  }
+
+  if (sbAction === "switch-file") {
+    openStudyBook(runtime.studyBook.datasetId, { mdPath: el.dataset.sbPath });
+    return;
+  }
+
+  if (sbAction === "search-next") {
+    const total = runtime.studyBook.searchMatches;
+    if (!total) return;
+    runtime.studyBook.searchMatchIndex = (runtime.studyBook.searchMatchIndex + 1) % total;
+    scrollToSearchMatch(runtime.studyBook.searchMatchIndex);
+    updateSearchCounter();
+    return;
+  }
+
+  if (sbAction === "search-prev") {
+    const total = runtime.studyBook.searchMatches;
+    if (!total) return;
+    runtime.studyBook.searchMatchIndex = (runtime.studyBook.searchMatchIndex - 1 + total) % total;
+    scrollToSearchMatch(runtime.studyBook.searchMatchIndex);
+    updateSearchCounter();
+    return;
+  }
+}
+
+/**
+ * Scrolls the content area so that the nth <mark class="sb-highlight"> is visible
+ * and adds a brief ring around it so the user can see which one is active.
+ */
+function scrollToSearchMatch(index) {
+  const contentEl = document.getElementById("sb-content-area");
+  if (!contentEl) return;
+  const marks = contentEl.querySelectorAll("mark.sb-highlight");
+  if (!marks.length) return;
+  const target = marks[Math.min(index, marks.length - 1)];
+  // Remove active class from all, set on current
+  marks.forEach(m => m.classList.remove("sb-highlight-active"));
+  target.classList.add("sb-highlight-active");
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/** Updates the "X / N" counter in the search bar without a full re-render. */
+function updateSearchCounter() {
+  const counter = sbRoot.querySelector(".sb-search-count");
+  if (counter) {
+    counter.textContent = `${runtime.studyBook.searchMatchIndex + 1} / ${runtime.studyBook.searchMatches}`;
+  }
+}
+
+/**
+ * Scrolls the Study Book content area to the given heading anchor and
+ * briefly flashes it so the user knows where they landed.
+ */
+function scrollToStudyBookAnchor(anchor) {
+  const contentEl = document.getElementById("sb-content-area");
+  if (!contentEl) return;
+  const target = contentEl.querySelector(`#${CSS.escape(anchor)}`);
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  target.classList.add("sb-anchor-flash");
+  target.addEventListener("animationend", () => target.classList.remove("sb-anchor-flash"), { once: true });
+}
+
+/**
+ * Opens the Study Book for a given dataset, optionally jumping to a heading.
+ * This is the single public entry point called from all tabs and quiz questions.
+ *
+ * @param {string} datasetId  - pack id from the manifest
+ * @param {object} [opts]
+ * @param {string} [opts.anchor]  - heading anchor to jump to after open
+ * @param {string} [opts.mdPath]  - specific .md file path to load (defaults to contentMdPath)
+ */
+async function openStudyBook(datasetId, { anchor = null, mdPath = null } = {}) {
+  const dataset = findDataset(runtime.manifest, datasetId);
+  if (!dataset) return;
+
+  const files = getStudyBookFiles(dataset);
+  if (!files.length) return;
+
+  const targetPath = mdPath || files[0].path;
+  const sb = runtime.studyBook;
+
+  // Only re-load if switching dataset or file
+  if (sb.datasetId !== datasetId || sb.activeFile !== targetPath || !sb.html) {
+    let raw = "";
+    try {
+      raw = await loadMarkdownFile(targetPath);
+    } catch (err) {
+      console.warn(err);
+      raw = `# Notes unavailable\n\nCould not load \`${targetPath}\`.`;
+    }
+    const toc = extractTOC(raw);
+    const html = renderMarkdown(raw);
+    Object.assign(sb, {
+      datasetId,
+      activeFile: targetPath,
+      markdown: raw,
+      html,
+      toc,
+      scrollTop: 0,
+      searchQuery: "",
+      searchMatches: 0,
+      currentAnchor: toc[0]?.anchor ?? null,
+    });
+  }
+
+  sb.open = true;
+  sb.pendingAnchor = anchor;
+  if (anchor) sb.currentAnchor = anchor;
+
+  renderStudyBookDrawer();
+
+  // Focus the close button for accessibility
+  requestAnimationFrame(() => {
+    sbRoot.querySelector(".sb-close")?.focus();
+    if (anchor) scrollToStudyBookAnchor(anchor);
+  });
+}
+
+/**
+ * Returns a Study Book trigger button HTML string for use in any tab.
+ * Renders nothing if the dataset has no markdown files registered.
+ *
+ * @param {object} dataset  - manifest dataset entry
+ * @param {object} [opts]
+ * @param {string} [opts.anchor]  - jump directly to this heading anchor on open
+ * @param {string} [opts.mdPath]  - specific .md file to load on open
+ * @param {string} [opts.label]   - override button label text
+ * @param {string} [opts.cls]     - extra CSS class(es) on the button
+ */
+function renderStudyBookButton(dataset, { anchor = "", mdPath = "", label = "Study Book", cls = "" } = {}) {
+  if (!datasetHasStudyBook(dataset)) return "";
+  return `
+    <button class="button ghost sb-trigger${cls ? " " + cls : ""}"
+            data-action="open-study-book"
+            data-dataset-id="${escapeHtml(dataset.id)}"
+            data-sb-anchor="${escapeHtml(anchor)}"
+            data-sb-path="${escapeHtml(mdPath)}"
+            aria-label="Open Study Book">
+      &#128218; ${escapeHtml(label)}
+    </button>`;
+}
+
+// ── End Study Book ──────────────────────────────────────────────────────────
+
 async function init() {
   runtime.manifest = await loadManifest();
   // Inject any previously-uploaded packs into the live manifest before rendering.
   hydrateManifest(runtime.manifest, registerPackInCache);
   ensurePreferenceDefaults();
   bindEvents();
+  renderStudyBookDrawer(); // mount the (initially closed) drawer
   await renderApp();
 }
 
@@ -710,6 +1103,7 @@ async function renderVocabTab() {
             <span class="count-pill blue">${filtered.length} matching</span>
             <span class="count-pill green">${mastered} mastered</span>
             <span class="count-pill amber">${fallback(dataset.wordCount, words.length)} total in pack</span>
+            ${renderStudyBookButton(dataset)}
           </div>
         </div>
         ${renderSubjectCardGrid(prefs.subject, "select-vocab-subject")}
@@ -888,6 +1282,7 @@ async function renderQuizTab() {
         <div class="action-row" style="margin-top:18px;">
           <button class="button" data-action="start-quiz" ${maxQuestionCount <= 0 ? "disabled" : ""}>Start quiz</button>
           <button class="button secondary" data-action="open-review">Open review desk</button>
+          ${renderStudyBookButton(dataset)}
         </div>
         ${maxQuestionCount > 0 ? `<p class="muted tiny" style="margin-top:12px;">This setup currently has up to ${maxQuestionCount} questions available.</p>` : `<p class="muted tiny" style="margin-top:12px;">No quiz questions are available for the current setup.</p>`}
       </section>
@@ -1246,6 +1641,15 @@ function renderQuizSession(session) {
                 <span class="count-pill blue">${escapeHtml(progressText)}</span>
                 <span class="count-pill green">${session.score} correct</span>
                 <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">${escapeHtml(speakLabel(fallback(question.speechLanguage, "de-DE")))}</button>
+                ${renderStudyBookButton(
+                  findDataset(runtime.manifest, persisted.prefs.quiz.datasetId),
+                  {
+                    anchor: question.sourceRef?.anchor || "",
+                    mdPath: question.sourceRef?.mdFile  || "",
+                    label: question.sourceRef ? `Jump to "${question.sourceRef.heading}"` : "Study Book",
+                    cls: "sb-trigger-sm",
+                  }
+                )}
               </div>
             `,
           });
@@ -1642,6 +2046,7 @@ async function renderBuilderTab() {
             <span class="count-pill blue">attempted ${stats.totalAttempted}</span>
             <span class="count-pill green">correct ${stats.totalCorrect}</span>
             <span class="count-pill amber">streak ${stats.streak}</span>
+            ${renderStudyBookButton(findDataset(runtime.manifest, persisted.prefs.quiz.datasetId))}
           </div>
         </div>
         ${renderBuilderSubjectCardGrid(prefs.subject)}
@@ -1899,6 +2304,7 @@ async function renderReadingTab() {
           </div>
           <div class="action-row" style="margin-top:18px;">
             <button class="button" data-action="reading-start">Start reading practice</button>
+            ${renderStudyBookButton(findDataset(runtime.manifest, persisted.prefs.quiz.datasetId))}
           </div>
           ${setupMessage ? `<p class="muted tiny" style="margin-top:12px;">${escapeHtml(setupMessage)}</p>` : ""}
         </section>
@@ -2004,6 +2410,7 @@ async function renderReviewTab() {
           <div class="chip-row">
             <span class="count-pill blue">${reviewedWords.length} reviewed words</span>
             <span class="count-pill green">${mastered.length} mastered in view</span>
+            ${renderStudyBookButton(dataset)}
           </div>
         </div>
         <div class="form-grid" style="margin-top:18px;">
@@ -2990,6 +3397,15 @@ async function handleClick(event) {
       }
       return;
     }
+    // ── Study Book ──────────────────────────────────────────────────────────
+    case "open-study-book": {
+      const datasetId = actionButton.dataset.datasetId;
+      const anchor    = actionButton.dataset.sbAnchor  || null;
+      const mdPath    = actionButton.dataset.sbPath    || null;
+      await openStudyBook(datasetId, { anchor, mdPath });
+      return;
+    }
+    // ── End Study Book ──────────────────────────────────────────────────────
     case "open-review":
       persisted.activeTab = "review";
       saveStoredState(persisted);
@@ -3633,6 +4049,14 @@ async function handleInput(event) {
 }
 
 function handleKeyDown(event) {
+  // Escape closes the Study Book drawer if open
+  if (event.key === "Escape" && runtime.studyBook.open) {
+    runtime.studyBook.open = false;
+    renderStudyBookDrawer();
+    document.body.classList.remove("sb-split-mode");
+    document.getElementById("app").style.marginRight = "";
+    return;
+  }
   if (!event.target.dataset.crosswordCell || !runtime.crossword) return;
   const row = Number(event.target.dataset.row);
   const col = Number(event.target.dataset.col);
