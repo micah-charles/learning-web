@@ -376,7 +376,7 @@ def convert_passage_packs(manifest):
                     q_item = {
                         "id": question.get("id", f"q_{len(items_q)}"),
                         "questionType": question.get("type") or question.get("questionType") or "open",
-                        "question": question.get("question_en") or question.get("question") or "",
+                        "question": question.get("question") or "",
                         "difficulty": question.get("difficulty", "medium"),
                     }
                     if question.get("options"):

@@ -132,7 +132,7 @@ function passageFromItem(item, packSpeechLanguage) {
       id: question.id,
       type: question.questionType || (question.options?.length ? "multiple_choice" : "open"),
       difficulty: question.difficulty || "medium",
-      question_en: question.question || "",
+      question: question.question || "",
       options: question.options || [],
       correct_option_index: question.correctOptionIndex,
       correct_answer: question.correctAnswer || "",

@@ -188,7 +188,7 @@ function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onRe
             const correctOpt = q.options?.[q.correct_option_index] || q.correct_answer;
             return (
               <div key={q.id || qi} style={{ marginBottom: "16px" }}>
-                <p style={{ fontWeight: 600, marginBottom: "8px" }}>{q.question_en}</p>
+                <p style={{ fontWeight: 600, marginBottom: "8px" }}>{q.question}</p>
                 <div className="lw-option-grid">
                   {(q.options || []).map((opt, oi) => {
                     let cls = "lw-option-btn";
@@ -222,7 +222,7 @@ function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onRe
           <h3 className="lw-section-title">Open questions</h3>
           {openQuestions.map((q, qi) => (
             <div key={q.id || qi} style={{ marginBottom: "16px" }}>
-              <p style={{ fontWeight: 600, marginBottom: "8px" }}>{q.question_en}</p>
+              <p style={{ fontWeight: 600, marginBottom: "8px" }}>{q.question}</p>
               {revealed && q.model_answer_en && (
                 <div style={{ background: "var(--lw-green-soft)", border: "1.5px solid var(--lw-green)", borderRadius: "var(--lw-radius-sm)", padding: "12px 16px" }}>
                   <p style={{ fontSize: "0.85rem", color: "var(--lw-green)", fontWeight: 600, marginBottom: "4px" }}>Model answer:</p>
