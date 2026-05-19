@@ -7,6 +7,7 @@ const SUBJECT_META = {
   science:    { label: "Science",    icon: "🔬" },
   literature: { label: "Literature", icon: "📖" },
   computing:  { label: "Computing",  icon: "💻" },
+  religion:   { label: "Religion",   icon: "🕊️" },
   other:      { label: "Other",      icon: "🗂️" },
 };
 
