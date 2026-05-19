@@ -1027,13 +1027,13 @@ async function renderHomeTab() {
 
       <section class="two-up">
         <article class="section-card">
-          <h2>What this web port includes</h2>
+          <h2>Review Desk rule</h2>
           <div class="meta-list" style="margin-top:16px;">
-            <div class="session-item"><span>Vocabulary browser with filters and speech</span><span class="badge green">Live</span></div>
-            <div class="session-item"><span>Quiz session with mixed Swift-style question modes</span><span class="badge green">Live</span></div>
-            <div class="session-item"><span>Passage listening and answer reveal flow</span><span class="badge green">Live</span></div>
-            <div class="session-item"><span>Sentence builder drill with hint/streak logic</span><span class="badge green">Live</span></div>
-            <div class="session-item"><span>Maze and story tabs from the iPad app</span><span class="badge coral">Later</span></div>
+            <div class="session-item"><span>Each word tracks correct answers, wrong answers, current streak, and last seen time</span><span class="badge blue">Progress</span></div>
+            <div class="session-item"><span>A correct answer adds 1 correct and increases the streak</span><span class="badge green">Correct</span></div>
+            <div class="session-item"><span>A wrong answer adds 1 wrong and resets the streak to 0</span><span class="badge coral">Wrong</span></div>
+            <div class="session-item"><span>Mastered means at least 3 correct answers and a current streak of at least 2</span><span class="badge green">Mastered</span></div>
+            <div class="session-item"><span>Needs review shows the top 12 reviewed words by wrong-minus-correct score, then wrong count</span><span class="badge amber">Ranked</span></div>
           </div>
         </article>
         <article class="section-card">
