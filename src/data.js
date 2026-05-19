@@ -138,13 +138,13 @@ function builderFromItem(item) {
   };
 }
 
-function passageFromItem(item) {
+function passageFromItem(item, packSpeechLanguage) {
   const data = item.data || {};
   return {
     id: item.id,
     topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
     level: item.level || "",
-    speech_language: data.speechLanguage || "de-DE",
+    speech_language: data.speechLanguage || packSpeechLanguage || "en-GB",
     chapter: data.chapter || "",
     section: data.section || "",
     title_de: data.sourceTitle || "",
@@ -495,7 +495,8 @@ export async function loadPassageUnifiedPack(manifest, groupId) {
 
 export async function loadPassagePack(manifest, groupId, packId = null) {
   const pack = await loadPassageUnifiedPack(manifest, groupId);
-  const passages = filterUnifiedItems(pack, "passage").map(passageFromItem);
+  const packSpeechLanguage = pack && (pack.speechLanguage || pack.sourceLanguageCode);
+  const passages = filterUnifiedItems(pack, "passage").map((item) => passageFromItem(item, packSpeechLanguage));
   if (!packId || packId === groupId) return passages;
   return passages.filter((passage) => {
     const key = `${groupId}::${passage.id}`;
