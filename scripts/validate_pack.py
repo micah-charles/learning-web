@@ -174,7 +174,9 @@ def check_passage(iid, data, errors, warnings):
             continue
         if not q.get("id"):
             err(errors, f"{iid} (passage): questions[{qi}] missing 'id'")
-        qt = q.get("questionType") or q.get("type", "open")
+        if not q.get("question"):
+            err(errors, f"{iid} (passage): questions[{qi}] missing 'question' (canonical field — not 'questionText' or 'question_en')")
+        qt = q.get("questionType", "open")
         if qt not in VALID_Q_TYPES:
             warn(warnings, f"{iid} (passage): questions[{qi}] unusual questionType '{qt}'")
         if qt in ("multiple_choice", "mcq", "choice"):

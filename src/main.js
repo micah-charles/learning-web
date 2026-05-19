@@ -4595,8 +4595,8 @@ async function resetPassageRuntime(groupId, packId) {
             title_en: d.targetTitle || d.title_en || "",
             questions: (d.questions || []).map((q) => ({
               id: q.id,
-              type: q.questionType || "open",
-              question: q.question || q.question_en || "",
+              type: q.questionType || (q.options?.length ? "multiple_choice" : "open"),
+              question: q.question || "",
               difficulty: q.difficulty || "medium",
               options: q.options || [],
               correct_option_index: q.correctOptionIndex,
