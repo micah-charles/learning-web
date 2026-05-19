@@ -37,7 +37,7 @@ Stage 4 — Validation
               ↓
 Stage 5 — Manifest Registration + Subject Support
   File:   data/generated/manifest.json  (add pack entries)
-  Files:  src/data.js, src/main.js, src/react/**  (add subject if new)
+  Files:  src/data.js, src/main.js, scripts/validate_pack.py  (add subject if new)
 ```
 
 ---
@@ -160,15 +160,13 @@ Each pack needs an entry in `data/generated/manifest.json` under `packs[]`:
 ```
 
 ### Add a new subject (if needed)
-Update **all four** of these files — they are each independent and must stay in sync:
+Update these maintained files — they are independent and must stay in sync:
 
 | File | What to add |
 |---|---|
-| `src/data.js` | Add to `SUBJECTS` array; add ID pattern to `inferSubject`; add to `VALID_SUBJECTS` in `validate_pack.py` |
+| `src/data.js` | Add to `SUBJECTS` array; add ID pattern to `inferSubject` |
 | `src/main.js` | Add to `SUBJECT_LABELS` with icon emoji |
-| `src/react/components/layout/SubjectCardGrid.jsx` | Add to `SUBJECT_META` |
-| `src/react/pages/HomePage.jsx` | Add to `SUBJECT_ICONS` |
-| `src/react/components/learning/PackSelector.jsx` | Add to `SUBJECT_ORDER`, `SUBJECT_LABELS`, local `inferSubject` |
+| `scripts/validate_pack.py` | Add to `VALID_SUBJECTS` |
 
 ---
 
@@ -181,7 +179,9 @@ Update **all four** of these files — they are each independent and must stay i
 | `docs/curriculum-generation/02_example_computing_study_content_master_rules.md` | Stage 2 example — Computing writing rules shared across Computing topics |
 | `docs/curriculum-generation/03_ks3_computing_architecture.md` | Stage 2 — KS3 Computing topic map and batch generation notes |
 | `docs/curriculum-generation/04_json_pack_generation_prompt.md` | Stage 3 — canonical Learning Web schema 1.1 JSON generation prompt |
+| `docs/curriculum-generation/pack-generation-literature-prompt.md` | Literature-specific pack generation prompt |
 | `docs/pack-generation-prompt.md` | Same as 04 — the primary operational prompt (kept in docs/ root for backwards compatibility) |
+| `docs/update-data-structure-docs.md` | Maintenance rule for keeping `docs/data-structures.md` and `.html` in sync with schema changes |
 | `scripts/validate_pack.py` | Stage 4 — per-file schema validation |
 | `scripts/validate_unified.py` | Stage 4 — manifest-wide validation |
 | `data/generated/manifest.json` | Stage 5 — app pack registry |
@@ -196,6 +196,6 @@ Update **all four** of these files — they are each independent and must stay i
 - [ ] Run `validate_pack.py` — fix all errors before proceeding
 - [ ] Add `subject` to `VALID_SUBJECTS` in `validate_pack.py`
 - [ ] Register all packs in `manifest.json`
-- [ ] Add subject icon/label to the 5 source files listed in Stage 5
+- [ ] Add subject icon/label to the maintained source files listed in Stage 5
 - [ ] Test: subject card appears in all four app tabs
 - [ ] Open PR against `main`

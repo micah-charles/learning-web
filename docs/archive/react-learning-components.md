@@ -1,3 +1,13 @@
+# Archived: React Learning Components
+
+> **Archived on 2026-05-19.** This document describes an experimental React
+> layer that is not the maintained Learning Web app. The maintained app is the
+> vanilla JS/Vite app served from `index.html`, `src/main.js`, and `styles.css`.
+> Keep this file only as historical context; do not use it as implementation
+> guidance for current work.
+
+---
+
 # React Learning Components
 
 > How the React layer works on top of the existing learning-web data layer.
