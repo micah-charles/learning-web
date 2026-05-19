@@ -2593,6 +2593,13 @@ mark.sb-highlight-active {
 @media (prefers-color-scheme: dark) {
   .study-book-drawer {
     box-shadow: -6px 0 32px rgba(0, 0, 0, 0.48);
+    /* Surface variables use rgba with alpha, which bleeds through when the
+       drawer overlays arbitrary page content. Force fully opaque here. */
+    background: rgb(56, 48, 41);
+  }
+
+  .sb-header {
+    background: rgb(43, 37, 32);
   }
 
   .sb-content th {
