@@ -302,5 +302,38 @@ In Next.js, components hydrate on the server where `localStorage` is undefined. 
 
 ---
 
-*Last updated: 2026-05-16*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58*
+---
+
+### ⚠️ 5. Every new npm package MUST be added to the import map
+
+**Mistake made (PR #83):** `admin-validate.js` imported `ajv` and `main.js` imported `fflate` as bare specifiers. These resolved fine via Vite bundling locally, but the **production site at learning-web-gnf4.onrender.com runs in source-served mode** — `python3 -m http.server` serving raw `src/` files, NOT the `dist/` build. The browser tried to resolve bare specifiers, found no entry in the import map, failed to load `main.js` entirely, and left the loading shell on screen permanently.
+
+**Root cause:** The production server serves source files directly (confirmed by PR #75 which added an import map for `dompurify` and `marked`). Vite bundling only happens locally. There is no `public/` directory and `dist/` is gitignored — Vite's build output is never deployed.
+
+**Rule:** Any bare npm import added to **any file in `src/`** must have a matching CDN ESM entry in the `<script type="importmap">` block in `index.html`.
+
+```html
+<!-- index.html — keep this in sync with every npm import in src/ -->
+<script type="importmap">
+  {
+    "imports": {
+      "dompurify": "https://cdn.jsdelivr.net/npm/dompurify@3.4.5/dist/purify.es.mjs",
+      "marked":    "https://cdn.jsdelivr.net/npm/marked@18.0.3/lib/marked.esm.js",
+      "fflate":    "https://cdn.jsdelivr.net/npm/fflate@0.8.2/esm/browser.js"
+    }
+  }
+</script>
+```
+
+**Checklist for every new npm dependency:**
+- [ ] Does the package have a standalone ESM browser build? (check jsDelivr / esm.sh)
+- [ ] Is the CDN URL added to the import map in `index.html`?
+- [ ] If the package has complex transitive deps, use `https://esm.sh/<pkg>@<ver>` (bundles everything)
+- [ ] Prefer zero-dependency implementations where possible — avoids the CDN URL problem entirely
+
+**Prefer custom code over npm packages for small utilities.** `admin-validate.js` was rewritten to use inline item-level checks instead of Ajv, reducing the dependency count to zero for that module.
+
+---
+
+*Last updated: 2026-05-20*  
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #83*
