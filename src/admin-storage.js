@@ -249,6 +249,7 @@ export function hydrateManifest(manifest, registerInCache) {
       manifest.sentenceBuilderPacks.push({
         id:          entry.id,
         displayName: entry.displayName,
+        subject:     entry.subject,
         unifiedPath: path,
         _uploaded:   true,
       });
