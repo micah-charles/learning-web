@@ -2418,7 +2418,7 @@ async function renderReadingTab() {
                   </div>
                   <div class="passage-question-copy">
                     <div class="passage-question-label">Question ${index + 1}</div>
-                    <div class="passage-question-prompt">${escapeHtml(fallback(question.question_en, fallback(question.question, "Question prompt missing")))}</div>
+                    <div class="passage-question-prompt">${escapeHtml(question.question || "Question prompt missing")}</div>
                   </div>
                   ${renderPassageQuestionInput(question, passages)}
                   ${passages.revealed ? renderPassageQuestionReveal(question, passages) : ""}

@@ -427,7 +427,7 @@ Wrong names cause silent failures or validation errors.
 | `fillBlank` | `sentence` (contains `____`), `answer`, optional `options[]` | ❌ `question`, `text`, `prompt` |
 | `sequence` | `title`, `items` (array of step strings), optional `instruction` | ❌ `question`, `steps`, `order` |
 | `categorySort` | `categories` (array), `pairs` where each pair has `text` + `category`, optional `title` | ❌ `item`, `label`, `value` in pairs |
-| `passage` | `sourceTitle`, `targetTitle`, `sourcePassage`, `targetPassage`, `speechLanguage`, `questions[]` | — |
+| `passage` | `sourceTitle`, `targetTitle`, `sourcePassage`, `targetPassage`, `speechLanguage`, `questions[]` | ❌ `questionText`, `question_en` inside each question object — use `"question"` |
 | `sentenceBuilder` | `answer`, `tiles` (array), optional `prompt`, `cardType` | — |
 
 **`fillBlank` gap marker:** always four underscores `____` — never `___`, `[blank]`, `<blank>`, or `...`.
@@ -876,6 +876,7 @@ If confidence is low, still generate the pack — record the uncertainty in
 - ❌ Don't capitalise `subject`.
 - ❌ Don't use `"science"` for computing packs — use `"computing"`.
 - ❌ Don't use `"question"` in `fillBlank` data — the field is `"sentence"`.
+- ❌ Don't use `"questionText"` in passage question objects — the field is `"question"`.
 - ❌ Don't use `"steps"` in `sequence` data — the field is `"items"`.
 - ❌ Don't use `"item"` in `categorySort` pairs — the field is `"text"`.
 - ❌ Don't put `passage` items in `pack_unified.json` — they live in
