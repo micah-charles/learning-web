@@ -39,6 +39,8 @@ import {
   deleteUploadedPack,
   validatePack,
 } from "./admin-storage.js";
+import { validatePackSchema } from "./admin-validate.js";
+import { unzip } from "fflate";
 import {
   createQuizSession,
   getDefaultQuestionModes,
@@ -3063,17 +3065,71 @@ function renderAdminTab() {
   // Compute rough storage used
   const totalBytes = packs.reduce((sum, p) => sum + (p.sizeBytes || 0), 0);
 
-  const statusHtml = status
-    ? `
-      <div class="admin-status ${status.ok ? "admin-status-ok" : "admin-status-error"}">
-        <span class="admin-status-icon" aria-hidden="true">${status.ok ? "✓" : "✗"}</span>
-        <div>
-          <strong>${status.ok ? "Pack uploaded successfully" : "Upload failed"}</strong>
-          <p class="tiny">${escapeHtml(status.message)}</p>
-        </div>
-      </div>
-    `
-    : "";
+  let statusHtml = "";
+  if (status) {
+    if (status.files) {
+      // ZIP batch result
+      const successCount = status.files.filter((f) => f.ok).length;
+      const failCount    = status.files.length - successCount;
+      const cls = failCount === 0 ? "admin-status-ok"
+                : successCount === 0 ? "admin-status-error"
+                : "admin-status-warn";
+      const icon = failCount === 0 ? "✓" : successCount === 0 ? "✗" : "!";
+      const summary = failCount === 0
+        ? `All ${successCount} packs loaded from ZIP`
+        : `${successCount} of ${status.files.length} packs loaded (${failCount} failed)`;
+
+      const fileRows = status.files.map((f) => {
+        const warnLine = f.warnings?.length
+          ? `<div class="tiny" style="color:var(--amber);margin-top:2px;">⚠ ${escapeHtml(f.warnings[0])}${f.warnings.length > 1 ? ` (+${f.warnings.length - 1} more)` : ""}</div>`
+          : "";
+        const errLine = !f.ok
+          ? `<div class="tiny muted" style="margin-top:2px;">${escapeHtml(f.message)}</div>`
+          : "";
+        return `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:4px 0;border-top:1px solid rgba(0,0,0,0.06);">
+            <span style="flex-shrink:0;font-weight:700;color:${f.ok ? "var(--green)" : "var(--coral)"};">${f.ok ? "✓" : "✗"}</span>
+            <div>
+              <div class="tiny">${escapeHtml(f.filename)}</div>
+              ${errLine}${warnLine}
+            </div>
+          </div>`;
+      }).join("");
+
+      statusHtml = `
+        <div class="admin-status ${cls}">
+          <span class="admin-status-icon" aria-hidden="true">${icon}</span>
+          <div style="flex:1;min-width:0;">
+            <strong>${escapeHtml(summary)}</strong>
+            <details style="margin-top:8px;">
+              <summary class="tiny" style="cursor:pointer;user-select:none;">Show details</summary>
+              <div style="margin-top:6px;">${fileRows}</div>
+            </details>
+          </div>
+        </div>`;
+    } else {
+      // Single file result
+      const warningsHtml = status.warnings?.length
+        ? `<details style="margin-top:6px;">
+            <summary class="tiny" style="cursor:pointer;user-select:none;color:var(--amber);">
+              ⚠ ${status.warnings.length} schema warning${status.warnings.length > 1 ? "s" : ""}
+            </summary>
+            <ul style="margin:4px 0 0;padding-left:16px;">
+              ${status.warnings.map((w) => `<li class="tiny muted">${escapeHtml(w)}</li>`).join("")}
+            </ul>
+          </details>`
+        : "";
+      statusHtml = `
+        <div class="admin-status ${status.ok ? "admin-status-ok" : "admin-status-error"}">
+          <span class="admin-status-icon" aria-hidden="true">${status.ok ? "✓" : "✗"}</span>
+          <div>
+            <strong>${status.ok ? "Pack uploaded successfully" : "Upload failed"}</strong>
+            <p class="tiny">${escapeHtml(status.message)}</p>
+            ${warningsHtml}
+          </div>
+        </div>`;
+    }
+  }
 
   const packListHtml = packs.length === 0
     ? `<p class="muted tiny" style="margin-top:8px;">No packs uploaded yet.</p>`
@@ -3190,12 +3246,12 @@ function renderAdminTab() {
 
         <div class="admin-drop-zone" id="admin-drop-zone">
           <div class="admin-drop-icon" aria-hidden="true">📂</div>
-          <p class="admin-drop-label">Drop a <strong>pack_unified.json</strong> file here, or click to browse</p>
-          <p class="muted tiny">Accepts any unified pack JSON with an <code>items</code> array</p>
+          <p class="admin-drop-label">Drop a <strong>pack JSON</strong> or <strong>ZIP of packs</strong> here, or click to browse</p>
+          <p class="muted tiny">Accepts <code>.json</code> or <code>.zip</code> — validated against JSON schema on upload</p>
           <input
             type="file"
             id="admin-file-upload"
-            accept=".json,application/json"
+            accept=".json,.zip,application/json,application/zip"
             style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;"
           />
         </div>
@@ -3263,6 +3319,11 @@ async function handleAdminFileUpload(file) {
   if (!file) return;
   runtime.adminUploadStatus = null;
 
+  if (file.name.toLowerCase().endsWith(".zip")) {
+    await handleAdminZipUpload(file);
+    return;
+  }
+
   const text = await file.text().catch(() => null);
   if (!text) {
     runtime.adminUploadStatus = { ok: false, message: "Could not read file." };
@@ -3279,13 +3340,17 @@ async function handleAdminFileUpload(file) {
     return;
   }
 
-  // Quick pre-validation before saving
+  // Structural gate — must have items with known types
   const validation = validatePack(parsed);
   if (!validation.ok) {
     runtime.adminUploadStatus = { ok: false, message: validation.error };
     await renderApp();
     return;
   }
+
+  // Schema validation — non-blocking, surfaces as warnings
+  const schemaResult = validatePackSchema(parsed);
+  const warnings = schemaResult.ok ? [] : schemaResult.errors;
 
   const result = saveUploadedPack(parsed, file.name);
   if (!result.ok) {
@@ -3312,7 +3377,96 @@ async function handleAdminFileUpload(file) {
     message:
       `"${entry.displayName}" loaded with ${typesSummary}. ` +
       `Available in: ${sectionsSummary}.`,
+    warnings,
     entry,
+  };
+
+  await renderApp();
+}
+
+// ─── Admin ZIP upload handler ─────────────────────────────────────────────────
+
+async function handleAdminZipUpload(file) {
+  let buffer;
+  try {
+    buffer = await file.arrayBuffer();
+  } catch {
+    runtime.adminUploadStatus = { ok: false, message: "Could not read ZIP file." };
+    await renderApp();
+    return;
+  }
+
+  const files = await new Promise((resolve) => {
+    unzip(new Uint8Array(buffer), (err, unzipped) => {
+      if (err) { resolve(null); return; }
+      resolve(unzipped);
+    });
+  });
+
+  if (!files) {
+    runtime.adminUploadStatus = { ok: false, message: "Could not extract ZIP file." };
+    await renderApp();
+    return;
+  }
+
+  const jsonEntries = Object.entries(files).filter(([path]) =>
+    !path.endsWith("/") &&
+    !path.startsWith("__MACOSX/") &&
+    path.toLowerCase().endsWith(".json"),
+  );
+
+  if (jsonEntries.length === 0) {
+    runtime.adminUploadStatus = { ok: false, message: "ZIP contains no .json files." };
+    await renderApp();
+    return;
+  }
+
+  let anySuccess = false;
+  const fileResults = [];
+
+  for (const [path, data] of jsonEntries) {
+    const filename = path.split("/").pop();
+    let parsed;
+    try {
+      parsed = JSON.parse(new TextDecoder().decode(data));
+    } catch (e) {
+      fileResults.push({ filename, ok: false, message: `Invalid JSON: ${e.message}`, warnings: [] });
+      continue;
+    }
+
+    const validation = validatePack(parsed);
+    if (!validation.ok) {
+      fileResults.push({ filename, ok: false, message: validation.error, warnings: [] });
+      continue;
+    }
+
+    const schemaResult = validatePackSchema(parsed);
+    const warnings = schemaResult.ok ? [] : schemaResult.errors;
+
+    const result = saveUploadedPack(parsed, filename);
+    if (!result.ok) {
+      fileResults.push({ filename, ok: false, message: result.error, warnings });
+      continue;
+    }
+
+    anySuccess = true;
+    const { entry } = result;
+    const typesSummary = Object.entries(entry.typeCounts || {})
+      .filter(([t]) => ITEM_TYPE_LABELS[t])
+      .map(([t, n]) => `${n} ${ITEM_TYPE_LABELS[t]}`)
+      .join(", ");
+    fileResults.push({ filename, ok: true, message: typesSummary, warnings });
+  }
+
+  if (anySuccess) {
+    hydrateManifest(runtime.manifest, registerPackInCache);
+    ensurePreferenceDefaults();
+  }
+
+  runtime.adminUploadStatus = {
+    ok: anySuccess,
+    message: "",
+    files: fileResults,
   };
 
   await renderApp();
