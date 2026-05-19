@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "learning-web/schemas/pack_unified.schema.json",
+  "title": "Learning Web — pack_unified.json",
+  "description": "Revision pack file. Contains vocab, sentence, fillBlank, sequence, categorySort, or sentenceBuilder items. Passage items belong in passages.json, not here.",
+  "type": "object",
+  "required": ["packId", "schemaVersion", "sourceLanguageCode", "targetLanguageCode", "items"],
+  "additionalProperties": true,
+  "properties": {
+    "packId":              { "type": "string", "minLength": 1 },
+    "schemaVersion":       { "type": "string", "enum": ["1.0", "1.1"] },
+    "subject": {
+      "type": "string",
+      "enum": ["language", "history", "geography", "science", "literature", "computing", "religion", "other"],
+      "description": "Must be lowercase. Determines subject bucket in Quiz Setup UI."
+    },
+    "title":               { "type": "string" },
+    "subtitle":            { "type": "string" },
+    "level":               { "type": "string" },
+    "language":            { "type": "string" },
+    "topics":              { "type": "array", "items": { "type": "string" } },
+    "tags":                { "type": "array", "items": { "type": "string" } },
+    "description":         { "type": "string" },
+    "sourceLanguageLabel": { "type": "string" },
+    "sourceLanguageCode":  { "type": "string", "description": "BCP-47 code, e.g. de-DE, la-Latn, en-GB" },
+    "targetLanguageLabel": { "type": "string" },
+    "targetLanguageCode":  { "type": "string", "description": "BCP-47 code, e.g. en-GB" },
+    "speechLanguage":      { "type": "string", "description": "BCP-47 TTS language code" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Item" }
+    }
+  },
+
+  "definitions": {
+
+    "Item": {
+      "type": "object",
+      "required": ["id", "type", "data"],
+      "properties": {
+        "id":        { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": ["vocab", "sentence", "sequence", "categorySort", "fillBlank", "sentenceBuilder"],
+          "description": "Do NOT use 'passage' here — passage items go in passages.json."
+        },
+        "level":     { "type": "string" },
+        "topics":    { "type": "array", "items": { "type": "string" } },
+        "tags":      { "type": "array", "items": { "type": "string" } },
+        "sourceRef": { "$ref": "#/definitions/SourceRef" },
+        "data":      { "type": "object" }
+      },
+      "allOf": [
+        {
+          "if":   { "properties": { "type": { "const": "vocab" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/VocabData" } } }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "sentence" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/SentenceData" } } }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "sequence" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/SequenceData" } } }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "categorySort" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/CategorySortData" } } }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "fillBlank" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/FillBlankData" } } }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "sentenceBuilder" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/SentenceBuilderData" } } }
+        }
+      ]
+    },
+
+    "VocabData": {
+      "type": "object",
+      "description": "Language packs use translations{}. Non-language packs use sourceWord + targetWord (where targetWord is a definition, never a repeat of sourceWord).",
+      "properties": {
+        "partOfSpeech": {
+          "type": "string",
+          "description": "Language packs: full English word (noun, verb, adjective, adverb, preposition, pronoun, conjunction, interjection). Non-language packs: 'keyword'."
+        },
+        "gender":   { "type": ["string", "null"], "enum": ["m", "f", "n", null] },
+        "plural":   { "type": "string" },
+        "translations": {
+          "type": "object",
+          "description": "BCP-47 keyed translations, e.g. { 'de-DE': 'der Hund', 'en-GB': 'dog' }. Preferred over sourceWord/targetWord.",
+          "additionalProperties": { "type": "string" }
+        },
+        "examples": {
+          "type": "object",
+          "description": "BCP-47 keyed example sentences. Only populate both src and tgt codes when sourceLanguageCode !== targetLanguageCode.",
+          "additionalProperties": { "type": "string" }
+        },
+        "sourceWord": { "type": "string", "description": "Legacy fallback — prefer translations{}" },
+        "targetWord": { "type": "string", "description": "Legacy fallback — must be a definition, never repeat sourceWord" }
+      }
+    },
+
+    "SentenceData": {
+      "type": "object",
+      "description": "Full sentence in source and target languages.",
+      "properties": {
+        "translations": {
+          "type": "object",
+          "description": "BCP-47 keyed sentences. Preferred.",
+          "additionalProperties": { "type": "string" }
+        },
+        "sourceSentence": { "type": "string", "description": "Legacy fallback" },
+        "targetSentence": { "type": "string", "description": "Legacy fallback" }
+      }
+    },
+
+    "SequenceData": {
+      "type": "object",
+      "required": ["title", "items"],
+      "description": "Ordered steps the student must arrange. Wrong names: 'question', 'steps', 'order'.",
+      "properties": {
+        "title":       { "type": "string", "description": "Question prompt shown to the student" },
+        "instruction": { "type": "string" },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "Steps in correct order. UI shuffles on load."
+        },
+        "shuffle": { "type": "boolean" }
+      }
+    },
+
+    "CategorySortData": {
+      "type": "object",
+      "required": ["categories", "pairs"],
+      "description": "Tile-sorting activity. Wrong names for pairs items: 'item', 'label', 'value'.",
+      "properties": {
+        "title":       { "type": "string" },
+        "instruction": { "type": "string" },
+        "categories": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "Column headers. Every pair.category must match one of these."
+        },
+        "pairs": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/definitions/CategoryPair" }
+        }
+      }
+    },
+
+    "CategoryPair": {
+      "type": "object",
+      "required": ["text", "category"],
+      "properties": {
+        "text":     { "type": "string", "description": "Tile label shown to the student" },
+        "category": { "type": "string", "description": "Must match one value in data.categories" }
+      }
+    },
+
+    "FillBlankData": {
+      "type": "object",
+      "required": ["sentence", "answer"],
+      "description": "Gap-fill item. Wrong field names: 'question', 'text', 'prompt'.",
+      "properties": {
+        "sentence": {
+          "type": "string",
+          "description": "Prompt containing ____ (four underscores) as the gap. NOT 'question'.",
+          "pattern": "____"
+        },
+        "answer":  { "type": "string" },
+        "hint":    { "type": "string" },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "If present renders as button grid. The correct answer must be included."
+        }
+      }
+    },
+
+    "SentenceBuilderData": {
+      "type": "object",
+      "required": ["answer", "tiles"],
+      "description": "Tile-drag sentence builder for the Builder tab.",
+      "properties": {
+        "cardType": { "type": "string", "description": "e.g. key_date, key_term, example_sentence" },
+        "prompt":   { "type": "string" },
+        "answer":   { "type": "string" },
+        "tiles": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "Word tokens. ' '.join(tiles) must exactly equal answer."
+        }
+      }
+    },
+
+    "SourceRef": {
+      "type": "object",
+      "description": "Optional link to a Study Book heading. Renders a 'Jump to [heading]' button in quiz.",
+      "properties": {
+        "mdFile":  { "type": "string" },
+        "heading": { "type": "string" },
+        "anchor":  { "type": "string" }
+      }
+    }
+
+  }
+}

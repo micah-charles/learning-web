@@ -1,8 +1,9 @@
 # Data Structures in `learning-web`
 
 > Complete reference for every data format used in the project.
-> Generated: 2026-05-03
 > Schema version: 1.1 (multilingual translations)
+>
+> **Machine-readable schemas:** `schemas/pack_unified.schema.json` and `schemas/passages.schema.json`
 
 ---
 
@@ -118,6 +119,9 @@ The `subject` field groups packs in the Quiz Setup UI (Subject First flow). It d
 | `geography` | Geography knowledge packs |
 | `science` | Science packs |
 | `literature` | Literature and text analysis packs |
+| `computing` | Computing and digital literacy packs |
+| `religion` | Religious studies packs |
+| `other` | Miscellaneous packs that don't fit another bucket |
 
 ---
 
@@ -431,7 +435,7 @@ Used by the **Builder tab** (standalone tile drill, independent of quiz flow).
         "id":                  "q1",
         "questionType":        "multiple_choice",
         "difficulty":          "medium",
-        "question_en":         "What does the student want to be?",
+        "question":            "What does the student want to be?",
         "options":             ["A doctor", "A teacher", "A farmer", "A driver"],
         "correctOptionIndex":   0,
         "modelAnswer":         "A doctor",
@@ -462,7 +466,7 @@ Used by the **Reading tab**.
   "id":                  "q1",
   "questionType":        "multiple_choice",
   "difficulty":          "medium",
-  "question_en":         "What does the student want to be?",
+  "question":            "What does the student want to be?",
   "options":             ["A doctor", "A teacher", "A farmer", "A driver"],
   "correctOptionIndex":   0,
   "modelAnswer":         "A doctor",
@@ -475,7 +479,7 @@ Used by the **Reading tab**.
 | `id` | string | Question ID |
 | `questionType` | string | `"open"` (typed) or `"multiple_choice"` |
 | `difficulty` | string | `"easy"` \| `"medium"` \| `"hard"` |
-| `question_en` | string | The question text |
+| `question` | string | The question text. **Must use this field name** — not `questionText`, not `question_en` |
 | `options` | string[] | MCQ options (required if `questionType === "multiple_choice"`) |
 | `correctOptionIndex` | number | 0-based index of the correct option |
 | `modelAnswer` | string | Model answer for open questions |
@@ -562,6 +566,24 @@ Valid `<subject>` values: `language` | `history` | `geography` | `science` | `li
 
 ---
 
+## JSON Schemas
+
+Machine-readable schemas live in `schemas/`:
+
+| File | Validates |
+|------|-----------|
+| `schemas/pack_unified.schema.json` | Any `pack_unified.json` (vocab, sentence, fillBlank, sequence, categorySort, sentenceBuilder items) |
+| `schemas/passages.schema.json` | Any `passages.json` (passage items only) |
+
+Both schemas use JSON Schema draft-07 and can be used by:
+- **AI generation prompts** — attach or reference the schema so the model can self-validate structure before outputting JSON
+- **Editor plugins** — VS Code will show inline errors if you add `"$schema"` to pack files or configure `json.schemas` in `.vscode/settings.json`
+- **`ajv` or `jsonschema`** — for programmatic validation in CI
+
+The schemas are the authoritative source for field names and types. `validate_pack.py` enforces the same rules but also applies semantic checks (tile concatenation, same-word vocab, etc.) that JSON Schema cannot express.
+
+---
+
 ## Validator Constraints (`scripts/validate_pack.py`)
 
 `validate_pack.py` enforces the values below. Violations produce either a hard **ERROR** (exit 1) or a **WARNING** (exit 0). AI agents must run the validator and reach 0 errors before committing a pack.
@@ -569,7 +591,7 @@ Valid `<subject>` values: `language` | `history` | `geography` | `science` | `li
 ### Allowed `subject` values
 
 ```
-language  history  geography  science  literature
+language  history  geography  science  literature  computing  religion  other
 ```
 
 - Must be **lowercase**. `"Geography"` or `"GCSE Geography"` are both errors.
