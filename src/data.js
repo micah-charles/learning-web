@@ -50,29 +50,6 @@ function asDisplayPack(pack) {
   };
 }
 
-function vocabFromItem(item) {
-  const data = item.data || {};
-  return {
-    id: item.id,
-    de: data.sourceWord || data.de || "",
-    en: data.targetWord || data.en || "",
-    pos: data.partOfSpeech || data.pos || "",
-    gender: data.gender || null,
-    plural: data.plural || null,
-    exampleDe: data.exampleSource || data.exampleDe || null,
-    exampleEn: data.exampleTarget || data.exampleEn || data.examples?.["en-GB"] || null,
-    topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
-    tags: item.tags || [],
-    level: item.level || "",
-    part_of_speech: data.partOfSpeech || data.pos || "",
-    headword: data.headword || data.sourceWord || data.de || "",
-    english_equivalent: data.targetWord || data.en || "",
-    stage: data.stage,
-    stage_label: data.stageLabel || data.stage_label,
-    categories: item.topics || [],
-  };
-}
-
 function sentenceFromItem(item) {
   const data = item.data || {};
   const translations = data.translations || {};
@@ -82,10 +59,10 @@ function sentenceFromItem(item) {
     id: item.id,
     level: item.level || "",
     topics: item.topics || [],
-    de:    translations[srcCode] || Object.values(translations)[0] || data.sourceSentence || data.de || "",
-    en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || data.targetSentence || data.en || "",
-    target_vocab_id: data.targetVocabId || data.target_vocab_id,
-    vocab_ids: data.vocabIds || data.vocab_ids || [],
+    de:    translations[srcCode] || Object.values(translations)[0] || data.sourceSentence || "",
+    en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || data.targetSentence || "",
+    target_vocab_id: data.targetVocabId,
+    vocab_ids: data.vocabIds || [],
   };
 }
 
@@ -108,7 +85,7 @@ function sortFromItem(item) {
     title: data.title || "",
     instruction: data.instruction || "",
     categories: data.categories || [],
-    items: data.items || data.pairs || [],
+    items: data.pairs || [],
     level: item.level || "",
     topics: item.topics || [],
   };
@@ -138,13 +115,13 @@ function builderFromItem(item) {
   };
 }
 
-function passageFromItem(item) {
+function passageFromItem(item, packSpeechLanguage) {
   const data = item.data || {};
   return {
     id: item.id,
     topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
     level: item.level || "",
-    speech_language: data.speechLanguage || "de-DE",
+    speech_language: data.speechLanguage || packSpeechLanguage || "en-GB",
     chapter: data.chapter || "",
     section: data.section || "",
     title_de: data.sourceTitle || "",
@@ -153,15 +130,15 @@ function passageFromItem(item) {
     passage_en: data.targetPassage || "",
     questions: (data.questions || []).map((question) => ({
       id: question.id,
-      type: question.questionType || question.type || (question.options?.length ? "multiple_choice" : "open"),
+      type: question.questionType || (question.options?.length ? "multiple_choice" : "open"),
       difficulty: question.difficulty || "medium",
-      question_en: question.question || question.question_en || "",
+      question_en: question.question || "",
       options: question.options || [],
-      correct_option_index: question.correctOptionIndex ?? question.correct_option_index,
-      correct_answer: question.correctAnswer || question.correct_answer || "",
-      model_answer_en: question.modelAnswer || question.model_answer_en || "",
-      accepted_keywords: question.acceptedKeywords || question.accepted_keywords || [],
-      grammar_focus: question.grammarFocus || question.grammar_focus || null,
+      correct_option_index: question.correctOptionIndex,
+      correct_answer: question.correctAnswer || "",
+      model_answer_en: question.modelAnswer || "",
+      accepted_keywords: question.acceptedKeywords || [],
+      grammar_focus: question.grammarFocus || null,
     })),
   };
 }
@@ -205,7 +182,7 @@ export function findDataset(manifest, datasetId) {
 // Older packs may not declare it; the inference fallback below assigns a
 // best-guess subject so legacy packs still appear in the right bucket.
 
-export const SUBJECTS = ["language", "history", "geography", "science", "literature", "computing", "other"];
+export const SUBJECTS = ["language", "history", "geography", "science", "literature", "computing", "religion", "other"];
 
 const LANGUAGE_HINT_CODES = ["de", "fr", "es", "it", "la", "zh", "ja", "ko", "ru", "ar", "el", "pt", "nl"];
 
@@ -232,6 +209,9 @@ function inferSubject(dataset) {
   }
   if (id.includes("computing") || id.includes("ks3_computing") || id.includes("gcse_computing")) {
     return "computing";
+  }
+  if (id.includes("ks3_rs_") || id.includes("religious_studies") || id.includes("gcse_rs_")) {
+    return "religion";
   }
 
   // Translation-language fallback: anything where the source-language code
@@ -365,26 +345,26 @@ export async function loadVocabItems(manifest, datasetId) {
     const translations = d.translations || {};
     return {
       id: item.id,
-      de:    translations[srcCode] || Object.values(translations)[0] || d.sourceWord || d.de || "",
-      en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || d.en || "",
-      pos:   d.partOfSpeech || d.pos || "",
+      de:    translations[srcCode] || Object.values(translations)[0] || d.sourceWord || "",
+      en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || "",
+      pos:   d.partOfSpeech || "",
       gender:    d.gender    || null,
       plural:    d.plural    || null,
       // Only set exampleDe when src and target are different languages; when they
       // are the same (Science, Geography, History: en-GB → en-GB) both fields would
       // resolve to the same string and the card would render the example twice.
-      exampleDe: srcCode !== tgtCode ? (d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null) : null,
-      exampleEn: d.examples?.[tgtCode] || d.exampleTarget || d.exampleEn || null,
+      exampleDe: srcCode !== tgtCode ? (d.examples?.[srcCode] || null) : null,
+      exampleEn: d.examples?.[tgtCode] || null,
       topic:     Array.isArray(item.topics) ? item.topics[0] || "" : "",
       tags:      item.tags || [],
       level:     item.level || "",
       // Derive numeric stage from level string (e.g. "Stage 1" -> 1)
       // Needed by filterWordsForScope for Cambridge Latin Stages
       stage:     parseInt(String(item.level || "").replace("Stage ", ""), 10) || d.stage || null,
-      part_of_speech: d.partOfSpeech || d.pos || "",
-      headword:  translations[srcCode] || d.sourceWord || d.de || "",
-      english_equivalent: translations[tgtCode] || d.targetWord || d.en || "",
-      stage_label: d.stageLabel || d.stage_label,
+      part_of_speech: d.partOfSpeech || "",
+      headword:  translations[srcCode] || d.sourceWord || "",
+      english_equivalent: translations[tgtCode] || d.targetWord || "",
+      stage_label: d.stageLabel,
       categories: item.topics || [],
       // Keep the original unified item data for quiz.js
       _unified: item,
@@ -492,7 +472,8 @@ export async function loadPassageUnifiedPack(manifest, groupId) {
 
 export async function loadPassagePack(manifest, groupId, packId = null) {
   const pack = await loadPassageUnifiedPack(manifest, groupId);
-  const passages = filterUnifiedItems(pack, "passage").map(passageFromItem);
+  const packSpeechLanguage = pack && (pack.speechLanguage || pack.sourceLanguageCode);
+  const passages = filterUnifiedItems(pack, "passage").map((item) => passageFromItem(item, packSpeechLanguage));
   if (!packId || packId === groupId) return passages;
   return passages.filter((passage) => {
     const key = `${groupId}::${passage.id}`;

@@ -162,7 +162,7 @@ function getTargetLanguageLabel(dataset) {
 }
 
 function getStudyLanguageCode(dataset) {
-  return fallback(dataset && dataset.speechLanguage, fallback(dataset && dataset.sourceLanguageCode, "de-DE"));
+  return fallback(dataset && dataset.speechLanguage, fallback(dataset && dataset.sourceLanguageCode, "en-GB"));
 }
 
 // Returns the Speak button label. Latin has no TTS voice on any OS/browser,
@@ -1710,7 +1710,7 @@ function renderQuizSession(session) {
               <div class="chip-row">
                 <span class="count-pill blue">${escapeHtml(progressText)}</span>
                 <span class="count-pill green">${session.score} correct</span>
-                <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "de-DE"))}">${escapeHtml(speakLabel(fallback(question.speechLanguage, "de-DE")))}</button>
+                <button class="button ghost" data-action="speak" data-text="${escapeHtml(fallback(question.speechText, question.answer))}" data-language="${escapeHtml(fallback(question.speechLanguage, "en-GB"))}">${escapeHtml(speakLabel(fallback(question.speechLanguage, "en-GB")))}</button>
                 ${renderStudyBookButton(
                   findDataset(runtime.manifest, persisted.prefs.quiz.datasetId),
                   {
@@ -1926,7 +1926,7 @@ function renderQuizSummary(session) {
                 <strong>${escapeHtml(answer.prompt)}</strong>
                 <span class="muted tiny">Correct answer: ${escapeHtml(answer.expected)}</span>
               </div>
-              ${answer.speechText ? `<button class="button ghost" data-action="speak" data-text="${escapeHtml(answer.speechText)}" data-language="${escapeHtml(fallback(answer.speechLanguage, "de-DE"))}">${escapeHtml(speakLabel(fallback(answer.speechLanguage, "de-DE")))}</button>` : ""}
+              ${answer.speechText ? `<button class="button ghost" data-action="speak" data-text="${escapeHtml(answer.speechText)}" data-language="${escapeHtml(fallback(answer.speechLanguage, "en-GB"))}">${escapeHtml(speakLabel(fallback(answer.speechLanguage, "en-GB")))}</button>` : ""}
             </div>
           `,
         )
@@ -2655,6 +2655,7 @@ const SUBJECT_LABELS = {
   science:    { label: "Science",    icon: "🔬" },
   literature: { label: "Literature", icon: "📖" },
   computing:  { label: "Computing",  icon: "💻" },
+  religion:   { label: "Religion",   icon: "🕊️" },
   other:      { label: "Other",      icon: "🗂️" },
 };
 
@@ -4587,15 +4588,15 @@ async function resetPassageRuntime(groupId, packId) {
             level: item.level || "",
             passage_de: d.sourcePassage || "",
             passage_en: d.targetPassage || "",
-            speech_language: d.speechLanguage || "de-DE",
+            speech_language: d.speechLanguage || unified.speechLanguage || unified.sourceLanguageCode || "en-GB",
             chapter: d.chapter || "",
             section: d.section || "",
             title_de: d.sourceTitle || d.title_de || "",
             title_en: d.targetTitle || d.title_en || "",
             questions: (d.questions || []).map((q) => ({
               id: q.id,
-              type: q.questionType || "open",
-              question: q.question || q.question_en || "",
+              type: q.questionType || (q.options?.length ? "multiple_choice" : "open"),
+              question: q.question || "",
               difficulty: q.difficulty || "medium",
               options: q.options || [],
               correct_option_index: q.correctOptionIndex,
@@ -4673,7 +4674,7 @@ function playCurrentPassage() {
   if (!current) {
     return;
   }
-  speakText(current.passage_de, fallback(current.speech_language, "de-DE"));
+  speakText(current.passage_de, fallback(current.speech_language, "en-GB"));
 }
 
 function revealCurrentPassage() {

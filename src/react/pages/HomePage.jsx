@@ -34,6 +34,7 @@ const SUBJECT_ICONS = {
   science:    "🔬",
   literature: "📚",
   computing:  "💻",
+  religion:   "🕊️",
   other:      "🗂️",
 };
 

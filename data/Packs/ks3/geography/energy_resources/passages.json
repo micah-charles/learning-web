@@ -45,37 +45,38 @@
           {
             "id": "ks3_geo_energy_passage_001_q1",
             "questionType": "fact",
-            "difficulty": "What is an energy resource?",
-            "question": [
-              "A type of cloud",
-              "A fuel or natural force used to produce power",
-              "A map scale",
-              "A population graph"
-            ],
+            "difficulty": "medium",
+            "question": "What is an energy resource?",
             "modelAnswer": [
               "fuel",
               "natural force",
               "power"
             ],
-            "options": 1,
+            "options": [
+              "A type of cloud",
+              "A fuel or natural force used to produce power",
+              "A map scale",
+              "A population graph"
+            ],
             "correctOptionIndex": "A fuel or natural force used to produce power."
           },
           {
             "id": "ks3_geo_energy_passage_001_q2",
             "questionType": "open",
-            "difficulty": "Why is energy a Geography topic rather than only a Science topic?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why is energy a Geography topic rather than only a Science topic?",
             "modelAnswer": [
               "places",
               "people",
               "impacts",
               "decisions"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_001_q3",
             "questionType": "multiple_choice",
-            "question": "Which example from the passage is a fossil fuel?",
+            "question": "Which of the following is a non-renewable energy source?",
             "modelAnswer": [
               "gas"
             ],
@@ -85,32 +86,35 @@
               "Gas",
               "Sunlight"
             ],
-            "correctOptionIndex": 2
+            "correctOptionIndex": 2,
+            "difficulty": "medium"
           },
           {
             "id": "ks3_geo_energy_passage_001_q4",
             "questionType": "open",
-            "difficulty": "Explain one trade-off linked to wind farms.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Explain one trade-off linked to wind farms.",
             "modelAnswer": [
               "low-carbon",
               "views",
               "wildlife",
               "appearance"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_001_q5",
             "questionType": "open",
-            "difficulty": "Why should a student compare several factors when judging an energy choice?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why should a student compare several factors when judging an energy choice?",
             "modelAnswer": [
               "balanced",
               "reliability",
               "cost",
               "carbon",
               "sustainability"
-            ]
+            ],
+            "options": []
           }
         ]
       }
@@ -139,13 +143,14 @@
           {
             "id": "ks3_geo_energy_passage_002_q1",
             "questionType": "fact",
-            "difficulty": "Name two fossil fuels from the passage.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Name two fossil fuels from the passage.",
             "modelAnswer": [
               "coal",
               "oil",
               "natural gas"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_002_q2",
@@ -161,24 +166,26 @@
               "They are all made in factories",
               "They are powered by tides"
             ],
-            "correctOptionIndex": 1
+            "correctOptionIndex": 1,
+            "difficulty": "medium"
           },
           {
             "id": "ks3_geo_energy_passage_002_q3",
             "questionType": "open",
-            "difficulty": "Why can oil create environmental problems?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why can oil create environmental problems?",
             "modelAnswer": [
               "oil spills",
               "marine",
               "coastal",
               "greenhouse gases"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_002_q4",
             "questionType": "multiple_choice",
-            "question": "Which statement about nuclear power is correct?",
+            "question": "Why is nuclear power considered a low-carbon energy source?",
             "modelAnswer": [
               "low operational carbon"
             ],
@@ -188,20 +195,22 @@
               "It has low operational carbon emissions",
               "It produces no waste"
             ],
-            "correctOptionIndex": 2
+            "correctOptionIndex": 2,
+            "difficulty": "medium"
           },
           {
             "id": "ks3_geo_energy_passage_002_q5",
             "questionType": "open",
-            "difficulty": "Explain why natural gas can be both useful and risky for a country.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Explain why natural gas can be both useful and risky for a country.",
             "modelAnswer": [
               "flexible",
               "greenhouse gases",
               "imported",
               "price shocks",
               "supply"
-            ]
+            ],
+            "options": []
           }
         ]
       }
@@ -230,7 +239,7 @@
           {
             "id": "ks3_geo_energy_passage_003_q1",
             "questionType": "multiple_choice",
-            "question": "Which renewable source uses moving water in rivers or dams?",
+            "question": "Which type of renewable energy uses moving water to generate electricity?",
             "modelAnswer": [
               "hydroelectric",
               "moving water"
@@ -241,55 +250,60 @@
               "Biomass",
               "Nuclear"
             ],
-            "correctOptionIndex": 1
+            "correctOptionIndex": 1,
+            "difficulty": "medium"
           },
           {
             "id": "ks3_geo_energy_passage_003_q2",
             "questionType": "fact",
-            "difficulty": "Why is the UK suitable for offshore wind?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why is the UK suitable for offshore wind?",
             "modelAnswer": [
               "windy seas",
               "long coastline",
               "offshore"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_003_q3",
             "questionType": "open",
-            "difficulty": "Why is Iceland a strong example for geothermal energy?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why is Iceland a strong example for geothermal energy?",
             "modelAnswer": [
               "volcanic",
               "geology",
               "heat"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_003_q4",
             "questionType": "open",
-            "difficulty": "Give one reason why renewable energy can still affect the environment.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Give one reason why renewable energy can still affect the environment.",
             "modelAnswer": [
               "land",
               "habitats",
               "wildlife",
               "flood",
               "materials"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_003_q5",
             "questionType": "open",
-            "difficulty": "Explain why physical geography matters when choosing renewable energy.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Explain why physical geography matters when choosing renewable energy.",
             "modelAnswer": [
               "sunny",
               "windy",
               "wet",
               "volcanic",
               "resources"
-            ]
+            ],
+            "options": []
           }
         ]
       }
@@ -318,18 +332,19 @@
           {
             "id": "ks3_geo_energy_passage_004_q1",
             "questionType": "fact",
-            "difficulty": "What does energy demand mean?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "What does energy demand mean?",
             "modelAnswer": [
               "amount",
               "energy",
               "want to use"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_004_q2",
             "questionType": "multiple_choice",
-            "question": "Which factor can increase energy demand?",
+            "question": "According to the passage, which factor causes energy demand to rise?",
             "modelAnswer": [
               "population growth"
             ],
@@ -339,44 +354,48 @@
               "No transport",
               "Less industry"
             ],
-            "correctOptionIndex": 0
+            "correctOptionIndex": 0,
+            "difficulty": "medium"
           },
           {
             "id": "ks3_geo_energy_passage_004_q3",
             "questionType": "open",
-            "difficulty": "Why do countries usually use an energy mix?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why do countries usually use an energy mix?",
             "modelAnswer": [
               "balance",
               "reliability",
               "cost",
               "impacts"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_004_q4",
             "questionType": "open",
-            "difficulty": "Give two causes of energy insecurity from the passage.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Give two causes of energy insecurity from the passage.",
             "modelAnswer": [
               "imports",
               "prices",
               "pipelines",
               "old infrastructure",
               "extreme weather"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_004_q5",
             "questionType": "open",
-            "difficulty": "Explain how energy efficiency can improve energy security.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Explain how energy efficiency can improve energy security.",
             "modelAnswer": [
               "reduces demand",
               "import less",
               "shortages",
               "price shocks"
-            ]
+            ],
+            "options": []
           }
         ]
       }
@@ -405,18 +424,19 @@
           {
             "id": "ks3_geo_energy_passage_005_q1",
             "questionType": "fact",
-            "difficulty": "What does sustainable energy aim to avoid?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "What does sustainable energy aim to avoid?",
             "modelAnswer": [
               "future generations",
               "serious problems",
               "present needs"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_005_q2",
             "questionType": "multiple_choice",
-            "question": "Which action reduces heating demand?",
+            "question": "Which of the following is an example of reducing energy demand at home?",
             "modelAnswer": [
               "insulation"
             ],
@@ -426,43 +446,47 @@
               "More petrol use",
               "Coal mining"
             ],
-            "correctOptionIndex": 0
+            "correctOptionIndex": 0,
+            "difficulty": "medium"
           },
           {
             "id": "ks3_geo_energy_passage_005_q3",
             "questionType": "open",
-            "difficulty": "Why are smart grids useful when a country uses more wind and solar power?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why are smart grids useful when a country uses more wind and solar power?",
             "modelAnswer": [
               "balance",
               "supply",
               "demand",
               "intermittent"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_005_q4",
             "questionType": "open",
-            "difficulty": "Give one limitation of batteries from the passage.",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Give one limitation of batteries from the passage.",
             "modelAnswer": [
               "materials",
               "cost",
               "recycling"
-            ]
+            ],
+            "options": []
           },
           {
             "id": "ks3_geo_energy_passage_005_q5",
             "questionType": "open",
-            "difficulty": "Why is a mixed strategy recommended for the island example?",
-            "question": null,
+            "difficulty": "medium",
+            "question": "Why is a mixed strategy recommended for the island example?",
             "modelAnswer": [
               "efficiency",
               "offshore wind",
               "tidal",
               "backup",
               "reliability"
-            ]
+            ],
+            "options": []
           }
         ]
       }
