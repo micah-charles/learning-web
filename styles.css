@@ -1805,6 +1805,12 @@ body {
   color: var(--color-error);
 }
 
+.admin-status-warn {
+  background: var(--color-attention-bg);
+  border: 1.5px solid var(--color-attention-border);
+  color: var(--color-attention);
+}
+
 .admin-status-icon {
   font-size: 1.1rem;
   font-weight: 700;
