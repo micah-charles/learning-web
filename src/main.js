@@ -1109,6 +1109,15 @@ async function renderVocabTab() {
     prefs.subject = "";
     saveStoredState(persisted);
   }
+  // Hard-validate datasetId — reset if it no longer exists (e.g. deleted upload).
+  {
+    const knownIds = new Set(listDatasets(runtime.manifest).map((d) => d.id));
+    if (prefs.datasetId && !knownIds.has(prefs.datasetId)) {
+      prefs.subject = "";
+      prefs.datasetId = "";
+      saveStoredState(persisted);
+    }
+  }
   if (!prefs.subject) prefs.subject = "language";
   if (!prefs.curriculum) prefs.curriculum = "all";
   const dataset = findDataset(runtime.manifest, prefs.datasetId);
@@ -1279,6 +1288,16 @@ async function renderQuizTab() {
   if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedRevisionPacks().length) {
     prefs.subject = "";
     saveStoredState(persisted);
+  }
+  // Hard-validate datasetId — if it no longer exists in the manifest (e.g. a
+  // deleted upload), reset to default so the tab never renders a broken state.
+  {
+    const knownIds = new Set(listDatasets(runtime.manifest).map((d) => d.id));
+    if (prefs.datasetId && !knownIds.has(prefs.datasetId)) {
+      prefs.subject = "";
+      prefs.datasetId = "";
+      saveStoredState(persisted);
+    }
   }
   if (!prefs.subject) prefs.subject = "language";
   if (!prefs.direction) prefs.direction = "studyToTarget";
@@ -2334,6 +2353,20 @@ async function renderReadingTab() {
   // back to a real subject so the tab doesn't render an empty error state.
   if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedPassageGroups().length) {
     prefs.subject = "";
+    saveStoredState(persisted);
+  }
+
+  // Hard-validate groupId: if it doesn't exist in any passage group (e.g. it was
+  // set to a revision-pack ID that was uploaded but is not a passage pack), reset
+  // to the first available passage group. This prevents "No reading packs found"
+  // caused by a stale or mismatched groupId.
+  const knownGroupIds = new Set(groups.map((g) => g.id));
+  if (prefs.groupId && !knownGroupIds.has(prefs.groupId)) {
+    prefs.subject = "";
+    prefs.groupId = groups[0] ? groups[0].id : "";
+    const resetPacks = listPassagePacks(runtime.manifest, prefs.groupId);
+    prefs.packId = resetPacks[0] ? resetPacks[0].id : "";
+    runtime.passages = null;
     saveStoredState(persisted);
   }
 
