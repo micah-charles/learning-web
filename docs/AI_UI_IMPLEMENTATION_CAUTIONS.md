@@ -335,5 +335,43 @@ In Next.js, components hydrate on the server where `localStorage` is undefined. 
 
 ---
 
+### ⚠️ 6. `handleChange` fires on free-text inputs before `click` — never let it re-render
+
+**Mistake made (PR #85):** `handleChange` listened on `document` for all `change` events. When a user typed in the quiz textarea and clicked **Check answer**, the browser fires events in this order:
+
+1. `mousedown` on the button
+2. `blur` on the textarea → **`change` fires** → `handleChange` → `renderApp()` rebuilds the DOM
+3. `mouseup` + `click` on the button
+
+By the time `case "quiz-check-typed"` ran, the DOM had already been replaced and `input.value` was `""`. The answer was graded as an empty string, and feedback appeared below the fold. The button appeared to do nothing.
+
+**Rule:** Any free-text input (`<input>`, `<textarea>`) that does **not** directly control a persistent preference must be **explicitly excluded** from `handleChange`. Add a guard at the top:
+
+```js
+// BAD — change event on quiz textarea triggers a full re-render before click fires
+async function handleChange(event) {
+  const { id } = event.target;
+  switch (id) {
+    // ... no case for "quiz-typed-answer" → falls through to saveStoredState + renderApp()
+    default: break;
+  }
+  saveStoredState(persisted);
+  await renderApp(); // ← DOM wiped; textarea value already gone by the time click fires
+}
+
+// GOOD — bail out for fields that carry no persistent state
+async function handleChange(event) {
+  if (event.target.id === "quiz-typed-answer" || event.target.id === "quiz-gap-typed") return;
+  // ...
+}
+```
+
+**Checklist when adding a new free-text input field:**
+- [ ] Does this field control a persisted preference? If not, add its `id` to the early-return guard in `handleChange`.
+- [ ] If it does control a preference, handle it explicitly in a `case` and never rely on the default fall-through.
+- [ ] Verify that clicking a submit button immediately after typing still reads the correct value.
+
+---
+
 *Last updated: 2026-05-20*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #83*
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #83, #85*
