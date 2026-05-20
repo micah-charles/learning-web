@@ -1278,10 +1278,11 @@ async function renderQuizTab() {
 
   let dataset = findDataset(runtime.manifest, prefs.datasetId);
   const datasetSubject = getDatasetSubject(dataset);
-  if (datasetSubject !== prefs.subject) {
+  if (prefs.subject !== MY_PACKS_SUBJECT && datasetSubject !== prefs.subject) {
     // Either the user just clicked a subject and we haven't switched dataset
     // yet (handled in the click handler), or we hit some inconsistency.
     // Trust the dataset and snap subject to match it.
+    // Exception: MY_PACKS_SUBJECT is a UI-only sentinel — never overwrite it.
     prefs.subject = datasetSubject;
     saveStoredState(persisted);
   }
@@ -1435,7 +1436,7 @@ async function renderCrosswordTab() {
   }
 
   const datasetSubject = getDatasetSubject(dataset);
-  if (datasetSubject !== prefs.subject) {
+  if (prefs.subject !== MY_PACKS_SUBJECT && datasetSubject !== prefs.subject) {
     prefs.subject = datasetSubject;
     saveStoredState(persisted);
   }
@@ -2321,8 +2322,9 @@ async function renderReadingTab() {
 
   // If the stored groupId belongs to a different subject, snap to first group
   // for the current subject (happens when subject card is clicked).
+  // Exception: MY_PACKS_SUBJECT is a UI-only sentinel — skip snap-back logic.
   const storedGroupSubject = getPassageGroupSubject(groups.find((g) => g.id === prefs.groupId));
-  if (storedGroupSubject !== prefs.subject) {
+  if (prefs.subject !== MY_PACKS_SUBJECT && storedGroupSubject !== prefs.subject) {
     const groupsForSubject = listPassageGroupsBySubject(runtime.manifest, prefs.subject);
     if (groupsForSubject.length) {
       prefs.groupId = groupsForSubject[0].id;
