@@ -234,14 +234,13 @@ export function listDatasetsBySubject(manifest, subject) {
 
 // ─── Curriculum helpers ──────────────────────────────────────────────────────
 //
-// `curriculum` is a top-level tag on each pack entry: "ks3" | "gcse" | "other".
+// `curriculum` is a top-level tag on each pack entry: "ks3" | "other".
 // Older packs may not carry it; the inference fallback reads it from the pack ID.
 
-export const CURRICULUMS = ["ks3", "gcse", "other"];
+export const CURRICULUMS = ["ks3", "other"];
 
 export const CURRICULUM_LABELS = {
   ks3:   "KS3",
-  gcse:  "GCSE",
   other: "Other",
 };
 
@@ -254,10 +253,7 @@ function inferCurriculum(dataset) {
   if (id.startsWith("ks3_") || id.startsWith("y7_") || id.startsWith("y8_") || id.startsWith("y9_")) {
     return "ks3";
   }
-  if (id.startsWith("gcse_") || id.startsWith("tiffin10")) {
-    return "gcse";
-  }
-  // Language packs without a curriculum prefix stay as "other"
+  // All other packs (including any legacy gcse_ prefix) fall through to "other"
   return "other";
 }
 
