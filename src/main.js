@@ -1194,7 +1194,7 @@ async function renderVocabTab() {
           </div>
         </div>
         ${renderSubjectCardGrid(prefs.subject, "select-vocab-subject")}
-        ${renderCurriculumPills(prefs.curriculum, "select-vocab-curriculum")}
+        ${prefs.subject === MY_PACKS_SUBJECT ? "" : renderCurriculumPills(prefs.curriculum, "select-vocab-curriculum")}
 
         <div class="form-grid" style="margin-top:18px;">
           ${renderDatasetSelectFiltered("vocab-dataset", prefs.datasetId, prefs.subject, prefs.curriculum)}
@@ -1338,7 +1338,7 @@ async function renderQuizTab() {
         </div>
 
         ${renderSubjectCardGrid(prefs.subject)}
-        ${renderCurriculumPills(prefs.curriculum || "all")}
+        ${prefs.subject === MY_PACKS_SUBJECT ? "" : renderCurriculumPills(prefs.curriculum || "all")}
 
         <div class="form-grid" style="margin-top:18px;">
           ${renderDatasetSelectFiltered("quiz-dataset", prefs.datasetId, prefs.subject, prefs.curriculum || "all")}
@@ -2137,7 +2137,7 @@ async function renderBuilderTab() {
           </div>
         </div>
         ${renderBuilderSubjectCardGrid(prefs.subject)}
-        ${renderCurriculumPills(prefs.curriculum, "select-builder-curriculum")}
+        ${prefs.subject === MY_PACKS_SUBJECT ? "" : renderCurriculumPills(prefs.curriculum, "select-builder-curriculum")}
 
         <div class="form-grid" style="margin-top:18px;">
           ${renderBuilderPackSelectFiltered(packId, prefs.subject, prefs.curriculum)}
@@ -2366,7 +2366,7 @@ async function renderReadingTab() {
           </div>
 
           ${renderPassageSubjectCardGrid(prefs.subject)}
-          ${renderCurriculumPills(prefs.curriculum || "all", "select-passage-curriculum")}
+          ${prefs.subject === MY_PACKS_SUBJECT ? "" : renderCurriculumPills(prefs.curriculum || "all", "select-passage-curriculum")}
 
           <div class="form-grid" style="margin-top:18px;">
             ${shouldShowGroupSelect ? renderPassageGroupSelectFiltered(prefs.groupId, prefs.subject) : ""}
@@ -2676,6 +2676,38 @@ const SUBJECT_LABELS = {
   other:      { label: "Other",      icon: "🗂️" },
 };
 
+// Sentinel subject value for user-uploaded packs — not part of the canonical
+// SUBJECTS list in data.js; handled specially throughout the UI.
+const MY_PACKS_SUBJECT = "my_packs";
+
+function listUploadedRevisionPacks() {
+  return (runtime.manifest.revisionPacks || []).filter((p) => p._uploaded);
+}
+function listUploadedBuilderPacks() {
+  return (runtime.manifest.sentenceBuilderPacks || []).filter((p) => p._uploaded);
+}
+function listUploadedPassageGroups() {
+  return (runtime.manifest.passageGroups || []).filter((p) => p._uploaded);
+}
+
+function renderMyPacksCard(activeSubject, action, count) {
+  const isActive = activeSubject === MY_PACKS_SUBJECT;
+  const isEmpty  = count === 0;
+  const classes  = ["subject-card", "my-packs-card"];
+  if (isActive) classes.push("is-active");
+  if (isEmpty)  classes.push("is-empty");
+  const btn = isEmpty ? "" : `data-action="${action}" data-value="${MY_PACKS_SUBJECT}"`;
+  return `
+    <button type="button" class="${classes.join(" ")}" ${btn} ${isEmpty ? "disabled" : ""}>
+      <span class="subject-icon" aria-hidden="true">📦</span>
+      <span class="subject-label">My Packs</span>
+      ${isEmpty
+        ? `<span class="subject-meta">No uploads</span>`
+        : `<span class="subject-meta">${count} pack${count === 1 ? "" : "s"}</span>`}
+    </button>
+  `;
+}
+
 // Maps single-letter PoS abbreviations (legacy Latin pack data) to full display labels.
 // New packs should store full words directly; this is a safety-net fallback.
 const POS_LABELS = {
@@ -2724,7 +2756,7 @@ function renderSubjectCardGrid(activeSubject, action = "select-subject") {
   return `
     <div class="field" style="margin-top:18px;">
       <div class="fieldset-title">What are you learning?</div>
-      <div class="subject-card-grid">${cards}</div>
+      <div class="subject-card-grid">${cards}${renderMyPacksCard(activeSubject, action, listUploadedRevisionPacks().length)}</div>
     </div>
   `;
 }
@@ -2752,7 +2784,7 @@ function renderCrosswordSubjectCardGrid(activeSubject) {
   return `
     <div class="field" style="margin-top:18px;">
       <div class="fieldset-title">What are you learning?</div>
-      <div class="subject-card-grid">${cards}</div>
+      <div class="subject-card-grid">${cards}${renderMyPacksCard(activeSubject, "select-crossword-subject", listUploadedRevisionPacks().length)}</div>
     </div>
   `;
 }
@@ -2780,7 +2812,7 @@ function renderBuilderSubjectCardGrid(activeSubject) {
   return `
     <div class="field" style="margin-top:18px;">
       <div class="fieldset-title">What are you learning?</div>
-      <div class="subject-card-grid">${cards}</div>
+      <div class="subject-card-grid">${cards}${renderMyPacksCard(activeSubject, "select-builder-subject", listUploadedBuilderPacks().length)}</div>
     </div>
   `;
 }
@@ -2808,18 +2840,20 @@ function renderPassageSubjectCardGrid(activeSubject) {
   return `
     <div class="field" style="margin-top:18px;">
       <div class="fieldset-title">What are you studying?</div>
-      <div class="subject-card-grid">${cards}</div>
+      <div class="subject-card-grid">${cards}${renderMyPacksCard(activeSubject, "select-passage-subject", listUploadedPassageGroups().length)}</div>
     </div>
   `;
 }
 
 function renderPassageGroupSelectFiltered(currentValue, subject) {
-  const groups = listPassageGroupsBySubject(runtime.manifest, subject);
+  const groups = subject === MY_PACKS_SUBJECT
+    ? listUploadedPassageGroups()
+    : listPassageGroupsBySubject(runtime.manifest, subject);
   if (!groups.length) {
     return `
       <div class="field">
         <label>Book / Group</label>
-        <p class="muted tiny" style="margin-top:6px;">No reading packs yet for this subject.</p>
+        <p class="muted tiny" style="margin-top:6px;">${subject === MY_PACKS_SUBJECT ? "No uploaded reading packs yet." : "No reading packs yet for this subject."}</p>
       </div>
     `;
   }
@@ -2855,12 +2889,14 @@ function renderCurriculumPills(activeCurriculum, action = "select-curriculum") {
 }
 
 function renderDatasetSelectFiltered(id, currentValue, subject, curriculum = "all") {
-  const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
+  const datasets = subject === MY_PACKS_SUBJECT
+    ? listUploadedRevisionPacks()
+    : listDatasetsBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
   if (!datasets.length) {
     return `
       <div class="field field-wide">
         <label>Dataset</label>
-        <p class="muted tiny" style="margin-top:6px;">No packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.</p>
+        <p class="muted tiny" style="margin-top:6px;">${subject === MY_PACKS_SUBJECT ? "No uploaded packs yet. Use the Admin tab to upload a pack." : `No packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.`}</p>
       </div>
     `;
   }
@@ -2899,12 +2935,14 @@ function renderCrosswordDatasetSelect(currentValue, subject, curriculum = "all")
 }
 
 function renderBuilderPackSelectFiltered(currentValue, subject, curriculum = "all") {
-  const packs = listSentenceBuilderPacksBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
+  const packs = subject === MY_PACKS_SUBJECT
+    ? listUploadedBuilderPacks()
+    : listSentenceBuilderPacksBySubjectAndCurriculum(runtime.manifest, subject, curriculum);
   if (!packs.length) {
     return `
       <div class="field">
         <label>Pack</label>
-        <p class="muted tiny" style="margin-top:6px;">No builder packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.</p>
+        <p class="muted tiny" style="margin-top:6px;">${subject === MY_PACKS_SUBJECT ? "No uploaded builder packs yet." : `No builder packs for this subject${curriculum !== "all" ? ` / ${CURRICULUM_LABELS[curriculum] || curriculum}` : ""}.`}</p>
       </div>
     `;
   }
@@ -3982,6 +4020,16 @@ async function handleClick(event) {
     case "select-subject": {
       // Switch to a new subject — keep curriculum filter, pick first matching dataset.
       const nextSubject = actionButton.dataset.value;
+      if (nextSubject === MY_PACKS_SUBJECT) {
+        const uploaded = listUploadedRevisionPacks();
+        if (!uploaded.length) return;
+        persisted.prefs.quiz.subject = MY_PACKS_SUBJECT;
+        persisted.prefs.quiz.datasetId = uploaded[0].id;
+        applyDatasetDefaults("quiz", { resetStages: true, resetQuizModes: true });
+        saveStoredState(persisted);
+        await renderApp();
+        return;
+      }
       const curriculum = persisted.prefs.quiz.curriculum || "all";
       const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
       // If no datasets match the current curriculum, fall back to "all"
@@ -3997,6 +4045,18 @@ async function handleClick(event) {
     }
     case "select-crossword-subject": {
       const nextSubject = actionButton.dataset.value;
+      if (nextSubject === MY_PACKS_SUBJECT) {
+        const uploaded = listUploadedRevisionPacks();
+        if (!uploaded.length) return;
+        persisted.prefs.crossword.subject = MY_PACKS_SUBJECT;
+        persisted.prefs.crossword.datasetId = uploaded[0].id;
+        runtime.crossword = null;
+        runtime.crosswordError = "";
+        applyDatasetDefaults("crossword", { resetStages: true });
+        saveStoredState(persisted);
+        await renderApp();
+        return;
+      }
       const curriculum = persisted.prefs.crossword.curriculum || "all";
       const datasets = listCrosswordDatasetsBySubjectAndCurriculum(nextSubject, curriculum);
       const fallbackDatasets = datasets.length ? datasets : listCrosswordDatasetsBySubject(nextSubject);
@@ -4038,6 +4098,20 @@ async function handleClick(event) {
     }
     case "select-passage-subject": {
       const nextSubject = actionButton.dataset.value;
+      if (nextSubject === MY_PACKS_SUBJECT) {
+        const uploaded = listUploadedPassageGroups();
+        if (!uploaded.length) return;
+        persisted.prefs.passages.subject = MY_PACKS_SUBJECT;
+        persisted.prefs.passages.groupId = uploaded[0].id;
+        const firstPacks = listPassagePacks(runtime.manifest, uploaded[0].id);
+        persisted.prefs.passages.packId = firstPacks[0] ? firstPacks[0].id : "";
+        persisted.prefs.passages.category = "all";
+        persisted.prefs.passages.difficulty = "all";
+        runtime.passages = null;
+        saveStoredState(persisted);
+        await renderApp();
+        return;
+      }
       const curriculum = persisted.prefs.passages.curriculum || "all";
       const groupsForSubject = listPassageGroupsBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
       const fallbackGroups = groupsForSubject.length ? groupsForSubject : listPassageGroupsBySubject(runtime.manifest, nextSubject);
@@ -4073,6 +4147,19 @@ async function handleClick(event) {
     }
     case "select-vocab-subject": {
       const nextSubject = actionButton.dataset.value;
+      if (nextSubject === MY_PACKS_SUBJECT) {
+        const uploaded = listUploadedRevisionPacks();
+        if (!uploaded.length) return;
+        persisted.prefs.vocab.subject = MY_PACKS_SUBJECT;
+        persisted.prefs.vocab.datasetId = uploaded[0].id;
+        persisted.prefs.vocab.search = "";
+        persisted.prefs.vocab.partOfSpeech = "";
+        persisted.prefs.vocab.category = "";
+        persisted.prefs.vocab.categories = [];
+        saveStoredState(persisted);
+        await renderApp();
+        return;
+      }
       const curriculum = persisted.prefs.vocab.curriculum || "all";
       const datasets = listDatasetsBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
       const fallbackDatasets = datasets.length ? datasets : listDatasetsBySubject(runtime.manifest, nextSubject);
@@ -4104,6 +4191,16 @@ async function handleClick(event) {
     }
     case "select-builder-subject": {
       const nextSubject = actionButton.dataset.value;
+      if (nextSubject === MY_PACKS_SUBJECT) {
+        const uploaded = listUploadedBuilderPacks();
+        if (!uploaded.length) return;
+        persisted.prefs.builder.subject = MY_PACKS_SUBJECT;
+        persisted.prefs.builder.packId = uploaded[0].id;
+        runtime.builder = null;
+        saveStoredState(persisted);
+        await renderApp();
+        return;
+      }
       const curriculum = persisted.prefs.builder.curriculum || "all";
       const packs = listSentenceBuilderPacksBySubjectAndCurriculum(runtime.manifest, nextSubject, curriculum);
       const fallbackPacks = packs.length ? packs : listSentenceBuilderPacksBySubject(runtime.manifest, nextSubject);
