@@ -2628,7 +2628,7 @@ function buildQuestionCountOptions(maxQuestionCount) {
 }
 
 function buildCrosswordWordCountOptions(maxWordCount) {
-  const defaults = [10, 12, 15, 20];
+  const defaults = [8, 10, 12];
   const limited = defaults.filter((value) => value <= maxWordCount);
   if (maxWordCount > 0 && !limited.length) {
     limited.push(maxWordCount);
