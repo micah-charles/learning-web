@@ -1105,6 +1105,10 @@ async function renderAboutTab() {
 
 async function renderVocabTab() {
   const prefs = persisted.prefs.vocab;
+  if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedRevisionPacks().length) {
+    prefs.subject = "";
+    saveStoredState(persisted);
+  }
   if (!prefs.subject) prefs.subject = "language";
   if (!prefs.curriculum) prefs.curriculum = "all";
   const dataset = findDataset(runtime.manifest, prefs.datasetId);
@@ -1272,6 +1276,10 @@ async function renderQuizTab() {
   // dataset's subject, the dataset wins. Also default fields if missing
   // (older persisted state from before the Subject First refactor).
   const prefs = persisted.prefs.quiz;
+  if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedRevisionPacks().length) {
+    prefs.subject = "";
+    saveStoredState(persisted);
+  }
   if (!prefs.subject) prefs.subject = "language";
   if (!prefs.direction) prefs.direction = "studyToTarget";
   if (!prefs.answerMode) prefs.answerMode = "mixed";
@@ -1419,6 +1427,10 @@ async function renderQuizTab() {
 
 async function renderCrosswordTab() {
   const prefs = persisted.prefs.crossword;
+  if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedRevisionPacks().length) {
+    prefs.subject = "";
+    saveStoredState(persisted);
+  }
   if (!prefs.subject) prefs.subject = "language";
   if (!prefs.curriculum) prefs.curriculum = "all";
   if (!prefs.datasetId) prefs.datasetId = "core";
@@ -2101,6 +2113,10 @@ function renderSessionHistoryAll() {
 
 async function renderBuilderTab() {
   const prefs = persisted.prefs.builder;
+  if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedBuilderPacks().length) {
+    prefs.subject = "";
+    saveStoredState(persisted);
+  }
   if (!prefs.subject) prefs.subject = "history";
   if (!prefs.curriculum) prefs.curriculum = "all";
   // Determine which packs are available for the current subject+curriculum
@@ -2312,6 +2328,13 @@ async function renderReadingTab() {
   const groups = listPassageGroups(runtime.manifest);
   if (!groups.length) {
     return renderUnavailable("No reading passage packs were found.");
+  }
+
+  // If MY_PACKS_SUBJECT is stored but there are no uploaded passage groups, fall
+  // back to a real subject so the tab doesn't render an empty error state.
+  if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedPassageGroups().length) {
+    prefs.subject = "";
+    saveStoredState(persisted);
   }
 
   // Bootstrap subject pref from current groupId if not yet set.

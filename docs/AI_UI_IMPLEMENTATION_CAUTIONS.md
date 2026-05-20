@@ -427,5 +427,77 @@ requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
 
 ---
 
-*Last updated: 2026-05-20*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85*
+---
+
+### ⚠️ 8. UI-only sentinel subjects must be guarded in every render function
+
+**Mistake made (PR #89 — "My Packs" feature):** `MY_PACKS_SUBJECT = "my_packs"` was introduced as a UI sentinel stored in `prefs.*.subject`. It is not a real subject — it is a filter meaning "show all uploaded packs". Several render functions had "sanity-check" logic that snapped `prefs.subject` back to the real subject from the loaded dataset:
+
+```js
+// WRONG — snap-back overwrote the sentinel, re-showing curriculum pills
+if (datasetSubject !== prefs.subject) {
+  prefs.subject = datasetSubject; // "my_packs" → "geography"
+}
+```
+
+Similarly, `renderReadingTab` had fallback logic that ran when `prefs.subject` didn't match the loaded group's subject — and since `"my_packs"` never matches any real subject, it silently reset the groupId to the first real passage group, then showed "No reading packs found" when the uploaded pack wasn't a passage pack.
+
+**Rule:** Any sentinel value stored in `prefs.*.subject` (or any preference) **must be explicitly excluded from every consistency-check / snap-back block** in every render function:
+
+```js
+// CORRECT — guard every snap-back with the sentinel check
+if (prefs.subject !== MY_PACKS_SUBJECT && datasetSubject !== prefs.subject) {
+  prefs.subject = datasetSubject;
+}
+```
+
+**Also required:** Every render function must gracefully fall back if the sentinel is stored but no matching uploads exist (e.g. after the user clears their uploads):
+
+```js
+// At the top of each render function:
+if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedRevisionPacks().length) {
+  prefs.subject = "";          // reset to "unset" so the default kicks in
+  saveStoredState(persisted);
+}
+if (!prefs.subject) prefs.subject = "language"; // normal default
+```
+
+**Checklist when adding a new sentinel subject/filter value:**
+- [ ] Is it excluded from every snap-back / consistency-check block in all render functions?
+- [ ] Does every render function have an "uploads empty → fall back" guard?
+- [ ] Is the sentinel never written into the pack data itself (only into `prefs.*`)?
+- [ ] Do all four tab render functions (vocab, quiz, crossword, builder, reading) have the guard?
+
+---
+
+### ⚠️ 9. Uploaded packs live in `manifest.revisionPacks`, not `manifest.packs`
+
+**Mistake made (PR #89 — "My Packs" feature):** `data.js`'s `listDatasets`, `findDataset`, and `loadUnifiedPack` all only read from `manifest.packs` — the static JSON array loaded from disk. `hydrateManifest` (in `admin-storage.js`) injects uploaded packs into a *separate* array, `manifest.revisionPacks`, so uploaded packs were invisible to `findDataset` and fell back to the default core pack.
+
+The Pack dropdown in the UI looked correct (it read from `revisionPacks` directly via `listUploadedRevisionPacks()`), but the quiz and vocab data loaded from the wrong pack — a silent mismatch that was hard to diagnose.
+
+**Rule:** Any function in `data.js` that searches or lists datasets must look in **both** `manifest.packs` (static, capability-filtered) and `manifest.revisionPacks` (uploaded packs with `_uploaded: true`):
+
+```js
+// CORRECT — listDatasets includes uploaded packs
+export function listDatasets(manifest) {
+  const revision = packsWithCapability(manifest, "revision");
+  const uploadedRevision = (manifest.revisionPacks || []).filter((p) => p._uploaded);
+  return [manifest.core, ...revision, ...uploadedRevision].filter(Boolean).map(asDisplayPack);
+}
+
+// CORRECT — loadUnifiedPack falls back to revisionPacks for uploaded IDs
+const pack =
+  (manifest.packs || []).find((item) => item.id === packId) ||
+  (manifest.revisionPacks || []).find((item) => item.id === packId && item._uploaded);
+```
+
+**Checklist when adding a new data loader that looks up a pack by ID:**
+- [ ] Does it search both `manifest.packs` and `manifest.revisionPacks`?
+- [ ] If the pack has an `uploaded://` path prefix, does `fetchJson` have a cache entry for it (registered by `registerPackInCache` at startup)?
+- [ ] After a Vite HMR reload during dev, `jsonCache` is cleared — do a hard refresh (`Cmd+Shift+R`) to re-run `hydrateManifest` and repopulate the cache.
+
+---
+
+*Last updated: 2026-05-21*  
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89*
