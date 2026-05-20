@@ -4101,6 +4101,12 @@ async function handleChange(event) {
     return;
   }
 
+  // Quiz answer textareas fire a `change` event when the user clicks the
+  // "Check answer" button (blur fires before click).  Letting that fall
+  // through to renderApp() would wipe the textarea value before the click
+  // handler reads it, causing the answer to be graded as an empty string.
+  if (event.target.id === "quiz-typed-answer" || event.target.id === "quiz-gap-typed") return;
+
   const { id, value } = event.target;
   switch (id) {
     case "vocab-dataset": {
