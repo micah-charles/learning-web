@@ -74,6 +74,17 @@ import {
   saveStoredState,
 } from "./storage.js";
 import {
+  exportProgress,
+  getDashboardSummary,
+  getPackageProgress,
+  getRecentActivity,
+  getRecommendedPractice,
+  getStruggledItems,
+  importProgress,
+  makeAttemptEvent,
+  recordAttempt,
+} from "./progress.js";
+import {
   escapeHtml,
   formatDateTime,
   formatPercent,
@@ -107,7 +118,8 @@ const TABS = [
   { id: "builder", title: "Builder"    },
   { id: "review",  title: "Review"     },
   { id: "about",   title: "About"      },
-  { id: "admin",   title: "⚙ Admin"   },
+  { id: "admin",   title: "Progress"   },
+  { id: "selfUpload", title: "My Packs" },
 ];
 
 const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"];
@@ -941,6 +953,8 @@ async function renderTabContent() {
       return renderAboutTab();
     case "admin":
       return renderAdminTab();
+    case "selfUpload":
+      return renderSelfUploadTab();
     case "home":
     default:
       if (runtime.sessionDetail) {
@@ -3058,7 +3072,355 @@ function formatBytes(bytes) {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
-function renderAdminTab() {
+function firstDefined(...values) {
+  return values.find((value) => value !== undefined && value !== null && String(value).trim() !== "") || "";
+}
+
+function answerList(values) {
+  return Array.isArray(values) ? values.filter(Boolean).join(" · ") : "";
+}
+
+function progressTone(stateLabel) {
+  if (stateLabel === "Mastered") return "green";
+  if (stateLabel === "Struggling") return "coral";
+  if (stateLabel === "Reviewing") return "amber";
+  if (stateLabel === "Learning") return "blue";
+  return "";
+}
+
+function progressItemFromUnified(item, pack) {
+  const data = item.data || {};
+  const translations = data.translations || {};
+  const srcCode = pack.sourceLanguageCode || "en-GB";
+  const tgtCode = pack.targetLanguageCode || "en-GB";
+  const src = firstDefined(translations[srcCode], Object.values(translations)[0], data.sourceWord, data.sourceSentence, data.prompt, data.sentence, data.title, item.id);
+  const tgt = firstDefined(translations[tgtCode], Object.values(translations).slice(1)[0], data.targetWord, data.targetSentence, data.answer, data.definition, data.modelAnswer);
+  return {
+    id: item.id,
+    packId: pack.id,
+    packTitle: pack.displayName || pack.id,
+    type: item.type,
+    questionText: src,
+    expectedAnswer: tgt,
+  };
+}
+
+function progressItemsFromUnifiedPack(pack, unifiedPack) {
+  const items = [];
+  for (const item of unifiedPack.items || []) {
+    const data = item.data || {};
+    if (item.type === "passage") {
+      const questions = Array.isArray(data.questions) ? data.questions : [];
+      questions.forEach((question, index) => {
+        const options = Array.isArray(question.options) ? question.options : [];
+        const correctIndex = Number.isInteger(question.correctOptionIndex)
+          ? question.correctOptionIndex
+          : Number.isInteger(question.correct_option_index)
+            ? question.correct_option_index
+            : -1;
+        items.push({
+          id: `${item.id}::${question.id || index}`,
+          packId: pack.id,
+          packTitle: pack.displayName || pack.id,
+          type: "passage",
+          questionText: firstDefined(question.question, question.question_en, data.sourceTitle, data.targetTitle, item.id),
+          expectedAnswer: firstDefined(question.correctAnswer, question.correct_answer, question.modelAnswer, question.model_answer_en, correctIndex >= 0 ? options[correctIndex] : ""),
+        });
+      });
+      continue;
+    }
+    const meta = progressItemFromUnified(item, pack);
+    if (item.type === "sequence") {
+      meta.expectedAnswer = answerList(data.items);
+    } else if (item.type === "categorySort") {
+      meta.expectedAnswer = answerList(data.categories);
+    }
+    items.push(meta);
+  }
+  return items;
+}
+
+async function buildProgressCatalog() {
+  const packages = [];
+  const packItems = {};
+  const itemsById = {};
+  const datasets = listDatasets(runtime.manifest);
+
+  await Promise.all(datasets.map(async (pack) => {
+    let items = [];
+    try {
+      const unifiedPack = await loadUnifiedPack(runtime.manifest, pack.id);
+      items = progressItemsFromUnifiedPack(pack, unifiedPack);
+    } catch (_error) {
+      items = [];
+    }
+    const totalItems = items.length || Number(pack.wordCount) || Number(pack.itemCount) || 0;
+    packages.push({
+      id: pack.id,
+      title: pack.displayName || pack.id,
+      subject: getDatasetSubject(pack),
+      curriculum: getDatasetCurriculum(pack),
+      totalItems,
+      type: "revision",
+    });
+    packItems[pack.id] = items;
+    items.forEach((item) => {
+      itemsById[item.id] = item;
+    });
+  }));
+
+  for (const pack of listSentenceBuilderPacks(runtime.manifest)) {
+    if (packages.some((entry) => entry.id === pack.id)) continue;
+    const stats = persisted.progress.builderStats?.[pack.id];
+    if (!stats) continue;
+    packages.push({
+      id: pack.id,
+      title: pack.displayName || pack.id,
+      subject: getBuilderPackSubject(pack),
+      curriculum: getDatasetCurriculum(pack),
+      totalItems: pack.itemCount || pack.cardCount || 0,
+      type: "sentenceBuilder",
+    });
+    packItems[pack.id] = [];
+  }
+
+  packages.sort((a, b) => a.title.localeCompare(b.title));
+  return { packages, packItems, itemsById };
+}
+
+function renderSummaryCards(summary) {
+  const cards = [
+    ["Total items", summary.totalItems],
+    ["Attempted items", summary.attemptedItems],
+    ["Mastered items", summary.masteredItems],
+    ["Struggling items", summary.strugglingItems],
+    ["5-day answers", summary.recentQuestions],
+    ["Average accuracy", formatPercent(summary.averageAccuracy)],
+    ["Study streak", `${summary.studyStreakDays} day${summary.studyStreakDays === 1 ? "" : "s"}`],
+  ];
+  return `
+    <div class="progress-summary-grid">
+      ${cards.map(([label, value]) => `
+        <div class="progress-stat-card">
+          <strong>${escapeHtml(String(value))}</strong>
+          <span>${escapeHtml(label)}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderProgressBar(value) {
+  const percent = Math.round(Math.max(0, Math.min(1, value || 0)) * 100);
+  return `
+    <div class="admin-progress-bar" aria-label="${percent}% progress">
+      <span style="width:${percent}%"></span>
+    </div>
+  `;
+}
+
+function renderPackageProgress(packageRows) {
+  if (!packageRows.length) {
+    return `<p class="muted tiny">No packages are available yet.</p>`;
+  }
+  return `
+    <div class="data-table-wrap progress-table-wrap">
+      <table class="data-table-block progress-table">
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Total</th>
+            <th>Attempted</th>
+            <th>Learning state</th>
+            <th>Accuracy</th>
+            <th>Last practised</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${packageRows.map((pack) => `
+            <tr>
+              <td>
+                <strong>${escapeHtml(pack.title)}</strong>
+                <div class="muted tiny">${escapeHtml(humanizeLabel(pack.subject))} · ${escapeHtml(CURRICULUM_LABELS[pack.curriculum] || humanizeLabel(pack.curriculum))}</div>
+              </td>
+              <td>${pack.totalItems}</td>
+              <td>${pack.attemptedItems}</td>
+              <td>
+                <div class="chip-row progress-chip-row">
+                  <span class="badge blue">Learning ${Math.max(0, pack.attemptedItems - pack.masteredItems - pack.strugglingItems)}</span>
+                  <span class="badge amber">Reviewing ${Math.max(0, pack.attemptedItems - pack.masteredItems)}</span>
+                  <span class="badge green">Mastered ${pack.masteredItems}</span>
+                  <span class="badge coral">Struggling ${pack.strugglingItems}</span>
+                </div>
+              </td>
+              <td>${pack.totalAttempts ? formatPercent(pack.averageAccuracy) : "—"}</td>
+              <td>${escapeHtml(pack.lastPractisedLabel)}</td>
+              <td>
+                ${renderProgressBar(pack.progressPercentage)}
+                <span class="muted tiny">${formatPercent(pack.progressPercentage)}</span>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderRecentActivity(activityRows) {
+  const hasActivity = activityRows.some((row) => row.questionsAttempted > 0);
+  if (!hasActivity) {
+    return `<p class="muted tiny">No recent practice yet. Start a quiz to build your learning history.</p>`;
+  }
+  return `
+    <div class="recent-activity-grid">
+      ${activityRows.map((row) => `
+        <div class="activity-day-card">
+          <div class="activity-day-header">
+            <strong>${escapeHtml(new Date(`${row.dateKey}T00:00:00`).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" }))}</strong>
+            <span class="badge ${row.averageAccuracy >= 0.75 ? "green" : row.averageAccuracy >= 0.5 ? "amber" : row.questionsAttempted ? "coral" : ""}">${row.questionsAttempted ? formatPercent(row.averageAccuracy) : "No practice"}</span>
+          </div>
+          <div class="activity-day-stats">
+            <span>${row.quizSessions} sessions</span>
+            <span>${row.questionsAttempted} answered</span>
+            <span>${row.correct} right</span>
+            <span>${row.wrong} wrong</span>
+          </div>
+          <p class="muted tiny">${row.packs.length ? escapeHtml(row.packs.slice(0, 3).join(", ")) : "No packs played"}</p>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderStruggledItems(items) {
+  if (!items.length) {
+    return `<p class="muted tiny" style="margin-top:8px;">No struggled items yet. Once you answer a few questions, the trickiest ones will appear here.</p>`;
+  }
+  return `
+    <div class="data-table-wrap progress-table-wrap">
+      <table class="data-table-block progress-table">
+        <thead>
+          <tr>
+            <th>Word / Question</th>
+            <th>Answer / Translation</th>
+            <th>Pack</th>
+            <th>Right</th>
+            <th>Wrong</th>
+            <th>Accuracy</th>
+            <th>Streak</th>
+            <th>Mastered</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${items.map((item) => {
+            const tone = progressTone(item.state);
+            return `
+              <tr>
+                <td>
+                  <strong>${escapeHtml(item.questionText)}</strong>
+                  <div class="muted tiny">ID: ${escapeHtml(item.id)}</div>
+                </td>
+                <td>${escapeHtml(item.expectedAnswer || "—")}</td>
+                <td>${escapeHtml(item.packTitle)}</td>
+                <td>${item.correct}</td>
+                <td>${item.wrong}</td>
+                <td>${formatPercent(item.accuracy)}</td>
+                <td>${item.streak}</td>
+                <td><span class="badge ${tone}">${escapeHtml(item.state)}</span></td>
+                <td>
+                  <button class="button ghost button-danger button-sm" data-action="admin-reset-word" data-word-id="${escapeHtml(item.id)}" title="Reset progress for this item">Reset</button>
+                </td>
+              </tr>
+            `;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderRecommendations(recommendations) {
+  if (!recommendations.length) {
+    return `<p class="muted tiny">No recommendations yet. Try a quiz and this area will suggest what to revisit next.</p>`;
+  }
+  return `
+    <div class="recommendation-list">
+      ${recommendations.map((item) => `
+        <div class="recommendation-card">
+          <span class="badge ${item.tone}">${escapeHtml(humanizeLabel(item.type))}</span>
+          <div>
+            <strong>${escapeHtml(item.title)}</strong>
+            <p class="muted tiny">${escapeHtml(item.body)}</p>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+async function renderAdminTab() {
+  const progressCatalog = await buildProgressCatalog();
+  const summary = getDashboardSummary(persisted, progressCatalog, 5);
+  const packageRows = getPackageProgress(persisted, progressCatalog)
+    .filter((pack) => pack.totalItems > 0 || pack.totalAttempts > 0)
+    .sort((a, b) => b.strugglingItems - a.strugglingItems || b.attemptedItems - a.attemptedItems || a.title.localeCompare(b.title));
+  const recentActivity = getRecentActivity(persisted, 5);
+  const struggledItems = getStruggledItems(persisted, 20, progressCatalog);
+  const recommendations = getRecommendedPractice(persisted, progressCatalog, 6);
+  const wordProgressCount = Object.keys(persisted.progress.words || {}).length;
+  const attemptEventCount = persisted.progress.attemptEvents?.length || 0;
+  const sessionActivityCount = persisted.progress.sessions.length + attemptEventCount;
+
+  return `
+    <div class="section-stack">
+      <section class="section-card">
+        <h2>Progress Management</h2>
+        <p class="muted tiny">Clear stored quiz history or reset word mastery. This affects only this browser — nothing is sent anywhere.</p>
+        ${renderSummaryCards(summary)}
+        <div class="action-row" style="margin-top:14px;flex-wrap:wrap;gap:10px;">
+          <button class="button secondary" data-action="admin-export-progress">
+            Export Progress JSON
+          </button>
+          <button class="button secondary" data-action="admin-import-progress">
+            Import Progress JSON
+          </button>
+          <input id="admin-progress-import" type="file" accept=".json,application/json" style="display:none;" />
+          <button class="button secondary" data-action="admin-clear-sessions" ${sessionActivityCount === 0 ? "disabled" : ""}>
+            Clear All Sessions (${persisted.progress.sessions.length} sessions, ${attemptEventCount} events)
+          </button>
+          <button class="button secondary" data-action="admin-clear-words" ${wordProgressCount === 0 ? "disabled" : ""}>
+            Reset All Word Progress (${wordProgressCount} items)
+          </button>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h2>Recommended Practice</h2>
+        ${renderRecommendations(recommendations)}
+      </section>
+
+      <section class="section-card">
+        <h2>Recent Learning Activity</h2>
+        ${renderRecentActivity(recentActivity)}
+      </section>
+
+      <section class="section-card">
+        <h2>Package Progress</h2>
+        ${renderPackageProgress(packageRows)}
+      </section>
+
+      <section class="section-card">
+        <h3 style="margin-top:20px;font-size:0.95rem;">Most struggled words (top 20)</h3>
+        ${renderStruggledItems(struggledItems)}
+      </section>
+    </div>
+  `;
+}
+
+function renderSelfUploadTab() {
   const packs = listUploadedPacks();
   const status = runtime.adminUploadStatus;
 
@@ -3175,67 +3537,8 @@ function renderAdminTab() {
         `;
       }).join("");
 
-  // ── Progress management data ──────────────────────────────────────────────
-  const wordEntries = Object.entries(persisted.progress.words)
-    .map(([id, p]) => ({ id, ...p }))
-    .sort((a, b) => (b.wrong - b.correct) - (a.wrong - a.correct))
-    .slice(0, 20);
-
-  const wordTableHtml = wordEntries.length
-    ? `
-      <div style="overflow-x:auto;margin-top:12px;">
-        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
-          <thead>
-            <tr style="border-bottom:2px solid #e0e0e0;text-align:left;">
-              <th style="padding:6px 8px;">Word / ID</th>
-              <th style="padding:6px 8px;text-align:center;">✓ Right</th>
-              <th style="padding:6px 8px;text-align:center;">✗ Wrong</th>
-              <th style="padding:6px 8px;text-align:center;">Streak</th>
-              <th style="padding:6px 8px;text-align:center;">Mastered</th>
-              <th style="padding:6px 8px;"></th>
-            </tr>
-          </thead>
-          <tbody>
-            ${wordEntries.map((w) => {
-              const mastered = w.correct >= 3 && w.streak >= 2;
-              return `
-                <tr style="border-bottom:1px solid #f0f0f0;">
-                  <td style="padding:5px 8px;" class="muted tiny">${escapeHtml(w.id)}</td>
-                  <td style="padding:5px 8px;text-align:center;color:#1a7a3a;">${w.correct}</td>
-                  <td style="padding:5px 8px;text-align:center;color:#c00;">${w.wrong}</td>
-                  <td style="padding:5px 8px;text-align:center;">${w.streak}</td>
-                  <td style="padding:5px 8px;text-align:center;">${mastered ? "✓" : "—"}</td>
-                  <td style="padding:5px 8px;text-align:right;">
-                    <button class="button ghost button-danger" style="font-size:0.75rem;padding:2px 8px;" data-action="admin-reset-word" data-word-id="${escapeHtml(w.id)}" title="Reset progress for this word">Reset</button>
-                  </td>
-                </tr>
-              `;
-            }).join("")}
-          </tbody>
-        </table>
-      </div>
-    `
-    : `<p class="muted tiny" style="margin-top:8px;">No word progress recorded yet.</p>`;
-
   return `
     <div class="section-stack">
-
-      <section class="section-card">
-        <h2>Progress Management</h2>
-        <p class="muted tiny">Clear stored quiz history or reset word mastery. This affects only this browser — nothing is sent anywhere.</p>
-        <div class="action-row" style="margin-top:14px;flex-wrap:wrap;gap:10px;">
-          <button class="button secondary" data-action="admin-clear-sessions" ${persisted.progress.sessions.length === 0 ? "disabled" : ""}>
-            Clear all sessions (${persisted.progress.sessions.length})
-          </button>
-          <button class="button secondary" data-action="admin-clear-words" ${wordEntries.length === 0 ? "disabled" : ""}>
-            Reset all word progress (${Object.keys(persisted.progress.words).length} words)
-          </button>
-        </div>
-
-        <h3 style="margin-top:20px;font-size:0.95rem;">Most struggled words (top 20)</h3>
-        ${wordTableHtml}
-      </section>
-
       <section class="section-card">
         <h2>Pack Admin</h2>
         <p class="muted tiny">
@@ -3587,8 +3890,26 @@ async function handleClick(event) {
       return;
     }
     // ── Admin: progress management ────────────────────────────────────────
+    case "admin-export-progress": {
+      const backup = exportProgress(persisted);
+      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `learning-web-progress-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      return;
+    }
+    case "admin-import-progress": {
+      document.getElementById("admin-progress-import")?.click();
+      return;
+    }
     case "admin-clear-sessions": {
-      if (!window.confirm(`Delete all ${persisted.progress.sessions.length} quiz sessions? This cannot be undone.`)) return;
+      const eventCount = persisted.progress.attemptEvents?.length || 0;
+      if (!window.confirm(`Delete all ${persisted.progress.sessions.length} quiz sessions and ${eventCount} learning event(s)? Word mastery counts will stay in place.`)) return;
       clearAllSessions(persisted);
       saveStoredState(persisted);
       await renderApp();
@@ -4100,6 +4421,27 @@ async function handleChange(event) {
     await handleAdminFileUpload(event.target.files && event.target.files[0]);
     return;
   }
+  if (event.target.id === "admin-progress-import") {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      importProgress(persisted, text);
+      saveStoredState(persisted);
+      runtime.adminUploadStatus = {
+        ok: true,
+        message: `Imported progress backup from "${file.name}".`,
+      };
+    } catch (error) {
+      runtime.adminUploadStatus = {
+        ok: false,
+        message: `Could not import progress: ${error.message}`,
+      };
+    }
+    event.target.value = "";
+    await renderApp();
+    return;
+  }
 
   // Quiz answer textareas fire a `change` event when the user clicks the
   // "Check answer" button (blur fires before click).  Letting that fall
@@ -4377,6 +4719,7 @@ async function startQuiz(customWords = null, label = null) {
   session.config.stages = getSelectedStages(prefs, dataset);
   session.sourceWords = sourceWords;
   session.missedWords = [];
+  session.questionStartedAt = Date.now();
   const firstQ = session.questions[0];
   if (firstQ) {
     if (firstQ.kind === "build") {
@@ -4504,6 +4847,8 @@ async function answerQuizQuestion(response, extra = null) {
   }
   const question = session.questions[session.index];
   const result = gradeQuestion(question, response, extra);
+  const progressItemId = question.wordId || question.sourceItemId || question.id;
+  const timeSpentMs = Math.max(0, Date.now() - (session.questionStartedAt || Date.now()));
   session.awaitingNext = true;
   session.feedback = result;
   session.answers.push({
@@ -4512,6 +4857,7 @@ async function answerQuizQuestion(response, extra = null) {
     expected: question.answer,
     userAnswer: response,
     correct: result.correct,
+    itemId: progressItemId,
     wordId: question.wordId,
     speechText: question.speechText,
     speechLanguage: question.speechLanguage,
@@ -4519,8 +4865,24 @@ async function answerQuizQuestion(response, extra = null) {
   if (result.correct) {
     session.score += 1;
   }
+  if (progressItemId) {
+    recordWordAnswer(persisted, progressItemId, result.correct);
+    const dataset = findDataset(runtime.manifest, session.config.datasetId);
+    recordAttempt(persisted, makeAttemptEvent({
+      sessionId: session.id,
+      packId: session.config.datasetId,
+      packTitle: dataset.displayName,
+      itemId: progressItemId,
+      questionText: question.prompt,
+      expectedAnswer: result.expected || question.answer,
+      selectedAnswer: response,
+      correct: result.correct,
+      modeId: question.modeId,
+      kind: question.kind,
+      timeSpentMs,
+    }));
+  }
   if (question.wordId) {
-    recordWordAnswer(persisted, question.wordId, result.correct);
     if (!result.correct) {
       const sourceWords = session.sourceWords || [];
       const matched = sourceWords.find((word) => word.id === question.wordId);
@@ -4555,6 +4917,7 @@ function nextQuizQuestion() {
     saveStoredState(persisted);
     return;
   }
+  session.questionStartedAt = Date.now();
   if (session.questions[session.index].kind === "build") {
     session.buildState = makeBuildState(session.questions[session.index]);
   } else if (session.questions[session.index].kind === "sequence") {

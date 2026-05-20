@@ -259,6 +259,7 @@ function makeWordChoiceQuestions(words, count, allWords, dataset, modeId) {
       answer,
       options,
       wordId: word.id,
+      sourceItemId: word.id,
       topic: word.topic,
       pos: word.part_of_speech || word.pos || "",
       subtitle: buildSubtitle(word),
@@ -285,6 +286,7 @@ function makeWordTypedQuestions(words, count, dataset, modeId) {
       ? collectAcceptedAnswers(word.en, word.accepted_translations)
       : collectAcceptedAnswers(word.de, word.accepted_answers),
     wordId: word.id,
+    sourceItemId: word.id,
     topic: word.topic,
     pos: word.part_of_speech || word.pos || "",
     subtitle: buildSubtitle(word),
@@ -305,6 +307,7 @@ function buildSentenceQuestion(sentence, modeId, dataset, index) {
     answer: modeId === "germanSentenceBuildEnglish" ? sentence.en : sentence.de,
     acceptedAnswers: [modeId === "germanSentenceBuildEnglish" ? sentence.en : sentence.de],
     wordId: sentence.target_vocab_id || (Array.isArray(sentence.vocab_ids) && sentence.vocab_ids.length ? sentence.vocab_ids[0] : null),
+    sourceItemId: sentence.id,
     subtitle: Array.isArray(sentence.topics) ? sentence.topics.join(", ") : "",
   };
 
@@ -481,6 +484,7 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
       answer,
       options,
       wordId:      item.id,
+      sourceItemId: item.id,
       topic:       Array.isArray(item.topics) ? item.topics[0] : (item.tags && item.tags[0]) || "",
       subtitle:    item.level || "",
       speechText:  src,
@@ -500,11 +504,12 @@ export function makeSequenceFromUnified(unifiedItems, count, dataset) {
     modeId: "sequenceOrder",
     modeTitle: item.data.title || "Arrange in order",
     kind: "sequence",
-    prompt: item.data.title || "",
-    instruction: item.data.instruction || "",
-    correctOrder: item.data.items || [],
-    shuffledOrder: shuffle([...(item.data.items || [])]),
-    speechText: (item.data.items || []).join(". "),
+      prompt: item.data.title || "",
+      instruction: item.data.instruction || "",
+      correctOrder: item.data.items || [],
+      shuffledOrder: shuffle([...(item.data.items || [])]),
+      sourceItemId: item.id,
+      speechText: (item.data.items || []).join(". "),
     speechLanguage: labels.speechLanguage,
     stimulus: item.data.stimulus || null,
   }));
@@ -525,6 +530,7 @@ export function makeCategorySortFromUnified(unifiedItems, count, dataset) {
       instruction: item.data.instruction || "",
       categories: item.data.categories || [],
       items: shuffle([...pairs]),
+      sourceItemId: item.id,
       speechText: pairs.map((p) => p.text).join(", "),
       speechLanguage: labels.speechLanguage,
       stimulus: item.data.stimulus || null,
@@ -573,6 +579,7 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMod
       acceptedAnswers: [item.data.answer],
       hint: item.data.hint || "",
       options,
+      sourceItemId: item.id,
       speechText: item.data.sentence || "",
       speechLanguage: labels.speechLanguage,
       stimulus: item.data.stimulus || null,
@@ -610,6 +617,7 @@ export function makePassageChoiceFromUnified(unifiedItems, count, dataset) {
       }
 
       questions.push({
+        sourceItemId: `${item.id}::${question.id || questions.length}`,
         id: `passage-choice-${item.id}-${question.id || questions.length}`,
         modeId: "passageQuestionChooseAnswer",
         modeTitle: "Question -> choose answer",
