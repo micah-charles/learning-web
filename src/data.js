@@ -167,7 +167,11 @@ function packsWithCapability(manifest, cap) {
 
 export function listDatasets(manifest) {
   const revision = packsWithCapability(manifest, "revision");
-  return [manifest.core, ...revision].filter(Boolean).map(asDisplayPack);
+  // Uploaded packs are injected into manifest.revisionPacks by hydrateManifest
+  // (not into manifest.packs, which is the static JSON array). Include them here
+  // so findDataset can resolve their IDs.
+  const uploadedRevision = (manifest.revisionPacks || []).filter((p) => p._uploaded);
+  return [manifest.core, ...revision, ...uploadedRevision].filter(Boolean).map(asDisplayPack);
 }
 
 export function findDataset(manifest, datasetId) {
@@ -308,7 +312,10 @@ export async function loadUnifiedPack(manifest, packId) {
   if (!packId || packId === "core") {
     return loadCoreUnifiedPack(manifest);
   }
-  const pack = (manifest.packs || []).find((item) => item.id === packId);
+  // Check static packs first, then uploaded packs (revisionPacks with _uploaded flag).
+  const pack =
+    (manifest.packs || []).find((item) => item.id === packId) ||
+    (manifest.revisionPacks || []).find((item) => item.id === packId && item._uploaded);
   if (!pack || !pack.unifiedPath) {
     // Pack no longer exists (e.g. removed or merged into another pack).
     // Fall back to the core pack gracefully rather than crashing.
