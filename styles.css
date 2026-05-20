@@ -1865,6 +1865,123 @@ body {
   color: var(--muted);
 }
 
+.progress-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.progress-stat-card {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 238, 0.82));
+}
+
+.progress-stat-card strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+}
+
+.progress-stat-card span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.admin-progress-bar {
+  width: min(180px, 32vw);
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+}
+
+.admin-progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--fox-teal), var(--color-success));
+}
+
+.progress-table-wrap {
+  margin-top: 12px;
+}
+
+.progress-table td,
+.progress-table th {
+  vertical-align: top;
+}
+
+.progress-table td:first-child {
+  min-width: 190px;
+}
+
+.progress-chip-row {
+  gap: 6px;
+}
+
+.progress-chip-row .badge {
+  padding: 6px 9px;
+  font-size: 0.72rem;
+}
+
+.recent-activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.activity-day-card,
+.recommendation-card {
+  padding: 14px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.activity-day-header,
+.recommendation-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.activity-day-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 10px;
+  margin: 10px 0;
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.recommendation-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.recommendation-card {
+  justify-content: flex-start;
+}
+
+.recommendation-card .badge {
+  flex: 0 0 auto;
+}
+
+.button-sm {
+  padding: 5px 9px;
+  font-size: 0.76rem;
+  border-radius: 10px;
+}
+
 /* Danger button variant */
 .button-danger {
   color: #b91c1c;

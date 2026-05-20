@@ -70,6 +70,7 @@ export const DEFAULT_STATE = {
   progress: {
     words: {},
     sessions: [],
+    attemptEvents: [],
     builderStats: {},
     passageStats: {},
   },
@@ -156,9 +157,10 @@ export function recordWordAnswer(state, wordId, wasCorrect) {
 export function recordQuizSession(state, sessionRecord) {
   // Cap answers at 60 entries to keep localStorage lean; degrade gracefully on old records
   const answers = Array.isArray(sessionRecord.answers)
-    ? sessionRecord.answers.slice(0, 60).map(({ prompt, expected, userAnswer, correct, speechText, speechLanguage, wordId }) => ({
+    ? sessionRecord.answers.slice(0, 60).map(({ prompt, expected, userAnswer, correct, speechText, speechLanguage, wordId, itemId }) => ({
         prompt, expected, userAnswer, correct,
         ...(wordId ? { wordId } : {}),
+        ...(itemId ? { itemId } : {}),
         ...(speechText ? { speechText } : {}),
         ...(speechLanguage ? { speechLanguage } : {}),
       }))
@@ -175,6 +177,7 @@ export function deleteSession(state, sessionId) {
 
 export function clearAllSessions(state) {
   state.progress.sessions = [];
+  state.progress.attemptEvents = [];
 }
 
 export function resetWordProgress(state, wordId) {
