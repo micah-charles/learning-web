@@ -750,11 +750,9 @@ function scaleCrosswordToFit() {
   const board = document.querySelector(".crossword-board");
   if (!wrap || !board) return;
 
-  // Reset so we can measure the board's natural (unscaled) size
-  board.style.transform       = "";
-  board.style.transformOrigin = "";
-  wrap.style.height           = "";
-
+  // scrollWidth / offsetHeight are layout (unscaled) values — no need to reset
+  // the transform first; doing so briefly expands the board and can cause a
+  // scroll jump even with overflow:hidden.
   const padH      = 32;                       // 16px padding × 2
   const available = wrap.clientWidth - padH;
   const natural   = board.scrollWidth;
@@ -767,7 +765,10 @@ function scaleCrosswordToFit() {
     wrap.style.height   = `${Math.ceil(board.offsetHeight * scale) + padH}px`;
     wrap.style.overflow = "hidden";
   } else {
-    wrap.style.overflow = "";
+    board.style.transform       = "";
+    board.style.transformOrigin = "";
+    wrap.style.height           = "";
+    wrap.style.overflow         = "";
   }
 
   // Keep re-scaling on viewport resize — register once, replace on each render

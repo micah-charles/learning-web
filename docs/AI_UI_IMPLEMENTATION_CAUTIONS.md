@@ -373,5 +373,59 @@ async function handleChange(event) {
 
 ---
 
+### ⚠️ 7. Crossword grid — scroll jump and large-grid overflow
+
+Two related bugs were introduced and re-introduced in the crossword. Document them here so they are never regressed again.
+
+#### 7a. `focus()` without `preventScroll` jumps the page
+
+When the user types a letter, `focusCrosswordCell()` moves focus to the next cell. The default `input.focus()` call causes the browser to scroll the page so the newly-focused cell is in the viewport. If the user has scrolled to the top of a tall grid this jumps them back down.
+
+**Rule:** Always call `focus({ preventScroll: true })` in `focusCrosswordCell`:
+
+```js
+// WRONG
+input.focus();
+
+// CORRECT
+input.focus({ preventScroll: true });
+```
+
+#### 7b. Resetting `transform` before measuring causes a scroll flash
+
+`scaleCrosswordToFit()` shrinks the board using `transform: scale(x)`. An early version reset `transform = ""` before reading `board.scrollWidth`, assuming it needed the "natural" width. This caused a one-frame expansion of the board; even with `overflow: hidden` on the wrapper the browser sometimes scrolled to keep the focused cell in view during that flash.
+
+**Rule:** `scrollWidth` and `offsetHeight` are **layout values — they are not affected by CSS `transform`**. Never reset `transform` just to measure them:
+
+```js
+// WRONG — resets transform, board briefly expands → scroll flash
+board.style.transform = "";
+const natural = board.scrollWidth;  // measure, then re-scale
+
+// CORRECT — scrollWidth is always the unscaled layout width
+const natural = board.scrollWidth;  // no reset needed
+board.style.transform = `scale(${available / natural})`;
+```
+
+Only reset the transform when the board already fits (no scale needed):
+
+```js
+if (natural > available) {
+  board.style.transform = `scale(${available / natural})`;
+} else {
+  board.style.transform = "";  // safe: board fits, no scroll risk
+}
+```
+
+#### 7c. Use double `requestAnimationFrame` after `renderApp()`
+
+Reading `board.scrollWidth` in the first rAF after `root.innerHTML = ...` can return 0 because the browser has not yet committed layout for the newly-inserted DOM. Use double rAF:
+
+```js
+requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
+```
+
+---
+
 *Last updated: 2026-05-20*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #83, #85*
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85*
