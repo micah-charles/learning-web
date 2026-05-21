@@ -1859,17 +1859,16 @@ body {
 .subject-card-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 8px;
   margin-top: 8px;
 }
 
 .subject-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 18px 14px;
+  gap: 8px;
+  padding: 9px 12px;
   border: 1.5px solid var(--line);
   background: var(--surface-strong);
   border-radius: var(--radius-md);
@@ -1877,7 +1876,7 @@ body {
   transition: border-color 120ms ease, background 120ms ease, transform 120ms ease, box-shadow 120ms ease;
   font: inherit;
   color: inherit;
-  text-align: center;
+  text-align: left;
 }
 
 .subject-card:hover:not(:disabled) {
@@ -1901,18 +1900,30 @@ body {
 }
 
 .subject-card .subject-icon {
-  font-size: 28px;
+  font-size: 20px;
   line-height: 1;
+  flex-shrink: 0;
+}
+
+.subject-card .subject-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
 }
 
 .subject-card .subject-label {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .subject-card .subject-meta {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 /* Pill rows used for both Direction and Answer Mode */
