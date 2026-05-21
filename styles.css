@@ -1357,10 +1357,18 @@ body {
 
   .hero-right {
     align-items: flex-start;
+    width: 100%;        /* fill hero-body width so content doesn't overflow */
+    flex-shrink: 1;
   }
 
   .hero-build-card {
     max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-build-title,
+  .hero-build-body {
+    white-space: normal; /* allow wrapping on narrow screens */
   }
 
   .section-card,
