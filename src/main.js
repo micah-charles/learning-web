@@ -999,27 +999,6 @@ async function renderHomeTab() {
           </div>
         </article>
         <div class="dashboard-right">
-          <article class="section-card">
-            <h2>Status snapshot</h2>
-            <div class="stat-grid" style="margin-top:16px;">
-              <div class="metric">
-                <strong>${Object.keys(persisted.progress.words).length}</strong>
-                <span>words seen so far</span>
-              </div>
-              <div class="metric">
-                <strong>${Object.values(persisted.progress.builderStats).reduce((sum, item) => sum + item.totalCorrect, 0)}</strong>
-                <span>builder cards solved</span>
-              </div>
-              <div class="metric">
-                <strong>${Object.values(persisted.progress.passageStats).reduce((sum, item) => sum + item.passagesCompleted, 0)}</strong>
-                <span>passages completed</span>
-              </div>
-              <div class="metric">
-                <strong>${lastSession ? formatPercent(lastSession.score / Math.max(lastSession.totalQuestions, 1)) : "0%"}</strong>
-                <span>${lastSession ? "latest quiz accuracy" : "quiz accuracy will appear here"}</span>
-              </div>
-            </div>
-          </article>
           <article class="section-card fb-card">
             <h2>Let's grow together! 💛</h2>
             <p>Follow the FoxChildIdea journey on Facebook and share your thoughts, feedback, or ideas.</p>
@@ -1037,6 +1016,27 @@ async function renderHomeTab() {
                 <path d="M6 1.5H2.5A1 1 0 0 0 1.5 2.5v11A1 1 0 0 0 2.5 14.5h11A1 1 0 0 0 14.5 13.5V10M9 1.5h5.5m0 0v5.5m0-5.5L7 10"/>
               </svg>
             </a>
+          </article>
+          <article class="section-card status-compact">
+            <h2>Status snapshot</h2>
+            <div class="status-compact-grid">
+              <div class="metric-mini">
+                <strong>${Object.keys(persisted.progress.words).length}</strong>
+                <span>words seen</span>
+              </div>
+              <div class="metric-mini">
+                <strong>${Object.values(persisted.progress.builderStats).reduce((sum, item) => sum + item.totalCorrect, 0)}</strong>
+                <span>cards solved</span>
+              </div>
+              <div class="metric-mini">
+                <strong>${Object.values(persisted.progress.passageStats).reduce((sum, item) => sum + item.passagesCompleted, 0)}</strong>
+                <span>passages done</span>
+              </div>
+              <div class="metric-mini">
+                <strong>${lastSession ? formatPercent(lastSession.score / Math.max(lastSession.totalQuestions, 1)) : "0%"}</strong>
+                <span>${lastSession ? "last accuracy" : "no quiz yet"}</span>
+              </div>
+            </div>
           </article>
         </div>
       </section>
