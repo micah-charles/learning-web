@@ -804,15 +804,26 @@ function renderHero() {
           alt="FoxChild Idea — Fox Tutor and Girl Tutor"
           class="hero-logo"
         />
+        <a
+          class="hero-fb-btn"
+          href="https://www.facebook.com/profile.php?id=61589170294693"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Visit FoxChildIdea on Facebook"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+        </a>
       </div>
       <div class="hero-body">
         <div class="hero-top">
           <div class="hero-copy">
             <p class="eyebrow">powered by FoxChild Idea</p>
-            <h1>Learning Web</h1>
+            <h1><span class="hero-title-brand">FoxChild</span><span class="hero-title-accent">@Learn</span></h1>
             <p>
-              Your personal study desk — vocabulary drills, reading practice,
-              sentence builder and progress tracking, all in one place.
+              Your cozy space for learning, practising, and growing —
+              powered by curiosity and AI. ❤️
             </p>
           </div>
           <div class="hero-badges">
@@ -998,27 +1009,47 @@ async function renderHomeTab() {
             </button>
           </div>
         </article>
-        <article class="section-card">
-          <h2>Status snapshot</h2>
-          <div class="stat-grid" style="margin-top:16px;">
-            <div class="metric">
-              <strong>${Object.keys(persisted.progress.words).length}</strong>
-              <span>words seen so far</span>
+        <div class="dashboard-right">
+          <article class="section-card fb-card">
+            <h2>Let's grow together! 💛</h2>
+            <p>Follow the FoxChildIdea journey on Facebook and share your thoughts, feedback, or ideas.</p>
+            <a
+              class="fb-btn"
+              href="https://www.facebook.com/profile.php?id=61589170294693"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="fb-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+              </svg>
+              Visit our Facebook page
+              <svg class="fb-external" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M6 1.5H2.5A1 1 0 0 0 1.5 2.5v11A1 1 0 0 0 2.5 14.5h11A1 1 0 0 0 14.5 13.5V10M9 1.5h5.5m0 0v5.5m0-5.5L7 10"/>
+              </svg>
+            </a>
+          </article>
+          <article class="section-card status-compact">
+            <h2>Status snapshot</h2>
+            <div class="status-compact-grid">
+              <div class="metric-mini">
+                <strong>${Object.keys(persisted.progress.words).length}</strong>
+                <span>words seen</span>
+              </div>
+              <div class="metric-mini">
+                <strong>${Object.values(persisted.progress.builderStats).reduce((sum, item) => sum + item.totalCorrect, 0)}</strong>
+                <span>cards solved</span>
+              </div>
+              <div class="metric-mini">
+                <strong>${Object.values(persisted.progress.passageStats).reduce((sum, item) => sum + item.passagesCompleted, 0)}</strong>
+                <span>passages done</span>
+              </div>
+              <div class="metric-mini">
+                <strong>${lastSession ? formatPercent(lastSession.score / Math.max(lastSession.totalQuestions, 1)) : "0%"}</strong>
+                <span>${lastSession ? "last accuracy" : "no quiz yet"}</span>
+              </div>
             </div>
-            <div class="metric">
-              <strong>${Object.values(persisted.progress.builderStats).reduce((sum, item) => sum + item.totalCorrect, 0)}</strong>
-              <span>builder cards solved</span>
-            </div>
-            <div class="metric">
-              <strong>${Object.values(persisted.progress.passageStats).reduce((sum, item) => sum + item.passagesCompleted, 0)}</strong>
-              <span>passages completed</span>
-            </div>
-            <div class="metric">
-              <strong>${lastSession ? formatPercent(lastSession.score / Math.max(lastSession.totalQuestions, 1)) : "0%"}</strong>
-              <span>${lastSession ? "latest quiz accuracy" : "quiz accuracy will appear here"}</span>
-            </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </section>
 
       <section class="section-card lead">
