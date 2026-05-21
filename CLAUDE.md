@@ -346,6 +346,32 @@ The manifest is **not** auto-generated on `npm run dev`. After adding/removing p
 - After a PR is **merged**, the branch is closed — new work on that branch needs a fresh PR
 - **Never auto-merge** — always wait for the repo owner to review and approve
 
+### ⚠️ Mandatory branch pre-flight — run BEFORE the FIRST `git push` in any session
+
+This check must happen **before pushing any commit**, not just before opening a PR.
+At the start of every work session, before touching `git push`, run:
+
+```bash
+# 1. Fetch latest main
+git fetch origin main
+
+# 2. Check the current branch's existing PR state
+gh pr view --json state,url 2>/dev/null
+
+# 3. Confirm only the intended commits are ahead of main
+git log --oneline origin/main..HEAD
+```
+
+**Rules:**
+- If `gh pr view` returns `"state": "MERGED"` → the branch's PR is already merged. **Do NOT push more commits to it.** Create a new branch (`git checkout -b codex/<new-description>`) and open a fresh PR.
+- If `gh pr view` returns `"state": "OPEN"` → push new commits to the same branch; the PR updates automatically. Do not create a duplicate.
+- If `git log origin/main..HEAD` shows commits that belong to a previous merged PR → fetch main first (`git fetch origin main`) and verify. Those commits are already in main; only the new work should appear.
+- **Never push to a branch whose PR has already merged** — commits land in a limbo state (not in main, tied to a closed PR).
+
+> **Why "before the first push", not "before `gh pr create`"?**
+> Commits pushed to a merged branch are orphaned even if a new PR is later opened from a different branch.
+> The check must happen before the first `git push` so no commits ever land on a dead branch.
+
 ---
 
 ## 16. Files that are safe to edit vs. generated

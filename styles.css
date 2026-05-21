@@ -1934,6 +1934,55 @@ body {
   white-space: nowrap;
 }
 
+/* ── Subject card: tablet (768–1023 px) — single row, hide meta ────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .subject-card .subject-meta {
+    display: none;
+  }
+}
+
+/* ── Subject card: mobile (< 768 px) — 3-column grid, icon + label ─────── */
+@media (max-width: 767px) {
+  .subject-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    overflow-x: unset;
+    padding-bottom: 0;
+  }
+
+  .subject-card {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 6px;
+    gap: 4px;
+    white-space: normal;
+    flex: unset;
+    min-width: 0;
+  }
+
+  .subject-card .subject-icon {
+    font-size: 22px;
+  }
+
+  .subject-card .subject-text {
+    align-items: center;
+  }
+
+  .subject-card .subject-label {
+    font-size: 11px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .subject-card .subject-meta {
+    display: none;
+  }
+}
+
 /* Pill rows used for both Direction and Answer Mode */
 .pill-row {
   display: flex;
