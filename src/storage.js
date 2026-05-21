@@ -21,7 +21,7 @@ export const DEFAULT_STATE = {
       subject: "language",                    // language | history | geography | science
       curriculum: "all",                      // ks3 | gcse | other | all
       direction: "studyToTarget",             // studyToTarget | targetToStudy (language packs only)
-      answerMode: "mixed",                    // mcq | typed | mixed
+      answerMode: "mcq",                      // mcq | typed | mixed
       // Existing fields
       datasetId: "core",
       year: "Y7",
