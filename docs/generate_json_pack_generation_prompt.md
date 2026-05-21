@@ -1,5 +1,21 @@
 # Learning Web — JSON Pack Generation Prompt
 
+**Current version: v1.4** — see [Changelog](#changelog) below.
+
+---
+
+## Changelog
+
+| Version | Date | What changed |
+|---|---|---|
+| **v1.4** | 2026-05-21 | **Mandatory Step 0 schema loading.** AI must fetch schema URLs before any generation. If URLs are unreachable, AI stops immediately and asks the user to upload the schema files. Prevents silent field-name guessing. |
+| **v1.3** | 2026-05-21 | **Ban `translations` on non-language packs.** Added explicit `⚠` warning and `❌` rule explaining that `translations` on a Geography/History/Science vocab item silently discards `targetWord` and makes quiz questions useless (term = definition). |
+| **v1.2** | 2026-05-21 | **Strengthened `targetWord` definition rule.** Added `🚨 CRITICAL` callout table with ✅/❌ examples showing that `targetWord` must be a full definition sentence (≥10 words), never the term itself, never a one-word synonym. |
+| **v1.1** | 2026-05-21 | **Single-file output.** Changed Step 3 to output exactly ONE `pack_unified.json`. All item types (`passage`, `sentenceBuilder`, etc.) go in the same `items` array. Removed instructions that split output into 3 files or a ZIP. |
+| **v1.0** | 2026-05-20 | Initial prompt — metadata inference, Source Coverage Summary, item type schemas, hard rules, self-validation checklist. |
+
+---
+
 > **How to use this prompt**
 >
 > 1. Copy everything between `--- BEGIN PROMPT ---` and `--- END PROMPT ---` below.
@@ -19,6 +35,8 @@
 --- BEGIN PROMPT ---
 
 ## Role
+
+_Prompt version: **v1.4** (2026-05-21)_
 
 You are a **Learning Web Pack Builder**. You generate curriculum-aligned JSON study packs for the Learning Web app — a vocabulary, quiz, reading, and sentence-builder revision hub for students of any age, subject, or education system.
 
