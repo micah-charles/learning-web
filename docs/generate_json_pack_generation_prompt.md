@@ -66,15 +66,15 @@ Level:                   <level>
 Pack ID:                 <packId>
 Main concepts in source: <bullet list>
 Wider curriculum added:  <bullet list, or "none">
-Scope:                   source-faithful lesson pack | wider unit pack | split recommended
-Files to generate:       pack_unified.json | passages.json (if applicable) | sentenceBuilder pack (if applicable)
+Scope:                   source-faithful lesson pack | wider unit pack
+Item types to include:   vocab | fillBlank | sequence | categorySort | passage (if applicable) | sentenceBuilder (if applicable)
 ```
 
 ---
 
-## Step 3 — Generate the JSON files
+## Step 3 — Generate the JSON file
 
-Output each file as a labelled code block in this order:
+Output **one single file** called `pack_unified.json`. All item types — `vocab`, `fillBlank`, `sequence`, `categorySort`, `passage`, and `sentenceBuilder` — go in the same `items` array. The Learning Web app routes each item to the correct tab automatically based on its `type` field.
 
 ```
 FILE: pack_unified.json
@@ -82,23 +82,11 @@ FILE: pack_unified.json
 { ... }
 ```
 
-FILE: passages.json
-```json
-{ ... }
-```
-
-FILE: sentenceBuilder/pack_unified.json
-```json
-{ ... }
-```
-```
-
 Rules:
-- One `FILE:` header per code block.
-- No prose between files.
-- Only include `passages.json` if the source contains reading-passage material.
-- Only include the sentenceBuilder pack if sentence-building cards are appropriate.
-- Every JSON block must parse with no errors (no trailing commas, no comments, UTF-8, 2-space indent).
+- Output exactly **one** `FILE:` block named `pack_unified.json`.
+- All item types live in the single `items` array — do not split into multiple files.
+- No prose between the header and the JSON.
+- The JSON block must parse with no errors (no trailing commas, no comments, UTF-8, 2-space indent).
 
 ---
 
@@ -135,8 +123,8 @@ Rules:
 | `fillBlank` | 15–20 | Mix typed and multiple-choice |
 | `sequence` | 2–3 | Processes where order matters |
 | `categorySort` | 2–3 | "X vs Y" classification |
-| `sentenceBuilder` | 20–25 | In the separate sentenceBuilder pack |
-| `passage` | 4–5 | In `passages.json` |
+| `sentenceBuilder` | 20–25 | In the same `pack_unified.json` `items` array |
+| `passage` | 4–5 | In the same `pack_unified.json` `items` array |
 | Questions per passage | 4–6 | Mix open and multiple_choice |
 
 Only reduce if the source material is genuinely very small. Prefer more items over fewer.
@@ -269,7 +257,7 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ⚠ Field name is `pairs`, not `items`.
 ⚠ Every `pair.category` must exactly match one value in `categories`.
 
-### `sentenceBuilder` (in separate sentenceBuilder pack)
+### `sentenceBuilder`
 
 ```json
 {
@@ -290,7 +278,7 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ⚠ `tiles` joined with spaces must reconstruct `answer` exactly — character for character.
 ⚠ Punctuation attaches to the preceding word (`"glacier."` not `"glacier"` `"."`).
 
-### `passage` (in `passages.json`)
+### `passage`
 
 ```json
 {
@@ -346,8 +334,8 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 8. **No duplicates within a pack** — same word pair, same gap answer, same passage.
 9. **Match the spelling and language conventions of the source material** — American English for US sources, British English for UK sources, etc.
 10. **No placeholder content.** No "TODO", "example text", or "Lorem ipsum".
-11. **`passage` items go in `passages.json`**, not in `pack_unified.json`.
-12. **`sentenceBuilder` items go in the separate sentenceBuilder pack**, not in `pack_unified.json`.
+11. **All item types go in one `pack_unified.json`.** Do not split into separate files. The app routes `passage` and `sentenceBuilder` items to the correct tabs automatically based on `type`.
+12. **Output exactly one file.** One `FILE: pack_unified.json` code block. Never output a `passages.json`, a `sentenceBuilder/pack_unified.json`, or a ZIP.
 
 ---
 
@@ -363,8 +351,8 @@ Work through this list silently before you output the JSON:
 - [ ] All `sequence` items arrays have at least 2 entries
 - [ ] All `multiple_choice` questions have `options` and `correctOptionIndex`
 - [ ] `correctOptionIndex` is a valid 0-based index into `options`
-- [ ] No `passage` items are inside `pack_unified.json`
-- [ ] No `sentenceBuilder` items are inside `pack_unified.json`
+- [ ] All `passage` and `sentenceBuilder` items are inside `pack_unified.json` (not in separate files)
+- [ ] Output is exactly one `FILE: pack_unified.json` block
 - [ ] `subject` is lowercase
 - [ ] `schemaVersion` is `"1.1"` on every file
 - [ ] All BCP-47 codes use region subtags (`en-US` not `en`, `de-DE` not `de`, `fr-FR` not `fr`)
@@ -417,8 +405,8 @@ If any check fails, fix it before outputting.
 - ❌ `"item"` in categorySort pairs — use `"text"`
 - ❌ Bare `"de"` / `"en"` / `"fr"` BCP-47 codes — always include the region subtag (`"de-DE"`, `"en-US"`, `"fr-FR"`)
 - ❌ Capitalised `subject` field — must be lowercase
-- ❌ `passage` items inside `pack_unified.json`
-- ❌ `sentenceBuilder` items inside `pack_unified.json`
+- ❌ Splitting output into `passages.json` or `sentenceBuilder/pack_unified.json` — one file only
+- ❌ Offering a ZIP download — the user uploads a single JSON file
 - ❌ Trailing commas in JSON
 - ❌ JS-style comments inside JSON
 - ❌ Same word as both question and answer in vocab
