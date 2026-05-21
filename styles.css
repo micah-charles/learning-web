@@ -1991,26 +1991,33 @@ body {
   }
 }
 
-/* Pill rows used for both Direction and Answer Mode */
+/* Pill rows used for Curriculum, Direction and Answer Mode */
 .pill-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   margin-top: 8px;
+}
+
+/* Curriculum has only 3 short options — never allow wrapping */
+.curriculum-pill-row {
+  flex-wrap: nowrap;
 }
 
 .pill-button {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
-  padding: 12px 18px;
+  gap: 3px;
+  padding: 10px 16px;
   border: 1.5px solid var(--line);
   background: var(--surface-strong);
   color: var(--ink);
-  border-radius: var(--radius-sm);
+  /* Match the border-radius of .select and .subject-card (--radius-md = 16px) */
+  border-radius: var(--radius-md);
   cursor: pointer;
   font: inherit;
+  font-size: 0.93rem;
   text-align: left;
   transition: border-color 120ms ease, background 120ms ease;
 }
@@ -2025,14 +2032,21 @@ body {
   background: var(--fox-orange-light);
 }
 
+/* Answer-mode cards: full-width flex children with title + subtitle */
 .mode-pill {
   flex: 1 1 0;
-  min-width: 160px;
+  min-width: 150px;
 }
 
 .mode-pill strong {
-  font-size: 15px;
+  font-size: 0.93rem;
   font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Subtitle inside mode cards should be visually subordinate to the title */
+.mode-pill .muted {
+  font-size: 0.76rem;
 }
 
 @media (max-width: 720px) {
@@ -2041,6 +2055,7 @@ body {
   }
   .mode-pill {
     flex-basis: 100%;
+    min-width: 0;
   }
 }
 
