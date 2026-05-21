@@ -167,7 +167,11 @@ function packsWithCapability(manifest, cap) {
 
 export function listDatasets(manifest) {
   const revision = packsWithCapability(manifest, "revision");
-  return [manifest.core, ...revision].filter(Boolean).map(asDisplayPack);
+  // Uploaded packs are injected into manifest.revisionPacks by hydrateManifest
+  // (not into manifest.packs, which is the static JSON array). Include them here
+  // so findDataset can resolve their IDs.
+  const uploadedRevision = (manifest.revisionPacks || []).filter((p) => p._uploaded);
+  return [manifest.core, ...revision, ...uploadedRevision].filter(Boolean).map(asDisplayPack);
 }
 
 export function findDataset(manifest, datasetId) {
@@ -308,7 +312,10 @@ export async function loadUnifiedPack(manifest, packId) {
   if (!packId || packId === "core") {
     return loadCoreUnifiedPack(manifest);
   }
-  const pack = (manifest.packs || []).find((item) => item.id === packId);
+  // Check static packs first, then uploaded packs (revisionPacks with _uploaded flag).
+  const pack =
+    (manifest.packs || []).find((item) => item.id === packId) ||
+    (manifest.revisionPacks || []).find((item) => item.id === packId && item._uploaded);
   if (!pack || !pack.unifiedPath) {
     // Pack no longer exists (e.g. removed or merged into another pack).
     // Fall back to the core pack gracefully rather than crashing.
@@ -435,7 +442,11 @@ export async function loadSentenceBuilderPack(manifest, packId) {
 }
 
 export function listPassageGroups(manifest) {
-  return packsWithCapability(manifest, "passages");
+  const staticGroups = packsWithCapability(manifest, "passages");
+  // Uploaded passage packs are injected into manifest.passageGroups by
+  // hydrateManifest — not into manifest.packs — so include them here.
+  const uploadedGroups = (manifest.passageGroups || []).filter((p) => p._uploaded);
+  return [...staticGroups, ...uploadedGroups];
 }
 
 export function getPassageGroupSubject(group) {
@@ -457,13 +468,17 @@ export function listPassageGroupsBySubject(manifest, subject) {
 export function listPassagePacks(manifest, groupId) {
   const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
   if (!pack) return [];
-  return [{ id: pack.id, displayName: pack.displayName, resourceName: pack.id, passagePath: pack.passagePath }];
+  // Uploaded passage groups use unifiedPath; static groups use passagePath.
+  const resolvedPath = pack.passagePath || pack.unifiedPath;
+  return [{ id: pack.id, displayName: pack.displayName, resourceName: pack.id, passagePath: resolvedPath }];
 }
 
 export async function loadPassageUnifiedPack(manifest, groupId) {
   const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
-  if (!pack?.passagePath) throw new Error(`No passagePath for pack: ${groupId}`);
-  return fetchJson(`./${pack.passagePath}`);
+  // Uploaded passage groups use unifiedPath; static groups use passagePath.
+  const path = pack?.passagePath || pack?.unifiedPath;
+  if (!path) throw new Error(`No passagePath for pack: ${groupId}`);
+  return fetchJson(`./${path}`);
 }
 
 export async function loadPassagePack(manifest, groupId, packId = null) {

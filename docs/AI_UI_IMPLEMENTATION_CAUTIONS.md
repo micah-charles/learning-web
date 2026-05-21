@@ -427,5 +427,172 @@ requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
 
 ---
 
-*Last updated: 2026-05-20*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85*
+---
+
+### ⚠️ 8. UI-only sentinel subjects must be guarded in every render function
+
+**Mistake made (PR #89 — "My Packs" feature):** `MY_PACKS_SUBJECT = "my_packs"` was introduced as a UI sentinel stored in `prefs.*.subject`. It is not a real subject — it is a filter meaning "show all uploaded packs". Several render functions had "sanity-check" logic that snapped `prefs.subject` back to the real subject from the loaded dataset:
+
+```js
+// WRONG — snap-back overwrote the sentinel, re-showing curriculum pills
+if (datasetSubject !== prefs.subject) {
+  prefs.subject = datasetSubject; // "my_packs" → "geography"
+}
+```
+
+Similarly, `renderReadingTab` had fallback logic that ran when `prefs.subject` didn't match the loaded group's subject — and since `"my_packs"` never matches any real subject, it silently reset the groupId to the first real passage group, then showed "No reading packs found" when the uploaded pack wasn't a passage pack.
+
+**Rule:** Any sentinel value stored in `prefs.*.subject` (or any preference) **must be explicitly excluded from every consistency-check / snap-back block** in every render function:
+
+```js
+// CORRECT — guard every snap-back with the sentinel check
+if (prefs.subject !== MY_PACKS_SUBJECT && datasetSubject !== prefs.subject) {
+  prefs.subject = datasetSubject;
+}
+```
+
+**Also required:** Every render function must gracefully fall back if the sentinel is stored but no matching uploads exist (e.g. after the user clears their uploads):
+
+```js
+// At the top of each render function:
+if (prefs.subject === MY_PACKS_SUBJECT && !listUploadedRevisionPacks().length) {
+  prefs.subject = "";          // reset to "unset" so the default kicks in
+  saveStoredState(persisted);
+}
+if (!prefs.subject) prefs.subject = "language"; // normal default
+```
+
+**Checklist when adding a new sentinel subject/filter value:**
+- [ ] Is it excluded from every snap-back / consistency-check block in all render functions?
+- [ ] Does every render function have an "uploads empty → fall back" guard?
+- [ ] Is the sentinel never written into the pack data itself (only into `prefs.*`)?
+- [ ] Do all four tab render functions (vocab, quiz, crossword, builder, reading) have the guard?
+
+---
+
+### ⚠️ 9. Uploaded packs live in `manifest.revisionPacks`, not `manifest.packs`
+
+**Mistake made (PR #89 — "My Packs" feature):** `data.js`'s `listDatasets`, `findDataset`, and `loadUnifiedPack` all only read from `manifest.packs` — the static JSON array loaded from disk. `hydrateManifest` (in `admin-storage.js`) injects uploaded packs into a *separate* array, `manifest.revisionPacks`, so uploaded packs were invisible to `findDataset` and fell back to the default core pack.
+
+The Pack dropdown in the UI looked correct (it read from `revisionPacks` directly via `listUploadedRevisionPacks()`), but the quiz and vocab data loaded from the wrong pack — a silent mismatch that was hard to diagnose.
+
+**Rule:** Any function in `data.js` that searches or lists datasets must look in **both** `manifest.packs` (static, capability-filtered) and `manifest.revisionPacks` (uploaded packs with `_uploaded: true`):
+
+```js
+// CORRECT — listDatasets includes uploaded packs
+export function listDatasets(manifest) {
+  const revision = packsWithCapability(manifest, "revision");
+  const uploadedRevision = (manifest.revisionPacks || []).filter((p) => p._uploaded);
+  return [manifest.core, ...revision, ...uploadedRevision].filter(Boolean).map(asDisplayPack);
+}
+
+// CORRECT — loadUnifiedPack falls back to revisionPacks for uploaded IDs
+const pack =
+  (manifest.packs || []).find((item) => item.id === packId) ||
+  (manifest.revisionPacks || []).find((item) => item.id === packId && item._uploaded);
+```
+
+**Checklist when adding a new data loader that looks up a pack by ID:**
+- [ ] Does it search both `manifest.packs` and `manifest.revisionPacks`?
+- [ ] If the pack has an `uploaded://` path prefix, does `fetchJson` have a cache entry for it (registered by `registerPackInCache` at startup)?
+- [ ] After a Vite HMR reload during dev, `jsonCache` is cleared — do a hard refresh (`Cmd+Shift+R`) to re-run `hydrateManifest` and repopulate the cache.
+
+---
+
+---
+
+### ⚠️ 10. ZIP uploads: multiple files sharing the same `packId` silently overwrite each other
+
+**Mistake made (PR #89 — Codex review):** The ZIP upload handler processed each JSON file independently and called `saveUploadedPack` once per file. `saveUploadedPack` stores pack blobs under `learningWeb.uploadedPack.${packId}` and replaces any existing metadata entry with the same `id`. A ZIP containing both `pack_unified.json` and `passages.json` with identical `packId` values caused the second file to silently overwrite the first — the revision pack disappeared after ZIP upload, leaving only the passage pack.
+
+**Rule:** When processing a ZIP, group all parsed files by `packId` **before** saving. Merge the `items` arrays of any files that share a `packId` into one combined pack, then call `saveUploadedPack` exactly once per unique ID:
+
+```js
+// WRONG — processes files one-by-one; second file with same packId overwrites first
+for (const { filename, parsed } of parsedFiles) {
+  saveUploadedPack(parsed, filename); // 2nd call for same packId destroys the 1st
+}
+
+// CORRECT — merge duplicates first, then save once per unique packId
+const mergedById = new Map();
+for (const { filename, parsed } of parsedFiles) {
+  const id = parsed.packId || parsed.id || deriveIdFromFilename(filename);
+  if (mergedById.has(id)) {
+    mergedById.get(id).parsed.items.push(...(parsed.items || []));
+  } else {
+    mergedById.set(id, { parsed, filenames: [filename] });
+  }
+}
+for (const { parsed, filenames } of mergedById.values()) {
+  saveUploadedPack(parsed, filenames[0]);
+}
+```
+
+**Checklist for ZIP upload handlers:**
+- [ ] Are files grouped by `packId` before any save call?
+- [ ] Are `items` arrays merged when the same `packId` appears more than once?
+- [ ] Does the merged entry correctly reflect all item types (so `resolveManifestSections` assigns it to both `revisionPacks` and `passageGroups` when needed)?
+
+---
+
+### ⚠️ 11. Uploaded packs for *all* manifest arrays must be included in their respective list functions
+
+**Mistake made (PR #89 — Codex review):** We fixed `listDatasets` to include `manifest.revisionPacks` uploaded entries, but `listPassageGroups` was missed. It still used only `packsWithCapability(manifest, "passages")`, which reads `manifest.packs` (static). `hydrateManifest` injects uploaded passage packs into `manifest.passageGroups` — a different array — so they were completely invisible to `listPassageGroups`, `listPassagePacks`, `loadPassageUnifiedPack`, and the Reading tab's subject-card grid.
+
+**Rule:** Every `list*` function in `data.js` that enumerates a manifest section must also include the corresponding uploaded array:
+
+| Static source | Uploaded source | Function to fix |
+|---|---|---|
+| `manifest.packs` (capability `"revision"`) | `manifest.revisionPacks` (`_uploaded: true`) | `listDatasets` ✅ |
+| `manifest.packs` (capability `"passages"`) | `manifest.passageGroups` (`_uploaded: true`) | `listPassageGroups` ✅ |
+| `manifest.packs` (capability `"sentenceBuilder"`) | `manifest.sentenceBuilderPacks` (`_uploaded: true`) | `listSentenceBuilderPacks` — check if needed |
+
+```js
+// CORRECT pattern — apply to every list function
+export function listPassageGroups(manifest) {
+  const staticGroups = packsWithCapability(manifest, "passages");
+  const uploadedGroups = (manifest.passageGroups || []).filter((p) => p._uploaded);
+  return [...staticGroups, ...uploadedGroups];
+}
+```
+
+**Checklist when adding a new manifest section or uploaded pack type:**
+- [ ] Does the `list*` function for this section include the uploaded array?
+- [ ] Does `hydrateManifest` inject into the same array name that `list*` reads?
+
+---
+
+### ⚠️ 12. Uploaded packs use `unifiedPath`; static packs may use a different path field
+
+**Mistake made (PR #89 — Codex review):** Static passage groups store their JSON path in `pack.passagePath`. `loadPassageUnifiedPack` required `pack.passagePath` and threw `Error("No passagePath for pack: ...")` for uploaded packs, which only have `pack.unifiedPath` (set by `hydrateManifest`). The same mismatch applied to `listPassagePacks`, which returned `passagePath: pack.passagePath` — `undefined` for uploaded groups — causing the Reading tab to silently get no packs.
+
+**Rule:** Any loader or helper that resolves a pack's JSON file path must accept **both** the static field name and `unifiedPath`:
+
+```js
+// WRONG — only works for static packs
+if (!pack?.passagePath) throw new Error(`No passagePath for pack: ${groupId}`);
+return fetchJson(`./${pack.passagePath}`);
+
+// CORRECT — works for both static and uploaded packs
+const path = pack?.passagePath || pack?.unifiedPath;
+if (!path) throw new Error(`No path for pack: ${groupId}`);
+return fetchJson(`./${path}`);
+```
+
+**Field name reference:**
+
+| Pack type | Static field | Uploaded field (hydrateManifest) |
+|---|---|---|
+| Revision packs | `pack.unifiedPath` | `unifiedPath` (same ✅) |
+| Passage groups | `pack.passagePath` | `unifiedPath` ← mismatch! |
+| Sentence builder | `pack.unifiedPath` | `unifiedPath` (same ✅) |
+
+**Checklist when writing a new loader for a manifest section:**
+- [ ] Does the loader resolve `pack.passagePath || pack.unifiedPath` (or the section-appropriate fields)?
+- [ ] Is `hydrateManifest` setting the same field name that the loader reads, OR is the loader accepting both?
+- [ ] Is there a fallback / graceful error rather than a raw `throw` so one bad pack doesn't crash the whole tab?
+
+---
+
+*Last updated: 2026-05-21*  
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89*
