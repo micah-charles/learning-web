@@ -1857,18 +1857,24 @@ body {
 /* ─── Subject First UI (Quiz Setup refactor) ─────────────────────────── */
 
 .subject-card-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 6px;
   margin-top: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px; /* prevent scrollbar clipping border-radius */
 }
 
 .subject-card {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 6px;
+  padding: 7px 9px;
   border: 1.5px solid var(--line);
   background: var(--surface-strong);
   border-radius: var(--radius-md);
@@ -1877,6 +1883,7 @@ body {
   font: inherit;
   color: inherit;
   text-align: left;
+  white-space: nowrap;
 }
 
 .subject-card:hover:not(:disabled) {
@@ -1900,7 +1907,7 @@ body {
 }
 
 .subject-card .subject-icon {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -1908,20 +1915,21 @@ body {
 .subject-card .subject-text {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0;
   min-width: 0;
+  overflow: hidden;
 }
 
 .subject-card .subject-label {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .subject-card .subject-meta {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   white-space: nowrap;
 }
