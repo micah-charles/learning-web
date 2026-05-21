@@ -499,5 +499,100 @@ const pack =
 
 ---
 
+---
+
+### ⚠️ 10. ZIP uploads: multiple files sharing the same `packId` silently overwrite each other
+
+**Mistake made (PR #89 — Codex review):** The ZIP upload handler processed each JSON file independently and called `saveUploadedPack` once per file. `saveUploadedPack` stores pack blobs under `learningWeb.uploadedPack.${packId}` and replaces any existing metadata entry with the same `id`. A ZIP containing both `pack_unified.json` and `passages.json` with identical `packId` values caused the second file to silently overwrite the first — the revision pack disappeared after ZIP upload, leaving only the passage pack.
+
+**Rule:** When processing a ZIP, group all parsed files by `packId` **before** saving. Merge the `items` arrays of any files that share a `packId` into one combined pack, then call `saveUploadedPack` exactly once per unique ID:
+
+```js
+// WRONG — processes files one-by-one; second file with same packId overwrites first
+for (const { filename, parsed } of parsedFiles) {
+  saveUploadedPack(parsed, filename); // 2nd call for same packId destroys the 1st
+}
+
+// CORRECT — merge duplicates first, then save once per unique packId
+const mergedById = new Map();
+for (const { filename, parsed } of parsedFiles) {
+  const id = parsed.packId || parsed.id || deriveIdFromFilename(filename);
+  if (mergedById.has(id)) {
+    mergedById.get(id).parsed.items.push(...(parsed.items || []));
+  } else {
+    mergedById.set(id, { parsed, filenames: [filename] });
+  }
+}
+for (const { parsed, filenames } of mergedById.values()) {
+  saveUploadedPack(parsed, filenames[0]);
+}
+```
+
+**Checklist for ZIP upload handlers:**
+- [ ] Are files grouped by `packId` before any save call?
+- [ ] Are `items` arrays merged when the same `packId` appears more than once?
+- [ ] Does the merged entry correctly reflect all item types (so `resolveManifestSections` assigns it to both `revisionPacks` and `passageGroups` when needed)?
+
+---
+
+### ⚠️ 11. Uploaded packs for *all* manifest arrays must be included in their respective list functions
+
+**Mistake made (PR #89 — Codex review):** We fixed `listDatasets` to include `manifest.revisionPacks` uploaded entries, but `listPassageGroups` was missed. It still used only `packsWithCapability(manifest, "passages")`, which reads `manifest.packs` (static). `hydrateManifest` injects uploaded passage packs into `manifest.passageGroups` — a different array — so they were completely invisible to `listPassageGroups`, `listPassagePacks`, `loadPassageUnifiedPack`, and the Reading tab's subject-card grid.
+
+**Rule:** Every `list*` function in `data.js` that enumerates a manifest section must also include the corresponding uploaded array:
+
+| Static source | Uploaded source | Function to fix |
+|---|---|---|
+| `manifest.packs` (capability `"revision"`) | `manifest.revisionPacks` (`_uploaded: true`) | `listDatasets` ✅ |
+| `manifest.packs` (capability `"passages"`) | `manifest.passageGroups` (`_uploaded: true`) | `listPassageGroups` ✅ |
+| `manifest.packs` (capability `"sentenceBuilder"`) | `manifest.sentenceBuilderPacks` (`_uploaded: true`) | `listSentenceBuilderPacks` — check if needed |
+
+```js
+// CORRECT pattern — apply to every list function
+export function listPassageGroups(manifest) {
+  const staticGroups = packsWithCapability(manifest, "passages");
+  const uploadedGroups = (manifest.passageGroups || []).filter((p) => p._uploaded);
+  return [...staticGroups, ...uploadedGroups];
+}
+```
+
+**Checklist when adding a new manifest section or uploaded pack type:**
+- [ ] Does the `list*` function for this section include the uploaded array?
+- [ ] Does `hydrateManifest` inject into the same array name that `list*` reads?
+
+---
+
+### ⚠️ 12. Uploaded packs use `unifiedPath`; static packs may use a different path field
+
+**Mistake made (PR #89 — Codex review):** Static passage groups store their JSON path in `pack.passagePath`. `loadPassageUnifiedPack` required `pack.passagePath` and threw `Error("No passagePath for pack: ...")` for uploaded packs, which only have `pack.unifiedPath` (set by `hydrateManifest`). The same mismatch applied to `listPassagePacks`, which returned `passagePath: pack.passagePath` — `undefined` for uploaded groups — causing the Reading tab to silently get no packs.
+
+**Rule:** Any loader or helper that resolves a pack's JSON file path must accept **both** the static field name and `unifiedPath`:
+
+```js
+// WRONG — only works for static packs
+if (!pack?.passagePath) throw new Error(`No passagePath for pack: ${groupId}`);
+return fetchJson(`./${pack.passagePath}`);
+
+// CORRECT — works for both static and uploaded packs
+const path = pack?.passagePath || pack?.unifiedPath;
+if (!path) throw new Error(`No path for pack: ${groupId}`);
+return fetchJson(`./${path}`);
+```
+
+**Field name reference:**
+
+| Pack type | Static field | Uploaded field (hydrateManifest) |
+|---|---|---|
+| Revision packs | `pack.unifiedPath` | `unifiedPath` (same ✅) |
+| Passage groups | `pack.passagePath` | `unifiedPath` ← mismatch! |
+| Sentence builder | `pack.unifiedPath` | `unifiedPath` (same ✅) |
+
+**Checklist when writing a new loader for a manifest section:**
+- [ ] Does the loader resolve `pack.passagePath || pack.unifiedPath` (or the section-appropriate fields)?
+- [ ] Is `hydrateManifest` setting the same field name that the loader reads, OR is the loader accepting both?
+- [ ] Is there a fallback / graceful error rather than a raw `throw` so one bad pack doesn't crash the whole tab?
+
+---
+
 *Last updated: 2026-05-21*  
 *Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89*
