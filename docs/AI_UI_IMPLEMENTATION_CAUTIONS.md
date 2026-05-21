@@ -654,5 +654,50 @@ const enVal = isMonoLingual
 
 ---
 
+### ⚠️ 14. Stored user preferences are not bugs — never force-overwrite them
+
+**Mistake made (PR #95):** `DEFAULT_STATE` was updated to change `answerMode` from `"mixed"` to `"mcq"`. Because `mergeState` only applies defaults for `null`/`undefined` values, existing users who had `"mixed"` stored kept loading `"mixed"` — the default had no effect on them. A "one-time migration" was added to `loadStoredState` that force-rewrote `"mixed"` → `"mcq"` on every load. This silently overrode any deliberate user choice to select "mixed" after the change.
+
+**Rule:** A stored preference value that differs from `DEFAULT_STATE` is **the user's choice, not a bug**. Never add unconditional migration code that overwrites a value the user could have legitimately set:
+
+```js
+// WRONG — runs on every load; permanently overrides user's deliberate choice
+if (merged.prefs.quiz.answerMode === "mixed") {
+  merged.prefs.quiz.answerMode = "mcq"; // user picks "mixed" → reloads → "mcq" again
+}
+
+// ALSO WRONG — even a versioned migration, if the user can still pick that value in the UI
+if (merged.migrationVersion < 1 && merged.prefs.quiz.answerMode === "mixed") {
+  merged.prefs.quiz.answerMode = "mcq"; // runs once, but if user already chose "mixed" deliberately, still wrong
+}
+```
+
+**Correct behaviour:** `DEFAULT_STATE` sets the value for **new users only** (first load, or after clearing localStorage). Existing users always keep their stored preference. If the old default was wrong, accept that existing users need to change it manually — do not automate it away.
+
+```js
+// CORRECT — DEFAULT_STATE only applies when the key is missing/null in stored data
+export const DEFAULT_STATE = {
+  prefs: {
+    quiz: {
+      answerMode: "mcq", // new users start with MCQ; existing users keep their stored value
+    },
+  },
+};
+```
+
+**When is a migration ever acceptable?**
+Only when a stored *value* is no longer valid — e.g. a pack ID that no longer exists, or a mode string that was removed from the codebase entirely. In that case:
+- Gate it behind a `migrationVersion` counter so it runs exactly once
+- Only migrate values that would cause a runtime error or broken UI if kept
+- Never migrate a value the user can still actively choose in the current UI
+
+**Checklist before adding any migration to `loadStoredState`:**
+- [ ] Is the stored value *invalid* (would cause a crash/broken UI), or just *not the new default* (a preference)?
+- [ ] If it's a preference, do NOT migrate it — let the user change it themselves
+- [ ] If it is invalid, is it gated behind a `migrationVersion` check so it fires once only?
+- [ ] After migration runs, can the user freely choose the migrated value again without it being reset?
+
+---
+
 *Last updated: 2026-05-21*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89, #90*
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89, #90, #95*
