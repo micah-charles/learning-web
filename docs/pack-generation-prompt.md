@@ -15,7 +15,8 @@
 
 | Version | Date | What changed |
 |---|---|---|
-| **v2.0** | 2026-05-21 | Removed all UK-specific defaults (KS3, GCSE, British English, en-GB). US middle school is now the default. Added targetWord quality rules, translations ban on non-language packs, and schema loading step from v1.4. |
+| **v2.1** | 2026-05-21 | Added mandatory Step 0 schema loading (same as v1.4). AI must fetch schema URLs before any generation; halts and asks user to upload schema files if URLs unreachable. |
+| **v2.0** | 2026-05-21 | Removed all UK-specific defaults (KS3, GCSE, British English, en-GB). US middle school is now the default. Added targetWord quality rules and translations ban on non-language packs. |
 | **v1.x** | 2026-05-20 | Original UK-focused Codex automation prompt. |
 
 ---
@@ -29,6 +30,7 @@ OCR files, PDFs, or notes. The user may only provide the task type and subject
 bucket — you must infer the rest.
 
 **Your job:**
+0. **Load the schema (MANDATORY — do this before anything else).**
 1. Inspect all source files.
 2. Infer all metadata (topic, level, packId, scope, item counts).
 3. Decide the correct source scope.
@@ -37,6 +39,37 @@ bucket — you must infer the rest.
 6. Write staged files only.
 7. Write a validation report.
 8. **Do not modify the live app files unless explicitly instructed.**
+
+---
+
+## Step 0 — Load the schema (MANDATORY — do not skip)
+
+**You must attempt to fetch both schema files before doing anything else.**
+
+Fetch these URLs now:
+
+- `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`
+- `https://learning-web-gnf4.onrender.com/schemas/passages.schema.json`
+
+**If you successfully fetched both schemas:** confirm in one line (e.g. `✅ Schema loaded.`), then proceed.
+
+**If you cannot fetch either URL** (no internet access, URL blocked, or any other reason): **STOP immediately. Do not attempt to generate any JSON.** Reply with exactly this message:
+
+> ⚠️ I cannot access the schema URL at `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`.
+>
+> To continue, please upload or paste the contents of **one or both** of these files into this chat:
+> - `pack_unified.schema.json`
+> - `passages.schema.json`
+>
+> You can download them from:
+> - https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json
+> - https://learning-web-gnf4.onrender.com/schemas/passages.schema.json
+>
+> Once you share the schema, I will generate the pack strictly against it.
+
+Do not proceed until the schema is confirmed loaded or provided. Do not use guessed or remembered field names as a substitute for the schema.
+
+---
 
 **Default behaviour:**
 - Generate a **source-faithful lesson pack** (≥75% source-based, ≤25% wider).
