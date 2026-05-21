@@ -3824,6 +3824,11 @@ async function handleAdminZipUpload(file) {
   let anySuccess = false;
   const fileResults = [];
 
+  // Parse all JSON files first, then merge files that share the same packId
+  // before saving. Without merging, the second file would silently overwrite
+  // the first (same localStorage key), losing e.g. the revision pack when a
+  // ZIP contains both pack_unified.json and passages.json with identical packIds.
+  const parsedFiles = [];
   for (const [path, data] of jsonEntries) {
     const filename = path.split("/").pop();
     let parsed;
@@ -3833,7 +3838,24 @@ async function handleAdminZipUpload(file) {
       fileResults.push({ filename, ok: false, message: `Invalid JSON: ${e.message}`, warnings: [] });
       continue;
     }
+    parsedFiles.push({ filename, parsed });
+  }
 
+  // Group by packId and merge items arrays for duplicates.
+  const mergedById = new Map();
+  for (const { filename, parsed } of parsedFiles) {
+    const id = (parsed.packId || parsed.id || filename.replace(/\.json$/i, "").replace(/[^a-zA-Z0-9_-]/g, "_")).trim();
+    if (mergedById.has(id)) {
+      const existing = mergedById.get(id);
+      existing.parsed.items = [...(existing.parsed.items || []), ...(parsed.items || [])];
+      existing.filenames.push(filename);
+    } else {
+      mergedById.set(id, { parsed, filenames: [filename] });
+    }
+  }
+
+  for (const { parsed, filenames } of mergedById.values()) {
+    const filename = filenames.join(" + ");
     const validation = validatePack(parsed);
     if (!validation.ok) {
       fileResults.push({ filename, ok: false, message: validation.error, warnings: [] });
@@ -3843,7 +3865,7 @@ async function handleAdminZipUpload(file) {
     const schemaResult = validatePackSchema(parsed);
     const warnings = schemaResult.ok ? [] : schemaResult.errors;
 
-    const result = saveUploadedPack(parsed, filename);
+    const result = saveUploadedPack(parsed, filenames[0]);
     if (!result.ok) {
       fileResults.push({ filename, ok: false, message: result.error, warnings });
       continue;

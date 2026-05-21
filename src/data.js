@@ -442,7 +442,11 @@ export async function loadSentenceBuilderPack(manifest, packId) {
 }
 
 export function listPassageGroups(manifest) {
-  return packsWithCapability(manifest, "passages");
+  const staticGroups = packsWithCapability(manifest, "passages");
+  // Uploaded passage packs are injected into manifest.passageGroups by
+  // hydrateManifest — not into manifest.packs — so include them here.
+  const uploadedGroups = (manifest.passageGroups || []).filter((p) => p._uploaded);
+  return [...staticGroups, ...uploadedGroups];
 }
 
 export function getPassageGroupSubject(group) {
@@ -464,13 +468,17 @@ export function listPassageGroupsBySubject(manifest, subject) {
 export function listPassagePacks(manifest, groupId) {
   const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
   if (!pack) return [];
-  return [{ id: pack.id, displayName: pack.displayName, resourceName: pack.id, passagePath: pack.passagePath }];
+  // Uploaded passage groups use unifiedPath; static groups use passagePath.
+  const resolvedPath = pack.passagePath || pack.unifiedPath;
+  return [{ id: pack.id, displayName: pack.displayName, resourceName: pack.id, passagePath: resolvedPath }];
 }
 
 export async function loadPassageUnifiedPack(manifest, groupId) {
   const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
-  if (!pack?.passagePath) throw new Error(`No passagePath for pack: ${groupId}`);
-  return fetchJson(`./${pack.passagePath}`);
+  // Uploaded passage groups use unifiedPath; static groups use passagePath.
+  const path = pack?.passagePath || pack?.unifiedPath;
+  if (!path) throw new Error(`No passagePath for pack: ${groupId}`);
+  return fetchJson(`./${path}`);
 }
 
 export async function loadPassagePack(manifest, groupId, packId = null) {
