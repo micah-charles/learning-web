@@ -108,6 +108,10 @@ export function loadStoredState() {
     if (!Array.isArray(merged.prefs.quiz.modes) || merged.prefs.quiz.modes.length === 0) {
       merged.prefs.quiz.modes = [...DEFAULT_STATE.prefs.quiz.modes];
     }
+    // One-time migration: "mixed" was the old default; force existing users to "mcq"
+    if (merged.prefs.quiz.answerMode === "mixed") {
+      merged.prefs.quiz.answerMode = "mcq";
+    }
     return merged;
   } catch (_error) {
     return clone(DEFAULT_STATE);
