@@ -826,10 +826,17 @@ function renderHero() {
               powered by curiosity and AI. ❤️
             </p>
           </div>
-          <div class="hero-badges">
-            <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).length} packs</span>
-            <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("passages")).length} reading groups</span>
-            <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
+          <div class="hero-right">
+            <div class="hero-badges">
+              <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).length} packs</span>
+              <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("passages")).length} reading groups</span>
+              <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
+            </div>
+            <div class="hero-build-card">
+              <p class="hero-build-title">✨ Create your own study pack</p>
+              <p class="hero-build-body">Use ChatGPT or any AI chat to generate your own learning content.</p>
+              <span class="hero-build-soon">Coming soon</span>
+            </div>
           </div>
         </div>
         <div class="hero-stats">
