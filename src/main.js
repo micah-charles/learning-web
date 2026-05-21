@@ -833,8 +833,10 @@ function renderHero() {
               <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
             </div>
             <div class="hero-build-card">
-              <p class="hero-build-title">✨ Create your own study pack</p>
-              <p class="hero-build-body">Use ChatGPT or any AI chat to generate your own learning content.</p>
+              <div class="hero-build-text">
+                <p class="hero-build-title">✨ Create your own study pack</p>
+                <p class="hero-build-body">Use ChatGPT or any AI chat to generate your own content.</p>
+              </div>
               <span class="hero-build-soon">Coming soon</span>
             </div>
           </div>
