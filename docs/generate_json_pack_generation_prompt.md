@@ -136,6 +136,19 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ### `vocab`
 
 **Non-language packs** (history, geography, science, literature, computing):
+
+> 🚨 **CRITICAL — THE MOST COMMON AI MISTAKE:**
+> `targetWord` must be a **full definition sentence** (10–25 words). It is **never** the term itself, never a one-word synonym, never a fragment.
+>
+> The quiz engine shows `sourceWord` as the question and `targetWord` values from multiple cards as the multiple-choice options. If `targetWord` is just the word again, the quiz asks "which word is Climate?" and "Climate" is one of the buttons — completely useless.
+>
+> | | `sourceWord` | `targetWord` |
+> |---|---|---|
+> | ✅ CORRECT | `"climate"` | `"the average weather conditions of an area measured over many years"` |
+> | ❌ WRONG — same word | `"climate"` | `"Climate"` |
+> | ❌ WRONG — one-word synonym | `"climate"` | `"weather"` |
+> | ❌ WRONG — too vague | `"climate"` | `"a type of weather pattern"` |
+
 ```json
 {
   "id":     "glac_001",
@@ -146,9 +159,9 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
   "data": {
     "partOfSpeech": "keyword",
     "sourceWord":   "accumulation",
-    "targetWord":   "the build-up of snow where more falls than melts",
+    "targetWord":   "the build-up of snow in a glacier's source zone where annual snowfall exceeds melting",
     "examples": {
-      "en-US": "Accumulation is greatest in the cirque, where snow collects."
+      "en-US": "Accumulation is greatest in the cirque, where snow collects and compresses over winter."
     }
   }
 }
@@ -178,7 +191,7 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 }
 ```
 
-⚠ For non-language packs, `targetWord` must be a **definition**, never a repeat of `sourceWord`.
+⚠ For non-language packs, `targetWord` = a **full definition sentence** (10–25 words). Never the term itself. Never one word.
 ⚠ For language packs, use `translations` (not `sourceWord`/`targetWord`).
 ⚠ `partOfSpeech` for non-language packs: always `"keyword"`.
 ⚠ `partOfSpeech` for language packs: full English word — `noun`, `verb`, `adjective`, `adverb`, `preposition`, `pronoun`, `conjunction`, `interjection`. Never a single letter.
@@ -334,7 +347,8 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 8. **No duplicates within a pack** — same word pair, same gap answer, same passage.
 9. **Match the spelling and language conventions of the source material** — American English for US sources, British English for UK sources, etc.
 10. **No placeholder content.** No "TODO", "example text", or "Lorem ipsum".
-11. **All item types go in one `pack_unified.json`.** Do not split into separate files. The app routes `passage` and `sentenceBuilder` items to the correct tabs automatically based on `type`.
+11. **`targetWord` is always a full definition sentence for non-language packs** — minimum 10 words, maximum 30 words. A quiz shows `sourceWord` as the prompt and multiple `targetWord` values as answer buttons. `targetWord: "Climate"` on a card about climate produces a quiz button that says "Climate" — the student just clicks the word they were shown. This is the single most common quality failure.
+12. **All item types go in one `pack_unified.json`.** Do not split into separate files. The app routes `passage` and `sentenceBuilder` items to the correct tabs automatically based on `type`.
 12. **Output exactly one file.** One `FILE: pack_unified.json` code block. Never output a `passages.json`, a `sentenceBuilder/pack_unified.json`, or a ZIP.
 
 ---
@@ -356,6 +370,7 @@ Work through this list silently before you output the JSON:
 - [ ] `subject` is lowercase
 - [ ] `schemaVersion` is `"1.1"` on every file
 - [ ] All BCP-47 codes use region subtags (`en-US` not `en`, `de-DE` not `de`, `fr-FR` not `fr`)
+- [ ] Non-language pack: every `targetWord` is a full definition sentence (≥ 10 words, not the term itself, not a one-word synonym)
 - [ ] Non-language pack `sourceWord` ≠ `targetWord` (no same-word cards)
 - [ ] Language pack `translations` has both source and target codes
 - [ ] No trailing commas anywhere in the JSON
@@ -409,7 +424,9 @@ If any check fails, fix it before outputting.
 - ❌ Offering a ZIP download — the user uploads a single JSON file
 - ❌ Trailing commas in JSON
 - ❌ JS-style comments inside JSON
-- ❌ Same word as both question and answer in vocab
+- ❌ `targetWord` that is the same word as `sourceWord` — e.g. `"sourceWord": "climate", "targetWord": "Climate"`
+- ❌ `targetWord` that is a single-word synonym — e.g. `"sourceWord": "climate", "targetWord": "weather"`
+- ❌ `targetWord` shorter than 10 words for non-language packs — definitions must be full sentences
 - ❌ `fillBlank` options list that doesn't include the answer
 - ❌ `sentenceBuilder` tiles that don't reconstruct `answer` when joined with spaces
 
