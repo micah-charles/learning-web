@@ -343,13 +343,29 @@ export async function loadVocabItems(manifest, datasetId) {
   const pack = await loadUnifiedPack(manifest, datasetId);
   const srcCode = packSrcLang(pack);
   const tgtCode = packTgtLang(pack);
+  // When srcCode === tgtCode (all non-language packs: geography, science, history…),
+  // the translations dict has a single key shared by both src and tgt. Reading it
+  // for both `de` and `en` yields the same term for both — the quiz then shows
+  // "Climate → choose Climate". For same-language packs, always prefer the explicit
+  // sourceWord/targetWord fields and only use translations as a last resort.
+  const isMonoLingual = srcCode === tgtCode;
+
   return filterUnifiedItems(pack, "vocab").map((item) => {
     const d = item.data || {};
     const translations = d.translations || {};
+
+    const deVal = isMonoLingual
+      ? (d.sourceWord || translations[srcCode] || Object.values(translations)[0] || "")
+      : (translations[srcCode] || Object.values(translations)[0] || d.sourceWord || "");
+
+    const enVal = isMonoLingual
+      ? (d.targetWord || translations[tgtCode] || Object.values(translations).slice(1)[0] || "")
+      : (translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || "");
+
     return {
       id: item.id,
-      de:    translations[srcCode] || Object.values(translations)[0] || d.sourceWord || "",
-      en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || "",
+      de:    deVal,
+      en:    enVal,
       pos:   d.partOfSpeech || "",
       gender:    d.gender    || null,
       plural:    d.plural    || null,
@@ -365,8 +381,8 @@ export async function loadVocabItems(manifest, datasetId) {
       // Needed by filterWordsForScope for Cambridge Latin Stages
       stage:     parseInt(String(item.level || "").replace("Stage ", ""), 10) || d.stage || null,
       part_of_speech: d.partOfSpeech || "",
-      headword:  translations[srcCode] || d.sourceWord || "",
-      english_equivalent: translations[tgtCode] || d.targetWord || "",
+      headword:  deVal,
+      english_equivalent: enVal,
       stage_label: d.stageLabel,
       categories: item.topics || [],
       // Keep the original unified item data for quiz.js

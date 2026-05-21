@@ -192,6 +192,7 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ```
 
 ⚠ For non-language packs, `targetWord` = a **full definition sentence** (10–25 words). Never the term itself. Never one word.
+⚠ **Non-language packs must NOT use `translations`.** Use `sourceWord` + `targetWord` only. If you write `"translations": {"en-GB": "Climate"}` on a geography card, the app reads `"en-GB"` for both the question and the answer, so both equal `"Climate"` — your `targetWord` definition is silently discarded and the quiz becomes useless.
 ⚠ For language packs, use `translations` (not `sourceWord`/`targetWord`).
 ⚠ `partOfSpeech` for non-language packs: always `"keyword"`.
 ⚠ `partOfSpeech` for language packs: full English word — `noun`, `verb`, `adjective`, `adverb`, `preposition`, `pronoun`, `conjunction`, `interjection`. Never a single letter.
@@ -424,6 +425,7 @@ If any check fails, fix it before outputting.
 - ❌ Offering a ZIP download — the user uploads a single JSON file
 - ❌ Trailing commas in JSON
 - ❌ JS-style comments inside JSON
+- ❌ `translations` field on non-language pack vocab items — use `sourceWord` + `targetWord` instead; `translations` on a monolingual pack makes `sourceWord` and `targetWord` identical in the quiz
 - ❌ `targetWord` that is the same word as `sourceWord` — e.g. `"sourceWord": "climate", "targetWord": "Climate"`
 - ❌ `targetWord` that is a single-word synonym — e.g. `"sourceWord": "climate", "targetWord": "weather"`
 - ❌ `targetWord` shorter than 10 words for non-language packs — definitions must be full sentences
