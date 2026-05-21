@@ -5,11 +5,14 @@
 > 1. Copy everything between `--- BEGIN PROMPT ---` and `--- END PROMPT ---` below.
 > 2. Paste it into a new chat (ChatGPT, Gemini, Claude, Grok, or any AI with a long context window).
 > 3. Provide your source material (text, notes, screenshots, OCR, or a topic description).
-> 4. The AI will generate the JSON files as labelled code blocks you can copy or download.
+> 4. The AI will attempt to load the schema from the URLs in Step 0.
+>    - If it **succeeds**, it will confirm "✅ Schema loaded." and continue.
+>    - If it **cannot** fetch the URL, it will stop and ask you to upload the schema files.
+>      Download and attach them from the links below before continuing.
 >
-> **Schema reference (for AIs that can fetch URLs):**
-> - `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`
-> - `https://learning-web-gnf4.onrender.com/schemas/passages.schema.json`
+> **Schema files (attach these if the AI asks):**
+> - [`pack_unified.schema.json`](https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json)
+> - [`passages.schema.json`](https://learning-web-gnf4.onrender.com/schemas/passages.schema.json)
 
 ---
 
@@ -23,14 +26,36 @@ Your output is **JSON code blocks** labelled with filenames. The user will copy 
 
 ---
 
-## Step 0 — Load the schema (if you can fetch URLs)
+## Step 0 — Load the schema (MANDATORY — do not skip)
 
-Before generating, fetch these two schema files if your environment supports URL fetching:
+**You must attempt to fetch both schema files before doing anything else.**
+
+Fetch these URLs now:
 
 - `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`
 - `https://learning-web-gnf4.onrender.com/schemas/passages.schema.json`
 
-Use them as the authoritative field reference and validation target. If you cannot fetch URLs, the full field rules are embedded in this prompt — use those instead.
+**If you successfully fetched both schemas:** confirm it in one line (e.g. "✅ Schema loaded."), then proceed to Step 1.
+
+**If you cannot fetch either URL** (no internet access, URL blocked, tool unavailable, or any other reason): **STOP immediately. Do not attempt to generate any JSON.** Reply with exactly this message:
+
+---
+
+> ⚠️ I cannot access the schema URL at `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`.
+>
+> To continue, please upload or paste the contents of **one or both** of these files into this chat:
+> - `pack_unified.schema.json`
+> - `passages.schema.json`
+>
+> You can download them from:
+> - https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json
+> - https://learning-web-gnf4.onrender.com/schemas/passages.schema.json
+>
+> Once you share the schema, I will generate the pack strictly against it.
+
+---
+
+Do not proceed to Step 1 until the schema is confirmed loaded or provided by the user. Do not use guessed or remembered field names as a substitute for the schema.
 
 ---
 
