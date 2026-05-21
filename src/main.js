@@ -2989,9 +2989,9 @@ function renderCurriculumPills(activeCurriculum, action = "select-curriculum") {
     `;
   }).join("");
   return `
-    <div class="field" style="margin-top:12px;">
+    <div class="field" style="margin-top:16px;">
       <div class="fieldset-title">Curriculum</div>
-      <div class="pill-row">${buttons}</div>
+      <div class="pill-row curriculum-pill-row">${buttons}</div>
     </div>
   `;
 }
@@ -3080,7 +3080,7 @@ function renderDirectionToggle(dataset, currentDirection) {
     `;
   }).join("");
   return `
-    <div class="field" style="margin-top:18px;">
+    <div class="field" style="margin-top:16px;">
       <div class="fieldset-title">Direction</div>
       <div class="pill-row">${buttons}</div>
     </div>
@@ -3107,7 +3107,7 @@ function renderAnswerModePills(currentMode) {
     `;
   }).join("");
   return `
-    <div class="field" style="margin-top:18px;">
+    <div class="field" style="margin-top:16px;">
       <div class="fieldset-title">How to answer?</div>
       <div class="pill-row mode-pill-row">${buttons}</div>
     </div>
