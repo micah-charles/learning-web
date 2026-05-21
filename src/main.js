@@ -826,10 +826,19 @@ function renderHero() {
               powered by curiosity and AI. ❤️
             </p>
           </div>
-          <div class="hero-badges">
-            <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).length} packs</span>
-            <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("passages")).length} reading groups</span>
-            <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
+          <div class="hero-right">
+            <div class="hero-badges">
+              <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("revision")).length} packs</span>
+              <span class="hero-badge">${(runtime.manifest.packs || []).filter((p) => (p.capabilities || []).includes("passages")).length} reading groups</span>
+              <span class="hero-badge">${runtime.manifest.sentenceBuilderPacks.length} builder sets</span>
+            </div>
+            <div class="hero-build-card">
+              <div class="hero-build-text">
+                <p class="hero-build-title">✨ Create your own study pack</p>
+                <p class="hero-build-body">Use ChatGPT or any AI chat to generate your own content.</p>
+              </div>
+              <span class="hero-build-soon">Coming soon</span>
+            </div>
           </div>
         </div>
         <div class="hero-stats">
@@ -2789,10 +2798,12 @@ function renderMyPacksCard(activeSubject, action, count) {
   return `
     <button type="button" class="${classes.join(" ")}" ${btn} ${isEmpty ? "disabled" : ""}>
       <span class="subject-icon" aria-hidden="true">📦</span>
-      <span class="subject-label">My Packs</span>
-      ${isEmpty
-        ? `<span class="subject-meta">No uploads</span>`
-        : `<span class="subject-meta">${count} pack${count === 1 ? "" : "s"}</span>`}
+      <span class="subject-text">
+        <span class="subject-label">My Packs</span>
+        ${isEmpty
+          ? `<span class="subject-meta">No uploads</span>`
+          : `<span class="subject-meta">${count} pack${count === 1 ? "" : "s"}</span>`}
+      </span>
     </button>
   `;
 }
@@ -2835,10 +2846,12 @@ function renderSubjectCardGrid(activeSubject, action = "select-subject") {
     return `
       <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
         <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
-        <span class="subject-label">${escapeHtml(meta.label)}</span>
-        ${isEmpty
-          ? `<span class="subject-meta">Coming soon</span>`
-          : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+        <span class="subject-text">
+          <span class="subject-label">${escapeHtml(meta.label)}</span>
+          ${isEmpty
+            ? `<span class="subject-meta">Coming soon</span>`
+            : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+        </span>
       </button>
     `;
   }).join("");
@@ -2863,10 +2876,12 @@ function renderCrosswordSubjectCardGrid(activeSubject) {
     return `
       <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
         <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
-        <span class="subject-label">${escapeHtml(meta.label)}</span>
-        ${isEmpty
-          ? `<span class="subject-meta">No vocab packs</span>`
-          : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+        <span class="subject-text">
+          <span class="subject-label">${escapeHtml(meta.label)}</span>
+          ${isEmpty
+            ? `<span class="subject-meta">No vocab packs</span>`
+            : `<span class="subject-meta">${datasets.length} pack${datasets.length === 1 ? "" : "s"}</span>`}
+        </span>
       </button>
     `;
   }).join("");
@@ -2891,10 +2906,12 @@ function renderBuilderSubjectCardGrid(activeSubject) {
     return `
       <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
         <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
-        <span class="subject-label">${escapeHtml(meta.label)}</span>
-        ${isEmpty
-          ? `<span class="subject-meta">No packs yet</span>`
-          : `<span class="subject-meta">${packs.length} pack${packs.length === 1 ? "" : "s"}</span>`}
+        <span class="subject-text">
+          <span class="subject-label">${escapeHtml(meta.label)}</span>
+          ${isEmpty
+            ? `<span class="subject-meta">No packs yet</span>`
+            : `<span class="subject-meta">${packs.length} pack${packs.length === 1 ? "" : "s"}</span>`}
+        </span>
       </button>
     `;
   }).join("");
@@ -2919,10 +2936,12 @@ function renderPassageSubjectCardGrid(activeSubject) {
     return `
       <button type="button" class="${classes.join(" ")}" ${button} ${isEmpty ? "disabled" : ""}>
         <span class="subject-icon" aria-hidden="true">${meta.icon}</span>
-        <span class="subject-label">${escapeHtml(meta.label)}</span>
-        ${isEmpty
-          ? `<span class="subject-meta">No packs yet</span>`
-          : `<span class="subject-meta">${groups.length} book${groups.length === 1 ? "" : "s"}</span>`}
+        <span class="subject-text">
+          <span class="subject-label">${escapeHtml(meta.label)}</span>
+          ${isEmpty
+            ? `<span class="subject-meta">No packs yet</span>`
+            : `<span class="subject-meta">${groups.length} book${groups.length === 1 ? "" : "s"}</span>`}
+        </span>
       </button>
     `;
   }).join("");
