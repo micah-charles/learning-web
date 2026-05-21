@@ -594,5 +594,65 @@ return fetchJson(`./${path}`);
 
 ---
 
+### ⚠️ 13. Monolingual packs — `translations` field shadows `sourceWord`/`targetWord` when `srcCode === tgtCode`
+
+**Mistake made (PR #90):** AI-generated Geography/History/Science packs used the `translations` field (meant for bilingual language packs) instead of `sourceWord`/`targetWord`. Because `srcCode === tgtCode === "en-GB"` in monolingual packs, `loadVocabItems` resolved both `word.de` and `word.en` from `translations["en-GB"]`, making the term equal to its own "definition". Quiz questions became useless: "Climate → choose Climate".
+
+```js
+// BAD — both de and en resolve to the same translations["en-GB"] value
+const deVal = translations[srcCode] || d.sourceWord;   // "Climate"
+const enVal = translations[tgtCode] || d.targetWord;   // "Climate" (same!)
+
+// Result: word.de === word.en === "Climate"
+// Quiz prompt: "Climate" → answer options include "Climate" ← meaningless
+```
+
+**Root cause:** The `translations` map has only one key (`"en-GB"`) in monolingual packs. When `srcCode === tgtCode`, both lookups hit the same key.
+
+**Fix in `data.js`:** Detect monolingual packs and prefer `sourceWord`/`targetWord` over `translations`:
+
+```js
+// CORRECT — isMonoLingual flag prioritises the explicit definition fields
+const isMonoLingual = srcCode === tgtCode;
+const deVal = isMonoLingual
+  ? (d.sourceWord || translations[srcCode] || Object.values(translations)[0] || "")
+  : (translations[srcCode] || Object.values(translations)[0] || d.sourceWord || "");
+const enVal = isMonoLingual
+  ? (d.targetWord || translations[tgtCode] || Object.values(translations).slice(1)[0] || "")
+  : (translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || "");
+```
+
+**Pack schema rule:** Non-language packs (Geography, History, Science, Literature) **must not use the `translations` field**. Use `sourceWord` for the term and `targetWord` for the definition:
+
+```json
+// WRONG — non-language pack using translations
+"data": {
+  "partOfSpeech": "keyword",
+  "translations": { "en-GB": "Climate" }
+}
+
+// CORRECT — non-language pack using sourceWord + targetWord
+"data": {
+  "partOfSpeech": "keyword",
+  "sourceWord": "Climate",
+  "targetWord": "The usual weather patterns of a place over a long time."
+}
+```
+
+**Why it matters for quiz quality:** The quiz generates distractors by comparing `word.de` (term) to `word.en` (definition). If they are the same string, all four MCQ options are identical terms — the question teaches nothing and is trivially guessed or gameable.
+
+**Checklist for monolingual pack authoring / AI generation:**
+- [ ] Does every vocab item use `sourceWord` (term) and `targetWord` (definition)?
+- [ ] Is `targetWord` different from `sourceWord`? (a definition, not a repeat)
+- [ ] Is `translations` absent from every vocab item?
+- [ ] Are `sourceLanguageCode` and `targetLanguageCode` both `"en-GB"`?
+
+**Checklist when debugging "quiz shows same word as prompt and answer":**
+- [ ] Open the pack JSON — do vocab items use `translations` instead of `sourceWord`/`targetWord`?
+- [ ] Check `data.js` `loadVocabItems` — is the `isMonoLingual` guard in place?
+- [ ] Do a hard refresh (`Cmd+Shift+R`) after any `data.js` fix — Vite HMR clears `jsonCache` but does not re-run `hydrateManifest`.
+
+---
+
 *Last updated: 2026-05-21*  
-*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89*
+*Derived from Learning Web project post-mortem — PRs #55, #57, #58, #72, #83, #85, #89, #90*
