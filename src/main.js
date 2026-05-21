@@ -809,10 +809,10 @@ function renderHero() {
         <div class="hero-top">
           <div class="hero-copy">
             <p class="eyebrow">powered by FoxChild Idea</p>
-            <h1>Learning Web</h1>
+            <h1><span class="hero-title-brand">FoxChild</span><span class="hero-title-accent">@Learn</span></h1>
             <p>
-              Your personal study desk — vocabulary drills, reading practice,
-              sentence builder and progress tracking, all in one place.
+              Your cozy space for learning, practising, and growing —
+              powered by curiosity and AI. ❤️
             </p>
           </div>
           <div class="hero-badges">
