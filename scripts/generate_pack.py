@@ -166,12 +166,12 @@ def parse_args() -> argparse.Namespace:
     # Language settings — defaults appropriate for non-language subjects
     p.add_argument("--source-label", default="English",
                    help="Source language label (default: English)")
-    p.add_argument("--source-code", default="en-GB",
-                   help="BCP-47 source language code (default: en-GB)")
+    p.add_argument("--source-code", default="en-US",
+                   help="BCP-47 source language code (default: en-US)")
     p.add_argument("--target-label", default="English",
                    help="Target language label (default: English)")
-    p.add_argument("--target-code", default="en-GB",
-                   help="BCP-47 target language code (default: en-GB)")
+    p.add_argument("--target-code", default="en-US",
+                   help="BCP-47 target language code (default: en-US)")
     p.add_argument("--speech-code", default=None,
                    help="BCP-47 TTS code (default: same as --source-code)")
 
@@ -524,8 +524,8 @@ def validate_pack(parsed: object, expected_subject: str, expected_pack_id: Optio
             if subject == "literature" and item.get("type") == "vocab":
                 data = item.get("data") if isinstance(item.get("data"), dict) else {}
                 translations = data.get("translations") if isinstance(data.get("translations"), dict) else {}
-                src_code = parsed.get("sourceLanguageCode") or "en-GB"
-                tgt_code = parsed.get("targetLanguageCode") or "en-GB"
+                src_code = parsed.get("sourceLanguageCode") or "en-US"
+                tgt_code = parsed.get("targetLanguageCode") or "en-US"
                 source = translations.get(src_code) or next(iter(translations.values()), None) or data.get("sourceWord")
                 remaining = [value for key, value in translations.items() if key != src_code]
                 target = translations.get(tgt_code) or (remaining[0] if remaining else None) or data.get("targetWord")
@@ -730,14 +730,15 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
         "  speechLanguage, items[].",
         "",
         "Allowed subject values: language, history, geography, literature, science.",
-        "For geography/history/literature/science use English/en-GB for source, target, and speech language.",
+        "For geography/history/literature/science use the configured source, target, and speech language codes.",
+        f"Configured language codes for this run: source={args.source_code}, target={args.target_code}, speech={args.speech_code or args.source_code}.",
         "Allowed item types: vocab, sentence, sequence, categorySort, fillBlank, sentenceBuilder, passage.",
         "",
         "vocab.data for non-language subjects should use sourceWord for the prompt",
         "  and targetWord for the answer/definition. Do not create same-word cards",
-        '  with only translations={"en-GB": "<term>"} because source and target are both en-GB.',
+        f'  with only translations={{"{args.source_code}": "<term>"}} because source and target are the same language.',
         '  Example: partOfSpeech="keyword", sourceWord="<term>", targetWord="<definition>",',
-        '  examples={"en-GB": "<clear definition sentence>"}',
+        f'  examples={{"{args.source_code}": "<clear definition sentence>"}}',
         "",
         "Literature packs must test interpretation, evidence, character, theme,",
         "  symbolism, and narrative purpose. Prefer fillBlank/categorySort/sequence/",
@@ -827,7 +828,10 @@ def build_codex_prompt(args: argparse.Namespace, attachments: list) -> str:
     out_lines.append(
         'Valid JSON only. schemaVersion must be "1.1" on every pack header.'
     )
-    out_lines.append("British English throughout. No invented dates or quotes.")
+    out_lines.append(
+        "Match the spelling and vocabulary conventions of the configured source language. "
+        "No invented dates or quotes."
+    )
     out_lines.append("")
 
     return "\n".join(out_lines)
