@@ -238,14 +238,15 @@ export function listDatasetsBySubject(manifest, subject) {
 
 // ─── Curriculum helpers ──────────────────────────────────────────────────────
 //
-// `curriculum` is a top-level tag on each pack entry: "ks3" | "other".
+// `curriculum` is a top-level tag on each pack entry: "ks3" | "us-middle-school" | "other".
 // Older packs may not carry it; the inference fallback reads it from the pack ID.
 
-export const CURRICULUMS = ["ks3", "other"];
+export const CURRICULUMS = ["ks3", "us-middle-school", "other"];
 
 export const CURRICULUM_LABELS = {
-  ks3:   "KS3",
-  other: "Other",
+  "ks3":              "KS3 (UK)",
+  "us-middle-school": "US Middle School",
+  "other":            "Other",
 };
 
 function inferCurriculum(dataset) {
@@ -254,6 +255,7 @@ function inferCurriculum(dataset) {
   if (CURRICULUMS.includes(explicit)) return explicit;
 
   const id = String(dataset.id || "").toLowerCase();
+  if (id.startsWith("usmsg_")) return "us-middle-school";
   if (id.startsWith("ks3_") || id.startsWith("y7_") || id.startsWith("y8_") || id.startsWith("y9_")) {
     return "ks3";
   }
