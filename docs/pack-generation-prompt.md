@@ -54,9 +54,10 @@ provide the task type and subject bucket — you must infer the rest.
 1. `data/generated/pack_decision.json` — metadata + scope decision (required)
 2. `data/Packs/<curriculum>/<subject>/<packId>/pack_unified.json` — revision pack
 3. `data/Packs/<curriculum>/<subject>/<packId>/passages.json` — passage pack (omit if no reading passages)
-4. `data/SentenceBuilderPacks/<packId>/pack_unified.json` — sentence builder (omit if not applicable)
-5. `data/generated/validation_report.json` — validation results (recommended)
-6. `data/generated/manifest_entries.json` — manifest entries for promotion
+4. `data/Packs/<curriculum>/<subject>/<packId>/study_notes.md` — **verbatim copy of the source content** used to generate this pack (the Study Book feature reads this file); copy the full source material text here, preserving headings and structure
+5. `data/SentenceBuilderPacks/<packId>/pack_unified.json` — sentence builder (omit if not applicable)
+6. `data/generated/validation_report.json` — validation results (recommended)
+7. `data/generated/manifest_entries.json` — manifest entries for promotion (must include `"contentMdPath": "data/Packs/<curriculum>/<subject>/<packId>/study_notes.md"` for the revision pack entry)
 You are generating a complete, curriculum-aligned dataset for the
 **Learning Web** app. The app is a vocabulary / revision / reading study
 hub for KS3 and GCSE students. It supports four study modes —
