@@ -27,8 +27,8 @@
 >      Download and attach them from the links below before continuing.
 >
 > **Schema files (attach these if the AI asks):**
-> - [`pack_unified.schema.json`](https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json)
-> - [`passages.schema.json`](https://learning-web-gnf4.onrender.com/schemas/passages.schema.json)
+> - [`pack_unified.schema.json`](https://www.foxchildidea.com/schemas/pack_unified.schema.json)
+> - [`passages.schema.json`](https://www.foxchildidea.com/schemas/passages.schema.json)
 
 ---
 
@@ -50,8 +50,8 @@ Your output is **JSON code blocks** labelled with filenames. The user will copy 
 
 Fetch these URLs now:
 
-- `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`
-- `https://learning-web-gnf4.onrender.com/schemas/passages.schema.json`
+- `https://www.foxchildidea.com/schemas/pack_unified.schema.json`
+- `https://www.foxchildidea.com/schemas/passages.schema.json`
 
 **If you successfully fetched both schemas:** confirm it in one line (e.g. "✅ Schema loaded."), then proceed to Step 1.
 
@@ -59,15 +59,15 @@ Fetch these URLs now:
 
 ---
 
-> ⚠️ I cannot access the schema URL at `https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json`.
+> ⚠️ I cannot access the schema URL at `https://www.foxchildidea.com/schemas/pack_unified.schema.json`.
 >
 > To continue, please upload or paste the contents of **one or both** of these files into this chat:
 > - `pack_unified.schema.json`
 > - `passages.schema.json`
 >
 > You can download them from:
-> - https://learning-web-gnf4.onrender.com/schemas/pack_unified.schema.json
-> - https://learning-web-gnf4.onrender.com/schemas/passages.schema.json
+> - https://www.foxchildidea.com/schemas/pack_unified.schema.json
+> - https://www.foxchildidea.com/schemas/passages.schema.json
 >
 > Once you share the schema, I will generate the pack strictly against it.
 
