@@ -1,0 +1,1580 @@
+{
+  "packId": "usmsg_science_03_physical_science_01_matter_and_atoms",
+  "subject": "science",
+  "title": "US Middle School Science - Matter and Atoms",
+  "subtitle": "Particles, states of matter, phase changes, properties, and scientific evidence.",
+  "level": "US Middle School",
+  "language": "English",
+  "topics": [
+    "Matter and Atoms"
+  ],
+  "tags": [
+    "US Middle School",
+    "Science",
+    "Physical Science",
+    "Matter",
+    "Atoms"
+  ],
+  "description": "A source-faithful physical science revision pack on matter and atoms. Students practise key vocabulary, particle models, states of matter, phase changes, physical and chemical changes, conservation of matter, and investigation skills.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-US",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-US",
+  "speechLanguage": "en-US",
+  "items": [
+    {
+      "id": "matter_atoms_vocab_001",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:matter"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "matter",
+        "targetWord": "anything that has mass and takes up space",
+        "examples": {
+          "en-US": "Air, water, rocks, and people are made of matter because they have mass and take up space."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_002",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "atom",
+        "targetWord": "a tiny basic building block of matter",
+        "examples": {
+          "en-US": "Atoms are too small to see with a regular classroom microscope."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_003",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "molecule",
+        "targetWord": "two or more atoms chemically bonded together",
+        "examples": {
+          "en-US": "A water molecule contains two hydrogen atoms and one oxygen atom bonded together."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_004",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "particle",
+        "targetWord": "a small piece of matter, often an atom or molecule in this topic",
+        "examples": {
+          "en-US": "Particle diagrams show atoms or molecules as simple dots."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_005",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:measurement",
+        "cat:matter"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mass",
+        "targetWord": "the amount of matter in an object or substance",
+        "examples": {
+          "en-US": "Mass is often measured in grams or kilograms."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_006",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:measurement",
+        "cat:matter"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "volume",
+        "targetWord": "the amount of space matter takes up",
+        "examples": {
+          "en-US": "A graduated cylinder can measure the volume of a liquid."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_007",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:measurement",
+        "cat:properties"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "density",
+        "targetWord": "how much mass is packed into a certain volume",
+        "examples": {
+          "en-US": "Density can help explain why some objects sink and others float."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_008",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "solid",
+        "targetWord": "a state of matter with definite shape and definite volume",
+        "examples": {
+          "en-US": "In a solid, particles are packed closely and vibrate in place."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_009",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "liquid",
+        "targetWord": "a state of matter with definite volume but no definite shape",
+        "examples": {
+          "en-US": "Liquid particles are close together but can slide past one another."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_010",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "gas",
+        "targetWord": "a state of matter with no definite shape and no definite volume",
+        "examples": {
+          "en-US": "Gas particles spread out to fill their container."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_011",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "plasma",
+        "targetWord": "a very high-energy state of matter made of charged particles",
+        "examples": {
+          "en-US": "Lightning and the Sun contain plasma."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_012",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "state of matter",
+        "targetWord": "a physical form of matter, such as solid, liquid, gas, or plasma",
+        "examples": {
+          "en-US": "Solid, liquid, and gas are common states of matter in everyday life."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_013",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:states"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "phase change",
+        "targetWord": "a change from one state of matter to another",
+        "examples": {
+          "en-US": "Melting, freezing, evaporation, and condensation are phase changes."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_014",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "melting",
+        "targetWord": "the change from solid to liquid",
+        "examples": {
+          "en-US": "Ice melting into liquid water is a physical change."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_015",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "freezing",
+        "targetWord": "the change from liquid to solid",
+        "examples": {
+          "en-US": "Water freezing into ice is a phase change."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_016",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "evaporation",
+        "targetWord": "the change from liquid to gas at the surface of a liquid",
+        "examples": {
+          "en-US": "A shallow dish of water loses water by evaporation."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_017",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "boiling",
+        "targetWord": "a rapid liquid-to-gas change that occurs throughout a liquid at its boiling point",
+        "examples": {
+          "en-US": "Bubbles in boiling water are part of a physical change, not automatic proof of a chemical change."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_018",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "condensation",
+        "targetWord": "the change from gas to liquid",
+        "examples": {
+          "en-US": "Water vapor condenses into droplets on a cold glass."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_019",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sublimation",
+        "targetWord": "the change from solid directly to gas",
+        "examples": {
+          "en-US": "In sublimation, particles gain enough energy to escape directly from the solid state."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_020",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "deposition",
+        "targetWord": "the change from gas directly to solid",
+        "examples": {
+          "en-US": "Deposition happens when gas particles lose energy and become fixed in solid form."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_021",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:energy",
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "energy",
+        "targetWord": "the ability to cause change or do work",
+        "examples": {
+          "en-US": "Energy transfer can change particle motion."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_022",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:energy",
+        "cat:measurement"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "thermal energy",
+        "targetWord": "the total energy of motion of all particles in a substance",
+        "examples": {
+          "en-US": "A bathtub of warm water can have more total thermal energy than a small cup of hotter water."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_023",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:energy",
+        "cat:measurement"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "temperature",
+        "targetWord": "a measure of the average kinetic energy of particles",
+        "examples": {
+          "en-US": "Higher temperature usually means particles are moving faster on average."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_024",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:energy",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "kinetic energy",
+        "targetWord": "energy of motion",
+        "examples": {
+          "en-US": "Moving particles have kinetic energy."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_025",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:properties",
+        "cat:changes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "physical property",
+        "targetWord": "a characteristic that can be observed or measured without making a new substance",
+        "examples": {
+          "en-US": "Color, density, melting point, and state of matter are physical properties."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_026",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:properties",
+        "cat:changes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "chemical property",
+        "targetWord": "a characteristic describing how a substance can change into a different substance",
+        "examples": {
+          "en-US": "Flammability and reactivity with oxygen are chemical properties."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_027",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:changes",
+        "cat:properties"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "physical change",
+        "targetWord": "a change in size, shape, state, or appearance that does not create a new substance",
+        "examples": {
+          "en-US": "Crushing a can is a physical change because the metal is still metal."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_028",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:changes",
+        "cat:properties"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "chemical change",
+        "targetWord": "a change that forms one or more new substances",
+        "examples": {
+          "en-US": "Rusting, burning, and baking a cake involve chemical changes."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_029",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification",
+        "cat:matter"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "substance",
+        "targetWord": "matter with a specific composition",
+        "examples": {
+          "en-US": "Pure water is a substance because it has a specific composition."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_030",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification",
+        "cat:matter"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mixture",
+        "targetWord": "two or more substances physically mixed but not chemically bonded",
+        "examples": {
+          "en-US": "Trail mix and saltwater are mixtures."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_031",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "element",
+        "targetWord": "a pure substance made of only one kind of atom",
+        "examples": {
+          "en-US": "Copper, oxygen, carbon, gold, and iron are elements."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_032",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification",
+        "cat:particles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "compound",
+        "targetWord": "a pure substance made of different kinds of atoms chemically bonded together",
+        "examples": {
+          "en-US": "Water and carbon dioxide are compounds."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_033",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "hypothesis",
+        "targetWord": "a testable explanation or prediction based on observations and background knowledge",
+        "examples": {
+          "en-US": "A hypothesis should be possible to test with evidence."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_034",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "variable",
+        "targetWord": "a factor that can change in an investigation",
+        "examples": {
+          "en-US": "Scientists identify variables so they can make fair comparisons."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_035",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "independent variable",
+        "targetWord": "the variable a scientist changes on purpose",
+        "examples": {
+          "en-US": "In a test of temperature and evaporation, the temperature could be the independent variable."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_036",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dependent variable",
+        "targetWord": "the variable a scientist measures or observes",
+        "examples": {
+          "en-US": "The amount of water evaporated could be the dependent variable."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_037",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "controlled variables",
+        "targetWord": "factors kept the same to make an investigation fair",
+        "examples": {
+          "en-US": "Cup type, starting volume, and measuring time can be controlled variables in an evaporation test."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_038",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "evidence",
+        "targetWord": "observations, measurements, or data used to support an explanation",
+        "examples": {
+          "en-US": "Mass measurements can be evidence for conservation of matter."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_039",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:systems",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "system",
+        "targetWord": "a group of connected parts that interact",
+        "examples": {
+          "en-US": "A sealed bag with baking soda, vinegar, and gas can be studied as a closed system."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_040",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:models",
+        "cat:evidence"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "model",
+        "targetWord": "a representation used to explain or predict how something works",
+        "examples": {
+          "en-US": "Particle diagrams are models because they represent matter in a simplified way."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_041",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:systems",
+        "cat:conservation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "closed system",
+        "targetWord": "a system where matter cannot enter or leave",
+        "examples": {
+          "en-US": "A sealed bag is a better system for testing conservation of matter than an open cup."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_vocab_042",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:systems",
+        "cat:conservation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "conservation of matter",
+        "targetWord": "the idea that matter is not created or destroyed during ordinary physical and chemical changes",
+        "examples": {
+          "en-US": "In a closed system, total mass should stay about the same before and after a reaction."
+        }
+      }
+    },
+    {
+      "id": "matter_atoms_fill_001",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "sentence": "Matter is anything that has ____ and takes up space.",
+        "answer": "mass",
+        "hint": "It is often measured in grams or kilograms.",
+        "options": [
+          "mass",
+          "color",
+          "sound",
+          "light"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_002",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "sentence": "The amount of space matter takes up is called ____.",
+        "answer": "volume",
+        "options": [
+          "volume",
+          "density",
+          "temperature",
+          "reactivity"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_003",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:particles"
+      ],
+      "data": {
+        "sentence": "A group of two or more atoms bonded together is a ____.",
+        "answer": "molecule",
+        "options": [
+          "molecule",
+          "mixture",
+          "system",
+          "variable"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_004",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states"
+      ],
+      "data": {
+        "sentence": "In a ____, particles are packed closely together and vibrate in place.",
+        "answer": "solid",
+        "options": [
+          "solid",
+          "liquid",
+          "gas",
+          "plasma"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_005",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states"
+      ],
+      "data": {
+        "sentence": "A liquid has a definite ____ but takes the shape of its container.",
+        "answer": "volume",
+        "options": [
+          "volume",
+          "shape",
+          "charge",
+          "element"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_006",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states"
+      ],
+      "data": {
+        "sentence": "A ____ spreads out to fill its container because its particles move freely.",
+        "answer": "gas",
+        "options": [
+          "gas",
+          "solid",
+          "compound",
+          "model"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_007",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes"
+      ],
+      "data": {
+        "sentence": "The change from gas to liquid is called ____.",
+        "answer": "condensation",
+        "options": [
+          "condensation",
+          "evaporation",
+          "melting",
+          "sublimation"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_008",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes"
+      ],
+      "data": {
+        "sentence": "During ____, liquid particles at the surface gain enough energy to become gas.",
+        "answer": "evaporation",
+        "options": [
+          "evaporation",
+          "freezing",
+          "deposition",
+          "condensation"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_009",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes"
+      ],
+      "data": {
+        "sentence": "The direct change from solid to gas is called ____.",
+        "answer": "sublimation",
+        "options": [
+          "sublimation",
+          "deposition",
+          "boiling",
+          "freezing"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_010",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:energy"
+      ],
+      "data": {
+        "sentence": "Temperature measures the average ____ energy of particles.",
+        "answer": "kinetic",
+        "options": [
+          "kinetic",
+          "chemical",
+          "stored",
+          "sound"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_011",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:energy"
+      ],
+      "data": {
+        "sentence": "A large warm bathtub can have more total ____ energy than a small hot cup because it has many more particles.",
+        "answer": "thermal",
+        "options": [
+          "thermal",
+          "electrical",
+          "sound",
+          "light"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_012",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:changes"
+      ],
+      "data": {
+        "sentence": "A physical change does not form a new ____.",
+        "answer": "substance",
+        "options": [
+          "substance",
+          "shape",
+          "state",
+          "mixture"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_013",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:changes"
+      ],
+      "data": {
+        "sentence": "Rusting iron is a chemical change because new substances with different ____ form.",
+        "answer": "properties",
+        "options": [
+          "properties",
+          "volumes",
+          "containers",
+          "variables"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_014",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification"
+      ],
+      "data": {
+        "sentence": "An ____ is a pure substance made of only one kind of atom.",
+        "answer": "element",
+        "options": [
+          "element",
+          "compound",
+          "mixture",
+          "solution"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_015",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification"
+      ],
+      "data": {
+        "sentence": "A ____ contains different kinds of atoms chemically bonded in fixed ratios.",
+        "answer": "compound",
+        "options": [
+          "compound",
+          "element",
+          "mixture",
+          "model"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_016",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation"
+      ],
+      "data": {
+        "sentence": "The variable a scientist changes on purpose is the ____ variable.",
+        "answer": "independent",
+        "options": [
+          "independent",
+          "dependent",
+          "controlled",
+          "random"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_017",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation"
+      ],
+      "data": {
+        "sentence": "Observations, measurements, and data used to support an explanation are called ____.",
+        "answer": "evidence",
+        "options": [
+          "evidence",
+          "opinions",
+          "materials",
+          "predictions"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_018",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:models"
+      ],
+      "data": {
+        "sentence": "A particle diagram is a ____ because it represents matter in a simplified way.",
+        "answer": "model",
+        "options": [
+          "model",
+          "chemical property",
+          "controlled variable",
+          "compound"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_019",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:conservation"
+      ],
+      "data": {
+        "sentence": "In a closed system, matter cannot ____ or leave.",
+        "answer": "enter",
+        "options": [
+          "enter",
+          "react",
+          "freeze",
+          "measure"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_fill_020",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:misconceptions"
+      ],
+      "data": {
+        "sentence": "Bubbles can be a clue, but they do not always prove a ____ change happened.",
+        "answer": "chemical",
+        "options": [
+          "chemical",
+          "physical",
+          "volume",
+          "model"
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_seq_001",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "title": "Melting Ice in a Drink",
+        "instruction": "Put the particle-level explanation in the correct order.",
+        "items": [
+          "Warm liquid transfers energy to the colder ice.",
+          "Water molecules in the ice gain kinetic energy.",
+          "The molecules vibrate more and begin moving out of fixed positions.",
+          "Solid ice changes into liquid water.",
+          "The substance remains water, so the change is physical."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "matter_atoms_seq_002",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "title": "Condensation on a Cold Surface",
+        "instruction": "Order the steps that explain why droplets form on a cold glass.",
+        "items": [
+          "Water vapor is present in the air around the glass.",
+          "The vapor touches the colder glass surface.",
+          "Water vapor particles lose energy.",
+          "The particles move closer together.",
+          "Liquid water droplets form on the outside of the glass."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "matter_atoms_seq_003",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "title": "Designing a Fair Evaporation Test",
+        "instruction": "Put the investigation planning steps in a sensible order.",
+        "items": [
+          "Ask whether temperature affects how quickly water evaporates.",
+          "Choose temperature as the independent variable.",
+          "Keep starting volume, cup type, surface area, and measuring times the same.",
+          "Measure the water volume left after each time interval.",
+          "Compare the evidence to decide which condition caused more evaporation."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "matter_atoms_seq_004",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:conservation",
+        "cat:changes"
+      ],
+      "data": {
+        "title": "Testing Conservation of Matter",
+        "instruction": "Order the steps in the sealed-bag reaction investigation.",
+        "items": [
+          "Place baking soda and vinegar in a sealed plastic bag setup.",
+          "Measure the mass of the sealed system before the reaction.",
+          "Allow the substances to react and produce gas inside the sealed bag.",
+          "Measure the mass of the sealed system after the reaction.",
+          "Use the similar before-and-after masses as evidence that matter was conserved."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "matter_atoms_cat_001",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:particles"
+      ],
+      "data": {
+        "title": "Solid, Liquid, or Gas?",
+        "instruction": "Sort each description into the correct state of matter.",
+        "categories": [
+          "Solid",
+          "Liquid",
+          "Gas"
+        ],
+        "pairs": [
+          {
+            "text": "Definite shape and definite volume",
+            "category": "Solid"
+          },
+          {
+            "text": "Particles vibrate in fixed positions",
+            "category": "Solid"
+          },
+          {
+            "text": "Definite volume but no definite shape",
+            "category": "Liquid"
+          },
+          {
+            "text": "Particles slide past one another",
+            "category": "Liquid"
+          },
+          {
+            "text": "No definite shape and no definite volume",
+            "category": "Gas"
+          },
+          {
+            "text": "Particles are far apart and move freely",
+            "category": "Gas"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_cat_002",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:changes",
+        "cat:classification"
+      ],
+      "data": {
+        "title": "Physical or Chemical Change?",
+        "instruction": "Sort each example into physical change or chemical change.",
+        "categories": [
+          "Physical change",
+          "Chemical change"
+        ],
+        "pairs": [
+          {
+            "text": "Ice melting",
+            "category": "Physical change"
+          },
+          {
+            "text": "Sugar dissolving in water",
+            "category": "Physical change"
+          },
+          {
+            "text": "Water freezing",
+            "category": "Physical change"
+          },
+          {
+            "text": "Glass breaking",
+            "category": "Physical change"
+          },
+          {
+            "text": "Paper burning",
+            "category": "Chemical change"
+          },
+          {
+            "text": "Iron rusting",
+            "category": "Chemical change"
+          },
+          {
+            "text": "Bread toasting",
+            "category": "Chemical change"
+          },
+          {
+            "text": "Vinegar reacting with baking soda",
+            "category": "Chemical change"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_cat_003",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:evidence"
+      ],
+      "data": {
+        "title": "Investigation Variables",
+        "instruction": "Sort each investigation detail into the correct variable type.",
+        "categories": [
+          "Independent variable",
+          "Dependent variable",
+          "Controlled variable"
+        ],
+        "pairs": [
+          {
+            "text": "Temperature of the location in an evaporation test",
+            "category": "Independent variable"
+          },
+          {
+            "text": "Surface area of water in a dish comparison",
+            "category": "Independent variable"
+          },
+          {
+            "text": "Amount of water evaporated after one hour",
+            "category": "Dependent variable"
+          },
+          {
+            "text": "Time for sugar to dissolve",
+            "category": "Dependent variable"
+          },
+          {
+            "text": "Same starting volume of water",
+            "category": "Controlled variable"
+          },
+          {
+            "text": "Same cup type and measuring tool",
+            "category": "Controlled variable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_cat_004",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:classification",
+        "cat:particles"
+      ],
+      "data": {
+        "title": "Element, Compound, or Mixture?",
+        "instruction": "Sort each example or description into the correct type of matter.",
+        "categories": [
+          "Element",
+          "Compound",
+          "Mixture"
+        ],
+        "pairs": [
+          {
+            "text": "Copper atoms only",
+            "category": "Element"
+          },
+          {
+            "text": "Pure oxygen",
+            "category": "Element"
+          },
+          {
+            "text": "Water molecules with hydrogen and oxygen bonded",
+            "category": "Compound"
+          },
+          {
+            "text": "Carbon dioxide",
+            "category": "Compound"
+          },
+          {
+            "text": "Saltwater",
+            "category": "Mixture"
+          },
+          {
+            "text": "Trail mix",
+            "category": "Mixture"
+          }
+        ]
+      }
+    }
+  ],
+  "curriculum": "us-middle-school"
+}

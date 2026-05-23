@@ -1,0 +1,1388 @@
+{
+  "packId": "usmsg_science_01_life_science_03_genetics_and_heredity",
+  "subject": "science",
+  "title": "US Middle School Science — Genetics and Heredity",
+  "subtitle": "DNA, genes, chromosomes, inherited traits, Punnett squares, variation, and environment effects.",
+  "level": "US Middle School",
+  "language": "English",
+  "topics": [
+    "genetics and heredity"
+  ],
+  "tags": [
+    "US Middle School",
+    "Science",
+    "Life Science",
+    "Genetics",
+    "Heredity"
+  ],
+  "description": "A source-faithful revision pack on how traits pass from parents to offspring and why offspring are similar but not identical to their parents. Students practice core genetics vocabulary, simple inheritance models, Punnett-square probability, inherited versus acquired traits, mutations, variation, and the role of environment in phenotype.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-US",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-US",
+  "speechLanguage": "en-US",
+  "items": [
+    {
+      "id": "genetics_vocab_001",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:inheritance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Genetics",
+        "targetWord": "the study of heredity and how traits are passed from parents to offspring",
+        "examples": {
+          "en-US": "Genetics helps explain why pea plants can be tall or short."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_002",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:inheritance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Heredity",
+        "targetWord": "the passing of traits from parents to offspring",
+        "examples": {
+          "en-US": "A kitten inheriting fur color patterns from its parents is an example of heredity."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_003",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Trait",
+        "targetWord": "a characteristic of an organism, such as flower color, blood type, height, or seed shape",
+        "examples": {
+          "en-US": "Leaf shape is a trait of a plant."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_004",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:inheritance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Inherited trait",
+        "targetWord": "a trait passed through genetic information from parents",
+        "examples": {
+          "en-US": "Natural eye color and blood type are examples of inherited traits."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_005",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Acquired trait",
+        "targetWord": "a trait developed during life that usually is not passed through genes",
+        "examples": {
+          "en-US": "A scar, dyed hair, or a learned skill is an acquired trait."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_006",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:dna"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "DNA",
+        "targetWord": "a molecule that stores genetic instructions in living things",
+        "examples": {
+          "en-US": "DNA contains instructions that cells use to make proteins."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_007",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:dna"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Gene",
+        "targetWord": "a section of DNA that helps control a trait or body process",
+        "examples": {
+          "en-US": "A gene may help affect flower color."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_008",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:dna"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Chromosome",
+        "targetWord": "a long, organized structure made of DNA and proteins",
+        "examples": {
+          "en-US": "Humans usually have 46 chromosomes in most body cells."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_009",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:alleles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Allele",
+        "targetWord": "a different version of a gene",
+        "examples": {
+          "en-US": "A pea plant may have a tall allele or a short allele."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_010",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:alleles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Dominant allele",
+        "targetWord": "an allele that can show its effect when one copy is present",
+        "examples": {
+          "en-US": "In a simple pea plant model, T can represent a dominant tall allele."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_011",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:alleles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Recessive allele",
+        "targetWord": "an allele whose effect is usually hidden when a dominant allele is present",
+        "examples": {
+          "en-US": "In a simple pea plant model, t can represent a recessive short allele."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_012",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:models"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Genotype",
+        "targetWord": "the allele combination an organism has for a trait",
+        "examples": {
+          "en-US": "TT, Tt, and tt are genotype examples in a simple pea plant model."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_013",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:models"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Phenotype",
+        "targetWord": "the observable trait or feature of an organism",
+        "examples": {
+          "en-US": "A tall pea plant has a tall phenotype."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_014",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:alleles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Homozygous",
+        "targetWord": "having two of the same alleles for a gene",
+        "examples": {
+          "en-US": "TT and tt are homozygous genotypes."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_015",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:alleles"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Heterozygous",
+        "targetWord": "having two different alleles for a gene",
+        "examples": {
+          "en-US": "Tt is a heterozygous genotype."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_016",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:models"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Punnett square",
+        "targetWord": "a model used to predict possible allele combinations in offspring",
+        "examples": {
+          "en-US": "A Punnett square can show possible genotypes from two heterozygous parents."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_017",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:models"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Probability",
+        "targetWord": "the chance that something will happen",
+        "examples": {
+          "en-US": "A 1 in 4 chance can also be written as 25%."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_018",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:variation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Variation",
+        "targetWord": "differences among individuals of the same species",
+        "examples": {
+          "en-US": "Different shell patterns in snails are an example of variation."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_019",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:variation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Mutation",
+        "targetWord": "a change in DNA that may have no effect, a harmful effect, or a helpful effect",
+        "examples": {
+          "en-US": "A mutation can add new genetic variation to a population."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_020",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:inheritance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Offspring",
+        "targetWord": "the young produced by parents",
+        "examples": {
+          "en-US": "Puppies, seedlings, and baby birds are offspring."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_021",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:inheritance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Parent generation",
+        "targetWord": "the organisms that reproduce to produce offspring",
+        "examples": {
+          "en-US": "Two pea plants crossed in an investigation are the parent generation."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_022",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:applications",
+        "cat:selection"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Selective breeding",
+        "targetWord": "choosing organisms with desired traits to reproduce",
+        "examples": {
+          "en-US": "Farmers may use selective breeding to produce crops with larger fruit."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_023",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:applications",
+        "cat:biotechnology"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Genetic engineering",
+        "targetWord": "changing genetic information using biotechnology",
+        "examples": {
+          "en-US": "Genetic engineering may add a gene that helps a crop resist pests."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_024",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:science_practices"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Hypothesis",
+        "targetWord": "a testable explanation or prediction based on observations",
+        "examples": {
+          "en-US": "A hypothesis might predict that some offspring will be short if both parents carry a hidden short allele."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_025",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:science_practices"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Variable",
+        "targetWord": "a factor that can change in an investigation",
+        "examples": {
+          "en-US": "Light level is a variable in an investigation about plant height."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_026",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:science_practices"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Evidence",
+        "targetWord": "data or observations used to support or challenge a claim",
+        "examples": {
+          "en-US": "A table showing the number of tall and short plants can be evidence."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_027",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "System",
+        "targetWord": "a group of parts that interact",
+        "examples": {
+          "en-US": "A cell is a system that includes DNA, chromosomes, organelles, and chemical processes."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_028",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:systems",
+        "cat:matter_energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Energy",
+        "targetWord": "the ability to cause change or do work",
+        "examples": {
+          "en-US": "Cells use energy from food to copy DNA and build proteins."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_029",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:systems",
+        "cat:matter_energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Matter",
+        "targetWord": "anything that has mass and takes up space",
+        "examples": {
+          "en-US": "DNA, chromosomes, proteins, cells, and organisms are made of matter."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_030",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna",
+        "cat:structure"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Double helix",
+        "targetWord": "the twisted-ladder shape often used to describe DNA",
+        "examples": {
+          "en-US": "The DNA double helix has base pairs forming the rungs of the ladder."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_031",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna",
+        "cat:structure"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "DNA bases",
+        "targetWord": "chemical letters in DNA commonly represented as A, T, C, and G",
+        "examples": {
+          "en-US": "The order of DNA bases stores genetic information."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_032",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna",
+        "cat:structure"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Base-pair rule",
+        "targetWord": "the DNA pairing pattern where A pairs with T and C pairs with G",
+        "examples": {
+          "en-US": "Base-pair rules help DNA copy itself accurately."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_033",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:inheritance",
+        "cat:reproduction"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Sexual reproduction",
+        "targetWord": "reproduction in which two parents usually contribute genetic information to offspring",
+        "examples": {
+          "en-US": "Sexual reproduction usually creates more genetic variation among offspring."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_034",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:inheritance",
+        "cat:reproduction"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Asexual reproduction",
+        "targetWord": "reproduction in which one parent produces offspring that are usually genetically identical or very similar",
+        "examples": {
+          "en-US": "Bacteria dividing and strawberry runners are examples of asexual reproduction."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_035",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:traits",
+        "cat:complexity"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Polygenic trait",
+        "targetWord": "a trait influenced by many genes",
+        "examples": {
+          "en-US": "Human height and many aspects of eye color are polygenic traits."
+        }
+      }
+    },
+    {
+      "id": "genetics_vocab_036",
+      "type": "vocab",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:applications",
+        "cat:health"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Family health history",
+        "targetWord": "information about health conditions in relatives that may show genetic risk patterns",
+        "examples": {
+          "en-US": "Family health history can suggest increased risk, but genes do not guarantee every outcome."
+        }
+      }
+    },
+    {
+      "id": "genetics_gap_001",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:inheritance"
+      ],
+      "data": {
+        "sentence": "The passing of traits from parents to offspring is called ____.",
+        "answer": "heredity",
+        "hint": "Starts with h",
+        "options": [
+          "heredity",
+          "mutation",
+          "probability",
+          "energy"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_002",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna"
+      ],
+      "data": {
+        "sentence": "A ____ is a section of DNA that helps control a trait or body process.",
+        "answer": "gene",
+        "options": [
+          "gene",
+          "scar",
+          "variable",
+          "phenotype"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_003",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna"
+      ],
+      "data": {
+        "sentence": "DNA bases pair in a pattern: A pairs with ____.",
+        "answer": "T",
+        "options": [
+          "T",
+          "C",
+          "G",
+          "A"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_004",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna"
+      ],
+      "data": {
+        "sentence": "DNA bases pair in a pattern: C pairs with ____.",
+        "answer": "G",
+        "options": [
+          "G",
+          "T",
+          "A",
+          "C"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_005",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:models"
+      ],
+      "data": {
+        "sentence": "The allele combination an organism has is its ____.",
+        "answer": "genotype",
+        "options": [
+          "genotype",
+          "phenotype",
+          "ecosystem",
+          "evidence"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_006",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:models"
+      ],
+      "data": {
+        "sentence": "The observable trait or feature is the ____.",
+        "answer": "phenotype",
+        "options": [
+          "phenotype",
+          "genotype",
+          "allele",
+          "hypothesis"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_007",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:alleles"
+      ],
+      "data": {
+        "sentence": "An organism with two different alleles for a gene is ____.",
+        "answer": "heterozygous",
+        "options": [
+          "heterozygous",
+          "homozygous",
+          "asexual",
+          "acquired"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_008",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:alleles"
+      ],
+      "data": {
+        "sentence": "An organism with two of the same alleles for a gene is ____.",
+        "answer": "homozygous",
+        "options": [
+          "homozygous",
+          "heterozygous",
+          "polygenic",
+          "learned"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_009",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:punnett"
+      ],
+      "data": {
+        "sentence": "In a simple Tt x Tt cross, the predicted genotype ratio is ____.",
+        "answer": "1 TT : 2 Tt : 1 tt",
+        "options": [
+          "1 TT : 2 Tt : 1 tt",
+          "4 TT : 0 Tt : 0 tt",
+          "0 TT : 4 Tt : 0 tt",
+          "1 tall : 1 short"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_010",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:punnett"
+      ],
+      "data": {
+        "sentence": "In a simple Tt x Tt cross where T is tall, the predicted chance of short offspring is ____.",
+        "answer": "25%",
+        "options": [
+          "25%",
+          "50%",
+          "75%",
+          "100%"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_011",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:misconceptions"
+      ],
+      "data": {
+        "sentence": "A Punnett square shows probabilities, but it does not ____ exact results for a small number of offspring.",
+        "answer": "guarantee",
+        "options": [
+          "guarantee",
+          "model",
+          "predict",
+          "organize"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_012",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:traits"
+      ],
+      "data": {
+        "sentence": "A scar is usually an acquired trait because it develops during life and is not passed through ____.",
+        "answer": "DNA",
+        "options": [
+          "DNA",
+          "practice",
+          "sunlight",
+          "a graph"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_013",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:reproduction"
+      ],
+      "data": {
+        "sentence": "Sexual reproduction usually creates more genetic ____ because offspring receive a mixture of alleles from two parents.",
+        "answer": "variation",
+        "options": [
+          "variation",
+          "contamination",
+          "matter",
+          "height"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_014",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:variation"
+      ],
+      "data": {
+        "sentence": "A ____ is a change in DNA.",
+        "answer": "mutation",
+        "options": [
+          "mutation",
+          "phenotype",
+          "control",
+          "claim"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_015",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:environment"
+      ],
+      "data": {
+        "sentence": "Plant height can be affected by genes, sunlight, water, nutrients, space, and disease, so it can involve both genes and ____.",
+        "answer": "environment",
+        "options": [
+          "environment",
+          "chromosomes only",
+          "genotype only",
+          "base pairs only"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_016",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "In the bean plant light investigation, the independent variable is ____.",
+        "answer": "light level",
+        "options": [
+          "light level",
+          "plant height",
+          "leaf color",
+          "growth time"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_017",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "In the bean plant light investigation, the dependent variable is ____.",
+        "answer": "plant height",
+        "options": [
+          "plant height",
+          "light level",
+          "soil amount",
+          "container size"
+        ]
+      }
+    },
+    {
+      "id": "genetics_gap_018",
+      "type": "fillBlank",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:science_practices"
+      ],
+      "data": {
+        "sentence": "A strong scientific explanation often connects claim, evidence, and ____.",
+        "answer": "reasoning",
+        "options": [
+          "reasoning",
+          "opinion",
+          "preference",
+          "decoration"
+        ]
+      }
+    },
+    {
+      "id": "genetics_seq_001",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:dna",
+        "cat:traits"
+      ],
+      "data": {
+        "title": "From DNA to Trait",
+        "instruction": "Put the simplified pathway from genetic information to trait in order.",
+        "items": [
+          "DNA stores genetic instructions.",
+          "A gene is a section of DNA with instructions for a job.",
+          "The cell uses the gene's information to make a protein or control a cell process.",
+          "Proteins and cell processes affect how an organism grows or functions.",
+          "A trait or body function can be observed or measured."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "genetics_seq_002",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:punnett",
+        "cat:models"
+      ],
+      "data": {
+        "title": "Reading a Punnett Square",
+        "instruction": "Put the Punnett-square reasoning steps in the correct order.",
+        "items": [
+          "Identify the parents' genotypes.",
+          "List each parent's possible alleles.",
+          "Place one parent's alleles across the top and the other parent's alleles down the side.",
+          "Fill in the boxes to show possible offspring genotypes.",
+          "Count the genotypes and phenotypes.",
+          "Convert the counts to ratios, fractions, or percentages."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "genetics_seq_003",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:science_practices",
+        "cat:data"
+      ],
+      "data": {
+        "title": "Testing Light and Plant Height",
+        "instruction": "Put the investigation steps in a logical order.",
+        "items": [
+          "Ask whether light level affects plant height.",
+          "Use the same plant variety and keep water, soil, container size, and growth time the same.",
+          "Place plants in bright, medium, and low light conditions.",
+          "Measure plant height after four weeks.",
+          "Compare the average height in each light condition.",
+          "Use claim, evidence, and reasoning to explain whether light affected growth."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "genetics_seq_004",
+      "type": "sequence",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:applications",
+        "cat:selection"
+      ],
+      "data": {
+        "title": "Selective Breeding for Crops",
+        "instruction": "Put the crop selective-breeding process in order.",
+        "items": [
+          "Identify a problem, such as crops struggling in dry conditions.",
+          "Choose plants with helpful traits, such as better drought tolerance.",
+          "Breed selected plants to produce offspring.",
+          "Grow and test the offspring under controlled conditions.",
+          "Collect evidence about survival, growth, yield, and health.",
+          "Repeat selection over generations while considering effects on ecosystems and farmers."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "genetics_cat_001",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:traits"
+      ],
+      "data": {
+        "title": "Inherited, Acquired, or Both?",
+        "instruction": "Sort each trait example into the best category.",
+        "categories": [
+          "Inherited trait",
+          "Acquired trait",
+          "Influenced by genes and environment"
+        ],
+        "pairs": [
+          {
+            "text": "Natural blood type",
+            "category": "Inherited trait"
+          },
+          {
+            "text": "Natural flower color pattern",
+            "category": "Inherited trait"
+          },
+          {
+            "text": "Dog fur pattern",
+            "category": "Inherited trait"
+          },
+          {
+            "text": "A scar from a bike fall",
+            "category": "Acquired trait"
+          },
+          {
+            "text": "Dyed hair color",
+            "category": "Acquired trait"
+          },
+          {
+            "text": "A learned dance routine",
+            "category": "Acquired trait"
+          },
+          {
+            "text": "Human height",
+            "category": "Influenced by genes and environment"
+          },
+          {
+            "text": "Plant height under different light levels",
+            "category": "Influenced by genes and environment"
+          },
+          {
+            "text": "Athletic performance",
+            "category": "Influenced by genes and environment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "genetics_cat_002",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:reproduction"
+      ],
+      "data": {
+        "title": "Sexual or Asexual Reproduction?",
+        "instruction": "Sort each description into the correct reproduction type.",
+        "categories": [
+          "Asexual reproduction",
+          "Sexual reproduction"
+        ],
+        "pairs": [
+          {
+            "text": "Usually one parent",
+            "category": "Asexual reproduction"
+          },
+          {
+            "text": "Often produces genetically identical or very similar offspring",
+            "category": "Asexual reproduction"
+          },
+          {
+            "text": "Bacteria dividing",
+            "category": "Asexual reproduction"
+          },
+          {
+            "text": "Strawberry runners",
+            "category": "Asexual reproduction"
+          },
+          {
+            "text": "Usually two parents",
+            "category": "Sexual reproduction"
+          },
+          {
+            "text": "Offspring receive a mixture of alleles",
+            "category": "Sexual reproduction"
+          },
+          {
+            "text": "Usually creates higher genetic variation",
+            "category": "Sexual reproduction"
+          },
+          {
+            "text": "Humans, dogs, birds, frogs, and many plants",
+            "category": "Sexual reproduction"
+          }
+        ]
+      }
+    },
+    {
+      "id": "genetics_cat_003",
+      "type": "categorySort",
+      "level": "US Middle School",
+      "topics": [
+        "genetics and heredity"
+      ],
+      "tags": [
+        "cat:science_practices",
+        "cat:data"
+      ],
+      "data": {
+        "title": "Investigation Vocabulary",
+        "instruction": "Sort each example into claim, evidence, reasoning, or variable.",
+        "categories": [
+          "Claim",
+          "Evidence",
+          "Reasoning",
+          "Variable"
+        ],
+        "pairs": [
+          {
+            "text": "Light level affects plant height.",
+            "category": "Claim"
+          },
+          {
+            "text": "Plants in bright light averaged 24 cm.",
+            "category": "Evidence"
+          },
+          {
+            "text": "Plants in low light averaged 9 cm.",
+            "category": "Evidence"
+          },
+          {
+            "text": "Plants use light energy for photosynthesis.",
+            "category": "Reasoning"
+          },
+          {
+            "text": "Photosynthesis helps plants make food for growth.",
+            "category": "Reasoning"
+          },
+          {
+            "text": "Light level",
+            "category": "Variable"
+          },
+          {
+            "text": "Plant height",
+            "category": "Variable"
+          },
+          {
+            "text": "Soil amount",
+            "category": "Variable"
+          }
+        ]
+      }
+    }
+  ],
+  "curriculum": "us-middle-school"
+}

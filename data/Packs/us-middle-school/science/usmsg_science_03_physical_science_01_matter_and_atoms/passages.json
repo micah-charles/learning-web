@@ -1,0 +1,453 @@
+{
+  "packId": "usmsg_science_03_physical_science_01_matter_and_atoms",
+  "subject": "science",
+  "title": "US Middle School Science - Matter and Atoms Reading",
+  "subtitle": "Reading practice on particles, changes of state, investigations, and conservation of matter.",
+  "level": "US Middle School",
+  "language": "English",
+  "topics": [
+    "Matter and Atoms"
+  ],
+  "tags": [
+    "US Middle School",
+    "Science",
+    "Physical Science",
+    "Matter",
+    "Atoms",
+    "Reading"
+  ],
+  "description": "Reading passages for a middle school physical science unit on matter and atoms. The passages build understanding of particle models, real-world phase changes, physical and chemical changes, fair testing, and conservation of matter.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-US",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-US",
+  "speechLanguage": "en-US",
+  "items": [
+    {
+      "id": "matter_atoms_passage_001",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:matter",
+        "cat:particles"
+      ],
+      "data": {
+        "sourceTitle": "Matter Is Made of Tiny Particles",
+        "targetTitle": "Matter Is Made of Tiny Particles",
+        "sourcePassage": "Matter is anything that has mass and takes up space. A pencil, a glass of water, and air inside a balloon are all examples of matter. Matter may look very different from one example to another, but scientists explain it using tiny particles. Atoms are basic building blocks of matter, and atoms can bond together to form molecules. You cannot see individual atoms with your eyes, but scientists use evidence, models, and advanced tools to reason about them. Particle models help explain why ice keeps its shape, why liquid water flows, and why air spreads out inside a room.",
+        "targetPassage": "Matter is anything that has mass and takes up space. A pencil, a glass of water, and air inside a balloon are all examples of matter. Matter may look very different from one example to another, but scientists explain it using tiny particles. Atoms are basic building blocks of matter, and atoms can bond together to form molecules. You cannot see individual atoms with your eyes, but scientists use evidence, models, and advanced tools to reason about them. Particle models help explain why ice keeps its shape, why liquid water flows, and why air spreads out inside a room.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "matter_atoms_passage_001_q1",
+            "questionType": "fact",
+            "question": "What two things must something have to count as matter?",
+            "modelAnswer": "It must have mass and take up space.",
+            "acceptedKeywords": [
+              "mass",
+              "space"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_001_q2",
+            "questionType": "multiple_choice",
+            "question": "Which item in the passage is an example of matter even though it may be invisible?",
+            "options": [
+              "Air inside a balloon",
+              "A shadow on a wall",
+              "Light from a lamp",
+              "Sound from a speaker"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Air inside a balloon",
+            "acceptedKeywords": [
+              "air",
+              "balloon"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_001_q3",
+            "questionType": "open",
+            "question": "Why do scientists use models when studying atoms?",
+            "modelAnswer": "Atoms are too small to see directly in a normal classroom, so models help scientists explain and predict particle behavior using evidence.",
+            "acceptedKeywords": [
+              "too small",
+              "models",
+              "explain",
+              "evidence"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_001_q4",
+            "questionType": "open",
+            "question": "How can a particle model connect invisible atoms to visible materials?",
+            "modelAnswer": "A particle model shows how tiny atoms or molecules are arranged and move, which helps explain visible properties such as shape, flow, and spreading out.",
+            "acceptedKeywords": [
+              "arranged",
+              "move",
+              "shape",
+              "flow"
+            ],
+            "difficulty": "harder"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_passage_002",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:states",
+        "cat:particles"
+      ],
+      "data": {
+        "sourceTitle": "Solids, Liquids, and Gases",
+        "targetTitle": "Solids, Liquids, and Gases",
+        "sourcePassage": "The state of matter depends partly on particle arrangement and particle motion. In a solid, particles are packed close together and vibrate in place. This gives solids a definite shape and a definite volume. In a liquid, particles are still close together, but they can slide past one another. This lets liquids flow and take the shape of a container while keeping a definite volume. In a gas, particles are much farther apart and move freely in many directions. Gases have no definite shape or volume because they spread out to fill the available space.",
+        "targetPassage": "The state of matter depends partly on particle arrangement and particle motion. In a solid, particles are packed close together and vibrate in place. This gives solids a definite shape and a definite volume. In a liquid, particles are still close together, but they can slide past one another. This lets liquids flow and take the shape of a container while keeping a definite volume. In a gas, particles are much farther apart and move freely in many directions. Gases have no definite shape or volume because they spread out to fill the available space.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "matter_atoms_passage_002_q1",
+            "questionType": "multiple_choice",
+            "question": "Which state has particles that vibrate in fixed positions?",
+            "options": [
+              "Solid",
+              "Liquid",
+              "Gas",
+              "Mixture"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Solid",
+            "acceptedKeywords": [
+              "solid"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_002_q2",
+            "questionType": "fact",
+            "question": "What property do liquids keep even though they take the shape of their container?",
+            "modelAnswer": "Liquids keep a definite volume.",
+            "acceptedKeywords": [
+              "definite volume",
+              "volume"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_002_q3",
+            "questionType": "open",
+            "question": "Why does a gas fill its container?",
+            "modelAnswer": "Gas particles are far apart and move freely in many directions, so they spread out to fill the available space.",
+            "acceptedKeywords": [
+              "far apart",
+              "move freely",
+              "spread out",
+              "container"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_002_q4",
+            "questionType": "open",
+            "question": "Compare solids and liquids using particle motion.",
+            "modelAnswer": "Solid particles vibrate in place, while liquid particles are close together but can slide past each other.",
+            "acceptedKeywords": [
+              "vibrate",
+              "slide",
+              "particles",
+              "close"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_002_q5",
+            "questionType": "open",
+            "question": "What misconception does the passage help correct about liquids?",
+            "modelAnswer": "It corrects the idea that liquids have no fixed amount of space; liquids change shape but keep a definite volume.",
+            "acceptedKeywords": [
+              "shape",
+              "definite volume",
+              "container"
+            ],
+            "difficulty": "harder"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_passage_003",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:phase_changes",
+        "cat:energy"
+      ],
+      "data": {
+        "sourceTitle": "Heating, Cooling, and Phase Changes",
+        "targetTitle": "Heating, Cooling, and Phase Changes",
+        "sourcePassage": "Heating and cooling affect particle motion. When matter is heated, energy is transferred to its particles, and the particles usually move faster. When matter is cooled, energy is transferred away from its particles, and the particles usually move slower. These changes in particle motion help explain phase changes. Melting changes a solid into a liquid. Freezing changes a liquid into a solid. Evaporation and boiling change liquid into gas, but evaporation happens at the surface while boiling happens throughout a liquid at its boiling point. Condensation changes gas into liquid when particles lose energy and move closer together.",
+        "targetPassage": "Heating and cooling affect particle motion. When matter is heated, energy is transferred to its particles, and the particles usually move faster. When matter is cooled, energy is transferred away from its particles, and the particles usually move slower. These changes in particle motion help explain phase changes. Melting changes a solid into a liquid. Freezing changes a liquid into a solid. Evaporation and boiling change liquid into gas, but evaporation happens at the surface while boiling happens throughout a liquid at its boiling point. Condensation changes gas into liquid when particles lose energy and move closer together.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "matter_atoms_passage_003_q1",
+            "questionType": "multiple_choice",
+            "question": "What usually happens to particles when matter is heated?",
+            "options": [
+              "They move faster.",
+              "They disappear.",
+              "They stop moving.",
+              "They become new atoms."
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "They move faster.",
+            "acceptedKeywords": [
+              "move faster",
+              "faster"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_003_q2",
+            "questionType": "fact",
+            "question": "What phase change changes gas into liquid?",
+            "modelAnswer": "Condensation changes gas into liquid.",
+            "acceptedKeywords": [
+              "condensation"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_003_q3",
+            "questionType": "open",
+            "question": "How are evaporation and boiling different?",
+            "modelAnswer": "Evaporation happens at the surface of a liquid, while boiling happens throughout a liquid at its boiling point.",
+            "acceptedKeywords": [
+              "surface",
+              "throughout",
+              "boiling point"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_003_q4",
+            "questionType": "open",
+            "question": "Why does cooling water vapor lead to droplets on a cold surface?",
+            "modelAnswer": "The water vapor particles lose energy, slow down, move closer together, and form liquid water droplets.",
+            "acceptedKeywords": [
+              "lose energy",
+              "closer together",
+              "liquid",
+              "droplets"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_003_q5",
+            "questionType": "open",
+            "question": "Why is a phase change usually a physical change?",
+            "modelAnswer": "A phase change changes particle arrangement and motion, but the particles are still the same substance.",
+            "acceptedKeywords": [
+              "same substance",
+              "arrangement",
+              "motion",
+              "no new substance"
+            ],
+            "difficulty": "harder"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_passage_004",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:changes",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "sourceTitle": "Physical and Chemical Changes",
+        "targetTitle": "Physical and Chemical Changes",
+        "sourcePassage": "A physical change alters the size, shape, state, or appearance of matter without forming a new substance. Melting ice, tearing paper, crushing a can, and dissolving sugar in water are physical changes. A chemical change forms one or more new substances with different properties. Burning paper, rusting iron, baking a cake, and vinegar reacting with baking soda are chemical changes. Evidence for a chemical change may include gas production, color change, heat or light, a new smell, or a new solid forming. However, a clue is not automatic proof. Bubbles can appear during boiling, which is a physical change, so scientists use careful evidence and context.",
+        "targetPassage": "A physical change alters the size, shape, state, or appearance of matter without forming a new substance. Melting ice, tearing paper, crushing a can, and dissolving sugar in water are physical changes. A chemical change forms one or more new substances with different properties. Burning paper, rusting iron, baking a cake, and vinegar reacting with baking soda are chemical changes. Evidence for a chemical change may include gas production, color change, heat or light, a new smell, or a new solid forming. However, a clue is not automatic proof. Bubbles can appear during boiling, which is a physical change, so scientists use careful evidence and context.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "matter_atoms_passage_004_q1",
+            "questionType": "multiple_choice",
+            "question": "Which example from the passage is a physical change?",
+            "options": [
+              "Melting ice",
+              "Rusting iron",
+              "Burning paper",
+              "Baking a cake"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Melting ice",
+            "acceptedKeywords": [
+              "melting ice"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_004_q2",
+            "questionType": "fact",
+            "question": "What must form during a chemical change?",
+            "modelAnswer": "One or more new substances must form.",
+            "acceptedKeywords": [
+              "new substance",
+              "new substances"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_004_q3",
+            "questionType": "open",
+            "question": "Why are bubbles alone not enough to prove a chemical change?",
+            "modelAnswer": "Bubbles can form during boiling, which is a physical change, so scientists need more evidence and context before deciding a new substance formed.",
+            "acceptedKeywords": [
+              "boiling",
+              "physical change",
+              "evidence",
+              "context"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_004_q4",
+            "questionType": "open",
+            "question": "Explain why dissolving sugar in water is listed as a physical change.",
+            "modelAnswer": "The sugar particles spread among water particles, but the sugar and water are still present and no new substance forms.",
+            "acceptedKeywords": [
+              "particles spread",
+              "still present",
+              "no new substance"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_004_q5",
+            "questionType": "open",
+            "question": "What stronger evidence might suggest a chemical change occurred?",
+            "modelAnswer": "Stronger evidence could include a new solid forming from liquids, a new gas with other signs, a lasting color or smell change, heat or light, and proof that a new substance formed.",
+            "acceptedKeywords": [
+              "new solid",
+              "new substance",
+              "color",
+              "heat",
+              "light"
+            ],
+            "difficulty": "harder"
+          }
+        ]
+      }
+    },
+    {
+      "id": "matter_atoms_passage_005",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "Matter and Atoms"
+      ],
+      "tags": [
+        "cat:conservation",
+        "cat:evidence"
+      ],
+      "data": {
+        "sourceTitle": "Conservation of Matter in a Closed System",
+        "targetTitle": "Conservation of Matter in a Closed System",
+        "sourcePassage": "The law of conservation of matter says that matter is not created or destroyed during ordinary physical and chemical changes. Atoms can be rearranged, but the total amount of matter stays the same in a closed system. A closed system is one where matter cannot enter or leave. If baking soda and vinegar react in an open cup, gas can escape into the air, so the measured mass of the cup system may decrease. If the same reaction happens inside a sealed plastic bag, the gas stays inside. The mass before and after should stay about the same, apart from small measurement errors.",
+        "targetPassage": "The law of conservation of matter says that matter is not created or destroyed during ordinary physical and chemical changes. Atoms can be rearranged, but the total amount of matter stays the same in a closed system. A closed system is one where matter cannot enter or leave. If baking soda and vinegar react in an open cup, gas can escape into the air, so the measured mass of the cup system may decrease. If the same reaction happens inside a sealed plastic bag, the gas stays inside. The mass before and after should stay about the same, apart from small measurement errors.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "matter_atoms_passage_005_q1",
+            "questionType": "fact",
+            "question": "What does conservation of matter mean?",
+            "modelAnswer": "Matter is not created or destroyed during ordinary physical and chemical changes.",
+            "acceptedKeywords": [
+              "not created",
+              "not destroyed",
+              "matter"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_005_q2",
+            "questionType": "multiple_choice",
+            "question": "Which setup is the better closed system?",
+            "options": [
+              "A sealed plastic bag",
+              "An open cup",
+              "A paper towel",
+              "An uncovered tray"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A sealed plastic bag",
+            "acceptedKeywords": [
+              "sealed bag",
+              "closed system"
+            ],
+            "difficulty": "easy"
+          },
+          {
+            "id": "matter_atoms_passage_005_q3",
+            "questionType": "open",
+            "question": "Why might the mass of an open cup system decrease after a reaction?",
+            "modelAnswer": "Gas produced by the reaction can escape into the air, so not all matter remains in the measured cup system.",
+            "acceptedKeywords": [
+              "gas escapes",
+              "open system",
+              "air"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_005_q4",
+            "questionType": "open",
+            "question": "What happens to atoms during ordinary chemical changes?",
+            "modelAnswer": "Atoms are rearranged into new substances, but they are not destroyed.",
+            "acceptedKeywords": [
+              "rearranged",
+              "new substances",
+              "not destroyed"
+            ],
+            "difficulty": "medium"
+          },
+          {
+            "id": "matter_atoms_passage_005_q5",
+            "questionType": "open",
+            "question": "Why might a sealed-bag experiment show a tiny mass difference instead of exactly 0.0 g?",
+            "modelAnswer": "Tiny differences can be caused by measurement error, balance sensitivity, or reading the scale slightly differently.",
+            "acceptedKeywords": [
+              "measurement error",
+              "balance",
+              "scale"
+            ],
+            "difficulty": "harder"
+          }
+        ]
+      }
+    }
+  ]
+}
