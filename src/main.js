@@ -92,6 +92,7 @@ import {
   levelMatches,
   normalizeForCompare,
   shuffle,
+  getVoicesForLanguage,
   speakText,
   stopSpeaking,
 } from "./utils.js";
@@ -180,6 +181,31 @@ function getStudyLanguageCode(dataset) {
 }
 
 // Returns the Speak button label. Latin has no TTS voice on any OS/browser,
+/**
+ * Render a TTS voice picker <select> for the given BCP-47 language code.
+ * Returns "" when speechSynthesis is unavailable or no voices are found.
+ */
+function renderVoiceSelector(langCode, currentVoiceName) {
+  if (!("speechSynthesis" in window)) return "";
+  const voices = getVoicesForLanguage(langCode);
+  if (!voices.length) return "";
+  const options = [
+    `<option value="">Browser default</option>`,
+    ...voices.map((v) => {
+      const icon = v.localService ? "📱" : "☁️";
+      const selected = currentVoiceName === v.name ? " selected" : "";
+      return `<option value="${escapeHtml(v.name)}"${selected}>${icon} ${escapeHtml(v.name)}</option>`;
+    }),
+  ].join("");
+  return `
+    <div class="form-grid" style="margin-top:10px;">
+      <label class="form-field">
+        <span class="form-field-label">Voice (${voices.length} available for ${escapeHtml(langCode)})</span>
+        <select id="passage-voice-select">${options}</select>
+      </label>
+    </div>`;
+}
+
 // so the browser falls back to English — warn the user with "(EN only)".
 function speakLabel(languageCode) {
   const code = String(languageCode || "").toLowerCase();
@@ -710,6 +736,17 @@ function bindEvents() {
   document.addEventListener("change", handleChange);
   document.addEventListener("input", handleInput);
   document.addEventListener("keydown", handleKeyDown);
+  // Chrome loads TTS voices asynchronously. Re-render once when they arrive
+  // so the voice selector shows the correct options.
+  if ("speechSynthesis" in window) {
+    let voicesLoaded = false;
+    window.speechSynthesis.addEventListener("voiceschanged", () => {
+      if (!voicesLoaded) {
+        voicesLoaded = true;
+        renderApp();
+      }
+    });
+  }
 }
 
 function ensurePreferenceDefaults() {
@@ -2487,6 +2524,11 @@ async function renderReadingTab() {
               <span><strong>Autoplay voice</strong><br /><span class="muted tiny">Use browser speech synthesis for the source passage.</span></span>
             </label>
           </div>
+          ${(() => {
+            const currentGroup = listPassageGroups(runtime.manifest).find((g) => g.id === prefs.groupId);
+            const packSpeechLang = currentGroup?.speechLanguage || "en-GB";
+            return renderVoiceSelector(packSpeechLang, prefs.voiceName || "");
+          })()}
           <div class="action-row" style="margin-top:18px;">
             <button class="button" data-action="reading-start">Start reading practice</button>
             ${renderStudyBookButton(findDataset(runtime.manifest, persisted.prefs.quiz.datasetId))}
@@ -4790,6 +4832,9 @@ async function handleChange(event) {
     case "passage-voice":
       persisted.prefs.passages.voiceEnabled = event.target.checked;
       break;
+    case "passage-voice-select":
+      persisted.prefs.passages.voiceName = event.target.value;
+      break;
     default:
       if (event.target.name === "quiz-mode") {
         const modeId = event.target.dataset.modeId;
@@ -5425,7 +5470,11 @@ function playCurrentPassage() {
   if (!current) {
     return;
   }
-  speakText(current.passage_de, fallback(current.speech_language, "en-GB"));
+  speakText(
+    current.passage_de,
+    fallback(current.speech_language, "en-GB"),
+    persisted.prefs.passages.voiceName || "",
+  );
 }
 
 function revealCurrentPassage() {
