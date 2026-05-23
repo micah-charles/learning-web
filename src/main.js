@@ -109,6 +109,21 @@ import {
   datasetHasStudyBook,
   getStudyBookFiles,
 } from "./study-book.js";
+import {
+  changeProgressiveLessonCollection,
+  changeProgressiveLessonLanguage,
+  changeProgressiveLessonLesson,
+  changeProgressiveLessonStage,
+  createProgressiveLessonState,
+  ensureProgressiveLessonStateForCatalog,
+  getCurrentSpeechCue,
+  loadProgressiveLessonCatalog,
+  loadProgressiveLessonPack,
+  markCurrentStepSpoken,
+  renderProgressiveLanguageLesson,
+  runProgressiveLessonAction,
+  speak as speakProgressiveText,
+} from "./progressive-language-lesson.js";
 
 const TABS = [
   { id: "home",    title: "Home"       },
@@ -117,6 +132,7 @@ const TABS = [
   { id: "crossword", title: "Crossword" },
   { id: "reading", title: "Reading"    },
   { id: "builder", title: "Builder"    },
+  { id: "progressive", title: "Progressive Language" },
   { id: "review",  title: "Review"     },
   { id: "about",   title: "About"      },
   { id: "admin",   title: "Progress"   },
@@ -134,6 +150,10 @@ const runtime = {
   crosswordError: "",
   builder: null,
   passages: null,
+  progressiveLesson: null,
+  progressiveLessonCatalog: null,
+  progressiveLessonPack: null,
+  progressiveLessonError: "",
   reviewContext: {
     hardest: [],
     mastered: [],
@@ -790,6 +810,9 @@ async function renderApp() {
     // Double rAF: first frame commits the new DOM, second frame has full layout.
     requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
   }
+  if (persisted.activeTab === "progressive") {
+    scheduleProgressiveLessonSpeech();
+  }
 }
 
 let _cwResizeHandler = null;
@@ -1005,6 +1028,8 @@ async function renderTabContent() {
       return renderReadingTab();
     case "builder":
       return renderBuilderTab();
+    case "progressive":
+      return renderProgressiveLanguageTab();
     case "review":
       return renderReviewTab();
     case "about":
@@ -1052,6 +1077,10 @@ async function renderHomeTab() {
             <button class="quick-card" data-tab="builder">
               <h3>Sentence Builder</h3>
               <p>Tap together full answers with hints and local streak tracking.</p>
+            </button>
+            <button class="quick-card" data-tab="progressive">
+              <h3>Progressive Language</h3>
+              <p>Listen, choose vocabulary, then build short multilingual sentences.</p>
             </button>
           </div>
         </article>
@@ -1142,6 +1171,35 @@ async function renderHomeTab() {
       </section>
     </div>
   `;
+}
+
+async function renderProgressiveLanguageTab() {
+  try {
+    runtime.progressiveLessonCatalog = await loadProgressiveLessonCatalog();
+    runtime.progressiveLesson = ensureProgressiveLessonStateForCatalog(runtime.progressiveLesson, runtime.progressiveLessonCatalog);
+    runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
+    runtime.progressiveLessonError = "";
+    return renderProgressiveLanguageLesson(runtime.progressiveLessonPack, runtime.progressiveLesson, runtime.progressiveLessonCatalog);
+  } catch (error) {
+    runtime.progressiveLessonError = error.message;
+    return renderEmptyStateCard({
+      eyebrow: "Progressive Language",
+      title: "Lesson pack unavailable",
+      body: `Could not load the prototype lesson pack. ${error.message}`,
+    });
+  }
+}
+
+function scheduleProgressiveLessonSpeech() {
+  const pack = runtime.progressiveLessonPack;
+  const state = runtime.progressiveLesson;
+  if (!pack || !state) return;
+  const cue = getCurrentSpeechCue(pack, state);
+  if (!cue || cue.key === state.spokenStepKey) return;
+  markCurrentStepSpoken(state, cue);
+  requestAnimationFrame(() => {
+    speakProgressiveText(cue.text, cue.lang);
+  });
 }
 
 async function renderAboutTab() {
@@ -3999,7 +4057,8 @@ async function handleClick(event) {
       const hasActiveSession =
         (newTab === "quiz"    && runtime.currentQuiz && !runtime.currentQuiz.completed) ||
         (newTab === "reading" && runtime.passages    && !runtime.passages.completed) ||
-        (newTab === "crossword" && runtime.crossword);
+        (newTab === "crossword" && runtime.crossword) ||
+        (newTab === "progressive" && runtime.progressiveLesson && runtime.progressiveLesson.phase !== "review");
       const message = hasActiveSession
         ? `Abandon the current session and return to ${tabLabel} setup?`
         : `Return to the ${tabLabel} main screen?`;
@@ -4008,6 +4067,7 @@ async function handleClick(event) {
       if (newTab === "quiz")    runtime.currentQuiz = null;
       if (newTab === "reading") runtime.passages    = null;
       if (newTab === "crossword") runtime.crossword = null;
+      if (newTab === "progressive") runtime.progressiveLesson = null;
     }
 
     persisted.activeTab = newTab;
@@ -4168,6 +4228,42 @@ async function handleClick(event) {
       saveStoredState(persisted);
       await renderApp();
       return;
+    case "progressive-replay":
+    case "progressive-jump-phase":
+    case "progressive-listen-back":
+    case "progressive-listen-next":
+    case "progressive-toggle-listen-grammar":
+    case "progressive-vocab-answer":
+    case "progressive-vocab-back":
+    case "progressive-vocab-next":
+    case "progressive-builder-pick":
+    case "progressive-builder-remove":
+    case "progressive-builder-reset":
+    case "progressive-toggle-builder-hint":
+    case "progressive-toggle-grammar-labels":
+    case "progressive-builder-check":
+    case "progressive-builder-back":
+    case "progressive-builder-next":
+    case "progressive-restart":
+    case "progressive-change-language": {
+      if (!runtime.progressiveLessonCatalog) {
+        runtime.progressiveLessonCatalog = await loadProgressiveLessonCatalog();
+      }
+      if (!runtime.progressiveLesson) {
+        runtime.progressiveLesson = createProgressiveLessonState("de");
+      }
+      runtime.progressiveLesson = ensureProgressiveLessonStateForCatalog(runtime.progressiveLesson, runtime.progressiveLessonCatalog);
+      const activePackPath = runtime.progressiveLesson.packPath;
+      runtime.progressiveLessonPack = await loadProgressiveLessonPack(activePackPath);
+      const result = runProgressiveLessonAction(runtime.progressiveLesson, runtime.progressiveLessonPack, action, actionButton.dataset);
+      if (result && result.phase) {
+        runtime.progressiveLesson = result;
+      } else if (result && result.speak) {
+        speakProgressiveText(result.speak.text, result.speak.lang);
+      }
+      await renderApp();
+      return;
+    }
     case "start-quiz":
       await startQuiz();
       return;
@@ -4825,6 +4921,24 @@ async function handleChange(event) {
       break;
     case "review-dataset":
       persisted.prefs.review.datasetId = value;
+      break;
+    case "progressive-pack-collection":
+      runtime.progressiveLessonCatalog = runtime.progressiveLessonCatalog || await loadProgressiveLessonCatalog();
+      runtime.progressiveLesson = changeProgressiveLessonCollection(runtime.progressiveLesson || createProgressiveLessonState("de"), runtime.progressiveLessonCatalog, value);
+      runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
+      break;
+    case "progressive-stage":
+      runtime.progressiveLessonCatalog = runtime.progressiveLessonCatalog || await loadProgressiveLessonCatalog();
+      runtime.progressiveLesson = changeProgressiveLessonStage(runtime.progressiveLesson || createProgressiveLessonState("de"), runtime.progressiveLessonCatalog, value);
+      runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
+      break;
+    case "progressive-lesson":
+      runtime.progressiveLessonCatalog = runtime.progressiveLessonCatalog || await loadProgressiveLessonCatalog();
+      runtime.progressiveLesson = changeProgressiveLessonLesson(runtime.progressiveLesson || createProgressiveLessonState("de"), runtime.progressiveLessonCatalog, value);
+      runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
+      break;
+    case "progressive-language":
+      runtime.progressiveLesson = changeProgressiveLessonLanguage(runtime.progressiveLesson || createProgressiveLessonState("de"), value);
       break;
     case "passage-show-german":
       persisted.prefs.passages.showGerman = event.target.checked;

@@ -1,0 +1,2178 @@
+{
+  "packId": "semantic_pack_l1_085_kitchen_cooking",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_085 — kitchen_cooking",
+  "description": "A corrected multilingual Stage 1 Progressive Language pack for Kitchen and Cooking.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_085",
+    "title": "Kitchen and Cooking",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "food",
+      "home"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "simple_past",
+        "conjunctions",
+        "preferences"
+      ],
+      "german": [
+        "past_forms"
+      ],
+      "french": [
+        "past_reference"
+      ],
+      "spanish": [
+        "simple_past_reference"
+      ],
+      "chinese": [
+        "completed_actions"
+      ],
+      "japanese": [
+        "past_polite_forms"
+      ]
+    },
+    "sentenceGoals": [
+      "The cook is in the kitchen.",
+      "The mother eats bread."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_COOK",
+      "type": "noun",
+      "senseKey": "person_cook",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "Koch",
+          "article": "der"
+        },
+        "fr": {
+          "text": "cuisinier",
+          "article": "le"
+        },
+        "es": {
+          "text": "cocinero",
+          "article": "el"
+        },
+        "zh": {
+          "text": "厨师"
+        },
+        "ja": {
+          "text": "料理人"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_MOTHER",
+      "type": "noun",
+      "senseKey": "person_mother",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "mother"
+        },
+        "de": {
+          "text": "Mutter",
+          "article": "die"
+        },
+        "fr": {
+          "text": "mère",
+          "article": "la"
+        },
+        "es": {
+          "text": "madre",
+          "article": "la"
+        },
+        "zh": {
+          "text": "妈妈"
+        },
+        "ja": {
+          "text": "母"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_KITCHEN",
+      "type": "noun",
+      "senseKey": "place_kitchen",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "kitchen"
+        },
+        "de": {
+          "text": "Küche",
+          "article": "die"
+        },
+        "fr": {
+          "text": "cuisine",
+          "article": "la"
+        },
+        "es": {
+          "text": "cocina",
+          "article": "la"
+        },
+        "zh": {
+          "text": "厨房"
+        },
+        "ja": {
+          "text": "台所"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_TABLE",
+      "type": "noun",
+      "senseKey": "place_table",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "table"
+        },
+        "de": {
+          "text": "Tisch",
+          "article": "der"
+        },
+        "fr": {
+          "text": "table à manger",
+          "article": "la"
+        },
+        "es": {
+          "text": "mesa",
+          "article": "la"
+        },
+        "zh": {
+          "text": "桌子"
+        },
+        "ja": {
+          "text": "テーブル"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BREAD",
+      "type": "noun",
+      "senseKey": "object_bread",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "bread"
+        },
+        "de": {
+          "text": "Brot",
+          "article": "das"
+        },
+        "fr": {
+          "text": "pain",
+          "article": "le"
+        },
+        "es": {
+          "text": "pan",
+          "article": "el"
+        },
+        "zh": {
+          "text": "面包"
+        },
+        "ja": {
+          "text": "パン"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_WATER",
+      "type": "noun",
+      "senseKey": "object_water",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "water"
+        },
+        "de": {
+          "text": "Wasser",
+          "article": "das"
+        },
+        "fr": {
+          "text": "l'eau"
+        },
+        "es": {
+          "text": "agua",
+          "article": "el"
+        },
+        "zh": {
+          "text": "水"
+        },
+        "ja": {
+          "text": "お水"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_COOK",
+      "type": "verb",
+      "senseKey": "verb_cook",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "kochen"
+        },
+        "fr": {
+          "text": "cuisiner"
+        },
+        "es": {
+          "text": "cocinar"
+        },
+        "zh": {
+          "text": "做饭"
+        },
+        "ja": {
+          "text": "料理する"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_EAT",
+      "type": "verb",
+      "senseKey": "verb_eat",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "eat"
+        },
+        "de": {
+          "text": "essen"
+        },
+        "fr": {
+          "text": "manger"
+        },
+        "es": {
+          "text": "comer"
+        },
+        "zh": {
+          "text": "吃"
+        },
+        "ja": {
+          "text": "食べる"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_MY",
+      "type": "possessive",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "zh": "我的",
+        "ja": "私の"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im/in der",
+        "fr": "dans",
+        "es": "en",
+        "zh": "在",
+        "ja": "に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_NEAR",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "near",
+        "de": "neben/bei",
+        "fr": "près de",
+        "es": "cerca de",
+        "zh": "旁边",
+        "ja": "近くに"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_LOCATION",
+      "linkedConcepts": [
+        "PERSON_COOK",
+        "PLACE_KITCHEN"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "cook",
+              "tiles": [
+                "cook"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "cook",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "cook",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Koch",
+              "tiles": [
+                "der Koch"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "der Koch",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Koch",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le cuisinier",
+              "tiles": [
+                "le cuisinier"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "le cuisinier",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "le cuisinier",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el cocinero",
+              "tiles": [
+                "el cocinero"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el cocinero",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el cocinero",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "厨师",
+              "tiles": [
+                "厨师"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "厨师",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "厨师",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "料理人",
+              "tiles": [
+                "料理人"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "料理人",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "料理人",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "place_phrase",
+          "translations": {
+            "en": {
+              "text": "the kitchen.",
+              "tiles": [
+                "the kitchen."
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "the kitchen",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "the kitchen",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Küche.",
+              "tiles": [
+                "der Küche."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "der Küche",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Küche",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la cuisine.",
+              "tiles": [
+                "la cuisine."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la cuisine",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la cuisine",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la cocina.",
+              "tiles": [
+                "la cocina."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la cocina",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la cocina",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "厨师在厨房里。",
+              "tiles": [
+                "厨师在厨房里。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "厨师在厨房里",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "厨师在厨房里",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "台所にいます。",
+              "tiles": [
+                "台所にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "台所にいます",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "台所にいます",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_location_sentence",
+          "translations": {
+            "en": {
+              "text": "The cook is in the kitchen.",
+              "tiles": [
+                "The",
+                "cook",
+                "is",
+                "in",
+                "the",
+                "kitchen."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + be + place phrase",
+                "literalOrderExplanation": "The → cook → is → in → the → kitchen",
+                "grammarExplanation": [
+                  "English uses 'is' for location.",
+                  "The place phrase tells where the person is."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cook",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kitchen",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der Koch ist in der Küche.",
+              "tiles": [
+                "Der",
+                "Koch",
+                "ist",
+                "in",
+                "der",
+                "Küche."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + place phrase",
+                "literalOrderExplanation": "Der → Koch → ist → in → der → Küche",
+                "grammarExplanation": [
+                  "German keeps the finite verb in second position.",
+                  "Location phrases often use dative forms such as im, am, or in der."
+                ],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Koch",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Küche",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le cuisinier est dans la cuisine.",
+              "tiles": [
+                "Le",
+                "cuisinier",
+                "est",
+                "dans",
+                "la",
+                "cuisine."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "Le → cuisinier → est → dans → la → cuisine",
+                "grammarExplanation": [
+                  "French uses être for location.",
+                  "Articles agree with the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisinier",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisine",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El cocinero está en la cocina.",
+              "tiles": [
+                "El",
+                "cocinero",
+                "está",
+                "en",
+                "la",
+                "cocina."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + estar + place phrase",
+                "literalOrderExplanation": "El → cocinero → está → en → la → cocina",
+                "grammarExplanation": [
+                  "Spanish uses estar for location.",
+                  "Articles agree with gender and number."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocinero",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocina",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "厨师在厨房里。",
+              "tiles": [
+                "厨师",
+                "在厨房里。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + 在 + place",
+                "literalOrderExplanation": "厨师 → 在厨房里",
+                "grammarExplanation": [
+                  "Chinese does not use articles like 'the'.",
+                  "在 marks the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "厨师",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在厨房里",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "料理人は台所にいます。",
+              "tiles": [
+                "料理人は",
+                "台所に",
+                "います。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + place + います",
+                "literalOrderExplanation": "料理人は → 台所に → います",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "に marks a place for being or destination.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "料理人は",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "台所に",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "います",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_ACTION",
+      "linkedConcepts": [
+        "PERSON_MOTHER",
+        "VERB_EAT",
+        "OBJECT_BREAD"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "mother",
+              "tiles": [
+                "mother"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "mother",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "mother",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Mutter",
+              "tiles": [
+                "die Mutter"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "die Mutter",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "die Mutter",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la mère",
+              "tiles": [
+                "la mère"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "la mère",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "la mère",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la madre",
+              "tiles": [
+                "la madre"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "la madre",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "la madre",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "妈妈",
+              "tiles": [
+                "妈妈"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "妈妈",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "妈妈",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "母",
+              "tiles": [
+                "母"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "母",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "母",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "object_phrase",
+          "translations": {
+            "en": {
+              "text": "bread",
+              "tiles": [
+                "bread"
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "bread",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "bread",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Brot",
+              "tiles": [
+                "das Brot"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "das Brot",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "das Brot",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le pain",
+              "tiles": [
+                "le pain"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "le pain",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le pain",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el pan",
+              "tiles": [
+                "el pan"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "el pan",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "el pan",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "面包",
+              "tiles": [
+                "面包"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "面包",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "面包",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "パン",
+              "tiles": [
+                "パン"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "パン",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "パン",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_action_sentence",
+          "translations": {
+            "en": {
+              "text": "The mother eats bread.",
+              "tiles": [
+                "The",
+                "mother",
+                "eats",
+                "bread."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "The → mother → eats → bread",
+                "grammarExplanation": [
+                  "English places the verb after the subject.",
+                  "The object receives the action."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mother",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eats",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bread",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die Mutter isst Brot.",
+              "tiles": [
+                "Die",
+                "Mutter",
+                "isst",
+                "Brot."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + object",
+                "literalOrderExplanation": "Die → Mutter → isst → Brot",
+                "grammarExplanation": [
+                  "German uses verb-second word order.",
+                  "Articles change by gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mutter",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "isst",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Brot",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La mère mange du pain.",
+              "tiles": [
+                "La",
+                "mère",
+                "mange",
+                "du",
+                "pain."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb phrase + object",
+                "literalOrderExplanation": "La → mère → mange → du → pain",
+                "grammarExplanation": [
+                  "French usually places the verb after the subject.",
+                  "Articles and contractions must match the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mère",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mange",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pain",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La madre come pan.",
+              "tiles": [
+                "La",
+                "madre",
+                "come",
+                "pan."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "La → madre → come → pan",
+                "grammarExplanation": [
+                  "Spanish verbs agree with the subject.",
+                  "The object follows the verb in simple sentences."
+                ],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "madre",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "come",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pan",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "妈妈吃面包。",
+              "tiles": [
+                "妈妈",
+                "吃",
+                "面包。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + action + object",
+                "literalOrderExplanation": "妈妈 → 吃 → 面包",
+                "grammarExplanation": [
+                  "Chinese commonly follows subject + verb + object order.",
+                  "The verb does not change for person."
+                ],
+                "tokens": [
+                  {
+                    "text": "妈妈",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "吃",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "面包",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "母はパンを食べます。",
+              "tiles": [
+                "母は",
+                "パンを",
+                "食べます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + object + verb-final",
+                "literalOrderExplanation": "母は → パンを → 食べます",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "The object or phrase comes before the verb.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "母は",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "パンを",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "食べます",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_COOK",
+        "PLACE_KITCHEN"
+      ],
+      "grammarFocus": [
+        "location_phrase",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_LOCATION",
+      "translations": {
+        "en": {
+          "text": "The cook is in the kitchen.",
+          "tiles": [
+            "The",
+            "cook",
+            "is",
+            "in",
+            "the",
+            "kitchen."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + be + place phrase",
+            "literalOrderExplanation": "The → cook → is → in → the → kitchen",
+            "grammarExplanation": [
+              "English uses 'is' for location.",
+              "The place phrase tells where the person is."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "cook",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "kitchen",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der Koch ist in der Küche.",
+          "tiles": [
+            "Der",
+            "Koch",
+            "ist",
+            "in",
+            "der",
+            "Küche."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + place phrase",
+            "literalOrderExplanation": "Der → Koch → ist → in → der → Küche",
+            "grammarExplanation": [
+              "German keeps the finite verb in second position.",
+              "Location phrases often use dative forms such as im, am, or in der."
+            ],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Koch",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Küche",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le cuisinier est dans la cuisine.",
+          "tiles": [
+            "Le",
+            "cuisinier",
+            "est",
+            "dans",
+            "la",
+            "cuisine."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "Le → cuisinier → est → dans → la → cuisine",
+            "grammarExplanation": [
+              "French uses être for location.",
+              "Articles agree with the noun."
+            ],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisinier",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisine",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El cocinero está en la cocina.",
+          "tiles": [
+            "El",
+            "cocinero",
+            "está",
+            "en",
+            "la",
+            "cocina."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + estar + place phrase",
+            "literalOrderExplanation": "El → cocinero → está → en → la → cocina",
+            "grammarExplanation": [
+              "Spanish uses estar for location.",
+              "Articles agree with gender and number."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocinero",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocina",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "厨师在厨房里。",
+          "tiles": [
+            "厨师",
+            "在厨房里。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + 在 + place",
+            "literalOrderExplanation": "厨师 → 在厨房里",
+            "grammarExplanation": [
+              "Chinese does not use articles like 'the'.",
+              "在 marks the location."
+            ],
+            "tokens": [
+              {
+                "text": "厨师",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在厨房里",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "料理人は台所にいます。",
+          "tiles": [
+            "料理人は",
+            "台所に",
+            "います。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + place + います",
+            "literalOrderExplanation": "料理人は → 台所に → います",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "に marks a place for being or destination.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "料理人は",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "台所に",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "います",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_MOTHER",
+        "VERB_EAT",
+        "OBJECT_BREAD"
+      ],
+      "grammarFocus": [
+        "basic_action",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_ACTION",
+      "translations": {
+        "en": {
+          "text": "The mother eats bread.",
+          "tiles": [
+            "The",
+            "mother",
+            "eats",
+            "bread."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "The → mother → eats → bread",
+            "grammarExplanation": [
+              "English places the verb after the subject.",
+              "The object receives the action."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "mother",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "eats",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "bread",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die Mutter isst Brot.",
+          "tiles": [
+            "Die",
+            "Mutter",
+            "isst",
+            "Brot."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + object",
+            "literalOrderExplanation": "Die → Mutter → isst → Brot",
+            "grammarExplanation": [
+              "German uses verb-second word order.",
+              "Articles change by gender and case."
+            ],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mutter",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "isst",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Brot",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La mère mange du pain.",
+          "tiles": [
+            "La",
+            "mère",
+            "mange",
+            "du",
+            "pain."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb phrase + object",
+            "literalOrderExplanation": "La → mère → mange → du → pain",
+            "grammarExplanation": [
+              "French usually places the verb after the subject.",
+              "Articles and contractions must match the noun."
+            ],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "mère",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "mange",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "pain",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La madre come pan.",
+          "tiles": [
+            "La",
+            "madre",
+            "come",
+            "pan."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "La → madre → come → pan",
+            "grammarExplanation": [
+              "Spanish verbs agree with the subject.",
+              "The object follows the verb in simple sentences."
+            ],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "madre",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "come",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "pan",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "妈妈吃面包。",
+          "tiles": [
+            "妈妈",
+            "吃",
+            "面包。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + action + object",
+            "literalOrderExplanation": "妈妈 → 吃 → 面包",
+            "grammarExplanation": [
+              "Chinese commonly follows subject + verb + object order.",
+              "The verb does not change for person."
+            ],
+            "tokens": [
+              {
+                "text": "妈妈",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "吃",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "面包",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "母はパンを食べます。",
+          "tiles": [
+            "母は",
+            "パンを",
+            "食べます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + object + verb-final",
+            "literalOrderExplanation": "母は → パンを → 食べます",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "The object or phrase comes before the verb.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "母は",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "パンを",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "食べます",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_COOK": [
+      "S001"
+    ],
+    "PLACE_KITCHEN": [
+      "S001"
+    ],
+    "PERSON_MOTHER": [
+      "S002"
+    ],
+    "VERB_EAT": [
+      "S002"
+    ],
+    "OBJECT_BREAD": [
+      "S002"
+    ]
+  }
+}
