@@ -61,6 +61,7 @@ export const DEFAULT_STATE = {
       difficulty: "all",
       showGerman: false,
       voiceEnabled: true,
+      voiceName: "",          // preferred TTS voice name (empty = browser default)
     },
     review: {
       datasetId: "core",
