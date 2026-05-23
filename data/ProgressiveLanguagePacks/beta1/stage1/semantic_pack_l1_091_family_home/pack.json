@@ -1,0 +1,2339 @@
+{
+  "packId": "semantic_pack_l1_091_family_home",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_091 — family_home",
+  "description": "A corrected multilingual Stage 1 Progressive Language pack for Family and Home.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_091",
+    "title": "Family and Home",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "family",
+      "home"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "simple_past",
+        "conjunctions",
+        "preferences"
+      ],
+      "german": [
+        "past_forms"
+      ],
+      "french": [
+        "past_reference"
+      ],
+      "spanish": [
+        "simple_past_reference"
+      ],
+      "chinese": [
+        "completed_actions"
+      ],
+      "japanese": [
+        "past_polite_forms"
+      ]
+    },
+    "sentenceGoals": [
+      "The mother is in the garden.",
+      "The grandmother sits near the chair."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_MOTHER",
+      "type": "noun",
+      "senseKey": "person_mother",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "mother"
+        },
+        "de": {
+          "text": "Mutter",
+          "article": "die"
+        },
+        "fr": {
+          "text": "mère",
+          "article": "la"
+        },
+        "es": {
+          "text": "madre",
+          "article": "la"
+        },
+        "zh": {
+          "text": "妈妈"
+        },
+        "ja": {
+          "text": "母"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_GRANDMOTHER",
+      "type": "noun",
+      "senseKey": "person_grandmother",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "grandmother"
+        },
+        "de": {
+          "text": "Großmutter",
+          "article": "die"
+        },
+        "fr": {
+          "text": "grand-mère",
+          "article": "la"
+        },
+        "es": {
+          "text": "abuela",
+          "article": "la"
+        },
+        "zh": {
+          "text": "奶奶"
+        },
+        "ja": {
+          "text": "祖母"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_GARDEN",
+      "type": "noun",
+      "senseKey": "place_garden",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "garden"
+        },
+        "de": {
+          "text": "Garten",
+          "article": "der"
+        },
+        "fr": {
+          "text": "jardin",
+          "article": "le"
+        },
+        "es": {
+          "text": "jardín",
+          "article": "el"
+        },
+        "zh": {
+          "text": "花园"
+        },
+        "ja": {
+          "text": "庭"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_LIVING_ROOM",
+      "type": "noun",
+      "senseKey": "place_living_room",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "living room"
+        },
+        "de": {
+          "text": "Wohnzimmer",
+          "article": "das"
+        },
+        "fr": {
+          "text": "salon",
+          "article": "le"
+        },
+        "es": {
+          "text": "sala",
+          "article": "la"
+        },
+        "zh": {
+          "text": "客厅"
+        },
+        "ja": {
+          "text": "リビング"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_CHAIR",
+      "type": "noun",
+      "senseKey": "object_chair",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "chair"
+        },
+        "de": {
+          "text": "Stuhl",
+          "article": "der"
+        },
+        "fr": {
+          "text": "chaise",
+          "article": "la"
+        },
+        "es": {
+          "text": "silla",
+          "article": "la"
+        },
+        "zh": {
+          "text": "椅子"
+        },
+        "ja": {
+          "text": "いす"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BED",
+      "type": "noun",
+      "senseKey": "object_bed",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "bed"
+        },
+        "de": {
+          "text": "Bett",
+          "article": "das"
+        },
+        "fr": {
+          "text": "lit",
+          "article": "le"
+        },
+        "es": {
+          "text": "cama",
+          "article": "la"
+        },
+        "zh": {
+          "text": "床"
+        },
+        "ja": {
+          "text": "ベッド"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_EAT",
+      "type": "verb",
+      "senseKey": "verb_eat",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "eat"
+        },
+        "de": {
+          "text": "essen"
+        },
+        "fr": {
+          "text": "manger"
+        },
+        "es": {
+          "text": "comer"
+        },
+        "zh": {
+          "text": "吃"
+        },
+        "ja": {
+          "text": "食べる"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_SIT",
+      "type": "verb",
+      "senseKey": "verb_sit",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "sit"
+        },
+        "de": {
+          "text": "sitzen"
+        },
+        "fr": {
+          "text": "s'asseoir"
+        },
+        "es": {
+          "text": "sentarse"
+        },
+        "zh": {
+          "text": "坐"
+        },
+        "ja": {
+          "text": "座る"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_MY",
+      "type": "possessive",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "zh": "我的",
+        "ja": "私の"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im/in der",
+        "fr": "dans",
+        "es": "en",
+        "zh": "在",
+        "ja": "に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_NEAR",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "near",
+        "de": "neben/bei",
+        "fr": "près de",
+        "es": "cerca de",
+        "zh": "旁边",
+        "ja": "近くに"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_LOCATION",
+      "linkedConcepts": [
+        "PERSON_MOTHER",
+        "PLACE_GARDEN"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "mother",
+              "tiles": [
+                "mother"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "mother",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "mother",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Mutter",
+              "tiles": [
+                "die Mutter"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "die Mutter",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "die Mutter",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la mère",
+              "tiles": [
+                "la mère"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "la mère",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "la mère",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la madre",
+              "tiles": [
+                "la madre"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "la madre",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "la madre",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "妈妈",
+              "tiles": [
+                "妈妈"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "妈妈",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "妈妈",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "母",
+              "tiles": [
+                "母"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "母",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "母",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "place_phrase",
+          "translations": {
+            "en": {
+              "text": "the garden.",
+              "tiles": [
+                "the garden."
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "the garden",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "the garden",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "im Garten.",
+              "tiles": [
+                "im Garten."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "im Garten",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "im Garten",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le jardin.",
+              "tiles": [
+                "le jardin."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "le jardin",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le jardin",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el jardín.",
+              "tiles": [
+                "el jardín."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "el jardín",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "el jardín",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "妈妈在花园里。",
+              "tiles": [
+                "妈妈在花园里。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "妈妈在花园里",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "妈妈在花园里",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "庭にいます。",
+              "tiles": [
+                "庭にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "庭にいます",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "庭にいます",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_location_sentence",
+          "translations": {
+            "en": {
+              "text": "The mother is in the garden.",
+              "tiles": [
+                "The",
+                "mother",
+                "is",
+                "in",
+                "the",
+                "garden."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + be + place phrase",
+                "literalOrderExplanation": "The → mother → is → in → the → garden",
+                "grammarExplanation": [
+                  "English uses 'is' for location.",
+                  "The place phrase tells where the person is."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mother",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "garden",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die Mutter ist im Garten.",
+              "tiles": [
+                "Die",
+                "Mutter",
+                "ist",
+                "im",
+                "Garten."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + place phrase",
+                "literalOrderExplanation": "Die → Mutter → ist → im → Garten",
+                "grammarExplanation": [
+                  "German keeps the finite verb in second position.",
+                  "Location phrases often use dative forms such as im, am, or in der."
+                ],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mutter",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Garten",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La mère est dans le jardin.",
+              "tiles": [
+                "La",
+                "mère",
+                "est",
+                "dans",
+                "le",
+                "jardin."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "La → mère → est → dans → le → jardin",
+                "grammarExplanation": [
+                  "French uses être for location.",
+                  "Articles agree with the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mère",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "jardin",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La madre está en el jardín.",
+              "tiles": [
+                "La",
+                "madre",
+                "está",
+                "en",
+                "el",
+                "jardín."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + estar + place phrase",
+                "literalOrderExplanation": "La → madre → está → en → el → jardín",
+                "grammarExplanation": [
+                  "Spanish uses estar for location.",
+                  "Articles agree with gender and number."
+                ],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "madre",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "jardín",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "妈妈在花园里。",
+              "tiles": [
+                "妈妈",
+                "在花园里。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + 在 + place",
+                "literalOrderExplanation": "妈妈 → 在花园里",
+                "grammarExplanation": [
+                  "Chinese does not use articles like 'the'.",
+                  "在 marks the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "妈妈",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在花园里",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "母は庭にいます。",
+              "tiles": [
+                "母は",
+                "庭に",
+                "います。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + place + います",
+                "literalOrderExplanation": "母は → 庭に → います",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "に marks a place for being or destination.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "母は",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "庭に",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "います",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_ACTION",
+      "linkedConcepts": [
+        "PERSON_GRANDMOTHER",
+        "VERB_SIT",
+        "OBJECT_CHAIR"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "grandmother",
+              "tiles": [
+                "grandmother"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "grandmother",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "grandmother",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Großmutter",
+              "tiles": [
+                "die Großmutter"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "die Großmutter",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "die Großmutter",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la grand-mère",
+              "tiles": [
+                "la grand-mère"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "la grand-mère",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "la grand-mère",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la abuela",
+              "tiles": [
+                "la abuela"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "la abuela",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "la abuela",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "奶奶",
+              "tiles": [
+                "奶奶"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "奶奶",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "奶奶",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "祖母",
+              "tiles": [
+                "祖母"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "祖母",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "祖母",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "object_phrase",
+          "translations": {
+            "en": {
+              "text": "chair",
+              "tiles": [
+                "chair"
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "chair",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "chair",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Stuhl",
+              "tiles": [
+                "der Stuhl"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "der Stuhl",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Stuhl",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la chaise",
+              "tiles": [
+                "la chaise"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la chaise",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la chaise",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la silla",
+              "tiles": [
+                "la silla"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la silla",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la silla",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "椅子",
+              "tiles": [
+                "椅子"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "椅子",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "椅子",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "いす",
+              "tiles": [
+                "いす"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "いす",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "いす",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_action_sentence",
+          "translations": {
+            "en": {
+              "text": "The grandmother sits near the chair.",
+              "tiles": [
+                "The",
+                "grandmother",
+                "sits",
+                "near",
+                "the",
+                "chair."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "The → grandmother → sits → near → the → chair",
+                "grammarExplanation": [
+                  "English places the verb after the subject.",
+                  "The object receives the action."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "grandmother",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sits",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "near",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chair",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die Großmutter sitzt neben dem Stuhl.",
+              "tiles": [
+                "Die",
+                "Großmutter",
+                "sitzt",
+                "neben",
+                "dem",
+                "Stuhl."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + object",
+                "literalOrderExplanation": "Die → Großmutter → sitzt → neben → dem → Stuhl",
+                "grammarExplanation": [
+                  "German uses verb-second word order.",
+                  "Articles change by gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Großmutter",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sitzt",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "neben",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dem",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Stuhl",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La grand-mère est assise près de la chaise.",
+              "tiles": [
+                "La",
+                "grand-mère",
+                "est",
+                "assise",
+                "près",
+                "de",
+                "la",
+                "chaise."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb phrase + object",
+                "literalOrderExplanation": "La → grand-mère → est → assise → près → de → la → chaise",
+                "grammarExplanation": [
+                  "French usually places the verb after the subject.",
+                  "Articles and contractions must match the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "grand-mère",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "assise",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "près",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chaise",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La abuela se sienta cerca de la silla.",
+              "tiles": [
+                "La",
+                "abuela",
+                "se",
+                "sienta",
+                "cerca",
+                "de",
+                "la",
+                "silla."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "La → abuela → se → sienta → cerca → de → la → silla",
+                "grammarExplanation": [
+                  "Spanish verbs agree with the subject.",
+                  "The object follows the verb in simple sentences."
+                ],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "abuela",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "se",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sienta",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cerca",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "silla",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "奶奶坐在椅子旁边。",
+              "tiles": [
+                "奶奶",
+                "坐在",
+                "椅子旁边。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + action + object",
+                "literalOrderExplanation": "奶奶 → 坐在 → 椅子旁边",
+                "grammarExplanation": [
+                  "Chinese commonly follows subject + verb + object order.",
+                  "The verb does not change for person."
+                ],
+                "tokens": [
+                  {
+                    "text": "奶奶",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "坐在",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "椅子旁边",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "祖母はいすの近くに座ります。",
+              "tiles": [
+                "祖母は",
+                "いすの近くに",
+                "座ります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + object + verb-final",
+                "literalOrderExplanation": "祖母は → いすの近くに → 座ります",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "The object or phrase comes before the verb.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "祖母は",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "いすの近くに",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "座ります",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_MOTHER",
+        "PLACE_GARDEN"
+      ],
+      "grammarFocus": [
+        "location_phrase",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_LOCATION",
+      "translations": {
+        "en": {
+          "text": "The mother is in the garden.",
+          "tiles": [
+            "The",
+            "mother",
+            "is",
+            "in",
+            "the",
+            "garden."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + be + place phrase",
+            "literalOrderExplanation": "The → mother → is → in → the → garden",
+            "grammarExplanation": [
+              "English uses 'is' for location.",
+              "The place phrase tells where the person is."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "mother",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "garden",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die Mutter ist im Garten.",
+          "tiles": [
+            "Die",
+            "Mutter",
+            "ist",
+            "im",
+            "Garten."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + place phrase",
+            "literalOrderExplanation": "Die → Mutter → ist → im → Garten",
+            "grammarExplanation": [
+              "German keeps the finite verb in second position.",
+              "Location phrases often use dative forms such as im, am, or in der."
+            ],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mutter",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Garten",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La mère est dans le jardin.",
+          "tiles": [
+            "La",
+            "mère",
+            "est",
+            "dans",
+            "le",
+            "jardin."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "La → mère → est → dans → le → jardin",
+            "grammarExplanation": [
+              "French uses être for location.",
+              "Articles agree with the noun."
+            ],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "mère",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "jardin",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La madre está en el jardín.",
+          "tiles": [
+            "La",
+            "madre",
+            "está",
+            "en",
+            "el",
+            "jardín."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + estar + place phrase",
+            "literalOrderExplanation": "La → madre → está → en → el → jardín",
+            "grammarExplanation": [
+              "Spanish uses estar for location.",
+              "Articles agree with gender and number."
+            ],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "madre",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "jardín",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "妈妈在花园里。",
+          "tiles": [
+            "妈妈",
+            "在花园里。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + 在 + place",
+            "literalOrderExplanation": "妈妈 → 在花园里",
+            "grammarExplanation": [
+              "Chinese does not use articles like 'the'.",
+              "在 marks the location."
+            ],
+            "tokens": [
+              {
+                "text": "妈妈",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在花园里",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "母は庭にいます。",
+          "tiles": [
+            "母は",
+            "庭に",
+            "います。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + place + います",
+            "literalOrderExplanation": "母は → 庭に → います",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "に marks a place for being or destination.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "母は",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "庭に",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "います",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_GRANDMOTHER",
+        "VERB_SIT",
+        "OBJECT_CHAIR"
+      ],
+      "grammarFocus": [
+        "basic_action",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_ACTION",
+      "translations": {
+        "en": {
+          "text": "The grandmother sits near the chair.",
+          "tiles": [
+            "The",
+            "grandmother",
+            "sits",
+            "near",
+            "the",
+            "chair."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "The → grandmother → sits → near → the → chair",
+            "grammarExplanation": [
+              "English places the verb after the subject.",
+              "The object receives the action."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "grandmother",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "sits",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "near",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "chair",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die Großmutter sitzt neben dem Stuhl.",
+          "tiles": [
+            "Die",
+            "Großmutter",
+            "sitzt",
+            "neben",
+            "dem",
+            "Stuhl."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + object",
+            "literalOrderExplanation": "Die → Großmutter → sitzt → neben → dem → Stuhl",
+            "grammarExplanation": [
+              "German uses verb-second word order.",
+              "Articles change by gender and case."
+            ],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Großmutter",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "sitzt",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "neben",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "dem",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Stuhl",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La grand-mère est assise près de la chaise.",
+          "tiles": [
+            "La",
+            "grand-mère",
+            "est",
+            "assise",
+            "près",
+            "de",
+            "la",
+            "chaise."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb phrase + object",
+            "literalOrderExplanation": "La → grand-mère → est → assise → près → de → la → chaise",
+            "grammarExplanation": [
+              "French usually places the verb after the subject.",
+              "Articles and contractions must match the noun."
+            ],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "grand-mère",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "assise",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "près",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "chaise",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La abuela se sienta cerca de la silla.",
+          "tiles": [
+            "La",
+            "abuela",
+            "se",
+            "sienta",
+            "cerca",
+            "de",
+            "la",
+            "silla."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "La → abuela → se → sienta → cerca → de → la → silla",
+            "grammarExplanation": [
+              "Spanish verbs agree with the subject.",
+              "The object follows the verb in simple sentences."
+            ],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "abuela",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "se",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "sienta",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "cerca",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "silla",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "奶奶坐在椅子旁边。",
+          "tiles": [
+            "奶奶",
+            "坐在",
+            "椅子旁边。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + action + object",
+            "literalOrderExplanation": "奶奶 → 坐在 → 椅子旁边",
+            "grammarExplanation": [
+              "Chinese commonly follows subject + verb + object order.",
+              "The verb does not change for person."
+            ],
+            "tokens": [
+              {
+                "text": "奶奶",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "坐在",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "椅子旁边",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "祖母はいすの近くに座ります。",
+          "tiles": [
+            "祖母は",
+            "いすの近くに",
+            "座ります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + object + verb-final",
+            "literalOrderExplanation": "祖母は → いすの近くに → 座ります",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "The object or phrase comes before the verb.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "祖母は",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "いすの近くに",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "座ります",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_MOTHER": [
+      "S001"
+    ],
+    "PLACE_GARDEN": [
+      "S001"
+    ],
+    "PERSON_GRANDMOTHER": [
+      "S002"
+    ],
+    "VERB_SIT": [
+      "S002"
+    ],
+    "OBJECT_CHAIR": [
+      "S002"
+    ]
+  }
+}

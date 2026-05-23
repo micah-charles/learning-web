@@ -1,0 +1,2682 @@
+{
+  "packId": "multilingual_foundation_pack_002_river_bridge",
+  "schemaVersion": "prototype-0.2",
+  "title": "Foundation Pack 002 — River and Bridge",
+  "description": "A beginner multilingual semantic language pack about river, bridge, crossing, water and boat. It teaches prepositions, location markers, Japanese particles and basic sentence building.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "vocabulary": [
+    {
+      "conceptId": "NATURE_RIVER",
+      "type": "noun",
+      "senseKey": "flowing_body_of_water",
+      "translations": {
+        "en": {
+          "text": "river",
+          "article": "the"
+        },
+        "de": {
+          "text": "Fluss",
+          "article": "der"
+        },
+        "fr": {
+          "text": "rivière",
+          "article": "la"
+        },
+        "es": {
+          "text": "río",
+          "article": "el"
+        },
+        "zh": {
+          "text": "河",
+          "reading": "hé"
+        },
+        "ja": {
+          "text": "川",
+          "reading": "かわ",
+          "romaji": "kawa"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_BRIDGE",
+      "type": "noun",
+      "senseKey": "structure_for_crossing",
+      "translations": {
+        "en": {
+          "text": "bridge",
+          "article": "the"
+        },
+        "de": {
+          "text": "Brücke",
+          "article": "die"
+        },
+        "fr": {
+          "text": "pont",
+          "article": "le"
+        },
+        "es": {
+          "text": "puente",
+          "article": "el"
+        },
+        "zh": {
+          "text": "橋",
+          "reading": "qiáo"
+        },
+        "ja": {
+          "text": "橋",
+          "reading": "はし",
+          "romaji": "hashi"
+        }
+      }
+    },
+    {
+      "conceptId": "ACTION_CROSS",
+      "type": "verb",
+      "senseKey": "go_from_one_side_to_the_other",
+      "translations": {
+        "en": {
+          "base": "cross",
+          "present": "cross",
+          "past": "crossed"
+        },
+        "de": {
+          "base": "überqueren"
+        },
+        "fr": {
+          "base": "traverser"
+        },
+        "es": {
+          "base": "cruzar"
+        },
+        "zh": {
+          "base": "過",
+          "reading": "guò"
+        },
+        "ja": {
+          "base": "渡る",
+          "reading": "わたる",
+          "romaji": "wataru"
+        }
+      }
+    },
+    {
+      "conceptId": "NATURE_WATER",
+      "type": "noun",
+      "senseKey": "water_liquid",
+      "translations": {
+        "en": {
+          "text": "water"
+        },
+        "de": {
+          "text": "Wasser",
+          "article": "das"
+        },
+        "fr": {
+          "text": "l’eau"
+        },
+        "es": {
+          "text": "agua",
+          "article": "el"
+        },
+        "zh": {
+          "text": "水",
+          "reading": "shuǐ"
+        },
+        "ja": {
+          "text": "水",
+          "reading": "みず",
+          "romaji": "mizu"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BOAT",
+      "type": "noun",
+      "senseKey": "small_water_vehicle",
+      "translations": {
+        "en": {
+          "text": "boat",
+          "article": "the"
+        },
+        "de": {
+          "text": "Boot",
+          "article": "das"
+        },
+        "fr": {
+          "text": "bateau",
+          "article": "le"
+        },
+        "es": {
+          "text": "barco",
+          "article": "el"
+        },
+        "zh": {
+          "text": "船",
+          "reading": "chuán"
+        },
+        "ja": {
+          "text": "船",
+          "reading": "ふね",
+          "romaji": "fune"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_A",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "a",
+        "de": "ein/eine",
+        "fr": "un/une",
+        "es": "un/una",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "ARTICLE_AN",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "an",
+        "de": "ein/eine",
+        "fr": "un/une",
+        "es": "un/una",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_HE",
+      "type": "pronoun",
+      "linkToConcept": false,
+      "translations": {
+        "en": "he",
+        "de": "er",
+        "fr": "il",
+        "es": "él",
+        "zh": "他",
+        "ja": "彼"
+      }
+    },
+    {
+      "tokenId": "PRONOUN_SHE",
+      "type": "pronoun",
+      "linkToConcept": false,
+      "translations": {
+        "en": "she",
+        "de": "sie",
+        "fr": "elle",
+        "es": "ella",
+        "zh": "她",
+        "ja": "彼女"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_ON",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "on",
+        "de": "auf/an",
+        "fr": "sur",
+        "es": "en/sobre",
+        "zh": "在...上",
+        "ja": "に/の上に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in",
+        "fr": "dans/en",
+        "es": "en",
+        "zh": "在...裡",
+        "ja": "に/で"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_TO",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "to",
+        "de": "zu/nach",
+        "fr": "à",
+        "es": "a",
+        "zh": "去/到",
+        "ja": "に/へ"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_ACROSS",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "across",
+        "de": "über",
+        "fr": "à travers / sur",
+        "es": "por / sobre",
+        "zh": "過",
+        "ja": "を渡って"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_OVER",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "over",
+        "de": "über",
+        "fr": "au-dessus de / sur",
+        "es": "sobre",
+        "zh": "在...上方 / 過",
+        "ja": "の上を"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_BRIDGE_CROSS",
+      "linkedConcepts": [
+        "PLACE_BRIDGE",
+        "ACTION_CROSS"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_noun",
+          "translations": {
+            "en": {
+              "text": "bridge",
+              "tiles": [
+                "bridge"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "A single noun names a thing or place.",
+                  "A bridge helps people cross from one side to another."
+                ],
+                "tokens": [
+                  {
+                    "text": "bridge",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Brücke",
+              "tiles": [
+                "Brücke"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "'Brücke' is feminine, so 'the bridge' is 'die Brücke'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Brücke",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "pont",
+              "tiles": [
+                "pont"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'pont' means bridge.",
+                  "French normally adds an article in a noun phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "pont",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "puente",
+              "tiles": [
+                "puente"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'puente' means bridge.",
+                  "Spanish normally adds an article in a noun phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "puente",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "橋",
+              "tiles": [
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese does not need an article like 'a' or 'the' here.",
+                  "'橋' means bridge."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "橋",
+              "tiles": [
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese does not use articles like 'a' or 'the'.",
+                  "'橋' means bridge."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "definite_noun_phrase",
+          "translations": {
+            "en": {
+              "text": "the bridge",
+              "tiles": [
+                "the",
+                "bridge"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'the' points to a specific bridge.",
+                  "English commonly uses articles before singular nouns."
+                ],
+                "tokens": [
+                  {
+                    "text": "the",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "specific/known"
+                  },
+                  {
+                    "text": "bridge",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Brücke",
+              "tiles": [
+                "die",
+                "Brücke"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'die' is the feminine definite article.",
+                  "German articles depend on noun gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "die",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "Brücke",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le pont",
+              "tiles": [
+                "le",
+                "pont"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'le' is the masculine definite article.",
+                  "French nouns usually need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "le",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "pont",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el puente",
+              "tiles": [
+                "el",
+                "puente"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'el' is the masculine definite article.",
+                  "Spanish nouns usually need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "el",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "puente",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "橋",
+              "tiles": [
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese often does not translate 'the' directly.",
+                  "The noun alone can mean 'the bridge' when context is clear."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "橋",
+              "tiles": [
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese has no article equivalent to 'the'.",
+                  "The noun alone can mean 'the bridge' in context."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "place/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "across_phrase",
+          "translations": {
+            "en": {
+              "text": "across the bridge",
+              "tiles": [
+                "across",
+                "the",
+                "bridge"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'across' shows movement from one side to the other.",
+                  "'the bridge' is the route or path."
+                ],
+                "tokens": [
+                  {
+                    "text": "across",
+                    "type": "preposition",
+                    "role": "movement_path",
+                    "meaning": "from one side to the other"
+                  },
+                  {
+                    "text": "the",
+                    "type": "article",
+                    "role": "determiner"
+                  },
+                  {
+                    "text": "bridge",
+                    "type": "noun",
+                    "role": "route",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "über die Brücke",
+              "tiles": [
+                "über",
+                "die",
+                "Brücke"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'über' can mean over/across.",
+                  "With movement across something, German uses the accusative after 'über'."
+                ],
+                "tokens": [
+                  {
+                    "text": "über",
+                    "type": "preposition",
+                    "role": "movement_path",
+                    "meaning": "across/over"
+                  },
+                  {
+                    "text": "die",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "Brücke",
+                    "type": "noun",
+                    "role": "route",
+                    "meaning": "bridge",
+                    "grammarNote": "Accusative feminine still uses 'die'."
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "sur le pont",
+              "tiles": [
+                "sur",
+                "le",
+                "pont"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "French commonly says 'sur le pont' for being on/across the bridge.",
+                  "'le pont' means 'the bridge'."
+                ],
+                "tokens": [
+                  {
+                    "text": "sur",
+                    "type": "preposition",
+                    "role": "location/path",
+                    "meaning": "on/across"
+                  },
+                  {
+                    "text": "le",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "pont",
+                    "type": "noun",
+                    "role": "route",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "por el puente",
+              "tiles": [
+                "por",
+                "el",
+                "puente"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'por' can show route or movement across a place.",
+                  "'el puente' means 'the bridge'."
+                ],
+                "tokens": [
+                  {
+                    "text": "por",
+                    "type": "preposition",
+                    "role": "route_marker",
+                    "meaning": "through/across/by way of"
+                  },
+                  {
+                    "text": "el",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "puente",
+                    "type": "noun",
+                    "role": "route",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "過橋",
+              "tiles": [
+                "過",
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Object",
+                "grammarExplanation": [
+                  "Chinese uses '過' before the object to mean cross/go across.",
+                  "No article is needed."
+                ],
+                "tokens": [
+                  {
+                    "text": "過",
+                    "type": "verb",
+                    "role": "movement_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "route/object",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "橋を渡って",
+              "tiles": [
+                "橋を",
+                "渡って"
+              ],
+              "analysis": {
+                "sentencePattern": "Object + Particle + Verb Form",
+                "grammarExplanation": [
+                  "'を' marks the thing being crossed.",
+                  "'渡って' is a connecting form of 'cross'."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋を",
+                    "type": "object_phrase",
+                    "role": "route/object",
+                    "meaning": "bridge",
+                    "grammarNote": "The particle を marks the bridge as what is crossed."
+                  },
+                  {
+                    "text": "渡って",
+                    "type": "verb_te_form",
+                    "role": "movement_action",
+                    "meaning": "crossing"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 4,
+          "focus": "verb_phrase",
+          "translations": {
+            "en": {
+              "text": "cross the bridge",
+              "tiles": [
+                "cross",
+                "the",
+                "bridge"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Object",
+                "grammarExplanation": [
+                  "'cross' is the action.",
+                  "'the bridge' is what is crossed."
+                ],
+                "tokens": [
+                  {
+                    "text": "cross",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "the bridge",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Brücke überqueren",
+              "tiles": [
+                "die",
+                "Brücke",
+                "überqueren"
+              ],
+              "analysis": {
+                "sentencePattern": "Object + Infinitive Verb",
+                "grammarExplanation": [
+                  "In an infinitive phrase, German can place the object before the infinitive verb.",
+                  "'überqueren' means 'to cross'."
+                ],
+                "tokens": [
+                  {
+                    "text": "die Brücke",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  },
+                  {
+                    "text": "überqueren",
+                    "type": "infinitive_verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "traverser le pont",
+              "tiles": [
+                "traverser",
+                "le",
+                "pont"
+              ],
+              "analysis": {
+                "sentencePattern": "Infinitive Verb + Object",
+                "grammarExplanation": [
+                  "'traverser' means 'to cross'.",
+                  "The object follows the verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "traverser",
+                    "type": "infinitive_verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "le pont",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "cruzar el puente",
+              "tiles": [
+                "cruzar",
+                "el",
+                "puente"
+              ],
+              "analysis": {
+                "sentencePattern": "Infinitive Verb + Object",
+                "grammarExplanation": [
+                  "'cruzar' means 'to cross'.",
+                  "The object follows the verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "cruzar",
+                    "type": "infinitive_verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "el puente",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "過橋",
+              "tiles": [
+                "過",
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Object",
+                "grammarExplanation": [
+                  "Chinese keeps a simple verb + object order.",
+                  "'過橋' means cross the bridge."
+                ],
+                "tokens": [
+                  {
+                    "text": "過",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "object/route",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "橋を渡る",
+              "tiles": [
+                "橋を",
+                "渡る"
+              ],
+              "analysis": {
+                "sentencePattern": "Object + Particle + Verb",
+                "grammarExplanation": [
+                  "Japanese usually places the verb at the end.",
+                  "'橋を' means the bridge is what is crossed."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋を",
+                    "type": "object_phrase",
+                    "role": "object/route",
+                    "meaning": "bridge"
+                  },
+                  {
+                    "text": "渡る",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross",
+                    "grammarNote": "Japanese verbs usually come at the end."
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 5,
+          "focus": "full_sentence_present",
+          "translations": {
+            "en": {
+              "text": "We cross the bridge.",
+              "tiles": [
+                "We",
+                "cross",
+                "the",
+                "bridge."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Object",
+                "grammarExplanation": [
+                  "'We' is the subject.",
+                  "'cross' is the action.",
+                  "'the bridge' is the object or route."
+                ],
+                "tokens": [
+                  {
+                    "text": "We",
+                    "type": "pronoun",
+                    "role": "subject",
+                    "meaning": "we"
+                  },
+                  {
+                    "text": "cross",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "the bridge",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wir überqueren die Brücke.",
+              "tiles": [
+                "Wir",
+                "überqueren",
+                "die",
+                "Brücke."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Object",
+                "grammarExplanation": [
+                  "In a simple German main clause, the conjugated verb is in second position.",
+                  "'überqueren' comes after 'Wir'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wir",
+                    "type": "pronoun",
+                    "role": "subject",
+                    "meaning": "we"
+                  },
+                  {
+                    "text": "überqueren",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross",
+                    "grammarNote": "Conjugated verb in second position."
+                  },
+                  {
+                    "text": "die Brücke",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Nous traversons le pont.",
+              "tiles": [
+                "Nous",
+                "traversons",
+                "le",
+                "pont."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Object",
+                "grammarExplanation": [
+                  "'Nous' is the subject.",
+                  "'traversons' is the conjugated verb for 'we cross'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Nous",
+                    "type": "pronoun",
+                    "role": "subject",
+                    "meaning": "we"
+                  },
+                  {
+                    "text": "traversons",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "le pont",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Cruzamos el puente.",
+              "tiles": [
+                "Cruzamos",
+                "el",
+                "puente."
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Object",
+                "grammarExplanation": [
+                  "Spanish can omit the subject pronoun because the verb ending shows 'we'.",
+                  "'Cruzamos' means 'we cross'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Cruzamos",
+                    "type": "verb",
+                    "role": "subject_and_action",
+                    "meaning": "we cross",
+                    "grammarNote": "Spanish often omits subject pronouns."
+                  },
+                  {
+                    "text": "el puente",
+                    "type": "noun_phrase",
+                    "role": "object/route",
+                    "meaning": "the bridge"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我們過橋。",
+              "tiles": [
+                "我們",
+                "過",
+                "橋。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Object",
+                "grammarExplanation": [
+                  "Chinese follows a direct Subject + Verb + Object order.",
+                  "No article like 'the' is needed."
+                ],
+                "tokens": [
+                  {
+                    "text": "我們",
+                    "type": "pronoun",
+                    "role": "subject",
+                    "meaning": "we"
+                  },
+                  {
+                    "text": "過",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross"
+                  },
+                  {
+                    "text": "橋",
+                    "type": "noun",
+                    "role": "object/route",
+                    "meaning": "bridge"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "私たちは橋を渡ります。",
+              "tiles": [
+                "私たちは",
+                "橋を",
+                "渡ります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + Object + Verb",
+                "grammarExplanation": [
+                  "'私たちは' marks 'we' as the topic.",
+                  "'橋を' marks the bridge as the object/route.",
+                  "Japanese verbs usually come at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "私たちは",
+                    "type": "topic_phrase",
+                    "role": "topic",
+                    "meaning": "we"
+                  },
+                  {
+                    "text": "橋を",
+                    "type": "object_phrase",
+                    "role": "object/route",
+                    "meaning": "bridge"
+                  },
+                  {
+                    "text": "渡ります",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "cross",
+                    "grammarNote": "Polite present verb at sentence end."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_BOAT_ON_RIVER",
+      "linkedConcepts": [
+        "OBJECT_BOAT",
+        "NATURE_RIVER"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_noun",
+          "translations": {
+            "en": {
+              "text": "boat",
+              "tiles": [
+                "boat"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "A boat is a thing used on water."
+                ],
+                "tokens": [
+                  {
+                    "text": "boat",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Boot",
+              "tiles": [
+                "Boot"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "'Boot' is neuter, so 'the boat' is 'das Boot'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Boot",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "bateau",
+              "tiles": [
+                "bateau"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'bateau' means boat.",
+                  "It uses the masculine article 'le'."
+                ],
+                "tokens": [
+                  {
+                    "text": "bateau",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "barco",
+              "tiles": [
+                "barco"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'barco' means boat.",
+                  "It uses the masculine article 'el'."
+                ],
+                "tokens": [
+                  {
+                    "text": "barco",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "船",
+              "tiles": [
+                "船"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese does not need an article here.",
+                  "'船' means boat/ship."
+                ],
+                "tokens": [
+                  {
+                    "text": "船",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "船",
+              "tiles": [
+                "船"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese does not use articles like 'a' or 'the'.",
+                  "'船' means boat/ship."
+                ],
+                "tokens": [
+                  {
+                    "text": "船",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "definite_noun_phrase",
+          "translations": {
+            "en": {
+              "text": "the boat",
+              "tiles": [
+                "the",
+                "boat"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'the' points to a specific boat."
+                ],
+                "tokens": [
+                  {
+                    "text": "the",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "specific/known"
+                  },
+                  {
+                    "text": "boat",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Boot",
+              "tiles": [
+                "das",
+                "Boot"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'das' is the neuter definite article.",
+                  "'Boot' is a neuter noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "das",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "Boot",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le bateau",
+              "tiles": [
+                "le",
+                "bateau"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'le' is the masculine definite article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "bateau",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el barco",
+              "tiles": [
+                "el",
+                "barco"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'el' is the masculine definite article."
+                ],
+                "tokens": [
+                  {
+                    "text": "el",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "barco",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "船",
+              "tiles": [
+                "船"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese often does not translate 'the' directly."
+                ],
+                "tokens": [
+                  {
+                    "text": "船",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "船",
+              "tiles": [
+                "船"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese has no article equivalent to 'the'."
+                ],
+                "tokens": [
+                  {
+                    "text": "船",
+                    "type": "noun",
+                    "role": "object",
+                    "meaning": "boat"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "location_phrase",
+          "translations": {
+            "en": {
+              "text": "on the river",
+              "tiles": [
+                "on",
+                "the",
+                "river"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'on' shows the boat is on the surface of the river.",
+                  "'the river' is the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "on",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "on"
+                  },
+                  {
+                    "text": "the river",
+                    "type": "noun_phrase",
+                    "role": "location",
+                    "meaning": "the river"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "auf dem Fluss",
+              "tiles": [
+                "auf",
+                "dem",
+                "Fluss"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'auf' means on.",
+                  "'dem' is the dative form of 'der' after a location preposition."
+                ],
+                "tokens": [
+                  {
+                    "text": "auf",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "on"
+                  },
+                  {
+                    "text": "dem",
+                    "type": "article",
+                    "role": "case_marker",
+                    "meaning": "the",
+                    "grammarNote": "Dative masculine/neuter form after location."
+                  },
+                  {
+                    "text": "Fluss",
+                    "type": "noun",
+                    "role": "location",
+                    "meaning": "river"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "sur la rivière",
+              "tiles": [
+                "sur",
+                "la",
+                "rivière"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'sur' means on.",
+                  "'la rivière' means the river."
+                ],
+                "tokens": [
+                  {
+                    "text": "sur",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "on"
+                  },
+                  {
+                    "text": "la",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "rivière",
+                    "type": "noun",
+                    "role": "location",
+                    "meaning": "river"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "en el río",
+              "tiles": [
+                "en",
+                "el",
+                "río"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "Spanish often uses 'en' for in/on/at depending on context.",
+                  "'el río' means the river."
+                ],
+                "tokens": [
+                  {
+                    "text": "en",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/on"
+                  },
+                  {
+                    "text": "el",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "río",
+                    "type": "noun",
+                    "role": "location",
+                    "meaning": "river"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "在河上",
+              "tiles": [
+                "在",
+                "河",
+                "上"
+              ],
+              "analysis": {
+                "sentencePattern": "Location Frame",
+                "grammarExplanation": [
+                  "'在...上' means on/at something.",
+                  "The place comes between 在 and 上."
+                ],
+                "tokens": [
+                  {
+                    "text": "在",
+                    "type": "location_marker",
+                    "role": "location_start",
+                    "meaning": "at/on"
+                  },
+                  {
+                    "text": "河",
+                    "type": "noun",
+                    "role": "location",
+                    "meaning": "river"
+                  },
+                  {
+                    "text": "上",
+                    "type": "location_word",
+                    "role": "surface_marker",
+                    "meaning": "on"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "川の上に",
+              "tiles": [
+                "川の上に"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun + Relation + Particle",
+                "grammarExplanation": [
+                  "'の上' means 'on top of / on'.",
+                  "'に' marks location."
+                ],
+                "tokens": [
+                  {
+                    "text": "川の上に",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "on the river",
+                    "grammarNote": "に marks the location."
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 4,
+          "focus": "subject_location",
+          "translations": {
+            "en": {
+              "text": "the boat is on the river",
+              "tiles": [
+                "the",
+                "boat",
+                "is",
+                "on",
+                "the",
+                "river"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Be Verb + Location Phrase",
+                "grammarExplanation": [
+                  "'the boat' is the subject.",
+                  "'is' links the subject to the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "the boat",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "is",
+                    "type": "verb",
+                    "role": "linking_verb",
+                    "meaning": "is"
+                  },
+                  {
+                    "text": "on the river",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Boot ist auf dem Fluss",
+              "tiles": [
+                "das",
+                "Boot",
+                "ist",
+                "auf",
+                "dem",
+                "Fluss"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Location Phrase",
+                "grammarExplanation": [
+                  "In a simple German sentence, the conjugated verb is in second position.",
+                  "'ist' comes after the subject."
+                ],
+                "tokens": [
+                  {
+                    "text": "das Boot",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "ist",
+                    "type": "verb",
+                    "role": "linking_verb",
+                    "meaning": "is",
+                    "grammarNote": "Verb in second position."
+                  },
+                  {
+                    "text": "auf dem Fluss",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le bateau est sur la rivière",
+              "tiles": [
+                "le",
+                "bateau",
+                "est",
+                "sur",
+                "la",
+                "rivière"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Location Phrase",
+                "grammarExplanation": [
+                  "'le bateau' is the subject.",
+                  "'est' means is."
+                ],
+                "tokens": [
+                  {
+                    "text": "le bateau",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "est",
+                    "type": "verb",
+                    "role": "linking_verb",
+                    "meaning": "is"
+                  },
+                  {
+                    "text": "sur la rivière",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el barco está en el río",
+              "tiles": [
+                "el",
+                "barco",
+                "está",
+                "en",
+                "el",
+                "río"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Location Verb + Location Phrase",
+                "grammarExplanation": [
+                  "Spanish uses 'estar' for location.",
+                  "'está' means 'is' for location."
+                ],
+                "tokens": [
+                  {
+                    "text": "el barco",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "está",
+                    "type": "verb",
+                    "role": "location_verb",
+                    "meaning": "is located"
+                  },
+                  {
+                    "text": "en el río",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on/in the river"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "船在河上",
+              "tiles": [
+                "船",
+                "在",
+                "河",
+                "上"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Location Marker + Place",
+                "grammarExplanation": [
+                  "Chinese uses '在' to show location.",
+                  "The sentence literally follows boat + at + river + on."
+                ],
+                "tokens": [
+                  {
+                    "text": "船",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "boat"
+                  },
+                  {
+                    "text": "在",
+                    "type": "location_verb",
+                    "role": "location_marker",
+                    "meaning": "is at/on"
+                  },
+                  {
+                    "text": "河",
+                    "type": "noun",
+                    "role": "location",
+                    "meaning": "river"
+                  },
+                  {
+                    "text": "上",
+                    "type": "location_word",
+                    "role": "surface_marker",
+                    "meaning": "on"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "船は川の上にあります",
+              "tiles": [
+                "船は",
+                "川の上に",
+                "あります"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + Location + Exist Verb",
+                "grammarExplanation": [
+                  "'船は' marks the boat as the topic.",
+                  "'川の上に' gives the location.",
+                  "'あります' is used for the existence/location of things."
+                ],
+                "tokens": [
+                  {
+                    "text": "船は",
+                    "type": "topic_phrase",
+                    "role": "topic",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "川の上に",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  },
+                  {
+                    "text": "あります",
+                    "type": "existence_verb",
+                    "role": "location/existence",
+                    "meaning": "is/exists",
+                    "grammarNote": "Japanese verbs usually come at the end."
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 5,
+          "focus": "full_sentence_location",
+          "translations": {
+            "en": {
+              "text": "The boat is on the river.",
+              "tiles": [
+                "The",
+                "boat",
+                "is",
+                "on",
+                "the",
+                "river."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Be Verb + Location Phrase",
+                "grammarExplanation": [
+                  "This sentence tells where the boat is.",
+                  "The location phrase comes after 'is'."
+                ],
+                "tokens": [
+                  {
+                    "text": "The boat",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "is",
+                    "type": "verb",
+                    "role": "linking_verb",
+                    "meaning": "is"
+                  },
+                  {
+                    "text": "on the river",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das Boot ist auf dem Fluss.",
+              "tiles": [
+                "Das",
+                "Boot",
+                "ist",
+                "auf",
+                "dem",
+                "Fluss."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Location Phrase",
+                "grammarExplanation": [
+                  "German puts the conjugated verb in second position in a main clause.",
+                  "'auf dem Fluss' uses dative because it describes location."
+                ],
+                "tokens": [
+                  {
+                    "text": "Das Boot",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "ist",
+                    "type": "verb",
+                    "role": "linking_verb",
+                    "meaning": "is",
+                    "grammarNote": "Second-position verb."
+                  },
+                  {
+                    "text": "auf dem Fluss",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on the river",
+                    "grammarNote": "Dative location phrase."
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le bateau est sur la rivière.",
+              "tiles": [
+                "Le",
+                "bateau",
+                "est",
+                "sur",
+                "la",
+                "rivière."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb + Location Phrase",
+                "grammarExplanation": [
+                  "French follows subject + verb + location here.",
+                  "'sur la rivière' means on the river."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le bateau",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "est",
+                    "type": "verb",
+                    "role": "linking_verb",
+                    "meaning": "is"
+                  },
+                  {
+                    "text": "sur la rivière",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El barco está en el río.",
+              "tiles": [
+                "El",
+                "barco",
+                "está",
+                "en",
+                "el",
+                "río."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Estar + Location Phrase",
+                "grammarExplanation": [
+                  "Spanish uses 'estar' for location.",
+                  "'en el río' can mean on/in the river depending on context."
+                ],
+                "tokens": [
+                  {
+                    "text": "El barco",
+                    "type": "noun_phrase",
+                    "role": "subject",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "está",
+                    "type": "verb",
+                    "role": "location_verb",
+                    "meaning": "is located"
+                  },
+                  {
+                    "text": "en el río",
+                    "type": "prepositional_phrase",
+                    "role": "location",
+                    "meaning": "on/in the river"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "船在河上。",
+              "tiles": [
+                "船",
+                "在",
+                "河",
+                "上。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Location Verb + Place",
+                "grammarExplanation": [
+                  "Chinese does not need 'the'.",
+                  "'在...上' creates the meaning 'on'."
+                ],
+                "tokens": [
+                  {
+                    "text": "船",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "boat"
+                  },
+                  {
+                    "text": "在",
+                    "type": "location_verb",
+                    "role": "location_marker",
+                    "meaning": "is at/on"
+                  },
+                  {
+                    "text": "河",
+                    "type": "noun",
+                    "role": "location",
+                    "meaning": "river"
+                  },
+                  {
+                    "text": "上",
+                    "type": "location_word",
+                    "role": "surface_marker",
+                    "meaning": "on"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "船は川の上にあります。",
+              "tiles": [
+                "船は",
+                "川の上に",
+                "あります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + Location + Existence Verb",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "The location comes before the verb.",
+                  "The verb あります comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "船は",
+                    "type": "topic_phrase",
+                    "role": "topic",
+                    "meaning": "the boat"
+                  },
+                  {
+                    "text": "川の上に",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "on the river"
+                  },
+                  {
+                    "text": "あります",
+                    "type": "existence_verb",
+                    "role": "location/existence",
+                    "meaning": "is/exists",
+                    "grammarNote": "Japanese verbs usually come at the end."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PLACE_BRIDGE",
+        "ACTION_CROSS"
+      ],
+      "grammarFocus": [
+        "subject_verb_object",
+        "movement_path",
+        "japanese_object_particle"
+      ],
+      "sourceChainId": "CHAIN_BRIDGE_CROSS",
+      "translations": {
+        "en": {
+          "text": "We cross the bridge.",
+          "tiles": [
+            "We",
+            "cross",
+            "the",
+            "bridge."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb + Object",
+            "grammarExplanation": [
+              "'We' is the subject.",
+              "'cross' is the action.",
+              "'the bridge' is the object or route."
+            ],
+            "tokens": [
+              {
+                "text": "We",
+                "type": "pronoun",
+                "role": "subject",
+                "meaning": "we"
+              },
+              {
+                "text": "cross",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "cross"
+              },
+              {
+                "text": "the bridge",
+                "type": "noun_phrase",
+                "role": "object/route",
+                "meaning": "the bridge"
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wir überqueren die Brücke.",
+          "tiles": [
+            "Wir",
+            "überqueren",
+            "die",
+            "Brücke."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb + Object",
+            "grammarExplanation": [
+              "In a simple German main clause, the conjugated verb is in second position.",
+              "'überqueren' comes after 'Wir'."
+            ],
+            "tokens": [
+              {
+                "text": "Wir",
+                "type": "pronoun",
+                "role": "subject",
+                "meaning": "we"
+              },
+              {
+                "text": "überqueren",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "cross",
+                "grammarNote": "Conjugated verb in second position."
+              },
+              {
+                "text": "die Brücke",
+                "type": "noun_phrase",
+                "role": "object/route",
+                "meaning": "the bridge"
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Nous traversons le pont.",
+          "tiles": [
+            "Nous",
+            "traversons",
+            "le",
+            "pont."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb + Object",
+            "grammarExplanation": [
+              "'Nous' is the subject.",
+              "'traversons' is the conjugated verb for 'we cross'."
+            ],
+            "tokens": [
+              {
+                "text": "Nous",
+                "type": "pronoun",
+                "role": "subject",
+                "meaning": "we"
+              },
+              {
+                "text": "traversons",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "cross"
+              },
+              {
+                "text": "le pont",
+                "type": "noun_phrase",
+                "role": "object/route",
+                "meaning": "the bridge"
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Cruzamos el puente.",
+          "tiles": [
+            "Cruzamos",
+            "el",
+            "puente."
+          ],
+          "analysis": {
+            "sentencePattern": "Verb + Object",
+            "grammarExplanation": [
+              "Spanish can omit the subject pronoun because the verb ending shows 'we'.",
+              "'Cruzamos' means 'we cross'."
+            ],
+            "tokens": [
+              {
+                "text": "Cruzamos",
+                "type": "verb",
+                "role": "subject_and_action",
+                "meaning": "we cross",
+                "grammarNote": "Spanish often omits subject pronouns."
+              },
+              {
+                "text": "el puente",
+                "type": "noun_phrase",
+                "role": "object/route",
+                "meaning": "the bridge"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我們過橋。",
+          "tiles": [
+            "我們",
+            "過",
+            "橋。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb + Object",
+            "grammarExplanation": [
+              "Chinese follows a direct Subject + Verb + Object order.",
+              "No article like 'the' is needed."
+            ],
+            "tokens": [
+              {
+                "text": "我們",
+                "type": "pronoun",
+                "role": "subject",
+                "meaning": "we"
+              },
+              {
+                "text": "過",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "cross"
+              },
+              {
+                "text": "橋",
+                "type": "noun",
+                "role": "object/route",
+                "meaning": "bridge"
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "私たちは橋を渡ります。",
+          "tiles": [
+            "私たちは",
+            "橋を",
+            "渡ります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + Object + Verb",
+            "grammarExplanation": [
+              "'私たちは' marks 'we' as the topic.",
+              "'橋を' marks the bridge as the object/route.",
+              "Japanese verbs usually come at the end."
+            ],
+            "tokens": [
+              {
+                "text": "私たちは",
+                "type": "topic_phrase",
+                "role": "topic",
+                "meaning": "we"
+              },
+              {
+                "text": "橋を",
+                "type": "object_phrase",
+                "role": "object/route",
+                "meaning": "bridge"
+              },
+              {
+                "text": "渡ります",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "cross",
+                "grammarNote": "Polite present verb at sentence end."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "OBJECT_BOAT",
+        "NATURE_RIVER"
+      ],
+      "grammarFocus": [
+        "location_phrase",
+        "prepositions",
+        "japanese_topic_marker"
+      ],
+      "sourceChainId": "CHAIN_BOAT_ON_RIVER",
+      "translations": {
+        "en": {
+          "text": "The boat is on the river.",
+          "tiles": [
+            "The",
+            "boat",
+            "is",
+            "on",
+            "the",
+            "river."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Be Verb + Location Phrase",
+            "grammarExplanation": [
+              "This sentence tells where the boat is.",
+              "The location phrase comes after 'is'."
+            ],
+            "tokens": [
+              {
+                "text": "The boat",
+                "type": "noun_phrase",
+                "role": "subject",
+                "meaning": "the boat"
+              },
+              {
+                "text": "is",
+                "type": "verb",
+                "role": "linking_verb",
+                "meaning": "is"
+              },
+              {
+                "text": "on the river",
+                "type": "prepositional_phrase",
+                "role": "location",
+                "meaning": "on the river"
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das Boot ist auf dem Fluss.",
+          "tiles": [
+            "Das",
+            "Boot",
+            "ist",
+            "auf",
+            "dem",
+            "Fluss."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb + Location Phrase",
+            "grammarExplanation": [
+              "German puts the conjugated verb in second position in a main clause.",
+              "'auf dem Fluss' uses dative because it describes location."
+            ],
+            "tokens": [
+              {
+                "text": "Das Boot",
+                "type": "noun_phrase",
+                "role": "subject",
+                "meaning": "the boat"
+              },
+              {
+                "text": "ist",
+                "type": "verb",
+                "role": "linking_verb",
+                "meaning": "is",
+                "grammarNote": "Second-position verb."
+              },
+              {
+                "text": "auf dem Fluss",
+                "type": "prepositional_phrase",
+                "role": "location",
+                "meaning": "on the river",
+                "grammarNote": "Dative location phrase."
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le bateau est sur la rivière.",
+          "tiles": [
+            "Le",
+            "bateau",
+            "est",
+            "sur",
+            "la",
+            "rivière."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb + Location Phrase",
+            "grammarExplanation": [
+              "French follows subject + verb + location here.",
+              "'sur la rivière' means on the river."
+            ],
+            "tokens": [
+              {
+                "text": "Le bateau",
+                "type": "noun_phrase",
+                "role": "subject",
+                "meaning": "the boat"
+              },
+              {
+                "text": "est",
+                "type": "verb",
+                "role": "linking_verb",
+                "meaning": "is"
+              },
+              {
+                "text": "sur la rivière",
+                "type": "prepositional_phrase",
+                "role": "location",
+                "meaning": "on the river"
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El barco está en el río.",
+          "tiles": [
+            "El",
+            "barco",
+            "está",
+            "en",
+            "el",
+            "río."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Estar + Location Phrase",
+            "grammarExplanation": [
+              "Spanish uses 'estar' for location.",
+              "'en el río' can mean on/in the river depending on context."
+            ],
+            "tokens": [
+              {
+                "text": "El barco",
+                "type": "noun_phrase",
+                "role": "subject",
+                "meaning": "the boat"
+              },
+              {
+                "text": "está",
+                "type": "verb",
+                "role": "location_verb",
+                "meaning": "is located"
+              },
+              {
+                "text": "en el río",
+                "type": "prepositional_phrase",
+                "role": "location",
+                "meaning": "on/in the river"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "船在河上。",
+          "tiles": [
+            "船",
+            "在",
+            "河",
+            "上。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Location Verb + Place",
+            "grammarExplanation": [
+              "Chinese does not need 'the'.",
+              "'在...上' creates the meaning 'on'."
+            ],
+            "tokens": [
+              {
+                "text": "船",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "boat"
+              },
+              {
+                "text": "在",
+                "type": "location_verb",
+                "role": "location_marker",
+                "meaning": "is at/on"
+              },
+              {
+                "text": "河",
+                "type": "noun",
+                "role": "location",
+                "meaning": "river"
+              },
+              {
+                "text": "上",
+                "type": "location_word",
+                "role": "surface_marker",
+                "meaning": "on"
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "船は川の上にあります。",
+          "tiles": [
+            "船は",
+            "川の上に",
+            "あります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + Location + Existence Verb",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "The location comes before the verb.",
+              "The verb あります comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "船は",
+                "type": "topic_phrase",
+                "role": "topic",
+                "meaning": "the boat"
+              },
+              {
+                "text": "川の上に",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "on the river"
+              },
+              {
+                "text": "あります",
+                "type": "existence_verb",
+                "role": "location/existence",
+                "meaning": "is/exists",
+                "grammarNote": "Japanese verbs usually come at the end."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "NATURE_RIVER": [
+      "S002"
+    ],
+    "PLACE_BRIDGE": [
+      "S001"
+    ],
+    "ACTION_CROSS": [
+      "S001"
+    ],
+    "NATURE_WATER": [],
+    "OBJECT_BOAT": [
+      "S002"
+    ]
+  }
+}

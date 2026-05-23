@@ -1,0 +1,2177 @@
+{
+  "packId": "semantic_pack_l1_097_weather_seasons",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_097 — weather_seasons",
+  "description": "A corrected multilingual Stage 1 Progressive Language pack for Weather and Seasons.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_097",
+    "title": "Weather and Seasons",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "weather",
+      "nature"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "simple_past",
+        "conjunctions",
+        "preferences"
+      ],
+      "german": [
+        "past_forms"
+      ],
+      "french": [
+        "past_reference"
+      ],
+      "spanish": [
+        "simple_past_reference"
+      ],
+      "chinese": [
+        "completed_actions"
+      ],
+      "japanese": [
+        "past_polite_forms"
+      ]
+    },
+    "sentenceGoals": [
+      "The child is in the rain.",
+      "The friend holds an umbrella."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_CHILD",
+      "type": "noun",
+      "senseKey": "person_child",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "child"
+        },
+        "de": {
+          "text": "Kind",
+          "article": "das"
+        },
+        "fr": {
+          "text": "l'enfant"
+        },
+        "es": {
+          "text": "niño",
+          "article": "el"
+        },
+        "zh": {
+          "text": "孩子"
+        },
+        "ja": {
+          "text": "子ども"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_FRIEND",
+      "type": "noun",
+      "senseKey": "person_friend",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "friend"
+        },
+        "de": {
+          "text": "Freund",
+          "article": "der"
+        },
+        "fr": {
+          "text": "l'ami"
+        },
+        "es": {
+          "text": "amigo",
+          "article": "el"
+        },
+        "zh": {
+          "text": "朋友"
+        },
+        "ja": {
+          "text": "友だち"
+        }
+      }
+    },
+    {
+      "conceptId": "WEATHER_RAIN",
+      "type": "noun",
+      "senseKey": "weather_rain",
+      "semanticCategory": "weather",
+      "translations": {
+        "en": {
+          "text": "rain"
+        },
+        "de": {
+          "text": "Regen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "pluie",
+          "article": "la"
+        },
+        "es": {
+          "text": "lluvia",
+          "article": "la"
+        },
+        "zh": {
+          "text": "雨"
+        },
+        "ja": {
+          "text": "あめ"
+        }
+      }
+    },
+    {
+      "conceptId": "WEATHER_SUN",
+      "type": "noun",
+      "senseKey": "weather_sun",
+      "semanticCategory": "weather",
+      "translations": {
+        "en": {
+          "text": "sun"
+        },
+        "de": {
+          "text": "Sonne",
+          "article": "die"
+        },
+        "fr": {
+          "text": "soleil",
+          "article": "le"
+        },
+        "es": {
+          "text": "sol",
+          "article": "el"
+        },
+        "zh": {
+          "text": "太阳"
+        },
+        "ja": {
+          "text": "太陽"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_UMBRELLA",
+      "type": "noun",
+      "senseKey": "object_umbrella",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "umbrella"
+        },
+        "de": {
+          "text": "Regenschirm",
+          "article": "der"
+        },
+        "fr": {
+          "text": "parapluie",
+          "article": "le"
+        },
+        "es": {
+          "text": "paraguas",
+          "article": "el"
+        },
+        "zh": {
+          "text": "雨伞"
+        },
+        "ja": {
+          "text": "傘"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_COAT",
+      "type": "noun",
+      "senseKey": "object_coat",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "coat"
+        },
+        "de": {
+          "text": "Mantel",
+          "article": "der"
+        },
+        "fr": {
+          "text": "manteau",
+          "article": "le"
+        },
+        "es": {
+          "text": "abrigo",
+          "article": "el"
+        },
+        "zh": {
+          "text": "外套"
+        },
+        "ja": {
+          "text": "コート"
+        }
+      }
+    },
+    {
+      "conceptId": "ADJ_COLD",
+      "type": "adjective",
+      "senseKey": "adj_cold",
+      "semanticCategory": "descriptors",
+      "translations": {
+        "en": {
+          "text": "cold"
+        },
+        "de": {
+          "text": "kalt"
+        },
+        "fr": {
+          "text": "froid"
+        },
+        "es": {
+          "text": "frío"
+        },
+        "zh": {
+          "text": "冷"
+        },
+        "ja": {
+          "text": "寒い"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_HOLD",
+      "type": "verb",
+      "senseKey": "verb_hold",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "hold"
+        },
+        "de": {
+          "text": "halten"
+        },
+        "fr": {
+          "text": "tenir"
+        },
+        "es": {
+          "text": "sostener"
+        },
+        "zh": {
+          "text": "拿着"
+        },
+        "ja": {
+          "text": "持つ"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_MY",
+      "type": "possessive",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "zh": "我的",
+        "ja": "私の"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im/in der",
+        "fr": "dans",
+        "es": "en",
+        "zh": "在",
+        "ja": "に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_NEAR",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "near",
+        "de": "neben/bei",
+        "fr": "près de",
+        "es": "cerca de",
+        "zh": "旁边",
+        "ja": "近くに"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_LOCATION",
+      "linkedConcepts": [
+        "PERSON_CHILD",
+        "WEATHER_RAIN"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "child",
+              "tiles": [
+                "child"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "child",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "child",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Kind",
+              "tiles": [
+                "das Kind"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "das Kind",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "das Kind",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "l'enfant",
+              "tiles": [
+                "l'enfant"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "l'enfant",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "l'enfant",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el niño",
+              "tiles": [
+                "el niño"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el niño",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el niño",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "孩子",
+              "tiles": [
+                "孩子"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "孩子",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "孩子",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "子ども",
+              "tiles": [
+                "子ども"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "子ども",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "子ども",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "place_phrase",
+          "translations": {
+            "en": {
+              "text": "the rain.",
+              "tiles": [
+                "the rain."
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "the rain",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "the rain",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "im Regen.",
+              "tiles": [
+                "im Regen."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "im Regen",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "im Regen",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la pluie.",
+              "tiles": [
+                "la pluie."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la pluie",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la pluie",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la lluvia.",
+              "tiles": [
+                "la lluvia."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la lluvia",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la lluvia",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "孩子在雨中。",
+              "tiles": [
+                "孩子在雨中。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "孩子在雨中",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "孩子在雨中",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "雨の中にいます。",
+              "tiles": [
+                "雨の中にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "雨の中にいます",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "雨の中にいます",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_location_sentence",
+          "translations": {
+            "en": {
+              "text": "The child is in the rain.",
+              "tiles": [
+                "The",
+                "child",
+                "is",
+                "in",
+                "the",
+                "rain."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + be + place phrase",
+                "literalOrderExplanation": "The → child → is → in → the → rain",
+                "grammarExplanation": [
+                  "English uses 'is' for location.",
+                  "The place phrase tells where the person is."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "child",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "rain",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das Kind ist im Regen.",
+              "tiles": [
+                "Das",
+                "Kind",
+                "ist",
+                "im",
+                "Regen."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + place phrase",
+                "literalOrderExplanation": "Das → Kind → ist → im → Regen",
+                "grammarExplanation": [
+                  "German keeps the finite verb in second position.",
+                  "Location phrases often use dative forms such as im, am, or in der."
+                ],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Kind",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Regen",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L'enfant est sous la pluie.",
+              "tiles": [
+                "L'enfant",
+                "est",
+                "sous",
+                "la",
+                "pluie."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "L'enfant → est → sous → la → pluie",
+                "grammarExplanation": [
+                  "French uses être for location.",
+                  "Articles agree with the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "L'enfant",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sous",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pluie",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El niño está bajo la lluvia.",
+              "tiles": [
+                "El",
+                "niño",
+                "está",
+                "bajo",
+                "la",
+                "lluvia."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + estar + place phrase",
+                "literalOrderExplanation": "El → niño → está → bajo → la → lluvia",
+                "grammarExplanation": [
+                  "Spanish uses estar for location.",
+                  "Articles agree with gender and number."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "niño",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bajo",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lluvia",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "孩子在雨中。",
+              "tiles": [
+                "孩子",
+                "在雨中。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + 在 + place",
+                "literalOrderExplanation": "孩子 → 在雨中",
+                "grammarExplanation": [
+                  "Chinese does not use articles like 'the'.",
+                  "在 marks the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "孩子",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在雨中",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "子どもは雨の中にいます。",
+              "tiles": [
+                "子どもは",
+                "雨の中に",
+                "います。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + place + います",
+                "literalOrderExplanation": "子どもは → 雨の中に → います",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "に marks a place for being or destination.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "子どもは",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "雨の中に",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "います",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_ACTION",
+      "linkedConcepts": [
+        "PERSON_FRIEND",
+        "VERB_HOLD",
+        "OBJECT_UMBRELLA"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "friend",
+              "tiles": [
+                "friend"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "friend",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "friend",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Freund",
+              "tiles": [
+                "der Freund"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "der Freund",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Freund",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "l'ami",
+              "tiles": [
+                "l'ami"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "l'ami",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "l'ami",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el amigo",
+              "tiles": [
+                "el amigo"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el amigo",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el amigo",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "朋友",
+              "tiles": [
+                "朋友"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "朋友",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "朋友",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "友だち",
+              "tiles": [
+                "友だち"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "友だち",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "友だち",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "object_phrase",
+          "translations": {
+            "en": {
+              "text": "umbrella",
+              "tiles": [
+                "umbrella"
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "umbrella",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "umbrella",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Regenschirm",
+              "tiles": [
+                "der Regenschirm"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "der Regenschirm",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Regenschirm",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le parapluie",
+              "tiles": [
+                "le parapluie"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "le parapluie",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le parapluie",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el paraguas",
+              "tiles": [
+                "el paraguas"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "el paraguas",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "el paraguas",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "雨伞",
+              "tiles": [
+                "雨伞"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "雨伞",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "雨伞",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "傘",
+              "tiles": [
+                "傘"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "傘",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "傘",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_action_sentence",
+          "translations": {
+            "en": {
+              "text": "The friend holds an umbrella.",
+              "tiles": [
+                "The",
+                "friend",
+                "holds",
+                "an",
+                "umbrella."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "The → friend → holds → an → umbrella",
+                "grammarExplanation": [
+                  "English places the verb after the subject.",
+                  "The object receives the action."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "friend",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "holds",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "an",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "umbrella",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der Freund hält einen Regenschirm.",
+              "tiles": [
+                "Der",
+                "Freund",
+                "hält",
+                "einen",
+                "Regenschirm."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + object",
+                "literalOrderExplanation": "Der → Freund → hält → einen → Regenschirm",
+                "grammarExplanation": [
+                  "German uses verb-second word order.",
+                  "Articles change by gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Freund",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hält",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "einen",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Regenschirm",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L'ami tient un parapluie.",
+              "tiles": [
+                "L'ami",
+                "tient",
+                "un",
+                "parapluie."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb phrase + object",
+                "literalOrderExplanation": "L'ami → tient → un → parapluie",
+                "grammarExplanation": [
+                  "French usually places the verb after the subject.",
+                  "Articles and contractions must match the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "L'ami",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tient",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parapluie",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El amigo sostiene un paraguas.",
+              "tiles": [
+                "El",
+                "amigo",
+                "sostiene",
+                "un",
+                "paraguas."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "El → amigo → sostiene → un → paraguas",
+                "grammarExplanation": [
+                  "Spanish verbs agree with the subject.",
+                  "The object follows the verb in simple sentences."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "amigo",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sostiene",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "paraguas",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "朋友拿着雨伞。",
+              "tiles": [
+                "朋友",
+                "拿着",
+                "雨伞。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + action + object",
+                "literalOrderExplanation": "朋友 → 拿着 → 雨伞",
+                "grammarExplanation": [
+                  "Chinese commonly follows subject + verb + object order.",
+                  "The verb does not change for person."
+                ],
+                "tokens": [
+                  {
+                    "text": "朋友",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "拿着",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "雨伞",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "友だちは傘を持っています。",
+              "tiles": [
+                "友だちは",
+                "傘を",
+                "持っています。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + object + verb-final",
+                "literalOrderExplanation": "友だちは → 傘を → 持っています",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "The object or phrase comes before the verb.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "友だちは",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "傘を",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "持っています",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_CHILD",
+        "WEATHER_RAIN"
+      ],
+      "grammarFocus": [
+        "location_phrase",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_LOCATION",
+      "translations": {
+        "en": {
+          "text": "The child is in the rain.",
+          "tiles": [
+            "The",
+            "child",
+            "is",
+            "in",
+            "the",
+            "rain."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + be + place phrase",
+            "literalOrderExplanation": "The → child → is → in → the → rain",
+            "grammarExplanation": [
+              "English uses 'is' for location.",
+              "The place phrase tells where the person is."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "child",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "rain",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das Kind ist im Regen.",
+          "tiles": [
+            "Das",
+            "Kind",
+            "ist",
+            "im",
+            "Regen."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + place phrase",
+            "literalOrderExplanation": "Das → Kind → ist → im → Regen",
+            "grammarExplanation": [
+              "German keeps the finite verb in second position.",
+              "Location phrases often use dative forms such as im, am, or in der."
+            ],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Kind",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Regen",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L'enfant est sous la pluie.",
+          "tiles": [
+            "L'enfant",
+            "est",
+            "sous",
+            "la",
+            "pluie."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "L'enfant → est → sous → la → pluie",
+            "grammarExplanation": [
+              "French uses être for location.",
+              "Articles agree with the noun."
+            ],
+            "tokens": [
+              {
+                "text": "L'enfant",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "sous",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "pluie",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El niño está bajo la lluvia.",
+          "tiles": [
+            "El",
+            "niño",
+            "está",
+            "bajo",
+            "la",
+            "lluvia."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + estar + place phrase",
+            "literalOrderExplanation": "El → niño → está → bajo → la → lluvia",
+            "grammarExplanation": [
+              "Spanish uses estar for location.",
+              "Articles agree with gender and number."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "niño",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "bajo",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "lluvia",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "孩子在雨中。",
+          "tiles": [
+            "孩子",
+            "在雨中。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + 在 + place",
+            "literalOrderExplanation": "孩子 → 在雨中",
+            "grammarExplanation": [
+              "Chinese does not use articles like 'the'.",
+              "在 marks the location."
+            ],
+            "tokens": [
+              {
+                "text": "孩子",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在雨中",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "子どもは雨の中にいます。",
+          "tiles": [
+            "子どもは",
+            "雨の中に",
+            "います。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + place + います",
+            "literalOrderExplanation": "子どもは → 雨の中に → います",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "に marks a place for being or destination.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "子どもは",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "雨の中に",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "います",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_FRIEND",
+        "VERB_HOLD",
+        "OBJECT_UMBRELLA"
+      ],
+      "grammarFocus": [
+        "basic_action",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_ACTION",
+      "translations": {
+        "en": {
+          "text": "The friend holds an umbrella.",
+          "tiles": [
+            "The",
+            "friend",
+            "holds",
+            "an",
+            "umbrella."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "The → friend → holds → an → umbrella",
+            "grammarExplanation": [
+              "English places the verb after the subject.",
+              "The object receives the action."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "friend",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "holds",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "an",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "umbrella",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der Freund hält einen Regenschirm.",
+          "tiles": [
+            "Der",
+            "Freund",
+            "hält",
+            "einen",
+            "Regenschirm."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + object",
+            "literalOrderExplanation": "Der → Freund → hält → einen → Regenschirm",
+            "grammarExplanation": [
+              "German uses verb-second word order.",
+              "Articles change by gender and case."
+            ],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Freund",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "hält",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "einen",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Regenschirm",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L'ami tient un parapluie.",
+          "tiles": [
+            "L'ami",
+            "tient",
+            "un",
+            "parapluie."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb phrase + object",
+            "literalOrderExplanation": "L'ami → tient → un → parapluie",
+            "grammarExplanation": [
+              "French usually places the verb after the subject.",
+              "Articles and contractions must match the noun."
+            ],
+            "tokens": [
+              {
+                "text": "L'ami",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "tient",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "parapluie",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El amigo sostiene un paraguas.",
+          "tiles": [
+            "El",
+            "amigo",
+            "sostiene",
+            "un",
+            "paraguas."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "El → amigo → sostiene → un → paraguas",
+            "grammarExplanation": [
+              "Spanish verbs agree with the subject.",
+              "The object follows the verb in simple sentences."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "amigo",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "sostiene",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "paraguas",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "朋友拿着雨伞。",
+          "tiles": [
+            "朋友",
+            "拿着",
+            "雨伞。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + action + object",
+            "literalOrderExplanation": "朋友 → 拿着 → 雨伞",
+            "grammarExplanation": [
+              "Chinese commonly follows subject + verb + object order.",
+              "The verb does not change for person."
+            ],
+            "tokens": [
+              {
+                "text": "朋友",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "拿着",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "雨伞",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "友だちは傘を持っています。",
+          "tiles": [
+            "友だちは",
+            "傘を",
+            "持っています。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + object + verb-final",
+            "literalOrderExplanation": "友だちは → 傘を → 持っています",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "The object or phrase comes before the verb.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "友だちは",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "傘を",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "持っています",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_CHILD": [
+      "S001"
+    ],
+    "WEATHER_RAIN": [
+      "S001"
+    ],
+    "PERSON_FRIEND": [
+      "S002"
+    ],
+    "VERB_HOLD": [
+      "S002"
+    ],
+    "OBJECT_UMBRELLA": [
+      "S002"
+    ]
+  }
+}

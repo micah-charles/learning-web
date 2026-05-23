@@ -1,0 +1,2644 @@
+{
+  "packId": "multilingual_foundation_pack_001_bank",
+  "schemaVersion": "prototype-0.2",
+  "title": "Foundation Pack 001 — Bank, River Bank, Go and Sit — Grammar Analysis Edition",
+  "description": "A multilingual beginner pack demonstrating polysemy, phrase expansion, vocabulary-to-sentence mapping, and scaffolded sentence building.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "notes": [
+    "Function words such as articles, pronouns and prepositions are stored as grammar tokens but are not required in sentence concept mapping.",
+    "The English word 'bank' is split into two separate concept IDs: BANK_RIVER and BANK_FINANCE.",
+    "Phrase progression chains are language-specific because grammar and natural word order differ by language.",
+    "Each listen-mode phrase can include analysis.sentencePattern, analysis.grammarExplanation and analysis.tokens.",
+    "The analysis layer is designed for child-friendly grammar explanation during listening and sentence-building."
+  ],
+  "vocabulary": [
+    {
+      "conceptId": "RIVER",
+      "type": "noun",
+      "semanticCategory": "nature",
+      "translations": {
+        "en": {
+          "text": "river",
+          "article": null
+        },
+        "de": {
+          "text": "Fluss",
+          "article": "der"
+        },
+        "fr": {
+          "text": "rivière",
+          "article": "la"
+        },
+        "es": {
+          "text": "río",
+          "article": "el"
+        },
+        "zh": {
+          "text": "河流",
+          "reading": "héliú"
+        },
+        "ja": {
+          "text": "川",
+          "reading": "かわ",
+          "romaji": "kawa"
+        }
+      }
+    },
+    {
+      "conceptId": "BANK_RIVER",
+      "type": "noun",
+      "semanticCategory": "geography",
+      "senseKey": "side_of_river",
+      "translations": {
+        "en": {
+          "text": "river bank",
+          "article": "the"
+        },
+        "de": {
+          "text": "Ufer",
+          "article": "das"
+        },
+        "fr": {
+          "text": "berge",
+          "article": "la"
+        },
+        "es": {
+          "text": "orilla",
+          "article": "la"
+        },
+        "zh": {
+          "text": "河岸",
+          "reading": "hé'àn"
+        },
+        "ja": {
+          "text": "川岸",
+          "reading": "かわぎし",
+          "romaji": "kawagishi"
+        }
+      }
+    },
+    {
+      "conceptId": "BANK_FINANCE",
+      "type": "noun",
+      "semanticCategory": "places",
+      "senseKey": "financial_institution",
+      "translations": {
+        "en": {
+          "text": "bank",
+          "article": "the"
+        },
+        "de": {
+          "text": "Bank",
+          "article": "die"
+        },
+        "fr": {
+          "text": "banque",
+          "article": "la"
+        },
+        "es": {
+          "text": "banco",
+          "article": "el"
+        },
+        "zh": {
+          "text": "銀行",
+          "reading": "yínháng"
+        },
+        "ja": {
+          "text": "銀行",
+          "reading": "ぎんこう",
+          "romaji": "ginkō"
+        }
+      }
+    },
+    {
+      "conceptId": "ACTION_SIT",
+      "type": "verb",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "base": "sit",
+          "past": "sat"
+        },
+        "de": {
+          "base": "sitzen",
+          "past": "saßen"
+        },
+        "fr": {
+          "base": "s'asseoir",
+          "pastPhrase": "nous nous sommes assis"
+        },
+        "es": {
+          "base": "sentarse",
+          "pastPhrase": "nos sentamos"
+        },
+        "zh": {
+          "base": "坐",
+          "pastContext": "坐在"
+        },
+        "ja": {
+          "base": "座る",
+          "past": "座った",
+          "reading": "すわる",
+          "romaji": "suwaru"
+        }
+      }
+    },
+    {
+      "conceptId": "ACTION_GO",
+      "type": "verb",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "base": "go",
+          "past": "went"
+        },
+        "de": {
+          "base": "gehen"
+        },
+        "fr": {
+          "base": "aller"
+        },
+        "es": {
+          "base": "ir"
+        },
+        "zh": {
+          "base": "去",
+          "reading": "qù"
+        },
+        "ja": {
+          "base": "行く",
+          "reading": "いく",
+          "romaji": "iku"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_A",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "a",
+        "de": "ein/eine",
+        "fr": "un/une",
+        "es": "un/una",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "ARTICLE_AN",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "an",
+        "de": "ein/eine",
+        "fr": "un/une",
+        "es": "un/una",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_HE",
+      "type": "pronoun",
+      "linkToConcept": false,
+      "translations": {
+        "en": "he",
+        "de": "er",
+        "fr": "il",
+        "es": "él",
+        "zh": "他",
+        "ja": "彼"
+      }
+    },
+    {
+      "tokenId": "PRONOUN_SHE",
+      "type": "pronoun",
+      "linkToConcept": false,
+      "translations": {
+        "en": "she",
+        "de": "sie",
+        "fr": "elle",
+        "es": "ella",
+        "zh": "她",
+        "ja": "彼女"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_ON",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "on",
+        "de": "auf/an",
+        "fr": "sur",
+        "es": "en/sobre",
+        "zh": "在...上",
+        "ja": "に/の上に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in",
+        "fr": "dans/en",
+        "es": "en",
+        "zh": "在...裡",
+        "ja": "に/で"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_TO",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "to",
+        "de": "zu/nach",
+        "fr": "à",
+        "es": "a",
+        "zh": "去/到",
+        "ja": "に/へ"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_BANK_FINANCE_GO",
+      "linkedConcepts": [
+        "BANK_FINANCE",
+        "ACTION_GO"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_noun",
+          "translations": {
+            "en": {
+              "text": "bank",
+              "tiles": [
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "A single noun can name a place or thing.",
+                  "Here, 'bank' means a financial institution."
+                ],
+                "tokens": [
+                  {
+                    "text": "bank",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "financial institution"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Bank",
+              "tiles": [
+                "Bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "'Bank' here means financial institution, not river bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "Bank",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "banque",
+              "tiles": [
+                "banque"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "A single noun names a place or thing.",
+                  "'banque' means a financial bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "banque",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "banco",
+              "tiles": [
+                "banco"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "A single noun names a place or thing.",
+                  "'banco' here means financial bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "banco",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "銀行",
+              "tiles": [
+                "銀行"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles like 'the' here.",
+                  "'銀行' means financial bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "銀行",
+              "tiles": [
+                "銀行"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles like 'the' here.",
+                  "'銀行' means financial bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "definite_article_or_place_marker",
+          "translations": {
+            "en": {
+              "text": "the bank",
+              "tiles": [
+                "the",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'the' points to a specific bank.",
+                  "English commonly uses articles before singular nouns."
+                ],
+                "tokens": [
+                  {
+                    "text": "the",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "specific/known"
+                  },
+                  {
+                    "text": "bank",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Bank",
+              "tiles": [
+                "die",
+                "Bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'die' is the feminine definite article.",
+                  "German articles change depending on noun gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "die",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "Bank",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la banque",
+              "tiles": [
+                "la",
+                "banque"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'la' is the feminine definite article.",
+                  "French nouns normally use articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "la",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "banque",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el banco",
+              "tiles": [
+                "el",
+                "banco"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun",
+                "grammarExplanation": [
+                  "'el' is the masculine definite article.",
+                  "Spanish nouns normally use articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "el",
+                    "type": "article",
+                    "role": "determiner",
+                    "meaning": "the"
+                  },
+                  {
+                    "text": "banco",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "銀行",
+              "tiles": [
+                "銀行"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese often does not translate 'the' directly.",
+                  "The noun alone can mean 'the bank' when context is clear."
+                ],
+                "tokens": [
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "銀行",
+              "tiles": [
+                "銀行"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese does not use articles like 'a' or 'the'.",
+                  "The noun alone can mean 'the bank' depending on context."
+                ],
+                "tokens": [
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "movement_phrase",
+          "translations": {
+            "en": {
+              "text": "to the bank",
+              "tiles": [
+                "to",
+                "the",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'to' shows movement towards a destination.",
+                  "'the bank' is the destination."
+                ],
+                "tokens": [
+                  {
+                    "text": "to",
+                    "type": "preposition",
+                    "role": "movement_marker",
+                    "meaning": "towards"
+                  },
+                  {
+                    "text": "the",
+                    "type": "article",
+                    "role": "determiner"
+                  },
+                  {
+                    "text": "bank",
+                    "type": "noun",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "zur Bank",
+              "tiles": [
+                "zur",
+                "Bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition+Article + Noun",
+                "grammarExplanation": [
+                  "'zur' is a contraction of 'zu' + 'der'.",
+                  "It means 'to the' for a feminine destination."
+                ],
+                "tokens": [
+                  {
+                    "text": "zur",
+                    "type": "preposition_article",
+                    "role": "movement_destination",
+                    "meaning": "to the"
+                  },
+                  {
+                    "text": "Bank",
+                    "type": "noun",
+                    "role": "destination",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "à la banque",
+              "tiles": [
+                "à",
+                "la",
+                "banque"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'à' shows movement or direction.",
+                  "'la banque' means 'the bank'."
+                ],
+                "tokens": [
+                  {
+                    "text": "à",
+                    "type": "preposition",
+                    "role": "movement_marker",
+                    "meaning": "to"
+                  },
+                  {
+                    "text": "la",
+                    "type": "article",
+                    "role": "determiner"
+                  },
+                  {
+                    "text": "banque",
+                    "type": "noun",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "al banco",
+              "tiles": [
+                "al",
+                "banco"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition+Article + Noun",
+                "grammarExplanation": [
+                  "'al' is a contraction of 'a' + 'el'.",
+                  "It means 'to the'."
+                ],
+                "tokens": [
+                  {
+                    "text": "al",
+                    "type": "preposition_article",
+                    "role": "movement_destination",
+                    "meaning": "to the"
+                  },
+                  {
+                    "text": "banco",
+                    "type": "noun",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "去銀行",
+              "tiles": [
+                "去",
+                "銀行"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Destination",
+                "grammarExplanation": [
+                  "Chinese uses '去' before the place to show going to somewhere.",
+                  "No article is needed."
+                ],
+                "tokens": [
+                  {
+                    "text": "去",
+                    "type": "verb/preposition_like",
+                    "role": "movement",
+                    "meaning": "go to"
+                  },
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "destination",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "銀行に",
+              "tiles": [
+                "銀行に"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun + Particle",
+                "grammarExplanation": [
+                  "'に' marks the destination.",
+                  "Japanese places the particle after the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "destination",
+                    "meaning": "bank"
+                  },
+                  {
+                    "text": "に",
+                    "type": "particle",
+                    "role": "destination_marker",
+                    "meaning": "to"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 4,
+          "focus": "verb_phrase",
+          "translations": {
+            "en": {
+              "text": "go to the bank",
+              "tiles": [
+                "go",
+                "to",
+                "the",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Prepositional Phrase",
+                "grammarExplanation": [
+                  "'go' is the action.",
+                  "'to the bank' tells where the action is directed."
+                ],
+                "tokens": [
+                  {
+                    "text": "go",
+                    "type": "verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "to the bank",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "zur Bank gehen",
+              "tiles": [
+                "zur",
+                "Bank",
+                "gehen"
+              ],
+              "analysis": {
+                "sentencePattern": "Destination + Infinitive Verb",
+                "grammarExplanation": [
+                  "German often puts the infinitive verb after the destination phrase.",
+                  "'gehen' means 'to go'."
+                ],
+                "tokens": [
+                  {
+                    "text": "zur Bank",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  },
+                  {
+                    "text": "gehen",
+                    "type": "infinitive_verb",
+                    "role": "main_action",
+                    "meaning": "go"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "aller à la banque",
+              "tiles": [
+                "aller",
+                "à",
+                "la",
+                "banque"
+              ],
+              "analysis": {
+                "sentencePattern": "Infinitive Verb + Destination",
+                "grammarExplanation": [
+                  "'aller' is the infinitive verb 'to go'.",
+                  "The destination follows after 'à'."
+                ],
+                "tokens": [
+                  {
+                    "text": "aller",
+                    "type": "infinitive_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "à la banque",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "ir al banco",
+              "tiles": [
+                "ir",
+                "al",
+                "banco"
+              ],
+              "analysis": {
+                "sentencePattern": "Infinitive Verb + Destination",
+                "grammarExplanation": [
+                  "'ir' is the infinitive verb 'to go'.",
+                  "'al banco' tells the destination."
+                ],
+                "tokens": [
+                  {
+                    "text": "ir",
+                    "type": "infinitive_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "al banco",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "去銀行",
+              "tiles": [
+                "去",
+                "銀行"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Destination",
+                "grammarExplanation": [
+                  "Chinese keeps the movement verb before the place.",
+                  "'去銀行' literally means 'go bank'."
+                ],
+                "tokens": [
+                  {
+                    "text": "去",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "go"
+                  },
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "銀行に行く",
+              "tiles": [
+                "銀行に",
+                "行く"
+              ],
+              "analysis": {
+                "sentencePattern": "Destination + Verb",
+                "grammarExplanation": [
+                  "Japanese usually places the destination before the verb.",
+                  "'に' marks the destination and '行く' is the action."
+                ],
+                "tokens": [
+                  {
+                    "text": "銀行に",
+                    "type": "destination_phrase",
+                    "role": "destination",
+                    "meaning": "to the bank"
+                  },
+                  {
+                    "text": "行く",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "go"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 5,
+          "focus": "first_person_need_to",
+          "translations": {
+            "en": {
+              "text": "I need to go to the bank.",
+              "tiles": [
+                "I",
+                "need",
+                "to",
+                "go",
+                "to",
+                "the",
+                "bank."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Need + Infinitive Verb + Destination",
+                "grammarExplanation": [
+                  "'I' is the subject.",
+                  "'need to go' shows necessity plus action."
+                ],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "need",
+                    "type": "verb",
+                    "role": "necessity"
+                  },
+                  {
+                    "text": "to go",
+                    "type": "infinitive_verb_phrase",
+                    "role": "action"
+                  },
+                  {
+                    "text": "to the bank",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich muss zur Bank gehen.",
+              "tiles": [
+                "Ich",
+                "muss",
+                "zur",
+                "Bank",
+                "gehen."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Modal Verb + Destination + Main Verb",
+                "grammarExplanation": [
+                  "German modal verb sentences usually place the main action verb at the end.",
+                  "'gehen' is at the end because it follows 'muss'.",
+                  "'zur' means 'to the'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "pronoun",
+                    "role": "subject",
+                    "meaning": "I"
+                  },
+                  {
+                    "text": "muss",
+                    "type": "modal_verb",
+                    "role": "necessity",
+                    "meaning": "must / need to"
+                  },
+                  {
+                    "text": "zur Bank",
+                    "type": "prepositional_phrase",
+                    "role": "destination",
+                    "meaning": "to the bank"
+                  },
+                  {
+                    "text": "gehen",
+                    "type": "infinitive_verb",
+                    "role": "main_action",
+                    "meaning": "go",
+                    "grammarNote": "Placed at the end because of the modal verb."
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Je dois aller à la banque.",
+              "tiles": [
+                "Je",
+                "dois",
+                "aller",
+                "à",
+                "la",
+                "banque."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Must/Have-to Verb + Infinitive + Destination",
+                "grammarExplanation": [
+                  "'Je dois' means 'I must / I have to'.",
+                  "The infinitive 'aller' comes after 'dois'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Je",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "dois",
+                    "type": "verb",
+                    "role": "necessity"
+                  },
+                  {
+                    "text": "aller",
+                    "type": "infinitive_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "à la banque",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Necesito ir al banco.",
+              "tiles": [
+                "Necesito",
+                "ir",
+                "al",
+                "banco."
+              ],
+              "analysis": {
+                "sentencePattern": "Conjugated Verb + Infinitive + Destination",
+                "grammarExplanation": [
+                  "'Necesito' already means 'I need'.",
+                  "Spanish can omit the subject pronoun because the verb ending shows the subject.",
+                  "'al' means 'to the'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Necesito",
+                    "type": "verb",
+                    "role": "subject_and_necessity",
+                    "meaning": "I need"
+                  },
+                  {
+                    "text": "ir",
+                    "type": "infinitive_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "al banco",
+                    "type": "prepositional_phrase",
+                    "role": "destination"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我需要去銀行。",
+              "tiles": [
+                "我",
+                "需要",
+                "去",
+                "銀行。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Need + Go + Destination",
+                "grammarExplanation": [
+                  "Chinese uses a direct order: I + need + go + bank.",
+                  "No article like 'the' is required."
+                ],
+                "tokens": [
+                  {
+                    "text": "我",
+                    "type": "pronoun",
+                    "role": "subject",
+                    "meaning": "I"
+                  },
+                  {
+                    "text": "需要",
+                    "type": "verb",
+                    "role": "necessity",
+                    "meaning": "need"
+                  },
+                  {
+                    "text": "去",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "go"
+                  },
+                  {
+                    "text": "銀行",
+                    "type": "noun",
+                    "role": "destination",
+                    "meaning": "bank"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "私は銀行に行く必要があります。",
+              "tiles": [
+                "私は",
+                "銀行に",
+                "行く",
+                "必要があります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + Destination + Action + Necessity",
+                "grammarExplanation": [
+                  "Japanese puts the necessity expression at the end.",
+                  "'銀行に' marks the destination.",
+                  "'行く' means 'go', and '必要があります' means 'there is a need'."
+                ],
+                "tokens": [
+                  {
+                    "text": "私は",
+                    "type": "topic_phrase",
+                    "role": "topic",
+                    "meaning": "I"
+                  },
+                  {
+                    "text": "銀行に",
+                    "type": "destination_phrase",
+                    "role": "destination",
+                    "meaning": "to the bank"
+                  },
+                  {
+                    "text": "行く",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "go"
+                  },
+                  {
+                    "text": "必要があります",
+                    "type": "necessity_expression",
+                    "role": "necessity",
+                    "meaning": "need to"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_RIVER_BANK_SIT",
+      "linkedConcepts": [
+        "BANK_RIVER",
+        "RIVER",
+        "ACTION_SIT"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_noun",
+          "translations": {
+            "en": {
+              "text": "river bank",
+              "tiles": [
+                "river",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Compound Noun",
+                "grammarExplanation": [
+                  "'river bank' is a compound noun.",
+                  "Here, 'bank' means the side of a river, not a financial bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "river",
+                    "type": "noun_modifier",
+                    "role": "describes_kind"
+                  },
+                  {
+                    "text": "bank",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "side of river"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ufer",
+              "tiles": [
+                "Ufer"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'Ufer' means the bank or shore of a river/lake.",
+                  "It is not the same as financial 'Bank'."
+                ],
+                "tokens": [
+                  {
+                    "text": "Ufer",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "river bank"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "berge",
+              "tiles": [
+                "berge"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'berge' means river bank.",
+                  "It is different from 'banque', the financial bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "berge",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "river bank"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "orilla",
+              "tiles": [
+                "orilla"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'orilla' means bank/shore/edge.",
+                  "Context tells us it is the river bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "orilla",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "river bank"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "河岸",
+              "tiles": [
+                "河岸"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "'河岸' literally combines river + bank/shore.",
+                  "It means river bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "河",
+                    "type": "noun_modifier",
+                    "meaning": "river"
+                  },
+                  {
+                    "text": "岸",
+                    "type": "noun",
+                    "meaning": "bank/shore"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "川岸",
+              "tiles": [
+                "川岸"
+              ],
+              "analysis": {
+                "sentencePattern": "Compound Noun",
+                "grammarExplanation": [
+                  "'川岸' combines river + bank/shore.",
+                  "It means river bank."
+                ],
+                "tokens": [
+                  {
+                    "text": "川",
+                    "type": "noun_modifier",
+                    "meaning": "river"
+                  },
+                  {
+                    "text": "岸",
+                    "type": "noun",
+                    "meaning": "bank/shore"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "definite_place_phrase",
+          "translations": {
+            "en": {
+              "text": "the river bank",
+              "tiles": [
+                "the",
+                "river",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Compound Noun",
+                "grammarExplanation": [
+                  "'the' marks a specific place.",
+                  "'river bank' acts as one noun phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "the",
+                    "type": "article",
+                    "role": "determiner"
+                  },
+                  {
+                    "text": "river bank",
+                    "type": "compound_noun",
+                    "role": "place"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Flussufer",
+              "tiles": [
+                "das",
+                "Flussufer"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Compound Noun",
+                "grammarExplanation": [
+                  "'das' is the neuter definite article.",
+                  "'Flussufer' is a compound noun: river + bank/shore."
+                ],
+                "tokens": [
+                  {
+                    "text": "das",
+                    "type": "article",
+                    "role": "determiner"
+                  },
+                  {
+                    "text": "Flussufer",
+                    "type": "compound_noun",
+                    "role": "place"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la berge de la rivière",
+              "tiles": [
+                "la",
+                "berge",
+                "de",
+                "la",
+                "rivière"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun + of + Article + Noun",
+                "grammarExplanation": [
+                  "French often uses 'de' to connect nouns.",
+                  "'la berge de la rivière' literally means 'the bank of the river'."
+                ],
+                "tokens": [
+                  {
+                    "text": "la",
+                    "type": "article"
+                  },
+                  {
+                    "text": "berge",
+                    "type": "noun",
+                    "role": "place"
+                  },
+                  {
+                    "text": "de",
+                    "type": "preposition",
+                    "meaning": "of"
+                  },
+                  {
+                    "text": "la rivière",
+                    "type": "noun_phrase",
+                    "meaning": "the river"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la orilla del río",
+              "tiles": [
+                "la",
+                "orilla",
+                "del",
+                "río"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + Noun + of-the + Noun",
+                "grammarExplanation": [
+                  "'del' = 'de' + 'el'.",
+                  "'la orilla del río' literally means 'the bank/shore of the river'."
+                ],
+                "tokens": [
+                  {
+                    "text": "la",
+                    "type": "article"
+                  },
+                  {
+                    "text": "orilla",
+                    "type": "noun",
+                    "role": "place"
+                  },
+                  {
+                    "text": "del",
+                    "type": "preposition_article",
+                    "meaning": "of the"
+                  },
+                  {
+                    "text": "río",
+                    "type": "noun",
+                    "meaning": "river"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "河岸",
+              "tiles": [
+                "河岸"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Chinese often does not need 'the'.",
+                  "'河岸' can mean 'the river bank' in context."
+                ],
+                "tokens": [
+                  {
+                    "text": "河岸",
+                    "type": "noun",
+                    "role": "place"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "川岸",
+              "tiles": [
+                "川岸"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "grammarExplanation": [
+                  "Japanese does not use articles like 'the'.",
+                  "'川岸' can mean 'the river bank' in context."
+                ],
+                "tokens": [
+                  {
+                    "text": "川岸",
+                    "type": "noun",
+                    "role": "place"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "location_phrase",
+          "translations": {
+            "en": {
+              "text": "on the river bank",
+              "tiles": [
+                "on",
+                "the",
+                "river",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Noun Phrase",
+                "grammarExplanation": [
+                  "'on' shows location.",
+                  "'the river bank' is the place."
+                ],
+                "tokens": [
+                  {
+                    "text": "on",
+                    "type": "preposition",
+                    "role": "location_marker"
+                  },
+                  {
+                    "text": "the river bank",
+                    "type": "noun_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "am Flussufer",
+              "tiles": [
+                "am",
+                "Flussufer"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition+Article + Compound Noun",
+                "grammarExplanation": [
+                  "'am' = 'an dem'.",
+                  "It means 'at/on the' in this location phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "am",
+                    "type": "preposition_article",
+                    "role": "location_marker"
+                  },
+                  {
+                    "text": "Flussufer",
+                    "type": "compound_noun",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "sur la berge",
+              "tiles": [
+                "sur",
+                "la",
+                "berge"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Article + Noun",
+                "grammarExplanation": [
+                  "'sur' means on.",
+                  "'la berge' is the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "sur",
+                    "type": "preposition",
+                    "role": "location_marker"
+                  },
+                  {
+                    "text": "la berge",
+                    "type": "noun_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "en la orilla del río",
+              "tiles": [
+                "en",
+                "la",
+                "orilla",
+                "del",
+                "río"
+              ],
+              "analysis": {
+                "sentencePattern": "Preposition + Noun Phrase",
+                "grammarExplanation": [
+                  "'en' can mean in/on/at depending on context.",
+                  "'la orilla del río' is the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "en",
+                    "type": "preposition",
+                    "role": "location_marker"
+                  },
+                  {
+                    "text": "la orilla del río",
+                    "type": "noun_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "在河岸上",
+              "tiles": [
+                "在",
+                "河岸",
+                "上"
+              ],
+              "analysis": {
+                "sentencePattern": "Location Frame",
+                "grammarExplanation": [
+                  "'在...上' forms a location frame meaning 'on/at'.",
+                  "The place comes between 在 and 上."
+                ],
+                "tokens": [
+                  {
+                    "text": "在",
+                    "type": "location_marker",
+                    "meaning": "at/on"
+                  },
+                  {
+                    "text": "河岸",
+                    "type": "noun",
+                    "role": "location"
+                  },
+                  {
+                    "text": "上",
+                    "type": "location_word",
+                    "meaning": "on"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "川岸に",
+              "tiles": [
+                "川岸に"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun + Particle",
+                "grammarExplanation": [
+                  "'に' marks the location or destination.",
+                  "The particle comes after the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "川岸",
+                    "type": "noun",
+                    "role": "location"
+                  },
+                  {
+                    "text": "に",
+                    "type": "particle",
+                    "role": "location_marker"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 4,
+          "focus": "verb_location_phrase",
+          "translations": {
+            "en": {
+              "text": "sat on the river bank",
+              "tiles": [
+                "sat",
+                "on",
+                "the",
+                "river",
+                "bank"
+              ],
+              "analysis": {
+                "sentencePattern": "Past Verb + Location Phrase",
+                "grammarExplanation": [
+                  "'sat' is the past tense of 'sit'.",
+                  "The location phrase comes after the verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "sat",
+                    "type": "past_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "on the river bank",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "saßen am Flussufer",
+              "tiles": [
+                "saßen",
+                "am",
+                "Flussufer"
+              ],
+              "analysis": {
+                "sentencePattern": "Past Verb + Location Phrase",
+                "grammarExplanation": [
+                  "'saßen' is past tense for 'we sat'.",
+                  "German can use the verb before the location in this phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "saßen",
+                    "type": "past_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "am Flussufer",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "nous sommes assis sur la berge",
+              "tiles": [
+                "nous",
+                "sommes",
+                "assis",
+                "sur",
+                "la",
+                "berge"
+              ],
+              "analysis": {
+                "sentencePattern": "Pronoun + Auxiliary + Past Participle + Location",
+                "grammarExplanation": [
+                  "French past tense often uses an auxiliary verb.",
+                  "'sommes assis' means 'sat / were seated'."
+                ],
+                "tokens": [
+                  {
+                    "text": "nous",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "sommes",
+                    "type": "auxiliary_verb"
+                  },
+                  {
+                    "text": "assis",
+                    "type": "past_participle",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "sur la berge",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "nos sentamos en la orilla del río",
+              "tiles": [
+                "nos",
+                "sentamos",
+                "en",
+                "la",
+                "orilla",
+                "del",
+                "río"
+              ],
+              "analysis": {
+                "sentencePattern": "Reflexive Past Verb + Location",
+                "grammarExplanation": [
+                  "'nos sentamos' means 'we sat down'.",
+                  "Spanish can include the subject in the verb ending."
+                ],
+                "tokens": [
+                  {
+                    "text": "nos sentamos",
+                    "type": "reflexive_past_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "en la orilla del río",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "坐在河岸上",
+              "tiles": [
+                "坐在",
+                "河岸",
+                "上"
+              ],
+              "analysis": {
+                "sentencePattern": "Verb + Location Frame",
+                "grammarExplanation": [
+                  "'坐在' combines sit + at/on.",
+                  "Chinese often links the action directly with the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "坐在",
+                    "type": "verb_location_marker",
+                    "role": "main_action_and_location"
+                  },
+                  {
+                    "text": "河岸",
+                    "type": "noun",
+                    "role": "location"
+                  },
+                  {
+                    "text": "上",
+                    "type": "location_word",
+                    "meaning": "on"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "川岸に座った",
+              "tiles": [
+                "川岸に",
+                "座った"
+              ],
+              "analysis": {
+                "sentencePattern": "Location + Past Verb",
+                "grammarExplanation": [
+                  "Japanese often places the location before the verb.",
+                  "'座った' is the past form of 'sit'."
+                ],
+                "tokens": [
+                  {
+                    "text": "川岸に",
+                    "type": "location_phrase",
+                    "role": "location"
+                  },
+                  {
+                    "text": "座った",
+                    "type": "past_verb",
+                    "role": "main_action"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 5,
+          "focus": "full_sentence_past",
+          "translations": {
+            "en": {
+              "text": "We sat on the river bank.",
+              "tiles": [
+                "We",
+                "sat",
+                "on",
+                "the",
+                "river",
+                "bank."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Past Verb + Location Phrase",
+                "grammarExplanation": [
+                  "'We' is the subject.",
+                  "'sat' is the past tense of 'sit'.",
+                  "'on the river bank' tells where it happened."
+                ],
+                "tokens": [
+                  {
+                    "text": "We",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "sat",
+                    "type": "past_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "on the river bank",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wir saßen am Flussufer.",
+              "tiles": [
+                "Wir",
+                "saßen",
+                "am",
+                "Flussufer."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Past Verb + Location Phrase",
+                "grammarExplanation": [
+                  "'Wir' means 'we'.",
+                  "'saßen' is the past-tense verb.",
+                  "'am Flussufer' gives the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wir",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "saßen",
+                    "type": "past_verb",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "am Flussufer",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Nous nous sommes assis sur la berge.",
+              "tiles": [
+                "Nous",
+                "nous",
+                "sommes",
+                "assis",
+                "sur",
+                "la",
+                "berge."
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Reflexive/Auxiliary Past + Location",
+                "grammarExplanation": [
+                  "French uses 'nous nous sommes assis' for 'we sat down'.",
+                  "The location comes after the verb phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "Nous",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "nous",
+                    "type": "reflexive_pronoun"
+                  },
+                  {
+                    "text": "sommes",
+                    "type": "auxiliary_verb"
+                  },
+                  {
+                    "text": "assis",
+                    "type": "past_participle",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "sur la berge",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Nos sentamos en la orilla del río.",
+              "tiles": [
+                "Nos",
+                "sentamos",
+                "en",
+                "la",
+                "orilla",
+                "del",
+                "río."
+              ],
+              "analysis": {
+                "sentencePattern": "Reflexive Past Verb + Location",
+                "grammarExplanation": [
+                  "'Nos sentamos' means 'we sat down'.",
+                  "Spanish does not always need a separate subject pronoun because the verb form carries the subject."
+                ],
+                "tokens": [
+                  {
+                    "text": "Nos sentamos",
+                    "type": "reflexive_past_verb",
+                    "role": "subject_and_action",
+                    "meaning": "we sat"
+                  },
+                  {
+                    "text": "en la orilla del río",
+                    "type": "prepositional_phrase",
+                    "role": "location"
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我們坐在河岸上。",
+              "tiles": [
+                "我們",
+                "坐在",
+                "河岸",
+                "上。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Verb-Location + Place",
+                "grammarExplanation": [
+                  "'我們' means 'we'.",
+                  "'坐在' means 'sat/sit at/on'.",
+                  "'河岸上' means 'on the river bank'."
+                ],
+                "tokens": [
+                  {
+                    "text": "我們",
+                    "type": "pronoun",
+                    "role": "subject"
+                  },
+                  {
+                    "text": "坐在",
+                    "type": "verb_location_marker",
+                    "role": "main_action"
+                  },
+                  {
+                    "text": "河岸",
+                    "type": "noun",
+                    "role": "location"
+                  },
+                  {
+                    "text": "上",
+                    "type": "location_word",
+                    "meaning": "on"
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "私たちは川岸に座った。",
+              "tiles": [
+                "私たちは",
+                "川岸に",
+                "座った。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + Location + Past Verb",
+                "grammarExplanation": [
+                  "'私たちは' marks 'we' as the topic.",
+                  "'川岸に' marks the location.",
+                  "The verb '座った' comes at the end, which is typical in Japanese."
+                ],
+                "tokens": [
+                  {
+                    "text": "私たちは",
+                    "type": "topic_phrase",
+                    "role": "topic",
+                    "meaning": "we"
+                  },
+                  {
+                    "text": "川岸に",
+                    "type": "location_phrase",
+                    "role": "location"
+                  },
+                  {
+                    "text": "座った",
+                    "type": "past_verb",
+                    "role": "main_action",
+                    "grammarNote": "Japanese verbs usually come at the end."
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "ACTION_SIT",
+        "RIVER",
+        "BANK_RIVER"
+      ],
+      "grammarFocus": [
+        "past_tense",
+        "location_phrase"
+      ],
+      "sourceChainId": "CHAIN_RIVER_BANK_SIT",
+      "translations": {
+        "en": {
+          "text": "We sat on the river bank.",
+          "tiles": [
+            "We",
+            "sat",
+            "on",
+            "the",
+            "river",
+            "bank."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Past Verb + Location Phrase",
+            "grammarExplanation": [
+              "'We' is the subject.",
+              "'sat' is the past tense of 'sit'.",
+              "'on the river bank' tells where it happened."
+            ],
+            "tokens": [
+              {
+                "text": "We",
+                "type": "pronoun",
+                "role": "subject"
+              },
+              {
+                "text": "sat",
+                "type": "past_verb",
+                "role": "main_action"
+              },
+              {
+                "text": "on the river bank",
+                "type": "prepositional_phrase",
+                "role": "location"
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wir saßen am Flussufer.",
+          "tiles": [
+            "Wir",
+            "saßen",
+            "am",
+            "Flussufer."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Past Verb + Location Phrase",
+            "grammarExplanation": [
+              "'Wir' means 'we'.",
+              "'saßen' is the past-tense verb.",
+              "'am Flussufer' gives the location."
+            ],
+            "tokens": [
+              {
+                "text": "Wir",
+                "type": "pronoun",
+                "role": "subject"
+              },
+              {
+                "text": "saßen",
+                "type": "past_verb",
+                "role": "main_action"
+              },
+              {
+                "text": "am Flussufer",
+                "type": "prepositional_phrase",
+                "role": "location"
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Nous nous sommes assis sur la berge.",
+          "tiles": [
+            "Nous",
+            "nous",
+            "sommes",
+            "assis",
+            "sur",
+            "la",
+            "berge."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Reflexive/Auxiliary Past + Location",
+            "grammarExplanation": [
+              "French uses 'nous nous sommes assis' for 'we sat down'.",
+              "The location comes after the verb phrase."
+            ],
+            "tokens": [
+              {
+                "text": "Nous",
+                "type": "pronoun",
+                "role": "subject"
+              },
+              {
+                "text": "nous",
+                "type": "reflexive_pronoun"
+              },
+              {
+                "text": "sommes",
+                "type": "auxiliary_verb"
+              },
+              {
+                "text": "assis",
+                "type": "past_participle",
+                "role": "main_action"
+              },
+              {
+                "text": "sur la berge",
+                "type": "prepositional_phrase",
+                "role": "location"
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Nos sentamos en la orilla del río.",
+          "tiles": [
+            "Nos",
+            "sentamos",
+            "en",
+            "la",
+            "orilla",
+            "del",
+            "río."
+          ],
+          "analysis": {
+            "sentencePattern": "Reflexive Past Verb + Location",
+            "grammarExplanation": [
+              "'Nos sentamos' means 'we sat down'.",
+              "Spanish does not always need a separate subject pronoun because the verb form carries the subject."
+            ],
+            "tokens": [
+              {
+                "text": "Nos sentamos",
+                "type": "reflexive_past_verb",
+                "role": "subject_and_action",
+                "meaning": "we sat"
+              },
+              {
+                "text": "en la orilla del río",
+                "type": "prepositional_phrase",
+                "role": "location"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我們坐在河岸上。",
+          "tiles": [
+            "我們",
+            "坐在",
+            "河岸",
+            "上。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Verb-Location + Place",
+            "grammarExplanation": [
+              "'我們' means 'we'.",
+              "'坐在' means 'sat/sit at/on'.",
+              "'河岸上' means 'on the river bank'."
+            ],
+            "tokens": [
+              {
+                "text": "我們",
+                "type": "pronoun",
+                "role": "subject"
+              },
+              {
+                "text": "坐在",
+                "type": "verb_location_marker",
+                "role": "main_action"
+              },
+              {
+                "text": "河岸",
+                "type": "noun",
+                "role": "location"
+              },
+              {
+                "text": "上",
+                "type": "location_word",
+                "meaning": "on"
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "私たちは川岸に座った。",
+          "tiles": [
+            "私たちは",
+            "川岸に",
+            "座った。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + Location + Past Verb",
+            "grammarExplanation": [
+              "'私たちは' marks 'we' as the topic.",
+              "'川岸に' marks the location.",
+              "The verb '座った' comes at the end, which is typical in Japanese."
+            ],
+            "tokens": [
+              {
+                "text": "私たちは",
+                "type": "topic_phrase",
+                "role": "topic",
+                "meaning": "we"
+              },
+              {
+                "text": "川岸に",
+                "type": "location_phrase",
+                "role": "location"
+              },
+              {
+                "text": "座った",
+                "type": "past_verb",
+                "role": "main_action",
+                "grammarNote": "Japanese verbs usually come at the end."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "ACTION_GO",
+        "BANK_FINANCE"
+      ],
+      "grammarFocus": [
+        "need_to",
+        "movement_phrase"
+      ],
+      "sourceChainId": "CHAIN_BANK_FINANCE_GO",
+      "translations": {
+        "en": {
+          "text": "I need to go to the bank.",
+          "tiles": [
+            "I",
+            "need",
+            "to",
+            "go",
+            "to",
+            "the",
+            "bank."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Need + Infinitive Verb + Destination",
+            "grammarExplanation": [
+              "'I' is the subject.",
+              "'need to go' shows necessity plus action."
+            ],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "pronoun",
+                "role": "subject"
+              },
+              {
+                "text": "need",
+                "type": "verb",
+                "role": "necessity"
+              },
+              {
+                "text": "to go",
+                "type": "infinitive_verb_phrase",
+                "role": "action"
+              },
+              {
+                "text": "to the bank",
+                "type": "prepositional_phrase",
+                "role": "destination"
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich muss zur Bank gehen.",
+          "tiles": [
+            "Ich",
+            "muss",
+            "zur",
+            "Bank",
+            "gehen."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Modal Verb + Destination + Main Verb",
+            "grammarExplanation": [
+              "German modal verb sentences usually place the main action verb at the end.",
+              "'gehen' is at the end because it follows 'muss'.",
+              "'zur' means 'to the'."
+            ],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "pronoun",
+                "role": "subject",
+                "meaning": "I"
+              },
+              {
+                "text": "muss",
+                "type": "modal_verb",
+                "role": "necessity",
+                "meaning": "must / need to"
+              },
+              {
+                "text": "zur Bank",
+                "type": "prepositional_phrase",
+                "role": "destination",
+                "meaning": "to the bank"
+              },
+              {
+                "text": "gehen",
+                "type": "infinitive_verb",
+                "role": "main_action",
+                "meaning": "go",
+                "grammarNote": "Placed at the end because of the modal verb."
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Je dois aller à la banque.",
+          "tiles": [
+            "Je",
+            "dois",
+            "aller",
+            "à",
+            "la",
+            "banque."
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Must/Have-to Verb + Infinitive + Destination",
+            "grammarExplanation": [
+              "'Je dois' means 'I must / I have to'.",
+              "The infinitive 'aller' comes after 'dois'."
+            ],
+            "tokens": [
+              {
+                "text": "Je",
+                "type": "pronoun",
+                "role": "subject"
+              },
+              {
+                "text": "dois",
+                "type": "verb",
+                "role": "necessity"
+              },
+              {
+                "text": "aller",
+                "type": "infinitive_verb",
+                "role": "main_action"
+              },
+              {
+                "text": "à la banque",
+                "type": "prepositional_phrase",
+                "role": "destination"
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Necesito ir al banco.",
+          "tiles": [
+            "Necesito",
+            "ir",
+            "al",
+            "banco."
+          ],
+          "analysis": {
+            "sentencePattern": "Conjugated Verb + Infinitive + Destination",
+            "grammarExplanation": [
+              "'Necesito' already means 'I need'.",
+              "Spanish can omit the subject pronoun because the verb ending shows the subject.",
+              "'al' means 'to the'."
+            ],
+            "tokens": [
+              {
+                "text": "Necesito",
+                "type": "verb",
+                "role": "subject_and_necessity",
+                "meaning": "I need"
+              },
+              {
+                "text": "ir",
+                "type": "infinitive_verb",
+                "role": "main_action"
+              },
+              {
+                "text": "al banco",
+                "type": "prepositional_phrase",
+                "role": "destination"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我需要去銀行。",
+          "tiles": [
+            "我",
+            "需要",
+            "去",
+            "銀行。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Need + Go + Destination",
+            "grammarExplanation": [
+              "Chinese uses a direct order: I + need + go + bank.",
+              "No article like 'the' is required."
+            ],
+            "tokens": [
+              {
+                "text": "我",
+                "type": "pronoun",
+                "role": "subject",
+                "meaning": "I"
+              },
+              {
+                "text": "需要",
+                "type": "verb",
+                "role": "necessity",
+                "meaning": "need"
+              },
+              {
+                "text": "去",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "go"
+              },
+              {
+                "text": "銀行",
+                "type": "noun",
+                "role": "destination",
+                "meaning": "bank"
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "私は銀行に行く必要があります。",
+          "tiles": [
+            "私は",
+            "銀行に",
+            "行く",
+            "必要があります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + Destination + Action + Necessity",
+            "grammarExplanation": [
+              "Japanese puts the necessity expression at the end.",
+              "'銀行に' marks the destination.",
+              "'行く' means 'go', and '必要があります' means 'there is a need'."
+            ],
+            "tokens": [
+              {
+                "text": "私は",
+                "type": "topic_phrase",
+                "role": "topic",
+                "meaning": "I"
+              },
+              {
+                "text": "銀行に",
+                "type": "destination_phrase",
+                "role": "destination",
+                "meaning": "to the bank"
+              },
+              {
+                "text": "行く",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "go"
+              },
+              {
+                "text": "必要があります",
+                "type": "necessity_expression",
+                "role": "necessity",
+                "meaning": "need to"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "RIVER": [
+      "S001"
+    ],
+    "BANK_RIVER": [
+      "S001"
+    ],
+    "ACTION_SIT": [
+      "S001"
+    ],
+    "BANK_FINANCE": [
+      "S002"
+    ],
+    "ACTION_GO": [
+      "S002"
+    ]
+  }
+}

@@ -1,0 +1,2277 @@
+{
+  "packId": "semantic_pack_l1_003_river_bridge",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_003 — river_bridge",
+  "description": "A corrected multilingual Stage 1 Progressive Language pack for River and Bridge.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_003",
+    "title": "River and Bridge",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "nature",
+      "transport"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "articles",
+        "pronouns",
+        "location_phrases"
+      ],
+      "german": [
+        "article_gender",
+        "verb_second_position"
+      ],
+      "french": [
+        "article_gender",
+        "être_location"
+      ],
+      "spanish": [
+        "estar_location"
+      ],
+      "chinese": [
+        "在_location_structure",
+        "no_articles"
+      ],
+      "japanese": [
+        "topic_marker_は",
+        "verb_final_structure"
+      ]
+    },
+    "sentenceGoals": [
+      "The tourist is by the river.",
+      "The friend walks on the bridge."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_TOURIST",
+      "type": "noun",
+      "senseKey": "person_tourist",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "tourist"
+        },
+        "de": {
+          "text": "Urlauber",
+          "article": "der"
+        },
+        "fr": {
+          "text": "touriste",
+          "article": "le"
+        },
+        "es": {
+          "text": "turista",
+          "article": "el"
+        },
+        "zh": {
+          "text": "游客"
+        },
+        "ja": {
+          "text": "観光客"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_FRIEND",
+      "type": "noun",
+      "senseKey": "person_friend",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "friend"
+        },
+        "de": {
+          "text": "Freund",
+          "article": "der"
+        },
+        "fr": {
+          "text": "l'ami"
+        },
+        "es": {
+          "text": "amigo",
+          "article": "el"
+        },
+        "zh": {
+          "text": "朋友"
+        },
+        "ja": {
+          "text": "友だち"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_RIVER",
+      "type": "noun",
+      "senseKey": "place_river",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "river"
+        },
+        "de": {
+          "text": "Fluss",
+          "article": "der"
+        },
+        "fr": {
+          "text": "rivière",
+          "article": "la"
+        },
+        "es": {
+          "text": "río",
+          "article": "el"
+        },
+        "zh": {
+          "text": "河流"
+        },
+        "ja": {
+          "text": "川"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BRIDGE",
+      "type": "noun",
+      "senseKey": "object_bridge",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "bridge"
+        },
+        "de": {
+          "text": "Brücke",
+          "article": "die"
+        },
+        "fr": {
+          "text": "pont",
+          "article": "le"
+        },
+        "es": {
+          "text": "puente",
+          "article": "el"
+        },
+        "zh": {
+          "text": "桥"
+        },
+        "ja": {
+          "text": "橋"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BOAT",
+      "type": "noun",
+      "senseKey": "object_boat",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "boat"
+        },
+        "de": {
+          "text": "Boot",
+          "article": "das"
+        },
+        "fr": {
+          "text": "bateau",
+          "article": "le"
+        },
+        "es": {
+          "text": "barco",
+          "article": "el"
+        },
+        "zh": {
+          "text": "船"
+        },
+        "ja": {
+          "text": "ボート"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_TREE",
+      "type": "noun",
+      "senseKey": "object_tree",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "tree"
+        },
+        "de": {
+          "text": "Baum",
+          "article": "der"
+        },
+        "fr": {
+          "text": "l'arbre"
+        },
+        "es": {
+          "text": "árbol",
+          "article": "el"
+        },
+        "zh": {
+          "text": "树"
+        },
+        "ja": {
+          "text": "木"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_SIT",
+      "type": "verb",
+      "senseKey": "verb_sit",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "sit"
+        },
+        "de": {
+          "text": "sitzen"
+        },
+        "fr": {
+          "text": "s'asseoir"
+        },
+        "es": {
+          "text": "sentarse"
+        },
+        "zh": {
+          "text": "坐"
+        },
+        "ja": {
+          "text": "座る"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_WALK",
+      "type": "verb",
+      "senseKey": "verb_walk",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "walk"
+        },
+        "de": {
+          "text": "gehen"
+        },
+        "fr": {
+          "text": "marcher"
+        },
+        "es": {
+          "text": "caminar"
+        },
+        "zh": {
+          "text": "走"
+        },
+        "ja": {
+          "text": "歩く"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_MY",
+      "type": "possessive",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "zh": "我的",
+        "ja": "私の"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im/in der",
+        "fr": "dans",
+        "es": "en",
+        "zh": "在",
+        "ja": "に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_NEAR",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "near",
+        "de": "neben/bei",
+        "fr": "près de",
+        "es": "cerca de",
+        "zh": "旁边",
+        "ja": "近くに"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_LOCATION",
+      "linkedConcepts": [
+        "PERSON_TOURIST",
+        "PLACE_RIVER"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "tourist",
+              "tiles": [
+                "tourist"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "tourist",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "tourist",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Urlauber",
+              "tiles": [
+                "der Urlauber"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "der Urlauber",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Urlauber",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le touriste",
+              "tiles": [
+                "le touriste"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "le touriste",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "le touriste",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el turista",
+              "tiles": [
+                "el turista"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el turista",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el turista",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "游客",
+              "tiles": [
+                "游客"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "游客",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "游客",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "観光客",
+              "tiles": [
+                "観光客"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "観光客",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "観光客",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "place_phrase",
+          "translations": {
+            "en": {
+              "text": "the river.",
+              "tiles": [
+                "the river."
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "the river",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "the river",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "am Fluss.",
+              "tiles": [
+                "am Fluss."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "am Fluss",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "am Fluss",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "la rivière.",
+              "tiles": [
+                "la rivière."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la rivière",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la rivière",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "al río.",
+              "tiles": [
+                "al río."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "al río",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "al río",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "游客在河边。",
+              "tiles": [
+                "游客在河边。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "游客在河边",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "游客在河边",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "川のそばにいます。",
+              "tiles": [
+                "川のそばにいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "川のそばにいます",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "川のそばにいます",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_location_sentence",
+          "translations": {
+            "en": {
+              "text": "The tourist is by the river.",
+              "tiles": [
+                "The",
+                "tourist",
+                "is",
+                "by",
+                "the",
+                "river."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + be + place phrase",
+                "literalOrderExplanation": "The → tourist → is → by → the → river",
+                "grammarExplanation": [
+                  "English uses 'is' for location.",
+                  "The place phrase tells where the person is."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "by",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "river",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der Urlauber ist am Fluss.",
+              "tiles": [
+                "Der",
+                "Urlauber",
+                "ist",
+                "am",
+                "Fluss."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + place phrase",
+                "literalOrderExplanation": "Der → Urlauber → ist → am → Fluss",
+                "grammarExplanation": [
+                  "German keeps the finite verb in second position.",
+                  "Location phrases often use dative forms such as im, am, or in der."
+                ],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Urlauber",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "am",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fluss",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le touriste est près de la rivière.",
+              "tiles": [
+                "Le",
+                "touriste",
+                "est",
+                "près",
+                "de",
+                "la",
+                "rivière."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "Le → touriste → est → près → de → la → rivière",
+                "grammarExplanation": [
+                  "French uses être for location.",
+                  "Articles agree with the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "touriste",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "près",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "rivière",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El turista está junto al río.",
+              "tiles": [
+                "El",
+                "turista",
+                "está",
+                "junto",
+                "al",
+                "río."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + estar + place phrase",
+                "literalOrderExplanation": "El → turista → está → junto → al → río",
+                "grammarExplanation": [
+                  "Spanish uses estar for location.",
+                  "Articles agree with gender and number."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "turista",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "junto",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "al",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "río",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "游客在河边。",
+              "tiles": [
+                "游客",
+                "在河边。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + 在 + place",
+                "literalOrderExplanation": "游客 → 在河边",
+                "grammarExplanation": [
+                  "Chinese does not use articles like 'the'.",
+                  "在 marks the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "游客",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在河边",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "観光客は川のそばにいます。",
+              "tiles": [
+                "観光客は",
+                "川のそばに",
+                "います。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + place + います",
+                "literalOrderExplanation": "観光客は → 川のそばに → います",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "に marks a place for being or destination.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "観光客は",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "川のそばに",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "います",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_ACTION",
+      "linkedConcepts": [
+        "PERSON_FRIEND",
+        "VERB_WALK",
+        "OBJECT_BRIDGE"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "friend",
+              "tiles": [
+                "friend"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "friend",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "friend",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Freund",
+              "tiles": [
+                "der Freund"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "der Freund",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Freund",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "l'ami",
+              "tiles": [
+                "l'ami"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "l'ami",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "l'ami",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el amigo",
+              "tiles": [
+                "el amigo"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el amigo",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el amigo",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "朋友",
+              "tiles": [
+                "朋友"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "朋友",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "朋友",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "友だち",
+              "tiles": [
+                "友だち"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "友だち",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "友だち",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "object_phrase",
+          "translations": {
+            "en": {
+              "text": "bridge",
+              "tiles": [
+                "bridge"
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "bridge",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "bridge",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "die Brücke",
+              "tiles": [
+                "die Brücke"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "die Brücke",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "die Brücke",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le pont",
+              "tiles": [
+                "le pont"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "le pont",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le pont",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el puente",
+              "tiles": [
+                "el puente"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "el puente",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "el puente",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "桥",
+              "tiles": [
+                "桥"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "桥",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "桥",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "橋",
+              "tiles": [
+                "橋"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "橋",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "橋",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_action_sentence",
+          "translations": {
+            "en": {
+              "text": "The friend walks on the bridge.",
+              "tiles": [
+                "The",
+                "friend",
+                "walks",
+                "on",
+                "the",
+                "bridge."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "The → friend → walks → on → the → bridge",
+                "grammarExplanation": [
+                  "English places the verb after the subject.",
+                  "The object receives the action."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "friend",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "walks",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "on",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bridge",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der Freund geht auf der Brücke.",
+              "tiles": [
+                "Der",
+                "Freund",
+                "geht",
+                "auf",
+                "der",
+                "Brücke."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + object",
+                "literalOrderExplanation": "Der → Freund → geht → auf → der → Brücke",
+                "grammarExplanation": [
+                  "German uses verb-second word order.",
+                  "Articles change by gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Freund",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "geht",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "auf",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Brücke",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L'ami marche sur le pont.",
+              "tiles": [
+                "L'ami",
+                "marche",
+                "sur",
+                "le",
+                "pont."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb phrase + object",
+                "literalOrderExplanation": "L'ami → marche → sur → le → pont",
+                "grammarExplanation": [
+                  "French usually places the verb after the subject.",
+                  "Articles and contractions must match the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "L'ami",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "marche",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sur",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pont",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El amigo camina por el puente.",
+              "tiles": [
+                "El",
+                "amigo",
+                "camina",
+                "por",
+                "el",
+                "puente."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "El → amigo → camina → por → el → puente",
+                "grammarExplanation": [
+                  "Spanish verbs agree with the subject.",
+                  "The object follows the verb in simple sentences."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "amigo",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "camina",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "por",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "puente",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "朋友在桥上走。",
+              "tiles": [
+                "朋友",
+                "在桥上",
+                "走。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + action + object",
+                "literalOrderExplanation": "朋友 → 在桥上 → 走",
+                "grammarExplanation": [
+                  "Chinese commonly follows subject + verb + object order.",
+                  "The verb does not change for person."
+                ],
+                "tokens": [
+                  {
+                    "text": "朋友",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在桥上",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "走",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "友だちは橋の上を歩きます。",
+              "tiles": [
+                "友だちは",
+                "橋の上を",
+                "歩きます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + object + verb-final",
+                "literalOrderExplanation": "友だちは → 橋の上を → 歩きます",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "The object or phrase comes before the verb.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "友だちは",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "橋の上を",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "歩きます",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_TOURIST",
+        "PLACE_RIVER"
+      ],
+      "grammarFocus": [
+        "location_phrase",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_LOCATION",
+      "translations": {
+        "en": {
+          "text": "The tourist is by the river.",
+          "tiles": [
+            "The",
+            "tourist",
+            "is",
+            "by",
+            "the",
+            "river."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + be + place phrase",
+            "literalOrderExplanation": "The → tourist → is → by → the → river",
+            "grammarExplanation": [
+              "English uses 'is' for location.",
+              "The place phrase tells where the person is."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "by",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "river",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der Urlauber ist am Fluss.",
+          "tiles": [
+            "Der",
+            "Urlauber",
+            "ist",
+            "am",
+            "Fluss."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + place phrase",
+            "literalOrderExplanation": "Der → Urlauber → ist → am → Fluss",
+            "grammarExplanation": [
+              "German keeps the finite verb in second position.",
+              "Location phrases often use dative forms such as im, am, or in der."
+            ],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Urlauber",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "am",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fluss",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le touriste est près de la rivière.",
+          "tiles": [
+            "Le",
+            "touriste",
+            "est",
+            "près",
+            "de",
+            "la",
+            "rivière."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "Le → touriste → est → près → de → la → rivière",
+            "grammarExplanation": [
+              "French uses être for location.",
+              "Articles agree with the noun."
+            ],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "touriste",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "près",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "rivière",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El turista está junto al río.",
+          "tiles": [
+            "El",
+            "turista",
+            "está",
+            "junto",
+            "al",
+            "río."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + estar + place phrase",
+            "literalOrderExplanation": "El → turista → está → junto → al → río",
+            "grammarExplanation": [
+              "Spanish uses estar for location.",
+              "Articles agree with gender and number."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "turista",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "junto",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "al",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "río",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "游客在河边。",
+          "tiles": [
+            "游客",
+            "在河边。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + 在 + place",
+            "literalOrderExplanation": "游客 → 在河边",
+            "grammarExplanation": [
+              "Chinese does not use articles like 'the'.",
+              "在 marks the location."
+            ],
+            "tokens": [
+              {
+                "text": "游客",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在河边",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "観光客は川のそばにいます。",
+          "tiles": [
+            "観光客は",
+            "川のそばに",
+            "います。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + place + います",
+            "literalOrderExplanation": "観光客は → 川のそばに → います",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "に marks a place for being or destination.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "観光客は",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "川のそばに",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "います",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_FRIEND",
+        "VERB_WALK",
+        "OBJECT_BRIDGE"
+      ],
+      "grammarFocus": [
+        "basic_action",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_ACTION",
+      "translations": {
+        "en": {
+          "text": "The friend walks on the bridge.",
+          "tiles": [
+            "The",
+            "friend",
+            "walks",
+            "on",
+            "the",
+            "bridge."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "The → friend → walks → on → the → bridge",
+            "grammarExplanation": [
+              "English places the verb after the subject.",
+              "The object receives the action."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "friend",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "walks",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "on",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "bridge",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der Freund geht auf der Brücke.",
+          "tiles": [
+            "Der",
+            "Freund",
+            "geht",
+            "auf",
+            "der",
+            "Brücke."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + object",
+            "literalOrderExplanation": "Der → Freund → geht → auf → der → Brücke",
+            "grammarExplanation": [
+              "German uses verb-second word order.",
+              "Articles change by gender and case."
+            ],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Freund",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "geht",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "auf",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Brücke",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L'ami marche sur le pont.",
+          "tiles": [
+            "L'ami",
+            "marche",
+            "sur",
+            "le",
+            "pont."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb phrase + object",
+            "literalOrderExplanation": "L'ami → marche → sur → le → pont",
+            "grammarExplanation": [
+              "French usually places the verb after the subject.",
+              "Articles and contractions must match the noun."
+            ],
+            "tokens": [
+              {
+                "text": "L'ami",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "marche",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "sur",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "pont",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El amigo camina por el puente.",
+          "tiles": [
+            "El",
+            "amigo",
+            "camina",
+            "por",
+            "el",
+            "puente."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "El → amigo → camina → por → el → puente",
+            "grammarExplanation": [
+              "Spanish verbs agree with the subject.",
+              "The object follows the verb in simple sentences."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "amigo",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "camina",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "por",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "puente",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "朋友在桥上走。",
+          "tiles": [
+            "朋友",
+            "在桥上",
+            "走。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + action + object",
+            "literalOrderExplanation": "朋友 → 在桥上 → 走",
+            "grammarExplanation": [
+              "Chinese commonly follows subject + verb + object order.",
+              "The verb does not change for person."
+            ],
+            "tokens": [
+              {
+                "text": "朋友",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在桥上",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "走",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "友だちは橋の上を歩きます。",
+          "tiles": [
+            "友だちは",
+            "橋の上を",
+            "歩きます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + object + verb-final",
+            "literalOrderExplanation": "友だちは → 橋の上を → 歩きます",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "The object or phrase comes before the verb.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "友だちは",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "橋の上を",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "歩きます",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_TOURIST": [
+      "S001"
+    ],
+    "PLACE_RIVER": [
+      "S001"
+    ],
+    "PERSON_FRIEND": [
+      "S002"
+    ],
+    "VERB_WALK": [
+      "S002"
+    ],
+    "OBJECT_BRIDGE": [
+      "S002"
+    ]
+  }
+}

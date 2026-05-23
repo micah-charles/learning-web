@@ -1,0 +1,2277 @@
+{
+  "packId": "semantic_pack_l1_008_park_playground",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_008 — park_playground",
+  "description": "A corrected multilingual Stage 1 Progressive Language pack for Park and Playground.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_008",
+    "title": "Park and Playground",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "outdoor",
+      "children"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "articles",
+        "pronouns",
+        "location_phrases"
+      ],
+      "german": [
+        "article_gender",
+        "verb_second_position"
+      ],
+      "french": [
+        "article_gender",
+        "être_location"
+      ],
+      "spanish": [
+        "estar_location"
+      ],
+      "chinese": [
+        "在_location_structure",
+        "no_articles"
+      ],
+      "japanese": [
+        "topic_marker_は",
+        "verb_final_structure"
+      ]
+    },
+    "sentenceGoals": [
+      "The parent is in the park.",
+      "The child plays with the ball."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_PARENT",
+      "type": "noun",
+      "senseKey": "person_parent",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "parent"
+        },
+        "de": {
+          "text": "Elternteil",
+          "article": "das"
+        },
+        "fr": {
+          "text": "responsable",
+          "article": "le"
+        },
+        "es": {
+          "text": "padre",
+          "article": "el"
+        },
+        "zh": {
+          "text": "家长"
+        },
+        "ja": {
+          "text": "親"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_CHILD",
+      "type": "noun",
+      "senseKey": "person_child",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "child"
+        },
+        "de": {
+          "text": "Kind",
+          "article": "das"
+        },
+        "fr": {
+          "text": "l'enfant"
+        },
+        "es": {
+          "text": "niño",
+          "article": "el"
+        },
+        "zh": {
+          "text": "孩子"
+        },
+        "ja": {
+          "text": "子ども"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_PARK",
+      "type": "noun",
+      "senseKey": "place_park",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "park"
+        },
+        "de": {
+          "text": "Parkanlage",
+          "article": "die"
+        },
+        "fr": {
+          "text": "parc",
+          "article": "le"
+        },
+        "es": {
+          "text": "parque",
+          "article": "el"
+        },
+        "zh": {
+          "text": "公园"
+        },
+        "ja": {
+          "text": "公園"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_PLAYGROUND",
+      "type": "noun",
+      "senseKey": "place_playground",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "playground"
+        },
+        "de": {
+          "text": "Spielplatz",
+          "article": "der"
+        },
+        "fr": {
+          "text": "l'aire de jeux"
+        },
+        "es": {
+          "text": "parque infantil",
+          "article": "el"
+        },
+        "zh": {
+          "text": "游乐场"
+        },
+        "ja": {
+          "text": "遊び場"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BALL",
+      "type": "noun",
+      "senseKey": "object_ball",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "ball"
+        },
+        "de": {
+          "text": "Spielball",
+          "article": "der"
+        },
+        "fr": {
+          "text": "ballon",
+          "article": "le"
+        },
+        "es": {
+          "text": "pelota",
+          "article": "la"
+        },
+        "zh": {
+          "text": "球"
+        },
+        "ja": {
+          "text": "ボール"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_BICYCLE",
+      "type": "noun",
+      "senseKey": "object_bicycle",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "bicycle"
+        },
+        "de": {
+          "text": "Fahrrad",
+          "article": "das"
+        },
+        "fr": {
+          "text": "vélo",
+          "article": "le"
+        },
+        "es": {
+          "text": "bicicleta",
+          "article": "la"
+        },
+        "zh": {
+          "text": "自行车"
+        },
+        "ja": {
+          "text": "自転車"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_PLAY",
+      "type": "verb",
+      "senseKey": "verb_play",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "play"
+        },
+        "de": {
+          "text": "spielen"
+        },
+        "fr": {
+          "text": "jouer"
+        },
+        "es": {
+          "text": "jugar"
+        },
+        "zh": {
+          "text": "玩"
+        },
+        "ja": {
+          "text": "遊ぶ"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_RIDE",
+      "type": "verb",
+      "senseKey": "verb_ride",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "ride"
+        },
+        "de": {
+          "text": "fahren"
+        },
+        "fr": {
+          "text": "faire du vélo"
+        },
+        "es": {
+          "text": "montar"
+        },
+        "zh": {
+          "text": "骑"
+        },
+        "ja": {
+          "text": "乗る"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "ARTICLE_THE",
+      "type": "article",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la/les",
+        "es": "el/la/los/las",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "PRONOUN_MY",
+      "type": "possessive",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "zh": "我的",
+        "ja": "私の"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_IN",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im/in der",
+        "fr": "dans",
+        "es": "en",
+        "zh": "在",
+        "ja": "に"
+      }
+    },
+    {
+      "tokenId": "PREPOSITION_NEAR",
+      "type": "preposition",
+      "linkToConcept": false,
+      "translations": {
+        "en": "near",
+        "de": "neben/bei",
+        "fr": "près de",
+        "es": "cerca de",
+        "zh": "旁边",
+        "ja": "近くに"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_LOCATION",
+      "linkedConcepts": [
+        "PERSON_PARENT",
+        "PLACE_PARK"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "parent",
+              "tiles": [
+                "parent"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "parent",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "parent",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Elternteil",
+              "tiles": [
+                "das Elternteil"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "das Elternteil",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "das Elternteil",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le responsable",
+              "tiles": [
+                "le responsable"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "le responsable",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "le responsable",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el padre",
+              "tiles": [
+                "el padre"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el padre",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el padre",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "家长",
+              "tiles": [
+                "家长"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "家长",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "家长",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "親",
+              "tiles": [
+                "親"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "親",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "親",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "place_phrase",
+          "translations": {
+            "en": {
+              "text": "the park.",
+              "tiles": [
+                "the park."
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "the park",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "the park",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Parkanlage.",
+              "tiles": [
+                "der Parkanlage."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "der Parkanlage",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Parkanlage",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le parc.",
+              "tiles": [
+                "le parc."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "le parc",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le parc",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el parque.",
+              "tiles": [
+                "el parque."
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "el parque",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "el parque",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "家长在公园里。",
+              "tiles": [
+                "家长在公园里。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "家长在公园里",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "家长在公园里",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "公園にいます。",
+              "tiles": [
+                "公園にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "公園にいます",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "公園にいます",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "place",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_location_sentence",
+          "translations": {
+            "en": {
+              "text": "The parent is in the park.",
+              "tiles": [
+                "The",
+                "parent",
+                "is",
+                "in",
+                "the",
+                "park."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + be + place phrase",
+                "literalOrderExplanation": "The → parent → is → in → the → park",
+                "grammarExplanation": [
+                  "English uses 'is' for location.",
+                  "The place phrase tells where the person is."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parent",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "park",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das Elternteil ist in der Parkanlage.",
+              "tiles": [
+                "Das",
+                "Elternteil",
+                "ist",
+                "in",
+                "der",
+                "Parkanlage."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + place phrase",
+                "literalOrderExplanation": "Das → Elternteil → ist → in → der → Parkanlage",
+                "grammarExplanation": [
+                  "German keeps the finite verb in second position.",
+                  "Location phrases often use dative forms such as im, am, or in der."
+                ],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Elternteil",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Parkanlage",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le responsable est dans le parc.",
+              "tiles": [
+                "Le",
+                "responsable",
+                "est",
+                "dans",
+                "le",
+                "parc."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "Le → responsable → est → dans → le → parc",
+                "grammarExplanation": [
+                  "French uses être for location.",
+                  "Articles agree with the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "responsable",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parc",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El padre está en el parque.",
+              "tiles": [
+                "El",
+                "padre",
+                "está",
+                "en",
+                "el",
+                "parque."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + estar + place phrase",
+                "literalOrderExplanation": "El → padre → está → en → el → parque",
+                "grammarExplanation": [
+                  "Spanish uses estar for location.",
+                  "Articles agree with gender and number."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "padre",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parque",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "家长在公园里。",
+              "tiles": [
+                "家长",
+                "在公园里。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + 在 + place",
+                "literalOrderExplanation": "家长 → 在公园里",
+                "grammarExplanation": [
+                  "Chinese does not use articles like 'the'.",
+                  "在 marks the location."
+                ],
+                "tokens": [
+                  {
+                    "text": "家长",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在公园里",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "親は公園にいます。",
+              "tiles": [
+                "親は",
+                "公園に",
+                "います。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + place + います",
+                "literalOrderExplanation": "親は → 公園に → います",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "に marks a place for being or destination.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "親は",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "公園に",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "います",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_ACTION",
+      "linkedConcepts": [
+        "PERSON_CHILD",
+        "VERB_PLAY",
+        "OBJECT_BALL"
+      ],
+      "difficulty": "A0-A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "core_person",
+          "translations": {
+            "en": {
+              "text": "child",
+              "tiles": [
+                "child"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun phrase",
+                "literalOrderExplanation": "child",
+                "grammarExplanation": [
+                  "English nouns often use an article in a phrase."
+                ],
+                "tokens": [
+                  {
+                    "text": "child",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "das Kind",
+              "tiles": [
+                "das Kind"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "das Kind",
+                "grammarExplanation": [
+                  "German nouns are capitalised.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "das Kind",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "l'enfant",
+              "tiles": [
+                "l'enfant"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "l'enfant",
+                "grammarExplanation": [
+                  "French nouns normally use an article.",
+                  "Elision such as l' is written without a space."
+                ],
+                "tokens": [
+                  {
+                    "text": "l'enfant",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "el niño",
+              "tiles": [
+                "el niño"
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun",
+                "literalOrderExplanation": "el niño",
+                "grammarExplanation": [
+                  "Spanish nouns normally use an article.",
+                  "The article marks gender."
+                ],
+                "tokens": [
+                  {
+                    "text": "el niño",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "孩子",
+              "tiles": [
+                "孩子"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "孩子",
+                "grammarExplanation": [
+                  "Chinese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "孩子",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "子ども",
+              "tiles": [
+                "子ども"
+              ],
+              "analysis": {
+                "sentencePattern": "Noun",
+                "literalOrderExplanation": "子ども",
+                "grammarExplanation": [
+                  "Japanese nouns do not need articles."
+                ],
+                "tokens": [
+                  {
+                    "text": "子ども",
+                    "type": "noun",
+                    "role": "core_concept",
+                    "meaning": "person",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "object_phrase",
+          "translations": {
+            "en": {
+              "text": "ball",
+              "tiles": [
+                "ball"
+              ],
+              "analysis": {
+                "sentencePattern": "Place or object phrase",
+                "literalOrderExplanation": "ball",
+                "grammarExplanation": [
+                  "This phrase can be reused inside a full sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "ball",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "der Spielball",
+              "tiles": [
+                "der Spielball"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "der Spielball",
+                "grammarExplanation": [
+                  "German phrase chunks often include an article or contraction."
+                ],
+                "tokens": [
+                  {
+                    "text": "der Spielball",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "le ballon",
+              "tiles": [
+                "le ballon"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "le ballon",
+                "grammarExplanation": [
+                  "French phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "le ballon",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "la pelota",
+              "tiles": [
+                "la pelota"
+              ],
+              "analysis": {
+                "sentencePattern": "Prepositional/object phrase",
+                "literalOrderExplanation": "la pelota",
+                "grammarExplanation": [
+                  "Spanish phrase chunks often include a preposition and article."
+                ],
+                "tokens": [
+                  {
+                    "text": "la pelota",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "球",
+              "tiles": [
+                "球"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk",
+                "literalOrderExplanation": "球",
+                "grammarExplanation": [
+                  "Chinese learning chunks keep useful words together."
+                ],
+                "tokens": [
+                  {
+                    "text": "球",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ボール",
+              "tiles": [
+                "ボール"
+              ],
+              "analysis": {
+                "sentencePattern": "Phrase chunk with particle",
+                "literalOrderExplanation": "ボール",
+                "grammarExplanation": [
+                  "Japanese chunks keep particles attached to the word they mark."
+                ],
+                "tokens": [
+                  {
+                    "text": "ボール",
+                    "type": "phrase",
+                    "role": "supporting_detail",
+                    "meaning": "object",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 3,
+          "focus": "full_action_sentence",
+          "translations": {
+            "en": {
+              "text": "The child plays with the ball.",
+              "tiles": [
+                "The",
+                "child",
+                "plays",
+                "with",
+                "the",
+                "ball."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "The → child → plays → with → the → ball",
+                "grammarExplanation": [
+                  "English places the verb after the subject.",
+                  "The object receives the action."
+                ],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "child",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plays",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "with",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ball",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das Kind spielt mit dem Spielball.",
+              "tiles": [
+                "Das",
+                "Kind",
+                "spielt",
+                "mit",
+                "dem",
+                "Spielball."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb-second + object",
+                "literalOrderExplanation": "Das → Kind → spielt → mit → dem → Spielball",
+                "grammarExplanation": [
+                  "German uses verb-second word order.",
+                  "Articles change by gender and case."
+                ],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Kind",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "spielt",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mit",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dem",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Spielball",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L'enfant joue avec le ballon.",
+              "tiles": [
+                "L'enfant",
+                "joue",
+                "avec",
+                "le",
+                "ballon."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb phrase + object",
+                "literalOrderExplanation": "L'enfant → joue → avec → le → ballon",
+                "grammarExplanation": [
+                  "French usually places the verb after the subject.",
+                  "Articles and contractions must match the noun."
+                ],
+                "tokens": [
+                  {
+                    "text": "L'enfant",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "joue",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "avec",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ballon",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El niño juega con la pelota.",
+              "tiles": [
+                "El",
+                "niño",
+                "juega",
+                "con",
+                "la",
+                "pelota."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + verb + object",
+                "literalOrderExplanation": "El → niño → juega → con → la → pelota",
+                "grammarExplanation": [
+                  "Spanish verbs agree with the subject.",
+                  "The object follows the verb in simple sentences."
+                ],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "niño",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "juega",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "con",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pelota",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "孩子玩球。",
+              "tiles": [
+                "孩子",
+                "玩",
+                "球。"
+              ],
+              "analysis": {
+                "sentencePattern": "Person + action + object",
+                "literalOrderExplanation": "孩子 → 玩 → 球",
+                "grammarExplanation": [
+                  "Chinese commonly follows subject + verb + object order.",
+                  "The verb does not change for person."
+                ],
+                "tokens": [
+                  {
+                    "text": "孩子",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "玩",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "球",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "子どもはボールで遊びます。",
+              "tiles": [
+                "子どもは",
+                "ボールで",
+                "遊びます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Topic + object + verb-final",
+                "literalOrderExplanation": "子どもは → ボールで → 遊びます",
+                "grammarExplanation": [
+                  "Japanese marks the topic with は.",
+                  "The object or phrase comes before the verb.",
+                  "The verb comes at the end."
+                ],
+                "tokens": [
+                  {
+                    "text": "子どもは",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ボールで",
+                    "type": "phrase",
+                    "role": "object_or_detail",
+                    "meaning": "sentence detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "遊びます",
+                    "type": "verb",
+                    "role": "main action",
+                    "meaning": "main sentence action",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_PARENT",
+        "PLACE_PARK"
+      ],
+      "grammarFocus": [
+        "location_phrase",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_LOCATION",
+      "translations": {
+        "en": {
+          "text": "The parent is in the park.",
+          "tiles": [
+            "The",
+            "parent",
+            "is",
+            "in",
+            "the",
+            "park."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + be + place phrase",
+            "literalOrderExplanation": "The → parent → is → in → the → park",
+            "grammarExplanation": [
+              "English uses 'is' for location.",
+              "The place phrase tells where the person is."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "parent",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "park",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das Elternteil ist in der Parkanlage.",
+          "tiles": [
+            "Das",
+            "Elternteil",
+            "ist",
+            "in",
+            "der",
+            "Parkanlage."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + place phrase",
+            "literalOrderExplanation": "Das → Elternteil → ist → in → der → Parkanlage",
+            "grammarExplanation": [
+              "German keeps the finite verb in second position.",
+              "Location phrases often use dative forms such as im, am, or in der."
+            ],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Elternteil",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Parkanlage",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le responsable est dans le parc.",
+          "tiles": [
+            "Le",
+            "responsable",
+            "est",
+            "dans",
+            "le",
+            "parc."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "Le → responsable → est → dans → le → parc",
+            "grammarExplanation": [
+              "French uses être for location.",
+              "Articles agree with the noun."
+            ],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "responsable",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "parc",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El padre está en el parque.",
+          "tiles": [
+            "El",
+            "padre",
+            "está",
+            "en",
+            "el",
+            "parque."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + estar + place phrase",
+            "literalOrderExplanation": "El → padre → está → en → el → parque",
+            "grammarExplanation": [
+              "Spanish uses estar for location.",
+              "Articles agree with gender and number."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "padre",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "parque",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "家长在公园里。",
+          "tiles": [
+            "家长",
+            "在公园里。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + 在 + place",
+            "literalOrderExplanation": "家长 → 在公园里",
+            "grammarExplanation": [
+              "Chinese does not use articles like 'the'.",
+              "在 marks the location."
+            ],
+            "tokens": [
+              {
+                "text": "家长",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在公园里",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "親は公園にいます。",
+          "tiles": [
+            "親は",
+            "公園に",
+            "います。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + place + います",
+            "literalOrderExplanation": "親は → 公園に → います",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "に marks a place for being or destination.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "親は",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "公園に",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "います",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_CHILD",
+        "VERB_PLAY",
+        "OBJECT_BALL"
+      ],
+      "grammarFocus": [
+        "basic_action",
+        "word_order"
+      ],
+      "sourceChainId": "CHAIN_ACTION",
+      "translations": {
+        "en": {
+          "text": "The child plays with the ball.",
+          "tiles": [
+            "The",
+            "child",
+            "plays",
+            "with",
+            "the",
+            "ball."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "The → child → plays → with → the → ball",
+            "grammarExplanation": [
+              "English places the verb after the subject.",
+              "The object receives the action."
+            ],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "child",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "plays",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "with",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ball",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das Kind spielt mit dem Spielball.",
+          "tiles": [
+            "Das",
+            "Kind",
+            "spielt",
+            "mit",
+            "dem",
+            "Spielball."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb-second + object",
+            "literalOrderExplanation": "Das → Kind → spielt → mit → dem → Spielball",
+            "grammarExplanation": [
+              "German uses verb-second word order.",
+              "Articles change by gender and case."
+            ],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Kind",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "spielt",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "mit",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "dem",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "Spielball",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L'enfant joue avec le ballon.",
+          "tiles": [
+            "L'enfant",
+            "joue",
+            "avec",
+            "le",
+            "ballon."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb phrase + object",
+            "literalOrderExplanation": "L'enfant → joue → avec → le → ballon",
+            "grammarExplanation": [
+              "French usually places the verb after the subject.",
+              "Articles and contractions must match the noun."
+            ],
+            "tokens": [
+              {
+                "text": "L'enfant",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "joue",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "avec",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "ballon",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El niño juega con la pelota.",
+          "tiles": [
+            "El",
+            "niño",
+            "juega",
+            "con",
+            "la",
+            "pelota."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + verb + object",
+            "literalOrderExplanation": "El → niño → juega → con → la → pelota",
+            "grammarExplanation": [
+              "Spanish verbs agree with the subject.",
+              "The object follows the verb in simple sentences."
+            ],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "niño",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "juega",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "con",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "pelota",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "孩子玩球。",
+          "tiles": [
+            "孩子",
+            "玩",
+            "球。"
+          ],
+          "analysis": {
+            "sentencePattern": "Person + action + object",
+            "literalOrderExplanation": "孩子 → 玩 → 球",
+            "grammarExplanation": [
+              "Chinese commonly follows subject + verb + object order.",
+              "The verb does not change for person."
+            ],
+            "tokens": [
+              {
+                "text": "孩子",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "玩",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "球",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "子どもはボールで遊びます。",
+          "tiles": [
+            "子どもは",
+            "ボールで",
+            "遊びます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Topic + object + verb-final",
+            "literalOrderExplanation": "子どもは → ボールで → 遊びます",
+            "grammarExplanation": [
+              "Japanese marks the topic with は.",
+              "The object or phrase comes before the verb.",
+              "The verb comes at the end."
+            ],
+            "tokens": [
+              {
+                "text": "子どもは",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "ボールで",
+                "type": "phrase",
+                "role": "object_or_detail",
+                "meaning": "sentence detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "遊びます",
+                "type": "verb",
+                "role": "main action",
+                "meaning": "main sentence action",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_PARENT": [
+      "S001"
+    ],
+    "PLACE_PARK": [
+      "S001"
+    ],
+    "PERSON_CHILD": [
+      "S002"
+    ],
+    "VERB_PLAY": [
+      "S002"
+    ],
+    "OBJECT_BALL": [
+      "S002"
+    ]
+  }
+}
