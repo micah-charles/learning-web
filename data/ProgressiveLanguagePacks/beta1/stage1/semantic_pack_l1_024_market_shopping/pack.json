@@ -74,7 +74,7 @@
           "article": "der"
         },
         "fr": {
-          "text": "vendeur",
+          "text": "commerçant",
           "article": "le"
         },
         "es": {
@@ -85,7 +85,7 @@
           "text": "店主"
         },
         "ja": {
-          "text": "店員"
+          "text": "店主"
         }
       }
     },
@@ -399,20 +399,20 @@
               }
             },
             "fr": {
-              "text": "le vendeur",
+              "text": "le commerçant",
               "tiles": [
-                "le vendeur"
+                "le commerçant"
               ],
               "analysis": {
                 "sentencePattern": "Article + noun",
-                "literalOrderExplanation": "le vendeur",
+                "literalOrderExplanation": "le commerçant",
                 "grammarExplanation": [
                   "French nouns normally use an article.",
                   "Elision such as l' is written without a space."
                 ],
                 "tokens": [
                   {
-                    "text": "le vendeur",
+                    "text": "le commerçant",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -467,19 +467,19 @@
               }
             },
             "ja": {
-              "text": "店員",
+              "text": "店主",
               "tiles": [
-                "店員"
+                "店主"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "店員",
+                "literalOrderExplanation": "店主",
                 "grammarExplanation": [
                   "Japanese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "店員",
+                    "text": "店主",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -709,105 +709,105 @@
                 "sentencePattern": "Article + noun + verb-second + place phrase",
                 "literalOrderExplanation": "Der → Verkäufer → ist → auf → dem → Markt",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Verkäufer",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "auf",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "dem",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "Markt",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "fr": {
-              "text": "Le vendeur est au marché.",
-              "tiles": [
-                "Le",
-                "vendeur",
-                "est",
-                "au",
-                "marché."
-              ],
-              "analysis": {
-                "sentencePattern": "Article + noun + être + place phrase",
-                "literalOrderExplanation": "Le → vendeur → est → au → marché",
-                "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
-                ],
-                "tokens": [
-                  {
-                    "text": "Le",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "vendeur",
-                    "type": "phrase",
+                    "text": "ist",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "auf",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dem",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Markt",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le commerçant est au marché.",
+              "tiles": [
+                "Le",
+                "commerçant",
+                "est",
+                "au",
+                "marché."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "Le → commerçant → est → au → marché",
+                "grammarExplanation": [
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "commerçant",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "au",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "marché",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -827,50 +827,50 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → vendedor → está → en → el → mercado",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "vendedor",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "en",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "mercado",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -908,15 +908,15 @@
               }
             },
             "ja": {
-              "text": "店員は市場にいます。",
+              "text": "店主は市場にいます。",
               "tiles": [
-                "店員は",
+                "店主は",
                 "市場に",
                 "います。"
               ],
               "analysis": {
                 "sentencePattern": "Topic + place + います",
-                "literalOrderExplanation": "店員は → 市場に → います",
+                "literalOrderExplanation": "店主は → 市場に → います",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
                   "に marks a place for being or destination.",
@@ -924,25 +924,25 @@
                 ],
                 "tokens": [
                   {
-                    "text": "店員は",
+                    "text": "店主は",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "市場に",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1299,39 +1299,39 @@
                 "Obst."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
                 "literalOrderExplanation": "Der → Freund → kauft → Obst",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Freund",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "kauft",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "Obst",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1346,39 +1346,39 @@
                 "fruits."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
                 "literalOrderExplanation": "L'ami → achète → des → fruits",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "L'ami",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "achète",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "des",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "fruits",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1393,39 +1393,39 @@
                 "fruta."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
+                "sentencePattern": "Article + noun + verb + object/detail",
                 "literalOrderExplanation": "El → amigo → compra → fruta",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "amigo",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "compra",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "fruta",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1478,7 +1478,7 @@
                 "買います。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
+                "sentencePattern": "Topic + object/detail + verb-final",
                 "literalOrderExplanation": "友だちは → 果物を → 買います",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
@@ -1491,21 +1491,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "果物を",
-                    "type": "phrase",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "買います",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1606,105 +1606,105 @@
             "sentencePattern": "Article + noun + verb-second + place phrase",
             "literalOrderExplanation": "Der → Verkäufer → ist → auf → dem → Markt",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Verkäufer",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "auf",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "dem",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "Markt",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "fr": {
-          "text": "Le vendeur est au marché.",
-          "tiles": [
-            "Le",
-            "vendeur",
-            "est",
-            "au",
-            "marché."
-          ],
-          "analysis": {
-            "sentencePattern": "Article + noun + être + place phrase",
-            "literalOrderExplanation": "Le → vendeur → est → au → marché",
-            "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
-            ],
-            "tokens": [
-              {
-                "text": "Le",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "vendeur",
-                "type": "phrase",
+                "text": "ist",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
+                "grammarNote": ""
+              },
+              {
+                "text": "auf",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "dem",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "Markt",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le commerçant est au marché.",
+          "tiles": [
+            "Le",
+            "commerçant",
+            "est",
+            "au",
+            "marché."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "Le → commerçant → est → au → marché",
+            "grammarExplanation": [
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
+            ],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "commerçant",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "au",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "marché",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1724,50 +1724,50 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → vendedor → está → en → el → mercado",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "vendedor",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "en",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "mercado",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1805,15 +1805,15 @@
           }
         },
         "ja": {
-          "text": "店員は市場にいます。",
+          "text": "店主は市場にいます。",
           "tiles": [
-            "店員は",
+            "店主は",
             "市場に",
             "います。"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
-            "literalOrderExplanation": "店員は → 市場に → います",
+            "literalOrderExplanation": "店主は → 市場に → います",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
               "に marks a place for being or destination.",
@@ -1821,25 +1821,25 @@
             ],
             "tokens": [
               {
-                "text": "店員は",
+                "text": "店主は",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "市場に",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -1916,39 +1916,39 @@
             "Obst."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
             "literalOrderExplanation": "Der → Freund → kauft → Obst",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Freund",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "kauft",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "Obst",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -1963,39 +1963,39 @@
             "fruits."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
             "literalOrderExplanation": "L'ami → achète → des → fruits",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "L'ami",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "achète",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "des",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "fruits",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2010,39 +2010,39 @@
             "fruta."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
+            "sentencePattern": "Article + noun + verb + object/detail",
             "literalOrderExplanation": "El → amigo → compra → fruta",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "amigo",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "compra",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "fruta",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2095,7 +2095,7 @@
             "買います。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
+            "sentencePattern": "Topic + object/detail + verb-final",
             "literalOrderExplanation": "友だちは → 果物を → 買います",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
@@ -2108,21 +2108,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "果物を",
-                "type": "phrase",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "買います",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }

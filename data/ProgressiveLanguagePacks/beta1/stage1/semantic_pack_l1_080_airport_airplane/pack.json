@@ -81,7 +81,7 @@
           "text": "旅客"
         },
         "ja": {
-          "text": "旅人"
+          "text": "旅行者"
         }
       }
     },
@@ -95,11 +95,11 @@
           "text": "pilot"
         },
         "de": {
-          "text": "Flugkapitän",
+          "text": "Pilot",
           "article": "der"
         },
         "fr": {
-          "text": "commandant de bord",
+          "text": "pilote",
           "article": "le"
         },
         "es": {
@@ -462,19 +462,19 @@
               }
             },
             "ja": {
-              "text": "旅人",
+              "text": "旅行者",
               "tiles": [
-                "旅人"
+                "旅行者"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "旅人",
+                "literalOrderExplanation": "旅行者",
                 "grammarExplanation": [
                   "Japanese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "旅人",
+                    "text": "旅行者",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -703,43 +703,43 @@
                 "sentencePattern": "Article + noun + verb-second + place phrase",
                 "literalOrderExplanation": "Der → Reisende → ist → am → Flughafen",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Reisende",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "am",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "Flughafen",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -758,43 +758,43 @@
                 "sentencePattern": "Article + noun + être + place phrase",
                 "literalOrderExplanation": "Le → voyageur → est → à → l'aéroport",
                 "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "voyageur",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "à",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "l'aéroport",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -814,50 +814,50 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → viajero → está → en → el → aeropuerto",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "viajero",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "en",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "aeropuerto",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -915,21 +915,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "空港に",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -974,20 +974,20 @@
               }
             },
             "de": {
-              "text": "der Flugkapitän",
+              "text": "der Pilot",
               "tiles": [
-                "der Flugkapitän"
+                "der Pilot"
               ],
               "analysis": {
                 "sentencePattern": "Article + noun",
-                "literalOrderExplanation": "der Flugkapitän",
+                "literalOrderExplanation": "der Pilot",
                 "grammarExplanation": [
                   "German nouns are capitalised.",
                   "The article marks gender."
                 ],
                 "tokens": [
                   {
-                    "text": "der Flugkapitän",
+                    "text": "der Pilot",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -997,20 +997,20 @@
               }
             },
             "fr": {
-              "text": "le commandant de bord",
+              "text": "le pilote",
               "tiles": [
-                "le commandant de bord"
+                "le pilote"
               ],
               "analysis": {
                 "sentencePattern": "Article + noun",
-                "literalOrderExplanation": "le commandant de bord",
+                "literalOrderExplanation": "le pilote",
                 "grammarExplanation": [
                   "French nouns normally use an article.",
                   "Elision such as l' is written without a space."
                 ],
                 "tokens": [
                   {
-                    "text": "le commandant de bord",
+                    "text": "le pilote",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1286,181 +1286,157 @@
               }
             },
             "de": {
-              "text": "Der Flugkapitän fliegt das Flugzeug.",
+              "text": "Der Pilot fliegt das Flugzeug.",
               "tiles": [
                 "Der",
-                "Flugkapitän",
+                "Pilot",
                 "fliegt",
                 "das",
                 "Flugzeug."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
-                "literalOrderExplanation": "Der → Flugkapitän → fliegt → das → Flugzeug",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
+                "literalOrderExplanation": "Der → Pilot → fliegt → das → Flugzeug",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Pilot",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "Flugkapitän",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
                     "text": "fliegt",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "das",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Flugzeug",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Le commandant de bord fait voler l'avion.",
+              "text": "Le pilote pilote l'avion.",
               "tiles": [
                 "Le",
-                "commandant",
-                "de",
-                "bord",
-                "fait",
-                "voler",
+                "pilote",
+                "pilote",
                 "l'avion."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
-                "literalOrderExplanation": "Le → commandant → de → bord → fait → voler → l'avion",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
+                "literalOrderExplanation": "Le → pilote → pilote → l'avion",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "commandant",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "text": "pilote",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
-                    "text": "de",
-                    "type": "phrase",
+                    "text": "pilote",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "bord",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "fait",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "voler",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "l'avion",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "El piloto vuela el avión.",
+              "text": "El piloto pilota el avión.",
               "tiles": [
                 "El",
                 "piloto",
-                "vuela",
+                "pilota",
                 "el",
                 "avión."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
-                "literalOrderExplanation": "El → piloto → vuela → el → avión",
+                "sentencePattern": "Article + noun + verb + object/detail",
+                "literalOrderExplanation": "El → piloto → pilota → el → avión",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "piloto",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "vuela",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "text": "pilota",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "avión",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1513,7 +1489,7 @@
                 "操縦します。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
+                "sentencePattern": "Topic + object/detail + verb-final",
                 "literalOrderExplanation": "パイロットは → 飛行機を → 操縦します",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
@@ -1526,21 +1502,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "飛行機を",
-                    "type": "phrase",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "操縦します",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1640,43 +1616,43 @@
             "sentencePattern": "Article + noun + verb-second + place phrase",
             "literalOrderExplanation": "Der → Reisende → ist → am → Flughafen",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Reisende",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "am",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "Flughafen",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1695,43 +1671,43 @@
             "sentencePattern": "Article + noun + être + place phrase",
             "literalOrderExplanation": "Le → voyageur → est → à → l'aéroport",
             "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "voyageur",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "à",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "l'aéroport",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1751,50 +1727,50 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → viajero → está → en → el → aeropuerto",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "viajero",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "en",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "aeropuerto",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1852,21 +1828,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "空港に",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -1943,181 +1919,157 @@
           }
         },
         "de": {
-          "text": "Der Flugkapitän fliegt das Flugzeug.",
+          "text": "Der Pilot fliegt das Flugzeug.",
           "tiles": [
             "Der",
-            "Flugkapitän",
+            "Pilot",
             "fliegt",
             "das",
             "Flugzeug."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
-            "literalOrderExplanation": "Der → Flugkapitän → fliegt → das → Flugzeug",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
+            "literalOrderExplanation": "Der → Pilot → fliegt → das → Flugzeug",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Pilot",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "Flugkapitän",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
                 "text": "fliegt",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "das",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Flugzeug",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Le commandant de bord fait voler l'avion.",
+          "text": "Le pilote pilote l'avion.",
           "tiles": [
             "Le",
-            "commandant",
-            "de",
-            "bord",
-            "fait",
-            "voler",
+            "pilote",
+            "pilote",
             "l'avion."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
-            "literalOrderExplanation": "Le → commandant → de → bord → fait → voler → l'avion",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
+            "literalOrderExplanation": "Le → pilote → pilote → l'avion",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "commandant",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "text": "pilote",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
-                "text": "de",
-                "type": "phrase",
+                "text": "pilote",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "bord",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "fait",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "voler",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "l'avion",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "El piloto vuela el avión.",
+          "text": "El piloto pilota el avión.",
           "tiles": [
             "El",
             "piloto",
-            "vuela",
+            "pilota",
             "el",
             "avión."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
-            "literalOrderExplanation": "El → piloto → vuela → el → avión",
+            "sentencePattern": "Article + noun + verb + object/detail",
+            "literalOrderExplanation": "El → piloto → pilota → el → avión",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "piloto",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "vuela",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "text": "pilota",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "avión",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2170,7 +2122,7 @@
             "操縦します。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
+            "sentencePattern": "Topic + object/detail + verb-final",
             "literalOrderExplanation": "パイロットは → 飛行機を → 操縦します",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
@@ -2183,21 +2135,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "飛行機を",
-                "type": "phrase",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "操縦します",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }

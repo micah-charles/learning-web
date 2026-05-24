@@ -70,7 +70,7 @@
           "text": "tourist"
         },
         "de": {
-          "text": "Urlauber",
+          "text": "Tourist",
           "article": "der"
         },
         "fr": {
@@ -375,20 +375,20 @@
               }
             },
             "de": {
-              "text": "der Urlauber",
+              "text": "der Tourist",
               "tiles": [
-                "der Urlauber"
+                "der Tourist"
               ],
               "analysis": {
                 "sentencePattern": "Article + noun",
-                "literalOrderExplanation": "der Urlauber",
+                "literalOrderExplanation": "der Tourist",
                 "grammarExplanation": [
                   "German nouns are capitalised.",
                   "The article marks gender."
                 ],
                 "tokens": [
                   {
-                    "text": "der Urlauber",
+                    "text": "der Tourist",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -695,55 +695,55 @@
               }
             },
             "de": {
-              "text": "Der Urlauber ist am Fluss.",
+              "text": "Der Tourist ist am Fluss.",
               "tiles": [
                 "Der",
-                "Urlauber",
+                "Tourist",
                 "ist",
                 "am",
                 "Fluss."
               ],
               "analysis": {
                 "sentencePattern": "Article + noun + verb-second + place phrase",
-                "literalOrderExplanation": "Der → Urlauber → ist → am → Fluss",
+                "literalOrderExplanation": "Der → Tourist → ist → am → Fluss",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Tourist",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "Urlauber",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
                     "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "am",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "Fluss",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -764,57 +764,57 @@
                 "sentencePattern": "Article + noun + être + place phrase",
                 "literalOrderExplanation": "Le → touriste → est → près → de → la → rivière",
                 "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "touriste",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "près",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "de",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "rivière",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -834,50 +834,50 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → turista → está → junto → al → río",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "turista",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "junto",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "al",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "río",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -935,21 +935,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "川のそばに",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1324,53 +1324,53 @@
                 "Brücke."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
                 "literalOrderExplanation": "Der → Freund → geht → auf → der → Brücke",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Freund",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "geht",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "auf",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "der",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Brücke",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1386,46 +1386,46 @@
                 "pont."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
                 "literalOrderExplanation": "L'ami → marche → sur → le → pont",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "L'ami",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "marche",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "sur",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "pont",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1442,53 +1442,53 @@
                 "puente."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
+                "sentencePattern": "Article + noun + verb + object/detail",
                 "literalOrderExplanation": "El → amigo → camina → por → el → puente",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "amigo",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "camina",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "por",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "puente",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1541,7 +1541,7 @@
                 "歩きます。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
+                "sentencePattern": "Topic + object/detail + verb-final",
                 "literalOrderExplanation": "友だちは → 橋の上を → 歩きます",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
@@ -1554,21 +1554,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "橋の上を",
-                    "type": "phrase",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "歩きます",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1656,55 +1656,55 @@
           }
         },
         "de": {
-          "text": "Der Urlauber ist am Fluss.",
+          "text": "Der Tourist ist am Fluss.",
           "tiles": [
             "Der",
-            "Urlauber",
+            "Tourist",
             "ist",
             "am",
             "Fluss."
           ],
           "analysis": {
             "sentencePattern": "Article + noun + verb-second + place phrase",
-            "literalOrderExplanation": "Der → Urlauber → ist → am → Fluss",
+            "literalOrderExplanation": "Der → Tourist → ist → am → Fluss",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "Tourist",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "Urlauber",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
                 "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "am",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "Fluss",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1725,57 +1725,57 @@
             "sentencePattern": "Article + noun + être + place phrase",
             "literalOrderExplanation": "Le → touriste → est → près → de → la → rivière",
             "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "touriste",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "près",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "de",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "rivière",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1795,50 +1795,50 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → turista → está → junto → al → río",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "turista",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "junto",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "al",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "río",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1896,21 +1896,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "川のそばに",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -2005,53 +2005,53 @@
             "Brücke."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
             "literalOrderExplanation": "Der → Freund → geht → auf → der → Brücke",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Freund",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "geht",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "auf",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "der",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Brücke",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2067,46 +2067,46 @@
             "pont."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
             "literalOrderExplanation": "L'ami → marche → sur → le → pont",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "L'ami",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "marche",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "sur",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "le",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "pont",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2123,53 +2123,53 @@
             "puente."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
+            "sentencePattern": "Article + noun + verb + object/detail",
             "literalOrderExplanation": "El → amigo → camina → por → el → puente",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "amigo",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "camina",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "por",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "puente",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2222,7 +2222,7 @@
             "歩きます。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
+            "sentencePattern": "Topic + object/detail + verb-final",
             "literalOrderExplanation": "友だちは → 橋の上を → 歩きます",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
@@ -2235,21 +2235,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "橋の上を",
-                "type": "phrase",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "歩きます",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }

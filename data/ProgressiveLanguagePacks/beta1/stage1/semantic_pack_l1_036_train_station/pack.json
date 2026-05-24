@@ -111,7 +111,7 @@
           "text": "旅客"
         },
         "ja": {
-          "text": "旅人"
+          "text": "旅行者"
         }
       }
     },
@@ -706,43 +706,43 @@
                 "sentencePattern": "Article + noun + verb-second + place phrase",
                 "literalOrderExplanation": "Der → Fahrgast → ist → am → Bahnhof",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Fahrgast",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "am",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "Bahnhof",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -762,50 +762,50 @@
                 "sentencePattern": "Article + noun + être + place phrase",
                 "literalOrderExplanation": "Le → passager → est → à → la → gare",
                 "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "passager",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "à",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "gare",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -825,50 +825,50 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → pasajero → está → en → la → estación",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "pasajero",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "en",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "estación",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -926,21 +926,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "駅に",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1076,19 +1076,19 @@
               }
             },
             "ja": {
-              "text": "旅人",
+              "text": "旅行者",
               "tiles": [
-                "旅人"
+                "旅行者"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "旅人",
+                "literalOrderExplanation": "旅行者",
                 "grammarExplanation": [
                   "Japanese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "旅人",
+                    "text": "旅行者",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1306,46 +1306,46 @@
                 "Fahrkarte."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
                 "literalOrderExplanation": "Der → Reisende → liest → die → Fahrkarte",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Reisende",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "liest",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "die",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Fahrkarte",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1361,46 +1361,46 @@
                 "billet."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
                 "literalOrderExplanation": "Le → voyageur → lit → le → billet",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "voyageur",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "lit",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "billet",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1416,46 +1416,46 @@
                 "billete."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
+                "sentencePattern": "Article + noun + verb + object/detail",
                 "literalOrderExplanation": "El → viajero → lee → el → billete",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "viajero",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "lee",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "billete",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1508,7 +1508,7 @@
                 "読みます。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
+                "sentencePattern": "Topic + object/detail + verb-final",
                 "literalOrderExplanation": "旅行者は → 切符を → 読みます",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
@@ -1521,21 +1521,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "切符を",
-                    "type": "phrase",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "読みます",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1635,43 +1635,43 @@
             "sentencePattern": "Article + noun + verb-second + place phrase",
             "literalOrderExplanation": "Der → Fahrgast → ist → am → Bahnhof",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Fahrgast",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "am",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "Bahnhof",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1691,50 +1691,50 @@
             "sentencePattern": "Article + noun + être + place phrase",
             "literalOrderExplanation": "Le → passager → est → à → la → gare",
             "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "passager",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "à",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "gare",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1754,50 +1754,50 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → pasajero → está → en → la → estación",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "pasajero",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "en",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "estación",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1855,21 +1855,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "駅に",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -1955,46 +1955,46 @@
             "Fahrkarte."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
             "literalOrderExplanation": "Der → Reisende → liest → die → Fahrkarte",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Reisende",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "liest",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "die",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Fahrkarte",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2010,46 +2010,46 @@
             "billet."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
             "literalOrderExplanation": "Le → voyageur → lit → le → billet",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "voyageur",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "lit",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "le",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "billet",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2065,46 +2065,46 @@
             "billete."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
+            "sentencePattern": "Article + noun + verb + object/detail",
             "literalOrderExplanation": "El → viajero → lee → el → billete",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "viajero",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "lee",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "billete",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2157,7 +2157,7 @@
             "読みます。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
+            "sentencePattern": "Topic + object/detail + verb-final",
             "literalOrderExplanation": "旅行者は → 切符を → 読みます",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
@@ -2170,21 +2170,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "切符を",
-                "type": "phrase",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "読みます",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }

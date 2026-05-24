@@ -707,43 +707,43 @@
                 "sentencePattern": "Article + noun + verb-second + place phrase",
                 "literalOrderExplanation": "Das → Kind → ist → im → Regen",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Das",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Kind",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "im",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "Regen",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -762,43 +762,43 @@
                 "sentencePattern": "Article + noun + être + place phrase",
                 "literalOrderExplanation": "L'enfant → est → sous → la → pluie",
                 "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "L'enfant",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "sous",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "pluie",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -818,50 +818,50 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → niño → está → bajo → la → lluvia",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "niño",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "bajo",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "lluvia",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -919,21 +919,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "雨の中に",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1299,46 +1299,46 @@
                 "Regenschirm."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
                 "literalOrderExplanation": "Der → Freund → hält → einen → Regenschirm",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Freund",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "hält",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "einen",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Regenschirm",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1353,39 +1353,39 @@
                 "parapluie."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
                 "literalOrderExplanation": "L'ami → tient → un → parapluie",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "L'ami",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "tient",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "un",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "parapluie",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1401,46 +1401,46 @@
                 "paraguas."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
+                "sentencePattern": "Article + noun + verb + object/detail",
                 "literalOrderExplanation": "El → amigo → sostiene → un → paraguas",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "amigo",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "sostiene",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "un",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "paraguas",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1493,7 +1493,7 @@
                 "持っています。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
+                "sentencePattern": "Topic + object/detail + verb-final",
                 "literalOrderExplanation": "友だちは → 傘を → 持っています",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
@@ -1506,21 +1506,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "傘を",
-                    "type": "phrase",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "持っています",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1620,43 +1620,43 @@
             "sentencePattern": "Article + noun + verb-second + place phrase",
             "literalOrderExplanation": "Das → Kind → ist → im → Regen",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Das",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Kind",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "im",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "Regen",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1675,43 +1675,43 @@
             "sentencePattern": "Article + noun + être + place phrase",
             "literalOrderExplanation": "L'enfant → est → sous → la → pluie",
             "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "L'enfant",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "sous",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "pluie",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1731,50 +1731,50 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → niño → está → bajo → la → lluvia",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "niño",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "bajo",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "lluvia",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1832,21 +1832,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "雨の中に",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -1932,46 +1932,46 @@
             "Regenschirm."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
             "literalOrderExplanation": "Der → Freund → hält → einen → Regenschirm",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Freund",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "hält",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "einen",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Regenschirm",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -1986,39 +1986,39 @@
             "parapluie."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
             "literalOrderExplanation": "L'ami → tient → un → parapluie",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "L'ami",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "tient",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "un",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "parapluie",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2034,46 +2034,46 @@
             "paraguas."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
+            "sentencePattern": "Article + noun + verb + object/detail",
             "literalOrderExplanation": "El → amigo → sostiene → un → paraguas",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "amigo",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "sostiene",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "un",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "paraguas",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2126,7 +2126,7 @@
             "持っています。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
+            "sentencePattern": "Topic + object/detail + verb-final",
             "literalOrderExplanation": "友だちは → 傘を → 持っています",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
@@ -2139,21 +2139,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "傘を",
-                "type": "phrase",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "持っています",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
