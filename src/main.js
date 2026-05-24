@@ -1185,7 +1185,7 @@ async function renderProgressiveLanguageTab() {
     return renderEmptyStateCard({
       eyebrow: "Progressive Language",
       title: "Lesson pack unavailable",
-      body: `Could not load the prototype lesson pack. ${error.message}`,
+      body: `Could not load the progressive language lesson pack. ${error.message}`,
     });
   }
 }
@@ -4250,7 +4250,7 @@ async function handleClick(event) {
         runtime.progressiveLessonCatalog = await loadProgressiveLessonCatalog();
       }
       if (!runtime.progressiveLesson) {
-        runtime.progressiveLesson = createProgressiveLessonState("de");
+        runtime.progressiveLesson = createProgressiveLessonState();
       }
       runtime.progressiveLesson = ensureProgressiveLessonStateForCatalog(runtime.progressiveLesson, runtime.progressiveLessonCatalog);
       const activePackPath = runtime.progressiveLesson.packPath;
@@ -4924,21 +4924,21 @@ async function handleChange(event) {
       break;
     case "progressive-pack-collection":
       runtime.progressiveLessonCatalog = runtime.progressiveLessonCatalog || await loadProgressiveLessonCatalog();
-      runtime.progressiveLesson = changeProgressiveLessonCollection(runtime.progressiveLesson || createProgressiveLessonState("de"), runtime.progressiveLessonCatalog, value);
+      runtime.progressiveLesson = changeProgressiveLessonCollection(runtime.progressiveLesson || createProgressiveLessonState(), runtime.progressiveLessonCatalog, value);
       runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
       break;
     case "progressive-stage":
       runtime.progressiveLessonCatalog = runtime.progressiveLessonCatalog || await loadProgressiveLessonCatalog();
-      runtime.progressiveLesson = changeProgressiveLessonStage(runtime.progressiveLesson || createProgressiveLessonState("de"), runtime.progressiveLessonCatalog, value);
+      runtime.progressiveLesson = changeProgressiveLessonStage(runtime.progressiveLesson || createProgressiveLessonState(), runtime.progressiveLessonCatalog, value);
       runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
       break;
     case "progressive-lesson":
       runtime.progressiveLessonCatalog = runtime.progressiveLessonCatalog || await loadProgressiveLessonCatalog();
-      runtime.progressiveLesson = changeProgressiveLessonLesson(runtime.progressiveLesson || createProgressiveLessonState("de"), runtime.progressiveLessonCatalog, value);
+      runtime.progressiveLesson = changeProgressiveLessonLesson(runtime.progressiveLesson || createProgressiveLessonState(), runtime.progressiveLessonCatalog, value);
       runtime.progressiveLessonPack = await loadProgressiveLessonPack(runtime.progressiveLesson.packPath);
       break;
     case "progressive-language":
-      runtime.progressiveLesson = changeProgressiveLessonLanguage(runtime.progressiveLesson || createProgressiveLessonState("de"), value);
+      runtime.progressiveLesson = changeProgressiveLessonLanguage(runtime.progressiveLesson || createProgressiveLessonState(), value);
       break;
     case "passage-show-german":
       persisted.prefs.passages.showGerman = event.target.checked;

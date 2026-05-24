@@ -22,7 +22,6 @@ The original Beta 1 data had good schema shape but serious multilingual quality 
 
 The Progressive Language catalog now exposes:
 
-- `prototype`
 - `beta1`
 
 The old `qclaw` collection was removed from the Learning Web served data folder and moved to the archive path above.

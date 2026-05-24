@@ -7,24 +7,28 @@ import {
 
 // Prototype module for multilingual progressive phrase learning.
 export const PROGRESSIVE_LANGUAGE_CATALOG_PATH = "./data/ProgressiveLanguagePacks/manifest.json";
-export const PROGRESSIVE_LANGUAGE_PACK_PATH = "./data/ProgressiveLanguagePacks/prototype/stage1/bank_river_bank_go_sit/pack.json";
+export const PROGRESSIVE_LANGUAGE_PACK_PATH = "./data/ProgressiveLanguagePacks/beta1/stage1/semantic_pack_l1_001_family_home/pack.json";
+
+const DEFAULT_CATALOG_PACK_ID = "beta1";
+const DEFAULT_STAGE_ID = "stage1";
+const DEFAULT_LESSON_ID = "semantic_pack_l1_001_family_home";
 
 export const FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG = {
   schemaVersion: "progressive-language-catalog-1.0",
   packs: [
     {
-      id: "prototype",
-      label: "Prototype Packs",
-      description: "Small hand-reviewed prototype lessons used while building Progressive Language.",
+      id: DEFAULT_CATALOG_PACK_ID,
+      label: "Beta 1",
+      description: "Corrected multilingual Stage 1 beta lessons.",
       stages: [
         {
-          id: "stage1",
+          id: DEFAULT_STAGE_ID,
           label: "Stage 1",
-          description: "Prototype starter lessons",
+          description: "100 corrected beginner lessons",
           lessons: [
             {
-              id: "bank_river_bank_go_sit",
-              label: "Bank, River Bank, Go and Sit",
+              id: DEFAULT_LESSON_ID,
+              label: "001 — Family and Home",
               path: PROGRESSIVE_LANGUAGE_PACK_PATH,
             },
           ],
@@ -79,12 +83,12 @@ export async function loadProgressiveLessonPack(path = PROGRESSIVE_LANGUAGE_PACK
   return pack;
 }
 
-export function createProgressiveLessonState(targetLang = "de", packPath = PROGRESSIVE_LANGUAGE_PACK_PATH, selection = {}) {
+export function createProgressiveLessonState(targetLang = "", packPath = PROGRESSIVE_LANGUAGE_PACK_PATH, selection = {}) {
   return {
     packPath,
-    catalogPackId: selection.catalogPackId || "prototype",
-    stageId: selection.stageId || "stage1",
-    lessonId: selection.lessonId || "bank_river_bank_go_sit",
+    catalogPackId: selection.catalogPackId || DEFAULT_CATALOG_PACK_ID,
+    stageId: selection.stageId || DEFAULT_STAGE_ID,
+    lessonId: selection.lessonId || DEFAULT_LESSON_ID,
     targetLang,
     phase: "listen",
     chainIndex: 0,
@@ -148,13 +152,13 @@ export function getDefaultProgressiveLesson(catalog = FALLBACK_PROGRESSIVE_LANGU
 }
 
 export function ensureProgressiveLessonStateForCatalog(state, catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG) {
-  const targetLang = state?.targetLang || "de";
+  const targetLang = state?.targetLang || "";
   if (!state) {
     const fallback = getDefaultProgressiveLesson(catalog);
     return createProgressiveLessonState(targetLang, fallback.lesson?.path || PROGRESSIVE_LANGUAGE_PACK_PATH, {
-      catalogPackId: fallback.pack?.id || "prototype",
-      stageId: fallback.stage?.id || "stage1",
-      lessonId: fallback.lesson?.id || "bank_river_bank_go_sit",
+      catalogPackId: fallback.pack?.id || DEFAULT_CATALOG_PACK_ID,
+      stageId: fallback.stage?.id || DEFAULT_STAGE_ID,
+      lessonId: fallback.lesson?.id || DEFAULT_LESSON_ID,
     });
   }
 
@@ -169,9 +173,9 @@ export function ensureProgressiveLessonStateForCatalog(state, catalog = FALLBACK
 
   const fallback = getDefaultProgressiveLesson(catalog);
   return createProgressiveLessonState(targetLang, fallback.lesson?.path || PROGRESSIVE_LANGUAGE_PACK_PATH, {
-    catalogPackId: fallback.pack?.id || "prototype",
-    stageId: fallback.stage?.id || "stage1",
-    lessonId: fallback.lesson?.id || "bank_river_bank_go_sit",
+    catalogPackId: fallback.pack?.id || DEFAULT_CATALOG_PACK_ID,
+    stageId: fallback.stage?.id || DEFAULT_STAGE_ID,
+    lessonId: fallback.lesson?.id || DEFAULT_LESSON_ID,
   });
 }
 
@@ -196,7 +200,7 @@ export function findProgressiveCatalogSelection(catalog = FALLBACK_PROGRESSIVE_L
 }
 
 function createStateFromSelection(state, selection) {
-  return createProgressiveLessonState(state?.targetLang || "de", selection.lesson.path, {
+  return createProgressiveLessonState(state?.targetLang || "", selection.lesson.path, {
     catalogPackId: selection.pack.id,
     stageId: selection.stage.id,
     lessonId: selection.lesson.id,
@@ -208,7 +212,7 @@ export function changeProgressiveLessonCollection(state, catalog, catalogPackId)
   const pack = normalized.packs.find((item) => item.id === catalogPackId) || normalized.packs[0];
   const stage = pack?.stages?.[0];
   const lesson = stage?.lessons?.[0];
-  if (!pack || !stage || !lesson) return createProgressiveLessonState(state?.targetLang || "de");
+  if (!pack || !stage || !lesson) return createProgressiveLessonState(state?.targetLang || "");
   return createStateFromSelection(state, { pack, stage, lesson });
 }
 
@@ -216,14 +220,14 @@ export function changeProgressiveLessonStage(state, catalog, stageId) {
   const current = findProgressiveCatalogSelection(catalog, state);
   const stage = current.pack?.stages?.find((item) => item.id === stageId) || current.pack?.stages?.[0];
   const lesson = stage?.lessons?.[0];
-  if (!current.pack || !stage || !lesson) return createProgressiveLessonState(state?.targetLang || "de");
+  if (!current.pack || !stage || !lesson) return createProgressiveLessonState(state?.targetLang || "");
   return createStateFromSelection(state, { pack: current.pack, stage, lesson });
 }
 
 export function changeProgressiveLessonLesson(state, catalog, lessonId) {
   const current = findProgressiveCatalogSelection(catalog, state);
   const lesson = current.stage?.lessons?.find((item) => item.id === lessonId) || current.stage?.lessons?.[0];
-  if (!current.pack || !current.stage || !lesson) return createProgressiveLessonState(state?.targetLang || "de");
+  if (!current.pack || !current.stage || !lesson) return createProgressiveLessonState(state?.targetLang || "");
   return createStateFromSelection(state, { pack: current.pack, stage: current.stage, lesson });
 }
 
@@ -295,6 +299,14 @@ export function prepareProgressiveLessonState(state, pack) {
   state.score.vocabTotal = pack.vocabulary.length;
   state.score.builderTotal = pack.sentenceBuilders.length;
 
+  if (!state.targetLang) {
+    state.vocabOptions = [];
+    state.bankTiles = [];
+    state.selectedTiles = [];
+    state.feedback = null;
+    return state;
+  }
+
   if (state.phase === "vocab" && !state.vocabOptions.length) {
     const current = pack.vocabulary[state.vocabIndex];
     state.vocabOptions = current ? buildVocabOptions(current, pack.vocabulary, state.targetLang) : [];
@@ -312,7 +324,7 @@ export function getCurrentListenStep(pack, state) {
 }
 
 export function getCurrentSpeechCue(pack, state) {
-  if (state.phase !== "listen") return null;
+  if (!state.targetLang || state.phase !== "listen") return null;
   const { chain, step } = getCurrentListenStep(pack, state);
   const text = step?.translations?.[state.targetLang]?.text || "";
   if (!chain || !step || !text) return null;
@@ -328,7 +340,9 @@ export function markCurrentStepSpoken(state, cue) {
 }
 
 export function renderProgressiveLanguageLesson(pack, state, catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG) {
-  prepareProgressiveLessonState(state, pack);
+  if (state.targetLang) {
+    prepareProgressiveLessonState(state, pack);
+  }
   const selection = findProgressiveCatalogSelection(catalog, state);
   const catalogPack = selection.pack;
   const catalogStage = selection.stage;
@@ -353,6 +367,9 @@ export function renderProgressiveLanguageLesson(pack, state, catalog = FALLBACK_
       ${escapeHtml(language.label)}
     </option>
   `).join("");
+  const lessonBody = state.targetLang
+    ? `${renderPhaseSteps(state.phase)}${renderCurrentPhase(pack, state)}${renderGrammarSupport(pack, state)}`
+    : renderChooseLanguagePrompt();
 
   return `
     <div class="section-stack progressive-lesson-shell">
@@ -384,15 +401,24 @@ export function renderProgressiveLanguageLesson(pack, state, catalog = FALLBACK_
           <label class="field progressive-language-selector">
             <span>Language</span>
             <select id="progressive-language">
+              <option value="" ${state.targetLang ? "" : "selected"}>Choose a language to start</option>
               ${languageOptions}
             </select>
           </label>
         </div>
       </section>
-      ${renderPhaseSteps(state.phase)}
-      ${renderCurrentPhase(pack, state)}
-      ${renderGrammarSupport(pack, state)}
+      ${lessonBody}
     </div>
+  `;
+}
+
+function renderChooseLanguagePrompt() {
+  return `
+    <section class="empty-state-card progressive-lesson-card">
+      <p class="eyebrow">Ready when you are</p>
+      <h2>Choose a language to begin</h2>
+      <p>Select a language path above to start listening, practising vocabulary, and building sentences.</p>
+    </section>
   `;
 }
 
