@@ -4,6 +4,7 @@ import { useProgress } from "../context/ProgressContext.jsx";
 import { useReadingSession } from "../hooks/useReadingSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
+import { LabeledSelect, PillGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { listPassageGroups, listPassageGroupsBySubject, listPassagePacks, getPassageGroupSubject, SUBJECTS } from "@/data.js";
 
 const DIFFICULTY_OPTIONS = ["all", "easy", "medium", "hard"];
@@ -51,49 +52,26 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
         <h3 style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--lw-muted)", marginBottom: "6px" }}>Subject</h3>
         <SubjectCardGrid subjects={subjectCounts} activeSubject={prefs.subject} onSelect={s => setPref("subject", s)} />
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "18px" }}>
+        <FilterRow style={{ marginTop: "18px" }}>
           {filteredGroups.length > 0 && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: "1 1 200px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Book / Group</label>
-              <select
-                value={prefs.groupId}
-                onChange={e => setPref("groupId", e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-              >
-                {filteredGroups.map(g => <option key={g.id} value={g.id}>{g.displayName}</option>)}
-              </select>
-            </div>
+            <LabeledSelect label="Book / Group" value={prefs.groupId} onChange={(v) => setPref("groupId", v)}>
+              {filteredGroups.map((g) => <option key={g.id} value={g.id}>{g.displayName}</option>)}
+            </LabeledSelect>
           )}
 
           {packs.length > 1 && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: "1 1 200px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Set</label>
-              <select
-                value={prefs.packId}
-                onChange={e => setPref("packId", e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-              >
-                {packs.map(p => <option key={p.id} value={p.id}>{p.displayName}</option>)}
-              </select>
-            </div>
+            <LabeledSelect label="Set" value={prefs.packId} onChange={(v) => setPref("packId", v)}>
+              {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
+            </LabeledSelect>
           )}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Difficulty</label>
-            <div className="lw-nav-pills">
-              {DIFFICULTY_OPTIONS.map(d => (
-                <button
-                  key={d}
-                  type="button"
-                  className={`lw-nav-pill ${prefs.difficulty === d ? "active" : ""}`}
-                  onClick={() => setPref("difficulty", d)}
-                >
-                  {d.charAt(0).toUpperCase() + d.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+          <PillGroup
+            label="Difficulty"
+            items={DIFFICULTY_OPTIONS.map((d) => ({ id: d, label: d.charAt(0).toUpperCase() + d.slice(1) }))}
+            value={prefs.difficulty}
+            onSelect={(v) => setPref("difficulty", v)}
+          />
+        </FilterRow>
 
         <div style={{ marginTop: "16px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
           <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "0.9rem" }}>

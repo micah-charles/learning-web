@@ -3,6 +3,7 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
 import { listDatasets } from "@/data.js";
 import { getWordProgress, isWordMastered, isMasteredProgress } from "@/storage.js";
 
@@ -82,23 +83,22 @@ export default function ReviewPage({ onNavigate }) {
       .slice(0, 20);
   }, [reviewedWords, prog]);
 
-  if (manifestLoading) return <div className="lw-page"><p>Loading…</p></div>;
+  if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
   return (
     <div className="lw-page">
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">Review</h2>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
-          <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Dataset</label>
-          <select
-            value={prefs.datasetId}
-            onChange={e => setPrefs(prev => ({ ...prev, datasetId: e.target.value }))}
-            style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit", maxWidth: "300px" }}
-          >
-            {datasets.map(d => <option key={d.id} value={d.id}>{d.displayName}</option>)}
-          </select>
-        </div>
+        <LabeledSelect
+          label="Dataset"
+          value={prefs.datasetId}
+          onChange={(v) => setPrefs((prev) => ({ ...prev, datasetId: v }))}
+          style={{ maxWidth: "300px", marginBottom: "16px" }}
+          flex={false}
+        >
+          {datasets.map((d) => <option key={d.id} value={d.id}>{d.displayName}</option>)}
+        </LabeledSelect>
 
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "16px" }}>
           <span className="lw-chip blue">{reviewedWords.length} reviewed</span>
@@ -128,7 +128,7 @@ export default function ReviewPage({ onNavigate }) {
         </div>
       </div>
 
-      {loading && <p style={{ color: "var(--lw-muted)" }}>Loading words…</p>}
+      {loading && <LoadingText text="Loading words…" />}
 
       {!loading && (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
