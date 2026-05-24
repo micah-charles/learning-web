@@ -79,7 +79,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "妈妈"
+          "text": "媽媽"
         },
         "ja": {
           "text": "母"
@@ -108,7 +108,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "奶奶"
+          "text": "祖母"
         },
         "ja": {
           "text": "祖母"
@@ -137,7 +137,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "花园"
+          "text": "花園"
         },
         "ja": {
           "text": "庭"
@@ -166,7 +166,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "客厅"
+          "text": "客廳"
         },
         "ja": {
           "text": "リビング"
@@ -333,7 +333,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -443,19 +443,19 @@
               }
             },
             "zh": {
-              "text": "妈妈",
+              "text": "媽媽",
               "tiles": [
-                "妈妈"
+                "媽媽"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "妈妈",
+                "literalOrderExplanation": "媽媽",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "妈妈",
+                    "text": "媽媽",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -581,19 +581,19 @@
               }
             },
             "zh": {
-              "text": "妈妈在花园里。",
+              "text": "媽媽在花園裡。",
               "tiles": [
-                "妈妈在花园里。"
+                "媽媽在花園裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "妈妈在花园里",
+                "literalOrderExplanation": "媽媽在花園裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "妈妈在花园里",
+                    "text": "媽媽在花園裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -875,32 +875,32 @@
               }
             },
             "zh": {
-              "text": "妈妈在花园里。",
+              "text": "媽媽在花園裡。",
               "tiles": [
-                "妈妈",
-                "在花园里。"
+                "媽媽",
+                "在花園裡。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "妈妈 → 在花园里",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "媽媽 → 在花園裡",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "妈妈",
+                    "text": "媽媽",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在花园里",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在花園裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1054,19 +1054,19 @@
               }
             },
             "zh": {
-              "text": "奶奶",
+              "text": "祖母",
               "tiles": [
-                "奶奶"
+                "祖母"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "奶奶",
+                "literalOrderExplanation": "祖母",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "奶奶",
+                    "text": "祖母",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1526,22 +1526,22 @@
               }
             },
             "zh": {
-              "text": "奶奶坐在椅子旁边。",
+              "text": "祖母坐在椅子旁邊。",
               "tiles": [
-                "奶奶",
+                "祖母",
                 "坐在",
-                "椅子旁边。"
+                "椅子旁邊。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "奶奶 → 坐在 → 椅子旁边",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "祖母 → 坐在 → 椅子旁邊",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "奶奶",
+                    "text": "祖母",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
@@ -1549,16 +1549,16 @@
                   },
                   {
                     "text": "坐在",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
-                    "text": "椅子旁边",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "椅子旁邊",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -1868,32 +1868,32 @@
           }
         },
         "zh": {
-          "text": "妈妈在花园里。",
+          "text": "媽媽在花園裡。",
           "tiles": [
-            "妈妈",
-            "在花园里。"
+            "媽媽",
+            "在花園裡。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "妈妈 → 在花园里",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "媽媽 → 在花園裡",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "妈妈",
+                "text": "媽媽",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在花园里",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在花園裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2239,22 +2239,22 @@
           }
         },
         "zh": {
-          "text": "奶奶坐在椅子旁边。",
+          "text": "祖母坐在椅子旁邊。",
           "tiles": [
-            "奶奶",
+            "祖母",
             "坐在",
-            "椅子旁边。"
+            "椅子旁邊。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "奶奶 → 坐在 → 椅子旁边",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "祖母 → 坐在 → 椅子旁邊",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "奶奶",
+                "text": "祖母",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
@@ -2262,16 +2262,16 @@
               },
               {
                 "text": "坐在",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
-                "text": "椅子旁边",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "椅子旁邊",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]

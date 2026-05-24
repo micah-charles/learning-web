@@ -82,7 +82,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "旅行者"
+          "text": "旅客"
         },
         "ja": {
           "text": "旅人"
@@ -111,7 +111,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "飞行员"
+          "text": "機師"
         },
         "ja": {
           "text": "パイロット"
@@ -139,7 +139,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "机场"
+          "text": "機場"
         },
         "ja": {
           "text": "空港"
@@ -167,7 +167,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "飞机"
+          "text": "飛機"
         },
         "ja": {
           "text": "飛行機"
@@ -225,7 +225,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "护照"
+          "text": "護照"
         },
         "ja": {
           "text": "パスポート"
@@ -277,7 +277,7 @@
           "text": "volar"
         },
         "zh": {
-          "text": "飞"
+          "text": "飛"
         },
         "ja": {
           "text": "飛ぶ"
@@ -334,7 +334,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -444,19 +444,19 @@
               }
             },
             "zh": {
-              "text": "旅行者",
+              "text": "旅客",
               "tiles": [
-                "旅行者"
+                "旅客"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "旅行者",
+                "literalOrderExplanation": "旅客",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "旅行者",
+                    "text": "旅客",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -582,19 +582,19 @@
               }
             },
             "zh": {
-              "text": "旅行者在机场。",
+              "text": "旅客在機場。",
               "tiles": [
-                "旅行者在机场。"
+                "旅客在機場。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "旅行者在机场",
+                "literalOrderExplanation": "旅客在機場",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "旅行者在机场",
+                    "text": "旅客在機場",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -868,32 +868,32 @@
               }
             },
             "zh": {
-              "text": "旅行者在机场。",
+              "text": "旅客在機場。",
               "tiles": [
-                "旅行者",
-                "在机场。"
+                "旅客",
+                "在機場。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "旅行者 → 在机场",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "旅客 → 在機場",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "旅行者",
+                    "text": "旅客",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在机场",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在機場",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1047,19 +1047,19 @@
               }
             },
             "zh": {
-              "text": "飞行员",
+              "text": "機師",
               "tiles": [
-                "飞行员"
+                "機師"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "飞行员",
+                "literalOrderExplanation": "機師",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "飞行员",
+                    "text": "機師",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1185,19 +1185,19 @@
               }
             },
             "zh": {
-              "text": "飞机",
+              "text": "飛機",
               "tiles": [
-                "飞机"
+                "飛機"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "飞机",
+                "literalOrderExplanation": "飛機",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "飞机",
+                    "text": "飛機",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1471,39 +1471,39 @@
               }
             },
             "zh": {
-              "text": "飞行员驾驶飞机。",
+              "text": "機師駕駛飛機。",
               "tiles": [
-                "飞行员",
-                "驾驶",
-                "飞机。"
+                "機師",
+                "駕駛",
+                "飛機。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "飞行员 → 驾驶 → 飞机",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "機師 → 駕駛 → 飛機",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "飞行员",
+                    "text": "機師",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "驾驶",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "text": "駕駛",
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
-                    "text": "飞机",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "飛機",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1805,32 +1805,32 @@
           }
         },
         "zh": {
-          "text": "旅行者在机场。",
+          "text": "旅客在機場。",
           "tiles": [
-            "旅行者",
-            "在机场。"
+            "旅客",
+            "在機場。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "旅行者 → 在机场",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "旅客 → 在機場",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "旅行者",
+                "text": "旅客",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在机场",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在機場",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2128,39 +2128,39 @@
           }
         },
         "zh": {
-          "text": "飞行员驾驶飞机。",
+          "text": "機師駕駛飛機。",
           "tiles": [
-            "飞行员",
-            "驾驶",
-            "飞机。"
+            "機師",
+            "駕駛",
+            "飛機。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "飞行员 → 驾驶 → 飞机",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "機師 → 駕駛 → 飛機",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "飞行员",
+                "text": "機師",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "驾驶",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "text": "駕駛",
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
-                "text": "飞机",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "飛機",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

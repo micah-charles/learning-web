@@ -78,7 +78,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "家长"
+          "text": "家長"
         },
         "ja": {
           "text": "親"
@@ -106,7 +106,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "孩子"
+          "text": "小朋友"
         },
         "ja": {
           "text": "子ども"
@@ -135,7 +135,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "公园"
+          "text": "公園"
         },
         "ja": {
           "text": "公園"
@@ -163,7 +163,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "游乐场"
+          "text": "遊樂場"
         },
         "ja": {
           "text": "遊び場"
@@ -221,7 +221,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "自行车"
+          "text": "單車"
         },
         "ja": {
           "text": "自転車"
@@ -273,7 +273,7 @@
           "text": "montar"
         },
         "zh": {
-          "text": "骑"
+          "text": "騎"
         },
         "ja": {
           "text": "乗る"
@@ -330,7 +330,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -440,19 +440,19 @@
               }
             },
             "zh": {
-              "text": "家长",
+              "text": "家長",
               "tiles": [
-                "家长"
+                "家長"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "家长",
+                "literalOrderExplanation": "家長",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "家长",
+                    "text": "家長",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -578,19 +578,19 @@
               }
             },
             "zh": {
-              "text": "家长在公园里。",
+              "text": "家長在公園裡。",
               "tiles": [
-                "家长在公园里。"
+                "家長在公園裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "家长在公园里",
+                "literalOrderExplanation": "家長在公園裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "家长在公园里",
+                    "text": "家長在公園裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -880,32 +880,32 @@
               }
             },
             "zh": {
-              "text": "家长在公园里。",
+              "text": "家長在公園裡。",
               "tiles": [
-                "家长",
-                "在公园里。"
+                "家長",
+                "在公園裡。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "家长 → 在公园里",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "家長 → 在公園裡",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "家长",
+                    "text": "家長",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在公园里",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在公園裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1059,19 +1059,19 @@
               }
             },
             "zh": {
-              "text": "孩子",
+              "text": "小朋友",
               "tiles": [
-                "孩子"
+                "小朋友"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "孩子",
+                "literalOrderExplanation": "小朋友",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "孩子",
+                    "text": "小朋友",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1491,22 +1491,22 @@
               }
             },
             "zh": {
-              "text": "孩子玩球。",
+              "text": "小朋友玩球。",
               "tiles": [
-                "孩子",
+                "小朋友",
                 "玩",
                 "球。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "孩子 → 玩 → 球",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "小朋友 → 玩 → 球",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "孩子",
+                    "text": "小朋友",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
@@ -1514,16 +1514,16 @@
                   },
                   {
                     "text": "玩",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
                     "text": "球",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1841,32 +1841,32 @@
           }
         },
         "zh": {
-          "text": "家长在公园里。",
+          "text": "家長在公園裡。",
           "tiles": [
-            "家长",
-            "在公园里。"
+            "家長",
+            "在公園裡。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "家长 → 在公园里",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "家長 → 在公園裡",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "家长",
+                "text": "家長",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在公园里",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在公園裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2172,22 +2172,22 @@
           }
         },
         "zh": {
-          "text": "孩子玩球。",
+          "text": "小朋友玩球。",
           "tiles": [
-            "孩子",
+            "小朋友",
             "玩",
             "球。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "孩子 → 玩 → 球",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "小朋友 → 玩 → 球",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "孩子",
+                "text": "小朋友",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
@@ -2195,16 +2195,16 @@
               },
               {
                 "text": "玩",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
                 "text": "球",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

@@ -82,7 +82,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "服务员"
+          "text": "侍應"
         },
         "ja": {
           "text": "ウェイター"
@@ -111,7 +111,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "顾客"
+          "text": "顧客"
         },
         "ja": {
           "text": "客"
@@ -140,7 +140,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "餐厅"
+          "text": "餐廳"
         },
         "ja": {
           "text": "レストラン"
@@ -198,7 +198,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "米饭"
+          "text": "飯"
         },
         "ja": {
           "text": "ご飯"
@@ -335,7 +335,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -445,19 +445,19 @@
               }
             },
             "zh": {
-              "text": "服务员",
+              "text": "侍應",
               "tiles": [
-                "服务员"
+                "侍應"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "服务员",
+                "literalOrderExplanation": "侍應",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "服务员",
+                    "text": "侍應",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -583,19 +583,19 @@
               }
             },
             "zh": {
-              "text": "服务员在餐厅里。",
+              "text": "侍應在餐廳裡。",
               "tiles": [
-                "服务员在餐厅里。"
+                "侍應在餐廳裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "服务员在餐厅里",
+                "literalOrderExplanation": "侍應在餐廳裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "服务员在餐厅里",
+                    "text": "侍應在餐廳裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -885,32 +885,32 @@
               }
             },
             "zh": {
-              "text": "服务员在餐厅里。",
+              "text": "侍應在餐廳裡。",
               "tiles": [
-                "服务员",
-                "在餐厅里。"
+                "侍應",
+                "在餐廳裡。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "服务员 → 在餐厅里",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "侍應 → 在餐廳裡",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "服务员",
+                    "text": "侍應",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在餐厅里",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在餐廳裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1064,19 +1064,19 @@
               }
             },
             "zh": {
-              "text": "顾客",
+              "text": "顧客",
               "tiles": [
-                "顾客"
+                "顧客"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "顾客",
+                "literalOrderExplanation": "顧客",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "顾客",
+                    "text": "顧客",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1448,22 +1448,22 @@
               }
             },
             "zh": {
-              "text": "顾客喝水。",
+              "text": "顧客喝水。",
               "tiles": [
-                "顾客",
+                "顧客",
                 "喝",
                 "水。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "顾客 → 喝 → 水",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "顧客 → 喝 → 水",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "顾客",
+                    "text": "顧客",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
@@ -1471,16 +1471,16 @@
                   },
                   {
                     "text": "喝",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
                     "text": "水",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1798,32 +1798,32 @@
           }
         },
         "zh": {
-          "text": "服务员在餐厅里。",
+          "text": "侍應在餐廳裡。",
           "tiles": [
-            "服务员",
-            "在餐厅里。"
+            "侍應",
+            "在餐廳裡。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "服务员 → 在餐厅里",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "侍應 → 在餐廳裡",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "服务员",
+                "text": "侍應",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在餐厅里",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在餐廳裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2081,22 +2081,22 @@
           }
         },
         "zh": {
-          "text": "顾客喝水。",
+          "text": "顧客喝水。",
           "tiles": [
-            "顾客",
+            "顧客",
             "喝",
             "水。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "顾客 → 喝 → 水",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "顧客 → 喝 → 水",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "顾客",
+                "text": "顧客",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
@@ -2104,16 +2104,16 @@
               },
               {
                 "text": "喝",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
                 "text": "水",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

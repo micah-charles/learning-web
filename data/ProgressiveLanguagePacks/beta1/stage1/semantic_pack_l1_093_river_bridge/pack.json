@@ -78,7 +78,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "游客"
+          "text": "遊客"
         },
         "ja": {
           "text": "観光客"
@@ -164,7 +164,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "桥"
+          "text": "橋"
         },
         "ja": {
           "text": "橋"
@@ -221,7 +221,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "树"
+          "text": "樹"
         },
         "ja": {
           "text": "木"
@@ -330,7 +330,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -440,19 +440,19 @@
               }
             },
             "zh": {
-              "text": "游客",
+              "text": "遊客",
               "tiles": [
-                "游客"
+                "遊客"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "游客",
+                "literalOrderExplanation": "遊客",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "游客",
+                    "text": "遊客",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -578,19 +578,19 @@
               }
             },
             "zh": {
-              "text": "游客在河边。",
+              "text": "遊客在河邊。",
               "tiles": [
-                "游客在河边。"
+                "遊客在河邊。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "游客在河边",
+                "literalOrderExplanation": "遊客在河邊",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "游客在河边",
+                    "text": "遊客在河邊",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -880,32 +880,32 @@
               }
             },
             "zh": {
-              "text": "游客在河边。",
+              "text": "遊客在河邊。",
               "tiles": [
-                "游客",
-                "在河边。"
+                "遊客",
+                "在河邊。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "游客 → 在河边",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "遊客 → 在河邊",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "游客",
+                    "text": "遊客",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在河边",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在河邊",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1197,19 +1197,19 @@
               }
             },
             "zh": {
-              "text": "桥",
+              "text": "橋",
               "tiles": [
-                "桥"
+                "橋"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "桥",
+                "literalOrderExplanation": "橋",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "桥",
+                    "text": "橋",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1491,17 +1491,17 @@
               }
             },
             "zh": {
-              "text": "朋友在桥上走。",
+              "text": "朋友在橋上走。",
               "tiles": [
                 "朋友",
-                "在桥上",
+                "在橋上",
                 "走。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "朋友 → 在桥上 → 走",
+                "sentencePattern": "Subject + Location + Action",
+                "literalOrderExplanation": "朋友 → 在橋上 → 走",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese often places the location before the main action.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
@@ -1513,18 +1513,18 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "在桥上",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "text": "在橋上",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "The location comes before the action."
                   },
                   {
                     "text": "走",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "This is the action after the location."
                   }
                 ]
               }
@@ -1841,32 +1841,32 @@
           }
         },
         "zh": {
-          "text": "游客在河边。",
+          "text": "遊客在河邊。",
           "tiles": [
-            "游客",
-            "在河边。"
+            "遊客",
+            "在河邊。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "游客 → 在河边",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "遊客 → 在河邊",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "游客",
+                "text": "遊客",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在河边",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在河邊",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2172,17 +2172,17 @@
           }
         },
         "zh": {
-          "text": "朋友在桥上走。",
+          "text": "朋友在橋上走。",
           "tiles": [
             "朋友",
-            "在桥上",
+            "在橋上",
             "走。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "朋友 → 在桥上 → 走",
+            "sentencePattern": "Subject + Location + Action",
+            "literalOrderExplanation": "朋友 → 在橋上 → 走",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese often places the location before the main action.",
               "The verb does not change for person."
             ],
             "tokens": [
@@ -2194,18 +2194,18 @@
                 "grammarNote": ""
               },
               {
-                "text": "在桥上",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "text": "在橋上",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "The location comes before the action."
               },
               {
                 "text": "走",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "This is the action after the location."
               }
             ]
           }

@@ -78,7 +78,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "同学"
+          "text": "同學"
         },
         "ja": {
           "text": "クラスメート"
@@ -107,7 +107,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "老师"
+          "text": "老師"
         },
         "ja": {
           "text": "先生"
@@ -164,7 +164,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "学校"
+          "text": "學校"
         },
         "ja": {
           "text": "がっこう"
@@ -193,7 +193,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "书"
+          "text": "書"
         },
         "ja": {
           "text": "本"
@@ -222,7 +222,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "书包"
+          "text": "書包"
         },
         "ja": {
           "text": "かばん"
@@ -248,7 +248,7 @@
           "text": "abrir"
         },
         "zh": {
-          "text": "打开"
+          "text": "打開"
         },
         "ja": {
           "text": "開ける"
@@ -274,7 +274,7 @@
           "text": "leer"
         },
         "zh": {
-          "text": "读"
+          "text": "讀"
         },
         "ja": {
           "text": "読む"
@@ -331,7 +331,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -441,19 +441,19 @@
               }
             },
             "zh": {
-              "text": "同学",
+              "text": "同學",
               "tiles": [
-                "同学"
+                "同學"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "同学",
+                "literalOrderExplanation": "同學",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "同学",
+                    "text": "同學",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -579,19 +579,19 @@
               }
             },
             "zh": {
-              "text": "同学在教室里。",
+              "text": "同學在教室裡。",
               "tiles": [
-                "同学在教室里。"
+                "同學在教室裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "同学在教室里",
+                "literalOrderExplanation": "同學在教室裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "同学在教室里",
+                    "text": "同學在教室裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -873,32 +873,32 @@
               }
             },
             "zh": {
-              "text": "同学在教室里。",
+              "text": "同學在教室裡。",
               "tiles": [
-                "同学",
-                "在教室里。"
+                "同學",
+                "在教室裡。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "同学 → 在教室里",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "同學 → 在教室裡",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "同学",
+                    "text": "同學",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在教室里",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在教室裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1052,19 +1052,19 @@
               }
             },
             "zh": {
-              "text": "老师",
+              "text": "老師",
               "tiles": [
-                "老师"
+                "老師"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "老师",
+                "literalOrderExplanation": "老師",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "老师",
+                    "text": "老師",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1190,19 +1190,19 @@
               }
             },
             "zh": {
-              "text": "书",
+              "text": "書",
               "tiles": [
-                "书"
+                "書"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "书",
+                "literalOrderExplanation": "書",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "书",
+                    "text": "書",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1460,39 +1460,39 @@
               }
             },
             "zh": {
-              "text": "老师打开书。",
+              "text": "老師打開書。",
               "tiles": [
-                "老师",
-                "打开",
-                "书。"
+                "老師",
+                "打開",
+                "書。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "老师 → 打开 → 书",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "老師 → 打開 → 書",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "老师",
+                    "text": "老師",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "打开",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "text": "打開",
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
-                    "text": "书",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "書",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1802,32 +1802,32 @@
           }
         },
         "zh": {
-          "text": "同学在教室里。",
+          "text": "同學在教室裡。",
           "tiles": [
-            "同学",
-            "在教室里。"
+            "同學",
+            "在教室裡。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "同学 → 在教室里",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "同學 → 在教室裡",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "同学",
+                "text": "同學",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在教室里",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在教室裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2109,39 +2109,39 @@
           }
         },
         "zh": {
-          "text": "老师打开书。",
+          "text": "老師打開書。",
           "tiles": [
-            "老师",
-            "打开",
-            "书。"
+            "老師",
+            "打開",
+            "書。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "老师 → 打开 → 书",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "老師 → 打開 → 書",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "老师",
+                "text": "老師",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "打开",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "text": "打開",
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
-                "text": "书",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "書",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

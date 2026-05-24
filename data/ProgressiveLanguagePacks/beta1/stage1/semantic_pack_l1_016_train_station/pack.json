@@ -111,7 +111,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "旅行者"
+          "text": "旅客"
         },
         "ja": {
           "text": "旅人"
@@ -140,7 +140,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "车站"
+          "text": "車站"
         },
         "ja": {
           "text": "駅"
@@ -169,7 +169,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "站台"
+          "text": "月台"
         },
         "ja": {
           "text": "ホーム"
@@ -198,7 +198,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "火车"
+          "text": "火車"
         },
         "ja": {
           "text": "電車"
@@ -227,7 +227,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "车票"
+          "text": "車票"
         },
         "ja": {
           "text": "切符"
@@ -279,7 +279,7 @@
           "text": "leer"
         },
         "zh": {
-          "text": "读"
+          "text": "讀"
         },
         "ja": {
           "text": "読む"
@@ -336,7 +336,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -584,19 +584,19 @@
               }
             },
             "zh": {
-              "text": "乘客在车站。",
+              "text": "乘客在車站。",
               "tiles": [
-                "乘客在车站。"
+                "乘客在車站。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "乘客在车站",
+                "literalOrderExplanation": "乘客在車站",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "乘客在车站",
+                    "text": "乘客在車站",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -878,17 +878,17 @@
               }
             },
             "zh": {
-              "text": "乘客在车站。",
+              "text": "乘客在車站。",
               "tiles": [
                 "乘客",
-                "在车站。"
+                "在車站。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "乘客 → 在车站",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "乘客 → 在車站",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
@@ -899,11 +899,11 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "在车站",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在車站",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1057,19 +1057,19 @@
               }
             },
             "zh": {
-              "text": "旅行者",
+              "text": "旅客",
               "tiles": [
-                "旅行者"
+                "旅客"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "旅行者",
+                "literalOrderExplanation": "旅客",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "旅行者",
+                    "text": "旅客",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1195,19 +1195,19 @@
               }
             },
             "zh": {
-              "text": "车票",
+              "text": "車票",
               "tiles": [
-                "车票"
+                "車票"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "车票",
+                "literalOrderExplanation": "車票",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "车票",
+                    "text": "車票",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1465,39 +1465,39 @@
               }
             },
             "zh": {
-              "text": "旅行者读车票。",
+              "text": "旅客看車票。",
               "tiles": [
-                "旅行者",
-                "读",
-                "车票。"
+                "旅客",
+                "看",
+                "車票。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "旅行者 → 读 → 车票",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "旅客 → 看 → 車票",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "旅行者",
+                    "text": "旅客",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "读",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "text": "看",
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
-                    "text": "车票",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "車票",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1807,17 +1807,17 @@
           }
         },
         "zh": {
-          "text": "乘客在车站。",
+          "text": "乘客在車站。",
           "tiles": [
             "乘客",
-            "在车站。"
+            "在車站。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "乘客 → 在车站",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "乘客 → 在車站",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
@@ -1828,11 +1828,11 @@
                 "grammarNote": ""
               },
               {
-                "text": "在车站",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在車站",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2114,39 +2114,39 @@
           }
         },
         "zh": {
-          "text": "旅行者读车票。",
+          "text": "旅客看車票。",
           "tiles": [
-            "旅行者",
-            "读",
-            "车票。"
+            "旅客",
+            "看",
+            "車票。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "旅行者 → 读 → 车票",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "旅客 → 看 → 車票",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "旅行者",
+                "text": "旅客",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "读",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "text": "看",
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
-                "text": "车票",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "車票",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

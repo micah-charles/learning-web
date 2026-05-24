@@ -82,7 +82,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "厨师"
+          "text": "廚師"
         },
         "ja": {
           "text": "料理人"
@@ -111,7 +111,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "妈妈"
+          "text": "媽媽"
         },
         "ja": {
           "text": "母"
@@ -140,7 +140,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "厨房"
+          "text": "廚房"
         },
         "ja": {
           "text": "台所"
@@ -198,7 +198,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "面包"
+          "text": "麵包"
         },
         "ja": {
           "text": "パン"
@@ -252,7 +252,7 @@
           "text": "cocinar"
         },
         "zh": {
-          "text": "做饭"
+          "text": "煮飯"
         },
         "ja": {
           "text": "料理する"
@@ -335,7 +335,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -445,19 +445,19 @@
               }
             },
             "zh": {
-              "text": "厨师",
+              "text": "廚師",
               "tiles": [
-                "厨师"
+                "廚師"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "厨师",
+                "literalOrderExplanation": "廚師",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "厨师",
+                    "text": "廚師",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -583,19 +583,19 @@
               }
             },
             "zh": {
-              "text": "厨师在厨房里。",
+              "text": "廚師在廚房裡。",
               "tiles": [
-                "厨师在厨房里。"
+                "廚師在廚房裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "厨师在厨房里",
+                "literalOrderExplanation": "廚師在廚房裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "厨师在厨房里",
+                    "text": "廚師在廚房裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -885,32 +885,32 @@
               }
             },
             "zh": {
-              "text": "厨师在厨房里。",
+              "text": "廚師在廚房裡。",
               "tiles": [
-                "厨师",
-                "在厨房里。"
+                "廚師",
+                "在廚房裡。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "厨师 → 在厨房里",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "廚師 → 在廚房裡",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "厨师",
+                    "text": "廚師",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在厨房里",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在廚房裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1064,19 +1064,19 @@
               }
             },
             "zh": {
-              "text": "妈妈",
+              "text": "媽媽",
               "tiles": [
-                "妈妈"
+                "媽媽"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "妈妈",
+                "literalOrderExplanation": "媽媽",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "妈妈",
+                    "text": "媽媽",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1202,19 +1202,19 @@
               }
             },
             "zh": {
-              "text": "面包",
+              "text": "麵包",
               "tiles": [
-                "面包"
+                "麵包"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "面包",
+                "literalOrderExplanation": "麵包",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "面包",
+                    "text": "麵包",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1448,22 +1448,22 @@
               }
             },
             "zh": {
-              "text": "妈妈吃面包。",
+              "text": "媽媽吃麵包。",
               "tiles": [
-                "妈妈",
+                "媽媽",
                 "吃",
-                "面包。"
+                "麵包。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "妈妈 → 吃 → 面包",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "媽媽 → 吃 → 麵包",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "妈妈",
+                    "text": "媽媽",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
@@ -1471,16 +1471,16 @@
                   },
                   {
                     "text": "吃",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
-                    "text": "面包",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "麵包",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1798,32 +1798,32 @@
           }
         },
         "zh": {
-          "text": "厨师在厨房里。",
+          "text": "廚師在廚房裡。",
           "tiles": [
-            "厨师",
-            "在厨房里。"
+            "廚師",
+            "在廚房裡。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "厨师 → 在厨房里",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "廚師 → 在廚房裡",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "厨师",
+                "text": "廚師",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在厨房里",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在廚房裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2081,22 +2081,22 @@
           }
         },
         "zh": {
-          "text": "妈妈吃面包。",
+          "text": "媽媽吃麵包。",
           "tiles": [
-            "妈妈",
+            "媽媽",
             "吃",
-            "面包。"
+            "麵包。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "妈妈 → 吃 → 面包",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "媽媽 → 吃 → 麵包",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "妈妈",
+                "text": "媽媽",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
@@ -2104,16 +2104,16 @@
               },
               {
                 "text": "吃",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
-                "text": "面包",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "麵包",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

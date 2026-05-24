@@ -135,7 +135,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "市场"
+          "text": "市場"
         },
         "ja": {
           "text": "市場"
@@ -222,7 +222,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "篮子"
+          "text": "籃子"
         },
         "ja": {
           "text": "かご"
@@ -248,7 +248,7 @@
           "text": "comprar"
         },
         "zh": {
-          "text": "买"
+          "text": "買"
         },
         "ja": {
           "text": "買う"
@@ -331,7 +331,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -579,19 +579,19 @@
               }
             },
             "zh": {
-              "text": "店主在市场里。",
+              "text": "店主在市場裡。",
               "tiles": [
-                "店主在市场里。"
+                "店主在市場裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "店主在市场里",
+                "literalOrderExplanation": "店主在市場裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "店主在市场里",
+                    "text": "店主在市場裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -873,17 +873,17 @@
               }
             },
             "zh": {
-              "text": "店主在市场里。",
+              "text": "店主在市場裡。",
               "tiles": [
                 "店主",
-                "在市场里。"
+                "在市場裡。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "店主 → 在市场里",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "店主 → 在市場裡",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
@@ -894,11 +894,11 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "在市场里",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "text": "在市場裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1428,17 +1428,17 @@
               }
             },
             "zh": {
-              "text": "朋友买水果。",
+              "text": "朋友買水果。",
               "tiles": [
                 "朋友",
-                "买",
+                "買",
                 "水果。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "朋友 → 买 → 水果",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "朋友 → 買 → 水果",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
@@ -1450,17 +1450,17 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "买",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "text": "買",
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
                     "text": "水果",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1770,17 +1770,17 @@
           }
         },
         "zh": {
-          "text": "店主在市场里。",
+          "text": "店主在市場裡。",
           "tiles": [
             "店主",
-            "在市场里。"
+            "在市場裡。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "店主 → 在市场里",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "店主 → 在市場裡",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
@@ -1791,11 +1791,11 @@
                 "grammarNote": ""
               },
               {
-                "text": "在市场里",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "text": "在市場裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2045,17 +2045,17 @@
           }
         },
         "zh": {
-          "text": "朋友买水果。",
+          "text": "朋友買水果。",
           "tiles": [
             "朋友",
-            "买",
+            "買",
             "水果。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "朋友 → 买 → 水果",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "朋友 → 買 → 水果",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
@@ -2067,17 +2067,17 @@
                 "grammarNote": ""
               },
               {
-                "text": "买",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "text": "買",
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
                 "text": "水果",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]

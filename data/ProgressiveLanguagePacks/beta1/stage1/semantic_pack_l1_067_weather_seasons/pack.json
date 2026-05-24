@@ -77,7 +77,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "孩子"
+          "text": "小朋友"
         },
         "ja": {
           "text": "子ども"
@@ -163,7 +163,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "太阳"
+          "text": "太陽"
         },
         "ja": {
           "text": "太陽"
@@ -192,7 +192,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "雨伞"
+          "text": "雨傘"
         },
         "ja": {
           "text": "傘"
@@ -273,7 +273,7 @@
           "text": "sostener"
         },
         "zh": {
-          "text": "拿着"
+          "text": "拿著"
         },
         "ja": {
           "text": "持つ"
@@ -330,7 +330,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -440,19 +440,19 @@
               }
             },
             "zh": {
-              "text": "孩子",
+              "text": "小朋友",
               "tiles": [
-                "孩子"
+                "小朋友"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "孩子",
+                "literalOrderExplanation": "小朋友",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "孩子",
+                    "text": "小朋友",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -578,19 +578,19 @@
               }
             },
             "zh": {
-              "text": "孩子在雨中。",
+              "text": "小朋友在雨中。",
               "tiles": [
-                "孩子在雨中。"
+                "小朋友在雨中。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "孩子在雨中",
+                "literalOrderExplanation": "小朋友在雨中",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "孩子在雨中",
+                    "text": "小朋友在雨中",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -864,21 +864,21 @@
               }
             },
             "zh": {
-              "text": "孩子在雨中。",
+              "text": "小朋友在雨中。",
               "tiles": [
-                "孩子",
+                "小朋友",
                 "在雨中。"
               ],
               "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "孩子 → 在雨中",
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "小朋友 → 在雨中",
                 "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
                 ],
                 "tokens": [
                   {
-                    "text": "孩子",
+                    "text": "小朋友",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
@@ -886,10 +886,10 @@
                   },
                   {
                     "text": "在雨中",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -1181,19 +1181,19 @@
               }
             },
             "zh": {
-              "text": "雨伞",
+              "text": "雨傘",
               "tiles": [
-                "雨伞"
+                "雨傘"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "雨伞",
+                "literalOrderExplanation": "雨傘",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "雨伞",
+                    "text": "雨傘",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1443,17 +1443,17 @@
               }
             },
             "zh": {
-              "text": "朋友拿着雨伞。",
+              "text": "朋友拿著雨傘。",
               "tiles": [
                 "朋友",
-                "拿着",
-                "雨伞。"
+                "拿著",
+                "雨傘。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "朋友 → 拿着 → 雨伞",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "朋友 → 拿著 → 雨傘",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
@@ -1465,17 +1465,17 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "拿着",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "text": "拿著",
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
-                    "text": "雨伞",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "雨傘",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1777,21 +1777,21 @@
           }
         },
         "zh": {
-          "text": "孩子在雨中。",
+          "text": "小朋友在雨中。",
           "tiles": [
-            "孩子",
+            "小朋友",
             "在雨中。"
           ],
           "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "孩子 → 在雨中",
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "小朋友 → 在雨中",
             "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
             ],
             "tokens": [
               {
-                "text": "孩子",
+                "text": "小朋友",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
@@ -1799,10 +1799,10 @@
               },
               {
                 "text": "在雨中",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -2076,17 +2076,17 @@
           }
         },
         "zh": {
-          "text": "朋友拿着雨伞。",
+          "text": "朋友拿著雨傘。",
           "tiles": [
             "朋友",
-            "拿着",
-            "雨伞。"
+            "拿著",
+            "雨傘。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "朋友 → 拿着 → 雨伞",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "朋友 → 拿著 → 雨傘",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
@@ -2098,17 +2098,17 @@
                 "grammarNote": ""
               },
               {
-                "text": "拿着",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "text": "拿著",
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
-                "text": "雨伞",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "雨傘",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
