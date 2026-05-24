@@ -602,6 +602,12 @@ German:
 - explain verb-second position
 - explain dative location phrases
 - explain modal verb final infinitive when used
+- use natural beginner wording, not overly formal dictionary choices
+- prefer "der Pilot" over "der Flugkapitän" for beginner pilot
+- prefer "der Tourist" over "der Urlauber" when the English concept is tourist
+- prefer "der Park" over "die Parkanlage" for park
+- prefer "das Restaurant" over "die Gaststätte" when the English concept is restaurant
+- avoid awkward generic noun phrases such as "das Elternteil" in full beginner sentences; use a natural phrase such as "ein Elternteil" when parent side/gender is unspecified
 
 French:
 - explain article gender
@@ -609,6 +615,14 @@ French:
 - explain être for state/location
 - explain aller + infinitive where used
 - explain adjective agreement lightly
+- use natural beginner wording, not overly formal dictionary choices
+- prefer "le pilote" over "le commandant de bord" for beginner pilot
+- prefer "le restaurant" over "la brasserie" when the English concept is restaurant
+- prefer "le parent" over "le responsable" when the English concept is parent
+- prefer "le camarade de classe" for classmate and "la salle de classe" for classroom
+- prefer "le cartable" for school bag in a school context
+- avoid duplicated phrase artifacts such as "camarade de classe de classe"
+- avoid article display bugs with elision; use "l'aéroport", "l'eau", "l'école", "l'avion" directly in text when needed
 
 Spanish:
 - explain estar for location
@@ -616,6 +630,10 @@ Spanish:
 - explain al = a + el
 - explain del = de + el
 - explain adjective agreement lightly
+- use natural beginner wording
+- prefer "la mochila" over "la bolsa" for school bag
+- prefer "el progenitor" or a concrete parent term over "el padre" when the English concept is parent and gender is unspecified
+- for pilot + airplane, use natural wording such as "El piloto pilota el avión." if the target meaning is operating/flying the plane
 
 Chinese:
 - explain direct word order
@@ -623,6 +641,28 @@ Chinese:
 - explain 在...里 / 在...上 location pattern
 - explain 的 possession
 - explain time-before-verb pattern if used
+- MUST use Traditional Chinese characters only
+- MUST use Hong Kong / Taiwan suitable vocabulary, not Mainland Simplified wording
+- if family side is unknown, do NOT use "奶奶"; use a neutral form such as "祖母" or choose "嫲嫲"/"婆婆" only when paternal/maternal side is explicit
+- examples of preferred Traditional/HK-TW beginner terms:
+  - 妈妈 -> 媽媽
+  - 奶奶 -> 祖母 when side is unspecified
+  - 花园 -> 花園
+  - 客厅 -> 客廳
+  - 老师 -> 老師
+  - 书 -> 書
+  - 车站 -> 車站
+  - 站台 -> 月台
+  - 服务员 -> 侍應
+  - 顾客 -> 顧客
+  - 飞行员 -> 機師
+  - 旅行者 -> 旅客
+  - 自行车 -> 單車
+  - 游乐场 -> 遊樂場
+  - 机场 -> 機場
+  - 飞机 -> 飛機
+- keep Chinese vocabulary, listen text, builder text, tiles, literalOrderExplanation, and analysis.tokens in the same Traditional wording
+- Chinese sentence builder tile arrays must join with no spaces to exactly equal translations.zh.text
 
 Japanese:
 - explain topic markers
@@ -632,6 +672,80 @@ Japanese:
 - explain の中に inside
 - explain ています ongoing state
 - explain verb-final structure
+- use natural beginner Japanese, not stiff kanji-only dictionary terms unless the topic requires them
+- prefer "お母さん" over bare "母" for beginner mother
+- prefer "おばあさん" over bare "祖母" for beginner grandmother unless teaching formal kinship terms
+- use "旅行者" consistently for traveler; do not mix vocabulary "旅人" with sentence "旅行者"
+- use "観光客" for tourist; do NOT corrupt compounds by replacing 客 inside the word
+- use "乗客" for passenger; do NOT corrupt compounds by replacing 客 inside the word
+- use "お客さん" for customer where natural
+- use "店主" for shopkeeper; do not use "店員" unless the English concept is shop assistant / clerk
+- prefer "水" over "お水" unless deliberately teaching polite restaurant language
+- Japanese sentence builder tile arrays must join with no spaces to exactly equal translations.ja.text
+
+==================================================
+# 12A. LOCALE AND QUALITY RULES LEARNED FROM BETA 1 REVIEW
+==================================================
+
+Do NOT treat multilingual generation as mechanical character conversion or substring replacement.
+
+Required locale targets:
+- zh = Traditional Chinese suitable for Hong Kong / Taiwan learners
+- ja = natural beginner Japanese
+- fr = natural beginner French
+- es = natural beginner Spanish
+- de = natural beginner German
+
+Forbidden Chinese output:
+- Simplified-only characters in learner-facing zh text
+- Mainland-only wording when a common HK/TW beginner term exists
+- "奶奶" for generic grandmother when paternal/maternal side is unknown
+- mixed ASCII placeholder words such as "place airport"
+
+Forbidden Japanese replacement artifacts:
+- "観光お客さん"
+- "乗お客さん"
+- "おお客さんさん"
+- any replacement that changes only the substring 客 inside a compound word
+
+Forbidden French replacement artifacts:
+- "camarade de classe de classe"
+- article + space elision display such as "l' eau"
+- overly formal pilot wording such as "commandant de bord" for beginner A0-A1 pilot
+
+Forbidden German replacement artifacts:
+- overly formal or uncommon beginner choices such as "Flugkapitän", "Parkanlage", "Gaststätte" when the English concepts are pilot, park, restaurant
+
+Forbidden Spanish replacement artifacts:
+- gender-specific parent terms when the concept is gender-unspecified parent
+- "vuela el avión" when the intended meaning is a pilot operating/flying the plane; use natural wording such as "pilota el avión"
+
+If automatic correction is used, it MUST be concept-aware, not blind substring replacement.
+
+BAD automatic replacement:
+- replacing every "客" with "お客さん"
+
+Why it is bad:
+- 観光客 becomes 観光お客さん
+- 乗客 becomes 乗お客さん
+
+GOOD automatic correction:
+- PERSON_CUSTOMER -> お客さん
+- PERSON_TOURIST -> 観光客
+- PERSON_PASSENGER -> 乗客
+
+Every automatic correction pass MUST export a CSV audit with:
+
+file,language,jsonPointer,original,corrected
+
+The CSV must include changes to:
+- vocabulary[].translations
+- phraseProgressionChains[].steps[].translations
+- sentenceBuilders[].translations
+- tiles
+- literalOrderExplanation
+- analysis.tokens
+- grammarExplanation when changed
 
 ==================================================
 # 13. TILE RULES
@@ -645,6 +759,48 @@ GOOD:
 
 BAD:
 ["銀","行","に","行","く"]
+
+Tile consistency is mandatory:
+- For Chinese, tiles.join("") MUST exactly equal translations.zh.text.
+- For Japanese, tiles.join("") MUST exactly equal translations.ja.text.
+- For English, German, French, and Spanish, tiles.join(" ") MUST exactly equal translations[lang].text.
+
+If the sentence text changes, regenerate the ordered tiles immediately.
+
+BAD:
+{
+  "text": "旅客看車票。",
+  "tiles": ["旅客", "讀", "車票。"]
+}
+
+GOOD:
+{
+  "text": "旅客看車票。",
+  "tiles": ["旅客", "看", "車票。"]
+}
+
+Analysis token consistency is also mandatory:
+- analysis.tokens.length should match tiles.length for full listen/builder sentences.
+- analysis.tokens[i].text should match the learner-facing tile chunk without final punctuation where possible.
+- token roles must match the corrected language structure.
+
+BAD token analysis:
+- token text "書" marked as type "verb" / role "main_action"
+- token text "車票" marked as type "verb" / role "main_action"
+- token text "機場" marked as role "being/location"
+
+GOOD token analysis:
+- the verb/action tile is type "verb" or "verb_phrase", role "main_action"
+- the place phrase is type "location_phrase", role "location"
+- the object/detail is type "noun" or "object_phrase", role "object_or_detail"
+- the subject/person chunk is type "noun", role "subject"
+
+Location patterns:
+- Chinese: Subject + Location or Subject + Location + Action
+- Japanese: Topic + Location/Object + Verb-final
+- German: Subject + verb-second + location/object detail
+- French: Subject + verb + location/object detail
+- Spanish: Subject + verb + location/object detail
 
 ==================================================
 # 14. LISTEN MODE SUPPORT
@@ -844,5 +1000,19 @@ Before returning JSON, verify:
 22. No learner-facing field contains a leaked internal concept label such as "place airport".
 23. Chinese and Japanese learner-facing text does not contain ASCII placeholder words.
 24. Any automatic correction is recorded in a CSV audit with originalValue and correctedValue.
+25. Chinese uses Traditional Chinese only and HK/Taiwan suitable vocabulary.
+26. Chinese does not use Simplified forms such as 妈妈, 花园, 老师, 书, 车站, 机场, 飞机, 服务员, 顾客, 自行车.
+27. Chinese does not use locale-inappropriate generic kinship terms such as 奶奶 when paternal/maternal side is unknown.
+28. Japanese uses natural beginner terms and does not mix vocabulary forms with different sentence forms.
+29. Japanese does not contain corrupted substring replacement artifacts such as 観光お客さん, 乗お客さん, or おお客さんさん.
+30. French does not contain duplicated generated phrases such as camarade de classe de classe.
+31. French elisions are stored as learner-facing text, not split into article + text when that would render with a space.
+32. German avoids unnecessarily formal beginner vocabulary such as Flugkapitän, Parkanlage, or Gaststätte when a simpler term matches the concept.
+33. Spanish avoids gender-specific parent wording when the concept is gender-unspecified.
+34. For Chinese and Japanese, tiles.join("") exactly equals text.
+35. For English, German, French, and Spanish, tiles.join(" ") exactly equals text.
+36. analysis.tokens.length matches tiles.length for full sentence translations.
+37. analysis.tokens roles correctly identify subject, main_action, location, and object_or_detail.
+38. No automatic correction used blind substring replacement that corrupts compound words.
 
 Return ONLY JSON.
