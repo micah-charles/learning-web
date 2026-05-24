@@ -21,25 +21,27 @@ import {
   getCurrentSpeechCue,
   renderProgressiveTab,
 } from "@/progressive-language-lesson.js";
-
-// ─── Speech helper ────────────────────────────────────────────────────────────
-
-function speak(text, lang) {
-  if (!text || typeof window === "undefined" || !window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = lang || "en-GB";
-  window.speechSynthesis.speak(utt);
-}
+import { speakText } from "@/utils.js";
 
 // ─── Auto-speak for listen phase ──────────────────────────────────────────────
+// Best-effort: may be blocked on initial load (no prior user gesture).
+// Navigation-triggered speak is handled inline in handleClick instead.
 
 function scheduleAutoSpeak(state, pack, spokenRef) {
   if (!state || !pack || state.phase !== "listen") return;
   const cue = getCurrentSpeechCue(state, pack);
   if (!cue || cue.key === spokenRef.current) return;
   spokenRef.current = cue.key;
-  setTimeout(() => speak(cue.text, cue.lang), 350);
+  setTimeout(() => speakText(cue.text, cue.lang), 350);
+}
+
+// Speak the current listen-phase cue immediately (within a user gesture).
+function speakListenCue(state, pack, spokenRef) {
+  if (!state || !pack || state.phase !== "listen") return;
+  const cue = getCurrentSpeechCue(state, pack);
+  if (!cue || cue.key === spokenRef.current) return;
+  spokenRef.current = cue.key;
+  speakText(cue.text, cue.lang);
 }
 
 // ─── LanguagePage ─────────────────────────────────────────────────────────────
@@ -119,24 +121,96 @@ export default function LanguagePage() {
       );
 
       if (effect?.speak) {
-        speak(effect.speak.text, effect.speak.lang);
+        // Explicit speak effect (e.g. pl-replay button) — within user gesture.
+        speakText(effect.speak.text, effect.speak.lang);
+      } else {
+        // For listen-phase navigation (Next/Back) speak the new cue inline so
+        // the call is still within the user-gesture window (avoids browser
+        // autoplay blocking that would occur inside a setTimeout).
+        speakListenCue(newState, pack, spokenKeyRef);
       }
 
-      // If pack changed (lesson navigation), the packPath watcher will reload.
       setPlState(newState);
-      if (newState.packPath === plState.packPath) {
-        scheduleAutoSpeak(newState, pack, spokenKeyRef);
-      } else {
+      if (newState.packPath !== plState.packPath) {
         spokenKeyRef.current = null; // new pack → reset spoken key
       }
     },
     [plState, pack],
   );
 
-  // ── Input delegation (vocab typing / builder) ──────────────────────────────
+  // ── Change delegation (inputs + pl-* select elements) ─────────────────────
   const handleChange = useCallback(
     (e) => {
-      const input = e.target.closest("input[data-action]");
+      const target = e.target;
+      const value  = target.value;
+
+      // ── pl-* <select> elements (rendered by progressive-language-lesson.js).
+      // These have id="pl-*-select" but no data-action attribute, so they need
+      // special ID-based handling.
+      if (target.tagName === "SELECT" && target.id?.startsWith("pl-")) {
+        if (!plState) return;
+
+        if (target.id === "pl-language-select" && pack) {
+          // Delegate to the action reducer — it resets all phase state cleanly.
+          const { state: newState } = runProgressiveLessonAction(
+            plState, pack, "pl-change-language", { lang: value },
+          );
+          setPlState(newState);
+          spokenKeyRef.current = null;
+          return;
+        }
+
+        if (target.id === "pl-pack-select" && catalog) {
+          const newCatPack = catalog.packs.find(p => p.id === value);
+          if (!newCatPack) return;
+          const newStage  = newCatPack.stages[0];
+          const newLesson = newStage?.lessons[0];
+          spokenKeyRef.current = null;
+          setPlState(prev => ({
+            ...prev,
+            catalogPackId:   value,
+            catalogStageId:  newStage?.id   ?? "",
+            catalogLessonId: newLesson?.id  ?? "",
+            packPath:        newLesson?.path ?? "",
+            phase: "listen", chainIndex: 0, stepIndex: 0, vocabIndex: 0,
+          }));
+          return;
+        }
+
+        if (target.id === "pl-stage-select" && catalog) {
+          const catPack   = catalog.packs.find(p => p.id === plState.catalogPackId);
+          const newStage  = catPack?.stages.find(s => s.id === value);
+          const newLesson = newStage?.lessons[0];
+          spokenKeyRef.current = null;
+          setPlState(prev => ({
+            ...prev,
+            catalogStageId:  value,
+            catalogLessonId: newLesson?.id  ?? "",
+            packPath:        newLesson?.path ?? "",
+            phase: "listen", chainIndex: 0, stepIndex: 0, vocabIndex: 0,
+          }));
+          return;
+        }
+
+        if (target.id === "pl-lesson-select" && catalog) {
+          const catPack   = catalog.packs.find(p => p.id === plState.catalogPackId);
+          const catStage  = catPack?.stages.find(s => s.id === plState.catalogStageId);
+          const newLesson = catStage?.lessons.find(l => l.id === value);
+          if (!newLesson) return;
+          spokenKeyRef.current = null;
+          setPlState(prev => ({
+            ...prev,
+            catalogLessonId: value,
+            packPath:        newLesson.path,
+            phase: "listen", chainIndex: 0, stepIndex: 0, vocabIndex: 0,
+          }));
+          return;
+        }
+        return;
+      }
+
+      // ── Input elements with data-action (vocab typing / builder tiles)
+      const input = target.closest("input[data-action]");
       if (!input) return;
       const action = input.dataset.action;
       if (!action || !action.startsWith("pl-")) return;
@@ -148,10 +222,10 @@ export default function LanguagePage() {
         action,
         { ...input.dataset, value: input.value },
       );
-      if (effect?.speak) speak(effect.speak.text, effect.speak.lang);
+      if (effect?.speak) speakText(effect.speak.text, effect.speak.lang);
       setPlState(newState);
     },
-    [plState, pack],
+    [plState, pack, catalog],
   );
 
   // ── Render ────────────────────────────────────────────────────────────────

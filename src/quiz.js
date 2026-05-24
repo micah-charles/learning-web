@@ -729,6 +729,12 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
   // tokens regardless of the literal "german"/"english" in the name.
   const choiceMode = isReverse ? "englishWordChooseGerman" : "germanWordChooseEnglish";
   const typedMode  = isReverse ? "englishWordTypeGerman"   : "germanWordTypeEnglish";
+  // Sentence-build mode IDs (language packs only).
+  const buildMode  = isReverse ? "englishSentenceBuildGerman" : "germanSentenceBuildEnglish";
+
+  // Normalise UI label → canonical engine value.
+  // "choice" is the React UI label; the legacy engine used "mcq".
+  const mode = answerMode === "choice" ? "mcq" : answerMode;
 
   if (subject === "language") {
     // Grammar-only packs: no vocab items, only fillBlank (e.g. a standalone grammar challenge pack).
@@ -739,23 +745,25 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
     // Mixed packs: vocab + fillBlank items (e.g. Cambridge Latin Stages after grammar merge).
     // Include "fillBlank" alongside the vocab modes so grammar questions are generated too.
     const vocabModes =
-      answerMode === "mcq"   ? [choiceMode] :
-      answerMode === "typed" ? [typedMode]  :
-      [choiceMode, typedMode];
+      mode === "mcq"   ? [choiceMode] :
+      mode === "typed" ? [typedMode]  :
+      mode === "build" ? [buildMode]  :
+      [choiceMode, typedMode];  // mixed
     return fillBlankCount > 0 ? [...vocabModes, "fillBlank"] : vocabModes;
   }
 
   if (subject === "literature") {
-    if (answerMode === "mcq")   return ["passageQuestionChooseAnswer"];
-    if (answerMode === "typed") return ["fillBlank"];
+    if (mode === "mcq")   return ["passageQuestionChooseAnswer"];
+    if (mode === "typed") return ["fillBlank"];
     return ["passageQuestionChooseAnswer", "fillBlank", "categorySort"];
   }
 
   // Non-language packs: direction is ignored (prompt language matches the
   // pack's source). Use studyToTarget word modes; the engine will pull MCQ
   // options or typed answers from whatever vocab the pack has.
-  if (answerMode === "mcq")   return ["germanWordChooseEnglish"];
-  if (answerMode === "typed") return ["germanWordTypeEnglish"];
+  // "build" has no sentence pools in non-language packs — fall back to mixed.
+  if (mode === "mcq")   return ["germanWordChooseEnglish"];
+  if (mode === "typed") return ["germanWordTypeEnglish"];
   return ["germanWordChooseEnglish", "germanWordTypeEnglish"];
 }
 
