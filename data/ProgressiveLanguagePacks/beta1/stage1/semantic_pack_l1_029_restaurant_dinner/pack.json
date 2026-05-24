@@ -79,7 +79,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "服务员"
+          "text": "侍應"
         },
         "ja": {
           "text": "ウェイター"
@@ -108,10 +108,10 @@
           "article": "el"
         },
         "zh": {
-          "text": "顾客"
+          "text": "顧客"
         },
         "ja": {
-          "text": "客"
+          "text": "お客さん"
         }
       }
     },
@@ -125,19 +125,19 @@
           "text": "restaurant"
         },
         "de": {
-          "text": "Gaststätte",
-          "article": "die"
+          "text": "Restaurant",
+          "article": "das"
         },
         "fr": {
-          "text": "brasserie",
-          "article": "la"
+          "text": "restaurant",
+          "article": "le"
         },
         "es": {
           "text": "restaurante",
           "article": "el"
         },
         "zh": {
-          "text": "餐厅"
+          "text": "餐廳"
         },
         "ja": {
           "text": "レストラン"
@@ -195,7 +195,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "米饭"
+          "text": "飯"
         },
         "ja": {
           "text": "ご飯"
@@ -226,7 +226,7 @@
           "text": "水"
         },
         "ja": {
-          "text": "お水"
+          "text": "水"
         }
       }
     },
@@ -332,7 +332,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -442,19 +442,19 @@
               }
             },
             "zh": {
-              "text": "服务员",
+              "text": "侍應",
               "tiles": [
-                "服务员"
+                "侍應"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "服务员",
+                "literalOrderExplanation": "侍應",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "服务员",
+                    "text": "侍應",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -514,19 +514,19 @@
               }
             },
             "de": {
-              "text": "der Gaststätte.",
+              "text": "im Restaurant.",
               "tiles": [
-                "der Gaststätte."
+                "im Restaurant."
               ],
               "analysis": {
                 "sentencePattern": "Prepositional/object phrase",
-                "literalOrderExplanation": "der Gaststätte",
+                "literalOrderExplanation": "im Restaurant",
                 "grammarExplanation": [
                   "German phrase chunks often include an article or contraction."
                 ],
                 "tokens": [
                   {
-                    "text": "der Gaststätte",
+                    "text": "im Restaurant",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -536,19 +536,19 @@
               }
             },
             "fr": {
-              "text": "la brasserie.",
+              "text": "le restaurant.",
               "tiles": [
-                "la brasserie."
+                "le restaurant."
               ],
               "analysis": {
                 "sentencePattern": "Prepositional/object phrase",
-                "literalOrderExplanation": "la brasserie",
+                "literalOrderExplanation": "le restaurant",
                 "grammarExplanation": [
                   "French phrase chunks often include a preposition and article."
                 ],
                 "tokens": [
                   {
-                    "text": "la brasserie",
+                    "text": "le restaurant",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -580,19 +580,19 @@
               }
             },
             "zh": {
-              "text": "服务员在餐厅里。",
+              "text": "侍應在餐廳裡。",
               "tiles": [
-                "服务员在餐厅里。"
+                "侍應在餐廳裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "服务员在餐厅里",
+                "literalOrderExplanation": "侍應在餐廳裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "服务员在餐厅里",
+                    "text": "侍應在餐廳裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -693,126 +693,118 @@
               }
             },
             "de": {
-              "text": "Der Kellner ist in der Gaststätte.",
+              "text": "Der Kellner ist im Restaurant.",
               "tiles": [
                 "Der",
                 "Kellner",
                 "ist",
-                "in",
-                "der",
-                "Gaststätte."
+                "im",
+                "Restaurant."
               ],
               "analysis": {
                 "sentencePattern": "Article + noun + verb-second + place phrase",
-                "literalOrderExplanation": "Der → Kellner → ist → in → der → Gaststätte",
+                "literalOrderExplanation": "Der → Kellner → ist → im → Restaurant",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Kellner",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "in",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "der",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "Gaststätte",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "fr": {
-              "text": "Le serveur est dans la brasserie.",
-              "tiles": [
-                "Le",
-                "serveur",
-                "est",
-                "dans",
-                "la",
-                "brasserie."
-              ],
-              "analysis": {
-                "sentencePattern": "Article + noun + être + place phrase",
-                "literalOrderExplanation": "Le → serveur → est → dans → la → brasserie",
-                "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
-                ],
-                "tokens": [
-                  {
-                    "text": "Le",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "serveur",
-                    "type": "phrase",
+                    "text": "ist",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Restaurant",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le serveur est dans le restaurant.",
+              "tiles": [
+                "Le",
+                "serveur",
+                "est",
+                "dans",
+                "le",
+                "restaurant."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "Le → serveur → est → dans → le → restaurant",
+                "grammarExplanation": [
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "serveur",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "dans",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
-                    "text": "la",
-                    "type": "phrase",
+                    "text": "le",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
-                    "text": "brasserie",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
+                    "text": "restaurant",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -832,82 +824,82 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → camarero → está → en → el → restaurante",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "camarero",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "en",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "el",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "restaurante",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "zh": {
-              "text": "服务员在餐厅里。",
-              "tiles": [
-                "服务员",
-                "在餐厅里。"
-              ],
-              "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "服务员 → 在餐厅里",
-                "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
-                ],
-                "tokens": [
-                  {
-                    "text": "服务员",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在餐厅里",
+                    "text": "está",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
+                    "meaning": "being/location",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "restaurante",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "侍應在餐廳裡。",
+              "tiles": [
+                "侍應",
+                "在餐廳裡。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "侍應 → 在餐廳裡",
+                "grammarExplanation": [
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
+                ],
+                "tokens": [
+                  {
+                    "text": "侍應",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在餐廳裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -933,21 +925,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "レストランに",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1061,19 +1053,19 @@
               }
             },
             "zh": {
-              "text": "顾客",
+              "text": "顧客",
               "tiles": [
-                "顾客"
+                "顧客"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "顾客",
+                "literalOrderExplanation": "顧客",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "顾客",
+                    "text": "顧客",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1083,19 +1075,19 @@
               }
             },
             "ja": {
-              "text": "客",
+              "text": "お客さん",
               "tiles": [
-                "客"
+                "お客さん"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "客",
+                "literalOrderExplanation": "お客さん",
                 "grammarExplanation": [
                   "Japanese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "客",
+                    "text": "お客さん",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1221,19 +1213,19 @@
               }
             },
             "ja": {
-              "text": "お水",
+              "text": "水",
               "tiles": [
-                "お水"
+                "水"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "お水",
+                "literalOrderExplanation": "水",
                 "grammarExplanation": [
                   "Japanese chunks keep particles attached to the word they mark."
                 ],
                 "tokens": [
                   {
-                    "text": "お水",
+                    "text": "水",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1304,39 +1296,39 @@
                 "Wasser."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
                 "literalOrderExplanation": "Der → Gast → trinkt → Wasser",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Gast",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "trinkt",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "Wasser",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1352,46 +1344,46 @@
                 "l'eau."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
                 "literalOrderExplanation": "Le → client → boit → de → l'eau",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "client",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "boit",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "de",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "l'eau",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1406,61 +1398,61 @@
                 "agua."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
+                "sentencePattern": "Article + noun + verb + object/detail",
                 "literalOrderExplanation": "El → cliente → bebe → agua",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "cliente",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "bebe",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "agua",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "顾客喝水。",
+              "text": "顧客喝水。",
               "tiles": [
-                "顾客",
+                "顧客",
                 "喝",
                 "水。"
               ],
               "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "顾客 → 喝 → 水",
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "顧客 → 喝 → 水",
                 "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
+                  "Chinese commonly follows subject + verb + object/detail order.",
                   "The verb does not change for person."
                 ],
                 "tokens": [
                   {
-                    "text": "顾客",
+                    "text": "顧客",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
@@ -1468,31 +1460,31 @@
                   },
                   {
                     "text": "喝",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
                   },
                   {
                     "text": "水",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "客はお水を飲みます。",
+              "text": "お客さんは水を飲みます。",
               "tiles": [
-                "客は",
-                "お水を",
+                "お客さんは",
+                "水を",
                 "飲みます。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
-                "literalOrderExplanation": "客は → お水を → 飲みます",
+                "sentencePattern": "Topic + object/detail + verb-final",
+                "literalOrderExplanation": "お客さんは → 水を → 飲みます",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
                   "The object or phrase comes before the verb.",
@@ -1500,25 +1492,25 @@
                 ],
                 "tokens": [
                   {
-                    "text": "客は",
+                    "text": "お客さんは",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
-                    "text": "お水を",
-                    "type": "phrase",
+                    "text": "水を",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "飲みます",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1606,126 +1598,118 @@
           }
         },
         "de": {
-          "text": "Der Kellner ist in der Gaststätte.",
+          "text": "Der Kellner ist im Restaurant.",
           "tiles": [
             "Der",
             "Kellner",
             "ist",
-            "in",
-            "der",
-            "Gaststätte."
+            "im",
+            "Restaurant."
           ],
           "analysis": {
             "sentencePattern": "Article + noun + verb-second + place phrase",
-            "literalOrderExplanation": "Der → Kellner → ist → in → der → Gaststätte",
+            "literalOrderExplanation": "Der → Kellner → ist → im → Restaurant",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Kellner",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "in",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "der",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "Gaststätte",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "fr": {
-          "text": "Le serveur est dans la brasserie.",
-          "tiles": [
-            "Le",
-            "serveur",
-            "est",
-            "dans",
-            "la",
-            "brasserie."
-          ],
-          "analysis": {
-            "sentencePattern": "Article + noun + être + place phrase",
-            "literalOrderExplanation": "Le → serveur → est → dans → la → brasserie",
-            "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
-            ],
-            "tokens": [
-              {
-                "text": "Le",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "serveur",
-                "type": "phrase",
+                "text": "ist",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "Restaurant",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le serveur est dans le restaurant.",
+          "tiles": [
+            "Le",
+            "serveur",
+            "est",
+            "dans",
+            "le",
+            "restaurant."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "Le → serveur → est → dans → le → restaurant",
+            "grammarExplanation": [
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
+            ],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "serveur",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "dans",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
-                "text": "la",
-                "type": "phrase",
+                "text": "le",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
-                "text": "brasserie",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
+                "text": "restaurant",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1745,82 +1729,82 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → camarero → está → en → el → restaurante",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "camarero",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "en",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "el",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "restaurante",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "zh": {
-          "text": "服务员在餐厅里。",
-          "tiles": [
-            "服务员",
-            "在餐厅里。"
-          ],
-          "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "服务员 → 在餐厅里",
-            "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
-            ],
-            "tokens": [
-              {
-                "text": "服务员",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在餐厅里",
+                "text": "está",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
+                "meaning": "being/location",
                 "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "restaurante",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "侍應在餐廳裡。",
+          "tiles": [
+            "侍應",
+            "在餐廳裡。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "侍應 → 在餐廳裡",
+            "grammarExplanation": [
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
+            ],
+            "tokens": [
+              {
+                "text": "侍應",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在餐廳裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -1846,21 +1830,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "レストランに",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -1937,39 +1921,39 @@
             "Wasser."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
             "literalOrderExplanation": "Der → Gast → trinkt → Wasser",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Gast",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "trinkt",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "Wasser",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -1985,46 +1969,46 @@
             "l'eau."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
             "literalOrderExplanation": "Le → client → boit → de → l'eau",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "client",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "boit",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "de",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "l'eau",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2039,61 +2023,61 @@
             "agua."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
+            "sentencePattern": "Article + noun + verb + object/detail",
             "literalOrderExplanation": "El → cliente → bebe → agua",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "cliente",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "bebe",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "agua",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "顾客喝水。",
+          "text": "顧客喝水。",
           "tiles": [
-            "顾客",
+            "顧客",
             "喝",
             "水。"
           ],
           "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "顾客 → 喝 → 水",
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "顧客 → 喝 → 水",
             "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
+              "Chinese commonly follows subject + verb + object/detail order.",
               "The verb does not change for person."
             ],
             "tokens": [
               {
-                "text": "顾客",
+                "text": "顧客",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
@@ -2101,31 +2085,31 @@
               },
               {
                 "text": "喝",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
               },
               {
                 "text": "水",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "客はお水を飲みます。",
+          "text": "お客さんは水を飲みます。",
           "tiles": [
-            "客は",
-            "お水を",
+            "お客さんは",
+            "水を",
             "飲みます。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
-            "literalOrderExplanation": "客は → お水を → 飲みます",
+            "sentencePattern": "Topic + object/detail + verb-final",
+            "literalOrderExplanation": "お客さんは → 水を → 飲みます",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
               "The object or phrase comes before the verb.",
@@ -2133,25 +2117,25 @@
             ],
             "tokens": [
               {
-                "text": "客は",
+                "text": "お客さんは",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
-                "text": "お水を",
-                "type": "phrase",
+                "text": "水を",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "飲みます",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }

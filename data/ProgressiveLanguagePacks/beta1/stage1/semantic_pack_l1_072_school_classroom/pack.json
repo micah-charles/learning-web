@@ -70,7 +70,7 @@
           "article": "der"
         },
         "fr": {
-          "text": "camarade",
+          "text": "camarade de classe",
           "article": "le"
         },
         "es": {
@@ -78,7 +78,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "同学"
+          "text": "同學"
         },
         "ja": {
           "text": "クラスメート"
@@ -107,7 +107,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "老师"
+          "text": "老師"
         },
         "ja": {
           "text": "先生"
@@ -128,7 +128,7 @@
           "article": "das"
         },
         "fr": {
-          "text": "classe",
+          "text": "salle de classe",
           "article": "la"
         },
         "es": {
@@ -164,7 +164,7 @@
           "article": "la"
         },
         "zh": {
-          "text": "学校"
+          "text": "學校"
         },
         "ja": {
           "text": "がっこう"
@@ -193,7 +193,7 @@
           "article": "el"
         },
         "zh": {
-          "text": "书"
+          "text": "書"
         },
         "ja": {
           "text": "本"
@@ -214,15 +214,15 @@
           "article": "die"
         },
         "fr": {
-          "text": "sac",
+          "text": "cartable",
           "article": "le"
         },
         "es": {
-          "text": "bolsa",
+          "text": "mochila",
           "article": "la"
         },
         "zh": {
-          "text": "书包"
+          "text": "書包"
         },
         "ja": {
           "text": "かばん"
@@ -248,7 +248,7 @@
           "text": "abrir"
         },
         "zh": {
-          "text": "打开"
+          "text": "打開"
         },
         "ja": {
           "text": "開ける"
@@ -274,7 +274,7 @@
           "text": "leer"
         },
         "zh": {
-          "text": "读"
+          "text": "讀"
         },
         "ja": {
           "text": "読む"
@@ -331,7 +331,7 @@
         "de": "neben/bei",
         "fr": "près de",
         "es": "cerca de",
-        "zh": "旁边",
+        "zh": "旁邊",
         "ja": "近くに"
       }
     }
@@ -395,20 +395,20 @@
               }
             },
             "fr": {
-              "text": "le camarade",
+              "text": "le camarade de classe",
               "tiles": [
-                "le camarade"
+                "le camarade de classe"
               ],
               "analysis": {
                 "sentencePattern": "Article + noun",
-                "literalOrderExplanation": "le camarade",
+                "literalOrderExplanation": "le camarade de classe",
                 "grammarExplanation": [
                   "French nouns normally use an article.",
                   "Elision such as l' is written without a space."
                 ],
                 "tokens": [
                   {
-                    "text": "le camarade",
+                    "text": "le camarade de classe",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -441,19 +441,19 @@
               }
             },
             "zh": {
-              "text": "同学",
+              "text": "同學",
               "tiles": [
-                "同学"
+                "同學"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "同学",
+                "literalOrderExplanation": "同學",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "同学",
+                    "text": "同學",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -535,19 +535,19 @@
               }
             },
             "fr": {
-              "text": "la classe.",
+              "text": "la salle de classe.",
               "tiles": [
-                "la classe."
+                "la salle de classe."
               ],
               "analysis": {
                 "sentencePattern": "Prepositional/object phrase",
-                "literalOrderExplanation": "la classe",
+                "literalOrderExplanation": "la salle de classe",
                 "grammarExplanation": [
                   "French phrase chunks often include a preposition and article."
                 ],
                 "tokens": [
                   {
-                    "text": "la classe",
+                    "text": "la salle de classe",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -579,19 +579,19 @@
               }
             },
             "zh": {
-              "text": "同学在教室里。",
+              "text": "同學在教室裡。",
               "tiles": [
-                "同学在教室里。"
+                "同學在教室裡。"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "同学在教室里",
+                "literalOrderExplanation": "同學在教室裡",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "同学在教室里",
+                    "text": "同學在教室裡",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "place",
@@ -704,106 +704,138 @@
                 "sentencePattern": "Article + noun + verb-second + place phrase",
                 "literalOrderExplanation": "Der → Mitschüler → ist → im → Klassenzimmer",
                 "grammarExplanation": [
-                  "German keeps the finite verb in second position.",
-                  "Location phrases often use dative forms such as im, am, or in der."
+                  "German uses a location phrase to show where someone is.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Mitschüler",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "ist",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "im",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "Klassenzimmer",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "fr": {
-              "text": "Le camarade est dans la classe.",
-              "tiles": [
-                "Le",
-                "camarade",
-                "est",
-                "dans",
-                "la",
-                "classe."
-              ],
-              "analysis": {
-                "sentencePattern": "Article + noun + être + place phrase",
-                "literalOrderExplanation": "Le → camarade → est → dans → la → classe",
-                "grammarExplanation": [
-                  "French uses être for location.",
-                  "Articles agree with the noun."
-                ],
-                "tokens": [
-                  {
-                    "text": "Le",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
+                    "text": "ist",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Klassenzimmer",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le camarade de classe est dans la salle de classe.",
+              "tiles": [
+                "Le",
+                "camarade",
+                "de",
+                "classe",
+                "est",
+                "dans",
+                "la",
+                "salle",
+                "de",
+                "classe."
+              ],
+              "analysis": {
+                "sentencePattern": "Article + noun + être + place phrase",
+                "literalOrderExplanation": "Le → camarade → de → classe → est → dans → la → salle → de → classe",
+                "grammarExplanation": [
+                  "French uses a location phrase to show where someone is.",
+                  "French articles and word forms must match the sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
                     "text": "camarade",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "est",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "dans",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "la",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
+                    "text": "de",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "classe",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
+                    "meaning": "being/location",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "salle",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classe",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   }
                 ]
@@ -823,82 +855,82 @@
                 "sentencePattern": "Article + noun + estar + place phrase",
                 "literalOrderExplanation": "El → compañero → está → en → el → aula",
                 "grammarExplanation": [
-                  "Spanish uses estar for location.",
-                  "Articles agree with gender and number."
+                  "Spanish uses a location phrase to show where someone is.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "compañero",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "está",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "en",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "el",
-                    "type": "phrase",
-                    "role": "location",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "aula",
-                    "type": "verb",
-                    "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "zh": {
-              "text": "同学在教室里。",
-              "tiles": [
-                "同学",
-                "在教室里。"
-              ],
-              "analysis": {
-                "sentencePattern": "Person + 在 + place",
-                "literalOrderExplanation": "同学 → 在教室里",
-                "grammarExplanation": [
-                  "Chinese does not use articles like 'the'.",
-                  "在 marks the location."
-                ],
-                "tokens": [
-                  {
-                    "text": "同学",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "在教室里",
+                    "text": "está",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
+                    "meaning": "being/location",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aula",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "同學在教室裡。",
+              "tiles": [
+                "同學",
+                "在教室裡。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Location",
+                "literalOrderExplanation": "同學 → 在教室裡",
+                "grammarExplanation": [
+                  "Chinese can express location with the pattern subject + 在 + place.",
+                  "在 introduces where someone or something is."
+                ],
+                "tokens": [
+                  {
+                    "text": "同學",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在教室裡",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
+                    "grammarNote": "在 marks the location."
                   }
                 ]
               }
@@ -924,21 +956,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "教室に",
-                    "type": "phrase",
+                    "type": "location_phrase",
                     "role": "location",
-                    "meaning": "sentence detail",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "います",
                     "type": "verb",
                     "role": "being/location",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "meaning": "being/location",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1052,19 +1084,19 @@
               }
             },
             "zh": {
-              "text": "老师",
+              "text": "老師",
               "tiles": [
-                "老师"
+                "老師"
               ],
               "analysis": {
                 "sentencePattern": "Noun",
-                "literalOrderExplanation": "老师",
+                "literalOrderExplanation": "老師",
                 "grammarExplanation": [
                   "Chinese nouns do not need articles."
                 ],
                 "tokens": [
                   {
-                    "text": "老师",
+                    "text": "老師",
                     "type": "noun",
                     "role": "core_concept",
                     "meaning": "person",
@@ -1190,19 +1222,19 @@
               }
             },
             "zh": {
-              "text": "书",
+              "text": "書",
               "tiles": [
-                "书"
+                "書"
               ],
               "analysis": {
                 "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "书",
+                "literalOrderExplanation": "書",
                 "grammarExplanation": [
                   "Chinese learning chunks keep useful words together."
                 ],
                 "tokens": [
                   {
-                    "text": "书",
+                    "text": "書",
                     "type": "phrase",
                     "role": "supporting_detail",
                     "meaning": "object",
@@ -1304,46 +1336,46 @@
                 "Buch."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb-second + object",
+                "sentencePattern": "Article + noun + verb-second + object/detail",
                 "literalOrderExplanation": "Der → Lehrer → öffnet → das → Buch",
                 "grammarExplanation": [
-                  "German uses verb-second word order.",
-                  "Articles change by gender and case."
+                  "German places the action with its object or detail.",
+                  "German articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "Lehrer",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "öffnet",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "das",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Buch",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1359,46 +1391,46 @@
                 "livre."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb phrase + object",
+                "sentencePattern": "Article + noun + verb phrase + object/detail",
                 "literalOrderExplanation": "Le → professeur → ouvre → le → livre",
                 "grammarExplanation": [
-                  "French usually places the verb after the subject.",
-                  "Articles and contractions must match the noun."
+                  "French places the action with its object or detail.",
+                  "French articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "professeur",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "ouvre",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
-                    "type": "phrase",
+                    "type": "object_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "livre",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1414,85 +1446,85 @@
                 "libro."
               ],
               "analysis": {
-                "sentencePattern": "Article + noun + verb + object",
+                "sentencePattern": "Article + noun + verb + object/detail",
                 "literalOrderExplanation": "El → profesor → abre → el → libro",
                 "grammarExplanation": [
-                  "Spanish verbs agree with the subject.",
-                  "The object follows the verb in simple sentences."
+                  "Spanish places the action with its object or detail.",
+                  "Spanish articles and word forms must match the sentence."
                 ],
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "noun",
+                    "type": "article",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "profesor",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "abre",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "el",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "libro",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "zh": {
-              "text": "老师打开书。",
-              "tiles": [
-                "老师",
-                "打开",
-                "书。"
-              ],
-              "analysis": {
-                "sentencePattern": "Person + action + object",
-                "literalOrderExplanation": "老师 → 打开 → 书",
-                "grammarExplanation": [
-                  "Chinese commonly follows subject + verb + object order.",
-                  "The verb does not change for person."
-                ],
-                "tokens": [
-                  {
-                    "text": "老师",
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
-                    "text": "打开",
-                    "type": "phrase",
-                    "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "text": "abre",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main action",
                     "grammarNote": ""
                   },
                   {
-                    "text": "书",
-                    "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
+                    "text": "el",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "libro",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "老師打開書。",
+              "tiles": [
+                "老師",
+                "打開",
+                "書。"
+              ],
+              "analysis": {
+                "sentencePattern": "Subject + Action + Object/Detail",
+                "literalOrderExplanation": "老師 → 打開 → 書",
+                "grammarExplanation": [
+                  "Chinese commonly follows subject + verb + object/detail order.",
+                  "The verb does not change for person."
+                ],
+                "tokens": [
+                  {
+                    "text": "老師",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "打開",
+                    "type": "verb_phrase",
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "Chinese verbs do not change for person."
+                  },
+                  {
+                    "text": "書",
+                    "type": "noun",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   }
                 ]
@@ -1506,7 +1538,7 @@
                 "開けます。"
               ],
               "analysis": {
-                "sentencePattern": "Topic + object + verb-final",
+                "sentencePattern": "Topic + object/detail + verb-final",
                 "literalOrderExplanation": "先生は → 本を → 開けます",
                 "grammarExplanation": [
                   "Japanese marks the topic with は.",
@@ -1519,21 +1551,21 @@
                     "type": "noun",
                     "role": "subject",
                     "meaning": "person or topic",
-                    "grammarNote": ""
+                    "grammarNote": "は marks the topic."
                   },
                   {
                     "text": "本を",
-                    "type": "phrase",
+                    "type": "noun_phrase",
                     "role": "object_or_detail",
-                    "meaning": "sentence detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "開けます",
                     "type": "verb",
-                    "role": "main action",
-                    "meaning": "main sentence action",
-                    "grammarNote": ""
+                    "role": "main_action",
+                    "meaning": "main action",
+                    "grammarNote": "The verb comes at the end."
                   }
                 ]
               }
@@ -1633,106 +1665,138 @@
             "sentencePattern": "Article + noun + verb-second + place phrase",
             "literalOrderExplanation": "Der → Mitschüler → ist → im → Klassenzimmer",
             "grammarExplanation": [
-              "German keeps the finite verb in second position.",
-              "Location phrases often use dative forms such as im, am, or in der."
+              "German uses a location phrase to show where someone is.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Mitschüler",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "ist",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "im",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "Klassenzimmer",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "fr": {
-          "text": "Le camarade est dans la classe.",
-          "tiles": [
-            "Le",
-            "camarade",
-            "est",
-            "dans",
-            "la",
-            "classe."
-          ],
-          "analysis": {
-            "sentencePattern": "Article + noun + être + place phrase",
-            "literalOrderExplanation": "Le → camarade → est → dans → la → classe",
-            "grammarExplanation": [
-              "French uses être for location.",
-              "Articles agree with the noun."
-            ],
-            "tokens": [
-              {
-                "text": "Le",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
+                "text": "ist",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "Klassenzimmer",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le camarade de classe est dans la salle de classe.",
+          "tiles": [
+            "Le",
+            "camarade",
+            "de",
+            "classe",
+            "est",
+            "dans",
+            "la",
+            "salle",
+            "de",
+            "classe."
+          ],
+          "analysis": {
+            "sentencePattern": "Article + noun + être + place phrase",
+            "literalOrderExplanation": "Le → camarade → de → classe → est → dans → la → salle → de → classe",
+            "grammarExplanation": [
+              "French uses a location phrase to show where someone is.",
+              "French articles and word forms must match the sentence."
+            ],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
                 "text": "camarade",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "est",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "dans",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "la",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
+                "text": "de",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "classe",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
+                "meaning": "being/location",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "salle",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "classe",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               }
             ]
@@ -1752,82 +1816,82 @@
             "sentencePattern": "Article + noun + estar + place phrase",
             "literalOrderExplanation": "El → compañero → está → en → el → aula",
             "grammarExplanation": [
-              "Spanish uses estar for location.",
-              "Articles agree with gender and number."
+              "Spanish uses a location phrase to show where someone is.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "compañero",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "está",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "en",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "el",
-                "type": "phrase",
-                "role": "location",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "aula",
-                "type": "verb",
-                "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "zh": {
-          "text": "同学在教室里。",
-          "tiles": [
-            "同学",
-            "在教室里。"
-          ],
-          "analysis": {
-            "sentencePattern": "Person + 在 + place",
-            "literalOrderExplanation": "同学 → 在教室里",
-            "grammarExplanation": [
-              "Chinese does not use articles like 'the'.",
-              "在 marks the location."
-            ],
-            "tokens": [
-              {
-                "text": "同学",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "在教室里",
+                "text": "está",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
+                "meaning": "being/location",
                 "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              },
+              {
+                "text": "aula",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "同學在教室裡。",
+          "tiles": [
+            "同學",
+            "在教室裡。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Location",
+            "literalOrderExplanation": "同學 → 在教室裡",
+            "grammarExplanation": [
+              "Chinese can express location with the pattern subject + 在 + place.",
+              "在 introduces where someone or something is."
+            ],
+            "tokens": [
+              {
+                "text": "同學",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "在教室裡",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
+                "grammarNote": "在 marks the location."
               }
             ]
           }
@@ -1853,21 +1917,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "教室に",
-                "type": "phrase",
+                "type": "location_phrase",
                 "role": "location",
-                "meaning": "sentence detail",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "います",
                 "type": "verb",
                 "role": "being/location",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "meaning": "being/location",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
@@ -1953,46 +2017,46 @@
             "Buch."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb-second + object",
+            "sentencePattern": "Article + noun + verb-second + object/detail",
             "literalOrderExplanation": "Der → Lehrer → öffnet → das → Buch",
             "grammarExplanation": [
-              "German uses verb-second word order.",
-              "Articles change by gender and case."
+              "German places the action with its object or detail.",
+              "German articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Der",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "Lehrer",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "öffnet",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "das",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Buch",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2008,46 +2072,46 @@
             "livre."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb phrase + object",
+            "sentencePattern": "Article + noun + verb phrase + object/detail",
             "literalOrderExplanation": "Le → professeur → ouvre → le → livre",
             "grammarExplanation": [
-              "French usually places the verb after the subject.",
-              "Articles and contractions must match the noun."
+              "French places the action with its object or detail.",
+              "French articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "Le",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "professeur",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "ouvre",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
                 "text": "le",
-                "type": "phrase",
+                "type": "object_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "livre",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2063,85 +2127,85 @@
             "libro."
           ],
           "analysis": {
-            "sentencePattern": "Article + noun + verb + object",
+            "sentencePattern": "Article + noun + verb + object/detail",
             "literalOrderExplanation": "El → profesor → abre → el → libro",
             "grammarExplanation": [
-              "Spanish verbs agree with the subject.",
-              "The object follows the verb in simple sentences."
+              "Spanish places the action with its object or detail.",
+              "Spanish articles and word forms must match the sentence."
             ],
             "tokens": [
               {
                 "text": "El",
-                "type": "noun",
+                "type": "article",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "profesor",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "abre",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "el",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
-                "grammarNote": ""
-              },
-              {
-                "text": "libro",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "zh": {
-          "text": "老师打开书。",
-          "tiles": [
-            "老师",
-            "打开",
-            "书。"
-          ],
-          "analysis": {
-            "sentencePattern": "Person + action + object",
-            "literalOrderExplanation": "老师 → 打开 → 书",
-            "grammarExplanation": [
-              "Chinese commonly follows subject + verb + object order.",
-              "The verb does not change for person."
-            ],
-            "tokens": [
-              {
-                "text": "老师",
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
-                "text": "打开",
-                "type": "phrase",
-                "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "text": "abre",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main action",
                 "grammarNote": ""
               },
               {
-                "text": "书",
-                "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
+                "text": "el",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
+                "grammarNote": ""
+              },
+              {
+                "text": "libro",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "老師打開書。",
+          "tiles": [
+            "老師",
+            "打開",
+            "書。"
+          ],
+          "analysis": {
+            "sentencePattern": "Subject + Action + Object/Detail",
+            "literalOrderExplanation": "老師 → 打開 → 書",
+            "grammarExplanation": [
+              "Chinese commonly follows subject + verb + object/detail order.",
+              "The verb does not change for person."
+            ],
+            "tokens": [
+              {
+                "text": "老師",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
+                "grammarNote": ""
+              },
+              {
+                "text": "打開",
+                "type": "verb_phrase",
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "Chinese verbs do not change for person."
+              },
+              {
+                "text": "書",
+                "type": "noun",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               }
             ]
@@ -2155,7 +2219,7 @@
             "開けます。"
           ],
           "analysis": {
-            "sentencePattern": "Topic + object + verb-final",
+            "sentencePattern": "Topic + object/detail + verb-final",
             "literalOrderExplanation": "先生は → 本を → 開けます",
             "grammarExplanation": [
               "Japanese marks the topic with は.",
@@ -2168,21 +2232,21 @@
                 "type": "noun",
                 "role": "subject",
                 "meaning": "person or topic",
-                "grammarNote": ""
+                "grammarNote": "は marks the topic."
               },
               {
                 "text": "本を",
-                "type": "phrase",
+                "type": "noun_phrase",
                 "role": "object_or_detail",
-                "meaning": "sentence detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "開けます",
                 "type": "verb",
-                "role": "main action",
-                "meaning": "main sentence action",
-                "grammarNote": ""
+                "role": "main_action",
+                "meaning": "main action",
+                "grammarNote": "The verb comes at the end."
               }
             ]
           }
