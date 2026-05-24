@@ -5,17 +5,9 @@
  * React learning components. Runtime loading intentionally supports only the
  * unified schema; legacy vocab/jsonl fallbacks belong in conversion scripts.
  */
+import { shuffle } from "@/utils.js";
 
 const QUESTION_TYPES = ["mcq", "typing", "flashcard", "sequence", "sort", "gap", "passage"];
-
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 function firstTopic(item) {
   return Array.isArray(item.topics) ? item.topics[0] || "" : item.topics || "";
