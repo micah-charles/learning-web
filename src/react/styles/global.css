@@ -286,8 +286,13 @@ body {
   margin: 0 auto;
   display: flex;
   gap: 5px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;          /* never wrap — scroll instead */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;      /* Firefox */
+  padding-bottom: 2px;        /* keep active pill shadow visible */
 }
+.lw-nav-inner::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 /* ── Nav pills (overrides the old .lw-nav-pills / .lw-nav-pill rules) ── */
 .lw-nav-pill {
@@ -330,6 +335,17 @@ body {
 }
 
 .lw-section { margin-top: 20px; }
+
+/*
+ * Vanilla-HTML bridge container for LanguagePage.
+ * The vanilla renderProgressiveTab() emits .section-stack, .pl-*, etc.
+ * We let vanilla styles.css handle those; we just need the outer container
+ * to not add extra padding on top of the vanilla layout.
+ */
+.lw-pl-bridge {
+  padding-top: 0;
+}
+.lw-pl-bridge .section-stack { padding-top: 16px; }
 
 /* Home page specific */
 .lw-home-quick-start { margin-top: 24px; }

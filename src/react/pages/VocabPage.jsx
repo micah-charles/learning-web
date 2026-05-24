@@ -66,14 +66,12 @@ export default function VocabPage() {
     stages: [],
     partOfSpeech: "",
     category: "",
+    categories: [],  // multi-select for language packs
     search: "",
   });
 
-  const { dataset, filtered, posOptions, categoryOptions, loading } = useVocabBrowser({
-    manifest,
-    datasetId: prefs.datasetId,
-    prefs,
-  });
+  const { dataset, filtered, posOptions, categoryOptions, useCheckboxCategories, loading } =
+    useVocabBrowser({ manifest, datasetId: prefs.datasetId, prefs });
 
   const stageOptions = dataset ? getDatasetStageOptions(dataset) : [];
   const isStage = dataset ? usesStageSelection(dataset) : false;
@@ -86,13 +84,18 @@ export default function VocabPage() {
   }
 
   function toggleStage(stage) {
-    setPrefs(prev => {
+    setPrefs((prev) => {
       const current = Array.isArray(prev.stages) ? prev.stages.map(String) : [];
       const exists = current.includes(String(stage));
-      return {
-        ...prev,
-        stages: exists ? current.filter(s => s !== String(stage)) : [...current, String(stage)],
-      };
+      return { ...prev, stages: exists ? current.filter((s) => s !== String(stage)) : [...current, String(stage)] };
+    });
+  }
+
+  function toggleCategory(cat) {
+    setPrefs((prev) => {
+      const current = Array.isArray(prev.categories) ? prev.categories : [];
+      const exists = current.includes(cat);
+      return { ...prev, categories: exists ? current.filter((c) => c !== cat) : [...current, cat] };
     });
   }
 
@@ -133,10 +136,19 @@ export default function VocabPage() {
           )}
 
           {categoryOptions.length > 0 && (
-            <LabeledSelect label="Category" value={prefs.category} onChange={(v) => setPref("category", v)} flex={false}>
-              <option value="">All</option>
-              {categoryOptions.map((c) => <option key={c} value={c}>{c}</option>)}
-            </LabeledSelect>
+            useCheckboxCategories ? (
+              <ToggleGroup
+                label="Category"
+                items={categoryOptions}
+                selected={prefs.categories}
+                onToggle={toggleCategory}
+              />
+            ) : (
+              <LabeledSelect label="Category" value={prefs.category} onChange={(v) => setPref("category", v)} flex={false}>
+                <option value="">All</option>
+                {categoryOptions.map((c) => <option key={c} value={c}>{c}</option>)}
+              </LabeledSelect>
+            )
           )}
         </FilterRow>
 

@@ -101,40 +101,29 @@ export default function HomePage({ onNavigate }) {
           Pick up where you left off, or explore something new.
         </p>
         <div className="lw-btn-group">
-          <button
-            className="lw-btn lw-btn-primary"
-            type="button"
-            onClick={() => onNavigate("quiz")}
-          >
+          <button className="lw-btn lw-btn-primary" type="button" onClick={() => onNavigate("quiz")}>
             Start Quiz
           </button>
-          <button
-            className="lw-btn lw-btn-secondary"
-            type="button"
-            onClick={() => onNavigate("vocab")}
-          >
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("vocab")}>
             Vocabulary
           </button>
-          <button
-            className="lw-btn lw-btn-secondary"
-            type="button"
-            onClick={() => onNavigate("reading")}
-          >
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("reading")}>
             Reading
           </button>
-          <button
-            className="lw-btn lw-btn-secondary"
-            type="button"
-            onClick={() => onNavigate("builder")}
-          >
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("language")}>
+            Language ✨
+          </button>
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("crossword")}>
+            Crossword
+          </button>
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("builder")}>
             Builder
           </button>
-          <button
-            className="lw-btn lw-btn-ghost"
-            type="button"
-            onClick={() => onNavigate("review")}
-          >
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("review")}>
             Review
+          </button>
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("progress")}>
+            Progress
           </button>
         </div>
       </div>

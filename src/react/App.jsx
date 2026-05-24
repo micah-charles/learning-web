@@ -2,7 +2,9 @@
  * App.jsx
  *
  * React root component — full port of the vanilla learning-web app.
- * Six tabs: Home, Vocabulary, Quiz, Reading, Builder, Review.
+ * Eleven tabs matching the vanilla app:
+ *   Home | Vocabulary | Quiz | Reading | Builder | Language ✨ |
+ *   Crossword | Review | Progress | My Packs | About
  *
  * Layout:
  *   1. <Hero>   — persistent watercolour banner with mascot + stats
@@ -13,20 +15,30 @@ import { useState, useCallback } from "react";
 import { ManifestProvider } from "./context/ManifestContext.jsx";
 import { ProgressProvider } from "./context/ProgressContext.jsx";
 import Hero from "./components/layout/Hero.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import VocabPage from "./pages/VocabPage.jsx";
-import QuizPage from "./pages/QuizPage.jsx";
-import ReadingPage from "./pages/ReadingPage.jsx";
-import BuilderPage from "./pages/BuilderPage.jsx";
-import ReviewPage from "./pages/ReviewPage.jsx";
+import HomePage      from "./pages/HomePage.jsx";
+import VocabPage     from "./pages/VocabPage.jsx";
+import QuizPage      from "./pages/QuizPage.jsx";
+import ReadingPage   from "./pages/ReadingPage.jsx";
+import BuilderPage   from "./pages/BuilderPage.jsx";
+import LanguagePage  from "./pages/LanguagePage.jsx";
+import CrosswordPage from "./pages/CrosswordPage.jsx";
+import ReviewPage    from "./pages/ReviewPage.jsx";
+import ProgressPage  from "./pages/ProgressPage.jsx";
+import MyPacksPage   from "./pages/MyPacksPage.jsx";
+import AboutPage     from "./pages/AboutPage.jsx";
 
 const TABS = [
-  { id: "home",    label: "Home"       },
-  { id: "vocab",   label: "Vocabulary" },
-  { id: "quiz",    label: "Quiz"       },
-  { id: "reading", label: "Reading"    },
-  { id: "builder", label: "Builder"    },
-  { id: "review",  label: "Review"     },
+  { id: "home",      label: "Home"        },
+  { id: "vocab",     label: "Vocabulary"  },
+  { id: "quiz",      label: "Quiz"        },
+  { id: "reading",   label: "Reading"     },
+  { id: "builder",   label: "Builder"     },
+  { id: "language",  label: "Language ✨" },
+  { id: "crossword", label: "Crossword"   },
+  { id: "review",    label: "Review"      },
+  { id: "progress",  label: "Progress"    },
+  { id: "mypacks",   label: "My Packs"    },
+  { id: "about",     label: "About"       },
 ];
 
 function NavBar({ active, onChange }) {
@@ -77,12 +89,17 @@ function AppContent() {
 
       {/* Page content */}
       <main className="lw-main">
-        {activeTab === "home"    && <HomePage    onNavigate={handleNavigate} />}
-        {activeTab === "vocab"   && <VocabPage   />}
-        {activeTab === "quiz"    && <QuizPage    initialCustomWords={quizCustomWords} />}
-        {activeTab === "reading" && <ReadingPage />}
-        {activeTab === "builder" && <BuilderPage />}
-        {activeTab === "review"  && <ReviewPage  onNavigate={handleNavigate} />}
+        {activeTab === "home"      && <HomePage      onNavigate={handleNavigate} />}
+        {activeTab === "vocab"     && <VocabPage     />}
+        {activeTab === "quiz"      && <QuizPage      initialCustomWords={quizCustomWords} />}
+        {activeTab === "reading"   && <ReadingPage   />}
+        {activeTab === "builder"   && <BuilderPage   />}
+        {activeTab === "language"  && <LanguagePage  />}
+        {activeTab === "crossword" && <CrosswordPage />}
+        {activeTab === "review"    && <ReviewPage    onNavigate={handleNavigate} />}
+        {activeTab === "progress"  && <ProgressPage  />}
+        {activeTab === "mypacks"   && <MyPacksPage   />}
+        {activeTab === "about"     && <AboutPage     />}
       </main>
     </div>
   );
