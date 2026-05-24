@@ -65,7 +65,21 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
         <h2 className="lw-section-title">Quiz Setup</h2>
 
         <h3 style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--lw-muted)", marginBottom: "6px" }}>Subject</h3>
-        <SubjectCardGrid subjects={subjectCounts} activeSubject={prefs.subject} onSelect={s => setPref("subject", s)} />
+        <SubjectCardGrid
+          subjects={subjectCounts}
+          activeSubject={prefs.subject}
+          onSelect={(subj) => {
+            // When subject changes, reset datasetId to first matching dataset
+            const firstMatch = datasets.find((d) => getDatasetSubject(d) === subj);
+            setPrefs((prev) => ({
+              ...prev,
+              subject: subj,
+              datasetId: firstMatch?.id ?? prev.datasetId,
+              stages: [],
+              direction: "",
+            }));
+          }}
+        />
 
         <FilterRow style={{ marginTop: "18px" }}>
           <LabeledSelect label="Dataset" value={prefs.datasetId} onChange={(v) => setPref("datasetId", v)}>

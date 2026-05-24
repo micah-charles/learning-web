@@ -24,7 +24,7 @@ export default function BuilderPage() {
 
   const resolvedPackId = packId || (packs[0]?.id || "");
 
-  const { currentCard, tiles, feedback, loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard } = useBuilderSession({
+  const { currentCard, cards, index, tiles, feedback, loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard, jumpToCard } = useBuilderSession({
     manifest,
     packId: resolvedPackId,
     filter,
@@ -81,15 +81,42 @@ export default function BuilderPage() {
 
       {!loading && currentCard && (
         <div className="lw-card">
-          <div style={{ marginBottom: "12px" }}>
-            {currentCard.type && (
-              <span className="lw-chip blue" style={{ marginBottom: "8px", display: "inline-block" }}>
-                {currentCard.type.replace(/_/g, " ")}
-              </span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px", gap: "10px", flexWrap: "wrap" }}>
+            <div style={{ flex: 1, minWidth: "160px" }}>
+              {currentCard.type && (
+                <span className="lw-chip blue" style={{ marginBottom: "8px", display: "inline-block" }}>
+                  {currentCard.type.replace(/_/g, " ")}
+                </span>
+              )}
+              <p style={{ fontWeight: 600, fontSize: "1rem", color: "var(--lw-ink)", marginTop: "8px" }}>
+                {currentCard.prompt}
+              </p>
+            </div>
+
+            {cards.length > 1 && (
+              <select
+                value={index}
+                onChange={(e) => jumpToCard(Number(e.target.value))}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "8px",
+                  border: "1.5px solid var(--lw-line)",
+                  background: "var(--lw-panel)",
+                  color: "var(--lw-ink)",
+                  fontFamily: "inherit",
+                  fontSize: "0.85rem",
+                  flex: "0 0 auto",
+                  maxWidth: "200px",
+                }}
+                aria-label="Jump to card"
+              >
+                {cards.map((c, i) => (
+                  <option key={c.id || i} value={i}>
+                    {i + 1}. {c.prompt || `Card ${i + 1}`}
+                  </option>
+                ))}
+              </select>
             )}
-            <p style={{ fontWeight: 600, fontSize: "1rem", color: "var(--lw-ink)", marginTop: "8px" }}>
-              {currentCard.prompt}
-            </p>
           </div>
 
           <TileBuilder

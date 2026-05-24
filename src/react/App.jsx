@@ -61,6 +61,9 @@ function NavBar({ active, onChange }) {
   );
 }
 
+// Tabs that have active sessions — re-clicking asks the user to confirm reload.
+const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword"]);
+
 function AppContent() {
   const [activeTab, setActiveTab]         = useState("home");
   const [quizCustomWords, setQuizCustomWords] = useState(null);
@@ -75,14 +78,22 @@ function AppContent() {
   }, []);
 
   function handleTabChange(tab) {
+    // Re-clicking the same session tab: ask whether to restart
+    if (tab === activeTab && SESSION_TABS.has(tab)) {
+      if (!window.confirm("Restart this session from the beginning?")) return;
+      // Force remount by briefly clearing the tab
+      setActiveTab("__reset__");
+      requestAnimationFrame(() => setActiveTab(tab));
+      return;
+    }
     if (tab !== "quiz") setQuizCustomWords(null);
     setActiveTab(tab);
   }
 
   return (
     <div className="lw-app">
-      {/* Persistent watercolour hero */}
-      <Hero />
+      {/* Persistent watercolour hero — hide stat row on Language tab */}
+      <Hero hideStats={activeTab === "language"} />
 
       {/* Sticky pill nav */}
       <NavBar active={activeTab} onChange={handleTabChange} />

@@ -131,7 +131,7 @@ function StatCard({ value, label, icon }) {
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-export default function Hero() {
+export default function Hero({ hideStats = false }) {
   const { manifest } = useManifest();
   const { progress } = useProgress();
 
@@ -217,29 +217,19 @@ export default function Hero() {
             )}
           </div>
 
-          {/* Stat cards – cream zone, below the teal */}
-          <div className="lw-stats-row">
-            <StatCard
-              value={wordsSeen}
-              label="vocab items"
-              icon="📚"
-            />
-            <StatCard
-              value={masterCount}
-              label="words mastered"
-              icon="🌱"
-            />
-            <StatCard
-              value={sessionCount}
-              label="quiz sessions"
-              icon="📋"
-            />
-            <StatCard
-              value={lastQuizPct !== null ? `${lastQuizPct}%` : "—"}
-              label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
-              icon={lastQuizPct !== null ? "✅" : "🔒"}
-            />
-          </div>
+          {/* Stat cards – hidden when hideStats is true (e.g. Language tab) */}
+          {!hideStats && (
+            <div className="lw-stats-row">
+              <StatCard value={wordsSeen}    label="vocab items"      icon="📚" />
+              <StatCard value={masterCount}  label="words mastered"   icon="🌱" />
+              <StatCard value={sessionCount} label="quiz sessions"    icon="📋" />
+              <StatCard
+                value={lastQuizPct !== null ? `${lastQuizPct}%` : "—"}
+                label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
+                icon={lastQuizPct !== null ? "✅" : "🔒"}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

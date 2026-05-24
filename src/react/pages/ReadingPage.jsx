@@ -1,13 +1,13 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useReadingSession } from "../hooks/useReadingSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
-import { LabeledSelect, PillGroup, FilterRow } from "../components/layout/Controls.jsx";
+import { LabeledSelect, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
 import { listPassageGroups, listPassageGroupsBySubject, listPassagePacks, getPassageGroupSubject, SUBJECTS } from "@/data.js";
 
-const DIFFICULTY_OPTIONS = ["all", "easy", "medium", "hard"];
+// ─── Setup screen ─────────────────────────────────────────────────────────────
 
 function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
   const groups = useMemo(() => manifest ? listPassageGroups(manifest) : [], [manifest]);
@@ -50,7 +50,14 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
         <h2 className="lw-section-title">Reading Setup</h2>
 
         <h3 style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--lw-muted)", marginBottom: "6px" }}>Subject</h3>
-        <SubjectCardGrid subjects={subjectCounts} activeSubject={prefs.subject} onSelect={s => setPref("subject", s)} />
+        <SubjectCardGrid
+          subjects={subjectCounts}
+          activeSubject={prefs.subject}
+          onSelect={(s) => {
+            const firstGroup = listPassageGroupsBySubject(manifest, s)[0];
+            setPrefs((prev) => ({ ...prev, subject: s, groupId: firstGroup?.id ?? "", packId: "" }));
+          }}
+        />
 
         <FilterRow style={{ marginTop: "18px" }}>
           {filteredGroups.length > 0 && (
@@ -64,13 +71,6 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
               {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
             </LabeledSelect>
           )}
-
-          <PillGroup
-            label="Difficulty"
-            items={DIFFICULTY_OPTIONS.map((d) => ({ id: d, label: d.charAt(0).toUpperCase() + d.slice(1) }))}
-            value={prefs.difficulty}
-            onSelect={(v) => setPref("difficulty", v)}
-          />
         </FilterRow>
 
         <div style={{ marginTop: "16px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
@@ -111,15 +111,32 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
   );
 }
 
-function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onReveal, onNext, isLast, voiceEnabled, speak }) {
-  const speechLang = passage?.speech_language || "de-DE";
+// ─── Passage display ──────────────────────────────────────────────────────────
+
+function PassageDisplay({
+  passage, deck, currentIndex, onJump,
+  showSource, answers, onAnswer,
+  revealed, onReveal, onNext, isLast,
+  voiceEnabled, speak, onBack,
+}) {
+  const speechLang = passage?.speech_language || "en-GB";
 
   useEffect(() => {
     if (voiceEnabled && passage?.passage_de) {
       speak(passage.passage_de, speechLang);
     }
-    return () => {};
   }, [passage?.id]);
+
+  // Smart passage rendering:
+  // For language packs: passage_de is source (German), passage_en is translation (English).
+  // For English-only packs: passage_de IS the main English text; passage_en may be same/empty.
+  // Rule: show passage_en as "Translation" only when it differs from passage_de.
+  const mainText = passage?.passage_en || passage?.passage_de || "";
+  const sourceText = passage?.passage_de || "";
+  const hasDifferentTranslation =
+    mainText &&
+    sourceText &&
+    sourceText !== mainText;
 
   const mcqQuestions = (passage?.questions || []).filter(q => q.type === "multiple_choice");
   const openQuestions = (passage?.questions || []).filter(q => q.type !== "multiple_choice");
@@ -127,36 +144,79 @@ function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onRe
   return (
     <div className="lw-page">
       <div className="lw-card" style={{ marginBottom: "16px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px" }}>
-          <div>
-            <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--lw-ink)" }}>{passage?.title_en || passage?.title_de || "Passage"}</h2>
-            {passage?.topic && <span className="lw-chip blue" style={{ marginTop: "4px" }}>{passage.topic}</span>}
+        {/* Header row: title + passage selector + audio */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px", gap: "10px", flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: "160px" }}>
+            <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--lw-ink)" }}>
+              {passage?.title_en || passage?.title_de || "Passage"}
+            </h2>
+            {passage?.topic && (
+              <span className="lw-chip blue" style={{ marginTop: "4px" }}>{passage.topic}</span>
+            )}
           </div>
+
+          {/* Passage jump selector */}
+          {deck.length > 1 && (
+            <select
+              value={currentIndex}
+              onChange={(e) => onJump(Number(e.target.value))}
+              style={{
+                padding: "6px 10px",
+                borderRadius: "8px",
+                border: "1.5px solid var(--lw-line)",
+                background: "var(--lw-panel)",
+                color: "var(--lw-ink)",
+                fontFamily: "inherit",
+                fontSize: "0.85rem",
+                flex: "0 0 auto",
+                maxWidth: "200px",
+              }}
+              aria-label="Jump to passage"
+            >
+              {deck.map((p, i) => (
+                <option key={p.id || i} value={i}>
+                  {i + 1}. {p.title_en || p.title_de || `Passage ${i + 1}`}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button
             className="lw-btn lw-btn-ghost"
             type="button"
             style={{ padding: "4px 10px", fontSize: "0.85rem", flexShrink: 0 }}
-            onClick={() => speak(passage?.passage_de || "", speechLang)}
+            onClick={() => speak(sourceText || mainText, speechLang)}
+            title="Read aloud"
           >
             🔊
           </button>
         </div>
 
-        {showSource && passage?.passage_de && (
+        {/* Source text (language packs: German; shown when showSource and it differs) */}
+        {showSource && hasDifferentTranslation && (
           <div className="lw-passage-block">
             <div className="lw-passage-label">Source text</div>
-            <div className="lw-passage-text">{passage.passage_de}</div>
+            <div className="lw-passage-text">{sourceText}</div>
           </div>
         )}
 
-        {passage?.passage_en && (
+        {/* For non-language packs: show source directly as main text */}
+        {!hasDifferentTranslation && sourceText && (
+          <div className="lw-passage-block">
+            <div className="lw-passage-text">{sourceText}</div>
+          </div>
+        )}
+
+        {/* Translation (language packs only — when source ≠ target) */}
+        {hasDifferentTranslation && (
           <div className="lw-passage-block">
             <div className="lw-passage-label">Translation</div>
-            <div className="lw-passage-text">{passage.passage_en}</div>
+            <div className="lw-passage-text">{mainText}</div>
           </div>
         )}
       </div>
 
+      {/* MCQ questions */}
       {mcqQuestions.length > 0 && (
         <div className="lw-card" style={{ marginBottom: "16px" }}>
           <h3 className="lw-section-title">Questions</h3>
@@ -195,6 +255,7 @@ function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onRe
         </div>
       )}
 
+      {/* Open questions */}
       {openQuestions.length > 0 && (
         <div className="lw-card" style={{ marginBottom: "16px" }}>
           <h3 className="lw-section-title">Open questions</h3>
@@ -202,7 +263,7 @@ function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onRe
             <div key={q.id || qi} style={{ marginBottom: "16px" }}>
               <p style={{ fontWeight: 600, marginBottom: "8px" }}>{q.question}</p>
               {revealed && q.model_answer_en && (
-                <div style={{ background: "var(--lw-green-soft)", border: "1.5px solid var(--lw-green)", borderRadius: "var(--lw-radius-sm)", padding: "12px 16px" }}>
+                <div style={{ background: "rgba(80,180,120,0.1)", border: "1.5px solid var(--lw-green)", borderRadius: "var(--lw-radius-sm)", padding: "12px 16px" }}>
                   <p style={{ fontSize: "0.85rem", color: "var(--lw-green)", fontWeight: 600, marginBottom: "4px" }}>Model answer:</p>
                   <p style={{ fontSize: "0.9rem" }}>{q.model_answer_en}</p>
                 </div>
@@ -223,10 +284,15 @@ function PassageDisplay({ passage, showSource, answers, onAnswer, revealed, onRe
             {isLast ? "Finish" : "Next passage"}
           </button>
         )}
+        <button className="lw-btn lw-btn-ghost" type="button" onClick={onBack}>
+          Back to setup
+        </button>
       </div>
     </div>
   );
 }
+
+// ─── ReadingPage ──────────────────────────────────────────────────────────────
 
 export default function ReadingPage() {
   const { manifest, loading: manifestLoading } = useManifest();
@@ -238,18 +304,17 @@ export default function ReadingPage() {
     groupId: "",
     packId: "",
     category: "all",
-    difficulty: "all",
     showGerman: false,
     voiceEnabled: false,
   });
 
   const {
     loading, started, current, deck, currentIndex, answers,
-    revealed, completedCount, message, categoryOptions,
-    startSession, answerQuestion, revealPassage, nextPassage, resetSession,
+    revealed, completedCount, message,
+    startSession, answerQuestion, revealPassage, nextPassage, resetSession, jumpToPassage,
   } = useReadingSession({ manifest, groupId: prefs.groupId, packId: prefs.packId, prefs, updateProgress });
 
-  if (manifestLoading) return <div className="lw-page"><p>Loading…</p></div>;
+  if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
   if (!started) {
     return (
@@ -263,7 +328,7 @@ export default function ReadingPage() {
     );
   }
 
-  if (loading) return <div className="lw-page"><p>Loading passages…</p></div>;
+  if (loading) return <div className="lw-page"><LoadingText text="Loading passages…" /></div>;
 
   if (!current) {
     return (
@@ -282,6 +347,9 @@ export default function ReadingPage() {
   return (
     <PassageDisplay
       passage={current}
+      deck={deck}
+      currentIndex={currentIndex}
+      onJump={jumpToPassage}
       showSource={prefs.showGerman}
       answers={answers}
       onAnswer={answerQuestion}
@@ -291,6 +359,7 @@ export default function ReadingPage() {
       isLast={currentIndex + 1 >= deck.length}
       voiceEnabled={prefs.voiceEnabled}
       speak={speak}
+      onBack={resetSession}
     />
   );
 }
