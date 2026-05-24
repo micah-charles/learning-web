@@ -149,8 +149,7 @@ To add a new Progressive lesson:
 
 The current catalog contains:
 
-- `Prototype Packs` / `Stage 1` / 3 lessons
-- `QClaw` / `Stage 1` / 100 generated lessons
+- `Beta 1` / `Stage 1` / 100 corrected beginner lessons
 
 ## Required Pack Shape
 
@@ -733,7 +732,7 @@ Specific regression checks from recent packs:
 
 ## Future Architecture Notes
 
-The module is still prototype-local. Future improvements could include:
+The module is still independent from the main quiz modes. Future improvements could include:
 
 - Optionally merging Progressive catalog discovery into the main app manifest later
 - Persisting learner progress per progressive pack
