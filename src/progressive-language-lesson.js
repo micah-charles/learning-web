@@ -1,53 +1,26 @@
-import { escapeHtml, humanizeLabel } from "./utils.js";
-import {
-  hasGrammarAnalysis,
-  renderGrammarHelpPanel,
-  renderGrammarTokenTooltip,
-} from "./components/language/grammar-help.js";
+/**
+ * progressive-language-lesson.js
+ *
+ * Vanilla JS module for the Progressive Language tab.
+ * Provides: catalog loading, pack loading, state management,
+ * action reducer, and HTML render functions.
+ *
+ * No framework. Follows the Learning Web vanilla JS + Vite pattern.
+ */
 
-// Prototype module for multilingual progressive phrase learning.
-export const PROGRESSIVE_LANGUAGE_CATALOG_PATH = "./data/ProgressiveLanguagePacks/manifest.json";
-export const PROGRESSIVE_LANGUAGE_PACK_PATH = "./data/ProgressiveLanguagePacks/beta1/stage1/semantic_pack_l1_001_family_home/pack.json";
+import { escapeHtml, shuffle } from "./utils.js";
 
-const DEFAULT_CATALOG_PACK_ID = "beta1";
-const DEFAULT_STAGE_ID = "stage1";
-const DEFAULT_LESSON_ID = "semantic_pack_l1_001_family_home";
+// ── Constants ─────────────────────────────────────────────────────────────────
 
-export const FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG = {
-  schemaVersion: "progressive-language-catalog-1.0",
-  packs: [
-    {
-      id: DEFAULT_CATALOG_PACK_ID,
-      label: "Beta 1",
-      description: "Corrected multilingual Stage 1 beta lessons.",
-      stages: [
-        {
-          id: DEFAULT_STAGE_ID,
-          label: "Stage 1",
-          description: "100 corrected beginner lessons",
-          lessons: [
-            {
-              id: DEFAULT_LESSON_ID,
-              label: "001 — Family and Home",
-              path: PROGRESSIVE_LANGUAGE_PACK_PATH,
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
-
-const TARGET_LANGUAGES = [
-  { code: "de", label: "English → German" },
-  { code: "fr", label: "English → French" },
-  { code: "es", label: "English → Spanish" },
-  { code: "zh", label: "English → Chinese" },
-  { code: "ja", label: "English → Japanese" },
+export const TARGET_LANGUAGES = [
+  { code: "de", label: "German", flag: "🇩🇪" },
+  { code: "fr", label: "French", flag: "🇫🇷" },
+  { code: "es", label: "Spanish", flag: "🇪🇸" },
+  { code: "zh", label: "Chinese", flag: "🇨🇳" },
+  { code: "ja", label: "Japanese", flag: "🇯🇵" },
 ];
 
-const ARTICLE_LANGUAGES = new Set(["de", "fr", "es"]);
-const SPEECH_LANGUAGE = {
+const SPEECH_LANG_MAP = {
   de: "de-DE",
   fr: "fr-FR",
   es: "es-ES",
@@ -56,1021 +29,973 @@ const SPEECH_LANGUAGE = {
   en: "en-GB",
 };
 
-const packCache = new Map();
-let catalogCache = null;
+const PHASES = [
+  { id: "listen",  label: "Listen",     icon: "🎧" },
+  { id: "vocab",   label: "Vocabulary", icon: "📖" },
+  { id: "builder", label: "Builder",    icon: "🔧" },
+  { id: "review",  label: "Review",     icon: "✓"  },
+];
 
-export async function loadProgressiveLessonCatalog(path = PROGRESSIVE_LANGUAGE_CATALOG_PATH) {
-  if (catalogCache) return catalogCache;
-  try {
-    const response = await fetch(path);
-    if (!response.ok) throw new Error(`Could not load progressive language catalog: ${response.status}`);
-    catalogCache = normalizeProgressiveCatalog(await response.json());
-  } catch (error) {
-    console.warn(error);
-    catalogCache = normalizeProgressiveCatalog(FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG);
-  }
-  return catalogCache;
+// ── Data loading ──────────────────────────────────────────────────────────────
+
+export async function loadProgressiveLessonCatalog() {
+  const res = await fetch("./data/ProgressiveLanguagePacks/manifest.json");
+  if (!res.ok) throw new Error(`Catalog fetch failed: ${res.status}`);
+  return res.json();
 }
 
-export async function loadProgressiveLessonPack(path = PROGRESSIVE_LANGUAGE_PACK_PATH) {
-  if (packCache.has(path)) return packCache.get(path);
-  const response = await fetch(path);
-  if (!response.ok) {
-    throw new Error(`Could not load progressive language pack: ${response.status}`);
-  }
-  const pack = await response.json();
-  packCache.set(path, pack);
-  return pack;
+export async function loadProgressiveLessonPack(path) {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Pack fetch failed (${path}): ${res.status}`);
+  return res.json();
 }
 
-export function createProgressiveLessonState(targetLang = "", packPath = PROGRESSIVE_LANGUAGE_PACK_PATH, selection = {}) {
+// ── Display helpers ───────────────────────────────────────────────────────────
+
+export function getDisplayText(translation, lang) {
+  if (!translation) return "";
+  const mainText = translation.text || translation.base || "";
+  if (!mainText) return "";
+  const { article } = translation;
+  if (article && (lang === "de" || lang === "fr" || lang === "es")) {
+    if (article.endsWith("'") || article.endsWith("’")) return article + mainText;
+    return `${article} ${mainText}`;
+  }
+  return mainText;
+}
+
+export function getReadingHint(translation, lang) {
+  if (!translation) return "";
+  if (lang === "zh") return translation.reading || translation.pinyin || "";
+  if (lang === "ja") return translation.reading || translation.romaji || "";
+  return "";
+}
+
+function getLangLabel(code) {
+  return TARGET_LANGUAGES.find(l => l.code === code)?.label || code;
+}
+
+function getLangFlag(code) {
+  return TARGET_LANGUAGES.find(l => l.code === code)?.flag || "";
+}
+
+// ── State ─────────────────────────────────────────────────────────────────────
+
+function freshState(overrides = {}) {
   return {
-    packPath,
-    catalogPackId: selection.catalogPackId || DEFAULT_CATALOG_PACK_ID,
-    stageId: selection.stageId || DEFAULT_STAGE_ID,
-    lessonId: selection.lessonId || DEFAULT_LESSON_ID,
-    targetLang,
-    phase: "listen",
-    chainIndex: 0,
-    stepIndex: 0,
-    vocabIndex: 0,
-    sentenceIndex: 0,
-    selectedTiles: [],
-    bankTiles: [],
-    vocabOptions: [],
-    feedback: null,
-    spokenStepKey: "",
-    showListenGrammar: false,
-    showBuilderHint: false,
+    catalogPackId:   "",
+    catalogStageId:  "",
+    catalogLessonId: "",
+    packPath:        "",
+    targetLang:      "de",
+    phase:           "listen",
+    // Listen
+    chainIndex:      0,
+    stepIndex:       0,
+    showGrammar:     false,
     showGrammarLabels: false,
-    answered: {
-      vocab: {},
-      builder: {},
-    },
-    mistakes: [],
-    score: {
-      vocabCorrect: 0,
-      vocabTotal: 0,
-      builderCorrect: 0,
-      builderTotal: 0,
-    },
+    spokenStepKey:   "",
+    // Vocab
+    vocabIndex:      0,
+    vocabOptions:    [],
+    vocabFeedback:   null,
+    // Builder
+    sentenceIndex:   0,
+    selectedTiles:   [],
+    bankTiles:       [],
+    builderFeedback: null,
+    showBuilderGrammar: false,
+    // Tracking
+    answered:        { vocab: {}, builder: {} },
+    mistakes:        [],
+    score:           { vocabCorrect: 0, vocabTotal: 0, builderCorrect: 0, builderTotal: 0 },
+    ...overrides,
   };
 }
 
-export function getTargetLanguageOptions() {
-  return TARGET_LANGUAGES;
-}
-
-export function normalizeProgressiveCatalog(catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG) {
-  const packs = Array.isArray(catalog.packs) ? catalog.packs : [];
-  return {
-    ...catalog,
-    packs: packs.map((pack) => ({
-      ...pack,
-      id: pack.id || "pack",
-      label: pack.label || humanizeLabel(pack.id || "pack"),
-      stages: (Array.isArray(pack.stages) ? pack.stages : []).map((stage) => ({
-        ...stage,
-        id: stage.id || "stage",
-        label: stage.label || humanizeLabel(stage.id || "stage"),
-        lessons: (Array.isArray(stage.lessons) ? stage.lessons : []).filter((lesson) => lesson.path).map((lesson) => ({
-          ...lesson,
-          id: lesson.id || lesson.packId || lesson.path,
-          label: lesson.label || lesson.title || humanizeLabel(lesson.id || lesson.packId || "lesson"),
-        })),
-      })),
-    })).filter((pack) => pack.stages.some((stage) => stage.lessons.length)),
-  };
-}
-
-export function getDefaultProgressiveLesson(catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG) {
-  const normalized = normalizeProgressiveCatalog(catalog);
-  const pack = normalized.packs[0];
-  const stage = pack?.stages?.[0];
-  const lesson = stage?.lessons?.[0];
-  return { pack, stage, lesson };
-}
-
-export function ensureProgressiveLessonStateForCatalog(state, catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG) {
-  const targetLang = state?.targetLang || "";
-  if (!state) {
-    const fallback = getDefaultProgressiveLesson(catalog);
-    return createProgressiveLessonState(targetLang, fallback.lesson?.path || PROGRESSIVE_LANGUAGE_PACK_PATH, {
-      catalogPackId: fallback.pack?.id || DEFAULT_CATALOG_PACK_ID,
-      stageId: fallback.stage?.id || DEFAULT_STAGE_ID,
-      lessonId: fallback.lesson?.id || DEFAULT_LESSON_ID,
-    });
-  }
-
-  const selection = findProgressiveCatalogSelection(catalog, state);
-  if (selection.lesson) {
-    state.catalogPackId = selection.pack.id;
-    state.stageId = selection.stage.id;
-    state.lessonId = selection.lesson.id;
-    state.packPath = selection.lesson.path;
-    return state;
-  }
-
-  const fallback = getDefaultProgressiveLesson(catalog);
-  return createProgressiveLessonState(targetLang, fallback.lesson?.path || PROGRESSIVE_LANGUAGE_PACK_PATH, {
-    catalogPackId: fallback.pack?.id || DEFAULT_CATALOG_PACK_ID,
-    stageId: fallback.stage?.id || DEFAULT_STAGE_ID,
-    lessonId: fallback.lesson?.id || DEFAULT_LESSON_ID,
+export function createProgressiveLessonState(catalog) {
+  const firstPack   = catalog.packs[0];
+  const firstStage  = firstPack?.stages[0];
+  const firstLesson = firstStage?.lessons[0];
+  return freshState({
+    catalogPackId:   firstPack?.id   ?? "",
+    catalogStageId:  firstStage?.id  ?? "",
+    catalogLessonId: firstLesson?.id ?? "",
+    packPath:        firstLesson?.path ?? "",
   });
 }
 
-export function findProgressiveCatalogSelection(catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG, state = {}) {
-  const normalized = normalizeProgressiveCatalog(catalog);
-  const exactPack = normalized.packs.find((pack) => pack.id === state.catalogPackId);
-  const exactStage = exactPack?.stages?.find((stage) => stage.id === state.stageId);
-  const exactLesson = exactStage?.lessons?.find((lesson) => lesson.id === state.lessonId);
-  if (exactPack && exactStage && exactLesson) {
-    return { pack: exactPack, stage: exactStage, lesson: exactLesson };
-  }
+// ── Vocab helpers ─────────────────────────────────────────────────────────────
 
-  for (const pack of normalized.packs) {
-    for (const stage of pack.stages || []) {
-      const lesson = (stage.lessons || []).find((item) => item.path === state.packPath);
-      if (lesson) return { pack, stage, lesson };
-    }
-  }
-
-  const fallback = getDefaultProgressiveLesson(normalized);
-  return { pack: fallback.pack, stage: fallback.stage, lesson: fallback.lesson };
+export function buildVocabOptions(pack, vocabIndex, targetLang) {
+  const vocab = pack?.vocabulary || [];
+  const current = vocab[vocabIndex];
+  if (!current) return [];
+  const correctText = getDisplayText(current.translations?.[targetLang], targetLang);
+  const distractors = vocab
+    .filter((_, i) => i !== vocabIndex)
+    .map(v => getDisplayText(v.translations?.[targetLang], targetLang))
+    .filter(t => t && t !== correctText);
+  const seen = new Set([correctText]);
+  const unique = shuffle(distractors).filter(t => { if (seen.has(t)) return false; seen.add(t); return true; });
+  return shuffle([
+    { text: correctText, correct: true },
+    ...unique.slice(0, 3).map(t => ({ text: t, correct: false })),
+  ]);
 }
 
-function createStateFromSelection(state, selection) {
-  return createProgressiveLessonState(state?.targetLang || "", selection.lesson.path, {
-    catalogPackId: selection.pack.id,
-    stageId: selection.stage.id,
-    lessonId: selection.lesson.id,
-  });
+// ── Tile helpers ──────────────────────────────────────────────────────────────
+
+function makeBankTiles(pack, sentenceIndex, targetLang) {
+  const sentence = pack?.sentenceBuilders?.[sentenceIndex];
+  const translation = sentence?.translations?.[targetLang];
+  if (!translation) return [];
+  const tiles = (translation.tiles || translation.text?.split(" ") || [])
+    .map((text, i) => ({ id: `t${i}_${encodeURIComponent(text)}`, text }));
+  return shuffle(tiles);
 }
 
-export function changeProgressiveLessonCollection(state, catalog, catalogPackId) {
-  const normalized = normalizeProgressiveCatalog(catalog);
-  const pack = normalized.packs.find((item) => item.id === catalogPackId) || normalized.packs[0];
-  const stage = pack?.stages?.[0];
-  const lesson = stage?.lessons?.[0];
-  if (!pack || !stage || !lesson) return createProgressiveLessonState(state?.targetLang || "");
-  return createStateFromSelection(state, { pack, stage, lesson });
+export function compareTiles(selected, expected) {
+  if (!Array.isArray(selected) || !Array.isArray(expected)) return false;
+  if (selected.length !== expected.length) return false;
+  return selected.every((tile, i) => tile.text === expected[i]);
 }
 
-export function changeProgressiveLessonStage(state, catalog, stageId) {
-  const current = findProgressiveCatalogSelection(catalog, state);
-  const stage = current.pack?.stages?.find((item) => item.id === stageId) || current.pack?.stages?.[0];
-  const lesson = stage?.lessons?.[0];
-  if (!current.pack || !stage || !lesson) return createProgressiveLessonState(state?.targetLang || "");
-  return createStateFromSelection(state, { pack: current.pack, stage, lesson });
-}
+// ── Speech cue ────────────────────────────────────────────────────────────────
 
-export function changeProgressiveLessonLesson(state, catalog, lessonId) {
-  const current = findProgressiveCatalogSelection(catalog, state);
-  const lesson = current.stage?.lessons?.find((item) => item.id === lessonId) || current.stage?.lessons?.[0];
-  if (!current.pack || !current.stage || !lesson) return createProgressiveLessonState(state?.targetLang || "");
-  return createStateFromSelection(state, { pack: current.pack, stage: current.stage, lesson });
-}
-
-export function getDisplayText(entry = {}, lang = "en") {
-  const text = entry.text || entry.base || entry.pastPhrase || entry.past || entry.pastContext || "";
-  const article = entry.article;
-  if (article && ARTICLE_LANGUAGES.has(lang) && text) {
-    if (String(article).endsWith("'") || String(article).endsWith("’")) {
-      return `${article}${text}`;
-    }
-    return `${article} ${text}`;
-  }
-  return text;
-}
-
-export function getSpeechLang(lang) {
-  return SPEECH_LANGUAGE[lang] || SPEECH_LANGUAGE.en;
-}
-
-export function isSpeechAvailable() {
-  return typeof window !== "undefined" && "speechSynthesis" in window && typeof SpeechSynthesisUtterance !== "undefined";
-}
-
-export function speak(text, lang) {
-  if (!text || !isSpeechAvailable()) return false;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = getSpeechLang(lang);
-  window.speechSynthesis.speak(utterance);
-  return true;
-}
-
-export function shuffleArray(array) {
-  const copy = [...array];
-  for (let index = copy.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
-  }
-  return copy;
-}
-
-export function buildVocabOptions(correctItem, allVocabulary, targetLang) {
-  const correct = getDisplayText(correctItem.translations[targetLang], targetLang);
-  const seen = new Set([correct]);
-  const distractors = [];
-
-  for (const item of shuffleArray(allVocabulary)) {
-    if (item.conceptId === correctItem.conceptId) continue;
-    const option = getDisplayText(item.translations[targetLang], targetLang);
-    if (!option || seen.has(option)) continue;
-    seen.add(option);
-    distractors.push(option);
-    if (distractors.length >= 3) break;
-  }
-
-  return shuffleArray([correct, ...distractors].slice(0, 4));
-}
-
-export function compareTiles(selectedTiles, expectedTiles) {
-  if (!Array.isArray(selectedTiles) || !Array.isArray(expectedTiles)) return false;
-  if (selectedTiles.length !== expectedTiles.length) return false;
-  return selectedTiles.every((tile, index) => tile === expectedTiles[index]);
-}
-
-export function prepareProgressiveLessonState(state, pack) {
-  state.answered ||= { vocab: {}, builder: {} };
-  state.answered.vocab ||= {};
-  state.answered.builder ||= {};
-  state.score.vocabTotal = pack.vocabulary.length;
-  state.score.builderTotal = pack.sentenceBuilders.length;
-
-  if (!state.targetLang) {
-    state.vocabOptions = [];
-    state.bankTiles = [];
-    state.selectedTiles = [];
-    state.feedback = null;
-    return state;
-  }
-
-  if (state.phase === "vocab" && !state.vocabOptions.length) {
-    const current = pack.vocabulary[state.vocabIndex];
-    state.vocabOptions = current ? buildVocabOptions(current, pack.vocabulary, state.targetLang) : [];
-  }
-
-  if (state.phase === "builder" && !state.bankTiles.length && !state.selectedTiles.length) {
-    resetBuilderTiles(state, pack);
-  }
-}
-
-export function getCurrentListenStep(pack, state) {
-  const chain = pack.phraseProgressionChains[state.chainIndex];
-  const step = chain && chain.steps[state.stepIndex];
-  return { chain, step };
-}
-
-export function getCurrentSpeechCue(pack, state) {
-  if (!state.targetLang || state.phase !== "listen") return null;
-  const { chain, step } = getCurrentListenStep(pack, state);
-  const text = step?.translations?.[state.targetLang]?.text || "";
-  if (!chain || !step || !text) return null;
+export function getCurrentSpeechCue(state, pack) {
+  if (state.phase !== "listen") return null;
+  const chain = pack?.phraseProgressionChains?.[state.chainIndex];
+  const step  = chain?.steps?.[state.stepIndex];
+  const text  = step?.translations?.[state.targetLang]?.text;
+  if (!text) return null;
   return {
-    key: `${state.targetLang}:${chain.chainId}:${state.stepIndex}`,
     text,
-    lang: state.targetLang,
+    lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB",
+    key:  `${state.chainIndex}-${state.stepIndex}-${state.targetLang}`,
   };
 }
 
-export function markCurrentStepSpoken(state, cue) {
-  if (cue) state.spokenStepKey = cue.key;
-}
+// ── Action reducer ────────────────────────────────────────────────────────────
+// Returns { state, effect }  where effect is null | { speak: {text, lang} }
 
-export function renderProgressiveLanguageLesson(pack, state, catalog = FALLBACK_PROGRESSIVE_LANGUAGE_CATALOG) {
-  if (state.targetLang) {
-    prepareProgressiveLessonState(state, pack);
-  }
-  const selection = findProgressiveCatalogSelection(catalog, state);
-  const catalogPack = selection.pack;
-  const catalogStage = selection.stage;
-  const catalogLesson = selection.lesson;
-  const packOptions = catalog.packs.map((packOption) => `
-    <option value="${escapeHtml(packOption.id)}" ${catalogPack?.id === packOption.id ? "selected" : ""}>
-      ${escapeHtml(packOption.label)}
-    </option>
-  `).join("");
-  const stageOptions = (catalogPack?.stages || []).map((stageOption) => `
-    <option value="${escapeHtml(stageOption.id)}" ${catalogStage?.id === stageOption.id ? "selected" : ""}>
-      ${escapeHtml(stageOption.label)}
-    </option>
-  `).join("");
-  const lessonOptions = (catalogStage?.lessons || []).map((lessonOption) => `
-    <option value="${escapeHtml(lessonOption.id)}" ${catalogLesson?.id === lessonOption.id ? "selected" : ""}>
-      ${escapeHtml(lessonOption.label)}
-    </option>
-  `).join("");
-  const languageOptions = getTargetLanguageOptions().map((language) => `
-    <option value="${escapeHtml(language.code)}" ${state.targetLang === language.code ? "selected" : ""}>
-      ${escapeHtml(language.label)}
-    </option>
-  `).join("");
-  const lessonBody = state.targetLang
-    ? `${renderPhaseSteps(state.phase)}${renderCurrentPhase(pack, state)}${renderGrammarSupport(pack, state)}`
-    : renderChooseLanguagePrompt();
+export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
+  const chains   = pack?.phraseProgressionChains || [];
+  const vocab    = pack?.vocabulary || [];
+  const builders = pack?.sentenceBuilders || [];
 
-  return `
-    <div class="section-stack progressive-lesson-shell">
-      <section class="section-card lead progressive-lesson-hero">
-        <div>
-          <p class="eyebrow">Progressive Language</p>
-          <h2>${escapeHtml(pack.title || "Progressive Language")}</h2>
-          <p class="muted tiny">${escapeHtml(pack.description || "Build phrases, learn concepts, and practise sentence order.")}</p>
-        </div>
-        <div class="progressive-selector-stack">
-          <label class="field progressive-pack-selector">
-            <span>Pack</span>
-            <select id="progressive-pack-collection">
-              ${packOptions}
-            </select>
-          </label>
-          <label class="field progressive-stage-selector">
-            <span>Stage</span>
-            <select id="progressive-stage">
-              ${stageOptions}
-            </select>
-          </label>
-          <label class="field progressive-lesson-selector">
-            <span>Lesson</span>
-            <select id="progressive-lesson">
-              ${lessonOptions}
-            </select>
-          </label>
-          <label class="field progressive-language-selector">
-            <span>Language</span>
-            <select id="progressive-language">
-              <option value="" ${state.targetLang ? "" : "selected"}>Choose a language to start</option>
-              ${languageOptions}
-            </select>
-          </label>
-        </div>
-      </section>
-      ${lessonBody}
-    </div>
-  `;
-}
+  switch (actionType) {
 
-function renderChooseLanguagePrompt() {
-  return `
-    <section class="empty-state-card progressive-lesson-card">
-      <p class="eyebrow">Ready when you are</p>
-      <h2>Choose a language to begin</h2>
-      <p>Select a language path above to start listening, practising vocabulary, and building sentences.</p>
-    </section>
-  `;
-}
-
-function renderPhaseSteps(activePhase) {
-  const phases = [
-    ["listen", "Listen", true],
-    ["vocab", "Vocabulary", true],
-    ["builder", "Builder", true],
-    ["review", "Review", false],
-  ];
-  return `
-    <div class="progressive-phase-row" aria-label="Lesson phase">
-      ${phases.map(([id, label, canJump], index) => canJump ? `
-        <button type="button"
-                class="progressive-phase-chip ${activePhase === id ? "is-active" : ""}"
-                data-action="progressive-jump-phase"
-                data-phase="${escapeHtml(id)}"
-                ${activePhase === id ? `aria-current="step"` : ""}>
-          <strong>${index + 1}</strong>${escapeHtml(label)}
-        </button>
-      ` : `
-        <span class="progressive-phase-chip ${activePhase === id ? "is-active" : ""}" ${activePhase === id ? `aria-current="step"` : ""}>
-          <strong>${index + 1}</strong>${escapeHtml(label)}
-        </span>
-      `).join("")}
-    </div>
-  `;
-}
-
-function renderCurrentPhase(pack, state) {
-  if (state.phase === "vocab") return renderVocabPhase(pack, state);
-  if (state.phase === "builder") return renderBuilderPhase(pack, state);
-  if (state.phase === "review") return renderReviewPhase(pack, state);
-  return renderListenPhase(pack, state);
-}
-
-function renderListenPhase(pack, state) {
-  const { chain, step } = getCurrentListenStep(pack, state);
-  if (!chain || !step) {
-    return renderLessonError("This pack does not contain a listen-and-repeat chain.");
-  }
-
-  const en = step.translations.en?.text || "";
-  const targetTranslation = step.translations[state.targetLang] || {};
-  const target = targetTranslation.text || "";
-  const analysis = targetTranslation.analysis;
-  const stepCount = chain.steps.length;
-  const hasGrammar = hasGrammarAnalysis(analysis);
-  const speechNote = isSpeechAvailable()
-    ? ""
-    : renderProgressiveFeedback({
-        tone: "info",
-        title: "Audio unavailable",
-        body: "Your browser does not expose speech synthesis here, so you can continue without audio.",
-      });
-
-  return `
-    <section class="question-shell lead progressive-lesson-card">
-      <div class="question-meta">
-        <div>
-          <p class="eyebrow">Listen and repeat</p>
-          <h2>${escapeHtml(humanizeLabel(chain.chainId))}</h2>
-        </div>
-        <span class="mode-chip blue">Step ${state.stepIndex + 1} / ${stepCount}</span>
-      </div>
-      <div class="progressive-progress-track"><span style="width:${((state.stepIndex + 1) / stepCount) * 100}%"></span></div>
-      <div class="progressive-phrase-grid">
-        <article>
-          <span>English</span>
-          <strong>${escapeHtml(en)}</strong>
-        </article>
-        <article>
-          <span>Target phrase</span>
-          <strong>${escapeHtml(target)}</strong>
-          ${renderInlineGrammarTokens(analysis)}
-        </article>
-      </div>
-      <div class="badge-row">
-        <span class="badge amber">${escapeHtml(humanizeLabel(step.focus))}</span>
-      </div>
-      ${speechNote}
-      <div class="button-row">
-        <button class="button secondary" data-action="progressive-listen-back" ${isFirstListenStep(state) ? "disabled" : ""}>Back</button>
-        <button class="button secondary" data-action="progressive-replay">Replay</button>
-        ${hasGrammar ? `<button class="button secondary grammar-icon-button" data-action="progressive-toggle-listen-grammar" aria-expanded="${state.showListenGrammar ? "true" : "false"}" aria-label="Open grammar help">?</button>` : ""}
-        <button class="button" data-action="progressive-listen-next">${isLastListenStep(pack, state) ? "Start vocabulary" : "Next"}</button>
-      </div>
-      ${hasGrammar && state.showListenGrammar ? renderGrammarHelpPanel(analysis, { id: "progressive-listen-grammar", open: true, hideSummary: true }) : ""}
-    </section>
-  `;
-}
-
-function renderVocabPhase(pack, state) {
-  const item = pack.vocabulary[state.vocabIndex];
-  if (!item) return renderLessonError("This pack does not contain vocabulary items.");
-
-  const prompt = getDisplayText(item.translations.en, "en");
-  const correctAnswer = getDisplayText(item.translations[state.targetLang], state.targetLang);
-  const selected = state.feedback?.selected || "";
-
-  return `
-    <section class="question-shell lead progressive-lesson-card">
-      <div class="question-meta">
-        <div>
-          <p class="eyebrow">Vocabulary multiple choice</p>
-          <h2>Choose the ${escapeHtml(languageName(pack, state.targetLang))} word</h2>
-        </div>
-        <span class="mode-chip blue">${state.vocabIndex + 1} / ${pack.vocabulary.length}</span>
-      </div>
-      <div class="question-box">
-        <div class="question-box-copy">
-          <p class="muted tiny">English meaning</p>
-          <div class="question-prompt">${escapeHtml(prompt)}</div>
-          <div class="badge-row">
-            <span class="badge amber">${escapeHtml(item.conceptId)}</span>
-            ${item.senseKey ? `<span class="badge blue">${escapeHtml(humanizeLabel(item.senseKey))}</span>` : ""}
-          </div>
-        </div>
-      </div>
-      <div class="option-grid progressive-options">
-        ${state.vocabOptions.map((option) => {
-          const isSelected = selected === option;
-          const isCorrect = state.feedback && option === correctAnswer;
-          const isWrong = state.feedback && isSelected && !state.feedback.correct;
-          const cls = [
-            "option-button",
-            isSelected ? "is-selected" : "",
-            isCorrect ? "is-correct" : "",
-            isWrong ? "is-wrong" : "",
-          ].filter(Boolean).join(" ");
-          return `<button class="${cls}" data-action="progressive-vocab-answer" data-value="${escapeHtml(option)}" ${state.feedback ? "disabled" : ""}>${escapeHtml(option)}</button>`;
-        }).join("")}
-      </div>
-      ${state.feedback ? renderVocabFeedback(state.feedback, correctAnswer) : ""}
-      <div class="button-row">
-        <button class="button secondary" data-action="progressive-vocab-back">Back</button>
-        ${state.feedback ? `<button class="button" data-action="progressive-vocab-next">${isLastVocabItem(pack, state) ? "Start sentence builder" : "Next word"}</button>` : ""}
-      </div>
-    </section>
-  `;
-}
-
-function renderVocabFeedback(feedback, correctAnswer) {
-  return feedback.correct
-    ? renderProgressiveFeedback({ tone: "correct", title: "Correct", body: correctAnswer })
-    : renderProgressiveFeedback({ tone: "wrong", title: "Not quite", body: `Correct answer: ${correctAnswer}` });
-}
-
-function renderBuilderPhase(pack, state) {
-  const sentence = pack.sentenceBuilders[state.sentenceIndex];
-  if (!sentence) return renderLessonError("This pack does not contain sentence builders.");
-
-  const expectedTiles = sentence.translations[state.targetLang]?.tiles || [];
-  const prompt = sentence.translations.en?.text || "";
-  const targetTranslation = sentence.translations[state.targetLang] || {};
-  const analysis = targetTranslation.analysis;
-  const fullAnswer = targetTranslation.text || expectedTiles.join(" ");
-  const feedback = state.feedback;
-  const hasGrammar = hasGrammarAnalysis(analysis);
-
-  return `
-    <section class="builder-shell lead progressive-lesson-card">
-      <div class="question-meta">
-        <div>
-          <p class="eyebrow">Sentence builder</p>
-          <h2>Build this sentence in ${escapeHtml(languageName(pack, state.targetLang))}</h2>
-        </div>
-        <span class="mode-chip blue">${state.sentenceIndex + 1} / ${pack.sentenceBuilders.length}</span>
-      </div>
-      <div class="question-box">
-        <div class="question-box-copy">
-          <p class="muted tiny">English prompt</p>
-          <div class="question-prompt">${escapeHtml(prompt)}</div>
-          <div class="badge-row">
-            ${(sentence.concepts || []).map((concept) => `<span class="badge amber">${escapeHtml(concept)}</span>`).join("")}
-          </div>
-        </div>
-      </div>
-      <div class="tile-area ${feedback?.correct ? "answer-correct" : feedback ? "answer-wrong" : ""}">
-        <div class="chip-row">
-          ${state.selectedTiles.length
-            ? state.selectedTiles.map((tile) => renderBuilderTile(tile, analysis, {
-                action: "progressive-builder-remove",
-                answer: true,
-                showGrammarLabels: state.showGrammarLabels,
-              })).join("")
-            : `<span class="muted tiny">Tap tiles below to build the sentence.</span>`}
-        </div>
-      </div>
-      <div class="tile-area">
-        <div class="chip-row">
-          ${state.bankTiles.map((tile) => renderBuilderTile(tile, analysis, {
-            action: "progressive-builder-pick",
-            disabled: feedback?.correct,
-            showGrammarLabels: state.showGrammarLabels,
-          })).join("")}
-        </div>
-      </div>
-      ${feedback ? renderBuilderFeedback(feedback, fullAnswer, analysis) : ""}
-      ${hasGrammar && state.showBuilderHint ? renderGrammarHelpPanel(analysis, {
-        id: "progressive-builder-grammar",
-        open: true,
-        compact: !feedback,
-        hideSummary: true,
-      }) : ""}
-      <div class="button-row">
-        <button class="button secondary" data-action="progressive-builder-back">Back</button>
-        ${hasGrammar ? `<button class="button secondary grammar-icon-button" data-action="progressive-toggle-builder-hint" aria-expanded="${state.showBuilderHint ? "true" : "false"}" aria-label="Show builder grammar help">?</button>` : ""}
-        ${hasGrammar ? `<button class="button secondary" data-action="progressive-toggle-grammar-labels" aria-pressed="${state.showGrammarLabels ? "true" : "false"}">${state.showGrammarLabels ? "Hide Grammar Labels" : "Show Grammar Labels"}</button>` : ""}
-        <button class="button secondary" data-action="progressive-builder-reset" ${feedback?.correct ? "disabled" : ""}>Reset</button>
-        <button class="button" data-action="progressive-builder-check" ${feedback?.correct || !state.selectedTiles.length ? "disabled" : ""}>Check answer</button>
-        ${feedback?.correct ? `<button class="button" data-action="progressive-builder-next">${isLastBuilderSentence(pack, state) ? "Review result" : "Next sentence"}</button>` : ""}
-      </div>
-    </section>
-  `;
-}
-
-function renderBuilderFeedback(feedback, fullAnswer, analysis) {
-  if (feedback.correct) {
-    return renderProgressiveFeedback({ tone: "correct", title: "Nice sentence", body: fullAnswer });
-  }
-  const grammarClue = Array.isArray(analysis?.grammarExplanation) && analysis.grammarExplanation.length
-    ? `<p class="tiny">${escapeHtml(analysis.grammarExplanation[0])}</p>`
-    : "";
-  return renderProgressiveFeedback({
-    tone: "wrong",
-    title: "Try again",
-    body: feedback.hint || "Check the next tile in the sequence.",
-    extra: grammarClue,
-  });
-}
-
-function renderProgressiveFeedback({ tone = "info", title, body, extra = "" }) {
-  const expression = tone === "correct" ? "happy" : tone === "wrong" ? "sad" : "thinking";
-  return `
-    <div class="feedback ${escapeHtml(tone)}">
-      <div class="feedback-header">
-        <span class="feedback-icon" aria-hidden="true">
-          <img src="./brand/fox-tutor/transparent/${expression}.png" class="fox-mascot" alt="" />
-        </span>
-        <strong>${escapeHtml(title)}</strong>
-      </div>
-      <p class="tiny">${escapeHtml(body)}</p>
-      ${extra}
-    </div>
-  `;
-}
-
-function renderInlineGrammarTokens(analysis) {
-  const tokens = Array.isArray(analysis?.tokens) ? analysis.tokens : [];
-  if (!tokens.length) return "";
-  return `
-    <div class="grammar-inline-tokens" aria-label="Grammar token hints">
-      ${tokens.map((token) => renderGrammarTokenTooltip(token)).join("")}
-    </div>
-  `;
-}
-
-function renderBuilderTile(tile, analysis, { action, answer = false, disabled = false, showGrammarLabels = false } = {}) {
-  const token = findGrammarTokenForTile(tile.text, analysis);
-  const label = showGrammarLabels && token ? humanizeLabel(token.type || token.role || "") : "";
-  return `
-    <button class="tile ${answer ? "answer" : ""} ${label ? "has-grammar-label" : ""}"
-            data-action="${escapeHtml(action)}"
-            data-tile-id="${escapeHtml(tile.id)}"
-            ${disabled ? "disabled" : ""}>
-      <span>${escapeHtml(tile.text)}</span>
-      ${label ? `<small>${escapeHtml(label)}</small>` : ""}
-    </button>
-  `;
-}
-
-function findGrammarTokenForTile(tileText, analysis) {
-  const tokens = Array.isArray(analysis?.tokens) ? analysis.tokens : [];
-  const needle = normalizeTokenText(tileText);
-  if (!needle) return null;
-  return tokens.find((token) => {
-    const haystack = normalizeTokenText(token.text);
-    return haystack === needle || haystack.includes(needle) || needle.includes(haystack);
-  }) || null;
-}
-
-function normalizeTokenText(value) {
-  return String(value || "")
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[.,!?;:。！？]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function renderReviewPhase(pack, state) {
-  const vocabWrong = state.score.vocabTotal - state.score.vocabCorrect;
-  const builderWrong = state.score.builderTotal - state.score.builderCorrect;
-  return `
-    <section class="summary-card lead progressive-lesson-card">
-      <p class="eyebrow">Review result</p>
-      <h2>Lesson complete</h2>
-      <div class="progressive-review-grid">
-        <div class="metric"><strong>${state.score.vocabCorrect}/${state.score.vocabTotal}</strong><span>vocabulary correct</span></div>
-        <div class="metric"><strong>${state.score.builderCorrect}/${state.score.builderTotal}</strong><span>sentence builders correct</span></div>
-        <div class="metric"><strong>${vocabWrong + builderWrong}</strong><span>items to revisit</span></div>
-      </div>
-      <div class="divider"></div>
-      <h3>Mistakes list</h3>
-      ${state.mistakes.length ? `
-        <div class="review-list">
-          ${state.mistakes.map((mistake) => `
-            <div class="review-item">
-              <div class="review-item-main">
-                <strong>${escapeHtml(mistake.prompt)}</strong>
-                <span class="tiny muted">${escapeHtml(mistake.phase)} · expected: ${escapeHtml(mistake.expected)}</span>
-                ${mistake.selected ? `<span class="tiny muted">selected: ${escapeHtml(mistake.selected)}</span>` : ""}
-              </div>
-              ${mistake.conceptId ? `<span class="badge amber">${escapeHtml(mistake.conceptId)}</span>` : ""}
-            </div>
-          `).join("")}
-        </div>
-      ` : `<p class="muted tiny">No mistakes recorded for this run.</p>`}
-      <div class="button-row">
-        <button class="button" data-action="progressive-restart">Restart lesson</button>
-        <button class="button secondary" data-action="progressive-change-language">Change language</button>
-      </div>
-    </section>
-  `;
-}
-
-function renderLessonError(message) {
-  return `<section class="empty-state-card"><h2>Lesson unavailable</h2><p>${escapeHtml(message)}</p></section>`;
-}
-
-function renderGrammarSupport(pack, state) {
-  const tokens = Array.isArray(pack.grammarTokens) ? pack.grammarTokens : [];
-  if (!tokens.length) return "";
-  return `
-    <details class="progressive-grammar-support">
-      <summary>Grammar support tokens</summary>
-      <div class="progressive-grammar-grid">
-        ${tokens.map((token) => `
-          <div class="progressive-grammar-token">
-            <span>${escapeHtml(token.translations?.en || token.tokenId)}</span>
-            <strong>${escapeHtml(token.translations?.[state.targetLang] || "—")}</strong>
-          </div>
-        `).join("")}
-      </div>
-    </details>
-  `;
-}
-
-export function runProgressiveLessonAction(state, pack, action, dataset = {}) {
-  prepareProgressiveLessonState(state, pack);
-
-  switch (action) {
-    case "progressive-replay":
-      return replayCurrentStep(pack, state);
-    case "progressive-jump-phase":
-      jumpProgressivePhase(state, pack, dataset.phase);
-      return null;
-    case "progressive-listen-back":
-      goBackListen(pack, state);
-      return null;
-    case "progressive-listen-next":
-      advanceListenStep(pack, state);
-      return null;
-    case "progressive-toggle-listen-grammar":
-      state.showListenGrammar = !state.showListenGrammar;
-      return null;
-    case "progressive-vocab-answer":
-      return answerVocab(state, pack, dataset.value);
-    case "progressive-vocab-back":
-      goBackVocab(state, pack);
-      return null;
-    case "progressive-vocab-next":
-      advanceVocab(state, pack);
-      return null;
-    case "progressive-builder-pick":
-      moveBuilderTile(state, dataset.tileId, "bank");
-      return null;
-    case "progressive-builder-remove":
-      moveBuilderTile(state, dataset.tileId, "answer");
-      return null;
-    case "progressive-builder-reset":
-      state.feedback = null;
-      state.showBuilderHint = false;
-      state.selectedTiles = [];
-      resetBuilderTiles(state, pack);
-      return null;
-    case "progressive-toggle-builder-hint":
-      state.showBuilderHint = !state.showBuilderHint;
-      return null;
-    case "progressive-toggle-grammar-labels":
-      state.showGrammarLabels = !state.showGrammarLabels;
-      return null;
-    case "progressive-builder-check":
-      return checkBuilder(state, pack);
-    case "progressive-builder-back":
-      goBackBuilder(state, pack);
-      return null;
-    case "progressive-builder-next":
-      advanceBuilder(state, pack);
-      return null;
-    case "progressive-restart":
-    case "progressive-change-language":
-      return createProgressiveLessonState(state.targetLang, state.packPath, state);
-    default:
-      return null;
-  }
-}
-
-export function changeProgressiveLessonLanguage(state, targetLang) {
-  return createProgressiveLessonState(targetLang, state.packPath, state);
-}
-
-export function changeProgressiveLessonPack(state, packPath) {
-  return createProgressiveLessonState(state.targetLang, packPath, state);
-}
-
-function replayCurrentStep(pack, state) {
-  const cue = getCurrentSpeechCue(pack, state);
-  if (!cue) return null;
-  return { speak: cue };
-}
-
-function answerVocab(state, pack, selected) {
-  if (state.feedback) return null;
-  const item = pack.vocabulary[state.vocabIndex];
-  const expected = getDisplayText(item.translations[state.targetLang], state.targetLang);
-  const prompt = getDisplayText(item.translations.en, "en");
-  const correct = selected === expected;
-  const answerKey = item.conceptId || String(state.vocabIndex);
-  const isFirstAttempt = !state.answered.vocab[answerKey];
-  state.feedback = { correct, selected };
-  if (isFirstAttempt) {
-    state.answered.vocab[answerKey] = { correct, selected };
-  }
-  if (correct && isFirstAttempt) {
-    state.score.vocabCorrect += 1;
-  } else if (!correct && isFirstAttempt) {
-    state.mistakes.push({
-      phase: "Vocabulary",
-      conceptId: item.conceptId,
-      prompt,
-      expected,
-      selected,
-    });
-  }
-  return { speak: { text: expected, lang: state.targetLang } };
-}
-
-function advanceVocab(state, pack) {
-  state.feedback = null;
-  if (isLastVocabItem(pack, state)) {
-    state.phase = "builder";
-    state.sentenceIndex = 0;
-    state.selectedTiles = [];
-    resetBuilderTiles(state, pack);
-    return;
-  }
-  state.vocabIndex += 1;
-  const item = pack.vocabulary[state.vocabIndex];
-  state.vocabOptions = item ? buildVocabOptions(item, pack.vocabulary, state.targetLang) : [];
-}
-
-function checkBuilder(state, pack) {
-  const sentence = pack.sentenceBuilders[state.sentenceIndex];
-  const expectedTiles = sentence.translations[state.targetLang]?.tiles || [];
-  const selectedTexts = state.selectedTiles.map((tile) => tile.text);
-  const correct = compareTiles(selectedTexts, expectedTiles);
-  const prompt = sentence.translations.en?.text || "";
-  const expected = sentence.translations[state.targetLang]?.text || expectedTiles.join(" ");
-  const answerKey = sentence.sentenceId || String(state.sentenceIndex);
-  const isFirstAttempt = !state.answered.builder[answerKey];
-
-  if (correct) {
-    state.feedback = { correct: true };
-    if (isFirstAttempt) {
-      state.answered.builder[answerKey] = { correct: true, selected: selectedTexts.join(" ") };
-      state.score.builderCorrect += 1;
+    // ── Jump to phase ───────────────────────────────────────────────────────
+    case "pl-jump-phase": {
+      const phase = data.phase;
+      if (phase === "listen") {
+        return {
+          state: { ...state, phase: "listen", vocabFeedback: null, builderFeedback: null, showGrammar: false },
+          effect: null,
+        };
+      }
+      if (phase === "vocab") {
+        const idx = Math.min(state.vocabIndex, Math.max(0, vocab.length - 1));
+        return {
+          state: {
+            ...state, phase: "vocab",
+            vocabIndex: idx,
+            vocabOptions: buildVocabOptions(pack, idx, state.targetLang),
+            vocabFeedback: null, builderFeedback: null,
+          },
+          effect: null,
+        };
+      }
+      if (phase === "builder") {
+        const idx = Math.min(state.sentenceIndex, Math.max(0, builders.length - 1));
+        return {
+          state: {
+            ...state, phase: "builder",
+            sentenceIndex: idx,
+            bankTiles: makeBankTiles(pack, idx, state.targetLang),
+            selectedTiles: [], builderFeedback: null, showBuilderGrammar: false,
+          },
+          effect: null,
+        };
+      }
+      return { state, effect: null };
     }
-    return { speak: { text: expected, lang: state.targetLang } };
+
+    // ── Listen: replay ──────────────────────────────────────────────────────
+    case "pl-replay": {
+      const cue = getCurrentSpeechCue(state, pack);
+      return { state, effect: cue ? { speak: cue } : null };
+    }
+
+    // ── Listen: back ────────────────────────────────────────────────────────
+    case "pl-listen-back": {
+      if (state.stepIndex > 0) {
+        return { state: { ...state, stepIndex: state.stepIndex - 1, showGrammar: false }, effect: null };
+      }
+      if (state.chainIndex > 0) {
+        const prevChain = chains[state.chainIndex - 1];
+        const lastStep  = Math.max(0, (prevChain?.steps?.length ?? 1) - 1);
+        return { state: { ...state, chainIndex: state.chainIndex - 1, stepIndex: lastStep, showGrammar: false }, effect: null };
+      }
+      return { state, effect: null };
+    }
+
+    // ── Listen: next ────────────────────────────────────────────────────────
+    case "pl-listen-next": {
+      const chain = chains[state.chainIndex];
+      if (state.stepIndex < (chain?.steps?.length ?? 0) - 1) {
+        const next = { ...state, stepIndex: state.stepIndex + 1, showGrammar: false };
+        const cue  = getCurrentSpeechCue(next, pack);
+        return { state: next, effect: cue ? { speak: cue } : null };
+      }
+      if (state.chainIndex < chains.length - 1) {
+        const next = { ...state, chainIndex: state.chainIndex + 1, stepIndex: 0, showGrammar: false };
+        const cue  = getCurrentSpeechCue(next, pack);
+        return { state: next, effect: cue ? { speak: cue } : null };
+      }
+      // Advance to vocab
+      return {
+        state: {
+          ...state, phase: "vocab",
+          vocabIndex: 0,
+          vocabOptions: buildVocabOptions(pack, 0, state.targetLang),
+          vocabFeedback: null, showGrammar: false,
+        },
+        effect: null,
+      };
+    }
+
+    case "pl-toggle-grammar": {
+      return { state: { ...state, showGrammar: !state.showGrammar }, effect: null };
+    }
+
+    case "pl-toggle-grammar-labels": {
+      return { state: { ...state, showGrammarLabels: !state.showGrammarLabels }, effect: null };
+    }
+
+    // ── Vocab: answer ───────────────────────────────────────────────────────
+    case "pl-vocab-answer": {
+      const conceptId = vocab[state.vocabIndex]?.conceptId;
+      if (!conceptId) return { state, effect: null };
+      const correct       = data.correct === "true";
+      const isFirstAttempt = !state.answered.vocab[conceptId];
+      const newAnswered   = { ...state.answered, vocab: { ...state.answered.vocab, [conceptId]: true } };
+      const newScore      = { ...state.score };
+      const newMistakes   = [...state.mistakes];
+
+      if (isFirstAttempt) {
+        newScore.vocabTotal += 1;
+        if (correct) {
+          newScore.vocabCorrect += 1;
+        } else {
+          const cv = vocab[state.vocabIndex];
+          newMistakes.push({
+            phase:    "Vocabulary",
+            conceptId,
+            prompt:   getDisplayText(cv?.translations?.en, "en"),
+            expected: getDisplayText(cv?.translations?.[state.targetLang], state.targetLang),
+            selected: data.selectedText || "",
+          });
+        }
+      }
+
+      return {
+        state: {
+          ...state, answered: newAnswered,
+          vocabFeedback: { correct, selectedText: data.selectedText || "" },
+          score: newScore, mistakes: newMistakes,
+        },
+        effect: null,
+      };
+    }
+
+    // ── Vocab: next ─────────────────────────────────────────────────────────
+    case "pl-vocab-next": {
+      if (state.vocabIndex < vocab.length - 1) {
+        const idx = state.vocabIndex + 1;
+        return {
+          state: { ...state, vocabIndex: idx, vocabOptions: buildVocabOptions(pack, idx, state.targetLang), vocabFeedback: null },
+          effect: null,
+        };
+      }
+      // Advance to builder
+      return {
+        state: {
+          ...state, phase: "builder",
+          sentenceIndex: 0,
+          bankTiles: makeBankTiles(pack, 0, state.targetLang),
+          selectedTiles: [], builderFeedback: null, vocabFeedback: null,
+        },
+        effect: null,
+      };
+    }
+
+    // ── Vocab: back ─────────────────────────────────────────────────────────
+    case "pl-vocab-back": {
+      if (state.vocabIndex > 0) {
+        const idx = state.vocabIndex - 1;
+        return {
+          state: { ...state, vocabIndex: idx, vocabOptions: buildVocabOptions(pack, idx, state.targetLang), vocabFeedback: null },
+          effect: null,
+        };
+      }
+      const lastChain = chains.length - 1;
+      return {
+        state: {
+          ...state, phase: "listen",
+          chainIndex: Math.max(0, lastChain),
+          stepIndex:  Math.max(0, (chains[lastChain]?.steps?.length ?? 1) - 1),
+          vocabFeedback: null,
+        },
+        effect: null,
+      };
+    }
+
+    // ── Builder: pick tile ──────────────────────────────────────────────────
+    case "pl-builder-pick": {
+      const tile = state.bankTiles.find(t => t.id === data.tileId);
+      if (!tile) return { state, effect: null };
+      return {
+        state: {
+          ...state,
+          selectedTiles: [...state.selectedTiles, tile],
+          bankTiles:     state.bankTiles.filter(t => t.id !== data.tileId),
+          builderFeedback: null,
+        },
+        effect: null,
+      };
+    }
+
+    // ── Builder: return tile ────────────────────────────────────────────────
+    case "pl-builder-remove": {
+      const tile = state.selectedTiles.find(t => t.id === data.tileId);
+      if (!tile) return { state, effect: null };
+      return {
+        state: {
+          ...state,
+          bankTiles:     [...state.bankTiles, tile],
+          selectedTiles: state.selectedTiles.filter(t => t.id !== data.tileId),
+          builderFeedback: null,
+        },
+        effect: null,
+      };
+    }
+
+    // ── Builder: reset ──────────────────────────────────────────────────────
+    case "pl-builder-reset": {
+      return {
+        state: {
+          ...state,
+          selectedTiles: [],
+          bankTiles:     makeBankTiles(pack, state.sentenceIndex, state.targetLang),
+          builderFeedback: null,
+        },
+        effect: null,
+      };
+    }
+
+    // ── Builder: check ──────────────────────────────────────────────────────
+    case "pl-builder-check": {
+      const sentence   = builders[state.sentenceIndex];
+      const trans      = sentence?.translations?.[state.targetLang];
+      const expected   = trans?.tiles || [];
+      const correct    = compareTiles(state.selectedTiles, expected);
+      const sid        = sentence?.sentenceId;
+      const isFirst    = sid && !state.answered.builder[sid];
+      const newAnswered = sid
+        ? { ...state.answered, builder: { ...state.answered.builder, [sid]: true } }
+        : state.answered;
+      const newScore    = { ...state.score };
+      const newMistakes = [...state.mistakes];
+
+      if (isFirst) {
+        newScore.builderTotal += 1;
+        if (correct) {
+          newScore.builderCorrect += 1;
+        } else {
+          newMistakes.push({
+            phase:    "Sentence builder",
+            conceptId:(sentence.concepts || [])[0] || sid,
+            prompt:   sentence.translations?.en?.text || "",
+            expected: expected.join(" "),
+            selected: state.selectedTiles.map(t => t.text).join(" "),
+          });
+        }
+      }
+
+      return {
+        state: { ...state, answered: newAnswered, builderFeedback: { correct }, score: newScore, mistakes: newMistakes },
+        effect: null,
+      };
+    }
+
+    // ── Builder: next ───────────────────────────────────────────────────────
+    case "pl-builder-next": {
+      if (state.sentenceIndex < builders.length - 1) {
+        const idx = state.sentenceIndex + 1;
+        return {
+          state: {
+            ...state,
+            sentenceIndex: idx,
+            bankTiles:     makeBankTiles(pack, idx, state.targetLang),
+            selectedTiles: [], builderFeedback: null,
+          },
+          effect: null,
+        };
+      }
+      return { state: { ...state, phase: "review", builderFeedback: null }, effect: null };
+    }
+
+    // ── Builder: back ───────────────────────────────────────────────────────
+    case "pl-builder-back": {
+      if (state.sentenceIndex > 0) {
+        const idx = state.sentenceIndex - 1;
+        return {
+          state: {
+            ...state,
+            sentenceIndex: idx,
+            bankTiles:     makeBankTiles(pack, idx, state.targetLang),
+            selectedTiles: [], builderFeedback: null,
+          },
+          effect: null,
+        };
+      }
+      const lastVocab = Math.max(0, vocab.length - 1);
+      return {
+        state: {
+          ...state, phase: "vocab",
+          vocabIndex:   lastVocab,
+          vocabOptions: buildVocabOptions(pack, lastVocab, state.targetLang),
+          vocabFeedback: null, builderFeedback: null,
+        },
+        effect: null,
+      };
+    }
+
+    case "pl-toggle-builder-grammar": {
+      return { state: { ...state, showBuilderGrammar: !state.showBuilderGrammar }, effect: null };
+    }
+
+    // ── Review: restart / change language ───────────────────────────────────
+    case "pl-restart": {
+      return {
+        state: freshState({
+          catalogPackId:   state.catalogPackId,
+          catalogStageId:  state.catalogStageId,
+          catalogLessonId: state.catalogLessonId,
+          packPath:        state.packPath,
+          targetLang:      state.targetLang,
+          vocabOptions:    buildVocabOptions(pack, 0, state.targetLang),
+        }),
+        effect: null,
+      };
+    }
+
+    case "pl-change-language": {
+      const lang = data.lang || "de";
+      return {
+        state: freshState({
+          catalogPackId:   state.catalogPackId,
+          catalogStageId:  state.catalogStageId,
+          catalogLessonId: state.catalogLessonId,
+          packPath:        state.packPath,
+          targetLang:      lang,
+          vocabOptions:    buildVocabOptions(pack, 0, lang),
+        }),
+        effect: null,
+      };
+    }
+
+    default:
+      return { state, effect: null };
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Rendering
+// ═════════════════════════════════════════════════════════════════════════════
+
+function foxFace(expr = "calm") {
+  return `<img src="./brand/fox-tutor/transparent/${escapeHtml(expr)}.png" class="fox-mascot" alt="" aria-hidden="true"/>`;
+}
+
+function plFeedback(correct, okMsg, errMsg) {
+  const expr = correct ? "happy" : "sad";
+  return `
+    <div class="feedback ${correct ? "correct" : "wrong"}" style="margin-top:14px;">
+      <div class="feedback-header">
+        <span class="feedback-icon">${foxFace(expr)}</span>
+        <strong>${escapeHtml(correct ? okMsg : errMsg)}</strong>
+      </div>
+    </div>`;
+}
+
+// ── Header card ───────────────────────────────────────────────────────────────
+
+function renderHeaderCard(state, catalog, pack) {
+  const catPack  = catalog.packs.find(p => p.id === state.catalogPackId);
+  const catStage = catPack?.stages.find(s => s.id === state.catalogStageId);
+
+  const packOpts = catalog.packs.map(p =>
+    `<option value="${escapeHtml(p.id)}" ${p.id === state.catalogPackId ? "selected" : ""}>${escapeHtml(p.label)}</option>`
+  ).join("");
+  const stageOpts = (catPack?.stages || []).map(s =>
+    `<option value="${escapeHtml(s.id)}" ${s.id === state.catalogStageId ? "selected" : ""}>${escapeHtml(s.label)}</option>`
+  ).join("");
+  const lessonOpts = (catStage?.lessons || []).map(l =>
+    `<option value="${escapeHtml(l.id)}" ${l.id === state.catalogLessonId ? "selected" : ""}>${escapeHtml(l.label)}</option>`
+  ).join("");
+  const langOpts = TARGET_LANGUAGES.map(l =>
+    `<option value="${escapeHtml(l.code)}" ${l.code === state.targetLang ? "selected" : ""}>${escapeHtml(l.flag)} ${escapeHtml(l.label)}</option>`
+  ).join("");
+
+  const phaseIdx = PHASES.findIndex(p => p.id === state.phase);
+  const phasePct  = Math.round((phaseIdx / PHASES.length) * 100);
+
+  const grammarTargets = pack?.sourceTopic?.grammarTargets?.[state.targetLang] || [];
+  const grammarBadges  = grammarTargets.slice(0, 3).map(g =>
+    `<span class="badge amber">${escapeHtml(g.replace(/_/g, " "))}</span>`
+  ).join("");
+
+  return `
+    <div class="pl-header-card section-card">
+      <p class="eyebrow" style="color:var(--fox-teal);margin-bottom:4px;">Progressive Language</p>
+      <h2 class="pl-lesson-title">${escapeHtml(pack?.title || catStage?.lessons.find(l => l.id === state.catalogLessonId)?.label || "Lesson")}</h2>
+      ${pack?.description ? `<p class="muted tiny pl-lesson-desc">${escapeHtml(pack.description)}</p>` : ""}
+      <div class="pl-meta-row">
+        <span class="badge blue">EN</span>
+        <span class="pl-arrow">→</span>
+        <span class="badge coral">${escapeHtml(getLangFlag(state.targetLang))} ${escapeHtml(getLangLabel(state.targetLang))}</span>
+        ${grammarBadges}
+      </div>
+      <div class="pl-header-controls">
+        <label class="pl-ctrl-label">Pack<select id="pl-pack-select">${packOpts}</select></label>
+        <label class="pl-ctrl-label">Stage<select id="pl-stage-select">${stageOpts}</select></label>
+        <label class="pl-ctrl-label">Lesson<select id="pl-lesson-select">${lessonOpts}</select></label>
+        <label class="pl-ctrl-label">Language<select id="pl-language-select">${langOpts}</select></label>
+      </div>
+      ${phasePct > 0 ? `
+        <div class="pl-lesson-progress-bar" title="${phasePct}% through lesson">
+          <div class="pl-lesson-progress-fill" style="width:${phasePct}%"></div>
+        </div>` : ""}
+    </div>`;
+}
+
+// ── Phase stepper ─────────────────────────────────────────────────────────────
+
+function renderStepper(currentPhase) {
+  const currentIdx = PHASES.findIndex(p => p.id === currentPhase);
+  return `
+    <nav class="pl-stepper" aria-label="Lesson phases">
+      ${PHASES.map((phase, i) => {
+        const done   = i < currentIdx;
+        const active = i === currentIdx;
+        const cls    = done ? "done" : active ? "active" : "";
+        const isJumpable = i < 3; // Review is not a direct jump target
+        const inner  = `
+          <span class="pl-step-circle">${done ? "✓" : i + 1}</span>
+          <span class="pl-step-label">${escapeHtml(phase.icon)} ${escapeHtml(phase.label)}</span>`;
+        return `
+          ${i > 0 ? `<div class="pl-step-line ${done ? "done" : ""}"></div>` : ""}
+          ${isJumpable
+            ? `<button class="pl-step ${cls}" data-action="pl-jump-phase" data-phase="${phase.id}" aria-current="${active ? "step" : "false"}" title="Go to ${phase.label}">${inner}</button>`
+            : `<div class="pl-step ${cls}" aria-current="${active ? "step" : "false"}">${inner}</div>`
+          }`;
+      }).join("")}
+    </nav>`;
+}
+
+// ── Grammar helpers ───────────────────────────────────────────────────────────
+
+function hasGrammarAnalysis(translation) {
+  const a = translation?.analysis;
+  return !!(a?.grammarExplanation?.length || a?.tokens?.length || a?.sentencePattern);
+}
+
+function renderGrammarPanel(translation, targetLang) {
+  if (!hasGrammarAnalysis(translation)) return "";
+  const a = translation.analysis;
+  const lang = getLangLabel(targetLang);
+
+  const patternHtml = a.sentencePattern
+    ? `<div class="pl-gram-row"><span class="pl-gram-key">Pattern</span><span class="pl-gram-val">${escapeHtml(a.sentencePattern)}</span></div>`
+    : "";
+  const literalHtml = a.literalOrderExplanation
+    ? `<div class="pl-gram-row"><span class="pl-gram-key">Word order</span><span class="pl-gram-val pl-gram-literal">${escapeHtml(a.literalOrderExplanation)}</span></div>`
+    : "";
+  const explHtml = (a.grammarExplanation || []).length
+    ? `<ul class="pl-gram-list">${a.grammarExplanation.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`
+    : "";
+  const tokenDetails = (a.tokens || []).map(t => `
+    <div class="pl-tok-detail">
+      <span class="pl-tok-surface">${escapeHtml(t.text)}</span>
+      ${t.meaning   ? `<span class="pl-tok-meaning">${escapeHtml(t.meaning)}</span>` : ""}
+      ${t.grammarNote ? `<span class="pl-tok-note muted tiny">${escapeHtml(t.grammarNote)}</span>` : ""}
+    </div>`).join("");
+
+  return `
+    <div class="pl-grammar-panel">
+      <div class="pl-gram-head"><span>📚 ${escapeHtml(lang)} Grammar</span></div>
+      <div class="pl-gram-body">
+        ${patternHtml}${literalHtml}${explHtml}
+        ${tokenDetails ? `<div class="pl-tok-details">${tokenDetails}</div>` : ""}
+      </div>
+    </div>`;
+}
+
+function renderTokenRow(translation, showLabels = false) {
+  const tokens = translation?.analysis?.tokens;
+  if (!tokens?.length) {
+    const text = translation?.text || "";
+    return text ? `<div class="pl-tok-row pl-tok-plain"><span>${escapeHtml(text)}</span></div>` : "";
+  }
+  return `
+    <div class="pl-tok-row">
+      ${tokens.map(t => `
+        <div class="pl-tok" tabindex="0" title="${escapeHtml(t.meaning || "")}" aria-label="${escapeHtml(t.text)}: ${escapeHtml(t.meaning || "")}">
+          <span class="pl-tok-surface">${escapeHtml(t.text)}</span>
+          ${showLabels && t.meaning ? `<span class="pl-tok-gloss">${escapeHtml(t.meaning)}</span>` : ""}
+        </div>`).join("")}
+    </div>`;
+}
+
+// ── Listen phase ──────────────────────────────────────────────────────────────
+
+function renderListenPhase(state, pack) {
+  const chains = pack.phraseProgressionChains || [];
+  if (!chains.length) return `<div class="section-card pl-lesson-card"><p class="muted">No phrase chains in this pack.</p></div>`;
+
+  const totalSteps = chains.reduce((n, c) => n + (c.steps?.length || 0), 0);
+  const doneBefore  = chains.slice(0, state.chainIndex).reduce((n, c) => n + (c.steps?.length || 0), 0);
+  const doneSteps   = doneBefore + state.stepIndex + 1;
+  const pct         = totalSteps > 0 ? Math.round((doneSteps / totalSteps) * 100) : 0;
+
+  const chain = chains[state.chainIndex];
+  const step  = chain?.steps?.[state.stepIndex];
+  if (!step) return `<div class="section-card pl-lesson-card"><p class="muted">No step data.</p></div>`;
+
+  const enText     = step.translations?.en?.text || "";
+  const targetTr   = step.translations?.[state.targetLang];
+  const targetText = targetTr?.text || "";
+  const reading    = getReadingHint(targetTr, state.targetLang);
+  const focus      = step.focus ? step.focus.replace(/_/g, " ") : "";
+  const hasGrammar = hasGrammarAnalysis(targetTr);
+  const isFirst    = state.chainIndex === 0 && state.stepIndex === 0;
+  const isLast     = state.chainIndex === chains.length - 1 && state.stepIndex === (chain?.steps?.length ?? 1) - 1;
+  const speechLang = SPEECH_LANG_MAP[state.targetLang] || "en-GB";
+
+  return `
+    <div class="section-card pl-lesson-card">
+      <div class="pl-phase-bar">
+        <div class="pl-phase-bar-track"><div class="pl-phase-bar-fill" style="width:${pct}%"></div></div>
+        <div class="pl-phase-bar-meta">
+          <span class="pl-phase-name">🎧 Listen &amp; Repeat</span>
+          <span class="muted tiny">Step ${doneSteps} / ${totalSteps}</span>
+        </div>
+      </div>
+
+      ${focus ? `<div class="pl-focus-row"><span class="mode-chip blue">${escapeHtml(focus)}</span>${chain?.difficulty ? `<span class="muted tiny" style="margin-left:6px;">${escapeHtml(chain.difficulty)}</span>` : ""}</div>` : ""}
+
+      <div class="pl-phrase-grid">
+        <div class="pl-phrase-card en">
+          <div class="pl-phrase-lang">English</div>
+          <div class="pl-phrase-text">${escapeHtml(enText)}</div>
+        </div>
+        <div class="pl-phrase-card target">
+          <div class="pl-phrase-lang">${escapeHtml(getLangFlag(state.targetLang))} ${escapeHtml(getLangLabel(state.targetLang))}</div>
+          <div class="pl-phrase-text">${escapeHtml(targetText)}</div>
+          ${reading ? `<div class="pl-phrase-reading">${escapeHtml(reading)}</div>` : ""}
+          <div class="pl-audio-row">
+            <button class="pl-audio-btn" data-action="pl-replay" title="Replay">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4z"/><path d="M13.555 5.168A1 1 0 0012 6v8a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4z"/></svg>
+              Replay
+            </button>
+            <button class="pl-audio-btn" data-action="speak" data-text="${escapeHtml(targetText)}" data-language="${escapeHtml(speechLang)}" title="Play">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
+
+      ${renderTokenRow(targetTr, state.showGrammarLabels)}
+
+      ${hasGrammar ? `
+        <div class="pl-grammar-row-actions">
+          <button class="pl-gram-chip ${state.showGrammar ? "active" : ""}" data-action="pl-toggle-grammar">
+            📚 ${state.showGrammar ? "Hide" : "Show"} grammar
+          </button>
+          <button class="button ghost pl-labels-btn" data-action="pl-toggle-grammar-labels" style="font-size:0.8rem;padding:4px 10px;">
+            ${state.showGrammarLabels ? "Hide labels" : "Show word labels"}
+          </button>
+        </div>
+        ${state.showGrammar ? renderGrammarPanel(targetTr, state.targetLang) : ""}
+      ` : ""}
+
+      <div class="pl-nav-row">
+        <button class="button ghost" data-action="pl-listen-back" ${isFirst ? "disabled" : ""}>← Back</button>
+        <button class="button" data-action="pl-listen-next">${isLast ? "Vocabulary →" : "Next →"}</button>
+      </div>
+    </div>`;
+}
+
+// ── Vocab phase ───────────────────────────────────────────────────────────────
+
+function renderVocabPhase(state, pack) {
+  const vocab = pack.vocabulary || [];
+  if (!vocab.length) return `<div class="section-card pl-lesson-card"><p class="muted">No vocabulary in this pack.</p></div>`;
+
+  const current  = vocab[state.vocabIndex];
+  const pct      = Math.round((state.vocabIndex / vocab.length) * 100);
+  const enText   = getDisplayText(current?.translations?.en, "en");
+  const reading  = getReadingHint(current?.translations?.[state.targetLang], state.targetLang);
+  const isLast   = state.vocabIndex >= vocab.length - 1;
+  const answered = current?.conceptId && state.answered.vocab[current.conceptId];
+  const options  = state.vocabOptions.length ? state.vocabOptions : buildVocabOptions(pack, state.vocabIndex, state.targetLang);
+
+  const optionBtns = options.map(opt => {
+    let cls = "option-button";
+    if (answered) {
+      if (opt.correct)                                                cls += " is-correct";
+      else if (state.vocabFeedback?.selectedText === opt.text)        cls += " is-wrong";
+    }
+    return `
+      <button class="${cls}"
+        data-action="pl-vocab-answer"
+        data-correct="${opt.correct}"
+        data-selected-text="${escapeHtml(opt.text)}"
+        data-concept-id="${escapeHtml(current?.conceptId || "")}"
+        ${answered ? "disabled" : ""}>${escapeHtml(opt.text)}</button>`;
+  }).join("");
+
+  return `
+    <div class="section-card pl-lesson-card">
+      <div class="pl-phase-bar">
+        <div class="pl-phase-bar-track"><div class="pl-phase-bar-fill" style="width:${pct}%"></div></div>
+        <div class="pl-phase-bar-meta">
+          <span class="pl-phase-name">📖 Vocabulary</span>
+          <span class="muted tiny">${state.vocabIndex + 1} / ${vocab.length}</span>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-box-top">
+          <div class="question-box-copy">
+            <span class="mode-chip blue">What is the ${escapeHtml(getLangLabel(state.targetLang))} for…</span>
+            <div class="question-prompt">${escapeHtml(enText)}</div>
+            ${reading ? `<p class="muted tiny">${escapeHtml(reading)}</p>` : ""}
+            <div class="badge-row" style="margin-top:6px;gap:5px;">
+              ${current?.type ? `<span class="badge blue">${escapeHtml(current.type)}</span>` : ""}
+              ${current?.semanticCategory ? `<span class="badge amber">${escapeHtml(current.semanticCategory)}</span>` : ""}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="option-grid" style="margin-top:14px;">${optionBtns}</div>
+
+      ${state.vocabFeedback ? plFeedback(
+        state.vocabFeedback.correct,
+        "Correct! Well done.",
+        `The ${getLangLabel(state.targetLang)} word was: ${getDisplayText(current?.translations?.[state.targetLang], state.targetLang)}`
+      ) : ""}
+
+      <div class="pl-nav-row" style="margin-top:${answered ? "14px" : "10px"};">
+        <button class="button ghost" data-action="pl-vocab-back">← Back</button>
+        ${answered ? `<button class="button" data-action="pl-vocab-next">${isLast ? "Builder →" : "Next word →"}</button>` : ""}
+      </div>
+    </div>`;
+}
+
+// ── Builder phase ─────────────────────────────────────────────────────────────
+
+function renderBuilderPhase(state, pack) {
+  const builders = pack.sentenceBuilders || [];
+  if (!builders.length) return `<div class="section-card pl-lesson-card"><p class="muted">No sentence builders in this pack.</p></div>`;
+
+  const sentence = builders[state.sentenceIndex];
+  const targetTr = sentence?.translations?.[state.targetLang];
+  const enText   = sentence?.translations?.en?.text || "";
+  const pct      = Math.round((state.sentenceIndex / builders.length) * 100);
+  const hasGram  = hasGrammarAnalysis(targetTr);
+  const sid      = sentence?.sentenceId;
+  const answered = sid && state.answered.builder[sid];
+  const isLast   = state.sentenceIndex >= builders.length - 1;
+
+  const answerArea = state.selectedTiles.length
+    ? state.selectedTiles.map(t => `
+        <button class="tile answer${answered ? (state.builderFeedback?.correct ? "" : " shake") : ""}"
+                data-action="${answered ? "" : "pl-builder-remove"}"
+                data-tile-id="${escapeHtml(t.id)}"
+                ${answered ? "disabled" : ""}>${escapeHtml(t.text)}</button>`).join("")
+    : `<span class="muted tiny" style="padding:8px 12px;display:block;">Tap tiles below to build the sentence</span>`;
+
+  const bankArea = state.bankTiles.length
+    ? state.bankTiles.map(t => `
+        <button class="tile" data-action="${answered ? "" : "pl-builder-pick"}" data-tile-id="${escapeHtml(t.id)}" ${answered ? "disabled" : ""}>${escapeHtml(t.text)}</button>`).join("")
+    : `<span class="muted tiny" style="padding:8px 12px;display:block;">All tiles placed</span>`;
+
+  return `
+    <div class="section-card pl-lesson-card">
+      <div class="pl-phase-bar">
+        <div class="pl-phase-bar-track"><div class="pl-phase-bar-fill" style="width:${pct}%"></div></div>
+        <div class="pl-phase-bar-meta">
+          <span class="pl-phase-name">🔧 Sentence Builder</span>
+          <span class="muted tiny">${state.sentenceIndex + 1} / ${builders.length}</span>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-box-top">
+          <div class="question-box-copy">
+            <span class="mode-chip blue">Build in ${escapeHtml(getLangLabel(state.targetLang))}</span>
+            <div class="question-prompt">${escapeHtml(enText)}</div>
+            ${(sentence?.concepts || []).length ? `
+              <div class="badge-row" style="margin-top:6px;gap:5px;">
+                ${sentence.concepts.slice(0, 3).map(c => `<span class="badge amber">${escapeHtml(c)}</span>`).join("")}
+              </div>` : ""}
+          </div>
+          ${hasGram ? `
+            <button class="button ghost pl-gram-icon-btn" data-action="pl-toggle-builder-grammar" title="Grammar help">📚</button>` : ""}
+        </div>
+      </div>
+
+      ${state.showBuilderGrammar && targetTr ? renderGrammarPanel(targetTr, state.targetLang) : ""}
+
+      <div class="builder-shell" style="margin-top:16px;">
+        <div class="pl-builder-zone">
+          <div class="pl-builder-zone-head">
+            <label class="pl-zone-label">Your answer</label>
+          </div>
+          <div class="tile-area ${answered && state.builderFeedback?.correct ? "answer-correct" : answered && state.builderFeedback && !state.builderFeedback.correct ? "answer-wrong" : ""}">${answerArea}</div>
+        </div>
+        <div class="pl-builder-zone">
+          <div class="pl-builder-zone-head">
+            <label class="pl-zone-label">Tiles</label>
+            ${hasGram ? `
+              <button class="button ghost pl-labels-btn" data-action="pl-toggle-grammar-labels" style="font-size:0.78rem;padding:3px 8px;">
+                ${state.showGrammarLabels ? "Hide labels" : "Word labels"}
+              </button>` : ""}
+          </div>
+          <div class="tile-area">${bankArea}</div>
+        </div>
+      </div>
+
+      ${state.showGrammarLabels && targetTr ? renderTokenRow(targetTr, true) : ""}
+
+      ${state.builderFeedback ? plFeedback(
+        state.builderFeedback.correct,
+        "Perfect! 🎉",
+        "Not quite — try rearranging the tiles."
+      ) : ""}
+
+      <div class="pl-nav-row">
+        <button class="button ghost" data-action="pl-builder-back">← Back</button>
+        ${!answered ? `
+          <button class="button secondary" data-action="pl-builder-reset">Reset</button>
+          <button class="button" data-action="pl-builder-check" ${!state.selectedTiles.length ? "disabled" : ""}>Check answer</button>
+        ` : `
+          <button class="button" data-action="pl-builder-next">${isLast ? "Finish →" : "Next →"}</button>
+        `}
+      </div>
+    </div>`;
+}
+
+// ── Review phase ──────────────────────────────────────────────────────────────
+
+function renderReviewPhase(state, pack) {
+  const { score, mistakes } = state;
+  const total   = score.vocabTotal + score.builderTotal;
+  const correct = score.vocabCorrect + score.builderCorrect;
+  const pct     = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const fox     = pct >= 80 ? "happy" : pct >= 50 ? "calm" : "sad";
+  const color   = pct >= 70 ? "var(--color-success)" : pct >= 50 ? "var(--color-attention)" : "var(--color-error)";
+
+  const mistakeItems = mistakes.map(m => `
+    <div class="pl-mistake">
+      <span class="badge ${m.phase === "Vocabulary" ? "blue" : "amber"}">${escapeHtml(m.phase)}</span>
+      <div class="pl-mistake-body">
+        <div class="pl-mistake-prompt">${escapeHtml(m.prompt)}</div>
+        <div class="pl-mistake-compare">
+          <span class="badge coral">${escapeHtml(m.selected || "(nothing)")}</span>
+          <span class="muted tiny">→</span>
+          <span class="badge green">${escapeHtml(m.expected)}</span>
+        </div>
+      </div>
+    </div>`).join("");
+
+  const langBtns = TARGET_LANGUAGES
+    .filter(l => l.code !== state.targetLang)
+    .slice(0, 2)
+    .map(l => `<button class="button ghost" data-action="pl-change-language" data-lang="${l.code}" style="font-size:0.85rem;">${l.flag} Try in ${escapeHtml(l.label)}</button>`)
+    .join("");
+
+  return `
+    <div class="section-card pl-lesson-card pl-review-card">
+      <div class="pl-review-hero">
+        ${foxFace(fox)}
+        <div>
+          <h2 class="pl-review-title">Lesson complete!</h2>
+          <p class="muted tiny">${escapeHtml(pack?.title || "")}</p>
+        </div>
+      </div>
+
+      <div class="pl-score-grid">
+        <div class="pl-score-item">
+          <span class="pl-score-big" style="color:${color};">${pct}%</span>
+          <span class="pl-score-lbl">Overall</span>
+        </div>
+        <div class="pl-score-item">
+          <span class="pl-score-big">${score.vocabCorrect}<span class="pl-score-denom">/${score.vocabTotal}</span></span>
+          <span class="pl-score-lbl">Vocabulary</span>
+        </div>
+        <div class="pl-score-item">
+          <span class="pl-score-big">${score.builderCorrect}<span class="pl-score-denom">/${score.builderTotal}</span></span>
+          <span class="pl-score-lbl">Sentences</span>
+        </div>
+        ${mistakes.length ? `
+          <div class="pl-score-item">
+            <span class="pl-score-big" style="color:var(--color-attention);">${mistakes.length}</span>
+            <span class="pl-score-lbl">To revisit</span>
+          </div>` : ""}
+      </div>
+
+      ${mistakes.length ? `
+        <div class="pl-mistakes">
+          <h3 class="pl-mistakes-title">Items to review</h3>
+          <div class="pl-mistake-list">${mistakeItems}</div>
+        </div>` : `<p class="pl-perfect">🎉 No mistakes — excellent work!</p>`}
+
+      <div class="pl-nav-row pl-review-nav">
+        <button class="button" data-action="pl-restart">🔄 Restart</button>
+        ${langBtns}
+      </div>
+    </div>`;
+}
+
+// ── Public render entry ───────────────────────────────────────────────────────
+
+export function renderProgressiveTab(state, catalog, pack) {
+  if (!catalog) {
+    return `<div class="section-card"><p class="muted">Loading catalog…</p></div>`;
+  }
+  if (!pack) {
+    return `<div class="section-card"><p class="muted">Loading lesson…</p></div>`;
   }
 
-  const mismatchIndex = findMismatchIndex(selectedTexts, expectedTiles);
-  const hint = mismatchIndex === -1
-    ? "You have extra tiles. Try trimming the sentence."
-    : `Position ${mismatchIndex + 1} should be "${expectedTiles[mismatchIndex]}".`;
-  state.feedback = { correct: false, hint };
-  if (isFirstAttempt) {
-    state.answered.builder[answerKey] = { correct: false, selected: selectedTexts.join(" ") };
-    state.mistakes.push({
-      phase: "Sentence builder",
-      conceptId: (sentence.concepts || []).join(", "),
-      prompt,
-      expected,
-      selected: selectedTexts.join(" "),
-    });
-  }
-  return null;
-}
-
-function advanceBuilder(state, pack) {
-  state.feedback = null;
-  state.showBuilderHint = false;
-  if (isLastBuilderSentence(pack, state)) {
-    state.phase = "review";
-    return;
-  }
-  state.sentenceIndex += 1;
-  state.selectedTiles = [];
-  resetBuilderTiles(state, pack);
-}
-
-function advanceListenStep(pack, state) {
-  state.showListenGrammar = false;
-  if (isLastListenStep(pack, state)) {
-    state.phase = "vocab";
-    state.vocabIndex = 0;
-    state.feedback = null;
-    state.showBuilderHint = false;
-    const item = pack.vocabulary[state.vocabIndex];
-    state.vocabOptions = item ? buildVocabOptions(item, pack.vocabulary, state.targetLang) : [];
-    return;
+  let phaseContent;
+  switch (state.phase) {
+    case "listen":  phaseContent = renderListenPhase(state, pack);  break;
+    case "vocab":   phaseContent = renderVocabPhase(state, pack);   break;
+    case "builder": phaseContent = renderBuilderPhase(state, pack); break;
+    default:        phaseContent = renderReviewPhase(state, pack);  break;
   }
 
-  const chain = pack.phraseProgressionChains[state.chainIndex];
-  if (state.stepIndex < chain.steps.length - 1) {
-    state.stepIndex += 1;
-  } else {
-    state.chainIndex += 1;
-    state.stepIndex = 0;
-  }
-}
-
-function jumpProgressivePhase(state, pack, phase) {
-  if (!["listen", "vocab", "builder"].includes(phase)) return;
-  state.phase = phase;
-  state.feedback = null;
-  state.showListenGrammar = false;
-  state.showBuilderHint = false;
-
-  if (phase === "listen") {
-    state.spokenStepKey = "";
-    return;
-  }
-
-  if (phase === "vocab") {
-    state.vocabIndex = clampIndex(state.vocabIndex, pack.vocabulary.length);
-    const item = pack.vocabulary[state.vocabIndex];
-    state.vocabOptions = item ? buildVocabOptions(item, pack.vocabulary, state.targetLang) : [];
-    return;
-  }
-
-  state.sentenceIndex = clampIndex(state.sentenceIndex, pack.sentenceBuilders.length);
-  state.selectedTiles = [];
-  resetBuilderTiles(state, pack);
-}
-
-function goBackListen(pack, state) {
-  if (isFirstListenStep(state)) return;
-  state.showListenGrammar = false;
-  state.spokenStepKey = "";
-
-  if (state.stepIndex > 0) {
-    state.stepIndex -= 1;
-    return;
-  }
-
-  state.chainIndex -= 1;
-  const previousChain = pack.phraseProgressionChains[state.chainIndex];
-  state.stepIndex = Math.max((previousChain?.steps?.length || 1) - 1, 0);
-}
-
-function goBackVocab(state, pack) {
-  state.feedback = null;
-  if (state.vocabIndex > 0) {
-    state.vocabIndex -= 1;
-    const item = pack.vocabulary[state.vocabIndex];
-    state.vocabOptions = item ? buildVocabOptions(item, pack.vocabulary, state.targetLang) : [];
-    return;
-  }
-
-  state.phase = "listen";
-  state.showListenGrammar = false;
-  state.spokenStepKey = "";
-  state.chainIndex = Math.max(pack.phraseProgressionChains.length - 1, 0);
-  const chain = pack.phraseProgressionChains[state.chainIndex];
-  state.stepIndex = Math.max((chain?.steps?.length || 1) - 1, 0);
-}
-
-function goBackBuilder(state, pack) {
-  state.feedback = null;
-  state.showBuilderHint = false;
-
-  if (state.sentenceIndex > 0) {
-    state.sentenceIndex -= 1;
-    state.selectedTiles = [];
-    resetBuilderTiles(state, pack);
-    return;
-  }
-
-  state.phase = "vocab";
-  state.vocabIndex = Math.max(pack.vocabulary.length - 1, 0);
-  const item = pack.vocabulary[state.vocabIndex];
-  state.vocabOptions = item ? buildVocabOptions(item, pack.vocabulary, state.targetLang) : [];
-}
-
-function moveBuilderTile(state, tileId, from) {
-  const sourceKey = from === "bank" ? "bankTiles" : "selectedTiles";
-  const targetKey = from === "bank" ? "selectedTiles" : "bankTiles";
-  const index = state[sourceKey].findIndex((tile) => tile.id === tileId);
-  if (index === -1) return;
-  const [tile] = state[sourceKey].splice(index, 1);
-  state[targetKey].push(tile);
-  state.feedback = null;
-}
-
-function resetBuilderTiles(state, pack) {
-  const sentence = pack.sentenceBuilders[state.sentenceIndex];
-  const tiles = sentence?.translations?.[state.targetLang]?.tiles || [];
-  state.bankTiles = shuffleArray(tiles.map((text, index) => ({ id: `${state.sentenceIndex}-${index}-${text}`, text })));
-}
-
-function isLastListenStep(pack, state) {
-  const chain = pack.phraseProgressionChains[state.chainIndex];
-  return state.chainIndex === pack.phraseProgressionChains.length - 1 && state.stepIndex === chain.steps.length - 1;
-}
-
-function isFirstListenStep(state) {
-  return state.chainIndex === 0 && state.stepIndex === 0;
-}
-
-function isLastVocabItem(pack, state) {
-  return state.vocabIndex >= pack.vocabulary.length - 1;
-}
-
-function isLastBuilderSentence(pack, state) {
-  return state.sentenceIndex >= pack.sentenceBuilders.length - 1;
-}
-
-function findMismatchIndex(selectedTiles, expectedTiles) {
-  const max = Math.max(selectedTiles.length, expectedTiles.length);
-  for (let index = 0; index < max; index += 1) {
-    if (selectedTiles[index] !== expectedTiles[index]) return index < expectedTiles.length ? index : -1;
-  }
-  return -1;
-}
-
-function clampIndex(index, length) {
-  if (!length) return 0;
-  return Math.min(Math.max(index, 0), length - 1);
-}
-
-function languageName(pack, lang) {
-  return pack.languageLabels?.[lang] || TARGET_LANGUAGES.find((item) => item.code === lang)?.label || lang;
+  return `
+    <div class="section-stack pl-shell">
+      ${renderHeaderCard(state, catalog, pack)}
+      ${renderStepper(state.phase)}
+      ${phaseContent}
+    </div>`;
 }
