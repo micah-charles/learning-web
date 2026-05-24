@@ -246,13 +246,11 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
       const chain = chains[state.chainIndex];
       if (state.stepIndex < (chain?.steps?.length ?? 0) - 1) {
         const next = { ...state, stepIndex: state.stepIndex + 1, showGrammar: false };
-        const cue  = getCurrentSpeechCue(next, pack);
-        return { state: next, effect: cue ? { speak: cue } : null };
+        return { state: next, effect: null };
       }
       if (state.chainIndex < chains.length - 1) {
         const next = { ...state, chainIndex: state.chainIndex + 1, stepIndex: 0, showGrammar: false };
-        const cue  = getCurrentSpeechCue(next, pack);
-        return { state: next, effect: cue ? { speak: cue } : null };
+        return { state: next, effect: null };
       }
       // Advance to vocab
       return {
@@ -707,11 +705,7 @@ function renderListenPhase(state, pack) {
           <div class="pl-phrase-text">${escapeHtml(targetText)}</div>
           ${reading ? `<div class="pl-phrase-reading">${escapeHtml(reading)}</div>` : ""}
           <div class="pl-audio-row">
-            <button class="pl-audio-btn" data-action="pl-replay" title="Replay">
-              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4z"/><path d="M13.555 5.168A1 1 0 0012 6v8a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4z"/></svg>
-              Replay
-            </button>
-            <button class="pl-audio-btn" data-action="speak" data-text="${escapeHtml(targetText)}" data-language="${escapeHtml(speechLang)}" title="Play">
+            <button class="pl-audio-btn" data-action="pl-replay" title="Play audio">
               <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
               Play
             </button>
