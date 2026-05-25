@@ -13,11 +13,56 @@ import { highlightMatches } from "@/study-book.js";
 import { useStudyBook } from "../../context/StudyBookContext.jsx";
 
 // ── Split-mode body class management ──────────────────────────────────────────
-function useSplitMode(splitMode) {
+function useSplitMode(splitMode, drawerRef) {
   useEffect(() => {
     document.body.classList.toggle("sb-split-mode", splitMode);
-    return () => document.body.classList.remove("sb-split-mode");
+    if (splitMode && drawerRef.current) {
+      const w = drawerRef.current.offsetWidth;
+      document.querySelector(".lw-app")?.style.setProperty("padding-right", `${w}px`);
+    } else {
+      document.querySelector(".lw-app")?.style.removeProperty("padding-right");
+    }
+    return () => {
+      document.body.classList.remove("sb-split-mode");
+      document.querySelector(".lw-app")?.style.removeProperty("padding-right");
+    };
   }, [splitMode]);
+}
+
+// ── Drag-to-resize the drawer ─────────────────────────────────────────────────
+function useResizeHandle(handleRef, drawerRef, splitMode) {
+  useEffect(() => {
+    const handle = handleRef.current;
+    const drawer = drawerRef.current;
+    if (!handle || !drawer) return;
+
+    const onMouseDown = (e) => {
+      e.preventDefault();
+      const startX = e.clientX;
+      const startWidth = drawer.offsetWidth;
+
+      const onMove = (ev) => {
+        const delta = startX - ev.clientX;
+        const newW = Math.max(280, Math.min(820, startWidth + delta));
+        drawer.style.width = `${newW}px`;
+        // Keep split-mode push in sync with dragged width
+        if (document.body.classList.contains("sb-split-mode")) {
+          document.querySelector(".lw-app")?.style.setProperty("padding-right", `${newW}px`);
+        }
+      };
+
+      const onUp = () => {
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseup", onUp);
+      };
+
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp);
+    };
+
+    handle.addEventListener("mousedown", onMouseDown);
+    return () => handle.removeEventListener("mousedown", onMouseDown);
+  }, [splitMode]); // re-attach when splitMode changes so the push logic is fresh
 }
 
 // ── Scroll-tracking: update currentAnchor from headings in the content ────────
@@ -119,8 +164,11 @@ export function StudyBookDrawer() {
   } = useStudyBook();
 
   const contentRef = useRef(null);
+  const drawerRef  = useRef(null);
+  const handleRef  = useRef(null);
 
-  useSplitMode(splitMode);
+  useSplitMode(splitMode, drawerRef);
+  useResizeHandle(handleRef, drawerRef, splitMode);
   useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor);
   useEscapeClose(open, closeBook);
 
@@ -166,7 +214,10 @@ export function StudyBookDrawer() {
         role="complementary"
         aria-label="Study Book"
         aria-hidden={!open}
+        ref={drawerRef}
       >
+        {/* Drag handle on the left edge — mirrors vanilla .sb-resize-handle */}
+        <div ref={handleRef} className="sb-resize-handle" aria-hidden="true" />
         {/* Header */}
         <div className="sb-header">
           <span className="sb-title">📖 Study Book</span>
