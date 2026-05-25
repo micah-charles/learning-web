@@ -7,7 +7,12 @@ import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listDatasets, listDatasetsBySubject, getDatasetSubject, SUBJECTS, getDatasetDirections, findDataset } from "@/data.js";
+import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS, getDatasetDirections, findDataset } from "@/data.js";
+
+const CURRICULUM_OPTIONS = [
+  { id: "all", label: "All" },
+  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
+];
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
 const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
@@ -31,9 +36,9 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
   }, [datasets]);
 
   const filteredDatasets = useMemo(() => {
-    if (!prefs.subject) return datasets;
-    return datasets.filter(d => getDatasetSubject(d) === prefs.subject);
-  }, [datasets, prefs.subject]);
+    if (!manifest) return [];
+    return listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
+  }, [manifest, prefs.subject, prefs.curriculum]);
 
   const dataset = useMemo(() => {
     if (!manifest) return null;
@@ -78,17 +83,33 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
           subjects={subjectCounts}
           activeSubject={prefs.subject}
           onSelect={(subj) => {
-            const firstMatch = datasets.find((d) => getDatasetSubject(d) === subj);
             const newIsLanguage = subj === "language";
+            const firstMatch = listDatasetsBySubjectAndCurriculum(manifest, subj, "all")[0];
             setPrefs((prev) => ({
               ...prev,
               subject: subj,
+              curriculum: "all",
               datasetId: firstMatch?.id ?? prev.datasetId,
               stages: [],
               direction: "",
               answerMode: safeAnswerMode(prev.answerMode, newIsLanguage),
             }));
           }}
+        />
+
+        <PillGroup
+          label="Curriculum"
+          items={CURRICULUM_OPTIONS}
+          value={prefs.curriculum || "all"}
+          onSelect={(c) => {
+            const first = listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];
+            setPrefs((prev) => ({
+              ...prev,
+              curriculum: c,
+              datasetId: first?.id ?? prev.datasetId,
+            }));
+          }}
+          style={{ marginTop: "14px" }}
         />
 
         <FilterRow style={{ marginTop: "18px" }}>
@@ -495,6 +516,7 @@ export default function QuizPage({ initialCustomWords = null }) {
 
   const [prefs, setPrefs] = useState({
     subject: "language",
+    curriculum: "all",
     datasetId: "core",
     year: "ALL",
     stages: [],

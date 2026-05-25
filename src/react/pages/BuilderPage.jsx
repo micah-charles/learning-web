@@ -6,7 +6,12 @@ import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubject, getBuilderPackSubject, SUBJECTS } from "@/data.js";
+import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubjectAndCurriculum, getBuilderPackSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
+
+const CURRICULUM_OPTIONS = [
+  { id: "all", label: "All" },
+  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
+];
 
 const FILTER_OPTIONS = [
   { id: "all",              label: "All"               },
@@ -30,26 +35,28 @@ export default function BuilderPage() {
   }, [allPacks]);
 
   // subject === "" means "not yet chosen by the user — fall back to first pack's subject".
-  const [subject, setSubject] = useState("");
-  const [packId, setPackId]   = useState("");
-  const [filter, setFilter]   = useState("all");
+  const [subject, setSubject]       = useState("");
+  const [curriculum, setCurriculum] = useState("all");
+  const [packId, setPackId]         = useState("");
+  const [filter, setFilter]         = useState("all");
 
   // Effective subject: user's choice, or the first available pack's subject.
   const activeSubject = subject || (allPacks[0] ? getBuilderPackSubject(allPacks[0]) : "");
 
-  // Packs in the dropdown — filtered by active subject.
+  // Packs in the dropdown — filtered by active subject + curriculum.
   const visiblePacks = useMemo(() => {
-    if (!activeSubject) return allPacks;
-    return listSentenceBuilderPacksBySubject(manifest, activeSubject);
-  }, [allPacks, activeSubject, manifest]);
+    if (!manifest || !activeSubject) return allPacks;
+    return listSentenceBuilderPacksBySubjectAndCurriculum(manifest, activeSubject, curriculum);
+  }, [allPacks, activeSubject, curriculum, manifest]);
 
   // Effective pack ID: user's choice, or first visible pack.
   const activePackId = packId || visiblePacks[0]?.id || "";
 
-  // When subject changes: reset to first pack of new subject, clear filter.
+  // When subject changes: reset curriculum + pack + filter.
   function onSubjectChange(newSubject) {
-    const first = allPacks.find((p) => getBuilderPackSubject(p) === newSubject);
+    const first = listSentenceBuilderPacksBySubjectAndCurriculum(manifest, newSubject, "all")[0];
     setSubject(newSubject);
+    setCurriculum("all");
     setPackId(first?.id ?? "");
     setFilter("all");
   }
@@ -89,6 +96,18 @@ export default function BuilderPage() {
           subjects={subjectCounts}
           activeSubject={activeSubject}
           onSelect={onSubjectChange}
+        />
+
+        <PillGroup
+          label="Curriculum"
+          items={CURRICULUM_OPTIONS}
+          value={curriculum}
+          onSelect={(c) => {
+            const first = listSentenceBuilderPacksBySubjectAndCurriculum(manifest, activeSubject, c)[0];
+            setCurriculum(c);
+            setPackId(first?.id ?? "");
+          }}
+          style={{ marginTop: "14px" }}
         />
 
         {/* ── Pack + filter row ── */}

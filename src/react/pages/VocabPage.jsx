@@ -3,9 +3,14 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
-import { LabeledSelect, ToggleGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
+import { LabeledSelect, PillGroup, ToggleGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
-import { listDatasets, getDatasetSubject, SUBJECTS } from "@/data.js";
+import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
+
+const CURRICULUM_OPTIONS = [
+  { id: "all", label: "All" },
+  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
+];
 import { isWordMastered, getWordProgress } from "@/storage.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
@@ -95,6 +100,7 @@ export default function VocabPage() {
 
   const [prefs, setPrefs] = useState({
     subject:      "language",
+    curriculum:   "all",
     datasetId:    "core",
     year:         "ALL",
     stages:       [],
@@ -104,17 +110,18 @@ export default function VocabPage() {
     search:       "",
   });
 
-  // Datasets visible in the dropdown — filtered by selected subject.
+  // Datasets visible in the dropdown — filtered by subject + curriculum.
   const subjectDatasets = useMemo(() => {
-    if (!prefs.subject) return allDatasets;
-    return allDatasets.filter((d) => getDatasetSubject(d) === prefs.subject);
-  }, [allDatasets, prefs.subject]);
+    if (!manifest) return [];
+    return listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
+  }, [manifest, prefs.subject, prefs.curriculum]);
 
-  // When subject changes: pick the first dataset of that subject, reset filters.
+  // When subject changes: reset curriculum + pick first dataset, reset filters.
   function onSubjectChange(newSubject) {
-    const first = allDatasets.find((d) => getDatasetSubject(d) === newSubject);
+    const first = listDatasetsBySubjectAndCurriculum(manifest, newSubject, "all")[0];
     setPrefs({
       subject:      newSubject,
+      curriculum:   "all",
       datasetId:    first?.id ?? "",
       year:         "ALL",
       stages:       [],
@@ -176,6 +183,17 @@ export default function VocabPage() {
           subjects={subjectCounts}
           activeSubject={prefs.subject}
           onSelect={onSubjectChange}
+        />
+
+        <PillGroup
+          label="Curriculum"
+          items={CURRICULUM_OPTIONS}
+          value={prefs.curriculum || "all"}
+          onSelect={(c) => {
+            const first = listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];
+            setPrefs((prev) => ({ ...prev, curriculum: c, datasetId: first?.id ?? prev.datasetId }));
+          }}
+          style={{ marginTop: "14px" }}
         />
 
         {/* ── Dataset + filters ── */}
