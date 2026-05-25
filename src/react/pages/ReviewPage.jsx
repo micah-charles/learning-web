@@ -3,17 +3,20 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
 import { listDatasets } from "@/data.js";
 import { getWordProgress, isWordMastered, isMasteredProgress } from "@/storage.js";
 
-function WordRow({ word, progress, onSpeak, speechLang }) {
-  const wp = getWordProgress(progress, word.id);
+// state = full stored-state object ({ prefs, progress: { words, sessions } })
+function WordRow({ word, state, onSpeak, speechLang }) {
+  const wp = getWordProgress(state, word.id);
   const mastered = isMasteredProgress(wp);
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", borderRadius: "var(--lw-radius-sm)", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", marginBottom: "8px" }}>
       <div>
         <span style={{ fontWeight: 600, color: "var(--lw-ink)" }}>{word.de}</span>
         <span style={{ color: "var(--lw-muted)", marginLeft: "10px", fontSize: "0.88rem" }}>{word.en}</span>
+        {mastered && <span style={{ marginLeft: "8px", fontSize: "0.72rem", color: "var(--lw-green)", fontWeight: 600 }}>✓ mastered</span>}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <span style={{ fontSize: "0.75rem", color: "var(--lw-muted)" }}>
@@ -56,49 +59,50 @@ export default function ReviewPage({ onNavigate }) {
   });
 
   const speechLang = dataset?.speechLanguage || dataset?.sourceLanguageCode || "de-DE";
-  const prog = progress?.progress || { words: {} };
+  // progress is the full stored-state object; storage helpers expect that shape.
+  // We fall back to a minimal valid state so the memos never crash on first render.
+  const storedState = progress || { prefs: {}, progress: { words: {}, sessions: [] } };
 
   const reviewedWords = useMemo(() => {
     return scopedWords.filter(w => {
-      const wp = getWordProgress(prog, w.id);
+      const wp = getWordProgress(storedState, w.id);
       return wp.correct > 0 || wp.wrong > 0;
     });
-  }, [scopedWords, prog]);
+  }, [scopedWords, storedState]);
 
   const masteredWords = useMemo(() => {
-    return scopedWords.filter(w => isWordMastered(prog, w.id));
-  }, [scopedWords, prog]);
+    return scopedWords.filter(w => isWordMastered(storedState, w.id));
+  }, [scopedWords, storedState]);
 
   const hardestWords = useMemo(() => {
     return reviewedWords
-      .filter(w => !isWordMastered(prog, w.id))
+      .filter(w => !isWordMastered(storedState, w.id))
       .sort((a, b) => {
-        const wa = getWordProgress(prog, a.id);
-        const wb = getWordProgress(prog, b.id);
+        const wa = getWordProgress(storedState, a.id);
+        const wb = getWordProgress(storedState, b.id);
         const ratioA = wa.wrong / Math.max(1, wa.correct + wa.wrong);
         const ratioB = wb.wrong / Math.max(1, wb.correct + wb.wrong);
         return ratioB - ratioA;
       })
       .slice(0, 20);
-  }, [reviewedWords, prog]);
+  }, [reviewedWords, storedState]);
 
-  if (manifestLoading) return <div className="lw-page"><p>Loading…</p></div>;
+  if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
   return (
     <div className="lw-page">
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">Review</h2>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "16px" }}>
-          <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Dataset</label>
-          <select
-            value={prefs.datasetId}
-            onChange={e => setPrefs(prev => ({ ...prev, datasetId: e.target.value }))}
-            style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit", maxWidth: "300px" }}
-          >
-            {datasets.map(d => <option key={d.id} value={d.id}>{d.displayName}</option>)}
-          </select>
-        </div>
+        <LabeledSelect
+          label="Dataset"
+          value={prefs.datasetId}
+          onChange={(v) => setPrefs((prev) => ({ ...prev, datasetId: v }))}
+          style={{ maxWidth: "300px", marginBottom: "16px" }}
+          flex={false}
+        >
+          {datasets.map((d) => <option key={d.id} value={d.id}>{d.displayName}</option>)}
+        </LabeledSelect>
 
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "16px" }}>
           <span className="lw-chip blue">{reviewedWords.length} reviewed</span>
@@ -128,7 +132,7 @@ export default function ReviewPage({ onNavigate }) {
         </div>
       </div>
 
-      {loading && <p style={{ color: "var(--lw-muted)" }}>Loading words…</p>}
+      {loading && <LoadingText text="Loading words…" />}
 
       {!loading && (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -138,7 +142,7 @@ export default function ReviewPage({ onNavigate }) {
               <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem" }}>No words need practice yet.</p>
             ) : (
               hardestWords.map(w => (
-                <WordRow key={w.id} word={w} progress={prog} onSpeak={speak} speechLang={speechLang} />
+                <WordRow key={w.id} word={w} state={storedState} onSpeak={speak} speechLang={speechLang} />
               ))
             )}
           </div>
@@ -149,7 +153,7 @@ export default function ReviewPage({ onNavigate }) {
               <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem" }}>No mastered words yet.</p>
             ) : (
               masteredWords.map(w => (
-                <WordRow key={w.id} word={w} progress={prog} onSpeak={speak} speechLang={speechLang} />
+                <WordRow key={w.id} word={w} state={storedState} onSpeak={speak} speechLang={speechLang} />
               ))
             )}
           </div>

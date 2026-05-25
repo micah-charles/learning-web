@@ -3,11 +3,12 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { LabeledSelect, ToggleGroup, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { listDatasets } from "@/data.js";
 import { isWordMastered, getWordProgress } from "@/storage.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
-const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"];
+const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"].map((y) => ({ id: y, label: y }));
 
 function MasteryBadge({ correct, streak }) {
   if (correct >= 3 && streak >= 2) {
@@ -19,8 +20,9 @@ function MasteryBadge({ correct, streak }) {
   return <span className="lw-chip coral">New</span>;
 }
 
-function VocabCard({ word, progress, onSpeak, speechLang }) {
-  const wp = getWordProgress(progress, word.id);
+// state = full stored-state object ({ prefs, progress: { words, sessions } })
+function VocabCard({ word, state, onSpeak, speechLang }) {
+  const wp = getWordProgress(state, word.id);
   return (
     <div className="lw-pack-card" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
@@ -65,128 +67,113 @@ export default function VocabPage() {
     stages: [],
     partOfSpeech: "",
     category: "",
+    categories: [],  // multi-select for language packs
     search: "",
   });
 
-  const { dataset, filtered, posOptions, categoryOptions, loading } = useVocabBrowser({
-    manifest,
-    datasetId: prefs.datasetId,
-    prefs,
-  });
+  const { dataset, filtered, posOptions, categoryOptions, useCheckboxCategories, loading } =
+    useVocabBrowser({ manifest, datasetId: prefs.datasetId, prefs });
 
   const stageOptions = dataset ? getDatasetStageOptions(dataset) : [];
   const isStage = dataset ? usesStageSelection(dataset) : false;
   const selectedStages = dataset ? getSelectedStages(prefs, dataset) : [];
 
   const speechLang = dataset?.speechLanguage || dataset?.sourceLanguageCode || "de-DE";
+  // Full stored-state fallback so VocabCard never crashes before progress loads.
+  const storedState = progress || { prefs: {}, progress: { words: {}, sessions: [] } };
 
   function setPref(key, value) {
     setPrefs(prev => ({ ...prev, [key]: value }));
   }
 
   function toggleStage(stage) {
-    setPrefs(prev => {
+    setPrefs((prev) => {
       const current = Array.isArray(prev.stages) ? prev.stages.map(String) : [];
       const exists = current.includes(String(stage));
-      return {
-        ...prev,
-        stages: exists ? current.filter(s => s !== String(stage)) : [...current, String(stage)],
-      };
+      return { ...prev, stages: exists ? current.filter((s) => s !== String(stage)) : [...current, String(stage)] };
+    });
+  }
+
+  function toggleCategory(cat) {
+    setPrefs((prev) => {
+      const current = Array.isArray(prev.categories) ? prev.categories : [];
+      const exists = current.includes(cat);
+      return { ...prev, categories: exists ? current.filter((c) => c !== cat) : [...current, cat] };
     });
   }
 
   const displayWords = filtered.slice(0, 120);
 
-  if (manifestLoading) return <div className="lw-page"><p>Loading…</p></div>;
+  if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
   return (
     <div className="lw-page">
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">Vocabulary</h2>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "14px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Dataset</label>
-            <select
-              value={prefs.datasetId}
-              onChange={e => setPref("datasetId", e.target.value)}
-              style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-            >
-              {datasets.map(d => (
-                <option key={d.id} value={d.id}>{d.displayName}</option>
-              ))}
-            </select>
-          </div>
+        <FilterRow style={{ marginBottom: "14px" }}>
+          <LabeledSelect label="Dataset" value={prefs.datasetId} onChange={(v) => setPref("datasetId", v)}>
+            {datasets.map((d) => (
+              <option key={d.id} value={d.id}>{d.displayName}</option>
+            ))}
+          </LabeledSelect>
 
           {isStage ? (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Stage</label>
-              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                {stageOptions.map(s => (
-                  <button
-                    key={s}
-                    type="button"
-                    className={`lw-nav-pill ${selectedStages.includes(s) ? "active" : ""}`}
-                    style={{ padding: "6px 14px", fontSize: "0.85rem" }}
-                    onClick={() => toggleStage(s)}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <ToggleGroup
+              label="Stage"
+              items={stageOptions}
+              selected={selectedStages}
+              onToggle={toggleStage}
+            />
           ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Year</label>
-              <select
-                value={prefs.year}
-                onChange={e => setPref("year", e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-              >
-                {YEAR_OPTIONS.map(y => <option key={y} value={y}>{y}</option>)}
-              </select>
-            </div>
+            <LabeledSelect label="Year" value={prefs.year} onChange={(v) => setPref("year", v)} flex={false}>
+              {YEAR_OPTIONS.map((y) => <option key={y.id} value={y.id}>{y.label}</option>)}
+            </LabeledSelect>
           )}
 
           {posOptions.length > 0 && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Part of speech</label>
-              <select
-                value={prefs.partOfSpeech}
-                onChange={e => setPref("partOfSpeech", e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-              >
-                <option value="">All</option>
-                {posOptions.map(p => <option key={p} value={p}>{p}</option>)}
-              </select>
-            </div>
+            <LabeledSelect label="Part of speech" value={prefs.partOfSpeech} onChange={(v) => setPref("partOfSpeech", v)} flex={false}>
+              <option value="">All</option>
+              {posOptions.map((p) => <option key={p} value={p}>{p}</option>)}
+            </LabeledSelect>
           )}
 
           {categoryOptions.length > 0 && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Category</label>
-              <select
-                value={prefs.category}
-                onChange={e => setPref("category", e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-              >
+            useCheckboxCategories ? (
+              <ToggleGroup
+                label="Category"
+                items={categoryOptions}
+                selected={prefs.categories}
+                onToggle={toggleCategory}
+              />
+            ) : (
+              <LabeledSelect label="Category" value={prefs.category} onChange={(v) => setPref("category", v)} flex={false}>
                 <option value="">All</option>
-                {categoryOptions.map(c => <option key={c} value={c}>{c}</option>)}
-              </select>
-            </div>
+                {categoryOptions.map((c) => <option key={c} value={c}>{c}</option>)}
+              </LabeledSelect>
+            )
           )}
-        </div>
+        </FilterRow>
 
         <input
           type="search"
           placeholder="Search words..."
           value={prefs.search}
-          onChange={e => setPref("search", e.target.value)}
-          style={{ width: "100%", padding: "10px 14px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit", fontSize: "0.95rem" }}
+          onChange={(e) => setPref("search", e.target.value)}
+          style={{
+            width: "100%",
+            padding: "10px 14px",
+            borderRadius: "8px",
+            border: "1.5px solid var(--lw-line)",
+            background: "var(--lw-panel)",
+            color: "var(--lw-ink)",
+            fontFamily: "inherit",
+            fontSize: "0.95rem",
+          }}
         />
       </div>
 
-      {loading && <p style={{ color: "var(--lw-muted)" }}>Loading words…</p>}
+      {loading && <LoadingText text="Loading words…" />}
 
       {!loading && (
         <>
@@ -194,20 +181,21 @@ export default function VocabPage() {
             Showing {displayWords.length} of {filtered.length} words
           </p>
           <div className="lw-pack-grid">
-            {displayWords.map(word => (
+            {displayWords.map((word) => (
               <VocabCard
                 key={word.id}
                 word={word}
-                progress={progress?.progress || { words: {} }}
+                state={storedState}
                 onSpeak={speak}
                 speechLang={speechLang}
               />
             ))}
             {displayWords.length === 0 && (
-              <div className="lw-empty" style={{ gridColumn: "1/-1" }}>
-                <h3>No words found</h3>
-                <p>Try adjusting your filters or search term.</p>
-              </div>
+              <EmptyState
+                title="No words found"
+                message="Try adjusting your filters or search term."
+                style={{ gridColumn: "1/-1" }}
+              />
             )}
           </div>
         </>

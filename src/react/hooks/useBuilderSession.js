@@ -100,7 +100,14 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
     if (cards[nextIdx]) setTiles(makeTiles(cards[nextIdx]));
   }, [index, cards, currentCard, packId, updateProgress]);
 
+  const jumpToCard = useCallback((idx) => {
+    if (idx < 0 || idx >= cards.length) return;
+    setIndex(idx);
+    setFeedback(null);
+    if (cards[idx]) setTiles(makeTiles(cards[idx]));
+  }, [cards]);
+
   const stats = progress ? getBuilderStats(progress, packId) : { totalAttempted: 0, totalCorrect: 0, streak: 0 };
 
-  return { currentCard, tiles, feedback, loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard };
+  return { currentCard, cards, index, tiles, feedback, loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard, jumpToCard };
 }

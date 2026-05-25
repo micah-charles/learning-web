@@ -4,31 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning Web</title>
+    <!-- Shared design-system tokens used by both vanilla helpers and React components -->
     <link rel="stylesheet" href="./styles.css" />
-    <script type="importmap">
-      {
-        "imports": {
-          "dompurify": "https://cdn.jsdelivr.net/npm/dompurify@3.4.5/dist/purify.es.mjs",
-          "marked": "https://cdn.jsdelivr.net/npm/marked@18.0.3/lib/marked.esm.js",
-          "fflate": "https://cdn.jsdelivr.net/npm/fflate@0.8.2/esm/browser.js"
-        }
-      }
-    </script>
   </head>
   <body>
     <div class="page-backdrop"></div>
-    <main id="app" class="app-shell">
-      <section class="loading-shell">
-        <div class="loading-card">
-          <p class="eyebrow">Learning Web</p>
-          <h1>Loading study packs...</h1>
-          <p>Preparing the web port from your local learning data.</p>
-        </div>
-      </section>
-    </main>
-    <!-- Study Book drawer — mounted outside #app so renderApp() never wipes it -->
-    <div id="study-book-root"></div>
+    <div id="root"></div>
     <noscript>This app needs JavaScript enabled.</noscript>
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/react/main.jsx"></script>
   </body>
 </html>

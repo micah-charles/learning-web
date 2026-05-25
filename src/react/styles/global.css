@@ -78,104 +78,51 @@ body {
  *       .lw-header-right   – hero copy (teal) + stats row (cream)
  */
 
+/* Hero outer shell — background is now applied via inline style (hero-bg.jpg +
+   gradient overlay) so we just need overflow:hidden to crop the logo image. */
 .lw-app-header {
   position: relative;
-  background: var(--hero-cream);   /* cream: stat-card zone bg */
-  overflow: hidden;                /* clip stray doodles */
+  overflow: hidden;
 }
 
-/* Teal watercolour paint — covers only the hero-copy zone height */
-.lw-header-teal-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 230px;
-  background:
-    radial-gradient(ellipse 65% 90%  at 75% 15%, rgba(185,235,240,0.55) 0%, transparent 62%),
-    radial-gradient(ellipse 55% 65%  at 12% 85%, rgba(100,185,180,0.42) 0%, transparent 55%),
-    linear-gradient(148deg, #64b8b4 0%, #88cbc6 30%, #a5dcd8 62%, #9dcfe0 100%);
-  z-index: 0;
-}
-
-/* Paper-grain overlay via SVG turbulence */
-.lw-header-teal-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.045;
-  mix-blend-mode: multiply;
-}
-
-/* Floating doodle layer — absolutely fills the top-right of the header */
-.lw-hero-doodles {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 260px;
-  height: 230px;
-  z-index: 1;
-  pointer-events: none;
-  overflow: visible;
-}
-
-/* Inner flex row */
+/* Inner flex row — mascot left, hero copy right (no stats here) */
 .lw-header-inner {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: flex-end;
-  max-width: 960px;
+  align-items: flex-end;       /* mascot bottom-aligns with copy zone */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
-/* Mascot column */
+/* Logo column — brand/logo.png character art */
 .lw-header-mascot {
   flex-shrink: 0;
-  width: 260px;
+  width: 170px;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 0;
   position: relative;
 }
 
-/* Soft warm glow pool under the mascot */
-.lw-header-mascot::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 10px;
-  right: 10px;
-  height: 50px;
-  background: radial-gradient(ellipse at center, rgba(120, 200, 185, 0.30) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
 .lw-mascot-img {
-  width: 250px;
+  width: 170px;
   height: auto;
   display: block;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 6px 18px rgba(40, 110, 100, 0.22));
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.25));
 }
 
-/* Right column: hero copy (on teal) + stat cards (on cream) */
-.lw-header-right {
+/* Hero copy zone — sits to the right of the mascot */
+.lw-hero-copy {
   flex: 1;
   min-width: 0;
-}
-
-/* Hero copy zone */
-.lw-hero-copy {
-  min-height: 230px;
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 32px 24px 22px 16px;
+  padding: 18px 24px 14px 14px;
 }
 
 .lw-hero-eyebrow {
@@ -189,12 +136,12 @@ body {
 
 .lw-hero-title {
   font-family: var(--lw-font);
-  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.06;
   letter-spacing: -0.01em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .lw-hero-sub {
@@ -226,46 +173,48 @@ body {
   -webkit-backdrop-filter: blur(4px);
 }
 
-/* Stat cards row — cream zone below the teal */
+/* Stat cards row — sits below the hero copy (still in the image area) */
 .lw-stats-row {
   display: flex;
-  gap: 10px;
-  padding: 16px 16px 20px 16px;
+  gap: 8px;
+  padding: 10px 14px 16px 14px;
   flex-wrap: wrap;
+  background: rgba(0,0,0,0.18);   /* subtle dark band to lift cards off image */
 }
 
 .lw-stat-card {
-  flex: 1 1 110px;
-  min-width: 95px;
-  background: #fffef9;
-  border: 1px solid rgba(180, 155, 110, 0.12);
-  border-radius: 16px;
-  padding: 14px 16px 12px;
-  box-shadow: 0 2px 12px rgba(70, 130, 120, 0.09), 0 1px 3px rgba(0, 0, 0, 0.04);
+  flex: 1 1 100px;
+  min-width: 90px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 12px;
+  padding: 12px 14px 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
 .lw-stat-card-icon {
-  font-size: 1.6rem;
+  font-size: 1.35rem;
   line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .lw-stat-card-value {
   font-family: var(--lw-font);
-  font-size: 2rem;
+  font-size: 1.65rem;
   font-weight: 700;
-  color: var(--lw-ink);
+  color: #ffffff;
   line-height: 1.05;
 }
 
 .lw-stat-card-label {
-  font-size: 0.74rem;
-  color: #8a9ab5;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.80);
   font-weight: 500;
-  margin-top: 3px;
+  margin-top: 2px;
   text-transform: lowercase;
   letter-spacing: 0.01em;
 }
@@ -282,27 +231,32 @@ body {
 }
 
 .lw-nav-inner {
-  max-width: 960px;
-  margin: 0 auto;
+  /* No max-width — let pills use the full viewport width so all 11 tabs fit */
   display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
+  gap: 4px;
+  flex-wrap: nowrap;          /* never wrap — scroll instead */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;      /* Firefox */
+  padding-bottom: 2px;        /* keep active pill shadow visible */
 }
+.lw-nav-inner::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
 /* ── Nav pills (overrides the old .lw-nav-pills / .lw-nav-pill rules) ── */
 .lw-nav-pill {
-  padding: 8px 20px;
+  padding: 6px 11px;          /* tight enough for 11 tabs at 1280px+ */
   border-radius: 999px;
   border: 1.5px solid #e5d9c4;
   background: transparent;
   color: var(--lw-muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
   font-family: var(--lw-font-sans);
   white-space: nowrap;
   line-height: 1;
+  flex-shrink: 0;              /* prevent pills from squishing */
 }
 
 .lw-nav-pill:hover:not(.active) {
@@ -331,6 +285,17 @@ body {
 
 .lw-section { margin-top: 20px; }
 
+/*
+ * Vanilla-HTML bridge container for LanguagePage.
+ * The vanilla renderProgressiveTab() emits .section-stack, .pl-*, etc.
+ * We let vanilla styles.css handle those; we just need the outer container
+ * to not add extra padding on top of the vanilla layout.
+ */
+.lw-pl-bridge {
+  padding-top: 0;
+}
+.lw-pl-bridge .section-stack { padding-top: 16px; }
+
 /* Home page specific */
 .lw-home-quick-start { margin-top: 24px; }
 
@@ -343,24 +308,20 @@ body {
 
 /* ── Responsive ──────────────────────────────────────────────────────── */
 @media (max-width: 740px) {
-  .lw-header-mascot   { width: 160px; }
-  .lw-mascot-img      { width: 148px; }
-  .lw-hero-copy       { min-height: 200px; padding: 22px 12px 16px 12px; }
-  .lw-header-teal-bg  { height: 200px; }
-  .lw-hero-doodles    { width: 150px; height: 200px; }
-  .lw-stats-row       { gap: 8px; padding: 14px 12px 16px 12px; }
-  .lw-stat-card       { padding: 11px 12px 10px; }
-  .lw-stat-card-value { font-size: 1.5rem; }
-  .lw-nav-pill        { padding: 7px 14px; font-size: 0.82rem; }
+  .lw-header-mascot   { width: 130px; }
+  .lw-mascot-img      { width: 130px; }
+  .lw-hero-copy       { min-height: 120px; padding: 16px 10px 12px 10px; }
+  .lw-stats-row       { gap: 6px; padding: 10px 10px 14px 10px; }
+  .lw-stat-card       { padding: 9px 10px 8px; }
+  .lw-stat-card-value { font-size: 1.35rem; }
+  .lw-nav-pill        { padding: 6px 12px; font-size: 0.80rem; }
 }
 
 @media (max-width: 500px) {
   .lw-header-mascot { display: none; }
-  .lw-hero-copy     { padding: 20px 16px; min-height: 190px; }
-  .lw-hero-title    { font-size: 1.75rem; }
-  .lw-header-teal-bg { height: 190px; }
-  .lw-stats-row     { display: grid; grid-template-columns: 1fr 1fr; padding: 12px 12px 16px; }
-  .lw-hero-doodles  { display: none; }
+  .lw-hero-copy     { padding: 16px 14px; min-height: 110px; }
+  .lw-hero-title    { font-size: 1.45rem; }
+  .lw-stats-row     { display: grid; grid-template-columns: 1fr 1fr; padding: 10px 10px 14px; }
 }
 
 /* ── Utility ────────────────────────────────────────────────────────── */

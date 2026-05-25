@@ -3,6 +3,7 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useBuilderSession } from "../hooks/useBuilderSession.js";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
+import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { listSentenceBuilderPacks } from "@/data.js";
 
 const FILTER_OPTIONS = [
@@ -23,7 +24,7 @@ export default function BuilderPage() {
 
   const resolvedPackId = packId || (packs[0]?.id || "");
 
-  const { currentCard, tiles, feedback, loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard } = useBuilderSession({
+  const { currentCard, cards, index, tiles, feedback, loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard, jumpToCard } = useBuilderSession({
     manifest,
     packId: resolvedPackId,
     filter,
@@ -31,15 +32,15 @@ export default function BuilderPage() {
     updateProgress,
   });
 
-  if (manifestLoading) return <div className="lw-page"><p>Loading…</p></div>;
+  if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
   if (!packs.length) {
     return (
       <div className="lw-page">
-        <div className="lw-empty">
-          <h3>No builder packs available</h3>
-          <p>No sentence builder packs found in the manifest.</p>
-        </div>
+        <EmptyState
+          title="No builder packs available"
+          message="No sentence builder packs found in the manifest."
+        />
       </div>
     );
   }
@@ -49,34 +50,18 @@ export default function BuilderPage() {
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">Sentence Builder</h2>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "16px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: "1 1 200px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Pack</label>
-            <select
-              value={resolvedPackId}
-              onChange={e => setPackId(e.target.value)}
-              style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-            >
-              {packs.map(p => <option key={p.id} value={p.id}>{p.displayName}</option>)}
-            </select>
-          </div>
+        <FilterRow style={{ marginBottom: "16px" }}>
+          <LabeledSelect label="Pack" value={resolvedPackId} onChange={setPackId}>
+            {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
+          </LabeledSelect>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Filter</label>
-            <div className="lw-nav-pills">
-              {FILTER_OPTIONS.map(f => (
-                <button
-                  key={f.id}
-                  type="button"
-                  className={`lw-nav-pill ${filter === f.id ? "active" : ""}`}
-                  onClick={() => setFilter(f.id)}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+          <PillGroup
+            label="Filter"
+            items={FILTER_OPTIONS}
+            value={filter}
+            onSelect={setFilter}
+          />
+        </FilterRow>
 
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "4px" }}>
           <span style={{ fontSize: "0.85rem", color: "var(--lw-muted)" }}>Attempted: <strong>{stats.totalAttempted}</strong></span>
@@ -85,26 +70,53 @@ export default function BuilderPage() {
         </div>
       </div>
 
-      {loading && <p style={{ color: "var(--lw-muted)" }}>Loading cards…</p>}
+      {loading && <LoadingText text="Loading cards…" />}
 
       {!loading && !currentCard && (
-        <div className="lw-empty">
-          <h3>No cards match the filter</h3>
-          <p>Try selecting a different filter or pack.</p>
-        </div>
+        <EmptyState
+          title="No cards match the filter"
+          message="Try selecting a different filter or pack."
+        />
       )}
 
       {!loading && currentCard && (
         <div className="lw-card">
-          <div style={{ marginBottom: "12px" }}>
-            {currentCard.type && (
-              <span className="lw-chip blue" style={{ marginBottom: "8px", display: "inline-block" }}>
-                {currentCard.type.replace(/_/g, " ")}
-              </span>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px", gap: "10px", flexWrap: "wrap" }}>
+            <div style={{ flex: 1, minWidth: "160px" }}>
+              {currentCard.type && (
+                <span className="lw-chip blue" style={{ marginBottom: "8px", display: "inline-block" }}>
+                  {currentCard.type.replace(/_/g, " ")}
+                </span>
+              )}
+              <p style={{ fontWeight: 600, fontSize: "1rem", color: "var(--lw-ink)", marginTop: "8px" }}>
+                {currentCard.prompt}
+              </p>
+            </div>
+
+            {cards.length > 1 && (
+              <select
+                value={index}
+                onChange={(e) => jumpToCard(Number(e.target.value))}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "8px",
+                  border: "1.5px solid var(--lw-line)",
+                  background: "var(--lw-panel)",
+                  color: "var(--lw-ink)",
+                  fontFamily: "inherit",
+                  fontSize: "0.85rem",
+                  flex: "0 0 auto",
+                  maxWidth: "200px",
+                }}
+                aria-label="Jump to card"
+              >
+                {cards.map((c, i) => (
+                  <option key={c.id || i} value={i}>
+                    {i + 1}. {c.prompt || `Card ${i + 1}`}
+                  </option>
+                ))}
+              </select>
             )}
-            <p style={{ fontWeight: 600, fontSize: "1rem", color: "var(--lw-ink)", marginTop: "8px" }}>
-              {currentCard.prompt}
-            </p>
           </div>
 
           <TileBuilder

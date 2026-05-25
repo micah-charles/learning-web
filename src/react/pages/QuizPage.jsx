@@ -4,18 +4,19 @@ import { useProgress } from "../context/ProgressContext.jsx";
 import { useQuizSession } from "../hooks/useQuizSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
+import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { listDatasets, listDatasetsBySubject, getDatasetSubject, SUBJECTS, getDatasetDirections, findDataset } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
-const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"];
-const QUESTION_COUNTS = [12, 18, 24, 30];
-const ANSWER_MODES = [
-  { id: "mixed", label: "Mixed" },
+const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
+const ANSWER_MODES_ALL = [
+  { id: "mixed",  label: "Mixed"  },
   { id: "choice", label: "Choice" },
-  { id: "typed", label: "Typed" },
-  { id: "build", label: "Build" },
+  { id: "typed",  label: "Typed"  },
+  { id: "build",  label: "Build"  }, // language packs only (requires sentence pools)
 ];
+const ANSWER_MODES_BASIC = ANSWER_MODES_ALL.filter(m => m.id !== "build");
 
 // ─── Setup Phase ─────────────────────────────────────────────────────────────
 
@@ -43,8 +44,16 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
   const selectedStages = dataset && isStage ? getSelectedStages(prefs, dataset) : [];
   const directions = dataset ? getDatasetDirections(dataset) : [];
 
+  // "Build" requires sentence pools — only available for language packs.
+  const isLanguage = dataset ? getDatasetSubject(dataset) === "language" : false;
+  const answerModes = isLanguage ? ANSWER_MODES_ALL : ANSWER_MODES_BASIC;
+
   function setPref(key, value) {
     setPrefs(prev => ({ ...prev, [key]: value }));
+  }
+
+  function safeAnswerMode(currentMode, subjectIsLanguage) {
+    return !subjectIsLanguage && currentMode === "build" ? "mixed" : currentMode;
   }
 
   function toggleStage(stage) {
@@ -64,74 +73,59 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
         <h2 className="lw-section-title">Quiz Setup</h2>
 
         <h3 style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--lw-muted)", marginBottom: "6px" }}>Subject</h3>
-        <SubjectCardGrid subjects={subjectCounts} activeSubject={prefs.subject} onSelect={s => setPref("subject", s)} />
+        <SubjectCardGrid
+          subjects={subjectCounts}
+          activeSubject={prefs.subject}
+          onSelect={(subj) => {
+            const firstMatch = datasets.find((d) => getDatasetSubject(d) === subj);
+            const newIsLanguage = subj === "language";
+            setPrefs((prev) => ({
+              ...prev,
+              subject: subj,
+              datasetId: firstMatch?.id ?? prev.datasetId,
+              stages: [],
+              direction: "",
+              answerMode: safeAnswerMode(prev.answerMode, newIsLanguage),
+            }));
+          }}
+        />
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "18px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: "1 1 200px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Dataset</label>
-            <select
-              value={prefs.datasetId}
-              onChange={e => setPref("datasetId", e.target.value)}
-              style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-            >
-              {filteredDatasets.map(d => <option key={d.id} value={d.id}>{d.displayName}</option>)}
-            </select>
-          </div>
+        <FilterRow style={{ marginTop: "18px" }}>
+          <LabeledSelect label="Dataset" value={prefs.datasetId} onChange={(v) => {
+            const newDataset = findDataset(manifest, v);
+            const newIsLanguage = newDataset ? getDatasetSubject(newDataset) === "language" : false;
+            setPrefs(prev => ({
+              ...prev,
+              datasetId: v,
+              answerMode: safeAnswerMode(prev.answerMode, newIsLanguage),
+            }));
+          }}>
+            {filteredDatasets.map((d) => <option key={d.id} value={d.id}>{d.displayName}</option>)}
+          </LabeledSelect>
 
-          {isStage ? (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Stage</label>
-              <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                {stageOptions.map(s => (
-                  <button
-                    key={s}
-                    type="button"
-                    className={`lw-nav-pill ${selectedStages.includes(s) ? "active" : ""}`}
-                    style={{ padding: "6px 14px", fontSize: "0.85rem" }}
-                    onClick={() => toggleStage(s)}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Year</label>
-              <select
-                value={prefs.year}
-                onChange={e => setPref("year", e.target.value)}
-                style={{ padding: "8px 12px", borderRadius: "8px", border: "1.5px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontFamily: "inherit" }}
-              >
-                {YEAR_OPTIONS.map(y => <option key={y} value={y}>{y}</option>)}
-              </select>
-            </div>
+          {isStage && (
+            <ToggleGroup
+              label="Stage"
+              items={stageOptions}
+              selected={selectedStages}
+              onToggle={toggleStage}
+            />
           )}
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600 }}>Questions</label>
-            <div style={{ display: "flex", gap: "6px" }}>
-              {QUESTION_COUNTS.map(n => (
-                <button
-                  key={n}
-                  type="button"
-                  className={`lw-nav-pill ${prefs.questionCount === n ? "active" : ""}`}
-                  style={{ padding: "6px 14px", fontSize: "0.85rem" }}
-                  onClick={() => setPref("questionCount", n)}
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+          <PillGroup
+            label="Questions"
+            items={QUESTION_COUNTS}
+            value={prefs.questionCount}
+            onSelect={(n) => setPref("questionCount", Number(n))}
+          />
+        </FilterRow>
 
         <div style={{ marginTop: "16px", display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
           <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "0.9rem" }}>
             <input
               type="checkbox"
               checked={prefs.excludeMastered}
-              onChange={e => setPref("excludeMastered", e.target.checked)}
+              onChange={(e) => setPref("excludeMastered", e.target.checked)}
               style={{ width: "16px", height: "16px" }}
             />
             Exclude mastered words
@@ -139,38 +133,22 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
         </div>
 
         {directions.length > 0 && (
-          <div style={{ marginTop: "16px" }}>
-            <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600, display: "block", marginBottom: "8px" }}>Direction</label>
-            <div className="lw-nav-pills">
-              {directions.map(d => (
-                <button
-                  key={d.id}
-                  type="button"
-                  className={`lw-nav-pill ${prefs.direction === d.id ? "active" : ""}`}
-                  onClick={() => setPref("direction", d.id)}
-                >
-                  {d.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          <PillGroup
+            label="Direction"
+            items={directions}
+            value={prefs.direction}
+            onSelect={(v) => setPref("direction", v)}
+            style={{ marginTop: "16px" }}
+          />
         )}
 
-        <div style={{ marginTop: "16px" }}>
-          <label style={{ fontSize: "0.8rem", color: "var(--lw-muted)", fontWeight: 600, display: "block", marginBottom: "8px" }}>Answer mode</label>
-          <div className="lw-nav-pills">
-            {ANSWER_MODES.map(m => (
-              <button
-                key={m.id}
-                type="button"
-                className={`lw-nav-pill ${prefs.answerMode === m.id ? "active" : ""}`}
-                onClick={() => setPref("answerMode", m.id)}
-              >
-                {m.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        <PillGroup
+          label="Answer mode"
+          items={answerModes}
+          value={prefs.answerMode}
+          onSelect={(v) => setPref("answerMode", v)}
+          style={{ marginTop: "16px" }}
+        />
 
         <div style={{ marginTop: "20px" }}>
           <button className="lw-btn lw-btn-primary" type="button" onClick={onStart}>

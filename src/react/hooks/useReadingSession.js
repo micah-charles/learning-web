@@ -80,11 +80,18 @@ export function useReadingSession({ manifest, groupId, packId, prefs, updateProg
 
   const resetSession = useCallback(() => setStarted(false), []);
 
+  const jumpToPassage = useCallback((index) => {
+    if (index < 0 || index >= deck.length) return;
+    setCurrentIndex(index);
+    setAnswers({});
+    setRevealed(false);
+  }, [deck.length]);
+
   const current = deck[currentIndex] || null;
 
   return {
     passages, loading, started, current, deck, currentIndex, answers,
     revealed, completedCount, message, categoryOptions,
-    startSession, answerQuestion, revealPassage, nextPassage, resetSession,
+    startSession, answerQuestion, revealPassage, nextPassage, resetSession, jumpToPassage,
   };
 }
