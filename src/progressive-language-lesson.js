@@ -281,13 +281,13 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
       const newAnswered   = { ...state.answered, vocab: { ...state.answered.vocab, [conceptId]: true } };
       const newScore      = { ...state.score };
       const newMistakes   = [...state.mistakes];
+      const cv = vocab[state.vocabIndex];
 
       if (isFirstAttempt) {
         newScore.vocabTotal += 1;
         if (correct) {
           newScore.vocabCorrect += 1;
         } else {
-          const cv = vocab[state.vocabIndex];
           newMistakes.push({
             phase:    "Vocabulary",
             conceptId,
@@ -298,13 +298,19 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
         }
       }
 
+      // Speak the correct answer so the learner hears the right pronunciation.
+      const correctText = getDisplayText(cv?.translations?.[state.targetLang], state.targetLang);
+      const speakEffect = correctText
+        ? { speak: { text: correctText, lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB" } }
+        : null;
+
       return {
         state: {
           ...state, answered: newAnswered,
           vocabFeedback: { correct, selectedText: data.selectedText || "" },
           score: newScore, mistakes: newMistakes,
         },
-        effect: null,
+        effect: speakEffect,
       };
     }
 
@@ -422,9 +428,15 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
         }
       }
 
+      // Speak the correct sentence so the learner hears the right pronunciation.
+      const correctSentence = trans?.text || expected.join(" ");
+      const builderSpeakEffect = correctSentence
+        ? { speak: { text: correctSentence, lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB" } }
+        : null;
+
       return {
         state: { ...state, answered: newAnswered, builderFeedback: { correct }, score: newScore, mistakes: newMistakes },
-        effect: null,
+        effect: builderSpeakEffect,
       };
     }
 
