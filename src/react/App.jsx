@@ -29,13 +29,12 @@ import AboutPage     from "./pages/AboutPage.jsx";
 
 const TABS = [
   { id: "home",      label: "Home"        },
-  { id: "vocab",     label: "Vocabulary"  },
+  { id: "language",  label: "Language ✨" },
   { id: "quiz",      label: "Quiz"        },
+  { id: "vocab",     label: "Vocabulary"  },
   { id: "reading",   label: "Reading"     },
   { id: "builder",   label: "Builder"     },
-  { id: "language",  label: "Language ✨" },
   { id: "crossword", label: "Crossword"   },
-  { id: "review",    label: "Review"      },
   { id: "progress",  label: "Progress"    },
   { id: "mypacks",   label: "My Packs"    },
   { id: "about",     label: "About"       },
