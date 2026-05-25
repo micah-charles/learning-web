@@ -92,48 +92,69 @@ export default function HomePage({ onNavigate }) {
   return (
     <div className="lw-page">
 
-      {/* ── Quick start ────────────────────────────────────────────────── */}
-      <div className="lw-card lw-home-quick-start">
-        <h2 className="lw-section-title">
-          Quick start <SectionStar />
-        </h2>
-        <p className="lw-subtitle">
-          Pick up where you left off, or explore something new.
-        </p>
-        <p className="lw-quick-tip">
-          First time here? Try <strong>Language Ladder</strong> for a gentle start. Or take a <strong>Start Quiz</strong> to practise.
-        </p>
-        <p className="lw-quick-tip lw-quick-tip-muted">
-          <span aria-hidden="true">🔊</span> Speak uses your browser or mobile text-to-speech. You may need to install or enable the language voice on your device.
-        </p>
-        <div className="lw-btn-group">
-          <button className="lw-btn lw-btn-promote lw-btn-promote-orange" type="button" onClick={() => onNavigate("language")}>
-            Language Ladder <span aria-hidden="true">✨</span>
-          </button>
-          <button className="lw-btn lw-btn-promote lw-btn-promote-blue" type="button" onClick={() => onNavigate("quiz")}>
-            Start Quiz
-          </button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("vocab")}>
-            Vocabulary
-          </button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("reading")}>
-            Reading
-          </button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("builder")}>
-            Builder
-          </button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("crossword")}>
-            Crossword
-          </button>
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("progress")}>
-            Progress
-          </button>
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("mypacks")}>
-            My Packs
-          </button>
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("about")}>
-            About
-          </button>
+      {/* ── Quick start + Community row ────────────────────────────────── */}
+      <div className="lw-home-top-row">
+        <div className="lw-card lw-home-quick-start">
+          <h2 className="lw-section-title">
+            Quick start <SectionStar />
+          </h2>
+          <p className="lw-subtitle">
+            Pick up where you left off, or explore something new.
+          </p>
+          <p className="lw-quick-tip">
+            First time here? Try <strong>Language Ladder</strong> for a gentle start. Or take a <strong>Start Quiz</strong> to practise.
+          </p>
+          <p className="lw-quick-tip lw-quick-tip-muted">
+            <span aria-hidden="true">🔊</span> Speak uses your browser or mobile text-to-speech. You may need to install or enable the language voice on your device.
+          </p>
+          <div className="lw-btn-group">
+            <button className="lw-btn lw-btn-promote lw-btn-promote-orange" type="button" onClick={() => onNavigate("language")}>
+              Language Ladder <span aria-hidden="true">✨</span>
+            </button>
+            <button className="lw-btn lw-btn-promote lw-btn-promote-blue" type="button" onClick={() => onNavigate("quiz")}>
+              Start Quiz
+            </button>
+            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("vocab")}>
+              Vocabulary
+            </button>
+            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("reading")}>
+              Reading
+            </button>
+            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("builder")}>
+              Builder
+            </button>
+            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("crossword")}>
+              Crossword
+            </button>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("progress")}>
+              Progress
+            </button>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("mypacks")}>
+              My Packs
+            </button>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("about")}>
+              About
+            </button>
+          </div>
+        </div>
+
+        {/* ── Community ── */}
+        <div className="lw-card lw-home-community">
+          <h2 className="lw-section-title">Let&apos;s grow together! 💛</h2>
+          <p className="lw-subtitle">
+            Follow the FoxChildIdea journey on Facebook and share your thoughts, feedback, or ideas.
+          </p>
+          <a
+            className="lw-btn lw-btn-community"
+            href="https://www.facebook.com/profile.php?id=61589170294693"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style={{ flexShrink: 0 }}>
+              <path fill="currentColor" d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+            </svg>
+            Visit our Facebook page
+          </a>
         </div>
       </div>
 
