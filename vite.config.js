@@ -11,18 +11,24 @@ export default defineConfig(({ command }) => ({
   base: command === "build" ? "./" : "/",
   plugins: [
     react(),
-    // Copy the data/ directory into dist/ so runtime fetch() calls to
-    // ./data/generated/manifest.json and ./data/Packs/... resolve correctly.
-    viteStaticCopy({
-      targets: [
-        // data/ is fetched at runtime (manifest.json, pack JSON files)
-        { src: "data", dest: "." },
-        // brand/ contains fox-tutor and other mascot images referenced as
-        // HTML strings inside dangerouslySetInnerHTML — they are not imported
-        // by Vite so must be copied verbatim into dist/
-        { src: "brand", dest: "." },
-      ],
-    }),
+    // viteStaticCopy only runs during `vite build` (not `vite dev`).
+    //
+    // In dev mode, Vite serves all files from the project root directly, so
+    // data/ and brand/ are already accessible at their natural paths.
+    // Running viteStaticCopy in dev intercepts requests for brand/ files and
+    // returns raw image bytes before Vite's asset-transform can wrap them in an
+    // ES module — causing "Failed to load module script: image/jpeg" errors.
+    //
+    // In production build: data/ and brand/ must be explicitly copied into
+    // dist/ because Vite only bundles files that are imported in the source.
+    ...(command === "build"
+      ? [viteStaticCopy({
+          targets: [
+            { src: "data",  dest: "." },
+            { src: "brand", dest: "." },
+          ],
+        })]
+      : []),
   ],
   server: {
     port: 5173,
