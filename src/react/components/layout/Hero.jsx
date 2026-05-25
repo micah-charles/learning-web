@@ -5,11 +5,10 @@
  *   – brand/hero-bg.jpg background with teal gradient overlay
  *   – brand/logo.png character artwork on the left
  *   – "FoxChild@Learn" title with @Learn in fox-orange
- *   – pack count badges + optional 4 stat cards
+ *   – pack count badges
  */
 import { useMemo } from "react";
 import { useManifest } from "../../context/ManifestContext.jsx";
-import { useProgress } from "../../context/ProgressContext.jsx";
 import {
   listDatasets,
   listPassageGroups,
@@ -30,55 +29,18 @@ function CountBadge({ icon, n, label }) {
   );
 }
 
-// ─── Stat card ────────────────────────────────────────────────────────────────
-
-function StatCard({ value, label, icon }) {
-  return (
-    <div className="lw-stat-card">
-      <div className="lw-stat-card-icon" aria-hidden="true">{icon}</div>
-      <div className="lw-stat-card-value">{value}</div>
-      <div className="lw-stat-card-label">{label}</div>
-    </div>
-  );
-}
-
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-export default function Hero({ hideStats = false }) {
+export default function Hero({ variant = "standard" }) {
   const { manifest } = useManifest();
-  const { progress } = useProgress();
 
   const packCount    = useMemo(() => (manifest ? listDatasets(manifest).length : 0),            [manifest]);
   const groupCount   = useMemo(() => (manifest ? listPassageGroups(manifest).length : 0),       [manifest]);
   const builderCount = useMemo(() => (manifest ? listSentenceBuilderPacks(manifest).length : 0),[manifest]);
 
-  const wordsSeen = useMemo(
-    () => Object.keys(progress?.progress?.words ?? {}).length,
-    [progress],
-  );
-  const masterCount = useMemo(
-    () =>
-      Object.values(progress?.progress?.words ?? {}).filter(
-        (w) => w.correct >= 3 && w.streak >= 2,
-      ).length,
-    [progress],
-  );
-  const sessionCount = useMemo(
-    () => (progress?.progress?.sessions ?? []).length,
-    [progress],
-  );
-  const lastQuizPct = useMemo(() => {
-    const s = progress?.progress?.sessions;
-    if (!s?.length) return null;
-    const last = s[0];
-    return last.totalQuestions
-      ? Math.round((last.score / last.totalQuestions) * 100)
-      : null;
-  }, [progress]);
-
   return (
     <div
-      className="lw-app-header"
+      className={`lw-app-header lw-app-header--${variant}`}
       style={{
         background: [
           "radial-gradient(circle at 20% 55%, rgba(255,255,255,0.10), transparent 40%)",
@@ -92,25 +54,39 @@ export default function Hero({ hideStats = false }) {
       <div className="lw-header-inner">
 
         {/* Logo panel — bottom-aligned to the copy zone height only */}
-        <div className="lw-header-mascot" aria-hidden="true">
+        <div className="lw-header-mascot">
           <img
             src={logoImg}
-            alt=""
+            alt="FoxChild Idea — Fox Tutor and Girl Tutor"
             className="lw-mascot-img"
           />
+          <a
+            className="lw-social-badge lw-social-badge--facebook"
+            href="https://www.facebook.com/profile.php?id=61589170294693"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit FoxChildIdea on Facebook"
+            aria-label="Visit FoxChildIdea on Facebook"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+            </svg>
+          </a>
         </div>
 
         {/* Hero copy (no stats here — stats are full-width below) */}
         <div className="lw-hero-copy">
-          <p className="lw-hero-eyebrow">POWERED BY FOXCHILD IDEA</p>
-          <h1 className="lw-hero-title">
-            <span style={{ color: "#fff" }}>FoxChild</span>
-            <span style={{ color: "var(--fox-orange, #e8841a)" }}>@Learn</span>
-          </h1>
-          <p className="lw-hero-sub">
-            Your cosy space for learning, practising, and growing —
-            powered by curiosity and AI.
-          </p>
+          <div className="lw-hero-brand-block">
+            <p className="lw-hero-eyebrow">POWERED BY FOXCHILD IDEA</p>
+            <h1 className="lw-hero-title">
+              <span style={{ color: "#fff" }}>FoxChild</span>
+              <span style={{ color: "var(--fox-orange, #e8841a)" }}>@Learn</span>
+            </h1>
+            <p className="lw-hero-sub">
+              Your cosy space for learning, practising, and growing —
+              powered by curiosity and AI.
+            </p>
+          </div>
           {manifest && (
             <div className="lw-hero-counts">
               <CountBadge icon="📦" n={packCount}    label="packs"          />
@@ -120,20 +96,6 @@ export default function Hero({ hideStats = false }) {
           )}
         </div>
       </div>
-
-      {/* ── Stat cards — full-width strip below the copy row ─────────────── */}
-      {!hideStats && (
-        <div className="lw-stats-row">
-          <StatCard value={wordsSeen}    label="vocab items"      icon="📚" />
-          <StatCard value={masterCount}  label="words mastered"   icon="🌱" />
-          <StatCard value={sessionCount} label="quiz sessions"    icon="📋" />
-          <StatCard
-            value={lastQuizPct !== null ? `${lastQuizPct}%` : "—"}
-            label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
-            icon={lastQuizPct !== null ? "✅" : "🔒"}
-          />
-        </div>
-      )}
     </div>
   );
 }

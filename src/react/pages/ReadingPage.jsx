@@ -10,7 +10,7 @@ import { listPassageGroups, listPassageGroupsBySubject, listPassagePacks, getPas
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
 
-function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
+function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, categoryOptions }) {
   const groups = useMemo(() => manifest ? listPassageGroups(manifest) : [], [manifest]);
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
@@ -28,6 +28,19 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
     if (!manifest || !prefs.groupId) return [];
     return listPassagePacks(manifest, prefs.groupId);
   }, [manifest, prefs.groupId]);
+
+  const selectedGroup = filteredGroups.find(g => g.id === prefs.groupId);
+  const selectedPack = packs.find(p => p.id === prefs.packId);
+  const selectedLabel = [
+    selectedGroup?.displayName,
+    selectedPack?.displayName && selectedPack?.displayName !== selectedGroup?.displayName ? selectedPack.displayName : "",
+  ].filter(Boolean).join(" — ") || "the selected pack";
+
+  const friendlyMessage = message === "No passages match the current filters."
+    ? packs.length === 0
+      ? `This group has vocabulary items but no reading passages yet. Try another group, or add passages in My Packs.`
+      : `No reading passages found for “${selectedLabel}”. Try another group, or add passages in My Packs.`
+    : message;
 
   function setPref(key, value) {
     setPrefs(prev => ({ ...prev, [key]: value }));
@@ -47,66 +60,105 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
 
   return (
     <div className="lw-page">
-      <div className="lw-card">
-        <h2 className="lw-section-title">Reading Setup</h2>
+      <div className="lw-card lw-reading-setup-card">
+        <div className="lw-reading-setup-grid">
+          <div className="lw-reading-main-column">
+            <h2 className="lw-section-title">Reading Setup</h2>
 
-        <h3 style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--lw-muted)", marginBottom: "6px" }}>Subject</h3>
-        <SubjectCardGrid
-          subjects={subjectCounts}
-          activeSubject={prefs.subject}
-          onSelect={(s) => {
-            const firstGroup = listPassageGroupsBySubject(manifest, s)[0];
-            setPrefs((prev) => ({ ...prev, subject: s, groupId: firstGroup?.id ?? "", packId: "" }));
-          }}
-        />
-
-        <FilterRow style={{ marginTop: "18px" }}>
-          {filteredGroups.length > 0 && (
-            <LabeledSelect label="Book / Group" value={prefs.groupId} onChange={(v) => setPref("groupId", v)}>
-              {filteredGroups.map((g) => <option key={g.id} value={g.id}>{g.displayName}</option>)}
-            </LabeledSelect>
-          )}
-
-          {packs.length > 1 && (
-            <LabeledSelect label="Set" value={prefs.packId} onChange={(v) => setPref("packId", v)}>
-              {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
-            </LabeledSelect>
-          )}
-        </FilterRow>
-
-        <div style={{ marginTop: "16px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
-          <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "0.9rem" }}>
-            <input
-              type="checkbox"
-              checked={prefs.showGerman}
-              onChange={e => setPref("showGerman", e.target.checked)}
-              style={{ width: "16px", height: "16px" }}
+            <h3 className="lw-field-heading">Subject</h3>
+            <SubjectCardGrid
+              subjects={subjectCounts}
+              activeSubject={prefs.subject}
+              onSelect={(s) => {
+                const firstGroup = listPassageGroupsBySubject(manifest, s)[0];
+                setPrefs((prev) => ({ ...prev, subject: s, groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
+              }}
             />
-            Show source text
-          </label>
-          <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "0.9rem" }}>
-            <input
-              type="checkbox"
-              checked={prefs.voiceEnabled}
-              onChange={e => setPref("voiceEnabled", e.target.checked)}
-              style={{ width: "16px", height: "16px" }}
-            />
-            Autoplay voice
-          </label>
-        </div>
 
-        {message && <p style={{ marginTop: "12px", color: "var(--lw-coral)" }}>{message}</p>}
+            <FilterRow style={{ marginTop: "18px" }}>
+              {filteredGroups.length > 0 && (
+                <LabeledSelect label="Book / Group" value={prefs.groupId} onChange={(v) => setPrefs((prev) => ({ ...prev, groupId: v, category: "all", difficulty: "all" }))}>
+                  {filteredGroups.map((g) => <option key={g.id} value={g.id}>{g.displayName}</option>)}
+                </LabeledSelect>
+              )}
 
-        <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-          <button
-            className="lw-btn lw-btn-primary"
-            type="button"
-            onClick={onStart}
-            disabled={!prefs.groupId}
-          >
-            Start reading
-          </button>
-          <StudyBookButton dataset={groups.find(g => g.id === prefs.groupId)} />
+              {packs.length > 1 && (
+                <LabeledSelect label="Set" value={prefs.packId} onChange={(v) => setPrefs((prev) => ({ ...prev, packId: v, category: "all", difficulty: "all" }))}>
+                  {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
+                </LabeledSelect>
+              )}
+            </FilterRow>
+
+            <FilterRow style={{ marginTop: "14px" }}>
+              {categoryOptions.length > 0 && (
+                <LabeledSelect label="Topic" value={prefs.category} onChange={(v) => setPref("category", v)}>
+                  <option value="all">All topics</option>
+                  {categoryOptions.map((topic) => <option key={topic} value={topic}>{topic}</option>)}
+                </LabeledSelect>
+              )}
+              <LabeledSelect label="Difficulty" value={prefs.difficulty} onChange={(v) => setPref("difficulty", v)}>
+                <option value="all">All difficulties</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </LabeledSelect>
+            </FilterRow>
+
+            <div className="lw-reading-options">
+              <label className="lw-check-row">
+                <input
+                  type="checkbox"
+                  checked={prefs.showGerman}
+                  onChange={e => setPref("showGerman", e.target.checked)}
+                />
+                Show source text
+              </label>
+              <label className="lw-check-row">
+                <input
+                  type="checkbox"
+                  checked={prefs.voiceEnabled}
+                  onChange={e => setPref("voiceEnabled", e.target.checked)}
+                />
+                Autoplay voice
+              </label>
+            </div>
+
+            {friendlyMessage && <p className="lw-reading-message">{friendlyMessage}</p>}
+
+            <div className="lw-reading-actions">
+              <button
+                className="lw-btn lw-btn-primary"
+                type="button"
+                onClick={onStart}
+                disabled={!prefs.groupId || loading}
+              >
+                {loading ? "Loading passages…" : "Start reading"}
+              </button>
+              <StudyBookButton dataset={selectedGroup} />
+            </div>
+          </div>
+
+          <aside className="lw-reading-side-column" aria-label="Selected reading pack">
+            <div>
+              <p className="lw-side-label">Selected Pack</p>
+              <h3>{selectedGroup?.displayName || "Choose a subject"}</h3>
+              {selectedPack && selectedPack.displayName !== selectedGroup?.displayName && (
+                <p>{selectedPack.displayName}</p>
+              )}
+            </div>
+            <div>
+              <p className="lw-side-label">About this pack</p>
+              <p>
+                {packs.length > 0
+                  ? `${packs.length} reading set${packs.length === 1 ? "" : "s"} available. Choose a topic or difficulty to shape the session.`
+                  : "No reading sets are registered for this group yet."}
+              </p>
+            </div>
+            <div>
+              <p className="lw-side-label">Need passages?</p>
+              <p>Use My Packs to add reading material when a subject is vocabulary-only.</p>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
@@ -316,7 +368,7 @@ export default function ReadingPage() {
 
   const {
     loading, started, current, deck, currentIndex, answers,
-    revealed, completedCount, message,
+    revealed, completedCount, message, categoryOptions,
     startSession, answerQuestion, revealPassage, nextPassage, resetSession, jumpToPassage,
   } = useReadingSession({ manifest, groupId: prefs.groupId, packId: prefs.packId, prefs, updateProgress });
 
@@ -330,6 +382,8 @@ export default function ReadingPage() {
         setPrefs={setPrefs}
         onStart={startSession}
         message={message}
+        loading={loading}
+        categoryOptions={categoryOptions}
       />
     );
   }
