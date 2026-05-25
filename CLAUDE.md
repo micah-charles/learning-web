@@ -5,43 +5,40 @@ Read this before touching any file.
 
 ---
 
-## 0. Golden Handbooks — read these first
-
-Two documents cover everything you need to understand this project:
-
-| Document | What it covers |
-|---|---|
-| [`docs/ui-overview.md`](docs/ui-overview.md) | All 9 tabs, every filter/button/dropdown, how UI reads JSON data, quiz engine, crossword, localStorage state shape |
-| [`docs/data-structures.md`](docs/data-structures.md) | Pack JSON schema v1.1, manifest structure, item types and required fields |
-
-**Read both before making any UI or data change.**
-
----
-
-## 0a. Mandatory UI Context Loading
+## 0. Mandatory UI Context Loading
 
 When working on **any frontend / UI-related task** for Learning Web:
 
-1. **First read:** `docs/ui-overview.md` and `docs/data-structures.md`
-2. **Also read:** `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md`
+1. **First read (in order):**
+   - `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` — real bugs + rules distilled from production
+   - `docs/REACT_ARCHITECTURE.md` — full map of every React context, hook, page, and component; read this before touching any `.jsx` file
 2. **Summarise** the key constraints internally before making any changes.
 3. **Validate** all proposed UI changes against:
-   - existing vanilla JS architecture
+   - React + vanilla JS hybrid architecture (React shell, vanilla JS engine)
+   - `useProgress()` shape — always pass the full stored-state to storage helpers (see RC1)
+   - `ManifestContext` — must call `hydrateManifest` for uploaded packs to be visible (see RC2)
+   - Quiz answer mode labels: React uses `"choice"`/`"build"`, engine uses `"mcq"` — normalise at boundary (see RC4)
+   - `data/` directory must be in `viteStaticCopy` targets or it won't reach `dist/` (see CD1)
    - mobile usability
    - pack compatibility (all subjects and curricula)
    - mode consistency (`resolveQuizModesForUI` ↔ `createQuizSession` ↔ badge counts)
    - accessibility
    - GCSE / educational workflow requirements
 4. **Avoid:**
-   - unnecessary framework rewrites
-   - duplicate component systems
-   - inconsistent interaction patterns
+   - passing `progress?.progress` (inner object) to storage helpers — pass the full state
+   - adding new `<select>` elements in `dangerouslySetInnerHTML` HTML without handling them in `handleChange` by id
+   - speech synthesis in `setTimeout` (outside user-gesture window → Chrome blocks)
+   - calling `synth.speak()` immediately after `synth.cancel()` — Chrome drops the utterance; defer via `requestAnimationFrame` (see RC11)
+   - showing "Build" answer mode for non-language packs (no sentence pools)
+   - placing side effects (`updateProgress`, `recordAttempt`) inside `setState()` updater functions — React StrictMode fires them twice (see RC9)
+   - rendering `<StudyBookDrawer />` inside page components — it belongs at App level (see RC10)
+   - unnecessary framework rewrites or duplicate component systems
    - breaking existing pack JSON contracts
    - overengineering
 5. **Prefer:**
-   - reusable render helpers
+   - hooks for data + state; pure render functions for UI
+   - `useMemo` for derived values; `useState` only for user-owned config
    - schema-driven rendering
-   - progressive enhancement
    - offline-first compatibility
    - educational usability over visual novelty
 
@@ -49,8 +46,10 @@ When working on **any frontend / UI-related task** for Learning Web:
 
 ## 1. What this project is
 
-A browser-only vocabulary and revision app (no backend, no framework) for KS3–KS4 students.
-Built with vanilla JS ES modules + Vite. All state lives in `localStorage`. All data is static JSON files served from `data/`.
+A browser-only vocabulary and revision app for KS3–KS4 students.
+**React 18 + Vite** shell over a **vanilla JS engine** (quiz.js, data.js, storage.js, etc.).
+All state lives in `localStorage`. All data is static JSON files served from `data/`.
+Deployed to Render.com as a static site — `render.yaml` at repo root controls the build.
 
 **Subjects**: `language` · `history` · `geography` · `science` · `literature`
 
@@ -60,25 +59,51 @@ Built with vanilla JS ES modules + Vite. All state lives in `localStorage`. All 
 
 ```
 src/
-  main.js          — entire UI: render functions, event handlers, app shell
-  data.js          — manifest loading, pack loading, vocabFromItem mapping
-  quiz.js          — question generation (makeWordChoiceQuestions etc.)
-  storage.js       — DEFAULT_STATE, loadStoredState, saveStoredState, mergeState
-  lang-utils.js    — language code normalisation, packSrcLang, packTgtLang
-  utils.js         — escapeHtml, shuffle, humanizeLabel, normalizeForCompare…
-  admin-storage.js — uploaded pack handling (admin tab only)
+  react/                       — React app shell (PR #110+)
+    App.jsx                    — tab routing, NavBar
+    main.jsx                   — React entry point
+    context/
+      ManifestContext.jsx      — loads manifest + calls hydrateManifest for uploads
+      ProgressContext.jsx      — wraps loadStoredState/saveStoredState
+      StudyBookContext.jsx     — Study Book drawer state (open/html/toc/search/splitMode)
+    hooks/
+      useVocabBrowser.js       — pack loading + filtering for Vocab/Review pages
+      useQuizSession.js        — quiz state machine
+      useReadingSession.js     — reading session state
+      useBuilderSession.js     — sentence builder state
+      useSpeech.js             — SpeechSynthesis wrapper
+      usePackLoader.js         — generic pack loader hook
+    pages/                     — one file per tab (10 tabs)
+    components/
+      layout/                  — Controls.jsx, Hero.jsx, NavBar.jsx, SubjectCardGrid.jsx
+      learning/                — StudyBookDrawer, TileBuilder, FeedbackPanel, QuizCard, etc.
+    styles/
+      global.css               — React-specific design tokens and component CSS
+
+  main.js          — LEGACY vanilla UI (kept for reference; no longer the entry point)
+  data.js          — manifest loading, pack loading, vocabFromItem mapping  ← SHARED
+  quiz.js          — question generation                                    ← SHARED
+  storage.js       — DEFAULT_STATE, loadStoredState, saveStoredState        ← SHARED
+  admin-storage.js — uploaded pack handling (hydrateManifest)               ← SHARED
+  progress.js      — analytics (getDashboardSummary etc.)                   ← SHARED
+  lang-utils.js    — language code normalisation                            ← SHARED
+  utils.js         — escapeHtml, shuffle, humanizeLabel, normalizeForCompare ← SHARED
+  progressive-language-lesson.js — vanilla lesson engine (LanguagePage bridge) ← SHARED
+  crossword.js     — crossword engine                                       ← SHARED
 
 data/
   generated/manifest.json          — THE source of truth for what the app serves
-  Packs/<curriculum>/<subject>/<id>/pack_unified.json   — vocab/fillBlank/sequence/categorySort
-  Packs/<curriculum>/<subject>/<id>/passages.json       — passage items (optional, same folder)
-  SentenceBuilderPacks/<id>/pack_unified.json           — sentence builder card packs
-  core_unified.json                — legacy core German pack
+  Packs/<curriculum>/<subject>/<id>/pack_unified.json
+  PassagePacks/<curriculum>/<subject>/<id>/pack_unified.json
+  SentenceBuilderPacks/…
+  core_unified.json
 
 generated_packs/                   — ⚠ GITIGNORED — AI-generated drafts, never served
-styles.css
-index.html
-vite.config.js
+dist/                              — ⚠ GITIGNORED — Vite build output, built on Render
+render.yaml                        — Render.com deployment config (build + serve dist/)
+vite.config.js                     — Vite config; viteStaticCopy copies data/ → dist/
+styles.css                         — shared design tokens (linked in index.html)
+index.html                         — React mount point (<div id="root">)
 ```
 
 ---
@@ -90,12 +115,13 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 
 ```json
 {
-  "packs": [ … ],               // all revision + passage packs
-  "sentenceBuilderPacks": [ … ] // builder-tab packs
+  "revisionPacks": [ … ],    // vocab/quiz/fillBlank/sequence/categorySort packs
+  "passageGroups":  [ … ],   // reading/passage packs
+  "sentenceBuilderPacks": [ … ]
 }
 ```
 
-### Required fields per `packs[]` entry
+### Required fields per `revisionPacks` entry
 
 | Field | Purpose |
 |---|---|
@@ -103,9 +129,7 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 | `subject` | `language` / `history` / `geography` / `science` / `literature` |
 | `curriculum` | `ks3` / `gcse` / `other` |
 | `displayName` | Shown in the UI dropdown |
-| `capabilities` | `["revision"]` or `["revision", "passages"]` |
 | `unifiedPath` | Path from repo root to `pack_unified.json` |
-| `passagePath` | Path to `passages.json` — only when `capabilities` includes `"passages"` |
 | `sourceLanguageCode` | e.g. `de-DE`, `la`, `en-GB` |
 | `targetLanguageCode` | e.g. `en-GB` |
 | `wordCount` | Integer — shown in the UI |
@@ -280,23 +304,21 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 ## 10. Adding a new pack — checklist
 
 1. **Create** `data/Packs/<curriculum>/<subject>/<id>/pack_unified.json`
-2. If the pack has reading content, **create** `data/Packs/<curriculum>/<subject>/<id>/passages.json`
-3. **Register** in `data/generated/manifest.json` under `packs[]` with all required fields
-4. Set `capabilities: ["revision"]` or `["revision", "passages"]` and include `passagePath` if applicable
-5. **Verify** `id` is unique across all entries in `packs[]`
-6. **Check** `sourceLanguageCode` and `targetLanguageCode`:
+2. **Register** in `data/generated/manifest.json` under `revisionPacks` with all required fields
+3. **Verify** `id` is unique across all packs in the manifest
+4. **Check** `sourceLanguageCode` and `targetLanguageCode`:
    - Non-language: both `"en-GB"`
    - Language: correct language codes
-7. **Confirm** no `targetWord === sourceWord` in vocab items (broken definition)
-8. **Confirm** `partOfSpeech` uses full words for language packs, `"keyword"` for non-language
-9. **Do NOT** leave the pack only in `generated_packs/` — it is gitignored and the app will not see it
+5. **Confirm** no `targetWord === sourceWord` in vocab items (broken definition)
+6. **Confirm** `partOfSpeech` uses full words for language packs, `"keyword"` for non-language
+7. **Do NOT** leave the pack only in `generated_packs/` — it is gitignored and the app will not see it
 
 ---
 
 ## 11. Removing a pack — checklist
 
-1. Remove the entry from `packs[]` in `manifest.json`
-2. `git rm` the pack directory from `data/Packs/<curriculum>/<subject>/<id>/`
+1. Remove the entry from `manifest.json`
+2. `git rm` the pack directory from `data/Packs/` (or `PassagePacks/`)
 3. Verify no other pack in the manifest references the removed `id`
 4. If the removed pack was the default `datasetId` in `DEFAULT_STATE`, update that too
 
@@ -308,6 +330,8 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 - Badge colours: `blue` (neutral info), `amber` (topic/category), `green` (correct/mastered), `coral` (gender)
 - Stage/category checkboxes use: `stage-field`, `fieldset-title`, `stage-check-list`, `mode-check stage-check`
 - Question UI: `question-box`, `question-box-top`, `question-box-copy`, `question-prompt`
+- React nav tones: `lw-nav-pill.tone-orange` (Language Ladder), `lw-nav-pill.tone-blue` (Quiz)
+- Mobile nav: `lw-nav-mobile`, `lw-mobile-nav-pill`, `lw-mobile-more`, `lw-mobile-more-menu`
 
 ---
 
@@ -315,13 +339,18 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 
 | Bug | Cause | Fix |
 |---|---|---|
-| Pack not showing in app | Not in `manifest.json` | Add to `packs[]` |
+| Pack not showing in app | Not in `manifest.json` | Add to `revisionPacks` |
 | `undefined` on first load for new prefs key | Missing from `DEFAULT_STATE` | Add to `storage.js` |
 | Example sentence renders twice | `srcCode === tgtCode` but both `exampleDe` + `exampleEn` set | Only set `exampleDe` when `srcCode !== tgtCode` |
 | PoS dropdown shows `a, c, d…` | Abbreviations in pack data | Update pack JSON to use full words; `POS_LABELS` is the fallback |
 | `targetWord` equals `sourceWord` in vocab | Schema mismatch / bad AI generation | Write a proper definition |
 | Category filter broken after pack switch | Reset not added to all three switch points | Add `prefs.vocab.categories = []` alongside `category = ""` |
 | Pack committed to `generated_packs/` | gitignored — app never loads it | Copy to `data/Packs/` and register in manifest |
+| Quiz records double events in dev | Side effects inside `setState()` updater | Move `updateProgress` outside updater; use `sessionRef` (see RC9) |
+| Speak button silent in Chrome | `cancel()` + `speak()` in same tick | Defer via `requestAnimationFrame` after cancel (see RC11) |
+| Study Book state lost on tab switch | Drawer rendered inside page component | Render `<StudyBookDrawer />` once in `App.jsx` (see RC10) |
+| Hero stat cards not found | Stat cards moved from Hero to ProgressPage | Edit `ProgressPage.jsx` `SnapshotCard` components |
+| Mobile nav tab missing | Only added to `TABS` in `NavBar.jsx`, not `MOBILE_*_TABS` | Add to appropriate `MOBILE_PRIMARY_TABS` or `MOBILE_MORE_TABS` |
 
 ---
 
@@ -383,6 +412,8 @@ git log --oneline origin/main..HEAD
 | `src/quiz.js` | Hand-maintained |
 | `src/storage.js` | Hand-maintained — always update `DEFAULT_STATE` when adding prefs |
 | `data/generated/manifest.json` | Hand-maintained (generator script exists but is rarely run) |
-| `data/Packs/**/*.json` | Hand-maintained JSON — schema v1.1 (`pack_unified.json` + `passages.json`) |
+| `data/Packs/**/pack_unified.json` | Hand-maintained JSON — schema v1.1 |
+| `docs/REACT_ARCHITECTURE.md` | Hand-maintained — update after any structural React change |
+| `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` | Hand-maintained — add RC entries when new bugs are found |
 | `generated_packs/` | AI draft output — **gitignored**, never committed |
 | `dist/` | Vite build output — **gitignored** |

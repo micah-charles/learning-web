@@ -526,6 +526,169 @@ if (!pack) return <div>Pack not found.</div>;
 
 ---
 
+### ⚠️ RC9. React 18 StrictMode double-invocation — NEVER put side effects inside state updater functions
+
+**Bug found (PR #113):** `answerQuestion` in `useQuizSession` called `updateProgress` (which calls `recordAttempt` and `recordWordAnswer`) **inside** the `setSession(prev => ...)` updater function. React 18 StrictMode deliberately calls state updater functions **twice** in development to detect impure reducers. Result: every answer attempt recorded two events → "4 answered / 4 wrong" when the user had only answered 2 questions.
+
+**Rule:** State updater functions (`setState(prev => …)`) must be **pure** — zero side effects. Any call to `updateProgress`, `saveStoredState`, logging, or external APIs must happen **outside** the updater.
+
+```js
+// BAD — updateProgress fires twice in StrictMode dev (and could in production too)
+setSession(prev => {
+  const result = gradeQuestion(prev.questions[prev.index], response);
+  updateProgress(state => recordAttempt(state, { ... })); // ← INSIDE updater = double-fire
+  return { ...prev, feedback: result, awaitingNext: true };
+});
+
+// GOOD — read prev from a ref, call side effects outside the updater
+const prev = sessionRef.current;
+if (!prev || prev.awaitingNext) return;
+const result = gradeQuestion(prev.questions[prev.index], response);
+const newSession = { ...prev, feedback: result, awaitingNext: true };
+sessionRef.current = newSession;
+setSession(newSession);           // ← simple assignment, no updater function
+updateProgress(state => recordAttempt(state, { ... }));  // ← OUTSIDE = fires once
+```
+
+**The `sessionRef` pattern:** Mirror every session state object in a `useRef` so async callbacks can safely read current state without going through the React state updater:
+
+```js
+const sessionRef = useRef(null);
+
+// When state changes:
+sessionRef.current = newSession;
+setSession(newSession);
+
+// In callbacks — read from ref, not from state (avoids closure staleness + updater):
+const prev = sessionRef.current;
+```
+
+**Checklist for any hook that records progress or fires analytics:**
+- [ ] Is `updateProgress` / `recordAttempt` called **outside** `setState()` updater functions?
+- [ ] Is session state mirrored in a `useRef` so callbacks always see current state?
+- [ ] Have you verified in dev mode (StrictMode on) that attempts only record once?
+
+---
+
+### ⚠️ RC10. Study Book drawer — render once at App level, not inside page components
+
+**Architecture (PR #113):** The Study Book drawer is a persistent overlay that must survive tab navigation. If it were rendered inside a page component, it would unmount and lose all state whenever the user switches tabs.
+
+**Rule:** `<StudyBookDrawer />` is rendered **once** in `AppContent` (inside `App.jsx`), wrapped in `<StudyBookProvider>`. Page components only render a `<StudyBookButton>` trigger — they never render the drawer itself.
+
+```jsx
+// App.jsx — CORRECT
+<StudyBookProvider>
+  <AppContent>
+    <main>...</main>
+    <StudyBookDrawer />   {/* rendered here, survives tab switches */}
+  </AppContent>
+</StudyBookProvider>
+
+// QuizPage / ReadingPage / BuilderPage — CORRECT
+<StudyBookButton dataset={dataset} />  {/* trigger only — no drawer */}
+
+// WRONG — drawer inside a page component unmounts on tab switch
+export default function QuizPage() {
+  return <><StudyBookDrawer /><main>...</main></>;  // ← never do this
+}
+```
+
+**`StudyBookContext` state:** open, loading, html, toc, files, activeFile, datasetId, searchQuery, searchMatchIndex, searchMatchCount, currentAnchor, scrollTop, splitMode. All exposed via `useStudyBook()`.
+
+**`StudyBookButton` props:** `dataset` (pack object with `contentMdPath`), `anchor`, `mdPath`, `label`. Returns `null` if the dataset has no study notes → pages never need to conditionally render it.
+
+**Split-mode:** When `splitMode === true`, the drawer adds `body.sb-split-mode` and sets `.lw-app { padding-right: <drawerWidth>px }`. The CSS rule in `global.css` provides the default: `body.sb-split-mode .lw-app { padding-right: 420px; transition: padding-right 0.3s ease }`. The actual value is set inline by `useSplitMode()`.
+
+---
+
+### ⚠️ RC11. Chrome Web Speech API — never call `speak()` immediately after `cancel()`
+
+**Bug found (PR #113):** The `speak` button in ReadingPage made no sound. The `useSpeech` hook called `synth.cancel()` then immediately `synth.speak(utterance)`. Chrome's Web Speech API silently **drops** a new utterance when `speak()` is called in the same microtask tick as `cancel()`.
+
+**Rule:** If the synthesiser is currently speaking or has a pending utterance, cancel first and defer the new `speak()` call via `requestAnimationFrame`:
+
+```js
+// BAD — Chrome silently drops the utterance
+synth.cancel();
+synth.speak(utterance); // ← lost
+
+// GOOD — defer via rAF to let the cancel settle
+if (synth.speaking || synth.pending) {
+  synth.cancel();
+  requestAnimationFrame(() => synth.speak(utterance)); // ← arrives after cancel settles
+} else {
+  synth.speak(utterance);
+}
+```
+
+**Also:** Always guard against empty text — `new SpeechSynthesisUtterance("")` throws in some browsers.
+
+**Also:** Speech inside `setTimeout` is blocked by Chrome's autoplay policy (outside user-gesture window). Always call `speakText()` inline within the click/event handler. See RC3 for the full LanguagePage pattern.
+
+**The canonical `speakText` implementation** is in `src/utils.js`. Import and reuse it — do not write a new Web Speech wrapper in a hook or component.
+
+---
+
+### ⚠️ RC12. `getRecentActivity` — sessions[] is a supplement, not a fallback
+
+**Bug found (PR #113):** `getRecentActivity` in `progress.js` used `if (events.length) { use events } else { use sessions }`. Once ANY subject (e.g. Computing) created `attemptEvents`, the entire session history was discarded — subjects whose sessions were recorded before `attemptEvents` were introduced (e.g. Biology) became permanently invisible in Recent Learning Activity.
+
+**Rule:** Always run **both passes**. Use `sessions[]` to fill in days that have **zero event coverage**, never as an either/or alternative:
+
+```js
+// BAD — once any events exist, all sessions are ignored
+if (progress.attemptEvents?.length) {
+  for (const ev of progress.attemptEvents) { /* … */ }
+} else {
+  for (const s of progress.sessions) { /* … */ }
+}
+
+// GOOD — two-pass: events first, sessions supplement for uncovered days
+// Pass 1: accumulate per-question events
+for (const event of progress.attemptEvents || []) {
+  const key = dateKey(event.ts);
+  rows[key] = rows[key] || emptyRow(key);
+  rows[key].questionsAttempted += 1;
+  rows[key].correctAnswers += event.correct ? 1 : 0;
+  addSubject(rows[key], event.packId);
+}
+// Pass 2: sessions supplement for days with no event coverage
+for (const session of progress.sessions || []) {
+  const key = dateKey(session.endTime || session.startTime);
+  rows[key] = rows[key] || emptyRow(key);
+  if (rows[key].questionsAttempted > 0) continue; // already covered by events
+  rows[key].questionsAttempted += session.questionsAnswered || 0;
+  rows[key].correctAnswers += session.correct || 0;
+  addSubject(rows[key], session.packId);
+}
+```
+
+---
+
+### ⚠️ RC13. `passageFromItem` — always fall back to `data.title` for passage titles
+
+**Bug found (PR #113):** Passage groups were showing "Passage 2", "Passage 3" instead of real titles. `passageFromItem` in `data.js` only read `data.sourceTitle` and `data.targetTitle`. RE and Science passage packs only have `data.title` (a shared title for both languages).
+
+**Rule:** Always include `data.title` as a final fallback for passage title fields:
+
+```js
+// BAD — packs that use data.title instead of data.sourceTitle get empty titles
+title_de: data.sourceTitle || "",
+title_en: data.targetTitle || "",
+
+// GOOD — data.title is the fallback for packs without separate source/target titles
+title_de: data.sourceTitle || data.title || "",
+title_en: data.targetTitle || data.title || "",
+```
+
+**Checklist when a new passage pack type is added:**
+- [ ] Does `passageFromItem` handle all title field variants (`sourceTitle`, `targetTitle`, `title`)?
+- [ ] Check that passage titles appear in the ReadingPage jump selector (not "Passage 1", "Passage 2")
+- [ ] Does `passageFromItem` handle `sourcePassage`/`targetPassage` vs `passage_de`/`passage_en`?
+
+---
+
 ## PART C — Build & Deployment
 
 ---
@@ -660,5 +823,6 @@ Vite will hash and fingerprint the assets and ensure paths are correct in all en
 ---
 
 *Last updated: 2026-05-25*
-*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111*
+*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
+*For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*
