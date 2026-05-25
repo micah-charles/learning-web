@@ -11,6 +11,7 @@ import {
 import {
   recordWordAnswer, recordQuizSession
 } from "@/storage.js";
+import { recordAttempt } from "@/progress.js";
 import { filterWordsForScope, getSelectedStages, describeScope } from "@/quiz-helpers.js";
 import { shuffle } from "@/utils.js";
 
@@ -86,8 +87,27 @@ export function useQuizSession() {
         correct: result.correct, wordId: question.wordId,
       }];
 
-      if (question.wordId && updateProgress) {
-        updateProgress(state => { recordWordAnswer(state, question.wordId, result.correct); });
+      if (updateProgress) {
+        updateProgress(state => {
+          // Word-level mastery tracking (streak, correct/wrong counts)
+          if (question.wordId) {
+            recordWordAnswer(state, question.wordId, result.correct);
+          }
+          // Per-question event for Recent Learning Activity chart.
+          // recordAttempt writes to state.progress.attemptEvents which
+          // getRecentActivity reads first (preferred over sessions fallback).
+          recordAttempt(state, {
+            sessionId:      prev.id || "",
+            packId:         prev.config?.datasetId || "",
+            packTitle:      prev.label || "",
+            itemId:         question.wordId || question.id || "",
+            questionText:   question.prompt || "",
+            expectedAnswer: question.answer || "",
+            selectedAnswer: Array.isArray(response) ? response.join(" ") : String(response ?? ""),
+            correct:        result.correct,
+            modeId:         question.modeId || question.kind || "",
+          });
+        });
       }
 
       return {
