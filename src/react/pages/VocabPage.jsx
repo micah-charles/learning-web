@@ -20,8 +20,9 @@ function MasteryBadge({ correct, streak }) {
   return <span className="lw-chip coral">New</span>;
 }
 
-function VocabCard({ word, progress, onSpeak, speechLang }) {
-  const wp = getWordProgress(progress, word.id);
+// state = full stored-state object ({ prefs, progress: { words, sessions } })
+function VocabCard({ word, state, onSpeak, speechLang }) {
+  const wp = getWordProgress(state, word.id);
   return (
     <div className="lw-pack-card" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
@@ -78,6 +79,8 @@ export default function VocabPage() {
   const selectedStages = dataset ? getSelectedStages(prefs, dataset) : [];
 
   const speechLang = dataset?.speechLanguage || dataset?.sourceLanguageCode || "de-DE";
+  // Full stored-state fallback so VocabCard never crashes before progress loads.
+  const storedState = progress || { prefs: {}, progress: { words: {}, sessions: [] } };
 
   function setPref(key, value) {
     setPrefs(prev => ({ ...prev, [key]: value }));
@@ -182,7 +185,7 @@ export default function VocabPage() {
               <VocabCard
                 key={word.id}
                 word={word}
-                progress={progress?.progress || { words: {} }}
+                state={storedState}
                 onSpeak={speak}
                 speechLang={speechLang}
               />
