@@ -111,10 +111,16 @@ export function useQuizSession() {
       if (completed && updateProgress) {
         updateProgress(state => {
           recordQuizSession(state, {
-            id: prev.id, label: prev.label,
-            datasetId: prev.config?.datasetId,
-            score: prev.score, totalQuestions: prev.questions.length,
-            scopeLabel: prev.config?.scopeLabel,
+            id:             prev.id,
+            label:          prev.label,
+            datasetId:      prev.config?.datasetId,
+            score:          prev.score,
+            totalQuestions: prev.questions.length,
+            scopeLabel:     prev.config?.scopeLabel,
+            // timestamp is required by getRecentActivity's session fallback:
+            // toDateKey(session.timestamp) → day bucket.  Without it every
+            // session is silently skipped and Recent Activity shows empty.
+            timestamp:      new Date().toISOString(),
           });
         });
       }
