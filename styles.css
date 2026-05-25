@@ -3676,13 +3676,17 @@ button.pl-step:hover:not(.active) {
 }
 
 .pl-phrase-card.en {
-  background: rgba(47, 143, 150, 0.06);
-  border-color: rgba(47, 143, 150, 0.18);
+  background: rgba(47, 143, 150, 0.08);
+  border-color: rgba(47, 143, 150, 0.22);
 }
 
+/* Target (foreign-language) card uses adaptive surface tokens so both light and
+   dark mode render readable text. The old hardcoded cream gradient looked fine in
+   light mode but produced near-white text on a near-white background in dark mode
+   because --ink flips to #f2ebe0. */
 .pl-phrase-card.target {
-  background: linear-gradient(160deg, rgba(255, 252, 242, 0.95), rgba(253, 246, 228, 0.8));
-  border-color: rgba(201, 122, 26, 0.20);
+  background: var(--surface-alt);
+  border-color: rgba(201, 122, 26, 0.28);
 }
 
 .pl-phrase-lang {
