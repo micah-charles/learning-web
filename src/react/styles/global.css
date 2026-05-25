@@ -85,12 +85,12 @@ body {
   overflow: hidden;
 }
 
-/* Inner flex row */
+/* Inner flex row — mascot left, hero copy right (no stats here) */
 .lw-header-inner {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end;       /* mascot bottom-aligns with copy zone */
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
@@ -102,7 +102,6 @@ body {
   width: 170px;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 0;
   position: relative;
 }
 
@@ -115,14 +114,10 @@ body {
   filter: drop-shadow(0 4px 14px rgba(0,0,0,0.25));
 }
 
-/* Right column: hero copy + stat cards */
-.lw-header-right {
+/* Hero copy zone — sits to the right of the mascot */
+.lw-hero-copy {
   flex: 1;
   min-width: 0;
-}
-
-/* Hero copy zone — compact */
-.lw-hero-copy {
   min-height: 140px;
   display: flex;
   flex-direction: column;
@@ -249,12 +244,12 @@ body {
 
 /* ── Nav pills (overrides the old .lw-nav-pills / .lw-nav-pill rules) ── */
 .lw-nav-pill {
-  padding: 7px 14px;          /* slightly tighter so 11 tabs fit on most screens */
+  padding: 6px 11px;          /* tight enough for 11 tabs at 1280px+ */
   border-radius: 999px;
   border: 1.5px solid #e5d9c4;
   background: transparent;
   color: var(--lw-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 140ms ease, border-color 140ms ease, color 140ms ease;

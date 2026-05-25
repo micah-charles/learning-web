@@ -88,10 +88,10 @@ export default function Hero({ hideStats = false }) {
         ].join(", "),
       }}
     >
-      {/* ── Main layout: logo left | copy + stats right ───────────────────── */}
-      <div className="lw-header-inner" style={{ alignItems: "flex-end" }}>
+      {/* ── Top row: logo left | hero copy right ────────────────────────── */}
+      <div className="lw-header-inner">
 
-        {/* Logo panel */}
+        {/* Logo panel — bottom-aligned to the copy zone height only */}
         <div className="lw-header-mascot" aria-hidden="true">
           <img
             src={logoImg}
@@ -100,43 +100,40 @@ export default function Hero({ hideStats = false }) {
           />
         </div>
 
-        {/* Right side */}
-        <div className="lw-header-right">
-          {/* Hero copy */}
-          <div className="lw-hero-copy">
-            <p className="lw-hero-eyebrow">POWERED BY FOXCHILD IDEA</p>
-            <h1 className="lw-hero-title">
-              <span style={{ color: "#fff" }}>FoxChild</span>
-              <span style={{ color: "var(--fox-orange, #e8841a)" }}>@Learn</span>
-            </h1>
-            <p className="lw-hero-sub">
-              Your cosy space for learning, practising, and growing —
-              powered by curiosity and AI.
-            </p>
-            {manifest && (
-              <div className="lw-hero-counts">
-                <CountBadge icon="📦" n={packCount}    label="packs"          />
-                <CountBadge icon="📖" n={groupCount}   label="reading groups" />
-                <CountBadge icon="🧩" n={builderCount} label="builder sets"   />
-              </div>
-            )}
-          </div>
-
-          {/* Stat cards – hidden when hideStats is true (e.g. Language tab) */}
-          {!hideStats && (
-            <div className="lw-stats-row">
-              <StatCard value={wordsSeen}    label="vocab items"      icon="📚" />
-              <StatCard value={masterCount}  label="words mastered"   icon="🌱" />
-              <StatCard value={sessionCount} label="quiz sessions"    icon="📋" />
-              <StatCard
-                value={lastQuizPct !== null ? `${lastQuizPct}%` : "—"}
-                label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
-                icon={lastQuizPct !== null ? "✅" : "🔒"}
-              />
+        {/* Hero copy (no stats here — stats are full-width below) */}
+        <div className="lw-hero-copy">
+          <p className="lw-hero-eyebrow">POWERED BY FOXCHILD IDEA</p>
+          <h1 className="lw-hero-title">
+            <span style={{ color: "#fff" }}>FoxChild</span>
+            <span style={{ color: "var(--fox-orange, #e8841a)" }}>@Learn</span>
+          </h1>
+          <p className="lw-hero-sub">
+            Your cosy space for learning, practising, and growing —
+            powered by curiosity and AI.
+          </p>
+          {manifest && (
+            <div className="lw-hero-counts">
+              <CountBadge icon="📦" n={packCount}    label="packs"          />
+              <CountBadge icon="📖" n={groupCount}   label="reading groups" />
+              <CountBadge icon="🧩" n={builderCount} label="builder sets"   />
             </div>
           )}
         </div>
       </div>
+
+      {/* ── Stat cards — full-width strip below the copy row ─────────────── */}
+      {!hideStats && (
+        <div className="lw-stats-row">
+          <StatCard value={wordsSeen}    label="vocab items"      icon="📚" />
+          <StatCard value={masterCount}  label="words mastered"   icon="🌱" />
+          <StatCard value={sessionCount} label="quiz sessions"    icon="📋" />
+          <StatCard
+            value={lastQuizPct !== null ? `${lastQuizPct}%` : "—"}
+            label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
+            icon={lastQuizPct !== null ? "✅" : "🔒"}
+          />
+        </div>
+      )}
     </div>
   );
 }
