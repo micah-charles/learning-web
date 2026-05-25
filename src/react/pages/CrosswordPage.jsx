@@ -13,7 +13,12 @@ import {
   generateCrossword,
   normalizeCrosswordAnswer,
 } from "@/crossword.js";
-import { loadVocabItems, listDatasets, getDatasetSubject, SUBJECTS } from "@/data.js";
+import { loadVocabItems, listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
+
+const CURRICULUM_OPTIONS = [
+  { id: "all", label: "All" },
+  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
+];
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
 const WORD_COUNT_OPTIONS = [8, 10, 12, 15, 20].map((n) => ({ id: n, label: String(n) }));
@@ -179,20 +184,22 @@ function CrosswordSetup({ manifest, onStart }) {
     [datasets],
   );
 
-  const [subject, setSubject] = useState("language");
-  const [datasetId, setDatasetId] = useState(() => datasets[0]?.id || "core");
-  const [wordCount, setWordCount] = useState(10);
+  const [subject, setSubject]       = useState("language");
+  const [curriculum, setCurriculum] = useState("all");
+  const [datasetId, setDatasetId]   = useState(() => datasets[0]?.id || "core");
+  const [wordCount, setWordCount]   = useState(10);
   const [generating, setGenerating] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError]           = useState(null);
 
   const filteredDatasets = useMemo(
-    () => (subject ? datasets.filter((d) => getDatasetSubject(d) === subject) : datasets),
-    [datasets, subject],
+    () => manifest ? listDatasetsBySubjectAndCurriculum(manifest, subject, curriculum) : [],
+    [manifest, subject, curriculum],
   );
 
   function handleSubjectSelect(subj) {
     setSubject(subj);
-    const first = datasets.find((d) => getDatasetSubject(d) === subj);
+    setCurriculum("all");
+    const first = listDatasetsBySubjectAndCurriculum(manifest, subj, "all")[0];
     if (first) setDatasetId(first.id);
   }
 
@@ -233,6 +240,18 @@ function CrosswordSetup({ manifest, onStart }) {
           Subject
         </h3>
         <SubjectCardGrid subjects={subjectCounts} activeSubject={subject} onSelect={handleSubjectSelect} />
+
+        <PillGroup
+          label="Curriculum"
+          items={CURRICULUM_OPTIONS}
+          value={curriculum}
+          onSelect={(c) => {
+            setCurriculum(c);
+            const first = listDatasetsBySubjectAndCurriculum(manifest, subject, c)[0];
+            if (first) setDatasetId(first.id);
+          }}
+          style={{ marginTop: "14px" }}
+        />
 
         <FilterRow style={{ marginTop: "18px" }}>
           <LabeledSelect label="Pack" value={datasetId} onChange={setDatasetId}>

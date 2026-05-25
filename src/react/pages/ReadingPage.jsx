@@ -4,9 +4,14 @@ import { useProgress } from "../context/ProgressContext.jsx";
 import { useReadingSession } from "../hooks/useReadingSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
-import { LabeledSelect, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
+import { LabeledSelect, PillGroup, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listPassageGroups, listPassageGroupsBySubject, listPassagePacks, getPassageGroupSubject, SUBJECTS } from "@/data.js";
+import { listPassageGroups, listPassageGroupsBySubjectAndCurriculum, listPassagePacks, getPassageGroupSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
+
+const CURRICULUM_OPTIONS = [
+  { id: "all", label: "All" },
+  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
+];
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
 
@@ -20,9 +25,9 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
   }, [groups]);
 
   const filteredGroups = useMemo(() => {
-    if (!prefs.subject) return groups;
-    return listPassageGroupsBySubject(manifest, prefs.subject);
-  }, [manifest, groups, prefs.subject]);
+    if (!manifest) return [];
+    return listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
+  }, [manifest, prefs.subject, prefs.curriculum]);
 
   const packs = useMemo(() => {
     if (!manifest || !prefs.groupId) return [];
@@ -70,9 +75,20 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
               subjects={subjectCounts}
               activeSubject={prefs.subject}
               onSelect={(s) => {
-                const firstGroup = listPassageGroupsBySubject(manifest, s)[0];
-                setPrefs((prev) => ({ ...prev, subject: s, groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
+                const firstGroup = listPassageGroupsBySubjectAndCurriculum(manifest, s, "all")[0];
+                setPrefs((prev) => ({ ...prev, subject: s, curriculum: "all", groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
               }}
+            />
+
+            <PillGroup
+              label="Curriculum"
+              items={CURRICULUM_OPTIONS}
+              value={prefs.curriculum || "all"}
+              onSelect={(c) => {
+                const firstGroup = listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];
+                setPrefs((prev) => ({ ...prev, curriculum: c, groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
+              }}
+              style={{ marginTop: "14px" }}
             />
 
             <FilterRow style={{ marginTop: "18px" }}>
@@ -358,6 +374,7 @@ export default function ReadingPage() {
 
   const [prefs, setPrefs] = useState({
     subject: "language",
+    curriculum: "all",
     groupId: "",
     packId: "",
     category: "all",
