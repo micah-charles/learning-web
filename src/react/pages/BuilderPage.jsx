@@ -26,17 +26,17 @@ export default function BuilderPage() {
 
   const allPacks = useMemo(() => manifest ? listSentenceBuilderPacks(manifest) : [], [manifest]);
 
-  // ── Subject counts for the SubjectCardGrid ────────────────────────────────
-  const subjectCounts = useMemo(() => {
-    return SUBJECTS.map((id) => ({
-      id,
-      count: allPacks.filter((p) => getBuilderPackSubject(p) === id).length,
-    }));
-  }, [allPacks]);
-
   // subject === "" means "not yet chosen by the user — fall back to first pack's subject".
   const [subject, setSubject]       = useState("");
   const [curriculum, setCurriculum] = useState("all");
+
+  // ── Subject counts for the SubjectCardGrid — filtered by selected curriculum ─
+  const subjectCounts = useMemo(() => {
+    return SUBJECTS.map((id) => ({
+      id,
+      count: manifest ? listSentenceBuilderPacksBySubjectAndCurriculum(manifest, id, curriculum).length : 0,
+    }));
+  }, [manifest, curriculum]);
   const [packId, setPackId]         = useState("");
   const [filter, setFilter]         = useState("all");
 

@@ -16,7 +16,7 @@ export const TARGET_LANGUAGES = [
   { code: "de", label: "German", flag: "🇩🇪" },
   { code: "fr", label: "French", flag: "🇫🇷" },
   { code: "es", label: "Spanish", flag: "🇪🇸" },
-  { code: "zh", label: "Chinese", flag: "🇨🇳" },
+  { code: "zh", label: "Chinese", flag: "🇭🇰" },
   { code: "ja", label: "Japanese", flag: "🇯🇵" },
 ];
 

@@ -90,14 +90,6 @@ export default function VocabPage() {
 
   const allDatasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
 
-  // ── Subject counts for the SubjectCardGrid ────────────────────────────────
-  const subjectCounts = useMemo(() => {
-    return SUBJECTS.map((id) => ({
-      id,
-      count: allDatasets.filter((d) => getDatasetSubject(d) === id).length,
-    }));
-  }, [allDatasets]);
-
   const [prefs, setPrefs] = useState({
     subject:      "language",
     curriculum:   "all",
@@ -109,6 +101,14 @@ export default function VocabPage() {
     categories:   [],
     search:       "",
   });
+
+  // ── Subject counts for the SubjectCardGrid — filtered by selected curriculum ─
+  const subjectCounts = useMemo(() => {
+    return SUBJECTS.map((id) => ({
+      id,
+      count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
+    }));
+  }, [manifest, prefs.curriculum]);
 
   // Datasets visible in the dropdown — filtered by subject + curriculum.
   const subjectDatasets = useMemo(() => {

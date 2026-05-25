@@ -175,17 +175,18 @@ function ClueSection({ title, entries, revealed }) {
 
 function CrosswordSetup({ manifest, onStart }) {
   const datasets = useMemo(() => (manifest ? listDatasets(manifest) : []), [manifest]);
+
+  const [subject, setSubject]       = useState("language");
+  const [curriculum, setCurriculum] = useState("all");
+
   const subjectCounts = useMemo(
     () =>
       SUBJECTS.map((id) => ({
         id,
-        count: datasets.filter((d) => getDatasetSubject(d) === id).length,
+        count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, curriculum).length : 0,
       })),
-    [datasets],
+    [manifest, curriculum],
   );
-
-  const [subject, setSubject]       = useState("language");
-  const [curriculum, setCurriculum] = useState("all");
   const [datasetId, setDatasetId]   = useState(() => datasets[0]?.id || "core");
   const [wordCount, setWordCount]   = useState(10);
   const [generating, setGenerating] = useState(false);

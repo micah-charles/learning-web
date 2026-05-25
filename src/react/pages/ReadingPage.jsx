@@ -20,9 +20,9 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
       id,
-      count: groups.filter(g => getPassageGroupSubject(g) === id).length,
+      count: manifest ? listPassageGroupsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
     }));
-  }, [groups]);
+  }, [manifest, prefs.curriculum]);
 
   const filteredGroups = useMemo(() => {
     if (!manifest) return [];
