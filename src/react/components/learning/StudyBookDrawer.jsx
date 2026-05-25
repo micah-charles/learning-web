@@ -137,8 +137,8 @@ function TOC({ toc, currentAnchor, onJump }) {
     <nav className="sb-toc" aria-label="Table of contents">
       <p className="sb-toc-title">Contents</p>
       <ul className="sb-toc-list">
-        {toc.map((entry) => (
-          <li key={entry.anchor} className={`sb-toc-h${entry.level}${entry.anchor === currentAnchor ? " sb-toc-active" : ""}`}>
+        {toc.map((entry, index) => (
+          <li key={`${entry.anchor}-${index}`} className={`sb-toc-h${entry.level}${entry.anchor === currentAnchor ? " sb-toc-active" : ""}`}>
             <a
               href={`#${entry.anchor}`}
               onClick={(e) => { e.preventDefault(); onJump(entry.anchor); }}
@@ -305,7 +305,6 @@ export function StudyBookDrawer() {
           className="sb-scrim"
           onClick={closeBook}
           aria-hidden="true"
-          style={{ display: "block" }}
         />
       )}
     </>

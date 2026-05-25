@@ -558,7 +558,7 @@ function renderHeaderCard(state, catalog, pack) {
 
   return `
     <div class="pl-header-card section-card">
-      <p class="eyebrow" style="color:var(--fox-teal);margin-bottom:4px;">Progressive Language</p>
+      <p class="eyebrow" style="color:var(--fox-teal);margin-bottom:4px;">Language Ladder</p>
       <h2 class="pl-lesson-title">${escapeHtml(pack?.title || catStage?.lessons.find(l => l.id === state.catalogLessonId)?.label || "Lesson")}</h2>
       ${pack?.description ? `<p class="muted tiny pl-lesson-desc">${escapeHtml(pack.description)}</p>` : ""}
       <div class="pl-meta-row">

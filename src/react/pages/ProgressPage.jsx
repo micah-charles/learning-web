@@ -97,6 +97,16 @@ function SummaryCard({ label, value }) {
   );
 }
 
+function SnapshotCard({ value, label, icon }) {
+  return (
+    <div className="lw-progress-snapshot-card">
+      <div className="lw-progress-snapshot-icon" aria-hidden="true">{icon}</div>
+      <div className="lw-progress-snapshot-value">{value}</div>
+      <div className="lw-progress-snapshot-label">{label}</div>
+    </div>
+  );
+}
+
 function ProgressBar({ value }) {
   const pct = Math.round(Math.max(0, Math.min(1, value || 0)) * 100);
   return (
@@ -173,7 +183,15 @@ export default function ProgressPage() {
   const prog = progress?.progress || { words: {}, sessions: [], attemptEvents: [] };
   const wordCount    = Object.keys(prog.words || {}).length;
   const sessionCount = (prog.sessions || []).length;
-  const eventCount   = (prog.attemptEvents || []).length;
+  const masterCount  = Object.values(prog.words || {}).filter((w) => w.correct >= 3 && w.streak >= 2).length;
+  const lastQuizPct  = useMemo(() => {
+    const s = prog.sessions || [];
+    if (!s.length) return null;
+    const last = s[0];
+    return last.totalQuestions
+      ? Math.round((last.score / last.totalQuestions) * 100)
+      : null;
+  }, [prog.sessions]);
 
   const summary      = useMemo(() => catalog ? getDashboardSummary(progress, catalog, 5)   : null, [progress, catalog]);
   const packageRows  = useMemo(() => catalog ? getPackageProgress(progress, catalog).filter(p => p.totalItems > 0 || p.totalAttempts > 0).sort((a, b) => b.strugglingItems - a.strugglingItems || b.attemptedItems - a.attemptedItems || a.title.localeCompare(b.title)) : [], [progress, catalog]);
@@ -222,6 +240,17 @@ export default function ProgressPage() {
 
   return (
     <div className="lw-page">
+
+      <div className="lw-progress-snapshot" aria-label="Learning performance summary">
+        <SnapshotCard value={wordCount} label="vocab items" icon="📚" />
+        <SnapshotCard value={masterCount} label="words mastered" icon="🌱" />
+        <SnapshotCard value={sessionCount} label="quiz sessions" icon="📋" />
+        <SnapshotCard
+          value={lastQuizPct !== null ? `${lastQuizPct}%` : "—"}
+          label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
+          icon={lastQuizPct !== null ? "✅" : "🔒"}
+        />
+      </div>
 
       {/* ── Management card ─────────────────────────────────────────────── */}
       <div className="lw-card" style={{ marginBottom: "20px" }}>

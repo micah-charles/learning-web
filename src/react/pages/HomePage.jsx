@@ -100,8 +100,17 @@ export default function HomePage({ onNavigate }) {
         <p className="lw-subtitle">
           Pick up where you left off, or explore something new.
         </p>
+        <p className="lw-quick-tip">
+          First time here? Try <strong>Language Ladder</strong> for a gentle start. Or take a <strong>Start Quiz</strong> to practise.
+        </p>
+        <p className="lw-quick-tip lw-quick-tip-muted">
+          <span aria-hidden="true">🔊</span> Speak uses your browser or mobile text-to-speech. You may need to install or enable the language voice on your device.
+        </p>
         <div className="lw-btn-group">
-          <button className="lw-btn lw-btn-primary" type="button" onClick={() => onNavigate("quiz")}>
+          <button className="lw-btn lw-btn-promote lw-btn-promote-orange" type="button" onClick={() => onNavigate("language")}>
+            Language Ladder <span aria-hidden="true">✨</span>
+          </button>
+          <button className="lw-btn lw-btn-promote lw-btn-promote-blue" type="button" onClick={() => onNavigate("quiz")}>
             Start Quiz
           </button>
           <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("vocab")}>
@@ -110,20 +119,20 @@ export default function HomePage({ onNavigate }) {
           <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("reading")}>
             Reading
           </button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("language")}>
-            Language ✨
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("builder")}>
+            Builder
           </button>
           <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("crossword")}>
             Crossword
           </button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("builder")}>
-            Builder
-          </button>
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("review")}>
-            Review
-          </button>
           <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("progress")}>
             Progress
+          </button>
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("mypacks")}>
+            My Packs
+          </button>
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("about")}>
+            About
           </button>
         </div>
       </div>

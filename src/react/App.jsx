@@ -17,6 +17,7 @@ import { ProgressProvider } from "./context/ProgressContext.jsx";
 import { StudyBookProvider } from "./context/StudyBookContext.jsx";
 import { StudyBookDrawer } from "./components/learning/StudyBookDrawer.jsx";
 import Hero from "./components/layout/Hero.jsx";
+import NavBar from "./components/layout/NavBar.jsx";
 import HomePage      from "./pages/HomePage.jsx";
 import VocabPage     from "./pages/VocabPage.jsx";
 import QuizPage      from "./pages/QuizPage.jsx";
@@ -28,39 +29,6 @@ import ReviewPage    from "./pages/ReviewPage.jsx";
 import ProgressPage  from "./pages/ProgressPage.jsx";
 import MyPacksPage   from "./pages/MyPacksPage.jsx";
 import AboutPage     from "./pages/AboutPage.jsx";
-
-const TABS = [
-  { id: "home",      label: "Home"        },
-  { id: "language",  label: "Language ✨" },
-  { id: "quiz",      label: "Quiz"        },
-  { id: "vocab",     label: "Vocabulary"  },
-  { id: "reading",   label: "Reading"     },
-  { id: "builder",   label: "Builder"     },
-  { id: "crossword", label: "Crossword"   },
-  { id: "progress",  label: "Progress"    },
-  { id: "mypacks",   label: "My Packs"    },
-  { id: "about",     label: "About"       },
-];
-
-function NavBar({ active, onChange }) {
-  return (
-    <nav className="lw-nav-bar" aria-label="Main navigation">
-      <div className="lw-nav-inner">
-        {TABS.map((t) => (
-          <button
-            key={t.id}
-            className={`lw-nav-pill${active === t.id ? " active" : ""}`}
-            onClick={() => onChange(t.id)}
-            type="button"
-            aria-current={active === t.id ? "page" : undefined}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-    </nav>
-  );
-}
 
 // Tabs that have active sessions — re-clicking asks the user to confirm reload.
 const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword"]);
@@ -93,10 +61,8 @@ function AppContent() {
 
   return (
     <div className="lw-app">
-      {/* Persistent watercolour hero — hide stat row on Language tab */}
-      <Hero hideStats={activeTab === "language"} />
+      <Hero variant="standard" />
 
-      {/* Sticky pill nav */}
       <NavBar active={activeTab} onChange={handleTabChange} />
 
       {/* Page content */}
