@@ -5,6 +5,7 @@ import { useBuilderSession } from "../hooks/useBuilderSession.js";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
+import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubject, getBuilderPackSubject, SUBJECTS } from "@/data.js";
 
 const FILTER_OPTIONS = [
@@ -106,7 +107,7 @@ export default function BuilderPage() {
           />
         </FilterRow>
 
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "4px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap", marginBottom: "4px" }}>
           <span style={{ fontSize: "0.85rem", color: "var(--lw-muted)" }}>
             Attempted: <strong>{stats.totalAttempted}</strong>
           </span>
@@ -116,6 +117,7 @@ export default function BuilderPage() {
           <span style={{ fontSize: "0.85rem", color: "var(--lw-blue)" }}>
             Streak: <strong>{stats.streak}</strong>
           </span>
+          <StudyBookButton dataset={visiblePacks.find(p => p.id === activePackId)} />
         </div>
       </div>
 

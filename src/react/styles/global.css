@@ -655,3 +655,24 @@ body {
   .lw-pack-grid   { grid-template-columns: 1fr; }
   .lw-page        { padding: 16px 0 36px; }
 }
+/* ── Study Book split-mode: push React app content left ─────────────── */
+/* Mirrors the vanilla `body.sb-split-mode #app` rule in styles.css     */
+body.sb-split-mode .lw-app {
+  padding-right: 420px;
+  transition: padding-right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (max-width: 600px) {
+  body.sb-split-mode .lw-app { padding-right: 0; }
+}
+
+/* sb-search-nav button (reuse same style as sb-close) */
+.sb-search-nav {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--muted, #8a7060);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+.sb-search-nav:hover { background: var(--surface-accent, rgba(60,40,20,0.06)); }
