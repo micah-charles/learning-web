@@ -6,6 +6,7 @@ import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
+import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { listDatasets, listDatasetsBySubject, getDatasetSubject, SUBJECTS, getDatasetDirections, findDataset } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
@@ -150,10 +151,11 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
           style={{ marginTop: "16px" }}
         />
 
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
           <button className="lw-btn lw-btn-primary" type="button" onClick={onStart}>
             Start quiz
           </button>
+          <StudyBookButton dataset={dataset} />
         </div>
       </div>
     </div>

@@ -23,6 +23,15 @@ import {
 } from "@/progressive-language-lesson.js";
 import { speakText } from "@/utils.js";
 
+// ─── Stable callback ref helper ──────────────────────────────────────────────
+// Lets us attach a single native event listener once and always call the
+// latest version of the handler without re-attaching on every state change.
+function useCallbackRef(fn) {
+  const ref = useRef(fn);
+  useEffect(() => { ref.current = fn; });
+  return ref;
+}
+
 // ─── Auto-speak for listen phase ──────────────────────────────────────────────
 // Best-effort: may be blocked on initial load (no prior user gesture).
 // Navigation-triggered speak is handled inline in handleClick instead.
@@ -52,8 +61,8 @@ export default function LanguagePage() {
   const [plState, setPlState] = useState(null);
   const [loadError, setLoadError] = useState(null);
 
-  const containerRef = useRef(null);
-  const spokenKeyRef = useRef(null); // tracks last auto-spoken step key
+  const containerRef  = useRef(null);
+  const spokenKeyRef  = useRef(null); // tracks last auto-spoken step key
 
   // ── Initial load ───────────────────────────────────────────────────────────
   useEffect(() => {
@@ -151,11 +160,18 @@ export default function LanguagePage() {
         if (!plState) return;
 
         if (target.id === "pl-language-select" && pack) {
-          // Delegate to the action reducer — it resets all phase state cleanly.
+          // Delegate to the action reducer — it resets all phase state cleanly
+          // and rebuilds vocabOptions for the new language.
           const { state: newState } = runProgressiveLessonAction(
             plState, pack, "pl-change-language", { lang: value },
           );
-          setPlState(newState);
+          // packPath is unchanged, so the useEffect([packPath]) won't fire.
+          // Explicitly rebuild vocabOptions here so content refreshes.
+          const withOptions = {
+            ...newState,
+            vocabOptions: buildVocabOptions(pack, newState.vocabIndex ?? 0, value),
+          };
+          setPlState(withOptions);
           spokenKeyRef.current = null;
           return;
         }
@@ -228,6 +244,27 @@ export default function LanguagePage() {
     [plState, pack, catalog],
   );
 
+  // ── Native change listener ─────────────────────────────────────────────────
+  // React's synthetic onChange on a div does not capture change events from
+  // <select> elements inside dangerouslySetInnerHTML because those selects are
+  // outside React's fiber tree. A native listener is the reliable fix.
+  //
+  // The effect depends on `catalog` (not `[]`) because the container div is
+  // only rendered after catalog loads — before that, the component returns an
+  // early loading div that doesn't have the ref attached. When `catalog`
+  // transitions null→object, the main div is in the DOM and we can attach.
+  // handleChangeRef always points to the latest handleChange so re-attaching
+  // isn't needed when plState changes.
+  const handleChangeRef = useCallbackRef(handleChange);
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const listener = (e) => handleChangeRef.current(e);
+    container.addEventListener("change", listener);
+    return () => container.removeEventListener("change", listener);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [catalog]); // catalog: null → object once after load → container is mounted
+
   // ── Render ────────────────────────────────────────────────────────────────
   if (loadError) {
     return (
@@ -256,7 +293,9 @@ export default function LanguagePage() {
       ref={containerRef}
       className="lw-page lw-pl-bridge"
       onClick={handleClick}
-      onChange={handleChange}
+      // onChange is handled via native addEventListener in the useEffect above —
+      // React's synthetic onChange doesn't fire for selects inside
+      // dangerouslySetInnerHTML because those elements aren't in the fiber tree.
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: html }}
     />

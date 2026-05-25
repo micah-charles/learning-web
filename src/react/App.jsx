@@ -14,6 +14,8 @@
 import { useState, useCallback } from "react";
 import { ManifestProvider } from "./context/ManifestContext.jsx";
 import { ProgressProvider } from "./context/ProgressContext.jsx";
+import { StudyBookProvider } from "./context/StudyBookContext.jsx";
+import { StudyBookDrawer } from "./components/learning/StudyBookDrawer.jsx";
 import Hero from "./components/layout/Hero.jsx";
 import HomePage      from "./pages/HomePage.jsx";
 import VocabPage     from "./pages/VocabPage.jsx";
@@ -111,6 +113,9 @@ function AppContent() {
         {activeTab === "mypacks"   && <MyPacksPage   />}
         {activeTab === "about"     && <AboutPage     />}
       </main>
+
+      {/* Study Book drawer — rendered once here so it persists across tab switches */}
+      <StudyBookDrawer />
     </div>
   );
 }
@@ -119,7 +124,9 @@ export default function App() {
   return (
     <ManifestProvider>
       <ProgressProvider>
-        <AppContent />
+        <StudyBookProvider>
+          <AppContent />
+        </StudyBookProvider>
       </ProgressProvider>
     </ManifestProvider>
   );

@@ -248,34 +248,37 @@ export function getRecentActivity(state, days = 5) {
     packs: new Set(),
   }]));
 
-  const events = progress.attemptEvents || [];
-  if (events.length) {
-    const sessionsByDay = {};
-    for (const event of events) {
-      const key = toDateKey(event.timestamp);
-      if (!key || !rows[key]) continue;
-      rows[key].questionsAttempted += 1;
-      if (event.correct) rows[key].correct += 1;
-      else rows[key].wrong += 1;
-      if (event.packTitle || event.packId) rows[key].packs.add(event.packTitle || event.packId);
-      if (event.sessionId) {
-        if (!sessionsByDay[key]) sessionsByDay[key] = new Set();
-        sessionsByDay[key].add(event.sessionId);
-      }
+  // Pass 1: accumulate per-question events (new format — written by recordAttempt).
+  const sessionsByDay = {};
+  for (const event of progress.attemptEvents || []) {
+    const key = toDateKey(event.timestamp);
+    if (!key || !rows[key]) continue;
+    rows[key].questionsAttempted += 1;
+    if (event.correct) rows[key].correct += 1;
+    else rows[key].wrong += 1;
+    if (event.packTitle || event.packId) rows[key].packs.add(event.packTitle || event.packId);
+    if (event.sessionId) {
+      if (!sessionsByDay[key]) sessionsByDay[key] = new Set();
+      sessionsByDay[key].add(event.sessionId);
     }
-    for (const [key, sessions] of Object.entries(sessionsByDay)) {
-      rows[key].quizSessions = sessions.size;
-    }
-  } else {
-    for (const session of progress.sessions || []) {
-      const key = toDateKey(session.timestamp);
-      if (!key || !rows[key]) continue;
-      rows[key].quizSessions += 1;
-      rows[key].questionsAttempted += Number(session.totalQuestions) || 0;
-      rows[key].correct += Number(session.score) || 0;
-      rows[key].wrong += Math.max(0, (Number(session.totalQuestions) || 0) - (Number(session.score) || 0));
-      if (session.label || session.datasetId) rows[key].packs.add(session.label || session.datasetId);
-    }
+  }
+  for (const [key, sessions] of Object.entries(sessionsByDay)) {
+    rows[key].quizSessions = sessions.size;
+  }
+
+  // Pass 2: for days that have NO event coverage, fall back to session summaries
+  // (old format — written by recordQuizSession). This handles sessions recorded
+  // before recordAttempt was wired up, and sessions with no timestamp (toDateKey
+  // treats undefined/null as "today" so they still appear in the right bucket).
+  for (const session of progress.sessions || []) {
+    const key = toDateKey(session.timestamp);
+    if (!key || !rows[key]) continue;
+    if (rows[key].questionsAttempted > 0) continue; // event data already covers this day
+    rows[key].quizSessions += 1;
+    rows[key].questionsAttempted += Number(session.totalQuestions) || 0;
+    rows[key].correct += Number(session.score) || 0;
+    rows[key].wrong += Math.max(0, (Number(session.totalQuestions) || 0) - (Number(session.score) || 0));
+    if (session.label || session.datasetId) rows[key].packs.add(session.label || session.datasetId);
   }
 
   return dayKeys.map((key) => {

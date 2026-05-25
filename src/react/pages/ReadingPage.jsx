@@ -5,6 +5,7 @@ import { useReadingSession } from "../hooks/useReadingSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
+import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { listPassageGroups, listPassageGroupsBySubject, listPassagePacks, getPassageGroupSubject, SUBJECTS } from "@/data.js";
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
@@ -96,7 +97,7 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
 
         {message && <p style={{ marginTop: "12px", color: "var(--lw-coral)" }}>{message}</p>}
 
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
           <button
             className="lw-btn lw-btn-primary"
             type="button"
@@ -105,6 +106,7 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message }) {
           >
             Start reading
           </button>
+          <StudyBookButton dataset={groups.find(g => g.id === prefs.groupId)} />
         </div>
       </div>
     </div>
@@ -125,6 +127,9 @@ function PassageDisplay({
     if (voiceEnabled && passage?.passage_de) {
       speak(passage.passage_de, speechLang);
     }
+    // Stop any ongoing speech when the passage changes or the component unmounts.
+    // This prevents stale utterances from playing after navigation.
+    return () => { if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel(); };
   }, [passage?.id]);
 
   // Smart passage rendering:
@@ -304,6 +309,7 @@ export default function ReadingPage() {
     groupId: "",
     packId: "",
     category: "all",
+    difficulty: "all",   // required — getPlayable filters by difficulty; undefined → no questions match
     showGerman: false,
     voiceEnabled: false,
   });

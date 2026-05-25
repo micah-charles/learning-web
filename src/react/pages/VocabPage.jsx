@@ -3,12 +3,11 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
-import { LabeledSelect, ToggleGroup, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
-import { listDatasets } from "@/data.js";
+import { LabeledSelect, ToggleGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
+import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
+import { listDatasets, getDatasetSubject, SUBJECTS } from "@/data.js";
 import { isWordMastered, getWordProgress } from "@/storage.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
-
-const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"].map((y) => ({ id: y, label: y }));
 
 function MasteryBadge({ correct, streak }) {
   if (correct >= 3 && streak >= 2) {
@@ -20,15 +19,39 @@ function MasteryBadge({ correct, streak }) {
   return <span className="lw-chip coral">New</span>;
 }
 
-// state = full stored-state object ({ prefs, progress: { words, sessions } })
-function VocabCard({ word, state, onSpeak, speechLang }) {
+// VocabCard renders one word card.
+// For language packs (isLanguage=true):  primary = foreign word (word.de), secondary = translation (word.en)
+// For non-language packs (isLanguage=false): primary = definition (word.en), secondary = term (word.de)
+// Speak: language packs → speak foreign word only; non-language → speak "term: definition" in English.
+function VocabCard({ word, state, onSpeak, speechLang, isLanguage }) {
   const wp = getWordProgress(state, word.id);
+
+  const primaryText   = isLanguage ? word.de : word.en;
+  const secondaryText = isLanguage ? word.en : word.de;
+
+  function handleSpeak() {
+    if (isLanguage) {
+      // Speak the foreign-language word in its own voice.
+      onSpeak(word.de, speechLang);
+    } else {
+      // Speak both the term and its definition in English so the student
+      // hears the full card content ("Coast: the zone where the land meets the sea").
+      onSpeak(`${word.de}: ${word.en}`, speechLang);
+    }
+  }
+
   return (
     <div className="lw-pack-card" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
-        <div>
-          <div style={{ fontSize: "1.1rem", fontWeight: 700, fontFamily: "Georgia, serif", color: "var(--lw-ink)" }}>{word.de}</div>
-          <div style={{ fontSize: "0.88rem", color: "var(--lw-muted)", marginTop: "2px" }}>{word.en}</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: "1.05rem", fontWeight: 700, fontFamily: "Georgia, serif", color: "var(--lw-ink)" }}>
+            {primaryText}
+          </div>
+          {secondaryText && (
+            <div style={{ fontSize: "0.88rem", color: "var(--lw-muted)", marginTop: "2px" }}>
+              {secondaryText}
+            </div>
+          )}
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px", flexShrink: 0 }}>
           <MasteryBadge correct={wp.correct} streak={wp.streak} />
@@ -36,14 +59,15 @@ function VocabCard({ word, state, onSpeak, speechLang }) {
             className="lw-btn lw-btn-ghost"
             style={{ fontSize: "0.8rem", padding: "4px 10px" }}
             type="button"
-            onClick={() => onSpeak(word.de, speechLang)}
-            title="Speak"
+            onClick={handleSpeak}
+            title={isLanguage ? "Speak word" : "Speak word and definition"}
           >
             🔊
           </button>
         </div>
       </div>
       {word.pos && <div style={{ fontSize: "0.75rem", color: "var(--lw-muted)" }}>{word.pos}</div>}
+      {/* Example sentence — only shown for language packs (srcCode ≠ tgtCode) */}
       {word.exampleDe && (
         <div style={{ fontSize: "0.82rem", color: "var(--lw-muted)", fontStyle: "italic", borderTop: "1px solid var(--lw-line)", paddingTop: "6px" }}>
           {word.exampleDe}
@@ -59,37 +83,70 @@ export default function VocabPage() {
   const { progress } = useProgress();
   const { speak } = useSpeech();
 
-  const datasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
+  const allDatasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
+
+  // ── Subject counts for the SubjectCardGrid ────────────────────────────────
+  const subjectCounts = useMemo(() => {
+    return SUBJECTS.map((id) => ({
+      id,
+      count: allDatasets.filter((d) => getDatasetSubject(d) === id).length,
+    }));
+  }, [allDatasets]);
 
   const [prefs, setPrefs] = useState({
-    datasetId: "core",
-    year: "ALL",
-    stages: [],
+    subject:      "language",
+    datasetId:    "core",
+    year:         "ALL",
+    stages:       [],
     partOfSpeech: "",
-    category: "",
-    categories: [],  // multi-select for language packs
-    search: "",
+    category:     "",
+    categories:   [],
+    search:       "",
   });
+
+  // Datasets visible in the dropdown — filtered by selected subject.
+  const subjectDatasets = useMemo(() => {
+    if (!prefs.subject) return allDatasets;
+    return allDatasets.filter((d) => getDatasetSubject(d) === prefs.subject);
+  }, [allDatasets, prefs.subject]);
+
+  // When subject changes: pick the first dataset of that subject, reset filters.
+  function onSubjectChange(newSubject) {
+    const first = allDatasets.find((d) => getDatasetSubject(d) === newSubject);
+    setPrefs({
+      subject:      newSubject,
+      datasetId:    first?.id ?? "",
+      year:         "ALL",
+      stages:       [],
+      partOfSpeech: "",
+      category:     "",
+      categories:   [],
+      search:       "",
+    });
+  }
 
   const { dataset, filtered, posOptions, categoryOptions, useCheckboxCategories, loading } =
     useVocabBrowser({ manifest, datasetId: prefs.datasetId, prefs });
 
-  const stageOptions = dataset ? getDatasetStageOptions(dataset) : [];
-  const isStage = dataset ? usesStageSelection(dataset) : false;
+  const stageOptions   = dataset ? getDatasetStageOptions(dataset) : [];
+  const isStage        = dataset ? usesStageSelection(dataset) : false;
   const selectedStages = dataset ? getSelectedStages(prefs, dataset) : [];
 
-  const speechLang = dataset?.speechLanguage || dataset?.sourceLanguageCode || "de-DE";
+  // Language check — determines speak behaviour and primary/secondary text order.
+  const isLanguage = dataset ? getDatasetSubject(dataset) === "language" : false;
+  const speechLang = dataset?.speechLanguage || dataset?.sourceLanguageCode || "en-GB";
+
   // Full stored-state fallback so VocabCard never crashes before progress loads.
   const storedState = progress || { prefs: {}, progress: { words: {}, sessions: [] } };
 
   function setPref(key, value) {
-    setPrefs(prev => ({ ...prev, [key]: value }));
+    setPrefs((prev) => ({ ...prev, [key]: value }));
   }
 
   function toggleStage(stage) {
     setPrefs((prev) => {
       const current = Array.isArray(prev.stages) ? prev.stages.map(String) : [];
-      const exists = current.includes(String(stage));
+      const exists  = current.includes(String(stage));
       return { ...prev, stages: exists ? current.filter((s) => s !== String(stage)) : [...current, String(stage)] };
     });
   }
@@ -97,10 +154,12 @@ export default function VocabPage() {
   function toggleCategory(cat) {
     setPrefs((prev) => {
       const current = Array.isArray(prev.categories) ? prev.categories : [];
-      const exists = current.includes(cat);
+      const exists  = current.includes(cat);
       return { ...prev, categories: exists ? current.filter((c) => c !== cat) : [...current, cat] };
     });
   }
+
+  const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"].map((y) => ({ id: y, label: y }));
 
   const displayWords = filtered.slice(0, 120);
 
@@ -111,12 +170,27 @@ export default function VocabPage() {
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">Vocabulary</h2>
 
-        <FilterRow style={{ marginBottom: "14px" }}>
-          <LabeledSelect label="Dataset" value={prefs.datasetId} onChange={(v) => setPref("datasetId", v)}>
-            {datasets.map((d) => (
-              <option key={d.id} value={d.id}>{d.displayName}</option>
-            ))}
-          </LabeledSelect>
+        {/* ── Subject picker ── */}
+        <h3 style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--lw-muted)", marginBottom: "2px" }}>Subject</h3>
+        <SubjectCardGrid
+          subjects={subjectCounts}
+          activeSubject={prefs.subject}
+          onSelect={onSubjectChange}
+        />
+
+        {/* ── Dataset + filters ── */}
+        <FilterRow style={{ marginTop: "16px", marginBottom: "14px" }}>
+          {subjectDatasets.length > 0 && (
+            <LabeledSelect
+              label="Pack"
+              value={prefs.datasetId}
+              onChange={(v) => setPref("datasetId", v)}
+            >
+              {subjectDatasets.map((d) => (
+                <option key={d.id} value={d.id}>{d.displayName}</option>
+              ))}
+            </LabeledSelect>
+          )}
 
           {isStage ? (
             <ToggleGroup
@@ -125,11 +199,12 @@ export default function VocabPage() {
               selected={selectedStages}
               onToggle={toggleStage}
             />
-          ) : (
+          ) : isLanguage ? (
+            // Year filter — only meaningful for language packs structured by year.
             <LabeledSelect label="Year" value={prefs.year} onChange={(v) => setPref("year", v)} flex={false}>
               {YEAR_OPTIONS.map((y) => <option key={y.id} value={y.id}>{y.label}</option>)}
             </LabeledSelect>
-          )}
+          ) : null}
 
           {posOptions.length > 0 && (
             <LabeledSelect label="Part of speech" value={prefs.partOfSpeech} onChange={(v) => setPref("partOfSpeech", v)} flex={false}>
@@ -188,6 +263,7 @@ export default function VocabPage() {
                 state={storedState}
                 onSpeak={speak}
                 speechLang={speechLang}
+                isLanguage={isLanguage}
               />
             ))}
             {displayWords.length === 0 && (
