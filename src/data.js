@@ -124,8 +124,8 @@ function passageFromItem(item, packSpeechLanguage) {
     speech_language: data.speechLanguage || packSpeechLanguage || "en-GB",
     chapter: data.chapter || "",
     section: data.section || "",
-    title_de: data.sourceTitle || "",
-    title_en: data.targetTitle || "",
+    title_de: data.sourceTitle || data.title || "",
+    title_en: data.targetTitle || data.title || "",
     passage_de: data.sourcePassage || "",
     passage_en: data.targetPassage || "",
     questions: (data.questions || []).map((question) => ({

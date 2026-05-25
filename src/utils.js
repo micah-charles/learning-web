@@ -111,18 +111,29 @@ export function getVoicesForLanguage(langCode) {
 }
 
 export function speakText(text, language = "de-DE", voiceName = "") {
-  if (!("speechSynthesis" in window)) {
-    return false;
+  if (!("speechSynthesis" in window) || !text) return false;
+  const synth = window.speechSynthesis;
+
+  const doSpeak = () => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = language;
+    utterance.rate = language.startsWith("de") ? 0.95 : 1;
+    if (voiceName) {
+      const match = synth.getVoices().find((v) => v.name === voiceName);
+      if (match) utterance.voice = match;
+    }
+    synth.speak(utterance);
+  };
+
+  if (synth.speaking || synth.pending) {
+    // Chrome bug: calling speak() immediately after cancel() silently drops
+    // the new utterance. Defer by one animation frame — this stays within the
+    // transient user-activation window (Chrome preserves it through rAF).
+    synth.cancel();
+    requestAnimationFrame(doSpeak);
+  } else {
+    doSpeak();
   }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = language;
-  utterance.rate = language.startsWith("de") ? 0.95 : 1;
-  if (voiceName) {
-    const match = window.speechSynthesis.getVoices().find((v) => v.name === voiceName);
-    if (match) utterance.voice = match;
-  }
-  window.speechSynthesis.speak(utterance);
   return true;
 }
 

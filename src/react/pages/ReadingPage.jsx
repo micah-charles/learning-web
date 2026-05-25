@@ -125,6 +125,9 @@ function PassageDisplay({
     if (voiceEnabled && passage?.passage_de) {
       speak(passage.passage_de, speechLang);
     }
+    // Stop any ongoing speech when the passage changes or the component unmounts.
+    // This prevents stale utterances from playing after navigation.
+    return () => { if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel(); };
   }, [passage?.id]);
 
   // Smart passage rendering:
