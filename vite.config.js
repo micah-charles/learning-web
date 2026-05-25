@@ -3,9 +3,12 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   root: path.resolve(__dirname),
-  base: "./",
+  // Use absolute base "/" in dev (localhost works fine with absolute paths).
+  // Use relative "./" in production build so Render.com static hosting resolves
+  // asset URLs correctly when the app is served from its root path.
+  base: command === "build" ? "./" : "/",
   plugins: [
     react(),
     // Copy the data/ directory into dist/ so runtime fetch() calls to
@@ -40,4 +43,4 @@ export default defineConfig({
       localsConvention: "camelCase",
     },
   },
-});
+}));
