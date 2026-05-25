@@ -32,9 +32,9 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
       id,
-      count: datasets.filter(d => getDatasetSubject(d) === id).length,
+      count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
     }));
-  }, [datasets]);
+  }, [manifest, prefs.curriculum]);
 
   const filteredDatasets = useMemo(() => {
     if (!manifest) return [];
