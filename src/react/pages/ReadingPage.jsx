@@ -304,6 +304,7 @@ export default function ReadingPage() {
     groupId: "",
     packId: "",
     category: "all",
+    difficulty: "all",   // required — getPlayable filters by difficulty; undefined → no questions match
     showGerman: false,
     voiceEnabled: false,
   });
