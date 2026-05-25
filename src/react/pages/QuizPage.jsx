@@ -9,7 +9,6 @@ import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { listDatasets, listDatasetsBySubject, getDatasetSubject, SUBJECTS, getDatasetDirections, findDataset } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
-const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"].map((y) => ({ id: y, label: y }));
 const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
 const ANSWER_MODES_ALL = [
   { id: "mixed",  label: "Mixed"  },
@@ -104,17 +103,13 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
             {filteredDatasets.map((d) => <option key={d.id} value={d.id}>{d.displayName}</option>)}
           </LabeledSelect>
 
-          {isStage ? (
+          {isStage && (
             <ToggleGroup
               label="Stage"
               items={stageOptions}
               selected={selectedStages}
               onToggle={toggleStage}
             />
-          ) : (
-            <LabeledSelect label="Year" value={prefs.year} onChange={(v) => setPref("year", v)} flex={false}>
-              {YEAR_OPTIONS.map((y) => <option key={y.id} value={y.id}>{y.label}</option>)}
-            </LabeledSelect>
           )}
 
           <PillGroup
