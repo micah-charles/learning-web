@@ -16,13 +16,14 @@ const CURRICULUM_OPTIONS = [
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
 const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
-const ANSWER_MODES_ALL = [
-  { id: "mixed",  label: "Mixed"  },
+// "Build" is kept internally (language packs can still use it via direct pack config)
+// but is not shown as a UI option — users pick Choice / Typed / Mixed.
+const ANSWER_MODES_ALL   = [
   { id: "choice", label: "Choice" },
   { id: "typed",  label: "Typed"  },
-  { id: "build",  label: "Build"  }, // language packs only (requires sentence pools)
+  { id: "mixed",  label: "Mixed"  },
 ];
-const ANSWER_MODES_BASIC = ANSWER_MODES_ALL.filter(m => m.id !== "build");
+const ANSWER_MODES_BASIC = ANSWER_MODES_ALL; // no Build to strip for non-language packs
 
 // ─── Setup Phase ─────────────────────────────────────────────────────────────
 
@@ -523,7 +524,7 @@ export default function QuizPage({ initialCustomWords = null }) {
     questionCount: 18,
     excludeMastered: true,
     direction: "studyToTarget",
-    answerMode: "mixed",
+    answerMode: "choice",
   });
 
   const [phase, setPhase] = useState("setup"); // setup | session | summary
