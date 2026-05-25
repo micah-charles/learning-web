@@ -437,6 +437,29 @@ body {
 .lw-pl-bridge .section-stack { padding-top: 16px; }
 
 /* Home page specific */
+
+/* Top row: Quick Start (3fr) + Community (1fr) side by side */
+.lw-home-top-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 24px;
+}
+.lw-home-top-row .lw-home-quick-start {
+  flex: 3;
+  min-width: 0;
+  margin-top: 0;
+}
+.lw-home-top-row .lw-home-community {
+  flex: 1;
+  min-width: 200px;
+}
+@media (max-width: 640px) {
+  .lw-home-top-row {
+    flex-direction: column;
+  }
+}
+
 .lw-home-quick-start { margin-top: 24px; }
 
 .lw-home-community {
