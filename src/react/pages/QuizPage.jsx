@@ -11,12 +11,13 @@ import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@
 
 const YEAR_OPTIONS = ["ALL", "Y7", "Y8", "Y9", "Y10", "Y11"].map((y) => ({ id: y, label: y }));
 const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
-const ANSWER_MODES = [
-  { id: "mixed", label: "Mixed" },
+const ANSWER_MODES_ALL = [
+  { id: "mixed",  label: "Mixed"  },
   { id: "choice", label: "Choice" },
-  { id: "typed", label: "Typed" },
-  { id: "build", label: "Build" },
+  { id: "typed",  label: "Typed"  },
+  { id: "build",  label: "Build"  }, // language packs only (requires sentence pools)
 ];
+const ANSWER_MODES_BASIC = ANSWER_MODES_ALL.filter(m => m.id !== "build");
 
 // ─── Setup Phase ─────────────────────────────────────────────────────────────
 
@@ -44,8 +45,16 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
   const selectedStages = dataset && isStage ? getSelectedStages(prefs, dataset) : [];
   const directions = dataset ? getDatasetDirections(dataset) : [];
 
+  // "Build" requires sentence pools — only available for language packs.
+  const isLanguage = dataset ? getDatasetSubject(dataset) === "language" : false;
+  const answerModes = isLanguage ? ANSWER_MODES_ALL : ANSWER_MODES_BASIC;
+
   function setPref(key, value) {
     setPrefs(prev => ({ ...prev, [key]: value }));
+  }
+
+  function safeAnswerMode(currentMode, subjectIsLanguage) {
+    return !subjectIsLanguage && currentMode === "build" ? "mixed" : currentMode;
   }
 
   function toggleStage(stage) {
@@ -69,20 +78,29 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
           subjects={subjectCounts}
           activeSubject={prefs.subject}
           onSelect={(subj) => {
-            // When subject changes, reset datasetId to first matching dataset
             const firstMatch = datasets.find((d) => getDatasetSubject(d) === subj);
+            const newIsLanguage = subj === "language";
             setPrefs((prev) => ({
               ...prev,
               subject: subj,
               datasetId: firstMatch?.id ?? prev.datasetId,
               stages: [],
               direction: "",
+              answerMode: safeAnswerMode(prev.answerMode, newIsLanguage),
             }));
           }}
         />
 
         <FilterRow style={{ marginTop: "18px" }}>
-          <LabeledSelect label="Dataset" value={prefs.datasetId} onChange={(v) => setPref("datasetId", v)}>
+          <LabeledSelect label="Dataset" value={prefs.datasetId} onChange={(v) => {
+            const newDataset = findDataset(manifest, v);
+            const newIsLanguage = newDataset ? getDatasetSubject(newDataset) === "language" : false;
+            setPrefs(prev => ({
+              ...prev,
+              datasetId: v,
+              answerMode: safeAnswerMode(prev.answerMode, newIsLanguage),
+            }));
+          }}>
             {filteredDatasets.map((d) => <option key={d.id} value={d.id}>{d.displayName}</option>)}
           </LabeledSelect>
 
@@ -131,7 +149,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
 
         <PillGroup
           label="Answer mode"
-          items={ANSWER_MODES}
+          items={answerModes}
           value={prefs.answerMode}
           onSelect={(v) => setPref("answerMode", v)}
           style={{ marginTop: "16px" }}

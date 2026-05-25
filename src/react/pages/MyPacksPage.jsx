@@ -12,6 +12,7 @@ import {
   deleteUploadedPack,
   validatePack,
 } from "@/admin-storage.js";
+import { useManifest } from "../context/ManifestContext.jsx";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -134,6 +135,7 @@ function PackRow({ pack, onDelete }) {
 // ─── MyPacksPage ──────────────────────────────────────────────────────────────
 
 export default function MyPacksPage() {
+  const { rehydrate } = useManifest();
   const fileInputRef = useRef(null);
   const [packs, setPacks]       = useState(() => listUploadedPacks());
   const [results, setResults]   = useState(null); // upload results
@@ -145,6 +147,7 @@ export default function MyPacksPage() {
   function handleDelete(id) {
     deleteUploadedPack(id);
     refresh();
+    rehydrate(); // remove pack from live manifest too
   }
 
   const handleFiles = useCallback(async (files) => {
@@ -159,7 +162,8 @@ export default function MyPacksPage() {
     setResults(allResults);
     setUploading(false);
     refresh();
-  }, []);
+    rehydrate(); // inject newly saved packs into the live manifest
+  }, [rehydrate]);
 
   function handleFileInput(e) {
     handleFiles(e.target.files);

@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { loadManifest } from "@/data.js";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { loadManifest, registerPackInCache } from "@/data.js";
+import { hydrateManifest } from "@/admin-storage.js";
 
 const Ctx = createContext(null);
 
@@ -10,12 +11,28 @@ export function ManifestProvider({ children }) {
 
   useEffect(() => {
     loadManifest()
-      .then(setManifest)
+      .then(m => {
+        // Inject any packs the user previously uploaded (stored in localStorage)
+        // into the live manifest before React components ever see it.
+        hydrateManifest(m, registerPackInCache);
+        setManifest(m);
+      })
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
   }, []);
 
-  return <Ctx.Provider value={{ manifest, loading, error }}>{children}</Ctx.Provider>;
+  // Call after a new pack is uploaded so Quiz/Vocab/Review see it immediately
+  // without a page reload. hydrateManifest is idempotent (deduplicates by id).
+  const rehydrate = useCallback(() => {
+    setManifest(prev => {
+      if (!prev) return prev;
+      const next = { ...prev };          // new reference → triggers re-render
+      hydrateManifest(next, registerPackInCache);
+      return next;
+    });
+  }, []);
+
+  return <Ctx.Provider value={{ manifest, loading, error, rehydrate }}>{children}</Ctx.Provider>;
 }
 
 export function useManifest() {
