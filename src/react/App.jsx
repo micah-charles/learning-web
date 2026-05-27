@@ -27,8 +27,9 @@ import LanguagePage  from "./pages/LanguagePage.jsx";
 import CrosswordPage from "./pages/CrosswordPage.jsx";
 import ReviewPage    from "./pages/ReviewPage.jsx";
 import ProgressPage  from "./pages/ProgressPage.jsx";
-import MyPacksPage   from "./pages/MyPacksPage.jsx";
-import AboutPage     from "./pages/AboutPage.jsx";
+import MyPacksPage      from "./pages/MyPacksPage.jsx";
+import AboutPage        from "./pages/AboutPage.jsx";
+import AIPromptBuilder  from "./pages/AIPromptBuilder.jsx";
 
 // Tabs that have active sessions — re-clicking asks the user to confirm reload.
 const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword"]);
@@ -76,8 +77,9 @@ function AppContent() {
         {activeTab === "crossword" && <CrosswordPage />}
         {activeTab === "review"    && <ReviewPage    onNavigate={handleNavigate} />}
         {activeTab === "progress"  && <ProgressPage  />}
-        {activeTab === "mypacks"   && <MyPacksPage   />}
+        {activeTab === "mypacks"   && <MyPacksPage   onNavigate={handleNavigate} />}
         {activeTab === "about"     && <AboutPage     />}
+        {activeTab === "ai-prompt" && <AIPromptBuilder onNavigate={handleNavigate} />}
       </main>
 
       {/* Study Book drawer — rendered once here so it persists across tab switches */}
