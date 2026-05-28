@@ -67,6 +67,19 @@ export const DEFAULT_STATE = {
       datasetId: "core",
       sort: "needsReview",
     },
+    promptBuilder: {
+      subject: "geography",
+      topic: "",
+      level: "KS3",
+      curriculum: "",
+      locale: "en-GB",
+      itemTypes: ["vocab"],
+      sourceMode: "paste",        // "url" | "ai-upload" | "paste"
+      sourceUrl: "",
+      sourceMaterial: "",
+      additionalInstructions: "",
+      generateMode: "template",   // "template" | "chrome-ai"
+    },
   },
   progress: {
     words: {},
