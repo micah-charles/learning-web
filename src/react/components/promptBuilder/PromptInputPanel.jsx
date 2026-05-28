@@ -4,16 +4,14 @@
  * Left panel — all user-configurable fields that feed the prompt builder.
  * Stateless: receives values + onChange callbacks from AIPromptBuilder.jsx.
  */
+import { SUBJECTS as SUBJECT_VALUES } from "@/data.js";
 
-const SUBJECTS = [
-  { value: "geography",  label: "Geography"  },
-  { value: "history",    label: "History"    },
-  { value: "science",    label: "Science"    },
-  { value: "language",   label: "Language"   },
-  { value: "literature", label: "Literature" },
-  { value: "computing",  label: "Computing"  },
-  { value: "other",      label: "Other"      },
-];
+// Derive display objects from the canonical SUBJECTS array in data.js so this
+// list stays in sync automatically (includes "religion", "computing", etc.).
+const SUBJECTS = SUBJECT_VALUES.map((v) => ({
+  value: v,
+  label: v.charAt(0).toUpperCase() + v.slice(1),
+}));
 
 const LOCALES = [
   { value: "en-GB", label: "English (UK) — en-GB" },
@@ -32,16 +30,16 @@ const LOCALES = [
  *   fillBlank    → Quiz fill-in-the-blank questions
  *   sequence     → Quiz ordering questions
  *   categorySort → Quiz category-sort questions
- *   sentence     → Builder tab (sentence tile cards; go in sentenceBuilderPacks)
- *   passage      → Reading tab (go in passageGroups / PassagePacks)
+ *   sentenceBuilder → Builder tab (sentence tile cards; go in sentenceBuilderPacks)
+ *   passage         → Reading tab (go in passageGroups / PassagePacks)
  */
 const ITEM_TYPES = [
-  { value: "vocab",        label: "vocab",        tab: "Vocab + Quiz"  },
-  { value: "fillBlank",    label: "fillBlank",    tab: "Quiz"          },
-  { value: "sequence",     label: "sequence",     tab: "Quiz"          },
-  { value: "categorySort", label: "categorySort", tab: "Quiz"          },
-  { value: "sentence",     label: "sentence",     tab: "Builder"       },
-  { value: "passage",      label: "passage",      tab: "Reading"       },
+  { value: "vocab",           label: "vocab",           tab: "Vocab + Quiz"  },
+  { value: "fillBlank",       label: "fillBlank",       tab: "Quiz"          },
+  { value: "sequence",        label: "sequence",        tab: "Quiz"          },
+  { value: "categorySort",    label: "categorySort",    tab: "Quiz"          },
+  { value: "sentenceBuilder", label: "sentenceBuilder", tab: "Builder"       },
+  { value: "passage",         label: "passage",         tab: "Reading"       },
 ];
 
 const GENERATE_MODES = [
@@ -234,7 +232,7 @@ export default function PromptInputPanel({
         <p style={field.hint}>
           <strong>vocab</strong> = Vocabulary + Quiz cards ·
           <strong> fillBlank / sequence / categorySort</strong> = Quiz question types ·
-          <strong> sentence</strong> = Builder tab ·
+          <strong> sentenceBuilder</strong> = Builder tab ·
           <strong> passage</strong> = Reading tab
         </p>
       </div>

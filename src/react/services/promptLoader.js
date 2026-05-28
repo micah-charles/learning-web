@@ -6,6 +6,9 @@
  * duplicated into source — this loader is the single fetch point.
  */
 
+// The markdown file lives in public/docs/ (project root's Vite public directory).
+// Vite automatically serves the public/ folder at the root URL in dev mode and
+// copies it to dist/ during production builds — no viteStaticCopy entry needed.
 const PROMPT_PATH = "./docs/generate_json_pack_generation_prompt.md";
 
 /**
@@ -18,7 +21,7 @@ export async function loadBasePrompt() {
   if (!res.ok) {
     throw new Error(
       `Could not load the generation prompt (HTTP ${res.status}). ` +
-        "Check that the file exists at src/react/public/docs/generate_json_pack_generation_prompt.md."
+        "Check that the file exists at public/docs/generate_json_pack_generation_prompt.md."
     );
   }
   return res.text();

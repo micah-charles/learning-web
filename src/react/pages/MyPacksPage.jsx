@@ -270,7 +270,7 @@ export default function MyPacksPage({ onNavigate }) {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
               <button
-                className="lw-btn lw-btn--primary"
+                className="lw-btn lw-btn-primary"
                 type="button"
                 onClick={() => onNavigate?.("ai-prompt")}
               >

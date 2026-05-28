@@ -1226,11 +1226,3 @@ body.sb-split-mode .lw-app {
 
 .pb-alert { padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; }
 .pb-alert--error { background: var(--lw-coral-soft); border: 1.5px solid var(--lw-coral); color: var(--lw-coral); }
-
-.lw-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--lw-line); background: var(--lw-panel); color: var(--lw-ink); font-family: inherit; transition: background 120ms, border-color 120ms, opacity 120ms; }
-.lw-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.lw-btn:not(:disabled):hover { background: var(--lw-blue-soft); border-color: var(--lw-blue); color: var(--lw-blue); }
-.lw-btn--primary { background: var(--lw-blue); color: #fff; border-color: var(--lw-blue); }
-.lw-btn--primary:not(:disabled):hover { background: #0f4f88; border-color: #0f4f88; color: #fff; }
-.lw-btn--ghost { border-color: transparent; background: transparent; color: var(--lw-muted); }
-.lw-btn--ghost:not(:disabled):hover { background: var(--lw-amber-soft); border-color: var(--lw-amber); color: var(--lw-amber); }

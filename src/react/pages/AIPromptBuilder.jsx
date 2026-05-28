@@ -20,55 +20,28 @@ import PromptOutputPanel from "../components/promptBuilder/PromptOutputPanel.jsx
 import { detectChromeAI, createAISession, generateEnhancedPrompt, destroySession } from "../services/chromeAI.js";
 import { loadBasePrompt } from "../services/promptLoader.js";
 import { assembleTemplatePrompt } from "../services/promptAssembler.js";
+import { loadStoredState, saveStoredState } from "@/storage.js";
 
-const STORAGE_KEY = "learningGermanWeb.v1";
-
-// ── Persist / restore prompt builder prefs ─────────────────────────────────
+// ── Persist / restore prompt builder prefs via the shared storage layer ─────
+// loadStoredState() deep-merges DEFAULT_STATE, so promptBuilder prefs always
+// have the correct defaults even for users with old or empty localStorage.
 function loadSavedPrefs() {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return parsed?.prefs?.promptBuilder ?? null;
-  } catch (_) {
-    return null;
-  }
+  return loadStoredState().prefs.promptBuilder;
 }
 
 function savePrefs(prefs) {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    const state = raw ? JSON.parse(raw) : {};
-    if (!state.prefs) state.prefs = {};
-    state.prefs.promptBuilder = prefs;
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch (_) {
-    // localStorage may be unavailable — graceful no-op.
-  }
+  const state = loadStoredState();
+  state.prefs.promptBuilder = prefs;
+  saveStoredState(state);
 }
-
-const DEFAULT_VALUES = {
-  subject: "geography",
-  topic: "",
-  level: "KS3",
-  curriculum: "",
-  locale: "en-GB",
-  itemTypes: ["vocab"],
-  sourceMode: "paste",       // "url" | "ai-upload" | "paste"
-  sourceUrl: "",
-  sourceMaterial: "",
-  additionalInstructions: "",
-  generateMode: "template",
-};
 
 // ──────────────────────────────────────────────────────────────────────────────
 
 export default function AIPromptBuilder({ onNavigate }) {
   const hasChromeAI = detectChromeAI();
 
-  // Form values
-  const saved = loadSavedPrefs();
-  const [values, setValues] = useState({ ...DEFAULT_VALUES, ...saved });
+  // Form values — initialised from the merged stored state (includes defaults)
+  const [values, setValues] = useState(() => loadSavedPrefs());
 
   // Prompt output
   const [basePrompt, setBasePrompt]         = useState("");
@@ -181,7 +154,7 @@ export default function AIPromptBuilder({ onNavigate }) {
 
       {/* Back to My Packs */}
       <button
-        className="lw-btn lw-btn--ghost"
+        className="lw-btn lw-btn-ghost"
         style={{ marginBottom: 12, paddingLeft: 0 }}
         type="button"
         onClick={() => onNavigate?.("mypacks")}

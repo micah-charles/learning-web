@@ -153,7 +153,7 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
   if (curriculum) {
     const manifestCurriculum = inferManifestCurriculum(level, curriculum);
     lines.push(
-      `- The manifest \`curriculum\` field should be \`"${manifestCurriculum}"\` (ks3 / gcse / other).`
+      `- The manifest \`curriculum\` field should be \`"${manifestCurriculum}"\` (valid values: ks3 / us-middle-school / other).`
     );
   }
   lines.push("");
@@ -197,12 +197,12 @@ function toSlug(topic) {
 }
 
 /**
- * Infer the manifest curriculum value (ks3 / gcse / other) from free-text
- * level and curriculum fields.
+ * Infer the manifest curriculum value from free-text level and curriculum fields.
+ * Valid values (from data.js CURRICULUMS): "ks3" | "us-middle-school" | "other"
  */
 function inferManifestCurriculum(level = "", curriculum = "") {
   const combined = (level + " " + curriculum).toLowerCase();
-  if (/gcse|y10|y11|year\s*10|year\s*11|a.?level/.test(combined)) return "gcse";
+  if (/us.?middle|grade\s*[678]|us\s*school/.test(combined)) return "us-middle-school";
   if (/ks3|y7|y8|y9|year\s*[789]|key\s*stage\s*3/.test(combined)) return "ks3";
   return "other";
 }
@@ -218,8 +218,8 @@ function itemTypeNotes(types) {
     notes.push("- `sequence` items generate **ordering** Quiz questions.");
   if (types.includes("categorySort"))
     notes.push("- `categorySort` items generate **category-sort** Quiz questions.");
-  if (types.includes("sentence"))
-    notes.push("- `sentence` items go into a **sentenceBuilderPack** and appear in the **Builder** tab as tile-arrangement cards.");
+  if (types.includes("sentenceBuilder"))
+    notes.push("- `sentenceBuilder` items go into a **sentenceBuilderPack** and appear in the **Builder** tab as tile-arrangement cards.");
   if (types.includes("passage"))
     notes.push("- `passage` items go into a **PassagePack** and appear in the **Reading** tab.");
   return notes.join("\n");

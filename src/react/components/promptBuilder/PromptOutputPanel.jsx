@@ -61,7 +61,7 @@ export default function PromptOutputPanel({
       {/* Action buttons */}
       <div className="pb-output-actions">
         <button
-          className="lw-btn lw-btn--primary"
+          className="lw-btn lw-btn-primary"
           onClick={onGenerate}
           disabled={!canGenerate}
           type="button"
@@ -90,7 +90,7 @@ export default function PromptOutputPanel({
         </button>
 
         <button
-          className="lw-btn lw-btn--ghost"
+          className="lw-btn lw-btn-ghost"
           onClick={onReset}
           type="button"
           title="Clear the generated prompt"
