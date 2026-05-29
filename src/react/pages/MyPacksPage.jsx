@@ -181,6 +181,35 @@ export default function MyPacksPage({ onNavigate }) {
 
   return (
     <div className="lw-page">
+
+      {/* ── AI Prompt Builder — first, to surface the feature prominently ── */}
+      <div className="lw-card mp-ai-card" style={{ marginBottom: "20px" }}>
+        <div className="mp-ai-card-inner">
+          <div className="mp-ai-card-icon" aria-hidden="true">✦</div>
+          <div className="mp-ai-card-body">
+            <h2 className="lw-section-title" style={{ marginBottom: 4 }}>
+              AI Prompt Builder
+            </h2>
+            <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem", marginBottom: 14 }}>
+              Build optimised pack-generation prompts using local Chrome AI, then paste into
+              ChatGPT, Codex, or Claude to generate your <code>pack_unified.json</code>.
+              Everything stays in your browser — nothing is sent to a server.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+              <button
+                className="lw-btn lw-btn-primary"
+                type="button"
+                onClick={() => onNavigate?.("ai-prompt")}
+              >
+                Open AI Prompt Builder →
+              </button>
+              <span className="lw-chip blue" style={{ fontSize: "0.75rem" }}>Local only</span>
+              <span className="lw-chip" style={{ fontSize: "0.75rem" }}>No backend</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">My Packs</h2>
         <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem", marginBottom: "16px" }}>
@@ -255,33 +284,6 @@ export default function MyPacksPage({ onNavigate }) {
         )}
       </div>
 
-      {/* ── AI Prompt Builder ───────────────────────────────────────────── */}
-      <div className="lw-card mp-ai-card">
-        <div className="mp-ai-card-inner">
-          <div className="mp-ai-card-icon" aria-hidden="true">✦</div>
-          <div className="mp-ai-card-body">
-            <h2 className="lw-section-title" style={{ marginBottom: 4 }}>
-              AI Prompt Builder
-            </h2>
-            <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem", marginBottom: 14 }}>
-              Build optimised pack-generation prompts using local Chrome AI, then paste into
-              ChatGPT, Codex, or Claude to generate your <code>pack_unified.json</code>.
-              Everything stays in your browser — nothing is sent to a server.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
-              <button
-                className="lw-btn lw-btn-primary"
-                type="button"
-                onClick={() => onNavigate?.("ai-prompt")}
-              >
-                Open AI Prompt Builder →
-              </button>
-              <span className="lw-chip blue" style={{ fontSize: "0.75rem" }}>Local only</span>
-              <span className="lw-chip" style={{ fontSize: "0.75rem" }}>No backend</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

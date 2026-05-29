@@ -31,7 +31,7 @@ function CountBadge({ icon, n, label }) {
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-export default function Hero({ variant = "standard" }) {
+export default function Hero({ variant = "standard", onNavigate }) {
   const { manifest } = useManifest();
 
   const packCount    = useMemo(() => (manifest ? listDatasets(manifest).length : 0),            [manifest]);
@@ -87,13 +87,27 @@ export default function Hero({ variant = "standard" }) {
               powered by curiosity and AI.
             </p>
           </div>
-          {manifest && (
-            <div className="lw-hero-counts">
-              <CountBadge icon="📦" n={packCount}    label="packs"          />
-              <CountBadge icon="📖" n={groupCount}   label="reading groups" />
-              <CountBadge icon="🧩" n={builderCount} label="builder sets"   />
-            </div>
-          )}
+          {/* Right column: stat badges + AI Prompt Builder promo */}
+          <div className="lw-hero-right-col">
+            {manifest && (
+              <div className="lw-hero-counts">
+                <CountBadge icon="📦" n={packCount}    label="packs"          />
+                <CountBadge icon="📖" n={groupCount}   label="reading groups" />
+                <CountBadge icon="🧩" n={builderCount} label="builder sets"   />
+              </div>
+            )}
+            <button
+              type="button"
+              className="lw-hero-promo"
+              onClick={() => onNavigate?.("ai-prompt")}
+              aria-label="Open AI Prompt Builder"
+            >
+              <span className="lw-hero-promo-title">✦ AI Prompt Builder</span>
+              <span className="lw-hero-promo-sub">
+                Build optimised Learning Web pack-generation prompts — then paste into ChatGPT, Codex, or Claude.
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

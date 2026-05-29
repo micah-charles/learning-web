@@ -62,7 +62,7 @@ function AppContent() {
 
   return (
     <div className="lw-app">
-      <Hero variant="standard" />
+      <Hero variant="standard" onNavigate={handleNavigate} />
 
       <NavBar active={activeTab} onChange={handleTabChange} />
 
