@@ -1233,5 +1233,6 @@ body.sb-split-mode .lw-app {
 .pb-char-count { font-size: 0.75rem; color: var(--lw-muted); text-align: right; }
 .pb-status-msg { font-size: 0.82rem; color: var(--lw-muted); padding: 6px 0; }
 
-.pb-alert { padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; }
-.pb-alert--error { background: var(--lw-coral-soft); border: 1.5px solid var(--lw-coral); color: var(--lw-coral); }
+.pb-alert { padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; margin-bottom: 12px; }
+.pb-alert--error   { background: var(--lw-coral-soft); border: 1.5px solid var(--lw-coral); color: var(--lw-coral); }
+.pb-alert--warning { background: var(--lw-amber-soft); border: 1.5px solid var(--lw-amber); color: var(--lw-ink); }
