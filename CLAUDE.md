@@ -9,38 +9,35 @@ Read this before touching any file.
 
 When working on **any frontend / UI-related task** for Learning Web:
 
-1. **First read (in order):**
-   - `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` — real bugs + rules distilled from production
-   - `docs/REACT_ARCHITECTURE.md` — full map of every React context, hook, page, and component; read this before touching any `.jsx` file
+1. **First read (in order) — these files are the authoritative UI reference; do not duplicate their content here:**
+   - `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` — every production bug, caution code (RC*, CD*, CSS*, A*), and fix
+   - `docs/REACT_ARCHITECTURE.md` — full map of every React context, hook, page, component, and data-flow pattern
 2. **Summarise** the key constraints internally before making any changes.
 3. **Validate** all proposed UI changes against:
    - React + vanilla JS hybrid architecture (React shell, vanilla JS engine)
-   - `useProgress()` shape — always pass the full stored-state to storage helpers (see RC1)
-   - `ManifestContext` — must call `hydrateManifest` for uploaded packs to be visible (see RC2)
-   - Quiz answer mode labels: React uses `"choice"`/`"build"`, engine uses `"mcq"` — normalise at boundary (see RC4)
-   - `data/` directory must be in `viteStaticCopy` targets or it won't reach `dist/` (see CD1)
-   - mobile usability
-   - pack compatibility (all subjects and curricula)
-   - mode consistency (`resolveQuizModesForUI` ↔ `createQuizSession` ↔ badge counts)
-   - accessibility
-   - GCSE / educational workflow requirements
-4. **Avoid:**
-   - passing `progress?.progress` (inner object) to storage helpers — pass the full state
-   - adding new `<select>` elements in `dangerouslySetInnerHTML` HTML without handling them in `handleChange` by id
-   - speech synthesis in `setTimeout` (outside user-gesture window → Chrome blocks)
-   - calling `synth.speak()` immediately after `synth.cancel()` — Chrome drops the utterance; defer via `requestAnimationFrame` (see RC11)
-   - showing "Build" answer mode for non-language packs (no sentence pools)
-   - placing side effects (`updateProgress`, `recordAttempt`) inside `setState()` updater functions — React StrictMode fires them twice (see RC9)
-   - rendering `<StudyBookDrawer />` inside page components — it belongs at App level (see RC10)
-   - unnecessary framework rewrites or duplicate component systems
-   - breaking existing pack JSON contracts
-   - overengineering
+   - `useProgress()` shape — always pass the full stored-state to storage helpers (RC1)
+   - `ManifestContext` — must call `hydrateManifest` for uploaded packs to be visible (RC2)
+   - Quiz answer mode labels: React uses `"choice"`/`"build"`, engine uses `"mcq"` — normalise at boundary (RC4)
+   - `data/` directory must be in `viteStaticCopy` targets or it won't reach `dist/` (CD1)
+   - mobile usability · pack compatibility · mode consistency · accessibility
+4. **Avoid (caution code in parentheses — full details in AI_UI_IMPLEMENTATION_CAUTIONS.md):**
+   - passing `progress?.progress` to storage helpers — pass the full stored-state (RC1)
+   - side effects inside `setState()` updater functions — StrictMode fires them twice (RC9)
+   - rendering `<StudyBookDrawer />` inside page components — belongs at App level (RC10)
+   - `synth.cancel()` + `synth.speak()` in the same tick — drops the utterance in Chrome (RC11)
+   - speech synthesis in `setTimeout` — outside user-gesture window, Chrome blocks it (RC11)
+   - accessing `localStorage` directly — always use `loadStoredState()` / `saveStoredState()` (RC14)
+   - placing runtime-fetched files under `src/` — they must live in `public/` at project root (CD5)
+   - "Build" answer mode for non-language packs — no sentence pools exist (RC4)
+   - BEM double-dash button modifiers (`lw-btn--primary`) — use single-hyphen (`lw-btn-primary`) (CSS3)
 5. **Prefer:**
    - hooks for data + state; pure render functions for UI
    - `useMemo` for derived values; `useState` only for user-owned config
-   - schema-driven rendering
-   - offline-first compatibility
-   - educational usability over visual novelty
+   - schema-driven rendering · offline-first · educational usability over visual novelty
+
+> ⚠ **Do not add bug notes or implementation cautions to this file.**
+> When you discover a new bug or rule, add it to `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md`
+> (Part A = vanilla JS, B = React, C = build/deploy, D = CSS). Update its "Last updated" line.
 
 ---
 
@@ -217,7 +214,7 @@ Key mappings to know:
 | `categories` | `item.topics[]` (the full array) |
 | `stage` | parsed from `item.level` e.g. `"Stage 1"` → `1` |
 
-⚠ **Duplicate example bug pattern**: If `srcCode === tgtCode` (all non-language packs), setting both `exampleDe` and `exampleEn` from the same `examples["en-GB"]` entry causes the example to render twice. The fix (already applied): only populate `exampleDe` when `srcCode !== tgtCode`.
+⚠ If `srcCode === tgtCode` (all non-language packs), only populate `exampleDe` when `srcCode !== tgtCode` — otherwise the example sentence renders twice.
 
 ---
 
@@ -278,7 +275,7 @@ Latin has `stageOptions` in its manifest entry → `usesStageSelection(dataset)`
 
 ## 8. Quiz question objects
 
-Questions are built in `quiz.js` and consumed in `main.js → renderQuizSession()`.
+Questions are built in `quiz.js` and consumed in React via `useQuizSession`.
 
 Standard fields on every question object:
 
@@ -336,40 +333,20 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 
 ---
 
-## 12. CSS conventions
+## 12. CSS quick reference
 
-- Utility classes: `muted`, `tiny`, `badge`, `badge-row`, `chip-row`, `count-pill`, `mode-chip`
+- Utility classes (vanilla JS UI): `muted`, `tiny`, `badge`, `badge-row`, `chip-row`, `count-pill`, `mode-chip`
 - Badge colours: `blue` (neutral info), `amber` (topic/category), `green` (correct/mastered), `coral` (gender)
-- Stage/category checkboxes use: `stage-field`, `fieldset-title`, `stage-check-list`, `mode-check stage-check`
+- Stage/category checkboxes: `stage-field`, `fieldset-title`, `stage-check-list`, `mode-check stage-check`
 - Question UI: `question-box`, `question-box-top`, `question-box-copy`, `question-prompt`
 - React nav tones: `lw-nav-pill.tone-orange` (Language Ladder), `lw-nav-pill.tone-blue` (Quiz)
 - Mobile nav: `lw-nav-mobile`, `lw-mobile-nav-pill`, `lw-mobile-more`, `lw-mobile-more-menu`
-- Button modifiers: **single-hyphen** — `lw-btn-primary`, `lw-btn-ghost`, `lw-btn-secondary` (never BEM `--`)
+- Button modifiers: single-hyphen only — `lw-btn-primary`, `lw-btn-ghost`, `lw-btn-secondary` (full rule: CSS3 in `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md`)
+- For the full React `lw-*` class system and design tokens, see `docs/REACT_ARCHITECTURE.md` §9
 
 ---
 
-## 13. Common bugs to watch for
-
-| Bug | Cause | Fix |
-|---|---|---|
-| Pack not showing in app | Not in `manifest.json` | Add to `revisionPacks` |
-| `undefined` on first load for new prefs key | Missing from `DEFAULT_STATE` | Add to `storage.js` |
-| Example sentence renders twice | `srcCode === tgtCode` but both `exampleDe` + `exampleEn` set | Only set `exampleDe` when `srcCode !== tgtCode` |
-| PoS dropdown shows `a, c, d…` | Abbreviations in pack data | Update pack JSON to use full words; `POS_LABELS` is the fallback |
-| `targetWord` equals `sourceWord` in vocab | Schema mismatch / bad AI generation | Write a proper definition |
-| Category filter broken after pack switch | Reset not added to all three switch points | Add `prefs.vocab.categories = []` alongside `category = ""` |
-| Pack committed to `generated_packs/` | gitignored — app never loads it | Copy to `data/Packs/` and register in manifest |
-| Quiz records double events in dev | Side effects inside `setState()` updater | Move `updateProgress` outside updater; use `sessionRef` (see RC9) |
-| Speak button silent in Chrome | `cancel()` + `speak()` in same tick | Defer via `requestAnimationFrame` after cancel (see RC11) |
-| Study Book state lost on tab switch | Drawer rendered inside page component | Render `<StudyBookDrawer />` once in `App.jsx` (see RC10) |
-| Hero stat cards not found | Stat cards moved from Hero to ProgressPage | Edit `ProgressPage.jsx` `SnapshotCard` components |
-| Mobile nav tab missing | Only added to `TABS` in `NavBar.jsx`, not `MOBILE_*_TABS` | Add to appropriate `MOBILE_PRIMARY_TABS` or `MOBILE_MORE_TABS` |
-| New prefs key undefined for existing users | Added to component but not `DEFAULT_STATE` | Always add to `storage.js` `DEFAULT_STATE` first (see RC14) |
-| `fetch()` file returns 404 in production | File placed in `src/` not `public/` | Move to `public/docs/` at project root (see CD5) |
-
----
-
-## 14. Dev commands
+## 13. Dev commands
 
 ```bash
 npm run dev        # Vite dev server (hot reload) — use for UI work
@@ -382,7 +359,7 @@ The manifest is **not** auto-generated on `npm run dev`. After adding/removing p
 
 ---
 
-## 15. Branch and PR conventions
+## 14. Branch and PR conventions
 
 - Branch names from Codex: `codex/<description>`
 - One logical change per PR; keep PRs small
@@ -418,7 +395,7 @@ git log --oneline origin/main..HEAD
 
 ---
 
-## 16. Files that are safe to edit vs. generated
+## 15. Files that are safe to edit vs. generated
 
 | File | Status |
 |---|---|
@@ -430,6 +407,6 @@ git log --oneline origin/main..HEAD
 | `data/Packs/**/pack_unified.json` | Hand-maintained JSON — schema v1.1 |
 | `public/docs/*.md` | Hand-maintained prompt templates — fetched at runtime |
 | `docs/REACT_ARCHITECTURE.md` | Hand-maintained — update after any structural React change |
-| `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` | Hand-maintained — add RC entries when new bugs are found |
+| `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` | Hand-maintained — add RC/CD/CSS/A entries when new bugs are found; **not CLAUDE.md** |
 | `generated_packs/` | AI draft output — **gitignored**, never committed |
 | `dist/` | Vite build output — **gitignored** |
