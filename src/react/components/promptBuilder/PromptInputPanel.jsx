@@ -5,6 +5,7 @@
  * Stateless: receives values + onChange callbacks from AIPromptBuilder.jsx.
  */
 import { SUBJECTS as SUBJECT_VALUES } from "@/data.js";
+import { PROMPT_CONFIGS } from "../../services/promptConfigs.js";
 
 // Derive display objects from the canonical SUBJECTS array in data.js so this
 // list stays in sync automatically (includes "religion", "computing", etc.).
@@ -97,12 +98,18 @@ export default function PromptInputPanel({
   hasChromeAI,
   basePromptLoaded,
   basePromptError,
+  allowedItemTypes,           // string[] from the active prompt config
 }) {
   const {
     subject, topic, level, curriculum, locale,
     itemTypes, sourceMode, sourceUrl, sourceMaterial,
-    additionalInstructions, generateMode,
+    additionalInstructions, generateMode, promptTemplate,
   } = values;
+
+  // Only show item types permitted by the currently loaded prompt template
+  const visibleItemTypes = allowedItemTypes
+    ? ITEM_TYPES.filter((t) => allowedItemTypes.includes(t.value))
+    : ITEM_TYPES;
 
   function handleItemTypeToggle(typeValue) {
     const next = itemTypes.includes(typeValue)
@@ -120,6 +127,27 @@ export default function PromptInputPanel({
           ⚠ Could not load generation prompt: {basePromptError}
         </div>
       )}
+
+      {/* ── Prompt Template ─────────────────────────────────────────── */}
+      <div className="pb-field pb-template-field">
+        <label style={field.label} htmlFor="pb-template">Prompt Template</label>
+        <select
+          id="pb-template"
+          style={field.input}
+          value={promptTemplate}
+          onChange={(e) => onChange("promptTemplate", e.target.value)}
+        >
+          {PROMPT_CONFIGS.map((c) => (
+            <option key={c.id} value={c.id}>{c.label}</option>
+          ))}
+        </select>
+        {/* Description of the active template */}
+        {PROMPT_CONFIGS.find((c) => c.id === promptTemplate) && (
+          <p style={field.hint}>
+            {PROMPT_CONFIGS.find((c) => c.id === promptTemplate).description}
+          </p>
+        )}
+      </div>
 
       {/* Subject */}
       <div className="pb-field">
@@ -212,7 +240,7 @@ export default function PromptInputPanel({
       <div className="pb-field">
         <span style={field.label}>Item Types to generate</span>
         <div className="pb-item-types">
-          {ITEM_TYPES.map((t) => (
+          {visibleItemTypes.map((t) => (
             <label
               key={t.value}
               className={`pb-chip${itemTypes.includes(t.value) ? " pb-chip--on" : ""}`}
@@ -229,12 +257,18 @@ export default function PromptInputPanel({
             </label>
           ))}
         </div>
-        <p style={field.hint}>
-          <strong>vocab</strong> = Vocabulary + Quiz cards ·
-          <strong> fillBlank / sequence / categorySort</strong> = Quiz question types ·
-          <strong> sentenceBuilder</strong> = Builder tab ·
-          <strong> passage</strong> = Reading tab
-        </p>
+        {visibleItemTypes.length > 1 ? (
+          <p style={field.hint}>
+            <strong>vocab</strong> = Vocabulary + Quiz cards ·
+            <strong> fillBlank / sequence / categorySort</strong> = Quiz question types ·
+            <strong> sentenceBuilder</strong> = Builder tab ·
+            <strong> passage</strong> = Reading tab
+          </p>
+        ) : (
+          <p style={field.hint}>
+            Item types are fixed by the selected prompt template.
+          </p>
+        )}
       </div>
 
       {/* Source material — three modes */}

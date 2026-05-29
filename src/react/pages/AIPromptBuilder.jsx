@@ -20,11 +20,10 @@ import PromptOutputPanel from "../components/promptBuilder/PromptOutputPanel.jsx
 import { detectChromeAI, createAISession, generateEnhancedPrompt, destroySession } from "../services/chromeAI.js";
 import { loadBasePrompt } from "../services/promptLoader.js";
 import { assembleTemplatePrompt } from "../services/promptAssembler.js";
+import { getPromptConfig, promptConfigForSubject } from "../services/promptConfigs.js";
 import { loadStoredState, saveStoredState } from "@/storage.js";
 
 // ── Persist / restore prompt builder prefs via the shared storage layer ─────
-// loadStoredState() deep-merges DEFAULT_STATE, so promptBuilder prefs always
-// have the correct defaults even for users with old or empty localStorage.
 function loadSavedPrefs() {
   return loadStoredState().prefs.promptBuilder;
 }
@@ -44,11 +43,11 @@ export default function AIPromptBuilder({ onNavigate }) {
   const [values, setValues] = useState(() => loadSavedPrefs());
 
   // Prompt output
-  const [basePrompt, setBasePrompt]         = useState("");
+  const [basePrompt, setBasePrompt]           = useState("");
   const [basePromptError, setBasePromptError] = useState("");
   const [generatedPrompt, setGeneratedPrompt] = useState("");
-  const [status, setStatus]                 = useState("idle"); // idle | loading | generating | done | error
-  const [errorMsg, setErrorMsg]             = useState("");
+  const [status, setStatus]                   = useState("idle");
+  const [errorMsg, setErrorMsg]               = useState("");
 
   // Keep an AI session alive across multiple "Generate" clicks
   const aiSessionRef = useRef(null);
@@ -63,10 +62,14 @@ export default function AIPromptBuilder({ onNavigate }) {
     return () => destroySession(aiSessionRef.current);
   }, []);
 
-  // ── Load base prompt on mount ──────────────────────────────────────────────
+  // ── Load base prompt whenever the selected template changes ────────────────
   useEffect(() => {
+    const config = getPromptConfig(values.promptTemplate);
     setStatus("loading");
-    loadBasePrompt()
+    setBasePrompt("");
+    setBasePromptError("");
+    setGeneratedPrompt(""); // clear stale output from a previous template
+    loadBasePrompt(config.path)
       .then((text) => {
         setBasePrompt(text);
         setStatus("idle");
@@ -76,11 +79,38 @@ export default function AIPromptBuilder({ onNavigate }) {
         setStatus("error");
         setErrorMsg(err.message);
       });
-  }, []);
+  }, [values.promptTemplate]);
 
-  // ── Field change handler ───────────────────────────────────────────────────
+  // ── Field change handler with bidirectional subject ↔ template linking ─────
   const handleChange = useCallback((key, value) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
+    setValues((prev) => {
+      const next = { ...prev, [key]: value };
+
+      if (key === "subject") {
+        // Auto-switch the prompt template when subject changes
+        const autoTemplate = promptConfigForSubject(value);
+        if (autoTemplate !== prev.promptTemplate) {
+          next.promptTemplate = autoTemplate;
+          const config = getPromptConfig(autoTemplate);
+          // Filter out any item types not allowed by the new template
+          const filtered = prev.itemTypes.filter((t) => config.allowedItemTypes.includes(t));
+          next.itemTypes = filtered.length > 0 ? filtered : config.defaultItemTypes;
+        }
+      }
+
+      if (key === "promptTemplate") {
+        const config = getPromptConfig(value);
+        // Auto-set subject when a template has a linked subject
+        if (config.linkedSubject && config.linkedSubject !== prev.subject) {
+          next.subject = config.linkedSubject;
+        }
+        // Reset item types to only those allowed by the new template
+        const filtered = prev.itemTypes.filter((t) => config.allowedItemTypes.includes(t));
+        next.itemTypes = filtered.length > 0 ? filtered : config.defaultItemTypes;
+      }
+
+      return next;
+    });
   }, []);
 
   // ── Generate prompt ────────────────────────────────────────────────────────
@@ -109,31 +139,25 @@ export default function AIPromptBuilder({ onNavigate }) {
       let finalPrompt;
 
       if (useAI) {
-        // Create or reuse an AI session
         if (!aiSessionRef.current) {
           aiSessionRef.current = await createAISession();
         }
         finalPrompt = await generateEnhancedPrompt(aiSessionRef.current, basePrompt, ctx);
       } else {
-        // Structured template — always available, synchronous
         finalPrompt = assembleTemplatePrompt(basePrompt, ctx, false);
       }
 
       setGeneratedPrompt(finalPrompt);
       setStatus("done");
     } catch (err) {
-      // If AI session failed, clear it so a fresh one is made next time
       destroySession(aiSessionRef.current);
       aiSessionRef.current = null;
 
-      // Fall back to template on AI failure
       if (useAI) {
         const fallback = assembleTemplatePrompt(basePrompt, ctx, false);
         setGeneratedPrompt(fallback);
         setStatus("done");
-        setErrorMsg(
-          `Chrome AI failed (${err.message}). Fell back to structured template mode.`
-        );
+        setErrorMsg(`Chrome AI failed (${err.message}). Fell back to structured template mode.`);
       } else {
         setStatus("error");
         setErrorMsg(err.message);
@@ -147,6 +171,9 @@ export default function AIPromptBuilder({ onNavigate }) {
     setStatus(basePrompt ? "idle" : "error");
     setErrorMsg("");
   }, [basePrompt]);
+
+  // ── Derive the active config for passing down ──────────────────────────────
+  const activeConfig = getPromptConfig(values.promptTemplate);
 
   // ──────────────────────────────────────────────────────────────────────────
   return (
@@ -192,6 +219,7 @@ export default function AIPromptBuilder({ onNavigate }) {
             hasChromeAI={hasChromeAI}
             basePromptLoaded={!!basePrompt}
             basePromptError={basePromptError}
+            allowedItemTypes={activeConfig.allowedItemTypes}
           />
         </div>
 

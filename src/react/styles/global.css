@@ -1122,6 +1122,9 @@ body {
   border-radius: var(--lw-radius); padding: 20px 22px;
   font-family: var(--lw-font); font-size: 1.05rem; line-height: 1.7;
 }
+/* Each paragraph rendered by renderParagraphs() — first child has no top margin */
+.lw-passage-para { margin: 0; }
+.lw-passage-para + .lw-passage-para { margin-top: 1em; }
 
 /* ── Empty state ─────────────────────────────────────────────────────── */
 .lw-empty { text-align: center; padding: 48px 24px; color: var(--lw-muted); }
@@ -1201,6 +1204,12 @@ body.sb-split-mode .lw-app {
 
 .pb-input-panel { display: flex; flex-direction: column; }
 .pb-field { margin-bottom: 14px; }
+/* Template selector — visually separated from the rest of the fields */
+.pb-template-field {
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1.5px solid var(--lw-line);
+}
 
 .pb-item-types { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .pb-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 14px; font-size: 0.78rem; font-weight: 600; cursor: pointer; border: 1.5px solid var(--lw-line); background: var(--lw-panel); color: var(--lw-muted); user-select: none; transition: background 120ms, border-color 120ms, color 120ms; }

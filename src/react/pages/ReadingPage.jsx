@@ -183,6 +183,19 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
 
 // ─── Passage display ──────────────────────────────────────────────────────────
 
+/**
+ * Render a passage string as separate <p> elements, one per paragraph.
+ * Paragraphs are separated by \n\n in the JSON source.
+ * Single-string packs (no newlines) render as one paragraph — no regressions.
+ */
+function renderParagraphs(text) {
+  if (!text) return null;
+  const paras = text.split(/\n\n+/).map((p) => p.replace(/\n/g, " ").trim()).filter(Boolean);
+  return paras.map((para, i) => (
+    <p key={i} className="lw-passage-para">{para}</p>
+  ));
+}
+
 function PassageDisplay({
   passage, deck, currentIndex, onJump,
   showSource, answers, onAnswer,
@@ -269,14 +282,14 @@ function PassageDisplay({
         {showSource && hasDifferentTranslation && (
           <div className="lw-passage-block">
             <div className="lw-passage-label">Source text</div>
-            <div className="lw-passage-text">{sourceText}</div>
+            <div className="lw-passage-text">{renderParagraphs(sourceText)}</div>
           </div>
         )}
 
         {/* For non-language packs: show source directly as main text */}
         {!hasDifferentTranslation && sourceText && (
           <div className="lw-passage-block">
-            <div className="lw-passage-text">{sourceText}</div>
+            <div className="lw-passage-text">{renderParagraphs(sourceText)}</div>
           </div>
         )}
 
@@ -284,7 +297,7 @@ function PassageDisplay({
         {hasDifferentTranslation && (
           <div className="lw-passage-block">
             <div className="lw-passage-label">Translation</div>
-            <div className="lw-passage-text">{mainText}</div>
+            <div className="lw-passage-text">{renderParagraphs(mainText)}</div>
           </div>
         )}
       </div>

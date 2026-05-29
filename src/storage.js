@@ -79,6 +79,7 @@ export const DEFAULT_STATE = {
       sourceMaterial: "",
       additionalInstructions: "",
       generateMode: "template",   // "template" | "chrome-ai"
+      promptTemplate: "standard", // "standard" | "lit-11plus"
     },
   },
   progress: {
