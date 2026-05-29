@@ -111,8 +111,11 @@ export default function AIPromptBuilder({ onNavigate }) {
         if (autoTemplate !== prev.promptTemplate) {
           next.promptTemplate = autoTemplate;
           const config = getPromptConfig(autoTemplate);
-          const filtered = prev.itemTypes.filter((t) => config.allowedItemTypes.includes(t));
-          next.itemTypes = filtered.length > 0 ? filtered : config.defaultItemTypes;
+          // Always reset to the new template's defaults on a subject-driven switch.
+          // Preserving an intersection (e.g. "passage" surviving from lit-11plus into
+          // Standard) produces odd results — a History/Geography pack with only passage
+          // selected despite no 11+ prompt being used.
+          next.itemTypes = config.defaultItemTypes;
         }
       }
 
