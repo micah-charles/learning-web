@@ -17,6 +17,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import ChromeAIStatus from "../components/promptBuilder/ChromeAIStatus.jsx";
 import PromptInputPanel from "../components/promptBuilder/PromptInputPanel.jsx";
 import PromptOutputPanel from "../components/promptBuilder/PromptOutputPanel.jsx";
+import GuidedTour from "../components/promptBuilder/GuidedTour.jsx";
+import { AI_TOUR_STEPS, SHERLOCK_PRESET } from "../components/promptBuilder/tourConfig.js";
 import { detectChromeAI, createAISession, generateEnhancedPrompt, destroySession } from "../services/chromeAI.js";
 import { loadBasePrompt } from "../services/promptLoader.js";
 import { assembleTemplatePrompt } from "../services/promptAssembler.js";
@@ -57,6 +59,10 @@ export default function AIPromptBuilder({ onNavigate }) {
 
   // Keep an AI session alive across multiple "Generate" clicks
   const aiSessionRef = useRef(null);
+
+  // Onboarding: guided tour + one-click example feedback
+  const [tourOpen, setTourOpen] = useState(false);
+  const [exampleLoaded, setExampleLoaded] = useState(false);
 
   // ── Persist prefs on every change ─────────────────────────────────────────
   useEffect(() => {
@@ -216,6 +222,24 @@ export default function AIPromptBuilder({ onNavigate }) {
     setErrorMsg("");
   }, [basePrompt]);
 
+  // ── Onboarding handlers ─────────────────────────────────────────────────────
+  const handleStartTour = useCallback(() => setTourOpen(true), []);
+
+  // Mark the tour as seen (UI hint only) when it closes/completes.
+  const handleCloseTour = useCallback(() => {
+    setTourOpen(false);
+    setValues((prev) => (prev.tourSeen ? prev : { ...prev, tourSeen: true }));
+  }, []);
+
+  // One-click example. Merge over prev so generateMode / tourSeen are preserved.
+  // Subject + template stay consistent, so no mismatch warning fires.
+  const handleLoadExample = useCallback(() => {
+    setValues((prev) => ({ ...prev, ...SHERLOCK_PRESET }));
+    setTemplateWarning(null);   // independent setState — safe outside the updater
+    setGeneratedPrompt("");     // clear any stale output from a previous run
+    setExampleLoaded(true);
+  }, []);
+
   // ── Derive the active config for passing down ──────────────────────────────
   const activeConfig = getPromptConfig(values.promptTemplate);
 
@@ -238,10 +262,11 @@ export default function AIPromptBuilder({ onNavigate }) {
         <div className="pb-header-row">
           <div>
             <h2 className="lw-section-title" style={{ marginBottom: 4 }}>
-              ✦ AI Prompt Builder
+              ✦ AI Learning Pack Creator
             </h2>
             <p className="pb-subtitle">
-              Build optimised Learning Web pack-generation prompts — then paste into ChatGPT, Codex, or Claude.
+              Build your own quizzes, readings, and revision packs using AI. Generate a prompt,
+              send it to ChatGPT or Claude, then upload the returned JSON pack in My Packs.
             </p>
           </div>
           <div className="pb-header-badges">
@@ -249,6 +274,35 @@ export default function AIPromptBuilder({ onNavigate }) {
             <ChromeAIStatus available={hasChromeAI} />
           </div>
         </div>
+
+        {/* Quickstart: guided tour + one-click example */}
+        <div className="pb-quickstart">
+          <div className="pb-quickstart-text">
+            <strong>New here?</strong> Take the guided tour, or load a worked example to see the
+            whole workflow.
+          </div>
+          <div className="pb-quickstart-actions">
+            <button
+              type="button"
+              className={`lw-btn lw-btn-secondary${values.tourSeen ? "" : " pb-quickstart-pulse"}`}
+              onClick={handleStartTour}
+            >
+              Show me how
+            </button>
+            <button
+              type="button"
+              className="lw-btn"
+              onClick={handleLoadExample}
+            >
+              Try example: Sherlock Holmes 11+
+            </button>
+          </div>
+        </div>
+        {exampleLoaded && (
+          <p className="pb-quickstart-success" role="status">
+            ✓ Example loaded. Click <strong>Generate Prompt</strong> to continue.
+          </p>
+        )}
       </div>
 
       {/* Split layout: inputs | output */}
@@ -284,6 +338,40 @@ export default function AIPromptBuilder({ onNavigate }) {
         </div>
 
       </div>
+
+      {/* Next steps — shown once a prompt has been generated */}
+      {generatedPrompt && (
+        <div className="lw-card pb-nextsteps">
+          <h3 className="pb-panel-title" style={{ marginBottom: 10 }}>Next steps</h3>
+          <ol className="pb-nextsteps-list">
+            <li>Copy the prompt above (or download it as a <code>.md</code> file).</li>
+            <li>Open ChatGPT, Claude, or Codex in a new tab.</li>
+            <li>Paste the prompt{values.sourceMode === "ai-upload" ? " and attach your files" : ""}, then send it.</li>
+            <li>Wait for the AI to return a <code>pack_unified.json</code> block.</li>
+            <li>Save / download that JSON to your computer.</li>
+            <li>Come back here and open <strong>My Packs</strong> to upload it.</li>
+            <li>Practise it in Reading, Quiz, Vocabulary, or Builder.</li>
+          </ol>
+          <div className="pb-nextsteps-actions">
+            <button
+              type="button"
+              className="lw-btn lw-btn-primary"
+              onClick={() => onNavigate?.("mypacks")}
+            >
+              Go to My Packs to upload →
+            </button>
+            <button
+              type="button"
+              className="lw-btn lw-btn-ghost"
+              onClick={handleStartTour}
+            >
+              Replay the tour
+            </button>
+          </div>
+        </div>
+      )}
+
+      <GuidedTour steps={AI_TOUR_STEPS} open={tourOpen} onClose={handleCloseTour} />
     </div>
   );
 }
