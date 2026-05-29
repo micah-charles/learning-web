@@ -1543,11 +1543,8 @@ body {
     white-space: normal;
   }
   .lw-rws-passage-footer {
-    /* Back button already visible in question panel on mobile — suppress duplicate */
-    display: none;
-  }
-  .lw-rws-passage-actions::after {
-    content: "";
+    /* Back button is also in the question panel (canonical on mobile).
+       Keep footer visible so desktop users can also exit from the passage end. */
     display: block;
   }
 }

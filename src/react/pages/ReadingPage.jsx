@@ -332,11 +332,13 @@ function ReadingWorkspace({
   const [lineSpacing, setLineSpacing]       = useState(1.75);  // line-height value
 
   const speechLang  = passage?.speech_language || "en-GB";
+  // mainText: target language (English) for bilingual packs; same as source for monolingual packs.
+  // sourceText: source language (e.g. German) — used for audio and the optional "Show source text" block.
   const mainText    = passage?.targetText || passage?.sourceText || "";
   const sourceText  = passage?.sourceText || "";
   const hasDifferentTranslation = mainText && sourceText && sourceText !== mainText;
-  // For single-language packs sourceText IS the main text (no separate translation)
-  const displayText = hasDifferentTranslation ? sourceText : mainText;
+  // Always display the main/target text. For monolingual packs mainText === sourceText.
+  const displayText = mainText;
 
   const allQuestions  = passage?.questions || [];
   const totalQ        = allQuestions.length;
@@ -463,15 +465,15 @@ function ReadingWorkspace({
             {renderNumberedParagraphs(displayText, { highlightPara, highlightQuote })}
           </div>
 
-          {/* Translation block (language packs only — source ≠ target) */}
+          {/* Source text block (bilingual packs only — shown when "Show source text" is on) */}
           {showSource && hasDifferentTranslation && (
             <div className="lw-passage-block lw-rws-translation">
-              <div className="lw-passage-label">Translation</div>
+              <div className="lw-passage-label">Source text</div>
               <div
                 className="lw-rws-text lw-rws-text--translation"
                 style={{ fontSize: `${fontScale}em`, lineHeight: lineSpacing }}
               >
-                {renderNumberedParagraphs(mainText)}
+                {renderNumberedParagraphs(sourceText)}
               </div>
             </div>
           )}
@@ -567,7 +569,7 @@ function ReadingWorkspace({
             </nav>
           )}
 
-          {/* Passage-level actions: reveal / next passage */}
+          {/* Passage-level actions: reveal / next passage / back */}
           <div className="lw-rws-passage-actions">
             {!revealed ? (
               <button className="lw-btn lw-btn-secondary" type="button" onClick={onReveal}
@@ -580,6 +582,11 @@ function ReadingWorkspace({
                 {isLast ? "Finish" : "Next passage →"}
               </button>
             )}
+            {/* Back button lives here so it is always reachable on both desktop and mobile */}
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={onBack}
+              style={{ width: "100%" }}>
+              ← Back to setup
+            </button>
           </div>
         </aside>
 
