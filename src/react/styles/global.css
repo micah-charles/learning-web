@@ -207,13 +207,56 @@ body {
   margin-bottom: 16px;
 }
 
+/* Right column: stat badges + promo — outer positioning */
+.lw-hero-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin-left: auto;
+}
+
 .lw-hero-counts {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  align-self: flex-start;
   gap: 7px;
-  margin-left: auto;
+}
+
+/* AI Prompt Builder promo block inside the hero */
+.lw-hero-promo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s;
+  max-width: 240px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.lw-hero-promo:hover,
+.lw-hero-promo:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.48);
+  outline: 2px solid rgba(255, 255, 255, 0.50);
+  outline-offset: 2px;
+}
+.lw-hero-promo-title {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.97);
+  letter-spacing: -0.01em;
+}
+.lw-hero-promo-sub {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.45;
 }
 
 .lw-hero-count-badge {
@@ -666,10 +709,16 @@ body {
     line-height: 1.4;
     margin-bottom: 2px;
   }
+  .lw-hero-right-col {
+    align-items: flex-start;
+    margin-left: 0;
+  }
   .lw-hero-counts {
     justify-content: flex-start;
-    margin-left: 0;
     gap: 5px;
+  }
+  .lw-hero-promo {
+    max-width: 100%;
   }
   .lw-hero-count-badge {
     font-size: 0.68rem;
