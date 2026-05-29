@@ -432,7 +432,7 @@ function ReadingWorkspace({
               </button>
               {/* Audio */}
               <button className="lw-btn lw-btn-ghost lw-rws-audio-btn" type="button"
-                onClick={() => speak(displayText, speechLang)}
+                onClick={() => speak(sourceText || displayText, speechLang)}
                 title="Read aloud" aria-label="Read passage aloud">
                 🔊
               </button>
