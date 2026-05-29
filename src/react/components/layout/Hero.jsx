@@ -87,7 +87,7 @@ export default function Hero({ variant = "standard", onNavigate }) {
               powered by curiosity and AI.
             </p>
           </div>
-          {/* Right column: stat badges + AI Prompt Builder promo */}
+          {/* Right column: stat badges + AI Learning Pack Creator promo */}
           <div className="lw-hero-right-col">
             {manifest && (
               <div className="lw-hero-counts">
@@ -100,11 +100,11 @@ export default function Hero({ variant = "standard", onNavigate }) {
               type="button"
               className="lw-hero-promo"
               onClick={() => onNavigate?.("ai-prompt")}
-              aria-label="Open AI Prompt Builder"
+              aria-label="Open AI Learning Pack Creator"
             >
-              <span className="lw-hero-promo-title">✦ AI Prompt Builder</span>
+              <span className="lw-hero-promo-title">✦ AI Learning Pack Creator</span>
               <span className="lw-hero-promo-sub">
-                Build optimised Learning Web pack-generation prompts — then paste into ChatGPT, Codex, or Claude.
+                Build your own quizzes, readings, and revision packs with AI — then upload the JSON in My Packs.
               </span>
             </button>
           </div>
