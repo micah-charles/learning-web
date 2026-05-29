@@ -2642,8 +2642,8 @@ async function renderReadingTab() {
         ${renderQuestionBox({
           eyebrow: `${current.chapter} · ${current.section}`,
           modeLabel: "Reading practice",
-          prompt: current.title_de,
-          subtitle: `${current.title_en} · ${current.level} · ${current.topic}`,
+          prompt: current.sourceTitle,
+          subtitle: `${current.targetTitle} · ${current.level} · ${current.topic}`,
           sideContent: `
             <div class="chip-row">
               <span class="count-pill blue">${passages.completedThisSession} completed this session</span>
@@ -2652,7 +2652,7 @@ async function renderReadingTab() {
             </div>
           `,
         })}
-        ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.passage_de)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">Source text hidden. Listen first, then reveal when you need it.</p>`}
+        ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.sourceText)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">Source text hidden. Listen first, then reveal when you need it.</p>`}
       </section>
 
       <section class="passage-shell">
@@ -2684,7 +2684,7 @@ async function renderReadingTab() {
           ? `
             <section class="passage-shell">
               <h2>Translation / reveal</h2>
-              <blockquote style="margin-top:16px;">${escapeHtml(current.passage_en)}</blockquote>
+              <blockquote style="margin-top:16px;">${escapeHtml(current.targetText)}</blockquote>
             </section>
           `
           : ""
@@ -5629,28 +5629,33 @@ async function resetPassageRuntime(groupId, packId) {
         .filter((item) => item.type === "passage")
         .map((item) => {
           // Normalise unified passage shape back to the flat passage shape expected
-          // by preparePassageForSession and the reading tab
+          // by preparePassageForSession and the reading tab.
+          // Keep in sync with passageFromItem() in data.js — same fallback logic.
           const d = item.data || {};
           return {
             id: item.id,
-            topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
+            topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
             level: item.level || "",
-            passage_de: d.sourcePassage || "",
-            passage_en: d.targetPassage || "",
-            speech_language: d.speechLanguage || unified.speechLanguage || unified.sourceLanguageCode || "en-GB",
-            chapter: d.chapter || "",
-            section: d.section || "",
-            title_de: d.sourceTitle || d.title_de || "",
-            title_en: d.targetTitle || d.title_en || "",
-            questions: (d.questions || []).map((q) => ({
+            sourceText: d.sourcePassage || item.sourcePassage || "",
+            targetText: d.targetPassage || item.targetPassage || "",
+            speech_language: d.speechLanguage || item.speechLanguage || unified.speechLanguage || unified.sourceLanguageCode || "en-GB",
+            chapter: d.chapter || item.chapter || "",
+            section: d.section || item.section || "",
+            sourceTitle: d.sourceTitle || d.title || item.sourceTitle || item.title || "",
+            targetTitle: d.targetTitle || d.title || item.targetTitle || item.title || "",
+            questions: (d.questions || item.questions || []).map((q) => ({
               id: q.id,
-              type: q.questionType || (q.options?.length ? "multiple_choice" : "open"),
+              // Accept both questionType (canonical) and type (AI-generated shorthand)
+              type: q.questionType || q.type || (q.options?.length ? "multiple_choice" : "open"),
               question: q.question || "",
               difficulty: q.difficulty || "medium",
               options: q.options || [],
-              correct_option_index: q.correctOptionIndex,
+              // Accept both correctOptionIndex (canonical) and answer (AI-generated shorthand)
+              correct_option_index: q.correctOptionIndex ?? q.answer,
+              correct_answer: q.correctAnswer || "",
               model_answer_en: q.modelAnswer || "",
               accepted_keywords: q.acceptedKeywords || [],
+              grammar_focus: q.grammarFocus || null,
             })),
           };
         });
@@ -5724,7 +5729,7 @@ function playCurrentPassage() {
     return;
   }
   speakText(
-    current.passage_de,
+    current.sourceText,
     fallback(current.speech_language, "en-GB"),
     persisted.prefs.passages.voiceName || "",
   );

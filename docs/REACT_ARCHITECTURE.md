@@ -258,13 +258,16 @@ This means: **both `recordAttempt` AND `recordQuizSession` must be called** at q
 ### Pattern 4 — Passage data field names
 `passageFromItem` in `data.js` maps raw JSON fields to the UI shape:
 ```
-data.sourcePassage  → passage.passage_de  (source language text / English for monolingual)
-data.targetPassage  → passage.passage_en  (target / translation)
-data.sourceTitle    → passage.title_de    (falls back to data.title)
-data.targetTitle    → passage.title_en    (falls back to data.title)
+data.sourcePassage  → passage.sourceText    (source language text / English for monolingual)
+data.targetPassage  → passage.targetText    (target / translation)
+data.sourceTitle    → passage.sourceTitle   (falls back to data.title, then item-root)
+data.targetTitle    → passage.targetTitle   (falls back to data.title, then item-root)
 data.speechLanguage → passage.speech_language  (falls back to pack-level speechLanguage)
 ```
 Packs that only have `data.title` (no `sourceTitle`/`targetTitle`) will still show correct titles.
+
+> ⚠️ The old names `passage_de`, `passage_en`, `title_de`, `title_en` were removed in PR #123.
+> Do not reintroduce them — they were a legacy artefact from when the app was German-only.
 
 ---
 

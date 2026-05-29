@@ -205,8 +205,8 @@ function PassageDisplay({
   const speechLang = passage?.speech_language || "en-GB";
 
   useEffect(() => {
-    if (voiceEnabled && passage?.passage_de) {
-      speak(passage.passage_de, speechLang);
+    if (voiceEnabled && passage?.sourceText) {
+      speak(passage.sourceText, speechLang);
     }
     // Stop any ongoing speech when the passage changes or the component unmounts.
     // This prevents stale utterances from playing after navigation.
@@ -214,11 +214,11 @@ function PassageDisplay({
   }, [passage?.id]);
 
   // Smart passage rendering:
-  // For language packs: passage_de is source (German), passage_en is translation (English).
-  // For English-only packs: passage_de IS the main English text; passage_en may be same/empty.
-  // Rule: show passage_en as "Translation" only when it differs from passage_de.
-  const mainText = passage?.passage_en || passage?.passage_de || "";
-  const sourceText = passage?.passage_de || "";
+  // For language packs: sourceText is the source language, targetText is the translation.
+  // For single-language packs: sourceText IS the main text; targetText may be same/empty.
+  // Rule: show targetText as "Translation" only when it differs from sourceText.
+  const mainText = passage?.targetText || passage?.sourceText || "";
+  const sourceText = passage?.sourceText || "";
   const hasDifferentTranslation =
     mainText &&
     sourceText &&
@@ -234,7 +234,7 @@ function PassageDisplay({
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px", gap: "10px", flexWrap: "wrap" }}>
           <div style={{ flex: 1, minWidth: "160px" }}>
             <h2 style={{ fontSize: "1.1rem", fontWeight: 700, color: "var(--lw-ink)" }}>
-              {passage?.title_en || passage?.title_de || "Passage"}
+              {passage?.targetTitle || passage?.sourceTitle || "Passage"}
             </h2>
             {passage?.topic && (
               <span className="lw-chip blue" style={{ marginTop: "4px" }}>{passage.topic}</span>
@@ -261,7 +261,7 @@ function PassageDisplay({
             >
               {deck.map((p, i) => (
                 <option key={p.id || i} value={i}>
-                  {i + 1}. {p.title_en || p.title_de || `Passage ${i + 1}`}
+                  {i + 1}. {p.targetTitle || p.sourceTitle || `Passage ${i + 1}`}
                 </option>
               ))}
             </select>
