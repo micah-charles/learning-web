@@ -5656,6 +5656,7 @@ async function resetPassageRuntime(groupId, packId) {
               model_answer_en: q.modelAnswer || "",
               accepted_keywords: q.acceptedKeywords || [],
               grammar_focus: q.grammarFocus || null,
+              sourceRef: q.sourceRef || null,
             })),
           };
         });

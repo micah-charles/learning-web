@@ -144,6 +144,8 @@ function passageFromItem(item, packSpeechLanguage) {
       model_answer_en: question.modelAnswer || "",
       accepted_keywords: question.acceptedKeywords || [],
       grammar_focus: question.grammarFocus || null,
+      // sourceRef is used by the ReadingWorkspace evidence-linking feature
+      sourceRef: question.sourceRef || null,
     })),
   };
 }

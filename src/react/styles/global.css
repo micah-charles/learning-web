@@ -1175,6 +1175,380 @@ body {
 .lw-passage-para { margin: 0; }
 .lw-passage-para + .lw-passage-para { margin-top: 1em; }
 
+/* ── Reading Workspace (split-panel context viewer) ─────────────────── */
+/*
+ * Desktop: two-column grid — passage left, sticky question panel right.
+ * Mobile (≤820px): single column, stacked.
+ *
+ * All layout tokens intentionally use --lw-* to match the design system.
+ */
+
+/* Wrapper: override lw-page horizontal padding so the workspace is full-width */
+.lw-rws-page { padding-left: 0 !important; padding-right: 0 !important; }
+
+/* Grid container */
+.lw-rws {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  align-items: start;
+  gap: 12px;
+}
+
+/* ── Passage panel (left) ─── */
+.lw-rws-passage {
+  background: var(--lw-panel);
+  border-radius: var(--lw-radius);
+  border: 1.5px solid var(--lw-line);
+  box-shadow: var(--lw-shadow);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sticky toolbar — stays visible as user scrolls the passage */
+.lw-rws-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--lw-line);
+  position: sticky;
+  top: 54px;     /* clears the .lw-nav navbar */
+  background: var(--lw-panel);
+  z-index: 20;
+  border-radius: var(--lw-radius) var(--lw-radius) 0 0;
+  flex-wrap: wrap;
+}
+.lw-rws-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+.lw-rws-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.lw-rws-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--lw-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 28ch;
+}
+.lw-rws-topic-chip { flex-shrink: 0; }
+
+/* Font-size + audio control buttons */
+.lw-rws-font-btn {
+  font-size: 0.78rem !important;
+  padding: 4px 7px !important;
+  font-weight: 700;
+  min-width: 26px;
+  line-height: 1;
+}
+.lw-rws-audio-btn {
+  padding: 4px 8px !important;
+  font-size: 0.9rem !important;
+  margin-left: 4px;
+}
+
+/* Passage jump selector */
+.lw-rws-jump-row {
+  padding: 10px 18px 0;
+}
+.lw-rws-jump-select {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--lw-line);
+  background: var(--lw-panel);
+  color: var(--lw-ink);
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+/* Passage text area — typography optimised for long-form reading */
+.lw-rws-text {
+  padding: 18px 24px;
+  font-family: var(--lw-font);
+  line-height: 1.75;
+  flex: 1;
+}
+.lw-rws-text--translation {
+  margin-top: 4px;
+  padding: 0;
+}
+.lw-rws-translation {
+  padding: 0 24px 12px;
+  margin-top: 0;
+}
+
+/* Numbered paragraphs */
+.lw-rws-para {
+  position: relative;
+  padding-left: 2.4em;
+  margin: 0;
+  scroll-margin-top: 80px;   /* keep paragraph below sticky toolbar when scrolled-to */
+  border-radius: 6px;
+  padding: 0.25em 0.5em 0.25em 2.4em;
+  transition: background 0.2s ease;
+}
+.lw-rws-para + .lw-rws-para { margin-top: 1.15em; }
+
+/* Paragraph number gutter label */
+.lw-para-num {
+  position: absolute;
+  left: 0.1em;
+  top: 0.28em;
+  font-size: 0.68em;
+  font-weight: 700;
+  color: var(--lw-muted);
+  opacity: 0.45;
+  user-select: none;
+  font-family: var(--lw-font-sans);
+  min-width: 1.8em;
+  text-align: right;
+}
+
+/* Evidence highlight: amber flash animation */
+.lw-rws-para--hl {
+  animation: lw-para-flash 3s ease-out forwards;
+}
+@keyframes lw-para-flash {
+  0%   { background: rgba(143, 81, 0, 0.18); }
+  25%  { background: rgba(143, 81, 0, 0.13); }
+  100% { background: transparent; }
+}
+
+/* Inline quote highlight within a highlighted paragraph */
+.lw-evidence-mark {
+  background: rgba(143, 81, 0, 0.22);
+  border-radius: 3px;
+  padding: 0 3px;
+  /* Preserve accessibility contrast — no white-on-yellow */
+  color: inherit;
+}
+
+/* Passage footer (back button) */
+.lw-rws-passage-footer {
+  padding: 14px 18px;
+  border-top: 1px solid var(--lw-line);
+  margin-top: auto;
+}
+
+/* ── Question panel (right, sticky) ─── */
+.lw-rws-questions {
+  position: sticky;
+  top: 60px;    /* clears navbar; adjust if navbar height changes */
+  background: rgba(21, 102, 168, 0.04);
+  border-radius: var(--lw-radius);
+  border: 1.5px solid var(--lw-line);
+  box-shadow: var(--lw-shadow);
+  padding: 16px;
+  max-height: calc(100vh - 76px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Progress bar */
+.lw-rws-progress {
+  background: var(--lw-panel);
+  border-radius: var(--lw-radius-sm);
+  padding: 10px 12px;
+  border: 1px solid var(--lw-line);
+}
+.lw-rws-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--lw-muted);
+  margin-bottom: 6px;
+  gap: 8px;
+}
+.lw-rws-answered-count { color: var(--lw-blue); }
+.lw-rws-progress-bar {
+  height: 5px;
+  background: var(--lw-line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lw-rws-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--lw-blue), #3a9fd0);
+  border-radius: 4px;
+  transition: width 0.35s ease;
+}
+
+/* Single question card */
+.lw-rws-q-card {
+  background: var(--lw-panel);
+  border-radius: var(--lw-radius-sm);
+  padding: 14px 14px 12px;
+  border: 1px solid var(--lw-line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.lw-rws-q-meta {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.lw-rws-q-text {
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--lw-ink);
+  line-height: 1.45;
+}
+
+/* "Show evidence" button — amber-tinted ghost */
+.lw-rws-evidence-btn {
+  align-self: flex-start;
+  font-size: 0.8rem !important;
+  padding: 5px 10px !important;
+  color: var(--lw-amber) !important;
+  border-color: rgba(143,81,0,0.3) !important;
+}
+.lw-rws-evidence-btn:hover {
+  background: var(--lw-amber-soft) !important;
+  border-color: var(--lw-amber) !important;
+}
+
+/* MCQ grid override — single column inside narrow question panel */
+.lw-rws-option-grid {
+  grid-template-columns: 1fr !important;
+  margin-top: 6px !important;
+}
+.lw-rws-option-grid .lw-option-btn {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}
+
+/* Open question: model answer box */
+.lw-rws-model-answer {
+  background: var(--lw-green-soft);
+  border: 1.5px solid var(--lw-green);
+  border-radius: var(--lw-radius-sm);
+  padding: 10px 12px;
+}
+.lw-rws-model-answer-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lw-green);
+  margin-bottom: 5px;
+}
+.lw-rws-open-hint {
+  font-size: 0.82rem;
+  color: var(--lw-muted);
+  font-style: italic;
+}
+.lw-rws-no-questions {
+  font-size: 0.9rem;
+  color: var(--lw-muted);
+}
+
+/* Question prev/next navigation + dot index */
+.lw-rws-q-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.lw-rws-q-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  flex: 1;
+}
+.lw-rws-q-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--lw-line);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s, transform 0.12s;
+}
+.lw-rws-q-dot.answered {
+  background: var(--lw-blue-soft);
+  border-color: var(--lw-blue);
+}
+.lw-rws-q-dot.active {
+  background: var(--lw-blue);
+  border-color: var(--lw-blue);
+  transform: scale(1.3);
+}
+.lw-rws-q-dot.answered.active { background: var(--lw-blue); }
+
+/* Passage-level action buttons (reveal / next passage) */
+.lw-rws-passage-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* ── Accessibility: reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .lw-rws-para--hl {
+    animation: none;
+    background: rgba(143, 81, 0, 0.12);
+  }
+  .lw-rws-progress-fill { transition: none; }
+}
+
+/* ── Mobile: single-column stack (≤820px) ─── */
+@media (max-width: 820px) {
+  .lw-rws {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .lw-rws-passage {
+    border-radius: var(--lw-radius) var(--lw-radius) 0 0;
+    min-height: unset;
+  }
+  .lw-rws-toolbar {
+    position: static;   /* no sticky on mobile — avoids double-sticky with nav */
+    border-radius: var(--lw-radius) var(--lw-radius) 0 0;
+  }
+  .lw-rws-questions {
+    position: static;
+    top: auto;
+    max-height: none;
+    overflow-y: visible;
+    border-radius: 0 0 var(--lw-radius) var(--lw-radius);
+    border-top: none;
+  }
+  .lw-rws-text {
+    padding: 14px 16px;
+    max-width: 100%;
+  }
+  .lw-rws-title {
+    max-width: 100%;
+    white-space: normal;
+  }
+  .lw-rws-passage-footer {
+    /* Back button is also in the question panel (canonical on mobile).
+       Keep footer visible so desktop users can also exit from the passage end. */
+    display: block;
+  }
+}
+
 /* ── Empty state ─────────────────────────────────────────────────────── */
 .lw-empty { text-align: center; padding: 48px 24px; color: var(--lw-muted); }
 .lw-empty h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--lw-ink); }
