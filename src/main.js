@@ -5629,28 +5629,33 @@ async function resetPassageRuntime(groupId, packId) {
         .filter((item) => item.type === "passage")
         .map((item) => {
           // Normalise unified passage shape back to the flat passage shape expected
-          // by preparePassageForSession and the reading tab
+          // by preparePassageForSession and the reading tab.
+          // Keep in sync with passageFromItem() in data.js — same fallback logic.
           const d = item.data || {};
           return {
             id: item.id,
-            topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
+            topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
             level: item.level || "",
-            sourceText: d.sourcePassage || "",
-            targetText: d.targetPassage || "",
-            speech_language: d.speechLanguage || unified.speechLanguage || unified.sourceLanguageCode || "en-GB",
-            chapter: d.chapter || "",
-            section: d.section || "",
-            sourceTitle: d.sourceTitle || "",
-            targetTitle: d.targetTitle || "",
-            questions: (d.questions || []).map((q) => ({
+            sourceText: d.sourcePassage || item.sourcePassage || "",
+            targetText: d.targetPassage || item.targetPassage || "",
+            speech_language: d.speechLanguage || item.speechLanguage || unified.speechLanguage || unified.sourceLanguageCode || "en-GB",
+            chapter: d.chapter || item.chapter || "",
+            section: d.section || item.section || "",
+            sourceTitle: d.sourceTitle || d.title || item.sourceTitle || item.title || "",
+            targetTitle: d.targetTitle || d.title || item.targetTitle || item.title || "",
+            questions: (d.questions || item.questions || []).map((q) => ({
               id: q.id,
-              type: q.questionType || (q.options?.length ? "multiple_choice" : "open"),
+              // Accept both questionType (canonical) and type (AI-generated shorthand)
+              type: q.questionType || q.type || (q.options?.length ? "multiple_choice" : "open"),
               question: q.question || "",
               difficulty: q.difficulty || "medium",
               options: q.options || [],
-              correct_option_index: q.correctOptionIndex,
+              // Accept both correctOptionIndex (canonical) and answer (AI-generated shorthand)
+              correct_option_index: q.correctOptionIndex ?? q.answer,
+              correct_answer: q.correctAnswer || "",
               model_answer_en: q.modelAnswer || "",
               accepted_keywords: q.acceptedKeywords || [],
+              grammar_focus: q.grammarFocus || null,
             })),
           };
         });

@@ -291,7 +291,7 @@ The tab has two states: **setup** (`runtime.passages.started === false`) and **a
 
 | Button | Action | Effect |
 |--------|--------|--------|
-| Play source text | `play-passage` | Calls `speakText(passage_de, speechLanguage)` |
+| Play source text | `play-passage` | Calls `speakText(passage.sourceText, speechLanguage)` |
 | Stop audio | `stop-passage` | Calls `stopSpeaking()` |
 | MCQ option buttons | `passage-choice` | Records selected option in `runtime.passages.answers` |
 | Open text answer | `handleInput` | Writes to `runtime.passages.answers[questionId]` |

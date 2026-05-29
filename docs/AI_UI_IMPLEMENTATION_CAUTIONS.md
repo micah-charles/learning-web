@@ -729,22 +729,25 @@ for (const session of progress.sessions || []) {
 
 **Bug found (PR #113):** Passage groups were showing "Passage 2", "Passage 3" instead of real titles. `passageFromItem` in `data.js` only read `data.sourceTitle` and `data.targetTitle`. RE and Science passage packs only have `data.title` (a shared title for both languages).
 
-**Rule:** Always include `data.title` as a final fallback for passage title fields:
+**Rule:** Always include `data.title` as a final fallback for passage title fields. The runtime passage shape uses **language-agnostic field names** (renamed from German-specific names in PR #123):
 
 ```js
-// BAD — packs that use data.title instead of data.sourceTitle get empty titles
-title_de: data.sourceTitle || "",
-title_en: data.targetTitle || "",
+// BAD — missing data.title fallback; also uses removed legacy names
+passage_de: data.sourcePassage || "",   // ← old name, do not use
+title_de: data.sourceTitle || "",       // ← old name, do not use
 
-// GOOD — data.title is the fallback for packs without separate source/target titles
-title_de: data.sourceTitle || data.title || "",
-title_en: data.targetTitle || data.title || "",
+// GOOD — language-agnostic names + data.title fallback + item-root fallbacks for AI-generated packs
+sourceText:  data.sourcePassage  || item.sourcePassage  || "",
+targetText:  data.targetPassage  || item.targetPassage  || "",
+sourceTitle: data.sourceTitle    || data.title || item.sourceTitle || item.title || "",
+targetTitle: data.targetTitle    || data.title || item.targetTitle || item.title || "",
 ```
 
 **Checklist when a new passage pack type is added:**
 - [ ] Does `passageFromItem` handle all title field variants (`sourceTitle`, `targetTitle`, `title`)?
 - [ ] Check that passage titles appear in the ReadingPage jump selector (not "Passage 1", "Passage 2")
-- [ ] Does `passageFromItem` handle `sourcePassage`/`targetPassage` vs `passage_de`/`passage_en`?
+- [ ] Use `sourceText` / `targetText` / `sourceTitle` / `targetTitle` — never the old `passage_de` / `passage_en` / `title_de` / `title_en`
+- [ ] The inline normalizer in `src/main.js` must stay in sync with `passageFromItem()` in `data.js`
 
 ---
 
