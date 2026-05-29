@@ -127,10 +127,10 @@ function passageFromItem(item, packSpeechLanguage) {
     speech_language: data.speechLanguage || item.speechLanguage || packSpeechLanguage || "en-GB",
     chapter: data.chapter || item.chapter || "",
     section: data.section || item.section || "",
-    title_de: data.sourceTitle || data.title || item.sourceTitle || item.title || "",
-    title_en: data.targetTitle || data.title || item.targetTitle || item.title || "",
-    passage_de: data.sourcePassage || item.sourcePassage || "",
-    passage_en: data.targetPassage || item.targetPassage || "",
+    sourceTitle: data.sourceTitle || data.title || item.sourceTitle || item.title || "",
+    targetTitle: data.targetTitle || data.title || item.targetTitle || item.title || "",
+    sourceText: data.sourcePassage || item.sourcePassage || "",
+    targetText: data.targetPassage || item.targetPassage || "",
     questions: (data.questions || item.questions || []).map((question) => ({
       id: question.id,
       // Accept both questionType (canonical) and type (AI-generated shorthand)

@@ -2642,8 +2642,8 @@ async function renderReadingTab() {
         ${renderQuestionBox({
           eyebrow: `${current.chapter} · ${current.section}`,
           modeLabel: "Reading practice",
-          prompt: current.title_de,
-          subtitle: `${current.title_en} · ${current.level} · ${current.topic}`,
+          prompt: current.sourceTitle,
+          subtitle: `${current.targetTitle} · ${current.level} · ${current.topic}`,
           sideContent: `
             <div class="chip-row">
               <span class="count-pill blue">${passages.completedThisSession} completed this session</span>
@@ -2652,7 +2652,7 @@ async function renderReadingTab() {
             </div>
           `,
         })}
-        ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.passage_de)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">Source text hidden. Listen first, then reveal when you need it.</p>`}
+        ${prefs.showGerman ? `<blockquote style="margin-top:18px;">${escapeHtml(current.sourceText)}</blockquote>` : `<p class="muted tiny" style="margin-top:18px;">Source text hidden. Listen first, then reveal when you need it.</p>`}
       </section>
 
       <section class="passage-shell">
@@ -2684,7 +2684,7 @@ async function renderReadingTab() {
           ? `
             <section class="passage-shell">
               <h2>Translation / reveal</h2>
-              <blockquote style="margin-top:16px;">${escapeHtml(current.passage_en)}</blockquote>
+              <blockquote style="margin-top:16px;">${escapeHtml(current.targetText)}</blockquote>
             </section>
           `
           : ""
@@ -5635,13 +5635,13 @@ async function resetPassageRuntime(groupId, packId) {
             id: item.id,
             topic: Array.isArray(item.topics) ? item.topics[0] : (item.topics || ""),
             level: item.level || "",
-            passage_de: d.sourcePassage || "",
-            passage_en: d.targetPassage || "",
+            sourceText: d.sourcePassage || "",
+            targetText: d.targetPassage || "",
             speech_language: d.speechLanguage || unified.speechLanguage || unified.sourceLanguageCode || "en-GB",
             chapter: d.chapter || "",
             section: d.section || "",
-            title_de: d.sourceTitle || d.title_de || "",
-            title_en: d.targetTitle || d.title_en || "",
+            sourceTitle: d.sourceTitle || "",
+            targetTitle: d.targetTitle || "",
             questions: (d.questions || []).map((q) => ({
               id: q.id,
               type: q.questionType || (q.options?.length ? "multiple_choice" : "open"),
@@ -5724,7 +5724,7 @@ function playCurrentPassage() {
     return;
   }
   speakText(
-    current.passage_de,
+    current.sourceText,
     fallback(current.speech_language, "en-GB"),
     persisted.prefs.passages.voiceName || "",
   );
