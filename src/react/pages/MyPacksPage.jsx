@@ -14,6 +14,17 @@ import {
 } from "@/admin-storage.js";
 import { useManifest } from "../context/ManifestContext.jsx";
 
+// Compact "How it works" timeline shown on the AI Learning Pack Creator card.
+const HOW_IT_WORKS_STEPS = [
+  "Choose a template",
+  "Add your source material",
+  "Generate the AI prompt",
+  "Paste it into ChatGPT, Claude, or Codex",
+  "Download the generated pack_unified.json",
+  "Upload the JSON in My Packs",
+  "Practise in Reading, Quiz, Vocabulary, or Builder",
+];
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function formatBytes(bytes) {
@@ -188,11 +199,11 @@ export default function MyPacksPage({ onNavigate }) {
           <div className="mp-ai-card-icon" aria-hidden="true">✦</div>
           <div className="mp-ai-card-body">
             <h2 className="lw-section-title" style={{ marginBottom: 4 }}>
-              AI Prompt Builder
+              AI Learning Pack Creator
             </h2>
             <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem", marginBottom: 14 }}>
-              Build optimised pack-generation prompts using local Chrome AI, then paste into
-              ChatGPT, Codex, or Claude to generate your <code>pack_unified.json</code>.
+              Build your own quizzes, readings, and revision packs using AI. Generate a prompt,
+              send it to ChatGPT or Claude, then upload the returned JSON pack here.
               Everything stays in your browser — nothing is sent to a server.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
@@ -201,10 +212,23 @@ export default function MyPacksPage({ onNavigate }) {
                 type="button"
                 onClick={() => onNavigate?.("ai-prompt")}
               >
-                Open AI Prompt Builder →
+                Open AI Learning Pack Creator →
               </button>
               <span className="lw-chip blue" style={{ fontSize: "0.75rem" }}>Local only</span>
               <span className="lw-chip" style={{ fontSize: "0.75rem" }}>No backend</span>
+            </div>
+
+            {/* How it works — compact 7-step timeline */}
+            <div className="mp-hiw">
+              <h3 className="mp-hiw-title">How it works</h3>
+              <ol className="mp-hiw-steps">
+                {HOW_IT_WORKS_STEPS.map((s, i) => (
+                  <li key={i} className="mp-hiw-step">
+                    <span className="mp-hiw-num" aria-hidden="true">{i + 1}</span>
+                    <span className="mp-hiw-label">{s}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </div>
@@ -219,6 +243,7 @@ export default function MyPacksPage({ onNavigate }) {
 
         {/* Drop zone */}
         <div
+          id="mp-dropzone"
           onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
           onDragLeave={() => setDragging(false)}
           onDrop={handleDrop}

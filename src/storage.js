@@ -80,6 +80,7 @@ export const DEFAULT_STATE = {
       additionalInstructions: "",
       generateMode: "template",   // "template" | "chrome-ai"
       promptTemplate: "standard", // "standard" | "lit-11plus"
+      tourSeen: false,            // guided tour completed at least once (UI hint only)
     },
   },
   progress: {

@@ -59,8 +59,9 @@ export default function PromptOutputPanel({
     <div className="pb-output-panel">
 
       {/* Action buttons */}
-      <div className="pb-output-actions">
+      <div className="pb-output-actions" id="pb-output-actions">
         <button
+          id="pb-generate-btn"
           className="lw-btn lw-btn-primary"
           onClick={onGenerate}
           disabled={!canGenerate}

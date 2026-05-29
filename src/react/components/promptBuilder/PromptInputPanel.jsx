@@ -322,7 +322,7 @@ export default function PromptInputPanel({
       </div>
 
       {/* Source material — three modes */}
-      <div className="pb-field">
+      <div className="pb-field" id="pb-source-material">
         <span style={field.label}>Source Material <span style={{ color: "var(--lw-muted)" }}>(optional)</span></span>
 
         {/* Mode selector */}
