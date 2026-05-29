@@ -225,6 +225,7 @@ for (const { parsed, filenames } of mergedById.values()) {
 
 ### ⚠️ A13. Monolingual packs must use `sourceWord`/`targetWord`, never `translations`
 
+
 **Mistake (PR #90):** AI-generated Geography/History/Science packs used the `translations` field (for bilingual packs). Because `srcCode === tgtCode === "en-GB"`, both `word.de` and `word.en` resolved to the same value → quiz questions became "Climate → choose Climate".
 
 **Rule:** Non-language packs (Geography, History, Science, Literature) must use `sourceWord` (term) and `targetWord` (definition). `translations` is bilingual-language-pack only.
@@ -241,6 +242,7 @@ for (const { parsed, filenames } of mergedById.values()) {
 ---
 
 ### ⚠️ A14. Stored user preferences are not bugs — never force-overwrite them
+
 
 **Mistake (PR #95):** A migration unconditionally rewrote `"mixed"` → `"mcq"` for all users, permanently overriding deliberate user choices.
 
@@ -295,6 +297,63 @@ board.style.transform = natural > available ? `scale(${available / natural})` : 
 **A16c. Use double `requestAnimationFrame` after DOM insertion:**
 ```js
 requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
+```
+
+---
+
+### ⚠️ A17. Item type strings must exactly match `filterUnifiedItems()` — `"sentenceBuilder"` not `"sentence"`
+
+**Bug found (PR #120):** Prompt-builder UI and `promptAssembler.js` used `"sentence"` as the item type label for the Builder tab. The correct string is `"sentenceBuilder"`. `loadSentenceBuilderPack()` in `data.js` calls `filterUnifiedItems(pack, "sentenceBuilder")` — a pack with `"sentence"` items is silently ignored by every loader.
+
+**Authoritative item type strings (cross-reference `filterUnifiedItems` call sites in `data.js`):**
+
+| Type string | Where it appears |
+|---|---|
+| `"vocab"` | Vocabulary tab + Quiz (word-choice / typed-answer questions) |
+| `"fillBlank"` | Quiz fill-in-the-blank questions |
+| `"sequence"` | Quiz ordering questions |
+| `"categorySort"` | Quiz category-sort questions |
+| `"sentenceBuilder"` | Builder tab — loaded by `loadSentenceBuilderPack()` |
+| `"passage"` | Reading tab — loaded by `loadPassageUnifiedPack()` |
+
+**Rule:** Whenever you reference an item type string in UI labels, prompt text, assembler logic, or feature detection, cross-check it against the `filterUnifiedItems()` call sites in `data.js`. The schema and the loader must agree.
+
+```js
+// WRONG — "sentence" items are never matched by any loader
+if (types.includes("sentence")) { ... }
+
+// CORRECT
+if (types.includes("sentenceBuilder")) { ... }
+```
+
+---
+
+### ⚠️ A18. Import `SUBJECTS` and `CURRICULUMS` from `data.js` — never hardcode them
+
+**Bug found (PR #120):** `PromptInputPanel.jsx` had a hardcoded `SUBJECTS` array that was missing `"religion"`. `promptAssembler.js` returned `"gcse"` as a computed manifest curriculum value, but `"gcse"` is not a valid value — the authoritative list in `data.js` is `["ks3", "us-middle-school", "other"]`.
+
+**Authoritative constants (source of truth in `data.js`):**
+
+```js
+export const SUBJECTS    = ["language", "history", "geography", "science",
+                            "literature", "computing", "religion", "other"];
+export const CURRICULUMS = ["ks3", "us-middle-school", "other"];
+export const CURRICULUM_LABELS = { ks3: "KS3", "us-middle-school": "US Middle School", other: "Other" };
+```
+
+**Rules:**
+1. Always import `SUBJECTS` and `CURRICULUMS` from `@/data.js` — never hardcode them in a component or service.
+2. Never produce a manifest `curriculum` field value that is not in `CURRICULUMS`. `"gcse"` is **not** valid — GCSE content maps to `"other"` (the app has no separate gcse curriculum bucket).
+3. When `data.js` gains a new subject or curriculum, every component that imports from it gets the update automatically — no manual sync needed.
+
+```js
+// CORRECT — stays in sync with data.js automatically
+import { SUBJECTS } from "@/data.js";
+const SUBJECT_OPTIONS = SUBJECTS.map((v) => ({ value: v, label: v.charAt(0).toUpperCase() + v.slice(1) }));
+
+// WRONG — stale hardcoded list that will drift
+const SUBJECTS = ["geography", "history", "science", "language", "literature", "computing", "other"];
+//                                                                                         ↑ missing "religion"
 ```
 
 ---
@@ -689,6 +748,58 @@ title_en: data.targetTitle || data.title || "",
 
 ---
 
+### ⚠️ RC14. Never access `localStorage` directly — always use `loadStoredState()` / `saveStoredState()`
+
+**Bug found (PR #120):** `AIPromptBuilder.jsx` hardcoded the storage key `"learningGermanWeb.v1"` and read/wrote `localStorage` directly. This bypassed the `mergeState(DEFAULT_STATE, parsed)` step inside `loadStoredState()`, with two consequences:
+- New users with empty storage got `null` instead of the correct default values.
+- Users with old stored state never received newly-added `DEFAULT_STATE` keys — the migration that `mergeState` performs was skipped entirely.
+- The storage key was duplicated in source — if it ever changes, every direct call site breaks independently.
+
+**Rule:** All storage reads and writes must go through the shared API in `src/storage.js`:
+
+```js
+import { loadStoredState, saveStoredState } from "@/storage.js";
+
+// READ — always includes DEFAULT_STATE deep-merge for free
+function loadMyPrefs() {
+  return loadStoredState().prefs.mySection; // defaults already merged in
+}
+
+// WRITE — read full state first, patch your section, write back
+function saveMyPrefs(prefs) {
+  const state = loadStoredState();
+  state.prefs.mySection = prefs;
+  saveStoredState(state);
+}
+```
+
+**Never do:**
+```js
+// BAD — bypasses DEFAULT_STATE merge; duplicates the storage key
+const STORAGE_KEY = "learningGermanWeb.v1";
+const raw = window.localStorage.getItem(STORAGE_KEY);
+const state = raw ? JSON.parse(raw) : {};
+```
+
+**Corollary — no duplicate `DEFAULT_VALUES` in components:**
+Do not copy the default values from `DEFAULT_STATE` into a component-level `DEFAULT_VALUES` constant. Initialise directly from `loadStoredState()`, which already has defaults merged in:
+
+```js
+// WRONG — duplicate that can drift from DEFAULT_STATE
+const DEFAULT_VALUES = { subject: "geography", topic: "", level: "KS3", ... };
+const [values, setValues] = useState({ ...DEFAULT_VALUES, ...loadSavedPrefs() });
+
+// CORRECT — single source of truth; defaults handled by loadStoredState()
+const [values, setValues] = useState(() => loadStoredState().prefs.promptBuilder);
+```
+
+**Checklist:**
+- [ ] Every new preference key must first be added to `DEFAULT_STATE` in `storage.js`
+- [ ] No component or service imports `"learningGermanWeb.v1"` or calls `localStorage` directly
+- [ ] Pref persistence uses the read-full → patch → write-back pattern above
+
+---
+
 ## PART C — Build & Deployment
 
 ---
@@ -775,6 +886,41 @@ git log --oneline origin/main..HEAD       # confirm only intended commits are ah
 
 ---
 
+### ⚠️ CD5. Runtime-fetched files belong in `public/` (project root), not in `src/`
+
+**Bug found (PR #120):** A markdown prompt file placed at `src/react/public/docs/generate_json_pack_generation_prompt.md` produced a 404 in both dev and production. `src/react/public/` is just a source folder — it has no special meaning to Vite.
+
+**How Vite's public directory works:**
+- Vite's built-in public directory is `<project-root>/public/` (configured by `publicDir`, which defaults to `"public"` relative to `root`).
+- Files there are served at the root URL **in dev** without any configuration.
+- They are **automatically copied into `dist/`** on every production build — no `viteStaticCopy` entry needed.
+
+```
+public/docs/my-prompt.md
+  → dev:  served at /docs/my-prompt.md
+  → prod: copied to dist/docs/my-prompt.md automatically
+```
+
+**Rule:** Any file fetched at runtime via `fetch()` (markdown files, JSON config, prompt templates, etc.) must live under `public/` at the **project root**.
+
+```js
+// CORRECT — file is at public/docs/my-prompt.md
+const res = await fetch("./docs/my-prompt.md");
+
+// WRONG — src/react/public/docs/ is not served; produces 404
+// (file placed at src/react/public/docs/my-prompt.md)
+const res = await fetch("./docs/my-prompt.md"); // 404 in production
+```
+
+**Note on `data/` and `brand/`:** These directories predate this pattern and are NOT in `public/` — they sit at the project root and are handled by `viteStaticCopy` (see CD1). New runtime-fetched assets should use `public/` instead to avoid manual `viteStaticCopy` entries.
+
+**Checklist for any file that is fetched at runtime:**
+- [ ] File is placed under `public/` at the project root (not under `src/` or `src/react/`)
+- [ ] Run `npm run build` and confirm the file appears in `dist/` at the expected path
+- [ ] Test `fetch("./path/to/file")` in both dev (`npm run dev`) and production preview (`npm run preview`)
+
+---
+
 ## PART D — CSS & Responsive Layout
 
 ---
@@ -822,7 +968,38 @@ Vite will hash and fingerprint the assets and ensure paths are correct in all en
 
 ---
 
-*Last updated: 2026-05-25*
-*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113*
+### ⚠️ CSS3. Button class modifier uses a **single hyphen** — never BEM double-dash
+
+**Bug found (PR #120):** Prompt-builder components used `.lw-btn--primary` and `.lw-btn--ghost` (BEM `--` double-dash). The design system uses `.lw-btn-primary` and `.lw-btn-ghost` (single hyphen). The BEM classes matched nothing in the stylesheet — buttons were unstyled.
+
+A second issue in the same PR: the commit appended a full `.lw-btn { … }` redefinition to the end of `global.css` (after the existing rule at line 849). Because it appeared later, it overrode the design-system base styles **globally** — Quiz, Builder, Reading, and Progress buttons all lost their colours.
+
+**Correct modifier class names:**
+
+| Role | Correct class | Wrong class |
+|---|---|---|
+| Primary — blue filled | `lw-btn lw-btn-primary` | `lw-btn lw-btn--primary` |
+| Secondary — blue outline | `lw-btn lw-btn-secondary` | `lw-btn lw-btn--secondary` |
+| Ghost — transparent | `lw-btn lw-btn-ghost` | `lw-btn lw-btn--ghost` |
+
+**Rules:**
+1. Always use **single-hyphen** modifiers: `lw-btn-primary`, `lw-btn-ghost`, `lw-btn-secondary`.
+2. **Never redefine `.lw-btn`** anywhere in `global.css`. It is defined once at line 849; any later duplicate overrides every button in the app.
+3. Before adding new CSS to `global.css`, `grep` for the class name to confirm it does not already exist.
+
+```jsx
+{/* CORRECT */}
+<button className="lw-btn lw-btn-primary">Save</button>
+<button className="lw-btn lw-btn-ghost">Cancel</button>
+
+{/* WRONG — these classes do not exist in the stylesheet */}
+<button className="lw-btn lw-btn--primary">Save</button>
+<button className="lw-btn lw-btn--ghost">Cancel</button>
+```
+
+---
+
+*Last updated: 2026-05-28*
+*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
 *For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*

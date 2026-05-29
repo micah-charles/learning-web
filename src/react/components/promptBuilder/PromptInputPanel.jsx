@@ -3,8 +3,14 @@
  *
  * Left panel — all user-configurable fields that feed the prompt builder.
  * Stateless: receives values + onChange callbacks from AIPromptBuilder.jsx.
+ *
+ * Field order:
+ *   Subject → Prompt Template → (inline warning if subject/template mismatch)
+ *   → Topic → Level → Curriculum → Locale → Item Types
+ *   → Source Material → Additional Instructions → Generate Mode
  */
 import { SUBJECTS as SUBJECT_VALUES } from "@/data.js";
+import { PROMPT_CONFIGS } from "../../services/promptConfigs.js";
 
 // Derive display objects from the canonical SUBJECTS array in data.js so this
 // list stays in sync automatically (includes "religion", "computing", etc.).
@@ -91,18 +97,32 @@ const field = {
   },
 };
 
+/** Capitalise the first letter of a subject name for display in the warning. */
+function titleCase(str) {
+  if (!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export default function PromptInputPanel({
   values,
   onChange,
   hasChromeAI,
   basePromptLoaded,
   basePromptError,
+  allowedItemTypes,           // string[] from the active prompt config
+  templateWarning,            // { requestedId, requiredSubject } | null
+  onResolveWarning,           // (apply: boolean) => void
 }) {
   const {
     subject, topic, level, curriculum, locale,
     itemTypes, sourceMode, sourceUrl, sourceMaterial,
-    additionalInstructions, generateMode,
+    additionalInstructions, generateMode, promptTemplate,
   } = values;
+
+  // Only show item types permitted by the currently loaded prompt template
+  const visibleItemTypes = allowedItemTypes
+    ? ITEM_TYPES.filter((t) => allowedItemTypes.includes(t.value))
+    : ITEM_TYPES;
 
   function handleItemTypeToggle(typeValue) {
     const next = itemTypes.includes(typeValue)
@@ -110,6 +130,11 @@ export default function PromptInputPanel({
       : [...itemTypes, typeValue];
     onChange("itemTypes", next);
   }
+
+  // Resolve the human-readable label for the blocked template
+  const warningTemplateLabel = templateWarning
+    ? (PROMPT_CONFIGS.find((c) => c.id === templateWarning.requestedId)?.label ?? templateWarning.requestedId)
+    : null;
 
   return (
     <div className="pb-input-panel">
@@ -121,7 +146,7 @@ export default function PromptInputPanel({
         </div>
       )}
 
-      {/* Subject */}
+      {/* ── Subject ──────────────────────────────────────────────────── */}
       <div className="pb-field">
         <label style={field.label} htmlFor="pb-subject">Subject</label>
         <select
@@ -136,7 +161,60 @@ export default function PromptInputPanel({
         </select>
       </div>
 
-      {/* Topic */}
+      {/* ── Prompt Template ──────────────────────────────────────────── */}
+      <div className="pb-field pb-template-field">
+        <label style={field.label} htmlFor="pb-template">Prompt Template</label>
+        <select
+          id="pb-template"
+          style={field.input}
+          value={promptTemplate}
+          onChange={(e) => onChange("promptTemplate", e.target.value)}
+        >
+          {PROMPT_CONFIGS.map((c) => (
+            <option key={c.id} value={c.id}>{c.label}</option>
+          ))}
+        </select>
+        {/* Description of the active template */}
+        {PROMPT_CONFIGS.find((c) => c.id === promptTemplate) && (
+          <p style={field.hint}>
+            {PROMPT_CONFIGS.find((c) => c.id === promptTemplate).description}
+          </p>
+        )}
+      </div>
+
+      {/* ── Inline subject/template mismatch warning ─────────────────── */}
+      {templateWarning && (
+        <div className="pb-alert pb-alert--warning" role="alert">
+          <p style={{ margin: "0 0 8px" }}>
+            <strong>"{warningTemplateLabel}"</strong> requires subject{" "}
+            <strong>{titleCase(templateWarning.requiredSubject)}</strong>, but your
+            current subject is <strong>{titleCase(subject)}</strong>.
+          </p>
+          <p style={{ margin: "0 0 10px", fontSize: "0.82rem" }}>
+            Switch subject automatically, or cancel to keep the current template.
+          </p>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <button
+              type="button"
+              className="lw-btn lw-btn-primary"
+              style={{ fontSize: "0.82rem", padding: "6px 14px" }}
+              onClick={() => onResolveWarning(true)}
+            >
+              Switch subject to {titleCase(templateWarning.requiredSubject)} + apply
+            </button>
+            <button
+              type="button"
+              className="lw-btn lw-btn-ghost"
+              style={{ fontSize: "0.82rem", padding: "6px 14px" }}
+              onClick={() => onResolveWarning(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ── Topic ────────────────────────────────────────────────────── */}
       <div className="pb-field">
         <label style={field.label} htmlFor="pb-topic">
           Topic <span style={{ color: "var(--lw-coral)" }}>*</span>
@@ -169,7 +247,7 @@ export default function PromptInputPanel({
         </p>
       </div>
 
-      {/* Curriculum — sets the manifest curriculum field (ks3/gcse/other) AND
+      {/* Curriculum — sets the manifest curriculum field (ks3/other) AND
           the curriculum context used by the AI for content accuracy */}
       <div className="pb-field">
         <label style={field.label} htmlFor="pb-curriculum">
@@ -212,7 +290,7 @@ export default function PromptInputPanel({
       <div className="pb-field">
         <span style={field.label}>Item Types to generate</span>
         <div className="pb-item-types">
-          {ITEM_TYPES.map((t) => (
+          {visibleItemTypes.map((t) => (
             <label
               key={t.value}
               className={`pb-chip${itemTypes.includes(t.value) ? " pb-chip--on" : ""}`}
@@ -229,12 +307,18 @@ export default function PromptInputPanel({
             </label>
           ))}
         </div>
-        <p style={field.hint}>
-          <strong>vocab</strong> = Vocabulary + Quiz cards ·
-          <strong> fillBlank / sequence / categorySort</strong> = Quiz question types ·
-          <strong> sentenceBuilder</strong> = Builder tab ·
-          <strong> passage</strong> = Reading tab
-        </p>
+        {visibleItemTypes.length > 1 ? (
+          <p style={field.hint}>
+            <strong>vocab</strong> = Vocabulary + Quiz cards ·
+            <strong> fillBlank / sequence / categorySort</strong> = Quiz question types ·
+            <strong> sentenceBuilder</strong> = Builder tab ·
+            <strong> passage</strong> = Reading tab
+          </p>
+        ) : (
+          <p style={field.hint}>
+            Item types are fixed by the selected prompt template.
+          </p>
+        )}
       </div>
 
       {/* Source material — three modes */}

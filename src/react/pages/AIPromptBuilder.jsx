@@ -20,11 +20,10 @@ import PromptOutputPanel from "../components/promptBuilder/PromptOutputPanel.jsx
 import { detectChromeAI, createAISession, generateEnhancedPrompt, destroySession } from "../services/chromeAI.js";
 import { loadBasePrompt } from "../services/promptLoader.js";
 import { assembleTemplatePrompt } from "../services/promptAssembler.js";
+import { getPromptConfig, promptConfigForSubject } from "../services/promptConfigs.js";
 import { loadStoredState, saveStoredState } from "@/storage.js";
 
 // ── Persist / restore prompt builder prefs via the shared storage layer ─────
-// loadStoredState() deep-merges DEFAULT_STATE, so promptBuilder prefs always
-// have the correct defaults even for users with old or empty localStorage.
 function loadSavedPrefs() {
   return loadStoredState().prefs.promptBuilder;
 }
@@ -43,12 +42,18 @@ export default function AIPromptBuilder({ onNavigate }) {
   // Form values — initialised from the merged stored state (includes defaults)
   const [values, setValues] = useState(() => loadSavedPrefs());
 
+  // When the user selects a template whose linkedSubject doesn't match the
+  // current subject, we block the switch and surface a warning instead of
+  // silently overriding their subject choice.
+  // Shape: { requestedId: string, requiredSubject: string } | null
+  const [templateWarning, setTemplateWarning] = useState(null);
+
   // Prompt output
-  const [basePrompt, setBasePrompt]         = useState("");
+  const [basePrompt, setBasePrompt]           = useState("");
   const [basePromptError, setBasePromptError] = useState("");
   const [generatedPrompt, setGeneratedPrompt] = useState("");
-  const [status, setStatus]                 = useState("idle"); // idle | loading | generating | done | error
-  const [errorMsg, setErrorMsg]             = useState("");
+  const [status, setStatus]                   = useState("idle");
+  const [errorMsg, setErrorMsg]               = useState("");
 
   // Keep an AI session alive across multiple "Generate" clicks
   const aiSessionRef = useRef(null);
@@ -63,10 +68,14 @@ export default function AIPromptBuilder({ onNavigate }) {
     return () => destroySession(aiSessionRef.current);
   }, []);
 
-  // ── Load base prompt on mount ──────────────────────────────────────────────
+  // ── Load base prompt whenever the selected template changes ────────────────
   useEffect(() => {
+    const config = getPromptConfig(values.promptTemplate);
     setStatus("loading");
-    loadBasePrompt()
+    setBasePrompt("");
+    setBasePromptError("");
+    setGeneratedPrompt(""); // clear stale output from a previous template
+    loadBasePrompt(config.path)
       .then((text) => {
         setBasePrompt(text);
         setStatus("idle");
@@ -76,12 +85,77 @@ export default function AIPromptBuilder({ onNavigate }) {
         setStatus("error");
         setErrorMsg(err.message);
       });
-  }, []);
+  }, [values.promptTemplate]);
 
-  // ── Field change handler ───────────────────────────────────────────────────
+  // ── Field change handler with bidirectional subject ↔ template linking ─────
+  // `values` is in the dependency array so we can read the current subject
+  // before entering setValues — this keeps side-effects (setTemplateWarning)
+  // safely outside the state-updater function (see RC9).
   const handleChange = useCallback((key, value) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
-  }, []);
+    if (key === "promptTemplate") {
+      const config = getPromptConfig(value);
+      if (config.linkedSubject && config.linkedSubject !== values.subject) {
+        // Subject mismatch — block the switch and ask the user to resolve it.
+        setTemplateWarning({ requestedId: value, requiredSubject: config.linkedSubject });
+        return; // leave values.promptTemplate unchanged
+      }
+      // No conflict — fall through to setValues below.
+    }
+
+    setValues((prev) => {
+      const next = { ...prev, [key]: value };
+
+      if (key === "subject") {
+        // Auto-switch the prompt template when subject changes
+        const autoTemplate = promptConfigForSubject(value);
+        if (autoTemplate !== prev.promptTemplate) {
+          next.promptTemplate = autoTemplate;
+          const config = getPromptConfig(autoTemplate);
+          // Always reset to the new template's defaults on a subject-driven switch.
+          // Preserving an intersection (e.g. "passage" surviving from lit-11plus into
+          // Standard) produces odd results — a History/Geography pack with only passage
+          // selected despite no 11+ prompt being used.
+          next.itemTypes = config.defaultItemTypes;
+        }
+      }
+
+      if (key === "promptTemplate") {
+        // linkedSubject already matched (checked above) — just filter item types
+        const config = getPromptConfig(value);
+        const filtered = prev.itemTypes.filter((t) => config.allowedItemTypes.includes(t));
+        next.itemTypes = filtered.length > 0 ? filtered : config.defaultItemTypes;
+      }
+
+      return next;
+    });
+
+    // Dismiss any pending template warning when the user manually changes subject.
+    // Called OUTSIDE setValues to comply with RC9 (side effects must not live inside
+    // state-updater functions — StrictMode fires them twice).
+    if (key === "subject" && templateWarning) {
+      setTemplateWarning(null);
+    }
+  }, [values, templateWarning]);
+
+  // ── Resolve a template/subject conflict from the inline warning ─────────────
+  // apply=true  → switch both promptTemplate and subject automatically
+  // apply=false → dismiss the warning, keep the current template
+  const handleResolveWarning = useCallback((apply) => {
+    if (apply && templateWarning) {
+      const { requestedId, requiredSubject } = templateWarning;
+      const config = getPromptConfig(requestedId);
+      setValues((prev) => {
+        const filtered = prev.itemTypes.filter((t) => config.allowedItemTypes.includes(t));
+        return {
+          ...prev,
+          promptTemplate: requestedId,
+          subject: requiredSubject,
+          itemTypes: filtered.length > 0 ? filtered : config.defaultItemTypes,
+        };
+      });
+    }
+    setTemplateWarning(null);
+  }, [templateWarning]);
 
   // ── Generate prompt ────────────────────────────────────────────────────────
   const handleGenerate = useCallback(async () => {
@@ -109,31 +183,25 @@ export default function AIPromptBuilder({ onNavigate }) {
       let finalPrompt;
 
       if (useAI) {
-        // Create or reuse an AI session
         if (!aiSessionRef.current) {
           aiSessionRef.current = await createAISession();
         }
         finalPrompt = await generateEnhancedPrompt(aiSessionRef.current, basePrompt, ctx);
       } else {
-        // Structured template — always available, synchronous
         finalPrompt = assembleTemplatePrompt(basePrompt, ctx, false);
       }
 
       setGeneratedPrompt(finalPrompt);
       setStatus("done");
     } catch (err) {
-      // If AI session failed, clear it so a fresh one is made next time
       destroySession(aiSessionRef.current);
       aiSessionRef.current = null;
 
-      // Fall back to template on AI failure
       if (useAI) {
         const fallback = assembleTemplatePrompt(basePrompt, ctx, false);
         setGeneratedPrompt(fallback);
         setStatus("done");
-        setErrorMsg(
-          `Chrome AI failed (${err.message}). Fell back to structured template mode.`
-        );
+        setErrorMsg(`Chrome AI failed (${err.message}). Fell back to structured template mode.`);
       } else {
         setStatus("error");
         setErrorMsg(err.message);
@@ -147,6 +215,9 @@ export default function AIPromptBuilder({ onNavigate }) {
     setStatus(basePrompt ? "idle" : "error");
     setErrorMsg("");
   }, [basePrompt]);
+
+  // ── Derive the active config for passing down ──────────────────────────────
+  const activeConfig = getPromptConfig(values.promptTemplate);
 
   // ──────────────────────────────────────────────────────────────────────────
   return (
@@ -192,6 +263,9 @@ export default function AIPromptBuilder({ onNavigate }) {
             hasChromeAI={hasChromeAI}
             basePromptLoaded={!!basePrompt}
             basePromptError={basePromptError}
+            allowedItemTypes={activeConfig.allowedItemTypes}
+            templateWarning={templateWarning}
+            onResolveWarning={handleResolveWarning}
           />
         </div>
 
