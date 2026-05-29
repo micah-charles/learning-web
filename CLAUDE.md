@@ -51,7 +51,7 @@ A browser-only vocabulary and revision app for KS3–KS4 students.
 All state lives in `localStorage`. All data is static JSON files served from `data/`.
 Deployed to Render.com as a static site — `render.yaml` at repo root controls the build.
 
-**Subjects**: `language` · `history` · `geography` · `science` · `literature`
+**Subjects**: `language` · `history` · `geography` · `science` · `literature` · `computing` · `religion` · `other`
 
 ---
 
@@ -79,6 +79,9 @@ src/
       learning/                — StudyBookDrawer, TileBuilder, FeedbackPanel, QuizCard, etc.
     styles/
       global.css               — React-specific design tokens and component CSS
+    utils/
+      packAdapters.js          — pack data shape adapters
+      scoring.js               — answer normalisation
 
   main.js          — LEGACY vanilla UI (kept for reference; no longer the entry point)
   data.js          — manifest loading, pack loading, vocabFromItem mapping  ← SHARED
@@ -98,6 +101,8 @@ data/
   SentenceBuilderPacks/…
   core_unified.json
 
+public/
+  docs/                            — prompt template markdown files (fetched at runtime)
 generated_packs/                   — ⚠ GITIGNORED — AI-generated drafts, never served
 dist/                              — ⚠ GITIGNORED — Vite build output, built on Render
 render.yaml                        — Render.com deployment config (build + serve dist/)
@@ -126,8 +131,8 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 | Field | Purpose |
 |---|---|
 | `id` | Unique key — used in prefs, URLs, everywhere |
-| `subject` | `language` / `history` / `geography` / `science` / `literature` |
-| `curriculum` | `ks3` / `gcse` / `other` |
+| `subject` | `language` / `history` / `geography` / `science` / `literature` / `computing` / `religion` / `other` |
+| `curriculum` | `ks3` / `us-middle-school` / `other` |
 | `displayName` | Shown in the UI dropdown |
 | `unifiedPath` | Path from repo root to `pack_unified.json` |
 | `sourceLanguageCode` | e.g. `de-DE`, `la`, `en-GB` |
@@ -189,7 +194,9 @@ Every pack file has this top-level shape:
 }
 ```
 
-**`fillBlank`**, **`sequence`**, **`categorySort`**, **`passage`** — see existing packs for examples.
+**`fillBlank`**, **`sequence`**, **`categorySort`**, **`sentenceBuilder`**, **`passage`** — see existing packs for examples.
+
+- `sentenceBuilder` items go into a `sentenceBuilderPack` — loaded by `loadSentenceBuilderPack()` which calls `filterUnifiedItems(pack, "sentenceBuilder")`. Using the string `"sentence"` instead will cause silent no-match.
 
 ---
 
@@ -224,14 +231,19 @@ Key mappings to know:
 ### Current `DEFAULT_STATE.prefs` shape
 
 ```
-vocab:   { datasetId, subject, curriculum, year, stages[], search,
-           partOfSpeech, category, categories[] }
-quiz:    { subject, curriculum, direction, answerMode, datasetId, year,
-           stages[], excludeMastered, questionCount, modes[] }
-builder: { packId, filter, subject, curriculum }
-passages:{ subject, curriculum, groupId, packId, category, difficulty,
-           showGerman, voiceEnabled }
-review:  { datasetId, sort }
+vocab:         { datasetId, subject, curriculum, year, stages[], search,
+                 partOfSpeech, category, categories[] }
+quiz:          { subject, curriculum, direction, answerMode, datasetId, year,
+                 stages[], excludeMastered, questionCount, modes[] }
+crossword:     { subject, curriculum, datasetId, year, stages[],
+                 excludeMastered, wordCount }
+builder:       { packId, filter, subject, curriculum }
+passages:      { subject, curriculum, groupId, packId, category, difficulty,
+                 showGerman, voiceEnabled, voiceName }
+review:        { datasetId, sort }
+promptBuilder: { subject, topic, level, curriculum, locale, itemTypes[],
+                 sourceMode, sourceUrl, sourceMaterial, additionalInstructions,
+                 generateMode, promptTemplate }
 ```
 
 ### Reset checklist when a dataset/subject changes
@@ -332,6 +344,7 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 - Question UI: `question-box`, `question-box-top`, `question-box-copy`, `question-prompt`
 - React nav tones: `lw-nav-pill.tone-orange` (Language Ladder), `lw-nav-pill.tone-blue` (Quiz)
 - Mobile nav: `lw-nav-mobile`, `lw-mobile-nav-pill`, `lw-mobile-more`, `lw-mobile-more-menu`
+- Button modifiers: **single-hyphen** — `lw-btn-primary`, `lw-btn-ghost`, `lw-btn-secondary` (never BEM `--`)
 
 ---
 
@@ -351,6 +364,8 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 | Study Book state lost on tab switch | Drawer rendered inside page component | Render `<StudyBookDrawer />` once in `App.jsx` (see RC10) |
 | Hero stat cards not found | Stat cards moved from Hero to ProgressPage | Edit `ProgressPage.jsx` `SnapshotCard` components |
 | Mobile nav tab missing | Only added to `TABS` in `NavBar.jsx`, not `MOBILE_*_TABS` | Add to appropriate `MOBILE_PRIMARY_TABS` or `MOBILE_MORE_TABS` |
+| New prefs key undefined for existing users | Added to component but not `DEFAULT_STATE` | Always add to `storage.js` `DEFAULT_STATE` first (see RC14) |
+| `fetch()` file returns 404 in production | File placed in `src/` not `public/` | Move to `public/docs/` at project root (see CD5) |
 
 ---
 
@@ -413,6 +428,7 @@ git log --oneline origin/main..HEAD
 | `src/storage.js` | Hand-maintained — always update `DEFAULT_STATE` when adding prefs |
 | `data/generated/manifest.json` | Hand-maintained (generator script exists but is rarely run) |
 | `data/Packs/**/pack_unified.json` | Hand-maintained JSON — schema v1.1 |
+| `public/docs/*.md` | Hand-maintained prompt templates — fetched at runtime |
 | `docs/REACT_ARCHITECTURE.md` | Hand-maintained — update after any structural React change |
 | `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` | Hand-maintained — add RC entries when new bugs are found |
 | `generated_packs/` | AI draft output — **gitignored**, never committed |
