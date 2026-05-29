@@ -116,25 +116,30 @@ function builderFromItem(item) {
 }
 
 function passageFromItem(item, packSpeechLanguage) {
+  // `data` is the canonical location for passage fields (item.data).
+  // Fall back to item-level fields so that AI-generated packs that omit the
+  // `data` wrapper (e.g. flat structure from ChatGPT) still load correctly.
   const data = item.data || {};
   return {
     id: item.id,
     topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
     level: item.level || "",
-    speech_language: data.speechLanguage || packSpeechLanguage || "en-GB",
-    chapter: data.chapter || "",
-    section: data.section || "",
-    title_de: data.sourceTitle || data.title || "",
-    title_en: data.targetTitle || data.title || "",
-    passage_de: data.sourcePassage || "",
-    passage_en: data.targetPassage || "",
-    questions: (data.questions || []).map((question) => ({
+    speech_language: data.speechLanguage || item.speechLanguage || packSpeechLanguage || "en-GB",
+    chapter: data.chapter || item.chapter || "",
+    section: data.section || item.section || "",
+    title_de: data.sourceTitle || data.title || item.sourceTitle || item.title || "",
+    title_en: data.targetTitle || data.title || item.targetTitle || item.title || "",
+    passage_de: data.sourcePassage || item.sourcePassage || "",
+    passage_en: data.targetPassage || item.targetPassage || "",
+    questions: (data.questions || item.questions || []).map((question) => ({
       id: question.id,
-      type: question.questionType || (question.options?.length ? "multiple_choice" : "open"),
+      // Accept both questionType (canonical) and type (AI-generated shorthand)
+      type: question.questionType || question.type || (question.options?.length ? "multiple_choice" : "open"),
       difficulty: question.difficulty || "medium",
       question: question.question || "",
       options: question.options || [],
-      correct_option_index: question.correctOptionIndex,
+      // Accept both correctOptionIndex (canonical) and answer (AI-generated shorthand)
+      correct_option_index: question.correctOptionIndex ?? question.answer,
       correct_answer: question.correctAnswer || "",
       model_answer_en: question.modelAnswer || "",
       accepted_keywords: question.acceptedKeywords || [],

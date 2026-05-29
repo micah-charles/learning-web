@@ -122,19 +122,77 @@ Wrong format (single flat block — will render as an unreadable wall of text):
 
 ---
 
-# Output Structure
+# Output Structure — CRITICAL: follow this exact schema
 
-Generate ONE unified JSON pack called:
+Generate ONE unified JSON pack called `pack_unified.json`.
 
-FILE: pack_unified.json
+**Every passage item MUST wrap its fields inside a `data` object.** Fields placed at
+the item root (outside `data`) will be silently ignored by the Learning Web loader.
 
-Include:
-- passage items
-- multiple_choice questions
-- open questions
-- model answers
-- accepted keywords
-- difficulty labels
+## Top-level pack structure
+
+```json
+{
+  "schemaVersion": "1.1",
+  "packId": "snake_case_id_here",
+  "subject": "literature",
+  "curriculum": "other",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [ ... ]
+}
+```
+
+## Passage item structure (CORRECT — all passage fields inside `data`)
+
+```json
+{
+  "id": "passage_1",
+  "type": "passage",
+  "level": "11+",
+  "topics": ["Topic name here"],
+  "tags": ["inference", "tone", "vocabulary"],
+  "data": {
+    "sourceTitle": "Passage title here",
+    "sourcePassage": "First paragraph.\n\nSecond paragraph.\n\nThird paragraph.",
+    "questions": [
+      {
+        "id": "p1_q1",
+        "questionType": "multiple_choice",
+        "difficulty": "medium",
+        "question": "Question text here?",
+        "options": ["Option A", "Option B", "Option C", "Option D"],
+        "correctOptionIndex": 1,
+        "acceptedKeywords": []
+      }
+    ]
+  }
+}
+```
+
+## WRONG — do NOT put passage fields at the item root level
+
+```json
+{
+  "id": "passage_1",
+  "type": "passage",
+  "title": "...",
+  "sourcePassage": "...",
+  "questions": [...]
+}
+```
+
+The fields `sourceTitle`, `sourcePassage`, and `questions` MUST be inside `data: { }`.
+
+## Question field names — use these exactly
+
+| Field | Correct name | Wrong name |
+|---|---|---|
+| Question type | `questionType` | `type` |
+| Correct option index | `correctOptionIndex` | `answer` |
+| Model answer | `modelAnswer` | — |
+| Accepted keywords | `acceptedKeywords` | — |
 
 ---
 
@@ -160,8 +218,8 @@ For open questions:
 # Metadata
 
 subject: literature
-curriculum: 11plus
-language: en-GB
+curriculum: other
+sourceLanguageCode: en-GB
 targetLanguageCode: en-GB
 speechLanguage: en-GB
 
