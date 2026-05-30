@@ -86,7 +86,7 @@ Displays up to 120 vocab cards. Cards show: term, definition, mastery badge (New
 | Control | Type | Values | Prefs key | Effect |
 |---------|------|--------|-----------|--------|
 | Subject card grid | Card buttons | All `SUBJECTS` values | `prefs.vocab.subject` | Switches subject, resets dataset to first match, clears all filters |
-| Curriculum | Pill buttons | `all / ks3 / gcse / other` | `prefs.vocab.curriculum` | Filters pack dropdown, auto-selects first match |
+| Curriculum | Pill buttons | `all / ks3 / us-middle-school / other` + any pack-supplied (dynamic, via `listCurricula`) | `prefs.vocab.curriculum` | Filters pack dropdown, auto-selects first match |
 | Pack (`vocab-dataset`) | `<select>` | All packs for current subject+curriculum | `prefs.vocab.datasetId` | Loads new pack, resets PoS, category, categories, stages |
 | Year (`vocab-year`) | `<select>` | `ALL / Y7 / Y8 / Y9 / Y10 / Y11` (or pack's `yearOptions`) | `prefs.vocab.year` | Only shown for **language** packs without stage selection; filters by `word.level` |
 | Stages fieldset | Checkboxes | Pack's `stageOptions` array | `prefs.vocab.stages` | Shown instead of Year for stage-based packs (e.g. Cambridge Latin) |
@@ -120,7 +120,7 @@ The tab has three states: **setup** (no `runtime.currentQuiz`), **active session
 | Control | Type | Values | Prefs key | Effect |
 |---------|------|--------|-----------|--------|
 | Subject card grid | Card buttons | All `SUBJECTS` values | `prefs.quiz.subject` | Switches subject, auto-picks first dataset, resets stages + modes |
-| Curriculum | Pill buttons | `all / ks3 / gcse / other` | `prefs.quiz.curriculum` | Narrows pack dropdown |
+| Curriculum | Pill buttons | `all / ks3 / us-middle-school / other` + any pack-supplied (dynamic, via `listCurricula`) | `prefs.quiz.curriculum` | Narrows pack dropdown |
 | Pack (`quiz-dataset`) | `<select>` | Packs for current subject+curriculum | `prefs.quiz.datasetId` | Sets dataset, keeps subject in sync, resets stages + modes |
 | Year (`quiz-year`) | `<select>` | `ALL / Y7 / Y8 / Y9 / Y10 / Y11` | `prefs.quiz.year` | Language packs only (no stage selection) |
 | Stages fieldset | Checkboxes | Pack's `stageOptions` | `prefs.quiz.stages` | Stage-based packs only |
@@ -228,7 +228,7 @@ The generator runs up to 80 attempts (120 during start) selecting random subsets
 | Control | Type | Values | Prefs key | Effect |
 |---------|------|--------|-----------|--------|
 | Subject card grid | Card buttons | Subjects with vocab packs | `prefs.crossword.subject` | Resets dataset and game |
-| Curriculum | Pill buttons | `all / ks3 / gcse / other` | `prefs.crossword.curriculum` | Narrows pack dropdown |
+| Curriculum | Pill buttons | `all / ks3 / us-middle-school / other` + any pack-supplied (dynamic, via `listCurricula`) | `prefs.crossword.curriculum` | Narrows pack dropdown |
 | Pack (`crossword-dataset`) | `<select>` | Vocab packs for subject+curriculum | `prefs.crossword.datasetId` | Resets game |
 | Year (`crossword-year`) | `<select>` | `ALL / Y7…` | `prefs.crossword.year` | Language packs only |
 | Stages fieldset | Checkboxes | Pack's `stageOptions` | `prefs.crossword.stages` | Stage-based packs |
@@ -278,7 +278,7 @@ The tab has two states: **setup** (`runtime.passages.started === false`) and **a
 | Control | Type | Values | Prefs key | Effect |
 |---------|------|--------|-----------|--------|
 | Subject card grid | Card buttons | Subjects with passage groups | `prefs.passages.subject` | Resets group, pack, category, difficulty |
-| Curriculum | Pill buttons | `all / ks3 / gcse / other` | `prefs.passages.curriculum` | Filters group dropdown |
+| Curriculum | Pill buttons | `all / ks3 / us-middle-school / other` + any pack-supplied (dynamic, via `listCurricula`) | `prefs.passages.curriculum` | Filters group dropdown |
 | Book / Group (`passage-group`) | `<select>` | Passage groups for current subject | `prefs.passages.groupId` | Resets pack, category, difficulty |
 | Set (`passage-pack`) | `<select>` | Packs within selected group (hidden when only 1 pack) | `prefs.passages.packId` | Resets category, difficulty |
 | Category (`passage-category`) | `<select>` | `all` + unique topics from passages | `prefs.passages.category` | Filters passage list |
@@ -330,7 +330,7 @@ Independent tile-drag drill. Loads from `sentenceBuilderPacks` in manifest (sepa
 | Control | Type | Values | Prefs key | Effect |
 |---------|------|--------|-----------|--------|
 | Subject card grid | Card buttons | Subjects with builder packs | `prefs.builder.subject` | Resets pack to first match |
-| Curriculum | Pill buttons | `all / ks3 / gcse / other` | `prefs.builder.curriculum` | Narrows pack dropdown |
+| Curriculum | Pill buttons | `all / ks3 / us-middle-school / other` + any pack-supplied (dynamic, via `listCurricula`) | `prefs.builder.curriculum` | Narrows pack dropdown |
 | Pack (`builder-pack`) | `<select>` | Builder packs for current subject+curriculum | `prefs.builder.packId` | Loads new builder pack |
 | Filter (`builder-filter`) | `<select>` | `all / key_date / key_term / example_sentence` | `prefs.builder.filter` | Filters cards by `card.type` field |
 | Tile (bank→answer) | `builder-pick` | — | — | Moves tile from bank to answer bar |
