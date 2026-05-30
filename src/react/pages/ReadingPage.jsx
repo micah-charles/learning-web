@@ -6,17 +6,16 @@ import { useSpeech } from "../hooks/useSpeech.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listPassageGroups, listPassageGroupsBySubjectAndCurriculum, listPassagePacks, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
-
-const CURRICULUM_OPTIONS = [
-  { id: "all", label: "All" },
-  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
-];
+import { listPassageGroups, listPassageGroupsBySubjectAndCurriculum, listPassagePacks, SUBJECTS, listCurricula } from "@/data.js";
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
 
 function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, categoryOptions }) {
   const groups = useMemo(() => manifest ? listPassageGroups(manifest) : [], [manifest]);
+  const curriculumOptions = useMemo(
+    () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
+    [manifest],
+  );
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
       id,
@@ -82,7 +81,7 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
 
             <PillGroup
               label="Curriculum"
-              items={CURRICULUM_OPTIONS}
+              items={curriculumOptions}
               value={prefs.curriculum || "all"}
               onSelect={(c) => {
                 const firstGroup = listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];

@@ -151,9 +151,9 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
     );
   }
   if (curriculum) {
-    const manifestCurriculum = inferManifestCurriculum(level, curriculum);
     lines.push(
-      `- The manifest \`curriculum\` field should be \`"${manifestCurriculum}"\` (valid values: ks3 / us-middle-school / other).`
+      `- Set the top-level \`curriculum\` field to \`"${curriculum}"\` (the curriculum / exam board exactly as written). ` +
+        `The app normalises this for grouping and shows custom curricula automatically in the Quiz / Reading / Vocabulary / Builder filters.`
     );
   }
   lines.push("");
@@ -194,17 +194,6 @@ function toSlug(topic) {
     .replace(/[^a-z0-9]+/g, "_")
     .replace(/^_|_$/g, "")
     .slice(0, 60) || "my_pack";
-}
-
-/**
- * Infer the manifest curriculum value from free-text level and curriculum fields.
- * Valid values (from data.js CURRICULUMS): "ks3" | "us-middle-school" | "other"
- */
-function inferManifestCurriculum(level = "", curriculum = "") {
-  const combined = (level + " " + curriculum).toLowerCase();
-  if (/us.?middle|grade\s*[678]|us\s*school/.test(combined)) return "us-middle-school";
-  if (/ks3|y7|y8|y9|year\s*[789]|key\s*stage\s*3/.test(combined)) return "ks3";
-  return "other";
 }
 
 /** Add brief notes clarifying how each requested item type maps to the app. */

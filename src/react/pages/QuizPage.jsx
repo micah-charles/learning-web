@@ -7,12 +7,7 @@ import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS, getDatasetDirections, findDataset } from "@/data.js";
-
-const CURRICULUM_OPTIONS = [
-  { id: "all", label: "All" },
-  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
-];
+import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
 const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
@@ -29,6 +24,10 @@ const ANSWER_MODES_BASIC = ANSWER_MODES_ALL; // no Build to strip for non-langua
 
 function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
   const datasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
+  const curriculumOptions = useMemo(
+    () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
+    [manifest],
+  );
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
       id,
@@ -100,7 +99,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
 
         <PillGroup
           label="Curriculum"
-          items={CURRICULUM_OPTIONS}
+          items={curriculumOptions}
           value={prefs.curriculum || "all"}
           onSelect={(c) => {
             const first = listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];

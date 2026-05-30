@@ -229,23 +229,26 @@ export default function PromptInputPanel({
         />
       </div>
 
-      {/* Level — affects item.level on every generated item, used by quiz engine
-          to filter which questions appear for a given year group */}
-      <div className="pb-field">
-        <label style={field.label} htmlFor="pb-level">Level / Year group</label>
-        <input
-          id="pb-level"
-          type="text"
-          placeholder="e.g. Y7, Y8, KS3, GCSE, Stage 1"
-          style={field.input}
-          value={level}
-          onChange={(e) => onChange("level", e.target.value)}
-        />
-        <p style={field.hint}>
-          Stored on each item — the quiz engine filters questions by year group.
-          KS3 = Y7–Y9 · GCSE = Y10–Y11
-        </p>
-      </div>
+      {/* Level / Year group — only a real filter for LANGUAGE packs (Vocab "Year"
+          dropdown) and stage-based packs (Latin). For other subjects item.level is
+          metadata only and never drives a filter, so the field is hidden to avoid
+          implying otherwise. */}
+      {subject === "language" && (
+        <div className="pb-field">
+          <label style={field.label} htmlFor="pb-level">Level / Year group</label>
+          <input
+            id="pb-level"
+            type="text"
+            placeholder="e.g. Y7, Y8, KS3, Stage 1"
+            style={field.input}
+            value={level}
+            onChange={(e) => onChange("level", e.target.value)}
+          />
+          <p style={field.hint}>
+            Stored on each item — the Vocabulary tab filters language packs by year group.
+          </p>
+        </div>
+      )}
 
       {/* Curriculum — sets the manifest curriculum field (ks3/other) AND
           the curriculum context used by the AI for content accuracy */}

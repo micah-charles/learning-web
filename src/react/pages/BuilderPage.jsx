@@ -6,12 +6,7 @@ import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubjectAndCurriculum, getBuilderPackSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
-
-const CURRICULUM_OPTIONS = [
-  { id: "all", label: "All" },
-  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
-];
+import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubjectAndCurriculum, getBuilderPackSubject, SUBJECTS, listCurricula } from "@/data.js";
 
 const FILTER_OPTIONS = [
   { id: "all",              label: "All"               },
@@ -25,6 +20,10 @@ export default function BuilderPage() {
   const { progress, updateProgress } = useProgress();
 
   const allPacks = useMemo(() => manifest ? listSentenceBuilderPacks(manifest) : [], [manifest]);
+  const curriculumOptions = useMemo(
+    () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
+    [manifest],
+  );
 
   // subject === "" means "not yet chosen by the user — fall back to first pack's subject".
   const [subject, setSubject]       = useState("");
@@ -100,7 +99,7 @@ export default function BuilderPage() {
 
         <PillGroup
           label="Curriculum"
-          items={CURRICULUM_OPTIONS}
+          items={curriculumOptions}
           value={curriculum}
           onSelect={(c) => {
             const first = listSentenceBuilderPacksBySubjectAndCurriculum(manifest, activeSubject, c)[0];
