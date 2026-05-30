@@ -127,7 +127,7 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
                   checked={prefs.showGerman}
                   onChange={e => setPref("showGerman", e.target.checked)}
                 />
-                Show source text
+                Show translation
               </label>
               <label className="lw-check-row">
                 <input
@@ -291,17 +291,45 @@ function QuestionCard({ question: q, answers, onAnswer, revealed, onShowEvidence
         </div>
       )}
 
-      {/* Open question: model answer (after reveal) */}
-      {!isMCQ && revealed && q.model_answer_en && (
-        <div className="lw-rws-model-answer">
-          <p className="lw-rws-model-answer-label">Model answer</p>
-          <p>{q.model_answer_en}</p>
+      {/* Open / written question */}
+      {!isMCQ && (
+        <div className="lw-rws-open">
+          {!revealed ? (
+            <>
+              <label className="lw-rws-open-label" htmlFor={`rws-open-${q.id}`}>
+                Your answer
+              </label>
+              <textarea
+                id={`rws-open-${q.id}`}
+                className="lw-rws-open-input"
+                rows={4}
+                placeholder="Write your response here…"
+                value={typeof userAnswer === "string" ? userAnswer : ""}
+                onChange={(e) => onAnswer(q.id, e.target.value)}
+              />
+              <p className="lw-rws-open-hint">
+                Write your answer, then choose <strong>Show answers</strong> to compare with the model answer.
+              </p>
+            </>
+          ) : (
+            <>
+              {typeof userAnswer === "string" && userAnswer.trim() && (
+                <div className="lw-rws-your-answer">
+                  <p className="lw-rws-model-answer-label">Your answer</p>
+                  <p>{userAnswer}</p>
+                </div>
+              )}
+              {q.model_answer_en ? (
+                <div className="lw-rws-model-answer">
+                  <p className="lw-rws-model-answer-label">Model answer</p>
+                  <p>{q.model_answer_en}</p>
+                </div>
+              ) : (
+                <p className="lw-rws-open-hint">No model answer provided for this question.</p>
+              )}
+            </>
+          )}
         </div>
-      )}
-
-      {/* Open question: hint before reveal */}
-      {!isMCQ && !revealed && (
-        <p className="lw-rws-open-hint">Written response — reveal to see model answer.</p>
       )}
     </div>
   );
@@ -332,18 +360,22 @@ function ReadingWorkspace({
   const [lineSpacing, setLineSpacing]       = useState(1.75);  // line-height value
 
   const speechLang  = passage?.speech_language || "en-GB";
-  // mainText: target language (English) for bilingual packs; same as source for monolingual packs.
-  // sourceText: source language (e.g. German) — used for audio and the optional "Show source text" block.
-  const mainText    = passage?.targetText || passage?.sourceText || "";
+  // sourceText: the language being read (e.g. German). This is the primary passage.
+  // targetText: the translation (e.g. English) — shown only as an optional aid.
+  // For monolingual packs sourceText === targetText, so display is unaffected.
   const sourceText  = passage?.sourceText || "";
-  const hasDifferentTranslation = mainText && sourceText && sourceText !== mainText;
-  // Always display the main/target text. For monolingual packs mainText === sourceText.
-  const displayText = mainText;
+  const targetText  = passage?.targetText || "";
+  // Primary reading text = the source language. Fall back to the translation for
+  // packs that only provide a target passage.
+  const displayText = sourceText || targetText;
+  // Optional translation block: only when a distinct translation exists.
+  const hasTranslation = targetText && targetText !== displayText;
 
   const allQuestions  = passage?.questions || [];
   const totalQ        = allQuestions.length;
   const currentQ      = allQuestions[currentQuestionIndex] || null;
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = Object.values(answers)
+    .filter((v) => v !== undefined && v !== null && String(v).trim() !== "").length;
 
   // Auto-play voice on passage change
   useEffect(() => {
@@ -430,9 +462,9 @@ function ReadingWorkspace({
                 onClick={() => setLineSpacing(s => s < 1.9 ? 2.1 : 1.75)}>
                 ≡
               </button>
-              {/* Audio */}
+              {/* Audio — reads the primary (source-language) passage */}
               <button className="lw-btn lw-btn-ghost lw-rws-audio-btn" type="button"
-                onClick={() => speak(sourceText || displayText, speechLang)}
+                onClick={() => speak(displayText, speechLang)}
                 title="Read aloud" aria-label="Read passage aloud">
                 🔊
               </button>
@@ -465,15 +497,15 @@ function ReadingWorkspace({
             {renderNumberedParagraphs(displayText, { highlightPara, highlightQuote })}
           </div>
 
-          {/* Source text block (bilingual packs only — shown when "Show source text" is on) */}
-          {showSource && hasDifferentTranslation && (
+          {/* Translation block (bilingual packs only — shown when "Show translation" is on) */}
+          {showSource && hasTranslation && (
             <div className="lw-passage-block lw-rws-translation">
-              <div className="lw-passage-label">Source text</div>
+              <div className="lw-passage-label">Translation</div>
               <div
                 className="lw-rws-text lw-rws-text--translation"
                 style={{ fontSize: `${fontScale}em`, lineHeight: lineSpacing }}
               >
-                {renderNumberedParagraphs(sourceText)}
+                {renderNumberedParagraphs(targetText)}
               </div>
             </div>
           )}
@@ -547,7 +579,7 @@ function ReadingWorkspace({
                       className={[
                         "lw-rws-q-dot",
                         i === currentQuestionIndex ? "active" : "",
-                        answers[q.id] !== undefined ? "answered" : "",
+                        String(answers[q.id] ?? "").trim() !== "" ? "answered" : "",
                       ].filter(Boolean).join(" ")}
                       onClick={() => goToQuestion(i)}
                       aria-label={`Question ${i + 1}`}
