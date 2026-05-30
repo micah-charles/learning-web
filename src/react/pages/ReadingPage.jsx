@@ -350,7 +350,7 @@ function ReadingWorkspace({
   passage, deck, currentIndex, onJump,
   showSource, answers, onAnswer,
   revealed, onReveal, onNext, isLast,
-  voiceEnabled, speak, onBack,
+  voiceEnabled, speak, stop, onBack,
 }) {
   // ── Runtime-only display state ──────────────────────────────────────────────
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -358,6 +358,7 @@ function ReadingWorkspace({
   const [highlightQuote, setHighlightQuote] = useState(null);  // quote substring
   const [fontScale, setFontScale]           = useState(1);     // em multiplier: 0.85–1.4
   const [lineSpacing, setLineSpacing]       = useState(1.75);  // line-height value
+  const [isSpeaking, setIsSpeaking]         = useState(false);  // TTS playback state
 
   const speechLang  = passage?.speech_language || "en-GB";
   // sourceText: the language being read (e.g. German). This is the primary passage.
@@ -381,16 +382,44 @@ function ReadingWorkspace({
   useEffect(() => {
     if (voiceEnabled && passage?.sourceText) {
       speak(passage.sourceText, speechLang);
+      setIsSpeaking(true);
     }
     return () => { if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel(); };
   }, [passage?.id]);
 
-  // Reset question index + highlights when passage changes
+  // Reset question index + highlights + playback state when passage changes
   useEffect(() => {
     setCurrentQuestionIndex(0);
     setHighlightPara(null);
     setHighlightQuote(null);
+    setIsSpeaking(false);
   }, [passage?.id]);
+
+  // Track when speech finishes on its own so the toggle returns to "play".
+  // The Web Speech API has no reliable global "ended" event, so poll lightly
+  // while speaking. RC9-safe: setState lives in the interval callback, not render.
+  useEffect(() => {
+    if (!isSpeaking) return;
+    const synth = typeof window !== "undefined" ? window.speechSynthesis : null;
+    if (!synth) return;
+    const id = setInterval(() => {
+      if (!synth.speaking && !synth.pending) setIsSpeaking(false);
+    }, 400);
+    return () => clearInterval(id);
+  }, [isSpeaking]);
+
+  // Stop any speech when the workspace unmounts (e.g. Back to setup).
+  useEffect(() => () => stop?.(), [stop]);
+
+  function toggleSpeak() {
+    if (isSpeaking) {
+      stop?.();
+      setIsSpeaking(false);
+    } else if (displayText) {
+      speak(displayText, speechLang);
+      setIsSpeaking(true);
+    }
+  }
 
   // Auto-clear evidence highlight after 3 s (RC9-safe — called outside setState)
   useEffect(() => {
@@ -462,11 +491,16 @@ function ReadingWorkspace({
                 onClick={() => setLineSpacing(s => s < 1.9 ? 2.1 : 1.75)}>
                 ≡
               </button>
-              {/* Audio — reads the primary (source-language) passage */}
-              <button className="lw-btn lw-btn-ghost lw-rws-audio-btn" type="button"
-                onClick={() => speak(displayText, speechLang)}
-                title="Read aloud" aria-label="Read passage aloud">
-                🔊
+              {/* Audio — reads the primary (source-language) passage; toggles stop */}
+              <button
+                className={`lw-btn lw-btn-ghost lw-rws-audio-btn${isSpeaking ? " is-speaking" : ""}`}
+                type="button"
+                onClick={toggleSpeak}
+                title={isSpeaking ? "Stop reading" : "Read aloud"}
+                aria-label={isSpeaking ? "Stop reading passage" : "Read passage aloud"}
+                aria-pressed={isSpeaking}
+              >
+                {isSpeaking ? "⏹" : "🔊"}
               </button>
             </div>
           </div>
@@ -474,11 +508,15 @@ function ReadingWorkspace({
           {/* Passage jump selector (shown when session has multiple passages) */}
           {deck.length > 1 && (
             <div className="lw-rws-jump-row">
+              <label className="lw-rws-jump-label" htmlFor="rws-jump-select">
+                Passage <span className="lw-rws-jump-count">{currentIndex + 1} / {deck.length}</span>
+              </label>
               <select
+                id="rws-jump-select"
                 value={currentIndex}
                 onChange={(e) => onJump(Number(e.target.value))}
                 className="lw-rws-jump-select"
-                aria-label="Jump to passage"
+                aria-label="Choose a passage in this pack"
               >
                 {deck.map((p, i) => (
                   <option key={p.id || i} value={i}>
@@ -632,7 +670,7 @@ function ReadingWorkspace({
 export default function ReadingPage() {
   const { manifest, loading: manifestLoading } = useManifest();
   const { updateProgress } = useProgress();
-  const { speak } = useSpeech();
+  const { speak, stop } = useSpeech();
 
   const [prefs, setPrefs] = useState({
     subject:     "language",
@@ -700,6 +738,7 @@ export default function ReadingPage() {
       isLast={currentIndex + 1 >= deck.length}
       voiceEnabled={prefs.voiceEnabled}
       speak={speak}
+      stop={stop}
       onBack={resetSession}
     />
   );

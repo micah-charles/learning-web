@@ -1263,6 +1263,26 @@ body {
 .lw-rws-jump-row {
   padding: 10px 18px 0;
 }
+.lw-rws-jump-label {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lw-muted);
+  margin-bottom: 4px;
+}
+.lw-rws-jump-count {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--lw-blue);
+}
+.lw-rws-audio-btn.is-speaking {
+  background: var(--lw-blue-soft);
+  border-color: var(--lw-blue);
+  color: var(--lw-blue);
+}
 .lw-rws-jump-select {
   width: 100%;
   padding: 6px 10px;
