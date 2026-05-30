@@ -328,32 +328,43 @@ if (types.includes("sentenceBuilder")) { ... }
 
 ---
 
-### ⚠️ A18. Import `SUBJECTS` and `CURRICULUMS` from `data.js` — never hardcode them
+### ⚠️ A18. Import `SUBJECTS` from `data.js`; build curriculum option lists with `listCurricula()` — never hardcode either
 
-**Bug found (PR #120):** `PromptInputPanel.jsx` had a hardcoded `SUBJECTS` array that was missing `"religion"`. `promptAssembler.js` returned `"gcse"` as a computed manifest curriculum value, but `"gcse"` is not a valid value — the authoritative list in `data.js` is `["ks3", "us-middle-school", "other"]`.
+**Bug found (PR #120):** `PromptInputPanel.jsx` had a hardcoded `SUBJECTS` array that was missing `"religion"`. `promptAssembler.js` returned `"gcse"` as a computed manifest curriculum value, but at the time `"gcse"` was not a valid value.
 
-**Authoritative constants (source of truth in `data.js`):**
+**Updated (PR #127): curricula are now DYNAMIC, not a fixed enum.**
+- `CURRICULUMS = ["ks3", "us-middle-school", "other"]` in `data.js` is only the **built-in seed list** (always offered).
+- Any other `curriculum` value found on a pack is now **discovered at runtime** and preserved as its own slug — unknown values are no longer collapsed into `"other"`.
+- `getDatasetCurriculum(dataset)` → normalised slug (via `normalizeCurriculum`, e.g. `"AQA GCSE"` → `"aqa-gcse"`).
+- `listCurricula(manifest)` → `[{ id, label }]` = built-ins **+** every curriculum present on packs / passage groups / builder packs, with `curriculumLabel()` providing the display text.
+
+**Authoritative source of truth in `data.js`:**
 
 ```js
 export const SUBJECTS    = ["language", "history", "geography", "science",
                             "literature", "computing", "religion", "other"];
-export const CURRICULUMS = ["ks3", "us-middle-school", "other"];
-export const CURRICULUM_LABELS = { ks3: "KS3", "us-middle-school": "US Middle School", other: "Other" };
+export const CURRICULUMS = ["ks3", "us-middle-school", "other"]; // built-in seed only
+export function normalizeCurriculum(value) { /* slugify */ }
+export function curriculumLabel(slug, rawValue) { /* display text */ }
+export function listCurricula(manifest) { /* built-ins + discovered */ }
 ```
 
 **Rules:**
-1. Always import `SUBJECTS` and `CURRICULUMS` from `@/data.js` — never hardcode them in a component or service.
-2. Never produce a manifest `curriculum` field value that is not in `CURRICULUMS`. `"gcse"` is **not** valid — GCSE content maps to `"other"` (the app has no separate gcse curriculum bucket).
-3. When `data.js` gains a new subject or curriculum, every component that imports from it gets the update automatically — no manual sync needed.
+1. Always import `SUBJECTS` from `@/data.js` — never hardcode it in a component or service.
+2. Build curriculum dropdowns from `listCurricula(manifest)` (wrapped in `useMemo([manifest])`), **never** from a static `CURRICULUMS.map(...)` list — that hides custom curricula carried by uploaded packs.
+3. To emit a curriculum on a generated/uploaded pack, write the user's value **verbatim** to the pack's top-level `curriculum`; the app normalises it via `normalizeCurriculum` for grouping. Do **not** force it into `ks3 / us-middle-school / other`.
+4. When `data.js` gains a new subject, every component that imports `SUBJECTS` updates automatically.
 
 ```js
-// CORRECT — stays in sync with data.js automatically
-import { SUBJECTS } from "@/data.js";
-const SUBJECT_OPTIONS = SUBJECTS.map((v) => ({ value: v, label: v.charAt(0).toUpperCase() + v.slice(1) }));
+// CORRECT — discovers built-in + pack-supplied curricula
+import { listCurricula } from "@/data.js";
+const curriculumOptions = useMemo(
+  () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
+  [manifest],
+);
 
-// WRONG — stale hardcoded list that will drift
-const SUBJECTS = ["geography", "history", "science", "language", "literature", "computing", "other"];
-//                                                                                         ↑ missing "religion"
+// WRONG — stale static list that hides custom curricula
+const CURRICULUM_OPTIONS = [{ id: "all", label: "All" }, ...CURRICULUMS.map(c => ({ id: c, label: CURRICULUM_LABELS[c] }))];
 ```
 
 ---
@@ -1002,7 +1013,7 @@ A second issue in the same PR: the commit appended a full `.lw-btn { … }` rede
 
 ---
 
-*Last updated: 2026-05-28*
-*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120*
+*Last updated: 2026-05-30*
+*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120, #127*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
 *For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*

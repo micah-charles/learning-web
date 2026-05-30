@@ -170,7 +170,10 @@ export default function AIPromptBuilder({ onNavigate }) {
     const ctx = {
       subject: values.subject,
       topic: values.topic.trim(),
-      level: values.level,
+      // Level only matters for language packs (Vocab "Year" filter) / stage packs.
+      // The field is hidden for other subjects, so don't leak a stale level into
+      // the prompt or the generated item.level for non-language packs.
+      level: values.subject === "language" ? values.level : "",
       curriculum: values.curriculum,
       locale: values.locale,
       itemTypes: values.itemTypes,

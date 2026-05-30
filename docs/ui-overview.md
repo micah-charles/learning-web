@@ -577,13 +577,20 @@ This function is called everywhere subject matters — **never derive subject fr
 ### Defined in `data.js`
 
 ```javascript
-export const CURRICULUMS = ["ks3", "gcse", "other"];
-export const CURRICULUM_LABELS = { ks3: "KS3", gcse: "GCSE", other: "Other" };
+// Built-in seed list — always offered. NOT an exhaustive enum.
+export const CURRICULUMS = ["ks3", "us-middle-school", "other"];
+export const CURRICULUM_LABELS = { ks3: "KS3 (UK)", "us-middle-school": "US Middle School", other: "Other" };
+
+export function normalizeCurriculum(value)        // "AQA GCSE" -> "aqa-gcse"
+export function curriculumLabel(slug, rawValue)   // display text for a slug
+export function listCurricula(manifest)           // built-ins + pack-discovered
 ```
 
-Curriculum pills appear in Vocab, Quiz, Crossword, Builder, and Reading tabs. Selecting a curriculum filters the pack/group dropdown to matching packs. "All" shows all curricula.
+Curricula are **dynamic**, not a fixed enum. Curriculum pills appear in Vocab, Quiz, Crossword, Builder, and Reading tabs and are built from `listCurricula(manifest)` — the built-in seed list **plus** any curriculum value found on packs / passage groups / builder packs in the manifest (including uploaded packs). Selecting a curriculum filters the pack/group dropdown to matching packs. "All" shows all curricula.
 
-`getDatasetCurriculum(dataset)` / `inferCurriculum(dataset)` works like `inferSubject`: checks explicit `dataset.curriculum` field first, then ID prefix (`ks3_`, `gcse_`, `y7_`, `y8_`, `y9_`).
+`getDatasetCurriculum(dataset)` / `inferCurriculum(dataset)` checks the explicit `dataset.curriculum` field first and **preserves any value** as its own normalised slug (via `normalizeCurriculum`) — unknown values are no longer collapsed to `"other"`. Only when there is no explicit value does it fall back to ID prefix (`usmsg_`, `ks3_`, `y7_`/`y8_`/`y9_`), then `"other"`.
+
+> ⚠ Build curriculum dropdowns with `listCurricula(manifest)`, never a static `CURRICULUMS.map(...)` — see caution A18 in `AI_UI_IMPLEMENTATION_CAUTIONS.md`.
 
 ---
 

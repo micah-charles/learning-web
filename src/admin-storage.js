@@ -216,7 +216,7 @@ export function hydrateManifest(manifest, registerInCache) {
         displayName:         entry.displayName,
         unifiedPath:         path,
         subject:             entry.subject,
-        curriculum:          entry.curriculum || "",
+        curriculum:          entry.curriculum || packData.curriculum || "",
         wordCount:           entry.typeCounts.vocab      || 0,
         sentenceCount:       entry.typeCounts.sentence   || 0,
         supportsSentences:   !!(entry.typeCounts.sentence),
@@ -240,7 +240,7 @@ export function hydrateManifest(manifest, registerInCache) {
         displayName: entry.displayName,
         unifiedPath: path,
         subject:     entry.subject,
-        curriculum:  entry.curriculum || "",
+        curriculum:  entry.curriculum || packData.curriculum || "",
         _uploaded:   true,
       });
     }
@@ -253,7 +253,7 @@ export function hydrateManifest(manifest, registerInCache) {
         id:          entry.id,
         displayName: entry.displayName,
         subject:     entry.subject,
-        curriculum:  entry.curriculum || "",
+        curriculum:  entry.curriculum || packData.curriculum || "",
         unifiedPath: path,
         _uploaded:   true,
       });
