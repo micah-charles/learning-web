@@ -43,15 +43,6 @@ export const PROMPT_CONFIGS = [
     linkedSubject: "other",
   },
   {
-    id: "maths-mental",
-    label: "Times Tables & Mental Maths",
-    description: "Arithmetic, tables, rounding and number-bond drills (UK KS1–KS2 / US K–5)",
-    path: "./docs/learningweb-maths-mental.md",
-    allowedItemTypes: ["fillBlank"],
-    defaultItemTypes: ["fillBlank"],
-    linkedSubject: "other",
-  },
-  {
     id: "spelling-vocab",
     label: "Spelling & Vocabulary",
     description: "Word cards + cloze for KS2 SATs spelling lists / US spelling & sight words",
