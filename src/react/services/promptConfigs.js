@@ -39,7 +39,7 @@ export const PROMPT_CONFIGS = [
     description: "Synonyms/antonyms, analogies, odd-one-out, sequences and classification",
     path: "./docs/learningweb-11plus-verbal-reasoning.md",
     allowedItemTypes: ["vocab", "fillBlank", "categorySort"],
-    defaultItemTypes: ["vocab", "fillBlank"],
+    defaultItemTypes: ["vocab", "fillBlank", "categorySort"],
     linkedSubject: "other",
   },
   {
@@ -57,7 +57,7 @@ export const PROMPT_CONFIGS = [
     description: "Key-term cards, fill-blank recall, process sequences and classifications",
     path: "./docs/learningweb-gcse-science.md",
     allowedItemTypes: ["vocab", "fillBlank", "sequence", "categorySort"],
-    defaultItemTypes: ["vocab", "fillBlank"],
+    defaultItemTypes: ["vocab", "fillBlank", "sequence", "categorySort"],
     linkedSubject: "science",
   },
   {
@@ -75,7 +75,7 @@ export const PROMPT_CONFIGS = [
     description: "Key terms, fill-blank recall and a case-study reading passage",
     path: "./docs/learningweb-geography-casestudy.md",
     allowedItemTypes: ["vocab", "fillBlank", "passage"],
-    defaultItemTypes: ["vocab", "fillBlank"],
+    defaultItemTypes: ["vocab", "fillBlank", "passage"],
     linkedSubject: "geography",
   },
   {
@@ -84,7 +84,7 @@ export const PROMPT_CONFIGS = [
     description: "Translated word cards with examples + Builder sentences for language packs",
     path: "./docs/learningweb-mfl-vocab.md",
     allowedItemTypes: ["vocab", "sentenceBuilder"],
-    defaultItemTypes: ["vocab"],
+    defaultItemTypes: ["vocab", "sentenceBuilder"],
     linkedSubject: "language",
   },
 ];
