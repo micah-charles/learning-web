@@ -23,10 +23,10 @@ Generate for **UK 11+ / Year 4–6**, strong readers, above-average vocabulary. 
 
 Generate **25–40** questions with a balanced mix, e.g.:
 - synonyms and antonyms (`vocab`)
-- word analogies — "A is to B as C is to ____" (`fillBlank`)
-- odd-one-out — "Which word does not belong: ...?" (`fillBlank` multiple-choice)
-- complete-the-word / hidden-word (`fillBlank`)
-- letter and number sequences (`fillBlank`)
+- word analogies — "Bird is to sky as fish is to ____." (`fillBlank`)
+- odd-one-out — "The word that does not belong in cat / dog / car / horse is ____." (`fillBlank` multiple-choice)
+- complete-the-word / hidden-word — "The missing letters in `b____t` (a flying mammal) are ____." (`fillBlank`)
+- letter and number sequences — "The next term in 2, 4, 8, 16, ____ is ____." (`fillBlank`)
 - compound / linked words (`fillBlank`)
 - classification — sort words into groups (`categorySort`)
 
@@ -34,7 +34,7 @@ Rules:
 - Every question must have a single, defensible correct answer.
 - Distractors must be plausible (close synonyms, near-categories) — never joke answers.
 - Spread `difficulty`: `easy` / `medium` / `hard`.
-- Use `____` (four underscores) for any gap.
+- **CRITICAL:** every `fillBlank` `sentence` MUST contain `____` (four underscores) as the gap — the answer is what fills the gap. Phrase every question as a statement with a blank, never as a bare question. Write odd-one-out as `"The word that does not belong in X / Y / Z is ____."`, NOT `"Which word does not belong?"`.
 
 ---
 
@@ -88,6 +88,23 @@ Generate ONE unified JSON pack called `pack_unified.json`. Every item's fields g
     "sentence": "Bird is to sky as fish is to ____.",
     "answer": "water",
     "options": ["water", "scales", "river", "swim"]
+  }
+}
+```
+
+Odd-one-out — note the `____`, the answer is the odd word:
+
+```json
+{
+  "id": "vr_odd_001",
+  "type": "fillBlank",
+  "level": "11+",
+  "topics": ["odd-one-out"],
+  "tags": ["verbal-reasoning"],
+  "data": {
+    "sentence": "The word that does not belong in cat / dog / car / horse is ____.",
+    "answer": "car",
+    "options": ["car", "cat", "dog", "horse"]
   }
 }
 ```
