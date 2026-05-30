@@ -13,12 +13,7 @@ import {
   generateCrossword,
   normalizeCrosswordAnswer,
 } from "@/crossword.js";
-import { loadVocabItems, listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
-
-const CURRICULUM_OPTIONS = [
-  { id: "all", label: "All" },
-  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
-];
+import { loadVocabItems, listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
 const WORD_COUNT_OPTIONS = [8, 10, 12, 15, 20].map((n) => ({ id: n, label: String(n) }));
@@ -175,6 +170,10 @@ function ClueSection({ title, entries, revealed }) {
 
 function CrosswordSetup({ manifest, onStart }) {
   const datasets = useMemo(() => (manifest ? listDatasets(manifest) : []), [manifest]);
+  const curriculumOptions = useMemo(
+    () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
+    [manifest],
+  );
 
   const [subject, setSubject]       = useState("language");
   const [curriculum, setCurriculum] = useState("all");
@@ -244,7 +243,7 @@ function CrosswordSetup({ manifest, onStart }) {
 
         <PillGroup
           label="Curriculum"
-          items={CURRICULUM_OPTIONS}
+          items={curriculumOptions}
           value={curriculum}
           onSelect={(c) => {
             setCurriculum(c);

@@ -159,6 +159,7 @@ export function saveUploadedPack(packData, filename) {
     id,
     displayName,
     subject:             packData.subject             || "",
+    curriculum:          packData.curriculum          || "",
     typeCounts:          validation.typeCounts,
     sections,
     itemCount:           packData.items.length,
@@ -215,6 +216,7 @@ export function hydrateManifest(manifest, registerInCache) {
         displayName:         entry.displayName,
         unifiedPath:         path,
         subject:             entry.subject,
+        curriculum:          entry.curriculum || "",
         wordCount:           entry.typeCounts.vocab      || 0,
         sentenceCount:       entry.typeCounts.sentence   || 0,
         supportsSentences:   !!(entry.typeCounts.sentence),
@@ -238,6 +240,7 @@ export function hydrateManifest(manifest, registerInCache) {
         displayName: entry.displayName,
         unifiedPath: path,
         subject:     entry.subject,
+        curriculum:  entry.curriculum || "",
         _uploaded:   true,
       });
     }
@@ -250,6 +253,7 @@ export function hydrateManifest(manifest, registerInCache) {
         id:          entry.id,
         displayName: entry.displayName,
         subject:     entry.subject,
+        curriculum:  entry.curriculum || "",
         unifiedPath: path,
         _uploaded:   true,
       });

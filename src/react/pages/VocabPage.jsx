@@ -5,12 +5,7 @@ import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
-import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, CURRICULUMS, CURRICULUM_LABELS } from "@/data.js";
-
-const CURRICULUM_OPTIONS = [
-  { id: "all", label: "All" },
-  ...CURRICULUMS.map((c) => ({ id: c, label: CURRICULUM_LABELS[c] })),
-];
+import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
 import { isWordMastered, getWordProgress } from "@/storage.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
@@ -89,6 +84,10 @@ export default function VocabPage() {
   const { speak } = useSpeech();
 
   const allDatasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
+  const curriculumOptions = useMemo(
+    () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
+    [manifest],
+  );
 
   const [prefs, setPrefs] = useState({
     subject:      "language",
@@ -187,7 +186,7 @@ export default function VocabPage() {
 
         <PillGroup
           label="Curriculum"
-          items={CURRICULUM_OPTIONS}
+          items={curriculumOptions}
           value={prefs.curriculum || "all"}
           onSelect={(c) => {
             const first = listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];

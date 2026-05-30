@@ -6,6 +6,7 @@
  * not fetched at runtime.
  */
 import { normLang, packSrcLang, packTgtLang } from "./lang-utils.js";
+import { humanizeLabel } from "./utils.js";
 
 const jsonCache = new Map();
 
@@ -248,6 +249,9 @@ export function listDatasetsBySubject(manifest, subject) {
 // `curriculum` is a top-level tag on each pack entry: "ks3" | "us-middle-school" | "other".
 // Older packs may not carry it; the inference fallback reads it from the pack ID.
 
+// The canonical built-in curricula. These are always offered in the UI; any
+// additional curriculum value found on a pack is discovered dynamically (see
+// listCurricula) so new exam boards / curricula appear without code changes.
 export const CURRICULUMS = ["ks3", "us-middle-school", "other"];
 
 export const CURRICULUM_LABELS = {
@@ -256,22 +260,77 @@ export const CURRICULUM_LABELS = {
   "other":            "Other",
 };
 
+/**
+ * Normalise a raw curriculum string into a stable slug key used for filtering.
+ * e.g. "AQA GCSE" -> "aqa-gcse", "Cambridge IGCSE" -> "cambridge-igcse".
+ * Returns "" for empty input.
+ */
+export function normalizeCurriculum(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 function inferCurriculum(dataset) {
   if (!dataset) return "other";
-  const explicit = String(dataset.curriculum || "").toLowerCase();
-  if (CURRICULUMS.includes(explicit)) return explicit;
+  const slug = normalizeCurriculum(dataset.curriculum);
+  // Any explicit curriculum value is preserved as its own slug — unknown values
+  // are no longer collapsed into "other", so custom curricula stay visible.
+  if (slug) return slug;
 
   const id = String(dataset.id || "").toLowerCase();
   if (id.startsWith("usmsg_")) return "us-middle-school";
   if (id.startsWith("ks3_") || id.startsWith("y7_") || id.startsWith("y8_") || id.startsWith("y9_")) {
     return "ks3";
   }
-  // All other packs (including any legacy gcse_ prefix) fall through to "other"
+  // Packs with no curriculum field and no recognised id prefix fall back to "other".
   return "other";
 }
 
 export function getDatasetCurriculum(dataset) {
   return inferCurriculum(dataset);
+}
+
+/** Human-readable label for a curriculum slug (built-in map, else humanised). */
+export function curriculumLabel(slug, rawValue) {
+  if (CURRICULUM_LABELS[slug]) return CURRICULUM_LABELS[slug];
+  // Use the raw value only when it's clearly human-friendly (has a space or an
+  // uppercase letter) and still maps to this slug, e.g. "AQA GCSE". Otherwise
+  // humanise the slug itself so bare slugs don't leak into the UI.
+  const raw = String(rawValue || "").trim();
+  if (raw && /[A-Z\s]/.test(raw) && normalizeCurriculum(raw) === slug) return raw;
+  return humanizeLabel(slug);
+}
+
+/**
+ * Discover the full set of curricula to offer in filter dropdowns.
+ * Always includes the built-in CURRICULUMS, then appends any additional
+ * curricula present on packs / passage groups / builder packs in the manifest.
+ * Returns [{ id, label }] in a stable order.
+ */
+export function listCurricula(manifest) {
+  const labels = new Map(); // slug -> label
+  for (const c of CURRICULUMS) labels.set(c, CURRICULUM_LABELS[c] || c);
+
+  const datasets = [
+    ...listDatasets(manifest),
+    ...listPassageGroups(manifest),
+    ...listSentenceBuilderPacks(manifest),
+  ];
+  for (const d of datasets) {
+    const slug = getDatasetCurriculum(d);
+    if (!slug || labels.has(slug)) continue;
+    labels.set(slug, curriculumLabel(slug, d.curriculum));
+  }
+
+  // Keep "other" last for a tidy dropdown order.
+  const entries = [...labels.entries()];
+  entries.sort((a, b) => (a[0] === "other" ? 1 : b[0] === "other" ? -1 : 0));
+  return entries.map(([id, label]) => ({ id, label }));
 }
 
 export function listDatasetsByCurriculum(manifest, curriculum) {
