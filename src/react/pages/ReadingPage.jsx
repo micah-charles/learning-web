@@ -378,21 +378,26 @@ function ReadingWorkspace({
   const answeredCount = Object.values(answers)
     .filter((v) => v !== undefined && v !== null && String(v).trim() !== "").length;
 
-  // Auto-play voice on passage change
+  // Auto-play voice on passage change. This effect is the sole owner of
+  // isSpeaking for a passage change — it sets the flag true when it starts
+  // autoplay and false otherwise, so the reset effect below must NOT touch
+  // isSpeaking (both effects share the passage?.id dependency and the reset
+  // runs second, which would otherwise clobber a true value back to false).
   useEffect(() => {
     if (voiceEnabled && passage?.sourceText) {
       speak(passage.sourceText, speechLang);
       setIsSpeaking(true);
+    } else {
+      setIsSpeaking(false);
     }
     return () => { if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel(); };
   }, [passage?.id]);
 
-  // Reset question index + highlights + playback state when passage changes
+  // Reset question index + highlights when passage changes
   useEffect(() => {
     setCurrentQuestionIndex(0);
     setHighlightPara(null);
     setHighlightQuote(null);
-    setIsSpeaking(false);
   }, [passage?.id]);
 
   // Track when speech finishes on its own so the toggle returns to "play".
