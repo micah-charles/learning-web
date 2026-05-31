@@ -4,6 +4,7 @@ export const TABS = [
   { id: "home",      label: "Home"        },
   { id: "language",  label: "Language Ladder ✨", tone: "orange" },
   { id: "quiz",      label: "Quiz", tone: "blue" },
+  { id: "arcade",    label: "Arcade 🎮", tone: "orange" },
   { id: "vocab",     label: "Vocabulary"  },
   { id: "reading",   label: "Reading"     },
   { id: "builder",   label: "Builder"     },
@@ -22,6 +23,7 @@ const MOBILE_PRIMARY_TABS = [
 ];
 
 const MOBILE_MORE_TABS = [
+  { id: "arcade",    label: "Arcade",    icon: "🎮" },
   { id: "builder",   label: "Builder",   icon: "🧩" },
   { id: "crossword", label: "Crossword", icon: "✏️" },
   { id: "progress",  label: "Progress",  icon: "📈" },

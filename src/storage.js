@@ -82,6 +82,15 @@ export const DEFAULT_STATE = {
       promptTemplate: "standard", // "standard" | "lit-11plus"
       tourSeen: false,            // guided tour completed at least once (UI hint only)
     },
+    arcade: {
+      mode: "quiz-hunt",          // "quiz-hunt" | "snake-builder"
+      subject: "language",
+      curriculum: "all",
+      datasetId: "core",          // quiz-hunt source (revision dataset)
+      packId: "",                 // snake-builder source (sentenceBuilder pack)
+      mapType: "open",            // "open" | "pillars"
+      sound: true,
+    },
   },
   progress: {
     words: {},
@@ -89,6 +98,7 @@ export const DEFAULT_STATE = {
     attemptEvents: [],
     builderStats: {},
     passageStats: {},
+    arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
   },
 };
 
@@ -254,4 +264,20 @@ export function getPassageStats(state, packId) {
 export function recordPassageCompletion(state, packId) {
   const stats = ensurePassageStats(state, packId);
   stats.passagesCompleted += 1;
+}
+
+/**
+ * Record the result of an arcade round. Kept in its own progress bucket so it
+ * never disturbs quiz session analytics. `result` = { score, bestStreak, accuracy }.
+ */
+export function recordArcadeResult(state, mode, result = {}) {
+  if (!state.progress.arcadeStats) state.progress.arcadeStats = {};
+  const key = mode || "quiz-hunt";
+  const prev = state.progress.arcadeStats[key] || { plays: 0, bestScore: 0, bestStreak: 0 };
+  state.progress.arcadeStats[key] = {
+    plays: prev.plays + 1,
+    bestScore: Math.max(prev.bestScore, result.score || 0),
+    bestStreak: Math.max(prev.bestStreak, result.bestStreak || 0),
+    lastPlayedAt: new Date().toISOString(),
+  };
 }
