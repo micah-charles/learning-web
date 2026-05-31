@@ -53,7 +53,7 @@ function loadSentence(g) {
     ...q.tokens.map((t) => ({ text: t.text, order: t.order })),
     ...shuffle(decoys).map((d) => ({ text: d, order: 0 })),
   ];
-  const cells = randomFloorCells(g.map, wanted.length, occupied);
+  const cells = randomFloorCells(g.map, wanted.length, occupied, { interior: true });
   g.tokens = wanted.slice(0, cells.length).map((a, i) => ({
     id: `tk_${g.qIndex}_${i}`,
     x: cells[i].x, y: cells[i].y,
@@ -61,15 +61,16 @@ function loadSentence(g) {
   }));
 }
 
-function initState(map, questions) {
+function initState(map, questions, goal) {
   const head = nearestFloor(map, Math.floor(map.cols / 2), Math.floor(map.rows / 2));
   const g = {
-    map, questions,
+    map, questions, goal,
     status: "ready", qIndex: 0,
     body: [head], heading: "none",
     tokens: [], expected: 1, tokenCount: 0, collected: [],
     score: 0, lives: START_LIVES, combo: 0, bestStreak: 0,
     correct: 0, wrong: 0, freeze: 0,
+    timeLeft: goal.mode === "time" ? goal.target : null,
   };
   loadSentence(g);
   return g;
@@ -81,17 +82,25 @@ function snapshot(g) {
     body: g.body, tokens: g.tokens, collected: g.collected,
     score: g.score, lives: g.lives, combo: g.combo,
     bestStreak: g.bestStreak, correct: g.correct, wrong: g.wrong,
-    map: g.map,
+    timeLeft: g.timeLeft, map: g.map,
   };
 }
 
-function step(g, inputDir) {
+function step(g, inputDir, dt) {
   const events = [];
   if (g.status !== "playing") return events;
+
+  if (g.timeLeft != null) {
+    g.timeLeft -= dt / 1000;
+    if (g.timeLeft <= 0) { g.timeLeft = 0; g.status = "over"; events.push({ type: "over" }); return events; }
+  }
+
   if (g.freeze > 0) { g.freeze -= 1; return events; }
 
+  // No "none → heading" auto-continue: a "none" input means the snake stands
+  // still (used to pause after each word is eaten). The persistent directionRef
+  // keeps it gliding in the last pressed direction otherwise.
   let dir = inputDir;
-  if (dir === "none") dir = g.heading;
   // Block reversing directly into the body (classic snake rule).
   if (g.body.length > 1 && dir === OPPOSITE[g.heading]) dir = g.heading;
 
@@ -119,9 +128,13 @@ function step(g, inputDir) {
         g.score += 25;
         g.correct += 1;
         events.push({ type: "complete", itemId: q.itemId });
-        g.qIndex += 1;
-        if (g.qIndex >= g.questions.length) { g.status = "over"; events.push({ type: "over" }); }
-        else loadSentence(g); // resets body to head → keep grew=true to skip pop
+        if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
+          g.status = "over"; events.push({ type: "over" });
+        } else {
+          // Cycle sentences (wrap) so time/large-count goals keep going.
+          g.qIndex = (g.qIndex + 1) % g.questions.length;
+          loadSentence(g); // resets body to head → keep grew=true to skip pop
+        }
       }
     } else {
       g.lives -= 1;
@@ -145,7 +158,9 @@ function summaryOf(g) {
   };
 }
 
-export default function SnakeBuilderGame({ questions, mapType = "open", sound, reducedMotion, onExit, onRecord }) {
+const DEFAULT_GOAL = { mode: "questions", target: 20 };
+
+export default function SnakeBuilderGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord }) {
   const wrapRef = useRef(null);
   const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
   const gRef = useRef(null);
@@ -155,10 +170,10 @@ export default function SnakeBuilderGame({ questions, mapType = "open", sound, r
   useEffect(() => {
     if (!questions || questions.length === 0) { gRef.current = null; setView(null); return; }
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions);
+    gRef.current = initState(map, questions, goal);
     setView(snapshot(gRef.current));
     setPaused(false);
-  }, [questions, mapType, cols, rows]);
+  }, [questions, mapType, cols, rows, goal]);
 
   const onDirection = useCallback(() => {
     const g = gRef.current;
@@ -182,10 +197,14 @@ export default function SnakeBuilderGame({ questions, mapType = "open", sound, r
     onPause: togglePause,
   });
 
-  const handleStep = useCallback(() => {
+  const handleStep = useCallback((dt) => {
     const g = gRef.current;
     if (!g) return;
-    const events = step(g, directionRef.current);
+    const events = step(g, directionRef.current, dt);
+    // Stand still after eating any word (right or wrong) until the next input.
+    if (events.some((e) => e.type === "collect" || e.type === "wrong" || e.type === "complete")) {
+      directionRef.current = "none";
+    }
     setView(snapshot(g));
     for (const ev of events) {
       if (ev.type === "collect") sound.play("collect");
@@ -200,7 +219,8 @@ export default function SnakeBuilderGame({ questions, mapType = "open", sound, r
 
   function restart() {
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions);
+    gRef.current = initState(map, questions, goal);
+    directionRef.current = "none";
     setView(snapshot(gRef.current));
     setPaused(false);
   }
@@ -228,6 +248,8 @@ export default function SnakeBuilderGame({ questions, mapType = "open", sound, r
         prompt={q.sentence}
         hint={`So far: ${built}`}
         score={view.score} streak={view.combo} lives={view.lives} maxLives={START_LIVES}
+        goalText={goal.mode === "questions" ? `${view.correct}/${goal.target}` : null}
+        timer={goal.mode === "time" ? view.timeLeft : undefined}
         muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
       />
 

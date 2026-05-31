@@ -46,7 +46,7 @@ function placeTokens(g) {
     ...q.distractors.map((d) => ({ text: d, isCorrect: false })),
   ];
   const occupied = new Set([cellKey(g.player.x, g.player.y)]);
-  const cells = randomFloorCells(g.map, answers.length, occupied);
+  const cells = randomFloorCells(g.map, answers.length, occupied, { interior: true });
   g.tokens = answers.slice(0, cells.length).map((a, i) => ({
     id: `tok_${g.qIndex}_${i}`,
     x: cells[i].x, y: cells[i].y,
@@ -54,15 +54,16 @@ function placeTokens(g) {
   }));
 }
 
-function initState(map, questions) {
+function initState(map, questions, goal) {
   const player = nearestFloor(map, Math.floor(map.cols / 2), Math.floor(map.rows / 2));
   const g = {
-    map, questions,
+    map, questions, goal,
     status: "ready", qIndex: 0,
     player, direction: "none",
     tokens: [],
     score: 0, lives: START_LIVES, combo: 0, bestStreak: 0,
     correct: 0, answered: 0, freeze: 0,
+    timeLeft: goal.mode === "time" ? goal.target : null,
   };
   placeTokens(g);
   return g;
@@ -74,13 +75,20 @@ function snapshot(g) {
     player: g.player, tokens: g.tokens,
     score: g.score, lives: g.lives, combo: g.combo,
     bestStreak: g.bestStreak, correct: g.correct, answered: g.answered,
-    map: g.map,
+    timeLeft: g.timeLeft, map: g.map,
   };
 }
 
-function step(g, direction) {
+function step(g, direction, dt) {
   const events = [];
   if (g.status !== "playing") return events;
+
+  // Countdown (time mode) ticks while playing, including during the brief freeze.
+  if (g.timeLeft != null) {
+    g.timeLeft -= dt / 1000;
+    if (g.timeLeft <= 0) { g.timeLeft = 0; g.status = "over"; events.push({ type: "over" }); return events; }
+  }
+
   g.direction = direction;
   if (g.freeze > 0) { g.freeze -= 1; return events; }
 
@@ -101,9 +109,14 @@ function step(g, direction) {
     g.correct += 1;
     g.bestStreak = Math.max(g.bestStreak, g.combo);
     events.push({ type: "correct", wordId: q.wordId });
-    g.qIndex += 1;
-    if (g.qIndex >= g.questions.length) { g.status = "over"; events.push({ type: "over" }); }
-    else placeTokens(g);
+    // Reached the question-count goal → win.
+    if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
+      g.status = "over"; events.push({ type: "over" });
+    } else {
+      // Cycle questions (wrap) so time/large-count goals keep going on small packs.
+      g.qIndex = (g.qIndex + 1) % g.questions.length;
+      placeTokens(g);
+    }
   } else {
     g.lives -= 1;
     g.combo = 0;
@@ -123,21 +136,23 @@ function summaryOf(g) {
   };
 }
 
-export default function QuizHuntGame({ questions, mapType = "open", sound, reducedMotion, onExit, onRecord }) {
+const DEFAULT_GOAL = { mode: "questions", target: 20 };
+
+export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord }) {
   const wrapRef = useRef(null);
   const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
   const gRef = useRef(null);
   const [view, setView] = useState(null);
   const [paused, setPaused] = useState(false);
 
-  // (Re)initialise when content or grid dimensions change.
+  // (Re)initialise when content, grid dimensions, or goal change.
   useEffect(() => {
     if (!questions || questions.length === 0) { gRef.current = null; setView(null); return; }
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions);
+    gRef.current = initState(map, questions, goal);
     setView(snapshot(gRef.current));
     setPaused(false);
-  }, [questions, mapType, cols, rows]);
+  }, [questions, mapType, cols, rows, goal]);
 
   const onDirection = useCallback(() => {
     const g = gRef.current;
@@ -161,10 +176,15 @@ export default function QuizHuntGame({ questions, mapType = "open", sound, reduc
     onPause: togglePause,
   });
 
-  const handleStep = useCallback(() => {
+  const handleStep = useCallback((dt) => {
     const g = gRef.current;
     if (!g) return;
-    const events = step(g, directionRef.current);
+    const events = step(g, directionRef.current, dt);
+    // Stand still after eating any token (correct or wrong) — the player must
+    // give a fresh input to start moving again.
+    if (events.some((e) => e.type === "correct" || e.type === "wrong")) {
+      directionRef.current = "none";
+    }
     setView(snapshot(g));
     for (const ev of events) {
       if (ev.type === "correct") { sound.play("correct"); onRecord?.("answer", { wordId: ev.wordId, correct: true }); }
@@ -178,7 +198,8 @@ export default function QuizHuntGame({ questions, mapType = "open", sound, reduc
 
   function restart() {
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions);
+    gRef.current = initState(map, questions, goal);
+    directionRef.current = "none";
     setView(snapshot(gRef.current));
     setPaused(false);
   }
@@ -205,6 +226,8 @@ export default function QuizHuntGame({ questions, mapType = "open", sound, reduc
         prompt={q.questionText}
         hint={q.topic}
         score={view.score} streak={view.combo} lives={view.lives} maxLives={START_LIVES}
+        goalText={goal.mode === "questions" ? `${view.correct}/${goal.target}` : null}
+        timer={goal.mode === "time" ? view.timeLeft : undefined}
         muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
       />
 
