@@ -38,6 +38,22 @@ const MAP_TYPES = [
   { id: "pillars", label: "Pillars" },
 ];
 
+// Round goals. All modes keep the 3-heart limit; these add a win/end condition.
+const GOALS = [
+  { id: "q20", label: "20 questions" },
+  { id: "q40", label: "40 questions" },
+  { id: "q60", label: "60 questions" },
+  { id: "time5", label: "5-minute rush" },
+  { id: "endless", label: "Endless (3 hearts)" },
+];
+const GOAL_CONFIG = {
+  q20:     { mode: "questions", target: 20 },
+  q40:     { mode: "questions", target: 40 },
+  q60:     { mode: "questions", target: 60 },
+  time5:   { mode: "time", target: 300 },
+  endless: { mode: "endless", target: 0 },
+};
+
 const REDUCED_MOTION =
   typeof window !== "undefined" && window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -138,7 +154,7 @@ export default function ArcadeGamePage() {
       );
     }
     const commonProps = {
-      questions, mapType: prefs.mapType, sound,
+      questions, mapType: prefs.mapType, goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
       reducedMotion: REDUCED_MOTION, onExit: exitToSetup, onRecord: handleRecord,
     };
     return (
@@ -206,6 +222,9 @@ export default function ArcadeGamePage() {
           )}
           <LabeledSelect label="Map" value={prefs.mapType} onChange={(v) => setPref("mapType", v)}>
             {MAP_TYPES.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
+          </LabeledSelect>
+          <LabeledSelect label="Challenge" value={prefs.goal} onChange={(v) => setPref("goal", v)}>
+            {GOALS.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}
           </LabeledSelect>
         </FilterRow>
 

@@ -53,9 +53,21 @@ export function floorCells(map) {
 /**
  * Pick `n` distinct random floor cells, avoiding any cell in `occupied`
  * (a Set of "x,y" keys). Returns as many as it can find.
+ *
+ * @param {object} [opts]
+ * @param {boolean} [opts.interior]  Prefer non-border cells so wide word-pills
+ *   don't get clipped at the board edge. Falls back to all cells if the interior
+ *   can't supply `n` cells.
  */
-export function randomFloorCells(map, n, occupied = new Set(), rng = Math.random) {
-  const candidates = floorCells(map).filter((c) => !occupied.has(cellKey(c.x, c.y)));
+export function randomFloorCells(map, n, occupied = new Set(), opts = {}) {
+  const rng = opts.rng || Math.random;
+  let candidates = floorCells(map).filter((c) => !occupied.has(cellKey(c.x, c.y)));
+  if (opts.interior) {
+    const inner = candidates.filter(
+      (c) => c.x > 0 && c.y > 0 && c.x < map.cols - 1 && c.y < map.rows - 1,
+    );
+    if (inner.length >= n) candidates = inner;
+  }
   // Fisher–Yates partial shuffle.
   for (let i = candidates.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
