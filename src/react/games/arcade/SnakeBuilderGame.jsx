@@ -13,11 +13,12 @@
  */
 import { useRef, useState, useEffect, useCallback } from "react";
 import { generateMap } from "./maps/mapGenerator.js";
-import { stepInDirection, randomFloorCells, cellKey, isFloor, OPPOSITE } from "./engine/grid.js";
+import { stepInDirection, isFloor, OPPOSITE } from "./engine/grid.js";
 import { useGameLoop } from "./engine/useGameLoop.js";
 import { useArcadeControls } from "./hooks/useArcadeControls.js";
 import { useBoardMetrics } from "./hooks/useBoardMetrics.js";
 import { snakeBuilderDecoys } from "./utils/gameQuestionAdapter.js";
+import { placeTokensNoOverlap, tokenContains } from "./utils/tokenLayout.js";
 import { shuffle } from "@/utils.js";
 import GameBoard from "./components/GameBoard.jsx";
 import ArcadeHud from "./ui/ArcadeHud.jsx";
@@ -40,28 +41,26 @@ function nearestFloor(map, x, y) {
   return { x: 0, y: 0 };
 }
 
-function loadSentence(g) {
+function loadSentence(g, cellPx) {
   const q = g.questions[g.qIndex];
   g.expected = 1;
   g.tokenCount = q.tokens.length;
   g.collected = [];
   g.body = [g.body[0]]; // reset snake to a single head between sentences
-  const occupied = new Set([cellKey(g.body[0].x, g.body[0].y)]);
   const decoys = snakeBuilderDecoys(g.questions, q.tokens, MAX_DECOYS);
-  // Correct tokens first so they are always placed; decoys fill remaining cells.
   const wanted = [
     ...q.tokens.map((t) => ({ text: t.text, order: t.order })),
     ...shuffle(decoys).map((d) => ({ text: d, order: 0 })),
   ];
-  const cells = randomFloorCells(g.map, wanted.length, occupied, { interior: true });
-  g.tokens = wanted.slice(0, cells.length).map((a, i) => ({
+  const placed = placeTokensNoOverlap(g.map, wanted, [g.body[0]], cellPx);
+  g.tokens = placed.map((a, i) => ({
     id: `tk_${g.qIndex}_${i}`,
-    x: cells[i].x, y: cells[i].y,
+    x: a.x, y: a.y,
     text: a.text, order: a.order, collected: false, state: "neutral",
   }));
 }
 
-function initState(map, questions, goal) {
+function initState(map, questions, goal, cellPx) {
   const head = nearestFloor(map, Math.floor(map.cols / 2), Math.floor(map.rows / 2));
   const g = {
     map, questions, goal,
@@ -72,7 +71,7 @@ function initState(map, questions, goal) {
     correct: 0, wrong: 0, freeze: 0,
     timeLeft: goal.mode === "time" ? goal.target : null,
   };
-  loadSentence(g);
+  loadSentence(g, cellPx);
   return g;
 }
 
@@ -86,7 +85,7 @@ function snapshot(g) {
   };
 }
 
-function step(g, inputDir, dt) {
+function step(g, inputDir, dt, cellPx) {
   const events = [];
   if (g.status !== "playing") return events;
 
@@ -112,7 +111,8 @@ function step(g, inputDir, dt) {
 
   let grew = false;
   const q = g.questions[g.qIndex];
-  const hit = g.tokens.find((t) => !t.collected && t.x === nh.x && t.y === nh.y);
+  // Footprint collision so the head can't overlap a word without eating it.
+  const hit = g.tokens.find((t) => !t.collected && tokenContains(t, nh.x, nh.y, cellPx));
   if (hit) {
     if (hit.order === g.expected) {
       g.score += 10 + g.combo * 2;
@@ -133,7 +133,7 @@ function step(g, inputDir, dt) {
         } else {
           // Cycle sentences (wrap) so time/large-count goals keep going.
           g.qIndex = (g.qIndex + 1) % g.questions.length;
-          loadSentence(g); // resets body to head → keep grew=true to skip pop
+          loadSentence(g, cellPx); // resets body to head → keep grew=true to skip pop
         }
       }
     } else {
@@ -163,6 +163,8 @@ const DEFAULT_GOAL = { mode: "questions", target: 20 };
 export default function SnakeBuilderGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord }) {
   const wrapRef = useRef(null);
   const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
+  const cellPxRef = useRef(cellPx);
+  cellPxRef.current = cellPx;
   const gRef = useRef(null);
   const [view, setView] = useState(null);
   const [paused, setPaused] = useState(false);
@@ -170,10 +172,10 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
   useEffect(() => {
     if (!questions || questions.length === 0) { gRef.current = null; setView(null); return; }
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions, goal);
+    gRef.current = initState(map, questions, goal, cellPx);
     setView(snapshot(gRef.current));
     setPaused(false);
-  }, [questions, mapType, cols, rows, goal]);
+  }, [questions, mapType, cols, rows, goal, cellPx]);
 
   const onDirection = useCallback(() => {
     const g = gRef.current;
@@ -200,7 +202,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
   const handleStep = useCallback((dt) => {
     const g = gRef.current;
     if (!g) return;
-    const events = step(g, directionRef.current, dt);
+    const events = step(g, directionRef.current, dt, cellPxRef.current);
     // Stand still after eating any word (right or wrong) until the next input.
     if (events.some((e) => e.type === "collect" || e.type === "wrong" || e.type === "complete")) {
       directionRef.current = "none";
@@ -219,7 +221,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
 
   function restart() {
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions, goal);
+    gRef.current = initState(map, questions, goal, cellPx);
     directionRef.current = "none";
     setView(snapshot(gRef.current));
     setPaused(false);

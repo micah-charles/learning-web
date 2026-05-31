@@ -13,6 +13,8 @@
  *   playerEmoji string  glyph for the head (🦊 / 🐍)
  *   reducedMotion bool
  */
+import { tokenLayout } from "../utils/tokenLayout.js";
+
 function tileStyle(x, y, cellPx, reducedMotion) {
   return {
     width: cellPx,
@@ -42,10 +44,9 @@ export default function GameBoard({ map, cellPx, tokens = [], segments = [], pla
 
       {/* Collectible tokens. Wide words are rotated to read vertically
           (bottom-to-top) so they don't sprawl across the board; short words
-          stay horizontal. Threshold scales with the cell size. */}
+          stay horizontal. Orientation must match utils/tokenLayout. */}
       {tokens.map((t) => {
-        const estWidth = String(t.text || "").length * 8 + 20;
-        const vertical = estWidth > cellPx * 2.3;
+        const { vertical } = tokenLayout(t.text, cellPx);
         return (
           <div
             key={t.id}
