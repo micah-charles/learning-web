@@ -84,7 +84,12 @@ function step(g, direction) {
   g.direction = direction;
   if (g.freeze > 0) { g.freeze -= 1; return events; }
 
+  const prevPos = g.player;
   g.player = stepInDirection(g.map, g.player, g.direction);
+  // Blocked by a wall/edge → did not enter a new cell, so do not (re)trigger any
+  // token under us. This prevents a wrong token from draining multiple lives when
+  // the fox is stuck against a wall after a hit.
+  if (g.player.x === prevPos.x && g.player.y === prevPos.y) return events;
   const q = g.questions[g.qIndex];
   const hit = g.tokens.find((t) => t.x === g.player.x && t.y === g.player.y);
   if (!hit) return events;
@@ -179,7 +184,14 @@ export default function QuizHuntGame({ questions, mapType = "open", sound, reduc
   }
 
   if (!view) {
-    return <div className="arc-game-empty">No playable items in this pack. Try another.</div>;
+    return (
+      <div className="arc-game-empty">
+        <p>No playable items in this pack (it needs vocab cards with answer choices). Try another.</p>
+        <button className="lw-btn lw-btn-primary" type="button" onClick={onExit} style={{ marginTop: 12 }}>
+          ← Back to setup
+        </button>
+      </div>
+    );
   }
 
   const q = questions[view.qIndex] || questions[questions.length - 1];

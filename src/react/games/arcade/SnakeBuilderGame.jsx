@@ -206,7 +206,14 @@ export default function SnakeBuilderGame({ questions, mapType = "open", sound, r
   }
 
   if (!view) {
-    return <div className="arc-game-empty">No sentence-builder items in this pack. Try another.</div>;
+    return (
+      <div className="arc-game-empty">
+        <p>No sentence-builder items in this pack (cards need at least two word tiles). Try another.</p>
+        <button className="lw-btn lw-btn-primary" type="button" onClick={onExit} style={{ marginTop: 12 }}>
+          ← Back to setup
+        </button>
+      </div>
+    );
   }
 
   const q = questions[view.qIndex] || questions[questions.length - 1];

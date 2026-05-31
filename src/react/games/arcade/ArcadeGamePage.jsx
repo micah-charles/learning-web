@@ -23,7 +23,7 @@ import {
   listDatasetsBySubjectAndCurriculum,
   listSentenceBuilderPacksBySubjectAndCurriculum,
 } from "@/data.js";
-import { loadStoredState, saveStoredState, recordWordAnswer, recordArcadeResult } from "@/storage.js";
+import { recordWordAnswer, recordArcadeResult } from "@/storage.js";
 import { useArcadeContent } from "./hooks/useArcadeContent.js";
 import { useArcadeSound } from "./hooks/useArcadeSound.js";
 import QuizHuntGame from "./QuizHuntGame.jsx";
@@ -38,15 +38,6 @@ const MAP_TYPES = [
   { id: "pillars", label: "Pillars" },
 ];
 
-function loadArcadePrefs() {
-  return loadStoredState().prefs.arcade;
-}
-function saveArcadePrefs(arcade) {
-  const state = loadStoredState();
-  state.prefs.arcade = arcade;
-  saveStoredState(state);
-}
-
 const REDUCED_MOTION =
   typeof window !== "undefined" && window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -54,13 +45,18 @@ const REDUCED_MOTION =
 
 export default function ArcadeGamePage() {
   const { manifest, loading: manifestLoading } = useManifest();
-  const { updateProgress } = useProgress();
+  // `progress` is the full stored state (incl. prefs); persist arcade prefs THROUGH
+  // the provider so normal progress writes (recordWordAnswer/recordArcadeResult)
+  // never clobber them with stale provider state.
+  const { progress, updateProgress } = useProgress();
 
-  const [prefs, setPrefs] = useState(() => loadArcadePrefs());
+  const [prefs, setPrefs] = useState(() => progress.prefs.arcade);
   const [started, setStarted] = useState(false);
 
-  // Persist prefs whenever they change.
-  useEffect(() => { saveArcadePrefs(prefs); }, [prefs]);
+  // Persist prefs through the provider whenever they change.
+  useEffect(() => {
+    updateProgress((state) => { state.prefs.arcade = prefs; });
+  }, [prefs, updateProgress]);
 
   function setPref(key, value) { setPrefs((p) => ({ ...p, [key]: value })); }
 
