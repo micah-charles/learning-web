@@ -40,16 +40,22 @@ export default function GameBoard({ map, cellPx, tokens = [], segments = [], pla
           style={{ width: cellPx, height: cellPx, transform: `translate(${w.x * cellPx}px, ${w.y * cellPx}px)` }} />
       ))}
 
-      {/* Collectible tokens */}
-      {tokens.map((t) => (
-        <div
-          key={t.id}
-          className={`arc-token arc-token--${t.state || "neutral"}`}
-          style={tileStyle(t.x, t.y, cellPx, reducedMotion)}
-        >
-          <span className="arc-token-text">{t.text}</span>
-        </div>
-      ))}
+      {/* Collectible tokens. Wide words are rotated to read vertically
+          (bottom-to-top) so they don't sprawl across the board; short words
+          stay horizontal. Threshold scales with the cell size. */}
+      {tokens.map((t) => {
+        const estWidth = String(t.text || "").length * 8 + 20;
+        const vertical = estWidth > cellPx * 2.3;
+        return (
+          <div
+            key={t.id}
+            className={`arc-token arc-token--${t.state || "neutral"}${vertical ? " arc-token--vertical" : ""}`}
+            style={tileStyle(t.x, t.y, cellPx, reducedMotion)}
+          >
+            <span className="arc-token-text">{t.text}</span>
+          </div>
+        );
+      })}
 
       {/* Entity segments (body first, head last so the head renders on top) */}
       {segments.map((s, i) => (
