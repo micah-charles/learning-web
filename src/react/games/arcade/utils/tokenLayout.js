@@ -1,67 +1,72 @@
 /**
  * tokenLayout.js — how a word-pill maps onto grid cells.
  *
- * A pill is rendered as a single line of text. Long words are rotated 90°
- * (vertical, bottom-to-top). Either way the pill visually spans several cells,
- * so for placement AND collision we treat a token as occupying that whole line
- * of cells ("footprint"). This guarantees:
- *   - pills never overlap each other (placement reserves footprints),
- *   - the player can never sit *under* a pill without eating it (collision
- *     checks the footprint, not just the anchor cell).
+ * A pill renders as one line of text; long words are rotated 90° (vertical,
+ * bottom-to-top). Either way the pill spans some pixels along its text axis, so
+ * we map that onto grid cells by how much of each cell the pill actually covers.
  *
- * The orientation/threshold here MUST match GameBoard's rendering.
+ * Two coverage thresholds are used:
+ *   - COLLIDE (0.5): the player only "eats" a word when it's ≥50% under the pill
+ *     → no false hits when merely next to a pill.
+ *   - RESERVE (0.18): placement reserves any cell the pill noticeably touches
+ *     → pills never visually overlap each other or the player.
+ *
+ * Orientation/threshold here MUST match GameBoard's rendering.
  */
 import { floorCells, cellKey, isFloor } from "../engine/grid.js";
 import { shuffle } from "@/utils.js";
 
-/** Estimated pill length in px along its text axis. */
+const COLLIDE_COVERAGE = 0.5;
+const RESERVE_COVERAGE = 0.18;
+
+/** Estimated pill length in px along its text axis (bold ~0.8rem). */
 function estTextPx(text) {
   return String(text || "").length * 8 + 20;
 }
 
-/** @returns {{ vertical: boolean, spanCells: number }} */
+/** @returns {{ vertical: boolean, estPx: number }} */
 export function tokenLayout(text, cellPx) {
   const estPx = estTextPx(text);
-  const vertical = estPx > cellPx * 2.3;
-  const spanCells = Math.max(1, Math.ceil(estPx / cellPx));
-  return { vertical, spanCells };
+  // Prefer horizontal; only rotate when the word is much wider than a cell.
+  const vertical = estPx > cellPx * 2.4;
+  return { vertical, estPx };
 }
 
-/** The line of cells a token's pill covers, centred on its anchor cell. */
-export function tokenCells(anchorX, anchorY, text, cellPx) {
-  const { vertical, spanCells } = tokenLayout(text, cellPx);
-  const before = Math.floor((spanCells - 1) / 2);
-  const after = spanCells - 1 - before;
+/**
+ * The cells a token's pill covers by at least `minCoverage` of the cell,
+ * centred on the anchor. The anchor cell is always included.
+ */
+export function tokenCells(anchorX, anchorY, text, cellPx, minCoverage = COLLIDE_COVERAGE) {
+  const { vertical, estPx } = tokenLayout(text, cellPx);
+  const half = estPx / 2;
+  const reach = Math.ceil(half / cellPx) + 1;
   const cells = [];
-  for (let d = -before; d <= after; d++) {
-    cells.push(vertical ? { x: anchorX, y: anchorY + d } : { x: anchorX + d, y: anchorY });
+  for (let i = -reach; i <= reach; i++) {
+    const lo = i * cellPx - cellPx / 2;
+    const hi = i * cellPx + cellPx / 2;
+    const overlap = Math.max(0, Math.min(hi, half) - Math.max(lo, -half));
+    if (i === 0 || overlap / cellPx >= minCoverage) {
+      cells.push(vertical ? { x: anchorX, y: anchorY + i } : { x: anchorX + i, y: anchorY });
+    }
   }
   return cells;
 }
 
-/** Does this token's footprint cover (px, py)? Used for collision. */
+/** Collision test: is (px,py) at least 50% under this token's pill? */
 export function tokenContains(token, px, py, cellPx) {
-  return tokenCells(token.x, token.y, token.text, cellPx).some((c) => c.x === px && c.y === py);
+  return tokenCells(token.x, token.y, token.text, cellPx, COLLIDE_COVERAGE)
+    .some((c) => c.x === px && c.y === py);
 }
 
 /**
- * Place a set of word items so no two pills overlap and none covers a reserved
- * cell (e.g. the player). Longest words are placed first (hardest to fit). If a
- * non-overlapping spot can't be found for a word, it falls back to any free
- * anchor (degrading gracefully rather than dropping the word).
- *
- * @param {GameMap} map
- * @param {object[]} items     [{ text, ...payload }]
- * @param {{x,y}[]} reserved   cells to keep clear (player) — reserved with a 1-ring margin
- * @param {number} cellPx
- * @returns {object[]} items with { x, y } anchors added
+ * Place word items so no two pills overlap and none covers a reserved cell
+ * (the player + a one-cell ring). Longest words first; graceful fallback if the
+ * board is tight.
  */
 export function placeTokensNoOverlap(map, items, reserved, cellPx) {
   const occupied = new Set();
   const mark = (x, y) => occupied.add(cellKey(x, y));
 
-  // Reserve the player cell(s) plus a one-cell ring so a pill never spawns on
-  // top of / immediately touching the player.
   for (const r of reserved) {
     for (let dy = -1; dy <= 1; dy++) {
       for (let dx = -1; dx <= 1; dx++) mark(r.x + dx, r.y + dy);
@@ -73,7 +78,7 @@ export function placeTokensNoOverlap(map, items, reserved, cellPx) {
   );
   const pool = interior.length ? interior : floorCells(map);
 
-  const footprintFree = (cells) =>
+  const free = (cells) =>
     cells.every((c) => isFloor(map, c.x, c.y) && !occupied.has(cellKey(c.x, c.y)));
 
   const order = [...items].sort((a, b) => String(b.text).length - String(a.text).length);
@@ -81,17 +86,16 @@ export function placeTokensNoOverlap(map, items, reserved, cellPx) {
 
   for (const item of order) {
     let anchor = null;
-    let cells = null;
+    let footprint = null;
     for (const c of shuffle(pool)) {
-      const fc = tokenCells(c.x, c.y, item.text, cellPx);
-      if (footprintFree(fc)) { anchor = c; cells = fc; break; }
+      const fc = tokenCells(c.x, c.y, item.text, cellPx, RESERVE_COVERAGE);
+      if (free(fc)) { anchor = c; footprint = fc; break; }
     }
     if (!anchor) {
-      // Relaxed: any free anchor cell (allow pill overlap rather than no token).
       anchor = shuffle(pool).find((c) => !occupied.has(cellKey(c.x, c.y))) || pool[0];
-      cells = tokenCells(anchor.x, anchor.y, item.text, cellPx);
+      footprint = tokenCells(anchor.x, anchor.y, item.text, cellPx, RESERVE_COVERAGE);
     }
-    for (const c of cells) mark(c.x, c.y); // footprint-only (pills may sit adjacent, not overlapping)
+    for (const c of footprint) mark(c.x, c.y);
     placed.push({ ...item, x: anchor.x, y: anchor.y });
   }
 
