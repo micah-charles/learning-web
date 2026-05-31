@@ -13,6 +13,8 @@
  *   playerEmoji string  glyph for the head (🦊 / 🐍)
  *   reducedMotion bool
  */
+import { tokenLayout } from "../utils/tokenLayout.js";
+
 function tileStyle(x, y, cellPx, reducedMotion) {
   return {
     width: cellPx,
@@ -40,16 +42,21 @@ export default function GameBoard({ map, cellPx, tokens = [], segments = [], pla
           style={{ width: cellPx, height: cellPx, transform: `translate(${w.x * cellPx}px, ${w.y * cellPx}px)` }} />
       ))}
 
-      {/* Collectible tokens */}
-      {tokens.map((t) => (
-        <div
-          key={t.id}
-          className={`arc-token arc-token--${t.state || "neutral"}`}
-          style={tileStyle(t.x, t.y, cellPx, reducedMotion)}
-        >
-          <span className="arc-token-text">{t.text}</span>
-        </div>
-      ))}
+      {/* Collectible tokens. Wide words are rotated to read vertically
+          (bottom-to-top) so they don't sprawl across the board; short words
+          stay horizontal. Orientation must match utils/tokenLayout. */}
+      {tokens.map((t) => {
+        const { vertical } = tokenLayout(t.text, cellPx);
+        return (
+          <div
+            key={t.id}
+            className={`arc-token arc-token--${t.state || "neutral"}${vertical ? " arc-token--vertical" : ""}`}
+            style={tileStyle(t.x, t.y, cellPx, reducedMotion)}
+          >
+            <span className="arc-token-text">{t.text}</span>
+          </div>
+        );
+      })}
 
       {/* Entity segments (body first, head last so the head renders on top) */}
       {segments.map((s, i) => (

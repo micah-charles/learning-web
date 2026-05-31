@@ -1832,8 +1832,8 @@ body.sb-split-mode .lw-app {
 .arc-start-btn { font-size: 1.05rem; padding: 12px 28px; }
 
 /* ── Game shell ── */
-.arc-game { position: relative; display: flex; flex-direction: column; gap: 10px; min-height: calc(100vh - 230px); }
-@media (max-width: 760px) { .arc-game { min-height: calc(100vh - 170px); gap: 8px; } }
+.arc-game { position: relative; display: flex; flex-direction: column; gap: 10px; min-height: calc(100vh - 170px); }
+@media (max-width: 760px) { .arc-game { min-height: calc(100vh - 140px); gap: 8px; } }
 
 /* HUD */
 .arc-hud {
@@ -1853,7 +1853,7 @@ body.sb-split-mode .lw-app {
 
 /* Board */
 .arc-board-wrap {
-  position: relative; flex: 1; min-height: 260px;
+  position: relative; flex: 1; min-height: min(60vh, 520px);
   display: flex; align-items: center; justify-content: center;
   border-radius: 16px; overflow: hidden; touch-action: none;
   background: radial-gradient(120% 120% at 50% 0%, #20283b 0%, #141a28 70%);
@@ -1885,6 +1885,10 @@ body.sb-split-mode .lw-app {
 }
 .arc-token--correct .arc-token-text { background: #7be0a0; box-shadow: 0 0 12px rgba(123, 224, 160, 0.6); }
 .arc-token--wrong .arc-token-text { background: #ff8d7a; box-shadow: 0 0 12px rgba(255, 141, 122, 0.6); }
+/* Wide pills read vertically (90° anticlockwise → bottom-to-top). The pill keeps
+   its horizontal content layout and is only rotated, so it stays centred on its
+   grid cell and overflows vertically instead of horizontally. */
+.arc-token--vertical .arc-token-text { transform: rotate(-90deg); }
 
 .arc-seg { position: absolute; top: 0; left: 0; box-sizing: border-box; padding: 4px; }
 .arc-seg::after { content: ""; display: block; width: 100%; height: 100%; border-radius: 50%; background: #5fae9a; box-shadow: 0 0 8px rgba(95, 174, 154, 0.5); }
