@@ -7,15 +7,17 @@
  */
 import { useState, useLayoutEffect, useRef } from "react";
 
-const CELL_MIN = 30;
-const CELL_MAX = 62;
+const CELL_MIN = 34;
+const CELL_MAX = 104;
 
 function compute(box) {
   const w = box.width || 320;
   const h = box.height || 320;
   const landscape = w >= h;
-  const cols = landscape ? 11 : 9;
-  const rows = landscape ? 8 : 11;
+  // Fewer rows/cols → larger cells, so multi-word answers fit horizontally
+  // (and the board reads bigger) instead of everything rotating vertical.
+  const cols = landscape ? 10 : 8;
+  const rows = landscape ? 7 : 11;
   const cell = Math.max(
     CELL_MIN,
     Math.min(CELL_MAX, Math.floor(Math.min(w / cols, h / rows))),
