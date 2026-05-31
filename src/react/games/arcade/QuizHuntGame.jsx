@@ -14,7 +14,8 @@
  */
 import { useRef, useState, useEffect, useCallback } from "react";
 import { generateMap } from "./maps/mapGenerator.js";
-import { stepInDirection, randomFloorCells, cellKey, isFloor } from "./engine/grid.js";
+import { stepInDirection, isFloor } from "./engine/grid.js";
+import { placeTokensNoOverlap, tokenContains } from "./utils/tokenLayout.js";
 import { useGameLoop } from "./engine/useGameLoop.js";
 import { useArcadeControls } from "./hooks/useArcadeControls.js";
 import { useBoardMetrics } from "./hooks/useBoardMetrics.js";
@@ -38,23 +39,21 @@ function nearestFloor(map, x, y) {
   return { x: 0, y: 0 };
 }
 
-function placeTokens(g) {
+function placeTokens(g, cellPx) {
   const q = g.questions[g.qIndex];
-  // Correct first so it is always included even if few free cells exist.
-  const answers = [
+  const items = [
     { text: q.correctAnswer, isCorrect: true },
     ...q.distractors.map((d) => ({ text: d, isCorrect: false })),
   ];
-  const occupied = new Set([cellKey(g.player.x, g.player.y)]);
-  const cells = randomFloorCells(g.map, answers.length, occupied, { interior: true });
-  g.tokens = answers.slice(0, cells.length).map((a, i) => ({
+  const placed = placeTokensNoOverlap(g.map, items, [g.player], cellPx);
+  g.tokens = placed.map((a, i) => ({
     id: `tok_${g.qIndex}_${i}`,
-    x: cells[i].x, y: cells[i].y,
+    x: a.x, y: a.y,
     text: a.text, isCorrect: a.isCorrect, state: "neutral",
   }));
 }
 
-function initState(map, questions, goal) {
+function initState(map, questions, goal, cellPx) {
   const player = nearestFloor(map, Math.floor(map.cols / 2), Math.floor(map.rows / 2));
   const g = {
     map, questions, goal,
@@ -65,7 +64,7 @@ function initState(map, questions, goal) {
     correct: 0, answered: 0, freeze: 0,
     timeLeft: goal.mode === "time" ? goal.target : null,
   };
-  placeTokens(g);
+  placeTokens(g, cellPx);
   return g;
 }
 
@@ -79,7 +78,7 @@ function snapshot(g) {
   };
 }
 
-function step(g, direction, dt) {
+function step(g, direction, dt, cellPx) {
   const events = [];
   if (g.status !== "playing") return events;
 
@@ -99,7 +98,9 @@ function step(g, direction, dt) {
   // the fox is stuck against a wall after a hit.
   if (g.player.x === prevPos.x && g.player.y === prevPos.y) return events;
   const q = g.questions[g.qIndex];
-  const hit = g.tokens.find((t) => t.x === g.player.x && t.y === g.player.y);
+  // Footprint collision: the fox eats a word if it touches ANY cell the pill
+  // covers, so it can never sit visually on top of a word without eating it.
+  const hit = g.tokens.find((t) => tokenContains(t, g.player.x, g.player.y, cellPx));
   if (!hit) return events;
 
   g.answered += 1;
@@ -115,7 +116,7 @@ function step(g, direction, dt) {
     } else {
       // Cycle questions (wrap) so time/large-count goals keep going on small packs.
       g.qIndex = (g.qIndex + 1) % g.questions.length;
-      placeTokens(g);
+      placeTokens(g, cellPx);
     }
   } else {
     g.lives -= 1;
@@ -141,6 +142,8 @@ const DEFAULT_GOAL = { mode: "questions", target: 20 };
 export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord }) {
   const wrapRef = useRef(null);
   const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
+  const cellPxRef = useRef(cellPx);
+  cellPxRef.current = cellPx;
   const gRef = useRef(null);
   const [view, setView] = useState(null);
   const [paused, setPaused] = useState(false);
@@ -149,10 +152,10 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
   useEffect(() => {
     if (!questions || questions.length === 0) { gRef.current = null; setView(null); return; }
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions, goal);
+    gRef.current = initState(map, questions, goal, cellPx);
     setView(snapshot(gRef.current));
     setPaused(false);
-  }, [questions, mapType, cols, rows, goal]);
+  }, [questions, mapType, cols, rows, goal, cellPx]);
 
   const onDirection = useCallback(() => {
     const g = gRef.current;
@@ -179,7 +182,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
   const handleStep = useCallback((dt) => {
     const g = gRef.current;
     if (!g) return;
-    const events = step(g, directionRef.current, dt);
+    const events = step(g, directionRef.current, dt, cellPxRef.current);
     // Stand still after eating any token (correct or wrong) — the player must
     // give a fresh input to start moving again.
     if (events.some((e) => e.type === "correct" || e.type === "wrong")) {
@@ -198,7 +201,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
 
   function restart() {
     const map = generateMap(mapType, cols, rows);
-    gRef.current = initState(map, questions, goal);
+    gRef.current = initState(map, questions, goal, cellPx);
     directionRef.current = "none";
     setView(snapshot(gRef.current));
     setPaused(false);
