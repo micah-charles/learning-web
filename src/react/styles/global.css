@@ -1873,10 +1873,13 @@ body.sb-split-mode .lw-app {
 }
 .arc-token-text {
   display: inline-flex; align-items: center; justify-content: center;
-  white-space: nowrap; width: auto; max-width: 160px; height: 72%;
-  padding: 3px 9px; border-radius: 9px; line-height: 1;
-  font-weight: 700; font-size: clamp(0.62rem, 1.7vw, 0.84rem);
+  flex: none;                       /* keep full content width — never shrink to the cell */
+  white-space: nowrap; width: max-content; max-width: min(260px, 78vw); height: 72%;
+  padding: 3px 11px; border-radius: 9px; line-height: 1;
+  font-weight: 700; font-size: clamp(0.6rem, 1.6vw, 0.82rem);
   color: #0e1422; background: #ffd66b;
+  /* Pill is content-width (flex:none), so this only ever trims a pathologically
+     long answer past max-width — normal multi-word terms show in full. */
   overflow: hidden; text-overflow: ellipsis;
   box-shadow: 0 0 10px rgba(255, 214, 107, 0.55), inset 0 -2px 0 rgba(0,0,0,0.12);
 }
