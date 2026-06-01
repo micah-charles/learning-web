@@ -8,13 +8,14 @@
 
 ## Quick orientation
 
-- Single-page vanilla JS app (no framework) built with Vite. All state in `localStorage` under key `learningGermanWeb.v1`.
-- Nine tabs: **Home**, **Vocabulary**, **Quiz**, **Crossword**, **Reading**, **Builder**, **Review**, **About**, **Admin**.
-- Every tab uses the "Subject First" UX: a card grid (`What are you learning?`) filters the pack dropdown by subject. Curriculum pills (`All / KS3 / GCSE / Other`) further narrow the list.
-- Valid subjects: `language | history | geography | science | literature | computing | other` (defined in `data.js:SUBJECTS`).
+- **React 18 + Vite** single-page app (since PR #110) built over a **shared vanilla JS engine** (`quiz.js`, `data.js`, `storage.js`, `admin-storage.js`, `progress.js`, `utils.js`, `crossword.js`, …) that the React hooks/pages import directly. All state in `localStorage` under key `learningGermanWeb.v1`.
+- **`docs/REACT_ARCHITECTURE.md` is authoritative** for the current app shell (routing, providers, pages, Arcade module). The sections below document the **shared engine** and the **legacy vanilla UI** (`src/main.js`, kept for reference) — the React pages mirror its behaviour but render with React, not `renderApp()`.
+- React tabs (`NavBar.jsx`): **Home, Language Ladder, Quiz, Arcade, Vocabulary, Reading, Builder, Crossword, Progress, My Packs, About** (+ AI Pack Creator, reached from My Packs / Hero). Legacy vanilla tabs were: Home, Vocabulary, Quiz, Crossword, Reading, Builder, Review, About, Admin.
+- Every tab uses the "Subject First" UX: a card grid (`What are you learning?`) filters the pack dropdown by subject. Curriculum pills further narrow the list — built-in `All / KS3 / US Middle School / Other` plus any pack-supplied curriculum, discovered dynamically via `listCurricula()` (never hardcoded).
+- Valid subjects: `language | history | geography | science | literature | computing | religion | other` (defined in `data.js:SUBJECTS`).
 - `getDatasetSubject(dataset)` / `inferSubject(dataset)` are the single source of truth for a pack's subject — never hardcode subject strings from pack IDs.
 - Mastery threshold: `correct >= 3 && streak >= 2` (checked by `isMasteredProgress` in `storage.js`).
-- Every render is a full re-render of `#app`; there is no virtual DOM. `renderApp()` is called after every state change.
+- *(Legacy vanilla UI only)* Every render is a full re-render of `#app`; there is no virtual DOM — `renderApp()` is called after every state change. The current React app uses React's virtual DOM and per-component state instead.
 - `persisted` (loaded from `loadStoredState()`) holds all user prefs and progress. `runtime` holds ephemeral session objects that are **not** persisted.
 - Packs are loaded on demand via `loadVocabItems` / `loadUnifiedPack` etc. from `data.js`; results are cached in `jsonCache`.
 - The **Study Book drawer** lives in `#study-book-root` — a sibling of `#app` in `index.html` — so it survives full `renderApp()` re-renders. It is managed entirely by `src/study-book.js` + the Study Book block in `main.js`. Its state lives in `runtime.studyBook` (never persisted).
@@ -26,7 +27,12 @@
 
 ### Navigation
 
-`TABS` constant in `main.js` defines the tab bar in order:
+> **React app (current):** `TABS` in `src/react/components/layout/NavBar.jsx`:
+> `home | language | quiz | arcade | vocab | reading | builder | crossword | progress | mypacks | about`
+> (plus `ai-prompt`, reached from My Packs / Hero rather than the tab bar). See
+> `docs/REACT_ARCHITECTURE.md` §3–4 and §16 (Arcade) for the authoritative routing.
+
+Legacy vanilla `main.js` `TABS` (kept for reference) defined the tab bar as:
 
 ```
 home | vocab | quiz | crossword | reading | builder | review | about | admin
@@ -273,6 +279,17 @@ Shows passage packs (packs with `capabilities: ["passages"]`). Grouped by passag
 
 The tab has two states: **setup** (`runtime.passages.started === false`) and **active reading session** (`runtime.passages.started === true`).
 
+> **React app (current `ReadingPage.jsx`):** the active session is a split-panel
+> "Context Viewer" — passage on the left, a sticky **one-question-at-a-time**
+> panel on the right, with paragraph numbering and "Show evidence" jump links
+> (`question.sourceRef`). For **language packs the primary passage is the
+> source language** (e.g. German); the `prefs.passages.showGerman` checkbox
+> (labelled "Show translation") reveals the English translation, and the audio
+> button reads the source-language passage as a play/stop toggle. Questions are
+> MCQ **or written** — open questions render a textarea; on reveal the student's
+> answer is shown next to the model answer. Monolingual English packs are
+> unaffected (`sourceText === targetText`).
+
 ### Reading setup controls
 
 | Control | Type | Values | Prefs key | Effect |
@@ -354,6 +371,55 @@ Independent tile-drag drill. Loads from `sentenceBuilderPacks` in manifest (sepa
   feedback,        // null | { tone, title, body }
 }
 ```
+
+---
+
+## Tab: Arcade (React only)
+
+**Route:** `activeTab === "arcade"` → `src/react/games/arcade/ArcadeGamePage.jsx`
+**Engine:** lightweight React + `requestAnimationFrame` (no Canvas, no game library)
+
+"FoxChild Arcade" turns existing packs into a PacMan/Snake-style game. It reuses
+the unified schema and normalised loaders — no new content system. Full
+architecture: `docs/REACT_ARCHITECTURE.md` §16.
+
+### Setup controls
+
+| Control | Values | Pref |
+|---|---|---|
+| Game mode | Quiz Hunt 🦊 / Sentence Snake 🐍 | `prefs.arcade.mode` |
+| Subject | `SubjectCardGrid` (counts per mode) | `prefs.arcade.subject` |
+| Curriculum | dynamic (`listCurricula`) | `prefs.arcade.curriculum` |
+| Pack | vocab dataset (Quiz Hunt) / builder pack (Snake) | `prefs.arcade.datasetId` / `packId` |
+| Map | Open field / Pillars | `prefs.arcade.mapType` |
+| Challenge | 20 / 40 / 60 questions · 5-minute rush · Endless | `prefs.arcade.goal` |
+| Sound | on/off (muteable WebAudio blips) | `prefs.arcade.sound` |
+
+### Modes
+
+- **Quiz Hunt** — built from a vocab pack via `gameQuestionAdapter`. The HUD shows
+  the prompt (English/definition); the fox must eat the correct term token and
+  avoid distractors (wrong = lose a life + brief freeze + combo reset). Always 3
+  lives.
+- **Sentence Snake** — built from a `sentenceBuilder` pack. The snake must eat the
+  sentence's word tokens **in order** (it grows as it builds the sentence);
+  out-of-order or decoy words cost a life. Multilingual and subject-agnostic.
+
+### Controls & gameplay
+
+- **Move:** swipe (touch), arrow keys / WASD (desktop), or the on-screen D-pad.
+  Pause: Esc/P or the ⏸ button. The player **stands still after eating** a token —
+  give a fresh input to move again.
+- **Tokens** can span several cells (wide horizontal, or rotated 90° vertical for
+  long words). Collision is coverage-based (you only eat a word when ≥50% under
+  the pill); placement reserves each word's footprint so pills never overlap.
+
+### Progress
+
+- Per-answer correctness feeds the existing word mastery (`progress.words`).
+- Round bests are stored in `progress.arcadeStats[mode]` (`recordArcadeResult`).
+- All persisted through `ProgressContext.updateProgress` (RC15) — `prefs.arcade`
+  and progress share one stored-state write.
 
 ---
 
@@ -656,6 +722,21 @@ Storage key: `learningGermanWeb.v1`
       datasetId,              // "core"
       sort,                   // "needsReview"
     },
+    promptBuilder: {
+      // AI Pack Creator form (subject, topic, level, curriculum, itemTypes, …)
+      promptTemplate,         // "standard" | "lit-11plus" | "gcse-science" | … (promptConfigs.js)
+      tourSeen,               // false — guided-tour hint flag
+    },
+    arcade: {                 // FoxChild Arcade (arcade tab)
+      mode,                   // "quiz-hunt" | "snake-builder"
+      subject,                // "language"
+      curriculum,             // "all"
+      datasetId,              // quiz-hunt source (revision dataset), "core"
+      packId,                 // snake-builder source (sentenceBuilder pack)
+      mapType,                // "open" | "pillars"
+      goal,                   // "q20" | "q40" | "q60" | "time5" | "endless"
+      sound,                  // true
+    },
   },
   progress: {
     words: {
@@ -673,6 +754,9 @@ Storage key: `learningGermanWeb.v1`
     },
     passageStats: {
       [packId]: { passagesCompleted }
+    },
+    arcadeStats: {            // FoxChild Arcade bests, keyed by mode
+      [mode]: { plays, bestScore, bestStreak, lastPlayedAt }
     },
   }
 }
