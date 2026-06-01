@@ -31,9 +31,10 @@ import MyPacksPage      from "./pages/MyPacksPage.jsx";
 import AboutPage        from "./pages/AboutPage.jsx";
 import AIPromptBuilder  from "./pages/AIPromptBuilder.jsx";
 import ArcadeGamePage   from "./games/arcade/ArcadeGamePage.jsx";
+import SmartTestPage    from "./pages/SmartTestPage.jsx";
 
 // Tabs that have active sessions — re-clicking asks the user to confirm reload.
-const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword"]);
+const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword", "smart-test"]);
 
 function AppContent() {
   const [activeTab, setActiveTab]         = useState("home");
@@ -81,7 +82,8 @@ function AppContent() {
         {activeTab === "mypacks"   && <MyPacksPage   onNavigate={handleNavigate} />}
         {activeTab === "about"     && <AboutPage     />}
         {activeTab === "ai-prompt" && <AIPromptBuilder onNavigate={handleNavigate} />}
-        {activeTab === "arcade"    && <ArcadeGamePage />}
+        {activeTab === "arcade"     && <ArcadeGamePage />}
+        {activeTab === "smart-test" && <SmartTestPage  />}
       </main>
 
       {/* Study Book drawer — rendered once here so it persists across tab switches */}
