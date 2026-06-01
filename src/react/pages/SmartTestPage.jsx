@@ -11,7 +11,7 @@
  * Uses ManifestContext, ProgressContext. No direct localStorage.
  */
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { useManifest }  from "../context/ManifestContext.jsx";
 import { useProgress }  from "../context/ProgressContext.jsx";
 import { useSmartTestSession, calcScore } from "../hooks/useSmartTestSession.js";
@@ -212,6 +212,117 @@ function FlashcardSection({ section, sectionNumber, totalSections, onAssess, onF
   );
 }
 
+// ─── Sentence Builder Section ─────────────────────────────────────────────────
+
+function BuilderSection({ section, sectionNumber, totalSections, onSubmit, onNext, onFinishSection }) {
+  const question = section.questions[section.currentIndex];
+  if (!question) return null;
+  // Key by question id so each question mounts a fresh inner widget with clean state.
+  return (
+    <BuilderQuestion
+      key={question.id}
+      question={question}
+      section={section}
+      sectionNumber={sectionNumber}
+      totalSections={totalSections}
+      onSubmit={onSubmit}
+      onNext={onNext}
+      onFinishSection={onFinishSection}
+    />
+  );
+}
+
+function BuilderQuestion({ question, section, sectionNumber, totalSections, onSubmit, onNext, onFinishSection }) {
+  const answered = section.answers[question.id];
+  const isLast   = section.currentIndex >= section.questions.length - 1;
+
+  // Fresh per-question state (component is keyed by question.id at the parent).
+  const initialPool = question.shuffledTiles.map((t, i) => ({ t, key: `${i}-${t}` }));
+  const [built, setBuilt] = useState([]);
+  const [pool, setPool]   = useState(initialPool);
+
+  function placeTile(idx) {
+    if (answered) return;
+    const tile = pool[idx];
+    setBuilt(b => [...b, tile]);
+    setPool(p => p.filter((_, i) => i !== idx));
+  }
+  function removeTile(idx) {
+    if (answered) return;
+    const tile = built[idx];
+    setPool(p => [...p, tile]);
+    setBuilt(b => b.filter((_, i) => i !== idx));
+  }
+  function clearAll() {
+    if (answered) return;
+    setPool(question.shuffledTiles.map((t, i) => ({ t, key: `${i}-${t}` })));
+    setBuilt([]);
+  }
+  function check() {
+    onSubmit(question.id, built.map(b => b.t));
+  }
+  function goNext() {
+    if (isLast) onFinishSection(); else onNext();
+  }
+
+  return (
+    <div>
+      <SectionHeader section={section} sectionNumber={sectionNumber} totalSections={totalSections} />
+      <ProgressBar value={section.currentIndex + (answered ? 1 : 0)} max={section.questions.length} label={`Sentence ${section.currentIndex + 1} of ${section.questions.length}`} />
+
+      <div style={card}>
+        {question.topic && (
+          <div style={{ fontSize: "0.75rem", color: "var(--lw-muted)", marginBottom: "6px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em" }}>{question.topic}</div>
+        )}
+        <div style={{ fontSize: "1rem", fontWeight: 700, color: "var(--lw-ink)", marginBottom: "14px" }}>
+          {question.prompt}
+        </div>
+
+        {/* Built answer line */}
+        <div style={{ minHeight: "44px", padding: "8px", borderRadius: "var(--lw-radius-sm)", border: "1.5px dashed var(--lw-line)", display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px", background: "var(--lw-bg, #fafaf8)" }}>
+          {built.length === 0 && <span style={{ color: "var(--lw-muted)", fontSize: "0.85rem", alignSelf: "center" }}>Tap words below to build the sentence…</span>}
+          {built.map((tile, i) => (
+            <button key={tile.key} onClick={() => removeTile(i)} disabled={!!answered}
+              style={{ padding: "6px 10px", borderRadius: "6px", border: "1px solid var(--lw-blue)", background: "var(--lw-blue-soft, #e3f2fd)", color: "var(--lw-ink)", fontSize: "0.9rem", cursor: answered ? "default" : "pointer" }}>
+              {tile.t}
+            </button>
+          ))}
+        </div>
+
+        {/* Tile pool */}
+        {!answered && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "12px" }}>
+            {pool.map((tile, i) => (
+              <button key={tile.key} onClick={() => placeTile(i)}
+                style={{ padding: "6px 10px", borderRadius: "6px", border: "1px solid var(--lw-line)", background: "var(--lw-panel)", color: "var(--lw-ink)", fontSize: "0.9rem", cursor: "pointer" }}>
+                {tile.t}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Feedback after check */}
+        {answered && (
+          <div style={{ marginTop: "8px", padding: "10px 14px", borderRadius: "var(--lw-radius-sm)", background: answered.correct ? "var(--lw-green-soft, #e8f5e9)" : "var(--lw-coral-soft, #fdecea)", fontSize: "0.9rem", color: answered.correct ? "var(--lw-green)" : "var(--lw-coral)" }}>
+            {answered.correct
+              ? "✓ Correct!"
+              : <span><strong>✗ Not quite.</strong> Model answer: <span style={{ color: "var(--lw-ink)" }}>{question.answer}</span></span>}
+          </div>
+        )}
+
+        {/* Controls */}
+        <div style={{ display: "flex", gap: "8px", justifyContent: "flex-end", marginTop: "12px" }}>
+          {!answered && <button style={btn("ghost")} onClick={clearAll}>Clear</button>}
+          {!answered && <button style={{ ...btn("primary"), opacity: built.length ? 1 : 0.4 }} disabled={!built.length} onClick={check}>Check</button>}
+          {answered && (isLast
+            ? <button style={btn("primary")} onClick={goNext}>Next Section →</button>
+            : <button style={btn("primary")} onClick={goNext}>Next Sentence →</button>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Reading Section ──────────────────────────────────────────────────────────
 
 function ReadingSection({ section, sectionNumber, totalSections, onComplete }) {
@@ -340,6 +451,9 @@ function ResultsPage({ score, session, onRetry, onReset }) {
         <h3 style={{ margin: "0 0 12px", fontSize: "1rem", fontWeight: 700 }}>Score breakdown</h3>
         {score.sections.mcq && (
           <ScoreRow icon="✓" label="Knowledge Check (MCQ)" correct={score.sections.mcq.correct} total={score.sections.mcq.total} />
+        )}
+        {score.sections.builder && (
+          <ScoreRow icon="🧩" label="Sentence Builder" correct={score.sections.builder.correct} total={score.sections.builder.total} />
         )}
         {score.sections.flashcard && (
           <ScoreRow icon="💡" label="Key Concepts (Flashcard)" correct={score.sections.flashcard.known} total={score.sections.flashcard.total} />
@@ -477,7 +591,7 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
         <div style={{ display: "grid", gap: "8px" }}>
           {[
             { icon: "✓", title: "Knowledge Check", desc: "5 multiple-choice questions from vocab items" },
-            { icon: "💡", title: "Key Concepts",    desc: "3 flashcard-style self-assessment cards" },
+            { icon: "🧩", title: "Sentence Builder", desc: "3 tile-arrange questions (model exam answers)" },
             { icon: "📖", title: "Reading",          desc: "Passage study (if pack has reading content)" },
             { icon: "⚖️", title: "Evaluation",       desc: "FOR / AGAINST argument scaffold (if available)" },
           ].map(s => (
@@ -517,6 +631,7 @@ export default function SmartTestPage() {
     currentSection, sectionNumber, totalSections,
     answered, total,
     startSession, answerMcq, nextMcqQuestion,
+    submitBuilder, nextBuilderQuestion,
     assessFlashcard, completeSection, nextSection, resetSession,
     calcScore: getScore,
   } = useSmartTestSession();
@@ -618,6 +733,17 @@ export default function SmartTestPage() {
           totalSections={totalSections}
           onAnswer={handleAnswerMcq}
           onNext={nextMcqQuestion}
+          onFinishSection={handleSectionComplete}
+        />
+      )}
+
+      {sec.type === "builder" && (
+        <BuilderSection
+          section={sec}
+          sectionNumber={sectionNumber}
+          totalSections={totalSections}
+          onSubmit={submitBuilder}
+          onNext={nextBuilderQuestion}
           onFinishSection={handleSectionComplete}
         />
       )}
