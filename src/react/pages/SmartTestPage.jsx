@@ -449,15 +449,23 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
           <LabeledSelect
             label="Curriculum"
             value={prefs.curriculum || "all"}
-            options={curriculumOptions}
             onChange={v => setPrefs(p => ({ ...p, curriculum: v }))}
-          />
+          >
+            {curriculumOptions.map(o => (
+              <option key={o.id} value={o.id}>{o.label}</option>
+            ))}
+          </LabeledSelect>
           <LabeledSelect
             label="Pack"
             value={prefs.datasetId || ""}
-            options={datasetOptions.length ? datasetOptions : [{ id: "", label: "— none —" }]}
             onChange={v => setPrefs(p => ({ ...p, datasetId: v }))}
-          />
+          >
+            {!prefs.subject && <option value="">— select a subject first —</option>}
+            {datasetOptions.length === 0 && prefs.subject && <option value="">— no packs —</option>}
+            {datasetOptions.map(o => (
+              <option key={o.id} value={o.id}>{o.label}</option>
+            ))}
+          </LabeledSelect>
         </FilterRow>
       </div>
 
@@ -513,9 +521,9 @@ export default function SmartTestPage() {
     calcScore: getScore,
   } = useSmartTestSession();
 
-  // Local prefs — not persisted to DEFAULT_STATE since this is session-only
+  // Local prefs — not persisted (session-only)
   const [prefs, setPrefs] = useState({
-    subject: "history",
+    subject: "",
     curriculum: "all",
     datasetId: "",
   });
