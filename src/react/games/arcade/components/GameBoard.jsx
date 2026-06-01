@@ -30,13 +30,30 @@ export default function GameBoard({ map, cellPx, tokens = [], segments = [], pla
     return { key, x, y };
   });
 
+  // Build the border cells (perimeter ring of the grid).
+  const borderCells = [];
+  for (let x = 0; x < map.cols; x++) {
+    borderCells.push({ x, y: 0 });
+    borderCells.push({ x, y: map.rows - 1 });
+  }
+  for (let y = 1; y < map.rows - 1; y++) {
+    borderCells.push({ x: 0, y });
+    borderCells.push({ x: map.cols - 1, y });
+  }
+
   return (
     <div
       className="arc-board"
       style={{ width: map.cols * cellPx, height: map.rows * cellPx }}
       aria-hidden="false"
     >
-      {/* Walls */}
+      {/* Border cells — visible edge of the map */}
+      {borderCells.map((b) => (
+        <div key={`b_${b.x}_${b.y}`} className="arc-border-cell"
+          style={{ width: cellPx, height: cellPx, transform: `translate(${b.x * cellPx}px, ${b.y * cellPx}px)` }} />
+      ))}
+
+      {/* Pillar walls */}
       {walls.map((w) => (
         <div key={`w_${w.key}`} className="arc-wall"
           style={{ width: cellPx, height: cellPx, transform: `translate(${w.x * cellPx}px, ${w.y * cellPx}px)` }} />

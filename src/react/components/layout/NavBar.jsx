@@ -1,17 +1,18 @@
 import { useState } from "react";
 
 export const TABS = [
-  { id: "home",      label: "Home"        },
-  { id: "language",  label: "Language Ladder ✨", tone: "orange" },
-  { id: "quiz",      label: "Quiz", tone: "blue" },
-  { id: "arcade",    label: "Arcade 🎮", tone: "orange" },
-  { id: "vocab",     label: "Vocabulary"  },
-  { id: "reading",   label: "Reading"     },
-  { id: "builder",   label: "Builder"     },
-  { id: "crossword", label: "Crossword"   },
-  { id: "progress",  label: "Progress"    },
-  { id: "mypacks",   label: "My Packs"    },
-  { id: "about",     label: "About"       },
+  { id: "home",       label: "Home"        },
+  { id: "language",   label: "Language Ladder ✨", tone: "orange" },
+  { id: "quiz",       label: "Quiz", tone: "blue" },
+  { id: "smart-test", label: "Smart Test 🧪", tone: "blue" },
+  { id: "arcade",     label: "Arcade 🎮", tone: "orange" },
+  { id: "vocab",      label: "Vocabulary"  },
+  { id: "reading",    label: "Reading"     },
+  { id: "builder",    label: "Builder"     },
+  { id: "crossword",  label: "Crossword"   },
+  { id: "progress",   label: "Progress"    },
+  { id: "mypacks",    label: "My Packs"    },
+  { id: "about",      label: "About"       },
 ];
 
 const MOBILE_PRIMARY_TABS = [
@@ -23,12 +24,13 @@ const MOBILE_PRIMARY_TABS = [
 ];
 
 const MOBILE_MORE_TABS = [
-  { id: "arcade",    label: "Arcade",    icon: "🎮" },
-  { id: "builder",   label: "Builder",   icon: "🧩" },
-  { id: "crossword", label: "Crossword", icon: "✏️" },
-  { id: "progress",  label: "Progress",  icon: "📈" },
-  { id: "mypacks",   label: "My Packs",  icon: "📦" },
-  { id: "about",     label: "About",     icon: "ℹ️" },
+  { id: "smart-test", label: "Smart Test", icon: "🧪" },
+  { id: "arcade",     label: "Arcade",     icon: "🎮" },
+  { id: "builder",    label: "Builder",    icon: "🧩" },
+  { id: "crossword",  label: "Crossword",  icon: "✏️" },
+  { id: "progress",   label: "Progress",   icon: "📈" },
+  { id: "mypacks",    label: "My Packs",   icon: "📦" },
+  { id: "about",      label: "About",      icon: "ℹ️" },
 ];
 
 function DesktopNav({ active, onChange }) {
@@ -54,7 +56,7 @@ function DesktopNav({ active, onChange }) {
 function MobileTabButton({ tab, active, onClick }) {
   return (
     <button
-      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${tab.id === "language" ? " tone-orange" : ""}${tab.id === "quiz" ? " tone-blue" : ""}`}
+      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${tab.id === "language" ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test") ? " tone-blue" : ""}`}
       onClick={onClick}
       type="button"
       aria-current={active ? "page" : undefined}

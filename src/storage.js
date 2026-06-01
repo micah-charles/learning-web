@@ -88,7 +88,6 @@ export const DEFAULT_STATE = {
       curriculum: "all",
       datasetId: "core",          // quiz-hunt source (revision dataset)
       packId: "",                 // snake-builder source (sentenceBuilder pack)
-      mapType: "open",            // "open" | "pillars"
       goal: "q20",                // round goal: q20 | q40 | q60 | time5 | endless
       sound: true,
     },

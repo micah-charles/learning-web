@@ -33,10 +33,8 @@ const MODES = [
   { id: "quiz-hunt", label: "Quiz Hunt 🦊", desc: "Eat the correct answer" },
   { id: "snake-builder", label: "Sentence Snake 🐍", desc: "Build sentences in order" },
 ];
-const MAP_TYPES = [
-  { id: "open", label: "Open field" },
-  { id: "pillars", label: "Pillars" },
-];
+// Pillars only — 3-cell spacing gives 2-cell-wide corridors so Snake can manoeuvre.
+const MAP_TYPE = "pillars";
 
 // Round goals. All modes keep the 3-heart limit; these add a win/end condition.
 const GOALS = [
@@ -154,7 +152,7 @@ export default function ArcadeGamePage() {
       );
     }
     const commonProps = {
-      questions, mapType: prefs.mapType, goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
+      questions, mapType: MAP_TYPE, goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
       reducedMotion: REDUCED_MOTION, onExit: exitToSetup, onRecord: handleRecord,
     };
     return (
@@ -220,9 +218,6 @@ export default function ArcadeGamePage() {
               No {isBuilder ? "sentence-builder packs" : "vocab packs"} for this subject/curriculum yet.
             </p>
           )}
-          <LabeledSelect label="Map" value={prefs.mapType} onChange={(v) => setPref("mapType", v)}>
-            {MAP_TYPES.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
-          </LabeledSelect>
           <LabeledSelect label="Challenge" value={prefs.goal} onChange={(v) => setPref("goal", v)}>
             {GOALS.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}
           </LabeledSelect>

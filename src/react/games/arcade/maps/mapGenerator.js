@@ -1,41 +1,37 @@
 /**
- * mapGenerator.js — reusable grid-map layouts.
+ * mapGenerator.js — one map layout: "pillars".
  *
- * Layouts are intentionally simple and forgiving (this is an "educational
- * arcade", not a precision maze). All layouts guarantee a fully-connected floor
- * so collectibles are always reachable.
+ * Pillars are placed on a 3-cell grid so corridors are always 2 cells wide —
+ * wide enough for a growing snake to turn around without getting trapped.
  *
- *   "open"   → no internal walls (best for mobile / younger players)
- *   "pillars"→ a sparse grid of single-cell pillars with wide corridors
+ * Spacing 2 (old) → 1-cell corridors → snake deadlock.
+ * Spacing 3 (new) → 2-cell corridors → snake can always manoeuvre.
+ *
+ * The outer ring is always clear so the player can lap the board edge.
  */
 import { cellKey } from "../engine/grid.js";
 
 /**
- * @param {"open"|"pillars"} type
+ * Generate the pillar map for the given grid dimensions.
  * @param {number} cols
  * @param {number} rows
  * @returns {{cols:number, rows:number, walls:Set<string>, type:string}}
  */
-export function generateMap(type, cols, rows) {
+export function generateMap(_type, cols, rows) {
   const walls = new Set();
-
-  if (type === "pillars") {
-    // Place a pillar on interior cells where both coordinates are even.
-    // Keep a 1-cell margin so the outer ring is always an open corridor.
-    for (let y = 2; y < rows - 2; y += 2) {
-      for (let x = 2; x < cols - 2; x += 2) {
-        walls.add(cellKey(x, y));
-      }
+  // Pillars at every 3rd interior position.  The 2-cell gap between them is the
+  // usable corridor width; one free cell on each outer edge keeps the perimeter open.
+  for (let y = 2; y < rows - 1; y += 3) {
+    for (let x = 2; x < cols - 1; x += 3) {
+      walls.add(cellKey(x, y));
     }
   }
-  // "open" leaves walls empty.
-
-  return { cols, rows, walls, type };
+  return { cols, rows, walls, type: "pillars" };
 }
 
 /**
- * Choose sensible grid dimensions for the available pixel box, keeping cells
- * comfortably tappable on touch screens. Landscape-biased.
+ * Choose sensible grid dimensions for the available pixel box.
+ * Landscape-biased; cells are kept comfortably tappable on touch screens.
  */
 export function fitGrid(boxWidth, boxHeight, { minCell = 46, maxCols = 15, maxRows = 11 } = {}) {
   const cols = Math.max(7, Math.min(maxCols, Math.floor(boxWidth / minCell)));
