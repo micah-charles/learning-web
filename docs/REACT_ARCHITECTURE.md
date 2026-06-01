@@ -62,11 +62,14 @@ via `ProgressContext`.
 ```jsx
 const [activeTab, setActiveTab] = useState("home");
 
-// 10 tabs:
-home | language | quiz | vocab | reading | builder | crossword | progress | mypacks | about
+// Tabs (NavBar shows the main ones; ai-prompt is reached from My Packs / Hero):
+home | language | quiz | arcade | vocab | reading | builder | crossword |
+  progress | mypacks | about | ai-prompt
 
 // Each tab conditionally renders its page:
 {activeTab === "quiz" && <QuizPage initialCustomWords={quizCustomWords} />}
+{activeTab === "arcade" && <ArcadeGamePage />}
+{activeTab === "ai-prompt" && <AIPromptBuilder onNavigate={handleNavigate} />}
 ```
 
 **Session tabs** (`quiz`, `reading`, `builder`, `language`, `crossword`): re-clicking the active tab shows a confirm dialog ("Restart?"). The tab is briefly set to `"__reset__"` then back to force a remount.
@@ -82,6 +85,7 @@ home | language | quiz | vocab | reading | builder | crossword | progress | mypa
 | `home` | `HomePage.jsx` | `getDashboardSummary`, recent activity | — |
 | `language` | `LanguagePage.jsx` | vanilla `progressive-language-lesson.js` via `dangerouslySetInnerHTML` | — |
 | `quiz` | `QuizPage.jsx` | `useQuizSession`, `findDataset` | ✓ next to Start quiz |
+| `arcade` | `games/arcade/ArcadeGamePage.jsx` | `useArcadeContent` (vocab/builder packs), `recordArcadeResult` | — |
 | `vocab` | `VocabPage.jsx` | `useVocabBrowser`, `listDatasets` | — |
 | `reading` | `ReadingPage.jsx` | `useReadingSession`, `listPassageGroups` | ✓ next to Start reading |
 | `builder` | `BuilderPage.jsx` | `useBuilderSession`, `listSentenceBuilderPacks` | ✓ in stats row |
@@ -89,6 +93,7 @@ home | language | quiz | vocab | reading | builder | crossword | progress | mypa
 | `progress` | `ProgressPage.jsx` | `getDashboardSummary`, `getRecentActivity`, `SnapshotCard` stat row | — |
 | `mypacks` | `MyPacksPage.jsx` | `usePackLoader`, `rehydrate` | — |
 | `about` | `AboutPage.jsx` | static content | — |
+| `ai-prompt` | `AIPromptBuilder.jsx` | prompt templates (`promptConfigs.js`), guided tour | — |
 
 ---
 
@@ -491,5 +496,65 @@ Use this to understand what to change when modifying a feature:
 | New preference key | `storage.js` (DEFAULT_STATE) + page that uses it |
 | Upload/delete packs | `MyPacksPage.jsx` + `admin-storage.js` + call `rehydrate()` after |
 | New manifest pack | `data/generated/manifest.json` + pack JSON file in `data/Packs/` |
+| Arcade mode/tuning | `games/arcade/*` (see §16) |
+| AI Pack Creator template | `services/promptConfigs.js` + a markdown file in `public/docs/` |
 | Build configuration | `vite.config.js` |
 | Deployment | `render.yaml` |
+
+---
+
+## 16. Arcade game mode (`src/react/games/arcade/`)
+
+"FoxChild Arcade" (the `arcade` tab) turns existing packs into a PacMan/Snake-style
+game. It reuses the unified pack schema, the normalised loaders, and the
+Manifest/Progress providers — **no parallel content or storage system**.
+
+### Module layout
+
+```
+games/arcade/
+  ArcadeGamePage.jsx       setup screen + content load + progress + sound, then renders a mode
+  QuizHuntGame.jsx         Mode 1 — fox eats the correct answer token (from vocab packs)
+  SnakeBuilderGame.jsx     Mode 2 — snake eats sentence words IN ORDER (from builder packs)
+  engine/
+    grid.js                grid model + coordinate collision (DIRS, isFloor, stepInDirection, …)
+    useGameLoop.js         requestAnimationFrame loop: delta timing, discrete steps, pause
+  hooks/
+    useArcadeContent.js    loads vocab/builder packs → game questions via the adapter
+    useArcadeControls.js   swipe + WASD/arrows + D-pad → a directionRef (no re-render per key)
+    useArcadeSound.js      muteable WebAudio blips + speech (no audio assets)
+    useBoardMetrics.js     responsive grid sizing (cols/rows/cellPx) via ResizeObserver
+  maps/mapGenerator.js     open-field / pillar layouts
+  ui/                      ArcadeHud, DpadControls, PauseOverlay
+  components/GameBoard.jsx React+CSS grid renderer (no Canvas)
+  utils/
+    gameQuestionAdapter.js pack data → { quiz-hunt | snake-builder } question objects
+    tokenLayout.js         pill orientation + multi-cell footprint (placement + collision)
+```
+
+### Key patterns (see cautions RC15–RC17)
+
+- **Data-driven & multilingual.** `gameQuestionAdapter.js` maps the generic vocab
+  word shape (`de`/`en`) and builder card shape (`tiles[]`) into game questions —
+  no subject- or language-specific logic. Quiz Hunt works for any subject; Snake
+  Builder works for any `sentenceBuilder` pack.
+- **Ref-authoritative loop.** Per-step game state lives in `gRef`; React state is a
+  snapshot set once per discrete grid step (not per frame). Side effects (sound,
+  `onRecord`) fire outside state updaters. **RC16.**
+- **Multi-cell token footprint.** A pill can span cells (wide or rotated vertical);
+  `tokenLayout.js` keeps placement, rendering, and ≥50%-coverage collision in
+  sync. **RC17.**
+- **Progress + prefs.** Per-word answers feed existing word mastery
+  (`recordWordAnswer`); arcade bests live in `progress.arcadeStats` via
+  `recordArcadeResult`. `prefs.arcade` (mode/subject/curriculum/pack/map/goal/sound)
+  is persisted **through `updateProgress`**, never a side-channel save. **RC15.**
+- **Round goals.** `prefs.arcade.goal` → 20/40/60 questions, a 5-minute timer, or
+  endless; always 3 lives. Questions wrap so timed/large goals keep going on small
+  packs.
+
+### Adding a mode
+
+Mirror `QuizHuntGame.jsx`: build questions in the adapter, keep state in a ref,
+drive it with `useGameLoop`, read input from `useArcadeControls`' `directionRef`,
+render via `GameBoard`, and register the mode in `ArcadeGamePage`'s setup. Do not
+introduce a game engine or `setInterval`.

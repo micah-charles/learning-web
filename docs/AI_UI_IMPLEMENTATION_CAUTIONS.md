@@ -814,6 +814,79 @@ const [values, setValues] = useState(() => loadStoredState().prefs.promptBuilder
 
 ---
 
+### ⚠️ RC15. Arcade (and any) prefs must be written THROUGH `ProgressProvider`, not via a side-channel save
+
+`ProgressContext` keeps its **own** copy of the entire stored state and writes it
+back on every `updateProgress()`. If a page persists a preference with a
+*separate* `loadStoredState()/saveStoredState()` round-trip, the provider is now
+holding stale data — and the next normal progress write (`recordWordAnswer`,
+`recordArcadeResult`, …) clones that stale state and **overwrites your pref**.
+
+Reproduced on the Arcade page: unchecking "Sound", playing, then eating a token
+flipped `prefs.arcade.sound` back to `true`.
+
+```js
+// WRONG — side-channel save races the provider's state
+useEffect(() => { saveArcadePrefs(prefs); }, [prefs]);   // provider still has old prefs
+
+// CORRECT — persist through the same provider state everything else uses
+const { progress, updateProgress } = useProgress();      // progress = full stored state
+const [prefs, setPrefs] = useState(() => progress.prefs.arcade);
+useEffect(() => {
+  updateProgress((state) => { state.prefs.arcade = prefs; });
+}, [prefs, updateProgress]);
+```
+
+**Rule:** if a component reads/writes both `prefs.*` and `progress.*`, route *all*
+writes through `updateProgress()` so there is a single source of truth. (Still
+RC14-safe — `updateProgress` is the only thing that calls `saveStoredState`.)
+
+---
+
+### ⚠️ RC16. Arcade game loop — authoritative state in refs, `setState` once per discrete step, never per frame
+
+The arcade modes (`games/arcade/QuizHuntGame.jsx`, `SnakeBuilderGame.jsx`) run a
+`requestAnimationFrame` loop (`engine/useGameLoop.js`). Two hard rules:
+
+- **Authoritative per-step state lives in a ref** (`gRef`). React state is a cheap
+  *snapshot* set **once per discrete grid step** (~5–6×/sec), not once per
+  animation frame. A per-frame `setState` would rebuild the React tree 60×/sec.
+- **Side effects fire imperatively in the step handler**, never inside a state
+  updater (RC9). The loop reads `onStep`/`stepInterval` from refs so a changing
+  callback never restarts or staleness-traps it; the rAF is started/stopped in a
+  `useEffect` with cleanup (StrictMode-safe).
+- **Directional input** is buffered in a ref (`directionRef`) written by
+  `useArcadeControls` (swipe + WASD/arrows + D-pad) and read each step — no
+  re-render per keypress. To make the player stop after an event, the handler
+  resets `directionRef.current = "none"`.
+
+If you add a mode, copy this discipline. Do **not** drive movement with
+`setInterval`, and do **not** `setState` inside the rAF tick.
+
+---
+
+### ⚠️ RC17. Arcade tokens occupy a multi-cell *footprint* — placement, rendering, and collision must agree
+
+A word pill can span several grid cells (wide horizontal, or rotated 90°
+vertical for long words). `utils/tokenLayout.js` is the single source of truth:
+
+- `tokenLayout(text, cellPx)` decides orientation (rotate only when the word is
+  much wider than a cell) — **GameBoard rendering must use the same call** so the
+  visual matches the logic.
+- `tokenCells(...)` maps a pill to the cells it covers by a coverage threshold:
+  collision uses **≥50%** (`tokenContains`) so the player only "eats" a word when
+  genuinely under it (no phantom touches when merely beside one); placement
+  reserves any cell touched **≥18%** so pills never visually overlap each other
+  or the player.
+- `placeTokensNoOverlap(...)` reserves each footprint (+ a ring around the player)
+  and places longest words first, with a graceful fallback if the board is tight.
+
+Collision and rendering both depend on the live `cellPx`; thread it through
+`step()`/`initState()` (via a `cellPxRef`) — a stale cell size desyncs the
+footprint from what is drawn.
+
+---
+
 ## PART C — Build & Deployment
 
 ---

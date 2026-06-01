@@ -26,7 +26,12 @@
 
 ### Navigation
 
-`TABS` constant in `main.js` defines the tab bar in order:
+> **React app (current):** `TABS` in `src/react/components/layout/NavBar.jsx`:
+> `home | language | quiz | arcade | vocab | reading | builder | crossword | progress | mypacks | about`
+> (plus `ai-prompt`, reached from My Packs / Hero rather than the tab bar). See
+> `docs/REACT_ARCHITECTURE.md` §3–4 and §16 (Arcade) for the authoritative routing.
+
+Legacy vanilla `main.js` `TABS` (kept for reference) defined the tab bar as:
 
 ```
 home | vocab | quiz | crossword | reading | builder | review | about | admin
@@ -273,6 +278,17 @@ Shows passage packs (packs with `capabilities: ["passages"]`). Grouped by passag
 
 The tab has two states: **setup** (`runtime.passages.started === false`) and **active reading session** (`runtime.passages.started === true`).
 
+> **React app (current `ReadingPage.jsx`):** the active session is a split-panel
+> "Context Viewer" — passage on the left, a sticky **one-question-at-a-time**
+> panel on the right, with paragraph numbering and "Show evidence" jump links
+> (`question.sourceRef`). For **language packs the primary passage is the
+> source language** (e.g. German); the `prefs.passages.showGerman` checkbox
+> (labelled "Show translation") reveals the English translation, and the audio
+> button reads the source-language passage as a play/stop toggle. Questions are
+> MCQ **or written** — open questions render a textarea; on reveal the student's
+> answer is shown next to the model answer. Monolingual English packs are
+> unaffected (`sourceText === targetText`).
+
 ### Reading setup controls
 
 | Control | Type | Values | Prefs key | Effect |
@@ -354,6 +370,55 @@ Independent tile-drag drill. Loads from `sentenceBuilderPacks` in manifest (sepa
   feedback,        // null | { tone, title, body }
 }
 ```
+
+---
+
+## Tab: Arcade (React only)
+
+**Route:** `activeTab === "arcade"` → `src/react/games/arcade/ArcadeGamePage.jsx`
+**Engine:** lightweight React + `requestAnimationFrame` (no Canvas, no game library)
+
+"FoxChild Arcade" turns existing packs into a PacMan/Snake-style game. It reuses
+the unified schema and normalised loaders — no new content system. Full
+architecture: `docs/REACT_ARCHITECTURE.md` §16.
+
+### Setup controls
+
+| Control | Values | Pref |
+|---|---|---|
+| Game mode | Quiz Hunt 🦊 / Sentence Snake 🐍 | `prefs.arcade.mode` |
+| Subject | `SubjectCardGrid` (counts per mode) | `prefs.arcade.subject` |
+| Curriculum | dynamic (`listCurricula`) | `prefs.arcade.curriculum` |
+| Pack | vocab dataset (Quiz Hunt) / builder pack (Snake) | `prefs.arcade.datasetId` / `packId` |
+| Map | Open field / Pillars | `prefs.arcade.mapType` |
+| Challenge | 20 / 40 / 60 questions · 5-minute rush · Endless | `prefs.arcade.goal` |
+| Sound | on/off (muteable WebAudio blips) | `prefs.arcade.sound` |
+
+### Modes
+
+- **Quiz Hunt** — built from a vocab pack via `gameQuestionAdapter`. The HUD shows
+  the prompt (English/definition); the fox must eat the correct term token and
+  avoid distractors (wrong = lose a life + brief freeze + combo reset). Always 3
+  lives.
+- **Sentence Snake** — built from a `sentenceBuilder` pack. The snake must eat the
+  sentence's word tokens **in order** (it grows as it builds the sentence);
+  out-of-order or decoy words cost a life. Multilingual and subject-agnostic.
+
+### Controls & gameplay
+
+- **Move:** swipe (touch), arrow keys / WASD (desktop), or the on-screen D-pad.
+  Pause: Esc/P or the ⏸ button. The player **stands still after eating** a token —
+  give a fresh input to move again.
+- **Tokens** can span several cells (wide horizontal, or rotated 90° vertical for
+  long words). Collision is coverage-based (you only eat a word when ≥50% under
+  the pill); placement reserves each word's footprint so pills never overlap.
+
+### Progress
+
+- Per-answer correctness feeds the existing word mastery (`progress.words`).
+- Round bests are stored in `progress.arcadeStats[mode]` (`recordArcadeResult`).
+- All persisted through `ProgressContext.updateProgress` (RC15) — `prefs.arcade`
+  and progress share one stored-state write.
 
 ---
 
@@ -656,6 +721,21 @@ Storage key: `learningGermanWeb.v1`
       datasetId,              // "core"
       sort,                   // "needsReview"
     },
+    promptBuilder: {
+      // AI Pack Creator form (subject, topic, level, curriculum, itemTypes, …)
+      promptTemplate,         // "standard" | "lit-11plus" | "gcse-science" | … (promptConfigs.js)
+      tourSeen,               // false — guided-tour hint flag
+    },
+    arcade: {                 // FoxChild Arcade (arcade tab)
+      mode,                   // "quiz-hunt" | "snake-builder"
+      subject,                // "language"
+      curriculum,             // "all"
+      datasetId,              // quiz-hunt source (revision dataset), "core"
+      packId,                 // snake-builder source (sentenceBuilder pack)
+      mapType,                // "open" | "pillars"
+      goal,                   // "q20" | "q40" | "q60" | "time5" | "endless"
+      sound,                  // true
+    },
   },
   progress: {
     words: {
@@ -673,6 +753,9 @@ Storage key: `learningGermanWeb.v1`
     },
     passageStats: {
       [packId]: { passagesCompleted }
+    },
+    arcadeStats: {            // FoxChild Arcade bests, keyed by mode
+      [mode]: { plays, bestScore, bestStreak, lastPlayedAt }
     },
   }
 }
