@@ -41,9 +41,10 @@ function nearestFloor(map, x, y) {
 
 function placeTokens(g, cellPx) {
   const q = g.questions[g.qIndex];
+  // _isCorrect is the flag tokenLayout uses for the solvability BFS.
   const items = [
-    { text: q.correctAnswer, isCorrect: true },
-    ...q.distractors.map((d) => ({ text: d, isCorrect: false })),
+    { text: q.correctAnswer, isCorrect: true,  _isCorrect: true  },
+    ...q.distractors.map((d) => ({ text: d,    isCorrect: false, _isCorrect: false })),
   ];
   const placed = placeTokensNoOverlap(g.map, items, [g.player], cellPx);
   g.tokens = placed.map((a, i) => ({

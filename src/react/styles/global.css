@@ -1859,9 +1859,19 @@ body.sb-split-mode .lw-app {
   background: radial-gradient(120% 120% at 50% 0%, #20283b 0%, #141a28 70%);
   border: 1.5px solid #2b3550;
 }
-.arc-board { position: relative; }
+.arc-board { position: relative; border-radius: 6px; overflow: visible; }
+
+/* Perimeter border cells — rendered as the outer ring of the grid so the player
+   can clearly see the map boundary. Slightly lighter than the background. */
+.arc-border-cell { position: absolute; top: 0; left: 0; box-sizing: border-box; padding: 1px; }
+.arc-border-cell::after {
+  content: ""; display: block; width: 100%; height: 100%; border-radius: 4px;
+  background: #2b3654; border: 1px solid #3a4870;
+}
+
+/* Pillar walls — slightly darker/more distinct than border cells */
 .arc-wall { position: absolute; top: 0; left: 0; box-sizing: border-box; padding: 2px; }
-.arc-wall::after { content: ""; display: block; width: 100%; height: 100%; border-radius: 6px; background: #2f3a57; }
+.arc-wall::after { content: ""; display: block; width: 100%; height: 100%; border-radius: 6px; background: #1e2a45; border: 1px solid #2b3a60; }
 
 /* Token cell is the grid footprint; the visible pill hugs its (single-line) text
    and is centred on the cell, overflowing horizontally so long words stay

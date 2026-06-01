@@ -92,3 +92,29 @@ export function stepInDirection(map, pos, direction) {
 export function cellsEqual(a, b) {
   return a.x === b.x && a.y === b.y;
 }
+
+/**
+ * BFS from `start` through floor cells, treating any cell whose key is in
+ * `blocked` as impassable. Returns a Set of "x,y" keys that are reachable.
+ *
+ * Used to verify a path exists from the player to the correct answer token
+ * while avoiding wrong-answer token footprints.
+ */
+export function reachableFrom(map, start, blocked = new Set()) {
+  const visited = new Set();
+  const queue = [start];
+  visited.add(cellKey(start.x, start.y));
+  const dirs = [{ x: 1, y: 0 }, { x: -1, y: 0 }, { x: 0, y: 1 }, { x: 0, y: -1 }];
+  while (queue.length > 0) {
+    const cur = queue.shift();
+    for (const d of dirs) {
+      const nx = cur.x + d.x, ny = cur.y + d.y;
+      const k = cellKey(nx, ny);
+      if (!visited.has(k) && isFloor(map, nx, ny) && !blocked.has(k)) {
+        visited.add(k);
+        queue.push({ x: nx, y: ny });
+      }
+    }
+  }
+  return visited;
+}
