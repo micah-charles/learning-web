@@ -446,9 +446,10 @@ export function useSmartTestSession() {
     _set(newSession);
 
     // Side effect outside setState — RC9 safe
-    if (updateProgress && question.word) {
+    // recordWordAnswer expects a string wordId, not the whole word object (P1 fix)
+    if (updateProgress && question.word?.id) {
       updateProgress(state => {
-        recordWordAnswer(state, question.word, correct);
+        recordWordAnswer(state, question.word.id, correct);
       });
     }
   }, []);
@@ -541,9 +542,10 @@ export function useSmartTestSession() {
     _set(newSession);
 
     // Record for mastery tracking — RC9 safe (outside setState)
-    if (updateProgress && card.word) {
+    // recordWordAnswer expects a string wordId, not the whole word object (P1 fix)
+    if (updateProgress && card.word?.id) {
       updateProgress(state => {
-        recordWordAnswer(state, card.word, assessment === "known");
+        recordWordAnswer(state, card.word.id, assessment === "known");
       });
     }
   }, []);

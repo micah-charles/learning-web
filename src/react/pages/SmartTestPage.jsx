@@ -563,7 +563,14 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
           <LabeledSelect
             label="Curriculum"
             value={prefs.curriculum || "all"}
-            onChange={v => setPrefs(p => ({ ...p, curriculum: v }))}
+            onChange={v => {
+              // P2 fix: reset datasetId when curriculum changes so the
+              // Start button can't launch a pack outside the new filter.
+              const first = manifest
+                ? listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", v)[0]
+                : null;
+              setPrefs(p => ({ ...p, curriculum: v, datasetId: first?.id || "" }));
+            }}
           >
             {curriculumOptions.map(o => (
               <option key={o.id} value={o.id}>{o.label}</option>

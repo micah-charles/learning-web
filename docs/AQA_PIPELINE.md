@@ -27,7 +27,7 @@ Stage 4: aqa_pdf_to_md.py         ← smart PDF → Markdown conversion
 ## Files Created
 
 ```
-aqa_tools/
+scripts/aqa_pipeline/
   __init__.py               Package init
   aqa_common.py             Shared utilities (normalisation, slugify, I/O)
   aqa_collect_listing.py    Stage 1 — Playwright scraper
@@ -53,7 +53,7 @@ docs/AQA_PIPELINE.md        This file
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r aqa_tools/requirements.txt
+pip install -r scripts/aqa_pipeline/requirements.txt
 python -m playwright install chromium
 ```
 
@@ -64,7 +64,7 @@ python -m playwright install chromium
 Scrapes the AQA past-paper listing page using Playwright. Collects metadata and download URLs for every result card. **Does not download any PDFs.**
 
 ```bash
-python -m aqa_tools.aqa_collect_listing \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
   --url "https://www.aqa.org.uk/find-past-papers-and-mark-schemes?subject=Religious+Studies&qualification=GCSE+Religious+Studies&specCode=All+Specifications&collapse=subject%2Cqualification%2CspecCode%2CexamSeries&secondaryResourceType=Mark+schemes%3BExaminer+reports%3BQuestion+papers" \
   --subject "Religious Studies" \
   --qualification "GCSE Religious Studies" \
@@ -102,18 +102,18 @@ Offline processing only — no network access. Reads Stage 1 output and produces
 
 ```bash
 # All years
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --output-prefix "output/aqa_rs_all_selected"
 
 # One exam series only
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --exam-series "June 2024" \
   --output-prefix "output/aqa_rs_june_2024_selected"
 
 # Review mode — see unmatched items
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --output-prefix "output/aqa_rs_all_selected" \
   --review-mode
@@ -144,13 +144,13 @@ Downloads only the files listed in the selected_pairs JSON. Defaults to dry-run.
 
 ```bash
 # Dry run (default — always safe)
-python -m aqa_tools.aqa_download_selected \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
   --input "output/aqa_rs_all_selected.json" \
   --download-dir "downloads/aqa" \
   --dry-run
 
 # Actual download — requires explicit confirmation
-python -m aqa_tools.aqa_download_selected \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
   --input "output/aqa_rs_all_selected.json" \
   --download-dir "downloads/aqa" \
   --max-downloads 200 \
@@ -184,12 +184,12 @@ Converts downloaded PDFs to structured Markdown. Tuned specifically for AQA two-
 
 ```bash
 # Single file
-python -m aqa_tools.aqa_pdf_to_md \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
   --input "downloads/aqa/.../question-paper.pdf" \
   --output "markdown/question-paper.md"
 
 # Batch — all 178 PDFs
-python -m aqa_tools.aqa_pdf_to_md \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
   --input-dir "downloads/aqa" \
   --output-dir "markdown/aqa"
 ```
@@ -294,23 +294,23 @@ Tests cover: title normalisation, component key generation, resource type detect
 All scripts are fully parameterised. Example for GCSE History:
 
 ```bash
-python -m aqa_tools.aqa_collect_listing \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
   --subject "History" \
   --qualification "GCSE History" \
   --output-prefix "output/aqa_history_all"
 
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_history_all.csv" \
   --output-prefix "output/aqa_history_selected"
 
-python -m aqa_tools.aqa_download_selected \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
   --input "output/aqa_history_selected.json" \
   --download-dir "downloads/aqa" \
   --max-downloads 50 \
   --delay-ms 7000 \
   --confirm-download
 
-python -m aqa_tools.aqa_pdf_to_md \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
   --input-dir "downloads/aqa" \
   --output-dir "markdown/aqa"
 ```
