@@ -6,13 +6,13 @@ Defaults to dry-run; requires --confirm-download for actual downloads.
 
 Usage:
     # Dry run (default — safe to run anytime)
-    python -m aqa_tools.aqa_download_selected \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
         --input "output/aqa_rs_june_2024_selected.json" \
         --download-dir "downloads/aqa" \
         --dry-run
 
     # Actual download (requires explicit confirmation flag)
-    python -m aqa_tools.aqa_download_selected \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
         --input "output/aqa_rs_june_2024_selected.json" \
         --download-dir "downloads/aqa" \
         --max-downloads 20 \

@@ -20,7 +20,7 @@ This design means you never download files you didn't choose, and you always hav
 
 ```bash
 # 1. Install Python dependencies
-pip install -r aqa_tools/requirements.txt
+pip install -r scripts/aqa_pipeline/requirements.txt
 
 # 2. Install the Playwright browser (Chromium only — minimal footprint)
 python -m playwright install chromium
@@ -36,18 +36,18 @@ Python 3.10+ recommended.
 
 ```bash
 # From a direct AQA URL
-python -m aqa_tools.aqa_collect_listing \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
   --url "https://www.aqa.org.uk/find-past-papers-and-mark-schemes?subject=Religious+Studies&qualification=GCSE+Religious+Studies&specCode=All+Specifications&collapse=subject%2Cqualification%2CspecCode%2CexamSeries&secondaryResourceType=Mark+schemes%3BExaminer+reports%3BQuestion+papers" \
   --output-prefix "output/aqa_rs_all"
 
 # Or from filter parameters
-python -m aqa_tools.aqa_collect_listing \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
   --subject "Religious Studies" \
   --qualification "GCSE Religious Studies" \
   --output-prefix "output/aqa_rs_all"
 
 # With headless browser visible (useful for debugging)
-python -m aqa_tools.aqa_collect_listing \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
   --subject "Religious Studies" \
   --qualification "GCSE Religious Studies" \
   --output-prefix "output/aqa_rs_all" \
@@ -66,18 +66,18 @@ Stage 1 never downloads PDFs. It only reads the listing page and records downloa
 
 ```bash
 # Filter to June 2024 only
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --exam-series "June 2024" \
   --output-prefix "output/aqa_rs_june_2024_selected"
 
 # All exam series
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --output-prefix "output/aqa_rs_all_selected"
 
 # Filter to specific papers only
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --exam-series "June 2024" \
   --include-paper "Paper 1" \
@@ -85,7 +85,7 @@ python -m aqa_tools.aqa_match_pairs \
   --output-prefix "output/aqa_rs_june_2024_p1_p2"
 
 # Review mode — includes unmatched pairs in output for inspection
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_rs_all.csv" \
   --exam-series "June 2024" \
   --output-prefix "output/aqa_rs_june_2024_selected" \
@@ -107,13 +107,13 @@ Outputs:
 
 ```bash
 # Dry run first (default — safe, no files downloaded)
-python -m aqa_tools.aqa_download_selected \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
   --input "output/aqa_rs_june_2024_selected.json" \
   --download-dir "downloads/aqa" \
   --dry-run
 
 # Actual download (requires --confirm-download)
-python -m aqa_tools.aqa_download_selected \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
   --input "output/aqa_rs_june_2024_selected.json" \
   --download-dir "downloads/aqa" \
   --max-downloads 20 \
@@ -204,17 +204,17 @@ Each component folder contains `metadata.json` with source URLs, published dates
 The pipeline is fully parameterised. To run for GCSE History:
 
 ```bash
-python -m aqa_tools.aqa_collect_listing \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
   --subject "History" \
   --qualification "GCSE History" \
   --output-prefix "output/aqa_history_all"
 
-python -m aqa_tools.aqa_match_pairs \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
   --input "output/aqa_history_all.csv" \
   --exam-series "June 2024" \
   --output-prefix "output/aqa_history_june_2024_selected"
 
-python -m aqa_tools.aqa_download_selected \
+PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
   --input "output/aqa_history_june_2024_selected.json" \
   --download-dir "downloads/aqa" \
   --max-downloads 20 \

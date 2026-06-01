@@ -5,7 +5,7 @@ Reads Stage 1 metadata and produces matched Question Paper + Mark Scheme pairs.
 Does NOT access the AQA website or download any files.
 
 Usage:
-    python -m aqa_tools.aqa_match_pairs \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
         --input "output/aqa_rs_all.csv" \
         --exam-series "June 2024" \
         --output-prefix "output/aqa_rs_june_2024_selected"

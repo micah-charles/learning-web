@@ -5,11 +5,11 @@ Collects metadata and download links from the AQA past-paper finder page.
 Does NOT download any PDFs.
 
 Usage:
-    python -m aqa_tools.aqa_collect_listing \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
         --url "https://www.aqa.org.uk/find-past-papers-and-mark-schemes?..." \
         --output-prefix "output/aqa_rs_all"
 
-    python -m aqa_tools.aqa_collect_listing \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
         --subject "Religious Studies" \
         --qualification "GCSE Religious Studies" \
         --output-prefix "output/aqa_rs_all"

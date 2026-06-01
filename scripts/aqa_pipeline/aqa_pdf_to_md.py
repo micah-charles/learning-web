@@ -12,18 +12,18 @@ Strategy (in order):
 
 Usage:
     # Single file
-    python -m aqa_tools.aqa_pdf_to_md \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
         --input "downloads/aqa/.../question-paper.pdf" \
         --output "markdown/question-paper.md"
 
     # Batch: process all PDFs in the downloads tree
-    python -m aqa_tools.aqa_pdf_to_md \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
         --input-dir "downloads/aqa" \
         --output-dir "markdown/aqa" \
         --workers 1
 
     # From selected pairs JSON (processes all downloaded files)
-    python -m aqa_tools.aqa_pdf_to_md \
+    PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
         --pairs "output/aqa_rs_all_selected.json" \
         --download-dir "downloads/aqa" \
         --output-dir "markdown/aqa"

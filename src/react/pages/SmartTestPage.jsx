@@ -487,7 +487,7 @@ function ResultsPage({ score, session, onRetry, onReset }) {
       <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
         {score.weakItems.length > 0 && (
           <button style={btn("primary")} onClick={() => onRetry(score.weakItems)}>
-            Retry weak items
+            Retry {score.weakItems.length} weak item{score.weakItems.length !== 1 ? "s" : ""}
           </button>
         )}
         <button style={btn("secondary")} onClick={onReset}>New Test</button>
@@ -640,6 +640,7 @@ export default function SmartTestPage() {
     startSession, answerMcq, nextMcqQuestion,
     submitBuilder, nextBuilderQuestion,
     assessFlashcard, completeSection, nextSection, resetSession,
+    retryWeakItems,
     calcScore: getScore,
   } = useSmartTestSession();
 
@@ -676,9 +677,9 @@ export default function SmartTestPage() {
   }
 
   function handleRetryWeak(weakItems) {
-    // Navigate back to quiz with weak items (reuse existing quiz cross-tab pattern)
-    // For now: reset to setup — full retry support via Quiz tab
-    resetSession();
+    // Start a focused session using only the items the student got wrong.
+    // Skips passages and builder items — pure MCQ + flashcard re-test.
+    retryWeakItems(weakItems);
   }
 
   // ── Render ───────────────────────────────────────────────────────────────────

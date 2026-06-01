@@ -16,7 +16,7 @@ Output:
   data/generated/manifest.json (manifest.packs upsert, capabilities:["revision"])
 
 Usage:
-  python -m aqa_tools.aqa_generate_packs --learning-web-dir "/path/to/learning-web"
+  PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_generate_packs --learning-web-dir "/path/to/learning-web"
 """
 
 from __future__ import annotations

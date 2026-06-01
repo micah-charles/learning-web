@@ -420,6 +420,17 @@ export function useSmartTestSession() {
     }
   }, []);
 
+  // ── Retry weak items — start a focused session from the previous wrong answers ──
+
+  const retryWeakItems = useCallback((weakItems) => {
+    if (!weakItems || weakItems.length === 0) return;
+    // Build a new session using only the weak-item words.
+    // No passages or builder items: this is a fast MCQ + flashcard re-test.
+    const sessionId = `st-retry-${Date.now()}`;
+    const newSession = buildSession(weakItems, [], [], "retry", sessionId);
+    _set(newSession);
+  }, []);
+
   // ── Answer MCQ ────────────────────────────────────────────────────────────
 
   const answerMcq = useCallback((questionId, selectedLetter, updateProgress) => {
@@ -625,6 +636,7 @@ export function useSmartTestSession() {
     completeSection,
     nextSection,
     resetSession,
+    retryWeakItems,
     calcScore: () => calcScore(session),
   };
 }
