@@ -8,13 +8,14 @@
 
 ## Quick orientation
 
-- Single-page vanilla JS app (no framework) built with Vite. All state in `localStorage` under key `learningGermanWeb.v1`.
-- Nine tabs: **Home**, **Vocabulary**, **Quiz**, **Crossword**, **Reading**, **Builder**, **Review**, **About**, **Admin**.
-- Every tab uses the "Subject First" UX: a card grid (`What are you learning?`) filters the pack dropdown by subject. Curriculum pills (`All / KS3 / GCSE / Other`) further narrow the list.
-- Valid subjects: `language | history | geography | science | literature | computing | other` (defined in `data.js:SUBJECTS`).
+- **React 18 + Vite** single-page app (since PR #110) built over a **shared vanilla JS engine** (`quiz.js`, `data.js`, `storage.js`, `admin-storage.js`, `progress.js`, `utils.js`, `crossword.js`, …) that the React hooks/pages import directly. All state in `localStorage` under key `learningGermanWeb.v1`.
+- **`docs/REACT_ARCHITECTURE.md` is authoritative** for the current app shell (routing, providers, pages, Arcade module). The sections below document the **shared engine** and the **legacy vanilla UI** (`src/main.js`, kept for reference) — the React pages mirror its behaviour but render with React, not `renderApp()`.
+- React tabs (`NavBar.jsx`): **Home, Language Ladder, Quiz, Arcade, Vocabulary, Reading, Builder, Crossword, Progress, My Packs, About** (+ AI Pack Creator, reached from My Packs / Hero). Legacy vanilla tabs were: Home, Vocabulary, Quiz, Crossword, Reading, Builder, Review, About, Admin.
+- Every tab uses the "Subject First" UX: a card grid (`What are you learning?`) filters the pack dropdown by subject. Curriculum pills further narrow the list — built-in `All / KS3 / US Middle School / Other` plus any pack-supplied curriculum, discovered dynamically via `listCurricula()` (never hardcoded).
+- Valid subjects: `language | history | geography | science | literature | computing | religion | other` (defined in `data.js:SUBJECTS`).
 - `getDatasetSubject(dataset)` / `inferSubject(dataset)` are the single source of truth for a pack's subject — never hardcode subject strings from pack IDs.
 - Mastery threshold: `correct >= 3 && streak >= 2` (checked by `isMasteredProgress` in `storage.js`).
-- Every render is a full re-render of `#app`; there is no virtual DOM. `renderApp()` is called after every state change.
+- *(Legacy vanilla UI only)* Every render is a full re-render of `#app`; there is no virtual DOM — `renderApp()` is called after every state change. The current React app uses React's virtual DOM and per-component state instead.
 - `persisted` (loaded from `loadStoredState()`) holds all user prefs and progress. `runtime` holds ephemeral session objects that are **not** persisted.
 - Packs are loaded on demand via `loadVocabItems` / `loadUnifiedPack` etc. from `data.js`; results are cached in `jsonCache`.
 - The **Study Book drawer** lives in `#study-book-root` — a sibling of `#app` in `index.html` — so it survives full `renderApp()` re-renders. It is managed entirely by `src/study-book.js` + the Study Book block in `main.js`. Its state lives in `runtime.studyBook` (never persisted).
