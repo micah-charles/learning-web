@@ -89,7 +89,8 @@ export const DEFAULT_STATE = {
       datasetId: "core",          // quiz-hunt source (revision dataset)
       packId: "",                 // snake-builder source (sentenceBuilder pack)
       goal: "fullset",            // round goal: fullset | q20 | q40 | q60 | time5 | endless
-      sound: true,
+      sound: true,                // WebAudio blip sound effects
+      speech: false,              // speak the correct word/answer aloud via TTS
     },
   },
   progress: {

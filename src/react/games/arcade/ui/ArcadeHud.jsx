@@ -10,7 +10,7 @@ function formatTime(secs) {
 
 export default function ArcadeHud({
   title, prompt, hint, score, streak, lives, maxLives = 3,
-  timer, goalText, muted, onToggleMute, onPause,
+  timer, goalText, muted, onToggleMute, speech, onToggleSpeech, onPause,
 }) {
   const hearts = Array.from({ length: maxLives }, (_, i) => (i < lives ? "♥" : "♡"));
   return (
@@ -31,8 +31,13 @@ export default function ArcadeHud({
           {hearts.join(" ")}
         </span>
         <button type="button" className="arc-icon-btn" onClick={onToggleMute}
-          aria-pressed={muted} title={muted ? "Unmute" : "Mute"}>
+          aria-pressed={muted} title={muted ? "Sound off" : "Sound on"}>
           {muted ? "🔇" : "🔊"}
+        </button>
+        <button type="button" className="arc-icon-btn" onClick={onToggleSpeech}
+          aria-pressed={speech} title={speech ? "Speech on" : "Speech off"}
+          style={{ opacity: speech ? 1 : 0.4 }}>
+          🗣
         </button>
         <button type="button" className="arc-icon-btn" onClick={onPause} title="Pause">
           ⏸

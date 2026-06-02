@@ -1,11 +1,20 @@
 /**
- * useArcadeSound.js — tiny WebAudio blip generator (no audio assets).
+ * useArcadeSound.js — two independent audio channels for the arcade.
  *
- * Produces short tones for correct / wrong / collect / complete events plus an
- * optional speech read-out (reusing the app's speech util). Fully muteable; the
- * AudioContext is created lazily on first use (after a user gesture) so mobile
- * autoplay policies are respected. Architecture is ready for Audio Chase mode
- * (Mode 3): call `speak()` to play a prompt the player must answer.
+ * Channel 1 — Sound effects (mutedRef)
+ *   Tiny WebAudio blips for correct / wrong / collect / complete / start.
+ *   Toggled by the 🔊 button in the HUD.
+ *
+ * Channel 2 — Word speech (speechEnabledRef)
+ *   Speaks the correct word/answer aloud via the app's shared speakText util
+ *   (same engine used by Reading and Vocabulary tabs). Toggled by the 🗣 button.
+ *
+ * Both channels are independent: turning off sound effects does NOT silence
+ * speech, and vice versa. Both use refs so flipping a toggle never re-renders
+ * or restarts the game loop.
+ *
+ * Shared engine: speakText / stopSpeaking from utils.js — the same function
+ * used by useSpeech (Reading / Vocab tabs).
  */
 import { useRef, useCallback } from "react";
 import { speakText, stopSpeaking } from "@/utils.js";
@@ -18,7 +27,7 @@ const TONES = {
   start:    [{ f: 440, t: 0 }, { f: 660, t: 0.1 }],
 };
 
-export function useArcadeSound(mutedRef) {
+export function useArcadeSound(mutedRef, speechEnabledRef) {
   const ctxRef = useRef(null);
 
   const ensureCtx = useCallback(() => {
@@ -32,6 +41,7 @@ export function useArcadeSound(mutedRef) {
     return ctxRef.current;
   }, [mutedRef]);
 
+  // Sound effects — gated by mutedRef only.
   const play = useCallback((name) => {
     const ctx = ensureCtx();
     if (!ctx) return;
@@ -51,12 +61,13 @@ export function useArcadeSound(mutedRef) {
     }
   }, [ensureCtx]);
 
-  const speak = useCallback((text, lang) => {
-    if (mutedRef.current || !text) return;
+  // Word speech — gated by speechEnabledRef only (independent of sound effects).
+  const speakWord = useCallback((text, lang) => {
+    if (!speechEnabledRef?.current || !text) return;
     speakText(text, lang || "en-GB");
-  }, [mutedRef]);
+  }, [speechEnabledRef]);
 
   const stop = useCallback(() => stopSpeaking(), []);
 
-  return { play, speak, stop };
+  return { play, speakWord, stop };
 }

@@ -167,8 +167,8 @@ function step(g, inputDir, dt, cellPx) {
       g.bestStreak = Math.max(g.bestStreak, g.combo);
       g.collected.push(hit.text);
       g.expected += 1;
-      grew = true;                      // tail grows — classic Snake behaviour
-      events.push({ type: "collect" });
+      grew = true; // tail grows — classic Snake behaviour
+      events.push({ type: "collect", word: hit.text, speechLanguage: q.speechLanguage || "en-GB" });
 
       if (g.expected > g.tokenCount) {
         // Sentence complete.
@@ -284,7 +284,10 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
     }
     setView(snapshot(g));
     for (const ev of events) {
-      if (ev.type === "collect")   sound.play("collect");
+      if (ev.type === "collect") {
+        sound.play("collect");
+        sound.speakWord(ev.word, ev.speechLanguage); // speak the word just eaten
+      }
       else if (ev.type === "complete")  { sound.play("correct"); onRecord?.("builderComplete", { itemId: ev.itemId, correct: true }); }
       else if (ev.type === "wrong")     { sound.play("wrong");   onRecord?.("builderComplete", { itemId: ev.itemId, correct: false }); }
       else if (ev.type === "self-hit")  sound.play("wrong");
@@ -348,7 +351,9 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
               : null
         }
         timer={goal.mode === "time" ? view.timeLeft : undefined}
-        muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
+        muted={sound.muted} onToggleMute={sound.toggleMute}
+        speech={sound.speech} onToggleSpeech={sound.toggleSpeech}
+        onPause={togglePause}
       />
 
       <div className="arc-board-wrap" ref={wrapRef}>

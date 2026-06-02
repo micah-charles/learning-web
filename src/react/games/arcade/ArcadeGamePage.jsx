@@ -77,15 +77,23 @@ export default function ArcadeGamePage() {
 
   function setPref(key, value) { setPrefs((p) => ({ ...p, [key]: value })); }
 
-  // ── Sound (muteable) ────────────────────────────────────────────────────────
+  // ── Two independent audio channels ─────────────────────────────────────────
+  // Channel 1: sound effects (blips)   — mutedRef
+  // Channel 2: speak correct word aloud — speechEnabledRef
   const mutedRef = useRef(!prefs.sound);
   mutedRef.current = !prefs.sound;
-  const audio = useArcadeSound(mutedRef);
+  const speechEnabledRef = useRef(!!prefs.speech);
+  speechEnabledRef.current = !!prefs.speech;
+  const audio = useArcadeSound(mutedRef, speechEnabledRef);
   const sound = useMemo(() => ({
-    play: audio.play, speak: audio.speak, stop: audio.stop,
+    play: audio.play,
+    speakWord: audio.speakWord,
+    stop: audio.stop,
     muted: !prefs.sound,
+    speech: !!prefs.speech,
     toggleMute: () => setPref("sound", !prefs.sound),
-  }), [audio, prefs.sound]);
+    toggleSpeech: () => setPref("speech", !prefs.speech),
+  }), [audio, prefs.sound, prefs.speech]);
 
   // ── Setup option lists ──────────────────────────────────────────────────────
   const isBuilder = prefs.mode === "snake-builder";
@@ -228,7 +236,11 @@ export default function ArcadeGamePage() {
 
         <label className="arc-sound-row">
           <input type="checkbox" checked={prefs.sound} onChange={(e) => setPref("sound", e.target.checked)} />
-          Sound effects
+          🔊 Sound effects
+        </label>
+        <label className="arc-sound-row">
+          <input type="checkbox" checked={!!prefs.speech} onChange={(e) => setPref("speech", e.target.checked)} />
+          🗣 Speak correct word aloud
         </label>
 
         <div className="arc-setup-actions">

@@ -122,7 +122,7 @@ function step(g, direction, dt, cellPx) {
     g.combo += 1;
     g.correct += 1;
     g.bestStreak = Math.max(g.bestStreak, g.combo);
-    events.push({ type: "correct", wordId: q.wordId });
+    events.push({ type: "correct", wordId: q.wordId, speechText: q.speechText || q.correctAnswer, speechLanguage: q.speechLanguage || "en-GB" });
 
     if (g.goal.mode === "fullset") {
       g.doneInSet += 1;
@@ -221,7 +221,11 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
     }
     setView(snapshot(g));
     for (const ev of events) {
-      if (ev.type === "correct") { sound.play("correct"); onRecord?.("answer", { wordId: ev.wordId, correct: true }); }
+      if (ev.type === "correct") {
+        sound.play("correct");
+        sound.speakWord(ev.speechText, ev.speechLanguage); // speak the word the fox just ate
+        onRecord?.("answer", { wordId: ev.wordId, correct: true });
+      }
       else if (ev.type === "wrong") { sound.play("wrong"); onRecord?.("answer", { wordId: ev.wordId, correct: false }); }
       else if (ev.type === "over") { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
@@ -268,7 +272,9 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
               : null
         }
         timer={goal.mode === "time" ? view.timeLeft : undefined}
-        muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
+        muted={sound.muted} onToggleMute={sound.toggleMute}
+        speech={sound.speech} onToggleSpeech={sound.toggleSpeech}
+        onPause={togglePause}
       />
 
       <div className="arc-board-wrap" ref={wrapRef}>
