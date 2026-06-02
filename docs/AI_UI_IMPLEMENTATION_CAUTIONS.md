@@ -887,6 +887,62 @@ footprint from what is drawn.
 
 ---
 
+### ⚠️ RC18. Arcade wrong tokens must be excluded from subsequent collision checks
+
+Once a wrong token has been hit it is marked `state = "wrong"` but **stays on the
+board** as a visual indicator. Without an explicit guard, the player moving through
+or near it on the very next step triggers another collision, costing a second heart.
+
+```js
+// WRONG — hits the same token twice
+const hit = g.tokens.find((t) => tokenContains(t, g.player.x, g.player.y, cellPx));
+
+// CORRECT — skip already-hit tokens
+const hit = g.tokens.find(
+  (t) => t.state !== "wrong" && tokenContains(t, g.player.x, g.player.y, cellPx)
+);
+```
+
+Applied in `QuizHuntGame.jsx`. If you add a new mode that keeps wrong tokens on the
+board, apply the same guard.
+
+---
+
+### ⚠️ RC19. Arcade map walls must include the outer border ring — pure visual borders do not block movement
+
+The early version rendered the border ring as decorative `arc-border-cell` divs but
+did **not** add those cells to `map.walls`. The snake used modulo wrapping and could
+leave the visible play area.
+
+The fix: `generateMap()` adds the full outer ring to `map.walls` for every layout.
+`stepInDirection()` already respects walls, so no further change is needed. The
+GameBoard detects border cells by position (`x===0 || x===cols-1 || y===0 ||
+y===rows-1`) and applies `arc-border-cell` styling; interior walls use `arc-wall`.
+
+**Rule:** if you add a new map layout, always add its boundary cells to `map.walls`.
+Never rely on purely visual tiles to constrain movement.
+
+---
+
+### ⚠️ RC20. Sentence Snake: two tokens at a time, distractor from the same sentence — never all words at once
+
+The original Snake loaded all sentence words + random decoys from other questions
+onto the board at once. This caused clutter, out-of-context distractors, and tokens
+spawning on the growing snake body.
+
+Current design (`spawnPair`):
+- Exactly **2 tokens** on screen: next correct word + 1 distractor drawn from the
+  **remaining words in the same sentence** (future words the player will collect).
+- On the **final word** only 1 token appears — no distractor.
+- Tokens are placed avoiding all current body cells (`reserved = [...g.body]`).
+- After eating a correct word OR hitting a wrong token, both tokens are respawned
+  at new body-safe positions.
+
+Do not revert to all-at-once placement. Do not use decoys from other questions
+(they add confusion and break the sentence-learning purpose).
+
+---
+
 ## PART C — Build & Deployment
 
 ---
