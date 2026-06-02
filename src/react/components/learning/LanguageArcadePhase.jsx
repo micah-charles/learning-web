@@ -1,11 +1,16 @@
 /**
  * LanguageArcadePhase.jsx
  *
- * Runs the 4-round Arcade challenge seamlessly between rounds:
- *   🦊 Quiz Hunt × 2  →  🐍 Sentence Snake × 2
+ * Runs the 2-round Arcade challenge:
+ *   🦊 Quiz Hunt  → 🐍 Sentence Snake
  *
- * No round-list, no Skip button, no "Round complete!" overlay — rounds flow
- * automatically. When all 4 are won, onComplete() fires immediately.
+ * Pass rule (Feature 3):
+ *   - 100% accuracy → advance to next round automatically.
+ *   - <100% accuracy → show "Please retry" overlay. Player must replay
+ *     until they achieve 100%.
+ *
+ * On all rounds complete → marks the lesson done and calls onComplete
+ * (which triggers goToLesson for auto-advance to the next lesson).
  */
 import { useRef, useMemo, useEffect } from "react";
 import { useLanguageArcadeSession } from "../../hooks/useLanguageArcadeSession.js";
@@ -24,12 +29,16 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
   const {
     round, roundIndex,
     questions, hasContent,
-    done, onRoundEnd,
+    done, needsRetry, lastAccuracy,
+    onRoundEnd, clearRetry,
   } = useLanguageArcadeSession(pack, targetLang);
 
+  // retryKey forces a game remount when the player clicks "Try again".
+  const retryKeyRef = useRef(0);
+
   // Sound
-  const mutedRef         = useRef(!prefs?.sound);
-  mutedRef.current       = !prefs?.sound;
+  const mutedRef = useRef(!prefs?.sound);
+  mutedRef.current = !prefs?.sound;
   const speechEnabledRef = useRef(!!prefs?.speech);
   speechEnabledRef.current = !!prefs?.speech;
   const audio = useArcadeSound(mutedRef, speechEnabledRef);
@@ -39,10 +48,9 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
     toggleMute: () => {}, toggleSpeech: () => {},
   }), [audio, prefs?.sound, prefs?.speech]);
 
-  // When all 4 rounds are won → proceed to lesson review immediately.
+  // All rounds passed → notify parent (which marks lesson complete + advances).
   useEffect(() => { if (done) onComplete(); }, [done, onComplete]);
 
-  // Progress recording
   function handleRecord(kind, payload) {
     if (kind === "answer" && payload?.wordId && updateProgress) {
       updateProgress((state) => recordWordAnswer(state, payload.wordId, !!payload.correct));
@@ -52,28 +60,56 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
     }
   }
 
+  function handleRetryAgain() {
+    retryKeyRef.current += 1;
+    clearRetry();
+  }
+
   if (!pack) return null;
 
-  // No content for this round — skip it automatically.
+  // Auto-skip rounds with no content.
   if (!hasContent) {
-    onRoundEnd({ correct: 1, lives: 1 }); // advance without penalty
+    onRoundEnd({ accuracy: 100, correct: 1, lives: 3 });
     return null;
   }
 
   const mapType = round.mode === "quiz-hunt" ? "pillars" : "open";
+  const gameKey = `${round.mode}-${roundIndex}-${retryKeyRef.current}`;
+
   const commonProps = {
     questions, mapType, goal: FULL_SET_GOAL, sound,
     reducedMotion: REDUCED_MOTION,
-    onExit: onComplete,      // only reachable via pause → exit (escape hatch)
+    onExit: onComplete,
     onRecord: handleRecord,
-    hideEndOverlay: true,    // no "Round complete!" card — rounds flow seamlessly
+    hideEndOverlay: true,
   };
 
   return (
     <div className="lw-page arc-page">
+      {/* Retry overlay — shown when last attempt was <100% */}
+      {needsRetry && (
+        <div className="lap-retry-overlay">
+          <div className="lap-retry-card">
+            <div className="lap-retry-icon">🎯</div>
+            <h3 className="lap-retry-title">Almost there!</h3>
+            <p className="lap-retry-msg">
+              You scored <strong>{lastAccuracy}%</strong> — please reach{" "}
+              <strong>100%</strong> to move on.
+            </p>
+            <button
+              type="button"
+              className="lw-btn lw-btn-primary"
+              onClick={handleRetryAgain}
+            >
+              Try again →
+            </button>
+          </div>
+        </div>
+      )}
+
       {round.mode === "quiz-hunt"
-        ? <QuizHuntGame    key={`qh-${roundIndex}`} {...commonProps} />
-        : <SnakeBuilderGame key={`sb-${roundIndex}`} {...commonProps} />
+        ? <QuizHuntGame    key={gameKey} {...commonProps} />
+        : <SnakeBuilderGame key={gameKey} {...commonProps} />
       }
     </div>
   );
