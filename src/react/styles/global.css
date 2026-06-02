@@ -1911,11 +1911,15 @@ body.sb-split-mode .lw-app {
 .arc-seg--word { padding: 0; z-index: 4; }
 .arc-seg--word::after { display: none; }
 .arc-seg-word {
-  display: flex; align-items: center; justify-content: center;
+  /* Every segment is exactly cell-sized — words clip at the edge rather than
+     using ellipsis so all segments are visually the same uniform block.
+     Left-align so the word reads from its beginning before being clipped,
+     which is more legible than centred clipping. */
+  display: flex; align-items: center; justify-content: flex-start;
   width: 100%; height: 100%; border-radius: 8px;
   background: #3d8f7a; border: 1.5px solid #5fae9a;
   color: #e8faf5; font-weight: 700; font-size: clamp(0.48rem, 1.4vw, 0.68rem);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 1px 3px;
+  white-space: nowrap; overflow: hidden; padding: 0 4px;
   box-shadow: 0 0 6px rgba(95, 174, 154, 0.4);
 }
 
