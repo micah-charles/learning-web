@@ -117,12 +117,11 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
     );
   }
 
-  // No content guard — skip this round with a friendly message + diagnostics.
+  // No content guard — skip this round gracefully.
   if (!hasContent) {
-    const diag = `pack=${pack ? "ok" : "null"} vocab=${pack?.vocabulary?.length ?? "?"} builders=${pack?.sentenceBuilders?.length ?? "?"} lang=${targetLang}`;
     const reason = round.mode === "quiz-hunt"
-      ? `No vocabulary words found (${diag}) — skipping Quiz Hunt.`
-      : `No sentence builders found (${diag}) — skipping Sentence Snake.`;
+      ? "No vocabulary words found for this lesson — skipping Quiz Hunt."
+      : "No sentence builders found for this lesson — skipping Sentence Snake.";
     return (
       <div className="lw-page">
         <div className="lw-card">

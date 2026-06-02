@@ -298,13 +298,18 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
         }
       }
 
+      // Speak the correct target-language word when the answer is right.
+      const speakEffect = correct
+        ? { speak: { text: getDisplayText(vocab[state.vocabIndex]?.translations?.[state.targetLang], state.targetLang), lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB" } }
+        : null;
+
       return {
         state: {
           ...state, answered: newAnswered,
           vocabFeedback: { correct, selectedText: data.selectedText || "" },
           score: newScore, mistakes: newMistakes,
         },
-        effect: null,
+        effect: speakEffect,
       };
     }
 
@@ -422,9 +427,14 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
         }
       }
 
+      // Speak the full target-language sentence when the answer is correct.
+      const builderSpeakEffect = correct
+        ? { speak: { text: expected.join(" "), lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB" } }
+        : null;
+
       return {
         state: { ...state, answered: newAnswered, builderFeedback: { correct }, score: newScore, mistakes: newMistakes },
-        effect: null,
+        effect: builderSpeakEffect,
       };
     }
 
