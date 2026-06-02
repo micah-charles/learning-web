@@ -128,7 +128,7 @@ export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
 
       <div className="pl-nav-row">
         <button type="button" className="button ghost" onClick={() => onDispatch("pl-listen-back")} disabled={isFirst}>← Back</button>
-        <button type="button" className="button" onClick={() => { onSpeak(); onDispatch("pl-listen-next"); }}>
+        <button type="button" className="button" onClick={() => onDispatch("pl-listen-next")}>
           {isLast ? "Vocabulary →" : "Next →"}
         </button>
       </div>

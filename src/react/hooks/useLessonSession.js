@@ -9,7 +9,7 @@
  * Returns the current session state plus typed action dispatchers so
  * phase components never import from progressive-language-lesson directly.
  */
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import {
   loadProgressiveLessonCatalog,
   loadProgressiveLessonPack,
@@ -74,6 +74,22 @@ export function useLessonSession() {
     return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.packPath]);
+
+  // ── Auto-speak each listen step ────────────────────────────────────────────
+  // Fires whenever the user navigates to a new step in the listen phase.
+  // Uses a short timeout so the browser has time to settle after the state
+  // update (avoids Chrome's autoplay restrictions after a user gesture).
+  useEffect(() => {
+    if (!session || !pack || session.phase !== "listen") return;
+    const cue = getCurrentSpeechCue(session, pack);
+    if (!cue || cue.key === spokenKeyRef.current) return;
+    const timer = setTimeout(() => {
+      spokenKeyRef.current = cue.key;
+      speakText(cue.text, cue.lang);
+    }, 300);
+    return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.chainIndex, session?.stepIndex, session?.targetLang, session?.phase, pack]);
 
   // ── Generic action dispatcher ──────────────────────────────────────────────
   const dispatch = useCallback((actionType, data = {}) => {
