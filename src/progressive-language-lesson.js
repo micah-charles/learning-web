@@ -20,7 +20,7 @@ export const TARGET_LANGUAGES = [
   { code: "ja", label: "Japanese", flag: "🇯🇵" },
 ];
 
-const SPEECH_LANG_MAP = {
+export const SPEECH_LANG_MAP = {
   de: "de-DE",
   fr: "fr-FR",
   es: "es-ES",
