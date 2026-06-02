@@ -3,7 +3,7 @@
  */
 import { TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
 
-export default function ReviewPhase({ session, pack, onDispatch }) {
+export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onNextLesson }) {
   const { score, mistakes } = session;
   const total   = score.vocabTotal + score.builderTotal;
   const correct = score.vocabCorrect + score.builderCorrect;
@@ -66,6 +66,11 @@ export default function ReviewPhase({ session, pack, onDispatch }) {
       )}
 
       <div className="pl-nav-row pl-review-nav">
+        {nextLesson && onNextLesson && (
+          <button type="button" className="button" onClick={onNextLesson} style={{ background: "var(--fox-teal)", color: "#fff", border: "none" }}>
+            Next Lesson →
+          </button>
+        )}
         <button type="button" className="button" onClick={() => onDispatch("pl-restart")}>🔄 Restart</button>
         {otherLangs.map(l => (
           <button key={l.code} type="button" className="button ghost"

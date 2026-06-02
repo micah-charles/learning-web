@@ -92,6 +92,15 @@ export const DEFAULT_STATE = {
       sound: true,                // WebAudio blip sound effects
       speech: false,              // speak the correct word/answer aloud via TTS
     },
+    languageLadder: {
+      // Language-specific lesson progress. Keyed by targetLang code (e.g. "de", "ja").
+      // lastLang: the most-recently-used language code — restored on next open.
+      // langs[code].completedLessons: ordered list of completed lesson IDs.
+      // langs[code].currentLessonId: the lesson to resume next time.
+      // langs[code].lastOpenedAt: ISO timestamp for "most recently used" ordering.
+      lastLang: "",
+      langs: {},
+    },
   },
   progress: {
     words: {},

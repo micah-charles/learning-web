@@ -1,13 +1,13 @@
 /**
- * LanguagePage.jsx — Language Ladder (Progressive Language Lesson)
+ * LanguagePage.jsx — Language Ladder
  *
- * Full React implementation. The vanilla progressive-language-lesson.js is
- * kept only for its pure logic functions (state machine, data loaders, helpers).
- * All rendering is React JSX — no dangerouslySetInnerHTML, no event delegation.
+ * Phases: Listen → Vocabulary → Builder → Arcade → Review
  *
- * Phases: Listen → Vocabulary → Builder → Arcade Challenge → Review
+ * Session memory (Features 1 & 2):
+ *   - On mount, restores the most-progressed language's next lesson.
+ *   - When Arcade completes, marks the lesson done and auto-advances.
  */
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { loadStoredState } from "@/storage.js";
 import { useLessonSession } from "../hooks/useLessonSession.js";
@@ -23,28 +23,46 @@ import LanguageArcadePhase from "../components/learning/LanguageArcadePhase.jsx"
 export default function LanguagePage() {
   const { updateProgress } = useProgress();
   const [showArcade, setShowArcade] = useState(false);
+  // nextLesson is set when Arcade completes; shown in ReviewPhase as an action.
+  const [nextLesson, setNextLesson]   = useState(null);
 
   const {
     catalog, pack, session, loadError,
     dispatch, speakCurrentCue,
     setPackSelection, setStageSelection, setLessonSelection, setLanguageSelection,
-    advanceToReview,
+    markLessonComplete, goToLesson, advanceToReview,
   } = useLessonSession();
 
-  // Intercept the builder → review transition: play Arcade first.
+  // Intercept builder → review: show Arcade first.
   function handleDispatch(action, data) {
     if (action === "pl-builder-next") {
       const builders = pack?.sentenceBuilders || [];
       const isLastSentence = session.sentenceIndex >= builders.length - 1;
-      const alreadyAnswered = session.answered?.builder?.[builders[session.sentenceIndex]?.sentenceId];
+      const sid = builders[session.sentenceIndex]?.sentenceId;
+      const alreadyAnswered = sid && session.answered?.builder?.[sid];
       if (isLastSentence && alreadyAnswered) {
-        // Show Arcade instead of going straight to review.
         setShowArcade(true);
         return;
       }
     }
     dispatch(action, data);
   }
+
+  // Called when Arcade completes all rounds at 100%.
+  const handleArcadeComplete = useCallback(() => {
+    const lessonId   = session?.catalogLessonId;
+    const targetLang = session?.targetLang;
+    const next = markLessonComplete(lessonId, targetLang);
+    setNextLesson(next);   // may be null (last lesson)
+    setShowArcade(false);
+    advanceToReview();
+  }, [session?.catalogLessonId, session?.targetLang, markLessonComplete, advanceToReview]);
+
+  // Called from ReviewPhase "Next Lesson" button.
+  const handleNextLesson = useCallback(() => {
+    setNextLesson(null);
+    goToLesson(nextLesson, session?.targetLang);
+  }, [nextLesson, session?.targetLang, goToLesson]);
 
   // ── Loading / error states ─────────────────────────────────────────────────
   if (loadError) {
@@ -67,13 +85,11 @@ export default function LanguagePage() {
     );
   }
 
-  // ── Stepper jump handler (only for listen/vocab/builder) ───────────────────
   function handleJump(phase) {
     setShowArcade(false);
     dispatch("pl-jump-phase", { phase });
   }
 
-  // Active phase: when Arcade is showing, highlight "arcade" in the stepper.
   const activePhase = showArcade ? "arcade" : (session.phase || "listen");
 
   // ── Arcade challenge ───────────────────────────────────────────────────────
@@ -91,11 +107,7 @@ export default function LanguagePage() {
           targetLang={session.targetLang}
           prefs={loadStoredState().prefs.arcade}
           updateProgress={updateProgress}
-          onComplete={() => {
-            // After Arcade, advance session to review phase and hide Arcade.
-            advanceToReview();
-            setShowArcade(false);
-          }}
+          onComplete={handleArcadeComplete}
         />
       </div>
     );
@@ -129,7 +141,13 @@ export default function LanguagePage() {
         <BuilderPhase session={session} pack={pack} onDispatch={handleDispatch} />
       )}
       {pack && (phase === "review" || phase === "arcade") && (
-        <ReviewPhase  session={session} pack={pack} onDispatch={dispatch} />
+        <ReviewPhase
+          session={session}
+          pack={pack}
+          onDispatch={dispatch}
+          nextLesson={nextLesson}
+          onNextLesson={handleNextLesson}
+        />
       )}
     </div>
   );
