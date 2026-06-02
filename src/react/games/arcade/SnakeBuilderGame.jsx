@@ -285,7 +285,10 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
     word: i > 0 ? (view.collected[i - 1] || null) : null,
   }));
 
-  const wordProgress = `${view.expected - 1} / ${view.tokenCount} words`;
+  const wordsCollected = view.expected - 1;
+  const wordProgress = wordsCollected > 0
+    ? `${view.collected.join(" ")}  (${wordsCollected} / ${view.tokenCount})`
+    : `0 / ${view.tokenCount} words`;
 
   // q.sentence is c.prompt (the question to answer), falling back to c.answer if no prompt.
   // Never show the answer in the HUD — the player must build it.
