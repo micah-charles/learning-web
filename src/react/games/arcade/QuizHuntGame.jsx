@@ -165,6 +165,8 @@ function summaryOf(g) {
     score: g.score, correct: g.correct, bestStreak: g.bestStreak,
     accuracy: g.answered ? Math.round((g.correct / g.answered) * 100) : 0,
     answered: g.answered,
+    lives: g.lives,       // required by onRoundEnd win check (lives > 0 = won)
+    totalInSet: g.totalInSet,
   };
 }
 
