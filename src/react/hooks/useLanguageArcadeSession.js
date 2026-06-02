@@ -39,6 +39,8 @@ export function useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP) {
   // PL pack vocabulary shape: v.translations[lang] = { text, article }
   // direction "prompt-en": show English definition, collect target-language word.
   const quizQuestions = useMemo(() => {
+    // eslint-disable-next-line no-console
+    console.log("[LanguageArcade] vocab items:", pack?.vocabulary?.length, "targetLang:", targetLang);
     if (!pack?.vocabulary?.length) return [];
     const speechLanguage = SPEECH_LANG_MAP?.[targetLang] || "de-DE";
     const words = pack.vocabulary.map((v, i) => {

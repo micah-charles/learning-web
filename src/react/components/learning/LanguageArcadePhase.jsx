@@ -58,6 +58,12 @@ export default function LanguageArcadePhase({ pack, targetLang, SPEECH_LANG_MAP,
     onRoundEnd, restart, SEQUENCE,
   } = useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP);
 
+  // Guard: pack not yet loaded (should not happen normally since LanguagePage
+  // checks pack before rendering, but handles any React batching edge case).
+  if (!pack) {
+    return <div className="lw-page"><div className="lw-card"><p style={{ color: "var(--lw-muted)" }}>Loading arcade…</p></div></div>;
+  }
+
   // Sound — reuse the shared arcade sound hook with the same prefs
   const mutedRef         = useRef(!prefs?.sound);
   mutedRef.current       = !prefs?.sound;
@@ -111,17 +117,21 @@ export default function LanguageArcadePhase({ pack, targetLang, SPEECH_LANG_MAP,
     );
   }
 
-  // No content guard
+  // No content guard — log to help diagnose, skip this round rather than blocking.
   if (!hasContent) {
+    // eslint-disable-next-line no-console
+    console.warn("[LanguageArcade] no questions for round", roundIndex, round.mode,
+      "| vocab:", pack?.vocabulary?.length, "| builders:", pack?.sentenceBuilders?.length,
+      "| targetLang:", targetLang);
     const reason = round.mode === "quiz-hunt"
-      ? "No vocabulary words in this lesson pack."
-      : "No sentence builders in this lesson pack.";
+      ? `No vocabulary words found for this lesson (vocab: ${pack?.vocabulary?.length ?? 0}, lang: ${targetLang}).`
+      : `No sentence builders found for this lesson (builders: ${pack?.sentenceBuilders?.length ?? 0}).`;
     return (
       <div className="lw-page">
         <div className="lw-card">
-          <p style={{ color: "var(--lw-muted)" }}>{reason}</p>
-          <button className="lw-btn lw-btn-primary" type="button" onClick={onComplete} style={{ marginTop: 12 }}>
-            Skip to summary →
+          <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem" }}>{reason}</p>
+          <button className="lw-btn lw-btn-primary" type="button" onClick={onRoundEnd.bind(null, { correct: 1, lives: 1 })} style={{ marginTop: 12 }}>
+            Skip this round →
           </button>
         </div>
       </div>
