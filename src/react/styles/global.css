@@ -1967,3 +1967,33 @@ body.sb-split-mode .lw-app {
 @media (prefers-reduced-motion: reduce) {
   .arc-mode-card { transition: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Language Ladder → Arcade Phase  (lap-*)
+   ══════════════════════════════════════════════════════════════════════ */
+.lap-header { margin-bottom: 10px; padding: 14px 18px; }
+.lap-header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+
+/* Round progress stepper */
+.lap-stepper { display: flex; flex-wrap: wrap; gap: 8px; }
+.lap-step {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 12px 5px 6px; border-radius: 20px;
+  border: 1.5px solid var(--lw-line); background: var(--lw-panel);
+  font-size: 0.78rem; color: var(--lw-muted); transition: border-color 150ms, background 150ms;
+}
+.lap-step--active { border-color: var(--lw-blue); background: var(--lw-blue-soft); color: var(--lw-blue); }
+.lap-step--done   { border-color: var(--lw-green); background: var(--lw-green-soft); color: var(--lw-green); }
+.lap-step-dot {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  background: currentColor; color: #fff; font-size: 0.68rem; font-weight: 700;
+}
+.lap-step--active .lap-step-dot { background: var(--lw-blue); }
+.lap-step--done   .lap-step-dot { background: var(--lw-green); }
+.lap-step--done   .lap-step-dot { color: #fff; }
+
+/* Completion card */
+.lap-complete { text-align: center; }
+.lap-complete-hero { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.lap-complete-trophy { font-size: 3rem; line-height: 1; }

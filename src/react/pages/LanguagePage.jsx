@@ -20,8 +20,12 @@ import {
   runProgressiveLessonAction,
   getCurrentSpeechCue,
   renderProgressiveTab,
+  SPEECH_LANG_MAP,
 } from "@/progressive-language-lesson.js";
 import { speakText } from "@/utils.js";
+import { useProgress } from "../context/ProgressContext.jsx";
+import { loadStoredState } from "@/storage.js";
+import LanguageArcadePhase from "../components/learning/LanguageArcadePhase.jsx";
 
 // ─── Stable callback ref helper ──────────────────────────────────────────────
 // Lets us attach a single native event listener once and always call the
@@ -60,6 +64,10 @@ export default function LanguagePage() {
   const [pack, setPack]       = useState(null);
   const [plState, setPlState] = useState(null);
   const [loadError, setLoadError] = useState(null);
+  // When the builder phase ends, show the Arcade challenge before the review screen.
+  const [showArcade, setShowArcade] = useState(false);
+
+  const { updateProgress } = useProgress();
 
   const containerRef  = useRef(null);
   const spokenKeyRef  = useRef(null); // tracks last auto-spoken step key
@@ -137,6 +145,13 @@ export default function LanguagePage() {
         // the call is still within the user-gesture window (avoids browser
         // autoplay blocking that would occur inside a setTimeout).
         speakListenCue(newState, pack, spokenKeyRef);
+      }
+
+      // Intercept builder → review transition: show the Arcade challenge first.
+      if (newState.phase === "review" && plState.phase === "builder") {
+        setShowArcade(true);
+        setPlState(newState); // keep the state updated for later summary render
+        return;
       }
 
       setPlState(newState);
@@ -283,6 +298,20 @@ export default function LanguagePage() {
           <p style={{ color: "var(--lw-muted)", fontStyle: "italic" }}>Loading lessons…</p>
         </div>
       </div>
+    );
+  }
+
+  // ── Arcade challenge phase (after builder, before review) ─────────────────
+  if (showArcade && pack && plState) {
+    return (
+      <LanguageArcadePhase
+        pack={pack}
+        targetLang={plState.targetLang}
+        SPEECH_LANG_MAP={SPEECH_LANG_MAP}
+        prefs={loadStoredState().prefs.arcade}
+        updateProgress={updateProgress}
+        onComplete={() => setShowArcade(false)} // exit → show the vanilla review
+      />
     );
   }
 
