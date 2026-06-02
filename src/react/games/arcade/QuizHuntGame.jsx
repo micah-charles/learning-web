@@ -241,7 +241,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
         <GameBoard
           map={view.map} cellPx={cellPx}
           tokens={view.tokens} segments={segments}
-          playerEmoji="🦊" reducedMotion={reducedMotion}
+          playerEmoji="/images/foxchild-fox.png" reducedMotion={reducedMotion}
         />
         {view.status === "ready" && (
           <div className="arc-start-hint">Swipe, use arrow keys, or the D-pad to move 🦊</div>

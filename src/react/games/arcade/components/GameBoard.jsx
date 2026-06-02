@@ -6,7 +6,7 @@
  *   cellPx       pixel size of one grid cell
  *   tokens       [{ id, x, y, text, state }]
  *   segments     [{ id, x, y, head, word? }]  word = collected word for tail segments
- *   playerEmoji  string glyph for the head
+ *   playerEmoji   string — emoji glyph OR a public image path (e.g. "/images/foxchild-fox.png")
  *   reducedMotion bool
  */
 import { tokenLayout } from "../utils/tokenLayout.js";
@@ -64,7 +64,13 @@ export default function GameBoard({ map, cellPx, tokens = [], segments = [], pla
           style={tileStyle(s.x, s.y, cellPx, reducedMotion)}
         >
           {s.head
-            ? <span className="arc-seg-face">{playerEmoji}</span>
+            ? (
+              <span className="arc-seg-face">
+                {playerEmoji.startsWith("/")
+                  ? <img src={playerEmoji} alt="player" className="arc-seg-img" />
+                  : playerEmoji}
+              </span>
+            )
             : s.word
               ? <span className="arc-seg-word">{s.word}</span>
               : null}

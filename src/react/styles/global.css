@@ -1905,6 +1905,7 @@ body.sb-split-mode .lw-app {
 .arc-seg--head { z-index: 5; padding: 0; }
 .arc-seg--head::after { display: none; }
 .arc-seg-face { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-size: clamp(1.1rem, 4vw, 1.7rem); filter: drop-shadow(0 0 6px rgba(255,200,120,0.5)); }
+.arc-seg-img { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(0 0 6px rgba(255,200,120,0.5)); }
 
 /* Tail segments that carry a collected word — shown as a pill on the body */
 .arc-seg--word { padding: 0; z-index: 4; }

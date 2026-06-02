@@ -325,7 +325,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
         <GameBoard
           map={view.map} cellPx={cellPx}
           tokens={view.tokens} segments={segments}
-          playerEmoji="🐍" reducedMotion={reducedMotion}
+          playerEmoji="/images/foxchild-girl.png" reducedMotion={reducedMotion}
         />
         {view.status === "ready" && (
           <div className="arc-start-hint">Read the question above, then eat words in order to build the answer 🐍</div>
