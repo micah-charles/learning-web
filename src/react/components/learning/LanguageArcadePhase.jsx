@@ -50,13 +50,13 @@ function RoundStepper({ totalRounds, roundIndex, done }) {
   );
 }
 
-export default function LanguageArcadePhase({ pack, targetLang, SPEECH_LANG_MAP, prefs, updateProgress, onComplete }) {
+export default function LanguageArcadePhase({ pack, targetLang, prefs, updateProgress, onComplete }) {
   const {
     round, roundIndex, totalRounds,
     questions, hasContent,
     wins, done,
     onRoundEnd, restart, SEQUENCE,
-  } = useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP);
+  } = useLanguageArcadeSession(pack, targetLang);
 
   // Guard: pack not yet loaded (should not happen normally since LanguagePage
   // checks pack before rendering, but handles any React batching edge case).
@@ -117,15 +117,11 @@ export default function LanguageArcadePhase({ pack, targetLang, SPEECH_LANG_MAP,
     );
   }
 
-  // No content guard — log to help diagnose, skip this round rather than blocking.
+  // No content guard — skip this round with a friendly message.
   if (!hasContent) {
-    // eslint-disable-next-line no-console
-    console.warn("[LanguageArcade] no questions for round", roundIndex, round.mode,
-      "| vocab:", pack?.vocabulary?.length, "| builders:", pack?.sentenceBuilders?.length,
-      "| targetLang:", targetLang);
     const reason = round.mode === "quiz-hunt"
-      ? `No vocabulary words found for this lesson (vocab: ${pack?.vocabulary?.length ?? 0}, lang: ${targetLang}).`
-      : `No sentence builders found for this lesson (builders: ${pack?.sentenceBuilders?.length ?? 0}).`;
+      ? "No vocabulary words found for this lesson — skipping Quiz Hunt."
+      : "No sentence builders found for this lesson — skipping Sentence Snake.";
     return (
       <div className="lw-page">
         <div className="lw-card">

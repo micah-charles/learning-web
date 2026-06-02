@@ -33,6 +33,7 @@ const PHASES = [
   { id: "listen",  label: "Listen",     icon: "🎧" },
   { id: "vocab",   label: "Vocabulary", icon: "📖" },
   { id: "builder", label: "Builder",    icon: "🔧" },
+  { id: "arcade",  label: "Arcade",     icon: "🎮" }, // injected by LanguagePage React layer
   { id: "review",  label: "Review",     icon: "✓"  },
 ];
 
@@ -590,7 +591,7 @@ function renderStepper(currentPhase) {
         const done   = i < currentIdx;
         const active = i === currentIdx;
         const cls    = done ? "done" : active ? "active" : "";
-        const isJumpable = i < 3; // Review is not a direct jump target
+        const isJumpable = i < 3; // Arcade (3) and Review (4) are not direct jump targets
         const inner  = `
           <span class="pl-step-circle">${done ? "✓" : i + 1}</span>
           <span class="pl-step-label">${escapeHtml(phase.icon)} ${escapeHtml(phase.label)}</span>`;

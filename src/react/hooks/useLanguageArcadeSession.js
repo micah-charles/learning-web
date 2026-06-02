@@ -21,6 +21,7 @@
  */
 import { useMemo, useState } from "react";
 import { buildQuizHuntQuestions, buildSnakeBuilderQuestions } from "../games/arcade/utils/gameQuestionAdapter.js";
+import { SPEECH_LANG_MAP } from "@/progressive-language-lesson.js";
 
 // Each entry: { mode, label, winsNeeded }
 const SEQUENCE = [
@@ -30,7 +31,7 @@ const SEQUENCE = [
   { mode: "snake-builder", label: "Sentence Snake — round 2 / 2", winsNeeded: 2 },
 ];
 
-export function useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP) {
+export function useLanguageArcadeSession(pack, targetLang) {
   const [roundIndex, setRoundIndex] = useState(0); // 0-3
   const [wins, setWins]             = useState({ "quiz-hunt": 0, "snake-builder": 0 });
   const [done, setDone]             = useState(false);
@@ -39,8 +40,6 @@ export function useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP) {
   // PL pack vocabulary shape: v.translations[lang] = { text, article }
   // direction "prompt-en": show English definition, collect target-language word.
   const quizQuestions = useMemo(() => {
-    // eslint-disable-next-line no-console
-    console.log("[LanguageArcade] vocab items:", pack?.vocabulary?.length, "targetLang:", targetLang);
     if (!pack?.vocabulary?.length) return [];
     const speechLanguage = SPEECH_LANG_MAP?.[targetLang] || "de-DE";
     const words = pack.vocabulary.map((v, i) => {
@@ -57,7 +56,7 @@ export function useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP) {
       };
     });
     return buildQuizHuntQuestions(words, { direction: "prompt-en", speechLanguage });
-  }, [pack, targetLang, SPEECH_LANG_MAP]);
+  }, [pack, targetLang]);
 
   // Convert pack sentenceBuilders into Snake questions.
   // PL pack builder shape: s.translations[lang] = { text, tiles: [...] }
@@ -77,7 +76,7 @@ export function useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP) {
       return { id: `pl_s_${i}`, prompt, answer, tiles };
     });
     return buildSnakeBuilderQuestions(cards, { speechLanguage });
-  }, [pack, targetLang, SPEECH_LANG_MAP]);
+  }, [pack, targetLang]);
 
   const round = SEQUENCE[roundIndex] ?? SEQUENCE[SEQUENCE.length - 1];
   const questions = round.mode === "quiz-hunt" ? quizQuestions : snakeQuestions;

@@ -20,7 +20,6 @@ import {
   runProgressiveLessonAction,
   getCurrentSpeechCue,
   renderProgressiveTab,
-  SPEECH_LANG_MAP,
 } from "@/progressive-language-lesson.js";
 import { speakText } from "@/utils.js";
 import { useProgress } from "../context/ProgressContext.jsx";
@@ -307,10 +306,9 @@ export default function LanguagePage() {
       <LanguageArcadePhase
         pack={pack}
         targetLang={plState.targetLang}
-        SPEECH_LANG_MAP={SPEECH_LANG_MAP}
         prefs={loadStoredState().prefs.arcade}
         updateProgress={updateProgress}
-        onComplete={() => setShowArcade(false)} // exit → show the vanilla review
+        onComplete={() => setShowArcade(false)}
       />
     );
   }
