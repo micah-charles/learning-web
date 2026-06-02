@@ -10,7 +10,7 @@ function makeTiles(card) {
   };
 }
 
-export function useBuilderSession({ manifest, packId, filter, progress, updateProgress }) {
+export function useBuilderSession({ manifest, packId, filter, progress, updateProgress, onCorrectSpeak }) {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
@@ -88,7 +88,14 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
       });
     }
     setFeedback({ correct, expected: currentCard.answer, actual: userAnswer });
-  }, [currentCard, tiles, packId, updateProgress]);
+    // Speak the full sentence aloud on a correct answer.
+    // Fired here (inside the click handler / user-gesture window) to satisfy
+    // browser autoplay policies and avoid the RC11 cancel+speak-same-tick bug
+    // (we call speak only on correct, never alongside a cancel).
+    if (correct && onCorrectSpeak) {
+      onCorrectSpeak(currentCard.answer, currentCard.speechLanguage);
+    }
+  }, [currentCard, tiles, packId, updateProgress, onCorrectSpeak]);
 
   const nextCard = useCallback(() => {
     if (updateProgress && currentCard) {

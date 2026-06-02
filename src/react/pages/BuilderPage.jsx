@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useBuilderSession } from "../hooks/useBuilderSession.js";
+import { useSpeech } from "../hooks/useSpeech.js";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
@@ -18,6 +19,7 @@ const FILTER_OPTIONS = [
 export default function BuilderPage() {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
+  const { speak } = useSpeech();
 
   const allPacks = useMemo(() => manifest ? listSentenceBuilderPacks(manifest) : [], [manifest]);
   const curriculumOptions = useMemo(
@@ -60,6 +62,10 @@ export default function BuilderPage() {
     setFilter("all");
   }
 
+  // Speech language from the active pack (e.g. "de-DE" for German builder packs).
+  const activePack = visiblePacks.find(p => p.id === activePackId) || visiblePacks[0];
+  const speechLang = activePack?.speechLanguage || activePack?.sourceLanguageCode || "en-GB";
+
   const {
     currentCard, cards, index, tiles, feedback,
     loading, stats, pickTile, returnTile, clearTiles, hintTile, checkAnswer, nextCard, jumpToCard,
@@ -69,6 +75,8 @@ export default function BuilderPage() {
     filter,
     progress,
     updateProgress,
+    // Speak the full sentence aloud when the answer is correct.
+    onCorrectSpeak: (text, cardSpeechLang) => speak(text, cardSpeechLang || speechLang),
   });
 
   if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;

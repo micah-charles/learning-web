@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useQuizSession } from "../hooks/useQuizSession.js";
@@ -513,6 +513,22 @@ export default function QuizPage({ initialCustomWords = null }) {
   const { progress, updateProgress } = useProgress();
   const { speak } = useSpeech();
   const { session, loading, error, startQuiz, answerQuestion, nextQuestion, updateBuildState, resetQuiz } = useQuizSession();
+
+  // Speak the correct word after a correct answer is shown.
+  // Uses a ref to track the last-spoken feedback so we only speak once per answer,
+  // not on every re-render while the feedback card is visible (RC11-safe: the
+  // speak call is deferred to a useEffect, not inside a setState updater).
+  const lastSpokenFeedbackRef = useRef(null);
+  useEffect(() => {
+    if (!session?.feedback?.correct) return;
+    const q = session.questions?.[session.index];
+    if (!q?.speechText || !q?.speechLanguage) return;
+    // Unique key = question index + answer to avoid speaking the same answer twice.
+    const key = `${session.index}-${q.speechText}`;
+    if (lastSpokenFeedbackRef.current === key) return;
+    lastSpokenFeedbackRef.current = key;
+    speak(q.speechText, q.speechLanguage);
+  }, [session?.feedback, session?.index, speak]);
 
   const [prefs, setPrefs] = useState({
     subject: "language",

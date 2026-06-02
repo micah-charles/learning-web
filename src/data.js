@@ -104,7 +104,7 @@ function gapFromItem(item) {
   };
 }
 
-function builderFromItem(item) {
+function builderFromItem(item, packSpeechLanguage) {
   const data = item.data || {};
   return {
     id: item.id,
@@ -113,6 +113,7 @@ function builderFromItem(item) {
     answer: data.answer || "",
     tiles: data.tiles || [],
     level: item.level || "",
+    speechLanguage: data.speechLanguage || packSpeechLanguage || "en-GB",
   };
 }
 
@@ -522,7 +523,8 @@ export async function loadSentenceBuilderUnifiedPack(manifest, packId) {
 
 export async function loadSentenceBuilderPack(manifest, packId) {
   const pack = await loadSentenceBuilderUnifiedPack(manifest, packId);
-  return filterUnifiedItems(pack, "sentenceBuilder").map(builderFromItem);
+  const packSpeechLanguage = pack?.speechLanguage || pack?.sourceLanguageCode || "en-GB";
+  return filterUnifiedItems(pack, "sentenceBuilder").map(item => builderFromItem(item, packSpeechLanguage));
 }
 
 export function listPassageGroups(manifest) {
