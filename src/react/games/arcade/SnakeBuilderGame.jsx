@@ -131,6 +131,20 @@ function step(g, inputDir, dt, cellPx) {
   // so the snake stops at the edge instead of wrapping outside the visible area.
   const nh = stepInDirection(g.map, head, dir);
   if (nh.x === head.x && nh.y === head.y) return events; // blocked by wall
+
+  // Self-collision: check if the new head enters any body segment.
+  // Exclude the very last tail cell — it moves away this step (unless we grow),
+  // so hitting it should not penalise the player.
+  const checkBody = g.body.slice(0, g.body.length - 1);
+  if (checkBody.some((seg) => seg.x === nh.x && seg.y === nh.y)) {
+    g.lives -= 1;
+    g.combo = 0;
+    g.freeze = 3;
+    events.push({ type: "self-hit" });
+    if (g.lives <= 0) { g.status = "over"; events.push({ type: "over" }); }
+    return events; // don't move; snake stays where it is
+  }
+
   g.heading = dir;
   g.body.unshift(nh);
 
@@ -240,16 +254,17 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
     const g = gRef.current;
     if (!g) return;
     const events = step(g, directionRef.current, dt, cellPxRef.current);
-    // After eating stop gliding so the player can think about next move.
-    if (events.some((e) => e.type === "collect" || e.type === "wrong" || e.type === "complete")) {
+    // After eating, self-hit, or wrong token — stop gliding until next input.
+    if (events.some((e) => ["collect", "wrong", "complete", "self-hit"].includes(e.type))) {
       directionRef.current = "none";
     }
     setView(snapshot(g));
     for (const ev of events) {
-      if (ev.type === "collect")  sound.play("collect");
-      else if (ev.type === "complete") { sound.play("correct"); onRecord?.("builderComplete", { itemId: ev.itemId, correct: true }); }
-      else if (ev.type === "wrong")    { sound.play("wrong");   onRecord?.("builderComplete", { itemId: ev.itemId, correct: false }); }
-      else if (ev.type === "over")     { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
+      if (ev.type === "collect")   sound.play("collect");
+      else if (ev.type === "complete")  { sound.play("correct"); onRecord?.("builderComplete", { itemId: ev.itemId, correct: true }); }
+      else if (ev.type === "wrong")     { sound.play("wrong");   onRecord?.("builderComplete", { itemId: ev.itemId, correct: false }); }
+      else if (ev.type === "self-hit")  sound.play("wrong");
+      else if (ev.type === "over")      { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
   }, [directionRef, sound, onRecord]);
 
