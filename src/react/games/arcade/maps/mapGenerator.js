@@ -19,15 +19,20 @@ import { cellKey } from "../engine/grid.js";
  */
 export function generateMap(type, cols, rows) {
   const walls = new Set();
+
+  // Every map has a solid outer border so the player can't leave the visible area.
+  for (let x = 0; x < cols; x++) { walls.add(cellKey(x, 0)); walls.add(cellKey(x, rows - 1)); }
+  for (let y = 1; y < rows - 1; y++) { walls.add(cellKey(0, y)); walls.add(cellKey(cols - 1, y)); }
+
   if (type === "pillars") {
-    // Pillars at every 3rd interior position — 2-cell corridors.
+    // Interior pillars at every 3rd position — 2-cell-wide corridors.
     for (let y = 2; y < rows - 1; y += 3) {
       for (let x = 2; x < cols - 1; x += 3) {
         walls.add(cellKey(x, y));
       }
     }
   }
-  // "open" leaves walls empty.
+  // "open" = only the outer border walls, interior completely clear.
   return { cols, rows, walls, type: type === "pillars" ? "pillars" : "open" };
 }
 

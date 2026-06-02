@@ -1900,11 +1900,23 @@ body.sb-split-mode .lw-app {
    grid cell and overflows vertically instead of horizontally. */
 .arc-token--vertical .arc-token-text { transform: rotate(-90deg); }
 
-.arc-seg { position: absolute; top: 0; left: 0; box-sizing: border-box; padding: 4px; }
+.arc-seg { position: absolute; top: 0; left: 0; box-sizing: border-box; padding: 3px; }
 .arc-seg::after { content: ""; display: block; width: 100%; height: 100%; border-radius: 50%; background: #5fae9a; box-shadow: 0 0 8px rgba(95, 174, 154, 0.5); }
 .arc-seg--head { z-index: 5; padding: 0; }
 .arc-seg--head::after { display: none; }
 .arc-seg-face { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-size: clamp(1.1rem, 4vw, 1.7rem); filter: drop-shadow(0 0 6px rgba(255,200,120,0.5)); }
+
+/* Tail segments that carry a collected word — shown as a pill on the body */
+.arc-seg--word { padding: 0; z-index: 4; }
+.arc-seg--word::after { display: none; }
+.arc-seg-word {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%; border-radius: 8px;
+  background: #3d8f7a; border: 1.5px solid #5fae9a;
+  color: #e8faf5; font-weight: 700; font-size: clamp(0.48rem, 1.4vw, 0.68rem);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 1px 3px;
+  box-shadow: 0 0 6px rgba(95, 174, 154, 0.4);
+}
 
 .arc-start-hint {
   position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);

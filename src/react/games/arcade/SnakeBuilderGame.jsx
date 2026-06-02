@@ -17,12 +17,11 @@
  */
 import { useRef, useState, useEffect, useCallback } from "react";
 import { generateMap } from "./maps/mapGenerator.js";
-import { stepInDirection, isFloor, OPPOSITE, floorCells, cellKey } from "./engine/grid.js";
+import { stepInDirection, isFloor, OPPOSITE } from "./engine/grid.js";
 import { useGameLoop } from "./engine/useGameLoop.js";
 import { useArcadeControls } from "./hooks/useArcadeControls.js";
 import { useBoardMetrics } from "./hooks/useBoardMetrics.js";
 import { placeTokensNoOverlap, tokenContains } from "./utils/tokenLayout.js";
-import { shuffle } from "@/utils.js";
 import GameBoard from "./components/GameBoard.jsx";
 import ArcadeHud from "./ui/ArcadeHud.jsx";
 import DpadControls from "./ui/DpadControls.jsx";
@@ -127,10 +126,10 @@ function step(g, inputDir, dt, cellPx) {
   if (g.body.length > 1 && dir === OPPOSITE[g.heading]) dir = g.heading;
 
   const head = g.body[0];
-  // Open map wraps at edges (classic Snake wrapping).
-  const nx = ((head.x + (dir === "left" ? -1 : dir === "right" ? 1 : 0)) + g.map.cols) % g.map.cols;
-  const ny = ((head.y + (dir === "up"   ? -1 : dir === "down"  ? 1 : 0)) + g.map.rows) % g.map.rows;
-  const nh = { x: nx, y: ny };
+  // Use stepInDirection — the outer border is now a real wall in map.walls,
+  // so the snake stops at the edge instead of wrapping outside the visible area.
+  const nh = stepInDirection(g.map, head, dir);
+  if (nh.x === head.x && nh.y === head.y) return events; // blocked by wall
   g.heading = dir;
   g.body.unshift(nh);
 
@@ -277,20 +276,28 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
 
   const q = questions[view.qIndex] || questions[questions.length - 1];
   const over = view.status === "over";
-  const segments = view.body.map((c, i) => ({ id: `s${i}`, x: c.x, y: c.y, head: i === 0 }));
-  const built = view.collected.length > 0 ? view.collected.join(" ") : "—";
-  const progress = `${view.expected - 1}/${view.tokenCount}`;
+
+  // Body segments — each tail segment [i] carries the word from collected[i-1]
+  // so the snake's body visually spells out the sentence being built.
+  const segments = view.body.map((c, i) => ({
+    id: `s${i}`, x: c.x, y: c.y, head: i === 0,
+    word: i > 0 ? (view.collected[i - 1] || null) : null,
+  }));
+
+  const wordProgress = `${view.expected - 1} / ${view.tokenCount} words`;
+
+  // q.sentence is c.prompt (the question to answer), falling back to c.answer if no prompt.
+  // Never show the answer in the HUD — the player must build it.
+  const questionText = q.sentence || "What's the next word?";
 
   return (
     <div className="arc-game">
       <ArcadeHud
-        title="Build the sentence"
-        prompt={q.sentence}
-        hint={view.collected.length > 0 ? `Built: ${built}` : "Eat the next word in order"}
+        title="Answer the question"
+        prompt={questionText}
+        hint={wordProgress}
         score={view.score} streak={view.combo} lives={view.lives} maxLives={START_LIVES}
-        goalText={goal.mode === "questions"
-          ? `${view.correct}/${goal.target} sentences · word ${progress}`
-          : `word ${progress}`}
+        goalText={goal.mode === "questions" ? `${view.correct} / ${goal.target} done` : null}
         timer={goal.mode === "time" ? view.timeLeft : undefined}
         muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
       />
@@ -302,7 +309,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
           playerEmoji="🐍" reducedMotion={reducedMotion}
         />
         {view.status === "ready" && (
-          <div className="arc-start-hint">Swipe or use arrow keys — eat words to build the sentence 🐍</div>
+          <div className="arc-start-hint">Read the question above, then eat words in order to build the answer 🐍</div>
         )}
       </div>
 
