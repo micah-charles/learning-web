@@ -83,16 +83,24 @@ function spawnPair(g, cellPx) {
 
 function initState(map, questions, goal, cellPx) {
   const head = nearestFloor(map, Math.floor(map.cols / 2), Math.floor(map.rows / 2));
+  const queue = goal.mode === "fullset"
+    ? shuffle([...Array(questions.length).keys()])
+    : null;
+  const startIdx = queue ? queue[0] : 0;
   const g = {
     map, questions, goal,
-    status: "ready", qIndex: 0,
+    status: "ready",
+    qIndex: startIdx,
     body: [head], heading: "none",
     tokens: [], expected: 1, tokenCount: 0, collected: [],
     score: 0, lives: START_LIVES, combo: 0, bestStreak: 0,
     correct: 0, wrong: 0, freeze: 0,
     timeLeft: goal.mode === "time" ? goal.target : null,
+    queue,
+    doneInSet: 0,
+    totalInSet: questions.length,
   };
-  g.tokenCount = questions[0]?.tokens?.length || 0;
+  g.tokenCount = questions[startIdx]?.tokens?.length || 0;
   spawnPair(g, cellPx);
   return g;
 }
@@ -105,6 +113,7 @@ function snapshot(g) {
     bestStreak: g.bestStreak, correct: g.correct, wrong: g.wrong,
     timeLeft: g.timeLeft, map: g.map,
     expected: g.expected, tokenCount: g.tokenCount,
+    doneInSet: g.doneInSet, totalInSet: g.totalInSet,
   };
 }
 
@@ -166,15 +175,30 @@ function step(g, inputDir, dt, cellPx) {
         g.score += 25;
         g.correct += 1;
         events.push({ type: "complete", itemId: q.itemId });
-        if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
+
+        let nextIdx;
+        if (g.goal.mode === "fullset") {
+          g.doneInSet += 1;
+          g.queue.shift();          // remove completed sentence from queue
+          if (g.queue.length === 0) {
+            g.status = "over"; events.push({ type: "over" });
+            nextIdx = null;
+          } else {
+            nextIdx = g.queue[0];
+          }
+        } else if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
           g.status = "over"; events.push({ type: "over" });
+          nextIdx = null;
         } else {
-          const nextIdx = (g.qIndex + 1) % g.questions.length;
+          nextIdx = (g.qIndex + 1) % g.questions.length;
+        }
+
+        if (nextIdx !== null) {
           g.qIndex = nextIdx;
           g.expected = 1;
           g.tokenCount = g.questions[nextIdx]?.tokens?.length || 0;
           g.collected = [];
-          g.body = [g.body[0]]; // reset snake length for new sentence
+          g.body = [g.body[0]];
           spawnPair(g, cellPx);
         }
       } else {
@@ -316,7 +340,13 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
         prompt={questionText}
         hint={wordProgress}
         score={view.score} streak={view.combo} lives={view.lives} maxLives={START_LIVES}
-        goalText={goal.mode === "questions" ? `${view.correct} / ${goal.target} done` : null}
+        goalText={
+          goal.mode === "fullset"
+            ? `${view.doneInSet} / ${view.totalInSet} ✓`
+            : goal.mode === "questions"
+              ? `${view.correct} / ${goal.target} done`
+              : null
+        }
         timer={goal.mode === "time" ? view.timeLeft : undefined}
         muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
       />

@@ -39,6 +39,7 @@ const MAP_TYPE = { "quiz-hunt": "pillars", "snake-builder": "open" };
 
 // Round goals. All modes keep the 3-heart limit; these add a win/end condition.
 const GOALS = [
+  { id: "fullset", label: "Full Set (default) — repeat wrongs until all correct" },
   { id: "q20", label: "20 questions" },
   { id: "q40", label: "40 questions" },
   { id: "q60", label: "60 questions" },
@@ -46,6 +47,7 @@ const GOALS = [
   { id: "endless", label: "Endless (3 hearts)" },
 ];
 const GOAL_CONFIG = {
+  fullset: { mode: "fullset", target: 0 }, // complete every item; wrong ones re-queue
   q20:     { mode: "questions", target: 20 },
   q40:     { mode: "questions", target: 40 },
   q60:     { mode: "questions", target: 60 },

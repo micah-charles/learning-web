@@ -16,6 +16,7 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { generateMap } from "./maps/mapGenerator.js";
 import { stepInDirection, isFloor } from "./engine/grid.js";
 import { placeTokensNoOverlap, tokenContains } from "./utils/tokenLayout.js";
+import { shuffle } from "@/utils.js";
 import { useGameLoop } from "./engine/useGameLoop.js";
 import { useArcadeControls } from "./hooks/useArcadeControls.js";
 import { useBoardMetrics } from "./hooks/useBoardMetrics.js";
@@ -56,14 +57,22 @@ function placeTokens(g, cellPx) {
 
 function initState(map, questions, goal, cellPx) {
   const player = nearestFloor(map, Math.floor(map.cols / 2), Math.floor(map.rows / 2));
+  // fullset: shuffled queue of every question index; wrong answers re-enter the queue.
+  const queue = goal.mode === "fullset"
+    ? shuffle([...Array(questions.length).keys()])
+    : null;
   const g = {
     map, questions, goal,
-    status: "ready", qIndex: 0,
+    status: "ready",
+    qIndex: queue ? queue[0] : 0,
     player, direction: "none",
     tokens: [],
     score: 0, lives: START_LIVES, combo: 0, bestStreak: 0,
     correct: 0, answered: 0, freeze: 0,
     timeLeft: goal.mode === "time" ? goal.target : null,
+    queue,                              // fullset only: remaining question indices
+    doneInSet: 0,                       // fullset only: correctly answered so far
+    totalInSet: questions.length,
   };
   placeTokens(g, cellPx);
   return g;
@@ -76,6 +85,7 @@ function snapshot(g) {
     score: g.score, lives: g.lives, combo: g.combo,
     bestStreak: g.bestStreak, correct: g.correct, answered: g.answered,
     timeLeft: g.timeLeft, map: g.map,
+    doneInSet: g.doneInSet, totalInSet: g.totalInSet,
   };
 }
 
@@ -113,11 +123,20 @@ function step(g, direction, dt, cellPx) {
     g.correct += 1;
     g.bestStreak = Math.max(g.bestStreak, g.combo);
     events.push({ type: "correct", wordId: q.wordId });
-    // Reached the question-count goal → win.
-    if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
+
+    if (g.goal.mode === "fullset") {
+      g.doneInSet += 1;
+      g.queue.shift(); // remove from front — answered correctly
+      if (g.queue.length === 0) {
+        g.status = "over"; events.push({ type: "over" });
+      } else {
+        g.qIndex = g.queue[0];
+        placeTokens(g, cellPx);
+      }
+    } else if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
       g.status = "over"; events.push({ type: "over" });
     } else {
-      // Cycle questions (wrap) so time/large-count goals keep going on small packs.
+      // Cycle (wrap) so time / large-count goals keep going on small packs.
       g.qIndex = (g.qIndex + 1) % g.questions.length;
       placeTokens(g, cellPx);
     }
@@ -127,7 +146,16 @@ function step(g, direction, dt, cellPx) {
     g.freeze = 2;
     hit.state = "wrong";
     events.push({ type: "wrong", wordId: q.wordId });
-    if (g.lives <= 0) { g.status = "over"; events.push({ type: "over" }); }
+    if (g.lives <= 0) {
+      g.status = "over"; events.push({ type: "over" });
+    } else if (g.goal.mode === "fullset") {
+      // Move this question to the back of the queue so it reappears later,
+      // then immediately show the next question while the fox is frozen.
+      const idx = g.queue.shift();
+      g.queue.push(idx);
+      g.qIndex = g.queue[0];
+      placeTokens(g, cellPx);
+    }
   }
   return events;
 }
@@ -232,7 +260,13 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
         prompt={q.questionText}
         hint={q.topic}
         score={view.score} streak={view.combo} lives={view.lives} maxLives={START_LIVES}
-        goalText={goal.mode === "questions" ? `${view.correct}/${goal.target}` : null}
+        goalText={
+          goal.mode === "fullset"
+            ? `${view.doneInSet} / ${view.totalInSet} ✓`
+            : goal.mode === "questions"
+              ? `${view.correct} / ${goal.target}`
+              : null
+        }
         timer={goal.mode === "time" ? view.timeLeft : undefined}
         muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
       />
