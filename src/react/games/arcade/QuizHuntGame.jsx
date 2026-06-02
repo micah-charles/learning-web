@@ -165,12 +165,14 @@ function summaryOf(g) {
     score: g.score, correct: g.correct, bestStreak: g.bestStreak,
     accuracy: g.answered ? Math.round((g.correct / g.answered) * 100) : 0,
     answered: g.answered,
+    lives: g.lives,       // required by onRoundEnd win check (lives > 0 = won)
+    totalInSet: g.totalInSet,
   };
 }
 
 const DEFAULT_GOAL = { mode: "questions", target: 20 };
 
-export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord }) {
+export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord, hideEndOverlay = false }) {
   const wrapRef = useRef(null);
   const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
   const cellPxRef = useRef(cellPx);
@@ -290,7 +292,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
 
       <DpadControls onPress={press} />
 
-      {(paused || over) && (
+      {(paused || (over && !hideEndOverlay)) && (
         <PauseOverlay
           kind={over ? "over" : "paused"}
           summary={over ? summaryOf(gRef.current) : null}

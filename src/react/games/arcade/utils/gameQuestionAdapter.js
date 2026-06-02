@@ -19,11 +19,18 @@
 import { shuffle, normalizeForCompare } from "@/utils.js";
 
 /** Pick up to `n` distinct distractors from `pool`, excluding `exclude` values. */
+/** Dedup key: normalizeForCompare for Latin scripts; trimmed original for CJK/scripts
+ *  where normalizeForCompare strips all characters (returns ""). */
+function dedupeKey(value) {
+  const norm = normalizeForCompare(value);
+  return norm || String(value).trim().toLowerCase();
+}
+
 function pickDistractors(pool, n, exclude) {
-  const seen = new Set(exclude.map(normalizeForCompare));
+  const seen = new Set(exclude.map(dedupeKey));
   const out = [];
   for (const value of shuffle(pool)) {
-    const key = normalizeForCompare(value);
+    const key = dedupeKey(value);
     if (!value || seen.has(key)) continue;
     seen.add(key);
     out.push(value);
