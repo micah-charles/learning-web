@@ -1,23 +1,26 @@
 /**
- * SnakeBuilderGame.jsx — Mode 2: Sentence Builder Snake (the key mode).
+ * SnakeBuilderGame.jsx — Mode 2: Classic Snake × Sentence Builder.
  *
- * The snake must eat the sentence's word tokens IN ORDER. Each correct next
- * word grows the snake and adds to the built sentence; a wrong/out-of-order
- * token (or a decoy word) costs a life. Completing a sentence loads the next.
+ * Classic Snake mechanics:
+ *   - Open map (no walls) — the snake wraps its OWN body, not a maze.
+ *   - Every correct word eaten grows the tail by one segment.
+ *   - Exactly TWO tokens on screen at a time: the next word to collect (correct)
+ *     + one distractor drawn from the remaining sentence words.
+ *   - As words are collected the distractor pool shrinks; on the final word
+ *     only one token remains — the correct answer.
+ *   - Tokens always spawn on cells NOT occupied by the snake body.
+ *   - Eating a wrong token costs a life + brief freeze; tokens respawn in new
+ *     positions so the player can try again without being trapped.
  *
- * Fully data-driven and multilingual: tokens come straight from a builder
- * pack's `tiles` (any language). No German-specific logic.
- *
- * Same engine discipline as QuizHuntGame: ref-authoritative state, snapshot to
- * React once per step, side effects fired outside setState updaters.
+ * Engineering: same ref-authoritative / snapshot-once-per-step discipline as
+ * QuizHuntGame (RC16).
  */
 import { useRef, useState, useEffect, useCallback } from "react";
 import { generateMap } from "./maps/mapGenerator.js";
-import { stepInDirection, isFloor, OPPOSITE } from "./engine/grid.js";
+import { stepInDirection, isFloor, OPPOSITE, floorCells, cellKey } from "./engine/grid.js";
 import { useGameLoop } from "./engine/useGameLoop.js";
 import { useArcadeControls } from "./hooks/useArcadeControls.js";
 import { useBoardMetrics } from "./hooks/useBoardMetrics.js";
-import { snakeBuilderDecoys } from "./utils/gameQuestionAdapter.js";
 import { placeTokensNoOverlap, tokenContains } from "./utils/tokenLayout.js";
 import { shuffle } from "@/utils.js";
 import GameBoard from "./components/GameBoard.jsx";
@@ -25,9 +28,10 @@ import ArcadeHud from "./ui/ArcadeHud.jsx";
 import DpadControls from "./ui/DpadControls.jsx";
 import PauseOverlay from "./ui/PauseOverlay.jsx";
 
-const STEP_MS = 200; // a touch slower than Quiz Hunt — more thinking time
+const STEP_MS = 180;
 const START_LIVES = 3;
-const MAX_DECOYS = 3;
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
 
 function nearestFloor(map, x, y) {
   if (isFloor(map, x, y)) return { x, y };
@@ -41,22 +45,39 @@ function nearestFloor(map, x, y) {
   return { x: 0, y: 0 };
 }
 
-function loadSentence(g, cellPx) {
+/**
+ * Spawn exactly 2 tokens for the current step:
+ *   - slot 0: the correct next word  (order = g.expected)
+ *   - slot 1: a distractor chosen from the remaining (not-yet-collected) words
+ *             — or absent if this is the final word in the sentence.
+ *
+ * Tokens are placed on cells not occupied by the snake's body.
+ * The distractor comes from the SAME sentence's remaining words so the player
+ * is learning the full sentence as they play.
+ */
+function spawnPair(g, cellPx) {
   const q = g.questions[g.qIndex];
-  g.expected = 1;
-  g.tokenCount = q.tokens.length;
-  g.collected = [];
-  g.body = [g.body[0]]; // reset snake to a single head between sentences
-  const decoys = snakeBuilderDecoys(g.questions, q.tokens, MAX_DECOYS);
-  const wanted = [
-    ...q.tokens.map((t) => ({ text: t.text, order: t.order })),
-    ...shuffle(decoys).map((d) => ({ text: d, order: 0 })),
+  const correctToken = q.tokens[g.expected - 1]; // 1-based
+
+  // Pool of remaining words (expected+1 … end) for the distractor.
+  const remaining = q.tokens.slice(g.expected); // tokens[expected] onward
+  const distractor = remaining.length > 0 ? shuffle([...remaining])[0] : null;
+
+  const items = [
+    { text: correctToken.text, _isCorrect: true  },
+    ...(distractor ? [{ text: distractor.text, _isCorrect: false }] : []),
   ];
-  const placed = placeTokensNoOverlap(g.map, wanted, [g.body[0]], cellPx);
-  g.tokens = placed.map((a, i) => ({
-    id: `tk_${g.qIndex}_${i}`,
+
+  // Reserve every snake body cell so tokens never spawn on the tail.
+  const reserved = [...g.body];
+  const placed = placeTokensNoOverlap(g.map, items, reserved, cellPx);
+
+  g.tokens = placed.map((a) => ({
+    id: `tk_${g.qIndex}_${g.expected}_${Math.random().toString(36).slice(2, 7)}`,
     x: a.x, y: a.y,
-    text: a.text, order: a.order, collected: false, state: "neutral",
+    text: a.text,
+    isCorrect: a._isCorrect,
+    state: "neutral",
   }));
 }
 
@@ -71,7 +92,8 @@ function initState(map, questions, goal, cellPx) {
     correct: 0, wrong: 0, freeze: 0,
     timeLeft: goal.mode === "time" ? goal.target : null,
   };
-  loadSentence(g, cellPx);
+  g.tokenCount = questions[0]?.tokens?.length || 0;
+  spawnPair(g, cellPx);
   return g;
 }
 
@@ -82,6 +104,7 @@ function snapshot(g) {
     score: g.score, lives: g.lives, combo: g.combo,
     bestStreak: g.bestStreak, correct: g.correct, wrong: g.wrong,
     timeLeft: g.timeLeft, map: g.map,
+    expected: g.expected, tokenCount: g.tokenCount,
   };
 }
 
@@ -91,62 +114,74 @@ function step(g, inputDir, dt, cellPx) {
 
   if (g.timeLeft != null) {
     g.timeLeft -= dt / 1000;
-    if (g.timeLeft <= 0) { g.timeLeft = 0; g.status = "over"; events.push({ type: "over" }); return events; }
+    if (g.timeLeft <= 0) {
+      g.timeLeft = 0; g.status = "over"; events.push({ type: "over" }); return events;
+    }
   }
 
   if (g.freeze > 0) { g.freeze -= 1; return events; }
 
-  // No "none → heading" auto-continue: a "none" input means the snake stands
-  // still (used to pause after each word is eaten). The persistent directionRef
-  // keeps it gliding in the last pressed direction otherwise.
   let dir = inputDir;
-  // Block reversing directly into the body (classic snake rule).
+  if (dir === "none") return events; // stay still until input given
+  // Classic snake rule: can't reverse into own body.
   if (g.body.length > 1 && dir === OPPOSITE[g.heading]) dir = g.heading;
 
   const head = g.body[0];
-  const nh = stepInDirection(g.map, head, dir);
-  if (nh.x === head.x && nh.y === head.y) return events; // blocked
+  // Open map wraps at edges (classic Snake wrapping).
+  const nx = ((head.x + (dir === "left" ? -1 : dir === "right" ? 1 : 0)) + g.map.cols) % g.map.cols;
+  const ny = ((head.y + (dir === "up"   ? -1 : dir === "down"  ? 1 : 0)) + g.map.rows) % g.map.rows;
+  const nh = { x: nx, y: ny };
   g.heading = dir;
   g.body.unshift(nh);
 
   let grew = false;
   const q = g.questions[g.qIndex];
-  // Footprint collision so the head can't overlap a word without eating it.
-  const hit = g.tokens.find((t) => !t.collected && tokenContains(t, nh.x, nh.y, cellPx));
+  const hit = g.tokens.find((t) => tokenContains(t, nh.x, nh.y, cellPx));
   if (hit) {
-    if (hit.order === g.expected) {
+    if (hit.isCorrect) {
       g.score += 10 + g.combo * 2;
       g.combo += 1;
       g.bestStreak = Math.max(g.bestStreak, g.combo);
       g.collected.push(hit.text);
-      hit.collected = true;
-      hit.state = "correct";
       g.expected += 1;
-      grew = true;
+      grew = true;                      // tail grows — classic Snake behaviour
       events.push({ type: "collect" });
+
       if (g.expected > g.tokenCount) {
+        // Sentence complete.
         g.score += 25;
         g.correct += 1;
         events.push({ type: "complete", itemId: q.itemId });
         if (g.goal.mode === "questions" && g.correct >= g.goal.target) {
           g.status = "over"; events.push({ type: "over" });
         } else {
-          // Cycle sentences (wrap) so time/large-count goals keep going.
-          g.qIndex = (g.qIndex + 1) % g.questions.length;
-          loadSentence(g, cellPx); // resets body to head → keep grew=true to skip pop
+          const nextIdx = (g.qIndex + 1) % g.questions.length;
+          g.qIndex = nextIdx;
+          g.expected = 1;
+          g.tokenCount = g.questions[nextIdx]?.tokens?.length || 0;
+          g.collected = [];
+          g.body = [g.body[0]]; // reset snake length for new sentence
+          spawnPair(g, cellPx);
         }
+      } else {
+        spawnPair(g, cellPx); // spawn next word pair
       }
     } else {
+      // Wrong token: lose a life, respawn both tokens in new positions.
       g.lives -= 1;
       g.combo = 0;
       g.wrong += 1;
-      g.freeze = 2;
-      hit.state = "wrong";
+      g.freeze = 3;
       events.push({ type: "wrong", itemId: q.itemId });
-      if (g.lives <= 0) { g.status = "over"; events.push({ type: "over" }); }
+      if (g.lives <= 0) {
+        g.status = "over"; events.push({ type: "over" });
+      } else {
+        spawnPair(g, cellPx); // move tokens so snake isn't forced into wrong again
+      }
     }
   }
-  if (!grew) g.body.pop();
+
+  if (!grew) g.body.pop(); // normal Snake tail movement
   return events;
 }
 
@@ -157,6 +192,8 @@ function summaryOf(g) {
     accuracy: answered ? Math.round((g.correct / answered) * 100) : 0,
   };
 }
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 const DEFAULT_GOAL = { mode: "questions", target: 20 };
 
@@ -203,16 +240,16 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
     const g = gRef.current;
     if (!g) return;
     const events = step(g, directionRef.current, dt, cellPxRef.current);
-    // Stand still after eating any word (right or wrong) until the next input.
+    // After eating stop gliding so the player can think about next move.
     if (events.some((e) => e.type === "collect" || e.type === "wrong" || e.type === "complete")) {
       directionRef.current = "none";
     }
     setView(snapshot(g));
     for (const ev of events) {
-      if (ev.type === "collect") sound.play("collect");
+      if (ev.type === "collect")  sound.play("collect");
       else if (ev.type === "complete") { sound.play("correct"); onRecord?.("builderComplete", { itemId: ev.itemId, correct: true }); }
-      else if (ev.type === "wrong") { sound.play("wrong"); onRecord?.("builderComplete", { itemId: ev.itemId, correct: false }); }
-      else if (ev.type === "over") { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
+      else if (ev.type === "wrong")    { sound.play("wrong");   onRecord?.("builderComplete", { itemId: ev.itemId, correct: false }); }
+      else if (ev.type === "over")     { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
   }, [directionRef, sound, onRecord]);
 
@@ -241,16 +278,19 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
   const q = questions[view.qIndex] || questions[questions.length - 1];
   const over = view.status === "over";
   const segments = view.body.map((c, i) => ({ id: `s${i}`, x: c.x, y: c.y, head: i === 0 }));
-  const built = view.collected.join(" → ") || "—";
+  const built = view.collected.length > 0 ? view.collected.join(" ") : "—";
+  const progress = `${view.expected - 1}/${view.tokenCount}`;
 
   return (
     <div className="arc-game">
       <ArcadeHud
-        title="Build, in order"
+        title="Build the sentence"
         prompt={q.sentence}
-        hint={`So far: ${built}`}
+        hint={view.collected.length > 0 ? `Built: ${built}` : "Eat the next word in order"}
         score={view.score} streak={view.combo} lives={view.lives} maxLives={START_LIVES}
-        goalText={goal.mode === "questions" ? `${view.correct}/${goal.target}` : null}
+        goalText={goal.mode === "questions"
+          ? `${view.correct}/${goal.target} sentences · word ${progress}`
+          : `word ${progress}`}
         timer={goal.mode === "time" ? view.timeLeft : undefined}
         muted={sound.muted} onToggleMute={sound.toggleMute} onPause={togglePause}
       />
@@ -258,11 +298,11 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
       <div className="arc-board-wrap" ref={wrapRef}>
         <GameBoard
           map={view.map} cellPx={cellPx}
-          tokens={view.tokens.filter((t) => !t.collected)} segments={segments}
+          tokens={view.tokens} segments={segments}
           playerEmoji="🐍" reducedMotion={reducedMotion}
         />
         {view.status === "ready" && (
-          <div className="arc-start-hint">Eat the words in order to build the sentence 🐍</div>
+          <div className="arc-start-hint">Swipe or use arrow keys — eat words to build the sentence 🐍</div>
         )}
       </div>
 

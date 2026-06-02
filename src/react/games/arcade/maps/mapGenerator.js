@@ -1,32 +1,34 @@
 /**
- * mapGenerator.js — one map layout: "pillars".
+ * mapGenerator.js — two map layouts.
  *
- * Pillars are placed on a 3-cell grid so corridors are always 2 cells wide —
- * wide enough for a growing snake to turn around without getting trapped.
+ *  "open"    → no walls; the whole grid is a plain floor.
+ *              Used for Sentence Snake so the growing body isn't boxed in.
  *
- * Spacing 2 (old) → 1-cell corridors → snake deadlock.
- * Spacing 3 (new) → 2-cell corridors → snake can always manoeuvre.
+ *  "pillars" → sparse 1-cell pillars on a 3-cell grid, leaving 2-cell-wide
+ *              corridors. Used for Quiz Hunt.
  *
  * The outer ring is always clear so the player can lap the board edge.
  */
 import { cellKey } from "../engine/grid.js";
 
 /**
- * Generate the pillar map for the given grid dimensions.
+ * @param {"open"|"pillars"} type
  * @param {number} cols
  * @param {number} rows
  * @returns {{cols:number, rows:number, walls:Set<string>, type:string}}
  */
-export function generateMap(_type, cols, rows) {
+export function generateMap(type, cols, rows) {
   const walls = new Set();
-  // Pillars at every 3rd interior position.  The 2-cell gap between them is the
-  // usable corridor width; one free cell on each outer edge keeps the perimeter open.
-  for (let y = 2; y < rows - 1; y += 3) {
-    for (let x = 2; x < cols - 1; x += 3) {
-      walls.add(cellKey(x, y));
+  if (type === "pillars") {
+    // Pillars at every 3rd interior position — 2-cell corridors.
+    for (let y = 2; y < rows - 1; y += 3) {
+      for (let x = 2; x < cols - 1; x += 3) {
+        walls.add(cellKey(x, y));
+      }
     }
   }
-  return { cols, rows, walls, type: "pillars" };
+  // "open" leaves walls empty.
+  return { cols, rows, walls, type: type === "pillars" ? "pillars" : "open" };
 }
 
 /**

@@ -33,8 +33,9 @@ const MODES = [
   { id: "quiz-hunt", label: "Quiz Hunt 🦊", desc: "Eat the correct answer" },
   { id: "snake-builder", label: "Sentence Snake 🐍", desc: "Build sentences in order" },
 ];
-// Pillars only — 3-cell spacing gives 2-cell-wide corridors so Snake can manoeuvre.
-const MAP_TYPE = "pillars";
+// Quiz Hunt uses the pillar map (fox never grows, pillars add navigation challenge).
+// Sentence Snake uses an open map (no walls) so the growing body isn't boxed in.
+const MAP_TYPE = { "quiz-hunt": "pillars", "snake-builder": "open" };
 
 // Round goals. All modes keep the 3-heart limit; these add a win/end condition.
 const GOALS = [
@@ -152,7 +153,7 @@ export default function ArcadeGamePage() {
       );
     }
     const commonProps = {
-      questions, mapType: MAP_TYPE, goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
+      questions, mapType: MAP_TYPE[prefs.mode] || "pillars", goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
       reducedMotion: REDUCED_MOTION, onExit: exitToSetup, onRecord: handleRecord,
     };
     return (
