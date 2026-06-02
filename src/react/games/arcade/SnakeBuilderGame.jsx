@@ -228,6 +228,8 @@ function summaryOf(g) {
   return {
     score: g.score, correct: g.correct, bestStreak: g.bestStreak,
     accuracy: answered ? Math.round((g.correct / answered) * 100) : 0,
+    lives: g.lives,           // lives > 0 = completed without losing all hearts
+    totalInSet: g.totalInSet,
   };
 }
 

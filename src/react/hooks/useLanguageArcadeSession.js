@@ -36,30 +36,44 @@ export function useLanguageArcadeSession(pack, targetLang, SPEECH_LANG_MAP) {
   const [done, setDone]             = useState(false);
 
   // Convert pack vocabulary into Quiz Hunt questions.
-  // direction "prompt-en": show the English/definition, collect the target word.
+  // PL pack vocabulary shape: v.translations[lang] = { text, article }
+  // direction "prompt-en": show English definition, collect target-language word.
   const quizQuestions = useMemo(() => {
     if (!pack?.vocabulary?.length) return [];
     const speechLanguage = SPEECH_LANG_MAP?.[targetLang] || "de-DE";
-    const words = pack.vocabulary.map((v, i) => ({
-      id: `pl_v_${i}`,
-      de: v.translations?.[targetLang] || v.sourceWord || "",
-      en: v.translations?.en || v.targetWord || "",
-      topic: v.conceptId || "",
-      tags: [],
-    }));
+    const words = pack.vocabulary.map((v, i) => {
+      const tgt = v.translations?.[targetLang];
+      const eng = v.translations?.en;
+      const tgtText = (typeof tgt === "object" ? tgt?.text : tgt) || "";
+      const engText = (typeof eng === "object" ? eng?.text : eng) || "";
+      return {
+        id: `pl_v_${i}`,
+        de: tgtText,   // answer: the target-language word (used by answerKey "de")
+        en: engText,   // prompt: English meaning  (used by promptKey "en")
+        topic: v.conceptId || v.semanticCategory || "",
+        tags: [],
+      };
+    });
     return buildQuizHuntQuestions(words, { direction: "prompt-en", speechLanguage });
   }, [pack, targetLang, SPEECH_LANG_MAP]);
 
   // Convert pack sentenceBuilders into Snake questions.
+  // PL pack builder shape: s.translations[lang] = { text, tiles: [...] }
   const snakeQuestions = useMemo(() => {
     if (!pack?.sentenceBuilders?.length) return [];
     const speechLanguage = SPEECH_LANG_MAP?.[targetLang] || "de-DE";
-    const cards = pack.sentenceBuilders.map((s, i) => ({
-      id: `pl_s_${i}`,
-      prompt: s.translations?.en || s.prompt || "",
-      answer: s.translations?.[targetLang] || s.answer || "",
-      tiles:  s.tiles?.[targetLang]  || s.tiles || [],
-    }));
+    const cards = pack.sentenceBuilders.map((s, i) => {
+      const tgtTrans = s.translations?.[targetLang];
+      const engTrans = s.translations?.en;
+      const answer = (typeof tgtTrans === "object" ? tgtTrans?.text : tgtTrans) || "";
+      const prompt  = (typeof engTrans  === "object" ? engTrans?.text  : engTrans)  || "";
+      // Tiles live at s.translations[lang].tiles; fall back to splitting the sentence.
+      const tilesRaw = tgtTrans?.tiles;
+      const tiles = Array.isArray(tilesRaw) && tilesRaw.length > 1
+        ? tilesRaw
+        : answer.split(/\s+/).filter(Boolean);
+      return { id: `pl_s_${i}`, prompt, answer, tiles };
+    });
     return buildSnakeBuilderQuestions(cards, { speechLanguage });
   }, [pack, targetLang, SPEECH_LANG_MAP]);
 

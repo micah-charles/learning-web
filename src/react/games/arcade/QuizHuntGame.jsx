@@ -164,7 +164,8 @@ function summaryOf(g) {
   return {
     score: g.score, correct: g.correct, bestStreak: g.bestStreak,
     accuracy: g.answered ? Math.round((g.correct / g.answered) * 100) : 0,
-    answered: g.answered,
+    answered: g.answered, lives: g.lives,          // lives > 0 = completed without losing all hearts
+    totalInSet: g.totalInSet,
   };
 }
 

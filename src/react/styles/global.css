@@ -1987,11 +1987,11 @@ body.sb-split-mode .lw-app {
 .lap-step-dot {
   display: inline-flex; align-items: center; justify-content: center;
   width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
-  background: currentColor; color: #fff; font-size: 0.68rem; font-weight: 700;
+  background: var(--lw-line); color: var(--lw-muted);
+  font-size: 0.68rem; font-weight: 700;
 }
-.lap-step--active .lap-step-dot { background: var(--lw-blue); }
-.lap-step--done   .lap-step-dot { background: var(--lw-green); }
-.lap-step--done   .lap-step-dot { color: #fff; }
+.lap-step--active .lap-step-dot { background: var(--lw-blue);  color: #fff; }
+.lap-step--done   .lap-step-dot { background: var(--lw-green); color: #fff; }
 
 /* Completion card */
 .lap-complete { text-align: center; }
