@@ -22,6 +22,7 @@ import { useGameLoop } from "./engine/useGameLoop.js";
 import { useArcadeControls } from "./hooks/useArcadeControls.js";
 import { useBoardMetrics } from "./hooks/useBoardMetrics.js";
 import { placeTokensNoOverlap, tokenContains } from "./utils/tokenLayout.js";
+import { shuffle } from "@/utils.js";
 import GameBoard from "./components/GameBoard.jsx";
 import ArcadeHud from "./ui/ArcadeHud.jsx";
 import DpadControls from "./ui/DpadControls.jsx";
