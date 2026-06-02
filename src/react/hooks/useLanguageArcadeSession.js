@@ -40,6 +40,10 @@ export function useLanguageArcadeSession(pack, targetLang) {
   // PL pack vocabulary shape: v.translations[lang] = { text, article }
   // direction "prompt-en": show English definition, collect target-language word.
   const quizQuestions = useMemo(() => {
+    const vocabLen = pack?.vocabulary?.length ?? "MISSING";
+    const packKeys = pack ? Object.keys(pack).join(",") : "NULL";
+    // eslint-disable-next-line no-console
+    console.log("[LArcade] pack keys:", packKeys, "| vocab:", vocabLen, "| lang:", targetLang);
     if (!pack?.vocabulary?.length) return [];
     const speechLanguage = SPEECH_LANG_MAP?.[targetLang] || "de-DE";
     const words = pack.vocabulary.map((v, i) => {
