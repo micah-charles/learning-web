@@ -387,32 +387,44 @@ architecture: `docs/REACT_ARCHITECTURE.md` §16.
 
 | Control | Values | Pref |
 |---|---|---|
-| Game mode | Quiz Hunt 🦊 / Sentence Snake 🐍 | `prefs.arcade.mode` |
+| Game mode | Quiz Hunt / Sentence Snake | `prefs.arcade.mode` |
 | Subject | `SubjectCardGrid` (counts per mode) | `prefs.arcade.subject` |
 | Curriculum | dynamic (`listCurricula`) | `prefs.arcade.curriculum` |
 | Pack | vocab dataset (Quiz Hunt) / builder pack (Snake) | `prefs.arcade.datasetId` / `packId` |
-| Map | Open field / Pillars | `prefs.arcade.mapType` |
 | Challenge | 20 / 40 / 60 questions · 5-minute rush · Endless | `prefs.arcade.goal` |
 | Sound | on/off (muteable WebAudio blips) | `prefs.arcade.sound` |
+
+> **Map selector removed.** Quiz Hunt always uses the pillar map (3-cell spacing → 2-cell-wide corridors); Sentence Snake always uses the open map (border walls only, no interior pillars). `prefs.arcade.mapType` is no longer stored.
 
 ### Modes
 
 - **Quiz Hunt** — built from a vocab pack via `gameQuestionAdapter`. The HUD shows
-  the prompt (English/definition); the fox must eat the correct term token and
-  avoid distractors (wrong = lose a life + brief freeze + combo reset). Always 3
-  lives.
-- **Sentence Snake** — built from a `sentenceBuilder` pack. The snake must eat the
-  sentence's word tokens **in order** (it grows as it builds the sentence);
-  out-of-order or decoy words cost a life. Multilingual and subject-agnostic.
+  the question prompt; the player (FoxChild fox logo) must eat the correct answer
+  token and avoid distractors. Wrong token: lose a life + brief freeze; hitting the
+  same wrong token again on subsequent steps **does not** cost another heart
+  (`state === "wrong"` tokens are skipped). Always 3 lives.
+- **Sentence Snake** — built from a `sentenceBuilder` pack. The HUD shows the
+  question prompt (`c.prompt`); the player (FoxChild girl logo) eats words to build
+  the answer. Exactly **2 tokens on screen at a time** (next correct word + 1
+  distractor drawn from the remaining sentence words). Each correct eat grows the
+  tail; the collected words appear as labels on the body segments. Wrong token or
+  **self-collision** (head enters own tail) both cost a life. Final word in a
+  sentence has no distractor. Multilingual and subject-agnostic.
 
 ### Controls & gameplay
 
 - **Move:** swipe (touch), arrow keys / WASD (desktop), or the on-screen D-pad.
-  Pause: Esc/P or the ⏸ button. The player **stands still after eating** a token —
-  give a fresh input to move again.
+  Pause: Esc/P or the ⏸ button. The player **stands still after eating** a token
+  (or after a wrong/self-collision hit) — give a fresh input to resume.
+- **Map boundaries** — the outer ring is always a real wall (`map.walls`) so the
+  player can never leave the visible area. Quiz Hunt has additional interior pillar
+  walls; Snake has a fully open interior.
 - **Tokens** can span several cells (wide horizontal, or rotated 90° vertical for
-  long words). Collision is coverage-based (you only eat a word when ≥50% under
-  the pill); placement reserves each word's footprint so pills never overlap.
+  long words). Collision is coverage-based (≥50% of cell under the pill); placement
+  reserves each word's footprint so pills never overlap each other or the player.
+- **Player images** live in `public/images/` (`foxchild-fox.png` for Quiz Hunt,
+  `foxchild-girl.png` for Snake). `GameBoard.playerEmoji` accepts either a plain
+  emoji string or a `"/"` path; paths render as `<img className="arc-seg-img" />`.
 
 ### Progress
 

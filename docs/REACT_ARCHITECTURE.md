@@ -517,19 +517,20 @@ games/arcade/
   QuizHuntGame.jsx         Mode 1 — fox eats the correct answer token (from vocab packs)
   SnakeBuilderGame.jsx     Mode 2 — snake eats sentence words IN ORDER (from builder packs)
   engine/
-    grid.js                grid model + coordinate collision (DIRS, isFloor, stepInDirection, …)
+    grid.js                grid model + collision (DIRS, isFloor, stepInDirection, reachableFrom …)
     useGameLoop.js         requestAnimationFrame loop: delta timing, discrete steps, pause
   hooks/
     useArcadeContent.js    loads vocab/builder packs → game questions via the adapter
     useArcadeControls.js   swipe + WASD/arrows + D-pad → a directionRef (no re-render per key)
     useArcadeSound.js      muteable WebAudio blips + speech (no audio assets)
     useBoardMetrics.js     responsive grid sizing (cols/rows/cellPx) via ResizeObserver
-  maps/mapGenerator.js     open-field / pillar layouts
+  maps/mapGenerator.js     "open" (border walls only) or "pillars" (border + 3-step interior grid)
   ui/                      ArcadeHud, DpadControls, PauseOverlay
-  components/GameBoard.jsx React+CSS grid renderer (no Canvas)
+  components/GameBoard.jsx React+CSS grid renderer (no Canvas); playerEmoji accepts emoji or "/path"
   utils/
     gameQuestionAdapter.js pack data → { quiz-hunt | snake-builder } question objects
-    tokenLayout.js         pill orientation + multi-cell footprint (placement + collision)
+    tokenLayout.js         pill orientation + multi-cell footprint (placement + BFS solvability)
+  public/images/           foxchild-fox.png (Quiz Hunt), foxchild-girl.png (Snake)
 ```
 
 ### Key patterns (see cautions RC15–RC17)
@@ -541,16 +542,30 @@ games/arcade/
 - **Ref-authoritative loop.** Per-step game state lives in `gRef`; React state is a
   snapshot set once per discrete grid step (not per frame). Side effects (sound,
   `onRecord`) fire outside state updaters. **RC16.**
-- **Multi-cell token footprint.** A pill can span cells (wide or rotated vertical);
-  `tokenLayout.js` keeps placement, rendering, and ≥50%-coverage collision in
-  sync. **RC17.**
+- **Multi-cell token footprint + BFS solvability.** A pill can span cells (wide or
+  rotated vertical); `tokenLayout.js` keeps placement, rendering, and ≥50%-coverage
+  collision in sync. After placing tokens, a BFS from the player (treating wrong-token
+  footprints as blocked) verifies a clear path to the correct answer; retried up to
+  12 times. **RC17.**
+- **Map layouts.** Every map's outer ring is a real wall so the player can never leave
+  the visible area. Quiz Hunt → `"pillars"` (3-step interior grid, 2-cell corridors).
+  Snake → `"open"` (border walls only, fully open interior — prevents the growing tail
+  getting trapped in corridors). Map type is hardcoded per mode, not user-selectable.
+- **Sentence Snake specifics.** Exactly 2 tokens on screen at a time (next correct
+  word + 1 distractor from remaining sentence words). Each correct eat grows the
+  tail; collected words appear as labels on body segments. Wrong token **and**
+  self-collision (head enters own tail, excluding the last segment) both cost a life
+  and briefly freeze the snake. `state === "wrong"` tokens are excluded from subsequent
+  collision checks so the same wrong token never costs more than one heart.
 - **Progress + prefs.** Per-word answers feed existing word mastery
   (`recordWordAnswer`); arcade bests live in `progress.arcadeStats` via
-  `recordArcadeResult`. `prefs.arcade` (mode/subject/curriculum/pack/map/goal/sound)
+  `recordArcadeResult`. `prefs.arcade` (mode/subject/curriculum/pack/goal/sound)
   is persisted **through `updateProgress`**, never a side-channel save. **RC15.**
 - **Round goals.** `prefs.arcade.goal` → 20/40/60 questions, a 5-minute timer, or
-  endless; always 3 lives. Questions wrap so timed/large goals keep going on small
-  packs.
+  endless; always 3 lives. Questions wrap so timed/large goals keep going on small packs.
+- **Player images.** `GameBoard.playerEmoji` accepts an emoji string **or** a `"/path"`.
+  Paths render as `<img className="arc-seg-img" />`. Images live in `public/images/`;
+  Vite serves `public/` at the root so they work in production without `viteStaticCopy`.
 
 ### Adding a mode
 

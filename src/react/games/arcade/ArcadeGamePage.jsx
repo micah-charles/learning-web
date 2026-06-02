@@ -33,11 +33,13 @@ const MODES = [
   { id: "quiz-hunt", label: "Quiz Hunt 🦊", desc: "Eat the correct answer" },
   { id: "snake-builder", label: "Sentence Snake 🐍", desc: "Build sentences in order" },
 ];
-// Pillars only — 3-cell spacing gives 2-cell-wide corridors so Snake can manoeuvre.
-const MAP_TYPE = "pillars";
+// Quiz Hunt uses the pillar map (fox never grows, pillars add navigation challenge).
+// Sentence Snake uses an open map (no walls) so the growing body isn't boxed in.
+const MAP_TYPE = { "quiz-hunt": "pillars", "snake-builder": "open" };
 
 // Round goals. All modes keep the 3-heart limit; these add a win/end condition.
 const GOALS = [
+  { id: "fullset", label: "Full Set (default) — repeat wrongs until all correct" },
   { id: "q20", label: "20 questions" },
   { id: "q40", label: "40 questions" },
   { id: "q60", label: "60 questions" },
@@ -45,6 +47,7 @@ const GOALS = [
   { id: "endless", label: "Endless (3 hearts)" },
 ];
 const GOAL_CONFIG = {
+  fullset: { mode: "fullset", target: 0 }, // complete every item; wrong ones re-queue
   q20:     { mode: "questions", target: 20 },
   q40:     { mode: "questions", target: 40 },
   q60:     { mode: "questions", target: 60 },
@@ -74,15 +77,23 @@ export default function ArcadeGamePage() {
 
   function setPref(key, value) { setPrefs((p) => ({ ...p, [key]: value })); }
 
-  // ── Sound (muteable) ────────────────────────────────────────────────────────
+  // ── Two independent audio channels ─────────────────────────────────────────
+  // Channel 1: sound effects (blips)   — mutedRef
+  // Channel 2: speak correct word aloud — speechEnabledRef
   const mutedRef = useRef(!prefs.sound);
   mutedRef.current = !prefs.sound;
-  const audio = useArcadeSound(mutedRef);
+  const speechEnabledRef = useRef(!!prefs.speech);
+  speechEnabledRef.current = !!prefs.speech;
+  const audio = useArcadeSound(mutedRef, speechEnabledRef);
   const sound = useMemo(() => ({
-    play: audio.play, speak: audio.speak, stop: audio.stop,
+    play: audio.play,
+    speakWord: audio.speakWord,
+    stop: audio.stop,
     muted: !prefs.sound,
+    speech: !!prefs.speech,
     toggleMute: () => setPref("sound", !prefs.sound),
-  }), [audio, prefs.sound]);
+    toggleSpeech: () => setPref("speech", !prefs.speech),
+  }), [audio, prefs.sound, prefs.speech]);
 
   // ── Setup option lists ──────────────────────────────────────────────────────
   const isBuilder = prefs.mode === "snake-builder";
@@ -152,7 +163,7 @@ export default function ArcadeGamePage() {
       );
     }
     const commonProps = {
-      questions, mapType: MAP_TYPE, goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
+      questions, mapType: MAP_TYPE[prefs.mode] || "pillars", goal: GOAL_CONFIG[prefs.goal] || GOAL_CONFIG.q20, sound,
       reducedMotion: REDUCED_MOTION, onExit: exitToSetup, onRecord: handleRecord,
     };
     return (
@@ -225,7 +236,11 @@ export default function ArcadeGamePage() {
 
         <label className="arc-sound-row">
           <input type="checkbox" checked={prefs.sound} onChange={(e) => setPref("sound", e.target.checked)} />
-          Sound effects
+          🔊 Sound effects
+        </label>
+        <label className="arc-sound-row">
+          <input type="checkbox" checked={!!prefs.speech} onChange={(e) => setPref("speech", e.target.checked)} />
+          🗣 Speak correct word aloud
         </label>
 
         <div className="arc-setup-actions">
