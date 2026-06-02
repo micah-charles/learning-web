@@ -100,8 +100,10 @@ function step(g, direction, dt, cellPx) {
   if (g.player.x === prevPos.x && g.player.y === prevPos.y) return events;
   const q = g.questions[g.qIndex];
   // Footprint collision: the fox eats a word if it touches ANY cell the pill
-  // covers, so it can never sit visually on top of a word without eating it.
-  const hit = g.tokens.find((t) => tokenContains(t, g.player.x, g.player.y, cellPx));
+  // covers. Skip tokens already marked "wrong" — once a wrong answer has been
+  // hit its token stays on screen as a visual indicator but must not cost
+  // another heart if the fox moves through or near it again.
+  const hit = g.tokens.find((t) => t.state !== "wrong" && tokenContains(t, g.player.x, g.player.y, cellPx));
   if (!hit) return events;
 
   g.answered += 1;
