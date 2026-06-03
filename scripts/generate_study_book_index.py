@@ -7,7 +7,6 @@ import json
 import re
 from collections import defaultdict
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 
@@ -313,9 +312,8 @@ def write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def write_outputs(books: list[StudyBook], out_dir: Path, base_url: str) -> None:
+def write_outputs(books: list[StudyBook], out_dir: Path, base_url: str, generated_at: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
-    generated_at = datetime.now(timezone.utc).isoformat()
     by_subject: dict[str, list[StudyBook]] = defaultdict(list)
     for book in books:
         by_subject[book.subject].append(book)
@@ -407,7 +405,8 @@ def main() -> None:
     args = parse_args()
     manifest = read_json(args.manifest)
     books, skipped = collect_study_books(manifest, include_missing=args.include_missing)
-    write_outputs(books, args.out_dir, args.base_url)
+    generated_at = manifest.get("generatedAt") or "unknown"
+    write_outputs(books, args.out_dir, args.base_url, generated_at)
     print(f"Wrote Study Book index for {len(books)} books to {args.out_dir}")
     if skipped:
         print(f"Skipped {len(skipped)} entries without local Study Book files")
