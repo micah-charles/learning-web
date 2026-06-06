@@ -542,6 +542,7 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMod
   const gaps = unifiedItems.filter((item) => item.type === "fillBlank");
   const picks = cyclePick(gaps, count);
   const labels = datasetLabels(dataset);
+  const mode = answerMode === "choice" ? "mcq" : answerMode;
   return picks.map((item, index) => {
     // Respect the user's answerMode selection:
     //   "typed"  → never show MCQ buttons; always render as free-text
@@ -550,11 +551,11 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMod
     // The renderer uses `options.length > 0` to decide MCQ vs textarea.
     const hasExplicitOptions = Array.isArray(item.data.options) && item.data.options.length >= 2;
     let options;
-    if (answerMode === "typed") {
+    if (mode === "typed") {
       options = []; // force textarea regardless of item data
-    } else if (hasExplicitOptions && (answerMode === "mcq" || answerMode === "mixed")) {
+    } else if (hasExplicitOptions && (mode === "mcq" || mode === "mixed")) {
       options = shuffle([...item.data.options]);
-    } else if (answerMode === "mcq") {
+    } else if (mode === "mcq") {
       // No explicit options: generate distractors from the pool
       const wrongAnswers = shuffle(
         dedupeStrings(
