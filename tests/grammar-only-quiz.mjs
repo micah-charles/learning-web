@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 
-import { createQuizSession, makeFillBlankFromUnified, resolveQuizModesForUI } from "../src/quiz.js";
+import { createQuizSession, makeMultipleChoiceFromUnified, resolveQuizModesForUI } from "../src/quiz.js";
 import { DEFAULT_STATE } from "../src/storage.js";
-import { filterFillBlankByStage } from "../src/quiz-helpers.js";
+import { filterMultipleChoiceByStage } from "../src/quiz-helpers.js";
+import { buildQuizHuntQuestionsFromMultipleChoiceItems } from "../src/react/games/arcade/utils/gameQuestionAdapter.js";
 
 const dataset = {
   id: "micah_latin_section_d_e_100_fixed_mcq",
@@ -26,20 +27,22 @@ const unifiedPack = {
   items: [
     {
       id: "latin_de_001",
-      type: "fillBlank",
+      type: "multipleChoice",
       level: "Stage 1",
       data: {
-        sentence: "What case is 'servus' in 'servus dormit'?",
+        question: "What case is 'servus' in 'servus dormit'?",
+        questionType: "multiple_choice",
         answer: "nominative",
         options: ["nominative", "accusative", "dative", "ablative"],
       },
     },
     {
       id: "latin_de_002",
-      type: "fillBlank",
+      type: "multipleChoice",
       level: "Stage 2",
       data: {
-        sentence: "What case is 'amīcum' in 'dominus amīcum salūtat'?",
+        question: "What case is 'amīcum' in 'dominus amīcum salūtat'?",
+        questionType: "multiple_choice",
         answer: "accusative",
         options: ["nominative", "accusative", "dative", "ablative"],
       },
@@ -56,17 +59,17 @@ const prefs = {
   excludeMastered: true,
 };
 
-const fillBlankCount = filterFillBlankByStage(unifiedPack, prefs, dataset).length;
-assert.equal(fillBlankCount, 2);
+const multipleChoiceCount = filterMultipleChoiceByStage(unifiedPack, prefs, dataset).length;
+assert.equal(multipleChoiceCount, 2);
 
 const modes = resolveQuizModesForUI({
   subject: "language",
   direction: prefs.direction,
   answerMode: prefs.answerMode,
-  fillBlankCount,
+  multipleChoiceCount,
   vocabCount: 0,
 });
-assert.deepEqual(modes, ["fillBlank"]);
+assert.deepEqual(modes, ["multipleChoice"]);
 
 const session = createQuizSession({
   words: [],
@@ -77,9 +80,18 @@ const session = createQuizSession({
   unifiedPack,
 });
 assert.equal(session.questions.length, 4);
-assert(session.questions.every((question) => question.kind === "gap"));
+assert(session.questions.every((question) => question.kind === "choice"));
+assert(session.questions.every((question) => question.modeTitle === "Multiple choice"));
+assert(session.questions.every((question) => question.modeId === "multipleChoice"));
 assert(session.questions.every((question) => question.options.length === 4));
+assert(session.questions.some((question) => question.prompt === "What case is 'servus' in 'servus dormit'?"));
 
-const choiceQuestions = makeFillBlankFromUnified(unifiedPack.items, 2, dataset, "choice");
+const choiceQuestions = makeMultipleChoiceFromUnified(unifiedPack.items, 2, dataset);
+assert(choiceQuestions.every((question) => question.kind === "choice"));
 assert(choiceQuestions.every((question) => question.options.length === 4));
 
+const arcadeQuestions = buildQuizHuntQuestionsFromMultipleChoiceItems(unifiedPack.items, { speechLanguage: "la" });
+assert.equal(arcadeQuestions.length, 2);
+assert.equal(arcadeQuestions[0].questionText, "What case is 'servus' in 'servus dormit'?");
+assert.equal(arcadeQuestions[0].correctAnswer, "nominative");
+assert.deepEqual(arcadeQuestions[0].distractors, ["accusative", "dative", "ablative"]);

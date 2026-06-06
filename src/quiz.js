@@ -70,6 +70,12 @@ const MODE_DEFINITIONS = [
     family: "vocab",
     direction: null,
   },
+  {
+    id: "multipleChoice",
+    kind: "choice",
+    family: "standalone",
+    direction: null,
+  },
   // Note: additional language modes (latinWordChooseEnglish, etc.) are
   // automatically supported by the generic isReverse parser in makeVocabChoiceFromUnified.
   // No MODE_DEFINITIONS entry needed for them.
@@ -97,6 +103,9 @@ function datasetLabels(dataset = null) {
 function buildModeTitle(definition, labels) {
   if (definition.family === "passage") {
     return "Question -> choose answer";
+  }
+  if (definition.family === "standalone") {
+    return "Multiple choice";
   }
   // The prompt always shows the STUDY language; the user types/builds the TARGET language.
   const promptLabel = labels.studyLabel;
@@ -399,9 +408,9 @@ export function makeFillBlankQuestions(items, count, dataset) {
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
-      modeTitle: "Fill in the blank",
-      kind: "gap",
-      prompt: item.sentence,
+      modeTitle: "Multiple choice",
+      kind: "choice",
+      prompt: item.question || item.sentence,
       answer: item.answer,
       acceptedAnswers: [item.answer],
       hint: item.hint || "",
@@ -544,17 +553,18 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMod
   const labels = datasetLabels(dataset);
   const mode = answerMode === "choice" ? "mcq" : answerMode;
   return picks.map((item, index) => {
+    const d = item.data || {};
     // Respect the user's answerMode selection:
     //   "typed"  → never show MCQ buttons; always render as free-text
     //   "mcq"    → always show MCQ buttons; generate options from pool when not explicit
     //   "mixed"  → MCQ only for items that carry explicit options; typed for the rest
     // The renderer uses `options.length > 0` to decide MCQ vs textarea.
-    const hasExplicitOptions = Array.isArray(item.data.options) && item.data.options.length >= 2;
+    const hasExplicitOptions = Array.isArray(d.options) && d.options.length >= 2;
     let options;
     if (mode === "typed") {
       options = []; // force textarea regardless of item data
     } else if (hasExplicitOptions && (mode === "mcq" || mode === "mixed")) {
-      options = shuffle([...item.data.options]);
+      options = shuffle([...d.options]);
     } else if (mode === "mcq") {
       // No explicit options: generate distractors from the pool
       const wrongAnswers = shuffle(
@@ -562,28 +572,72 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMod
           gaps
             .filter((g) => g.id !== item.id)
             .map((g) => g.data.answer)
-            .filter((v) => normalizeForCompare(v) !== normalizeForCompare(item.data.answer || "")),
+            .filter((v) => normalizeForCompare(v) !== normalizeForCompare(d.answer || "")),
         ),
       ).slice(0, 3);
-      options = shuffle([item.data.answer, ...wrongAnswers]);
+      options = shuffle([d.answer, ...wrongAnswers]);
     } else {
       // mixed, no explicit options → typed
       options = [];
     }
+    const isChoice = options.length > 0;
+    const prompt = d.question || d.sentence || "";
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
-      modeTitle: "Fill in the blank",
-      kind: "gap",
-      prompt: item.data.sentence || "",
-      answer: item.data.answer || "",
-      acceptedAnswers: [item.data.answer],
-      hint: item.data.hint || "",
+      modeTitle: isChoice ? "Multiple choice" : "Fill in the blank",
+      kind: isChoice ? "choice" : "gap",
+      prompt,
+      answer: d.answer || "",
+      acceptedAnswers: [d.answer],
+      hint: d.hint || "",
       options,
       sourceItemId: item.id,
-      speechText: item.data.sentence || "",
+      speechText: prompt,
       speechLanguage: labels.speechLanguage,
-      stimulus: item.data.stimulus || null,
+      stimulus: d.stimulus || null,
+    };
+  });
+}
+
+export function makeMultipleChoiceFromUnified(unifiedItems, count, dataset) {
+  const choices = unifiedItems.filter((item) => {
+    if (item.type !== "multipleChoice") return false;
+    const d = item.data || {};
+    const prompt = d.question || d.prompt || "";
+    const answer = d.answer || "";
+    const options = Array.isArray(d.options) ? d.options : [];
+    return prompt && answer && options.length >= 2;
+  });
+  const picks = cyclePick(choices, count);
+  const labels = datasetLabels(dataset);
+
+  return picks.map((item, index) => {
+    const d = item.data || {};
+    const prompt = d.question || d.prompt || "";
+    const answer = d.answer || "";
+    const explicitOptions = Array.isArray(d.options)
+      ? dedupeStrings(d.options)
+      : [];
+    const options = explicitOptions.some((option) => normalizeForCompare(option) === normalizeForCompare(answer))
+      ? explicitOptions
+      : dedupeStrings([answer, ...explicitOptions]);
+
+    return {
+      id: `mcq-${item.id}-${index}`,
+      modeId: "multipleChoice",
+      modeTitle: "Multiple choice",
+      kind: "choice",
+      prompt,
+      answer,
+      acceptedAnswers: [answer],
+      hint: d.hint || "",
+      options: shuffle(options),
+      sourceItemId: item.id,
+      speechText: prompt,
+      speechLanguage: labels.speechLanguage,
+      stimulus: d.stimulus || null,
+      topic: firstTopic(item),
     };
   });
 }
@@ -723,7 +777,14 @@ export function getDefaultQuestionModes(dataset = null) {
 //   subject:    "language" | "history" | "geography" | "science"
 //   direction:  "studyToTarget" | "targetToStudy"   (language packs only)
 //   answerMode: "mcq" | "typed" | "mixed"
-export function resolveQuizModesForUI({ subject = "language", direction = "studyToTarget", answerMode = "mixed", fillBlankCount = 0, vocabCount = -1 }) {
+export function resolveQuizModesForUI({
+  subject = "language",
+  direction = "studyToTarget",
+  answerMode = "mixed",
+  fillBlankCount = 0,
+  multipleChoiceCount = 0,
+  vocabCount = -1,
+}) {
   const isReverse = direction === "targetToStudy";
 
   // Word-level choice/type mode IDs. The engine treats these as direction
@@ -738,19 +799,24 @@ export function resolveQuizModesForUI({ subject = "language", direction = "study
   const mode = answerMode === "choice" ? "mcq" : answerMode;
 
   if (subject === "language") {
-    // Grammar-only packs: no vocab items, only fillBlank (e.g. a standalone grammar challenge pack).
-    if (fillBlankCount > 0 && vocabCount === 0) {
-      return ["fillBlank"];
+    const standaloneModes = [
+      ...(multipleChoiceCount > 0 ? ["multipleChoice"] : []),
+      ...(fillBlankCount > 0 ? ["fillBlank"] : []),
+    ];
+
+    // Grammar-only packs: no vocab items, only standalone quiz items.
+    if (standaloneModes.length > 0 && vocabCount === 0) {
+      return standaloneModes;
     }
 
-    // Mixed packs: vocab + fillBlank items (e.g. Cambridge Latin Stages after grammar merge).
-    // Include "fillBlank" alongside the vocab modes so grammar questions are generated too.
+    // Mixed packs: vocab + standalone grammar/question items.
+    // Include standalone modes alongside the vocab modes so grammar questions are generated too.
     const vocabModes =
       mode === "mcq"   ? [choiceMode] :
       mode === "typed" ? [typedMode]  :
       mode === "build" ? [buildMode]  :
       [choiceMode, typedMode];  // mixed
-    return fillBlankCount > 0 ? [...vocabModes, "fillBlank"] : vocabModes;
+    return standaloneModes.length > 0 ? [...vocabModes, ...standaloneModes] : vocabModes;
   }
 
   if (subject === "literature") {
@@ -838,6 +904,11 @@ export function createQuizSession({ words, sentencePools, config, persistedState
           return makeFillBlankFromUnified(unifiedItems, count, dataset, config.answerMode);
         }
         return makeFillBlankQuestions(fillBlankItems, count, dataset);
+      case "multipleChoice":
+        if (unifiedItems) {
+          return makeMultipleChoiceFromUnified(unifiedItems, count, dataset);
+        }
+        return [];
       default:
         return [];
     }

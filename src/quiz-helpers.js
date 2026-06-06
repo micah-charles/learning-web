@@ -33,9 +33,9 @@ export function filterWordsForScope(words, dataset, prefSection) {
   }
   return words.filter(w => levelMatches(w.level, prefSection.year));
 }
-export function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
+function filterUnifiedItemsByTypeAndStage(unifiedPack, prefSection, dataset, itemType) {
   const all = unifiedPack && Array.isArray(unifiedPack.items)
-    ? unifiedPack.items.filter(item => item.type === "fillBlank")
+    ? unifiedPack.items.filter(item => item.type === itemType)
     : [];
   if (!usesStageSelection(dataset)) return all;
 
@@ -46,6 +46,18 @@ export function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
     const stageStr = String(item.level || "").replace(/^Stage\s+/i, "").trim();
     return !stageStr || isNaN(Number(stageStr)) || selectedStages.has(stageStr);
   });
+}
+export function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
+  return filterUnifiedItemsByTypeAndStage(unifiedPack, prefSection, dataset, "fillBlank");
+}
+export function filterMultipleChoiceByStage(unifiedPack, prefSection, dataset) {
+  return filterUnifiedItemsByTypeAndStage(unifiedPack, prefSection, dataset, "multipleChoice");
+}
+export function filterStandaloneQuizItemsByStage(unifiedPack, prefSection, dataset) {
+  return [
+    ...filterMultipleChoiceByStage(unifiedPack, prefSection, dataset),
+    ...filterFillBlankByStage(unifiedPack, prefSection, dataset),
+  ];
 }
 export function describeScope(dataset, prefSection) {
   if (usesStageSelection(dataset)) {

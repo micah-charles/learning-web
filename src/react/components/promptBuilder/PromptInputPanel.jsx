@@ -33,6 +33,7 @@ const LOCALES = [
  * Each maps to a specific Learning Web tab:
  *
  *   vocab        → Vocabulary tab cards + Quiz word-choice / typed questions
+ *   multipleChoice → Quiz standalone multiple-choice questions
  *   fillBlank    → Quiz fill-in-the-blank questions
  *   sequence     → Quiz ordering questions
  *   categorySort → Quiz category-sort questions
@@ -41,6 +42,7 @@ const LOCALES = [
  */
 const ITEM_TYPES = [
   { value: "vocab",           label: "vocab",           tab: "Vocab + Quiz"  },
+  { value: "multipleChoice",  label: "multipleChoice",  tab: "Quiz"          },
   { value: "fillBlank",       label: "fillBlank",       tab: "Quiz"          },
   { value: "sequence",        label: "sequence",        tab: "Quiz"          },
   { value: "categorySort",    label: "categorySort",    tab: "Quiz"          },
@@ -313,7 +315,7 @@ export default function PromptInputPanel({
         {visibleItemTypes.length > 1 ? (
           <p style={field.hint}>
             <strong>vocab</strong> = Vocabulary + Quiz cards ·
-            <strong> fillBlank / sequence / categorySort</strong> = Quiz question types ·
+            <strong> multipleChoice / fillBlank / sequence / categorySort</strong> = Quiz question types ·
             <strong> sentenceBuilder</strong> = Builder tab ·
             <strong> passage</strong> = Reading tab
           </p>

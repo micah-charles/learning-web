@@ -21,6 +21,20 @@ const ITEM_CHECKS = {
     return null;
   },
 
+  multipleChoice(d, idx) {
+    if (!d.question)
+      return `items[${idx}].data: must have required property 'question'`;
+    if (!d.answer)
+      return `items[${idx}].data: must have required property 'answer'`;
+    if (!Array.isArray(d.options) || d.options.length < 2)
+      return `items[${idx}].data: must have required property 'options' (array with at least 2 choices)`;
+    const expected = String(d.answer).trim().toLowerCase();
+    const hasAnswer = d.options.some((option) => String(option).trim().toLowerCase() === expected);
+    if (!hasAnswer)
+      return `items[${idx}].data.options: must include the answer`;
+    return null;
+  },
+
   sequence(d, idx) {
     if (!d.title)
       return `items[${idx}].data: must have required property 'title' (not 'question')`;

@@ -203,6 +203,8 @@ function itemTypeNotes(types) {
     notes.push("- `vocab` items appear in the **Vocabulary** tab and power **Quiz** word-choice / typed-answer questions.");
   if (types.includes("fillBlank"))
     notes.push("- `fillBlank` items generate **fill-in-the-blank** Quiz questions.");
+  if (types.includes("multipleChoice"))
+    notes.push("- `multipleChoice` items generate standalone **multiple-choice** Quiz questions.");
   if (types.includes("sequence"))
     notes.push("- `sequence` items generate **ordering** Quiz questions.");
   if (types.includes("categorySort"))
