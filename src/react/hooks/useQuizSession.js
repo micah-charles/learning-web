@@ -12,7 +12,7 @@ import {
   recordWordAnswer, recordQuizSession
 } from "@/storage.js";
 import { recordAttempt } from "@/progress.js";
-import { filterWordsForScope, getSelectedStages, describeScope } from "@/quiz-helpers.js";
+import { filterWordsForScope, getSelectedStages, describeScope, filterFillBlankByStage } from "@/quiz-helpers.js";
 import { shuffle } from "@/utils.js";
 
 function makeInitialBuildState(question) {
@@ -43,11 +43,15 @@ export function useQuizSession() {
       const categorySortItems = await loadCategorySortItems(manifest, dataset.id).catch(() => []);
       const fillBlankItems = await loadFillBlankItems(manifest, dataset.id).catch(() => []);
       const unifiedPack = await loadUnifiedPack(manifest, dataset.id).catch(() => null);
+      const filteredFillBlankItems = filterFillBlankByStage(unifiedPack, prefs, dataset);
+      const fillBlankCount = unifiedPack ? filteredFillBlankItems.length : fillBlankItems.length;
 
       const resolvedModes = resolveQuizModesForUI({
         subject: getDatasetSubject(dataset),
         direction: prefs.direction || "studyToTarget",
         answerMode: prefs.answerMode || "mixed",
+        fillBlankCount,
+        vocabCount: words.length,
       });
 
       const newSession = createQuizSession({

@@ -33,6 +33,20 @@ export function filterWordsForScope(words, dataset, prefSection) {
   }
   return words.filter(w => levelMatches(w.level, prefSection.year));
 }
+export function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
+  const all = unifiedPack && Array.isArray(unifiedPack.items)
+    ? unifiedPack.items.filter(item => item.type === "fillBlank")
+    : [];
+  if (!usesStageSelection(dataset)) return all;
+
+  const selectedStages = new Set(getSelectedStages(prefSection, dataset).map(String));
+  if (!selectedStages.size) return all;
+
+  return all.filter(item => {
+    const stageStr = String(item.level || "").replace(/^Stage\s+/i, "").trim();
+    return !stageStr || isNaN(Number(stageStr)) || selectedStages.has(stageStr);
+  });
+}
 export function describeScope(dataset, prefSection) {
   if (usesStageSelection(dataset)) {
     return `Stages ${getSelectedStages(prefSection, dataset).join(", ")}`;
