@@ -20,7 +20,7 @@ export const PROMPT_CONFIGS = [
     label: "Standard Pack Generator",
     description: "All item types — vocab, quiz questions, sentence builder, passages",
     path: "./docs/generate_json_pack_generation_prompt.md",
-    allowedItemTypes: ["vocab", "fillBlank", "sequence", "categorySort", "sentenceBuilder", "passage"],
+    allowedItemTypes: ["vocab", "multipleChoice", "fillBlank", "sequence", "categorySort", "sentenceBuilder", "passage"],
     defaultItemTypes: ["vocab"],
     linkedSubject: null,
   },

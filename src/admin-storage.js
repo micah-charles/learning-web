@@ -17,7 +17,7 @@ const DATA_KEY_PREFIX = "learningWeb.uploadedPack.";
 // Item types the unified-pack schema defines.
 const KNOWN_ITEM_TYPES = new Set([
   "vocab", "sentence", "sequence", "categorySort",
-  "fillBlank", "sentenceBuilder", "passage",
+  "fillBlank", "multipleChoice", "sentenceBuilder", "passage",
 ]);
 
 // Sentinel URL prefix — pre-filled into the fetchJson cache instead of fetched.
@@ -85,7 +85,7 @@ function resolveManifestSections(typeCounts) {
   const hasRevision =
     typeCounts.vocab    || typeCounts.sentence   ||
     typeCounts.sequence || typeCounts.categorySort ||
-    typeCounts.fillBlank;
+    typeCounts.fillBlank || typeCounts.multipleChoice;
   if (hasRevision)           sections.push("revisionPacks");
   if (typeCounts.passage)    sections.push("passageGroups");
   if (typeCounts.sentenceBuilder) sections.push("sentenceBuilderPacks");

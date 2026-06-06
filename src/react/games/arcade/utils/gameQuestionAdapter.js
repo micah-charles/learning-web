@@ -16,7 +16,7 @@
  *   { id, mode:"snake-builder", sentence, answer,
  *     tokens:[{ text, order }], distractors:[..], speechLanguage, itemId }
  */
-import { shuffle, normalizeForCompare } from "@/utils.js";
+import { shuffle, normalizeForCompare } from "../../../../utils.js";
 
 /** Pick up to `n` distinct distractors from `pool`, excluding `exclude` values. */
 /** Dedup key: normalizeForCompare for Latin scripts; trimmed original for CJK/scripts
@@ -77,6 +77,43 @@ export function buildQuizHuntQuestions(words, opts = {}) {
         speechText: correctAnswer,
         speechLanguage,
         wordId: w.id,
+      };
+    })
+    .filter(Boolean);
+}
+
+/**
+ * Build Quiz Hunt questions from standalone multipleChoice items.
+ *
+ * These are grammar/question packs rather than vocab cards. The prompt comes
+ * from data.question. The board tokens come from the item's fixed options,
+ * preserving the authored distractors.
+ */
+export function buildQuizHuntQuestionsFromMultipleChoiceItems(items, opts = {}) {
+  const { speechLanguage = "en-GB" } = opts;
+
+  return (items || [])
+    .filter((item) => item?.type === "multipleChoice")
+    .map((item) => {
+      const d = item.data || {};
+      const questionText = String(d.question || d.prompt || "").trim();
+      const correctAnswer = String(d.answer || "").trim();
+      const options = Array.isArray(d.options) ? d.options.map((o) => String(o).trim()).filter(Boolean) : [];
+      if (!questionText || !correctAnswer || options.length < 2) return null;
+
+      const distractors = options.filter((option) => dedupeKey(option) !== dedupeKey(correctAnswer));
+      if (distractors.length === 0) return null;
+
+      return {
+        id: `qh_mcq_${item.id}`,
+        mode: "quiz-hunt",
+        questionText,
+        correctAnswer,
+        distractors,
+        topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
+        speechText: correctAnswer,
+        speechLanguage,
+        wordId: item.id,
       };
     })
     .filter(Boolean);

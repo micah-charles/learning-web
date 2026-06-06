@@ -155,6 +155,24 @@ export function normaliseUnifiedItem(item) {
       };
     }
 
+    case "multipleChoice": {
+      const answer = d.answer || "";
+      const question = d.question || "";
+      return {
+        ...common,
+        type: "choice",
+        question,
+        source: question,
+        target: answer,
+        correctAnswer: answer,
+        acceptedAnswers: compactOptions([answer]),
+        options: compactOptions(d.options),
+        hint: d.hint || "",
+        explanation: answer ? `The answer is: ${answer}` : "",
+        speechLanguage: d.speechLanguage || "en-GB",
+      };
+    }
+
     case "sentenceBuilder": {
       const prompt = d.prompt || "";
       const answer = d.answer || "";

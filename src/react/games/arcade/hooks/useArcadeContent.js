@@ -8,9 +8,13 @@
  *   mode "snake-builder" → builder cards from a sentenceBuilder pack
  */
 import { useState, useEffect } from "react";
-import { loadVocabItems, loadSentenceBuilderPack, findDataset } from "@/data.js";
+import { loadVocabItems, loadSentenceBuilderPack, loadUnifiedPack, findDataset } from "@/data.js";
 import { shuffle } from "@/utils.js";
-import { buildQuizHuntQuestions, buildSnakeBuilderQuestions } from "../utils/gameQuestionAdapter.js";
+import {
+  buildQuizHuntQuestions,
+  buildQuizHuntQuestionsFromMultipleChoiceItems,
+  buildSnakeBuilderQuestions,
+} from "../utils/gameQuestionAdapter.js";
 
 export function useArcadeContent({ manifest, mode, datasetId, packId, builderPacks }) {
   const [questions, setQuestions] = useState([]);
@@ -38,7 +42,10 @@ export function useArcadeContent({ manifest, mode, datasetId, packId, builderPac
           // Answer side = the source word; read it in the source language.
           const speechLanguage = dataset?.sourceLanguageCode || dataset?.speechLanguage || "en-GB";
           const words = await loadVocabItems(manifest, datasetId);
-          const qs = buildQuizHuntQuestions(words, { direction: "prompt-en", speechLanguage });
+          const vocabQuestions = buildQuizHuntQuestions(words, { direction: "prompt-en", speechLanguage });
+          const unifiedPack = await loadUnifiedPack(manifest, datasetId).catch(() => null);
+          const multipleChoiceQuestions = buildQuizHuntQuestionsFromMultipleChoiceItems(unifiedPack?.items || [], { speechLanguage });
+          const qs = [...vocabQuestions, ...multipleChoiceQuestions];
           if (!cancelled) setQuestions(shuffle(qs));
         }
       } catch (e) {
