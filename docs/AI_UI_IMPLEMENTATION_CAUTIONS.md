@@ -30,10 +30,14 @@ if (fillBlankCount > 0 && vocabCount === 0) return ["fillBlank"];
 return [choiceMode, typedMode]; // ← mixed packs silently drop fillBlank
 
 // GOOD
+const standaloneModes = [
+  ...(multipleChoiceCount > 0 ? ["multipleChoice"] : []),
+  ...(fillBlankCount > 0 ? ["fillBlank"] : []),
+];
 const vocabModes = mode === "mcq"   ? [choiceMode]
                  : mode === "typed" ? [typedMode]
                  : [choiceMode, typedMode];
-return fillBlankCount > 0 ? [...vocabModes, "fillBlank"] : vocabModes;
+return standaloneModes.length > 0 ? [...vocabModes, ...standaloneModes] : vocabModes;
 ```
 
 **Checklist when adding a new item type to a pack:**
@@ -50,11 +54,11 @@ return fillBlankCount > 0 ? [...vocabModes, "fillBlank"] : vocabModes;
 **Rule:** Any derived count must be computed identically at every call site. Extract it once above both usages:
 
 ```js
-const filteredFillBlankItems = filterFillBlankByStage(unifiedPack, prefs, dataset);
-const fillBlankCount = filteredFillBlankItems.length;
+const fillBlankCount = filterFillBlankByStage(unifiedPack, prefs, dataset).length;
+const multipleChoiceCount = filterMultipleChoiceByStage(unifiedPack, prefs, dataset).length;
 
-const resolvedModes = resolveQuizModesForUI({ ..., fillBlankCount });
-const maxCount = getQuizMaxQuestionCount({ ..., fillBlankCount });
+const resolvedModes = resolveQuizModesForUI({ ..., fillBlankCount, multipleChoiceCount });
+const maxCount = getQuizMaxQuestionCount({ ..., fillBlankCount, multipleChoiceCount });
 ```
 
 ---
@@ -310,6 +314,7 @@ requestAnimationFrame(() => requestAnimationFrame(scaleCrosswordToFit));
 | Type string | Where it appears |
 |---|---|
 | `"vocab"` | Vocabulary tab + Quiz (word-choice / typed-answer questions) |
+| `"multipleChoice"` | Quiz standalone multiple-choice questions |
 | `"fillBlank"` | Quiz fill-in-the-blank questions |
 | `"sequence"` | Quiz ordering questions |
 | `"categorySort"` | Quiz category-sort questions |
@@ -532,13 +537,13 @@ answerMode: (!newIsLanguage && prev.answerMode === "build") ? "mixed" : prev.ans
 **Rule:** Any call to a vanilla engine function inside `useMemo` must list every input in the dep array. Missing deps produce stale results when the pack changes.
 
 ```js
-// BAD — fillBlankCount not in deps; modes go stale when pack changes
+// BAD — item counts not in deps; modes go stale when pack changes
 const modes = useMemo(() => resolveQuizModesForUI({ subject, direction, answerMode }), 
   [subject, direction, answerMode]);
 
 // GOOD
-const modes = useMemo(() => resolveQuizModesForUI({ subject, direction, answerMode, fillBlankCount, vocabCount }),
-  [subject, direction, answerMode, fillBlankCount, vocabCount]);
+const modes = useMemo(() => resolveQuizModesForUI({ subject, direction, answerMode, fillBlankCount, multipleChoiceCount, vocabCount }),
+  [subject, direction, answerMode, fillBlankCount, multipleChoiceCount, vocabCount]);
 ```
 
 ---
@@ -554,8 +559,8 @@ const [modes, setModes] = useState([]);
 useEffect(() => { setModes(resolveQuizModesForUI(...)); }, [answerMode]);
 
 // GOOD — always current
-const modes = useMemo(() => resolveQuizModesForUI({ answerMode, fillBlankCount, vocabCount }),
-  [answerMode, fillBlankCount, vocabCount]);
+const modes = useMemo(() => resolveQuizModesForUI({ answerMode, fillBlankCount, multipleChoiceCount, vocabCount }),
+  [answerMode, fillBlankCount, multipleChoiceCount, vocabCount]);
 ```
 
 ---

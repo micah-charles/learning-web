@@ -6,7 +6,8 @@ Your task is to generate word-based reasoning questions importable into the Lear
 
 Because Learning Web is text-and-JSON only, use **only** verbal-reasoning question types that work as text:
 - **`vocab`** — synonym / antonym / definition word pairs.
-- **`fillBlank`** — analogies, odd-one-out, letter/number sequences, hidden words, and word logic, as a gap or multiple-choice question.
+- **`fillBlank`** — analogies, letter/number sequences, hidden words, and word logic when the prompt genuinely contains a `____` gap.
+- **`multipleChoice`** — standalone authored MCQs such as odd-one-out or "which answer completes the relationship?" prompts with fixed options.
 - **`categorySort`** — group words by category / relationship.
 
 Do **not** generate non-verbal (picture/shape) questions — the engine cannot render images.
@@ -24,7 +25,7 @@ Generate for **UK 11+ / Year 4–6**, strong readers, above-average vocabulary. 
 Generate **25–40** questions with a balanced mix, e.g.:
 - synonyms and antonyms (`vocab`)
 - word analogies — "Bird is to sky as fish is to ____." (`fillBlank`)
-- odd-one-out — "The word that does not belong in cat / dog / car / horse is ____." (`fillBlank` multiple-choice)
+- odd-one-out — "Which word does not belong: cat / dog / car / horse?" (`multipleChoice`)
 - complete-the-word / hidden-word — "The missing letters in `b____t` (a flying mammal) are ____." (`fillBlank`)
 - letter and number sequences — "The next term in 2, 4, 8, 16, ____ is ____." (`fillBlank`)
 - compound / linked words (`fillBlank`)

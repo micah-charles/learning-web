@@ -117,7 +117,7 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 
 ```json
 {
-  "revisionPacks": [ … ],    // vocab/quiz/fillBlank/sequence/categorySort packs
+  "revisionPacks": [ … ],    // uploaded vocab/quiz/multipleChoice/fillBlank/sequence/categorySort packs
   "passageGroups":  [ … ],   // reading/passage packs
   "sentenceBuilderPacks": [ … ]
 }
@@ -190,6 +190,25 @@ Every pack file has this top-level shape:
   "translations": { "de-DE": "der Geburtstag", "en-GB": "birthday" }
 }
 ```
+
+**`multipleChoice`** — a standalone authored MCQ question. Use this when the prompt is a full question, not a cloze sentence:
+```json
+{
+  "id": "grammar_case_001",
+  "type": "multipleChoice",
+  "level": "Stage 1",
+  "topics": ["Latin grammar", "cases"],
+  "data": {
+    "question": "What case is 'servus' in 'servus dormit'?",
+    "answer": "nominative",
+    "options": ["nominative", "accusative", "dative", "ablative"]
+  }
+}
+```
+- `data.question`, `data.answer`, and `data.options` are required.
+- `data.options` must include `data.answer`.
+- Do not use `fillBlank` for grammar MCQs unless the prompt genuinely contains a `____` blank.
+- Quiz renders this as `modeId: "multipleChoice"` / `kind: "choice"`; Arcade Quiz Hunt can read it too.
 
 **`fillBlank`**, **`sequence`**, **`categorySort`**, **`sentenceBuilder`**, **`passage`** — see existing packs for examples.
 
