@@ -22,10 +22,8 @@ Give two forms of the Dharma in Hinduism.
 
 ---
 
-Sanatanadharma (eternal dharma); following absolute duties which cover everyone, regardless of
-caste/class/sect etc / Varnashramadharma (responsibilities a Hindu should follow based on caste
-and stage of life; natural classifications that appear in all human societies based on innate skills
-aptitudes, and attitudes), etc.
+- Sanatanadharma (eternal dharma); following absolute duties which cover everyone, regardless of caste/class/sect etc
+- Varnashramadharma (responsibilities a Hindu should follow based on caste and stage of life; natural classifications that appear in all human societies based on innate skills aptitudes, and attitudes)
 
 ## Q1.3 [4 marks]
 
@@ -34,23 +32,15 @@ influences Hindus today.
 
 ---
 
-• Being able to visualise Brahman, allows them to make murtis / which facilitate worship / this is
-what anyone can see in every temple or shrine.
-• Gives a physical representation of Brahman / which is easier for most people to comprehend than
-abstract ideas (as Nirguna Brahman) / so strengthening faith.
-• Seeing a physical form encourages belief that Brahman is real / so their faith has solid
-foundations / giving comfort and confidence in its teachings and ways.
-• Allows them to simplify Brahman by focusing on an attribute / only Saguna Brahman can have
-attributes.
-• Gives understanding of the Ultimate Reality through the personification of God / so by
-understanding Saguna Brahman they can come to understand Nirguna Brahman.
-• Makes Brahman immanent / as humans can understand something of God in their own terms.
-• Makes a person see the world as an extension of Brahman / Brahman is the ‘artist of the world’ /
-so they look after it / ‘Brahman is all’ (Upanishads).
-• Allows a person to see that they themselves can be Brahman / that Brahman is within them or
-part of them / also Brahman is within others / so Hindus will be compassionate to others.
-• Makes them feel ‘loved’ / as they can build a relationship with Saguna Brahman / eg Vaishnavites
-showing devotion to Vishnu / who has sent aid to them in the form of avatars, etc.
+- Being able to visualise Brahman, allows them to make murtis / which facilitate worship / this is what anyone can see in every temple or shrine.
+- Gives a physical representation of Brahman / which is easier for most people to comprehend than abstract ideas (as Nirguna Brahman) / so strengthening faith.
+- Seeing a physical form encourages belief that Brahman is real / so their faith has solid foundations / giving comfort and confidence in its teachings and ways.
+- Allows them to simplify Brahman by focusing on an attribute / only Saguna Brahman can have attributes.
+- Gives understanding of the Ultimate Reality through the personification of God / so by understanding Saguna Brahman they can come to understand Nirguna Brahman.
+- Makes Brahman immanent / as humans can understand something of God in their own terms.
+- Makes a person see the world as an extension of Brahman / Brahman is the ‘artist of the world’ / so they look after it / ‘Brahman is all’ (Upanishads).
+- Allows a person to see that they themselves can be Brahman / that Brahman is within them or part of them / also Brahman is within others / so Hindus will be compassionate to others.
+- Makes them feel ‘loved’ / as they can build a relationship with Saguna Brahman / eg Vaishnavites showing devotion to Vishnu / who has sent aid to them in the form of avatars,
 
 ## Q1.4 [5 marks]
 
@@ -60,41 +50,21 @@ answer.
 
 ---
 
-• Sanskrit word meaning ‘to flow through’ or ‘to wander’.
-• Samsara is worldly existence, or being tied to it.
-• That this cycle is inevitable / ‘As the embodied soul continuously passes, in this body, from
-boyhood to youth to old age, the soul similarly passes into another body at death. A sober person
-is not bewildered by such a change’ – Bhagavad Gita.
-• That this is a continuous cycle / ‘After death, the soul goes to the next world, bearing in mind the
-subtle impressions of its deeds, and after reaping their harvest returns again to this world of
-action. Thus, he who has desires continues subject to rebirth’ – Yajur Veda.
-• Once the physical body dies, the atman is released as a ‘subtle body’ / this subtle body goes to a
-heaven (world) until the merit of its good deeds is used up / or a hell (world) to atone for (some of)
-its bad deeds / then is reborn in a physical body.
-• That moksha is liberation from samsara / ‘he having been mortal, becomes immortal, and attains
-Brahman in this very body’ – Brihadaranyaka Upanishad 4.4.7.
-• That births and deaths are affected by karma / good (punya) and bad (papa).
-• Samsara is a creation of maya (illusion) / and knowing the Truth ends samsara / hence ignorance
-of true self and Brahman lead to samsara / ‘The man of self-realization knows the radiant
-supreme Brahman to be He on whom the world is based. And those men of discrimination who,
-without any worldly desire, are devoted to such go beyond the cycle of birth and death’ –
-Mundaka Upanishad.
-• Analogy of physical body being clothes which the jiva (soul) wears in one lifetime, removed and
-replaced for the next lifetime / ‘As a person puts on new garments, giving up old ones, the soul
-similarly accepts new material bodies, giving up the old and useless ones’ – Bhagavad Gita 2:22,
-etc.
-Sources of authority might include –
-Bhagavad Gita 2:22 - ‘As a person puts on new garments, giving up old ones, the soul similarly accep
-new material bodies, giving up the old and useless ones.’
-Brihadaranyaka Upanishad - ‘He having been mortal, becomes immortal, and attains Brahman in this
-very body.’
-Bhagavad Gita - ‘As the embodied soul continuously passes, in this body, from boyhood to youth to ol
-age, the soul similarly passes into another body at death. A sober person is not bewildered by such a
-change.’
-Yajur Veda - ‘After death, the soul goes to the next world, bearing in mind the subtle impressions of its
-deeds, and after reaping their harvest returns again to this world of action. Thus, he who has desires
-continues subject to rebirth.’
-Upanishads - ‘The wise man chooses the path of joy; the fool chooses the path of pleasure.’
+- • Sanskrit word meaning ‘to flow through’ or ‘to wander’. • Samsara is worldly existence, or being tied to it. • That this cycle is inevitable
+- ‘As the embodied soul continuously passes, in this body, from boyhood to youth to old age, the soul similarly passes into another body at death. A sober person is not bewildered by such a change’ – Bhagavad Gita. • That this is a continuous cycle
+- ‘After death, the soul goes to the next world, bearing in mind the subtle impressions of its deeds, and after reaping their harvest returns again to this world of action. Thus, he who has desires continues subject to rebirth’ – Yajur Veda. • Once the physical body dies, the atman is released as a ‘subtle body’
+- This subtle body goes to a heaven (world) until the merit of its good deeds is used up
+- Or a hell (world) to atone for (some of) its bad deeds
+- Then is reborn in a physical body. • That moksha is liberation from samsara
+- ‘he having been mortal, becomes immortal, and attains Brahman in this very body’ – Brihadaranyaka Upanishad 4.4.7. • That births and deaths are affected by karma
+- Good (punya) and bad (papa). • Samsara is a creation of maya (illusion)
+- And knowing the Truth ends samsara
+- Hence ignorance of true self and Brahman lead to samsara
+- ‘The man of self-realization knows the radiant supreme Brahman to be He on whom the world is based. And those men of discrimination who, without any worldly desire, are devoted to such go beyond the cycle of birth and death’ – Mundaka Upanishad. • Analogy of physical body being clothes which the jiva (soul) wears in one lifetime, removed and replaced for the next lifetime
+- ‘As a person puts on new garments, giving up old ones, the soul similarly accepts new material bodies, giving up the old and useless ones’ – Bhagavad Gita 2:22, etc
+
+**Sources of authority:**
+- Might include – Bhagavad Gita 2:22 - ‘As a person puts on new garments, giving up old ones, the soul similarly accep new material bodies, giving up the old and useless ones.’ Brihadaranyaka Upanishad - ‘He having been mortal, becomes immortal, and attains Brahman in this very body.’ Bhagavad Gita - ‘As the embodied soul continuously passes, in this body, from boyhood to youth to ol age, the soul similarly passes into another body at death. A sober person is not bewildered by such a change.’ Yajur Veda - ‘After death, the soul goes to the next world, bearing in mind the subtle impressions of its deeds, and after reaping their harvest returns again to this world of action. Thus, he who has desires continues subject to rebirth.’ Upanishads - ‘The wise man chooses the path of joy; the fool chooses the path of pleasure.’
 
 ## Q1.5 [12 marks]
 
@@ -109,47 +79,20 @@ In your answer you should:
 
 ---
 
-influence
-A well-argued response, reasoned consideration of different points of view. 10–12
-understanding of relevant evidence and information.
-References to religion applied to the issue.
-Reasoned consideration of different points of view. 7–9
-relevant evidence and information.
-Clear reference to religion.
-Reasoned consideration of a point of view. 4–6
-A logical chain of reasoning drawing on knowledge and understanding of relevant
-evidence and information.
-reasons/evidence.
-Point of view with reason(s) stated in support. 1–3
-evidence and arguments must be credited:
+- Reasons/evidence
 
 **Arguments in support:**
-• Bhakti yoga is about showing love (devotion) to the deities, and is a way to achieve moksha which
-is the main aim for Hindus.
-• Through love, Hindus show concern for others and help them, thus building good karma / ‘That is
-the whole purpose of human existence here on earth: to benefit other people through one’s life,
-one’s possessions, one’s thoughts and one’s words’ – Bhagavata Purana.
-• Love can motivate a person to do all of the other virtues because it encourages ahimsa, respect
-etc – so it underpins all.
-• As a general societal attitude, love is the most important – all you need is love, love is everything,
-etc / hence non-Hindus can relate positively to this statement, etc.
+- Bhakti yoga is about showing love (devotion) to the deities, and is a way to achieve moksha which is the main aim for Hindus.
+- Through love, Hindus show concern for others and help them, thus building good karma / ‘That is the whole purpose of human existence here on earth: to benefit other people through one’s life, one’s possessions, one’s thoughts and one’s words’ – Bhagavata Purana.
+- Love can motivate a person to do all of the other virtues because it encourages ahimsa, respect etc – so it underpins all.
+- As a general societal attitude, love is the most important – all you need is love, love is everything, etc / hence non-Hindus can relate positively to this statement,
 
 **Arguments in support of other views:**
-• Any of the personal virtues can be argued to be the most important / ahimsa, respect, empathy,
-mind/sense control, humility / Hindu scriptures also mention many other virtues / clearly any can
-have primary importance at any one time in a person’s life.
-• Ahimsa is most important as it is about helping not hurting others, so brings peace to the world.
-• Mind/sense control is most important because with this is self-discipline / where a person focuses
-on their spiritual journey, and on reining in their own flaws / by showing self-discipline / so other
-virtues are expressed as a result.
-• It depends on the context of a person’s life as to which virtue is best, for example there are
-occasions when full truthfulness brings difficulty (eg when asked about one’s religion in an
-environment hostile to it, or when ahimsa is not possible, eg when defending oneself against
-violence).
-• All the virtues are important as they are all mentioned in scripture – ‘Abstention from injury,
-truthfulness, justice, compassion, self-restraint, monogamy, amiability, modesty and patience, the
-practice of these virtues is the best of all spiritual paths, thus declared Manu the Great Lawgiver’
-– Mahabharata, etc.
+- Any of the personal virtues can be argued to be the most important / ahimsa, respect, empathy, mind/sense control, humility / Hindu scriptures also mention many other virtues / clearly any can have primary importance at any one time in a person’s life.
+- Ahimsa is most important as it is about helping not hurting others, so brings peace to the world.
+- Mind/sense control is most important because with this is self-discipline / where a person focuses on their spiritual journey, and on reining in their own flaws / by showing self-discipline / so other virtues are expressed as a result.
+- It depends on the context of a person’s life as to which virtue is best, for example there are occasions when full truthfulness brings difficulty (eg when asked about one’s religion in an environment hostile to it, or when ahimsa is not possible, eg when defending oneself against violence).
+- All the virtues are important as they are all mentioned in scripture – ‘Abstention from injury, truthfulness, justice, compassion, self-restraint, monogamy, amiability, modesty and patience, the practice of these virtues is the best of all spiritual paths, thus declared Manu the Great Lawgiver’ – Mahabharata,
 
 ## Q2.1 [1 mark]
 
@@ -169,9 +112,11 @@ Give two of the four paths towards yoga (union with the divine).
 
 ---
 
-credited.
-Jnana yoga (knowledge / study) / Bhakti yoga (devotion) / Astanga yoga (meditation) / also known
-as raja yoga / Karma yoga (action).
+- Credited. Jnana yoga (knowledge / study)
+- Bhakti yoga (devotion)
+- Astanga yoga (meditation)
+- Also known as raja yoga
+- Karma yoga (action)
 
 ## Q2.3 [4 marks]
 
@@ -179,27 +124,17 @@ Explain two contrasting ways in which Holi is celebrated by Hindus.
 
 ---
 
-similarities and differences within and/or between religions and beliefs
-Contrasting may mean opposing or may mean different views.
-If similar ways are given, only one of them may be credited up to 2 marks max.
-Contrasting ways to come from different bullets
-• Worship at home shrines and temples / worship of Vishnu or Krishna / as Vishnu the saviour of
-stories linked to Holi / Krishna focus of second day of Holi.
-• Story of Holika and Prahlad is told (Holika burnt in flames when Prahlad refused to worship his
-own father) / Vishnu saved Holika because of Holika’s devotion to Vishnu.
-• Bonfire and fireworks and Holika effigy / taking ash from the bonfire as good luck.
-• Throwing of coloured powder to recall Krishna’s playfulness / Krishna’s childlike nature / Krishna
-painting Radha’s face blue like his own / to reduce his self-consciousness about his own
-colouring.
-• Eating of special foods, eg sweet gujia (nut, fruit, coconut filled dumplings).
-• Family get-togethers / to celebrate family / celebrate festival together.
-• Community celebrates together / bonfire / worship / public festival or mela now common in UK /
-Hindus and non-Hindus together for food, stalls, music and so on.
-• Drinking of bhang / cannabis-infused drink or foods, eg pakora / particularly common in N. India /
-used to prepare for meditational trance / said to originate with Krishna and followers.
-• Idea of a new start for the new year / release of powders is like moving on / link to forgiveness.
-• Coloured powders are released by all / everyone gets covered in colour / so unable to distinguish
-rich from poor and so on / brings equity, etc.
+- Contrasting may mean opposing or may mean different views. Contrasting ways to come from different bullets
+- Worship at home shrines and temples / worship of Vishnu or Krishna / as Vishnu the saviour of stories linked to Holi / Krishna focus of second day of Holi.
+- Story of Holika and Prahlad is told (Holika burnt in flames when Prahlad refused to worship his own father) / Vishnu saved Holika because of Holika’s devotion to Vishnu.
+- Bonfire and fireworks and Holika effigy / taking ash from the bonfire as good luck.
+- Throwing of coloured powder to recall Krishna’s playfulness / Krishna’s childlike nature / Krishna painting Radha’s face blue like his own / to reduce his self-consciousness about his own colouring.
+- Eating of special foods, eg sweet gujia (nut, fruit, coconut filled dumplings).
+- Family get-togethers / to celebrate family / celebrate festival together.
+- Community celebrates together / bonfire / worship / public festival or mela now common in UK / Hindus and non-Hindus together for food, stalls, music and so on.
+- Drinking of bhang / cannabis-infused drink or foods, eg pakora / particularly common in N. India / used to prepare for meditational trance / said to originate with Krishna and followers.
+- Idea of a new start for the new year / release of powders is like moving on / link to forgiveness.
+- Coloured powders are released by all / everyone gets covered in colour / so unable to distinguish rich from poor and so on / brings equity,
 
 ## Q2.4 [5 marks]
 
@@ -209,41 +144,33 @@ your answer.
 
 ---
 
-Generic responses might include – their personal preference / what is available at the time / what
-they need at the time (personal context) / how they have been brought up, a specific place for a
-specific deity, and so on.
-• Temple – sacred place / contains blessed murtis which ‘house’ the essence of the deities
-because of how they were made / priests are based at temples, so can help with worship, give
-blessings, explain religion etc. / atmosphere at temple is one of worship as that is what everyone
-is doing / going to temple represents positive effort, so is better than just worshipping at home /
-can join in communal worship at temple / helps with understanding God – ‘if a temple, or a
-symbol, or an image helps you to realise the Divinity within, you are welcome to it. Have 200 if
-you like’ – Swami Vivekananda / ‘One who builds or helps to build a beautiful temple for the Lord
-will be freed from all sinful reactions and will enter the Vaikuntha planets’ – Narasimha Purana.
-• Home – personal worship, so can say what you want / can create own form of worship, showing
-greater devotion / ensures worship every day as there is a shrine for the purpose / allows
-teaching of faith to children.
-• Natural areas – eg Vrindavan forests (Krishna’s youth home), Mt Kailash (Shiva’s place of
-meditation), Ganges (Mother Ganga) – places where the deities were/are, so can connect more
-closely / communing with nature, which is imbued with the essence of Brahman / ‘The gods
-always play where groves are near, rivers, mountains and springs, and in towns with pleasure
-gardens’ – Brihat Samhita.
-• Ganges – bathing in its waters is supposed to wash away sin / chance to achieve moksha
-through entry into the waters / traditional to throw ashes of the dead into its waters / believed to
-be the hair of Shiva / ‘the best of rivers, born of all sacred waters’ – Mahabharatra.
-• Self – some Hindu scholars have said the self itself is a temple / Brahman is within each person
-so can be reached / ‘the human body is the temple of God’ (Rig Veda) / whilst not every person
-can get to any of the other places / this is within everyone’s grasp already, etc.
-Sources of authority might include –
-Rig Veda - ‘The human body is the temple of God.’
-Mahabharatra - ‘The best of rivers, born of all sacred waters.’
-Brihat Samhita - ‘The gods always play where groves are near, rivers, mountains and springs, and in
-towns with pleasure gardens.’
-Swami Vivekananda - ‘If a temple, or a symbol, or an image helps you to realise the Divinity within, yo
-are welcome to it. Have 200 if you like.’
-Narasimha Purana - ‘One who builds or helps to build a beautiful temple for the Lord will be freed from
-all sinful reactions and will enter the Vaikuntha planets.’
-Maitri Upanisad - ‘There are two ways of contemplation: in sound and in silence.’
+- First reason Second reason Generic responses might include – their personal preference
+- What is available at the time
+- What they need at the time (personal context)
+- How they have been brought up, a specific place for a specific deity, and so on. • Temple – sacred place
+- Contains blessed murtis which ‘house’ the essence of the deities because of how they were made
+- Priests are based at temples, so can help with worship, give blessings, explain religion etc
+- Atmosphere at temple is one of worship as that is what everyone is doing
+- Going to temple represents positive effort, so is better than just worshipping at home
+- Can join in communal worship at temple
+- Helps with understanding God – ‘if a temple, or a symbol, or an image helps you to realise the Divinity within, you are welcome to it. Have 200 if you like’ – Swami Vivekananda
+- ‘One who builds or helps to build a beautiful temple for the Lord will be freed from all sinful reactions and will enter the Vaikuntha planets’ – Narasimha Purana. • Home – personal worship, so can say what you want
+- Can create own form of worship, showing greater devotion
+- Ensures worship every day as there is a shrine for the purpose
+- Allows teaching of faith to children. • Natural areas – eg Vrindavan forests (Krishna’s youth home), Mt Kailash (Shiva’s place of meditation), Ganges (Mother Ganga) – places where the deities were/are, so can connect more closely
+- Communing with nature, which is imbued with the essence of Brahman
+- ‘The gods always play where groves are near, rivers, mountains and springs, and in towns with pleasure gardens’ – Brihat Samhita. • Ganges – bathing in its waters is supposed to wash away sin
+- Chance to achieve moksha through entry into the waters
+- Traditional to throw ashes of the dead into its waters
+- Believed to be the hair of Shiva
+- ‘the best of rivers, born of all sacred waters’ – Mahabharatra. • Self – some Hindu scholars have said the self itself is a temple
+- Brahman is within each person so can be reached
+- ‘the human body is the temple of God’ (Rig Veda)
+- Whilst not every person can get to any of the other places
+- This is within everyone’s grasp already, etc
+
+**Sources of authority:**
+- Might include – Rig Veda - ‘The human body is the temple of God.’ Mahabharatra - ‘The best of rivers, born of all sacred waters.’ Brihat Samhita - ‘The gods always play where groves are near, rivers, mountains and springs, and in towns with pleasure gardens.’ Swami Vivekananda - ‘If a temple, or a symbol, or an image helps you to realise the Divinity within, yo are welcome to it. Have 200 if you like.’ Narasimha Purana - ‘One who builds or helps to build a beautiful temple for the Lord will be freed from all sinful reactions and will enter the Vaikuntha planets.’ Maitri Upanisad - ‘There are two ways of contemplation: in sound and in silence.’
 
 ## Q2.5 [12 marks]
 
@@ -262,45 +189,18 @@ each live examination series and is available for free download from www.aqa.org
 
 ---
 
-influence
-A well-argued response, reasoned consideration of different points of view. 10–12
-understanding of relevant evidence and information.
-References to religion applied to the issue.
-Reasoned consideration of different points of view. 7–9
-relevant evidence and information.
-Clear reference to religion.
-Reasoned consideration of a point of view. 4–6
-A logical chain of reasoning drawing on knowledge and understanding of relevant
-evidence and information.
-reasons/evidence.
-Point of view with reason(s) stated in support. 1–3
-evidence and arguments must be credited.
+- Reasons/evidence
 
 **Arguments in support:**
-• Costs a lot of money and takes time / which is devoted to the deity or deities / thus showing
-devotion / many people can only afford to do this once in their lifetime / so it is the culmination of
-all their religious efforts.
-• Allows a person to get to the origins of their faith / eg going to Mt Kailash as a Shaivite, or
-Varanasi as a Shaivite, or Vrindavan as a Vaishnavite.
-• Pilgrimage can be a great hardship / eg some pilgrims will prostrate the whole way from their
-home to the place of pilgrimage (eg Jaffna to Kataragama in Sri Lanka – some 472 km) / so to do
-that shows great devotion / bringing great karmic benefit.
-• Pilgrimage is a form of bhakti yoga / so fulfils the attempt to gain union with the divine.
-• Devotion is the only appropriate reason for pilgrimage / so without it there is no point, hence
-pilgrimage can claim to be the best way to show devotion / ‘A pilgrim must go with total surrender,
-with a total faith in God, that it is only by God’s grace that he can finish the pilgrimage’ – Ma Yoga
-Shakti, etc.
+- Costs a lot of money and takes time / which is devoted to the deity or deities / thus showing devotion / many people can only afford to do this once in their lifetime / so it is the culmination of all their religious efforts.
+- Allows a person to get to the origins of their faith / eg going to Mt Kailash as a Shaivite, or Varanasi as a Shaivite, or Vrindavan as a Vaishnavite.
+- Pilgrimage can be a great hardship / eg some pilgrims will prostrate the whole way from their home to the place of pilgrimage (eg Jaffna to Kataragama in Sri Lanka – some 472 km) / so to do that shows great devotion / bringing great karmic benefit.
+- Pilgrimage is a form of bhakti yoga / so fulfils the attempt to gain union with the divine.
+- Devotion is the only appropriate reason for pilgrimage / so without it there is no point, hence pilgrimage can claim to be the best way to show devotion / ‘A pilgrim must go with total surrender, with a total faith in God, that it is only by God’s grace that he can finish the pilgrimage’ – Ma Yoga Shakti,
 
 **Arguments in support of other views:**
-• Daily worship is better / as that would be a constant show of devotion.
-• Studying the scriptures is better / as that would mean gaining a greater understanding of God /
-understanding better means becoming closer to / or showing love for through wanting to learn.
-• Doing good deeds (punya karma) is better / as it is living out the correct behaviours, and copying
-the actions of the deities / eg Vishnu’s avatars albeit in a simple human way / they are role
-models to be followed.
-• Bhakti yoga better / is as bhakti means devotion / and is unconditional and unquestioning
-surrender to the will of the deity.
-• Might be doing the pilgrimage for reasons other than devotion / eg to impress someone, because
-it is expected, or to ask the deities for something / ‘Pilgrimages may be undertaken for many
-personal reasons, such as penance for sin or spiritual regeneration.’ – Swami Chidananda
-Saraswati, etc
+- Daily worship is better / as that would be a constant show of devotion.
+- Studying the scriptures is better / as that would mean gaining a greater understanding of God / understanding better means becoming closer to / or showing love for through wanting to learn.
+- Doing good deeds (punya karma) is better / as it is living out the correct behaviours, and copying the actions of the deities / eg Vishnu’s avatars albeit in a simple human way / they are role models to be followed.
+- Bhakti yoga better / is as bhakti means devotion / and is unconditional and unquestioning surrender to the will of the deity.
+- Might be doing the pilgrimage for reasons other than devotion / eg to impress someone, because it is expected, or to ask the deities for something / ‘Pilgrimages may be undertaken for many personal reasons, such as penance for sin or spiritual regeneration.’ – Swami Chidananda Saraswati

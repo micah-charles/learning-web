@@ -123,49 +123,364 @@ def parse_qp_questions(qp_body):
 
     return questions
 
-ANSWER_MARKERS = [
-    (r'^Answer:\s*([A-Z])\s*(.*)', lambda m: f"**Answer: {m.group(1)}** {m.group(2).strip()}"),
-    (r'Arguments in support\s*$', lambda m: "\n**Arguments in support:**"),
-    (r'Arguments in support of other views\s*$', lambda m: "\n**Arguments in support of other views:**"),
-    (r'^(Possible teachings|Specific teachings)', lambda m: f"\n**{m.group(0)}**"),
-]
-
-def is_rubric_line(s):
-    """Check if a line is rubric/grading text (not answer content)."""
+def is_rubric_or_instruction(s):
+    """Check if a line is rubric / grading / instruction text, not answer content."""
     patterns = [
         r'^Target:', r'^MARK SCHEME', r'^Level Criteria',
         r'^Simple explanation', r'^Detailed explanation',
         r'^One mark for each', r'^If students provide', r'^To be a',
-        r'^Contrast may mean', r'^Maximum of Level', r'^0 Nothing worthy',
+        r'^Contrast may mean', r'^Maximum of Level',
         r'^Suggestion of two', r'^This is a level', r'^No other cause',
-        r'^First\s', r'^Second\s', r'^Relevant and accurate reference',
-        r'^A well-argued', r'^Reasoned consideration', r'^Logical chains',
-        r'^Recognition of different', r'^Point of view with',
-        r'^Nothing worthy of credit', r'^In your answer you should',
+        r'^First (?:contrasting|belief|teaching|way)', r'^Second (?:contrasting|belief|teaching|way)',
+        r'^Relevant and accurate reference',
+        r'^Nothing worthy of credit',
+        r'^In your answer you (?:should|:)',
         r'^\[SPaG', r'^\[Plus SPaG', r'^Students may include',
         r'^Q\d+\s(?!\.\d)', r'^#', r'^Extra space',
-        r'^Question \d+ continues', r'^\*\*.*GCSE Religious Studies\*$',
+        r'^Question \d+ continues',
         r'^beliefs, practices', r'^influence on', r'^demonstrate knowledge',
-        r'^considered for marking', r'^credited:', r'^credit worthy',
-        r'teaching\s*[–-]\s*\d+\s*mark', r'^First teaching', r'^Second teaching',
+        r'^considered for marking',
+        r'^credit(?:ed)?:', r'^credit worthy',
+        r'teaching\s*[–-]\s*\d+\s*mark',
+        r'^If similar ways', r'^Allow up to',
+        r'^Credit(?:ed)?\s', r'^Accept\s',
+        r'^References?\s', r'^NB\s', r'^Do not accept',
+        r'^Maximum of Level', r'^Recognition of different',
+        # Level descriptor lines (start with number + level text)
+        r'^\d\s+(?:A well-argued|Reasoned|Logical|Recognition|Point of view|Nothing worthy)',
+        r'^\d\s+1–3', r'^\d\s+Nothing worthy', r'^0 Nothing worthy',
+        # Continuation lines of level descriptors
+        r'^Logical chains of reasoning',
+        r'^A logical chain of reasoning',
+        r'^References? to religion applied',
+        r'^Clear reference to religion',
+        r'^Point of view with reason',
+        # Rubric continuation / cleanup
+        r'^and influence', r'^and arguments must be credited',
+        r'^evidence and arguments must be credited',
+        r'^evidence and information',
+        r'^but all other relevant points',
+        r'^but all relevant evidence',
+        r'^However, students may also',
+        r'^Also credit',
+        r'^understanding of relevant',
+        r'^relevant evidence',
+        # Very short rubric fragments
+        r'^Similarities and differences',
+        r'^demonstrate knowledge and understanding',
+        r'^influence on individuals', r'^influence$',
+        r'^evidence\.$',
     ]
-    return any(re.match(p, s) for p in patterns)
+    return any(re.match(p, s, re.IGNORECASE) for p in patterns)
 
-def find_answer_start(lines, start_idx):
-    """Find the index where real answer content begins (skip rubric)."""
-    for i in range(start_idx, len(lines)):
-        s = lines[i].strip()
+
+def clean_joined_text(text):
+    """Remove instruction/residue phrases from joined text."""
+    # Remove trailing instruction fragments that leaked through line filtering
+    text = re.sub(
+        r'(?:should be chosen and explained\..*|Contrasts could be drawn.*|but only two different ways.*)',
+        '', text
+    )
+    # Remove standalone instruction fragments
+    text = re.sub(r'\b(?:etc\.)\s*$', '', text)
+    text = text.strip()
+    return text
+
+
+def find_header_lines(lines, header):
+    """Return indices of lines that match a header pattern exactly."""
+    pat = re.compile(re.escape(header) + r'$', re.IGNORECASE)
+    return [i for i, l in enumerate(lines) if pat.match(l.strip().rstrip(':'))]
+
+
+def group_into_sections(lines):
+    """Split a list of lines into logical sections based on headers.
+
+    Returns list of dicts: {type: 'header'|'content', text: ..., lines: [...]}
+    """
+    # Find section headers
+    header_indices = []
+    for h in ['Arguments in support of other views', 'Arguments in support']:
+        header_indices.extend((i, h) for i in find_header_lines(lines, h))
+
+    # Sort by position
+    header_indices.sort()
+
+    if not header_indices:
+        return [{'type': 'content', 'text': "\n".join(lines), 'lines': lines}]
+
+    sections = []
+
+    # Preamble (before first header)
+    first_idx = header_indices[0][0]
+    if first_idx > 0:
+        pre_lines = lines[:first_idx]
+        sections.append({'type': 'content', 'text': "\n".join(pre_lines), 'lines': pre_lines})
+
+    for idx, (pos, hname) in enumerate(header_indices):
+        # Add the header
+        sections.append({'type': 'header', 'text': hname, 'lines': [lines[pos]]})
+
+        # Content between this header and the next (or end)
+        next_pos = header_indices[idx + 1][0] if idx + 1 < len(header_indices) else len(lines)
+        content_lines = lines[pos + 1:next_pos]
+        if content_lines:
+            sections.append({'type': 'content', 'text': "\n".join(content_lines), 'lines': content_lines})
+
+    return sections
+
+
+def format_answer_text(raw_lines):
+    """Convert raw MS answer lines into clean, well-formatted markdown.
+
+    Handles multiple formats found in AQA mark schemes:
+    - `/` separated inline points → bullet list
+    - `•` prefixed lines → kept as bullet list
+    - Section headers (Arguments in support, Sources of authority, religion names)
+    - Bible quotes preserved as blockquotes
+    - Instruction lines filtered out
+    """
+    if not raw_lines:
+        return ""
+
+    # First, split into FOR/AGAINST sections based on line-level headers
+    sections = group_into_sections(raw_lines)
+
+    result_parts = []
+
+    for section in sections:
+        if section['type'] == 'header':
+            # Format header text
+            h = section['text'].strip().rstrip(':')
+            result_parts.append(f"\n**{h}:**")
+            continue
+
+        # Content section: join lines and strip
+        text = " ".join(section['lines'])
+        text = re.sub(r'  +', ' ', text)
+        text = clean_joined_text(text)
+        text = text.strip()
+
+        if not text:
+            continue
+
+        # Check for per-religion sub-sections within content
+        # (religion headers are on their own line in the original lines)
+        sub_lines = section['lines']
+        has_religion_header = False
+        for line in sub_lines:
+            ls = line.strip().rstrip(':')
+            if ls in RELIGIONS:
+                has_religion_header = True
+                break
+
+        if has_religion_header:
+            # Process with religion splitting
+            joined = " | ".join(s.strip() for s in sub_lines)
+            sub_parts = split_religion_sections(joined)
+            for sp in sub_parts:
+                result_parts.append(sp)
+        else:
+            bullets = split_into_bullets(text)
+            for b in bullets:
+                result_parts.append(b)
+
+    output = "\n".join(result_parts)
+    output = re.sub(r'\n{3,}', '\n\n', output)
+    return output.strip()
+
+
+RELIGIONS = [
+    "Buddhism", "Christianity", "Hinduism", "Islam",
+    "Judaism", "Sikhism",
+]
+
+
+def split_lines_by_religion(lines):
+    """Split a list of lines at religion-name headers.
+
+    Returns list of dicts: {type: 'religion_header'|'content', name: ..., lines: [...]}
+    """
+    parts = []
+    current_lines = []
+    for line in lines:
+        ls = line.strip().rstrip(':')
+        if ls in RELIGIONS:
+            if current_lines:
+                parts.append({'type': 'content', 'lines': current_lines})
+            parts.append({'type': 'religion_header', 'name': ls})
+            current_lines = []
+        else:
+            current_lines.append(line)
+    if current_lines:
+        parts.append({'type': 'content', 'lines': current_lines})
+    return parts
+
+
+def format_content_as_bullets(text):
+    """Convert text into markdown bullet points.
+
+    Handles:
+    - `•` prefixed lines (preserve as bullets)
+    - ` / ` separated inline points (split into bullets)
+    - `Sources of authority:` as a header with Bible quotes as blockquotes
+    """
+    text = text.strip()
+    if not text:
+        return []
+
+    # Clean trailing etc.
+    text = re.sub(r',?\s*etc\.?\s*\)?\s*$', '', text)
+    text = text.strip()
+
+    # Check for Sources of authority:
+    soa_match = re.search(r'(Sources?\s+of\s+authority)\s*:?\s*', text, re.IGNORECASE)
+    if soa_match:
+        before = text[:soa_match.start()].strip()
+        after = text[soa_match.end():].strip()
+        parts = []
+
+        if before:
+            for s in split_by_separators(before):
+                parts.append(f"- {s}")
+
+        parts.append(f"\n**{soa_match.group(1)}:**")
+
+        if after:
+            quote_sections = re.split(r"('[^']+'\s*\([^)]+\))", after)
+            for qs in quote_sections:
+                qs = qs.strip()
+                if not qs:
+                    continue
+                if qs.startswith("'") and '(' in qs and qs.endswith(')'):
+                    parts.append(f"\n> {qs}")
+                elif not is_instruction_text(qs):
+                    for b in split_by_separators(qs):
+                        parts.append(f"- {b}")
+        return parts
+
+    # Check for existing • bullets
+    if '•' in text:
+        bullet_sections = re.split(r'•\s*', text)
+        result = []
+        for bs in bullet_sections:
+            bs = bs.strip()
+            if bs and not is_instruction_text(bs):
+                result.append(f"- {bs}")
+        return result
+
+    # Default: split by / separator
+    result = []
+    for s in split_by_separators(text):
+        result.append(f"- {s}")
+    return result
+
+
+def format_answer_text(raw_lines):
+    """Convert raw MS answer lines into clean, well-formatted markdown."""
+    if not raw_lines:
+        return ""
+
+    # Split into FOR/AGAINST sections based on line-level headers
+    sections = group_into_sections(raw_lines)
+    result_parts = []
+
+    for section in sections:
+        if section['type'] == 'header':
+            h = section['text'].strip().rstrip(':')
+            result_parts.append(f"\n**{h}:**")
+            continue
+
+        # Content section: check for religion sub-headers
+        content_lines = section['lines']
+        rel_parts = split_lines_by_religion(content_lines)
+
+        for rp in rel_parts:
+            if rp['type'] == 'religion_header':
+                result_parts.append(f"\n**{rp['name']}:**")
+                continue
+
+            # Join content lines into text
+            text = " ".join(l.strip() for l in rp['lines'])
+            text = re.sub(r'  +', ' ', text)
+            text = clean_joined_text(text).strip()
+
+            if text:
+                bullets = format_content_as_bullets(text)
+                for b in bullets:
+                    result_parts.append(b)
+
+    output = "\n".join(result_parts)
+    output = re.sub(r'\n{3,}', '\n\n', output)
+    return output.strip()
+
+
+def split_by_separators(text):
+    """Split text by ` / ` (space-slash-space) into individual points.
+
+    Handles `/` inside parentheses by protecting them before splitting.
+    """
+    if not text.strip():
+        return []
+
+    # Protect / inside parentheses
+    protected = {}
+    def protect_parens(m):
+        key = f"\x00PROTECT{len(protected)}\x00"
+        protected[key] = m.group(0).replace('/', '\x00SLASH\x00')
+        return key
+    text = re.sub(r'\([^)]*\)', protect_parens, text)
+    # Also protect / inside square brackets (Bible refs)
+    text = re.sub(r'\[[^\]]*\]', protect_parens, text)
+
+    # Split by ` / `
+    splits = re.split(r'\s+/\s+', text)
+    result = []
+    for s in splits:
+        # Restore protected slashes
+        for key, val in protected.items():
+            s = s.replace(key, val)
+        s = s.replace('\x00SLASH\x00', '/')
+        s = s.strip().strip(',').strip()
         if not s:
             continue
-        # Skip marks line itself
-        if re.match(r'^(\*\*)?\[(\d+)\s*marks?\](\*\*)?', s):
+        # Clean up leading/trailing punctuation
+        s = re.sub(r'^[,;.\s]+', '', s).strip()
+        s = re.sub(r'[,;.\s]+$', '', s).strip()
+        if not s:
             continue
-        # Skip rubric
-        if is_rubric_line(s):
+        if is_instruction_text(s):
             continue
-        # Found something that might be answer content
-        return i
-    return len(lines)
+        # Capitalize first letter
+        s = s[0].upper() + s[1:] if s and s[0].islower() else s
+        result.append(s)
+    return result
+
+
+def is_instruction_text(s):
+    """Check if a text fragment is examiner instruction, not answer content."""
+    s_lower = s.lower().strip()
+    patterns = [
+        r'^accept\s', r'^credited?\s', r'^references?\s', r'^nb\s', r'^do not accept',
+        r'^also credit', r'^allow up to', r'^maximum of',
+        r'^students may include',
+        r'^all (?:other )?relevant (?:points|evidence)',
+        r'^but (?:all )?other relevant',
+        r'^but all relevant evidence',
+        r'^evidence and arguments',
+        r'^two of the following',
+    ]
+    if any(re.match(p, s_lower) for p in patterns):
+        return True
+
+    # Fragments that are rubric residue
+    if s_lower in ('etc', 'etc.', 'and', 'the', 'this is a level'):
+        return True
+    if re.match(r'^\d+\s+marks?', s_lower):
+        return True
+
+    return False
+
 
 def parse_ms_answers(ms_body):
     """Parse mark scheme to extract answers per question."""
@@ -179,59 +494,72 @@ def parse_ms_answers(ms_body):
         content = sections[i+1] if i+1 < len(sections) else ""
         lines = content.split("\n")
 
-        # Find where answer content starts
-        answer_start = 0
+        # ---- STEP 1: Find content start ----
+        # Locate the marks line, then skip all rubric/instruction lines
+        # until we hit actual answer content
+
+        # First find marks line
+        marks_idx = -1
         for idx, line in enumerate(lines):
-            s = line.strip()
-            if re.match(r'^(\*\*)?\[(\d+)\s*marks?\](\*\*)?', s):
-                answer_start = idx + 1
+            if re.match(r'^(\*\*)?\[(\d+)\s*marks?\](\*\*)?', line.strip()):
+                marks_idx = idx
                 break
 
-        # Find start of actual answer (skip rubric)
-        answer_start = find_answer_start(lines, answer_start)
+        if marks_idx == -1:
+            continue
 
-        # Extract answer content
-        answer_parts = []
-        for line in lines[answer_start:]:
+        # For MCQ, find Answer: quickly
+        answer_line = None
+        for idx in range(marks_idx + 1, len(lines)):
+            s = lines[idx].strip()
+            if re.match(r'^Answer:\s*[A-E]', s):
+                answer_line = s
+                break
+
+        if answer_line:
+            m = re.match(r'^Answer:\s*([A-E])\s*(.*)', answer_line)
+            answers[qid] = f"**Answer: {m.group(1)}** {m.group(2).strip()}"
+            continue
+
+        # For non-MCQ: skip all rubric/instruction lines to find content start
+        content_start = marks_idx + 1
+        for idx in range(marks_idx + 1, len(lines)):
+            s = lines[idx].strip()
+            if not s:
+                content_start = idx + 1
+                continue
+            # Skip rubric and instruction lines
+            if is_rubric_or_instruction(s):
+                content_start = idx + 1
+                continue
+            # Found content
+            break
+
+        # ---- STEP 2: Collect raw content ----
+        raw_lines = []
+        for line in lines[content_start:]:
             s = line.strip()
             if not s:
                 continue
-
-            # Check for answer markers
-            matched = False
-            for pattern, formatter in ANSWER_MARKERS:
-                m = re.match(pattern, s)
-                if m:
-                    answer_parts.append(formatter(m))
-                    matched = True
-                    break
-            if matched:
+            # Skip instruction lines embedded in content
+            if is_rubric_or_instruction(s):
                 continue
-
-            # Skip rubric that might still appear within answer content
-            if is_rubric_line(s):
-                continue
-
-            # Skip AQA page footer artifacts
+            # Skip AQA page footer
             if re.match(r'^MARK SCHEME', s):
                 continue
+            # Skip standalone marks lines
             if re.match(r'^(\*\*)?\[(\d+)\s*marks?\](\*\*)?', s):
                 continue
-
-            # Skip MCQ option lines (A/B/C/D) unless part of FOR/AGAINST
+            # Skip MCQ option lines (A/B/C/D)
             if re.match(r'^[A-D]\s', s) and len(s) < 60:
                 continue
+            raw_lines.append(s)
 
-            # Skip "credit worthy" type rubric that appears mid-content
-            if re.search(r'credit worthy|cannot be credited|is credit worthy', s, re.I):
-                continue
+        if not raw_lines:
+            continue
 
-            # Keep meaningful content
-            s_clean = re.sub(r'^\d+\s+', '', s) if re.match(r'^\d+\s', s) else s
-            answer_parts.append(s_clean)
-
-        if answer_parts:
-            answers[qid] = "\n".join(answer_parts)
+        # ---- STEP 3: Format into clean markdown ----
+        answers[qid] = format_answer_text(raw_lines)
 
     return answers
 
