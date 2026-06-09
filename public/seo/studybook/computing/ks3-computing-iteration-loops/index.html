@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Iteration &amp; Loops | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Iteration &amp; Loops" />
+  <link rel="canonical" href="https://www.foxchildidea.com/seo/studybook/computing/ks3-computing-iteration-loops/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Iteration &amp; Loops | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Iteration &amp; Loops" />
+  <meta property="og:url" content="https://www.foxchildidea.com/seo/studybook/computing/ks3-computing-iteration-loops/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Iteration &amp; Loops | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Iteration &amp; Loops" />
+  <link rel="stylesheet" href="/seo/seo.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Iteration & Loops",
+  "description": "Study revision notes for KS3 Computing — Iteration & Loops",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/seo/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/seo/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Iteration &amp; Loops</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Iteration &amp; Loops</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-iteration-loops">Topic: Iteration &amp; Loops</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-for-loops-count-controlled-iteration">Section 1: FOR Loops (Count-Controlled Iteration)</a></li>
+<li class="sb-toc-h3"><a href="#pseudocode-for-loop">Pseudocode FOR Loop</a></li>
+<li class="sb-toc-h3"><a href="#python-for-loop">Python FOR Loop</a></li>
+<li class="sb-toc-h3"><a href="#when-to-use-a-for-loop">When to Use a FOR Loop</a></li>
+<li class="sb-toc-h2"><a href="#section-2-while-loops-condition-controlled-iteration">Section 2: WHILE Loops (Condition-Controlled Iteration)</a></li>
+<li class="sb-toc-h3"><a href="#pseudocode-while-loop">Pseudocode WHILE Loop</a></li>
+<li class="sb-toc-h3"><a href="#python-while-loop">Python WHILE Loop</a></li>
+<li class="sb-toc-h3"><a href="#example-counting-with-while">Example: Counting with WHILE</a></li>
+<li class="sb-toc-h3"><a href="#example-password-checker">Example: Password Checker</a></li>
+<li class="sb-toc-h3"><a href="#when-to-use-a-while-loop">When to Use a WHILE Loop</a></li>
+<li class="sb-toc-h2"><a href="#section-3-infinite-loops-and-nested-loops">Section 3: Infinite Loops and Nested Loops</a></li>
+<li class="sb-toc-h3"><a href="#infinite-loops">Infinite Loops</a></li>
+<li class="sb-toc-h3"><a href="#nested-loops">Nested Loops</a></li>
+<li class="sb-toc-h3"><a href="#nested-loop-multiplication-table">Nested Loop: Multiplication Table</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions-corrected">Common Misconceptions — Corrected</a></li>
+<li class="sb-toc-h2"><a href="#diagrams-code-examples">Diagrams / Code Examples</a></li>
+<li class="sb-toc-h3"><a href="#flowchart-while-loop">Flowchart: WHILE Loop</a></li>
+<li class="sb-toc-h3"><a href="#flowchart-for-loop">Flowchart: FOR Loop</a></li>
+<li class="sb-toc-h3"><a href="#trace-table-for-loop">Trace Table: FOR Loop</a></li>
+<li class="sb-toc-h3"><a href="#trace-table-while-loop">Trace Table: WHILE Loop</a></li>
+<li class="sb-toc-h3"><a href="#pseudocode-password-checker-while">Pseudocode: Password Checker (WHILE)</a></li>
+<li class="sb-toc-h3"><a href="#pseudocode-multiplication-table-nested-for">Pseudocode: Multiplication Table (Nested FOR)</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-iteration-loops">Topic: Iteration & Loops</h1>
+<p><strong>Year 7–9 | Programming Fundamentals | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>Iteration is one of the most powerful ideas in programming. Without it, a program that needed to print 100 lines would require 100 separate <code>print</code> statements; a program checking passwords until the user gets it right would be impossible to write at all. Iteration — the ability to repeat a block of instructions — is what makes programs practical and scalable.</p>
+<p>There are two fundamental types of loop: <strong>count-controlled</strong> loops, which repeat a fixed number of times known before the loop starts, and <strong>condition-controlled</strong> loops, which keep repeating until a particular condition becomes false. Choosing the right type of loop for a given problem is an important programming skill. Using a FOR loop when you should use a WHILE loop (or vice versa) will still often produce a working program, but it may be harder to understand, maintain, or extend.</p>
+<p>This pack covers both loop types, explains how to read and write them in pseudocode and Python, and provides trace tables so you can follow exactly what happens inside a loop iteration by iteration. Understanding loops deeply — including the edge cases like infinite loops and nested loops — is essential for the programming questions in your assessments.</p>
+<hr>
+<h2 id="section-1-for-loops-count-controlled-iteration">Section 1: FOR Loops (Count-Controlled Iteration)</h2>
+<p>A <strong>FOR loop</strong> repeats a block of code a fixed, known number of times. The number of repetitions is determined before the loop starts, either by a literal number or by the length of a collection.</p>
+<h3 id="pseudocode-for-loop">Pseudocode FOR Loop</h3>
+<pre><code class="language-pseudocode">FOR i ← 1 TO 5
+    OUTPUT i
+ENDFOR
+</code></pre>
+<p>This outputs the numbers 1 through 5. The variable <code>i</code> (the <strong>loop variable</strong> or <strong>counter</strong>) starts at 1, the block executes, then <code>i</code> increases by 1, and this repeats until <code>i</code> exceeds 5.</p>
+<h3 id="python-for-loop">Python FOR Loop</h3>
+<p>In Python, the <code>for</code> loop most commonly uses <code>range()</code>:</p>
+<pre><code class="language-python">for i in range(1, 6):    # range(start, stop) — stop is EXCLUSIVE
+    print(i)
+</code></pre>
+<p>Output:</p>
+<pre><code>1
+2
+3
+4
+5
+</code></pre>
+<p><strong>Important <code>range()</code> details:</strong></p>
+<ul>
+<li><code>range(5)</code> — produces 0, 1, 2, 3, 4 (starts at 0 by default)</li>
+<li><code>range(1, 6)</code> — produces 1, 2, 3, 4, 5 (stops before 6)</li>
+<li><code>range(0, 10, 2)</code> — produces 0, 2, 4, 6, 8 (step of 2)</li>
+</ul>
+<h3 id="when-to-use-a-for-loop">When to Use a FOR Loop</h3>
+<p>Use a FOR loop when you know <strong>in advance</strong> how many times the loop should run. Examples:</p>
+<ul>
+<li>Print the 5 times table.</li>
+<li>Process each item in a list.</li>
+<li>Repeat a quiz question 10 times.</li>
+</ul>
+<hr>
+<h2 id="section-2-while-loops-condition-controlled-iteration">Section 2: WHILE Loops (Condition-Controlled Iteration)</h2>
+<p>A <strong>WHILE loop</strong> repeats a block of code as long as a condition remains <code>True</code>. The number of repetitions is not fixed — it depends on when the condition becomes <code>False</code>.</p>
+<h3 id="pseudocode-while-loop">Pseudocode WHILE Loop</h3>
+<pre><code class="language-pseudocode">WHILE condition = True DO
+    [block of code]
+ENDWHILE
+</code></pre>
+<h3 id="python-while-loop">Python WHILE Loop</h3>
+<pre><code class="language-python">while condition:
+    # block of code
+</code></pre>
+<h3 id="example-counting-with-while">Example: Counting with WHILE</h3>
+<pre><code class="language-pseudocode">count ← 1
+WHILE count &lt;= 5 DO
+    OUTPUT count
+    count ← count + 1
+ENDWHILE
+</code></pre>
+<pre><code class="language-python">count = 1
+while count &lt;= 5:
+    print(count)
+    count = count + 1
+</code></pre>
+<p>Both produce the same output as the FOR loop above, but the WHILE version requires manually initialising and incrementing the counter.</p>
+<h3 id="example-password-checker">Example: Password Checker</h3>
+<pre><code class="language-pseudocode">password ← USERINPUT
+WHILE password != &quot;secret123&quot; DO
+    OUTPUT &quot;Incorrect. Try again.&quot;
+    password ← USERINPUT
+ENDWHILE
+OUTPUT &quot;Access granted.&quot;
+</code></pre>
+<pre><code class="language-python">password = input(&quot;Enter password: &quot;)
+while password != &quot;secret123&quot;:
+    print(&quot;Incorrect. Try again.&quot;)
+    password = input(&quot;Enter password: &quot;)
+print(&quot;Access granted.&quot;)
+</code></pre>
+<p>This is a perfect use case for WHILE: we cannot know in advance how many attempts the user will need.</p>
+<h3 id="when-to-use-a-while-loop">When to Use a WHILE Loop</h3>
+<p>Use a WHILE loop when the number of repetitions is <strong>not known in advance</strong>. Examples:</p>
+<ul>
+<li>Keep asking for input until the user enters a valid value.</li>
+<li>Keep running a game until the player loses all lives.</li>
+<li>Keep reading data until the end of a file.</li>
+</ul>
+<hr>
+<h2 id="section-3-infinite-loops-and-nested-loops">Section 3: Infinite Loops and Nested Loops</h2>
+<h3 id="infinite-loops">Infinite Loops</h3>
+<p>An <strong>infinite loop</strong> is a loop whose condition never becomes <code>False</code>, causing the program to run forever (or until it is forcibly stopped).</p>
+<pre><code class="language-pseudocode">count ← 1
+WHILE count &gt; 0 DO
+    OUTPUT count
+    count ← count + 1
+ENDWHILE
+</code></pre>
+<p>Here, <code>count</code> starts at 1 and keeps increasing — it will never be <code>&lt;= 0</code>, so the loop never ends. This is almost always a bug.</p>
+<p><strong>Common causes of infinite loops:</strong></p>
+<ul>
+<li>Forgetting to update the loop variable inside the loop.</li>
+<li>Using the wrong comparison operator (e.g., <code>&gt;</code> instead of <code>&lt;</code>).</li>
+<li>Accidentally resetting the variable inside the loop.</li>
+</ul>
+<p><strong>How to fix:</strong> Identify the condition, then trace through the loop to ensure the condition will eventually become <code>False</code>. Make sure the variable being tested is updated correctly inside the loop body.</p>
+<h3 id="nested-loops">Nested Loops</h3>
+<p>A <strong>nested loop</strong> is a loop placed inside another loop. The inner loop runs <strong>completely</strong> for every single iteration of the outer loop.</p>
+<pre><code class="language-pseudocode">FOR i ← 1 TO 3
+    FOR j ← 1 TO 4
+        OUTPUT i, j
+    ENDFOR
+ENDFOR
+</code></pre>
+<ul>
+<li>Outer loop runs 3 times (i = 1, 2, 3).</li>
+<li>Inner loop runs 4 times for each outer iteration.</li>
+<li>Total iterations of the inner loop body: 3 × 4 = <strong>12</strong>.</li>
+</ul>
+<h3 id="nested-loop-multiplication-table">Nested Loop: Multiplication Table</h3>
+<pre><code class="language-pseudocode">FOR row ← 1 TO 3
+    FOR col ← 1 TO 3
+        OUTPUT row * col
+    ENDFOR
+ENDFOR
+</code></pre>
+<p>Output:</p>
+<pre><code>1  2  3
+2  4  6
+3  6  9
+</code></pre>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Iteration</td>
+<td>Repeating a block of instructions; also called a loop</td>
+</tr>
+<tr>
+<td>FOR loop</td>
+<td>A count-controlled loop that repeats a fixed number of times; the count is known before the loop starts</td>
+</tr>
+<tr>
+<td>WHILE loop</td>
+<td>A condition-controlled loop that repeats as long as its condition remains <code>True</code>; the count is not known in advance</td>
+</tr>
+<tr>
+<td>Loop variable</td>
+<td>The variable (counter) used in a FOR loop that tracks the current iteration number</td>
+</tr>
+<tr>
+<td>Loop body</td>
+<td>The block of code that is repeated on each iteration of the loop</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>The Boolean expression checked by a WHILE loop; when it becomes <code>False</code>, the loop ends</td>
+</tr>
+<tr>
+<td>Infinite loop</td>
+<td>A loop whose condition never becomes <code>False</code>; the program runs forever — almost always a bug</td>
+</tr>
+<tr>
+<td>Nested loop</td>
+<td>A loop placed inside another loop; the inner loop completes fully on every iteration of the outer loop</td>
+</tr>
+<tr>
+<td><code>range()</code></td>
+<td>A Python function that generates a sequence of numbers used with <code>for</code> loops; range(start, stop, step)</td>
+</tr>
+<tr>
+<td>Count-controlled</td>
+<td>A loop that repeats a specific, predetermined number of times</td>
+</tr>
+<tr>
+<td>Condition-controlled</td>
+<td>A loop that repeats until a condition becomes False; the number of repetitions is not fixed in advance</td>
+</tr>
+<tr>
+<td>Iteration count</td>
+<td>The total number of times a loop body executes</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions-corrected">Common Misconceptions — Corrected</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FOR loops are always better than WHILE loops</td>
+<td>Neither is universally better. FOR loops suit situations where the count is known; WHILE loops suit situations where repetition depends on an unknown condition.</td>
+</tr>
+<tr>
+<td>A WHILE loop always runs at least once</td>
+<td>A WHILE loop checks its condition <strong>before</strong> the first iteration. If the condition is False at the start, the body never runs at all. (A DO-WHILE loop does run at least once, but Python has no built-in DO-WHILE.)</td>
+</tr>
+<tr>
+<td>You can control a FOR loop by changing the loop variable inside the loop</td>
+<td>In Python, changing <code>i</code> inside a <code>for</code> loop has no effect — Python resets it to the next value in the sequence at the start of each iteration.</td>
+</tr>
+<tr>
+<td>Nested loops: the inner loop only runs once per outer loop</td>
+<td>The inner loop runs <strong>completely</strong> (all its iterations) each time the outer loop&#39;s body executes.</td>
+</tr>
+<tr>
+<td>An infinite loop crashes the computer</td>
+<td>An infinite loop hangs the program (it stops responding), but it does not crash the entire computer. You can stop it with Ctrl+C in Python.</td>
+</tr>
+<tr>
+<td><code>range(5)</code> generates 1, 2, 3, 4, 5</td>
+<td><code>range(5)</code> generates 0, 1, 2, 3, 4. To get 1–5, use <code>range(1, 6)</code>.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="diagrams-code-examples">Diagrams / Code Examples</h2>
+<h3 id="flowchart-while-loop">Flowchart: WHILE Loop</h3>
+<pre><code>         START
+           |
+           v
+    ┌──────────────┐
+    │  Check       │
+    │  condition   │◄──────────┐
+    └──────────────┘           │
+         /    \                │
+       TRUE   FALSE            │
+       /          \            │
+      v            v           │
+ ┌─────────┐     END           │
+ │  Loop   │                  │
+ │  body   │──────────────────┘
+ └─────────┘
+  (loop back to condition check)
+</code></pre>
+<h3 id="flowchart-for-loop">Flowchart: FOR Loop</h3>
+<pre><code>         START
+           |
+           v
+      i ← start
+           |
+           v
+    ┌──────────────┐
+    │  i &lt;= end?   │◄──────────┐
+    └──────────────┘           │
+         /    \                │
+       TRUE   FALSE            │
+       /          \            │
+      v            v           │
+ ┌─────────┐     END           │
+ │  Loop   │                  │
+ │  body   │                  │
+ └─────────┘                  │
+      |                       │
+      v                       │
+  i ← i + 1 ─────────────────┘
+</code></pre>
+<h3 id="trace-table-for-loop">Trace Table: FOR Loop</h3>
+<p>Program:</p>
+<pre><code class="language-pseudocode">total ← 0
+FOR i ← 1 TO 4
+    total ← total + i
+ENDFOR
+OUTPUT total
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th><code>i</code></th>
+<th><code>total</code> before</th>
+<th><code>total</code> after</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Start</td>
+<td>—</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>6</td>
+<td>10</td>
+</tr>
+<tr>
+<td>End</td>
+<td>—</td>
+<td>—</td>
+<td>Output: <code>10</code></td>
+</tr>
+</tbody></table>
+<h3 id="trace-table-while-loop">Trace Table: WHILE Loop</h3>
+<p>Program:</p>
+<pre><code class="language-pseudocode">number ← 1
+WHILE number &lt; 20 DO
+    number ← number * 2
+ENDWHILE
+OUTPUT number
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th><code>number</code> (before body)</th>
+<th>Condition <code>number &lt; 20</code>?</th>
+<th><code>number</code> (after body)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1st</td>
+<td>1</td>
+<td>True</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2nd</td>
+<td>2</td>
+<td>True</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3rd</td>
+<td>4</td>
+<td>True</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4th</td>
+<td>8</td>
+<td>True</td>
+<td>16</td>
+</tr>
+<tr>
+<td>5th</td>
+<td>16</td>
+<td>True</td>
+<td>32</td>
+</tr>
+<tr>
+<td>6th</td>
+<td>32</td>
+<td>False</td>
+<td>Loop ends</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>32</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="pseudocode-password-checker-while">Pseudocode: Password Checker (WHILE)</h3>
+<pre><code class="language-pseudocode">CONSTANT PASSWORD = &quot;letmein&quot;
+attempts ← 0
+guess ← USERINPUT
+WHILE guess != PASSWORD AND attempts &lt; 3 DO
+    OUTPUT &quot;Wrong password.&quot;
+    attempts ← attempts + 1
+    guess ← USERINPUT
+ENDWHILE
+IF guess == PASSWORD THEN
+    OUTPUT &quot;Access granted.&quot;
+ELSE
+    OUTPUT &quot;Too many attempts. Locked.&quot;
+ENDIF
+</code></pre>
+<h3 id="pseudocode-multiplication-table-nested-for">Pseudocode: Multiplication Table (Nested FOR)</h3>
+<pre><code class="language-pseudocode">FOR i ← 1 TO 5
+    FOR j ← 1 TO 5
+        OUTPUT i * j
+    ENDFOR
+ENDFOR
+</code></pre>
+<p>Total iterations of inner body: 5 × 5 = 25.</p>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1</strong> [1 mark]
+State one difference between a FOR loop and a WHILE loop.</p>
+<hr>
+<p><strong>Q2</strong> [2 marks]
+Trace through the following program, completing the trace table.</p>
+<pre><code class="language-pseudocode">FOR i ← 1 TO 4
+    OUTPUT i * 3
+ENDFOR
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th><code>i</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Q3</strong> [3 marks]
+Write a pseudocode program using a WHILE loop that:</p>
+<ul>
+<li>asks the user to input a positive number</li>
+<li>keeps asking until the user enters a number greater than 0</li>
+<li>once a valid number is entered, outputs the square of the number</li>
+</ul>
+<hr>
+<p><strong>Q4</strong> [3 marks]
+Trace through the following program, completing the trace table.</p>
+<pre><code class="language-pseudocode">x ← 100
+WHILE x &gt; 10 DO
+    x ← x DIV 2
+ENDWHILE
+OUTPUT x
+</code></pre>
+<p>(<code>DIV</code> means integer division — discard the remainder.)</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th><code>x</code> before</th>
+<th>Condition <code>x &gt; 10</code>?</th>
+<th><code>x</code> after</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>100</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Q5</strong> [2 marks]
+Look at the following code:</p>
+<pre><code class="language-pseudocode">count ← 10
+WHILE count &gt; 0 DO
+    OUTPUT count
+ENDWHILE
+</code></pre>
+<p>a) What is the problem with this code? [1 mark]
+b) Write the corrected version. [1 mark]</p>
+<hr>
+<p><strong>Q6</strong> [4 marks]
+A nested loop program is shown below:</p>
+<pre><code class="language-pseudocode">FOR outer ← 1 TO 3
+    FOR inner ← 1 TO 2
+        OUTPUT outer * inner
+    ENDFOR
+ENDFOR
+</code></pre>
+<p>a) How many times does the inner loop body execute in total? [1 mark]
+b) Complete the trace table showing each output. [3 marks]</p>
+<table>
+<thead>
+<tr>
+<th><code>outer</code></th>
+<th><code>inner</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>MCQ</strong> [1 mark]
+Which type of loop is most suitable for asking a user to enter their age until they enter a value between 0 and 120?</p>
+<p>A) FOR loop, because the number of questions is fixed
+B) WHILE loop, because we don&#39;t know how many attempts are needed
+C) Nested loop, because we need to check two conditions
+D) FOR loop, because it always runs at least once</p>
+<hr>
+<p><strong>Fill in the blank</strong> [1 mark]
+In Python, <code>range(1, 9)</code> generates the numbers 1, 2, 3, 4, 5, 6, 7, <code>____</code>.</p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1:</strong> A FOR loop repeats a <strong>fixed, known</strong> number of times (count-controlled). A WHILE loop repeats until a <strong>condition becomes False</strong> and the number of repetitions is not known in advance (condition-controlled). [1]</p>
+<p><strong>Q2:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th><code>i</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>12</td>
+</tr>
+</tbody></table>
+<p>[1 mark for i values correct; 1 mark for all outputs correct]</p>
+<p><strong>Q3:</strong></p>
+<pre><code class="language-pseudocode">OUTPUT &quot;Enter a positive number:&quot;
+number ← USERINPUT
+WHILE number &lt;= 0 DO
+    OUTPUT &quot;Invalid. Enter a number greater than 0:&quot;
+    number ← USERINPUT
+ENDWHILE
+OUTPUT number * number
+</code></pre>
+<p>[1 for correct WHILE condition; 1 for re-prompting inside loop; 1 for output of square]</p>
+<p><strong>Q4:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th><code>x</code> before</th>
+<th>Condition <code>x &gt; 10</code>?</th>
+<th><code>x</code> after</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>100</td>
+<td>True</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>50</td>
+<td>True</td>
+<td>25</td>
+</tr>
+<tr>
+<td>3</td>
+<td>25</td>
+<td>True</td>
+<td>12</td>
+</tr>
+<tr>
+<td>4</td>
+<td>12</td>
+<td>True</td>
+<td>6</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6</td>
+<td>False</td>
+<td>Loop ends</td>
+</tr>
+</tbody></table>
+<p>Output: <code>6</code>
+[1 for each of: x=50 and x=25 correct; x=12 correct; x=6 and False noted; output correct]</p>
+<p><strong>Q5:</strong>
+a) <code>count</code> is never updated inside the loop — it stays 10 forever, so the condition <code>count &gt; 0</code> is always True. This is an <strong>infinite loop</strong>. [1]
+b)</p>
+<pre><code class="language-pseudocode">count ← 10
+WHILE count &gt; 0 DO
+    OUTPUT count
+    count ← count - 1
+ENDWHILE
+</code></pre>
+<p>[1]</p>
+<p><strong>Q6:</strong>
+a) 3 × 2 = <strong>6 times</strong> [1]</p>
+<p>b)</p>
+<table>
+<thead>
+<tr>
+<th><code>outer</code></th>
+<th><code>inner</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<p>[1 per 2 correct rows]</p>
+<p><strong>MCQ:</strong> B [1]</p>
+<p><strong>Fill in the blank:</strong> 8 [1]</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can explain what iteration is and why it is useful.</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between count-controlled (FOR) and condition-controlled (WHILE) loops.</li>
+<li><input disabled="" type="checkbox"> I can write a FOR loop in pseudocode and Python, including using <code>range()</code> with start, stop, and step values.</li>
+<li><input disabled="" type="checkbox"> I can write a WHILE loop in pseudocode and Python with a correct condition.</li>
+<li><input disabled="" type="checkbox"> I can choose between a FOR loop and a WHILE loop for a given problem and justify my choice.</li>
+<li><input disabled="" type="checkbox"> I can trace a FOR loop through a trace table, recording the loop variable and any changed variables at each iteration.</li>
+<li><input disabled="" type="checkbox"> I can trace a WHILE loop through a trace table, recording the condition check result and variable values at each step.</li>
+<li><input disabled="" type="checkbox"> I can identify an infinite loop, explain why it is infinite, and correct it.</li>
+<li><input disabled="" type="checkbox"> I understand that a WHILE loop may not execute at all if the condition is False before the first check.</li>
+<li><input disabled="" type="checkbox"> I can write and trace a nested loop, and calculate the total number of inner-body iterations.</li>
+<li><input disabled="" type="checkbox"> I know that <code>range(5)</code> generates 0–4 and that <code>range(1, 6)</code> generates 1–5.</li>
+<li><input disabled="" type="checkbox"> I can write a password checker using a WHILE loop.</li>
+<li><input disabled="" type="checkbox"> I can draw or interpret a flowchart for both FOR and WHILE loops, including the loop-back arrow.</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/seo/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/seo/seo-study-book.js"></script>
+</body>
+</html>

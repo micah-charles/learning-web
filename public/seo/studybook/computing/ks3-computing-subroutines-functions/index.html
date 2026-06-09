@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Subroutines &amp; Functions | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Subroutines &amp; Functions" />
+  <link rel="canonical" href="https://www.foxchildidea.com/seo/studybook/computing/ks3-computing-subroutines-functions/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Subroutines &amp; Functions | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Subroutines &amp; Functions" />
+  <meta property="og:url" content="https://www.foxchildidea.com/seo/studybook/computing/ks3-computing-subroutines-functions/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Subroutines &amp; Functions | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Subroutines &amp; Functions" />
+  <link rel="stylesheet" href="/seo/seo.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Subroutines & Functions",
+  "description": "Study revision notes for KS3 Computing — Subroutines & Functions",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/seo/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/seo/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Subroutines &amp; Functions</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Subroutines &amp; Functions</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-subroutines-functions">Topic: Subroutines &amp; Functions</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-procedures">Section 1: Procedures</a></li>
+<li class="sb-toc-h3"><a href="#defining-and-calling-a-procedure-pseudocode">Defining and Calling a Procedure (Pseudocode)</a></li>
+<li class="sb-toc-h1"><a href="#calling-the-procedure">Calling the procedure</a></li>
+<li class="sb-toc-h3"><a href="#procedures-with-parameters">Procedures with Parameters</a></li>
+<li class="sb-toc-h1"><a href="#calling-with-different-arguments">Calling with different arguments</a></li>
+<li class="sb-toc-h3"><a href="#procedures-in-python">Procedures in Python</a></li>
+<li class="sb-toc-h2"><a href="#section-2-functions">Section 2: Functions</a></li>
+<li class="sb-toc-h3"><a href="#defining-and-calling-a-function-pseudocode">Defining and Calling a Function (Pseudocode)</a></li>
+<li class="sb-toc-h3"><a href="#function-in-python">Function in Python</a></li>
+<li class="sb-toc-h3"><a href="#function-with-a-condition">Function with a Condition</a></li>
+<li class="sb-toc-h2"><a href="#section-3-parameters-arguments-and-local-variables">Section 3: Parameters, Arguments, and Local Variables</a></li>
+<li class="sb-toc-h3"><a href="#parameters-vs-arguments">Parameters vs Arguments</a></li>
+<li class="sb-toc-h3"><a href="#local-variables">Local Variables</a></li>
+<li class="sb-toc-h3"><a href="#program-flow-how-calls-work">Program Flow: How Calls Work</a></li>
+<li class="sb-toc-h3"><a href="#benefits-of-subroutines">Benefits of Subroutines</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions-corrected">Common Misconceptions — Corrected</a></li>
+<li class="sb-toc-h2"><a href="#diagrams-code-examples">Diagrams / Code Examples</a></li>
+<li class="sb-toc-h3"><a href="#comparing-procedure-and-function">Comparing Procedure and Function</a></li>
+<li class="sb-toc-h1"><a href="#procedure-performs-action-no-return-value">PROCEDURE — performs action, no return value</a></li>
+<li class="sb-toc-h1"><a href="#function-calculates-and-returns-a-value">FUNCTION — calculates and returns a value</a></li>
+<li class="sb-toc-h3"><a href="#full-worked-example-area-calculator">Full Worked Example: Area Calculator</a></li>
+<li class="sb-toc-h1"><a href="#main-program">Main program</a></li>
+<li class="sb-toc-h1"><a href="#main-program">Main program</a></li>
+<li class="sb-toc-h3"><a href="#trace-table-function-call">Trace Table: Function Call</a></li>
+<li class="sb-toc-h3"><a href="#local-variable-scope-diagram">Local Variable Scope Diagram</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-subroutines-functions">Topic: Subroutines & Functions</h1>
+<p><strong>Year 7–9 | Programming Fundamentals | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>As programs grow larger and more complex, repeating the same block of code in multiple places becomes impractical and error-prone. If that code contains a bug, you need to fix it in every location where it appears. If you want to change its behaviour, again you must change it everywhere. <strong>Subroutines</strong> solve this problem by allowing a named block of code to be written once and called (executed) from anywhere in the program.</p>
+<p>Subroutines are also essential for breaking a large problem into smaller, manageable pieces — a technique rooted in decomposition. Each subroutine handles one specific task. This makes programs easier to read, easier to test, and much easier to maintain. Professional programmers rarely write programs without subroutines; the skill of splitting work into well-named subroutines is a mark of good programming practice.</p>
+<p>There are two types of subroutine: <strong>procedures</strong>, which perform an action without sending back a result, and <strong>functions</strong>, which perform a calculation or operation and <strong>return a value</strong> to the point in the program where they were called. Understanding the distinction between these two is key to both writing and answering exam questions about subroutines.</p>
+<hr>
+<h2 id="section-1-procedures">Section 1: Procedures</h2>
+<p>A <strong>procedure</strong> is a named block of code that performs a task. When called, it executes its body and then returns control to the line after the call. It does <strong>not</strong> send back a value.</p>
+<h3 id="defining-and-calling-a-procedure-pseudocode">Defining and Calling a Procedure (Pseudocode)</h3>
+<pre><code class="language-pseudocode">PROCEDURE greet()
+    OUTPUT &quot;Hello! Welcome to the program.&quot;
+    OUTPUT &quot;Please read the instructions carefully.&quot;
+ENDPROCEDURE
+
+# Calling the procedure
+greet()
+greet()
+</code></pre>
+<p>Each call to <code>greet()</code> executes both OUTPUT lines. The procedure is defined once but can be called as many times as needed.</p>
+<h3 id="procedures-with-parameters">Procedures with Parameters</h3>
+<p><strong>Parameters</strong> are placeholder variables listed in the procedure definition. They allow the procedure to work with different values each time it is called.</p>
+<pre><code class="language-pseudocode">PROCEDURE greetUser(name, score)
+    OUTPUT &quot;Hello, &quot; + name + &quot;!&quot;
+    OUTPUT &quot;Your score is: &quot; + str(score)
+ENDPROCEDURE
+
+# Calling with different arguments
+greetUser(&quot;Alice&quot;, 85)
+greetUser(&quot;Bob&quot;, 62)
+</code></pre>
+<p>When <code>greetUser(&quot;Alice&quot;, 85)</code> is called:</p>
+<ul>
+<li>The parameter <code>name</code> receives the <strong>argument</strong> <code>&quot;Alice&quot;</code></li>
+<li>The parameter <code>score</code> receives the <strong>argument</strong> <code>85</code></li>
+</ul>
+<p>The procedure runs, using <code>&quot;Alice&quot;</code> and <code>85</code> in place of <code>name</code> and <code>score</code>.</p>
+<h3 id="procedures-in-python">Procedures in Python</h3>
+<pre><code class="language-python">def greet_user(name, score):
+    print(&quot;Hello,&quot;, name + &quot;!&quot;)
+    print(&quot;Your score is:&quot;, score)
+
+greet_user(&quot;Alice&quot;, 85)
+greet_user(&quot;Bob&quot;, 62)
+</code></pre>
+<p>In Python, subroutines (both procedures and functions) are defined using the <code>def</code> keyword.</p>
+<hr>
+<h2 id="section-2-functions">Section 2: Functions</h2>
+<p>A <strong>function</strong> is a subroutine that <strong>returns a value</strong> to the part of the program that called it. The calling code can then use that returned value in an expression, store it in a variable, or pass it to another subroutine.</p>
+<h3 id="defining-and-calling-a-function-pseudocode">Defining and Calling a Function (Pseudocode)</h3>
+<pre><code class="language-pseudocode">FUNCTION add(a, b)
+    RETURN a + b
+ENDFUNCTION
+
+result ← add(10, 5)
+OUTPUT result         # Outputs 15
+OUTPUT add(3, 7)      # Outputs 10
+</code></pre>
+<p>The <code>RETURN</code> statement sends a value back to the caller and immediately ends the function&#39;s execution.</p>
+<h3 id="function-in-python">Function in Python</h3>
+<pre><code class="language-python">def add(a, b):
+    return a + b
+
+result = add(10, 5)
+print(result)       # 15
+print(add(3, 7))    # 10
+</code></pre>
+<h3 id="function-with-a-condition">Function with a Condition</h3>
+<pre><code class="language-pseudocode">FUNCTION isPass(score)
+    IF score &gt;= 50 THEN
+        RETURN True
+    ELSE
+        RETURN False
+    ENDIF
+ENDFUNCTION
+
+mark ← 72
+IF isPass(mark) = True THEN
+    OUTPUT &quot;You passed!&quot;
+ELSE
+    OUTPUT &quot;You did not pass.&quot;
+ENDIF
+</code></pre>
+<hr>
+<h2 id="section-3-parameters-arguments-and-local-variables">Section 3: Parameters, Arguments, and Local Variables</h2>
+<h3 id="parameters-vs-arguments">Parameters vs Arguments</h3>
+<p>These two terms are often confused:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Where it appears</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Parameter</strong></td>
+<td>A placeholder variable in the subroutine <strong>definition</strong></td>
+<td><code>PROCEDURE greet(name)</code> — <code>name</code> is the parameter</td>
+</tr>
+<tr>
+<td><strong>Argument</strong></td>
+<td>The actual value passed to the subroutine when it is <strong>called</strong></td>
+<td><code>greet(&quot;Alice&quot;)</code> — <code>&quot;Alice&quot;</code> is the argument</td>
+</tr>
+</tbody></table>
+<p>Think of it this way: a parameter is the label on an empty box; an argument is the actual item you put in the box when you use the subroutine.</p>
+<h3 id="local-variables">Local Variables</h3>
+<p>A <strong>local variable</strong> is a variable created inside a subroutine. It exists <strong>only</strong> while that subroutine is executing. Once the subroutine ends, the local variable is destroyed and its value is inaccessible from outside the subroutine.</p>
+<pre><code class="language-pseudocode">FUNCTION calculateArea(width, height)
+    area ← width * height     # &#39;area&#39; is a local variable
+    RETURN area
+ENDFUNCTION
+
+OUTPUT calculateArea(5, 3)    # Outputs 15
+OUTPUT area                   # ERROR — &#39;area&#39; does not exist here
+</code></pre>
+<p><strong>Why local variables are useful:</strong></p>
+<ul>
+<li>They prevent accidental modification of variables in other parts of the program.</li>
+<li>The same variable name can be reused in different subroutines without conflict.</li>
+<li>They make subroutines self-contained and easier to test.</li>
+</ul>
+<h3 id="program-flow-how-calls-work">Program Flow: How Calls Work</h3>
+<pre><code>Main program
+    │
+    │  calls greetUser(&quot;Alice&quot;, 85)
+    ▼
+┌──────────────────────────────────┐
+│ SUBROUTINE: greetUser            │
+│  name = &quot;Alice&quot;, score = 85      │
+│  OUTPUT &quot;Hello, Alice!&quot;          │
+│  OUTPUT &quot;Your score is: 85&quot;      │
+└──────────────────────────────────┘
+    │
+    │  returns (no value for procedure)
+    ▼
+Main program continues...
+    │
+    │  calls add(10, 5)
+    ▼
+┌──────────────────────────────────┐
+│ FUNCTION: add                    │
+│  a = 10, b = 5                   │
+│  RETURN 15                       │
+└──────────────────────────────────┘
+    │
+    │  returns value 15 to caller
+    ▼
+result = 15
+Main program continues...
+</code></pre>
+<h3 id="benefits-of-subroutines">Benefits of Subroutines</h3>
+<ol>
+<li><strong>Reduces repetition:</strong> Write the code once, call it many times.</li>
+<li><strong>Easier to test:</strong> Each subroutine can be tested independently with known inputs and outputs.</li>
+<li><strong>Easier to maintain:</strong> A bug in a subroutine is fixed in one place, not throughout the program.</li>
+<li><strong>Reusability:</strong> Subroutines can be copied into other programs or imported as modules.</li>
+<li><strong>Readability:</strong> A program that calls <code>calculateTax()</code>, <code>applyDiscount()</code>, and <code>printReceipt()</code> is easier to follow than one long block of code.</li>
+<li><strong>Decomposition:</strong> Large problems are broken into smaller, focused pieces — a core principle of computational thinking.</li>
+</ol>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Subroutine</td>
+<td>A named, reusable block of code that can be called from anywhere in the program</td>
+</tr>
+<tr>
+<td>Procedure</td>
+<td>A subroutine that performs an action but does NOT return a value</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>A subroutine that performs an operation and RETURNS a value to the caller</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>A placeholder variable listed in a subroutine&#39;s definition; receives the argument&#39;s value when called</td>
+</tr>
+<tr>
+<td>Argument</td>
+<td>The actual value passed to a subroutine when it is called</td>
+</tr>
+<tr>
+<td>Return value</td>
+<td>The value sent back from a function to the code that called it, via the <code>RETURN</code> keyword</td>
+</tr>
+<tr>
+<td>Local variable</td>
+<td>A variable created inside a subroutine; it exists only while the subroutine executes and is inaccessible outside</td>
+</tr>
+<tr>
+<td><code>def</code></td>
+<td>The Python keyword used to define a subroutine (both procedures and functions)</td>
+</tr>
+<tr>
+<td><code>return</code></td>
+<td>The Python / pseudocode keyword that sends a value back from a function and ends its execution</td>
+</tr>
+<tr>
+<td>Call</td>
+<td>To execute a subroutine by writing its name followed by parentheses (and any arguments)</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>The region of a program where a variable exists and can be accessed</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions-corrected">Common Misconceptions — Corrected</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A function and a procedure are the same thing</td>
+<td>A <strong>function</strong> returns a value; a <strong>procedure</strong> does not. The key question is: &quot;Does the subroutine send something back?&quot;</td>
+</tr>
+<tr>
+<td>A parameter and an argument are the same thing</td>
+<td>A <strong>parameter</strong> is the placeholder in the definition. An <strong>argument</strong> is the actual value passed at the point of the call.</td>
+</tr>
+<tr>
+<td>Local variables can be accessed from anywhere in the program</td>
+<td>Local variables are only accessible <strong>inside</strong> the subroutine where they are defined. Trying to access them outside causes a NameError.</td>
+</tr>
+<tr>
+<td>Subroutines run automatically when the program starts</td>
+<td>Subroutines only run when explicitly <strong>called</strong>. Defining a subroutine does nothing on its own.</td>
+</tr>
+<tr>
+<td>Using subroutines makes programs longer</td>
+<td>Well-structured programs with subroutines are often shorter overall because repeated code is written once, not many times.</td>
+</tr>
+<tr>
+<td>A subroutine can only be called once</td>
+<td>A subroutine can be called any number of times, from any part of the program — this is the whole point.</td>
+</tr>
+<tr>
+<td><code>return</code> just means the function has finished</td>
+<td><code>return</code> sends a value back to the caller AND ends the function immediately. Any code after a <code>return</code> statement in a function will never execute.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="diagrams-code-examples">Diagrams / Code Examples</h2>
+<h3 id="comparing-procedure-and-function">Comparing Procedure and Function</h3>
+<pre><code class="language-pseudocode"># PROCEDURE — performs action, no return value
+PROCEDURE printDouble(number)
+    OUTPUT number * 2
+ENDPROCEDURE
+
+printDouble(7)    # Outputs 14 to the screen; no value available to use
+
+
+# FUNCTION — calculates and returns a value
+FUNCTION getDouble(number)
+    RETURN number * 2
+ENDFUNCTION
+
+result ← getDouble(7)    # result now holds 14
+OUTPUT result            # We can use, store, or manipulate the return value
+OUTPUT getDouble(5) + 10 # We can use the return value in an expression: outputs 20
+</code></pre>
+<h3 id="full-worked-example-area-calculator">Full Worked Example: Area Calculator</h3>
+<pre><code class="language-pseudocode">FUNCTION rectangleArea(width, height)
+    area ← width * height
+    RETURN area
+ENDFUNCTION
+
+PROCEDURE displayArea(shape, area)
+    OUTPUT shape + &quot; area: &quot; + str(area)
+ENDPROCEDURE
+
+# Main program
+w ← USERINPUT
+h ← USERINPUT
+a ← rectangleArea(w, h)
+displayArea(&quot;Rectangle&quot;, a)
+</code></pre>
+<pre><code class="language-python">def rectangle_area(width, height):
+    area = width * height
+    return area
+
+def display_area(shape, area):
+    print(shape + &quot; area:&quot;, area)
+
+# Main program
+w = int(input(&quot;Enter width: &quot;))
+h = int(input(&quot;Enter height: &quot;))
+a = rectangle_area(w, h)
+display_area(&quot;Rectangle&quot;, a)
+</code></pre>
+<h3 id="trace-table-function-call">Trace Table: Function Call</h3>
+<p>Program:</p>
+<pre><code class="language-pseudocode">FUNCTION multiply(x, y)
+    result ← x * y
+    RETURN result
+ENDFUNCTION
+
+a ← 4
+b ← 6
+answer ← multiply(a, b)
+OUTPUT answer
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Location</th>
+<th><code>a</code></th>
+<th><code>b</code></th>
+<th><code>x</code></th>
+<th><code>y</code></th>
+<th><code>result</code></th>
+<th><code>answer</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Main</td>
+<td>4</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Main</td>
+<td>4</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Call multiply(4,6)</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Inside multiply</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>6</td>
+<td>24</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>RETURN 24</td>
+<td>4</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>24</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Main: OUTPUT</td>
+<td>4</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>24</td>
+<td><code>24</code></td>
+</tr>
+</tbody></table>
+<h3 id="local-variable-scope-diagram">Local Variable Scope Diagram</h3>
+<pre><code>┌──────────────────────────────────────────────┐
+│  MAIN PROGRAM                                │
+│  a = 4   b = 6   answer = 24                 │
+│                                              │
+│  ┌────────────────────────────────────────┐  │
+│  │  FUNCTION multiply(x, y)              │  │
+│  │  x = 4   y = 6   result = 24          │  │
+│  │  (local — cannot be seen from main)   │  │
+│  └────────────────────────────────────────┘  │
+│                                              │
+│  &#39;result&#39; does NOT exist here                │
+└──────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1</strong> [1 mark]
+What does a function return that a procedure does not?</p>
+<hr>
+<p><strong>Q2</strong> [2 marks]
+State two benefits of using subroutines in a program.</p>
+<hr>
+<p><strong>Q3</strong> [1 mark]
+Explain the difference between a <strong>parameter</strong> and an <strong>argument</strong>. Use an example.</p>
+<hr>
+<p><strong>Q4</strong> [3 marks]
+Write a <strong>function</strong> in pseudocode called <code>circleArea</code> that:</p>
+<ul>
+<li>takes one parameter: <code>radius</code></li>
+<li>calculates the area using the formula: area = 3.14159 × radius × radius</li>
+<li>returns the area</li>
+</ul>
+<p>Then write one line of pseudocode that calls the function with a radius of 5 and stores the result in a variable called <code>myArea</code>.</p>
+<hr>
+<p><strong>Q5</strong> [4 marks]
+Trace through the following program, completing the trace table.</p>
+<pre><code class="language-pseudocode">FUNCTION double(n)
+    answer ← n * 2
+    RETURN answer
+ENDFUNCTION
+
+x ← 3
+y ← double(x)
+z ← double(y) + 1
+OUTPUT z
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th><code>x</code></th>
+<th><code>y</code></th>
+<th><code>z</code></th>
+<th><code>n</code> (inside function)</th>
+<th><code>answer</code> (inside function)</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x ← 3</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Call <code>double(3)</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Inside: <code>answer ← n*2</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>y ← return value</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Call <code>double(y)</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Inside: <code>answer ← n*2</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>z ← return value + 1</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>OUTPUT z</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Q6</strong> [2 marks]
+What is a local variable? Explain what happens when you try to access a local variable from outside the subroutine that created it.</p>
+<hr>
+<p><strong>MCQ</strong> [1 mark]
+Which of the following best describes a <strong>procedure</strong>?</p>
+<p>A) A subroutine that always returns an integer
+B) A subroutine that performs an action but does not return a value
+C) A variable that stores the result of a calculation
+D) A loop that repeats a fixed number of times</p>
+<hr>
+<p><strong>Fill in the blank</strong> [1 mark]
+In Python, subroutines are defined using the keyword <code>________</code>.</p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1:</strong> A function returns a <strong>value</strong> (using the <code>RETURN</code> keyword). A procedure does not return any value. [1]</p>
+<p><strong>Q2:</strong> Any two of: reduces repetition / easier to test / easier to maintain / subroutines are reusable / improves readability / supports decomposition. [1 mark each, max 2]</p>
+<p><strong>Q3:</strong> A <strong>parameter</strong> is the placeholder variable in the subroutine definition (e.g., <code>name</code> in <code>PROCEDURE greet(name)</code>). An <strong>argument</strong> is the actual value supplied when the subroutine is called (e.g., <code>&quot;Alice&quot;</code> in <code>greet(&quot;Alice&quot;)</code>). [1 for each correct, max 2 with example]</p>
+<p><strong>Q4:</strong></p>
+<pre><code class="language-pseudocode">FUNCTION circleArea(radius)
+    area ← 3.14159 * radius * radius
+    RETURN area
+ENDFUNCTION
+
+myArea ← circleArea(5)
+</code></pre>
+<p>[1 for correct function structure with parameter; 1 for correct calculation; 1 for correct call with result stored]</p>
+<p><strong>Q5:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th><code>x</code></th>
+<th><code>y</code></th>
+<th><code>z</code></th>
+<th><code>n</code></th>
+<th><code>answer</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x ← 3</code></td>
+<td>3</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Call <code>double(3)</code></td>
+<td>3</td>
+<td>—</td>
+<td>—</td>
+<td>3</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Inside: <code>answer ← n*2</code></td>
+<td>3</td>
+<td>—</td>
+<td>—</td>
+<td>3</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td><code>y ← return value</code></td>
+<td>3</td>
+<td>6</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Call <code>double(6)</code></td>
+<td>3</td>
+<td>6</td>
+<td>—</td>
+<td>6</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>Inside: <code>answer ← n*2</code></td>
+<td>3</td>
+<td>6</td>
+<td>—</td>
+<td>6</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr>
+<td><code>z ← return value + 1</code></td>
+<td>3</td>
+<td>6</td>
+<td>13</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td><code>OUTPUT z</code></td>
+<td>3</td>
+<td>6</td>
+<td>13</td>
+<td>—</td>
+<td>—</td>
+<td><code>13</code></td>
+</tr>
+</tbody></table>
+<p>[1 per 2 rows correct]</p>
+<p><strong>Q6:</strong> A local variable is a variable defined inside a subroutine that only exists while that subroutine is running. [1] If you try to access it from outside the subroutine, you will get a NameError (variable not defined), because the variable no longer exists after the subroutine finishes. [1]</p>
+<p><strong>MCQ:</strong> B [1]</p>
+<p><strong>Fill in the blank:</strong> <code>def</code> [1]</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can define &quot;subroutine&quot; and explain why subroutines are used.</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between a procedure and a function.</li>
+<li><input disabled="" type="checkbox"> I can define a procedure in pseudocode and Python, with and without parameters.</li>
+<li><input disabled="" type="checkbox"> I can define a function in pseudocode and Python that returns a value using <code>RETURN</code> / <code>return</code>.</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between a parameter and an argument, and give an example of each.</li>
+<li><input disabled="" type="checkbox"> I can explain what a local variable is and why it cannot be accessed outside its subroutine.</li>
+<li><input disabled="" type="checkbox"> I can state at least four benefits of using subroutines.</li>
+<li><input disabled="" type="checkbox"> I can trace a subroutine call through a trace table, including tracking the parameter value inside the function and the return value back in the main program.</li>
+<li><input disabled="" type="checkbox"> I understand that subroutines only run when called, not automatically.</li>
+<li><input disabled="" type="checkbox"> I can write a function that takes parameters, performs a calculation, and returns the result.</li>
+<li><input disabled="" type="checkbox"> I can write a procedure that takes parameters and performs output without returning a value.</li>
+<li><input disabled="" type="checkbox"> I understand that <code>return</code> ends a function immediately and sends a value back to the caller.</li>
+<li><input disabled="" type="checkbox"> I know that Python uses <code>def</code> to define all subroutines.</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/seo/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/seo/seo-study-book.js"></script>
+</body>
+</html>

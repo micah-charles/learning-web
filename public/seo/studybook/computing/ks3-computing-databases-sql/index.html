@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Databases &amp; SQL | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Databases &amp; SQL" />
+  <link rel="canonical" href="https://www.foxchildidea.com/seo/studybook/computing/ks3-computing-databases-sql/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Databases &amp; SQL | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Databases &amp; SQL" />
+  <meta property="og:url" content="https://www.foxchildidea.com/seo/studybook/computing/ks3-computing-databases-sql/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Databases &amp; SQL | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Databases &amp; SQL" />
+  <link rel="stylesheet" href="/seo/seo.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Databases & SQL",
+  "description": "Study revision notes for KS3 Computing — Databases & SQL",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/seo/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/seo/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Databases &amp; SQL</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Databases &amp; SQL</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-databases-sql">Topic: Databases &amp; SQL</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-data-fundamentals">Section 1: Data Fundamentals</a></li>
+<li class="sb-toc-h3"><a href="#data-vs-information">Data vs Information</a></li>
+<li class="sb-toc-h3"><a href="#flat-file-databases">Flat-File Databases</a></li>
+<li class="sb-toc-h3"><a href="#relational-databases">Relational Databases</a></li>
+<li class="sb-toc-h3"><a href="#flat-file-vs-relational-comparison">Flat-File vs Relational Comparison</a></li>
+<li class="sb-toc-h2"><a href="#section-2-database-structure">Section 2: Database Structure</a></li>
+<li class="sb-toc-h3"><a href="#tables-fields-and-records">Tables, Fields, and Records</a></li>
+<li class="sb-toc-h3"><a href="#sample-students-table">Sample Students Table</a></li>
+<li class="sb-toc-h3"><a href="#primary-key">Primary Key</a></li>
+<li class="sb-toc-h3"><a href="#foreign-key">Foreign Key</a></li>
+<li class="sb-toc-h2"><a href="#section-3-data-validation-and-verification">Section 3: Data Validation and Verification</a></li>
+<li class="sb-toc-h3"><a href="#validation">Validation</a></li>
+<li class="sb-toc-h3"><a href="#validation-types">Validation Types</a></li>
+<li class="sb-toc-h3"><a href="#verification">Verification</a></li>
+<li class="sb-toc-h3"><a href="#validation-vs-verification-key-distinction">Validation vs Verification — Key Distinction</a></li>
+<li class="sb-toc-h2"><a href="#section-4-sql-structured-query-language">Section 4: SQL — Structured Query Language</a></li>
+<li class="sb-toc-h3"><a href="#core-sql-keywords">Core SQL Keywords</a></li>
+<li class="sb-toc-h3"><a href="#sql-syntax-structure">SQL Syntax Structure</a></li>
+<li class="sb-toc-h3"><a href="#fully-annotated-sql-example">Fully Annotated SQL Example</a></li>
+<li class="sb-toc-h3"><a href="#more-sql-examples">More SQL Examples</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions">Common Misconceptions</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-databases-sql">Topic: Databases & SQL</h1>
+<p><strong>Year 7–9 | Databases | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>A <strong>database</strong> is an organised, structured collection of data that enables efficient storage, retrieval, and management. Databases power virtually every digital system you interact with — from school administration systems to streaming services, social media platforms, and the NHS. This pack covers how databases are structured, the rules that keep data accurate, and the SQL language used to query them.</p>
+<hr>
+<h2 id="section-1-data-fundamentals">Section 1: Data Fundamentals</h2>
+<h3 id="data-vs-information">Data vs Information</h3>
+<p>These terms are often used interchangeably but have distinct meanings:</p>
+<ul>
+<li><strong>Data</strong> = raw, unprocessed facts with no context. On its own, data is meaningless.</li>
+<li><strong>Information</strong> = data that has been given context and meaning so it can be interpreted and used.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Data</th>
+<th>Information</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A number</td>
+<td><code>17</code></td>
+<td>&quot;Student age: 17 years&quot;</td>
+</tr>
+<tr>
+<td>A series of digits</td>
+<td><code>07700900123</code></td>
+<td>&quot;Emergency contact phone number&quot;</td>
+</tr>
+<tr>
+<td>A word</td>
+<td><code>&quot;Red&quot;</code></td>
+<td>&quot;Traffic light status: Red — stop&quot;</td>
+</tr>
+</tbody></table>
+<h3 id="flat-file-databases">Flat-File Databases</h3>
+<p>A <strong>flat-file database</strong> stores all data in a <strong>single table</strong> (like a spreadsheet). Simple to create and understand for small datasets.</p>
+<p><strong>Problems with flat-file databases:</strong></p>
+<ul>
+<li><strong>Data redundancy</strong>: the same data is stored multiple times (e.g. a teacher&#39;s name appears in every row for every student in their class)</li>
+<li><strong>Update anomalies</strong>: if one piece of repeated data changes (e.g. the teacher changes their name), every row must be updated — miss one and the data becomes inconsistent</li>
+<li><strong>Inconsistency</strong>: different rows may contain different versions of the same data</li>
+<li><strong>Not scalable</strong>: becomes slow and unwieldy with large amounts of data</li>
+</ul>
+<p><strong>Example flat-file (showing redundancy problem):</strong></p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>StudentName</th>
+<th>Subject</th>
+<th>TeacherName</th>
+<th>TeacherEmail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>Alice</td>
+<td>Computing</td>
+<td>Mr Smith</td>
+<td><a href="mailto:smith@school.ac.uk">smith@school.ac.uk</a></td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>Computing</td>
+<td>Mr Smith</td>
+<td><a href="mailto:smith@school.ac.uk">smith@school.ac.uk</a></td>
+</tr>
+<tr>
+<td>103</td>
+<td>Charlie</td>
+<td>Computing</td>
+<td>Mr Smith</td>
+<td><a href="mailto:smith@school.ac.uk">smith@school.ac.uk</a></td>
+</tr>
+</tbody></table>
+<p>If Mr Smith leaves and Ms Jones takes over, three rows must all be updated. With 300 students, that is 300 changes — and missing even one causes an inconsistency.</p>
+<h3 id="relational-databases">Relational Databases</h3>
+<p>A <strong>relational database</strong> splits data across <strong>multiple linked tables</strong>, each storing data about one type of entity. Tables are linked using <strong>keys</strong>.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>No redundancy</strong>: teacher data is stored once in the Teachers table, not repeated in every student row</li>
+<li><strong>No update anomalies</strong>: change the teacher&#39;s name once in one row — all linked student records automatically reflect the change</li>
+<li><strong>Consistency</strong>: only one version of each piece of data exists</li>
+<li><strong>Scalable</strong>: can handle millions of records efficiently</li>
+</ul>
+<h3 id="flat-file-vs-relational-comparison">Flat-File vs Relational Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Flat-File</th>
+<th>Relational</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Number of tables</td>
+<td>One</td>
+<td>Multiple (linked)</td>
+</tr>
+<tr>
+<td>Data redundancy</td>
+<td>High — data repeated in many rows</td>
+<td>Low — each fact stored once</td>
+</tr>
+<tr>
+<td>Update anomalies</td>
+<td>Common — must update many rows</td>
+<td>Rare — update one record in one table</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>Risk of inconsistency</td>
+<td>High consistency</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Simple to understand</td>
+<td>More complex to design</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>Poor</td>
+<td>Excellent</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="section-2-database-structure">Section 2: Database Structure</h2>
+<h3 id="tables-fields-and-records">Tables, Fields, and Records</h3>
+<p>A database is made up of <strong>tables</strong>. Each table stores data about one type of entity (e.g. Students, Teachers, Subjects).</p>
+<p><strong>Terminology:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Also called</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Table</td>
+<td>Relation</td>
+<td>Grid of rows and columns storing data about one entity type</td>
+<td><code>Students</code> table</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>Column / Attribute</td>
+<td>A single category of data — one property of the entity</td>
+<td><code>Name</code>, <code>Age</code>, <code>Subject</code></td>
+</tr>
+<tr>
+<td>Record</td>
+<td>Row / Tuple</td>
+<td>One complete entry — all the data about one individual entity</td>
+<td>Row for student Alice: 101, Alice, 15, Computing</td>
+</tr>
+</tbody></table>
+<h3 id="sample-students-table">Sample Students Table</h3>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Subject</th>
+<th>YearGroup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>Alice</td>
+<td>15</td>
+<td>Computing</td>
+<td>10</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>14</td>
+<td>Computing</td>
+<td>9</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Charlie</td>
+<td>15</td>
+<td>Science</td>
+<td>10</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Diana</td>
+<td>13</td>
+<td>History</td>
+<td>8</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Ed</td>
+<td>14</td>
+<td>Computing</td>
+<td>9</td>
+</tr>
+</tbody></table>
+<ul>
+<li>The <strong>fields</strong> (columns) are: StudentID, Name, Age, Subject, YearGroup</li>
+<li>Each <strong>row</strong> is a <strong>record</strong> — one student&#39;s complete data</li>
+<li><code>StudentID</code> is the <strong>primary key</strong></li>
+</ul>
+<h3 id="primary-key">Primary Key</h3>
+<p>The <strong>primary key</strong> is the field (or combination of fields) that <strong>uniquely identifies each record</strong> in a table. Rules:</p>
+<ol>
+<li>Must be <strong>unique</strong> — no two records can have the same primary key value</li>
+<li>Must <strong>not be empty (null)</strong> — every record must have a primary key value</li>
+<li>Should be <strong>stable</strong> — the primary key should not need to change</li>
+</ol>
+<p><strong>Why names cannot be primary keys:</strong> two students could have the same name (Alice Smith and Alice Jones). A primary key must be guaranteed unique — hence the use of generated IDs (StudentID: 101, 102, 103...).</p>
+<p><strong>Choosing a good primary key:</strong></p>
+<ul>
+<li>StudentID (auto-generated number) — excellent</li>
+<li>Email address — could work (unique) but changes are problematic</li>
+<li>National Insurance number — unique but sensitive data</li>
+<li>Name — poor choice (duplicates possible)</li>
+</ul>
+<h3 id="foreign-key">Foreign Key</h3>
+<p>A <strong>foreign key</strong> is a field in one table that contains the <strong>primary key from another table</strong>, creating a <strong>link</strong> (relationship) between the two tables.</p>
+<p><strong>Example — linking Students to Teachers:</strong></p>
+<p><strong>Students table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>Name</th>
+<th>TeacherID</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>Alice</td>
+<td>T01</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>T01</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Charlie</td>
+<td>T02</td>
+</tr>
+</tbody></table>
+<p><strong>Teachers table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>TeacherID</th>
+<th>TeacherName</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>T01</td>
+<td>Mr Smith</td>
+<td><a href="mailto:smith@school.ac.uk">smith@school.ac.uk</a></td>
+</tr>
+<tr>
+<td>T02</td>
+<td>Ms Jones</td>
+<td><a href="mailto:jones@school.ac.uk">jones@school.ac.uk</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>TeacherID</code> in the Students table is a <strong>foreign key</strong> — it references the primary key (<code>TeacherID</code>) in the Teachers table</li>
+<li>This is how the two tables are linked — to find Alice&#39;s teacher&#39;s email, follow the TeacherID link from her record to the Teachers table</li>
+</ul>
+<hr>
+<h2 id="section-3-data-validation-and-verification">Section 3: Data Validation and Verification</h2>
+<h3 id="validation">Validation</h3>
+<p><strong>Validation</strong> is automated checking that data entered is <strong>acceptable, sensible, and within expected parameters</strong>. It is performed by the system before the data is stored.</p>
+<p><strong>Important:</strong> validation checks that data is <strong>reasonable</strong> — it does not guarantee the data is <strong>correct</strong>. A person could enter the wrong (but valid) date of birth.</p>
+<h3 id="validation-types">Validation Types</h3>
+<table>
+<thead>
+<tr>
+<th>Validation Type</th>
+<th>What It Checks</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Presence check</td>
+<td>The field cannot be left empty</td>
+<td>StudentID must not be blank</td>
+</tr>
+<tr>
+<td>Range check</td>
+<td>The value must be within a specified minimum and maximum</td>
+<td>Age must be between 5 and 110</td>
+</tr>
+<tr>
+<td>Format check</td>
+<td>The data must match a specified pattern</td>
+<td>Date must be in format DD/MM/YYYY; postcode must match UK pattern</td>
+</tr>
+<tr>
+<td>Type check</td>
+<td>The data must be the correct data type</td>
+<td>Age must be an integer, not text; price must be a decimal</td>
+</tr>
+<tr>
+<td>Length check</td>
+<td>The data must be within a specified character limit</td>
+<td>Password must be 8–20 characters; name must not exceed 50 characters</td>
+</tr>
+<tr>
+<td>Lookup check</td>
+<td>The value must exist in a predefined list</td>
+<td>Subject must be one of: Computing, Science, History, Geography, Maths</td>
+</tr>
+</tbody></table>
+<h3 id="verification">Verification</h3>
+<p><strong>Verification</strong> is checking that data has been entered <strong>accurately</strong> — that it matches the original source document exactly. This is a human-controlled process, unlike automated validation.</p>
+<p><strong>Verification methods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Double data entry</td>
+<td>Data is entered twice (often by two different people); the system compares both entries and flags any differences</td>
+</tr>
+<tr>
+<td>Proofreading</td>
+<td>A human reads the entered data and compares it against the original document</td>
+</tr>
+<tr>
+<td>Visual check</td>
+<td>The data entry person checks the screen before submitting</td>
+</tr>
+</tbody></table>
+<h3 id="validation-vs-verification-key-distinction">Validation vs Verification — Key Distinction</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Validation</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>What it checks</td>
+<td>Is the data reasonable/within rules?</td>
+<td>Is the data an accurate copy of the source?</td>
+</tr>
+<tr>
+<td>Who performs it</td>
+<td>The computer system (automated)</td>
+<td>A human (or double-entry system)</td>
+</tr>
+<tr>
+<td>What it catches</td>
+<td>Wrong data type, out-of-range, wrong format</td>
+<td>Typos, transpositions, copying errors</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Age = -5 is rejected as out of range</td>
+<td>A student&#39;s actual age is 15 but 51 was typed</td>
+</tr>
+</tbody></table>
+<p><strong>Can validation detect wrong-but-valid data?</strong> No. If a student is 15 but the user types 16 by mistake, range check (5–110) will accept 16 as valid. Only verification (proofreading) would catch this.</p>
+<hr>
+<h2 id="section-4-sql-structured-query-language">Section 4: SQL — Structured Query Language</h2>
+<p>SQL (pronounced &quot;sequel&quot;) is the standard language for interacting with relational databases. At KS3, you need to understand how to <strong>retrieve data</strong> using SELECT queries.</p>
+<h3 id="core-sql-keywords">Core SQL Keywords</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SELECT</code></td>
+<td>Specifies which fields to display</td>
+<td><code>SELECT Name, Age</code></td>
+</tr>
+<tr>
+<td><code>SELECT *</code></td>
+<td>Select ALL fields</td>
+<td><code>SELECT *</code></td>
+</tr>
+<tr>
+<td><code>FROM</code></td>
+<td>Specifies which table to query</td>
+<td><code>FROM Students</code></td>
+</tr>
+<tr>
+<td><code>WHERE</code></td>
+<td>Filters records to only show those matching a condition</td>
+<td><code>WHERE Age &gt; 14</code></td>
+</tr>
+<tr>
+<td><code>ORDER BY</code></td>
+<td>Sorts results by a specified field</td>
+<td><code>ORDER BY Name</code></td>
+</tr>
+<tr>
+<td><code>ASC</code></td>
+<td>Sort in ascending order (A→Z, 0→9) — default</td>
+<td><code>ORDER BY Name ASC</code></td>
+</tr>
+<tr>
+<td><code>DESC</code></td>
+<td>Sort in descending order (Z→A, 9→0)</td>
+<td><code>ORDER BY Age DESC</code></td>
+</tr>
+<tr>
+<td><code>AND</code></td>
+<td>Both conditions must be true</td>
+<td><code>WHERE Age &gt; 14 AND Subject = &quot;Computing&quot;</code></td>
+</tr>
+<tr>
+<td><code>OR</code></td>
+<td>At least one condition must be true</td>
+<td><code>WHERE Subject = &quot;Computing&quot; OR Subject = &quot;Science&quot;</code></td>
+</tr>
+</tbody></table>
+<h3 id="sql-syntax-structure">SQL Syntax Structure</h3>
+<pre><code class="language-sql">SELECT  field1, field2, field3
+FROM    TableName
+WHERE   condition1 AND/OR condition2
+ORDER BY fieldName ASC/DESC;
+</code></pre>
+<h3 id="fully-annotated-sql-example">Fully Annotated SQL Example</h3>
+<pre><code class="language-sql">SELECT Name, Age
+FROM Students
+WHERE Age &gt; 14 AND Subject = &quot;Computing&quot;
+ORDER BY Name ASC;
+</code></pre>
+<p><strong>Line-by-line explanation:</strong></p>
+<pre><code>SELECT Name, Age         -- Show only the Name and Age columns (not StudentID, Subject, etc.)
+FROM Students            -- Look in the Students table
+WHERE Age &gt; 14           -- Only include records where Age is greater than 14...
+  AND Subject = &quot;Computing&quot;  -- ...AND where Subject is exactly &quot;Computing&quot;
+ORDER BY Name ASC;       -- Sort the results alphabetically by Name (A first)
+</code></pre>
+<p><strong>Applying this query to our sample table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Subject</th>
+<th>YearGroup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>Alice</td>
+<td>15</td>
+<td>Computing</td>
+<td>10</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>14</td>
+<td>Computing</td>
+<td>9</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Charlie</td>
+<td>15</td>
+<td>Science</td>
+<td>10</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Diana</td>
+<td>13</td>
+<td>History</td>
+<td>8</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Ed</td>
+<td>14</td>
+<td>Computing</td>
+<td>9</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Bob (Age 14): fails <code>Age &gt; 14</code> — excluded</li>
+<li>Diana (Age 13, History): fails both conditions — excluded</li>
+<li>Charlie (Science): fails <code>Subject = &quot;Computing&quot;</code> — excluded</li>
+<li>Ed (Age 14): fails <code>Age &gt; 14</code> — excluded</li>
+<li>Alice (Age 15, Computing): passes both — included</li>
+</ul>
+<p><strong>Result:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Alice</td>
+<td>15</td>
+</tr>
+</tbody></table>
+<p><em>(Only Alice matches. If there were more Computing students over 14, they would be listed alphabetically.)</em></p>
+<h3 id="more-sql-examples">More SQL Examples</h3>
+<p><strong>Select all students in Year 9:</strong></p>
+<pre><code class="language-sql">SELECT *
+FROM Students
+WHERE YearGroup = 9;
+</code></pre>
+<p><strong>Select names of students studying History or Geography, sorted by age (oldest first):</strong></p>
+<pre><code class="language-sql">SELECT Name
+FROM Students
+WHERE Subject = &quot;History&quot; OR Subject = &quot;Geography&quot;
+ORDER BY Age DESC;
+</code></pre>
+<p><strong>Select all students under 15 in Year 8:</strong></p>
+<pre><code class="language-sql">SELECT Name, Age, Subject
+FROM Students
+WHERE Age &lt; 15 AND YearGroup = 8;
+</code></pre>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data</td>
+<td>Raw, unprocessed facts with no context</td>
+</tr>
+<tr>
+<td>Information</td>
+<td>Data given context and meaning so it can be interpreted</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>An organised, structured collection of data</td>
+</tr>
+<tr>
+<td>Flat-file database</td>
+<td>All data in a single table; suffers from redundancy and update anomalies</td>
+</tr>
+<tr>
+<td>Relational database</td>
+<td>Data across multiple linked tables; reduces redundancy</td>
+</tr>
+<tr>
+<td>Table</td>
+<td>A grid of rows and columns storing data about one entity type</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>A single column — one attribute or property of an entity</td>
+</tr>
+<tr>
+<td>Record</td>
+<td>A single row — all data about one entity</td>
+</tr>
+<tr>
+<td>Primary key</td>
+<td>Field that uniquely identifies each record; must be unique and not null</td>
+</tr>
+<tr>
+<td>Foreign key</td>
+<td>Field in one table holding the primary key of another table, creating a relationship</td>
+</tr>
+<tr>
+<td>Data redundancy</td>
+<td>The same data stored multiple times in different places</td>
+</tr>
+<tr>
+<td>Update anomaly</td>
+<td>Inconsistency caused by updating data in one place but not all places it is stored</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>Automated system check that entered data is acceptable/within rules</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>Human-based check that entered data accurately matches the source document</td>
+</tr>
+<tr>
+<td>Presence check</td>
+<td>Validation ensuring a field is not left empty</td>
+</tr>
+<tr>
+<td>Range check</td>
+<td>Validation ensuring a value is within specified minimum and maximum</td>
+</tr>
+<tr>
+<td>Format check</td>
+<td>Validation ensuring data matches a required pattern</td>
+</tr>
+<tr>
+<td>Type check</td>
+<td>Validation ensuring data is the correct data type</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Structured Query Language — the standard language for querying relational databases</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>SQL keyword specifying which fields to display</td>
+</tr>
+<tr>
+<td>FROM</td>
+<td>SQL keyword specifying which table to query</td>
+</tr>
+<tr>
+<td>WHERE</td>
+<td>SQL keyword filtering results to records matching a condition</td>
+</tr>
+<tr>
+<td>ORDER BY</td>
+<td>SQL keyword sorting results by a specified field</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions">Common Misconceptions</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;A database is just a spreadsheet&quot;</td>
+<td>A spreadsheet stores flat-file data in one sheet. A relational database has multiple linked tables, enforces data types, supports complex queries, handles millions of records efficiently, and includes primary/foreign key relationships.</td>
+</tr>
+<tr>
+<td>&quot;The primary key can repeat as long as most values are unique&quot;</td>
+<td>No. The primary key must be unique for EVERY record with no exceptions. Even one duplicate defeats the purpose — you can no longer uniquely identify a specific record.</td>
+</tr>
+<tr>
+<td>&quot;WHERE and ORDER BY do the same thing&quot;</td>
+<td>WHERE filters which records are included in the results. ORDER BY sorts the records that have already been selected. They are completely different operations.</td>
+</tr>
+<tr>
+<td>&quot;Validation proves the data is correct&quot;</td>
+<td>Validation only proves data is within acceptable parameters (e.g. age is between 5 and 110). It cannot detect errors that are within range — entering age 16 when the real age is 15 would pass validation.</td>
+</tr>
+<tr>
+<td>&quot;SQL can only be used to select/retrieve data&quot;</td>
+<td>SQL also includes commands for inserting new records (INSERT), updating existing records (UPDATE), deleting records (DELETE), and creating/modifying table structures (CREATE, ALTER, DROP). At KS3 we focus on SELECT.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1 [2 marks]</strong>
+Explain what is meant by a <strong>primary key</strong> in a database table.</p>
+<p><strong>Q2 [2 marks]</strong>
+Describe <strong>one</strong> difference between <strong>validation</strong> and <strong>verification</strong> of data.</p>
+<p><strong>Q3 [3 marks]</strong>
+Write an SQL query that selects the <code>Name</code> and <code>Age</code> of all students who are over 14 years old, sorted alphabetically by name. Use the <code>Students</code> table.</p>
+<p><strong>Q4 [4 marks]</strong>
+Look at the <code>Students</code> table below.</p>
+<table>
+<thead>
+<tr>
+<th>StudentID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Subject</th>
+<th>YearGroup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>Alice</td>
+<td>15</td>
+<td>Computing</td>
+<td>10</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>14</td>
+<td>Computing</td>
+<td>9</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Charlie</td>
+<td>15</td>
+<td>Science</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<p>(a) Identify the <strong>primary key</strong> in this table. [1 mark]
+(b) Identify <strong>one</strong> field that would benefit from a <strong>range check</strong> validation and explain what the range check would do. [2 marks]
+(c) Identify <strong>one</strong> type of validation that would be applied to the <code>StudentID</code> field. [1 mark]</p>
+<p><strong>Q5 [6 marks]</strong>
+Compare flat-file databases with relational databases. Your answer should refer to:</p>
+<ul>
+<li>how data is stored</li>
+<li>data redundancy</li>
+<li>what happens when data needs to be updated</li>
+<li>which is more suitable for a school with 2000 students and 150 teachers</li>
+</ul>
+<p><strong>MCQ</strong>
+Which SQL keyword is used to filter records in a query?</p>
+<p>A) SELECT
+B) ORDER BY
+C) FROM
+D) WHERE</p>
+<p><strong>Fill in the blanks</strong>
+A __________ key uniquely identifies each record in a table. A __________ key in one table links to the primary key in another table, creating a relationship. __________ validation checks that a field is not left empty. In SQL, the __________ keyword is used to specify which table to search, and the __________ keyword sorts the results.</p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1:</strong> A primary key is a field in a database table that uniquely identifies each record (1). No two records in the table can have the same primary key value, and the field cannot be empty/null (1). <strong>[2 marks]</strong></p>
+<p><strong>Q2:</strong> Validation is an automated system check that data is within acceptable rules/parameters (e.g. checking a number is within a given range) (1). Verification is checking that the data entered is an accurate copy of the original source — typically done by a human (e.g. proofreading or double data entry) (1). <strong>[2 marks]</strong></p>
+<p><strong>Q3:</strong></p>
+<pre><code class="language-sql">SELECT Name, Age
+FROM Students
+WHERE Age &gt; 14
+ORDER BY Name ASC;
+</code></pre>
+<p>Award marks for: correct SELECT fields (1), correct WHERE condition (1), correct ORDER BY (1). Penalise but do not withhold all marks for minor syntax issues if intent is clear. <strong>[3 marks]</strong></p>
+<p><strong>Q4:</strong>
+(a) <code>StudentID</code> — it is unique for every student and identifies each record. <strong>[1 mark]</strong>
+(b) <code>Age</code> — a range check would ensure that the age entered is between a sensible minimum (e.g. 11) and maximum (e.g. 18 for a school context), rejecting values like -5 or 200 as impossible. <strong>[2 marks: 1 for identifying field, 1 for explaining what the check does]</strong>
+(c) Presence check (the StudentID cannot be empty/null) OR type check (must be an integer). <strong>[1 mark]</strong></p>
+<p><strong>Q5:</strong> Award 1 mark per valid point, up to 6 marks:</p>
+<ul>
+<li>Flat-file: all data in one table; relational: data spread across multiple linked tables.</li>
+<li>Flat-file has high data redundancy — teacher data would be repeated in every student record; relational stores each teacher&#39;s data once in a Teachers table.</li>
+<li>In a flat-file, if a teacher changes name, every student record for that teacher must be updated (update anomaly); in a relational database, only one record in the Teachers table is updated.</li>
+<li>Flat-file may suffer from inconsistency if some rows are updated and others are not; relational is consistent because each fact is stored in only one place.</li>
+<li>For a school with 2000 students and 150 teachers, a relational database is more suitable because it eliminates redundancy, prevents update anomalies, and scales efficiently to this volume of data.</li>
+</ul>
+<p><strong>MCQ:</strong> D — WHERE</p>
+<p><strong>Fill in the blanks:</strong> primary / foreign / Presence / FROM / ORDER BY</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can explain the difference between data and information with an example</li>
+<li><input disabled="" type="checkbox"> I can describe what a flat-file database is and state two problems with it</li>
+<li><input disabled="" type="checkbox"> I can explain what a relational database is and state two advantages over flat-file</li>
+<li><input disabled="" type="checkbox"> I can define: table, field, record</li>
+<li><input disabled="" type="checkbox"> I can explain what a primary key is and why names are often poor choices</li>
+<li><input disabled="" type="checkbox"> I can explain what a foreign key is and how it links two tables</li>
+<li><input disabled="" type="checkbox"> I can describe six types of validation with examples</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between validation and verification</li>
+<li><input disabled="" type="checkbox"> I can write a SQL SELECT query using SELECT, FROM, WHERE, and ORDER BY</li>
+<li><input disabled="" type="checkbox"> I can use AND/OR to combine conditions in a WHERE clause</li>
+<li><input disabled="" type="checkbox"> I can trace through a SQL query on a given table and identify the output</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between SELECT * and SELECT specific fields</li>
+<li><input disabled="" type="checkbox"> I can identify the primary key, foreign key, and validation rules in a given table</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/seo/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/seo/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/seo/seo-study-book.js"></script>
+</body>
+</html>
