@@ -6,9 +6,10 @@
   "scripts": {
     "build:data": "python3 scripts/generate_manifest.py",
     "build:study-books": "python3 scripts/generate_study_book_index.py",
+    "generate:seo": "node scripts/generate-seo-pages.mjs",
     "start": "npm run build && python3 -m http.server --directory dist 4173",
     "dev": "vite",
-    "build": "npm run build:study-books && vite build",
+    "build": "npm run build:study-books && npm run generate:seo && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {

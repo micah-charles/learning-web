@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Variables, Data Types &amp; I/O | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Variables, Data Types &amp; I/O" />
+  <link rel="canonical" href="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-variables-datatypes/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Variables, Data Types &amp; I/O | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Variables, Data Types &amp; I/O" />
+  <meta property="og:url" content="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-variables-datatypes/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Variables, Data Types &amp; I/O | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Variables, Data Types &amp; I/O" />
+  <link rel="stylesheet" href="/revision/revision.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Variables, Data Types & I/O",
+  "description": "Study revision notes for KS3 Computing — Variables, Data Types & I/O",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Variables, Data Types &amp; I/O</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Variables, Data Types &amp; I/O</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-variables-data-types-inputoutput">Topic: Variables, Data Types &amp; Input/Output</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-variables-and-constants">Section 1: Variables and Constants</a></li>
+<li class="sb-toc-h3"><a href="#what-is-a-variable">What is a Variable?</a></li>
+<li class="sb-toc-h3"><a href="#what-is-a-constant">What is a Constant?</a></li>
+<li class="sb-toc-h3"><a href="#assignment">Assignment</a></li>
+<li class="sb-toc-h1"><a href="#pseudocode">Pseudocode</a></li>
+<li class="sb-toc-h1"><a href="#python">Python</a></li>
+<li class="sb-toc-h2"><a href="#section-2-data-types">Section 2: Data Types</a></li>
+<li class="sb-toc-h3"><a href="#the-four-core-data-types-at-ks3">The Four Core Data Types at KS3</a></li>
+<li class="sb-toc-h3"><a href="#integers-int">Integers (`int`)</a></li>
+<li class="sb-toc-h3"><a href="#floats-float">Floats (`float`)</a></li>
+<li class="sb-toc-h3"><a href="#strings-str">Strings (`str`)</a></li>
+<li class="sb-toc-h3"><a href="#booleans-bool">Booleans (`bool`)</a></li>
+<li class="sb-toc-h3"><a href="#type-casting">Type Casting</a></li>
+<li class="sb-toc-h1"><a href="#python-example">Python example</a></li>
+<li class="sb-toc-h2"><a href="#section-3-input-and-output">Section 3: Input and Output</a></li>
+<li class="sb-toc-h3"><a href="#output">Output</a></li>
+<li class="sb-toc-h3"><a href="#input">Input</a></li>
+<li class="sb-toc-h3"><a href="#a-complete-inputoutput-program">A Complete Input/Output Program</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions-corrected">Common Misconceptions — Corrected</a></li>
+<li class="sb-toc-h2"><a href="#diagrams-code-examples">Diagrams / Code Examples</a></li>
+<li class="sb-toc-h3"><a href="#trace-table-example">Trace Table Example</a></li>
+<li class="sb-toc-h3"><a href="#type-casting-example">Type Casting Example</a></li>
+<li class="sb-toc-h1"><a href="#without-casting-this-will-crash-with-a-typeerror">Without casting — this will CRASH with a TypeError</a></li>
+<li class="sb-toc-h1"><a href="#with-casting-this-works-correctly">With casting — this works correctly</a></li>
+<li class="sb-toc-h3"><a href="#memory-diagram">Memory Diagram</a></li>
+<li class="sb-toc-h3"><a href="#full-program-name-and-age-greeting">Full Program: Name and Age Greeting</a></li>
+<li class="sb-toc-h1"><a href="#greeting-program-demonstrating-input-output-variables-types-and-casting">Greeting program demonstrating input, output, variables, types, and casting</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-variables-data-types-inputoutput">Topic: Variables, Data Types & Input/Output</h1>
+<p><strong>Year 7–9 | Programming Fundamentals | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>Every program that does something useful needs to store and work with information. Whether a program is asking for your name, calculating a score, or deciding whether you have passed a test, it needs somewhere to keep that information while it runs. Variables and data types are the foundation of all programming — they define what a program knows and how it can use that knowledge.</p>
+<p>Understanding data types is equally important. A program needs to know whether a piece of information is a number it can do arithmetic with, a word it can display, or a yes/no decision. Mixing up data types is one of the most common causes of bugs in beginner programs, so getting this right from the start saves enormous amounts of debugging time later.</p>
+<p>Input and output are the mechanisms that allow a program to communicate with the user — receiving information through input and displaying results through output. Almost every real program uses both. In this pack you will learn how variables, data types, input, and output all fit together to form working programs.</p>
+<hr>
+<h2 id="section-1-variables-and-constants">Section 1: Variables and Constants</h2>
+<h3 id="what-is-a-variable">What is a Variable?</h3>
+<p>A <strong>variable</strong> is a named storage location in the computer&#39;s memory that holds a value. The value stored in a variable can change while the program is running — hence the name &quot;variable&quot;.</p>
+<p>Think of a variable as a labelled box. The label is the variable&#39;s name, and whatever is inside the box is its value. You can look inside the box (read the value), replace what&#39;s inside (update the value), or use what&#39;s inside in a calculation.</p>
+<p><strong>Key properties of a variable:</strong></p>
+<ul>
+<li>It has a <strong>name</strong> (called an identifier) that the programmer chooses.</li>
+<li>It holds a <strong>value</strong> of a particular data type.</li>
+<li>Its value can <strong>change</strong> during program execution.</li>
+<li>The name should be meaningful (e.g., <code>score</code> is better than <code>s</code>).</li>
+</ul>
+<p><strong>Variable naming rules (most languages):</strong></p>
+<ul>
+<li>Must start with a letter or underscore, not a number.</li>
+<li>Cannot contain spaces — use underscores instead: <code>player_name</code>.</li>
+<li>Cannot be a reserved keyword (e.g., <code>if</code>, <code>while</code>, <code>print</code>).</li>
+<li>Case-sensitive in Python: <code>Score</code> and <code>score</code> are different variables.</li>
+</ul>
+<h3 id="what-is-a-constant">What is a Constant?</h3>
+<p>A <strong>constant</strong> is a named value that is set once and does not change during the program&#39;s execution. Constants are used for values that are fixed by definition, such as the number of days in a week, a tax rate, or a maximum password length.</p>
+<p>By convention, constants are written in <strong>UPPERCASE</strong> to make them visually distinct from variables:</p>
+<pre><code class="language-pseudocode">CONSTANT MAX_ATTEMPTS = 3
+CONSTANT TAX_RATE = 0.2
+CONSTANT PI = 3.14159
+</code></pre>
+<p><strong>Why use constants instead of just typing the number?</strong></p>
+<ul>
+<li>Clarity: <code>MAX_ATTEMPTS</code> explains what <code>3</code> means.</li>
+<li>Maintainability: if the value needs to change, you only update it in one place.</li>
+<li>Safety: signals to other programmers (and to yourself) that this value must not be changed accidentally.</li>
+</ul>
+<blockquote>
+<p>Note: Python does not enforce constants — the programmer is responsible for not changing them. Other languages (e.g., Java with <code>final</code>, C++ with <code>const</code>) enforce constants at the language level.</p>
+</blockquote>
+<h3 id="assignment">Assignment</h3>
+<p><strong>Assignment</strong> is the process of giving a variable a value. It is written with an arrow in pseudocode or an equals sign in Python.</p>
+<pre><code class="language-pseudocode"># Pseudocode
+name ← &quot;Alice&quot;
+age ← 14
+score ← 0
+</code></pre>
+<pre><code class="language-python"># Python
+name = &quot;Alice&quot;
+age = 14
+score = 0
+</code></pre>
+<p><strong>Critical point:</strong> The assignment operator (<code>=</code> in Python, <code>←</code> in pseudocode) is NOT the same as mathematical equality. <code>score = score + 1</code> is perfectly valid in programming — it means &quot;take the current value of score, add 1, and store the result back in score&quot;. In mathematics this equation is impossible.</p>
+<hr>
+<h2 id="section-2-data-types">Section 2: Data Types</h2>
+<p>The <strong>data type</strong> of a variable tells the computer what kind of value it holds and what operations can be performed on it. Using the wrong data type causes errors or produces incorrect results.</p>
+<h3 id="the-four-core-data-types-at-ks3">The Four Core Data Types at KS3</h3>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int</code></td>
+<td>Integer</td>
+<td>Whole numbers (positive, negative, or zero)</td>
+<td><code>0</code>, <code>42</code>, <code>-7</code>, <code>1000</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>Float / Real</td>
+<td>Numbers with a decimal point</td>
+<td><code>3.14</code>, <code>-0.5</code>, <code>9.81</code>, <code>100.0</code></td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td>String</td>
+<td>Text — any sequence of characters enclosed in quotes</td>
+<td><code>&quot;Hello&quot;</code>, <code>&quot;42&quot;</code>, <code>&quot;True&quot;</code>, <code>&quot;&quot;</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>Boolean</td>
+<td>Logical value — only ever <code>True</code> or <code>False</code></td>
+<td><code>True</code>, <code>False</code></td>
+</tr>
+</tbody></table>
+<h3 id="integers-int">Integers (`int`)</h3>
+<p>Integers are whole numbers. They are used for counting, indexing, and any calculation where a fractional result is not needed or expected.</p>
+<pre><code class="language-pseudocode">numberOfStudents ← 30
+lives ← 3
+temperature ← -5
+</code></pre>
+<h3 id="floats-float">Floats (`float`)</h3>
+<p>Floats (short for floating-point numbers) store numbers with decimal places. They are used for measurements, averages, and any calculation where precision beyond a whole number is required.</p>
+<pre><code class="language-pseudocode">average ← 72.5
+height ← 1.75
+pi ← 3.14159
+</code></pre>
+<blockquote>
+<p>Be careful: dividing two integers in Python 3 always produces a float (e.g., <code>7 / 2</code> gives <code>3.5</code>, not <code>3</code>). Integer division uses <code>//</code> (e.g., <code>7 // 2</code> gives <code>3</code>).</p>
+</blockquote>
+<h3 id="strings-str">Strings (`str`)</h3>
+<p>A string is a sequence of characters enclosed in quotation marks. Strings can contain letters, digits, spaces, punctuation — anything. The crucial thing is that the quotes mark the content as text, not as a number.</p>
+<pre><code class="language-pseudocode">firstName ← &quot;Alice&quot;
+postcode ← &quot;SW1A 1AA&quot;
+answer ← &quot;42&quot;         # This is a STRING, not an integer
+</code></pre>
+<p>Note that <code>&quot;42&quot;</code> is a string. You cannot do arithmetic with it — <code>&quot;42&quot; + 1</code> will cause a type error.</p>
+<h3 id="booleans-bool">Booleans (`bool`)</h3>
+<p>A Boolean stores one of exactly two values: <code>True</code> or <code>False</code>. Booleans arise from comparisons and logical expressions, and they are the foundation of all selection (IF statements) and iteration (WHILE loops).</p>
+<pre><code class="language-pseudocode">isLoggedIn ← True
+hasWon ← False
+overAge ← (age &gt;= 18)   # evaluates to True or False
+</code></pre>
+<p>Booleans are not trivial — they underpin everything from password checkers to game-over conditions.</p>
+<h3 id="type-casting">Type Casting</h3>
+<p><strong>Type casting</strong> (also called type conversion) is explicitly converting a value from one data type to another. This is essential when, for example, the user types a number — it arrives as a string and must be converted to an integer before arithmetic can be done.</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>What it does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int(x)</code></td>
+<td>Converts x to an integer</td>
+<td><code>int(&quot;42&quot;)</code> → <code>42</code></td>
+</tr>
+<tr>
+<td><code>float(x)</code></td>
+<td>Converts x to a float</td>
+<td><code>float(&quot;3.14&quot;)</code> → <code>3.14</code></td>
+</tr>
+<tr>
+<td><code>str(x)</code></td>
+<td>Converts x to a string</td>
+<td><code>str(99)</code> → <code>&quot;99&quot;</code></td>
+</tr>
+</tbody></table>
+<pre><code class="language-python"># Python example
+age = int(input(&quot;Enter your age: &quot;))  # input() always returns a string; int() converts it
+</code></pre>
+<hr>
+<h2 id="section-3-input-and-output">Section 3: Input and Output</h2>
+<h3 id="output">Output</h3>
+<p><strong>Output</strong> displays information from the program to the user. It is written as <code>OUTPUT</code> in pseudocode and <code>print()</code> in Python.</p>
+<pre><code class="language-pseudocode">OUTPUT &quot;Hello, World!&quot;
+OUTPUT &quot;Your score is: &quot;, score
+OUTPUT name + &quot; is &quot; + str(age) + &quot; years old.&quot;
+</code></pre>
+<pre><code class="language-python">print(&quot;Hello, World!&quot;)
+print(&quot;Your score is:&quot;, score)
+print(name, &quot;is&quot;, age, &quot;years old.&quot;)
+</code></pre>
+<p>Multiple values can be output on one line. In Python, <code>print()</code> automatically separates items with a space when given multiple arguments separated by commas.</p>
+<h3 id="input">Input</h3>
+<p><strong>Input</strong> reads data from the user (via the keyboard) and stores it in a variable. In pseudocode the keyword is <code>USERINPUT</code>; in Python it is <code>input()</code>.</p>
+<pre><code class="language-pseudocode">name ← USERINPUT
+age ← USERINPUT
+</code></pre>
+<pre><code class="language-python">name = input(&quot;Enter your name: &quot;)
+age = int(input(&quot;Enter your age: &quot;))
+</code></pre>
+<p><strong>Critical:</strong> <code>input()</code> in Python <strong>always returns a string</strong>. If you need a number, you must cast it immediately with <code>int()</code> or <code>float()</code>.</p>
+<h3 id="a-complete-inputoutput-program">A Complete Input/Output Program</h3>
+<pre><code class="language-pseudocode">OUTPUT &quot;Enter your name:&quot;
+name ← USERINPUT
+OUTPUT &quot;Enter your age:&quot;
+age ← USERINPUT
+OUTPUT &quot;Hello, &quot; + name + &quot;! You are &quot; + age + &quot; years old.&quot;
+</code></pre>
+<pre><code class="language-python">name = input(&quot;Enter your name: &quot;)
+age = int(input(&quot;Enter your age: &quot;))
+print(&quot;Hello,&quot;, name + &quot;! You are&quot;, age, &quot;years old.&quot;)
+</code></pre>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Variable</td>
+<td>A named storage location in memory whose value can change during program execution</td>
+</tr>
+<tr>
+<td>Constant</td>
+<td>A named value that is set once and does not change; written in UPPERCASE by convention</td>
+</tr>
+<tr>
+<td>Data type</td>
+<td>A classification of data that tells the computer what kind of value is stored and what can be done with it</td>
+</tr>
+<tr>
+<td>Integer (<code>int</code>)</td>
+<td>A whole number data type, with no decimal point; positive, negative, or zero</td>
+</tr>
+<tr>
+<td>Float (<code>float</code>)</td>
+<td>A data type for numbers with a decimal point (real numbers)</td>
+</tr>
+<tr>
+<td>String (<code>str</code>)</td>
+<td>A data type for text; a sequence of characters enclosed in quotation marks</td>
+</tr>
+<tr>
+<td>Boolean (<code>bool</code>)</td>
+<td>A data type with only two possible values: <code>True</code> or <code>False</code></td>
+</tr>
+<tr>
+<td>Assignment</td>
+<td>The operation of storing a value in a variable using <code>←</code> (pseudocode) or <code>=</code> (Python)</td>
+</tr>
+<tr>
+<td>Type casting</td>
+<td>Converting a value from one data type to another (e.g., <code>int(&quot;5&quot;)</code> converts the string &quot;5&quot; to the integer 5)</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Data received from the user, typically via the keyboard</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Data displayed to the user, typically on screen</td>
+</tr>
+<tr>
+<td>Identifier</td>
+<td>The name given to a variable, constant, or subroutine</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions-corrected">Common Misconceptions — Corrected</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>=</code> means &quot;is equal to&quot;</td>
+<td>In programming, <code>=</code> is the <strong>assignment</strong> operator — it stores a value. To check equality, use <code>==</code>.</td>
+</tr>
+<tr>
+<td>Variables store their value permanently</td>
+<td>Variables exist only while the program runs. When the program ends, all variables are lost (unless saved to a file or database).</td>
+</tr>
+<tr>
+<td><code>&quot;42&quot;</code> and <code>42</code> are the same thing</td>
+<td><code>&quot;42&quot;</code> is a <strong>string</strong> (text) and <code>42</code> is an <strong>integer</strong>. You cannot do arithmetic on <code>&quot;42&quot;</code> without casting it first.</td>
+</tr>
+<tr>
+<td>Boolean is just for on/off and is trivial</td>
+<td>Boolean values are the engine behind every IF statement and every WHILE loop. Understanding them is fundamental to all control flow.</td>
+</tr>
+<tr>
+<td>Python enforces constants</td>
+<td>Python has no built-in constant mechanism. Writing a name in UPPERCASE is a convention only — nothing stops the program from changing it.</td>
+</tr>
+<tr>
+<td><code>input()</code> gives you a number when you type one</td>
+<td><code>input()</code> <strong>always</strong> returns a string. You must explicitly cast to <code>int()</code> or <code>float()</code> if you need a number.</td>
+</tr>
+<tr>
+<td>You need a new line of code for each character of a string</td>
+<td>A string variable holds the entire piece of text — <code>name = &quot;Alice&quot;</code> stores all five characters in one variable.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="diagrams-code-examples">Diagrams / Code Examples</h2>
+<h3 id="trace-table-example">Trace Table Example</h3>
+<p>Trace the following program step by step, recording each variable&#39;s value after each line executes.</p>
+<pre><code class="language-pseudocode">x ← 5
+y ← 3
+x ← x + y
+y ← x - y
+OUTPUT x
+OUTPUT y
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Statement</th>
+<th><code>x</code></th>
+<th><code>y</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>x ← 5</code></td>
+<td>5</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>y ← 3</code></td>
+<td>5</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>x ← x + y</code> (= 5+3)</td>
+<td>8</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>y ← x - y</code> (= 8-3)</td>
+<td>8</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>OUTPUT x</code></td>
+<td>8</td>
+<td>5</td>
+<td><code>8</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>OUTPUT y</code></td>
+<td>8</td>
+<td>5</td>
+<td><code>5</code></td>
+</tr>
+</tbody></table>
+<h3 id="type-casting-example">Type Casting Example</h3>
+<pre><code class="language-python"># Without casting — this will CRASH with a TypeError
+number = input(&quot;Enter a number: &quot;)   # number = &quot;7&quot; (a string)
+result = number + 3                   # ERROR: cannot add string and int
+
+# With casting — this works correctly
+number = int(input(&quot;Enter a number: &quot;))  # number = 7 (an integer)
+result = number + 3                       # result = 10
+print(result)
+</code></pre>
+<h3 id="memory-diagram">Memory Diagram</h3>
+<pre><code>MEMORY
+┌─────────────┬──────────┐
+│  Variable   │  Value   │
+├─────────────┼──────────┤
+│  name       │ &quot;Alice&quot;  │
+│  age        │    14    │
+│  score      │    85    │
+│  isPassed   │  True    │
+└─────────────┴──────────┘
+</code></pre>
+<h3 id="full-program-name-and-age-greeting">Full Program: Name and Age Greeting</h3>
+<pre><code class="language-python"># Greeting program demonstrating input, output, variables, types, and casting
+
+name = input(&quot;What is your name? &quot;)          # str
+age = int(input(&quot;How old are you? &quot;))        # cast to int
+next_year = age + 1                          # int arithmetic
+print(&quot;Hello,&quot;, name + &quot;!&quot;)
+print(&quot;Next year you will be&quot;, next_year, &quot;years old.&quot;)
+</code></pre>
+<p><strong>Example run:</strong></p>
+<pre><code>What is your name? Alice
+How old are you? 14
+Hello, Alice!
+Next year you will be 15 years old.
+</code></pre>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1</strong> [1 mark]
+What data type would be used to store the value <code>True</code>?</p>
+<hr>
+<p><strong>Q2</strong> [1 mark]
+State the data type of each of the following values:
+a) <code>&quot;Hello&quot;</code>
+b) <code>3.14</code>
+c) <code>42</code>
+d) <code>False</code></p>
+<hr>
+<p><strong>Q3</strong> [2 marks]
+Explain the difference between a <strong>variable</strong> and a <strong>constant</strong>. Give one example of each.</p>
+<hr>
+<p><strong>Q4</strong> [2 marks]
+Look at the following Python code:</p>
+<pre><code class="language-python">age = input(&quot;Enter your age: &quot;)
+nextAge = age + 1
+print(nextAge)
+</code></pre>
+<p>a) Identify the error in this code. [1 mark]
+b) Write the corrected line of code. [1 mark]</p>
+<hr>
+<p><strong>Q5</strong> [3 marks]
+Write a pseudocode program that:</p>
+<ul>
+<li>asks the user to input their first name</li>
+<li>asks the user to input their score (a whole number)</li>
+<li>outputs a message in the format: <code>&quot;Well done [name], your score is [score].&quot;</code></li>
+</ul>
+<hr>
+<p><strong>Q6</strong> [4 marks]
+Trace through the following program, completing the trace table.</p>
+<pre><code class="language-pseudocode">a ← 10
+b ← 4
+c ← a + b
+a ← c - b
+b ← a * 2
+OUTPUT a
+OUTPUT b
+OUTPUT c
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Statement</th>
+<th><code>a</code></th>
+<th><code>b</code></th>
+<th><code>c</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>a ← 10</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>b ← 4</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>c ← a + b</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>a ← c - b</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>b ← a * 2</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>OUTPUT a</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>OUTPUT b</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>OUTPUT c</code></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>MCQ</strong> [1 mark]
+Which of the following is a valid variable name in Python?</p>
+<p>A) <code>2score</code>
+B) <code>my score</code>
+C) <code>my_score</code>
+D) <code>if</code></p>
+<hr>
+<p><strong>Fill in the blank</strong> [1 mark]
+To convert the string <code>&quot;25&quot;</code> to an integer in Python, you would write: <code>______(&quot;25&quot;)</code></p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1:</strong> Boolean (or <code>bool</code>) [1]</p>
+<p><strong>Q2:</strong>
+a) <code>&quot;Hello&quot;</code> — String (str) [1]
+b) <code>3.14</code> — Float (float) [1]
+c) <code>42</code> — Integer (int) [1]
+d) <code>False</code> — Boolean (bool) [1]
+<em>(1 mark for all four correct)</em></p>
+<p><strong>Q3:</strong>
+A <strong>variable</strong> is a named memory location whose value can change during program execution. Example: <code>score ← 0</code> (score changes as the game progresses). [1]
+A <strong>constant</strong> is a named value that is set once and does not change during execution. Example: <code>CONSTANT MAX_SCORE = 100</code>. [1]</p>
+<p><strong>Q4:</strong>
+a) <code>input()</code> returns a string, so <code>age</code> is a string. You cannot add an integer (<code>1</code>) to a string — this causes a TypeError. [1]
+b) <code>age = int(input(&quot;Enter your age: &quot;))</code> [1]</p>
+<p><strong>Q5:</strong></p>
+<pre><code class="language-pseudocode">OUTPUT &quot;Enter your first name:&quot;
+name ← USERINPUT
+OUTPUT &quot;Enter your score:&quot;
+score ← USERINPUT
+OUTPUT &quot;Well done &quot; + name + &quot;, your score is &quot; + score + &quot;.&quot;
+</code></pre>
+<p>[1 mark per correct line, max 3]</p>
+<p><strong>Q6:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Statement</th>
+<th><code>a</code></th>
+<th><code>b</code></th>
+<th><code>c</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>a ← 10</code></td>
+<td>10</td>
+<td>—</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>b ← 4</code></td>
+<td>10</td>
+<td>4</td>
+<td>—</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>c ← a + b</code></td>
+<td>10</td>
+<td>4</td>
+<td>14</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>a ← c - b</code> (14-4)</td>
+<td>10</td>
+<td>4</td>
+<td>14</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>b ← a * 2</code> (10×2)</td>
+<td>10</td>
+<td>20</td>
+<td>14</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>OUTPUT a</code></td>
+<td>10</td>
+<td>20</td>
+<td>14</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>OUTPUT b</code></td>
+<td>10</td>
+<td>20</td>
+<td>14</td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>OUTPUT c</code></td>
+<td>10</td>
+<td>20</td>
+<td>14</td>
+<td><code>14</code></td>
+</tr>
+</tbody></table>
+<p>[1 mark for each of: c=14 correct, a stays 10, b=20, outputs correct]</p>
+<p><strong>MCQ:</strong> C — <code>my_score</code> [1]
+(A starts with a digit; B contains a space; D is a reserved keyword)</p>
+<p><strong>Fill in the blank:</strong> <code>int</code> [1]</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can explain what a variable is and describe what &quot;named memory location&quot; means.</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between a variable and a constant, and give an example of each.</li>
+<li><input disabled="" type="checkbox"> I can identify the data type (int, float, str, bool) of any given value.</li>
+<li><input disabled="" type="checkbox"> I can explain why <code>&quot;42&quot;</code> and <code>42</code> are different and what would happen if you tried to add 1 to <code>&quot;42&quot;</code>.</li>
+<li><input disabled="" type="checkbox"> I understand that <code>=</code> in Python means assignment, not equality.</li>
+<li><input disabled="" type="checkbox"> I can write pseudocode and Python code that uses <code>USERINPUT</code> / <code>input()</code> to receive data from a user.</li>
+<li><input disabled="" type="checkbox"> I can write pseudocode and Python code that uses <code>OUTPUT</code> / <code>print()</code> to display data to a user.</li>
+<li><input disabled="" type="checkbox"> I understand that <code>input()</code> always returns a string and can correctly apply <code>int()</code> or <code>float()</code> to convert it.</li>
+<li><input disabled="" type="checkbox"> I can perform type casting between string, integer, and float.</li>
+<li><input disabled="" type="checkbox"> I can trace a short program through a trace table, recording variable values after each line.</li>
+<li><input disabled="" type="checkbox"> I can spot and fix a type error caused by incorrect data types.</li>
+<li><input disabled="" type="checkbox"> I know that constants should be written in UPPERCASE by convention and why constants are useful.</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/revision/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-iteration-loops/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Iteration &amp; Loops</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/revision/revision-study-book.js"></script>
+</body>
+</html>
