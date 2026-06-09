@@ -59,750 +59,519 @@
       <nav class="sb-toc" aria-label="Table of contents">
         <p class="sb-toc-title">Contents</p>
         <ul class="sb-toc-list">
-          <li class="sb-toc-h1"><a href="#aqa-past-paper-ai-workflow-complete-reference">AQA Past-Paper AI Workflow — Complete Reference</a></li>
-<li class="sb-toc-h2"><a href="#1-overview-the-five-stage-pipeline">1. Overview — the five-stage pipeline</a></li>
-<li class="sb-toc-h2"><a href="#2-quick-start-gcse-religious-studies">2. Quick start (GCSE Religious Studies)</a></li>
-<li class="sb-toc-h1"><a href="#install-python-dependencies-one-time">Install Python dependencies (one-time)</a></li>
-<li class="sb-toc-h1"><a href="#stage-1-collect-metadata-no-pdfs-downloaded">Stage 1 — collect metadata (no PDFs downloaded)</a></li>
-<li class="sb-toc-h1"><a href="#stage-2-match-question-papers-with-mark-schemes">Stage 2 — match question papers with mark schemes</a></li>
-<li class="sb-toc-h1"><a href="#stage-3-dry-run-first-always">Stage 3 — dry run first (always)</a></li>
-<li class="sb-toc-h1"><a href="#stage-3-actual-controlled-download-7s-delay-200-file-cap">Stage 3 — actual controlled download (7s delay, 200 file cap)</a></li>
-<li class="sb-toc-h1"><a href="#stage-4-convert-all-pdfs-to-markdown">Stage 4 — convert all PDFs to Markdown</a></li>
-<li class="sb-toc-h1"><a href="#stage-5-generate-learning-web-packs-from-markdown-all-years">Stage 5 — generate Learning Web packs from Markdown (all years)</a></li>
-<li class="sb-toc-h2"><a href="#3-stage-1-aqa_collect_listingpy">3. Stage 1 — `aqa_collect_listing.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#key-decisions">Key decisions</a></li>
-<li class="sb-toc-h3"><a href="#aqa-page-structure-2024">AQA page structure (2024)</a></li>
-<li class="sb-toc-h3"><a href="#output-fields-36-per-record">Output fields (36 per record)</a></li>
-<li class="sb-toc-h3"><a href="#results-gcse-religious-studies">Results (GCSE Religious Studies)</a></li>
-<li class="sb-toc-h2"><a href="#4-stage-2-aqa_match_pairspy">4. Stage 2 — `aqa_match_pairs.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#matching-algorithm">Matching algorithm</a></li>
-<li class="sb-toc-h3"><a href="#default-exclusions">Default exclusions</a></li>
-<li class="sb-toc-h3"><a href="#results-gcse-rs-all-sittings">Results (GCSE RS, all sittings)</a></li>
-<li class="sb-toc-h2"><a href="#5-stage-3-aqa_download_selectedpy">5. Stage 3 — `aqa_download_selected.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#safety-rules">Safety rules</a></li>
-<li class="sb-toc-h3"><a href="#folder-structure">Folder structure</a></li>
-<li class="sb-toc-h3"><a href="#download-log">Download log</a></li>
-<li class="sb-toc-h3"><a href="#results-gcse-rs">Results (GCSE RS)</a></li>
-<li class="sb-toc-h2"><a href="#6-stage-4-aqa_pdf_to_mdpy">6. Stage 4 — `aqa_pdf_to_md.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#aqa-layout-challenges">AQA layout challenges</a></li>
-<li class="sb-toc-h3"><a href="#solutions-applied">Solutions applied</a></li>
-<li class="sb-toc-h3"><a href="#output-format">Output format</a></li>
-<li class="sb-toc-h3"><a href="#q11">Q1.1</a></li>
-<li class="sb-toc-h3"><a href="#q12">Q1.2</a></li>
-<li class="sb-toc-h3"><a href="#q11">Q1.1</a></li>
-<li class="sb-toc-h3"><a href="#q12">Q1.2</a></li>
-<li class="sb-toc-h3"><a href="#extraction-fallback-chain">Extraction fallback chain</a></li>
-<li class="sb-toc-h3"><a href="#results">Results</a></li>
-<li class="sb-toc-h2"><a href="#7-stage-5-aqa_md_to_packpy">7. Stage 5 — `aqa_md_to_pack.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#parser-architecture">Parser architecture</a></li>
-<li class="sb-toc-h1"><a href="#format-a-standard-format-b-inline-some-papers">Format A (standard):          # Format B (inline, some papers):</a></li>
-<li class="sb-toc-h3"><a href="#q11-q11-which-one-of-the-following">Q1.1                         Q1.1 Which one of the following...</a></li>
-<li class="sb-toc-h3"><a href="#item-classification-for-smart-test">Item classification for Smart Test</a></li>
-<li class="sb-toc-h3"><a href="#output">Output</a></li>
-<li class="sb-toc-h3"><a href="#results">Results</a></li>
-<li class="sb-toc-h2"><a href="#8-smart-test-mode-how-it-works-in-the-app">8. Smart Test mode — how it works in the app</a></li>
-<li class="sb-toc-h3"><a href="#hook-usesmarttestsessionjs">Hook: `useSmartTestSession.js`</a></li>
-<li class="sb-toc-h3"><a href="#component-smarttestpagejsx">Component: `SmartTestPage.jsx`</a></li>
-<li class="sb-toc-h2"><a href="#9-adding-packs-for-new-subjects-or-years">9. Adding packs for new subjects or years</a></li>
-<li class="sb-toc-h3"><a href="#add-packs-for-a-new-aqa-subject">Add packs for a new AQA subject</a></li>
-<li class="sb-toc-h1"><a href="#1-collect-metadata">1. Collect metadata</a></li>
-<li class="sb-toc-h1"><a href="#2-match-pairs">2. Match pairs</a></li>
-<li class="sb-toc-h1"><a href="#3-download-dry-run-first">3. Download (dry run first)</a></li>
-<li class="sb-toc-h1"><a href="#4-convert-to-markdown">4. Convert to Markdown</a></li>
-<li class="sb-toc-h1"><a href="#5-generate-packs">5. Generate packs</a></li>
-<li class="sb-toc-h3"><a href="#re-run-for-a-new-exam-year-eg-june-2025">Re-run for a new exam year (e.g. June 2025)</a></li>
-<li class="sb-toc-h3"><a href="#customising-the-pack-generator">Customising the pack generator</a></li>
-<li class="sb-toc-h2"><a href="#10-pack-schema-reference">10. Pack schema reference</a></li>
-<li class="sb-toc-h3"><a href="#vocab-item-knowledge">Vocab item (knowledge)</a></li>
-<li class="sb-toc-h3"><a href="#argument-scaffold-item">Argument scaffold item</a></li>
-<li class="sb-toc-h3"><a href="#sentence-builder-item">Sentence builder item</a></li>
-<li class="sb-toc-h3"><a href="#passage-item">Passage item</a></li>
-<li class="sb-toc-h2"><a href="#11-ethics-and-legal-notes">11. Ethics and legal notes</a></li>
-<li class="sb-toc-h2"><a href="#12-file-map">12. File map</a></li>
+          <li class="sb-toc-h1"><a href="#aqa-gcse-rs-june-2020-catholic-christianity">AQA GCSE RS June 2020 — Catholic Christianity</a></li>
+<li class="sb-toc-h2"><a href="#q11-1-mark">Q1.1 [1 mark]</a></li>
+<li class="sb-toc-h2"><a href="#q12-2-marks">Q1.2 [2 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q13-4-marks">Q1.3 [4 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q14-5-marks">Q1.4 [5 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q15-12-marks">Q1.5 [12 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q21-1-mark">Q2.1 [1 mark]</a></li>
+<li class="sb-toc-h2"><a href="#q22-2-marks">Q2.2 [2 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q23-4-marks">Q2.3 [4 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q24-5-marks">Q2.4 [5 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q25-12-marks">Q2.5 [12 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q31-1-mark">Q3.1 [1 mark]</a></li>
+<li class="sb-toc-h2"><a href="#q32-2-marks">Q3.2 [2 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q33-4-marks">Q3.3 [4 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q34-5-marks">Q3.4 [5 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q35-12-marks">Q3.5 [12 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q41-1-mark">Q4.1 [1 mark]</a></li>
+<li class="sb-toc-h2"><a href="#q42-2-marks">Q4.2 [2 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q43-4-marks">Q4.3 [4 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q44-5-marks">Q4.4 [5 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q45-12-marks">Q4.5 [12 marks]</a></li>
 
         </ul>
       </nav>
       <div id="sb-content" class="sb-content">
-        <div data-file-content="main"><h1 id="aqa-past-paper-ai-workflow-complete-reference">AQA Past-Paper AI Workflow — Complete Reference</h1>
-<p>How the Learning Web AQA pipeline works end-to-end: from the AQA website through to Smart Test packs playable in the app.</p>
-<blockquote>
-<p><strong>Last updated:</strong> June 2026<br><strong>Applies to:</strong> <code>scripts/aqa_pipeline/</code>, <code>src/react/hooks/useSmartTestSession.js</code>, <code>src/react/pages/SmartTestPage.jsx</code></p>
-</blockquote>
+        <div data-file-content="main"><h1 id="aqa-gcse-rs-june-2020-catholic-christianity">AQA GCSE RS June 2020 — Catholic Christianity</h1>
+<p><em>June 2020 — AQA GCSE Religious Studies — Paper 1 Catholic Christianity</em></p>
 <hr>
-<h2 id="1-overview-the-five-stage-pipeline">1. Overview — the five-stage pipeline</h2>
-<pre><code>AQA website (live)
-       │
-       ▼
-Stage 1: aqa_collect_listing.py   ← collect metadata only (no downloads)
-       │  output/aqa_rs_all.csv / .json
-       ▼
-Stage 2: aqa_match_pairs.py       ← match Question Paper + Mark Scheme pairs
-       │  output/aqa_rs_selected.csv / .json
-       ▼
-Stage 3: aqa_download_selected.py ← controlled download (dry-run default)
-       │  downloads/aqa/&lt;qualification&gt;/&lt;series&gt;/&lt;component&gt;/
-       │    question-paper.pdf
-       │    mark-scheme.pdf
-       ▼
-Stage 4: aqa_pdf_to_md.py         ← smart PDF → Markdown conversion
-       │  markdown/aqa/&lt;series&gt;/&lt;paper&gt;/
-       │    question-paper.md
-       │    mark-scheme.md
-       ▼
-Stage 5: aqa_md_to_pack.py        ← Markdown → Learning Web pack JSON
-          data/Packs/gcse/religion/&lt;pack_id&gt;/pack_unified.json
-          data/generated/manifest.json  (auto-updated)
-</code></pre>
-<p><strong>Core principle:</strong> Never mass-download. Always collect metadata first, review, then download only what is needed.</p>
+<h2 id="q11-1-mark">Q1.1 [1 mark]</h2>
+<p>Which one of the following features of a Catholic church is used for reading the Bible?
+A Font
+B Tabernacle
+C Lectern
+D Crucifix</p>
 <hr>
-<h2 id="2-quick-start-gcse-religious-studies">2. Quick start (GCSE Religious Studies)</h2>
-<pre><code class="language-bash">cd /path/to/learning-web
-
-# Install Python dependencies (one-time)
-pip install -r scripts/aqa_pipeline/requirements.txt
-python -m playwright install chromium
-
-# Stage 1 — collect metadata (no PDFs downloaded)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
-  --url &quot;https://www.aqa.org.uk/find-past-papers-and-mark-schemes?subject=Religious+Studies&amp;qualification=GCSE+Religious+Studies&amp;specCode=All+Specifications&amp;collapse=subject%2Cqualification%2CspecCode%2CexamSeries&amp;secondaryResourceType=Mark+schemes%3BExaminer+reports%3BQuestion+papers&quot; \
-  --subject &quot;Religious Studies&quot; \
-  --qualification &quot;GCSE Religious Studies&quot; \
-  --output-prefix &quot;output/aqa_rs_all&quot;
-
-# Stage 2 — match question papers with mark schemes
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
-  --input &quot;output/aqa_rs_all.csv&quot; \
-  --output-prefix &quot;output/aqa_rs_selected&quot;
-
-# Stage 3 — dry run first (always)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
-  --input &quot;output/aqa_rs_selected.json&quot; \
-  --download-dir &quot;downloads/aqa&quot; \
-  --dry-run
-
-# Stage 3 — actual controlled download (7s delay, 200 file cap)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
-  --input &quot;output/aqa_rs_selected.json&quot; \
-  --download-dir &quot;downloads/aqa&quot; \
-  --max-downloads 200 \
-  --delay-ms 7000 \
-  --confirm-download
-
-# Stage 4 — convert all PDFs to Markdown
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
-  --input-dir &quot;downloads/aqa&quot; \
-  --output-dir &quot;markdown/aqa&quot;
-
-# Stage 5 — generate Learning Web packs from Markdown (all years)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_md_to_pack \
-  --markdown-root &quot;markdown/aqa/unknown-qualification&quot; \
-  --learning-web-dir &quot;.&quot;
-</code></pre>
+<p><strong>Answer: C</strong> Lectern</p>
+<h2 id="q12-2-marks">Q1.2 [2 marks]</h2>
+<p>Give two reasons why some Christians prefer to use a ‘risen Christ’ rather than a
+crucifix in their churches.</p>
 <hr>
-<h2 id="3-stage-1-aqa_collect_listingpy">3. Stage 1 — `aqa_collect_listing.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Uses Playwright (a headless browser) to open the AQA past-paper finder page, navigate through all result pages, and extract metadata for every result card. <strong>Does not download any PDFs.</strong></p>
-<h3 id="key-decisions">Key decisions</h3>
-<ul>
-<li><strong>Playwright</strong> is needed because the AQA listing page is a React app that renders results via JavaScript; a plain <code>requests</code> call returns an empty shell.</li>
-<li>Crops the right 10% of each page before extraction to remove AQA&#39;s &quot;For Examiner&#39;s Use&quot; column.</li>
-<li>Intercepts PDF request URLs without following them.</li>
-<li>Deduplicates records by download URL.</li>
-</ul>
-<h3 id="aqa-page-structure-2024">AQA page structure (2024)</h3>
-<pre><code>&lt;div id=&quot;sample-papers-and-mark-schemes.{year}.{month}.{code}_PDF&quot;&gt;
-  &lt;a aria-label=&quot;{full title}&quot; href=&quot;/files/{path}.pdf&quot;&gt;
-    &lt;h3&gt;{title}&lt;/h3&gt;
-    &lt;span class=&quot;text-muted&quot;&gt;{qualification}&lt;/span&gt;
-    &lt;span&gt;PDF&lt;/span&gt;
-    &lt;span class=&quot;text-muted&quot;&gt;{size}&lt;/span&gt;
-    &lt;span class=&quot;text-muted&quot;&gt;Published: {date}&lt;/span&gt;
-  &lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
-<h3 id="output-fields-36-per-record">Output fields (36 per record)</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>title</code></td>
-<td><code>&quot;Question paper: Paper 1 Section A Option 3 The study of religions (Islam) - June 2024 - Religious Studies&quot;</code></td>
-</tr>
-<tr>
-<td><code>resource_type</code></td>
-<td><code>&quot;question_paper&quot;</code> / <code>&quot;mark_scheme&quot;</code> / <code>&quot;examiner_report&quot;</code></td>
-</tr>
-<tr>
-<td><code>exam_series</code></td>
-<td><code>&quot;June 2024&quot;</code></td>
-</tr>
-<tr>
-<td><code>component_key</code></td>
-<td><code>&quot;paper-1-section-a-option-3-the-study-of-religions-islam&quot;</code></td>
-</tr>
-<tr>
-<td><code>download_url</code></td>
-<td><code>&quot;https://www.aqa.org.uk/files/...&quot;</code></td>
-</tr>
-<tr>
-<td><code>is_modified</code></td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>modified_type</code></td>
-<td><code>&quot;none&quot;</code> / <code>&quot;modified-a4-18pt&quot;</code> / <code>&quot;modified-a3-36pt&quot;</code></td>
-</tr>
-<tr>
-<td><code>published_date_iso</code></td>
-<td><code>&quot;2024-12-07&quot;</code></td>
-</tr>
-</tbody></table>
-<h3 id="results-gcse-religious-studies">Results (GCSE Religious Studies)</h3>
-<ul>
-<li>406 unique records from 45 pages</li>
-<li>269 question papers, 110 mark schemes, 68 examiner reports (source: AQA filter totals showing 447)</li>
-<li>5 exam sittings: June 2022, June 2023, June 2024, November 2020, November 2021</li>
-</ul>
+<p>‘Risen Christ’ emphasises Jesus’ resurrection / more hopeful / does not focus on pain and suffering /
+resurrection gives meaning to the whole process of redemption / reminds Catholics they receive
+Body, Blood, Soul and Divinity of the ‘risen Christ’ in Holy Communion / ‘risen Christ’ emphasises
+kingship / divinity of Christ / crucifix shows suffering Christ / more distressing for people to think about
+such a painful death, etc.</p>
+<h2 id="q13-4-marks">Q1.3 [4 marks]</h2>
+<p>Explain two contrasting Christian beliefs about the Eucharist.</p>
 <hr>
-<h2 id="4-stage-2-aqa_match_pairspy">4. Stage 2 — `aqa_match_pairs.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Offline processing only — reads the Stage 1 CSV and produces matched Question Paper + Mark Scheme pairs. Groups by <code>(component_key, exam_series)</code> so each sitting is matched independently.</p>
-<h3 id="matching-algorithm">Matching algorithm</h3>
-<ol>
-<li>Normalise titles: strip <code>&quot;Question paper:&quot;</code> / <code>&quot;Mark scheme:&quot;</code> prefix, strip <code>&quot;- June 2024 - Religious Studies&quot;</code> suffix.</li>
-<li>Build a <code>component_key</code> slug: <code>&quot;paper-1-section-a-option-3-the-study-of-religions-islam&quot;</code></li>
-<li>Group by <code>(component_key, exam_series)</code> → separate bucket per year.</li>
-<li>For each bucket: select the <strong>best</strong> QP and MS using priority: non-modified &gt; latest <code>published_date_iso</code> &gt; has <code>download_url</code>.</li>
-</ol>
-<h3 id="default-exclusions">Default exclusions</h3>
-<table>
-<thead>
-<tr>
-<th>Excluded</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Examiner reports</td>
-<td>Exam technique, not content</td>
-</tr>
-<tr>
-<td>Modified A4 18pt / A3 36pt</td>
-<td>Accessibility formats, duplicate content</td>
-</tr>
-<tr>
-<td>Inserts, transcripts, booklets</td>
-<td>Supporting material, not standalone QA</td>
-</tr>
-</tbody></table>
-<h3 id="results-gcse-rs-all-sittings">Results (GCSE RS, all sittings)</h3>
-<ul>
-<li><strong>89 matched pairs</strong> (QP + MS both present)</li>
-<li>224 records excluded (68 examiner reports + 156 modified/insert/unknown)</li>
-<li>4 partial pairs (QP only or MS only)</li>
-</ul>
+<p>similarities and differences within and/or between religions and beliefs
+If similar beliefs are given, only one of them may be credited up to two marks.
+Catholics, Orthodox Christians and some Anglicans believe the bread and wine become the body
+and blood of Christ / Christ is fully present in the Eucharist / the Eucharist is the ‘source and
+summit’ of Christian life / re-enacts Jesus’ sacrifice on the cross / is the highest form of prayer to
+God / God’s love for humans shown in the death of Christ is repeated at every Eucharist / recalls
+the Last Supper / without receiving the Eucharist Christians cannot live the full life Christ wants /
+nourishes the soul / celebrating the Eucharist on Sunday is the perfect way to ‘keep holy the
+Sabbath’, etc.
+Other Christians believe Christ is spiritually but not literally present in the bread and wine / Christ is
+spiritually present in the community sharing in the Eucharist / some non-conformists think the
+purpose of the Eucharist is a memorial of the Last Supper / whereas Catholics believe it is a re-
+enactment of Christ’s sacrifice on Calvary / Catholics believe that the Holy Spirit actually changes
+the bread and wine into the Body and Blood of Christ / whereas other Christians believe they
+symbolise Christ’s Body and Blood, etc.
+Some Christians do not celebrate the Eucharist / think all of life is a sacrament / Christ is present
+through the Spirit who inspires them to serve others, etc.
+NB ‘Eucharist’ can be interpreted as both the bread and wine itself about which Christians have
+different understandings and also as the celebration of the Eucharist / Mass / Holy Communion
+service. Accept either interpretation by students. Credit more general responses about what the
+Eucharist means to Christians.</p>
+<h2 id="q14-5-marks">Q1.4 [5 marks]</h2>
+<p>Explain two Christian beliefs about redemption (how Jesus saved humanity) found in
+St Mark’s account of the crucifixion of Jesus.
+Refer to scripture or another source of Christian belief and teaching in your answer.</p>
 <hr>
-<h2 id="5-stage-3-aqa_download_selectedpy">5. Stage 3 — `aqa_download_selected.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Downloads only the files listed in the Stage 2 selected-pairs JSON. <strong>Defaults to dry-run</strong> — requires <code>--confirm-download</code> for actual downloads.</p>
-<h3 id="safety-rules">Safety rules</h3>
-<table>
-<thead>
-<tr>
-<th>Rule</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Concurrency</td>
-<td>1 (strictly sequential)</td>
-</tr>
-<tr>
-<td>Default delay</td>
-<td>7000 ms between files</td>
-</tr>
-<tr>
-<td>Default cap</td>
-<td>20 files per run (raise with <code>--max-downloads</code>)</td>
-</tr>
-<tr>
-<td>Dry-run</td>
-<td>Default until <code>--confirm-download</code> is passed</td>
-</tr>
-<tr>
-<td>Existing files</td>
-<td>Skipped unless <code>--overwrite</code></td>
-</tr>
-<tr>
-<td>Auth bypass</td>
-<td>Never — restricted files are flagged, not fetched</td>
-</tr>
-</tbody></table>
-<h3 id="folder-structure">Folder structure</h3>
-<pre><code>downloads/aqa/
-  gcse-religious-studies/
-    june-2024/
-      paper-1-section-a-option-3-the-study-of-religions-islam/
-        question-paper.pdf
-        mark-scheme.pdf
-        metadata.json
-</code></pre>
-<h3 id="download-log">Download log</h3>
-<pre><code>downloads/aqa/download_log.csv
-downloads/aqa/download_log.json
-</code></pre>
-<p>Fields: <code>timestamp</code>, <code>component_key</code>, <code>file_role</code>, <code>url</code>, <code>target_path</code>, <code>status</code>, <code>http_status</code>, <code>bytes_downloaded</code>, <code>error_message</code></p>
-<h3 id="results-gcse-rs">Results (GCSE RS)</h3>
-<ul>
-<li>178 PDFs downloaded (89 question papers + 89 mark schemes)</li>
-<li>Total size: ~80 MB</li>
-<li>All HTTP 200 — no restricted files encountered</li>
-</ul>
+<p>By his obedience to God’s will, Jesus set an example for humans to follow / the crucifixion
+described in Mark caused Jesus great suffering / eg he was mocked by onlookers / taunted to
+save himself, yet refused / showed his obedience to God’s will / Jesus cried out to God ‘why have
+you forsaken me’, showing his humanity, etc. / Jesus showed his love for God and humanity / the
+centurion said ‘Truly this man was God’s Son!’, showing what Christians believe about Jesus / by
+his obedience Jesus restored the relationship with God lost by Adam’s sin / Jesus was fully
+human, as Mark’s account shows / he brought the presence of God into his suffering and death
+and defeated them / the curtain of the temple was torn in two, showing the barrier between God
+and humanity was broken / humans now had direct access to God / darkness came over the
+whole land while Jesus died, showing that Jesus’ death had cosmic significance, etc.
+Sources of authority:
+Mark 15:21-39
+They compelled a passer-by, who was coming in from the country, to carry his cross; it was
+Simon of Cyrene, the father of Alexander and Rufus. 22 Then they brought Jesus to the place
+called Golgotha (which means the place of a skull). 23 And they offered him wine mixed with
+myrrh; but he did not take it. 24 And they crucified him, and divided his clothes among them,
+casting lots to decide what each should take.
+It was nine o’clock in the morning when they crucified him. 26 The inscription of the charge
+against him read, “The King of the Jews.” 27 And with him they crucified two bandits, one on his
+right and one on his left. 29 Those who passed by derided him, shaking their heads and saying,
+“Aha! You who would destroy the temple and build it in three days, 30 save yourself, and come
+down from the cross!” 31 In the same way the chief priests, along with the scribes, were also
+mocking him among themselves and saying, “He saved others; he cannot save himself. 32 Let the
+Messiah the King of Israel, come down from the cross now, so that we may see and believe.”
+Those who were crucified with him also taunted him.
+When it was noon, darkness came over the whole land until three in the afternoon. 34 At three
+o’clock Jesus cried out with a loud voice, “Eloi, Eloi, lema sabachthani?” which means, “My God,
+my God, why have you forsaken me?” 35 When some of the bystanders heard it, they said,
+“Listen, he is calling for Elijah.” 36 And someone ran, filled a sponge with sour wine, put it on a
+stick, and gave it to him to drink, saying, “Wait, let us see whether Elijah will come to take him
+down.” 37 Then Jesus gave a loud cry and breathed his last. 38 And the curtain of the temple was
+torn in two, from top to bottom. 39 Now when the centurion, who stood facing him, saw that in this
+way he breathed his last, he said, “Truly this man was God’s Son!”
+Accept all other sources of authority that correctly support the beliefs given.</p>
+<h2 id="q15-12-marks">Q1.5 [12 marks]</h2>
+<p>‘The most important Christian belief is the belief in the resurrection of Jesus.’
+Evaluate this statement.
+In your answer you should:
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• refer to Christian teaching
+• reach a justified conclusion.
+[SPaG 3 marks]</p>
 <hr>
-<h2 id="6-stage-4-aqa_pdf_to_mdpy">6. Stage 4 — `aqa_pdf_to_md.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Converts downloaded PDFs to structured Markdown using pdfplumber, with PyMuPDF and pytesseract as fallbacks.</p>
-<h3 id="aqa-layout-challenges">AQA layout challenges</h3>
-<p>AQA exam papers use a two-column layout:</p>
-<ul>
-<li>Left column (~70%): question text</li>
-<li>Right column (~18%): &quot;For Examiner&#39;s Use&quot; table with Q number labels and mark boxes</li>
-</ul>
-<p>Without adjustment, text extraction merges the two columns and produces noise like:</p>
-<pre><code>Q1.1 Which one of...                    box
-                        [1 mark]
-Q1.2 Give two...       Q1.3
-                    Instructions...
-</code></pre>
-<h3 id="solutions-applied">Solutions applied</h3>
-<table>
-<thead>
-<tr>
-<th>Problem</th>
-<th>Fix</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Two-column merge</td>
-<td>Crop right 10% before extraction</td>
-</tr>
-<tr>
-<td>Cover page noise</td>
-<td>Skip page 1 (always instructions)</td>
-</tr>
-<tr>
-<td>&quot;For Examiner&#39;s Use&quot; labels</td>
-<td>Regex strip pass</td>
-</tr>
-<tr>
-<td>Truncated mark brackets</td>
-<td>Filter lone <code>[</code> lines</td>
-</tr>
-<tr>
-<td>&quot;IB&quot;, &quot;Tu&quot;, artefact lines</td>
-<td>Regex filter</td>
-</tr>
-<tr>
-<td>Q numbers as spaced digits (<code>0 1 . 2</code>)</td>
-<td>Normalise to <code>Q1.2</code></td>
-</tr>
-</tbody></table>
-<h3 id="output-format">Output format</h3>
-<p><strong>Question paper:</strong></p>
-<pre><code class="language-markdown">---
-type: question_paper
-examSeries: June 2024
----
-
-### Q1.1
-Which one of the following means Oneness of God?
-**[1 marks]**
-A Akhirah  B Risalah  C Tawhid  D Torah
-
-### Q1.2
-Give two beliefs about the revelation of the Qur&#39;an.
-**[2 marks]**
-</code></pre>
-<p><strong>Mark scheme:</strong></p>
-<pre><code class="language-markdown">---
-type: mark_scheme
-examSeries: June 2020
----
-
-### Q1.1
-Answer: C Tawhid
-
-### Q1.2
-**[2 marks]**
-• It is the exact word of Allah.
-• It was revealed through the angel Jibril in Arabic.
-</code></pre>
-<h3 id="extraction-fallback-chain">Extraction fallback chain</h3>
-<ol>
-<li><strong>pdfplumber</strong> — layout-aware text extraction (works for all 178 files in this dataset)</li>
-<li><strong>PyMuPDF</strong> — block-level extraction, better with multi-column layouts</li>
-<li><strong>pytesseract</strong> — OCR for scanned/image-only pages</li>
-</ol>
-<h3 id="results">Results</h3>
-<ul>
-<li>178 Markdown files (89 QP + 89 MS)</li>
-<li>Zero empty files</li>
-<li>Average 3–8 KB per file</li>
-</ul>
+<p>and influence.
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:</p>
+<p><strong>Arguments in support:</strong>
+The resurrection is important to Christians because without it their faith would be ‘in vain’: ‘If Christ
+has not been raised, then our proclamation has been in vain and your faith has been in vain. We are
+even found to be misrepresenting God, because we testified of God that he raised Christ…if Christ
+has not been raised, your faith is futile and you are still in your sins.’ (Paul, 1 Corinthians 15:14-15,
+17) / there would be no Christianity without the resurrection / God raising Jesus from the dead
+destroyed the ultimate power of sin and death / this means that Christians are redeemed / no longer
+need to fear death / as it is not the end of life / the resurrection is a sign of consolation for those who
+have lost someone they love / can enter heaven to be with God eternally / God gives Christians
+victory over death through Jesus / the resurrection proved that Jesus was God’s Son / this gives
+Jesus’ teaching authority / the Gospels emphasise the transforming effect the resurrection had on the
+disciples / the Bible shows Jesus entered a new creation after his death which will be available to all
+who believe / joy and hope entered the world / ‘Because death is now no longer the end of
+everything, joy and hope came into the world.’ (Youcat 108) / ‘Where, O death, is your
+victory? Where, O death, is your sting? The sting of death is sin, and the power of sin is the law. But
+thanks be to God, who gives us the victory through our Lord Jesus Christ.’ (I Corinthians 15:55-57),
+etc.</p>
+<p><strong>Arguments in support of other views:</strong>
+Moral values are more important than belief in dogmas / loving God and neighbour more important
+for Christian life / other beliefs are more important, eg the incarnation / kingdom of God / Trinity, etc. /
+some Christians do not believe in its literal truth / rather think that what Jesus stood for can never die
+/ think that being a Christian is about being spiritually reborn in the present life, and not about life
+after death / resurrection appearances in the Bible have puzzling aspects / eg Jesus’ followers did
+not initially recognize him / he seemed to appear in a locked room / disappear after the encounter at
+Emmaus / yet he could eat food, so was in bodily form / Christians believe the resurrection meant
+people were no longer trapped in their sins, yet sin still exists / scientific evidence suggests bodily
+resurrection is impossible, etc.</p>
+<h2 id="q21-1-mark">Q2.1 [1 mark]</h2>
+<p>Which one of the following is the highest ranking member of the Church’s hierarchy?
+A Cardinal
+B Priest
+C Bishop
+D Pope</p>
 <hr>
-<h2 id="7-stage-5-aqa_md_to_packpy">7. Stage 5 — `aqa_md_to_pack.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Reads mark scheme Markdown files and generates Learning Web <code>pack_unified.json</code> files automatically. This is the key AI-workflow step — it converts AQA exam content directly into quizzable Learning Web packs without manual data entry.</p>
-<h3 id="parser-architecture">Parser architecture</h3>
-<h4 id="question-header-detection">Question header detection</h4>
-<p>The parser handles two AQA heading formats:</p>
-<pre><code># Format A (standard):          # Format B (inline, some papers):
-### Q1.1                         Q1.1 Which one of the following...
-Which one of the following...
-</code></pre>
-<p>Pattern: <code>r&quot;^(?:###\s+)?(Q\d+\.\d+)\b&quot;</code></p>
-<h4 id="per-question-type-processing">Per-question-type processing</h4>
-<table>
-<thead>
-<tr>
-<th>AQA Q#</th>
-<th>Marks</th>
-<th>Parser extracts</th>
-<th>Pack item types</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>Q*.1</code></td>
-<td>1</td>
-<td>MCQ question text + answer letter + options</td>
-<td><code>vocab</code> (MCQ style)</td>
-</tr>
-<tr>
-<td><code>Q*.2</code></td>
-<td>2</td>
-<td>2 bullet-point acceptable answers</td>
-<td>2× <code>vocab</code></td>
-</tr>
-<tr>
-<td><code>Q*.3</code></td>
-<td>4</td>
-<td>2 bullet-point answers</td>
-<td>2× <code>vocab</code></td>
-</tr>
-<tr>
-<td><code>Q*.4</code></td>
-<td>5</td>
-<td>2 bullet-point answers + first scripture quote</td>
-<td>2× <code>vocab</code> + 1× <code>vocab</code> (scripture)</td>
-</tr>
-<tr>
-<td><code>Q*.5</code></td>
-<td>12</td>
-<td>Statement to evaluate + FOR bullets + AGAINST bullets</td>
-<td><code>vocab</code> FOR:/AGAINST: items</td>
-</tr>
-</tbody></table>
-<h4 id="sentence-builder-generation">Sentence-builder generation</h4>
-<p>For each Q*.2/3/4, the first bullet point is shortened to 6–8 words and used as a <code>sentenceBuilder</code> tile-arrange item:</p>
-<pre><code class="language-python">short = &quot; &quot;.join(bullet.split()[:8]) + &quot;.&quot;
-</code></pre>
-<h4 id="foragainst-detection">FOR/AGAINST detection</h4>
-<p>The parser locates the evaluate-question argument blocks by searching for the literal AQA headings:</p>
-<pre><code>Arguments in support
-...
-Arguments in support of other views
-</code></pre>
-<p>Each bullet becomes a <code>vocab</code> item prefixed <code>&quot;FOR:&quot;</code> or <code>&quot;AGAINST:&quot;</code>, enabling the Smart Test argument scaffold section.</p>
-<h4 id="passage-generation">Passage generation</h4>
-<p>Each pack includes one <code>passage</code> item: a contextual paragraph about the religion and exam series, with 3 comprehension MCQs. One question uses the actual Q1.1 MCQ from the paper.</p>
-<h3 id="item-classification-for-smart-test">Item classification for Smart Test</h3>
-<p>The <code>useSmartTestSession.js</code> hook uses these rules to place items into sections:</p>
-<table>
-<thead>
-<tr>
-<th>Item <code>sourceWord</code></th>
-<th>Smart Test section</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Starts with <code>&quot;MCQ:&quot;</code></td>
-<td>Knowledge Check (5 MCQ questions)</td>
-</tr>
-<tr>
-<td><code>targetWord</code> length ≥ 40 chars, not FOR/AGAINST</td>
-<td>Key Concepts flashcard (3 cards)</td>
-</tr>
-<tr>
-<td>Starts with <code>&quot;FOR:&quot;</code> or <code>&quot;AGAINST:&quot;</code></td>
-<td>Evaluation Practice scaffold</td>
-</tr>
-<tr>
-<td><code>type === &quot;sentenceBuilder&quot;</code></td>
-<td>Sentence Builder (3 tile-arrange questions)</td>
-</tr>
-<tr>
-<td><code>type === &quot;passage&quot;</code></td>
-<td>Reading section</td>
-</tr>
-</tbody></table>
-<h3 id="output">Output</h3>
-<p>For each mark scheme markdown file, one <code>pack_unified.json</code> is written:</p>
-<pre><code>data/Packs/gcse/religion/&lt;pack_id&gt;/pack_unified.json
-</code></pre>
-<p>The manifest is also updated with a <code>capabilities: [&quot;revision&quot;, &quot;passages&quot;]</code> entry.</p>
-<h3 id="results">Results</h3>
-<ul>
-<li>103 packs generated total (14 hardcoded 2024 + 89 auto-parsed)</li>
-<li>5 exam sittings fully covered</li>
-<li>Zero errors on 89 auto-parsed packs</li>
-</ul>
+<p>Which one of the following is the highest ranking member of the Church’s
+hierarchy?
+[1 mark
+<strong>Answer: D</strong> Pope</p>
+<h2 id="q22-2-marks">Q2.2 [2 marks]</h2>
+<p>Give two Stations of the Cross.</p>
 <hr>
-<h2 id="8-smart-test-mode-how-it-works-in-the-app">8. Smart Test mode — how it works in the app</h2>
-<h3 id="hook-usesmarttestsessionjs">Hook: `useSmartTestSession.js`</h3>
-<p>The Smart Test session is built entirely client-side from the pack data. No server calls are made.</p>
-<h4 id="session-lifecycle">Session lifecycle</h4>
-<pre><code>startSession(manifest, dataset)
-  → loadVocabItems()        ← all vocab items from pack
-  → loadUnifiedPack()       ← sentenceBuilder + passage items
-  → buildSession()          ← classify + select + shuffle deterministically
-  → _set(newSession)        ← mirror in sessionRef (RC9 safe)
-
-Session phases:
-  &quot;running&quot;  → per-section answering
-  &quot;done&quot;     → results page
-</code></pre>
-<h4 id="deterministic-session-seeding">Deterministic session seeding</h4>
-<p>Sessions are seeded from <code>sessionId = &quot;st-{datasetId}-{timestamp}&quot;</code> using a simple LCG random number generator. This means re-loading a session with the same seed produces the same question order.</p>
-<pre><code class="language-javascript">function seededRng(seed) {
-  let s = seed;
-  return () =&gt; {
-    s = (s * 1664525 + 1013904223) &amp; 0xffffffff;
-    return (s &gt;&gt;&gt; 0) / 0xffffffff;
-  };
-}
-</code></pre>
-<h4 id="section-build-rules-per-session">Section build rules (per session)</h4>
-<pre><code>MCQ section (5 questions):
-  pool = vocab items where !isArgumentItem(w)
-  shuffle(pool, rng).slice(0, 5)
-  for each question: build 3 distractor options from other pool items
-
-Sentence Builder (3 questions):
-  pool = sentenceBuilder items from pack
-  shuffle(pool, rng).slice(0, 3)
-  tiles = model answer split on spaces, then shuffled
-
-Reading (1 passage):
-  pick first passage item (shuffled)
-  show sourcePassage text + data.questions[] comprehension MCQs
-
-Argument scaffold (all FOR/AGAINST items):
-  forItems  = vocab items where sourceWord starts with &quot;FOR:&quot;
-  againstItems = vocab items where sourceWord starts with &quot;AGAINST:&quot;
-  display two-column scaffold with the evaluate statement
-</code></pre>
-<h4 id="strictmode-safe-patterns-rc9">StrictMode-safe patterns (RC9)</h4>
-<p>All side effects fire <strong>outside</strong> <code>setState</code> updater functions:</p>
-<pre><code class="language-javascript">// WRONG — fires twice in StrictMode dev
-setSession(prev =&gt; {
-  updateProgress(state =&gt; recordWordAnswer(state, word.id, correct)); // ← double fire!
-  return { ...prev };
-});
-
-// CORRECT — side effect outside setState
-const newSession = { ...sessionRef.current, ... };
-sessionRef.current = newSession;   // update mirror ref
-setSession(newSession);            // pass value, not function
-updateProgress(state =&gt; {          // side effect runs once, outside
-  recordWordAnswer(state, word.id, correct);
-});
-</code></pre>
-<h4 id="retry-weak-items">Retry weak items</h4>
-<p>The <code>retryWeakItems(weakItems)</code> action builds a new session directly from the wrong-answer words without reloading the pack:</p>
-<pre><code class="language-javascript">const newSession = buildSession(weakItems, [], [], &quot;retry&quot;, sessionId);
-_set(newSession);
-</code></pre>
-<h3 id="component-smarttestpagejsx">Component: `SmartTestPage.jsx`</h3>
-<h4 id="page-phases">Page phases</h4>
-<pre><code>Setup:   Subject card → Curriculum select → Pack select → Start
-Running: ProgressBar → SectionHeader → (MCQ | Builder | Flashcard | Reading | Argument)
-Results: Score % → Section breakdown → Weak items → Retry / New Test
-</code></pre>
-<h4 id="section-components">Section components</h4>
-<table>
-<thead>
-<tr>
-<th>Section type</th>
-<th>Interaction</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>McqSection</code></td>
-<td>4 option buttons → immediate feedback → Next</td>
-</tr>
-<tr>
-<td><code>BuilderQuestion</code></td>
-<td>Tile pool → build area → Check → feedback</td>
-</tr>
-<tr>
-<td><code>ReadingSection</code></td>
-<td>Passage display → Next Section</td>
-</tr>
-<tr>
-<td><code>ArgumentSection</code></td>
-<td>Two-column FOR/AGAINST cards → expandable detail → Finish</td>
-</tr>
-<tr>
-<td><code>FlashcardSection</code></td>
-<td>Reveal definition → Got it / Review again</td>
-</tr>
-</tbody></table>
-<h4 id="builder-tile-state">Builder tile state</h4>
-<p>Each <code>BuilderQuestion</code> is a keyed component (<code>key={question.id}</code>) so it mounts fresh state for each sentence. Tile pool state is local to the component.</p>
+<p>Jesus is condemned to death / Jesus carries his cross / Jesus falls for the first time / Jesus meets his
+mother / Simon helps Jesus to carry his cross / Veronica wipes the face of Jesus / Jesus falls for the
+second time / Jesus meet the women of Jerusalem / Jesus falls for a third time / Jesus is stripped of
+his clothes / Jesus is nailed to the cross / Jesus dies on the cross / Jesus is taken down from the
+cross / Jesus is laid in the tomb.</p>
+<h2 id="q23-4-marks">Q2.3 [4 marks]</h2>
+<p>Explain two ways in which a belief in justice has influenced the life of one important
+Catholic person.</p>
 <hr>
-<h2 id="9-adding-packs-for-new-subjects-or-years">9. Adding packs for new subjects or years</h2>
-<h3 id="add-packs-for-a-new-aqa-subject">Add packs for a new AQA subject</h3>
-<pre><code class="language-bash"># 1. Collect metadata
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
-  --subject &quot;History&quot; \
-  --qualification &quot;GCSE History&quot; \
-  --output-prefix &quot;output/aqa_history_all&quot;
-
-# 2. Match pairs
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
-  --input &quot;output/aqa_history_all.csv&quot; \
-  --output-prefix &quot;output/aqa_history_selected&quot;
-
-# 3. Download (dry run first)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
-  --input &quot;output/aqa_history_selected.json&quot; \
-  --download-dir &quot;downloads/aqa&quot; --dry-run
-
-# 4. Convert to Markdown
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
-  --input-dir &quot;downloads/aqa&quot; --output-dir &quot;markdown/aqa&quot;
-
-# 5. Generate packs
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_md_to_pack \
-  --markdown-root &quot;markdown/aqa/unknown-qualification&quot; \
-  --learning-web-dir &quot;.&quot;
-</code></pre>
-<h3 id="re-run-for-a-new-exam-year-eg-june-2025">Re-run for a new exam year (e.g. June 2025)</h3>
-<pre><code class="language-bash">PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_md_to_pack \
-  --markdown-root &quot;markdown/aqa/unknown-qualification&quot; \
-  --learning-web-dir &quot;.&quot; \
-  --year &quot;june-2025&quot;
-</code></pre>
-<p>The <code>--year</code> filter means only papers from that sitting are processed. All existing packs are skipped automatically.</p>
-<h3 id="customising-the-pack-generator">Customising the pack generator</h3>
-<p><code>aqa_md_to_pack.py</code> has two key extension points:</p>
-<p><strong><code>RELIGION_MAP</code> / <code>PAPER_LABEL_MAP</code></strong> — maps AQA folder names to display labels. Add new papers here.</p>
-<p><strong><code>questions_to_items()</code></strong> — converts parsed questions to pack items. To change how FOR/AGAINST items are written, how scripture is formatted, or how tile sentences are shortened, edit this function.</p>
+<p>The specification points to a study of the work of ‘one important Catholic figure’, so students may
+focus on people such as Mother Teresa, Oscar Romero, Pope Francis, etc. However, students may
+select any Catholic who has worked for justice as long as they explain two ways in which belief in
+justice influenced their work.
+For example:
+Oscar Romero preached against the injustices against the poorest people in El Salvador / the poor
+were being imprisoned / tortured / murdered / disappeared / his sermons were broadcast on radio
+calling for peace and justice for the poor / he begged the army to stop killing / he was called the
+‘voice of the voiceless’ / his belief in justice caused him to lose his life, etc.
+Mother Teresa worked for justice by supporting the ‘untouchables’ / to ease the suffering of the
+poorest caste / her clinics allowed the poorest people to die with dignity / she pursued social justice
+by supporting ‘the hungry, the naked, the homeless, the crippled, the blind, the lepers, and all those
+people who feel unwanted, unloved, uncared for throughout society, people that have become a
+burden to the society and are shunned by everyone’ (Mother Teresa), etc.
+Pope Francis’s belief in justice influenced his work as Archbishop of Buenos Aires because he
+increased the number of priests working in shanty towns among the poor / as Pope he leads by
+example, not allowing money to be wasted on himself / lives in a small flat in a guesthouse rather
+than official apartments in the Vatican / he criticises economic policies that lead to inequality / he
+speaks out against abuse and exploitation which lead to injustice / he washes the feet of twelve
+prisoners on Maundy Thursday to show they remain part of the community, etc.</p>
+<h2 id="q24-5-marks">Q2.4 [5 marks]</h2>
+<p>Explain two Catholic social teachings.
+Refer to scripture or another source of Christian belief and teaching in your answer.</p>
 <hr>
-<h2 id="10-pack-schema-reference">10. Pack schema reference</h2>
-<p>All AQA packs use schema v1.1 with <code>subject: &quot;religion&quot;</code>, <code>curriculum: &quot;gcse&quot;</code>.</p>
-<h3 id="vocab-item-knowledge">Vocab item (knowledge)</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;gcse_rs_june_2024_p1_opt3_q1_3_q1_3_pt1&quot;,
-  &quot;type&quot;: &quot;vocab&quot;,
-  &quot;level&quot;: &quot;GCSE Year 10-11&quot;,
-  &quot;topics&quot;: [&quot;Islam: Beliefs&quot;],
-  &quot;tags&quot;: [&quot;GCSE&quot;, &quot;religion&quot;, &quot;AQA&quot;, &quot;june-2024&quot;],
-  &quot;data&quot;: {
-    &quot;partOfSpeech&quot;: &quot;keyword&quot;,
-    &quot;sourceWord&quot;: &quot;Predestination influence — comfort in hardship (1)&quot;,
-    &quot;targetWord&quot;: &quot;Sunni Muslims believe Allah has decreed all that happens…&quot;,
-    &quot;examples&quot;: { &quot;en-GB&quot;: &quot;AQA June 2024 Q1.3&quot; }
-  }
-}
-</code></pre>
-<h3 id="argument-scaffold-item">Argument scaffold item</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;..._q1_5_for1&quot;,
-  &quot;type&quot;: &quot;vocab&quot;,
-  &quot;data&quot;: {
-    &quot;sourceWord&quot;: &quot;FOR: The Qur&#39;an is the direct word of Allah&quot;,
-    &quot;targetWord&quot;: &quot;The Qur&#39;an is believed to be the direct, unaltered word of Allah…&quot;
-  }
-}
-</code></pre>
-<h3 id="sentence-builder-item">Sentence builder item</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;..._q1_3_sb&quot;,
-  &quot;type&quot;: &quot;sentenceBuilder&quot;,
-  &quot;data&quot;: {
-    &quot;cardType&quot;: &quot;model_answer&quot;,
-    &quot;prompt&quot;: &quot;Build a key point: Explain two ways predestination influences Muslims&quot;,
-    &quot;answer&quot;: &quot;Sunni Muslims believe Allah has decreed all that happens.&quot;,
-    &quot;tiles&quot;: [&quot;Sunni&quot;, &quot;Muslims&quot;, &quot;believe&quot;, &quot;Allah&quot;, &quot;has&quot;, &quot;decreed&quot;, &quot;all&quot;, &quot;that&quot;, &quot;happens.&quot;]
-  }
-}
-</code></pre>
-<h3 id="passage-item">Passage item</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;..._passage&quot;,
-  &quot;type&quot;: &quot;passage&quot;,
-  &quot;data&quot;: {
-    &quot;title&quot;: &quot;Islam — June 2024 Overview&quot;,
-    &quot;sourcePassage&quot;: &quot;This pack covers the AQA GCSE Religious Studies examination for Islam…&quot;,
-    &quot;targetPassage&quot;: &quot;...(same)...&quot;,
-    &quot;speechLanguage&quot;: &quot;en-GB&quot;,
-    &quot;questions&quot;: [
-      {
-        &quot;id&quot;: &quot;..._pq1&quot;,
-        &quot;questionType&quot;: &quot;multiple_choice&quot;,
-        &quot;question&quot;: &quot;How many marks is the evaluate question worth?&quot;,
-        &quot;options&quot;: [&quot;4 marks&quot;, &quot;5 marks&quot;, &quot;10 marks&quot;, &quot;12 marks&quot;],
-        &quot;correctOptionIndex&quot;: 3
-      }
-    ]
-  }
-}
-</code></pre>
+<p>Catholic social teachings include the equality of all humans / the sanctity of life / peace / justice /
+reconciliation / human rights / ‘preferential option for the poor’ / Kingdom values / responsibility for
+one’s neighbour, etc. Many Papal encyclicals encourage Christians to tackle social issues such as
+poverty / inequality / injustice / the Church stresses the importance of the roles of all Catholics,
+particularly the laity, to bring about the Kingdom of God / peace and justice are signs of the Kingdom
+of God / God loves all people so both Church as an institution and individual Catholics should show
+love of neighbour by supporting the weakest members of society / in Laudato Si, Pope Francis
+explored the essential connection between the ownership of natural resources, the regulation of
+banks, animal experimentation, unemployment, genetic modification, consumerism, abortion, poverty,
+prayer and politics / Rerum Novarum taught fair treatment of workers in terms of wages and
+conditions / all people are equal, so the poor should be given equal consideration as would apply to
+any Christian (cf Gaudium et Spes 1) / excluding people is wrong (cf Evangelii Gaudium 53-54), etc.
+Sources of authority:
+Catholic social teaching can be found in documents published by the Magisterium such as Papal
+encyclicals which have recently been summarised in the book ‘Docat’, a catechism of what to ‘do’
+about social issues. These teachings are based on texts from the Bible.
+It is impossible to list quotations from all the encyclicals on Catholic social teaching beginning with
+Rerum Novarum (Leo XIII, 1891) to Laudato Si (Francis, 2015). The specification mentions just two:
+Gaudium et Spes 1 and Evangelii Gaudium 53-54 which are quoted below.
+‘The joys and hopes, the griefs and anxieties of the men of this age, especially those who are poor or
+in any way afflicted, these are the joys and hopes, the griefs and anxieties of the followers of Christ.
+Indeed, nothing genuinely human fails to raise an echo in their hearts.’ Gaudium et Spes 1
+‘Today we… have to say ‘thou shalt not’ to an economy of exclusion and inequality. Such an
+economy kills. How can it be that it is not a news item when an elderly homeless person dies of
+exposure, but it is news when the stock market loses two points? This is a case of exclusion…Today
+everything comes under the laws of competition and the survival of the fittest, where the powerful
+feed upon the powerless. As a consequence, masses of people find themselves excluded and
+marginalized: without work, without possibilities, without any means of escape…
+The culture of prosperity deadens us; we are thrilled if the market offers us something new to
+purchase. In the meantime all those lives stunted for lack of opportunity seem a mere spectacle; they
+fail to move us.’ Evangelii Gaudium 53-54
+‘…love your neighbour as yourself.’ (Mark 12:31)
+Parable of the Sheep and Goats (Matthew 25: 31-46)
+‘If a Christian in these days looks away from the need of the poorest of the poor, then in reality he is
+not a Christian!’ (Pope Francis in the introduction to DOCAT)
+Accept all other sources of authority that correctly support the teachings given.</p>
+<h2 id="q25-12-marks">Q2.5 [12 marks]</h2>
+<p>‘The Lord’s Prayer tells Catholics all they need to know about the Kingdom of God.’
+Evaluate this statement.
+In your answer you should:
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• refer to Christian teaching
+• reach a justified conclusion.
+[SPaG 3 marks]</p>
 <hr>
-<h2 id="11-ethics-and-legal-notes">11. Ethics and legal notes</h2>
-<ul>
-<li>All scripts respect AQA&#39;s website infrastructure — no brute-force crawling, no authentication bypass.</li>
-<li>The 7-second default delay between downloads is intentional and should not be reduced.</li>
-<li>Downloaded papers are copyright AQA. Use for personal revision and educational purposes only. Do not redistribute.</li>
-<li>The <code>--confirm-download</code> flag is required for real downloads precisely to prevent accidental mass-downloading.</li>
-</ul>
+<p>and influence.
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:</p>
+<p><strong>Arguments in support:</strong>
+The Lord’s Prayer includes the petition, ‘thy kingdom come’ / ‘…thy will be done on earth as it is in
+heaven’ / this refers to the Kingdom of God taught by Jesus / it can be thought of as the time when all
+people live as God intends / it is not just looking forward to the end of time when God’s rule will finally
+be established / it is a prayer for people to accept God’s rule in their own hearts / the Kingdom of God
+will spread on earth by each person recognising their place as a child of God / when everyone does
+the will of God, the world will be perfect / the Kingdom of heaven and the Reign of God on earth will
+be one, etc.</p>
+<p><strong>Arguments in support of other views:</strong>
+The Lord’s Prayer does not go into detail about the Kingdom (Reign) of God / the Lord’s Prayer is not
+all about the Kingdom of God, it also talks about fulfilling people’s needs / about forgiveness from
+God as humans forgive others / about help to resist temptation / other parts of the New Testament
+teach far more about the Kingdom / eg Parables of the Kingdom eg Sower / Mustard Seed / Weeds,
+etc. / Jesus’ teachings such as ‘the Kingdom of God is among you’ (Luke 17:21) is more helpful /
+Jesus’ miracles were signs of the Kingdom / the Kingdom was a gradual process as the Church
+became established after Pentecost so there is more to learn about the Kingdom in Acts / Church
+teaching developed the idea about the Kingdom of God / people might misunderstand the idea of the
+Kingdom from the Lord’s Prayer and think it was an earthly political kingdom as some people did at
+the time of Jesus / other teachings such as the Beatitudes give a fuller description of what the
+Kingdom should be like, where the least important will be blessed, etc.</p>
+<h2 id="q31-1-mark">Q3.1 [1 mark]</h2>
+<p>Which one of the following prayer positions shows total submission to God?
+A Sitting
+B Walking
+C Standing
+D Lying flat</p>
 <hr>
-<h2 id="12-file-map">12. File map</h2>
-<pre><code>scripts/aqa_pipeline/
-  aqa_common.py          — shared utilities: normalise_title, slugify, detect_*, write_csv/json
-  aqa_collect_listing.py — Stage 1: Playwright scraper
-  aqa_match_pairs.py     — Stage 2: offline pair matcher
-  aqa_download_selected.py — Stage 3: controlled downloader
-  aqa_pdf_to_md.py       — Stage 4: PDF → Markdown converter
-  aqa_generate_packs.py  — Stage 5a: hardcoded 2024 packs (reference implementation)
-  aqa_md_to_pack.py      — Stage 5b: automatic parser (all years, all subjects)
-  requirements.txt       — Python dependencies
-  README.md              — quick-start guide
-  tests/
-    test_normalisation.py  — 44 tests for aqa_common
-    test_matching.py       — 15 tests for aqa_match_pairs
-
-src/react/
-  hooks/useSmartTestSession.js  — session builder + state machine
-  pages/SmartTestPage.jsx       — setup → sections → results UI
-
-data/Packs/gcse/religion/       — 103 AQA GCSE RS packs
-data/generated/manifest.json    — updated with all packs
-
-docs/
-  AQA_PIPELINE.md       — stage-by-stage CLI reference
-  AQA_AI_WORKFLOW.md    — this file (full technical explanation)
-</code></pre>
+<p>Which one of the following prayer positions shows total submission to God?
+[1 mark
+<strong>Answer: D</strong> Lying flat</p>
+<h2 id="q32-2-marks">Q3.2 [2 marks]</h2>
+<p>Name two Eucharistic acclamations.</p>
+<hr>
+<p>The Gloria / Alleluia / Sanctus / Mystery of Faith.
+.</p>
+<h2 id="q33-4-marks">Q3.3 [4 marks]</h2>
+<p>Explain two contrasting ways in which St Augustine and Catherine LaCugna
+described God’s love as shown in the Trinity.</p>
+<hr>
+<p>similarities and differences within and/or between religions and beliefs
+If similar ways are given, only one of them may be credited up to two marks.
+St Augustine
+St Augustine stressed the relationship of love within the Trinity / 1 John 4:16 says ‘God is love’ / love
+cannot exist on its own, it must have a giver and a receiver / there must be three things: lover,
+beloved, and the love that unites them / similarly in the Trinity there are three Persons united in love /
+Father loves Son, Son loves Father, love that unites them is the Holy Spirit / Holy Spirit shares God’s
+love with people / God’s love in the Trinity is intimate / each person gives a gift to the others which all
+share / the Father gives unity / the Son gives equality / the Holy Spirit gives harmony / God’s inner
+life is an eternal interplay of mutual love, etc.
+Catherine LaCugna
+The Holy Spirit is the love that unites Father and Son / this continual creative act flows outwards to
+the whole of creation / the Son came from the Father as Jesus to save humanity / the Holy Spirit
+(God’s love) completes the work of redemption by guiding humans towards the Father / once
+redemption is complete through the help of Father, Son and Spirit, all things will be brought back to
+God / Catherine LaCugna placed more importance on the outward effects of the Trinity / rather than
+focus on the inner life and nature of God, she thought it helpful to focus on God’s self-revelation
+(actions in people’s lives) / this self-revelation allows humans to share in the life of the Trinity / the
+Father begets the Son but the Son is coequal and coeternal with the Father, so the Son is eternally
+begotten by the Father / LaCugna used the metaphor of dance as an image of God’s love / God and
+humanity are beloved partners in the dance / the Trinity is ‘love loving’ / God’s love pours out to
+humanity and humanity returns God’s love to God / God as love is in communion with humans, etc.</p>
+<h2 id="q34-5-marks">Q3.4 [5 marks]</h2>
+<p>Explain two beliefs about the Trinity found in Galatians.
+Refer to scripture or another source of Christian belief and teaching in your answer.</p>
+<hr>
+<p>The Trinity is the Father, Son and Spirit / in Galatians 4: 6-7 Paul showed how the relationship
+between the Father, Son and Spirit also applies to all believers / Jesus became human so people
+might come close to the Father, as God’s children / because they are children, they can call God
+‘Abba’ (Aramaic for ‘Father’, a title Jesus used for God) / this shows that the believer has an intimate
+relationship with God / the Holy Spirit gives the believer the strength and conviction to accept their
+relationship with the Father / the same Spirit that filled Jesus is also shared with the believer / links to
+the creation stories which can be interpreted as referencing the Trinity / eg the Spirit of God hovered
+over the waters and God spoke his Word in creation, etc / links to the Spirit descending on Jesus at
+his baptism and God the Father calling him his Son / baptism brings believers into relationship with
+the Trinity, etc.
+Sources of authority:
+‘And because you are children, God has sent the Spirit of his Son into our hearts, crying, “Abba!
+Father!” So you are no longer a slave but a child, and if a child then also an heir, through God.’
+(Galatians 4:6-7)
+‘In those days Jesus came from Nazareth of Galilee and was baptized by John in the Jordan. And
+just as he was coming up out of the water, he saw the heavens torn apart and the Spirit descending
+like a dove on him. And a voice came from heaven, “You are my Son, the beloved; with you I am
+well pleased.” ‘ (Mark 1:9-11)
+‘In the beginning when God created the heavens and the earth, the earth was a formless void and
+darkness covered the face of the deep, while a wind from God swept over the face of the waters.
+Then God said, ‘Let there be light’; and there was light.’ (Genesis 1:1-3)
+Accept reference to the Creed as a summary of Biblical teaching.
+Accept all other sources of authority that correctly support the beliefs given.</p>
+<h2 id="q35-12-marks">Q3.5 [12 marks]</h2>
+<p>‘The best way for Christians to show their belief in the Trinity is by preaching the
+gospel (evangelism).’
+Evaluate this statement.
+In your answer you should:
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• refer to Christian teaching
+• reach a justified conclusion.
+[SPaG 3 marks]</p>
+<hr>
+<p>and influence.
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:</p>
+<p><strong>Arguments in support:</strong>
+The love of the Trinity (between Father, Son and Spirit) flows outwards to all believers / Christians
+believe that they must pass this love on to others / evangelism (preaching the gospel to others) is the
+best way to pass on this love / by sharing God’s love through his message of salvation / Pope
+Benedict XVI wrote: ‘The entire activity of the Church is an expression of a love that seeks the
+integral good of man: it seeks his evangelisation through Word and Sacrament…Love is therefore the
+service that the Church carries out in order to attend constantly to man’s sufferings and his needs,
+including material needs.’ (Deus Caritas Est 19) / Jesus’ last instructions to his disciples: ‘Go
+therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son
+and of the Holy Spirit, and teaching them to obey everything that I have commanded you.’ (Matthew
+28:18-20) / Christians have a duty to spread the word of God / to share their faith with others, etc.</p>
+<p><strong>Arguments in support of other views:</strong>
+Evangelism may be one way of showing the love of the Trinity, but it is not the best way / actions
+speak louder than words / mission, eg actions to help others, is better / helping the poor develop
+better lifestyles through education / medical care / guidance on agriculture / access to clean water,
+etc. is more important than just telling people about God / St Francis said: ‘Preach the Gospel at all
+times. Use words if you have to.’ / suggests showing the love of God in one’s actions is more
+important than preaching sermons / ‘For those who do not love a brother or sister whom they have
+seen, cannot love God whom they have not seen. The commandment we have from him is this:
+those who love God must love their brothers and sisters also.’ (1John4:20-21) / Christians do not
+have to choose evangelism over mission- both are good ways of showing the love of the Trinity to
+others / evangelism can annoy people if they are not receptive towards it, whereas helping someone
+with a problem is a better demonstration of the love of God, etc.</p>
+<h2 id="q41-1-mark">Q4.1 [1 mark]</h2>
+<p>Which one of the following best explains the meaning of the term
+‘cosmic reconciliation’?
+A A time when everyone will become a Catholic
+B A time when all things in creation will be brought together in harmony
+C A time when God will punish people for their sins
+D A time when the cosmos is destroyed</p>
+<hr>
+<p>Which one of the following best explains the meaning of the term
+‘cosmic reconciliation’?
+[1 mark
+B A time when all things in creation will be brought together in harmony
+<strong>Answer: B</strong> A time when all things in creation will be brought together in harmony.</p>
+<h2 id="q42-2-marks">Q4.2 [2 marks]</h2>
+<p>Give two examples of memorials for the dead used by Christians.</p>
+<hr>
+<p>Tombstones (gravestones) / monuments / sarcophagi (highly decorated coffins) / remembrance
+gardens / catacombs / statues / crosses / planting a tree / memorial services / candles / the paschal
+candle, etc.</p>
+<h2 id="q43-4-marks">Q4.3 [4 marks]</h2>
+<p>Explain two ways that a Catholic funeral rite may help people after someone has died.</p>
+<hr>
+<p>A Catholic funeral may comfort them / give them hope (for themselves or for their loved one’s eternal
+happiness) / strengthen their faith / eg the body is taken to church showing the belief that the
+deceased is going back to God / the coffin is sprinkled with holy water showing the belief that the
+person was baptised into Christ’s death and now joins in his resurrection / prayers reflect the belief in
+resurrection / the coffin is blessed with ‘May the angels lead you to paradise and with poor man
+Lazarus of old may you enjoy eternal life’ / a prayer is said for the mourners / showing the hope that
+the mourners will meet the deceased again in heaven, etc.
+It reminds them of the person’s life as a Christian / a book of the Gospels is placed on the coffin
+symbolising faith in Jesus / the coffin is placed beside the lit Paschal candle / showing the belief that
+the light of the Risen Christ is shining on the deceased, etc.
+It gives them peace in the knowledge that the deceased was a child of God who has hopefully been
+returned to God’s loving care / a requiem Mass is held / showing the belief the deceased is resting in
+God’s presence in heaven with sins forgiven / readings focus on the resurrection of Jesus / which
+made life after death possible, etc.</p>
+<h2 id="q44-5-marks">Q4.4 [5 marks]</h2>
+<p>Explain two Christian beliefs about life after death found in the Parable of the
+Rich Man and Lazarus.
+Refer to scripture or another source of Christian belief and teaching in your answer.</p>
+<hr>
+<p>People will be judged by God / judgement will be based on people’s choices and actions in their
+lifetime / ignoring the needs of the poor will be punished by God / wealth can make people forget the
+needs of others (rich man ‘feasted sumptuously’ but failed to share food with Lazarus) / showing love
+to others will be rewarded after death / hell is a place of torment (‘agony in these flames’) / people in
+hell are aware of those in heaven which increases their suffering / there is a ‘great chasm’ between
+heaven and hell so it is too late to apologise for sin / rich man wants his brothers warned so they
+don’t make the same mistake / but everything people need to know to get to heaven is in the
+scriptures (‘Moses and the prophets’) / if people do not believe in the scriptures, they will not be
+convinced to change by someone rising from the dead, etc.
+Sources of authority:
+The Rich Man and Lazarus
+“There was a rich man who was dressed in purple and fine linen and who feasted sumptuously
+every day. 20 And at his gate lay a poor man named Lazarus, covered with sores, 21 who longed to
+satisfy his hunger with what fell from the rich man’s table; even the dogs would come and lick his
+sores. 22 The poor man died and was carried away by the angels to be with Abraham. The rich man
+also died and was buried. 23 In Hades, where he was being tormented, he looked up and saw
+Abraham far away with Lazarus by his side. 24 He called out, ‘Father Abraham, have mercy on me,
+and send Lazarus to dip the tip of his finger in water and cool my tongue; for I am in agony in these
+flames.’ 25 But Abraham said, ‘Child, remember that during your lifetime you received your good
+things, and Lazarus in like manner evil things; but now he is comforted here, and you are in
+agony. 26 Besides all this, between you and us a great chasm has been fixed, so that those who
+might want to pass from here to you cannot do so, and no one can cross from there to us.’ 27 He said,
+‘Then, father, I beg you to send him to my father’s house— 28 for I have five brothers—that he may
+warn them, so that they will not also come into this place of torment.’ 29 Abraham replied, ‘They have
+Moses and the prophets; they should listen to them.’ 30 He said, ‘No, father Abraham; but if someone
+goes to them from the dead, they will repent.’ 31 He said to him, ‘If they do not listen to Moses and the
+prophets, neither will they be convinced even if someone rises from the dead.’” (NRSV)
+Accept all other sources of authority that correctly support the beliefs given.</p>
+<h2 id="q45-12-marks">Q4.5 [12 marks]</h2>
+<p>‘There is no such thing as hell.’
+Evaluate this statement.
+In your answer you should:
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• refer to Christian teaching
+• reach a justified conclusion.
+[SPaG 3 marks]
+number .
+number .
+is published after each live examination series and is available for free download from <a href="http://www.aqa.org.uk">www.aqa.org.uk</a>.
+been unsuccessful and AQA will be happy to rectify any omissions of acknowledgements. If you have any queries please contact the
+206G8063/1</p>
+<hr>
+<p>and influence.
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:</p>
+<p><strong>Arguments in support:</strong>
+No scientific evidence for the afterlife / no scientific evidence for an actual place called hell / the idea
+of a burning pit with the devil in charge is just not true / an all-merciful God would not condemn
+someone to eternal punishment / hell is just made up to frighten people into living better lives / no
+one except Jesus has come back from the dead to describe what the afterlife is like / picture
+language is used which cannot convey the reality, etc.</p>
+<p><strong>Arguments in support of other views:</strong>
+For Christians, hell is not a physical place / ‘Hell is the condition of everlasting separation from
+God…’ (Youcat) / people who choose to reject God in their lives are choosing to live for eternity
+without God / God does not send people to hell, people send themselves through their free will / they
+remain in spiritual darkness, aware of what they have rejected / people have believed in hell for
+centuries so there must be something to the idea / hell has been represented in art, eg The Last
+Judgement, etc. / the idea of punishment in hell supports the belief in God’s justice / otherwise some
+people would ‘get away with murder’ / the Church provides opportunities for repentance / Jesus
+taught that God is happier with one sinner who repents than all the faithful who have no need of
+repentance / if people ignore this, it is their own fault / according to Catholic tradition, the children in
+Fatima received a vision of hell / people experience hell as a reality in this life, etc.</p>
 </div>
         <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
           <a href="/revision/studybook/religious-studies/ks3-rs-christianity/" class="book-card compact">

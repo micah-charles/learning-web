@@ -7,7 +7,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_buddhism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Catholic Christianity
@@ -15,7 +15,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Christianity
@@ -23,7 +23,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_christianity/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Hinduism
@@ -31,7 +31,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_hinduism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_hinduism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_hinduism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Islam
@@ -39,7 +39,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_islam/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Islam (Beliefs & Practices)
@@ -47,7 +47,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_islam_beliefs_practices`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_islam_beliefs_practices.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_islam_beliefs_practices/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Judaism
@@ -55,7 +55,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_judaism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Perspectives on Faith: Islam (Paper 2X)
@@ -63,7 +63,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_p2x_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_p2x_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_p2x_islam/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Perspectives on Faith: Judaism (Paper 2Y)
@@ -71,7 +71,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_p2y_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_p2y_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_p2y_judaism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Section A Buddhism
@@ -79,7 +79,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_sa_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_sa_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_sa_buddhism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Section A Judaism
@@ -87,7 +87,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_sa_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_sa_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_sa_judaism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Sikhism
@@ -95,7 +95,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_sikhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_sikhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_sikhism/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Thematic Studies (Paper 2A)
@@ -103,7 +103,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_thematic_paper2a`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_thematic_paper2a.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_thematic_paper2a/pack_unified.json`
 
 ## AQA GCSE RS 2024 — Thematic Studies (Paper 2B Textual)
@@ -111,7 +111,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_2024_p2b_textual`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2024_p2b_textual.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_2024_p2b_textual/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Buddhism
@@ -119,7 +119,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Buddhism (Section A)
@@ -127,7 +127,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_sa_option_1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Catholic Christianity
@@ -135,7 +135,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Catholic Christianity
@@ -143,7 +143,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt2_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt2_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt2_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Christianity
@@ -151,7 +151,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt3_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt3_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt3_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Christianity (Section A)
@@ -159,7 +159,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_sa_option_2_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_2_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_2_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Hinduism
@@ -167,7 +167,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt4_hinduism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt4_hinduism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt4_hinduism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Islam
@@ -175,7 +175,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt5_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt5_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt5_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Islam (Section A)
@@ -183,7 +183,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_sa_option_3_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_3_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_3_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Islam Perspectives (Paper 2X)
@@ -191,7 +191,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p2x_sa_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2x_sa_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2x_sa_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Judaism
@@ -199,7 +199,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt6_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt6_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt6_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Judaism (Section A)
@@ -207,7 +207,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_sa_option_4_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_4_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sa_option_4_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Judaism Perspectives (Paper 2Y)
@@ -215,7 +215,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p2y_sa_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2y_sa_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2y_sa_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Sikhism
@@ -223,7 +223,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_opt7_sikhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt7_sikhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_opt7_sikhism/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -231,7 +231,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p2a_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2a_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2a_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -239,7 +239,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p2a_section_b_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2a_section_b_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2a_section_b_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -247,7 +247,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p2b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p2b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2020 — GCSE Religious Studies — Thematic Studies (Section B)
@@ -255,7 +255,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2020_p1_sb_thematic`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sb_thematic.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2020_p1_sb_thematic/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Buddhism
@@ -263,7 +263,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_opt1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Catholic Christianity
@@ -271,7 +271,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Christianity
@@ -279,7 +279,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_opt3_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt3_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt3_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Christianity (Section A)
@@ -287,7 +287,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_sa_option_2_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sa_option_2_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sa_option_2_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Hinduism
@@ -295,7 +295,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_opt4_hinduism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt4_hinduism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt4_hinduism/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Islam
@@ -303,7 +303,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_opt5_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt5_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt5_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Islam (Section A)
@@ -311,7 +311,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_sa_option_3_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sa_option_3_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sa_option_3_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Judaism (Section A)
@@ -319,7 +319,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_sa_option_4_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sa_option_4_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sa_option_4_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Judaism Perspectives (Paper 2Y)
@@ -327,7 +327,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p2y_sa_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2y_sa_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2y_sa_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Sikhism
@@ -335,7 +335,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_opt7_sikhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt7_sikhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt7_sikhism/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -343,7 +343,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p2a_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2a_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2a_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -351,7 +351,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p2a_section_b_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2a_section_b_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2a_section_b_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -359,7 +359,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p2b_section_b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2b_section_b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2b_section_b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -367,7 +367,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p2b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p2b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2021 — GCSE Religious Studies — Thematic Studies (Section B)
@@ -375,7 +375,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_sb_thematic`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sb_thematic.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_sb_thematic/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Buddhism
@@ -383,7 +383,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_opt1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Buddhism (Section A)
@@ -391,7 +391,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_sa_option_1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Catholic Christianity
@@ -399,7 +399,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Christianity
@@ -407,7 +407,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_opt3_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt3_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt3_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Christianity (Section A)
@@ -415,7 +415,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_sa_option_2_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_2_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_2_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Hinduism
@@ -423,7 +423,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_opt4_hinduism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt4_hinduism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt4_hinduism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Islam
@@ -431,7 +431,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_opt5_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt5_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt5_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Islam (Section A)
@@ -439,7 +439,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_sa_option_3_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_3_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_3_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Islam Perspectives (Paper 2X)
@@ -447,7 +447,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p2x_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2x_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2x_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Judaism
@@ -455,7 +455,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_opt6_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt6_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt6_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Judaism (Section A)
@@ -463,7 +463,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_sa_option_4_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_4_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sa_option_4_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Judaism Perspectives (Paper 2Y)
@@ -471,7 +471,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p2y_sa_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2y_sa_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2y_sa_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Sikhism
@@ -479,7 +479,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_opt7_sikhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt7_sikhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_opt7_sikhism/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -487,7 +487,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p2a_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2a_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2a_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -495,7 +495,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p2a_section_b_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2a_section_b_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2a_section_b_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -503,7 +503,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p2b_section_b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2b_section_b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2b_section_b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -511,7 +511,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p2b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p2b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2022 — GCSE Religious Studies — Thematic Studies (Section B)
@@ -519,7 +519,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2022_p1_sb_thematic`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sb_thematic.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2022_p1_sb_thematic/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Buddhism
@@ -527,7 +527,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_opt1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Buddhism (Section A)
@@ -535,7 +535,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_sa_option_1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Catholic Christianity
@@ -543,7 +543,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Christianity
@@ -551,7 +551,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_opt3_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt3_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt3_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Christianity (Section A)
@@ -559,7 +559,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_sa_option_2_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_2_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_2_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Hinduism
@@ -567,7 +567,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_opt4_hinduism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt4_hinduism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt4_hinduism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Islam
@@ -575,7 +575,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_opt5_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt5_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt5_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Islam (Section A)
@@ -583,7 +583,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_sa_option_3_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_3_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_3_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Islam Perspectives (Paper 2X)
@@ -591,7 +591,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p2x_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2x_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2x_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Judaism
@@ -599,7 +599,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_opt6_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt6_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt6_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Judaism (Section A)
@@ -607,7 +607,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_sa_option_4_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_4_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sa_option_4_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Judaism Perspectives (Paper 2Y)
@@ -615,7 +615,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p2y_sa_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2y_sa_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2y_sa_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Sikhism
@@ -623,7 +623,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_opt7_sikhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt7_sikhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_opt7_sikhism/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -631,7 +631,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p2a_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2a_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2a_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -639,7 +639,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p2a_section_b_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2a_section_b_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2a_section_b_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -647,7 +647,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p2b_section_b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2b_section_b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2b_section_b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -655,7 +655,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p2b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p2b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2023 — GCSE Religious Studies — Thematic Studies (Section B)
@@ -663,7 +663,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2023_p1_sb_thematic`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sb_thematic.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2023_p1_sb_thematic/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Buddhism
@@ -671,7 +671,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Buddhism (Section A)
@@ -679,7 +679,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_sa_option_1_buddhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_1_buddhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_1_buddhism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Catholic Christianity
@@ -687,7 +687,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Catholic Christianity
@@ -695,7 +695,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt2_catholic_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt2_catholic_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt2_catholic_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Christianity
@@ -703,7 +703,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt3_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt3_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt3_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Christianity (Section A)
@@ -711,7 +711,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_sa_option_2_christianity`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_2_christianity.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_2_christianity/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Hinduism
@@ -719,7 +719,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt4_hinduism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt4_hinduism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt4_hinduism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Islam
@@ -727,7 +727,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt5_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt5_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt5_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Islam (Section A)
@@ -735,7 +735,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_sa_option_3_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_3_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_3_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Islam Perspectives (Paper 2X)
@@ -743,7 +743,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p2x_sa_islam`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2x_sa_islam.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2x_sa_islam/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Judaism
@@ -751,7 +751,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt6_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt6_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt6_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Judaism (Section A)
@@ -759,7 +759,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_sa_option_4_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_4_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sa_option_4_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Judaism Perspectives (Paper 2Y)
@@ -767,7 +767,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p2y_sa_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2y_sa_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2y_sa_judaism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Sikhism
@@ -775,7 +775,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_opt7_sikhism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt7_sikhism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_opt7_sikhism/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -783,7 +783,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p2a_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2a_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2a_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Thematic Studies (Paper 2A)
@@ -791,7 +791,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p2a_section_b_nts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2a_section_b_nts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2a_section_b_nts/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -799,7 +799,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p2b_section_b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2b_section_b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2b_section_b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Thematic Studies (Paper 2B)
@@ -807,7 +807,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p2b_ts`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2b_ts.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p2b_ts/pack_unified.json`
 
 ## AQA GCSE RS June 2024 — GCSE Religious Studies — Thematic Studies (Section B)
@@ -815,7 +815,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_june_2024_p1_sb_thematic`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sb_thematic.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_june_2024_p1_sb_thematic/pack_unified.json`
 
 ## AQA GCSE RS November 2021 — GCSE Religious Studies — Judaism
@@ -823,7 +823,7 @@ Generated from `data/generated/manifest.json`.
 - Pack ID: `gcse_rs_november_2021_p1_opt6_judaism`
 - Subject: `religion`
 - Curriculum: `gcse`
-- Study notes: `/data/Packs/gcse/religion/_shared/aqa_workflow.md`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt6_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt6_judaism/pack_unified.json`
 
 ## KS3 Computing — Algorithms, Flowcharts & Pseudocode

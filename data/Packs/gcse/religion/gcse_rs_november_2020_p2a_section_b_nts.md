@@ -1,0 +1,428 @@
+# AQA GCSE RS June 2020 — Thematic Studies (Paper 2A)
+
+*June 2020 — AQA GCSE Religious Studies — Paper 2A Section B Perspectives On Faith Non Textual Studies*
+
+---
+
+## Q1.1 [1 mark]
+
+Which one of the following explains the meaning of the term ‘cohabitation’?
+A A married couple choosing not to have a sexual relationship
+B A married person who lives alone after a divorce
+C An unmarried couple living together in a relationship
+D A couple who are married but live apart from each other
+
+---
+
+Which one of the following explains the meaning of the term ‘cohabitation’?
+[1 ma
+A A married couple choosing not to have a sexual relationship
+**Answer: C** An unmarried couple living together in a relationship
+
+## Q1.2 [2 marks]
+
+Give two teachings from the Bible on the equality of women and men.
+
+---
+
+Give two teachings from the Bible on the equality of women and men.
+[2 mar
+God created them equal / with different roles / God created humans, man and woman, in his image
+(Genesis 1:27) / when Eve was created, Adam said that she was bone of his bones and flesh of his
+flesh (Genesis 2:23) / in marriage, the two become one flesh (Mark 10:8) / woman is not independen
+of man nor man of woman (1Corinthians 11:11) / there is no longer male or female; all are one in Ch
+(Galatians 3:28), etc.
+
+## Q1.3 [4 marks]
+
+Explain two contrasting views in contemporary British society about family planning.
+• You must refer to a Christian view.
+• Your contrasting view may come from Christianity or from another religious or
+non-religious tradition.
+
+---
+
+Explain two contrasting views in contemporary British society about family
+planning.
+• You must refer to a Christian view.
+• Your contrasting view may come from Christianity or from another religious or
+non-religious tradition.
+[4 mar
+similarities and differences within and/or between religions and beliefs
+If similar views are given, only one of them may be credited up to 2 marks.
+The Catholic Church teaches the importance of responsible parenthood / family planning may be use
+to space out the children / to avoid the likelihood of having more children than the parents can provid
+for / using the rhythm of the menstrual cycle / artificial contraception is manipulative and degrades
+human sexuality, etc.
+The development of artificial contraception is a responsible use of God-given skills / it might be bette
+some situations for some married couples not to have children / using artificial contraception takes th
+anxiety from their lovemaking and enables it to be more joyous and more what God intended / it is fa
+more reliable than natural methods of family planning, etc.
+Sterilisation means that couples do not need to worry about the fear of pregnancy / if they cannot affo
+more children / if the woman might have problems with a further pregnancy, etc.
+Increasing numbers of unmarried couples are having sexual relationships / many are too young to co
+with the responsibility of bringing up children / there may be no commitment in the relationship / so a
+reliable method of preventing pregnancy is essential, etc.
+
+## Q1.4 [5 marks]
+
+Explain two Christian beliefs about the nature of marriage.
+Refer to scripture or another source of Christian belief and teaching in your answer.
+
+---
+
+Explain two Christian beliefs about the nature of marriage.
+Refer to scripture or another source of Christian belief and teaching in your
+answer.
+[5 mar
+and teaching – 1 mark
+A sacrament / ordained by God from creation / the promises made are in the presence of God / the
+union receives his blessing / it is an exclusive union of two people / lifelong / it demands faithfulness
+and total commitment / whatever situations arise in the future / intended to be a procreative relations
+/ it provides a stable and loving environment for the rearing of children / it encourages the stability of
+society / it sets an example of loving relationships / it reflects the love of Christ for the Church, etc.
+Sources of authority:
+‘A man leaves his father and mother and clings to his wife and they become one flesh.’ (Genesis 2:2
+‘What God has joined together, let no one separate.’ (Mark 10:9)
+‘Husbands, love your wives as Christ loved the Church and gave himself up for her.’ (Ephesians 5:25
+‘For better for worse, for richer for poorer, in sickness and in health, to love and to cherish, till death d
+us part.’ (Marriage vows)
+‘Because God himself forms the bond of sacramental marriage, it is binding until the death of one of
+partners.’ (Youcat 261)
+Accept all other sources of authority that correctly support the beliefs given.
+
+## Q1.5 [12 marks]
+
+‘There is nothing wrong with sex before marriage.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to Christian arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+---
+
+‘There is nothing wrong with sex before marriage.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to Christian arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+[12 mar
+and influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+and understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of
+relevant evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+and arguments must be credited:
+
+**Arguments in support:**
+Pre-marital sex has become the norm in today’s secular world / reliable contraception means that
+pregnancy and all that it entails can be avoided / marriage commonly takes place after the age of 30
+is not reasonable to expect people to abstain from sex until that age / sex is something to be enjoye
+there is no need for the commitment of marriage / having a sexual relationship might help a couple
+realise whether or not marriage would be right for them / casual sex is acceptable providing care is
+taken not to exploit or hurt one another, etc.
+
+**Arguments in support of other views:**
+Sex should be the expression of a fully committed married relationship / pre-marital sex devalues an
+trivialises God’s gift of sex / virginity is a priceless gift to be offered to one’s partner at marriage / the
+married relationship enhances the sexual relationship / pre-marital sex can easily become exploitativ
+lead to deep hurt / be selfish / it opens the door to underage and non-consensual sex / ‘it is better to
+marry than to be aflame with passion’ (1Corinthians 7:9) / the Church opposes pre-marital sex beca
+‘she would like to protect love’ (Youcat 407), etc.
+
+## Q2.1 [1 mark]
+
+Which one of the following means dying for one’s belief?
+A Martyrdom
+B Radicalisation
+C Reconciliation
+D Torture
+
+---
+
+Which one of the following means dying for one’s belief?
+[1 ma
+**Answer: A** Martyrdom
+
+## Q2.2 [2 marks]
+
+Give two ways in which Christians help victims of war.
+
+---
+
+Give two ways in which Christians help victims of war.
+[2 mar
+Provide food and shelter for those made homeless / give medical assistance / initiate programmes of
+therapy for those traumatised by their experiences / support a charity / welcome those who seek refu
+in other countries / pray for them, etc.
+
+## Q2.3 [4 marks]
+
+Explain two contrasting views in contemporary British society about the belief that
+people should not go to war unless it is likely they will win.
+• You must refer to a Christian view.
+• Your contrasting view may come from Christianity or from another religious or
+non-religious tradition.
+
+---
+
+Explain two contrasting views in contemporary British society about the belief th
+people should not go to war unless it is likely they will win.
+• You must refer to a Christian view.
+• Your contrasting view may come from Christianity or from another religious or
+non-religious tradition.
+[4 mar
+similarities and differences within and/or between religions and beliefs
+If similar views are given, only one of them may be credited up to 2 marks.
+This is the teaching of the Catechism / ‘there must be serious prospect of success’ / Church teaching
+should be obeyed, etc.
+Irresponsible not to take this into account / in one of his parables, Jesus pointed out that no king wou
+go to war if he did not think he could win it / possibility that thousands could be killed or injured for
+nothing / does not show love of neighbour, etc.
+In situations where there is terrible injustice the only hope of ending it might be through civil uprising
+the reason given for the uprising in Syria / courageous to be willing to sacrifice one’s life even if the
+result cannot be certain / risks sometimes have to be taken, etc.
+When a country is threatened, it is the duty of citizens to resist the aggressor / eg the Polish army
+fought the German invaders in 1939, despite the odds being against success / they were seen as
+heroes / surrender without a fight is cowardly / and encourages further acts of aggression, etc.
+
+## Q2.4 [5 marks]
+
+Explain two Christian beliefs about the use of weapons of mass destruction.
+Refer to scripture or another source of Christian belief and teaching in your answer.
+
+---
+
+Explain two Christian beliefs about the use of weapons of mass destruction.
+Refer to scripture or another source of Christian belief and teaching in your
+answer.
+[5 mar
+and teaching – 1 mark
+Motivated by hatred not love / they kill and maim in huge numbers / often civilians and children / tota
+indiscriminate / however serious the evil, the use of such weapons is never proportionate / contraven
+the Just War theory / their use leads to further bitterness, tensions and the desire for revenge / seriou
+and long-lasting damage to the environment / not displaying stewardship / massive cost of researchi
+developing and then using them / money should be spent on saving and improving life for people, no
+destroying it, etc.
+Sources of authority
+‘Blessed are the peacemakers.’ (Matthew 5:9)
+‘Put your sword back in its place, for all who take the word will perish by the sword.’ (Matthew 26:52)
+‘In a nuclear war there would be no victors, only victims.’ (Pope Benedict XVI)
+‘Legitimate defence must not employ wrong, inappropriately harsh methods.’ (Youcat 380)
+‘The use of any weapon that causes more than individual and proportionate harm to civilians is
+immoral. By definition, then, the use of weapons of “mass destruction” is forbidden.’ (Docat 296)
+Accept all other sources of authority that correctly support the beliefs given.
+
+## Q2.5 [12 marks]
+
+‘Christians should always show forgiveness.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to Christian arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+---
+
+‘Christians should always show forgiveness.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to Christian arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+[12 mar
+and influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+and understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of
+relevant evidence and information.
+reasons/evidence.
+Point of view with reason(s) stated in support. 1–3
+and arguments must be credited:
+
+**Arguments in support:**
+Following the example of Jesus / he forgave his executioners / ‘Father, forgive them…’ / he gave the
+adulterous woman a fresh start / obeys teaching of Jesus / ‘turn the other cheek’ / Jesus told Peter t
+he should always forgive people / ‘not seven times but seventy times seven’ / the parable of the
+unforgiving servant makes the same point / ‘forgive us our sins as we forgive those who sin against
+(the Lord’s Prayer) / people cannot expect God to forgive them if they are unforgiving / forgiveness
+needed if the person or group who has suffered is to move on / the refusal to forgive is self-destructi
+example of Gee Walker / nations harbouring grudges and wanting vengeance at the end of a war so
+the seeds for the next one, etc.
+
+**Arguments in support of other views:**
+Some things such as war crimes are so dreadful that they cannot be forgiven / the hurt may be too
+deep and the suffering too great for forgiveness to be offered / Jesus said that blasphemy against th
+Holy Spirit cannot be forgiven / forgiveness cannot be given unless the perpetrator is repentant /
+forgiveness must be deserved / forgiving people for the harm they have done to others is a betrayal
+those who have suffered terribly, etc.
+
+## Q3.1 [1 mark]
+
+Which one of the following explains what is meant by
+‘the Preferential Option for the Poor’?
+A Taking advantage of the poor
+B Putting the needs of the poor first
+C Ignoring the needs of the poor
+D Praying for the poor
+
+---
+
+Which one of the following explains what is meant by ‘the Preferential Option
+for the Poor’?
+[1 ma
+**Answer: B** Putting the needs of the poor first
+
+## Q3.2 [2 marks]
+
+Give two ways in which the Church works to bring human rights to everyone.
+
+---
+
+Give two ways in which the Church works to bring human rights to everyone.
+[2 mar
+Supports the work of pressure organisations / raises awareness of abuses of human rights / organise
+protests against global injustice / supports fair trade / provides food and shelter for the hungry and
+homeless / through the teaching of the Pope and Magisterium / through prayer, etc.
+
+## Q3.3 [4 marks]
+
+Explain two contrasting views in contemporary British society about
+positive discrimination.
+• You must refer to a Christian view.
+• Your contrasting view may come from Christianity or from another religious or
+non-religious tradition.
+
+---
+
+Explain two contrasting views in contemporary British society about positive
+discrimination.
+• You must refer to a Christian view.
+• Your contrasting view may come from Christianity or from another religious or
+non-religious tradition.
+[4 mar
+similarities and differences within and/or between religions and beliefs
+If similar views are given, only one of them may be credited up to 2 marks.
+It puts right injustice / the Bible teaches that justice should flow like a river / it acknowledges that mor
+than a verbal apology is needed for past wrongs to certain groups, eg women, ethnic minorities,
+disabled people, etc.
+It recognises the dignity of those in society who might be vulnerable / it increases their sense of self-
+worth / of the equality of all humans / for Christians, differentiation in social, gender, religious or racia
+status is wrong, etc.
+It gives people opportunities they might otherwise have never had / to develop skills and use their
+talents, etc.
+Positive discrimination creates more problems than it solves / it encourages resentment and bitterne
+a sense of injustice / that some people are being disadvantaged because of circumstances beyond
+their control, eg of birth, environment, etc.
+Choices in employment, offering university places etc. should be solely on merit / this is in society’s
+best interests, etc.
+NB: reference to positive discrimination in one area only, eg racial discrimination, may be awarded
+maximum marks.
+
+## Q3.4 [5 marks]
+
+Explain two Christian beliefs about human trafficking.
+Refer to scripture or another source of Christian belief and teaching in your answer.
+
+---
+
+Explain two Christian beliefs about human trafficking.
+Refer to scripture or another source of Christian belief and teaching in your
+answer.
+[5 mar
+and teaching – 1 mark
+It is wrong because it is treating a human as an object / and is using the victim as a means to an end
+is exploitation of a vulnerable person / it is disrespectful / it devalues the person / it shows a lack of lo
+/ it is unjust / it is a form of control / and abuse of power / it is physically harmful to the victim / and
+mentally harmful / it is motivated by greed / it encourages lust / wrong because it is illegal etc.
+Sources of authority
+All are created ‘in the image of God.’ (Genesis 1:27)
+‘You shall not wrong a stranger or oppress him.’ (Exodus 22:21)
+‘He loves righteousness and justice.’ (Psalm 33:5)
+The Golden Rule.
+Parable of the Sheep and the Goats.
+‘Love your neighbour as you love yourself.’ (Mark 12:31)
+The Magnificat. (Luke 1:47-55)
+Accept all other sources of authority that correctly support the beliefs given.
+
+## Q3.5 [12 marks]
+
+‘The Church should not have so much wealth.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to Christian arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+number .
+number .
+number .
+each live examination series and is available for free download from www.aqa.org.uk.
+206G8063/2a
+
+---
+
+‘The Church should not have so much wealth.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to Christian arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+[12 mar
+and influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+and understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of
+relevant evidence and information.
+reasons/evidence.
+Point of view with reason(s) stated in support. 1–3
+and arguments must be credited:
+
+**Arguments in support:**
+The wealth of the Church should be used to alleviate human need / owning priceless objects, land e
+is wrong when so many people are dying of hunger and preventable disease / wealth encourages
+greed and abuse of power / Jesus and his disciples did not need wealth to carry out their mission / t
+lived simply / ‘blessed are the poor, for theirs is the Kingdom of heaven’ / Jesus told the rich man to
+rid of his wealth if he truly wanted a good relationship with God / ‘I want a Church that is poor and fo
+the poor’ (Evangelii Gaudium) / ‘any Church community, if it thinks it can comfortably go its own way
+without creative concern and effective cooperation in helping the poor to live with dignity and reachin
+out to everyone, will also risk breaking down’ (Evangelii Gaudium), etc.
+
+**Arguments in support of other views:**
+Wealth in itself is not sinful / it is how it is used / many individual churches and the Church as a whol
+help those in need in many ways / much of the Church’s wealth lies in the land on which its churche
+schools, hospitals etc. are built / church buildings are needed for the community to come together fo
+worship etc. / having beautiful buildings, statues etc. honours God and also inspires the congregatio
+to worship / without some wealth, the Church would not be able to serve the community, etc.
+NB: Answers that relate appropriately and relevantly to the spiritual wealth of the Church should be
+credited.

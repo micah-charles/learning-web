@@ -1,0 +1,320 @@
+# AQA GCSE RS 2024 — Judaism
+
+*June 2024 — AQA GCSE Religious Studies — Paper 1 Option 6*
+
+---
+
+## Q1.1 [1 mark]
+
+Which one of the following is not a key moral principle in Judaism?
+A Giving charity
+B Healing the world
+C Kindness to others
+D Waiting for the Messiah
+
+---
+
+**Answer: D** Waiting for the Messiah
+
+## Q1.2 [2 marks]
+
+Give two Jewish beliefs about the divine presence (Shekhinah).
+
+---
+
+God’s manifested glory / the presence of God among his people on earth / the Tabernacle was an
+early dwelling place of the Shekhinah / the Shekinah is felt at the Western Wall / manifested as a
+pillar of fire or a cloud on the journey to the Promised Land / a sign of God’s power and glory / the
+presence of God in the Temple referred to by several prophets / when ten are gathered in prayer,
+the Shekinah dwells among them / Shekinah can be felt during study with a group / Bet Din / the
+Shekinah is the feminine presence of God / the ner tamid symbolises the Shekinah / following
+Halachah brings the Shekinah down etc.
+It is important to differentiate between the nature of God and the Shekinah e.g.omnipotence /
+omnipresence which should not be credited.
+
+## Q1.3 [4 marks]
+
+Explain two ways in which belief in God as Creator influences Jews today.
+
+---
+
+• Jews believe that God created the earth and all living things on the earth / Jews are influenced to
+remember this throughout their time on earth in order that it should affect their treatment of the
+earth / and all living things on the earth / therefore human life is sacred (sanctity of life) / and
+animals must be treated with respect / Jews may wish to protest or campaign to protect the
+environment eg global warming / because the earth belongs to God / they may be vegetarian or
+vegan because God created animals.
+• God created the earth exactly how he wanted it and revealed himself in his creation / people
+should try to maintain God’s creation.
+• The Creation story refers to God resting on day 7 of creation once the earth was finished / Jews
+also rest on the 7th day (Shabbat) to respect God and his creation.
+• The earth that God created was repeatedly said in the Torah to be good / Jews must ensure it
+stays good by living in a way that does not damage the environment / not overusing or abusing
+the resources the earth provides / showing good stewardship of an earth that does not belong to
+us but is on loan from God.
+• The belief that God is the creator is a display of God’s omnipotence and omniscience / Jews must
+respect these other facets of the nature of God.
+• God sustains the earth he created by providing resources humans need to live on his earth / Jews
+must work to ensure that God’s resources are shared among all living creatures so all have
+sufficient to live.
+• Psalms 8 and 104, etc.
+
+## Q1.4 [5 marks]
+
+Explain two Jewish beliefs about the role of Moses.
+Refer to sacred writings or another source of Jewish belief and teaching in your
+answer.
+
+---
+
+• At Mt Sinai, Moses went alone to the top of the mountain / to speak to God / to receive the 10
+commandments which were a sign of God’s new covenant between himself and the Jews as
+represented by Moses.
+• Some believe he wrote the Torah / including the Ten Commandments, the mitzvot and
+explanations and interpretations / to advise the Jews about how God needed them to live, etc.
+• Moses was given a leadership role by God to lead the Jews (Hebrews) out of Egypt to the land
+that God had promised them / God gave Moses the power and authority to complete this task.
+• Moses was God’s spokesperson in conversation with his fellow Jews and also Pharaoh about
+letting the Jews leave / promising plagues from God / worked miracles and had the authority and
+ability to converse with God face to face.
+• Once Moses had led them out of Egypt across the Red Sea / by miraculous means / he led them
+through the Sinai wilderness to Mt Sinai / throughout the journey, Moses took the role of spiritual
+leader as well as a ‘political’ one / considered to be an important prophet, etc.
+Sources of authority might include:
+‘He made known his ways to Moses, his acts to the people of Israel.’ (Psalm 103:7).
+‘And there has not arisen a prophet since in Israel like Moses, whom the Lord knew face to face.’
+(Deut 34:10).
+‘Moses wrote this law and gave it to the priests.’ (Deut 31:9).
+‘For no-one has ever shown the mighty power or performed the awesome deeds that Moses did in
+the sight of all Israel.’ (Deut 34:12).
+Maimonides said, ‘in Israel there never arose another prophet like Moses, able to see God’s
+likeness.’
+Allow attributed references to accurate and relevant details from the story of Moses as told in the
+Torah.
+Accept all other sources of authority that correctly support the beliefs given.
+
+## Q1.5 [12 marks]
+
+‘The sanctity of human life is the most important Jewish teaching.’
+Evaluate this statement.
+In your answer you should:
+• refer to Jewish teaching
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• reach a justified conclusion.
+[SPaG 3 marks]
+
+---
+
+and influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+reasons/evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:
+
+**Arguments in support:**
+• The sanctity of human life emphasises God’s most important and sacred gift / the gift of life which
+was given ‘in the image of God’ / which only he can take away.
+• The gift of life is so important that God wants people to protect human life under all circumstances
+/ preserving human life is a duty set by God / ‘He who destroys one soul of a human being, the
+Scripture considers him as if he should destroy a whole world’ (Sanhedrin 4:5) / ‘Do not murder’
+(Exodus 20:13).
+• Linked to the teaching of Pikuach Nefesh / which allows Jews to break the mitzvot in order to fulfil
+their obligation to save a human life / the Sabbath laws can be broken and work can be done on
+the Sabbath if its intention is to protect or save human life / examples such as driving a person to
+hospital or performing a life saving operation on the Sabbath.
+• The sanctity of human life rules out actions seen by some as immoral / such as active euthanasia
+and murder / but allows such things as organ donation provided neither party is put at severe risk,
+etc.
+
+**Arguments in support of other views:**
+• The Shema emphasises belief in one God / puts the love of God before the love of a neighbour /
+this makes this religious obligation to God more important than any obligation to others.
+• It is wrong to draw a distinction between human life and other forms of life / such as animal life /
+which are also part of God’s creation.
+• Whilst the sanctity of human life is very important, there are occasions when saving a human life
+may not be for the best / keeping people alive at all costs could be seen as cruel / if a person is
+being kept alive on a ventilator with no chance of recovery, some would argue is it better to allow
+them to die / it may not be God’s preferred choice to intervene if there is no hope otherwise / the
+quality of life outweighs the sanctity of life in such situations.
+• Those who commit the worst crimes should face capital punishment / because it is what they
+deserve for taking the lives of innocent people.
+• The sanctity of life opens up the question of when human life begins which affects decisions such
+as on abortion.
+• The key moral principles of justice / healing the world / charity / kindness to others are more
+important than the sanctity of human life / each of them try to improve the quality / and value of
+the lives of others / in day to day living / emphasise the loving / merciful nature of God / the belief
+that he is just.
+• Arguments that prioritise other aspects or interpretations of Judaism over the sanctity of human
+life, should be credited according to the reasoning given eg observing festivals, keeping mitzvot,
+studying the scriptures etc.
+
+## Q2.1 [1 mark]
+
+Which one of the following best describes the Amidah?
+A Cup of wine
+B Ever burning light
+C Reading platform
+D Standing prayer
+
+---
+
+**Answer: D** Standing prayer
+
+## Q2.2 [2 marks]
+
+Give two things that take place during a Bar Mitzvah ceremony.
+
+---
+
+The boy is called to read from the Torah / at a normal synagogue service / he wears a tallit for the
+first time / may lead part of the service / prayers / give a short speech (Dvar Torah)/ in a blessing
+father thanks God for bringing his son to maturity / declares his son is now responsible for his
+actions / rabbi may preach a sermon / blesses the boy / ‘The Lord bless thee and keep thee.’ /
+throwing sweets after the Torah reading / the boy is part of the minyan for the first time, etc.
+
+## Q2.3 [4 marks]
+
+Explain two contrasting design features between Orthodox and Reform synagogues.
+
+---
+
+similarities and differences within and/or between religions and beliefs
+If similar features are given, only one of them may be credited up to 2 marks max.
+• Orthodox synagogues have separate areas for women and men / perhaps having a balcony or
+seats at the back behind a screen for women (mechitzah) / and seats within the main body of the
+synagogue for men / because they wish to avoid distraction or sexual thoughts between the
+genders / allow greater focus on their worship
+• Reform synagogues allow men and women to sit together / at the same level / with families
+together if they wish.
+• In Orthodox synagogues, the person leading the service stands in front of the aron hakodesh
+(ark) / and ner tamid (ever burning light) / to symbolise the eternal presence of God and the
+holiness of the Torah scrolls / which are at the front facing Jerusalem / so his back is facing the
+congregation / so he prays facing the same way as everybody else.
+• The bimah (reading platform) is likely to be near the centre of the Orthodox synagogue / to
+symbolise that the word of the Torah should go to the whole world / so the congregation face it
+during worship.
+• Reform synagogues usually have the bimah in front of the aron hakodesh (ark) and ner tamid
+(ever burning light) / so the congregation face them during worship / but the person leading the
+service faces the congregation / so they can more easily hear what is being said.
+• An organ (or other instruments) may be found in a Reform synagogue / Reform worship usually
+includes accompanied singing / whereas Orthodox worship includes unaccompanied singing / so
+an organ (or other instruments) is not required in an Orthodox synagogue, etc.
+
+## Q2.4 [5 marks]
+
+Explain two reasons why Jews worship on Shabbat.
+Refer to sacred writings or another source of Jewish belief and teaching in your
+answer.
+10 IB/M/Jun24/8062/
+
+---
+
+• Observing the Shabbat is one of the Ten Commandments / ‘Remember the Sabbath day and
+keep it holy’ (Exodus 20:8).
+• Shabbat is a celebration of creation / ‘God blessed the seventh day and made it holy, because
+on it he rested from all the work of creating that he had done’ (Genesis 2:3).
+• Shabbat observance may include the whole Jewish community worshipping in a synagogue / the
+presence of a rabbi gives the observance authority / can hear scriptures being read / sermon
+preached / blessings said / praying together / the best place for the minyan requirement to be
+fulfilled.
+• Symbolism of actions performed in a synagogue is important to Jews / worship on Shabbat may
+include: standing in front of the scroll / covering of the Torah scroll / parading of the Torah scroll /
+the same passage from the Torah is read throughout the world.
+• Jews touching the Torah with a prayer book or with the tassels on the prayer shawl recalls the
+words from Ezekiel: ‘eat this scroll I am giving you...So I ate it and it tasted as sweet as honey in
+my mouth.’ (Ezekiel 3:3).
+• Worship in the home brings together the whole family / each member of the family is involved / it
+is a relaxed occasion / Shabbat meal is an important feature / along with blessings / recalling
+stories from the scriptures / singing / prayers / study of the Torah.
+• On Friday evening, the Shabbat is welcomed like a bride coming to meet her husband (the
+whole Jewish people) / services may be designed to cater for families / kiddush is recited and
+shared, thanking God for Shabbat.
+Sources of authority might include:
+‘Remember the Sabbath day and keep it holy...for six days the Lord made Heaven and Earth, and
+on the seventh day He ceased from work and rested’ (Exodus 20:8,11).
+‘And the children of Israel shall keep the Sabbath to observe the Sabbath throughout the
+generations, for a perpetual covenant’ (Exodus 31:16).
+‘Six days you shall labour and do all your work; but on the seventh day, which is a Sabbath in
+honour of the Lord your God’ (Exodus 20:9-10).
+‘Eat this scroll I am giving you...So I ate it and it tasted as sweet as honey in my mouth.’ (Ezekiel
+3:3).
+‘Observe the Sabbath day and keep it holy as your God Adoni has commanded you.’
+(Deuteronomy 5:12) etc.
+Accept all other sources of authority that correctly support the beliefs given.
+
+## Q2.5 [12 marks]
+
+‘Dietary laws are important for all Jews.’
+Evaluate this statement.
+In your answer you should:
+• refer to Jewish teaching
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• reach a justified conclusion.
+11 IB/M/Jun24/8062/
+12 IB/M/Jun24/8062/
+number .
+number .
+is published after each live examination series and is available for free download from www.aqa.org.uk
+been unsuccessful and AQA will be happy to rectify any omissions of acknowledgements. If you have any queries please contact the
+246G8062/16
+
+---
+
+and influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+reasons/evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:
+
+**Arguments in support:**
+• Dietary laws are set out in detail in the Torah (Leviticus 11; Deuteronomy 14) / the authority of the
+Torah should be respected and obeyed / God put dietary laws in place and therefore he considers
+them to be important.
+• Dietary laws are part of the tradition of the faith which is very important to Jews / helps Jews to
+keep their special identity / it is something that all Jews are expected to do.
+• Dietary laws are a test of faith / help Jews to develop self-control required by God / remind Jews
+daily of their faith / a mark that Jews are God’s chosen people and special and different from
+others / all these reasons mean their observance is still important.
+• It is still thought by some, that blood is the life of an animal / so the dietary law involving eating of
+blood in meat should not change.
+• Maimonides said that dietary laws enable people to master their appetites / because food is a
+valuable and sometimes scarce thing / especially in some periods of Jewish history.
+• The health and hygiene benefits still apply / even though they are less relevant in modern society.
+• In modern society, it is easier to keep dietary laws because of better labelling of food / non-dairy
+‘dairy products’ / vegetarian and vegan foods are plentiful / so there is no excuse for not keeping
+dietary laws which God requires, etc.
+
+**Arguments in support of other views:**
+• There are many different levels and interpretations of Kashrut within all the denominations of
+Judaism.
+• For some Jews, modern food preparation and storage methods eg refrigeration remove the need
+for dietary laws.
+• Also, dietary laws are considered by many to be out of date and no longer what God requires / life
+has moved on over the last 3000+ years.
+• Some argue that the ethical treatment of animals is a wider and more important issue than simply
+accepting or rejecting religious dietary laws.
+• God gives Jews the chance to make individual choices.
+• Some believe that dietary laws are more important than others / e.g. for health reasons having
+blood drained may be considered more important than not mixing meat and dairy.
+• Modern processed food containing additives make it very difficult to keep dietary laws.
+• It is not always practical or affordable to have separate kitchens and utensils for meat and dairy.
+• It may be difficult for observant members of the Jewish community to eat with others who keep
+Kashrut in different ways etc.
