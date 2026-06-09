@@ -59,750 +59,507 @@
       <nav class="sb-toc" aria-label="Table of contents">
         <p class="sb-toc-title">Contents</p>
         <ul class="sb-toc-list">
-          <li class="sb-toc-h1"><a href="#aqa-past-paper-ai-workflow-complete-reference">AQA Past-Paper AI Workflow — Complete Reference</a></li>
-<li class="sb-toc-h2"><a href="#1-overview-the-five-stage-pipeline">1. Overview — the five-stage pipeline</a></li>
-<li class="sb-toc-h2"><a href="#2-quick-start-gcse-religious-studies">2. Quick start (GCSE Religious Studies)</a></li>
-<li class="sb-toc-h1"><a href="#install-python-dependencies-one-time">Install Python dependencies (one-time)</a></li>
-<li class="sb-toc-h1"><a href="#stage-1-collect-metadata-no-pdfs-downloaded">Stage 1 — collect metadata (no PDFs downloaded)</a></li>
-<li class="sb-toc-h1"><a href="#stage-2-match-question-papers-with-mark-schemes">Stage 2 — match question papers with mark schemes</a></li>
-<li class="sb-toc-h1"><a href="#stage-3-dry-run-first-always">Stage 3 — dry run first (always)</a></li>
-<li class="sb-toc-h1"><a href="#stage-3-actual-controlled-download-7s-delay-200-file-cap">Stage 3 — actual controlled download (7s delay, 200 file cap)</a></li>
-<li class="sb-toc-h1"><a href="#stage-4-convert-all-pdfs-to-markdown">Stage 4 — convert all PDFs to Markdown</a></li>
-<li class="sb-toc-h1"><a href="#stage-5-generate-learning-web-packs-from-markdown-all-years">Stage 5 — generate Learning Web packs from Markdown (all years)</a></li>
-<li class="sb-toc-h2"><a href="#3-stage-1-aqa_collect_listingpy">3. Stage 1 — `aqa_collect_listing.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#key-decisions">Key decisions</a></li>
-<li class="sb-toc-h3"><a href="#aqa-page-structure-2024">AQA page structure (2024)</a></li>
-<li class="sb-toc-h3"><a href="#output-fields-36-per-record">Output fields (36 per record)</a></li>
-<li class="sb-toc-h3"><a href="#results-gcse-religious-studies">Results (GCSE Religious Studies)</a></li>
-<li class="sb-toc-h2"><a href="#4-stage-2-aqa_match_pairspy">4. Stage 2 — `aqa_match_pairs.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#matching-algorithm">Matching algorithm</a></li>
-<li class="sb-toc-h3"><a href="#default-exclusions">Default exclusions</a></li>
-<li class="sb-toc-h3"><a href="#results-gcse-rs-all-sittings">Results (GCSE RS, all sittings)</a></li>
-<li class="sb-toc-h2"><a href="#5-stage-3-aqa_download_selectedpy">5. Stage 3 — `aqa_download_selected.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#safety-rules">Safety rules</a></li>
-<li class="sb-toc-h3"><a href="#folder-structure">Folder structure</a></li>
-<li class="sb-toc-h3"><a href="#download-log">Download log</a></li>
-<li class="sb-toc-h3"><a href="#results-gcse-rs">Results (GCSE RS)</a></li>
-<li class="sb-toc-h2"><a href="#6-stage-4-aqa_pdf_to_mdpy">6. Stage 4 — `aqa_pdf_to_md.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#aqa-layout-challenges">AQA layout challenges</a></li>
-<li class="sb-toc-h3"><a href="#solutions-applied">Solutions applied</a></li>
-<li class="sb-toc-h3"><a href="#output-format">Output format</a></li>
-<li class="sb-toc-h3"><a href="#q11">Q1.1</a></li>
-<li class="sb-toc-h3"><a href="#q12">Q1.2</a></li>
-<li class="sb-toc-h3"><a href="#q11">Q1.1</a></li>
-<li class="sb-toc-h3"><a href="#q12">Q1.2</a></li>
-<li class="sb-toc-h3"><a href="#extraction-fallback-chain">Extraction fallback chain</a></li>
-<li class="sb-toc-h3"><a href="#results">Results</a></li>
-<li class="sb-toc-h2"><a href="#7-stage-5-aqa_md_to_packpy">7. Stage 5 — `aqa_md_to_pack.py`</a></li>
-<li class="sb-toc-h3"><a href="#what-it-does">What it does</a></li>
-<li class="sb-toc-h3"><a href="#parser-architecture">Parser architecture</a></li>
-<li class="sb-toc-h1"><a href="#format-a-standard-format-b-inline-some-papers">Format A (standard):          # Format B (inline, some papers):</a></li>
-<li class="sb-toc-h3"><a href="#q11-q11-which-one-of-the-following">Q1.1                         Q1.1 Which one of the following...</a></li>
-<li class="sb-toc-h3"><a href="#item-classification-for-smart-test">Item classification for Smart Test</a></li>
-<li class="sb-toc-h3"><a href="#output">Output</a></li>
-<li class="sb-toc-h3"><a href="#results">Results</a></li>
-<li class="sb-toc-h2"><a href="#8-smart-test-mode-how-it-works-in-the-app">8. Smart Test mode — how it works in the app</a></li>
-<li class="sb-toc-h3"><a href="#hook-usesmarttestsessionjs">Hook: `useSmartTestSession.js`</a></li>
-<li class="sb-toc-h3"><a href="#component-smarttestpagejsx">Component: `SmartTestPage.jsx`</a></li>
-<li class="sb-toc-h2"><a href="#9-adding-packs-for-new-subjects-or-years">9. Adding packs for new subjects or years</a></li>
-<li class="sb-toc-h3"><a href="#add-packs-for-a-new-aqa-subject">Add packs for a new AQA subject</a></li>
-<li class="sb-toc-h1"><a href="#1-collect-metadata">1. Collect metadata</a></li>
-<li class="sb-toc-h1"><a href="#2-match-pairs">2. Match pairs</a></li>
-<li class="sb-toc-h1"><a href="#3-download-dry-run-first">3. Download (dry run first)</a></li>
-<li class="sb-toc-h1"><a href="#4-convert-to-markdown">4. Convert to Markdown</a></li>
-<li class="sb-toc-h1"><a href="#5-generate-packs">5. Generate packs</a></li>
-<li class="sb-toc-h3"><a href="#re-run-for-a-new-exam-year-eg-june-2025">Re-run for a new exam year (e.g. June 2025)</a></li>
-<li class="sb-toc-h3"><a href="#customising-the-pack-generator">Customising the pack generator</a></li>
-<li class="sb-toc-h2"><a href="#10-pack-schema-reference">10. Pack schema reference</a></li>
-<li class="sb-toc-h3"><a href="#vocab-item-knowledge">Vocab item (knowledge)</a></li>
-<li class="sb-toc-h3"><a href="#argument-scaffold-item">Argument scaffold item</a></li>
-<li class="sb-toc-h3"><a href="#sentence-builder-item">Sentence builder item</a></li>
-<li class="sb-toc-h3"><a href="#passage-item">Passage item</a></li>
-<li class="sb-toc-h2"><a href="#11-ethics-and-legal-notes">11. Ethics and legal notes</a></li>
-<li class="sb-toc-h2"><a href="#12-file-map">12. File map</a></li>
+          <li class="sb-toc-h1"><a href="#aqa-gcse-rs-june-2023-thematic-studies-section-b">AQA GCSE RS June 2023 — Thematic Studies (Section B)</a></li>
+<li class="sb-toc-h2"><a href="#q11-1-mark">Q1.1 [1 mark]</a></li>
+<li class="sb-toc-h2"><a href="#q12-2-marks">Q1.2 [2 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q13-4-marks">Q1.3 [4 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q14-5-marks">Q1.4 [5 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q15-12-marks">Q1.5 [12 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q21-1-mark">Q2.1 [1 mark]</a></li>
+<li class="sb-toc-h2"><a href="#q22-2-marks">Q2.2 [2 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q23-4-marks">Q2.3 [4 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q24-5-marks">Q2.4 [5 marks]</a></li>
+<li class="sb-toc-h2"><a href="#q25-12-marks">Q2.5 [12 marks]</a></li>
 
         </ul>
       </nav>
       <div id="sb-content" class="sb-content">
-        <div data-file-content="main"><h1 id="aqa-past-paper-ai-workflow-complete-reference">AQA Past-Paper AI Workflow — Complete Reference</h1>
-<p>How the Learning Web AQA pipeline works end-to-end: from the AQA website through to Smart Test packs playable in the app.</p>
-<blockquote>
-<p><strong>Last updated:</strong> June 2026<br><strong>Applies to:</strong> <code>scripts/aqa_pipeline/</code>, <code>src/react/hooks/useSmartTestSession.js</code>, <code>src/react/pages/SmartTestPage.jsx</code></p>
-</blockquote>
+        <div data-file-content="main"><h1 id="aqa-gcse-rs-june-2023-thematic-studies-section-b">AQA GCSE RS June 2023 — Thematic Studies (Section B)</h1>
+<p><em>June 2023 — AQA GCSE Religious Studies — Paper 1 Section B Thematics Studies</em></p>
 <hr>
-<h2 id="1-overview-the-five-stage-pipeline">1. Overview — the five-stage pipeline</h2>
-<pre><code>AQA website (live)
-       │
-       ▼
-Stage 1: aqa_collect_listing.py   ← collect metadata only (no downloads)
-       │  output/aqa_rs_all.csv / .json
-       ▼
-Stage 2: aqa_match_pairs.py       ← match Question Paper + Mark Scheme pairs
-       │  output/aqa_rs_selected.csv / .json
-       ▼
-Stage 3: aqa_download_selected.py ← controlled download (dry-run default)
-       │  downloads/aqa/&lt;qualification&gt;/&lt;series&gt;/&lt;component&gt;/
-       │    question-paper.pdf
-       │    mark-scheme.pdf
-       ▼
-Stage 4: aqa_pdf_to_md.py         ← smart PDF → Markdown conversion
-       │  markdown/aqa/&lt;series&gt;/&lt;paper&gt;/
-       │    question-paper.md
-       │    mark-scheme.md
-       ▼
-Stage 5: aqa_md_to_pack.py        ← Markdown → Learning Web pack JSON
-          data/Packs/gcse/religion/&lt;pack_id&gt;/pack_unified.json
-          data/generated/manifest.json  (auto-updated)
-</code></pre>
-<p><strong>Core principle:</strong> Never mass-download. Always collect metadata first, review, then download only what is needed.</p>
+<h2 id="q11-1-mark">Q1.1 [1 mark]</h2>
+<p>Which one of the following means an unmarried couple living together?
+A Procreation
+B Cohabitation
+C Divorce
+D Polygamy</p>
 <hr>
-<h2 id="2-quick-start-gcse-religious-studies">2. Quick start (GCSE Religious Studies)</h2>
-<pre><code class="language-bash">cd /path/to/learning-web
-
-# Install Python dependencies (one-time)
-pip install -r scripts/aqa_pipeline/requirements.txt
-python -m playwright install chromium
-
-# Stage 1 — collect metadata (no PDFs downloaded)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
-  --url &quot;https://www.aqa.org.uk/find-past-papers-and-mark-schemes?subject=Religious+Studies&amp;qualification=GCSE+Religious+Studies&amp;specCode=All+Specifications&amp;collapse=subject%2Cqualification%2CspecCode%2CexamSeries&amp;secondaryResourceType=Mark+schemes%3BExaminer+reports%3BQuestion+papers&quot; \
-  --subject &quot;Religious Studies&quot; \
-  --qualification &quot;GCSE Religious Studies&quot; \
-  --output-prefix &quot;output/aqa_rs_all&quot;
-
-# Stage 2 — match question papers with mark schemes
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
-  --input &quot;output/aqa_rs_all.csv&quot; \
-  --output-prefix &quot;output/aqa_rs_selected&quot;
-
-# Stage 3 — dry run first (always)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
-  --input &quot;output/aqa_rs_selected.json&quot; \
-  --download-dir &quot;downloads/aqa&quot; \
-  --dry-run
-
-# Stage 3 — actual controlled download (7s delay, 200 file cap)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
-  --input &quot;output/aqa_rs_selected.json&quot; \
-  --download-dir &quot;downloads/aqa&quot; \
-  --max-downloads 200 \
-  --delay-ms 7000 \
-  --confirm-download
-
-# Stage 4 — convert all PDFs to Markdown
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
-  --input-dir &quot;downloads/aqa&quot; \
-  --output-dir &quot;markdown/aqa&quot;
-
-# Stage 5 — generate Learning Web packs from Markdown (all years)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_md_to_pack \
-  --markdown-root &quot;markdown/aqa/unknown-qualification&quot; \
-  --learning-web-dir &quot;.&quot;
-</code></pre>
+<p><strong>Answer: B</strong> Cohabitation</p>
+<h2 id="q12-2-marks">Q1.2 [2 marks]</h2>
+<p>Give two reasons why many religious believers accept remarriage.</p>
 <hr>
-<h2 id="3-stage-1-aqa_collect_listingpy">3. Stage 1 — `aqa_collect_listing.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Uses Playwright (a headless browser) to open the AQA past-paper finder page, navigate through all result pages, and extract metadata for every result card. <strong>Does not download any PDFs.</strong></p>
-<h3 id="key-decisions">Key decisions</h3>
-<ul>
-<li><strong>Playwright</strong> is needed because the AQA listing page is a React app that renders results via JavaScript; a plain <code>requests</code> call returns an empty shell.</li>
-<li>Crops the right 10% of each page before extraction to remove AQA&#39;s &quot;For Examiner&#39;s Use&quot; column.</li>
-<li>Intercepts PDF request URLs without following them.</li>
-<li>Deduplicates records by download URL.</li>
-</ul>
-<h3 id="aqa-page-structure-2024">AQA page structure (2024)</h3>
-<pre><code>&lt;div id=&quot;sample-papers-and-mark-schemes.{year}.{month}.{code}_PDF&quot;&gt;
-  &lt;a aria-label=&quot;{full title}&quot; href=&quot;/files/{path}.pdf&quot;&gt;
-    &lt;h3&gt;{title}&lt;/h3&gt;
-    &lt;span class=&quot;text-muted&quot;&gt;{qualification}&lt;/span&gt;
-    &lt;span&gt;PDF&lt;/span&gt;
-    &lt;span class=&quot;text-muted&quot;&gt;{size}&lt;/span&gt;
-    &lt;span class=&quot;text-muted&quot;&gt;Published: {date}&lt;/span&gt;
-  &lt;/a&gt;
-&lt;/div&gt;
-</code></pre>
-<h3 id="output-fields-36-per-record">Output fields (36 per record)</h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>title</code></td>
-<td><code>&quot;Question paper: Paper 1 Section A Option 3 The study of religions (Islam) - June 2024 - Religious Studies&quot;</code></td>
-</tr>
-<tr>
-<td><code>resource_type</code></td>
-<td><code>&quot;question_paper&quot;</code> / <code>&quot;mark_scheme&quot;</code> / <code>&quot;examiner_report&quot;</code></td>
-</tr>
-<tr>
-<td><code>exam_series</code></td>
-<td><code>&quot;June 2024&quot;</code></td>
-</tr>
-<tr>
-<td><code>component_key</code></td>
-<td><code>&quot;paper-1-section-a-option-3-the-study-of-religions-islam&quot;</code></td>
-</tr>
-<tr>
-<td><code>download_url</code></td>
-<td><code>&quot;https://www.aqa.org.uk/files/...&quot;</code></td>
-</tr>
-<tr>
-<td><code>is_modified</code></td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>modified_type</code></td>
-<td><code>&quot;none&quot;</code> / <code>&quot;modified-a4-18pt&quot;</code> / <code>&quot;modified-a3-36pt&quot;</code></td>
-</tr>
-<tr>
-<td><code>published_date_iso</code></td>
-<td><code>&quot;2024-12-07&quot;</code></td>
-</tr>
-</tbody></table>
-<h3 id="results-gcse-religious-studies">Results (GCSE Religious Studies)</h3>
-<ul>
-<li>406 unique records from 45 pages</li>
-<li>269 question papers, 110 mark schemes, 68 examiner reports (source: AQA filter totals showing 447)</li>
-<li>5 exam sittings: June 2022, June 2023, June 2024, November 2020, November 2021</li>
-</ul>
+<p>credited.
+Remarriage to a new partner gives a second chance at happiness / forgiveness / want to live in
+marriage not co-habit / didn&#39;t choose to get divorced / God wants people to live in marriage / share
+your life with someone you love / love your neighbour / want to have children / want a parent for
+their children / been widowed / religious duty to marry / start a new life / previous marriage failed
+e.g. abusive, adultery / financial support / company / may want to remarry the same person e.g.
+reconciled after getting divorce, etc .</p>
+<h2 id="q13-4-marks">Q1.3 [4 marks]</h2>
+<p>Explain two contrasting religious beliefs about gender equality.
+In your answer you must refer to one or more religious traditions.</p>
 <hr>
-<h2 id="4-stage-2-aqa_match_pairspy">4. Stage 2 — `aqa_match_pairs.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Offline processing only — reads the Stage 1 CSV and produces matched Question Paper + Mark Scheme pairs. Groups by <code>(component_key, exam_series)</code> so each sitting is matched independently.</p>
-<h3 id="matching-algorithm">Matching algorithm</h3>
-<ol>
-<li>Normalise titles: strip <code>&quot;Question paper:&quot;</code> / <code>&quot;Mark scheme:&quot;</code> prefix, strip <code>&quot;- June 2024 - Religious Studies&quot;</code> suffix.</li>
-<li>Build a <code>component_key</code> slug: <code>&quot;paper-1-section-a-option-3-the-study-of-religions-islam&quot;</code></li>
-<li>Group by <code>(component_key, exam_series)</code> → separate bucket per year.</li>
-<li>For each bucket: select the <strong>best</strong> QP and MS using priority: non-modified &gt; latest <code>published_date_iso</code> &gt; has <code>download_url</code>.</li>
-</ol>
-<h3 id="default-exclusions">Default exclusions</h3>
-<table>
-<thead>
-<tr>
-<th>Excluded</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Examiner reports</td>
-<td>Exam technique, not content</td>
-</tr>
-<tr>
-<td>Modified A4 18pt / A3 36pt</td>
-<td>Accessibility formats, duplicate content</td>
-</tr>
-<tr>
-<td>Inserts, transcripts, booklets</td>
-<td>Supporting material, not standalone QA</td>
-</tr>
-</tbody></table>
-<h3 id="results-gcse-rs-all-sittings">Results (GCSE RS, all sittings)</h3>
-<ul>
-<li><strong>89 matched pairs</strong> (QP + MS both present)</li>
-<li>224 records excluded (68 examiner reports + 156 modified/insert/unknown)</li>
-<li>4 partial pairs (QP only or MS only)</li>
-</ul>
+<p>similarities and differences within and/or between religions and beliefs
+If similar beliefs are given only one of them may be credited up to 2 marks max.
+credited.
+Religions teach that male and female are of equal value / men and women have different roles and
+responsibilities in society / the roles and responsibilities may be interpreted as being unequal /
+different attitudes to gender identification or reassignment / some religious teachings make women
+subordinate to male authority / some religious practices may nowadays be seen as gender
+discrimination.
+Buddhism
+The practice of Buddhism is the same for men and women / showing no inequality of demand on
+either side / ‘The things which separate and divide people - race, religion, gender and social position
+are all illusory.’ (Dhammapada 6) / in 2015 the Dalai Lama said that he saw no reason why a future
+Dalai Lama could not be a woman / the Lotus Sutra teaches that men and women are equal in their
+ability to practise Buddhism and attain enlightenment / Mahayana Buddhism has had nuns for many
+centuries / however the tradition has died out in the Theravada tradition / some Buddhists argue that
+women can therefore no longer be ordained within the Theravada tradition / the Aparimitayur Sutra
+suggests that women must be reborn as men before they can achieve enlightenment / many
+Theravada societies are male orientated and dominate leadership, etc.
+Christianity
+Jesus treated women with respect and welcomed them as disciples / examples of Mary and Martha
+/ some of the earliest converts to Christianity were women and many became leaders for example
+Dorcas in Joppa, Priscilla in Ephesus and Phoebe in Cenchraea / within the Church of England the
+first women bishops were appointed in 2015 / however within the Roman Catholic church only men
+may be ordained / many non-conformist traditions, such as Methodists, have had women ministers
+for many years / Genesis 1:27 teaches that all humans were created in the image of God / so all
+humans should be treated equally / Galatians 3:27 emphasises this, ‘There is neither Jew nor
+Greek, slave nor free, male nor female for you are all one in Christ Jesus.’
+Some traditional Christians believe that men are the head of the family and women should mainly
+stay at home and care for the children / ‘Wives submit to your husbands as to the Lord, for the
+husband is head of the wife.’ (Ephesians 5:22) / some traditional Christians believe that this
+difference in roles is not gender inequality / but that men and women have different but
+complementary roles / many Christians today see marriage as an equal partnership where the
+different gifts of the couple strengthen family life, etc.
+Hinduism
+There is no difference between men and women on a spiritual level / the differences exist only at a
+physical level due to past lives / ‘I look upon all creatures equally.’ (Bhagavad Gita 9:29) / good
+treatment of women is seen as a blessing / Hindu scriptures say a woman passes through three
+stages in life / when she is supported by her father / when she is supported by her husband / and
+when she is supported by her son / this would suggest inequality as the woman is dependent on the
+males in her family / Manusmirti says, ‘Where women are honoured the gods are pleased.’ / all
+Brahmin priests are male with the exception of in the Hare Krishna movement / increasing numbers
+of female priests in the whole range of Hinduism, etc.
+Islam
+Qur’an 49:13 says, ‘People we created you all from a single man and a single woman and made
+you into races and tribes so that you should recognise one another.’ / all people are created equal
+by Allah / men and women have the same spiritual nature / Muhammad said, ‘I command you to be
+kind to women.’ / Qur’an 3:195 ‘I shall not lose sight of the labour of any of you who labours in my
+way, be it man or woman, each of you is equal to the other.’ / ‘Men are protectors and maintainers
+of women.’ Qur’an 4:34 / men are expected to provide for their families / women have an important
+role in looking after the home and raising children and making decisions about the household / a
+Muslim mother commands great respect and obedience from her children / ‘Heaven is under the
+feet of the mothers.’ (Hadith) / in Islam all religious leaders are male / women do not pray at the
+front of the mosque, etc.
+Judaism
+‘So God created human beings, making them to be like himself. He created them male and female.’
+(Genesis 1:27) / everyone is created by God / in God’s image so everyone is equal in God’s sight /
+Tenakh tells stories of important women who are greatly respected for example, Deborah, Abigail,
+Ruth et al. / Orthodox Judaism sees the roles of men and women as separate but equal / men are
+expected to work to support the family / women are to care for the children and home / mother’s role
+is crucial in Judaism and Judaism passes down the maternal line / at the synagogue women do not
+play a part in the service and sit separately from the men / in Reformed and Liberal Judaism women
+are able to be rabbis / sit with men in the synagogue / handle the Torah Scrolls, etc.
+Sikhism
+‘All men and women are equal. We are the children of one God’ (Guru Granth Sahib 611) /
+‘Man is born of woman and woman is born of woman; without women there would be no world at
+all’. (GGS) / Waheguru is neither male nor female / Sikh marriage is described as ‘two bodies, one
+spirit’ emphasising the equality of the partners / baptised Sikh women use the name ‘Kaur’ (meaning
+princess) which frees them from having to take their husband’s name at marriage / when a Sikh
+woman gives birth she usually takes on the main role of raising the child / however the father will
+usually take on other household duties so that the family’s work is shared evenly / many married
+couples now both work to support their family and so will also share domestic responsibilities, etc.</p>
+<h2 id="q14-5-marks">Q1.4 [5 marks]</h2>
+<p>Explain two religious beliefs about the role of children within the family.
+Refer to sacred writings or another source of religious belief and teaching in your
+answer.</p>
 <hr>
-<h2 id="5-stage-3-aqa_download_selectedpy">5. Stage 3 — `aqa_download_selected.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Downloads only the files listed in the Stage 2 selected-pairs JSON. <strong>Defaults to dry-run</strong> — requires <code>--confirm-download</code> for actual downloads.</p>
-<h3 id="safety-rules">Safety rules</h3>
-<table>
-<thead>
-<tr>
-<th>Rule</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Concurrency</td>
-<td>1 (strictly sequential)</td>
-</tr>
-<tr>
-<td>Default delay</td>
-<td>7000 ms between files</td>
-</tr>
-<tr>
-<td>Default cap</td>
-<td>20 files per run (raise with <code>--max-downloads</code>)</td>
-</tr>
-<tr>
-<td>Dry-run</td>
-<td>Default until <code>--confirm-download</code> is passed</td>
-</tr>
-<tr>
-<td>Existing files</td>
-<td>Skipped unless <code>--overwrite</code></td>
-</tr>
-<tr>
-<td>Auth bypass</td>
-<td>Never — restricted files are flagged, not fetched</td>
-</tr>
-</tbody></table>
-<h3 id="folder-structure">Folder structure</h3>
-<pre><code>downloads/aqa/
-  gcse-religious-studies/
-    june-2024/
-      paper-1-section-a-option-3-the-study-of-religions-islam/
-        question-paper.pdf
-        mark-scheme.pdf
-        metadata.json
-</code></pre>
-<h3 id="download-log">Download log</h3>
-<pre><code>downloads/aqa/download_log.csv
-downloads/aqa/download_log.json
-</code></pre>
-<p>Fields: <code>timestamp</code>, <code>component_key</code>, <code>file_role</code>, <code>url</code>, <code>target_path</code>, <code>status</code>, <code>http_status</code>, <code>bytes_downloaded</code>, <code>error_message</code></p>
-<h3 id="results-gcse-rs">Results (GCSE RS)</h3>
-<ul>
-<li>178 PDFs downloaded (89 question papers + 89 mark schemes)</li>
-<li>Total size: ~80 MB</li>
-<li>All HTTP 200 — no restricted files encountered</li>
-</ul>
+<p>credited.
+Generally, all religions see children as having a duty to obey their parents which is part of showing
+respect to them / respect should be shown in return for their parents’ love and commitment to them /
+many religions see children has having roles within the family such as helping out with chores /
+looking after siblings / learning about their religious faith / participating in religious practices e.g
+being taught their religion, taking part in worship / they continue the family and traditions / care for
+parents (in old age) / bring joy and happiness to parents, etc.
+Buddhism
+The Sigalovada Sutta lists five traditional duties children have / children expected to be obedient /
+respect parents and other relatives /children should deserve their inheritance / preserve the
+traditions of the family / honour their parents after they have died / in caring for parents they can
+repay their parents for bringing them up / support parents when in old age / illness becomes an
+issue, etc.
+Christianity
+Children told to ‘Honour your father and mother’ (Exodus 20:12) / applies to children of all ages /
+includes giving care / respect to the elderly member of the family / ‘Children obey your parents in
+everything for this pleases the Lord.’ (Colossians 3:20) / children bring joy to parents - ‘Children’s
+children are a crown to the aged, and parents are the pride of their children’ (Proverbs 17:6), etc.
+Hinduism
+Children are to learn the traditions of the faith / taught to conduct puja / respect elders / care for the
+elders / fulfilling their duty in this way builds good karma/ sons have specific duties to help parents in
+the afterlife by performing funeral rites when the parents die / sons should perform the shradda
+ceremony at regular intervals / if there is more than one son then the eldest lights the funeral pyre of
+the father and the youngest lights the pyre of the mother / ‘By honouring his mother he gains the
+world, by honouring his father, the middle sphere but by obedience to his teacher, the world of
+Brahman. All duties have been fulfilled by him who honours those three.’ (Upanishads 3:28) etc.
+Islam
+Muslims have a duty to respect and care for their parents as they get older / the Qur’an says being
+unkind or disrespectful to one’s parents is a great sin, (Qur’an 17:23-24) / ‘It is one of the greatest
+sins that a man should curse his parents’. (Hadith) / ‘Heaven is under the feet of the mothers.’
+(Hadith), etc.
+Judaism
+Jews are taught to ‘Honour your father and mother’ (Exodus 20:12) / ‘Listen to your father who gave
+you life and do not despise your mother when she is old’ (Proverbs 23:22) / ‘Grandchildren are the
+crown of their elders and the glory of children is their parents.’ (Proverbs 17:6) / The Talmud
+teaches that honouring parents involves much more than just giving them food and drink, clothes
+and shoes, if they wish to go out then they should be able to go out and return home safely,
+implying children have a responsibility for their parent’s wider welfare, etc.
+Sikhism
+Children are to respect their parents and elders / care for them as they get older / parents supported
+the children when they were young so children should support when relatives are elderly / help with
+domestic chores / children trained in Sikh virtues such as practising sewa / learn the traditions of the
+religion / ‘If you honour your parents, your children will honour you’. (Guru Granth Sahib) etc.</p>
+<h2 id="q15-12-marks">Q1.5 [12 marks]</h2>
+<p>‘Married couples should not use contraception.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.</p>
 <hr>
-<h2 id="6-stage-4-aqa_pdf_to_mdpy">6. Stage 4 — `aqa_pdf_to_md.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Converts downloaded PDFs to structured Markdown using pdfplumber, with PyMuPDF and pytesseract as fallbacks.</p>
-<h3 id="aqa-layout-challenges">AQA layout challenges</h3>
-<p>AQA exam papers use a two-column layout:</p>
-<ul>
-<li>Left column (~70%): question text</li>
-<li>Right column (~18%): &quot;For Examiner&#39;s Use&quot; table with Q number labels and mark boxes</li>
-</ul>
-<p>Without adjustment, text extraction merges the two columns and produces noise like:</p>
-<pre><code>Q1.1 Which one of...                    box
-                        [1 mark]
-Q1.2 Give two...       Q1.3
-                    Instructions...
-</code></pre>
-<h3 id="solutions-applied">Solutions applied</h3>
-<table>
-<thead>
-<tr>
-<th>Problem</th>
-<th>Fix</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Two-column merge</td>
-<td>Crop right 10% before extraction</td>
-</tr>
-<tr>
-<td>Cover page noise</td>
-<td>Skip page 1 (always instructions)</td>
-</tr>
-<tr>
-<td>&quot;For Examiner&#39;s Use&quot; labels</td>
-<td>Regex strip pass</td>
-</tr>
-<tr>
-<td>Truncated mark brackets</td>
-<td>Filter lone <code>[</code> lines</td>
-</tr>
-<tr>
-<td>&quot;IB&quot;, &quot;Tu&quot;, artefact lines</td>
-<td>Regex filter</td>
-</tr>
-<tr>
-<td>Q numbers as spaced digits (<code>0 1 . 2</code>)</td>
-<td>Normalise to <code>Q1.2</code></td>
-</tr>
-</tbody></table>
-<h3 id="output-format">Output format</h3>
-<p><strong>Question paper:</strong></p>
-<pre><code class="language-markdown">---
-type: question_paper
-examSeries: June 2024
----
-
-### Q1.1
-Which one of the following means Oneness of God?
-**[1 marks]**
-A Akhirah  B Risalah  C Tawhid  D Torah
-
-### Q1.2
-Give two beliefs about the revelation of the Qur&#39;an.
-**[2 marks]**
-</code></pre>
-<p><strong>Mark scheme:</strong></p>
-<pre><code class="language-markdown">---
-type: mark_scheme
-examSeries: June 2020
----
-
-### Q1.1
-Answer: C Tawhid
-
-### Q1.2
-**[2 marks]**
-• It is the exact word of Allah.
-• It was revealed through the angel Jibril in Arabic.
-</code></pre>
-<h3 id="extraction-fallback-chain">Extraction fallback chain</h3>
-<ol>
-<li><strong>pdfplumber</strong> — layout-aware text extraction (works for all 178 files in this dataset)</li>
-<li><strong>PyMuPDF</strong> — block-level extraction, better with multi-column layouts</li>
-<li><strong>pytesseract</strong> — OCR for scanned/image-only pages</li>
-</ol>
-<h3 id="results">Results</h3>
-<ul>
-<li>178 Markdown files (89 QP + 89 MS)</li>
-<li>Zero empty files</li>
-<li>Average 3–8 KB per file</li>
-</ul>
+<p>influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+Reference to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+reasons/evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited.</p>
+<p><strong>Arguments in support:</strong>
+• Expectation that children will be born in a marriage, contraception prevents this.
+• Contraception goes against natural law.
+• Contraception may encourage infidelity.
+• Contraception prevents people from carrying out their religious duty.
+• Some contraception acts by expelling a fertilised egg / so goes against sanctity of life, etc.</p>
+<p><strong>Arguments in support of other views:</strong>
+• Contraception is useful to plan a family, eg a couple newly married and may not be able to afford
+children straightaway most religious believers agree with family planning.
+• Natural methods are fine to use as they work with the woman’s natural cycle and so cause no
+harm.
+• Artificial contraception more reliable than natural methods so people are better able to plan
+families by using it.
+• Contraception may prevent the passing on of sexually transmitted infections.
+• Contraception prevents serious genetic disorders from being passed on and so prevents pain and
+suffering.
+• Contraception may help to prevent mother’s health and life being put at risk.
+• Contraception helps to limit population size, etc.
+Buddhism
+Most Buddhists allow contraception that prevents fertilisation from taking place / other methods such
+as morning after pill may be seen as less acceptable as it can be seen as a form of killing / goes
+against the first moral precept / teaching suggests Buddhists should plan their families and bring
+them up in a happy and safe environment / rebirth takes place at conception, contraception makes
+this impossible / contraception prevents pain for couples who do not want children / unwanted
+children, etc.
+Christianity
+All denominations permit birth control / some (eg Roman Catholic) do not permit artificial forms of
+contraception / against natural law / ‘Every sexual act should have the possibility of creating new
+life.’ (Humanae vitae 1968) / for other denominations it is a matter of individual conscience / some
+Christians have reservations about the morning after pill considering it to be abortion rather than
+contraception, etc.
+Hinduism
+No objection to birth control / family planning seen as a good thing / any method can be used
+provided it is non-harming / some Hindus do not use contraception until a son has been born as it is
+the eldest son who carries out the funeral rites for his parents / many couples will use natural
+methods / there are many days when couples should avoid sex such as festivals, full or new moon
+and holy days, these can add up to around 208 holy days when sex should be avoided, etc.
+Islam
+Allah controls when birth takes place / contraception is welcomed but should not be used to prevent
+having children altogether / many Muslims prefer natural methods / believing Allah will give couples
+the strength to cope with any number of children / artificial contraception accepted if the woman’s
+health is at risk / to space out pregnancies / to avoid serious financial difficulty / Qur’an 4:28 ‘God
+wishes to lighten your burden; man was created weak’ is used by some scholars to support family
+planning / ‘Do not kill your children for fear of poverty, we shall provide for them and you, killing
+them is a great sin’ (Qur’an 17:31) is used by some against contraception to argue that it interferes
+with God’s plans and God will give them the strength to cope with the children, etc.
+Judaism
+Family planning is seen as helpful provided it is not used to prevent children altogether / many
+Orthodox Jews will only allow contraception in order to prevent risk to the mother’s health / delay
+having children / to space them out / limit the number of children if this is thought to benefit the
+family / some Orthodox Jews do not believe in contraception at all, believing God will decide the
+size of their family / Reform Jews allow contraception for other reasons such as social / financial
+reasons / Orthodox Jews prefer to use the contraceptive pill as this does not interfere with the
+sexual act / or destroy semen / sterilisation is forbidden as it damages the body God created, etc.
+Sikhism
+No opposition to artificial methods of contraception / though sterilisation should only be used if
+medically necessary / primary purpose of sexual intercourse is the union of man and woman not
+procreation / no specific guidance given in Sikh holy books / scriptures teach that God does not
+intend humans to suffer so contraception is seen as a positive way of helping a couple to plan their
+family / some Sikhs consider the morning after pill to be killing life and so would not support its use,
+etc.
+Theme D: Religion, peace and conflict</p>
+<h2 id="q21-1-mark">Q2.1 [1 mark]</h2>
+<p>Which one of the following best expresses the idea of accepting someone’s apology
+for what they have done wrong?
+A Forgiveness
+B Justice
+C Protest
+D Punishment</p>
 <hr>
-<h2 id="7-stage-5-aqa_md_to_packpy">7. Stage 5 — `aqa_md_to_pack.py`</h2>
-<h3 id="what-it-does">What it does</h3>
-<p>Reads mark scheme Markdown files and generates Learning Web <code>pack_unified.json</code> files automatically. This is the key AI-workflow step — it converts AQA exam content directly into quizzable Learning Web packs without manual data entry.</p>
-<h3 id="parser-architecture">Parser architecture</h3>
-<h4 id="question-header-detection">Question header detection</h4>
-<p>The parser handles two AQA heading formats:</p>
-<pre><code># Format A (standard):          # Format B (inline, some papers):
-### Q1.1                         Q1.1 Which one of the following...
-Which one of the following...
-</code></pre>
-<p>Pattern: <code>r&quot;^(?:###\s+)?(Q\d+\.\d+)\b&quot;</code></p>
-<h4 id="per-question-type-processing">Per-question-type processing</h4>
-<table>
-<thead>
-<tr>
-<th>AQA Q#</th>
-<th>Marks</th>
-<th>Parser extracts</th>
-<th>Pack item types</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>Q*.1</code></td>
-<td>1</td>
-<td>MCQ question text + answer letter + options</td>
-<td><code>vocab</code> (MCQ style)</td>
-</tr>
-<tr>
-<td><code>Q*.2</code></td>
-<td>2</td>
-<td>2 bullet-point acceptable answers</td>
-<td>2× <code>vocab</code></td>
-</tr>
-<tr>
-<td><code>Q*.3</code></td>
-<td>4</td>
-<td>2 bullet-point answers</td>
-<td>2× <code>vocab</code></td>
-</tr>
-<tr>
-<td><code>Q*.4</code></td>
-<td>5</td>
-<td>2 bullet-point answers + first scripture quote</td>
-<td>2× <code>vocab</code> + 1× <code>vocab</code> (scripture)</td>
-</tr>
-<tr>
-<td><code>Q*.5</code></td>
-<td>12</td>
-<td>Statement to evaluate + FOR bullets + AGAINST bullets</td>
-<td><code>vocab</code> FOR:/AGAINST: items</td>
-</tr>
-</tbody></table>
-<h4 id="sentence-builder-generation">Sentence-builder generation</h4>
-<p>For each Q*.2/3/4, the first bullet point is shortened to 6–8 words and used as a <code>sentenceBuilder</code> tile-arrange item:</p>
-<pre><code class="language-python">short = &quot; &quot;.join(bullet.split()[:8]) + &quot;.&quot;
-</code></pre>
-<h4 id="foragainst-detection">FOR/AGAINST detection</h4>
-<p>The parser locates the evaluate-question argument blocks by searching for the literal AQA headings:</p>
-<pre><code>Arguments in support
-...
-Arguments in support of other views
-</code></pre>
-<p>Each bullet becomes a <code>vocab</code> item prefixed <code>&quot;FOR:&quot;</code> or <code>&quot;AGAINST:&quot;</code>, enabling the Smart Test argument scaffold section.</p>
-<h4 id="passage-generation">Passage generation</h4>
-<p>Each pack includes one <code>passage</code> item: a contextual paragraph about the religion and exam series, with 3 comprehension MCQs. One question uses the actual Q1.1 MCQ from the paper.</p>
-<h3 id="item-classification-for-smart-test">Item classification for Smart Test</h3>
-<p>The <code>useSmartTestSession.js</code> hook uses these rules to place items into sections:</p>
-<table>
-<thead>
-<tr>
-<th>Item <code>sourceWord</code></th>
-<th>Smart Test section</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Starts with <code>&quot;MCQ:&quot;</code></td>
-<td>Knowledge Check (5 MCQ questions)</td>
-</tr>
-<tr>
-<td><code>targetWord</code> length ≥ 40 chars, not FOR/AGAINST</td>
-<td>Key Concepts flashcard (3 cards)</td>
-</tr>
-<tr>
-<td>Starts with <code>&quot;FOR:&quot;</code> or <code>&quot;AGAINST:&quot;</code></td>
-<td>Evaluation Practice scaffold</td>
-</tr>
-<tr>
-<td><code>type === &quot;sentenceBuilder&quot;</code></td>
-<td>Sentence Builder (3 tile-arrange questions)</td>
-</tr>
-<tr>
-<td><code>type === &quot;passage&quot;</code></td>
-<td>Reading section</td>
-</tr>
-</tbody></table>
-<h3 id="output">Output</h3>
-<p>For each mark scheme markdown file, one <code>pack_unified.json</code> is written:</p>
-<pre><code>data/Packs/gcse/religion/&lt;pack_id&gt;/pack_unified.json
-</code></pre>
-<p>The manifest is also updated with a <code>capabilities: [&quot;revision&quot;, &quot;passages&quot;]</code> entry.</p>
-<h3 id="results">Results</h3>
-<ul>
-<li>103 packs generated total (14 hardcoded 2024 + 89 auto-parsed)</li>
-<li>5 exam sittings fully covered</li>
-<li>Zero errors on 89 auto-parsed packs</li>
-</ul>
+<p><strong>Answer: A</strong> Forgiveness</p>
+<h2 id="q22-2-marks">Q2.2 [2 marks]</h2>
+<p>Give two reasons why a conflict may be said to be a ‘holy war’.</p>
 <hr>
-<h2 id="8-smart-test-mode-how-it-works-in-the-app">8. Smart Test mode — how it works in the app</h2>
-<h3 id="hook-usesmarttestsessionjs">Hook: `useSmartTestSession.js`</h3>
-<p>The Smart Test session is built entirely client-side from the pack data. No server calls are made.</p>
-<h4 id="session-lifecycle">Session lifecycle</h4>
-<pre><code>startSession(manifest, dataset)
-  → loadVocabItems()        ← all vocab items from pack
-  → loadUnifiedPack()       ← sentenceBuilder + passage items
-  → buildSession()          ← classify + select + shuffle deterministically
-  → _set(newSession)        ← mirror in sessionRef (RC9 safe)
-
-Session phases:
-  &quot;running&quot;  → per-section answering
-  &quot;done&quot;     → results page
-</code></pre>
-<h4 id="deterministic-session-seeding">Deterministic session seeding</h4>
-<p>Sessions are seeded from <code>sessionId = &quot;st-{datasetId}-{timestamp}&quot;</code> using a simple LCG random number generator. This means re-loading a session with the same seed produces the same question order.</p>
-<pre><code class="language-javascript">function seededRng(seed) {
-  let s = seed;
-  return () =&gt; {
-    s = (s * 1664525 + 1013904223) &amp; 0xffffffff;
-    return (s &gt;&gt;&gt; 0) / 0xffffffff;
-  };
-}
-</code></pre>
-<h4 id="section-build-rules-per-session">Section build rules (per session)</h4>
-<pre><code>MCQ section (5 questions):
-  pool = vocab items where !isArgumentItem(w)
-  shuffle(pool, rng).slice(0, 5)
-  for each question: build 3 distractor options from other pool items
-
-Sentence Builder (3 questions):
-  pool = sentenceBuilder items from pack
-  shuffle(pool, rng).slice(0, 3)
-  tiles = model answer split on spaces, then shuffled
-
-Reading (1 passage):
-  pick first passage item (shuffled)
-  show sourcePassage text + data.questions[] comprehension MCQs
-
-Argument scaffold (all FOR/AGAINST items):
-  forItems  = vocab items where sourceWord starts with &quot;FOR:&quot;
-  againstItems = vocab items where sourceWord starts with &quot;AGAINST:&quot;
-  display two-column scaffold with the evaluate statement
-</code></pre>
-<h4 id="strictmode-safe-patterns-rc9">StrictMode-safe patterns (RC9)</h4>
-<p>All side effects fire <strong>outside</strong> <code>setState</code> updater functions:</p>
-<pre><code class="language-javascript">// WRONG — fires twice in StrictMode dev
-setSession(prev =&gt; {
-  updateProgress(state =&gt; recordWordAnswer(state, word.id, correct)); // ← double fire!
-  return { ...prev };
-});
-
-// CORRECT — side effect outside setState
-const newSession = { ...sessionRef.current, ... };
-sessionRef.current = newSession;   // update mirror ref
-setSession(newSession);            // pass value, not function
-updateProgress(state =&gt; {          // side effect runs once, outside
-  recordWordAnswer(state, word.id, correct);
-});
-</code></pre>
-<h4 id="retry-weak-items">Retry weak items</h4>
-<p>The <code>retryWeakItems(weakItems)</code> action builds a new session directly from the wrong-answer words without reloading the pack:</p>
-<pre><code class="language-javascript">const newSession = buildSession(weakItems, [], [], &quot;retry&quot;, sessionId);
-_set(newSession);
-</code></pre>
-<h3 id="component-smarttestpagejsx">Component: `SmartTestPage.jsx`</h3>
-<h4 id="page-phases">Page phases</h4>
-<pre><code>Setup:   Subject card → Curriculum select → Pack select → Start
-Running: ProgressBar → SectionHeader → (MCQ | Builder | Flashcard | Reading | Argument)
-Results: Score % → Section breakdown → Weak items → Retry / New Test
-</code></pre>
-<h4 id="section-components">Section components</h4>
-<table>
-<thead>
-<tr>
-<th>Section type</th>
-<th>Interaction</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>McqSection</code></td>
-<td>4 option buttons → immediate feedback → Next</td>
-</tr>
-<tr>
-<td><code>BuilderQuestion</code></td>
-<td>Tile pool → build area → Check → feedback</td>
-</tr>
-<tr>
-<td><code>ReadingSection</code></td>
-<td>Passage display → Next Section</td>
-</tr>
-<tr>
-<td><code>ArgumentSection</code></td>
-<td>Two-column FOR/AGAINST cards → expandable detail → Finish</td>
-</tr>
-<tr>
-<td><code>FlashcardSection</code></td>
-<td>Reveal definition → Got it / Review again</td>
-</tr>
-</tbody></table>
-<h4 id="builder-tile-state">Builder tile state</h4>
-<p>Each <code>BuilderQuestion</code> is a keyed component (<code>key={question.id}</code>) so it mounts fresh state for each sentence. Tile pool state is local to the component.</p>
+<p>credited.
+A belief that God is on their side / a war sanctioned by God / it was authorised by an important
+religious leader / the purpose should be to defend their religion from attacks from within or from
+outside the religion / to spread the religious message / for important religious land / to promote
+justice / defend believers, the weak and innocent / those who take part believe that they will receive
+spiritual rewards / belief that they are fighting for a sacred and noble / just cause eg self defence,
+etc.</p>
+<h2 id="q23-4-marks">Q2.3 [4 marks]</h2>
+<p>Explain two similar religious beliefs about a country using weapons of mass
+destruction.
+In your answer you must refer to one or more religious traditions.</p>
 <hr>
-<h2 id="9-adding-packs-for-new-subjects-or-years">9. Adding packs for new subjects or years</h2>
-<h3 id="add-packs-for-a-new-aqa-subject">Add packs for a new AQA subject</h3>
-<pre><code class="language-bash"># 1. Collect metadata
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_collect_listing \
-  --subject &quot;History&quot; \
-  --qualification &quot;GCSE History&quot; \
-  --output-prefix &quot;output/aqa_history_all&quot;
-
-# 2. Match pairs
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_match_pairs \
-  --input &quot;output/aqa_history_all.csv&quot; \
-  --output-prefix &quot;output/aqa_history_selected&quot;
-
-# 3. Download (dry run first)
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_download_selected \
-  --input &quot;output/aqa_history_selected.json&quot; \
-  --download-dir &quot;downloads/aqa&quot; --dry-run
-
-# 4. Convert to Markdown
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_pdf_to_md \
-  --input-dir &quot;downloads/aqa&quot; --output-dir &quot;markdown/aqa&quot;
-
-# 5. Generate packs
-PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_md_to_pack \
-  --markdown-root &quot;markdown/aqa/unknown-qualification&quot; \
-  --learning-web-dir &quot;.&quot;
-</code></pre>
-<h3 id="re-run-for-a-new-exam-year-eg-june-2025">Re-run for a new exam year (e.g. June 2025)</h3>
-<pre><code class="language-bash">PYTHONPATH=scripts python3 -m aqa_pipeline.aqa_md_to_pack \
-  --markdown-root &quot;markdown/aqa/unknown-qualification&quot; \
-  --learning-web-dir &quot;.&quot; \
-  --year &quot;june-2025&quot;
-</code></pre>
-<p>The <code>--year</code> filter means only papers from that sitting are processed. All existing packs are skipped automatically.</p>
-<h3 id="customising-the-pack-generator">Customising the pack generator</h3>
-<p><code>aqa_md_to_pack.py</code> has two key extension points:</p>
-<p><strong><code>RELIGION_MAP</code> / <code>PAPER_LABEL_MAP</code></strong> — maps AQA folder names to display labels. Add new papers here.</p>
-<p><strong><code>questions_to_items()</code></strong> — converts parsed questions to pack items. To change how FOR/AGAINST items are written, how scripture is formatted, or how tile sentences are shortened, edit this function.</p>
+<p>similarities and differences within and/or between religions and beliefs
+If contrasting views are given only one of them may be credited up to 2 marks max.
+credited.
+All religions recognise that weapons of mass destruction are always a danger / they are too
+powerful to be just / if they exist that they could be used killing many people (against the sanctity of
+life) / might get into the hands of an unstable leader / concern about states ruled by a dictator / if
+used would cause terrible destruction to God’s world / long term effects eg Hiroshima and Nagasaki
+/ there are enough weapons of mass destruction to destroy the whole world / very expensive to
+make and maintain / there is a need to pray for peace and campaign for disarmament / using
+weapons of mass destruction is immoral / biological and chemical weapons are illegal / may be
+used as a deterrent to prevent war, etc.
+Buddhism
+Many Buddhists believe that weapons of mass destruction should be abolished as countries should
+never use them / they kill indiscriminately which is against the 1st Precept (ahimsa) / others say that
+the problem is not the weapons themselves but rather human attitudes / Thich Nhat Hanh said, ‘For
+peace, the basic thing to do is not to remove nuclear weapons but to remove the fear, anger and
+suspicion in us. If we reduce them, reconciliation is easy.’ / Japanese Buddhist Daisaku Ikeda has
+said, ‘The real enemy that we must confront is the ways of thinking that justify nuclear weapons; the
+readiness to annihilate others when they are seen as a threat or as a hindrance to the realisation of
+our objectives.’ etc.
+Christianity
+Some Christians believe that the problem with weapons of mass destruction is not the weapons
+themselves but their use / they can act as a deterrent and result in peace / chemical or biological
+weapons should not be allowed to exist.
+A fundamental Christian belief is that only God has the right to end life that he has created / the Ten
+Commandments say, ‘You shall not murder’ (Exodus 20:13) / using weapons of mass destruction
+would not be supported by the Just War theory as innocent people are killed indiscriminately / ‘Faith
+groups in the UK are united in their conviction that any use of nuclear weapons would violate the
+sanctity of life and the principle of dignity core to our faith traditions.’ (Steve Hucklesby) / many
+Christians have campaigned for nuclear disarmament (CCND) and the destruction of chemical and
+biological weapons, etc.
+Hinduism
+The Laws of Manu state that women, children, the elderly and those who have turned their backs or
+dropped their weapons should not be attacked, so Hindus are opposed to using weapons of mass
+destruction as they kill indiscriminately / The Rig Veda states that a warrior should not poison the tip
+of an arrow or attack the sick or old, children or women or it leads a warrior to hell even if he wins /
+belief in ahimsa / India does, however, have nuclear weapons but has pledged only to use them
+only as a deterrent and never use them first, etc.
+Islam
+Muslims believe that as God created all life they have a duty and responsibility to care for people
+and to work for peace / as life is sacred using weapons which could kill millions of people and even
+destroy the world is wrong / innocent people should be protected / ‘Fight in God’s cause against
+those who fight you, but do not overstep the limits; God does not love those who overstep the limits
+– Qur’an 2 : 190 / ‘Do not contribute to your own destruction with your own hands, but do good, for
+God loves those who do good’ – Qur’an 2 : 195 / oppose the possession and use of biological and
+chemical weapons / nuclear weapons are so destructive they should never ever be used, etc.
+Judaism
+Jewish scientists Albert Einstein and J. Robert Oppenheimer were involved with others in
+developing atom bombs that were dropped on Hiroshima and Nagasaki and brought World War 2 to
+an end / later they opposed nuclear weapons / Israel has nuclear weapons for defence purposes but
+many Jews are totally against their use and other weapons of mass destruction / the Ten
+Commandments say, ‘You shall not murder’ (Exodus 20:13) / belief that it can never be justified to
+kill large numbers of innocent civilians / Rabbi David Saperstein said, ‘We join to call on the world to
+recognise that violence begets violence; that nuclear proliferation benefits no one; that we can, we
+will, and we must find other ways to protect ourselves, our nations and our future.’, etc.
+Sikhism
+Many Sikhs live in the Punjab (north India) and are concerned that they could become a target if
+hostilities arose between India and Pakistan as both have nuclear weapons / some have
+campaigned for nuclear disarmament as using any weapon of mass destruction is totally
+unacceptable as so many innocent people would be annihilated / ‘No one is my enemy, and no one
+is a stranger. I get along with everyone’ GGS 1299 / some Sikhs are in favour of keeping nuclear
+weapons as a deterrent as it stops the outbreak of war because of fear of the consequences but
+would always oppose their use, etc.</p>
+<h2 id="q24-5-marks">Q2.4 [5 marks]</h2>
+<p>Explain two reasons why some religious believers choose to work for an organisation
+that helps victims of war.
+Refer to sacred writings or another source of religious belief and teaching in your
+answer.</p>
 <hr>
-<h2 id="10-pack-schema-reference">10. Pack schema reference</h2>
-<p>All AQA packs use schema v1.1 with <code>subject: &quot;religion&quot;</code>, <code>curriculum: &quot;gcse&quot;</code>.</p>
-<h3 id="vocab-item-knowledge">Vocab item (knowledge)</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;gcse_rs_june_2024_p1_opt3_q1_3_q1_3_pt1&quot;,
-  &quot;type&quot;: &quot;vocab&quot;,
-  &quot;level&quot;: &quot;GCSE Year 10-11&quot;,
-  &quot;topics&quot;: [&quot;Islam: Beliefs&quot;],
-  &quot;tags&quot;: [&quot;GCSE&quot;, &quot;religion&quot;, &quot;AQA&quot;, &quot;june-2024&quot;],
-  &quot;data&quot;: {
-    &quot;partOfSpeech&quot;: &quot;keyword&quot;,
-    &quot;sourceWord&quot;: &quot;Predestination influence — comfort in hardship (1)&quot;,
-    &quot;targetWord&quot;: &quot;Sunni Muslims believe Allah has decreed all that happens…&quot;,
-    &quot;examples&quot;: { &quot;en-GB&quot;: &quot;AQA June 2024 Q1.3&quot; }
-  }
-}
-</code></pre>
-<h3 id="argument-scaffold-item">Argument scaffold item</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;..._q1_5_for1&quot;,
-  &quot;type&quot;: &quot;vocab&quot;,
-  &quot;data&quot;: {
-    &quot;sourceWord&quot;: &quot;FOR: The Qur&#39;an is the direct word of Allah&quot;,
-    &quot;targetWord&quot;: &quot;The Qur&#39;an is believed to be the direct, unaltered word of Allah…&quot;
-  }
-}
-</code></pre>
-<h3 id="sentence-builder-item">Sentence builder item</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;..._q1_3_sb&quot;,
-  &quot;type&quot;: &quot;sentenceBuilder&quot;,
-  &quot;data&quot;: {
-    &quot;cardType&quot;: &quot;model_answer&quot;,
-    &quot;prompt&quot;: &quot;Build a key point: Explain two ways predestination influences Muslims&quot;,
-    &quot;answer&quot;: &quot;Sunni Muslims believe Allah has decreed all that happens.&quot;,
-    &quot;tiles&quot;: [&quot;Sunni&quot;, &quot;Muslims&quot;, &quot;believe&quot;, &quot;Allah&quot;, &quot;has&quot;, &quot;decreed&quot;, &quot;all&quot;, &quot;that&quot;, &quot;happens.&quot;]
-  }
-}
-</code></pre>
-<h3 id="passage-item">Passage item</h3>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;..._passage&quot;,
-  &quot;type&quot;: &quot;passage&quot;,
-  &quot;data&quot;: {
-    &quot;title&quot;: &quot;Islam — June 2024 Overview&quot;,
-    &quot;sourcePassage&quot;: &quot;This pack covers the AQA GCSE Religious Studies examination for Islam…&quot;,
-    &quot;targetPassage&quot;: &quot;...(same)...&quot;,
-    &quot;speechLanguage&quot;: &quot;en-GB&quot;,
-    &quot;questions&quot;: [
-      {
-        &quot;id&quot;: &quot;..._pq1&quot;,
-        &quot;questionType&quot;: &quot;multiple_choice&quot;,
-        &quot;question&quot;: &quot;How many marks is the evaluate question worth?&quot;,
-        &quot;options&quot;: [&quot;4 marks&quot;, &quot;5 marks&quot;, &quot;10 marks&quot;, &quot;12 marks&quot;],
-        &quot;correctOptionIndex&quot;: 3
-      }
-    ]
-  }
-}
-</code></pre>
+<p>credited.
+Religions are about compassion / helping people in need regardless of which side they are on /
+religions support voluntary work to help those in need / the Golden Rule of ‘Treat others as you
+would be done by’ / it is good to have employment and earn an income / by working for an
+organisation they can do more than they could alone / the organisation does much good work
+helping those with injuries / they have the skills to provide specialist medical care to both civilian and
+military personnel / they want to help people to rebuild their lives / recover from the effects of war /
+promote peace and reconciliation etc.
+Buddhism
+Buddhists believe in working to prevent suffering / believe in helping refugees overcome anger,
+bitterness and hatred towards the aggressors / victims are likely to need help in letting go of these
+feelings / Dhammapada states: “Hatred does not stop hatred. Only love stops it.” / “To conquer
+oneself is a greater victory than to conquer thousands in battle.” / encourages Right Action and
+Right Livelihood – two of the Noble Eightfold Path / the Tzu Chi Foundation’s mission is ‘expressing
+great kindness to all sentient beings, and taking their suffering as our own’ / helping victims brings
+good kamma and helps all beings become free of suffering and ultimately reach enlightenment, etc.
+Christianity
+Jesus had compassion for those in need / Matthew 22:39: &#39;Love your neighbour&#39; / the Parable of the
+Good Samaritan (Luke 10:25–37) / Parable of the Sheep and Goats encourages Christians to
+provide food and shelter for those in need / Christian organisations like Caritas and Christian Aid
+help victims of war / Christian Aid operates under the slogan “We believe in life before death” / many
+believe that it is their Christian duty to raise funds to help those suffering the consequences of war,
+including the families of those who are killed, etc.
+Hinduism
+Hindus are taught to respect life and to practise ahimsa and be compassionate when others are in
+pain / many support the Indian Red Cross providing help through money or in refugee camps / The
+Mahabharata: “This is the sum of duty. Do naught to others, which, if done to thee, could cause
+thee pain.” / good karma is gained by helping victims of war overcome their difficulties / Hinduism
+teaches to help those who are in need, etc.
+Islam
+Muslims believe that it is their duty to give assistance and support to those injured in war through
+the local community and mosques / this includes help and care for victims wherever they live and
+whichever side they or their family member was fighting for / “Whoever saved a life, it would be as if
+they saved the life of all mankind” Qur’an 5:32 / organisations that help victims of war, like Islamic
+Relief and Muslim Aid, are governed by principles such as compassion, empathy, generosity and
+helping those in need / zakah may be used for victims of war, etc.
+Judaism
+The work of some Jewish organisations is based on the Jewish principles of pikuach nefesh, saving
+a life, and tikkum olam, healing the world / Proverbs 25:21: ‘If your enemy is hungry, give him
+something to eat; if thirsty, something to drink.’ / The Talmud: “What is harmful to yourself do not to
+your fellow men” / the mission of Magen David Adom UK includes providing medical care and
+treatment for people of any nationality, race, religion, ethnic origin, age, disability, sexual orientation,
+or political affiliation, including all victims of conflict, etc.
+Sikhism
+Guru Granth Sahib: “As thou deemest thyself, so deem others. Cause suffering to no one.” / in the
+Ardas (prayer), the Sikhs pray for the welfare of everyone / Khalsa Aid was founded on the Sikh
+principles of selfless service and universal love, inspired by the teaching of Guru Gobind Singh and
+this has led to helping victims of war / includes assisting refugees made homeless by fighting / the
+Gurus taught Sikhs to help humanity and treat everybody with love and compassion / helping
+victims brings the reward of good karma, etc.</p>
+<h2 id="q25-12-marks">Q2.5 [12 marks]</h2>
+<p>‘All religious believers should be pacifists and never fight.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+number .
+number .
+number .
+is published after each live examination series and is available for free download from <a href="http://www.aqa.org.uk">www.aqa.org.uk</a>.
+been unsuccessful and AQA will be happy to rectify any omissions of acknowledgements. If you have any queries please contactthe
+236G8061/5</p>
 <hr>
-<h2 id="11-ethics-and-legal-notes">11. Ethics and legal notes</h2>
-<ul>
-<li>All scripts respect AQA&#39;s website infrastructure — no brute-force crawling, no authentication bypass.</li>
-<li>The 7-second default delay between downloads is intentional and should not be reduced.</li>
-<li>Downloaded papers are copyright AQA. Use for personal revision and educational purposes only. Do not redistribute.</li>
-<li>The <code>--confirm-download</code> flag is required for real downloads precisely to prevent accidental mass-downloading.</li>
-</ul>
-<hr>
-<h2 id="12-file-map">12. File map</h2>
-<pre><code>scripts/aqa_pipeline/
-  aqa_common.py          — shared utilities: normalise_title, slugify, detect_*, write_csv/json
-  aqa_collect_listing.py — Stage 1: Playwright scraper
-  aqa_match_pairs.py     — Stage 2: offline pair matcher
-  aqa_download_selected.py — Stage 3: controlled downloader
-  aqa_pdf_to_md.py       — Stage 4: PDF → Markdown converter
-  aqa_generate_packs.py  — Stage 5a: hardcoded 2024 packs (reference implementation)
-  aqa_md_to_pack.py      — Stage 5b: automatic parser (all years, all subjects)
-  requirements.txt       — Python dependencies
-  README.md              — quick-start guide
-  tests/
-    test_normalisation.py  — 44 tests for aqa_common
-    test_matching.py       — 15 tests for aqa_match_pairs
-
-src/react/
-  hooks/useSmartTestSession.js  — session builder + state machine
-  pages/SmartTestPage.jsx       — setup → sections → results UI
-
-data/Packs/gcse/religion/       — 103 AQA GCSE RS packs
-data/generated/manifest.json    — updated with all packs
-
-docs/
-  AQA_PIPELINE.md       — stage-by-stage CLI reference
-  AQA_AI_WORKFLOW.md    — this file (full technical explanation)
-</code></pre>
+<p>influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+reasons/evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited.</p>
+<p><strong>Arguments in support:</strong>
+• There are many other methods of resolving conflicts, eg negotiations, through UN, through
+sanctions or use of peace keeping forces.
+• War ignores the sanctity of life by taking lives and ruining others.
+• War creates refugees and brings terrible destruction.
+• There has to be a better way of resolving problems between countries that doesn’t cause so
+much destruction and harm.
+• Religions are in favour of peace and harmony, not war and killing, etc.</p>
+<p><strong>Arguments in support of other views:</strong>
+• War can be the lesser of two evils: It can be justified if its purpose is to stop atrocities and may be
+a reason to go to war.
+• It is everyone’s responsibility to defend their country and it’s values (patriotism).
+• It is right to retaliate against an aggressor.
+• Idea of Holy War – there are many examples in sacred writings where it is claimed that it was
+right to fight and defend their faith and land.
+• The Just War theory gives many reasons why it may be right to fight. These include (1) a just
+cause, eg stopping genocide or to overthrow a cruel dictator. (2) started by a properly constituted
+authority, eg the government. (3) right intention – promote good and avoid evil. (4) must be a last
+resort – have tried every other avenue and that has failed. (5) must be a reasonable chance of
+success. (6) must be reasonable proportion – use only enough force to achieve objectives. (7)
+no civilians to be involved, eg the conflict should be between the armed forces. (8) self-defence,
+eg to stop an invasion. (9) need to protect trees and the environment wherever possible, etc.
+Buddhism
+Dhammapada 270: ‘A man is not a great man because he is a warrior and kills other men, but
+because he hurts not any living being he is in truth called a great man.’ / the first precept not to take
+life, oppose warfare / concept of ahimsa (non-violence) / Dhammapada 123 ‘Let a man avoid evil
+deeds as a man who lives life avoids poison.’ / Dhammapada also states: ‘Hatred does not stop
+hatred. Only love stops it.’ ‘To conquer oneself is a greater victory than to conquer thousands in
+battle.’ / a peaceful occupation is one of the things that leads to happiness / Right Action and Right
+Livelihood – two of the Noble Paths.
+Christianity
+Matthew 5:9: ‘Happy are those who work for peace.’ / Matthew 5:44: ‘Love your enemies and pray
+for those who persecute you.’ / Matthew 5:38–48: ‘do not take revenge, if anyone slaps you on the
+right cheek, let him slap your left cheek…’ Matthew 22:39: ‘Love your neighbour’ / Matthew 26:51–
+At Jesus’ arrest Peter was violent, but Jesus told him to put away his sword – “all who take up
+the sword will die by the sword” / Romans 12:17–21: ‘If someone has done you wrong, do not repay
+him with a wrong ... Do everything possible on your part to live in peace with everybody. Never take
+revenge. God will take revenge ... If your enemy is hungry, feed him ... If he is thirsty, give him a
+drink ... conquer evil with good.’ / Jesus rejected force at the Temptations and at the Triumphal
+Entry he rode on a donkey, a symbol of peace / he came on a mission of peace – hence the dove (a
+symbol of peace) at his baptism / the Quakers are a pacifist Christian denomination who reject
+violence and war / the early Christians would not join the Roman army / Jesus used violence in the
+Temple to oppose injustice / told his followers to sell their cloak to buy a sword / many Christians
+believe in the Just War theory and join the armed forces, etc.
+Hinduism
+The Mahabharata: “This is the sum of duty. Do naught to others, which, if done to thee, could cause
+thee pain.” / Hindus believe in the principle of ahimsa (non-violence) / good karma would not involve
+violence, but work towards peace / the Upanishads teach non-violence / expect reference to
+Gandhi, who rejected violence and worked for the independence of India / Gandhi was a fighter for
+freedom, stood up for what he believed, but not with violence / sometimes war is necessary –
+Kshatriyas (warrior caste) in Hinduism / Hindu scriptures contain stories of fighting against evil and
+demons, etc.
+Islam
+Surah 49.9: ‘If two parties of believers take up arms ... make peace between them.’ Surah 3.134:
+‘Paradise is for ... those who curb their anger and forgive their fellow men.’ Islam seeks peace
+within the community / in the daily prayers peace is promoted: “peace be unto you.” / the Qur&#39;an
+teaches that revenge is wrong; it is better to seek reconciliation, so forgiveness and love are
+important / the Qur&#39;an says that it is wrong to return evil with evil, and everyone has the right to be
+treated fairly / in the Hadith, Muhammad said that it was important to treat the enemy humanely – he
+believed children were innocent victims, and so the killing of children was forbidden / through the
+Qur&#39;an, Allah is ‘the one who gives safety and peace’ / Muhammad: “None of you ‘truly’ believe, until
+he wishes for his brothers what he wishes for himself.” / Muhammad took part in fighting to protect
+his faith etc.
+Judaism
+Exodus 20:13: ‘Do not kill’ / Micah 4:3 ‘Nation will not lift sword against nation, there will be no more
+training for war.’ / Proverbs 25:21: ‘If your enemy is hungry, give him something to eat; if thirsty,
+something to drink.’ / the Talmud: “What is harmful to yourself do not to your fellow men”. Also
+“Great is peace, because peace is to the Earth what yeast is to dough.” / the Jewish word for peace,
+Shalom, is a common greeting / the Messianic Age will be a time of peace / the Talmud suggests
+that 3 things keep the world safe – truth, judgement and peace / some wars are obligatory
+(Judaism) / there might be a just reason to fight, eg protecting their homeland and religion / many
+Old Testament stories of the Hebrews fighting for the ‘Promised Land’ / God is portrayed as a
+warrior / a pre-emptive strike against an enemy about to invade is allowed, etc.
+Sikhism
+Guru Granth Sahib: “As thou deemest thyself, so deem others. Cause suffering to no one.
+Thereby return to your true home with honour.” / Also, despite the Kirpan (sword), Sikhs do not
+approve of violence / Guru Gobind Singh told his followers never to be first to draw a sword / Anger
+is to be avoided / In the Ardas (prayer), the Sikhs pray for the welfare of everyone / Sikhs resisted
+by non-violence when the British passed a law making it illegal for Sikhs to wear their Kirpans /
+there were also peaceful protests when democratic government was suspended in 1976 / Guru
+Nanak was pacifist suggesting that if someone ill-treated you, you had to bear it three times and the
+fourth time God would fight for you / concept of a Just War (Dharam Yudh) / “When all efforts to
+restore peace prove useless and no words avail, lawful is the flash of steel. It is right to draw the
+sword.” Guru Gobind Singh / Sikhs have had to fight for survival / Khalsa Sikhs wear a Kirpan (one
+of the 5 K’s), etc.</p>
 </div>
         <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
           <a href="/revision/studybook/religious-studies/ks3-rs-christianity/" class="book-card compact">
