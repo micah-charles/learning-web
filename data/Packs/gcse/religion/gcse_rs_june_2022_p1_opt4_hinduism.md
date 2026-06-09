@@ -1,0 +1,340 @@
+# AQA GCSE RS June 2022 — Hinduism
+
+*June 2022 — AQA GCSE Religious Studies — Paper 1 Option 4 The Study Of Religions Hinduism*
+
+---
+
+## Q1.1 [1 mark]
+
+Which one of the following is the meaning of the term ‘sanatana dharma’?
+A End of suffering
+B Eternal law
+C Non-violence
+D Personal freedom
+
+---
+
+**Answer: B** Eternal law
+
+## Q1.2 [2 marks]
+
+Give two beliefs about matter (prakriti).
+
+---
+
+mark for each of two correct points.
+Matter (Prakriti) is everchanging / it is inert / it is temporary / it is an illusion (maya) / Matter (prakriti)
+is one of the two energies which Brahman projected itself in (the other being purusha) to create
+everything in the universe / Matter (prakriti) goes through a cycle of three stages - creation,
+maintenance, destruction / Matter (prakriti) is the primal essence of everything, i.e. the basis from
+which everything exists and what everything is / Matter (prakriti) has three qualities (Tri-gunas;
+sattva = goodness; rajas = energy; tamas = darkness) which are built into everything, including
+human nature / The atman is trapped within temporary physical bodies which are matter (prakriti) /
+Matter (prakriti) blocks the jivatman from recognising its true identity, which means that the atman is
+blocked from moksha (liberation from rebirth), etc.
+
+## Q1.3 [4 marks]
+
+Explain two ways in which belief in a personal loving God influences Hindus today.
+
+---
+
+• As they feel God shows love to them / so they feel they should show love to others / which may
+be in being kind / or giving aid/support / or in their job, etc.
+• They will be thankful to God for that love / so become a devotee / worship regularly and sincerely.
+• They might join a sect of Hinduism / in which they live by the codes of that deity / e.g. ISKCON
+movement / which requires devotion and submission to Krishna.
+• They will feel blessed / that God is loving and so will protect them / and will be there for them /
+‘For the protection of the good, and for the destruction of the wicked, for the establishment of
+Dharma, I am born from age to age’ – Bhagavad Gita 4:8.
+• They will feel that they should worship this God / as this God is loving / and so should their family
+/ so they will teach their family to also worship this God.
+• They will feel that all their worship is personally seen and accepted by God / which might make
+them feel a greater sense of purpose / and of self-worth.
+• They might feel God is too vast/complex / so believing in a more defined (i.e. personal, loving)
+God allows them to worship/focus / e.g. on how God can help, ie show love / e.g. Ganesha the
+remover of obstacles, etc.
+
+## Q1.4 [5 marks]
+
+Explain two Hindu beliefs about free will.
+Refer to sacred writings or another source of Hindu belief and teaching in
+your answer.
+
+---
+
+• Free will is the ability to choose one’s actions / those choices generate good and bad karma
+(punya and pa’apa) / which karma is expressed through this and future lifetimes.
+• Free will is the ability to choose within the religion / i.e., one’s dharma / sanatana dharma or
+varnashramadharma /ability to choose one’s yoga / i.e., bhakti, jnana, karma, astanga/raja.
+• Hinduism teaches that free will is not complete freedom / it is like travelling on the road / free will
+has chosen the route and mode of travel / however karma impacts on free will / as do events and
+people along the way.
+• A person can use free will to help others / to look for/recognise need and then respond positively
+to it / this brings good karma / reflects the virtues (compassion, humility etc).
+• A person can use free will to hurt others / by ignoring need / by being selfish / this brings negative
+karma.
+• Using free will to help others is a way of helping oneself / as it generates good karma / which
+helps bring a better rebirth / or to achieve moksha (goal of life for Hindus).
+• Hinduism also teaches that free will is an illusion / humans think they have free will / but only the
+atman has free will, and it is deluded by being in a material body in this world (prakriti).
+• Sri Ramakrishna taught that only God has free will / ‘the world is his play’ / as long as a person
+has not realised his true nature and that of God, that person cannot have true free will / all that
+person’s thoughts and actions are affected by maya (illusion), etc.
+Religious teachings might include:
+‘If one clings to his attachments, refusing to let go, sorrows will not let go their grip on him’ –
+Tirukkural 45.347-8.
+‘It is said that great personalities almost always accept voluntary suffering because of the suffering
+of people in general. This is considered the highest method of worshipping the Supreme Lord, who
+is present in everyone’s heart’ – Bhagavat Purana 8.7.44.
+‘People who have realized God are aware that free will is a mere appearance. In reality man is the
+machine and God is the Operator, man is the carriage and God its Driver.’ – Sri Ramakrishna.
+‘These actions which can cause hurt and suffering to any other living beings are to be considered
+pa’apa (sin); and punya (virtue) is defined by those actions which bring joy and happiness to others’
+- Mahabharata.
+'The two paths lie in front of the man, pondering them the wise man chooses the path of joy...'
+Upanishads
+
+## Q1.5 [12 marks]
+
+‘For Hindus, the most important aim of life is moksha (liberation from the cycle of
+rebirth).’
+Evaluate this statement.
+In your answer you should:
+• refer to Hindu teaching
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• reach a justified conclusion.
+[SPaG 3 marks]
+
+---
+
+influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:
+
+**Arguments in support:**
+• Since moksha is liberation from rebirth / being free of the barriers of maya (illusion) / knowing
+one’s true self and God / ‘Liberation is not possible without knowledge’ – shruti scripture / then
+this must be the highest priority / as that liberation is the greatest achievement / with the most to
+gain.
+• Moksha means to be freed of all the suffering of this world / any sane person would make that
+their highest goal / as no one wishes to suffer / ‘By realising God, one is released from all fetters’ -
+Vedas / also to be freed from the struggle with/against karma / which is part of the reason for the
+suffering.
+• The scriptures discuss moksha at length / always discussed as the purest of aims in life / other
+aims are presented as less than this.
+• Other aims can become barriers / e.g. kama (seeking pleasure) can become addictive / so a
+person never has enough material comfort/sensory pleasure / they then become more entrapped
+in maya and rebirth / ‘When all desires stationed in the heart are dispensed with one becomes
+liberated undoubtedly, even while living’ – Garuda Purana.
+• Depends what is meant by ‘most important’ / if this means ‘highest/most noble’, gurus and
+scriptures would place moksha as highest, etc.
+
+**Arguments in support of other views:**
+• Other aims are all important because they are stepping stones to moksha / they are important in
+their own way / a Hindu will focus on what is most pertinent to them / so their idea of importance
+will change with circumstance.
+• Not everyone is at the stage where they can focus on this aim / e.g. a young person is still
+learning the dharma / so it is not their most important / it is one of several / not everyone is
+focused on their religion / so to them material aims might be more important.
+• Kama (seeking pleasure) is more important / as it is to have sufficient to be able to live a
+comfortable life (not excess) / this satisfaction allows other goals to then be pursued.
+• Arta (material prosperity) is more important / e.g. for those with a family / as they need to ensure
+their family has everything they need / in order to fulfil their duty to them / in Hindu culture,
+marriage and family are expected of all.
+• Dharma (living ethically) is more important / by keeping the three elements of dharma, a Hindu
+can make spiritual progress, even achieve moksha / dharma becomes the means to attaining
+moksha / i.e. the foundation of moksha /‘The desire for liberation arises in all human beings at the
+end of many births through the opening of their past virtuous conduct’ – Upanishads.
+• Sanatana-dharma (doing one’s duty by following eternal law) / allows you to live the right way /
+e.g. by keeping the Hindu virtues / which leads to moksha anyway / ‘better to do one’s duty ill,
+than another’s duty well’ – Bhagavad Gita / this is a more pure form of attaining moksha, because
+of being focused on what is necessary now.
+• Varnashrama-dharma (caste and stage duty) / as you have to look after your family to be able to
+get good karma / this takes up all wealth and energy / also to process successfully through the
+stages of life / which leads to moksha / this is a more pure form of attaining moksha, because of
+being focused on what is necessary now, etc.
+
+## Q2.1 [1 mark]
+
+Which one of the following is the type of Hindu worship known as bhajan/kirtan?
+A Being blessed by a priest
+B Holding a fire ceremony
+C Seeing the deity
+D Singing hymns
+
+---
+
+**Answer: D** Singing hymns
+
+## Q2.2 [2 marks]
+
+Give two ways in which Hindus celebrate Diwali.
+
+---
+
+mark for each of two correct points.
+Putting small lights/candles/lamps around the home / putting lighted lanterns onto water, e.g. the
+Ganges / retelling the story of Diwali – of Rama and Sita / attend the mandir (temple) for worship /
+special puja dedicated to Lakshmi, goddess of prosperity / clean the house / business people have
+their accounts blessed ahead of the new year / puja for Ganesha / Havan ritual / music and dancing,
+including fairs and festival events in the UK / exchange of cards and gifts / creating rangoli patterns
+outside the home / firework displays, etc.
+Allow the elements of puja – chant mantras, pray, make offerings, partake in arti, receive prasad,
+etc.
+
+## Q2.3 [4 marks]
+
+Explain two contrasting ways in which gurus are important in Hinduism.
+
+---
+
+similarities and differences within and/or between religions and beliefs
+Contrasting may mean opposing or may mean different views.
+If similar beliefs are given, only one of them may be credited up to 2 marks max.
+• As teachers / for those who are focused on their spiritual journey / there is a very ancient tradition
+of gurus within the religion / many are considered saints/rishis / their writings are still used today /
+their sects still exist.
+• They help to explain the scriptures / which they have greater understanding of / because of longer
+study / they are experts with a higher level of religious understanding than ordinary Hindus.
+• Hinduism encourages every Hindu to use a teacher / ‘guru’ means ‘the one who dispels darkness
+and takes towards the light’ / thus the guru helps a student to see the truth of the scriptures.
+• All Hindus have a teacher |(guru) as they learn their religion / those who wish to focus or dedicate
+themselves to understanding the scriptures need a guru.
+• It is easier to learn from a guru / as they have already moved closer to attaining, if not already
+attained moksha / they know the path, so know what to do/not do / their experience and
+knowledge can be used by the student.
+• Following a guru demands obedience to them / this means the decision to follow a guru is a great
+undertaking / gurus represent a deliberate focus on and dedication to a wholly spiritual path / the
+guru is their focus of worship, so very important.
+• Gurus are highly respected / for example, at Kumbh Mela, the gurus are the first to be allowed
+into the water at sunrise / many people attend Kumbh Mela primarily to find a guru (for long or
+short periods of time).
+• Gurus can be seen as role models / as they may have attained moksha / so know how to.
+• They have traditional importance / i.e., historically gurus were revered / which gives them status
+today.
+• The goal of life for Hindus is moksha / anything that can help that is important / gurus help their
+students attain moksha, so must be important.
+• Gurus preserve the faith/religion / because they teach others the correct understanding and ways
+of practicing it, etc.
+
+## Q2.4 [5 marks]
+
+Explain two reasons why Hindus support environmental projects.
+Refer to sacred writings or another source of Hindu belief and teaching in
+your answer.
+
+---
+
+• Respect for life is a virtue / all life needs the environment to be clean and healthy / so it is
+incumbent on people to protect the environment / if not for self, but for descendants / who will
+inherit a depleted and damaged world if environmental issues are not sorted.
+• Belief that God is in all things / including environment / ‘Brahman is all’ – Vedas / so respect for
+environment is a form of worship of God / bringing good karma.
+• Earth is called ‘Mother’ / nourishing humans through the food provided, land to live on etc / so
+supporting environmental projects is a way that thankfulness can be shown to Mother Earth for
+her bounty.
+• To keep pilgrimage sites viable and healthy / Green Pilgrimage Network / recognising the
+increasing numbers of pilgrims to sites are doing greater damage to them / even putting them
+under threat / Hindus see pilgrimage as a key element of worship / so need to protect pilgrimage
+sites.
+• The story of Krishna defeating the poisonous serpent Kaliya / who had set up home near a
+watering hole, and every living being that went near was fatally poisoned / Krishna defeated the
+serpent and restored the pool to its original usable state / message being to clean up where there
+is environmental damage.
+• Story of King Prithu who complained to Mother Earth when there was famine / Mother earth
+pointed out that human were just taking form the earth and not giving back / so she was
+withholding crops / told Prithu how to landscape the land and build reservoirs / Prithu did / famine
+ended / message being that humans have to look after the world.
+• Because there is significant evidence of climate change or degradation / this personally affects
+Hindus / so supporting environmental projects is a pragmatic, even common sense, response,
+etc.
+Religious teachings may include -
+‘Brahman is all’ - Vedas.
+‘Protect trees, trees will protect you’ – Vedas.
+‘The Earth is my mother, I am the Earth’s son’ – Artharva Veda.
+‘The earth, the air, the land and the water are not an inheritance from our forefathers, but on loan
+from our children. So we have to hand over to them at least as it was handed over to us’ - Gandhi.
+
+## Q2.5 [12 marks]
+
+‘In Hindu worship, the main focus is on One God (Ultimate Reality).’
+Evaluate this statement.
+In your answer you should:
+• refer to Hindu teaching
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• reach a justified conclusion.
+number .
+number .
+number .
+each live examination series and is available for free download from www.aqa.org.uk.
+
+---
+
+influence
+A well-argued response, reasoned consideration of different points of view. 10–12
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+Reasoned consideration of different points of view. 7–9
+relevant evidence and information.
+Clear reference to religion.
+Reasoned consideration of a point of view. 4–6
+A logical chain of reasoning drawing on knowledge and understanding of relevant
+evidence and information.
+evidence.
+Point of view with reason(s) stated in support. 1–3
+evidence and arguments must be credited:
+
+**Arguments in support:**
+• The Ultimate Reality is all there is / ‘Brahman is all’ – Vedas / so it means that every act of
+worship must ultimately be focused on Brahman / regardless of what the immediate target of
+worship appears to be.
+• Hinduism is a monotheistic religion / deities are functions of One God / easier ways to understand
+the complexity of One God / hence all worship is focused on One God via a representation / no
+matter what the representation that is being used / 'There is only One God, and God is all' -
+Gandhi.
+• Hindus believe God is not far away / but rather within the heart and consciousness / hence any
+worship must be ‘from the heart’ / so they are constantly through any worship in contact with and
+focused on the One God / this is the essence of Hindu spirituality.
+• All deities are just functions of God / so worship of any is still worship of One God / ‘Brahman is
+pure consciousness, without parts, without form. In order to help the seeker in his efforts to
+surrender, symbols and qualities are added to Brahman.’ – Ramatapaniya Upanisad.
+• All sacred places/plants/animals are linked to the deities, or Trimurti / which is simply an
+expression of One God / hence they are linking back to the One God / so it is wrong to suggest
+Hindus are not focusing on One God when they are worshipping any of the Trimurti, or their
+avatars.
+• Focusing on the Ultimate Reality as Nirguna Brahman means a believer is focused on Aum / they
+are not side-tracked or distracted by an image or statue / so their worship is more pure, etc.
+
+**Arguments in support of other views:**
+• The One God might be the ultimate focus, but is often not the primary process / it is clear that the
+believer is focusing on Krishna for example / other foci help to connect to One God / such as holy
+places, deities, etc.
+• Given different deities represent different things / the various functions of God are split between
+these deities / it makes sense to focus on the specific deity / e.g. focusing on Ganesha before
+getting married and starting that new life.
+• Hindus worship their specific deity / understanding their Lord to be supreme / but this is not the
+One God / e.g. Vaishnavites believe Vishnu or Krishna to be supreme; Shaivites believe Shiva to
+be supreme / ‘Of all types of worship, worship of Vishnu is supreme. But even higher than that is
+the worship of those things related to Vishnu’ – Padma Purana.
+• Most people cannot focus on the One God / e.g. children or those with less understanding of God
+/ God is beyond / Nirguna Brahman / hence they are unable to comprehend One God / find it
+easier to focus on something less complex / so Saguna Brahman is more comprehensible,
+relevant or relatable.
+• Focus should be on the actual task in hand / e.g., the act of puja / so that it is done with enough
+devotion and intention to be properly valid / and not just done out of ‘muscle memory’ / present in
+the moment.
+• Focus should be on what works best for the individual / nature can be a good focus / as you fell
+the presence of God / ‘Brahman is all’ (Upanishads), etc.
