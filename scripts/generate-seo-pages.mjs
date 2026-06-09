@@ -6,7 +6,7 @@ import { marked, extractTOC } from "../src/study-book-core.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const MANIFEST_PATH = resolve(ROOT, "data/generated/manifest.json");
-const SEO_DIR = resolve(ROOT, "public/seo");
+const SEO_DIR = resolve(ROOT, "public/revision");
 const SITEMAP_PATH = resolve(ROOT, "public/sitemap.xml");
 const ROBOTS_PATH = resolve(ROOT, "public/robots.txt");
 const BASE_URL = "https://www.foxchildidea.com";
@@ -89,19 +89,19 @@ function wrapPage(title, description, canonical, contentHtml, structuredData) {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <link rel="stylesheet" href="/seo/seo.css" />
+  <link rel="stylesheet" href="/revision/revision.css" />
   ${sdJson}
 </head>
 <body>
   <div class="seo-page">
     <header class="seo-header">
       <a href="/" class="seo-logo">
-        <img src="/seo/logo.png" alt="" class="seo-logo-img" />
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
         FoxChild@Learn
       </a>
       <nav class="seo-nav">
         <a href="/">Home</a>
-        <a href="/seo/subjects/">Subjects</a>
+        <a href="/revision/subjects/">Subjects</a>
       </nav>
     </header>
     <main class="seo-main">
@@ -134,19 +134,19 @@ function wrapStudyBookPage(title, description, canonical, bookTitle, bookDesc, t
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapeHtml(title)}" />
   <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <link rel="stylesheet" href="/seo/seo.css" />
+  <link rel="stylesheet" href="/revision/revision.css" />
   ${sdJson}
 </head>
 <body>
   <div class="sb-page">
     <header class="sb-page-header">
       <a href="/" class="sb-page-logo">
-        <img src="/seo/logo.png" alt="" class="seo-logo-img" />
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
         FoxChild@Learn
       </a>
       <nav class="sb-page-nav">
         <a href="/">Home</a>
-        <a href="/seo/subjects/">Subjects</a>
+        <a href="/revision/subjects/">Subjects</a>
       </nav>
     </header>
     <div class="sb-page-titlebar">
@@ -176,7 +176,7 @@ function wrapStudyBookPage(title, description, canonical, bookTitle, bookDesc, t
       </div>
     </div>
   </div>
-  <script src="/seo/seo-study-book.js"><\/script>
+  <script src="/revision/revision-study-book.js"><\/script>
 </body>
 </html>`;
 }
@@ -246,12 +246,12 @@ function main() {
 
     const pageTitle = `${subj.label} Revision and Practice | FoxChild@Learn`;
     const pageDesc = `Free KS3${subj.slug === "religious-studies" ? " and GCSE" : ""} ${subj.label.toLowerCase()} revision study notes and interactive quizzes. ${subj.books.length} study packs available.`;
-    const canonical = `${BASE_URL}/seo/subjects/${subj.slug}/`;
+    const canonical = `${BASE_URL}/revision/subjects/${subj.slug}/`;
 
     // Build book cards
     let booksHtml = '<div class="book-grid">';
     for (const sb of subj.books) {
-      const bookUrl = `/seo/studybook/${sb.subjectSlug}/${sb.slug}/`;
+      const bookUrl = `/revision/studybook/${sb.subjectSlug}/${sb.slug}/`;
       const desc = escapeHtml((sb.description || "").substring(0, 150));
       booksHtml += `
         <a href="${bookUrl}" class="book-card">
@@ -280,7 +280,7 @@ function main() {
 
     writeFileSync(resolve(subjDir, "index.html"), wrapPage(pageTitle, pageDesc, canonical, contentHtml, sd));
     sitemapUrls.push(canonical);
-    console.log(`[seo] Generated subject page: /seo/subjects/${subj.slug}/`);
+    console.log(`[seo] Generated subject page: /revision/subjects/${subj.slug}/`);
   }
 
   // ── Generate subject index page ─────────────────────────────────────────────
@@ -288,7 +288,7 @@ function main() {
     const indexDir = resolve(subjectsDir);
     let listHtml = '<div class="subject-grid">';
     for (const subj of sortedSubjects) {
-      const url = `/seo/subjects/${subj.slug}/`;
+      const url = `/revision/subjects/${subj.slug}/`;
       listHtml += `
         <a href="${url}" class="subject-card">
           <h2>${subj.label}</h2>
@@ -316,12 +316,12 @@ function main() {
     writeFileSync(resolve(indexDir, "index.html"), wrapPage(
       "All Subjects | FoxChild@Learn",
       "Browse free KS3 and GCSE revision study notes across all subjects. Choose from Geography, History, Science, Languages, Computing, Religious Studies and more.",
-      `${BASE_URL}/seo/subjects/`,
+      `${BASE_URL}/revision/subjects/`,
       contentHtml,
       sd
     ));
-    sitemapUrls.push(`${BASE_URL}/seo/subjects/`);
-    console.log("[seo] Generated subject index page: /seo/subjects/");
+    sitemapUrls.push(`${BASE_URL}/revision/subjects/`);
+    console.log("[seo] Generated subject index page: /revision/subjects/");
   }
 
   // ── Generate study book pages ──────────────────────────────────────────────
@@ -333,7 +333,7 @@ function main() {
     const pageDesc = sb.description
       ? sb.description.substring(0, 160)
       : `Free ${sb.subjectLabel.toLowerCase()} revision study notes for ${sb.title}.`;
-    const canonical = `${BASE_URL}/seo/studybook/${sb.subjectSlug}/${sb.slug}/`;
+    const canonical = `${BASE_URL}/revision/studybook/${sb.subjectSlug}/${sb.slug}/`;
 
     // Convert markdown to HTML
     let mdHtml = "";
@@ -362,7 +362,7 @@ function main() {
     if (related.length > 0) {
       relatedHtml = '<div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">';
       for (const rel of related) {
-        const relUrl = `/seo/studybook/${rel.subjectSlug}/${rel.slug}/`;
+        const relUrl = `/revision/studybook/${rel.subjectSlug}/${rel.slug}/`;
         relatedHtml += `
           <a href="${relUrl}" class="book-card compact">
             <h3 class="book-card-title">${escapeHtml(rel.title)}</h3>
@@ -401,11 +401,11 @@ function main() {
     if (!mdAvailable) {
       console.warn(`[seo] WARNING: Study book page generated without markdown content for: ${sb.id}`);
     }
-    console.log(`[seo] Generated study book page: /seo/studybook/${sb.subjectSlug}/${sb.slug}/`);
+    console.log(`[seo] Generated study book page: /revision/studybook/${sb.subjectSlug}/${sb.slug}/`);
   }
 
   // ── Copy assets ──────────────────────────────────────────────────────────
-  // seo.css is already in public/seo/seo.css, Vite will copy it.
+  // revision.css is already in public/revision/revision.css, Vite will copy it.
   // Copy brand logo for the SEO header
   try {
     const logoPath = resolve(ROOT, "brand/logo.png");
