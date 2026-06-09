@@ -39,7 +39,7 @@ Common failures to fix before running:
 
 ```
 data/Packs/<curriculum>/<subject>/<id>/
-  pack_unified.json    ← vocab, fillBlank, sequence, categorySort items
+  pack_unified.json    ← vocab, multipleChoice, fillBlank, sequence, categorySort items
   passages.json        ← passage items (only if the pack has reading content)
 
 data/SentenceBuilderPacks/<id>/
@@ -47,6 +47,8 @@ data/SentenceBuilderPacks/<id>/
 ```
 
 Valid values: `curriculum` = `ks3` | `gcse` | `other` · `subject` = `language` | `history` | `geography` | `science` | `literature`
+
+Use `multipleChoice` for standalone authored MCQ prompts, such as grammar questions with fixed options. Use `fillBlank` only for cloze prompts containing a `____` blank.
 
 ⚠ **Never write to `generated_packs/`** — it is gitignored and the app will never load it.
 

@@ -503,8 +503,9 @@ vocab card needs a prompt/answer pair:
 ```
 
 > **Tip for non-language packs:** if you want a clear "term → definition"
-> drill where prompt and answer differ, prefer a `fillBlank` item. Never create
-> a vocab card whose question is the same word as its answer.
+> drill where prompt and answer differ, prefer a `multipleChoice` item for
+> authored MCQs or a `fillBlank` item for cloze recall. Never create a vocab
+> card whose question is the same word as its answer.
 
 ### Useful `tags` for non-language packs
 
@@ -752,7 +753,8 @@ Adjust by topic size; these are good defaults for a complete pack:
 | Revision pack `sentence` items | 20–40 | Only for language packs, or cause-and-effect statements for history/science |
 | Revision pack `sequence` items | 0–4 | One per process; geography and science benefit most |
 | Revision pack `categorySort` items | 0–4 | One per "X vs Y" distinction |
-| Revision pack `fillBlank` items | 0–20 | Strong fit for non-language packs; mix typed and multiple-choice |
+| Revision pack `multipleChoice` items | 0–20 | Standalone authored MCQs; strong fit for grammar and concept checks |
+| Revision pack `fillBlank` items | 0–20 | Cloze recall prompts; can be typed or choice when options are present |
 | Sentence builder pack `sentenceBuilder` items | 15–30 | Group by `cardType` |
 | Passage pack `passage` items | 4–8 | Each passage 80–220 words depending on level |
 | Per-passage `questions` | 3–6 | Mix difficulties and types |

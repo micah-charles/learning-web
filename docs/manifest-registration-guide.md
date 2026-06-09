@@ -71,7 +71,7 @@ Copy this template and fill in all fields:
 ### `capabilities` values
 
 ```json
-["revision"]                    // vocab/quiz/fillBlank/sequence/categorySort only
+["revision"]                    // vocab/quiz/multipleChoice/fillBlank/sequence/categorySort only
 ["revision", "passages"]        // + reading passages
 ["revision", "passages", "crossword"]   // + crossword (auto-detected from vocab count)
 ```

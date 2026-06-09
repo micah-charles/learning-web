@@ -110,14 +110,14 @@ Pack ID:                 <packId>
 Main concepts in source: <bullet list>
 Wider curriculum added:  <bullet list, or "none">
 Scope:                   source-faithful lesson pack | wider unit pack
-Item types to include:   vocab | fillBlank | sequence | categorySort | passage (if applicable) | sentenceBuilder (if applicable)
+Item types to include:   vocab | multipleChoice | fillBlank | sequence | categorySort | passage (if applicable) | sentenceBuilder (if applicable)
 ```
 
 ---
 
 ## Step 3 — Generate the JSON file
 
-Output **one single file** called `pack_unified.json`. All item types — `vocab`, `fillBlank`, `sequence`, `categorySort`, `passage`, and `sentenceBuilder` — go in the same `items` array. The Learning Web app routes each item to the correct tab automatically based on its `type` field.
+Output **one single file** called `pack_unified.json`. All item types — `vocab`, `multipleChoice`, `fillBlank`, `sequence`, `categorySort`, `passage`, and `sentenceBuilder` — go in the same `items` array. The Learning Web app routes each item to the correct tab automatically based on its `type` field.
 
 ```
 FILE: pack_unified.json
@@ -163,7 +163,8 @@ Rules:
 | Item type | Minimum | Notes |
 |---|---|---|
 | `vocab` | 30–45 | Key terms, people, dates, events |
-| `fillBlank` | 15–20 | Mix typed and multiple-choice |
+| `multipleChoice` | 10–20 | Standalone authored MCQ prompts that are not cloze sentences |
+| `fillBlank` | 15–20 | Cloze/gap-fill prompts; can be typed or choice when `options` are present |
 | `sequence` | 2–3 | Processes where order matters |
 | `categorySort` | 2–3 | "X vs Y" classification |
 | `sentenceBuilder` | 20–25 | In the same `pack_unified.json` `items` array |
@@ -260,6 +261,27 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ⚠ Gap marker is always `____` (four underscores). Never `___`, `[blank]`, `<blank>`, or `...`.
 ⚠ The correct `answer` must appear in `options` if options are provided.
 ⚠ Field name is `sentence`, not `question`, `text`, or `prompt`.
+⚠ Do not use `fillBlank` for a standalone question unless it genuinely contains a `____` blank.
+
+### `multipleChoice`
+
+```json
+{
+  "id":     "grammar_case_001",
+  "type":   "multipleChoice",
+  "level":  "Stage 1",
+  "topics": ["Latin grammar", "cases"],
+  "tags":   ["grammar", "mcq"],
+  "data": {
+    "question": "What case is 'servus' in 'servus dormit'?",
+    "answer":   "nominative",
+    "options":  ["nominative", "accusative", "dative", "ablative"],
+    "hint":     "The noun is doing the verb."
+  }
+}
+```
+
+Use `multipleChoice` for authored MCQ prompts such as grammar questions, concept checks, or "Which statement is correct?" questions. Required fields are `question`, `answer`, and `options`; `options` must include `answer`. Do not use `sentence` here.
 
 ### `sequence`
 
@@ -404,6 +426,8 @@ Work through this list silently before you output the JSON:
 - [ ] Every item has a unique `id`
 - [ ] All `fillBlank` sentences contain `____` (four underscores)
 - [ ] All `fillBlank` answers appear in their `options` array (if options provided)
+- [ ] All `multipleChoice` items have `question`, `answer`, and `options`
+- [ ] All `multipleChoice` answers appear in their `options` array
 - [ ] All `sentenceBuilder` tiles joined with spaces exactly equal `answer`
 - [ ] All `categorySort` `pair.category` values match one of the `categories` entries
 - [ ] All `sequence` items arrays have at least 2 entries
@@ -459,6 +483,7 @@ If any check fails, fix it before outputting.
 ## What NOT to do
 
 - ❌ `"question"` field on `fillBlank` — use `"sentence"`
+- ❌ `"sentence"` field on `multipleChoice` — use `"question"`
 - ❌ `"questionText"` or `"question_en"` in passage questions — use `"question"`
 - ❌ `"steps"` in sequence data — use `"items"`
 - ❌ `"item"` in categorySort pairs — use `"text"`
@@ -473,6 +498,7 @@ If any check fails, fix it before outputting.
 - ❌ `targetWord` that is a single-word synonym — e.g. `"sourceWord": "climate", "targetWord": "weather"`
 - ❌ `targetWord` shorter than 10 words for non-language packs — definitions must be full sentences
 - ❌ `fillBlank` options list that doesn't include the answer
+- ❌ `multipleChoice` options list that doesn't include the answer
 - ❌ `sentenceBuilder` tiles that don't reconstruct `answer` when joined with spaces
 
 --- END PROMPT ---

@@ -205,6 +205,7 @@ Every item in a unified pack has a fixed outer envelope:
 | `sequence` | Revision packs | Sequence ordering |
 | `categorySort` | Revision packs | Category sorting |
 | `fillBlank` | Revision packs | Gap-fill |
+| `multipleChoice` | Revision packs | Standalone multiple-choice |
 | `sentenceBuilder` | Sentence builder packs | Builder tab (standalone) |
 | `passage` | Passage packs | Reading tab |
 
@@ -379,6 +380,43 @@ Rendered as either a typed input or a button-grid of options (the UI picks based
 | `answer` | string | Correct answer (used for typed mode) |
 | `hint` | string? | Optional hint shown to the student |
 | `options` | string[]? | Multiple-choice options; if present, rendered as a button grid |
+
+---
+
+## Item Types: `multipleChoice`
+
+```json
+{
+  "id":     "grammar_case_001",
+  "type":   "multipleChoice",
+  "level":  "Stage 1",
+  "topics": ["Latin grammar", "cases"],
+  "tags":   ["grammar", "mcq"],
+  "data": {
+    "question": "What case is 'servus' in 'servus dormit'?",
+    "answer":   "nominative",
+    "options":  ["nominative", "accusative", "dative", "ablative"],
+    "hint":     "The noun is doing the verb."
+  }
+}
+```
+
+Use `multipleChoice` for standalone authored MCQ prompts that are **not** gap-fill sentences. This is the correct type for grammar drills such as "What case is...?", "What does this ending show?", or "Which form agrees with...?" where the prompt is a full question and the learner must choose one fixed answer.
+
+Do **not** encode these as `fillBlank` unless the prompt genuinely contains a `____` blank. `fillBlank` is reserved for cloze/gap-fill prompts; `multipleChoice` uses `data.question`.
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `question` | string | Full prompt shown to the learner. Required. |
+| `answer` | string | Correct option. Required and must appear in `options`. |
+| `options` | string[] | Fixed answer choices shown as buttons. Include the correct answer plus distractors. |
+| `hint` | string? | Optional hint shown to the student |
+| `questionType` | string? | Optional semantic metadata, e.g. `"multiple_choice"`; the renderer uses `type: "multipleChoice"` and `options`. |
+
+Runtime behavior:
+- Quiz treats `multipleChoice` as `modeId: "multipleChoice"`, `kind: "choice"`, and `modeTitle: "Multiple choice"`.
+- Grammar-only language packs with zero `vocab` items can still start a quiz when they contain `multipleChoice` items.
+- Arcade Quiz Hunt can load `multipleChoice` items from the same unified pack and uses the authored `options` as answer tokens.
 
 ---
 
