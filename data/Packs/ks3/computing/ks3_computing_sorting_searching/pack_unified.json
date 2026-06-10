@@ -1,0 +1,1077 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_sorting_searching",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "displayName": "KS3 Computing — Sorting & Searching Algorithms",
+  "subtitle": "Linear search, binary search, bubble sort, and algorithm efficiency.",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": [
+    "KS3",
+    "computing",
+    "algorithms",
+    "sorting",
+    "searching"
+  ],
+  "items": [
+    {
+      "id": "ks3_computing_sort_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "linear search",
+        "targetWord": "a searching algorithm that checks each item in a list one by one from first to last until the target value is found or the entire list has been checked",
+        "examples": {
+          "en-GB": "A linear search for the value 7 in [3, 9, 7, 1, 5] checks index 0, then 1, then finds it at index 2 after 3 comparisons."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "binary search",
+        "targetWord": "a searching algorithm that repeatedly halves a sorted list by comparing the target to the middle element, eliminating the half that cannot contain the target",
+        "examples": {
+          "en-GB": "A binary search on [2, 5, 8, 11, 14, 17, 20] for 14 finds it in just 3 comparisons by repeatedly halving the search space."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bubble sort",
+        "targetWord": "a sorting algorithm that repeatedly compares adjacent pairs of elements and swaps them if they are in the wrong order, until no swaps occur in a full pass",
+        "examples": {
+          "en-GB": "After the first pass of bubble sort on [5, 3, 8, 1, 4], the largest value 8 has bubbled up to its final position."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "merge sort",
+        "targetWord": "a divide-and-conquer sorting algorithm that splits the list in half, recursively sorts each half, and merges the sorted halves back together; more efficient than bubble sort for large datasets",
+        "examples": {
+          "en-GB": "Merge sort splits [5, 3, 8, 1] into [5, 3] and [8, 1], sorts each half, then merges them into [1, 3, 5, 8]."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "insertion sort",
+        "targetWord": "a sorting algorithm that builds a sorted list one element at a time by inserting each new element into its correct position in the already-sorted portion",
+        "examples": {
+          "en-GB": "Insertion sort takes each element in turn and slides it leftward past any larger elements until it is in the right place."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "comparison",
+        "targetWord": "checking whether one value is greater than, less than, or equal to another; the basic operation counted when measuring algorithm efficiency",
+        "examples": {
+          "en-GB": "In bubble sort, each comparison checks whether adjacent elements need to be swapped."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "pass",
+        "targetWord": "one complete run through a list from start to end during a sorting algorithm, after which at least one more element is guaranteed to be in its final position",
+        "examples": {
+          "en-GB": "After the first pass of bubble sort, the largest element is always in its correct final position at the end of the list."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "efficiency",
+        "targetWord": "the number of steps or comparisons an algorithm requires to complete its task; a more efficient algorithm requires fewer operations",
+        "examples": {
+          "en-GB": "Binary search is far more efficient than linear search: for 1,000 items it needs at most 10 comparisons versus up to 1,000."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sorted list",
+        "targetWord": "a list whose elements are arranged in ascending (lowest to highest) or descending order; required before binary search can be applied",
+        "examples": {
+          "en-GB": "The list [2, 5, 8, 11, 14, 17, 20] is a sorted list in ascending order and is ready for binary search."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "swap",
+        "targetWord": "exchanging the positions of two elements in a list, used in bubble sort when an adjacent pair is found to be in the wrong order",
+        "examples": {
+          "en-GB": "Comparing 5 and 3 in [5, 3, 8]: since 5 > 3, a swap produces [3, 5, 8]."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "midpoint",
+        "targetWord": "the middle element of a list (or sub-list) used in binary search to decide which half to search next",
+        "examples": {
+          "en-GB": "For the list [2, 5, 8, 11, 14, 17, 20] the midpoint index is 3, giving the value 11."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "index",
+        "targetWord": "the numerical position of an element in a list, starting from 0 in most programming languages",
+        "examples": {
+          "en-GB": "In the list [3, 9, 7, 1, 5], the element 7 is at index 2."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "algorithm",
+        "targetWord": "a finite, unambiguous set of steps designed to solve a problem; sorting and searching algorithms are fundamental examples",
+        "examples": {
+          "en-GB": "The bubble sort algorithm uses repeated passes and swaps to arrange a list in ascending order."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "iteration",
+        "targetWord": "one repetition of the main loop body in a searching or sorting algorithm, such as one comparison in a linear search or one pass in bubble sort",
+        "examples": {
+          "en-GB": "Each iteration of the linear search loop checks one element of the list against the target value."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "worst case",
+        "targetWord": "the maximum number of comparisons or steps an algorithm requires for any possible input, such as when the target is the last element or is absent",
+        "examples": {
+          "en-GB": "The worst case for linear search on a list of 10 items is 10 comparisons, when the target is the last element or not present."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "best case",
+        "targetWord": "the minimum number of comparisons or steps an algorithm requires for any possible input, such as when the target is the first element checked",
+        "examples": {
+          "en-GB": "The best case for linear search is 1 comparison, when the target happens to be the very first element in the list."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sequential search",
+        "targetWord": "another name for linear search: checking items in order from first to last",
+        "examples": {
+          "en-GB": "A sequential search works on any list, sorted or unsorted, but can be slow for large datasets."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "divide and conquer",
+        "targetWord": "a strategy used in binary search and merge sort where the problem is repeatedly split in half, reducing the amount of data to process at each step",
+        "examples": {
+          "en-GB": "Binary search uses divide and conquer: each comparison halves the remaining search space."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "low pointer",
+        "targetWord": "a variable in binary search that tracks the lowest index of the current search region, starting at 0 and updated after each comparison",
+        "examples": {
+          "en-GB": "When the target is greater than the midpoint value, the low pointer is moved to midpoint + 1 to search the right half."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "high pointer",
+        "targetWord": "a variable in binary search that tracks the highest index of the current search region, starting at the last index and updated after each comparison",
+        "examples": {
+          "en-GB": "When the target is less than the midpoint value, the high pointer is moved to midpoint - 1 to search the left half."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "adjacent pair",
+        "targetWord": "two elements that are next to each other in a list; bubble sort compares and potentially swaps each adjacent pair in every pass",
+        "examples": {
+          "en-GB": "In [5, 3, 8], the adjacent pairs are (5, 3) and (3, 8); bubble sort compares each pair and swaps if out of order."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "n - 1 passes",
+        "targetWord": "the maximum number of passes bubble sort needs to fully sort a list of n elements in the worst case",
+        "examples": {
+          "en-GB": "A list of 5 elements needs at most 4 (n - 1) passes of bubble sort to be fully sorted."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "halving",
+        "targetWord": "the core operation of binary search: splitting the remaining search space into two equal halves and discarding the half that cannot contain the target",
+        "examples": {
+          "en-GB": "Binary search's halving strategy means a sorted list of 1,000 items requires at most 10 comparisons to find any value."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ascending order",
+        "targetWord": "an arrangement of list elements from lowest to highest value; the standard order required for binary search",
+        "examples": {
+          "en-GB": "[1, 3, 5, 8, 12] is in ascending order and can be searched efficiently with binary search."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "algorithms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "not found",
+        "targetWord": "the result returned by a searching algorithm when the target value is absent from the list, typically indicated by returning -1",
+        "examples": {
+          "en-GB": "If the target is not in the list, linear search checks every element and returns -1 to indicate not found."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Linear search checks each item in a list one by one from ____ to last.",
+        "answer": "first",
+        "options": [
+          "first",
+          "last",
+          "middle",
+          "random"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Binary search requires the list to be ____ before it can be applied.",
+        "answer": "sorted",
+        "options": [
+          "sorted",
+          "unsorted",
+          "reversed",
+          "numbered"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Binary search works by repeatedly ____ the list in half until the target is found or no items remain.",
+        "answer": "dividing",
+        "options": [
+          "dividing",
+          "doubling",
+          "sorting",
+          "reversing"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Binary search compares the target to the ____ element of the current search region.",
+        "answer": "middle",
+        "options": [
+          "middle",
+          "first",
+          "last",
+          "largest"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In the worst case, a linear search on a list of 100 items makes ____ comparisons.",
+        "answer": "100",
+        "options": [
+          "100",
+          "10",
+          "50",
+          "7"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "For a sorted list of 1,000 items, binary search requires at most approximately ____ comparisons.",
+        "answer": "10",
+        "options": [
+          "10",
+          "100",
+          "500",
+          "1000"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Bubble sort compares ____ pairs of elements and swaps them if they are in the wrong order.",
+        "answer": "adjacent",
+        "options": [
+          "adjacent",
+          "random",
+          "first-and-last",
+          "alternate"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "After the first ____ of bubble sort, the largest element is guaranteed to be in its final position.",
+        "answer": "pass",
+        "options": [
+          "pass",
+          "swap",
+          "comparison",
+          "iteration"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The maximum number of passes bubble sort needs to sort a list of n items is ____.",
+        "answer": "n - 1",
+        "options": [
+          "n - 1",
+          "n",
+          "n + 1",
+          "n / 2"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Bubble sort stops early if no ____ occur during a complete pass, indicating the list is already sorted.",
+        "answer": "swaps",
+        "options": [
+          "swaps",
+          "comparisons",
+          "passes",
+          "elements"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Linear search works on ____ or unsorted lists, making it more flexible than binary search.",
+        "answer": "sorted",
+        "options": [
+          "sorted",
+          "numeric",
+          "alphabetical",
+          "reversed"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "If the target is greater than the midpoint in binary search, the algorithm searches the ____ half next.",
+        "answer": "right",
+        "options": [
+          "right",
+          "left",
+          "whole",
+          "sorted"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "For small or unsorted lists, ____ search is often more suitable than binary search.",
+        "answer": "linear",
+        "options": [
+          "linear",
+          "binary",
+          "bubble",
+          "merge"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Merge sort is more ____ than bubble sort for large datasets because it requires far fewer comparisons.",
+        "answer": "efficient",
+        "options": [
+          "efficient",
+          "simple",
+          "readable",
+          "random"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To swap two variables a and b in pseudocode, a temporary variable ____ is used to hold one value during the swap.",
+        "answer": "temp",
+        "options": [
+          "temp",
+          "swap",
+          "hold",
+          "store"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "After ____ passes of bubble sort on a list of 5 items, all elements are guaranteed to be sorted.",
+        "answer": "4",
+        "options": [
+          "4",
+          "5",
+          "3",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A linear search on [2, 6, 9, 14, 20] looking for value 9 makes ____ comparisons before finding it.",
+        "answer": "3",
+        "options": [
+          "3",
+          "1",
+          "5",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Binary search returns ____ when the target is not found in the list.",
+        "answer": "-1",
+        "options": [
+          "-1",
+          "0",
+          "null",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Bubble sort is described as ____ for large datasets because the number of comparisons grows quadratically.",
+        "answer": "inefficient",
+        "options": [
+          "inefficient",
+          "efficient",
+          "optimal",
+          "recursive"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_fillblank_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The process of checking whether one value is greater than, less than, or equal to another is called a ____.",
+        "answer": "comparison",
+        "options": [
+          "comparison",
+          "swap",
+          "pass",
+          "index"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps in binary search",
+        "instruction": "Put the steps of binary search in the correct order.",
+        "items": [
+          "Set low = first index, high = last index",
+          "Calculate midpoint = (low + high) ÷ 2",
+          "Compare target to the element at midpoint",
+          "If match: return the midpoint index",
+          "If target is less: set high = midpoint - 1",
+          "If target is greater: set low = midpoint + 1",
+          "Repeat from step 2 until found or low > high",
+          "If low > high: return -1 (not found)"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_sort_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "title": "One pass of bubble sort on [5, 3, 8, 1]",
+        "instruction": "Put these comparisons and swaps in the correct order for the first pass of bubble sort on [5, 3, 8, 1].",
+        "items": [
+          "Compare 5 and 3: 5 > 3, swap → [3, 5, 8, 1]",
+          "Compare 5 and 8: 5 < 8, no swap → [3, 5, 8, 1]",
+          "Compare 8 and 1: 8 > 1, swap → [3, 5, 1, 8]",
+          "End of pass 1: 8 is now in its final position"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_sort_seq_003",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps in linear search",
+        "instruction": "Put the steps of linear search in the correct order.",
+        "items": [
+          "Start at the first item in the list (index 0)",
+          "Compare the current item to the target value",
+          "If they match: return the current index",
+          "If they do not match: move to the next item",
+          "Repeat the comparison for the next item",
+          "If the end of the list is reached without a match: return -1"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_sort_catsort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Linear or Binary Search?",
+        "instruction": "For each scenario, decide which search algorithm is more appropriate.",
+        "categories": [
+          "Linear Search",
+          "Binary Search"
+        ],
+        "pairs": [
+          {
+            "text": "Searching a sorted phone directory of 10,000 names for a specific contact",
+            "category": "Binary Search"
+          },
+          {
+            "text": "Finding a name in a small unsorted list of 8 recent contacts",
+            "category": "Linear Search"
+          },
+          {
+            "text": "Locating a word in a sorted dictionary with 50,000 entries",
+            "category": "Binary Search"
+          },
+          {
+            "text": "Checking whether a specific item is in a shopping list of 5 items",
+            "category": "Linear Search"
+          },
+          {
+            "text": "Searching a sorted database of 1 million student records",
+            "category": "Binary Search"
+          },
+          {
+            "text": "Finding a value in a list that has not been sorted yet and is only 10 items long",
+            "category": "Linear Search"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sort_catsort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Computational Thinking: Sorting and Searching"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Bubble Sort: swap or no swap?",
+        "instruction": "For each adjacent pair, decide whether bubble sort would swap them (ascending order).",
+        "categories": [
+          "Would swap",
+          "No swap"
+        ],
+        "pairs": [
+          {
+            "text": "5 and 3 (comparing in this order)",
+            "category": "Would swap"
+          },
+          {
+            "text": "3 and 8 (comparing in this order)",
+            "category": "No swap"
+          },
+          {
+            "text": "8 and 1 (comparing in this order)",
+            "category": "Would swap"
+          },
+          {
+            "text": "2 and 7 (comparing in this order)",
+            "category": "No swap"
+          },
+          {
+            "text": "9 and 4 (comparing in this order)",
+            "category": "Would swap"
+          },
+          {
+            "text": "6 and 6 (comparing equal values)",
+            "category": "No swap"
+          }
+        ]
+      }
+    }
+  ]
+}

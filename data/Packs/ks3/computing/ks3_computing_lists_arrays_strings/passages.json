@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_lists_arrays_strings",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_lists_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Lists, Arrays & String Handling"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Lists, Arrays & String Handling",
+        "sourceTitle": "Arrays and Zero-Based Indexing",
+        "targetTitle": "Arrays and Zero-Based Indexing",
+        "sourcePassage": "An array is one of the most important data structures in programming. It allows a programmer to store many related values under a single variable name, making code much easier to manage. Imagine storing the scores of thirty students: using thirty separate variables would be chaotic, but a single array called scores handles all of them neatly.\n\nEvery value in an array is called an element. Each element sits at a specific position called its index. In Python and most programming languages, indexing begins at zero, not one. This is called zero-based indexing. So in the array scores = [85, 72, 90, 65, 88], the first element 85 is at index 0, the second element 72 is at index 1, and the last element 88 is at index 4. A common mistake is to assume the first element is at index 1, which leads to off-by-one errors.\n\nThe len() function returns the total number of elements in a list. For a list of five elements, len(scores) returns 5, but the valid indices are 0 through 4. The last valid index is always len(list) minus one.",
+        "targetPassage": "An array is one of the most important data structures in programming. It allows a programmer to store many related values under a single variable name, making code much easier to manage. Imagine storing the scores of thirty students: using thirty separate variables would be chaotic, but a single array called scores handles all of them neatly.\n\nEvery value in an array is called an element. Each element sits at a specific position called its index. In Python and most programming languages, indexing begins at zero, not one. This is called zero-based indexing. So in the array scores = [85, 72, 90, 65, 88], the first element 85 is at index 0, the second element 72 is at index 1, and the last element 88 is at index 4. A common mistake is to assume the first element is at index 1, which leads to off-by-one errors.\n\nThe len() function returns the total number of elements in a list. For a list of five elements, len(scores) returns 5, but the valid indices are 0 through 4. The last valid index is always len(list) minus one.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_lists_p1_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "In zero-based indexing, what index is the first element of an array at?",
+            "options": ["0", "1", "-1", "2"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "0",
+            "acceptedKeywords": ["0", "zero"]
+          },
+          {
+            "id": "ks3_computing_lists_p1_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "For the array scores = [85, 72, 90, 65, 88], what value is at index 2?",
+            "options": ["90", "72", "85", "65"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "90",
+            "acceptedKeywords": ["90"]
+          },
+          {
+            "id": "ks3_computing_lists_p1_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A list has 5 elements. What is the index of the last element?",
+            "options": ["4", "5", "3", "6"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "4",
+            "acceptedKeywords": ["4", "len minus one"]
+          },
+          {
+            "id": "ks3_computing_lists_p1_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why using zero-based indexing can cause confusion for beginners, and state what common error it leads to.",
+            "modelAnswer": "Beginners often expect the first element to be at index 1 because humans count from 1 in everyday life. However, arrays start at index 0, so the first element is at index 0, the second at index 1, and so on. This leads to off-by-one errors, where a programmer uses index 1 to access the first element but actually gets the second, or tries to access the last element using len(list) which is one beyond the valid range.",
+            "acceptedKeywords": ["zero", "index 0", "off-by-one", "first element"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Lists, Arrays & String Handling"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Lists, Arrays & String Handling",
+        "sourceTitle": "String Operations and Methods",
+        "targetTitle": "String Operations and Methods",
+        "sourcePassage": "A string is a sequence of characters, and Python treats it very similarly to a list. Each character in a string has an index starting from zero, so the string \"Computing\" has 'C' at index 0, 'o' at index 1, and 'g' at index 8. The len() function works on strings just as it does on lists, returning the number of characters.\n\nSlicing lets you extract part of a string using the notation [start:stop]. The character at the start index is included, but the character at the stop index is not. So \"Computing\"[0:4] returns \"Comp\" — the characters at indices 0, 1, 2, and 3.\n\nPython provides many useful string methods. The .upper() method converts all characters to uppercase, while .lower() converts them to lowercase. The .strip() method removes any whitespace from the beginning and end of the string, which is very useful for cleaning up user input. The .replace(old, new) method replaces every occurrence of old with new in the string. The .split(delimiter) method splits a string into a list of substrings wherever the delimiter appears.\n\nOne important rule: you cannot concatenate a string and an integer directly using +. Attempting \"Score: \" + 85 causes a TypeError. You must first convert the integer to a string using str(85).",
+        "targetPassage": "A string is a sequence of characters, and Python treats it very similarly to a list. Each character in a string has an index starting from zero, so the string \"Computing\" has 'C' at index 0, 'o' at index 1, and 'g' at index 8. The len() function works on strings just as it does on lists, returning the number of characters.\n\nSlicing lets you extract part of a string using the notation [start:stop]. The character at the start index is included, but the character at the stop index is not. So \"Computing\"[0:4] returns \"Comp\" — the characters at indices 0, 1, 2, and 3.\n\nPython provides many useful string methods. The .upper() method converts all characters to uppercase, while .lower() converts them to lowercase. The .strip() method removes any whitespace from the beginning and end of the string, which is very useful for cleaning up user input. The .replace(old, new) method replaces every occurrence of old with new in the string. The .split(delimiter) method splits a string into a list of substrings wherever the delimiter appears.\n\nOne important rule: you cannot concatenate a string and an integer directly using +. Attempting \"Score: \" + 85 causes a TypeError. You must first convert the integer to a string using str(85).",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_lists_p2_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does \"Computing\"[0:4] return?",
+            "options": ["\"Comp\"", "\"Compu\"", "\"omputing\"", "\"Computing\""],
+            "correctOptionIndex": 0,
+            "modelAnswer": "\"Comp\"",
+            "acceptedKeywords": ["Comp"]
+          },
+          {
+            "id": "ks3_computing_lists_p2_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which string method removes leading and trailing whitespace?",
+            "options": [".strip()", ".clean()", ".trim()", ".remove()"],
+            "correctOptionIndex": 0,
+            "modelAnswer": ".strip()",
+            "acceptedKeywords": ["strip"]
+          },
+          {
+            "id": "ks3_computing_lists_p2_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why does \"Score: \" + 85 cause an error in Python?",
+            "options": [
+              "You cannot concatenate a string and an integer with +",
+              "You cannot use + with strings at all",
+              "The string is too short",
+              "85 is not a valid integer"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "You cannot concatenate a string and an integer with +",
+            "acceptedKeywords": ["TypeError", "string", "integer", "str()"]
+          },
+          {
+            "id": "ks3_computing_lists_p2_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Describe what the .split() method does and give an example showing its output.",
+            "modelAnswer": "The .split() method divides a string into a list of substrings wherever a specified delimiter character appears. For example, \"red,green,blue\".split(\",\") returns the list [\"red\", \"green\", \"blue\"]. If no delimiter is specified, it splits at whitespace by default, so \"hello world\".split() returns [\"hello\", \"world\"].",
+            "acceptedKeywords": ["split", "list", "delimiter", "substrings"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Lists, Arrays & String Handling"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Lists, Arrays & String Handling",
+        "sourceTitle": "Iterating Through Lists with Loops",
+        "targetTitle": "Iterating Through Lists with Loops",
+        "sourcePassage": "One of the most powerful features of lists is the ability to iterate through them — processing each element one at a time using a loop. Python gives programmers two common ways to do this.\n\nThe first is the for-each loop: for item in myList. This automatically steps through every element from start to finish without needing to track an index. It is simple and readable. The second approach uses an index counter: for i in range(len(myList)), which gives access to the position as well as the value. This is useful when you need to compare elements or modify them during iteration.\n\nA classic algorithm that uses list iteration is finding the largest value. The approach is to set a variable called largest to the first element (index 0), then loop through the remaining elements one by one. At each step, if the current element is greater than largest, update largest to that new value. After the loop completes, largest holds the greatest value in the list.\n\nWhen iterating with an index, programmers must be careful to stay within the valid index range. Accessing an index that does not exist — for example, index 5 in a list of five elements — causes an IndexError at runtime. The last valid index is always the length of the list minus one.",
+        "targetPassage": "One of the most powerful features of lists is the ability to iterate through them — processing each element one at a time using a loop. Python gives programmers two common ways to do this.\n\nThe first is the for-each loop: for item in myList. This automatically steps through every element from start to finish without needing to track an index. It is simple and readable. The second approach uses an index counter: for i in range(len(myList)), which gives access to the position as well as the value. This is useful when you need to compare elements or modify them during iteration.\n\nA classic algorithm that uses list iteration is finding the largest value. The approach is to set a variable called largest to the first element (index 0), then loop through the remaining elements one by one. At each step, if the current element is greater than largest, update largest to that new value. After the loop completes, largest holds the greatest value in the list.\n\nWhen iterating with an index, programmers must be careful to stay within the valid index range. Accessing an index that does not exist — for example, index 5 in a list of five elements — causes an IndexError at runtime. The last valid index is always the length of the list minus one.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_lists_p3_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What error occurs when you try to access an index that does not exist in a list?",
+            "options": ["IndexError", "ValueError", "TypeError", "NameError"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "IndexError",
+            "acceptedKeywords": ["IndexError", "index error"]
+          },
+          {
+            "id": "ks3_computing_lists_p3_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "When finding the largest value in a list, what should the variable 'largest' be set to initially?",
+            "options": [
+              "The first element (index 0)",
+              "Zero",
+              "The last element",
+              "The length of the list"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The first element (index 0)",
+            "acceptedKeywords": ["first element", "index 0"]
+          },
+          {
+            "id": "ks3_computing_lists_p3_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A list has 5 elements. What happens if you try to access index 5?",
+            "options": [
+              "An IndexError is raised at runtime",
+              "Python returns 0",
+              "Python returns the last element",
+              "A syntax error occurs before the program runs"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "An IndexError is raised at runtime",
+            "acceptedKeywords": ["IndexError", "runtime", "out of range"]
+          },
+          {
+            "id": "ks3_computing_lists_p3_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Describe two different ways to iterate through all elements of a list in Python, and state when you would choose each approach.",
+            "modelAnswer": "The first way is the for-each loop: for item in myList. This is simple and readable, and is best when you only need to access each value without caring about its position. The second way is using an index counter: for i in range(len(myList)), accessing elements with myList[i]. This is better when you need to know the index of each element, for example when comparing adjacent elements or modifying elements during iteration.",
+            "acceptedKeywords": ["for-each", "index", "range", "len", "position"]
+          }
+        ]
+      }
+    }
+  ]
+}

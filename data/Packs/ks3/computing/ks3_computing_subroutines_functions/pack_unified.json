@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_subroutines_functions",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Subroutines & Functions",
+  "subtitle": "Writing modular, reusable code using procedures and functions.",
+  "items": [
+    {
+      "id": "sub_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "subroutine",
+        "targetWord": "A named, reusable block of code that can be called from anywhere in a program; it is written once and may be used many times",
+        "examples": {
+          "en-GB": "A subroutine called printMenu() can be called whenever the program needs to display the menu, without rewriting the code."
+        }
+      }
+    },
+    {
+      "id": "sub_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "function",
+        "targetWord": "A subroutine that performs a calculation or operation and returns a value to the code that called it using the RETURN keyword",
+        "examples": {
+          "en-GB": "FUNCTION add(a, b) RETURN a + b ENDFUNCTION — calling add(3, 7) returns the value 10 to the caller."
+        }
+      }
+    },
+    {
+      "id": "sub_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "procedure",
+        "targetWord": "A subroutine that performs an action but does not return a value to the caller; it is called for its side effects such as displaying output",
+        "examples": {
+          "en-GB": "PROCEDURE greet(name) OUTPUT \"Hello, \" + name ENDPROCEDURE — calling greet(\"Alice\") displays a greeting but sends nothing back."
+        }
+      }
+    },
+    {
+      "id": "sub_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "parameter",
+        "targetWord": "A placeholder variable listed in a subroutine's definition that receives the value of the corresponding argument when the subroutine is called",
+        "examples": {
+          "en-GB": "In PROCEDURE greet(name), the word 'name' is the parameter — a placeholder that will be filled when the subroutine is called."
+        }
+      }
+    },
+    {
+      "id": "sub_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "argument",
+        "targetWord": "The actual value passed into a subroutine when it is called; it fills in the corresponding parameter inside the subroutine",
+        "examples": {
+          "en-GB": "In greet(\"Alice\"), the string \"Alice\" is the argument — the real value that the parameter 'name' will hold during this call."
+        }
+      }
+    },
+    {
+      "id": "sub_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "return value",
+        "targetWord": "The value sent back from a function to the code that called it, via the RETURN keyword; only functions produce return values, not procedures",
+        "examples": {
+          "en-GB": "If add(3, 7) returns 10, the return value is 10 — this value can be stored in a variable or used directly in an expression."
+        }
+      }
+    },
+    {
+      "id": "sub_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "local variable",
+        "targetWord": "A variable created inside a subroutine that exists only while that subroutine is executing; it cannot be accessed from outside the subroutine",
+        "examples": {
+          "en-GB": "The variable 'area' created inside a calculateArea function is local — it disappears when the function finishes."
+        }
+      }
+    },
+    {
+      "id": "sub_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "call",
+        "targetWord": "To execute a subroutine by writing its name followed by parentheses and any required arguments; a subroutine only runs when it is called",
+        "examples": {
+          "en-GB": "Writing calculateArea(5, 3) in the main program calls the function and passes 5 and 3 as arguments."
+        }
+      }
+    },
+    {
+      "id": "sub_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "define",
+        "targetWord": "To write the code for a subroutine using PROCEDURE/FUNCTION in pseudocode or the def keyword in Python; defining a subroutine does not execute it",
+        "examples": {
+          "en-GB": "def greet(name): print(\"Hello\", name) defines the subroutine but does not run it; it runs only when called."
+        }
+      }
+    },
+    {
+      "id": "sub_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "modular design",
+        "targetWord": "An approach to programming that splits a large program into smaller, self-contained subroutines, each handling one specific task",
+        "examples": {
+          "en-GB": "A program with separate subroutines for getInput(), processData(), and displayResults() uses modular design."
+        }
+      }
+    },
+    {
+      "id": "sub_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "reusability",
+        "targetWord": "The ability to call the same subroutine multiple times from different places in a program, avoiding the need to repeat the same code",
+        "examples": {
+          "en-GB": "A validateInput() subroutine written once and called from five different places in the program demonstrates reusability."
+        }
+      }
+    },
+    {
+      "id": "sub_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "RETURN",
+        "targetWord": "The pseudocode keyword (return in Python) that sends a value back from a function to the caller and immediately ends the function's execution",
+        "examples": {
+          "en-GB": "RETURN area sends the computed area value back to the main program and stops the function running any further."
+        }
+      }
+    },
+    {
+      "id": "sub_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ENDFUNCTION",
+        "targetWord": "The pseudocode keyword that marks the end of a function's definition block",
+        "examples": {
+          "en-GB": "FUNCTION add(a, b) RETURN a + b ENDFUNCTION — ENDFUNCTION closes the function definition."
+        }
+      }
+    },
+    {
+      "id": "sub_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ENDPROCEDURE",
+        "targetWord": "The pseudocode keyword that marks the end of a procedure's definition block",
+        "examples": {
+          "en-GB": "PROCEDURE displayMenu() OUTPUT \"1. Play\" OUTPUT \"2. Quit\" ENDPROCEDURE — ENDPROCEDURE closes the procedure definition."
+        }
+      }
+    },
+    {
+      "id": "sub_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "scope",
+        "targetWord": "The region of a program where a variable is accessible; local variables have scope limited to the subroutine where they are defined",
+        "examples": {
+          "en-GB": "A variable defined inside a function has local scope — it exists only inside that function and is invisible to the rest of the program."
+        }
+      }
+    },
+    {
+      "id": "sub_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "interface",
+        "targetWord": "The parameters and return value of a subroutine that define how the rest of the program interacts with it, without needing to know its internal code",
+        "examples": {
+          "en-GB": "The interface of calculateArea(width, height) tells callers: pass two numbers in, get one number back."
+        }
+      }
+    },
+    {
+      "id": "sub_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "module",
+        "targetWord": "A collection of related subroutines and data grouped together so they can be reused across multiple programs",
+        "examples": {
+          "en-GB": "Python's math module contains ready-made functions such as math.sqrt() that programmers can import and call."
+        }
+      }
+    },
+    {
+      "id": "sub_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "block",
+        "targetWord": "The group of indented statements that form the body of a subroutine, executed when the subroutine is called",
+        "examples": {
+          "en-GB": "The indented lines underneath a def statement form the block that executes every time the function is called."
+        }
+      }
+    },
+    {
+      "id": "sub_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "abstraction",
+        "targetWord": "Hiding the internal details of how a subroutine works so that the caller only needs to know what it does, not how it does it",
+        "examples": {
+          "en-GB": "Calling math.sqrt(16) without knowing how square roots are calculated is an example of abstraction."
+        }
+      }
+    },
+    {
+      "id": "sub_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decomposition",
+        "targetWord": "Breaking a large, complex problem into smaller, manageable sub-problems, each of which can be solved by a separate subroutine",
+        "examples": {
+          "en-GB": "Decomposition turns a complex quiz program into smaller problems: getQuestion(), checkAnswer(), updateScore()."
+        }
+      }
+    },
+    {
+      "id": "sub_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "side effect",
+        "targetWord": "Any action a subroutine performs beyond returning a value, such as displaying output, modifying a global variable, or writing to a file",
+        "examples": {
+          "en-GB": "A procedure that prints a receipt to the screen has a side effect: it changes what is displayed even though it returns nothing."
+        }
+      }
+    },
+    {
+      "id": "sub_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "void function",
+        "targetWord": "A function that does not return a value; in Python this is equivalent to a procedure defined with def but without a return statement",
+        "examples": {
+          "en-GB": "A subroutine defined with def but with no return statement is a void function — it performs actions but sends no value back."
+        }
+      }
+    },
+    {
+      "id": "sub_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "named constant",
+        "targetWord": "A constant defined at the top of a program or subroutine with a meaningful name in UPPERCASE, used to avoid magic numbers in the code",
+        "examples": {
+          "en-GB": "Using CONSTANT PI = 3.14159 inside a circleArea function makes the code clearer than writing 3.14159 directly."
+        }
+      }
+    },
+    {
+      "id": "sub_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "def",
+        "targetWord": "The Python keyword used to define a subroutine (both procedures and functions); it is followed by the subroutine name and parameters",
+        "examples": {
+          "en-GB": "def add(a, b): return a + b — the keyword def signals that a subroutine called 'add' is being defined."
+        }
+      }
+    },
+    {
+      "id": "sub_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "return",
+        "targetWord": "The Python keyword that sends a value back from a function to the caller and immediately ends the function's execution",
+        "examples": {
+          "en-GB": "return area sends the value of area back to wherever the function was called and stops any remaining code in the function from running."
+        }
+      }
+    },
+    {
+      "id": "sub_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NameError",
+        "targetWord": "A Python error that occurs when code tries to use a variable that has not been defined in the current scope, such as accessing a local variable from outside its subroutine",
+        "examples": {
+          "en-GB": "Trying to print a local variable after the function has finished causes a NameError because the variable no longer exists."
+        }
+      }
+    },
+    {
+      "id": "sub_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "maintainability",
+        "targetWord": "The ease with which a program can be updated, corrected, or extended; subroutines improve maintainability by isolating code in one place",
+        "examples": {
+          "en-GB": "Using a subroutine means a bug can be fixed in one place rather than hunting for the same logic repeated across many lines."
+        }
+      }
+    },
+    {
+      "id": "sub_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "testing",
+        "targetWord": "Checking that a subroutine produces the correct output for a given input; subroutines can be tested individually in isolation",
+        "examples": {
+          "en-GB": "Testing a calculateTotal() function with known inputs such as 5 and 3 and verifying it returns 8 is independent unit testing."
+        }
+      }
+    },
+    {
+      "id": "sub_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The key difference between a function and a procedure is that a function ____ a value.",
+        "answer": "returns",
+        "options": [
+          "returns",
+          "ignores",
+          "stores",
+          "deletes"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A ____ is the placeholder variable listed in the subroutine definition.",
+        "answer": "parameter",
+        "options": [
+          "parameter",
+          "argument",
+          "return value",
+          "local variable"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "An ____ is the actual value passed to the subroutine when it is called.",
+        "answer": "argument",
+        "options": [
+          "argument",
+          "parameter",
+          "return value",
+          "identifier"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Local variables only exist ____ the subroutine where they are defined.",
+        "answer": "inside",
+        "options": [
+          "inside",
+          "outside",
+          "before",
+          "after"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A subroutine must be ____ before it will run; defining it does nothing on its own.",
+        "answer": "called",
+        "options": [
+          "called",
+          "defined",
+          "deleted",
+          "printed"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Using subroutines reduces ____ because common code is written once and reused.",
+        "answer": "repetition",
+        "options": [
+          "repetition",
+          "accuracy",
+          "memory",
+          "speed"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The RETURN keyword both sends a value back to the caller and ____ the function immediately.",
+        "answer": "ends",
+        "options": [
+          "ends",
+          "repeats",
+          "pauses",
+          "restarts"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Local variables can only be accessed ____ the subroutine that created them.",
+        "answer": "inside",
+        "options": [
+          "inside",
+          "outside",
+          "before calling",
+          "after calling"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Breaking a large program into smaller subroutines, each handling one task, is called ____ design.",
+        "answer": "modular",
+        "options": [
+          "modular",
+          "linear",
+          "sequential",
+          "recursive"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In Python, subroutines (both procedures and functions) are defined using the keyword ____.",
+        "answer": "def",
+        "options": [
+          "def",
+          "function",
+          "sub",
+          "proc"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A procedure performs an action but does NOT ____ a value.",
+        "answer": "return",
+        "options": [
+          "return",
+          "receive",
+          "call",
+          "store"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In pseudocode, the keyword that marks the end of a function definition is ____.",
+        "answer": "ENDFUNCTION",
+        "options": [
+          "ENDFUNCTION",
+          "ENDPROCEDURE",
+          "ENDIF",
+          "ENDFOR"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Trying to access a local variable from outside its subroutine causes a ____ in Python.",
+        "answer": "NameError",
+        "options": [
+          "NameError",
+          "TypeError",
+          "SyntaxError",
+          "ValueError"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Hiding the internal details of a subroutine so callers only need to know what it does is called ____.",
+        "answer": "abstraction",
+        "options": [
+          "abstraction",
+          "decomposition",
+          "iteration",
+          "selection"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Breaking a large problem into smaller sub-problems, each solved by a subroutine, is called ____.",
+        "answer": "decomposition",
+        "options": [
+          "decomposition",
+          "abstraction",
+          "iteration",
+          "compilation"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A subroutine with no return statement (or only side effects like printing) is sometimes called a ____ function.",
+        "answer": "void",
+        "options": [
+          "void",
+          "empty",
+          "null",
+          "blank"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Using subroutines makes programs easier to ____ because a bug is fixed in one place, not everywhere.",
+        "answer": "maintain",
+        "options": [
+          "maintain",
+          "run",
+          "save",
+          "compile"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "After a RETURN statement executes inside a function, any remaining code in the function ____ execute.",
+        "answer": "will not",
+        "options": [
+          "will not",
+          "will",
+          "may",
+          "must"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The ____ of a variable refers to the region of the program where it can be accessed.",
+        "answer": "scope",
+        "options": [
+          "scope",
+          "value",
+          "type",
+          "name"
+        ]
+      }
+    },
+    {
+      "id": "sub_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Each subroutine can be tested ____ with known inputs, making debugging easier.",
+        "answer": "independently",
+        "options": [
+          "independently",
+          "together",
+          "repeatedly",
+          "randomly"
+        ]
+      }
+    },
+    {
+      "id": "sub_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "What happens when a program calls a function",
+        "instruction": "Put the steps of a function call in the correct order.",
+        "items": [
+          "The main program reaches the line that calls the function",
+          "Execution jumps to the function definition and the arguments fill the parameters",
+          "The function body executes line by line",
+          "The RETURN statement sends a value back to the caller",
+          "Execution returns to the main program at the line after the call",
+          "The returned value is used — stored in a variable or used in an expression"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "sub_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps to write a function that calculates the area of a rectangle",
+        "instruction": "Put the steps in the correct order.",
+        "items": [
+          "Choose a meaningful function name, such as rectangleArea",
+          "Identify the parameters needed: width and height",
+          "Write the function header: FUNCTION rectangleArea(width, height)",
+          "Calculate the area inside the function body: area ← width * height",
+          "Return the result: RETURN area",
+          "Close the function with ENDFUNCTION",
+          "Call the function from the main program and store the result: result ← rectangleArea(5, 3)"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "sub_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Function or Procedure?",
+        "instruction": "Sort each description into function or procedure.",
+        "categories": [
+          "function",
+          "procedure"
+        ],
+        "pairs": [
+          {
+            "text": "Calculates and returns the area of a circle",
+            "category": "function"
+          },
+          {
+            "text": "Displays a welcome message on screen",
+            "category": "procedure"
+          },
+          {
+            "text": "Returns True if a score is a pass, False if it is a fail",
+            "category": "function"
+          },
+          {
+            "text": "Prints the current menu options for the user to read",
+            "category": "procedure"
+          },
+          {
+            "text": "Takes two numbers and returns their sum",
+            "category": "function"
+          },
+          {
+            "text": "Outputs a formatted receipt to the screen",
+            "category": "procedure"
+          },
+          {
+            "text": "Converts Celsius to Fahrenheit and returns the result",
+            "category": "function"
+          },
+          {
+            "text": "Clears the screen and displays a goodbye message",
+            "category": "procedure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sub_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Subroutines and Functions"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Parameter or Argument?",
+        "instruction": "Sort each code example into parameter or argument.",
+        "categories": [
+          "parameter",
+          "argument"
+        ],
+        "pairs": [
+          {
+            "text": "In PROCEDURE greet(name) — the word 'name'",
+            "category": "parameter"
+          },
+          {
+            "text": "In greet(\"Alice\") — the value \"Alice\"",
+            "category": "argument"
+          },
+          {
+            "text": "In FUNCTION add(a, b) — the words 'a' and 'b'",
+            "category": "parameter"
+          },
+          {
+            "text": "In add(10, 5) — the values 10 and 5",
+            "category": "argument"
+          },
+          {
+            "text": "In FUNCTION square(n) — the word 'n'",
+            "category": "parameter"
+          },
+          {
+            "text": "In square(7) — the value 7",
+            "category": "argument"
+          },
+          {
+            "text": "In calculateArea(width, height) definition — 'width' and 'height'",
+            "category": "parameter"
+          },
+          {
+            "text": "In calculateArea(4, 6) call — the values 4 and 6",
+            "category": "argument"
+          }
+        ]
+      }
+    }
+  ]
+}

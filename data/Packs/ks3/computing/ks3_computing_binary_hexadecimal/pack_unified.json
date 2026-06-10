@@ -1,0 +1,1172 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_binary_hexadecimal",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_binary_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Binary",
+        "targetWord": "The base-2 number system used by computers, which uses only the digits 0 and 1 to represent all data.",
+        "examples": {
+          "en-GB": "The binary number 1010 represents the denary value 10 (8 + 2)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Denary",
+        "targetWord": "The base-10 number system used in everyday life, which uses the digits 0 through 9 to represent numbers.",
+        "examples": {
+          "en-GB": "The denary number 45 is written as 00101101 in 8-bit binary."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Hexadecimal",
+        "targetWord": "The base-16 number system that uses digits 0–9 and letters A–F to represent values, where each hex digit corresponds to exactly four binary bits (one nibble).",
+        "examples": {
+          "en-GB": "The hexadecimal value B4 equals 180 in denary (11 × 16 + 4)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Bit",
+        "targetWord": "A single binary digit — either 0 or 1; the smallest unit of digital data.",
+        "examples": {
+          "en-GB": "A single bit can represent two states: 0 (off) or 1 (on)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Byte",
+        "targetWord": "A group of 8 bits; the standard unit used to store a single character of text, with values ranging from 00000000 to 11111111 (0 to 255 in denary).",
+        "examples": {
+          "en-GB": "The letter 'A' is stored as one byte: the binary pattern 01000001 (ASCII code 65)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Nibble",
+        "targetWord": "A group of 4 bits; exactly half a byte, and directly equivalent to a single hexadecimal digit.",
+        "examples": {
+          "en-GB": "The nibble 1011 corresponds to the hexadecimal digit B (denary value 11)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Overflow",
+        "targetWord": "An error that occurs in binary arithmetic when the result of a calculation is too large to be stored in the available number of bits, causing the extra bit(s) to be lost.",
+        "examples": {
+          "en-GB": "Adding 11111111 (255) and 1 in an 8-bit system causes overflow — the result needs 9 bits but only 8 are available, giving the wrong answer 0."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Place value",
+        "targetWord": "The value of a digit determined by its position in a number; in binary each column has a place value that is a power of 2 (1, 2, 4, 8, 16, 32, 64, 128 from right to left).",
+        "examples": {
+          "en-GB": "In the binary number 1010, the left 1 has a place value of 8 and the right 1 has a place value of 2."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Carry",
+        "targetWord": "A value of 1 that is transferred to the next column to the left when binary addition in a column produces a result of 2 or more.",
+        "examples": {
+          "en-GB": "1 + 1 in binary gives 0 with a carry of 1 to the next column, just as 9 + 1 carries in denary."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Base-2",
+        "targetWord": "Another name for the binary number system; refers to the fact that it uses two symbols (0 and 1) and each column value is a power of 2.",
+        "examples": {
+          "en-GB": "Binary is a base-2 system: column values are 2⁰=1, 2¹=2, 2²=4, 2³=8, and so on."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Base-10",
+        "targetWord": "Another name for the denary (decimal) number system; uses ten symbols (0–9) and each column value is a power of 10.",
+        "examples": {
+          "en-GB": "In base-10, the number 253 means 2×100 + 5×10 + 3×1."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Base-16",
+        "targetWord": "Another name for the hexadecimal number system; uses sixteen symbols (0–9 and A–F) and each column value is a power of 16.",
+        "examples": {
+          "en-GB": "In base-16, the hex number 3F means 3×16 + 15×1 = 63 in denary."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Most significant bit (MSB)",
+        "targetWord": "The leftmost bit in a binary number, which has the highest place value (128 in an 8-bit number).",
+        "examples": {
+          "en-GB": "In the 8-bit binary number 10110001, the most significant bit is the leftmost 1, which has a value of 128."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Least significant bit (LSB)",
+        "targetWord": "The rightmost bit in a binary number, which has the lowest place value (1 in any binary number).",
+        "examples": {
+          "en-GB": "In the binary number 10110001, the least significant bit is the rightmost 1, which has a value of 1."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Transistor",
+        "targetWord": "A microscopic electronic switch inside a computer processor that has exactly two states — on or off — which are represented as the binary digits 1 and 0.",
+        "examples": {
+          "en-GB": "Modern CPUs contain billions of transistors; each one can store a single binary digit (bit)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Digital",
+        "targetWord": "Using discrete values (typically binary 0s and 1s) to represent information, as opposed to analogue systems which use continuous values.",
+        "examples": {
+          "en-GB": "A digital image stores colour information as binary numbers, one value per pixel."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Two-state",
+        "targetWord": "Having exactly two possible conditions, such as on/off, true/false, or 0/1; the fundamental property that makes binary suitable for computing hardware.",
+        "examples": {
+          "en-GB": "A transistor is a two-state device — it is either conducting (1) or not conducting (0)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Unsigned integer",
+        "targetWord": "A whole number representation in binary that uses all available bits for the magnitude, with no negative values; the range for 8 bits is 0 to 255.",
+        "examples": {
+          "en-GB": "Using 8-bit unsigned binary, the largest value you can store is 11111111 = 255."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Number system",
+        "targetWord": "A set of symbols and rules for representing numbers; binary (base 2), denary (base 10), and hexadecimal (base 16) are three different number systems.",
+        "examples": {
+          "en-GB": "The same quantity 255 can be written in three number systems: 255 (denary), 11111111 (binary), or FF (hexadecimal)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Representation",
+        "targetWord": "How data is encoded and stored in a computer system; all data — numbers, text, images, audio — must ultimately be represented as binary.",
+        "examples": {
+          "en-GB": "The representation of the letter 'A' in ASCII is the binary pattern 01000001."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Power of 2",
+        "targetWord": "A number produced by multiplying 2 by itself a certain number of times (2¹=2, 2²=4, 2³=8, 2⁴=16 …); the column values in binary are all powers of 2.",
+        "examples": {
+          "en-GB": "The 8-bit binary column values — 1, 2, 4, 8, 16, 32, 64, 128 — are the first eight powers of 2 (2⁰ to 2⁷)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Conversion",
+        "targetWord": "The process of changing a number from one base (number system) to another, for example converting denary 45 to binary 00101101.",
+        "examples": {
+          "en-GB": "Converting binary 11001010 to hexadecimal by splitting into nibbles gives CA."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Column value",
+        "targetWord": "The value that a digit in a specific position represents within a number system; in 8-bit binary the column values are 128, 64, 32, 16, 8, 4, 2, 1 from left to right.",
+        "examples": {
+          "en-GB": "A 1 in the column with value 32 contributes 32 to the total denary value of the binary number."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Addition (binary)",
+        "targetWord": "The process of adding two binary numbers column by column from right to left, applying four rules: 0+0=0, 0+1=1, 1+0=1, 1+1=10 (write 0, carry 1).",
+        "examples": {
+          "en-GB": "Binary addition: 0011 + 0101 = 1000 (3 + 5 = 8 in denary)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Digit",
+        "targetWord": "A single symbol used in a number system; binary uses digits 0 and 1, denary uses digits 0–9, and hexadecimal uses digits 0–9 and the letters A–F.",
+        "examples": {
+          "en-GB": "The hexadecimal digit F represents the denary value 15 and the binary nibble 1111."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Kilobyte (KB)",
+        "targetWord": "A unit of digital storage equal to 1,024 bytes (2¹⁰ bytes); used to measure small file sizes.",
+        "examples": {
+          "en-GB": "A plain text file containing a short essay might be around 5 KB in size."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Megabyte (MB)",
+        "targetWord": "A unit of digital storage equal to 1,024 kilobytes (approximately one million bytes); commonly used to measure image and document file sizes.",
+        "examples": {
+          "en-GB": "An uncompressed full HD photograph might be around 6 MB in file size."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Colour code (hex)",
+        "targetWord": "A six-digit hexadecimal value used in web design and graphics to specify a colour as three bytes — two hex digits each for red, green, and blue channels.",
+        "examples": {
+          "en-GB": "The hex colour code #FF5733 means Red=FF(255), Green=57(87), Blue=33(51) — a warm orange-red."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Binary uses only the digits ____ and ____.",
+        "answer": "0 and 1",
+        "options": [
+          "0 and 1",
+          "0 and 9",
+          "1 and 2",
+          "A and B"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A byte is a group of ____ bits.",
+        "answer": "8",
+        "options": [
+          "8",
+          "4",
+          "16",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A nibble is a group of ____ bits, equivalent to one hexadecimal digit.",
+        "answer": "4",
+        "options": [
+          "4",
+          "8",
+          "2",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Hexadecimal uses the digits 0–9 and then the letters ____.",
+        "answer": "A–F",
+        "options": [
+          "A–F",
+          "A–Z",
+          "G–P",
+          "X–Z"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The hexadecimal digit A has a denary value of ____.",
+        "answer": "10",
+        "options": [
+          "10",
+          "11",
+          "9",
+          "12"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The hexadecimal digit F has a denary value of ____.",
+        "answer": "15",
+        "options": [
+          "15",
+          "14",
+          "16",
+          "6"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The 8-bit binary column values from left to right are 128, 64, 32, 16, 8, 4, 2, ____.",
+        "answer": "1",
+        "options": [
+          "1",
+          "0",
+          "3",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In binary, 1 + 1 = ____ (write 0, carry 1).",
+        "answer": "10",
+        "options": [
+          "10",
+          "2",
+          "11",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Overflow occurs when a binary calculation result is too ____ to store in the available number of bits.",
+        "answer": "large",
+        "options": [
+          "large",
+          "small",
+          "negative",
+          "complex"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Hexadecimal is shorter than binary because one hex digit represents exactly ____ binary digits.",
+        "answer": "4",
+        "options": [
+          "4",
+          "8",
+          "2",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To convert binary to hexadecimal, split the binary number into groups of ____ bits (nibbles) from the right.",
+        "answer": "4",
+        "options": [
+          "4",
+          "8",
+          "2",
+          "3"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Computers use binary because transistors have exactly ____ states: on and off.",
+        "answer": "two",
+        "options": [
+          "two",
+          "ten",
+          "sixteen",
+          "four"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The maximum value that can be stored in 8 bits is ____.",
+        "answer": "255",
+        "options": [
+          "255",
+          "256",
+          "128",
+          "127"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The binary nibble 1111 converts to the hexadecimal digit ____.",
+        "answer": "F",
+        "options": [
+          "F",
+          "E",
+          "B",
+          "9"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The denary number 255 in hexadecimal is ____.",
+        "answer": "FF",
+        "options": [
+          "FF",
+          "FE",
+          "EE",
+          "F0"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The binary column with the leftmost position in an 8-bit number has a value of ____.",
+        "answer": "128",
+        "options": [
+          "128",
+          "64",
+          "256",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The binary number 00001111 has the denary value ____.",
+        "answer": "15",
+        "options": [
+          "15",
+          "16",
+          "14",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "HTML colour codes use ____ hex digits to represent a colour.",
+        "answer": "6",
+        "options": [
+          "6",
+          "3",
+          "4",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In binary addition, 1 + 1 + 1 (including a carry) = ____ (write 1, carry 1).",
+        "answer": "11",
+        "options": [
+          "11",
+          "10",
+          "1",
+          "100"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The hexadecimal digit D has a denary value of ____.",
+        "answer": "13",
+        "options": [
+          "13",
+          "12",
+          "14",
+          "11"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_021",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The binary number 10000000 has a denary value of ____.",
+        "answer": "128",
+        "options": [
+          "128",
+          "64",
+          "256",
+          "100"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_022",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To convert hexadecimal to binary, replace each hex digit with its equivalent ____ bits.",
+        "answer": "4",
+        "options": [
+          "4",
+          "8",
+          "2",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_023",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "1 kilobyte (KB) equals ____ bytes.",
+        "answer": "1,024",
+        "options": [
+          "1,024",
+          "1,000",
+          "512",
+          "2,048"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_024",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The most significant bit (MSB) is the ____ bit in a binary number.",
+        "answer": "leftmost",
+        "options": [
+          "leftmost",
+          "rightmost",
+          "middle",
+          "smallest"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_fill_025",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The binary number 01000001 converted to denary equals ____.",
+        "answer": "65",
+        "options": [
+          "65",
+          "64",
+          "66",
+          "41"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Converting Denary 45 to 8-bit Binary",
+        "instruction": "Put these steps in the correct order to convert the denary number 45 to 8-bit binary using the place value method.",
+        "items": [
+          "Write out the 8 binary column values: 128, 64, 32, 16, 8, 4, 2, 1",
+          "Check if 128 fits into 45 — it does not, so write 0; check 64 — it does not, write 0",
+          "Check if 32 fits into 45 — yes; write 1, subtract: 45 - 32 = 13",
+          "Check if 16 fits into 13 — it does not, write 0; check 8 fits into 13 — yes; write 1, subtract: 13 - 8 = 5",
+          "Check if 4 fits into 5 — yes; write 1, subtract: 5 - 4 = 1; check 2 — no; check 1 — yes; write 1",
+          "Read the completed 8 bits from left to right: 00101101"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_binary_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Converting Binary 10110100 to Hexadecimal (Nibble Method)",
+        "instruction": "Put these steps in the correct order to convert the binary number 10110100 to hexadecimal.",
+        "items": [
+          "Take the 8-bit binary number: 10110100",
+          "Split it into two nibbles of 4 bits each from the right: 1011 and 0100",
+          "Convert the left nibble 1011: 8+2+1 = 11, which is hexadecimal B",
+          "Convert the right nibble 0100: 4, which is hexadecimal 4",
+          "Combine the hex digits left to right to get the answer: B4"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_binary_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Binary, Denary, or Hexadecimal?",
+        "instruction": "Sort each number representation into its correct number system.",
+        "categories": [
+          "Binary",
+          "Denary",
+          "Hexadecimal"
+        ],
+        "pairs": [
+          {
+            "text": "10110010",
+            "category": "Binary"
+          },
+          {
+            "text": "178",
+            "category": "Denary"
+          },
+          {
+            "text": "B2",
+            "category": "Hexadecimal"
+          },
+          {
+            "text": "00001111",
+            "category": "Binary"
+          },
+          {
+            "text": "255",
+            "category": "Denary"
+          },
+          {
+            "text": "FF",
+            "category": "Hexadecimal"
+          },
+          {
+            "text": "11001010",
+            "category": "Binary"
+          },
+          {
+            "text": "1A",
+            "category": "Hexadecimal"
+          },
+          {
+            "text": "64",
+            "category": "Denary"
+          },
+          {
+            "text": "3F",
+            "category": "Hexadecimal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_binary_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Binary & Hexadecimal"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Correct Binary Addition Result or Incorrect?",
+        "instruction": "Sort each binary addition result into the correct category.",
+        "categories": [
+          "Correct result",
+          "Incorrect result"
+        ],
+        "pairs": [
+          {
+            "text": "0 + 0 = 0",
+            "category": "Correct result"
+          },
+          {
+            "text": "0 + 1 = 1",
+            "category": "Correct result"
+          },
+          {
+            "text": "1 + 0 = 1",
+            "category": "Correct result"
+          },
+          {
+            "text": "1 + 1 = 2",
+            "category": "Incorrect result"
+          },
+          {
+            "text": "1 + 1 = 10 (carry 1)",
+            "category": "Correct result"
+          },
+          {
+            "text": "1 + 1 + 1 = 11 (carry 1)",
+            "category": "Correct result"
+          },
+          {
+            "text": "1 + 1 + 1 = 3",
+            "category": "Incorrect result"
+          },
+          {
+            "text": "0 + 0 = 1",
+            "category": "Incorrect result"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,1161 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_compression",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Data Compression",
+  "subtitle": "Lossy and lossless compression techniques, including run-length encoding.",
+  "items": [
+    {
+      "id": "ks3_computing_compression_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "compression",
+        "targetWord": "the process of encoding data so that it takes up less storage space than the original",
+        "examples": {
+          "en-GB": "Compression is used to reduce the size of video files so they can be streamed over the internet quickly."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "lossy compression",
+        "targetWord": "a compression method that permanently removes some data from a file; the original cannot be fully restored after decompression",
+        "examples": {
+          "en-GB": "JPEG uses lossy compression, so saving a photo at low quality permanently removes fine detail."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "lossless compression",
+        "targetWord": "a compression method that reduces file size while preserving every bit of the original data; the file can be perfectly restored on decompression",
+        "examples": {
+          "en-GB": "ZIP uses lossless compression, so the decompressed file is identical to the original."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "run-length encoding",
+        "targetWord": "a lossless compression algorithm that replaces consecutive repeated values with a count followed by the value (e.g. AAAA becomes 4A)",
+        "examples": {
+          "en-GB": "Run-length encoding compressed the row AAAABBBCC into 4A3B2C, saving 3 bytes."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "compression ratio",
+        "targetWord": "the ratio of the compressed file size to the original file size; a lower ratio indicates more effective compression",
+        "examples": {
+          "en-GB": "An encoded file of 6 bytes from an original of 10 bytes gives a compression ratio of 0.6 (60% of original)."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "file size",
+        "targetWord": "the amount of storage space a file occupies, measured in bytes, kilobytes, megabytes, or larger units",
+        "examples": {
+          "en-GB": "Compression reduced the file size of the video from 500 MB to 50 MB."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "JPEG",
+        "targetWord": "a common lossy image file format best suited to photographs; achieves high compression by removing image detail the human eye is less sensitive to",
+        "examples": {
+          "en-GB": "Saving a holiday photo as a JPEG at 80% quality reduces the file size significantly with minimal visible loss."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "PNG",
+        "targetWord": "a common lossless image file format suited to graphics, logos, and screenshots; preserves all pixel data exactly",
+        "examples": {
+          "en-GB": "The school logo was saved as a PNG to ensure the sharp edges and exact colours were perfectly preserved."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "MP3",
+        "targetWord": "a common lossy audio file format that compresses sound by removing frequencies the human ear is least sensitive to",
+        "examples": {
+          "en-GB": "An MP3 of a 4-minute song is typically around 4 MB compared to 40 MB for the uncompressed WAV file."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ZIP",
+        "targetWord": "a common lossless archive file format used to compress one or more files of any type; no data is lost during compression",
+        "examples": {
+          "en-GB": "The teacher compressed all the worksheets into a ZIP file before emailing them to the class."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "MP4",
+        "targetWord": "a common lossy video container format that uses heavy compression to store video and audio; widely used for streaming",
+        "examples": {
+          "en-GB": "Streaming services encode films as MP4 files using lossy compression to reduce bandwidth usage."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "codec",
+        "targetWord": "software that encodes or decodes a digital data stream; used to compress and decompress audio and video files",
+        "examples": {
+          "en-GB": "The H.264 codec is used to compress video in many MP4 files, making them small enough to stream online."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "redundancy",
+        "targetWord": "repeated or unnecessary data in a file that can be removed or replaced to reduce file size without significant loss of information",
+        "examples": {
+          "en-GB": "RLE exploits redundancy in images by replacing long runs of the same colour pixel with a count and value."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "encoding",
+        "targetWord": "the process of converting data into a compressed or alternative format for storage or transmission",
+        "examples": {
+          "en-GB": "Encoding the pixel row AAAABBBCC using RLE produces 4A3B2C, reducing the data from 9 to 6 characters."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "decoding",
+        "targetWord": "the process of converting compressed or encoded data back into its original or usable form",
+        "examples": {
+          "en-GB": "Decoding the RLE sequence 3W2B1W restores the original string WWWBBW."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "artefact",
+        "targetWord": "a visual or audible distortion introduced into a file by lossy compression, such as blurriness or blockiness in an image",
+        "examples": {
+          "en-GB": "Saving the JPEG at very low quality introduced blocky artefacts around the edges of the text in the image."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "quality loss",
+        "targetWord": "the permanent degradation of data fidelity that occurs when lossy compression removes information from a file",
+        "examples": {
+          "en-GB": "Each time the JPEG was re-saved at reduced quality, further quality loss accumulated until the image was barely recognisable."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "restoration",
+        "targetWord": "the ability to fully recover the exact original data from a compressed file; only possible with lossless compression",
+        "examples": {
+          "en-GB": "Because ZIP is lossless, full restoration of every original byte is guaranteed when the file is decompressed."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data reduction",
+        "targetWord": "the decrease in the amount of data needed to represent the same information, achieved through compression techniques",
+        "examples": {
+          "en-GB": "RLE achieves data reduction by replacing repeated values with a single count-value pair."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "perceptual quality",
+        "targetWord": "the level of quality as experienced by a human observer; lossy compression exploits limitations in human perception to remove data that is unlikely to be noticed",
+        "examples": {
+          "en-GB": "MP3 compression targets perceptual quality by removing audio frequencies that humans struggle to hear."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "file format",
+        "targetWord": "the structure and encoding method used to store data in a file, indicated by its extension (e.g. .jpg, .png, .mp3)",
+        "examples": {
+          "en-GB": "The file format determines whether an image is stored using lossy or lossless compression."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "storage",
+        "targetWord": "the capacity to retain data on a device such as a hard drive, SSD, or cloud service; compression helps reduce the storage space required",
+        "examples": {
+          "en-GB": "Compressing the image files freed up 2 GB of storage on the laptop's hard drive."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bandwidth",
+        "targetWord": "the maximum rate at which data can be transmitted over a network connection, usually measured in megabits per second (Mbps)",
+        "examples": {
+          "en-GB": "Compressing video files reduces bandwidth usage, allowing smooth streaming even on slower internet connections."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "transmission speed",
+        "targetWord": "the rate at which data is sent from one location to another; smaller compressed files transmit more quickly than large uncompressed files",
+        "examples": {
+          "en-GB": "Compressing the attachment from 20 MB to 5 MB greatly increased its transmission speed as an email."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "trade-off",
+        "targetWord": "a situation where gaining one benefit requires accepting a disadvantage; in compression, smaller file size may mean lower quality or inability to restore the original",
+        "examples": {
+          "en-GB": "Using lossy compression involves a trade-off: you gain a much smaller file but lose the ability to recover the exact original data."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Lossy compression permanently ____ some data from a file, so the original cannot be fully recovered.",
+        "answer": "removes",
+        "options": [
+          "removes",
+          "adds",
+          "copies",
+          "encrypts"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Lossless compression preserves ____ of the original data, so the file can be perfectly restored.",
+        "answer": "all",
+        "options": [
+          "all",
+          "some",
+          "none",
+          "half"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Run-length encoding replaces a run of repeated values with a ____ followed by the value.",
+        "answer": "count",
+        "options": [
+          "count",
+          "colour",
+          "bit",
+          "code"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "JPEG is a ____ image format; saving a photograph as a JPEG permanently removes some detail.",
+        "answer": "lossy",
+        "options": [
+          "lossy",
+          "lossless",
+          "raw",
+          "binary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "PNG is a ____ image format; the decompressed image is pixel-for-pixel identical to the original.",
+        "answer": "lossless",
+        "options": [
+          "lossless",
+          "lossy",
+          "compressed",
+          "binary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "ZIP is a ____ archive format, meaning all original file data is retained after decompression.",
+        "answer": "lossless",
+        "options": [
+          "lossless",
+          "lossy",
+          "encrypted",
+          "binary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "MP3 is a ____ audio format that removes frequencies the human ear is least sensitive to.",
+        "answer": "lossy",
+        "options": [
+          "lossy",
+          "lossless",
+          "raw",
+          "encoded"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Lossy compression must ____ be used on program files because even a single changed bit can cause the program to crash.",
+        "answer": "never",
+        "options": [
+          "never",
+          "always",
+          "sometimes",
+          "usually"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Compression reduces ____ size, which means files can be stored more efficiently and sent more quickly over a network.",
+        "answer": "file",
+        "options": [
+          "file",
+          "screen",
+          "RAM",
+          "pixel"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "RLE is only efficient when data contains long ____ of repeated values; on complex photographs it can make the file larger.",
+        "answer": "runs",
+        "options": [
+          "runs",
+          "pixels",
+          "bits",
+          "frames"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Using RLE on 'ABCDE' produces '1A1B1C1D1E', which is ____ than the original — showing RLE can make files bigger.",
+        "answer": "larger",
+        "options": [
+          "larger",
+          "smaller",
+          "identical",
+          "faster"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "The two main reasons to compress data are to save ____ space and to improve transmission speed.",
+        "answer": "storage",
+        "options": [
+          "storage",
+          "screen",
+          "processor",
+          "network"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Encoding the string WWWWBBBBWW using RLE gives 4W4B2W, saving ____ bytes compared to the original 10 bytes.",
+        "answer": "4",
+        "options": [
+          "4",
+          "2",
+          "6",
+          "8"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "A visual distortion in a JPEG caused by heavy lossy compression — such as blockiness around edges — is called a compression ____.",
+        "answer": "artefact",
+        "options": [
+          "artefact",
+          "pixel",
+          "codec",
+          "run"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "A text file compressed with lossy compression might change a word or number, so ____ compression must always be used for text.",
+        "answer": "lossless",
+        "options": [
+          "lossless",
+          "lossy",
+          "RLE",
+          "binary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Decoding the RLE sequence 3W2B1W gives the original string ____.",
+        "answer": "WWWBBW",
+        "options": [
+          "WWWBBW",
+          "WWBBWW",
+          "WBBWWW",
+          "BWWWBB"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "The compression ____ is the ratio of the compressed size to the original size; a ratio of 0.6 means the file is 60% of its original size.",
+        "answer": "ratio",
+        "options": [
+          "ratio",
+          "speed",
+          "level",
+          "factor"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Medical images such as X-rays must use ____ compression to ensure no diagnostic information is ever lost.",
+        "answer": "lossless",
+        "options": [
+          "lossless",
+          "lossy",
+          "JPEG",
+          "MP3"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "Each time a JPEG file is re-saved at reduced quality, more quality is permanently lost — this is known as ____ loss.",
+        "answer": "generation",
+        "options": [
+          "generation",
+          "pixel",
+          "frame",
+          "codec"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_fillblank_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "sentence": "RLE works by identifying and compressing consecutive runs of the same ____ in a data sequence.",
+        "answer": "value",
+        "options": [
+          "value",
+          "address",
+          "file",
+          "bit"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "title": "Applying RLE to AAAABBBCC",
+        "instruction": "Put the steps for encoding AAAABBBCC using run-length encoding in the correct order.",
+        "items": [
+          "Identify the first run: four consecutive A values",
+          "Write the count and value for the first run: 4A",
+          "Identify the second run: three consecutive B values",
+          "Write the count and value for the second run: 3B",
+          "Identify the third run: two consecutive C values",
+          "Write the count and value for the third run: 2C",
+          "The complete RLE encoding is: 4A 3B 2C (6 bytes vs original 9 bytes)"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_compression_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "title": "Comparing File Sizes Before and After RLE",
+        "instruction": "Put these steps for calculating bytes saved by RLE compression in the correct order.",
+        "items": [
+          "Count the total number of characters in the original data string",
+          "Apply RLE to the data to produce the encoded sequence",
+          "Count the total number of characters in the encoded sequence",
+          "Subtract the encoded length from the original length",
+          "The result is the number of bytes saved by RLE compression",
+          "Calculate the compression ratio: encoded length divided by original length"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_compression_catsort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "title": "Lossy or Lossless?",
+        "instruction": "Sort each file format into the correct compression category.",
+        "categories": [
+          "Lossy",
+          "Lossless"
+        ],
+        "pairs": [
+          {
+            "text": "JPEG",
+            "category": "Lossy"
+          },
+          {
+            "text": "PNG",
+            "category": "Lossless"
+          },
+          {
+            "text": "MP3",
+            "category": "Lossy"
+          },
+          {
+            "text": "ZIP",
+            "category": "Lossless"
+          },
+          {
+            "text": "MP4",
+            "category": "Lossy"
+          },
+          {
+            "text": "WAV (uncompressed)",
+            "category": "Lossless"
+          },
+          {
+            "text": "GIF",
+            "category": "Lossless"
+          },
+          {
+            "text": "TIFF",
+            "category": "Lossless"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_compression_catsort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Data Representation: Compression"
+      ],
+      "tags": [
+        "KS3",
+        "computing",
+        "compression"
+      ],
+      "data": {
+        "title": "Use Lossy or Lossless Compression?",
+        "instruction": "Sort each use case into the most appropriate compression type.",
+        "categories": [
+          "Use Lossy",
+          "Use Lossless"
+        ],
+        "pairs": [
+          {
+            "text": "Compressing a program file (.exe)",
+            "category": "Use Lossless"
+          },
+          {
+            "text": "Sharing a holiday photo on social media",
+            "category": "Use Lossy"
+          },
+          {
+            "text": "Music streaming over the internet",
+            "category": "Use Lossy"
+          },
+          {
+            "text": "Emailing a text document to a teacher",
+            "category": "Use Lossless"
+          },
+          {
+            "text": "Archiving scientific data for future research",
+            "category": "Use Lossless"
+          },
+          {
+            "text": "Uploading a photo to a social media profile",
+            "category": "Use Lossy"
+          },
+          {
+            "text": "Storing a medical X-ray image",
+            "category": "Use Lossless"
+          },
+          {
+            "text": "Streaming a film over the internet",
+            "category": "Use Lossy"
+          }
+        ]
+      }
+    }
+  ]
+}

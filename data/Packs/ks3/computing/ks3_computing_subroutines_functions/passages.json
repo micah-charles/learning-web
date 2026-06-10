@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_subroutines_functions",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "programming"],
+  "items": [
+    {
+      "id": "ks3_computing_subroutines_functions_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Functions and Procedures: What's the Difference?"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Subroutines",
+        "sourceTitle": "Functions and Procedures: What's the Difference?",
+        "targetTitle": "Functions and Procedures: What's the Difference?",
+        "sourcePassage": "In programming, a subroutine is a named, reusable block of code that can be called from anywhere in a program. Subroutines allow programmers to write a piece of code once and use it many times, rather than copying the same instructions repeatedly. There are two main types of subroutine: procedures and functions, and the key difference between them is whether they send a value back to the code that called them.\n\nA procedure is a subroutine that carries out a task — such as printing a message to the screen or drawing a shape — but does not return any value when it finishes. After a procedure completes its job, control simply returns to the next line in the main program, and nothing is sent back. For example, a procedure called greetUser might display a welcome message on screen, but the main program receives no data back from it.\n\nA function, by contrast, is a subroutine that performs an operation and returns a value to the part of the program that called it. This returned value can then be stored in a variable, used in a calculation, or passed to another subroutine. For example, a function called calculateArea might take the width and height of a rectangle as inputs, compute the area, and return the result. The calling code can then use that number immediately.\n\nThe key question to ask when deciding whether to use a function or a procedure is: 'Does the subroutine need to send a result back to the rest of the program?' If the answer is yes, use a function. If the subroutine simply performs an action and no result is needed, use a procedure. Both types accept parameters — values passed in when the subroutine is called — so both can work with variable data. The distinction lies solely in whether a value is returned.",
+        "targetPassage": "In programming, a subroutine is a named, reusable block of code that can be called from anywhere in a program. Subroutines allow programmers to write a piece of code once and use it many times, rather than copying the same instructions repeatedly. There are two main types of subroutine: procedures and functions, and the key difference between them is whether they send a value back to the code that called them.\n\nA procedure is a subroutine that carries out a task — such as printing a message to the screen or drawing a shape — but does not return any value when it finishes. After a procedure completes its job, control simply returns to the next line in the main program, and nothing is sent back. For example, a procedure called greetUser might display a welcome message on screen, but the main program receives no data back from it.\n\nA function, by contrast, is a subroutine that performs an operation and returns a value to the part of the program that called it. This returned value can then be stored in a variable, used in a calculation, or passed to another subroutine. For example, a function called calculateArea might take the width and height of a rectangle as inputs, compute the area, and return the result. The calling code can then use that number immediately.\n\nThe key question to ask when deciding whether to use a function or a procedure is: 'Does the subroutine need to send a result back to the rest of the program?' If the answer is yes, use a function. If the subroutine simply performs an action and no result is needed, use a procedure. Both types accept parameters — values passed in when the subroutine is called — so both can work with variable data. The distinction lies solely in whether a value is returned.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_subroutines_functions_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the key difference between a function and a procedure?",
+            "options": [
+              "A function returns a value to the caller; a procedure does not",
+              "A procedure is faster than a function",
+              "A function can only be called once; a procedure can be called many times",
+              "A procedure uses parameters; a function does not"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A function returns a value to the caller; a procedure does not",
+            "acceptedKeywords": ["return", "value", "sends back", "result"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the passage, what would a procedure called greetUser typically do?",
+            "options": [
+              "Display a welcome message on screen without returning any data",
+              "Calculate and return the user's score",
+              "Store the user's name in a variable and send it back",
+              "Delete all data from the main program"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Display a welcome message on screen without returning any data",
+            "acceptedKeywords": ["welcome message", "display", "no data back", "no return"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A programmer writes a subroutine that takes two numbers and returns their average. Should this be written as a function or a procedure? Why?",
+            "options": [
+              "A function, because it needs to return the calculated average to the rest of the program",
+              "A procedure, because it involves a calculation",
+              "A function, because functions always work with numbers and procedures do not",
+              "A procedure, because it only needs to be called once"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A function, because it needs to return the calculated average to the rest of the program",
+            "acceptedKeywords": ["function", "return", "result", "average back"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage states that 'both types accept parameters'. What does this imply about the relationship between parameters and return values?",
+            "options": [
+              "They are independent features — accepting parameters does not determine whether a value is returned",
+              "Only functions can accept parameters, not procedures",
+              "If a subroutine accepts parameters it must also return a value",
+              "Parameters and return values are the same thing described differently"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "They are independent features — accepting parameters does not determine whether a value is returned",
+            "acceptedKeywords": ["independent", "separate", "does not determine", "unrelated"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_subroutines_functions_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Why Use Subroutines? The Benefits of Modular Code"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Subroutines",
+        "sourceTitle": "Why Use Subroutines? The Benefits of Modular Code",
+        "targetTitle": "Why Use Subroutines? The Benefits of Modular Code",
+        "sourcePassage": "When programs are small, it can seem straightforward to write all the code in one long sequence. But as programs grow larger and more complex, this approach quickly becomes unmanageable. Subroutines — named, reusable blocks of code — solve this problem by breaking a large program into smaller, focused pieces. This style of programming is often called modular code, and it offers several important benefits.\n\nThe most immediate benefit is the reduction of repetition. If the same task needs to happen in five different places within a program, a programmer without subroutines would have to copy and paste that code five times. If a bug is later discovered in that code, it must be found and fixed in all five locations — a time-consuming and error-prone process. With a subroutine, the code is written once. Any bug fix or improvement is made in a single place, and every part of the program that calls that subroutine automatically benefits from the fix.\n\nSubroutines also make programs significantly easier to read. A program that calls named subroutines such as calculateTax(), applyDiscount(), and printReceipt() is much clearer in its intent than a program consisting of hundreds of lines of undivided code. A programmer reading modular code can understand the high-level structure of the program quickly, then look at individual subroutines in detail only when needed.\n\nFinally, subroutines support easier testing. Each subroutine can be tested independently by supplying known inputs and checking that the output is correct, before the subroutine is combined with the rest of the program. This isolation means bugs can be identified and fixed in individual components rather than having to search through an entire program. Subroutines can also be shared between different projects, meaning well-written code does not need to be written again from scratch.",
+        "targetPassage": "When programs are small, it can seem straightforward to write all the code in one long sequence. But as programs grow larger and more complex, this approach quickly becomes unmanageable. Subroutines — named, reusable blocks of code — solve this problem by breaking a large program into smaller, focused pieces. This style of programming is often called modular code, and it offers several important benefits.\n\nThe most immediate benefit is the reduction of repetition. If the same task needs to happen in five different places within a program, a programmer without subroutines would have to copy and paste that code five times. If a bug is later discovered in that code, it must be found and fixed in all five locations — a time-consuming and error-prone process. With a subroutine, the code is written once. Any bug fix or improvement is made in a single place, and every part of the program that calls that subroutine automatically benefits from the fix.\n\nSubroutines also make programs significantly easier to read. A program that calls named subroutines such as calculateTax(), applyDiscount(), and printReceipt() is much clearer in its intent than a program consisting of hundreds of lines of undivided code. A programmer reading modular code can understand the high-level structure of the program quickly, then look at individual subroutines in detail only when needed.\n\nFinally, subroutines support easier testing. Each subroutine can be tested independently by supplying known inputs and checking that the output is correct, before the subroutine is combined with the rest of the program. This isolation means bugs can be identified and fixed in individual components rather than having to search through an entire program. Subroutines can also be shared between different projects, meaning well-written code does not need to be written again from scratch.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_subroutines_functions_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the most immediate benefit of using subroutines described in the passage?",
+            "options": [
+              "The reduction of repetition in code",
+              "Programs run faster with subroutines",
+              "Subroutines automatically fix bugs",
+              "Programs become shorter by removing all output statements"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The reduction of repetition in code",
+            "acceptedKeywords": ["repetition", "code once", "no copying", "reduce duplication"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How do subroutines improve the readability of a program?",
+            "options": [
+              "Named subroutines make the program's intent clearer than a long undivided block of code",
+              "Subroutines reduce the total number of lines in every program by half",
+              "Subroutines force the programmer to use shorter variable names",
+              "Subroutines remove the need for comments in the code"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Named subroutines make the program's intent clearer than a long undivided block of code",
+            "acceptedKeywords": ["named", "clearer", "intent", "readable", "structure"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "If the same code is copied to five locations without using subroutines and a bug is found, what does the passage say must happen?",
+            "options": [
+              "The bug must be found and fixed in all five locations separately",
+              "The program will automatically detect and fix the bug in all locations",
+              "Only the first copy of the code needs to be fixed",
+              "The bug cannot be fixed without rewriting the entire program"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The bug must be found and fixed in all five locations separately",
+            "acceptedKeywords": ["all five", "every location", "each copy", "five times"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage mentions that subroutines 'can be shared between different projects'. How does this connect to the benefit of reducing repetition described earlier in the passage?",
+            "options": [
+              "Both describe the same underlying principle: writing code once and reusing it eliminates the need to repeat work, whether within one program or across multiple programs",
+              "Sharing between projects is unrelated to repetition — it is purely about teamwork",
+              "Sharing between projects contradicts reducing repetition, because it creates more copies of the code",
+              "Reducing repetition only applies within a single program, so the two benefits are entirely separate"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Both describe the same underlying principle: writing code once and reusing it eliminates the need to repeat work, whether within one program or across multiple programs",
+            "acceptedKeywords": ["write once", "reuse", "same principle", "avoid repeating"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_subroutines_functions_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Parameters and Arguments in Action"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Subroutines",
+        "sourceTitle": "Parameters and Arguments in Action",
+        "targetTitle": "Parameters and Arguments in Action",
+        "sourcePassage": "Subroutines become much more powerful when they can work with different data each time they are called. This is made possible through parameters and arguments. Although these two terms are often used interchangeably in everyday conversation, they have distinct technical meanings in programming.\n\nA parameter is a placeholder variable written in the subroutine's definition. It acts like a label on an empty container, waiting to be filled. When a programmer writes a procedure such as greetUser(name), the word 'name' inside the parentheses is the parameter. It does not have a value at the point of definition — it simply marks a slot where a value will later be placed.\n\nAn argument is the actual value that is supplied when the subroutine is called. When the main program executes the line greetUser(\"Alice\"), the string \"Alice\" is the argument. As soon as the call is made, the argument \"Alice\" is copied into the parameter 'name', and the subroutine runs using that value. If the same subroutine is then called again with greetUser(\"Bob\"), the argument \"Bob\" is copied into 'name' and the subroutine runs again with this new value. The subroutine's code does not change — only the data being passed in changes.\n\nA helpful way to think about this distinction is to imagine the parameter as the label on a letterbox (fixed and permanent) and the argument as the letter being pushed through it (different each time). A subroutine can have multiple parameters, allowing several pieces of data to be passed in simultaneously. For instance, a function called calculateArea(width, height) accepts two parameters, and can be called with different pairs of numbers each time it is used. This flexibility is what makes subroutines genuinely reusable.",
+        "targetPassage": "Subroutines become much more powerful when they can work with different data each time they are called. This is made possible through parameters and arguments. Although these two terms are often used interchangeably in everyday conversation, they have distinct technical meanings in programming.\n\nA parameter is a placeholder variable written in the subroutine's definition. It acts like a label on an empty container, waiting to be filled. When a programmer writes a procedure such as greetUser(name), the word 'name' inside the parentheses is the parameter. It does not have a value at the point of definition — it simply marks a slot where a value will later be placed.\n\nAn argument is the actual value that is supplied when the subroutine is called. When the main program executes the line greetUser(\"Alice\"), the string \"Alice\" is the argument. As soon as the call is made, the argument \"Alice\" is copied into the parameter 'name', and the subroutine runs using that value. If the same subroutine is then called again with greetUser(\"Bob\"), the argument \"Bob\" is copied into 'name' and the subroutine runs again with this new value. The subroutine's code does not change — only the data being passed in changes.\n\nA helpful way to think about this distinction is to imagine the parameter as the label on a letterbox (fixed and permanent) and the argument as the letter being pushed through it (different each time). A subroutine can have multiple parameters, allowing several pieces of data to be passed in simultaneously. For instance, a function called calculateArea(width, height) accepts two parameters, and can be called with different pairs of numbers each time it is used. This flexibility is what makes subroutines genuinely reusable.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_subroutines_functions_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "In the subroutine definition greetUser(name), what is 'name'?",
+            "options": [
+              "A parameter — a placeholder variable in the definition",
+              "An argument — the actual value passed when calling the subroutine",
+              "A local variable created inside the subroutine body",
+              "A return value sent back to the main program"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A parameter — a placeholder variable in the definition",
+            "acceptedKeywords": ["parameter", "placeholder", "definition"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "When greetUser(\"Alice\") is called, what is \"Alice\"?",
+            "options": [
+              "An argument — the actual value supplied at the point of the call",
+              "A parameter — a placeholder listed in the subroutine definition",
+              "A return value sent back from the subroutine",
+              "A local variable created automatically by the computer"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "An argument — the actual value supplied at the point of the call",
+            "acceptedKeywords": ["argument", "actual value", "supplied", "passed in"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "According to the passage, when greetUser is called first with \"Alice\" and then with \"Bob\", what changes and what stays the same?",
+            "options": [
+              "The argument (data passed in) changes each time; the subroutine's code itself does not change",
+              "Both the subroutine's code and the argument change each time the subroutine is called",
+              "The subroutine's code changes to match the new argument, but the parameter name stays fixed",
+              "Neither the code nor the argument changes — the subroutine always uses the first value it received"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The argument (data passed in) changes each time; the subroutine's code itself does not change",
+            "acceptedKeywords": ["argument changes", "code does not change", "data changes", "subroutine unchanged"]
+          },
+          {
+            "id": "ks3_computing_subroutines_functions_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage uses the analogy of a letterbox (fixed label) and letters (different each time). How does this analogy connect to the claim that parameters make subroutines 'genuinely reusable'?",
+            "options": [
+              "Because the fixed parameter label (letterbox) accepts different arguments (letters) each time the subroutine is called, the same code can process varied data without being rewritten",
+              "Because the letterbox analogy shows that parameters can only accept one type of data, which prevents errors",
+              "Because arguments, like letters, are destroyed after the subroutine finishes, ensuring data privacy",
+              "Because the analogy proves that subroutines with parameters always run faster than those without"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Because the fixed parameter label (letterbox) accepts different arguments (letters) each time the subroutine is called, the same code can process varied data without being rewritten",
+            "acceptedKeywords": ["same code", "different data", "varied", "without rewriting", "reusable"]
+          }
+        ]
+      }
+    }
+  ]
+}

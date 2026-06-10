@@ -6,10 +6,23 @@
  * not fetched at runtime.
  */
 import { normLang, packSrcLang, packTgtLang } from "./lang-utils.js";
+import { humanizeLabel } from "./utils.js";
 
 const jsonCache = new Map();
 
+function normalizeCachePath(path) {
+  const value = String(path || "");
+  if (value.startsWith("./uploaded://")) {
+    return value.slice(2);
+  }
+  return value;
+}
+
 async function fetchJson(path) {
+  const cacheKey = normalizeCachePath(path);
+  if (jsonCache.has(cacheKey)) {
+    return jsonCache.get(cacheKey);
+  }
   if (!jsonCache.has(path)) {
     jsonCache.set(
       path,
@@ -38,29 +51,6 @@ function asDisplayPack(pack) {
   };
 }
 
-function vocabFromItem(item) {
-  const data = item.data || {};
-  return {
-    id: item.id,
-    de: data.sourceWord || data.de || "",
-    en: data.targetWord || data.en || "",
-    pos: data.partOfSpeech || data.pos || "",
-    gender: data.gender || null,
-    plural: data.plural || null,
-    exampleDe: data.exampleSource || data.exampleDe || null,
-    exampleEn: data.exampleTarget || data.exampleEn || null,
-    topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
-    tags: item.tags || [],
-    level: item.level || "",
-    part_of_speech: data.partOfSpeech || data.pos || "",
-    headword: data.headword || data.sourceWord || data.de || "",
-    english_equivalent: data.targetWord || data.en || "",
-    stage: data.stage,
-    stage_label: data.stageLabel || data.stage_label,
-    categories: item.topics || [],
-  };
-}
-
 function sentenceFromItem(item) {
   const data = item.data || {};
   const translations = data.translations || {};
@@ -70,10 +60,10 @@ function sentenceFromItem(item) {
     id: item.id,
     level: item.level || "",
     topics: item.topics || [],
-    de:    translations[srcCode] || Object.values(translations)[0] || data.sourceSentence || data.de || "",
-    en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || data.targetSentence || data.en || "",
-    target_vocab_id: data.targetVocabId || data.target_vocab_id,
-    vocab_ids: data.vocabIds || data.vocab_ids || [],
+    de:    translations[srcCode] || Object.values(translations)[0] || data.sourceSentence || "",
+    en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || data.targetSentence || "",
+    target_vocab_id: data.targetVocabId,
+    vocab_ids: data.vocabIds || [],
   };
 }
 
@@ -96,7 +86,7 @@ function sortFromItem(item) {
     title: data.title || "",
     instruction: data.instruction || "",
     categories: data.categories || [],
-    items: data.items || data.pairs || [],
+    items: data.pairs || [],
     level: item.level || "",
     topics: item.topics || [],
   };
@@ -126,40 +116,70 @@ function builderFromItem(item) {
   };
 }
 
-function passageFromItem(item) {
+function passageFromItem(item, packSpeechLanguage) {
+  // `data` is the canonical location for passage fields (item.data).
+  // Fall back to item-level fields so that AI-generated packs that omit the
+  // `data` wrapper (e.g. flat structure from ChatGPT) still load correctly.
   const data = item.data || {};
   return {
     id: item.id,
     topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
     level: item.level || "",
-    speech_language: data.speechLanguage || "de-DE",
-    chapter: data.chapter || "",
-    section: data.section || "",
-    title_de: data.sourceTitle || "",
-    title_en: data.targetTitle || "",
-    passage_de: data.sourcePassage || "",
-    passage_en: data.targetPassage || "",
-    questions: (data.questions || []).map((question) => ({
+    speech_language: data.speechLanguage || item.speechLanguage || packSpeechLanguage || "en-GB",
+    chapter: data.chapter || item.chapter || "",
+    section: data.section || item.section || "",
+    sourceTitle: data.sourceTitle || data.title || item.sourceTitle || item.title || "",
+    targetTitle: data.targetTitle || data.title || item.targetTitle || item.title || "",
+    sourceText: data.sourcePassage || item.sourcePassage || "",
+    targetText: data.targetPassage || item.targetPassage || "",
+    questions: (data.questions || item.questions || []).map((question) => ({
       id: question.id,
+      // Accept both questionType (canonical) and type (AI-generated shorthand)
       type: question.questionType || question.type || (question.options?.length ? "multiple_choice" : "open"),
       difficulty: question.difficulty || "medium",
-      question_en: question.question || question.question_en || "",
+      question: question.question || "",
       options: question.options || [],
-      correct_option_index: question.correctOptionIndex ?? question.correct_option_index,
-      correct_answer: question.correctAnswer || question.correct_answer || "",
-      model_answer_en: question.modelAnswer || question.model_answer_en || "",
-      accepted_keywords: question.acceptedKeywords || question.accepted_keywords || [],
-      grammar_focus: question.grammarFocus || question.grammar_focus || null,
+      // Accept both correctOptionIndex (canonical) and answer (AI-generated shorthand)
+      correct_option_index: question.correctOptionIndex ?? question.answer,
+      correct_answer: question.correctAnswer || "",
+      model_answer_en: question.modelAnswer || "",
+      accepted_keywords: question.acceptedKeywords || [],
+      grammar_focus: question.grammarFocus || null,
+      // sourceRef is used by the ReadingWorkspace evidence-linking feature
+      sourceRef: question.sourceRef || null,
     })),
   };
+}
+
+/**
+ * Pre-populate the fetchJson cache for a given path.
+ * Used by admin-storage.js to inject uploaded pack blobs so that
+ * loadUnifiedPack() returns in-memory data instead of fetching a URL.
+ */
+export function registerPackInCache(path, data) {
+  const payload = Promise.resolve(data);
+  jsonCache.set(path, payload);
+  jsonCache.set(normalizeCachePath(path), payload);
+  if (!String(path).startsWith("./")) {
+    jsonCache.set(`./${path}`, payload);
+  }
 }
 
 export async function loadManifest() {
   return fetchJson("./data/generated/manifest.json");
 }
 
+function packsWithCapability(manifest, cap) {
+  return (manifest.packs || []).filter((p) => (p.capabilities || []).includes(cap));
+}
+
 export function listDatasets(manifest) {
-  return [manifest.core, ...(manifest.revisionPacks || [])].filter(Boolean).map(asDisplayPack);
+  const revision = packsWithCapability(manifest, "revision");
+  // Uploaded packs are injected into manifest.revisionPacks by hydrateManifest
+  // (not into manifest.packs, which is the static JSON array). Include them here
+  // so findDataset can resolve their IDs.
+  const uploadedRevision = (manifest.revisionPacks || []).filter((p) => p._uploaded);
+  return [manifest.core, ...revision, ...uploadedRevision].filter(Boolean).map(asDisplayPack);
 }
 
 export function findDataset(manifest, datasetId) {
@@ -170,11 +190,11 @@ export function findDataset(manifest, datasetId) {
 // ─── Subject First helpers ──────────────────────────────────────────────
 //
 // `subject` is a top-level pack tag added in the Subject First refactor.
-// Allowed values: "language" | "history" | "geography" | "science".
+// Allowed values: "language" | "history" | "geography" | "science" | "literature".
 // Older packs may not declare it; the inference fallback below assigns a
 // best-guess subject so legacy packs still appear in the right bucket.
 
-export const SUBJECTS = ["language", "history", "geography", "science"];
+export const SUBJECTS = ["language", "history", "geography", "science", "literature", "computing", "religion", "other"];
 
 const LANGUAGE_HINT_CODES = ["de", "fr", "es", "it", "la", "zh", "ja", "ko", "ru", "ar", "el", "pt", "nl"];
 
@@ -190,8 +210,20 @@ function inferSubject(dataset) {
   if (id.includes("history") || id.includes("black_death") || id.includes("tudors") || id.includes("ww1") || id.includes("norman")) {
     return "history";
   }
+  if (id.includes("literature") || id.includes("poetry") || id.includes("novel") || id.includes("shakespeare")) {
+    return "literature";
+  }
   if (id.includes("science") || id.includes("physics") || id.includes("biology") || id.includes("chemistry")) {
     return "science";
+  }
+  if (id.includes("literature") || id.includes("novel") || id.includes("poem") || id.includes("animal_farm") || id.includes("shakespeare")) {
+    return "literature";
+  }
+  if (id.includes("computing") || id.includes("ks3_computing") || id.includes("gcse_computing")) {
+    return "computing";
+  }
+  if (id.includes("ks3_rs_") || id.includes("religious_studies") || id.includes("gcse_rs_")) {
+    return "religion";
   }
 
   // Translation-language fallback: anything where the source-language code
@@ -201,7 +233,7 @@ function inferSubject(dataset) {
   if (LANGUAGE_HINT_CODES.includes(src) || LANGUAGE_HINT_CODES.includes(tgt)) {
     return "language";
   }
-  return "language";
+  return "other";
 }
 
 export function getDatasetSubject(dataset) {
@@ -210,6 +242,119 @@ export function getDatasetSubject(dataset) {
 
 export function listDatasetsBySubject(manifest, subject) {
   return listDatasets(manifest).filter((d) => getDatasetSubject(d) === subject);
+}
+
+// ─── Curriculum helpers ──────────────────────────────────────────────────────
+//
+// `curriculum` is a top-level tag on each pack entry: "ks3" | "us-middle-school" | "other".
+// Older packs may not carry it; the inference fallback reads it from the pack ID.
+
+// The canonical built-in curricula. These are always offered in the UI; any
+// additional curriculum value found on a pack is discovered dynamically (see
+// listCurricula) so new exam boards / curricula appear without code changes.
+export const CURRICULUMS = ["ks3", "us-middle-school", "other"];
+
+export const CURRICULUM_LABELS = {
+  "ks3":              "KS3 (UK)",
+  "us-middle-school": "US Middle School",
+  "other":            "Other",
+};
+
+/**
+ * Normalise a raw curriculum string into a stable slug key used for filtering.
+ * e.g. "AQA GCSE" -> "aqa-gcse", "Cambridge IGCSE" -> "cambridge-igcse".
+ * Returns "" for empty input.
+ */
+export function normalizeCurriculum(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function inferCurriculum(dataset) {
+  if (!dataset) return "other";
+  const slug = normalizeCurriculum(dataset.curriculum);
+  // Any explicit curriculum value is preserved as its own slug — unknown values
+  // are no longer collapsed into "other", so custom curricula stay visible.
+  if (slug) return slug;
+
+  const id = String(dataset.id || "").toLowerCase();
+  if (id.startsWith("usmsg_")) return "us-middle-school";
+  if (id.startsWith("ks3_") || id.startsWith("y7_") || id.startsWith("y8_") || id.startsWith("y9_")) {
+    return "ks3";
+  }
+  // Packs with no curriculum field and no recognised id prefix fall back to "other".
+  return "other";
+}
+
+export function getDatasetCurriculum(dataset) {
+  return inferCurriculum(dataset);
+}
+
+/** Human-readable label for a curriculum slug (built-in map, else humanised). */
+export function curriculumLabel(slug, rawValue) {
+  if (CURRICULUM_LABELS[slug]) return CURRICULUM_LABELS[slug];
+  // Use the raw value only when it's clearly human-friendly (has a space or an
+  // uppercase letter) and still maps to this slug, e.g. "AQA GCSE". Otherwise
+  // humanise the slug itself so bare slugs don't leak into the UI.
+  const raw = String(rawValue || "").trim();
+  if (raw && /[A-Z\s]/.test(raw) && normalizeCurriculum(raw) === slug) return raw;
+  return humanizeLabel(slug);
+}
+
+/**
+ * Discover the full set of curricula to offer in filter dropdowns.
+ * Always includes the built-in CURRICULUMS, then appends any additional
+ * curricula present on packs / passage groups / builder packs in the manifest.
+ * Returns [{ id, label }] in a stable order.
+ */
+export function listCurricula(manifest) {
+  const labels = new Map(); // slug -> label
+  for (const c of CURRICULUMS) labels.set(c, CURRICULUM_LABELS[c] || c);
+
+  const datasets = [
+    ...listDatasets(manifest),
+    ...listPassageGroups(manifest),
+    ...listSentenceBuilderPacks(manifest),
+  ];
+  for (const d of datasets) {
+    const slug = getDatasetCurriculum(d);
+    if (!slug || labels.has(slug)) continue;
+    labels.set(slug, curriculumLabel(slug, d.curriculum));
+  }
+
+  // Keep "other" last for a tidy dropdown order.
+  const entries = [...labels.entries()];
+  entries.sort((a, b) => (a[0] === "other" ? 1 : b[0] === "other" ? -1 : 0));
+  return entries.map(([id, label]) => ({ id, label }));
+}
+
+export function listDatasetsByCurriculum(manifest, curriculum) {
+  return listDatasets(manifest).filter((d) => getDatasetCurriculum(d) === curriculum);
+}
+
+export function listDatasetsBySubjectAndCurriculum(manifest, subject, curriculum) {
+  return listDatasets(manifest).filter(
+    (d) => getDatasetSubject(d) === subject &&
+           (curriculum === "all" || getDatasetCurriculum(d) === curriculum),
+  );
+}
+
+export function listPassageGroupsByCurriculum(manifest, curriculum) {
+  return listPassageGroups(manifest).filter(
+    (g) => curriculum === "all" || inferCurriculum(g) === curriculum,
+  );
+}
+
+export function listPassageGroupsBySubjectAndCurriculum(manifest, subject, curriculum) {
+  return listPassageGroups(manifest).filter(
+    (g) => getPassageGroupSubject(g) === subject &&
+           (curriculum === "all" || inferCurriculum(g) === curriculum),
+  );
 }
 
 // Returns [{ id, label, isReverse }] for the two "direction" buttons shown when
@@ -235,8 +380,15 @@ export async function loadUnifiedPack(manifest, packId) {
   if (!packId || packId === "core") {
     return loadCoreUnifiedPack(manifest);
   }
-  const pack = (manifest.revisionPacks || []).find((item) => item.id === packId);
-  if (!pack || !pack.unifiedPath) throw new Error(`No unifiedPath for pack: ${packId}`);
+  // Check static packs first, then uploaded packs (revisionPacks with _uploaded flag).
+  const pack =
+    (manifest.packs || []).find((item) => item.id === packId) ||
+    (manifest.revisionPacks || []).find((item) => item.id === packId && item._uploaded);
+  if (!pack || !pack.unifiedPath) {
+    // Pack no longer exists (e.g. removed or merged into another pack).
+    // Fall back to the core pack gracefully rather than crashing.
+    return loadCoreUnifiedPack(manifest);
+  }
   return fetchJson(`./${pack.unifiedPath}`);
 }
 
@@ -259,28 +411,47 @@ export async function loadVocabItems(manifest, datasetId) {
   const pack = await loadUnifiedPack(manifest, datasetId);
   const srcCode = packSrcLang(pack);
   const tgtCode = packTgtLang(pack);
+  // When srcCode === tgtCode (all non-language packs: geography, science, history…),
+  // the translations dict has a single key shared by both src and tgt. Reading it
+  // for both `de` and `en` yields the same term for both — the quiz then shows
+  // "Climate → choose Climate". For same-language packs, always prefer the explicit
+  // sourceWord/targetWord fields and only use translations as a last resort.
+  const isMonoLingual = srcCode === tgtCode;
+
   return filterUnifiedItems(pack, "vocab").map((item) => {
     const d = item.data || {};
     const translations = d.translations || {};
+
+    const deVal = isMonoLingual
+      ? (d.sourceWord || translations[srcCode] || Object.values(translations)[0] || "")
+      : (translations[srcCode] || Object.values(translations)[0] || d.sourceWord || "");
+
+    const enVal = isMonoLingual
+      ? (d.targetWord || translations[tgtCode] || Object.values(translations).slice(1)[0] || "")
+      : (translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || "");
+
     return {
       id: item.id,
-      de:    translations[srcCode] || Object.values(translations)[0] || d.sourceWord || d.de || "",
-      en:    translations[tgtCode] || Object.values(translations).slice(1)[0] || d.targetWord || d.en || "",
-      pos:   d.partOfSpeech || d.pos || "",
+      de:    deVal,
+      en:    enVal,
+      pos:   d.partOfSpeech || "",
       gender:    d.gender    || null,
       plural:    d.plural    || null,
-      exampleDe: d.examples?.[srcCode] || d.exampleSource || d.exampleDe || null,
-      exampleEn: d.examples?.[tgtCode] || d.exampleTarget || d.exampleEn || null,
+      // Only set exampleDe when src and target are different languages; when they
+      // are the same (Science, Geography, History: en-GB → en-GB) both fields would
+      // resolve to the same string and the card would render the example twice.
+      exampleDe: srcCode !== tgtCode ? (d.examples?.[srcCode] || null) : null,
+      exampleEn: d.examples?.[tgtCode] || null,
       topic:     Array.isArray(item.topics) ? item.topics[0] || "" : "",
       tags:      item.tags || [],
       level:     item.level || "",
       // Derive numeric stage from level string (e.g. "Stage 1" -> 1)
       // Needed by filterWordsForScope for Cambridge Latin Stages
       stage:     parseInt(String(item.level || "").replace("Stage ", ""), 10) || d.stage || null,
-      part_of_speech: d.partOfSpeech || d.pos || "",
-      headword:  translations[srcCode] || d.sourceWord || d.de || "",
-      english_equivalent: translations[tgtCode] || d.targetWord || d.en || "",
-      stage_label: d.stageLabel || d.stage_label,
+      part_of_speech: d.partOfSpeech || "",
+      headword:  deVal,
+      english_equivalent: enVal,
+      stage_label: d.stageLabel,
       categories: item.topics || [],
       // Keep the original unified item data for quiz.js
       _unified: item,
@@ -319,6 +490,30 @@ export function listSentenceBuilderPacks(manifest) {
   return manifest.sentenceBuilderPacks || [];
 }
 
+export function getBuilderPackSubject(pack) {
+  if (!pack) return "history";
+  const explicit = String(pack.subject || "").toLowerCase();
+  if (SUBJECTS.includes(explicit)) return explicit;
+  const id = String(pack.id || "").toLowerCase();
+  if (id.includes("geograph") || id.includes("glaciat")) return "geography";
+  if (id.includes("histor") || id.includes("black_death") || id.includes("silk_road")) return "history";
+  if (id.includes("science")) return "science";
+  if (id.includes("literature") || id.includes("novel") || id.includes("poem")) return "literature";
+  return "history";
+}
+
+export function listSentenceBuilderPacksBySubject(manifest, subject) {
+  return listSentenceBuilderPacks(manifest).filter(
+    (p) => getBuilderPackSubject(p) === subject,
+  );
+}
+
+export function listSentenceBuilderPacksBySubjectAndCurriculum(manifest, subject, curriculum) {
+  const bySubject = listSentenceBuilderPacksBySubject(manifest, subject);
+  if (!curriculum || curriculum === "all") return bySubject;
+  return bySubject.filter((p) => inferCurriculum(p) === curriculum);
+}
+
 export async function loadSentenceBuilderUnifiedPack(manifest, packId) {
   const pack = (manifest.sentenceBuilderPacks || []).find((item) => item.id === packId);
   if (!pack || !pack.unifiedPath) throw new Error(`No unifiedPath for sentence builder pack: ${packId}`);
@@ -331,32 +526,49 @@ export async function loadSentenceBuilderPack(manifest, packId) {
 }
 
 export function listPassageGroups(manifest) {
-  return manifest.passageGroups || [];
+  const staticGroups = packsWithCapability(manifest, "passages");
+  // Uploaded passage packs are injected into manifest.passageGroups by
+  // hydrateManifest — not into manifest.packs — so include them here.
+  const uploadedGroups = (manifest.passageGroups || []).filter((p) => p._uploaded);
+  return [...staticGroups, ...uploadedGroups];
+}
+
+export function getPassageGroupSubject(group) {
+  if (!group) return "language";
+  const explicit = String(group.subject || "").toLowerCase();
+  if (SUBJECTS.includes(explicit)) return explicit;
+  const id = String(group.id || "").toLowerCase();
+  if (id.includes("geography") || id.includes("glaciation") || id.includes("geology") || id.includes("gcse_geo")) return "geography";
+  if (id.includes("histor") || id.includes("black_death")) return "history";
+  if (id.includes("science")) return "science";
+  if (id.includes("literature") || id.includes("novel") || id.includes("poem") || id.includes("animal_farm") || id.includes("shakespeare")) return "literature";
+  return "language";
+}
+
+export function listPassageGroupsBySubject(manifest, subject) {
+  return listPassageGroups(manifest).filter((group) => getPassageGroupSubject(group) === subject);
 }
 
 export function listPassagePacks(manifest, groupId) {
-  const group = listPassageGroups(manifest).find((item) => item.id === groupId);
-  if (!group) return [];
-  if (Array.isArray(group.packs)) return group.packs;
-  return [
-    {
-      id: group.id,
-      displayName: group.displayName,
-      resourceName: group.id,
-      unifiedPath: group.unifiedPath,
-    },
-  ];
+  const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
+  if (!pack) return [];
+  // Uploaded passage groups use unifiedPath; static groups use passagePath.
+  const resolvedPath = pack.passagePath || pack.unifiedPath;
+  return [{ id: pack.id, displayName: pack.displayName, resourceName: pack.id, passagePath: resolvedPath }];
 }
 
 export async function loadPassageUnifiedPack(manifest, groupId) {
-  const group = (manifest.passageGroups || []).find((item) => item.id === groupId);
-  if (!group || !group.unifiedPath) throw new Error(`No unifiedPath for passage group: ${groupId}`);
-  return fetchJson(`./${group.unifiedPath}`);
+  const pack = listPassageGroups(manifest).find((p) => p.id === groupId);
+  // Uploaded passage groups use unifiedPath; static groups use passagePath.
+  const path = pack?.passagePath || pack?.unifiedPath;
+  if (!path) throw new Error(`No passagePath for pack: ${groupId}`);
+  return fetchJson(`./${path}`);
 }
 
 export async function loadPassagePack(manifest, groupId, packId = null) {
   const pack = await loadPassageUnifiedPack(manifest, groupId);
-  const passages = filterUnifiedItems(pack, "passage").map(passageFromItem);
+  const packSpeechLanguage = pack && (pack.speechLanguage || pack.sourceLanguageCode);
+  const passages = filterUnifiedItems(pack, "passage").map((item) => passageFromItem(item, packSpeechLanguage));
   if (!packId || packId === groupId) return passages;
   return passages.filter((passage) => {
     const key = `${groupId}::${passage.id}`;

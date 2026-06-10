@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Lists, Arrays &amp; Strings | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Lists, Arrays &amp; Strings" />
+  <link rel="canonical" href="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-lists-arrays-strings/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Lists, Arrays &amp; Strings | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Lists, Arrays &amp; Strings" />
+  <meta property="og:url" content="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-lists-arrays-strings/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Lists, Arrays &amp; Strings | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Lists, Arrays &amp; Strings" />
+  <link rel="stylesheet" href="/revision/revision.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Lists, Arrays & Strings",
+  "description": "Study revision notes for KS3 Computing — Lists, Arrays & Strings",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Lists, Arrays &amp; Strings</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Lists, Arrays &amp; Strings</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-lists-arrays-string-handling">Topic: Lists, Arrays &amp; String Handling</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-arrays-and-lists">Section 1: Arrays and Lists</a></li>
+<li class="sb-toc-h3"><a href="#what-is-an-array">What is an Array?</a></li>
+<li class="sb-toc-h3"><a href="#zero-based-indexing">Zero-Based Indexing</a></li>
+<li class="sb-toc-h3"><a href="#modifying-elements">Modifying Elements</a></li>
+<li class="sb-toc-h3"><a href="#finding-the-length">Finding the Length</a></li>
+<li class="sb-toc-h3"><a href="#common-list-operations">Common List Operations</a></li>
+<li class="sb-toc-h3"><a href="#iterating-over-a-list">Iterating Over a List</a></li>
+<li class="sb-toc-h3"><a href="#finding-the-largest-element">Finding the Largest Element</a></li>
+<li class="sb-toc-h3"><a href="#2d-arrays-awareness-level">2D Arrays (Awareness Level)</a></li>
+<li class="sb-toc-h2"><a href="#section-2-string-handling">Section 2: String Handling</a></li>
+<li class="sb-toc-h3"><a href="#what-is-a-string">What is a String?</a></li>
+<li class="sb-toc-h3"><a href="#string-indexing">String Indexing</a></li>
+<li class="sb-toc-h3"><a href="#string-length">String Length</a></li>
+<li class="sb-toc-h3"><a href="#string-slicing">String Slicing</a></li>
+<li class="sb-toc-h3"><a href="#string-concatenation">String Concatenation</a></li>
+<li class="sb-toc-h3"><a href="#string-methods">String Methods</a></li>
+<li class="sb-toc-h3"><a href="#type-conversion-between-strings-and-numbers">Type Conversion Between Strings and Numbers</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions-corrected">Common Misconceptions — Corrected</a></li>
+<li class="sb-toc-h2"><a href="#diagrams-code-examples">Diagrams / Code Examples</a></li>
+<li class="sb-toc-h3"><a href="#list-index-diagram">List Index Diagram</a></li>
+<li class="sb-toc-h3"><a href="#string-index-diagram">String Index Diagram</a></li>
+<li class="sb-toc-h3"><a href="#trace-table-list-manipulation">Trace Table: List Manipulation</a></li>
+<li class="sb-toc-h3"><a href="#iterating-a-list-with-for">Iterating a List with FOR</a></li>
+<li class="sb-toc-h3"><a href="#string-operations-example">String Operations Example</a></li>
+<li class="sb-toc-h3"><a href="#finding-largest-in-list-pseudocode">Finding Largest in List (Pseudocode)</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-lists-arrays-string-handling">Topic: Lists, Arrays & String Handling</h1>
+<p><strong>Year 7–9 | Programming Fundamentals | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>Most real programs need to store and work with collections of related data, not just a single value. A school register, a set of quiz scores, the letters in a word — all of these are collections. Storing them as separate variables (<code>score1</code>, <code>score2</code>, <code>score3</code>, ...) becomes unmanageable very quickly. <strong>Arrays</strong> (called lists in Python) solve this by grouping related values under a single name, accessible by their position.</p>
+<p><strong>Strings</strong> are closely related. A string is actually a sequence of characters — in many ways, it behaves like a list of letters. Python gives programmers a rich set of tools for working with strings: finding their length, extracting portions of them, changing their case, splitting them into words, and much more. These skills are used constantly in real programs: processing user input, building output messages, validating passwords, and working with text data.</p>
+<p>This pack covers both lists/arrays and string handling, exploring how to access, modify, and iterate over them — including key operations you are likely to be asked about in assessments.</p>
+<hr>
+<h2 id="section-1-arrays-and-lists">Section 1: Arrays and Lists</h2>
+<h3 id="what-is-an-array">What is an Array?</h3>
+<p>An <strong>array</strong> is an ordered collection of values stored under a single variable name. Each value is called an <strong>element</strong>, and each element is accessed by its <strong>index</strong> — its position in the array. Arrays are ideal for storing sets of related values: a list of scores, a set of names, the items in a shopping cart.</p>
+<p>In Python, arrays are called <strong>lists</strong>. They are written using square brackets with elements separated by commas.</p>
+<pre><code class="language-python">scores = [85, 72, 90, 65, 88]
+names  = [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]
+mixed  = [42, &quot;hello&quot;, True]    # Python lists can mix types (arrays often cannot)
+</code></pre>
+<h3 id="zero-based-indexing">Zero-Based Indexing</h3>
+<p>Array indices in Python (and most programming languages) start at <strong>0</strong>, not 1. This is called <strong>zero-indexed</strong>.</p>
+<pre><code>scores = [ 85,  72,  90,  65,  88 ]
+index:     0    1    2    3    4
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Value</td>
+<td>85</td>
+<td>72</td>
+<td>90</td>
+<td>65</td>
+<td>88</td>
+</tr>
+</tbody></table>
+<pre><code class="language-python">print(scores[0])   # 85  (first element)
+print(scores[2])   # 90  (third element)
+print(scores[4])   # 88  (last element)
+print(scores[-1])  # 88  (last element — negative indexing)
+</code></pre>
+<h3 id="modifying-elements">Modifying Elements</h3>
+<pre><code class="language-python">scores[1] = 99     # Change the second element from 72 to 99
+scores[0] = scores[0] + 5   # Increase first element by 5 (85 → 90)
+</code></pre>
+<p>Changing one element does <strong>not</strong> affect other elements in the list.</p>
+<h3 id="finding-the-length">Finding the Length</h3>
+<pre><code class="language-python">length = len(scores)   # Returns 5 — the number of elements
+</code></pre>
+<h3 id="common-list-operations">Common List Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Python code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access element</td>
+<td><code>scores[2]</code></td>
+<td>Returns the element at index 2</td>
+</tr>
+<tr>
+<td>Modify element</td>
+<td><code>scores[2] = 95</code></td>
+<td>Replaces element at index 2 with 95</td>
+</tr>
+<tr>
+<td>Append (add to end)</td>
+<td><code>scores.append(77)</code></td>
+<td>Adds 77 as a new last element</td>
+</tr>
+<tr>
+<td>Remove element</td>
+<td><code>scores.remove(65)</code></td>
+<td>Removes the first occurrence of 65</td>
+</tr>
+<tr>
+<td>Length</td>
+<td><code>len(scores)</code></td>
+<td>Returns the number of elements</td>
+</tr>
+<tr>
+<td>Iterate</td>
+<td><code>for s in scores:</code></td>
+<td>Loops through each element in order</td>
+</tr>
+</tbody></table>
+<h3 id="iterating-over-a-list">Iterating Over a List</h3>
+<pre><code class="language-pseudocode">scores ← [85, 72, 90, 65, 88]
+FOR i ← 0 TO len(scores) - 1
+    OUTPUT scores[i]
+ENDFOR
+</code></pre>
+<pre><code class="language-python">scores = [85, 72, 90, 65, 88]
+for score in scores:
+    print(score)
+</code></pre>
+<h3 id="finding-the-largest-element">Finding the Largest Element</h3>
+<pre><code class="language-pseudocode">scores ← [85, 72, 90, 65, 88]
+largest ← scores[0]
+FOR i ← 1 TO len(scores) - 1
+    IF scores[i] &gt; largest THEN
+        largest ← scores[i]
+    ENDIF
+ENDFOR
+OUTPUT largest
+</code></pre>
+<h3 id="2d-arrays-awareness-level">2D Arrays (Awareness Level)</h3>
+<p>A <strong>2D array</strong> is an array of arrays — a grid of values. In Python this is a list of lists.</p>
+<pre><code class="language-python">grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print(grid[1][2])   # Row 1, Column 2 → 6
+</code></pre>
+<p>2D arrays are used for grids, tables, and game boards (e.g., chess, noughts and crosses).</p>
+<hr>
+<h2 id="section-2-string-handling">Section 2: String Handling</h2>
+<h3 id="what-is-a-string">What is a String?</h3>
+<p>A <strong>string</strong> is a sequence of characters enclosed in quote marks. Every character in a string has an index, just like a list — starting at 0.</p>
+<pre><code>&quot;Computing&quot;
+  C  o  m  p  u  t  i  n  g
+  0  1  2  3  4  5  6  7  8
+</code></pre>
+<h3 id="string-indexing">String Indexing</h3>
+<pre><code class="language-python">word = &quot;Computing&quot;
+print(word[0])    # C
+print(word[4])    # u
+print(word[-1])   # g (last character)
+</code></pre>
+<h3 id="string-length">String Length</h3>
+<pre><code class="language-python">print(len(&quot;Computing&quot;))   # 9
+print(len(&quot;&quot;))            # 0 (empty string)
+</code></pre>
+<h3 id="string-slicing">String Slicing</h3>
+<p><strong>Slicing</strong> extracts a portion of a string using <code>[start:stop]</code>. The character at <code>start</code> is included; the character at <code>stop</code> is <strong>excluded</strong>.</p>
+<pre><code class="language-python">word = &quot;Computing&quot;
+print(word[0:4])    # &quot;Comp&quot;  (indices 0, 1, 2, 3)
+print(word[4:9])    # &quot;uting&quot; (indices 4, 5, 6, 7, 8)
+print(word[3:])     # &quot;puting&quot; (from index 3 to end)
+print(word[:4])     # &quot;Comp&quot;  (from start to index 3)
+</code></pre>
+<h3 id="string-concatenation">String Concatenation</h3>
+<p>Strings are joined using the <code>+</code> operator.</p>
+<pre><code class="language-python">first = &quot;Hello&quot;
+second = &quot;World&quot;
+message = first + &quot; &quot; + second    # &quot;Hello World&quot;
+</code></pre>
+<p>Note: you can only concatenate strings with strings. <code>&quot;Score: &quot; + 85</code> causes a TypeError — you must use <code>str(85)</code> first.</p>
+<h3 id="string-methods">String Methods</h3>
+<p>Python provides many built-in methods for working with strings:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What it does</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.upper()</code></td>
+<td>Converts to uppercase</td>
+<td><code>&quot;hello&quot;.upper()</code></td>
+<td><code>&quot;HELLO&quot;</code></td>
+</tr>
+<tr>
+<td><code>.lower()</code></td>
+<td>Converts to lowercase</td>
+<td><code>&quot;HELLO&quot;.lower()</code></td>
+<td><code>&quot;hello&quot;</code></td>
+</tr>
+<tr>
+<td><code>.strip()</code></td>
+<td>Removes leading/trailing whitespace</td>
+<td><code>&quot;  hi  &quot;.strip()</code></td>
+<td><code>&quot;hi&quot;</code></td>
+</tr>
+<tr>
+<td><code>.replace(old, new)</code></td>
+<td>Replaces all occurrences of old with new</td>
+<td><code>&quot;cat&quot;.replace(&quot;c&quot;,&quot;b&quot;)</code></td>
+<td><code>&quot;bat&quot;</code></td>
+</tr>
+<tr>
+<td><code>.split(delimiter)</code></td>
+<td>Splits string into a list at each delimiter</td>
+<td><code>&quot;a,b,c&quot;.split(&quot;,&quot;)</code></td>
+<td><code>[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]</code></td>
+</tr>
+<tr>
+<td><code>.find(sub)</code></td>
+<td>Returns index of first occurrence of sub</td>
+<td><code>&quot;hello&quot;.find(&quot;l&quot;)</code></td>
+<td><code>2</code></td>
+</tr>
+</tbody></table>
+<h3 id="type-conversion-between-strings-and-numbers">Type Conversion Between Strings and Numbers</h3>
+<pre><code class="language-python">num_string = &quot;42&quot;
+num_int    = int(num_string)      # &quot;42&quot; → 42
+num_float  = float(&quot;3.14&quot;)       # &quot;3.14&quot; → 3.14
+back_to_str = str(99)             # 99 → &quot;99&quot;
+</code></pre>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Array</td>
+<td>An ordered collection of values stored under one name, accessed by index</td>
+</tr>
+<tr>
+<td>List</td>
+<td>Python&#39;s implementation of an array; can hold multiple values of any type</td>
+</tr>
+<tr>
+<td>Element</td>
+<td>An individual value stored in an array/list</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>The numerical position of an element in an array/list; starts at 0</td>
+</tr>
+<tr>
+<td>Zero-indexed</td>
+<td>Indexing that begins at 0; the first element is at index 0, not index 1</td>
+</tr>
+<tr>
+<td><code>len()</code></td>
+<td>Python function that returns the number of elements in a list, or characters in a string</td>
+</tr>
+<tr>
+<td><code>.append()</code></td>
+<td>Python list method that adds an element to the end of the list</td>
+</tr>
+<tr>
+<td>2D array</td>
+<td>An array of arrays; used to represent a grid or table</td>
+</tr>
+<tr>
+<td>String</td>
+<td>A sequence of characters enclosed in quotes; treated as a data type for text</td>
+</tr>
+<tr>
+<td>Concatenation</td>
+<td>Joining two or more strings together using the <code>+</code> operator</td>
+</tr>
+<tr>
+<td>Slicing</td>
+<td>Extracting a portion of a string or list using <code>[start:stop]</code> notation</td>
+</tr>
+<tr>
+<td>String method</td>
+<td>A built-in function associated with string objects (e.g., <code>.upper()</code>, <code>.split()</code>)</td>
+</tr>
+<tr>
+<td>Type conversion</td>
+<td>Converting a value from one data type to another (e.g., <code>int(&quot;5&quot;)</code>, <code>str(99)</code>)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions-corrected">Common Misconceptions — Corrected</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The first element of an array is at index 1</td>
+<td>Arrays are <strong>zero-indexed</strong>: the first element is at index <strong>0</strong>, the second at index 1, and so on.</td>
+</tr>
+<tr>
+<td>Strings cannot be indexed like lists</td>
+<td>Strings support all the same indexing and slicing operations as lists. <code>&quot;Computing&quot;[0]</code> gives <code>&quot;C&quot;</code>.</td>
+</tr>
+<tr>
+<td>Changing one element of a list changes the whole list</td>
+<td>Each element is independent. <code>scores[2] = 99</code> only changes the element at index 2.</td>
+</tr>
+<tr>
+<td>You can concatenate a string and an integer with <code>+</code></td>
+<td><code>&quot;Score: &quot; + 85</code> causes a <strong>TypeError</strong>. You must convert the integer first: <code>&quot;Score: &quot; + str(85)</code>.</td>
+</tr>
+<tr>
+<td><code>.split()</code> splits a string into individual characters</td>
+<td><code>.split()</code> splits at whitespace (spaces) by default, or at a specified delimiter. To split into characters, use <code>list(&quot;hello&quot;)</code>.</td>
+</tr>
+<tr>
+<td><code>len(&quot;Computing&quot;)</code> returns 8</td>
+<td>&quot;Computing&quot; has <strong>9</strong> characters (C-o-m-p-u-t-i-n-g), so <code>len(&quot;Computing&quot;)</code> returns 9.</td>
+</tr>
+<tr>
+<td><code>scores[-1]</code> is an error</td>
+<td>Negative indexing is valid in Python. <code>-1</code> refers to the last element, <code>-2</code> to the second-last, etc.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="diagrams-code-examples">Diagrams / Code Examples</h2>
+<h3 id="list-index-diagram">List Index Diagram</h3>
+<pre><code> List:    scores = [ 85,  72,  90,  65,  88 ]
+
+ Index:              0    1    2    3    4
+ Neg index:         -5   -4   -3   -2   -1
+
+ scores[0]  →  85
+ scores[2]  →  90
+ scores[-1] →  88
+</code></pre>
+<h3 id="string-index-diagram">String Index Diagram</h3>
+<pre><code> String:  word = &quot;Computing&quot;
+
+ Index:           0  1  2  3  4  5  6  7  8
+ Character:       C  o  m  p  u  t  i  n  g
+
+ word[0]      →  &#39;C&#39;
+ word[0:4]    →  &#39;Comp&#39;
+ word[4:]     →  &#39;uting&#39;
+ len(word)    →  9
+</code></pre>
+<h3 id="trace-table-list-manipulation">Trace Table: List Manipulation</h3>
+<p>Program:</p>
+<pre><code class="language-pseudocode">marks ← [60, 75, 80]
+marks[0] ← marks[0] + 10
+marks[2] ← marks[1] - 5
+OUTPUT marks[0]
+OUTPUT marks[1]
+OUTPUT marks[2]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Action</th>
+<th><code>marks[0]</code></th>
+<th><code>marks[1]</code></th>
+<th><code>marks[2]</code></th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Init</td>
+<td><code>marks ← [60, 75, 80]</code></td>
+<td>60</td>
+<td>75</td>
+<td>80</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>marks[0] ← 60 + 10</code></td>
+<td>70</td>
+<td>75</td>
+<td>80</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>marks[2] ← 75 - 5</code></td>
+<td>70</td>
+<td>75</td>
+<td>70</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>OUTPUT marks[0]</code></td>
+<td>70</td>
+<td>75</td>
+<td>70</td>
+<td><code>70</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>OUTPUT marks[1]</code></td>
+<td>70</td>
+<td>75</td>
+<td>70</td>
+<td><code>75</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>OUTPUT marks[2]</code></td>
+<td>70</td>
+<td>75</td>
+<td>70</td>
+<td><code>70</code></td>
+</tr>
+</tbody></table>
+<h3 id="iterating-a-list-with-for">Iterating a List with FOR</h3>
+<pre><code class="language-python">fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]
+for fruit in fruits:
+    print(&quot;I like&quot;, fruit)
+</code></pre>
+<p>Output:</p>
+<pre><code>I like apple
+I like banana
+I like cherry
+</code></pre>
+<h3 id="string-operations-example">String Operations Example</h3>
+<pre><code class="language-python">sentence = &quot;  Hello, World!  &quot;
+
+print(sentence.strip())           # &quot;Hello, World!&quot;
+print(sentence.strip().lower())   # &quot;hello, world!&quot;
+print(sentence.strip().upper())   # &quot;HELLO, WORLD!&quot;
+print(sentence.strip().replace(&quot;World&quot;, &quot;Python&quot;))  # &quot;Hello, Python!&quot;
+
+words = &quot;red,green,blue&quot;.split(&quot;,&quot;)
+print(words)    # [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;]
+print(words[1]) # &quot;green&quot;
+</code></pre>
+<h3 id="finding-largest-in-list-pseudocode">Finding Largest in List (Pseudocode)</h3>
+<pre><code class="language-pseudocode">numbers ← [34, 12, 78, 56, 23]
+largest ← numbers[0]
+FOR i ← 1 TO len(numbers) - 1
+    IF numbers[i] &gt; largest THEN
+        largest ← numbers[i]
+    ENDIF
+ENDFOR
+OUTPUT &quot;Largest: &quot; + str(largest)
+</code></pre>
+<p>Trace:</p>
+<table>
+<thead>
+<tr>
+<th><code>i</code></th>
+<th><code>numbers[i]</code></th>
+<th><code>largest</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start</td>
+<td>—</td>
+<td>34</td>
+</tr>
+<tr>
+<td>1</td>
+<td>12</td>
+<td>34 (12 not &gt; 34)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>78</td>
+<td>78 (78 &gt; 34)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>56</td>
+<td>78 (56 not &gt; 78)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>23</td>
+<td>78 (23 not &gt; 78)</td>
+</tr>
+</tbody></table>
+<p>Output: <code>Largest: 78</code></p>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1</strong> [1 mark]
+A list is defined as: <code>myList = [10, 20, 30, 40, 50]</code>
+What is the index of the first element?</p>
+<hr>
+<p><strong>Q2</strong> [1 mark]
+Using the same list as Q1, what is the output of <code>print(myList[2])</code>?</p>
+<hr>
+<p><strong>Q3</strong> [2 marks]
+The following list stores student scores:
+<code>scores = [45, 78, 62, 91, 55]</code></p>
+<p>a) Write one line of Python code that adds the value 88 to the end of the list. [1 mark]
+b) After running your code, what is <code>len(scores)</code>? [1 mark]</p>
+<hr>
+<p><strong>Q4</strong> [3 marks]
+Explain what each of the following string operations does, and state the result when applied to <code>text = &quot;Computing&quot;</code>:</p>
+<p>a) <code>text[0]</code>
+b) <code>text[0:4]</code>
+c) <code>len(text)</code></p>
+<hr>
+<p><strong>Q5</strong> [3 marks]
+Write a pseudocode program that:</p>
+<ul>
+<li>stores the numbers <code>[3, 7, 1, 9, 4]</code> in an array called <code>values</code></li>
+<li>uses a FOR loop to add up all the numbers</li>
+<li>outputs the total</li>
+</ul>
+<hr>
+<p><strong>Q6</strong> [4 marks]
+Trace through the following program, completing the trace table.</p>
+<pre><code class="language-pseudocode">data ← [5, 10, 15]
+total ← 0
+FOR i ← 0 TO 2
+    total ← total + data[i]
+ENDFOR
+OUTPUT total
+</code></pre>
+<table>
+<thead>
+<tr>
+<th><code>i</code></th>
+<th><code>data[i]</code></th>
+<th><code>total</code> before addition</th>
+<th><code>total</code> after addition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td></td>
+<td>0</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Output</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Q7</strong> [2 marks]
+Describe three string methods available in Python. For each, state what it does and give an example.</p>
+<hr>
+<p><strong>MCQ</strong> [1 mark]
+What is the output of the following code?</p>
+<pre><code class="language-python">word = &quot;algorithm&quot;
+print(word[3:6])
+</code></pre>
+<p>A) <code>&quot;algo&quot;</code>
+B) <code>&quot;ori&quot;</code>
+C) <code>&quot;gor&quot;</code>
+D) <code>&quot;rith&quot;</code></p>
+<hr>
+<p><strong>Fill in the blank</strong> [1 mark]
+The Python method that splits a string into a list of substrings is <code>________</code>.</p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1:</strong> Index <strong>0</strong> [1]</p>
+<p><strong>Q2:</strong> <code>30</code> [1] (index 2 is the third element: 10 at 0, 20 at 1, 30 at 2)</p>
+<p><strong>Q3:</strong>
+a) <code>scores.append(88)</code> [1]
+b) <code>6</code> [1] (was 5 elements, now 6)</p>
+<p><strong>Q4:</strong>
+a) <code>text[0]</code> — accesses the character at index 0 — result: <code>&quot;C&quot;</code> [1]
+b) <code>text[0:4]</code> — slices from index 0 up to (not including) index 4 — result: <code>&quot;Comp&quot;</code> [1]
+c) <code>len(text)</code> — returns the number of characters in the string — result: <code>9</code> [1]</p>
+<p><strong>Q5:</strong></p>
+<pre><code class="language-pseudocode">values ← [3, 7, 1, 9, 4]
+total ← 0
+FOR i ← 0 TO 4
+    total ← total + values[i]
+ENDFOR
+OUTPUT total
+</code></pre>
+<p>[1 for correct initialisation of total; 1 for correct loop structure; 1 for correct output — total should be 24]</p>
+<p><strong>Q6:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>i</code></th>
+<th><code>data[i]</code></th>
+<th><code>total</code> before</th>
+<th><code>total</code> after</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>5</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>5</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2</td>
+<td>15</td>
+<td>15</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Output</td>
+<td></td>
+<td></td>
+<td><code>30</code></td>
+</tr>
+</tbody></table>
+<p>[1 per correct row + output]</p>
+<p><strong>Q7:</strong> Any three from:</p>
+<ul>
+<li><code>.upper()</code> — converts all characters to uppercase. Example: <code>&quot;hello&quot;.upper()</code> → <code>&quot;HELLO&quot;</code> [1]</li>
+<li><code>.lower()</code> — converts all characters to lowercase. Example: <code>&quot;HELLO&quot;.lower()</code> → <code>&quot;hello&quot;</code> [1]</li>
+<li><code>.strip()</code> — removes leading and trailing whitespace. Example: <code>&quot;  hi  &quot;.strip()</code> → <code>&quot;hi&quot;</code> [1]</li>
+<li><code>.split(&quot;,&quot;)</code> — splits string into a list at each comma (or specified delimiter). Example: <code>&quot;a,b,c&quot;.split(&quot;,&quot;)</code> → <code>[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]</code> [1]</li>
+<li><code>.replace(&quot;old&quot;,&quot;new&quot;)</code> — replaces all occurrences. Example: <code>&quot;cat&quot;.replace(&quot;c&quot;,&quot;b&quot;)</code> → <code>&quot;bat&quot;</code> [1]
+(Max 2 marks for descriptions, 1 for examples — total 2 marks for 3 correct methods with examples)</li>
+</ul>
+<p><strong>MCQ:</strong> C — <code>&quot;gor&quot;</code> [1]
+<code>&quot;algorithm&quot;</code>: a(0) l(1) g(2) o(3) r(4) i(5) t(6) h(7) m(8). <code>[3:6]</code> → indices 3,4,5 → <code>&quot;ori&quot;</code>. Wait — index 3=&#39;o&#39;, 4=&#39;r&#39;, 5=&#39;i&#39;. So <code>&quot;ori&quot;</code>. Answer: <strong>B</strong> — <code>&quot;ori&quot;</code>.
+<em>(Correction: the answer is B. The string &quot;algorithm&quot; at indices 3,4,5 gives &#39;o&#39;,&#39;r&#39;,&#39;i&#39; = &quot;ori&quot;.)</em></p>
+<p><strong>Fill in the blank:</strong> <code>.split()</code> [1]</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can explain what an array (list) is and why it is useful compared to separate variables.</li>
+<li><input disabled="" type="checkbox"> I understand zero-based indexing and can identify the correct index for any element.</li>
+<li><input disabled="" type="checkbox"> I can access, read, and modify individual elements of a list using their index.</li>
+<li><input disabled="" type="checkbox"> I can use <code>len()</code> to find the number of elements in a list.</li>
+<li><input disabled="" type="checkbox"> I can use <code>.append()</code> to add an element to the end of a list.</li>
+<li><input disabled="" type="checkbox"> I can iterate over a list using a FOR loop, both with an index and using <code>for item in list</code>.</li>
+<li><input disabled="" type="checkbox"> I can write pseudocode/Python to find the largest (or smallest) value in a list.</li>
+<li><input disabled="" type="checkbox"> I understand what a 2D array is and can access elements using two indices.</li>
+<li><input disabled="" type="checkbox"> I understand that a string is a sequence of characters and can be indexed like a list.</li>
+<li><input disabled="" type="checkbox"> I can use string indexing (<code>word[0]</code>) and slicing (<code>word[0:4]</code>) correctly.</li>
+<li><input disabled="" type="checkbox"> I can use <code>len()</code> on a string to find its length.</li>
+<li><input disabled="" type="checkbox"> I can concatenate strings using <code>+</code> and explain why <code>&quot;text&quot; + number</code> causes a TypeError.</li>
+<li><input disabled="" type="checkbox"> I can describe and use at least five string methods: <code>.upper()</code>, <code>.lower()</code>, <code>.strip()</code>, <code>.replace()</code>, <code>.split()</code>.</li>
+<li><input disabled="" type="checkbox"> I can convert between strings and numbers using <code>int()</code>, <code>float()</code>, and <code>str()</code>.</li>
+<li><input disabled="" type="checkbox"> I can trace a program that uses lists through a trace table.</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/revision/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/revision/revision-study-book.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_sorting_searching",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "algorithms"],
+  "items": [
+    {
+      "id": "ks3_computing_sorting_searching_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["How Linear Search Works"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Searching Algorithms",
+        "sourceTitle": "How Linear Search Works",
+        "targetTitle": "How Linear Search Works",
+        "sourcePassage": "A linear search, sometimes called a sequential search, is one of the simplest ways a computer can locate a value in a list. The algorithm begins at the very first item and compares it to the target value it is looking for. If the two values match, the search is complete and the position of the item is returned. If they do not match, the algorithm moves on to the next item and repeats the comparison. This process continues, one item at a time, until either the target is found or every item in the list has been checked without success.\n\nBecause a linear search checks items one by one, the number of comparisons it makes depends entirely on where the target happens to sit in the list. In the best case, the target is the very first item, so only a single comparison is needed. In the worst case, the target is the last item in the list, or it is not present at all — in either situation, every single item must be checked. For a list of one hundred items, this could mean up to one hundred comparisons.\n\nOne of the most important advantages of a linear search is that it works on any list, regardless of whether the items are sorted into any particular order. This makes it very flexible. If a list is small — say, fewer than twenty items — a linear search is often perfectly adequate and is simple enough to write quickly in code.\n\nHowever, for very large lists, a linear search becomes inefficient. Imagine searching through a list of one million names: in the worst case, the algorithm would need to make one million comparisons. Because the number of comparisons grows in direct proportion to the size of the list, computer scientists say a linear search is slow for large datasets. In such situations, a different algorithm — such as binary search — is usually a better choice, provided the list is sorted.",
+        "targetPassage": "A linear search, sometimes called a sequential search, is one of the simplest ways a computer can locate a value in a list. The algorithm begins at the very first item and compares it to the target value it is looking for. If the two values match, the search is complete and the position of the item is returned. If they do not match, the algorithm moves on to the next item and repeats the comparison. This process continues, one item at a time, until either the target is found or every item in the list has been checked without success.\n\nBecause a linear search checks items one by one, the number of comparisons it makes depends entirely on where the target happens to sit in the list. In the best case, the target is the very first item, so only a single comparison is needed. In the worst case, the target is the last item in the list, or it is not present at all — in either situation, every single item must be checked. For a list of one hundred items, this could mean up to one hundred comparisons.\n\nOne of the most important advantages of a linear search is that it works on any list, regardless of whether the items are sorted into any particular order. This makes it very flexible. If a list is small — say, fewer than twenty items — a linear search is often perfectly adequate and is simple enough to write quickly in code.\n\nHowever, for very large lists, a linear search becomes inefficient. Imagine searching through a list of one million names: in the worst case, the algorithm would need to make one million comparisons. Because the number of comparisons grows in direct proportion to the size of the list, computer scientists say a linear search is slow for large datasets. In such situations, a different algorithm — such as binary search — is usually a better choice, provided the list is sorted.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_sorting_searching_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Where does a linear search begin when looking for a target value?",
+            "options": [
+              "At the first item in the list",
+              "At the middle item in the list",
+              "At a random item in the list",
+              "At the last item in the list"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "At the first item in the list",
+            "acceptedKeywords": ["first", "beginning", "start"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which of the following lists can a linear search be used on?",
+            "options": [
+              "Any list, whether sorted or unsorted",
+              "Only lists that are sorted in ascending order",
+              "Only lists that are sorted in descending order",
+              "Only lists with fewer than ten items"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Any list, whether sorted or unsorted",
+            "acceptedKeywords": ["any", "unsorted", "sorted or unsorted"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the worst-case scenario for a linear search on a list of 100 items?",
+            "options": [
+              "Up to 100 comparisons, if the target is last or not in the list",
+              "Exactly 50 comparisons, as it checks the middle first",
+              "Exactly 10 comparisons, because the list is halved each time",
+              "Only 1 comparison, because the computer jumps straight to the target"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Up to 100 comparisons, if the target is last or not in the list",
+            "acceptedKeywords": ["100", "every item", "all items", "worst case"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "According to the passage, why might a linear search still be preferred over binary search in some situations?",
+            "options": [
+              "Linear search works on unsorted lists, whereas binary search requires a sorted list",
+              "Linear search is always faster than binary search for all list sizes",
+              "Linear search uses less memory than binary search",
+              "Linear search can find multiple results at once, unlike binary search"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Linear search works on unsorted lists, whereas binary search requires a sorted list",
+            "acceptedKeywords": ["unsorted", "not sorted", "sorted", "flexibility"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sorting_searching_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Binary Search: Dividing to Find"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Searching Algorithms",
+        "sourceTitle": "Binary Search: Dividing to Find",
+        "targetTitle": "Binary Search: Dividing to Find",
+        "sourcePassage": "Binary search is a much more efficient searching algorithm than linear search, but it comes with one strict requirement: the list must be sorted before the search can begin. If the list is not in order, binary search will produce incorrect results and cannot be relied upon.\n\nThe algorithm works by finding the middle element of the list and comparing it to the target value. If the middle element matches the target, the search is over. If the target is smaller than the middle element, the algorithm discards the right half of the list entirely — it knows the target cannot be in that half — and repeats the process on the left half. If the target is larger than the middle element, the left half is discarded and the search continues in the right half. Each comparison eliminates half of the remaining items, which is why binary search is so powerful.\n\nConsider searching for the number 14 in the sorted list [2, 5, 8, 11, 14, 17, 20]. The middle element is 11. Since 14 is greater than 11, the left half is discarded. The new search space is [14, 17, 20]. The middle element is now 17. Since 14 is less than 17, the right portion is discarded, leaving just [14]. That single element matches the target — found in just three comparisons.\n\nTo appreciate why this efficiency matters, consider a sorted list of 1,000 items. A linear search might need up to 1,000 comparisons to find the target. Binary search, by contrast, needs at most around 10 comparisons, because each step halves the remaining search space. For a list of one million items, binary search would need at most about 20 comparisons. This dramatic difference means binary search is the preferred choice whenever working with large, sorted datasets.",
+        "targetPassage": "Binary search is a much more efficient searching algorithm than linear search, but it comes with one strict requirement: the list must be sorted before the search can begin. If the list is not in order, binary search will produce incorrect results and cannot be relied upon.\n\nThe algorithm works by finding the middle element of the list and comparing it to the target value. If the middle element matches the target, the search is over. If the target is smaller than the middle element, the algorithm discards the right half of the list entirely — it knows the target cannot be in that half — and repeats the process on the left half. If the target is larger than the middle element, the left half is discarded and the search continues in the right half. Each comparison eliminates half of the remaining items, which is why binary search is so powerful.\n\nConsider searching for the number 14 in the sorted list [2, 5, 8, 11, 14, 17, 20]. The middle element is 11. Since 14 is greater than 11, the left half is discarded. The new search space is [14, 17, 20]. The middle element is now 17. Since 14 is less than 17, the right portion is discarded, leaving just [14]. That single element matches the target — found in just three comparisons.\n\nTo appreciate why this efficiency matters, consider a sorted list of 1,000 items. A linear search might need up to 1,000 comparisons to find the target. Binary search, by contrast, needs at most around 10 comparisons, because each step halves the remaining search space. For a list of one million items, binary search would need at most about 20 comparisons. This dramatic difference means binary search is the preferred choice whenever working with large, sorted datasets.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_sorting_searching_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the strict requirement for using binary search?",
+            "options": [
+              "The list must be sorted",
+              "The list must contain at least 100 items",
+              "The list must contain only numbers",
+              "The list must have an odd number of items"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The list must be sorted",
+            "acceptedKeywords": ["sorted", "in order", "ordered"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "When binary search compares the target to the middle element and finds the target is smaller, what does it do next?",
+            "options": [
+              "It searches the left half of the remaining list",
+              "It searches the right half of the remaining list",
+              "It restarts the search from the beginning",
+              "It gives up and returns that the item was not found"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "It searches the left half of the remaining list",
+            "acceptedKeywords": ["left half", "left", "smaller half", "discard right"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "How many comparisons did binary search need to find 14 in the list [2, 5, 8, 11, 14, 17, 20], according to the passage?",
+            "options": [
+              "3 comparisons",
+              "5 comparisons",
+              "7 comparisons",
+              "1 comparison"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "3 comparisons",
+            "acceptedKeywords": ["three", "3"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage states binary search needs 'at most around 10 comparisons' for a list of 1,000 items, and 'about 20 comparisons' for one million items. What does this pattern suggest about how binary search scales?",
+            "options": [
+              "Doubling the list size adds only one extra comparison, so efficiency increases dramatically as lists get larger",
+              "The number of comparisons doubles every time the list size doubles",
+              "Binary search always takes exactly 10 comparisons regardless of list size",
+              "The comparisons grow in proportion to the list size, just like linear search"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Doubling the list size adds only one extra comparison, so efficiency increases dramatically as lists get larger",
+            "acceptedKeywords": ["halving", "logarithmic", "grows slowly", "doubles adds one"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_sorting_searching_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Bubble Sort Explained"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Sorting Algorithms",
+        "sourceTitle": "Bubble Sort Explained",
+        "targetTitle": "Bubble Sort Explained",
+        "sourcePassage": "Bubble sort is a sorting algorithm that works by repeatedly comparing adjacent pairs of elements in a list and swapping them if they are in the wrong order. The algorithm performs multiple passes through the list, each pass moving the next-largest unsorted element into its correct position at the end of the list. With each completed pass, one more element is settled in place, and the unsorted portion of the list shrinks by one.\n\nTo see how this works, consider the list [5, 3, 8, 1, 4]. During the first pass, the algorithm compares 5 and 3 — they are in the wrong order, so they are swapped to give [3, 5, 8, 1, 4]. Next, 5 and 8 are compared — they are already in order, so no swap occurs. Then 8 and 1 are compared — they are in the wrong order, so they are swapped: [3, 5, 1, 8, 4]. Finally, 8 and 4 are compared and swapped: [3, 5, 1, 4, 8]. After this first pass, 8 has 'bubbled up' to its correct final position at the end.\n\nThe name 'bubble sort' comes from this behaviour: the largest unsorted value gradually bubbles its way to the top (or end) of the list over each pass, just as air bubbles rise to the surface of water. After each pass, the largest remaining unsorted element is guaranteed to be in the correct position, so the next pass can ignore the last element and focus on a slightly shorter portion of the list.\n\nFor a list of n items, bubble sort may need up to n minus one passes in the worst case to fully sort the list. This makes bubble sort quite slow for large lists, as the number of comparisons grows rapidly with list size. However, bubble sort is straightforward to understand and to trace by hand, which is why it is often used as a teaching tool when first introducing sorting algorithms.",
+        "targetPassage": "Bubble sort is a sorting algorithm that works by repeatedly comparing adjacent pairs of elements in a list and swapping them if they are in the wrong order. The algorithm performs multiple passes through the list, each pass moving the next-largest unsorted element into its correct position at the end of the list. With each completed pass, one more element is settled in place, and the unsorted portion of the list shrinks by one.\n\nTo see how this works, consider the list [5, 3, 8, 1, 4]. During the first pass, the algorithm compares 5 and 3 — they are in the wrong order, so they are swapped to give [3, 5, 8, 1, 4]. Next, 5 and 8 are compared — they are already in order, so no swap occurs. Then 8 and 1 are compared — they are in the wrong order, so they are swapped: [3, 5, 1, 8, 4]. Finally, 8 and 4 are compared and swapped: [3, 5, 1, 4, 8]. After this first pass, 8 has 'bubbled up' to its correct final position at the end.\n\nThe name 'bubble sort' comes from this behaviour: the largest unsorted value gradually bubbles its way to the top (or end) of the list over each pass, just as air bubbles rise to the surface of water. After each pass, the largest remaining unsorted element is guaranteed to be in the correct position, so the next pass can ignore the last element and focus on a slightly shorter portion of the list.\n\nFor a list of n items, bubble sort may need up to n minus one passes in the worst case to fully sort the list. This makes bubble sort quite slow for large lists, as the number of comparisons grows rapidly with list size. However, bubble sort is straightforward to understand and to trace by hand, which is why it is often used as a teaching tool when first introducing sorting algorithms.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_sorting_searching_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does bubble sort compare during each step of a pass?",
+            "options": [
+              "Adjacent pairs of elements",
+              "The first element and the last element",
+              "The middle element and all other elements",
+              "Random pairs of elements chosen by the algorithm"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Adjacent pairs of elements",
+            "acceptedKeywords": ["adjacent", "next to each other", "neighbouring", "side by side"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "After the first pass of bubble sort on the list [5, 3, 8, 1, 4], which element has reached its correct final position?",
+            "options": [
+              "8, at the end of the list",
+              "1, at the start of the list",
+              "5, in the middle of the list",
+              "3, in the second position"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "8, at the end of the list",
+            "acceptedKeywords": ["8", "largest", "end"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "For a list of 6 items, what is the maximum number of passes bubble sort may need to sort it completely?",
+            "options": [
+              "5 passes",
+              "6 passes",
+              "3 passes",
+              "12 passes"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "5 passes",
+            "acceptedKeywords": ["5", "n minus one", "n-1", "five"]
+          },
+          {
+            "id": "ks3_computing_sorting_searching_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage says bubble sort is 'often used as a teaching tool' despite being slow for large lists. Based on the passage, what property makes it suitable for teaching but unsuitable for real-world large-scale sorting?",
+            "options": [
+              "It is easy to understand and trace by hand, but its comparisons grow rapidly with list size making it inefficient at scale",
+              "It only works on small lists with fewer than ten items, so students never see it fail",
+              "It always sorts a list in a single pass, which makes it easy to demonstrate but inflexible",
+              "It requires a sorted input list, which limits its real-world usefulness"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "It is easy to understand and trace by hand, but its comparisons grow rapidly with list size making it inefficient at scale",
+            "acceptedKeywords": ["easy to understand", "trace", "slow", "inefficient", "large lists"]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_internet_protocols_www",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "networks"],
+  "items": [
+    {
+      "id": "ks3_computing_internet_protocols_www_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["The Internet vs the World Wide Web"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Networks",
+        "sourceTitle": "The Internet vs the World Wide Web",
+        "targetTitle": "The Internet vs the World Wide Web",
+        "sourcePassage": "The internet and the World Wide Web are two different things, even though people often use the terms interchangeably. The internet is the global physical infrastructure — the vast network of cables, routers, satellites, and servers that spans the entire planet. Undersea fibre optic cables carry data between continents, while routers direct traffic from one device to the next. Think of the internet as a road network: the roads, motorways, and junctions exist everywhere, ready to carry whatever travels along them.\n\nThe World Wide Web (WWW) is a service that runs on top of the internet. It is the collection of web pages, images, and other media that are linked together using hyperlinks and accessed through a web browser using the HTTP or HTTPS protocol. Think of the WWW as the cars and lorries that travel on those roads — they use the road network but are completely separate from it.\n\nCrucially, the internet carries many other services besides the WWW. When you send an email, you use the internet but not the WWW — email travels via protocols such as SMTP and IMAP. Video streaming services like YouTube and file transfer using FTP also run on the internet. The WWW is just one application built on top of the internet's infrastructure.\n\nUnderstanding this distinction matters. A web browser such as Chrome or Firefox is a program that accesses the WWW; it is not the internet itself. If your broadband connection goes down, you lose access to the internet and therefore to the WWW, email, and everything else — because all of those services depend on the same underlying infrastructure.",
+        "targetPassage": "The internet and the World Wide Web are two different things, even though people often use the terms interchangeably. The internet is the global physical infrastructure — the vast network of cables, routers, satellites, and servers that spans the entire planet. Undersea fibre optic cables carry data between continents, while routers direct traffic from one device to the next. Think of the internet as a road network: the roads, motorways, and junctions exist everywhere, ready to carry whatever travels along them.\n\nThe World Wide Web (WWW) is a service that runs on top of the internet. It is the collection of web pages, images, and other media that are linked together using hyperlinks and accessed through a web browser using the HTTP or HTTPS protocol. Think of the WWW as the cars and lorries that travel on those roads — they use the road network but are completely separate from it.\n\nCrucially, the internet carries many other services besides the WWW. When you send an email, you use the internet but not the WWW — email travels via protocols such as SMTP and IMAP. Video streaming services like YouTube and file transfer using FTP also run on the internet. The WWW is just one application built on top of the internet's infrastructure.\n\nUnderstanding this distinction matters. A web browser such as Chrome or Firefox is a program that accesses the WWW; it is not the internet itself. If your broadband connection goes down, you lose access to the internet and therefore to the WWW, email, and everything else — because all of those services depend on the same underlying infrastructure.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the internet described as in the passage?",
+            "options": [
+              "The global physical infrastructure of cables, routers, satellites, and servers",
+              "A collection of web pages linked together with hyperlinks",
+              "A web browser program such as Chrome or Firefox",
+              "A protocol used to transfer web pages between computers"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The global physical infrastructure of cables, routers, satellites, and servers",
+            "acceptedKeywords": ["infrastructure", "cables", "routers", "physical"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which protocol is used to access the World Wide Web through a web browser?",
+            "options": [
+              "SMTP",
+              "FTP",
+              "HTTP or HTTPS",
+              "IMAP"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "HTTP or HTTPS",
+            "acceptedKeywords": ["HTTP", "HTTPS"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "According to the passage, which of the following uses the internet but NOT the World Wide Web?",
+            "options": [
+              "Browsing a web page in Chrome",
+              "Sending an email using SMTP",
+              "Clicking a hyperlink on a website",
+              "Accessing a website via HTTPS"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Sending an email using SMTP",
+            "acceptedKeywords": ["email", "SMTP", "not WWW"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage compares the internet to a road network and the WWW to vehicles. What conclusion can be drawn from this analogy about what would happen if the internet stopped working?",
+            "options": [
+              "Only websites would become unavailable, but email and streaming would still work",
+              "Web browsers would stop working but the underlying cables would still carry data",
+              "All services that depend on the internet — including the WWW, email, and streaming — would become unavailable",
+              "Only HTTP traffic would be affected; other protocols would route around the failure"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "All services that depend on the internet — including the WWW, email, and streaming — would become unavailable",
+            "acceptedKeywords": ["all services", "infrastructure", "depend", "unavailable"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_internet_protocols_www_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["How Packets Travel: TCP/IP and Packet Switching"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Networks",
+        "sourceTitle": "How Packets Travel: TCP/IP and Packet Switching",
+        "targetTitle": "How Packets Travel: TCP/IP and Packet Switching",
+        "sourcePassage": "When you load a web page or send a file across the internet, the data is not transmitted as one continuous stream. Instead, it is broken into small chunks called packets. Each packet contains a header — which holds the source IP address, destination IP address, sequence number, and protocol information — a payload containing the actual chunk of data, and a trailer used for error checking. Sequence numbers are crucial: they allow all the packets to be put back in the correct order even if they arrive out of sequence.\n\nPacket switching is the method used to send these packets across the internet. In a packet-switched network, each router makes an independent decision about the best route for each packet at that moment, based on current network conditions. This means that different packets belonging to the same message can travel via completely different routes through the network. At the destination, the sequence numbers in the headers are used to reassemble the packets into the correct order.\n\nPacket switching has several important benefits over older circuit-switched methods. Because no dedicated line is reserved between sender and receiver, many users can share the same network infrastructure simultaneously — making it far more efficient. The network is also fault tolerant: if one router fails, packets are automatically rerouted around the problem, so the message still arrives. This resilience was one of the original design goals of the early internet.\n\nThe two protocols that underpin all of this are TCP and IP, which always work together as TCP/IP. IP (Internet Protocol) handles routing — it gives each packet its source and destination addresses and ensures routers forward it toward its destination. TCP (Transmission Control Protocol) handles reliability — it numbers packets, checks that all of them arrive, and requests retransmission of any that are lost. Together they ensure data gets from A to B accurately, regardless of the route taken.",
+        "targetPassage": "When you load a web page or send a file across the internet, the data is not transmitted as one continuous stream. Instead, it is broken into small chunks called packets. Each packet contains a header — which holds the source IP address, destination IP address, sequence number, and protocol information — a payload containing the actual chunk of data, and a trailer used for error checking. Sequence numbers are crucial: they allow all the packets to be put back in the correct order even if they arrive out of sequence.\n\nPacket switching is the method used to send these packets across the internet. In a packet-switched network, each router makes an independent decision about the best route for each packet at that moment, based on current network conditions. This means that different packets belonging to the same message can travel via completely different routes through the network. At the destination, the sequence numbers in the headers are used to reassemble the packets into the correct order.\n\nPacket switching has several important benefits over older circuit-switched methods. Because no dedicated line is reserved between sender and receiver, many users can share the same network infrastructure simultaneously — making it far more efficient. The network is also fault tolerant: if one router fails, packets are automatically rerouted around the problem, so the message still arrives. This resilience was one of the original design goals of the early internet.\n\nThe two protocols that underpin all of this are TCP and IP, which always work together as TCP/IP. IP (Internet Protocol) handles routing — it gives each packet its source and destination addresses and ensures routers forward it toward its destination. TCP (Transmission Control Protocol) handles reliability — it numbers packets, checks that all of them arrive, and requests retransmission of any that are lost. Together they ensure data gets from A to B accurately, regardless of the route taken.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What are the three parts of a packet described in the passage?",
+            "options": [
+              "Header, payload, and trailer",
+              "Source, destination, and checksum",
+              "IP address, sequence number, and data",
+              "Sender, router, and receiver"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Header, payload, and trailer",
+            "acceptedKeywords": ["header", "payload", "trailer"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the purpose of sequence numbers in packets?",
+            "options": [
+              "To encrypt the data so it cannot be intercepted",
+              "To allow packets to be reassembled in the correct order at the destination",
+              "To tell routers which physical cable to use",
+              "To measure how long the packet took to travel"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "To allow packets to be reassembled in the correct order at the destination",
+            "acceptedKeywords": ["reassemble", "correct order", "sequence"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why is a packet-switched network described as fault tolerant?",
+            "options": [
+              "Because all packets travel along the same reserved path, avoiding failures",
+              "Because TCP encrypts packets so they cannot be damaged in transit",
+              "Because if one router fails, packets are automatically rerouted around the problem",
+              "Because IP addresses change automatically when a router goes offline"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Because if one router fails, packets are automatically rerouted around the problem",
+            "acceptedKeywords": ["rerouted", "fault tolerant", "router fails"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "Based on the passage, which statement best explains the difference in roles between TCP and IP?",
+            "options": [
+              "IP splits data into packets while TCP encrypts them before sending",
+              "TCP handles addressing and routing while IP handles error checking and reassembly",
+              "IP handles routing and addressing while TCP handles reliability, numbering, and retransmission",
+              "TCP and IP perform identical functions but are used on different types of network"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "IP handles routing and addressing while TCP handles reliability, numbering, and retransmission",
+            "acceptedKeywords": ["IP routing", "TCP reliability", "retransmission", "addressing"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_internet_protocols_www_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["HTTP, HTTPS, and How Websites Work"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Networks",
+        "sourceTitle": "HTTP, HTTPS, and How Websites Work",
+        "targetTitle": "HTTP, HTTPS, and How Websites Work",
+        "sourcePassage": "Every time you visit a website, your browser follows a set of steps before the page appears on screen. First, you type a domain name such as www.bbc.co.uk into the address bar. Because computers communicate using numerical IP addresses, your browser needs to translate that human-readable name into an IP address. It does this by contacting a DNS server — the Domain Name System acts like a phone book for the internet, returning the IP address that matches the domain name. Your browser first checks its local cache to see if it already knows the address from a recent visit; if not, it queries the DNS server.\n\nOnce the browser has the IP address, it sends an HTTP request to the web server at that address, asking for the web page. The web server processes the request and sends back the HTML, CSS, images, and other files that make up the page. The browser then renders all of these files and displays the finished page. The whole process typically takes less than a second.\n\nHTTP (HyperText Transfer Protocol) and HTTPS (HTTP Secure) are the protocols that govern how this request and response work. The critical difference is security. HTTP transmits data as plain text, meaning that anyone who intercepts the connection can read the data. HTTPS adds a layer of encryption using SSL/TLS, so that even if data is intercepted, it appears as unreadable ciphertext. Any website that asks for passwords, payment details, or personal information must use HTTPS. You can tell a site uses HTTPS by the padlock icon in your browser's address bar.\n\nHTTPS uses port 443 while HTTP uses port 80. The web server must hold a valid SSL/TLS certificate that proves its identity — this prevents attackers from impersonating legitimate websites. When you see the padlock, it means both that the data is encrypted in transit and that your browser has verified the server's certificate.",
+        "targetPassage": "Every time you visit a website, your browser follows a set of steps before the page appears on screen. First, you type a domain name such as www.bbc.co.uk into the address bar. Because computers communicate using numerical IP addresses, your browser needs to translate that human-readable name into an IP address. It does this by contacting a DNS server — the Domain Name System acts like a phone book for the internet, returning the IP address that matches the domain name. Your browser first checks its local cache to see if it already knows the address from a recent visit; if not, it queries the DNS server.\n\nOnce the browser has the IP address, it sends an HTTP request to the web server at that address, asking for the web page. The web server processes the request and sends back the HTML, CSS, images, and other files that make up the page. The browser then renders all of these files and displays the finished page. The whole process typically takes less than a second.\n\nHTTP (HyperText Transfer Protocol) and HTTPS (HTTP Secure) are the protocols that govern how this request and response work. The critical difference is security. HTTP transmits data as plain text, meaning that anyone who intercepts the connection can read the data. HTTPS adds a layer of encryption using SSL/TLS, so that even if data is intercepted, it appears as unreadable ciphertext. Any website that asks for passwords, payment details, or personal information must use HTTPS. You can tell a site uses HTTPS by the padlock icon in your browser's address bar.\n\nHTTPS uses port 443 while HTTP uses port 80. The web server must hold a valid SSL/TLS certificate that proves its identity — this prevents attackers from impersonating legitimate websites. When you see the padlock, it means both that the data is encrypted in transit and that your browser has verified the server's certificate.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does DNS do, according to the passage?",
+            "options": [
+              "It encrypts data before sending it to the web server",
+              "It translates domain names into IP addresses",
+              "It stores web page files and sends them to the browser",
+              "It checks whether a website has an SSL certificate"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It translates domain names into IP addresses",
+            "acceptedKeywords": ["translates", "domain names", "IP addresses", "phone book"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How can a user tell that a website is using HTTPS rather than HTTP?",
+            "options": [
+              "The web address starts with 'www'",
+              "The page loads faster than usual",
+              "A padlock icon appears in the browser's address bar",
+              "The website asks for a username and password"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "A padlock icon appears in the browser's address bar",
+            "acceptedKeywords": ["padlock", "address bar", "HTTPS"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why does the browser check its local cache before querying the DNS server?",
+            "options": [
+              "Because the DNS server might not have the IP address stored",
+              "To avoid sending personal data to an external server",
+              "To speed up the process if it has already looked up that domain recently",
+              "Because the cache stores the full web page content for offline use"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "To speed up the process if it has already looked up that domain recently",
+            "acceptedKeywords": ["speed up", "recent visit", "cache", "already knows"]
+          },
+          {
+            "id": "ks3_computing_internet_protocols_www_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage states that HTTPS uses an SSL/TLS certificate to 'prove the server's identity'. Why is this important in addition to simply encrypting the data?",
+            "options": [
+              "Because encryption alone does not speed up the connection between browser and server",
+              "Because without certificate verification, an attacker could impersonate a legitimate website and still intercept encrypted communications",
+              "Because SSL certificates compress the data before encrypting it, reducing file size",
+              "Because HTTP does not support certificates, so HTTPS must use a different port"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because without certificate verification, an attacker could impersonate a legitimate website and still intercept encrypted communications",
+            "acceptedKeywords": ["impersonate", "certificate", "identity", "attacker"]
+          }
+        ]
+      }
+    }
+  ]
+}

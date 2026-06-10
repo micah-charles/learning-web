@@ -3,21 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learning Web</title>
+    <link rel="icon" href="./brand/logo.png" />
+    <title>FoxChild Idea | FoxChild@Learn - AI Learning Platform for KS3 & GCSE</title>
+    <meta
+      name="description"
+      content="FoxChild Idea's FoxChild@Learn platform helps KS3 and GCSE students revise with AI-powered quizzes, reading packs, vocabulary practice, sentence builders, crosswords, and study materials."
+    />
+    <meta
+      name="keywords"
+      content="FoxChild@Learn, FoxChild Learn, FoxChild Idea, Learning Web, KS3 revision, GCSE revision, AI learning app, study packs, vocabulary practice, quiz practice, reading comprehension, sentence builder, crossword revision, language learning, Language Ladder, German vocabulary, Latin vocabulary, geography revision, history revision, science revision, literature revision, computing revision, student progress tracking, browser learning app, educational quiz website"
+    />
+    <meta name="application-name" content="FoxChild@Learn" />
+    <meta name="author" content="FoxChild Idea" />
+    <meta name="creator" content="FoxChild Idea" />
+    <meta name="publisher" content="FoxChild Idea" />
+    <link rel="canonical" href="https://www.foxchildidea.com/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#68bdb8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FoxChild Idea" />
+    <meta property="og:url" content="https://www.foxchildidea.com/" />
+    <meta property="og:title" content="FoxChild Idea | FoxChild@Learn - AI Learning Platform for KS3 & GCSE" />
+    <meta
+      property="og:description"
+      content="FoxChild Idea's FoxChild@Learn platform helps KS3 and GCSE students revise with AI-powered quizzes, reading packs, vocabulary practice, sentence builders, crosswords, and study materials."
+    />
+    <meta property="og:image" content="https://www.foxchildidea.com/brand/learning-web-overview.png" />
+    <meta property="og:image:alt" content="FoxChild@Learn study dashboard with learning packs and practice activities" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FoxChild Idea | FoxChild@Learn - AI Learning Platform for KS3 & GCSE" />
+    <meta
+      name="twitter:description"
+      content="FoxChild Idea's FoxChild@Learn platform helps KS3 and GCSE students revise with AI-powered quizzes, reading packs, vocabulary practice, sentence builders, crosswords, and study materials."
+    />
+    <meta name="twitter:image" content="https://www.foxchildidea.com/brand/learning-web-overview.png" />
+    <meta name="twitter:image:alt" content="FoxChild@Learn study dashboard" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalApplication",
+        "name": "FoxChild@Learn",
+        "alternateName": ["Learning Web", "FoxChild Learn"],
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web browser",
+        "isAccessibleForFree": true,
+        "learningResourceType": [
+          "Study pack",
+          "Vocabulary practice",
+          "Quiz",
+          "Reading comprehension",
+          "Sentence builder",
+          "Crossword",
+          "Progress tracker",
+          "Language lesson"
+        ],
+        "educationalLevel": ["KS3", "GCSE"],
+        "teaches": [
+          "Language learning",
+          "German vocabulary",
+          "Latin vocabulary",
+          "Reading comprehension",
+          "Geography revision",
+          "History revision",
+          "Science revision",
+          "Literature revision",
+          "Computing revision",
+          "Vocabulary recall",
+          "Exam revision"
+        ],
+        "audience": {
+          "@type": "EducationalAudience",
+          "educationalRole": "student"
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "FoxChild Idea"
+        },
+        "description": "FoxChild@Learn is a browser-based educational quiz and revision app for KS3 and GCSE learners, with study packs, vocabulary practice, quizzes, reading passages, sentence builders, crosswords, progress tracking, and Language Ladder lessons."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "FoxChild Idea",
+        "url": "https://www.foxchildidea.com/",
+        "logo": "https://www.foxchildidea.com/brand/logo.png"
+      }
+    </script>
+    <!-- Shared design-system tokens used by both vanilla helpers and React components -->
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="page-backdrop"></div>
-    <main id="app" class="app-shell">
-      <section class="loading-shell">
-        <div class="loading-card">
-          <p class="eyebrow">Learning Web</p>
-          <h1>Loading study packs...</h1>
-          <p>Preparing the web port from your local learning data.</p>
-        </div>
-      </section>
-    </main>
+    <div id="root"></div>
     <noscript>This app needs JavaScript enabled.</noscript>
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/react/main.jsx"></script>
   </body>
 </html>

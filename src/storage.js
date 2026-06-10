@@ -7,17 +7,21 @@ export const DEFAULT_STATE = {
   prefs: {
     vocab: {
       datasetId: "core",
+      subject: "language",                      // language | history | geography | science
+      curriculum: "all",                        // ks3 | gcse | other | all
       year: "ALL",
       stages: [],
       search: "",
       partOfSpeech: "",
-      category: "",
+      category: "",       // used by Literature "Type" dropdown only
+      categories: [],     // used by language-pack category checkboxes ([] = all selected)
     },
     quiz: {
       // Subject First selections (added in the Subject First refactor)
       subject: "language",                    // language | history | geography | science
+      curriculum: "all",                      // ks3 | gcse | other | all
       direction: "studyToTarget",             // studyToTarget | targetToStudy (language packs only)
-      answerMode: "mixed",                    // mcq | typed | mixed
+      answerMode: "mcq",                      // mcq | typed | mixed
       // Existing fields
       datasetId: "core",
       year: "Y7",
@@ -33,28 +37,78 @@ export const DEFAULT_STATE = {
         "germanSentenceBuildEnglish",
       ],
     },
+    crossword: {
+      subject: "language",
+      curriculum: "all",
+      datasetId: "core",
+      year: "ALL",
+      stages: [],
+      excludeMastered: true,
+      wordCount: 10,
+    },
     builder: {
       packId: "",
       filter: "all",
+      subject: "history",                       // history | language | geography | science
+      curriculum: "all",                        // ks3 | gcse | other | all
     },
     passages: {
+      subject: "",
+      curriculum: "all",                      // ks3 | gcse | other | all
       groupId: "",
       packId: "",
       category: "all",
       difficulty: "all",
       showGerman: false,
       voiceEnabled: true,
+      voiceName: "",          // preferred TTS voice name (empty = browser default)
     },
     review: {
       datasetId: "core",
       sort: "needsReview",
     },
+    promptBuilder: {
+      subject: "geography",
+      topic: "",
+      level: "KS3",
+      curriculum: "",
+      locale: "en-GB",
+      itemTypes: ["vocab"],
+      sourceMode: "paste",        // "url" | "ai-upload" | "paste"
+      sourceUrl: "",
+      sourceMaterial: "",
+      additionalInstructions: "",
+      generateMode: "template",   // "template" | "chrome-ai"
+      promptTemplate: "standard", // "standard" | "lit-11plus"
+      tourSeen: false,            // guided tour completed at least once (UI hint only)
+    },
+    arcade: {
+      mode: "quiz-hunt",          // "quiz-hunt" | "snake-builder"
+      subject: "language",
+      curriculum: "all",
+      datasetId: "core",          // quiz-hunt source (revision dataset)
+      packId: "",                 // snake-builder source (sentenceBuilder pack)
+      goal: "fullset",            // round goal: fullset | q20 | q40 | q60 | time5 | endless
+      sound: true,                // WebAudio blip sound effects
+      speech: false,              // speak the correct word/answer aloud via TTS
+    },
+    languageLadder: {
+      // Language-specific lesson progress. Keyed by targetLang code (e.g. "de", "ja").
+      // lastLang: the most-recently-used language code — restored on next open.
+      // langs[code].completedLessons: ordered list of completed lesson IDs.
+      // langs[code].currentLessonId: the lesson to resume next time.
+      // langs[code].lastOpenedAt: ISO timestamp for "most recently used" ordering.
+      lastLang: "",
+      langs: {},
+    },
   },
   progress: {
     words: {},
     sessions: [],
+    attemptEvents: [],
     builderStats: {},
     passageStats: {},
+    arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
   },
 };
 
@@ -137,7 +191,37 @@ export function recordWordAnswer(state, wordId, wasCorrect) {
 }
 
 export function recordQuizSession(state, sessionRecord) {
-  state.progress.sessions = [sessionRecord, ...state.progress.sessions].slice(0, 24);
+  // Cap answers at 60 entries to keep localStorage lean; degrade gracefully on old records
+  const answers = Array.isArray(sessionRecord.answers)
+    ? sessionRecord.answers.slice(0, 60).map(({ prompt, expected, userAnswer, correct, speechText, speechLanguage, wordId, itemId }) => ({
+        prompt, expected, userAnswer, correct,
+        ...(wordId ? { wordId } : {}),
+        ...(itemId ? { itemId } : {}),
+        ...(speechText ? { speechText } : {}),
+        ...(speechLanguage ? { speechLanguage } : {}),
+      }))
+    : null;
+  state.progress.sessions = [
+    { ...sessionRecord, ...(answers !== null ? { answers } : {}) },
+    ...state.progress.sessions,
+  ].slice(0, 50);
+}
+
+export function deleteSession(state, sessionId) {
+  state.progress.sessions = state.progress.sessions.filter((s) => s.id !== sessionId);
+}
+
+export function clearAllSessions(state) {
+  state.progress.sessions = [];
+  state.progress.attemptEvents = [];
+}
+
+export function resetWordProgress(state, wordId) {
+  delete state.progress.words[wordId];
+}
+
+export function clearAllWordProgress(state) {
+  state.progress.words = {};
 }
 
 function ensureBuilderStats(state, packId) {
@@ -190,4 +274,20 @@ export function getPassageStats(state, packId) {
 export function recordPassageCompletion(state, packId) {
   const stats = ensurePassageStats(state, packId);
   stats.passagesCompleted += 1;
+}
+
+/**
+ * Record the result of an arcade round. Kept in its own progress bucket so it
+ * never disturbs quiz session analytics. `result` = { score, bestStreak, accuracy }.
+ */
+export function recordArcadeResult(state, mode, result = {}) {
+  if (!state.progress.arcadeStats) state.progress.arcadeStats = {};
+  const key = mode || "quiz-hunt";
+  const prev = state.progress.arcadeStats[key] || { plays: 0, bestScore: 0, bestStreak: 0 };
+  state.progress.arcadeStats[key] = {
+    plays: prev.plays + 1,
+    bestScore: Math.max(prev.bestScore, result.score || 0),
+    bestStreak: Math.max(prev.bestStreak, result.bestStreak || 0),
+    lastPlayedAt: new Date().toISOString(),
+  };
 }

@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_network_types_hardware",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Network Types & Hardware",
+  "subtitle": "LAN, WAN, network topologies, hardware components, and wired vs wireless connections.",
+  "items": [
+    {
+      "id": "nt_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Network Types & Hardware"],
+      "tags": ["KS3", "computing", "networks"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "LANs and WANs",
+        "targetTitle": "LANs and WANs",
+        "sourcePassage": "A network is two or more devices connected to share data and resources. There are two main types: a Local Area Network (LAN) and a Wide Area Network (WAN). A LAN covers a small geographical area, such as a single school, office, or home. It is owned and managed entirely by the organisation using it. Schools buy their own switches, routers, and cables, giving them full control over the network. LANs are typically fast, with Gigabit Ethernet speeds common. A WAN, by contrast, covers a large geographical area — a city, country, or even the whole world. A WAN uses public telecommunications infrastructure owned by companies, such as undersea fibre optic cables and satellite links. A business connecting offices in London and New York is using a WAN. The Internet is the largest WAN in existence, connecting billions of devices worldwide. Organisations pay ISPs for access to the WAN infrastructure.",
+        "targetPassage": "A network is two or more devices connected to share data and resources. There are two main types: a Local Area Network (LAN) and a Wide Area Network (WAN). A LAN covers a small geographical area, such as a single school, office, or home. It is owned and managed entirely by the organisation using it. Schools buy their own switches, routers, and cables, giving them full control over the network. LANs are typically fast, with Gigabit Ethernet speeds common. A WAN, by contrast, covers a large geographical area — a city, country, or even the whole world. A WAN uses public telecommunications infrastructure owned by companies, such as undersea fibre optic cables and satellite links. A business connecting offices in London and New York is using a WAN. The Internet is the largest WAN in existence, connecting billions of devices worldwide. Organisations pay ISPs for access to the WAN infrastructure.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "nt_p01_q1",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "What does LAN stand for?",
+            "options": ["Large Area Network", "Local Area Network", "Linked Access Node", "Long-range Area Node"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "LAN stands for Local Area Network.",
+            "acceptedKeywords": ["Local Area Network"]
+          },
+          {
+            "id": "nt_p01_q2",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "Which of the following is the largest WAN in the world?",
+            "options": ["A school network", "A company intranet", "The Internet", "A home network"],
+            "correctOptionIndex": 2,
+            "modelAnswer": "The Internet is the largest WAN in existence.",
+            "acceptedKeywords": ["Internet", "internet"]
+          },
+          {
+            "id": "nt_p01_q3",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "Who owns the infrastructure used by a WAN?",
+            "options": [
+              "The organisation using it",
+              "Telecommunications companies providing public infrastructure",
+              "The government",
+              "The end users"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A WAN uses public telecommunications infrastructure owned by companies such as ISPs, not the organisation using it.",
+            "acceptedKeywords": ["telecommunications", "ISP", "public infrastructure"]
+          },
+          {
+            "id": "nt_p01_q4",
+            "questionType": "short-answer",
+            "difficulty": "medium",
+            "question": "State two differences between a LAN and a WAN.",
+            "modelAnswer": "1. A LAN covers a small geographical area (e.g. a building), whereas a WAN covers a large geographical area (e.g. a country). 2. A LAN is owned by the organisation, whereas a WAN uses public infrastructure owned by telecommunications companies.",
+            "acceptedKeywords": ["geographical area", "owned", "small", "large", "public infrastructure"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nt_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Network Types & Hardware"],
+      "tags": ["KS3", "computing", "networks"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Network Hardware: Router, Switch, Hub, and NIC",
+        "targetTitle": "Network Hardware: Router, Switch, Hub, and NIC",
+        "sourcePassage": "Several hardware devices are needed to build a computer network. The Network Interface Card (NIC) is inside every device and physically enables it to connect to a network. Every NIC has a unique MAC address burned in at manufacture. The switch connects devices within a LAN and is smarter than the older hub — it learns the MAC address of each connected device and sends data only to the correct destination, reducing unnecessary traffic. A hub, by contrast, broadcasts every packet to all connected devices, which is inefficient and a security risk. The router connects the LAN to the internet. It examines the IP address in each packet and routes it toward its destination. Routers also use DHCP to automatically assign IP addresses to devices when they join the network. A Wireless Access Point (WAP) allows wireless devices to join a wired LAN by broadcasting a Wi-Fi signal. In most schools, WAPs are mounted on walls so staff and students can connect wirelessly from anywhere in the building.",
+        "targetPassage": "Several hardware devices are needed to build a computer network. The Network Interface Card (NIC) is inside every device and physically enables it to connect to a network. Every NIC has a unique MAC address burned in at manufacture. The switch connects devices within a LAN and is smarter than the older hub — it learns the MAC address of each connected device and sends data only to the correct destination, reducing unnecessary traffic. A hub, by contrast, broadcasts every packet to all connected devices, which is inefficient and a security risk. The router connects the LAN to the internet. It examines the IP address in each packet and routes it toward its destination. Routers also use DHCP to automatically assign IP addresses to devices when they join the network. A Wireless Access Point (WAP) allows wireless devices to join a wired LAN by broadcasting a Wi-Fi signal. In most schools, WAPs are mounted on walls so staff and students can connect wirelessly from anywhere in the building.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "nt_p02_q1",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "What does a NIC enable a device to do?",
+            "options": [
+              "Display images on screen",
+              "Connect to a network",
+              "Store files permanently",
+              "Print documents"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A NIC (Network Interface Card) physically enables a device to connect to a network.",
+            "acceptedKeywords": ["connect", "network", "NIC"]
+          },
+          {
+            "id": "nt_p02_q2",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "Why is a switch better than a hub?",
+            "options": [
+              "A switch is cheaper than a hub",
+              "A switch sends data only to the intended device, reducing unnecessary traffic",
+              "A switch works wirelessly, a hub does not",
+              "A switch connects to the internet, a hub does not"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A switch sends data only to the correct destination device using MAC addresses, whereas a hub broadcasts to all devices, which wastes bandwidth and creates a security risk.",
+            "acceptedKeywords": ["intended device", "MAC address", "broadcasts", "efficient"]
+          },
+          {
+            "id": "nt_p02_q3",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "What protocol does a router use to automatically assign IP addresses?",
+            "options": ["HTTP", "FTP", "DHCP", "DNS"],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Routers use DHCP (Dynamic Host Configuration Protocol) to automatically assign IP addresses to devices joining the network.",
+            "acceptedKeywords": ["DHCP", "Dynamic Host Configuration Protocol"]
+          },
+          {
+            "id": "nt_p02_q4",
+            "questionType": "short-answer",
+            "difficulty": "medium",
+            "question": "Describe the role of a WAP in a school network.",
+            "modelAnswer": "A WAP (Wireless Access Point) is connected to the wired school LAN and broadcasts a Wi-Fi signal. This allows wireless devices such as laptops and tablets to connect to the school network without needing a physical cable.",
+            "acceptedKeywords": ["Wi-Fi", "wireless", "connect", "wired LAN", "broadcast"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nt_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Network Types & Hardware"],
+      "tags": ["KS3", "computing", "networks"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Network Topologies and Wired vs Wireless",
+        "targetTitle": "Network Topologies and Wired vs Wireless",
+        "sourcePassage": "A network topology is the physical layout of how devices are connected. In a star topology, each device has its own dedicated cable connecting it to a central switch. If one device fails, others are unaffected. However, if the switch fails, the whole network goes down. Star is the most common topology in schools and offices because it is reliable and scalable. In a bus topology, all devices share a single backbone cable. This is cheap but unreliable — a break anywhere in the cable brings down the entire network. When choosing between wired and wireless connections, each has strengths. Wired Ethernet connections offer faster speeds, more reliable signals, and better security, because an attacker must physically connect to intercept data. Wireless connections are more flexible — devices can connect from anywhere in range — but signals can suffer interference and are less secure, as they travel through the air where they could potentially be intercepted by someone nearby.",
+        "targetPassage": "A network topology is the physical layout of how devices are connected. In a star topology, each device has its own dedicated cable connecting it to a central switch. If one device fails, others are unaffected. However, if the switch fails, the whole network goes down. Star is the most common topology in schools and offices because it is reliable and scalable. In a bus topology, all devices share a single backbone cable. This is cheap but unreliable — a break anywhere in the cable brings down the entire network. When choosing between wired and wireless connections, each has strengths. Wired Ethernet connections offer faster speeds, more reliable signals, and better security, because an attacker must physically connect to intercept data. Wireless connections are more flexible — devices can connect from anywhere in range — but signals can suffer interference and are less secure, as they travel through the air where they could potentially be intercepted by someone nearby.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "nt_p03_q1",
+            "questionType": "multiple-choice",
+            "difficulty": "easy",
+            "question": "In a star topology, what do all devices connect to?",
+            "options": ["A shared bus cable", "A central switch", "Each other directly", "A WAP"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "In a star topology, every device connects individually to a central switch.",
+            "acceptedKeywords": ["central switch", "switch"]
+          },
+          {
+            "id": "nt_p03_q2",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "What happens to a bus topology network if the backbone cable is damaged?",
+            "options": [
+              "Only the damaged section loses connection",
+              "The whole network fails",
+              "The network slows down but continues",
+              "Devices automatically reconnect wirelessly"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "In a bus topology, all devices share the same cable. If that cable is damaged, the entire network fails.",
+            "acceptedKeywords": ["whole network", "entire network", "fails"]
+          },
+          {
+            "id": "nt_p03_q3",
+            "questionType": "multiple-choice",
+            "difficulty": "medium",
+            "question": "Why are wired connections considered more secure than wireless?",
+            "options": [
+              "Wired connections use more advanced encryption",
+              "An attacker must physically plug into the cable to intercept data",
+              "Wired connections travel further",
+              "Wired connections are always faster"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Wired connections are more secure because an attacker must physically connect to the cable to intercept data, unlike wireless signals that travel through the air.",
+            "acceptedKeywords": ["physically", "plug in", "air", "intercept"]
+          },
+          {
+            "id": "nt_p03_q4",
+            "questionType": "short-answer",
+            "difficulty": "hard",
+            "question": "A school plans to add 30 new computers to a computer lab. Discuss whether they should use wired or wireless connections, giving two reasons.",
+            "modelAnswer": "Wired connections would be more suitable. First, wired Ethernet is faster and more reliable than wireless, ensuring all 30 computers have consistent network performance for tasks like video streaming or large file transfers. Second, wired connections are more secure — data travels through cables, so a remote attacker cannot intercept the signal, which is important in a school environment.",
+            "acceptedKeywords": ["wired", "reliable", "faster", "secure", "interference"]
+          }
+        ]
+      }
+    }
+  ]
+}

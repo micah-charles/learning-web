@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_cpu_fde_cycle",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "computer systems"],
+  "items": [
+    {
+      "id": "ks3_computing_cpu_fde_cycle_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Inside the CPU: Key Components"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computer Systems",
+        "sourceTitle": "Inside the CPU: Key Components",
+        "targetTitle": "Inside the CPU: Key Components",
+        "sourcePassage": "The Central Processing Unit, or CPU, is often described as the brain of a computer. However, the CPU is not a single simple component — it contains several specialised sub-components that each play a distinct role in processing instructions. Understanding these internal parts is essential to understanding how any program runs.\n\nThe Control Unit, often abbreviated to CU, acts as the coordinator or manager of the CPU. It does not perform any calculations itself, but instead directs the flow of data between the CPU's other components and the computer's main memory (RAM). The Control Unit oversees and manages the sequence of steps the CPU follows to process each instruction, sending control signals to tell other components what to do and when to do it.\n\nThe Arithmetic and Logic Unit, or ALU, is where all actual computation takes place. The ALU carries out arithmetic operations such as addition and subtraction, as well as logical operations such as comparing whether one value is greater than another. Whenever a program needs to calculate something, it is the ALU that performs that work. The result of an ALU operation is temporarily held in a small, very fast storage location inside the CPU called a register.\n\nRegisters are tiny memory locations built directly into the CPU. They are faster than any other form of memory in a computer. One particularly important register is the Program Counter, which stores the memory address of the next instruction the CPU needs to fetch from RAM. Another important register is the Accumulator, which stores the result of the most recent calculation performed by the ALU. The CPU also makes use of cache — a small but very fast type of memory located inside or very close to the CPU — to store copies of frequently used instructions, reducing the number of slower accesses to RAM.",
+        "targetPassage": "The Central Processing Unit, or CPU, is often described as the brain of a computer. However, the CPU is not a single simple component — it contains several specialised sub-components that each play a distinct role in processing instructions. Understanding these internal parts is essential to understanding how any program runs.\n\nThe Control Unit, often abbreviated to CU, acts as the coordinator or manager of the CPU. It does not perform any calculations itself, but instead directs the flow of data between the CPU's other components and the computer's main memory (RAM). The Control Unit oversees and manages the sequence of steps the CPU follows to process each instruction, sending control signals to tell other components what to do and when to do it.\n\nThe Arithmetic and Logic Unit, or ALU, is where all actual computation takes place. The ALU carries out arithmetic operations such as addition and subtraction, as well as logical operations such as comparing whether one value is greater than another. Whenever a program needs to calculate something, it is the ALU that performs that work. The result of an ALU operation is temporarily held in a small, very fast storage location inside the CPU called a register.\n\nRegisters are tiny memory locations built directly into the CPU. They are faster than any other form of memory in a computer. One particularly important register is the Program Counter, which stores the memory address of the next instruction the CPU needs to fetch from RAM. Another important register is the Accumulator, which stores the result of the most recent calculation performed by the ALU. The CPU also makes use of cache — a small but very fast type of memory located inside or very close to the CPU — to store copies of frequently used instructions, reducing the number of slower accesses to RAM.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which CPU component is responsible for performing arithmetic operations such as addition?",
+            "options": [
+              "The Arithmetic and Logic Unit (ALU)",
+              "The Control Unit (CU)",
+              "The Program Counter",
+              "The cache"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The Arithmetic and Logic Unit (ALU)",
+            "acceptedKeywords": ["ALU", "Arithmetic and Logic Unit", "arithmetic"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does the Program Counter store?",
+            "options": [
+              "The memory address of the next instruction to be fetched from RAM",
+              "The result of the most recent calculation performed by the ALU",
+              "A copy of the most frequently used instructions",
+              "The total number of instructions processed since the computer started"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The memory address of the next instruction to be fetched from RAM",
+            "acceptedKeywords": ["memory address", "next instruction", "address"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "According to the passage, the Control Unit does not perform calculations. What is its actual role?",
+            "options": [
+              "It coordinates data flow between CPU components and RAM, sending control signals to direct other components",
+              "It stores the results of calculations in registers for later use",
+              "It manages the cache and decides which instructions to store there",
+              "It fetches instructions directly from the hard drive and loads them into RAM"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "It coordinates data flow between CPU components and RAM, sending control signals to direct other components",
+            "acceptedKeywords": ["coordinates", "directs", "control signals", "manages", "flow of data"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage describes both registers and cache as fast memory inside or near the CPU. Based on the passage, how do their purposes differ?",
+            "options": [
+              "Registers hold the data or result the CPU is working with right now (such as the current instruction address or latest calculation result), while cache stores copies of frequently used instructions to reduce slow RAM accesses",
+              "Registers store frequently used instructions, while cache holds the current instruction being executed",
+              "Registers and cache serve identical purposes — the passage uses the two words interchangeably",
+              "Cache is faster than registers, so cache stores current results while registers store older, less-needed data"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Registers hold the data or result the CPU is working with right now (such as the current instruction address or latest calculation result), while cache stores copies of frequently used instructions to reduce slow RAM accesses",
+            "acceptedKeywords": ["registers current", "cache frequently used", "different purposes", "reduce RAM accesses"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fde_cycle_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["The Fetch-Decode-Execute Cycle"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computer Systems",
+        "sourceTitle": "The Fetch-Decode-Execute Cycle",
+        "targetTitle": "The Fetch-Decode-Execute Cycle",
+        "sourcePassage": "Every instruction that a computer program contains must go through the same three-stage process before it can actually do anything. This process — repeated continuously while any program is running — is called the Fetch-Decode-Execute cycle, often shortened to the FDE cycle. Understanding each of the three stages is fundamental to understanding how computers work at a hardware level.\n\nThe first stage is the Fetch. The Control Unit reads the memory address stored in the Program Counter. This address tells the CPU where in RAM the next instruction is located. The CPU sends a signal to RAM requesting the instruction at that address. The instruction is brought into the CPU and temporarily held in a register. Crucially, the Program Counter is then incremented — updated to point to the address of the following instruction — so the CPU knows where to go next after this instruction has been processed.\n\nThe second stage is the Decode. Once the instruction is inside the CPU, the Control Unit examines it and works out what operation is required. It interprets the binary code of the instruction to determine what task must be carried out — for example, whether the CPU needs to add two numbers, move a value from one place to another, or jump to a different part of the program. The Control Unit then prepares the relevant components to carry out that task.\n\nThe third stage is the Execute. The instruction is actually carried out. If the instruction involves a calculation, the ALU performs it and stores the result in the Accumulator register. If the instruction involves reading or writing data in RAM, that memory access takes place. If the instruction is a jump or branch — telling the CPU to go to a different part of the program — the Program Counter is updated to reflect the new address. As soon as Execute is complete, the cycle begins again immediately with the next Fetch.",
+        "targetPassage": "Every instruction that a computer program contains must go through the same three-stage process before it can actually do anything. This process — repeated continuously while any program is running — is called the Fetch-Decode-Execute cycle, often shortened to the FDE cycle. Understanding each of the three stages is fundamental to understanding how computers work at a hardware level.\n\nThe first stage is the Fetch. The Control Unit reads the memory address stored in the Program Counter. This address tells the CPU where in RAM the next instruction is located. The CPU sends a signal to RAM requesting the instruction at that address. The instruction is brought into the CPU and temporarily held in a register. Crucially, the Program Counter is then incremented — updated to point to the address of the following instruction — so the CPU knows where to go next after this instruction has been processed.\n\nThe second stage is the Decode. Once the instruction is inside the CPU, the Control Unit examines it and works out what operation is required. It interprets the binary code of the instruction to determine what task must be carried out — for example, whether the CPU needs to add two numbers, move a value from one place to another, or jump to a different part of the program. The Control Unit then prepares the relevant components to carry out that task.\n\nThe third stage is the Execute. The instruction is actually carried out. If the instruction involves a calculation, the ALU performs it and stores the result in the Accumulator register. If the instruction involves reading or writing data in RAM, that memory access takes place. If the instruction is a jump or branch — telling the CPU to go to a different part of the program — the Program Counter is updated to reflect the new address. As soon as Execute is complete, the cycle begins again immediately with the next Fetch.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What are the three stages of the Fetch-Decode-Execute cycle, in the correct order?",
+            "options": [
+              "Fetch, Decode, Execute",
+              "Decode, Fetch, Execute",
+              "Execute, Fetch, Decode",
+              "Fetch, Execute, Decode"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Fetch, Decode, Execute",
+            "acceptedKeywords": ["fetch", "decode", "execute", "correct order"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What happens to the Program Counter during the Fetch stage?",
+            "options": [
+              "It is incremented to point to the address of the next instruction",
+              "It is reset to zero ready for the next cycle",
+              "It is sent to RAM so the next instruction can be stored there",
+              "It holds the result of the most recent ALU calculation"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "It is incremented to point to the address of the next instruction",
+            "acceptedKeywords": ["incremented", "updated", "next instruction", "next address"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "During the Decode stage, what is the role of the Control Unit?",
+            "options": [
+              "It interprets the instruction and determines what operation is needed, then prepares the relevant components",
+              "It performs the arithmetic calculation and stores the result in the Accumulator",
+              "It fetches the next instruction from RAM and brings it into the CPU",
+              "It updates the Program Counter to point to the following instruction"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "It interprets the instruction and determines what operation is needed, then prepares the relevant components",
+            "acceptedKeywords": ["interprets", "determines", "operation", "prepares", "examines"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage mentions that a jump instruction causes the Program Counter to be updated during the Execute stage. Normally the Program Counter is incremented during the Fetch stage. What does this suggest about how programs can control the order in which instructions run?",
+            "options": [
+              "By executing a jump instruction, the program can redirect the CPU to fetch from a completely different memory address, allowing the program to loop, skip sections, or branch based on conditions",
+              "Jump instructions bypass the Decode stage entirely, allowing certain instructions to run faster than others",
+              "The Program Counter can only ever increase — jump instructions simply speed up the incrementing process",
+              "Jump instructions are executed by RAM rather than by the CPU, so the FDE cycle does not apply to them"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "By executing a jump instruction, the program can redirect the CPU to fetch from a completely different memory address, allowing the program to loop, skip sections, or branch based on conditions",
+            "acceptedKeywords": ["redirect", "different address", "loop", "branch", "skip", "control flow"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_cpu_fde_cycle_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Making CPUs Faster: Clock Speed, Cores, and Cache"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computer Systems",
+        "sourceTitle": "Making CPUs Faster: Clock Speed, Cores, and Cache",
+        "targetTitle": "Making CPUs Faster: Clock Speed, Cores, and Cache",
+        "sourcePassage": "Not all CPUs perform at the same speed. Three main factors determine how quickly a CPU can process instructions: clock speed, the number of cores, and the size of the cache. Understanding each factor — and its limitations — helps explain why comparing CPUs is more complicated than simply looking at a single number.\n\nClock speed is the rate at which the CPU performs its clock cycles, measured in gigahertz (GHz). One gigahertz equals one billion cycles per second. Each clock cycle allows the CPU to do a fixed amount of work, so a higher clock speed means more instructions can be processed every second. A CPU running at 3.2 GHz performs 3.2 billion cycles per second and will process instructions faster than a CPU running at 2.0 GHz. However, there is a physical limit: running a CPU at very high clock speeds generates a great deal of heat, which can damage the chip if it is not properly managed.\n\nModern CPUs often contain multiple cores — independent processing units on the same chip. A dual-core CPU has two cores, a quad-core has four, and an octa-core has eight. Each core can fetch, decode, and execute instructions independently, so multiple cores allow genuinely parallel processing: different tasks can be handled at the same time by different cores. For example, one core might run a web browser while another simultaneously handles a music application. However, this benefit depends on software being written to use multiple cores. A program that runs as a single sequence of instructions can only ever use one core at a time.\n\nCache is a small, very fast type of memory located inside or very close to the CPU. When the CPU needs data or an instruction, it checks the cache first. If the item is found — called a cache hit — the CPU retrieves it very quickly without needing to access the much slower RAM. A larger cache means more data can be stored close to the CPU, leading to more cache hits and fewer slow accesses to RAM. Like the other factors, cache has a limitation: it is expensive to manufacture, so there is a practical limit to how much cache can be included on a CPU chip.",
+        "targetPassage": "Not all CPUs perform at the same speed. Three main factors determine how quickly a CPU can process instructions: clock speed, the number of cores, and the size of the cache. Understanding each factor — and its limitations — helps explain why comparing CPUs is more complicated than simply looking at a single number.\n\nClock speed is the rate at which the CPU performs its clock cycles, measured in gigahertz (GHz). One gigahertz equals one billion cycles per second. Each clock cycle allows the CPU to do a fixed amount of work, so a higher clock speed means more instructions can be processed every second. A CPU running at 3.2 GHz performs 3.2 billion cycles per second and will process instructions faster than a CPU running at 2.0 GHz. However, there is a physical limit: running a CPU at very high clock speeds generates a great deal of heat, which can damage the chip if it is not properly managed.\n\nModern CPUs often contain multiple cores — independent processing units on the same chip. A dual-core CPU has two cores, a quad-core has four, and an octa-core has eight. Each core can fetch, decode, and execute instructions independently, so multiple cores allow genuinely parallel processing: different tasks can be handled at the same time by different cores. For example, one core might run a web browser while another simultaneously handles a music application. However, this benefit depends on software being written to use multiple cores. A program that runs as a single sequence of instructions can only ever use one core at a time.\n\nCache is a small, very fast type of memory located inside or very close to the CPU. When the CPU needs data or an instruction, it checks the cache first. If the item is found — called a cache hit — the CPU retrieves it very quickly without needing to access the much slower RAM. A larger cache means more data can be stored close to the CPU, leading to more cache hits and fewer slow accesses to RAM. Like the other factors, cache has a limitation: it is expensive to manufacture, so there is a practical limit to how much cache can be included on a CPU chip.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What unit is used to measure CPU clock speed?",
+            "options": [
+              "Gigahertz (GHz)",
+              "Gigabytes (GB)",
+              "Megapixels (MP)",
+              "Milliseconds (ms)"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Gigahertz (GHz)",
+            "acceptedKeywords": ["gigahertz", "GHz"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a 'cache hit'?",
+            "options": [
+              "When the CPU finds the data it needs in the cache, avoiding a slower RAM access",
+              "When the CPU fails to find data in the cache and must fetch it from RAM",
+              "When the clock speed increases automatically to process a difficult instruction",
+              "When two cores simultaneously process the same instruction"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "When the CPU finds the data it needs in the cache, avoiding a slower RAM access",
+            "acceptedKeywords": ["found in cache", "avoids RAM", "fast retrieval", "cache hit"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "The passage states that multiple cores improve performance, but mentions a limitation. What is that limitation?",
+            "options": [
+              "The benefit only applies if the software is written to use multiple cores — a single-threaded program can only use one core",
+              "Multiple cores generate so much heat that they cancel out the performance improvement",
+              "Only quad-core and octa-core CPUs benefit from multiple cores; dual-core CPUs do not",
+              "Multiple cores slow down individual tasks because the cores share the same cache"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "The benefit only applies if the software is written to use multiple cores — a single-threaded program can only use one core",
+            "acceptedKeywords": ["software", "written to use", "single-threaded", "one core at a time"]
+          },
+          {
+            "id": "ks3_computing_cpu_fde_cycle_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "Each of the three factors described in the passage — clock speed, cores, and cache — has a listed limitation. What do all three limitations have in common?",
+            "options": [
+              "All three limitations are physical or practical constraints — heat, software compatibility, and manufacturing cost — meaning there is no simple way to infinitely improve CPU performance",
+              "All three limitations are caused by RAM being too slow to keep up with the CPU",
+              "All three limitations only affect CPUs with more than four cores",
+              "All three limitations can be fully overcome by increasing the clock speed sufficiently"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "All three limitations are physical or practical constraints — heat, software compatibility, and manufacturing cost — meaning there is no simple way to infinitely improve CPU performance",
+            "acceptedKeywords": ["physical", "practical", "constraints", "heat", "cost", "software", "cannot infinitely improve"]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "packId": "usmsg_science_01_life_science_01_cells_and_organisms",
+  "subject": "science",
+  "title": "US Middle School Science - Cells and Organisms Reading",
+  "subtitle": "Reading passages and comprehension questions about cells and organisms.",
+  "level": "US Middle School",
+  "language": "English",
+  "topics": [
+    "cells and organisms"
+  ],
+  "tags": [
+    "US Middle School",
+    "Science",
+    "Life Science",
+    "Cells",
+    "Organisms"
+  ],
+  "description": "A source-faithful life science pack about how cells work together to keep organisms alive. Students practise key cell structures, cell theory, plant and animal cell comparison, levels of organization, matter and energy, homeostasis, diffusion, microscopes, and yeast investigation evidence.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-US",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-US",
+  "speechLanguage": "en-US",
+  "items": [
+    {
+      "id": "usmsg_science_01_life_science_01_cells_and_organisms_passage_001",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "cells and organisms"
+      ],
+      "tags": [
+        "reading"
+      ],
+      "data": {
+        "sourceTitle": "Cells Are the Basic Unit of Life",
+        "targetTitle": "Cells Are the Basic Unit of Life",
+        "sourcePassage": "All living things are made of cells. A cell is the smallest structure that can carry out life processes such as taking in materials, using energy, removing waste, growing, responding, and reproducing. Most cells are too small to see clearly without a microscope. Microscope evidence helped scientists develop cell theory: all living things are made of one or more cells, the cell is the basic unit of structure and function, and cells come from other cells. This idea connects very different organisms, including bacteria, mushrooms, oak trees, frogs, and humans.",
+        "targetPassage": "All living things are made of cells. A cell is the smallest structure that can carry out life processes such as taking in materials, using energy, removing waste, growing, responding, and reproducing. Most cells are too small to see clearly without a microscope. Microscope evidence helped scientists develop cell theory: all living things are made of one or more cells, the cell is the basic unit of structure and function, and cells come from other cells. This idea connects very different organisms, including bacteria, mushrooms, oak trees, frogs, and humans.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "cells_basic_unit_q1",
+            "questionType": "fact",
+            "difficulty": "easy",
+            "question": "What is the smallest structure that can carry out life processes?",
+            "modelAnswer": "A cell.",
+            "acceptedKeywords": [
+              "cell"
+            ]
+          },
+          {
+            "id": "cells_basic_unit_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which statement is part of cell theory?",
+            "modelAnswer": "All living things are made of one or more cells.",
+            "acceptedKeywords": [
+              "living things",
+              "cells"
+            ],
+            "options": [
+              "All living things are made of one or more cells.",
+              "Only animals are made of cells.",
+              "Cells never come from other cells.",
+              "Cells are always visible without tools."
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "cells_basic_unit_q3",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Why did microscopes matter for developing ideas about cells?",
+            "modelAnswer": "Microscopes let scientists observe cells, cell shapes, and cell structures that are too small to see with only their eyes.",
+            "acceptedKeywords": [
+              "microscope",
+              "observe",
+              "too small"
+            ]
+          },
+          {
+            "id": "cells_basic_unit_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "How does cell theory connect bacteria and humans?",
+            "modelAnswer": "It shows that both bacteria and humans are living things made of cells, even though they look very different.",
+            "acceptedKeywords": [
+              "both",
+              "made of cells",
+              "living things"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "usmsg_science_01_life_science_01_cells_and_organisms_passage_002",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "cells and organisms"
+      ],
+      "tags": [
+        "reading"
+      ],
+      "data": {
+        "sourceTitle": "Plant and Animal Cells",
+        "targetTitle": "Plant and Animal Cells",
+        "sourcePassage": "Plant and animal cells are both eukaryotic cells, which means they have a nucleus and membrane-bound organelles. They share cell membranes, cytoplasm, DNA, mitochondria, ribosomes, and usually nuclei. Plant cells usually also have a cell wall, chloroplasts, and a large central vacuole. The cell wall gives support, chloroplasts carry out photosynthesis, and the vacuole stores water and helps support the cell. Animal cells usually lack cell walls and chloroplasts, which allows many animal cells to have flexible shapes for specialized jobs.",
+        "targetPassage": "Plant and animal cells are both eukaryotic cells, which means they have a nucleus and membrane-bound organelles. They share cell membranes, cytoplasm, DNA, mitochondria, ribosomes, and usually nuclei. Plant cells usually also have a cell wall, chloroplasts, and a large central vacuole. The cell wall gives support, chloroplasts carry out photosynthesis, and the vacuole stores water and helps support the cell. Animal cells usually lack cell walls and chloroplasts, which allows many animal cells to have flexible shapes for specialized jobs.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "plant_animal_cells_q1",
+            "questionType": "fact",
+            "difficulty": "easy",
+            "question": "Name two structures found in both plant and animal cells.",
+            "modelAnswer": "Examples include cell membrane, cytoplasm, DNA, mitochondria, ribosomes, nucleus, or vacuoles.",
+            "acceptedKeywords": [
+              "cell membrane",
+              "cytoplasm",
+              "DNA",
+              "mitochondria",
+              "ribosomes",
+              "nucleus"
+            ]
+          },
+          {
+            "id": "plant_animal_cells_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which structure is usually found in plant cells but not animal cells?",
+            "modelAnswer": "Cell wall.",
+            "acceptedKeywords": [
+              "cell wall"
+            ],
+            "options": [
+              "Cell wall",
+              "Cell membrane",
+              "Cytoplasm",
+              "DNA"
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "plant_animal_cells_q3",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "How do chloroplasts support plant cell function?",
+            "modelAnswer": "Chloroplasts use light energy for photosynthesis, making sugar that the plant can use.",
+            "acceptedKeywords": [
+              "light energy",
+              "photosynthesis",
+              "sugar"
+            ]
+          },
+          {
+            "id": "plant_animal_cells_q4",
+            "questionType": "open",
+            "difficulty": "harder",
+            "question": "Why is cell shape not the only evidence for identifying a cell type?",
+            "modelAnswer": "Shape can give clues, but stronger evidence comes from structures such as cell walls, chloroplasts, nuclei, and other organelles.",
+            "acceptedKeywords": [
+              "shape",
+              "structures",
+              "evidence"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "usmsg_science_01_life_science_01_cells_and_organisms_passage_003",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "cells and organisms"
+      ],
+      "tags": [
+        "reading"
+      ],
+      "data": {
+        "sourceTitle": "Unicellular and Multicellular Organisms",
+        "targetTitle": "Unicellular and Multicellular Organisms",
+        "sourcePassage": "A unicellular organism is made of one cell. That one cell must get or make food, use energy, remove waste, respond to the environment, reproduce, and maintain stable internal conditions. Examples include bacteria, amoebas, paramecia, yeast, and some algae. A multicellular organism is made of many cells. In many multicellular organisms, cells become specialized for different jobs. Similar cells form tissues, tissues form organs, organs form organ systems, and organ systems work together in the organism. Specialization allows complex life processes, but specialized cells depend on one another.",
+        "targetPassage": "A unicellular organism is made of one cell. That one cell must get or make food, use energy, remove waste, respond to the environment, reproduce, and maintain stable internal conditions. Examples include bacteria, amoebas, paramecia, yeast, and some algae. A multicellular organism is made of many cells. In many multicellular organisms, cells become specialized for different jobs. Similar cells form tissues, tissues form organs, organs form organ systems, and organ systems work together in the organism. Specialization allows complex life processes, but specialized cells depend on one another.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "unicellular_multicellular_q1",
+            "questionType": "fact",
+            "difficulty": "easy",
+            "question": "What is a unicellular organism?",
+            "modelAnswer": "An organism made of one cell.",
+            "acceptedKeywords": [
+              "one cell"
+            ]
+          },
+          {
+            "id": "unicellular_multicellular_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which example is unicellular?",
+            "modelAnswer": "Yeast.",
+            "acceptedKeywords": [
+              "yeast"
+            ],
+            "options": [
+              "Yeast",
+              "Human",
+              "Oak tree",
+              "Fish"
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "unicellular_multicellular_q3",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Why do specialized cells in a multicellular organism depend on one another?",
+            "modelAnswer": "Each specialized cell does a particular job, so it relies on other cells and systems for materials, energy, transport, and support.",
+            "acceptedKeywords": [
+              "specialized",
+              "depend",
+              "jobs"
+            ]
+          },
+          {
+            "id": "unicellular_multicellular_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Write the levels of organization from smallest to largest.",
+            "modelAnswer": "Cell, tissue, organ, organ system, organism.",
+            "acceptedKeywords": [
+              "cell",
+              "tissue",
+              "organ",
+              "organ system",
+              "organism"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "usmsg_science_01_life_science_01_cells_and_organisms_passage_004",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "cells and organisms"
+      ],
+      "tags": [
+        "reading"
+      ],
+      "data": {
+        "sourceTitle": "Matter and Energy in Cells",
+        "targetTitle": "Matter and Energy in Cells",
+        "sourcePassage": "Cells need matter to build cell parts and energy to power life processes. Water, oxygen, carbon dioxide, sugars, proteins, and minerals are examples of matter used by cells. Plant cells with chloroplasts can use light energy to make sugar during photosynthesis. Most plant and animal cells use cellular respiration to release usable energy from food molecules. Photosynthesis can be summarized as carbon dioxide plus water plus light energy produces sugar plus oxygen. Cellular respiration uses sugar and oxygen to produce carbon dioxide, water, and usable energy.",
+        "targetPassage": "Cells need matter to build cell parts and energy to power life processes. Water, oxygen, carbon dioxide, sugars, proteins, and minerals are examples of matter used by cells. Plant cells with chloroplasts can use light energy to make sugar during photosynthesis. Most plant and animal cells use cellular respiration to release usable energy from food molecules. Photosynthesis can be summarized as carbon dioxide plus water plus light energy produces sugar plus oxygen. Cellular respiration uses sugar and oxygen to produce carbon dioxide, water, and usable energy.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "matter_energy_cells_q1",
+            "questionType": "fact",
+            "difficulty": "easy",
+            "question": "Name one type of matter used by cells.",
+            "modelAnswer": "Examples include water, oxygen, carbon dioxide, sugars, proteins, or minerals.",
+            "acceptedKeywords": [
+              "water",
+              "oxygen",
+              "carbon dioxide",
+              "sugar",
+              "proteins",
+              "minerals"
+            ]
+          },
+          {
+            "id": "matter_energy_cells_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What process uses light energy to make sugar?",
+            "modelAnswer": "Photosynthesis.",
+            "acceptedKeywords": [
+              "photosynthesis"
+            ],
+            "options": [
+              "Photosynthesis",
+              "Diffusion",
+              "Magnification",
+              "Specialization"
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "matter_energy_cells_q3",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "How are photosynthesis and cellular respiration connected?",
+            "modelAnswer": "Photosynthesis makes sugar and oxygen, and cellular respiration uses sugar and oxygen to release usable energy, producing carbon dioxide and water.",
+            "acceptedKeywords": [
+              "sugar",
+              "oxygen",
+              "energy",
+              "carbon dioxide",
+              "water"
+            ]
+          },
+          {
+            "id": "matter_energy_cells_q4",
+            "questionType": "open",
+            "difficulty": "harder",
+            "question": "Why is food not exactly the same thing as energy?",
+            "modelAnswer": "Food is matter that contains stored chemical energy. Cells must use processes such as cellular respiration to release usable energy from food molecules.",
+            "acceptedKeywords": [
+              "matter",
+              "stored chemical energy",
+              "release"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "usmsg_science_01_life_science_01_cells_and_organisms_passage_005",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "cells and organisms"
+      ],
+      "tags": [
+        "reading"
+      ],
+      "data": {
+        "sourceTitle": "Cell Membranes and Homeostasis",
+        "targetTitle": "Cell Membranes and Homeostasis",
+        "sourcePassage": "Cells must keep internal conditions stable enough for life. This is called homeostasis. The cell membrane helps maintain homeostasis because it controls what enters and leaves the cell. The membrane is selectively permeable, meaning it allows some materials through but blocks or slows others. Oxygen, carbon dioxide, and water can move across many membranes, while larger molecules may need special transport processes. Diffusion is the movement of particles from an area of higher concentration to an area of lower concentration. Diffusion helps cells exchange gases and other small particles.",
+        "targetPassage": "Cells must keep internal conditions stable enough for life. This is called homeostasis. The cell membrane helps maintain homeostasis because it controls what enters and leaves the cell. The membrane is selectively permeable, meaning it allows some materials through but blocks or slows others. Oxygen, carbon dioxide, and water can move across many membranes, while larger molecules may need special transport processes. Diffusion is the movement of particles from an area of higher concentration to an area of lower concentration. Diffusion helps cells exchange gases and other small particles.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "membranes_homeostasis_q1",
+            "questionType": "fact",
+            "difficulty": "easy",
+            "question": "What is homeostasis?",
+            "modelAnswer": "Keeping internal conditions stable enough for life.",
+            "acceptedKeywords": [
+              "stable",
+              "internal conditions"
+            ]
+          },
+          {
+            "id": "membranes_homeostasis_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does selectively permeable mean?",
+            "modelAnswer": "Allows some materials through but not others.",
+            "acceptedKeywords": [
+              "some materials",
+              "not others"
+            ],
+            "options": [
+              "Allows some materials through but not others",
+              "Allows all materials through freely",
+              "Allows no materials through",
+              "Turns light into sugar"
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "membranes_homeostasis_q3",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Why is the cell membrane important for cell survival?",
+            "modelAnswer": "It controls what enters and leaves, helping the cell get needed materials, remove waste, and maintain homeostasis.",
+            "acceptedKeywords": [
+              "controls",
+              "enters",
+              "leaves",
+              "homeostasis"
+            ]
+          },
+          {
+            "id": "membranes_homeostasis_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "How does diffusion help cells?",
+            "modelAnswer": "Diffusion moves particles such as oxygen and carbon dioxide from higher to lower concentration, helping cells exchange materials.",
+            "acceptedKeywords": [
+              "higher",
+              "lower",
+              "concentration",
+              "exchange"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "usmsg_science_01_life_science_01_cells_and_organisms_passage_006",
+      "type": "passage",
+      "level": "US Middle School",
+      "topics": [
+        "cells and organisms"
+      ],
+      "tags": [
+        "reading"
+      ],
+      "data": {
+        "sourceTitle": "Yeast Activity and Temperature",
+        "targetTitle": "Yeast Activity and Temperature",
+        "sourcePassage": "A class investigated how temperature affects yeast activity. Each group mixed yeast, warm water, and sugar in a bottle and placed a balloon over the opening. As yeast released carbon dioxide, the balloon inflated. Bottle A at 40°F had a balloon circumference of 1 cm after 20 minutes. Bottle B at 70°F reached 5 cm. Bottle C at 95°F reached 12 cm. Bottle D at 130°F reached 2 cm. The data show yeast activity increased from 40°F to 95°F, then dropped at 130°F. This suggests yeast cells work best within a certain temperature range.",
+        "targetPassage": "A class investigated how temperature affects yeast activity. Each group mixed yeast, warm water, and sugar in a bottle and placed a balloon over the opening. As yeast released carbon dioxide, the balloon inflated. Bottle A at 40°F had a balloon circumference of 1 cm after 20 minutes. Bottle B at 70°F reached 5 cm. Bottle C at 95°F reached 12 cm. Bottle D at 130°F reached 2 cm. The data show yeast activity increased from 40°F to 95°F, then dropped at 130°F. This suggests yeast cells work best within a certain temperature range.",
+        "speechLanguage": "en-US",
+        "questions": [
+          {
+            "id": "yeast_temperature_q1",
+            "questionType": "fact",
+            "difficulty": "easy",
+            "question": "Which bottle showed the most yeast activity?",
+            "modelAnswer": "Bottle C at 95°F.",
+            "acceptedKeywords": [
+              "Bottle C",
+              "95°F"
+            ]
+          },
+          {
+            "id": "yeast_temperature_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What was the dependent variable in the yeast investigation?",
+            "modelAnswer": "Balloon circumference after 20 minutes.",
+            "acceptedKeywords": [
+              "balloon circumference"
+            ],
+            "options": [
+              "Balloon circumference after 20 minutes",
+              "Water temperature",
+              "Bottle label",
+              "Type of graph"
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "yeast_temperature_q3",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "What evidence supports the claim that 95°F produced the most yeast activity?",
+            "modelAnswer": "Bottle C at 95°F produced the largest balloon circumference, 12 cm after 20 minutes.",
+            "acceptedKeywords": [
+              "12 cm",
+              "largest",
+              "95°F"
+            ]
+          },
+          {
+            "id": "yeast_temperature_q4",
+            "questionType": "open",
+            "difficulty": "harder",
+            "question": "Why might yeast activity drop at 130°F?",
+            "modelAnswer": "Very high temperature may damage or kill yeast cells, reducing their ability to release carbon dioxide from sugar.",
+            "acceptedKeywords": [
+              "high temperature",
+              "damage",
+              "kill",
+              "carbon dioxide"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

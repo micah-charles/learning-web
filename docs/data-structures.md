@@ -1,8 +1,9 @@
 # Data Structures in `learning-web`
 
 > Complete reference for every data format used in the project.
-> Generated: 2026-05-03
 > Schema version: 1.1 (multilingual translations)
+>
+> **Machine-readable schemas:** `schemas/pack_unified.schema.json` and `schemas/passages.schema.json`
 
 ---
 
@@ -24,26 +25,31 @@ There are two data layers:
   "generatedAt":    "2026-05-02T…",
   "schemaVersion":  "1.1",
   "coreUnifiedPath": "data/core_unified.json",
-  "core":           { …revision-pack-entry… },
-  "revisionPacks":  [ …revision-pack-entry…, … ],
-  "sentenceBuilderPacks": [ …builder-pack-entry…, … ],
-  "passageGroups":  [ …passage-group-entry…, … ]
+  "core":           { …pack-entry… },
+  "packs":          [ …pack-entry…, … ],
+  "sentenceBuilderPacks": [ …builder-pack-entry…, … ]
 }
 ```
 
+> **`revisionPacks` and `passageGroups` are removed.** All content packs
+> (revision and passages) are now registered in the single `packs[]` array.
+> The `capabilities` field on each entry declares what the pack supports.
+
 ---
 
-## Manifest: Revision Pack Entry
+## Manifest: Pack Entry
 
-Every entry in `revisionPacks[]`:
+Every entry in `packs[]`:
 
 ```json
 {
   "id":                  "y7_german_full",
   "displayName":         "Y7 German — Full Course",
   "subject":             "language",
+  "curriculum":          "ks3",
   "level":               "Y7",
-  "unifiedPath":         "data/Packs/y7_german_full/pack_unified.json",
+  "capabilities":        ["revision"],
+  "unifiedPath":         "data/Packs/ks3/language/y7_german_full/pack_unified.json",
   "sourceLanguageLabel": "German",
   "sourceLanguageCode":  "de-DE",
   "targetLanguageLabel": "English",
@@ -57,13 +63,40 @@ Every entry in `revisionPacks[]`:
 }
 ```
 
+When the pack also has a `passages.json`, add:
+
+```json
+{
+  "capabilities": ["revision", "passages"],
+  "passagePath":  "data/Packs/ks3/language/y7_german_full/passages.json"
+}
+```
+
+When the pack has a Study Book markdown file, add:
+
+```json
+{
+  "contentMdPath": "data/Packs/ks3/science/biology_cells/study_notes.md",
+  "extraMdFiles": [
+    { "title": "Exam Tips",  "path": "data/Packs/ks3/science/biology_cells/exam_tips.md" }
+  ]
+}
+```
+
+Both `contentMdPath` and `extraMdFiles` are **optional and backward-compatible** — omitting them simply means the Study Book button does not appear for that pack. `extraMdFiles` is only needed when a pack has more than one markdown file; the `contentMdPath` file is always listed first as "Notes" in the file-tab row.
+
 | Field | Type | Purpose |
 |-------|------|---------|
 | `id` | string | Unique pack ID |
 | `displayName` | string | Human-readable title shown in the UI |
-| `subject` | string | Subject bucket: `language` \| `history` \| `geography` \| `science` |
+| `subject` | string | Subject bucket: `language` \| `history` \| `geography` \| `science` \| `literature` |
+| `curriculum` | string | `ks3` \| `gcse` \| `other` |
 | `level` | string | Suggested year level (used as a default filter) |
+| `capabilities` | string[] | Declares which tabs this pack supports: `"revision"` \| `"passages"` |
 | `unifiedPath` | string | Path to the pack's `pack_unified.json` |
+| `passagePath` | string? | Path to the pack's `passages.json` — only present when `capabilities` includes `"passages"` |
+| `contentMdPath` | string? | Path to the primary Study Book markdown file (relative to repo root) |
+| `extraMdFiles` | `{ title: string, path: string }[]?` | Additional markdown files — shown as tabs in the Study Book drawer |
 | `sourceLanguageLabel` | string | Display label for the study language (shown in quiz prompts) |
 | `sourceLanguageCode` | string | BCP-47 code for the study language (e.g. `de-DE`, `la-Latn`, `en-GB`) |
 | `targetLanguageLabel` | string | Display label for the target language |
@@ -85,12 +118,16 @@ The `subject` field groups packs in the Quiz Setup UI (Subject First flow). It d
 | `history` | History knowledge packs |
 | `geography` | Geography knowledge packs |
 | `science` | Science packs |
+| `literature` | Literature and text analysis packs |
+| `computing` | Computing and digital literacy packs |
+| `religion` | Religious studies packs |
+| `other` | Miscellaneous packs that don't fit another bucket |
 
 ---
 
 ## Manifest: Core Pack Entry
 
-The `core` entry follows the same shape as a revision pack entry, with `id: "core"`. It is listed alongside revision packs in the dataset dropdown.
+The `core` entry follows the same shape as a pack entry, with `id: "core"`. It is listed alongside packs in the dataset dropdown.
 
 ---
 
@@ -100,19 +137,7 @@ The `core` entry follows the same shape as a revision pack entry, with `id: "cor
 {
   "id":           "black_death",
   "displayName":  "Black Death",
-  "unifiedPath":  "data/SentenceBuilderPacks/black_death_unified.json"
-}
-```
-
----
-
-## Manifest: Passage Group Entry
-
-```json
-{
-  "id":           "bbc_bitesize_gcse_german",
-  "displayName":  "BBC Bitesize GCSE German",
-  "unifiedPath":  "data/PassagePacks/bbc_bitesize_gcse_german/pack_unified.json"
+  "unifiedPath":  "data/SentenceBuilderPacks/black_death/pack_unified.json"
 }
 ```
 
@@ -180,6 +205,7 @@ Every item in a unified pack has a fixed outer envelope:
 | `sequence` | Revision packs | Sequence ordering |
 | `categorySort` | Revision packs | Category sorting |
 | `fillBlank` | Revision packs | Gap-fill |
+| `multipleChoice` | Revision packs | Standalone multiple-choice |
 | `sentenceBuilder` | Sentence builder packs | Builder tab (standalone) |
 | `passage` | Passage packs | Reading tab |
 
@@ -357,6 +383,43 @@ Rendered as either a typed input or a button-grid of options (the UI picks based
 
 ---
 
+## Item Types: `multipleChoice`
+
+```json
+{
+  "id":     "grammar_case_001",
+  "type":   "multipleChoice",
+  "level":  "Stage 1",
+  "topics": ["Latin grammar", "cases"],
+  "tags":   ["grammar", "mcq"],
+  "data": {
+    "question": "What case is 'servus' in 'servus dormit'?",
+    "answer":   "nominative",
+    "options":  ["nominative", "accusative", "dative", "ablative"],
+    "hint":     "The noun is doing the verb."
+  }
+}
+```
+
+Use `multipleChoice` for standalone authored MCQ prompts that are **not** gap-fill sentences. This is the correct type for grammar drills such as "What case is...?", "What does this ending show?", or "Which form agrees with...?" where the prompt is a full question and the learner must choose one fixed answer.
+
+Do **not** encode these as `fillBlank` unless the prompt genuinely contains a `____` blank. `fillBlank` is reserved for cloze/gap-fill prompts; `multipleChoice` uses `data.question`.
+
+| Data field | Type | Notes |
+|------------|------|-------|
+| `question` | string | Full prompt shown to the learner. Required. |
+| `answer` | string | Correct option. Required and must appear in `options`. |
+| `options` | string[] | Fixed answer choices shown as buttons. Include the correct answer plus distractors. |
+| `hint` | string? | Optional hint shown to the student |
+| `questionType` | string? | Optional semantic metadata, e.g. `"multiple_choice"`; the renderer uses `type: "multipleChoice"` and `options`. |
+
+Runtime behavior:
+- Quiz treats `multipleChoice` as `modeId: "multipleChoice"`, `kind: "choice"`, and `modeTitle: "Multiple choice"`.
+- Grammar-only language packs with zero `vocab` items can still start a quiz when they contain `multipleChoice` items.
+- Arcade Quiz Hunt can load `multipleChoice` items from the same unified pack and uses the authored `options` as answer tokens.
+
+---
+
 ## Item Types: `sentenceBuilder`
 
 ```json
@@ -410,7 +473,7 @@ Used by the **Builder tab** (standalone tile drill, independent of quiz flow).
         "id":                  "q1",
         "questionType":        "multiple_choice",
         "difficulty":          "medium",
-        "question_en":         "What does the student want to be?",
+        "question":            "What does the student want to be?",
         "options":             ["A doctor", "A teacher", "A farmer", "A driver"],
         "correctOptionIndex":   0,
         "modelAnswer":         "A doctor",
@@ -441,7 +504,7 @@ Used by the **Reading tab**.
   "id":                  "q1",
   "questionType":        "multiple_choice",
   "difficulty":          "medium",
-  "question_en":         "What does the student want to be?",
+  "question":            "What does the student want to be?",
   "options":             ["A doctor", "A teacher", "A farmer", "A driver"],
   "correctOptionIndex":   0,
   "modelAnswer":         "A doctor",
@@ -454,7 +517,7 @@ Used by the **Reading tab**.
 | `id` | string | Question ID |
 | `questionType` | string | `"open"` (typed) or `"multiple_choice"` |
 | `difficulty` | string | `"easy"` \| `"medium"` \| `"hard"` |
-| `question_en` | string | The question text |
+| `question` | string | The question text. **Must use this field name** — not `questionText`, not `question_en` |
 | `options` | string[] | MCQ options (required if `questionType === "multiple_choice"`) |
 | `correctOptionIndex` | number | 0-based index of the correct option |
 | `modelAnswer` | string | Model answer for open questions |
@@ -522,10 +585,211 @@ For **non-language packs** (`history`, `geography`, `science`), the direction to
 
 ---
 
+## Folder structure
+
+```
+data/
+  Packs/<curriculum>/<subject>/<id>/
+    pack_unified.json    ← vocab, fillBlank, sequence, categorySort items
+    passages.json        ← passage items (optional — only if Reading tab content exists)
+  SentenceBuilderPacks/<id>/
+    pack_unified.json    ← sentenceBuilder items only
+  core_unified.json      ← legacy core German pack
+  generated/
+    manifest.json
+```
+
+Valid `<curriculum>` values: `ks3` | `gcse` | `other`
+Valid `<subject>` values: `language` | `history` | `geography` | `science` | `literature`
+
+---
+
+## JSON Schemas
+
+Machine-readable schemas live in `schemas/`:
+
+| File | Validates |
+|------|-----------|
+| `schemas/pack_unified.schema.json` | Any `pack_unified.json` (vocab, sentence, fillBlank, sequence, categorySort, sentenceBuilder items) |
+| `schemas/passages.schema.json` | Any `passages.json` (passage items only) |
+
+Both schemas use JSON Schema draft-07 and can be used by:
+- **AI generation prompts** — attach or reference the schema so the model can self-validate structure before outputting JSON
+- **Editor plugins** — VS Code will show inline errors if you add `"$schema"` to pack files or configure `json.schemas` in `.vscode/settings.json`
+- **`ajv` or `jsonschema`** — for programmatic validation in CI
+
+The schemas are the authoritative source for field names and types. `validate_pack.py` enforces the same rules but also applies semantic checks (tile concatenation, same-word vocab, etc.) that JSON Schema cannot express.
+
+---
+
+## Validator Constraints (`scripts/validate_pack.py`)
+
+`validate_pack.py` enforces the values below. Violations produce either a hard **ERROR** (exit 1) or a **WARNING** (exit 0). AI agents must run the validator and reach 0 errors before committing a pack.
+
+### Allowed `subject` values
+
+```
+language  history  geography  science  literature  computing  religion  other
+```
+
+- Must be **lowercase**. `"Geography"` or `"GCSE Geography"` are both errors.
+- These are the only accepted values — free-text subject names are rejected.
+
+### Allowed `schemaVersion` values
+
+```
+1.0   1.1
+```
+
+New packs must use `"1.1"`. `"1.0"` is accepted for legacy packs only.
+
+### Allowed item `type` values
+
+```
+vocab  sentence  sequence  categorySort  fillBlank  sentenceBuilder  passage
+```
+
+Any other string is an error.
+
+### Passage `questionType` values
+
+Used in `passages.json` items inside `data.questions[].questionType`.
+
+| Value | Status | Behaviour |
+|-------|--------|-----------|
+| `open` | ✓ use this | Renders a text area; marked against `modelAnswer` |
+| `multiple_choice` | ✓ use this | Renders an option grid; requires `options[]` and `correctOptionIndex` |
+| `fact` | ✓ semantic label | Treated as `open` — describes the question's cognitive level |
+| `inference` | ✓ semantic label | Treated as `open` |
+| `grammar` | ✓ semantic label | Treated as `open` |
+| `explanation` | ✓ semantic label | Treated as `open` |
+| `comprehension` | ✓ semantic label | Treated as `open` |
+| `mcq` | ⚠ alias | Identical to `multiple_choice` — avoid in new packs |
+| `choice` | ⚠ alias | Identical to `multiple_choice` — avoid in new packs |
+| `gap` | ⚠ wrong context | A quiz question `kind` (set by `quiz.js`), not a passage type — do not use in `passages.json` |
+| `typing` | ⚠ wrong context | Same as `gap` — quiz-only |
+
+> **Rendering note:** The app does not branch on `questionType` for display. It calls `isPassageMultipleChoice(question)`, which returns `true` when `options.length > 1`, regardless of the type string. The `questionType` field is semantic metadata only.
+
+Unknown values outside this table produce a **warning** (not an error) — but they will cause confusion for future authors and should be avoided.
+
+### `partOfSpeech` abbreviation check (language packs only)
+
+For packs where `sourceLanguageCode ≠ targetLanguageCode`, the validator rejects single-letter `partOfSpeech` values:
+
+```
+n  v  a  d  r  p  c  i
+```
+
+Use the full English word instead: `noun`, `verb`, `adjective`, `adverb`, `preposition`, `pronoun`, `conjunction`, `interjection`.
+
+Non-language packs should use `"keyword"` for all vocab items.
+
+### Same-word vocab check
+
+| Pack type | Behaviour |
+|-----------|-----------|
+| Non-language (`srcCode === tgtCode`) | **ERROR** — `targetWord` repeating `sourceWord` means no definition was written |
+| Language (`srcCode ≠ tgtCode`) | **WARNING** — identical source/target is allowed for cognates (e.g. Latin `toga` → English `toga`) |
+
+### `sentenceBuilder` tile check
+
+`" ".join(tiles)` must exactly equal `answer`. Common causes of failure:
+
+- Terminal punctuation as a separate tile: `[…, "organisms", "."]` → merge to `[…, "organisms."]`
+- Word-spelled numbers vs digits: `"seventy"` vs `"70"` — match whatever the `answer` uses
+- Missing commas: tiles `["income", "health"]` vs answer `"income, health"` — add commas to the tiles
+
+---
+
+## Study Book Markdown Files
+
+Packs may optionally ship one or more Markdown files that are displayed in the **Study Book drawer** — a side panel for reference and revision notes.
+
+### File location
+
+Place `.md` files inside the pack's own directory:
+
+```
+data/Packs/ks3/science/biology_cells/
+  pack_unified.json
+  passages.json          ← optional
+  study_notes.md         ← primary Study Book file
+  exam_tips.md           ← optional additional file
+```
+
+The filename is not constrained by convention, but `study_notes.md` is the established default for KS3 Science packs.
+
+### Manifest registration
+
+```json
+{
+  "id": "ks3_science_biology_cells",
+  "contentMdPath": "data/Packs/ks3/science/biology_cells/study_notes.md",
+  "extraMdFiles": [
+    { "title": "Exam Tips", "path": "data/Packs/ks3/science/biology_cells/exam_tips.md" }
+  ]
+}
+```
+
+`contentMdPath` is always the primary file; `extraMdFiles` is shown as additional tabs in the drawer header. Both fields are optional — omitting them means no Study Book button appears for the pack.
+
+### Markdown format rules
+
+The Study Book renderer uses `marked` (GFM mode) with a custom heading renderer that generates stable heading IDs from the text. Supported elements:
+
+| Element | Notes |
+|---------|-------|
+| `# h1` / `## h2` / `### h3` | Appear in TOC; generate anchor IDs |
+| `#### h4` | Rendered but not in TOC |
+| Paragraphs, bold, italic, links | Standard GFM |
+| Unordered and ordered lists | Standard |
+| Tables | Block-level scroll on mobile |
+| Code blocks (fenced) | Monospace, no syntax highlighting |
+| Blockquotes | Left teal border |
+| Horizontal rules | Section dividers |
+
+**Heading anchor generation:** `text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-")`.
+Example: `## Key Knowledge` → `id="key-knowledge"`.
+
+The same algorithm is used by `extractTOC` and the `marked` custom renderer, so TOC links and `sourceRef.anchor` fields must use this formula.
+
+### Cross-reference in quiz questions
+
+A quiz question item in `pack_unified.json` may carry an optional `sourceRef` field to link directly to a Study Book heading:
+
+```json
+{
+  "id": "q_diffusion",
+  "type": "vocab",
+  "data": { … },
+  "sourceRef": {
+    "mdFile":  "study_notes.md",
+    "heading": "Diffusion",
+    "anchor":  "diffusion"
+  }
+}
+```
+
+`sourceRef` is consumed by `renderQuizSession` to render a "Jump to [heading]" button. The quiz engine ignores it entirely — it is purely UI metadata.
+
+### Migration script
+
+`scripts/migrate_science_study_notes.py` copies KS3 Science `.md` files from the study prompt repo into the correct pack directories and patches `manifest.json`. Run it for new study-note batches:
+
+```bash
+python3 scripts/migrate_science_study_notes.py           # dry-run
+python3 scripts/migrate_science_study_notes.py --apply   # apply
+```
+
+---
+
 ## Adding a New Pack
 
-1. Create the pack directory: `data/Packs/[pack-id]/`
-2. Create `pack_unified.json` with the [unified pack header](#unified-pack-format-pack_unifiedjson) and items
-3. Add an entry to `revisionPacks[]` in `data/generated/manifest.json`
-4. Set `supportsSentences: false` if the pack has no sentence items
-5. Run `python3 scripts/validate_unified.py` to check the pack
+1. Create the pack directory: `data/Packs/<curriculum>/<subject>/<id>/`
+2. Create `pack_unified.json` with the [unified pack header](#unified-pack-format-pack_unifiedjson) and revision items
+3. If the pack has passage content, create `passages.json` in the same directory
+4. If the pack has a Study Book, place `study_notes.md` (or similar) in the pack directory and add `contentMdPath` to the manifest entry
+5. Add one entry to `packs[]` in `data/generated/manifest.json`; include `passagePath` and `"passages"` in `capabilities` if `passages.json` exists
+6. Set `supportsSentences: false` if the pack has no sentence items
+7. Run `python3 scripts/validate_pack.py data/Packs/<curriculum>/<subject>/<id>/pack_unified.json` to check the pack

@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Web — Data Structures</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+    h1 { font-size: 1.8rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+    h2 { font-size: 1.3rem; margin-top: 2.2rem; border-bottom: 1px solid #e8e8e8; padding-bottom: 6px; }
+    h3 { font-size: 1.1rem; margin-top: 1.6rem; color: #333; }
+    h4 { font-size: 1rem; margin-top: 1.2rem; color: #555; }
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.88em;
+      background: #f4f4f4;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+    pre {
+      background: #f6f8fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.85em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0;
+      font-size: 0.9em;
+    }
+    th {
+      background: #f0f4f8;
+      font-weight: 600;
+      text-align: left;
+      padding: 8px 12px;
+      border: 1px solid #d0d7de;
+    }
+    td {
+      padding: 7px 12px;
+      border: 1px solid #d0d7de;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #fafafa; }
+    blockquote {
+      margin: 12px 0;
+      padding: 10px 16px;
+      border-left: 4px solid #0969da;
+      background: #f0f6ff;
+      color: #333;
+      border-radius: 0 4px 4px 0;
+    }
+    blockquote p { margin: 0; }
+    a { color: #0969da; }
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 28px 0; }
+    p { margin: 8px 0; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 3px 0; }
+  </style>
+</head>
+<body>
+<h1 id="data-structures-in-learning-web">Data Structures in <code>learning-web</code></h1>
+<blockquote>
+<p>Complete reference for every data format used in the project.
+Generated: 2026-05-03
+Schema version: 1.1 (multilingual translations)</p>
+</blockquote>
+<hr />
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>Every file is referenced from <code>data/generated/manifest.json</code>. The app loads the manifest first, then resolves all pack and passage data via <code>unifiedPath</code> entries.</p>
+<p>There are two data layers:</p>
+<ul>
+<li><strong>Unified packs</strong> (<code>pack_unified.json</code>) — the runtime format for revision packs, sentence builder packs, and passage packs. Single file per pack containing a typed array of items.</li>
+<li><strong>Legacy source files</strong> (e.g. <code>vocab.json</code>, <code>sentences.jsonl</code>) — conversion inputs only. The app never loads them at runtime.</li>
+</ul>
+<hr />
+<h2 id="top-level-manifestjson">Top-level: <code>manifest.json</code></h2>
+<pre><code class="language-json">{
+  &quot;generatedAt&quot;:    &quot;2026-05-02T…&quot;,
+  &quot;schemaVersion&quot;:  &quot;1.1&quot;,
+  &quot;coreUnifiedPath&quot;: &quot;data/core_unified.json&quot;,
+  &quot;core&quot;:           { …pack-entry… },
+  &quot;packs&quot;:          [ …pack-entry…, … ],
+  &quot;sentenceBuilderPacks&quot;: [ …builder-pack-entry…, … ]
+}
+</code></pre>
+<blockquote>
+<p><strong><code>revisionPacks</code> and <code>passageGroups</code> are removed.</strong> All content packs
+(revision and passages) are now registered in the single <code>packs[]</code> array.
+The <code>capabilities</code> field on each entry declares what the pack supports.</p>
+</blockquote>
+<hr />
+<h2 id="manifest-pack-entry">Manifest: Pack Entry</h2>
+<p>Every entry in <code>packs[]</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;:                  &quot;y7_german_full&quot;,
+  &quot;displayName&quot;:         &quot;Y7 German — Full Course&quot;,
+  &quot;subject&quot;:             &quot;language&quot;,
+  &quot;curriculum&quot;:          &quot;ks3&quot;,
+  &quot;level&quot;:               &quot;Y7&quot;,
+  &quot;capabilities&quot;:        [&quot;revision&quot;],
+  &quot;unifiedPath&quot;:         &quot;data/Packs/ks3/language/y7_german_full/pack_unified.json&quot;,
+  &quot;sourceLanguageLabel&quot;: &quot;German&quot;,
+  &quot;sourceLanguageCode&quot;:  &quot;de-DE&quot;,
+  &quot;targetLanguageLabel&quot;: &quot;English&quot;,
+  &quot;targetLanguageCode&quot;:  &quot;en-GB&quot;,
+  &quot;speechLanguage&quot;:      &quot;de-DE&quot;,
+  &quot;supportsSentences&quot;:   true,
+  &quot;stageOptions&quot;:        [],
+  &quot;defaultQuizModes&quot;:    [],
+  &quot;wordCount&quot;:           426,
+  &quot;sentenceCount&quot;:       37
+}
+</code></pre>
+<p>When the pack also has a <code>passages.json</code>, add:</p>
+<pre><code class="language-json">{
+  &quot;capabilities&quot;: [&quot;revision&quot;, &quot;passages&quot;],
+  &quot;passagePath&quot;:  &quot;data/Packs/ks3/language/y7_german_full/passages.json&quot;
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Unique pack ID</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td>string</td>
+<td>Human-readable title shown in the UI</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td>string</td>
+<td>Subject bucket: <code>language</code> | <code>history</code> | <code>geography</code> | <code>science</code> | <code>literature</code></td>
+</tr>
+<tr>
+<td><code>curriculum</code></td>
+<td>string</td>
+<td><code>ks3</code> | <code>gcse</code> | <code>other</code></td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>string</td>
+<td>Suggested year level (used as a default filter)</td>
+</tr>
+<tr>
+<td><code>capabilities</code></td>
+<td>string[]</td>
+<td>Declares which tabs this pack supports: <code>"revision"</code> | <code>"passages"</code></td>
+</tr>
+<tr>
+<td><code>unifiedPath</code></td>
+<td>string</td>
+<td>Path to the pack's <code>pack_unified.json</code></td>
+</tr>
+<tr>
+<td><code>passagePath</code></td>
+<td>string?</td>
+<td>Path to the pack's <code>passages.json</code> — only present when <code>capabilities</code> includes <code>"passages"</code></td>
+</tr>
+<tr>
+<td><code>sourceLanguageLabel</code></td>
+<td>string</td>
+<td>Display label for the study language (shown in quiz prompts)</td>
+</tr>
+<tr>
+<td><code>sourceLanguageCode</code></td>
+<td>string</td>
+<td>BCP-47 code for the study language (e.g. <code>de-DE</code>, <code>la-Latn</code>, <code>en-GB</code>)</td>
+</tr>
+<tr>
+<td><code>targetLanguageLabel</code></td>
+<td>string</td>
+<td>Display label for the target language</td>
+</tr>
+<tr>
+<td><code>targetLanguageCode</code></td>
+<td>string</td>
+<td>BCP-47 code for the target language</td>
+</tr>
+<tr>
+<td><code>speechLanguage</code></td>
+<td>string</td>
+<td>BCP-47 code for TTS (often matches <code>sourceLanguageCode</code>)</td>
+</tr>
+<tr>
+<td><code>supportsSentences</code></td>
+<td>boolean</td>
+<td><code>false</code> for packs that have only vocab items — prevents the quiz engine from trying to build sentence questions from an empty pool</td>
+</tr>
+<tr>
+<td><code>stageOptions</code></td>
+<td>string[]</td>
+<td>Set when a pack has named stages (e.g. Cambridge Latin Stages has <code>["Stage 1", …, "Stage 12"]</code>)</td>
+</tr>
+<tr>
+<td><code>defaultQuizModes</code></td>
+<td>string[]</td>
+<td>Preferred mode IDs for this pack (empty = use app defaults)</td>
+</tr>
+<tr>
+<td><code>wordCount</code></td>
+<td>number</td>
+<td>Approximate vocab item count</td>
+</tr>
+<tr>
+<td><code>sentenceCount</code></td>
+<td>number</td>
+<td>Sentence item count</td>
+</tr>
+</tbody>
+</table>
+<h3 id="subject-field">Subject field</h3>
+<p>The <code>subject</code> field groups packs in the Quiz Setup UI (Subject First flow). It describes the <strong>subject matter</strong>, not the language of instruction.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>language</code></td>
+<td>Language learning packs (German, Latin, etc.) — shows the direction toggle in Quiz Setup</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>History knowledge packs</td>
+</tr>
+<tr>
+<td><code>geography</code></td>
+<td>Geography knowledge packs</td>
+</tr>
+<tr>
+<td><code>science</code></td>
+<td>Science packs</td>
+</tr>
+<tr>
+<td><code>literature</code></td>
+<td>Literature and text analysis packs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="manifest-core-pack-entry">Manifest: Core Pack Entry</h2>
+<p>The <code>core</code> entry follows the same shape as a pack entry, with <code>id: "core"</code>. It is listed alongside packs in the dataset dropdown.</p>
+<hr />
+<h2 id="manifest-sentence-builder-pack-entry">Manifest: Sentence Builder Pack Entry</h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:           &quot;black_death&quot;,
+  &quot;displayName&quot;:  &quot;Black Death&quot;,
+  &quot;unifiedPath&quot;:  &quot;data/SentenceBuilderPacks/black_death/pack_unified.json&quot;
+}
+</code></pre>
+<hr />
+<h2 id="unified-pack-format-pack_unifiedjson">Unified Pack Format (<code>pack_unified.json</code>)</h2>
+<p>Every unified pack has the same header structure regardless of type:</p>
+<pre><code class="language-json">{
+  &quot;packId&quot;:              &quot;y7_german_full&quot;,
+  &quot;subject&quot;:             &quot;language&quot;,
+  &quot;title&quot;:               &quot;Y7 German — Full Course&quot;,
+  &quot;subtitle&quot;:            &quot;All 11 Y7 German packs merged&quot;,
+  &quot;level&quot;:               &quot;Y7&quot;,
+  &quot;language&quot;:            &quot;German&quot;,
+  &quot;topics&quot;:              [&quot;birthdays &amp; months&quot;, &quot;colours &amp; appearance&quot;, …],
+  &quot;tags&quot;:                [&quot;Y7&quot;, &quot;German&quot;, &quot;beginner&quot;, &quot;full-course&quot;],
+  &quot;description&quot;:          &quot;A complete Y7 German vocabulary course…&quot;,
+  &quot;schemaVersion&quot;:       &quot;1.1&quot;,
+  &quot;sourceLanguageLabel&quot;:  &quot;German&quot;,
+  &quot;sourceLanguageCode&quot;:   &quot;de-DE&quot;,
+  &quot;targetLanguageLabel&quot;:  &quot;English&quot;,
+  &quot;targetLanguageCode&quot;:   &quot;en-GB&quot;,
+  &quot;speechLanguage&quot;:       &quot;de-DE&quot;,
+  &quot;items&quot;:               [ … ]
+}
+</code></pre>
+<p>All fields mirror the manifest entry. The pack header fields are repeated so individual pack files are self-describing.</p>
+<hr />
+<h2 id="unified-item-format">Unified Item Format</h2>
+<p>Every item in a unified pack has a fixed outer envelope:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;y7_birthdays_and_months_001&quot;,
+  &quot;type&quot;:   &quot;vocab&quot;,
+  &quot;level&quot;:  &quot;Y7&quot;,
+  &quot;topics&quot;: [&quot;birthdays&quot;, &quot;birthdays &amp; months&quot;],
+  &quot;tags&quot;:   [&quot;Y7&quot;, &quot;custom&quot;, &quot;cat:months&quot;],
+  &quot;data&quot;:   { …type-specific-fields… }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Unique item ID within the pack</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>Item kind — see table below</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>string</td>
+<td>Year level (e.g. <code>"Y7"</code>, <code>"Stage 1"</code>)</td>
+</tr>
+<tr>
+<td><code>topics</code></td>
+<td>string[]</td>
+<td>Topic labels for filtering</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>string[]</td>
+<td>Additional labels (origin, category, etc.)</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>object</td>
+<td>Polymorphic payload — shape depends on <code>type</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="valid-item-type-values">Valid item <code>type</code> values</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Used by</th>
+<th>Quiz mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vocab</code></td>
+<td>Revision packs, core</td>
+<td>Word choice, word type, fill-blank</td>
+</tr>
+<tr>
+<td><code>sentence</code></td>
+<td>Revision packs, core</td>
+<td>Sentence build, sentence type</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td>Revision packs</td>
+<td>Sequence ordering</td>
+</tr>
+<tr>
+<td><code>categorySort</code></td>
+<td>Revision packs</td>
+<td>Category sorting</td>
+</tr>
+<tr>
+<td><code>fillBlank</code></td>
+<td>Revision packs</td>
+<td>Gap-fill</td>
+</tr>
+<tr>
+<td><code>sentenceBuilder</code></td>
+<td>Sentence builder packs</td>
+<td>Builder tab (standalone)</td>
+</tr>
+<tr>
+<td><code>passage</code></td>
+<td>Passage packs</td>
+<td>Reading tab</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="item-types-vocab">Item Types: <code>vocab</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;y7_birthdays_and_months_001&quot;,
+  &quot;type&quot;:   &quot;vocab&quot;,
+  &quot;level&quot;:  &quot;Y7&quot;,
+  &quot;topics&quot;: [&quot;birthdays&quot;, &quot;birthdays &amp; months&quot;],
+  &quot;tags&quot;:   [&quot;Y7&quot;, &quot;custom&quot;, &quot;cat:months&quot;],
+  &quot;data&quot;: {
+    &quot;partOfSpeech&quot;: &quot;noun&quot;,
+    &quot;gender&quot;:       &quot;m&quot;,
+    &quot;plural&quot;:       &quot;die Geburtstage&quot;,
+    &quot;translations&quot;: {
+      &quot;de-DE&quot;: &quot;der Geburtstag&quot;,
+      &quot;en-GB&quot;: &quot;birthday&quot;
+    }
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>translations</code></td>
+<td><code>Record&lt;code, string&gt;</code></td>
+<td><strong>Preferred (schema 1.1).</strong> BCP-47 keys. Prefer <code>de-DE</code>/<code>en-GB</code> over <code>de</code>/<code>en</code> for clarity.</td>
+</tr>
+<tr>
+<td><code>examples</code></td>
+<td><code>Record&lt;code, string&gt;</code></td>
+<td>Example sentence per language</td>
+</tr>
+<tr>
+<td><code>partOfSpeech</code></td>
+<td>string</td>
+<td>e.g. <code>"noun"</code>, <code>"verb"</code>, <code>"det"</code></td>
+</tr>
+<tr>
+<td><code>gender</code></td>
+<td>string?</td>
+<td>Noun gender: <code>m</code> | <code>f</code> | <code>n</code>; <code>null</code> for non-nouns</td>
+</tr>
+<tr>
+<td><code>plural</code></td>
+<td>string?</td>
+<td>Noun plural form</td>
+</tr>
+<tr>
+<td><code>sourceWord</code></td>
+<td>string</td>
+<td><strong>Legacy fallback.</strong> Used if <code>translations</code> is absent.</td>
+</tr>
+<tr>
+<td><code>targetWord</code></td>
+<td>string</td>
+<td><strong>Legacy fallback.</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Language code priority:</strong> The quiz engine reads <code>translations[sourceLanguageCode]</code> for the study side and <code>translations[targetLanguageCode]</code> for the target side, falling back to <code>translations["de-DE"]</code> → <code>translations["en-GB"]</code> → <code>sourceWord</code>/<code>targetWord</code> in order.</p>
+</blockquote>
+<hr />
+<h2 id="item-types-sentence">Item Types: <code>sentence</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;Y7-SENT-0001&quot;,
+  &quot;type&quot;:   &quot;sentence&quot;,
+  &quot;level&quot;:  &quot;Y7&quot;,
+  &quot;topics&quot;: [&quot;family&quot;, &quot;tiffin 10-19&quot;],
+  &quot;tags&quot;:   [],
+  &quot;data&quot;: {
+    &quot;translations&quot;: {
+      &quot;de-DE&quot;: &quot;In meiner Familie gibt es fünf Personen…&quot;,
+      &quot;en-GB&quot;: &quot;In my family there are five people…&quot;
+    }
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>translations</code></td>
+<td><code>Record&lt;code, string&gt;</code></td>
+<td><strong>Preferred (schema 1.1).</strong></td>
+</tr>
+<tr>
+<td><code>sourceSentence</code></td>
+<td>string</td>
+<td><strong>Legacy fallback.</strong></td>
+</tr>
+<tr>
+<td><code>targetSentence</code></td>
+<td>string</td>
+<td><strong>Legacy fallback.</strong></td>
+</tr>
+<tr>
+<td><code>sourceLanguage</code></td>
+<td>string</td>
+<td><strong>Legacy.</strong> Non-BCP-47 code (<code>"de"</code>, <code>"en"</code>).</td>
+</tr>
+<tr>
+<td><code>targetLanguage</code></td>
+<td>string</td>
+<td><strong>Legacy.</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="item-types-sequence">Item Types: <code>sequence</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;seq_001&quot;,
+  &quot;type&quot;:   &quot;sequence&quot;,
+  &quot;level&quot;:  &quot;Y7&quot;,
+  &quot;topics&quot;: [],
+  &quot;tags&quot;:   [],
+  &quot;data&quot;: {
+    &quot;title&quot;:       &quot;How a Glacier Forms&quot;,
+    &quot;instruction&quot;: &quot;Put the glacier formation steps in the correct order.&quot;,
+    &quot;items&quot;: [
+      &quot;More snow falls than melts.&quot;,
+      &quot;Snow builds up. This is called accumulation.&quot;,
+      &quot;Layers of snow are compressed.&quot;,
+      &quot;The snow becomes dense firn.&quot;,
+      &quot;Over hundreds of years, firn becomes glacier ice.&quot;,
+      &quot;The ice slides downhill due to gravity.&quot;
+    ],
+    &quot;shuffle&quot;: true
+  }
+}
+</code></pre>
+<p>The <code>items</code> array is shown to the user in shuffled order. They tap two items to swap positions until the order is correct.</p>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Question prompt</td>
+</tr>
+<tr>
+<td><code>instruction</code></td>
+<td>string</td>
+<td>Guidance shown below the title</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td>string[]</td>
+<td>Ordered steps; UI shuffles on load</td>
+</tr>
+<tr>
+<td><code>shuffle</code></td>
+<td>boolean</td>
+<td>Whether to shuffle on load (default: <code>true</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="item-types-categorysort">Item Types: <code>categorySort</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;cat_001&quot;,
+  &quot;type&quot;:   &quot;categorySort&quot;,
+  &quot;level&quot;:  &quot;Y7&quot;,
+  &quot;topics&quot;: [],
+  &quot;tags&quot;:   [],
+  &quot;data&quot;: {
+    &quot;title&quot;:       &quot;Weathering or Erosion?&quot;,
+    &quot;instruction&quot;: &quot;Sort each process into the correct category.&quot;,
+    &quot;categories&quot;:  [&quot;Weathering&quot;, &quot;Erosion&quot;],
+    &quot;pairs&quot;: [
+      { &quot;text&quot;: &quot;freeze-thaw&quot;,                   &quot;category&quot;: &quot;Weathering&quot; },
+      { &quot;text&quot;: &quot;plucking&quot;,                      &quot;category&quot;: &quot;Erosion&quot;    },
+      { &quot;text&quot;: &quot;abrasion&quot;,                      &quot;category&quot;: &quot;Erosion&quot;    },
+      { &quot;text&quot;: &quot;rock broken in cracks by ice&quot;, &quot;category&quot;: &quot;Weathering&quot; },
+      { &quot;text&quot;: &quot;rocks scraped along valley floor&quot;, &quot;category&quot;: &quot;Erosion&quot; }
+    ]
+  }
+}
+</code></pre>
+<p>The UI shows all <code>pairs[].text</code> values in a tile pool. The user taps a tile to select it, then taps a category column to place it.</p>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>Question prompt</td>
+</tr>
+<tr>
+<td><code>instruction</code></td>
+<td>string</td>
+<td>Guidance</td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td>string[]</td>
+<td>Column headers — any number of columns supported</td>
+</tr>
+<tr>
+<td><code>pairs</code></td>
+<td><code>Array&lt;{text, category}&gt;</code></td>
+<td><code>text</code> shown to user; <code>category</code> is the correct column</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: <code>pairs</code> is used for backwards compatibility. New exports should use <code>items</code> as an alias.</p>
+</blockquote>
+<hr />
+<h2 id="item-types-fillblank">Item Types: <code>fillBlank</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;gap_001&quot;,
+  &quot;type&quot;:   &quot;fillBlank&quot;,
+  &quot;level&quot;:  &quot;Y7&quot;,
+  &quot;topics&quot;: [],
+  &quot;tags&quot;:   [],
+  &quot;data&quot;: {
+    &quot;sentence&quot;: &quot;The build-up of snow where more falls than melts is called ____.&quot;,
+    &quot;answer&quot;:   &quot;accumulation&quot;,
+    &quot;hint&quot;:     &quot;Starts with 'a'&quot;
+  }
+}
+</code></pre>
+<p>Rendered as either a typed input or a button-grid of options (the UI picks based on what <code>options</code> are present — see variant below).</p>
+<pre><code class="language-json">&quot;data&quot;: {
+  &quot;sentence&quot;: &quot;The build-up of snow where more falls than melts is called ____.&quot;,
+  &quot;answer&quot;:   &quot;accumulation&quot;,
+  &quot;options&quot;:  [&quot;accumulation&quot;, &quot;abrasion&quot;, &quot;plucking&quot;, &quot;firn&quot;]
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sentence</code></td>
+<td>string</td>
+<td>Prompt with <code>____</code> placeholder</td>
+</tr>
+<tr>
+<td><code>answer</code></td>
+<td>string</td>
+<td>Correct answer (used for typed mode)</td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td>string?</td>
+<td>Optional hint shown to the student</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>string[]?</td>
+<td>Multiple-choice options; if present, rendered as a button grid</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="item-types-sentencebuilder">Item Types: <code>sentenceBuilder</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;black_death_builder_001&quot;,
+  &quot;type&quot;:   &quot;sentenceBuilder&quot;,
+  &quot;level&quot;:  &quot;KS3 / Year 7&quot;,
+  &quot;topics&quot;: [],
+  &quot;tags&quot;:   [&quot;key_date&quot;],
+  &quot;data&quot;: {
+    &quot;cardType&quot;: &quot;key_date&quot;,
+    &quot;prompt&quot;:   &quot;When did the Black Death arrive in England?&quot;,
+    &quot;answer&quot;:   &quot;The Black Death arrived in England in June 1348.&quot;,
+    &quot;tiles&quot;: [
+      &quot;The&quot;, &quot;Black&quot;, &quot;Death&quot;, &quot;arrived&quot;, &quot;in&quot;, &quot;England&quot;, &quot;in&quot;, &quot;June&quot;, &quot;1348.&quot;
+    ]
+  }
+}
+</code></pre>
+<p>Used by the <strong>Builder tab</strong> (standalone tile drill, independent of quiz flow).</p>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cardType</code></td>
+<td>string</td>
+<td>Card category: <code>key_date</code>, <code>key_term</code>, <code>example_sentence</code>…</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>string</td>
+<td>Short prompt or date shown above the tile bank</td>
+</tr>
+<tr>
+<td><code>answer</code></td>
+<td>string</td>
+<td>The complete correct sentence</td>
+</tr>
+<tr>
+<td><code>tiles</code></td>
+<td>string[]</td>
+<td>Word fragments — shuffled into the tile bank on load</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="item-types-passage">Item Types: <code>passage</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;careers_01&quot;,
+  &quot;type&quot;:   &quot;passage&quot;,
+  &quot;level&quot;:  &quot;GCSE&quot;,
+  &quot;topics&quot;: [&quot;careers&quot;],
+  &quot;tags&quot;:   [],
+  &quot;data&quot;: {
+    &quot;chapter&quot;:       &quot;BBC Bitesize - GCSE German&quot;,
+    &quot;section&quot;:       &quot;Careers&quot;,
+    &quot;sourceTitle&quot;:   &quot;Arzt im Krankenhaus&quot;,
+    &quot;targetTitle&quot;:   &quot;Doctor&quot;,
+    &quot;sourcePassage&quot;: &quot;Ich möchte als Arzt arbeiten…&quot;,
+    &quot;targetPassage&quot;: &quot;I would like to work as a doctor…&quot;,
+    &quot;speechLanguage&quot;: &quot;de-DE&quot;,
+    &quot;questions&quot;: [
+      {
+        &quot;id&quot;:                  &quot;q1&quot;,
+        &quot;questionType&quot;:        &quot;multiple_choice&quot;,
+        &quot;difficulty&quot;:          &quot;medium&quot;,
+        &quot;question_en&quot;:         &quot;What does the student want to be?&quot;,
+        &quot;options&quot;:             [&quot;A doctor&quot;, &quot;A teacher&quot;, &quot;A farmer&quot;, &quot;A driver&quot;],
+        &quot;correctOptionIndex&quot;:   0,
+        &quot;modelAnswer&quot;:         &quot;A doctor&quot;,
+        &quot;acceptedKeywords&quot;:    [&quot;doctor&quot;]
+      }
+    ]
+  }
+}
+</code></pre>
+<p>Used by the <strong>Reading tab</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chapter</code></td>
+<td>string</td>
+<td>Chapter label (shown as eyebrow above title)</td>
+</tr>
+<tr>
+<td><code>section</code></td>
+<td>string</td>
+<td>Section label</td>
+</tr>
+<tr>
+<td><code>sourceTitle</code></td>
+<td>string</td>
+<td>Title in the source language</td>
+</tr>
+<tr>
+<td><code>targetTitle</code></td>
+<td>string</td>
+<td>Title in the target language</td>
+</tr>
+<tr>
+<td><code>sourcePassage</code></td>
+<td>string</td>
+<td>Full source-language text (TTS reads this)</td>
+</tr>
+<tr>
+<td><code>targetPassage</code></td>
+<td>string</td>
+<td>Target-language translation</td>
+</tr>
+<tr>
+<td><code>speechLanguage</code></td>
+<td>string</td>
+<td>BCP-47 TTS language code (e.g. <code>"de-DE"</code>, <code>"en-GB"</code>)</td>
+</tr>
+<tr>
+<td><code>questions</code></td>
+<td><code>PassageQuestion[]</code></td>
+<td>Comprehension questions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="passagequestion">PassageQuestion</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;:                  &quot;q1&quot;,
+  &quot;questionType&quot;:        &quot;multiple_choice&quot;,
+  &quot;difficulty&quot;:          &quot;medium&quot;,
+  &quot;question_en&quot;:         &quot;What does the student want to be?&quot;,
+  &quot;options&quot;:             [&quot;A doctor&quot;, &quot;A teacher&quot;, &quot;A farmer&quot;, &quot;A driver&quot;],
+  &quot;correctOptionIndex&quot;:   0,
+  &quot;modelAnswer&quot;:         &quot;A doctor&quot;,
+  &quot;acceptedKeywords&quot;:    [&quot;doctor&quot;]
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Question ID</td>
+</tr>
+<tr>
+<td><code>questionType</code></td>
+<td>string</td>
+<td><code>"open"</code> (typed) or <code>"multiple_choice"</code></td>
+</tr>
+<tr>
+<td><code>difficulty</code></td>
+<td>string</td>
+<td><code>"easy"</code> | <code>"medium"</code> | <code>"hard"</code></td>
+</tr>
+<tr>
+<td><code>question_en</code></td>
+<td>string</td>
+<td>The question text</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>string[]</td>
+<td>MCQ options (required if <code>questionType === "multiple_choice"</code>)</td>
+</tr>
+<tr>
+<td><code>correctOptionIndex</code></td>
+<td>number</td>
+<td>0-based index of the correct option</td>
+</tr>
+<tr>
+<td><code>modelAnswer</code></td>
+<td>string</td>
+<td>Model answer for open questions</td>
+</tr>
+<tr>
+<td><code>acceptedKeywords</code></td>
+<td>string[]</td>
+<td>Keywords for keyword-based marking</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="subject-first-quiz-flow">Subject First Quiz Flow</h2>
+<p>The Quiz Setup UI (introduced in PR #13) uses <code>subject</code> to group packs into four buckets: Language, History, Geography, Science.</p>
+<p>For <strong>Language packs</strong> (<code>subject === "language"</code>), an additional direction toggle appears in Quiz Setup:</p>
+<pre><code>[ German → English ]   [ English → German ]
+</code></pre>
+<p>This sets the quiz direction (<code>studyToTarget</code> vs <code>targetToStudy</code>), which controls whether vocab prompts show the source word or the target word.</p>
+<p>For <strong>non-language packs</strong> (<code>history</code>, <code>geography</code>, <code>science</code>), the direction toggle is hidden — prompts always show the pack's <code>sourceLanguageLabel</code>. Only one quiz direction is valid for knowledge-revision packs.</p>
+<hr />
+<h2 id="current-packs-summary">Current Packs Summary</h2>
+<h3 id="revision-packs">Revision packs</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Subject</th>
+<th>Source</th>
+<th>Target</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core</code></td>
+<td>language</td>
+<td>German (de-DE)</td>
+<td>English (en-GB)</td>
+<td>979 (879 vocab + 100 sentences)</td>
+</tr>
+<tr>
+<td><code>y7_german_full</code></td>
+<td>language</td>
+<td>German (de-DE)</td>
+<td>English (en-GB)</td>
+<td>426 (326 vocab + 100 sentences)</td>
+</tr>
+<tr>
+<td><code>y7_chapter2_review</code></td>
+<td>language</td>
+<td>German (de-DE)</td>
+<td>English (en-GB)</td>
+<td>21 vocab</td>
+</tr>
+<tr>
+<td><code>y7_learning_goals_test</code></td>
+<td>language</td>
+<td>German (de-DE)</td>
+<td>English (en-GB)</td>
+<td>0 (mock test)</td>
+</tr>
+<tr>
+<td><code>cambridge_latin_stages</code></td>
+<td>language</td>
+<td>Latin (la-Latn)</td>
+<td>English (en-GB)</td>
+<td>656 vocab (12 stages)</td>
+</tr>
+<tr>
+<td><code>black_death</code></td>
+<td>history</td>
+<td>English (en-GB)</td>
+<td>English (en-GB)</td>
+<td>89 (61 vocab + 28 sentences)</td>
+</tr>
+<tr>
+<td><code>ks3_geography_glaciation_1</code></td>
+<td>geography</td>
+<td>English (en-GB)</td>
+<td>German (de-DE)</td>
+<td>32 (18 vocab + 2 seq + 2 sort + 10 gaps)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentence-builder-packs">Sentence builder packs</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Display name</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>black_death</code></td>
+<td>Black Death</td>
+<td>22</td>
+</tr>
+<tr>
+<td><code>silk_road_y7</code></td>
+<td>Silk Road Y7</td>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+<h3 id="passage-groups">Passage groups</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Display name</th>
+<th>Passages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bbc_bitesize_gcse_german</code></td>
+<td>BBC Bitesize GCSE German</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>dino_lernt_deutsch</code></td>
+<td>Dino Lernt Deutsch</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>ferien_in_frankfurt</code></td>
+<td>Ferien in Frankfurt</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>gcse_geography</code></td>
+<td>GCSE Geography</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>ks3_history</code></td>
+<td>KS3 History</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>deutsche_welle_nicos_weg</code></td>
+<td>Deutsche Welle Nicos Weg</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>others</code></td>
+<td>Others</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="schema-version-history">Schema Version History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2026-05-01</td>
+<td>Initial unified schema: single <code>pack_unified.json</code> per pack, basic <code>translations</code> dict</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>2026-05-02</td>
+<td><code>examples</code> dict for per-language example sentences; <code>questionType</code> renamed from <code>type</code>; <code>PassageQuestion.correctOptionIndex</code> (numeric) replaces <code>correct_option_index</code> (legacy snake-case alias retained)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="folder-structure">Folder structure</h2>
+<pre><code>data/
+  Packs/&lt;curriculum&gt;/&lt;subject&gt;/&lt;id&gt;/
+    pack_unified.json    ← vocab, fillBlank, sequence, categorySort items
+    passages.json        ← passage items (optional — only if Reading tab content exists)
+  SentenceBuilderPacks/&lt;id&gt;/
+    pack_unified.json    ← sentenceBuilder items only
+  core_unified.json      ← legacy core German pack
+  generated/
+    manifest.json
+</code></pre>
+<p>Valid <code>&lt;curriculum&gt;</code> values: <code>ks3</code> | <code>gcse</code> | <code>other</code>
+Valid <code>&lt;subject&gt;</code> values: <code>language</code> | <code>history</code> | <code>geography</code> | <code>science</code> | <code>literature</code></p>
+<hr />
+<h2 id="validator-constraints-scriptsvalidate_packpy">Validator Constraints (<code>scripts/validate_pack.py</code>)</h2>
+<p><code>validate_pack.py</code> enforces the values below. Violations produce either a hard <strong>ERROR</strong> (exit 1) or a <strong>WARNING</strong> (exit 0). AI agents must run the validator and reach 0 errors before committing a pack.</p>
+<h3 id="allowed-subject-values">Allowed <code>subject</code> values</h3>
+<pre><code>language  history  geography  science  literature
+</code></pre>
+<ul>
+<li>Must be <strong>lowercase</strong>. <code>"Geography"</code> or <code>"GCSE Geography"</code> are both errors.</li>
+<li>These are the only accepted values — free-text subject names are rejected.</li>
+</ul>
+<h3 id="allowed-schemaversion-values">Allowed <code>schemaVersion</code> values</h3>
+<pre><code>1.0   1.1
+</code></pre>
+<p>New packs must use <code>"1.1"</code>. <code>"1.0"</code> is accepted for legacy packs only.</p>
+<h3 id="allowed-item-type-values">Allowed item <code>type</code> values</h3>
+<pre><code>vocab  sentence  sequence  categorySort  fillBlank  sentenceBuilder  passage
+</code></pre>
+<p>Any other string is an error.</p>
+<h3 id="passage-questiontype-values">Passage <code>questionType</code> values</h3>
+<p>Used in <code>passages.json</code> items inside <code>data.questions[].questionType</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Status</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open</code></td>
+<td>✓ use this</td>
+<td>Renders a text area; marked against <code>modelAnswer</code></td>
+</tr>
+<tr>
+<td><code>multiple_choice</code></td>
+<td>✓ use this</td>
+<td>Renders an option grid; requires <code>options[]</code> and <code>correctOptionIndex</code></td>
+</tr>
+<tr>
+<td><code>fact</code></td>
+<td>✓ semantic label</td>
+<td>Treated as <code>open</code> — describes the question's cognitive level</td>
+</tr>
+<tr>
+<td><code>inference</code></td>
+<td>✓ semantic label</td>
+<td>Treated as <code>open</code></td>
+</tr>
+<tr>
+<td><code>grammar</code></td>
+<td>✓ semantic label</td>
+<td>Treated as <code>open</code></td>
+</tr>
+<tr>
+<td><code>explanation</code></td>
+<td>✓ semantic label</td>
+<td>Treated as <code>open</code></td>
+</tr>
+<tr>
+<td><code>comprehension</code></td>
+<td>✓ semantic label</td>
+<td>Treated as <code>open</code></td>
+</tr>
+<tr>
+<td><code>mcq</code></td>
+<td>⚠ alias</td>
+<td>Identical to <code>multiple_choice</code> — avoid in new packs</td>
+</tr>
+<tr>
+<td><code>choice</code></td>
+<td>⚠ alias</td>
+<td>Identical to <code>multiple_choice</code> — avoid in new packs</td>
+</tr>
+<tr>
+<td><code>gap</code></td>
+<td>⚠ wrong context</td>
+<td>A quiz question <code>kind</code> (set by <code>quiz.js</code>), not a passage type — do not use in <code>passages.json</code></td>
+</tr>
+<tr>
+<td><code>typing</code></td>
+<td>⚠ wrong context</td>
+<td>Same as <code>gap</code> — quiz-only</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Rendering note:</strong> The app does not branch on <code>questionType</code> for display. It calls <code>isPassageMultipleChoice(question)</code>, which returns <code>true</code> when <code>options.length &gt; 1</code>, regardless of the type string. The <code>questionType</code> field is semantic metadata only.</p>
+</blockquote>
+<p>Unknown values outside this table produce a <strong>warning</strong> (not an error) — but they will cause confusion for future authors and should be avoided.</p>
+<h3 id="partofspeech-abbreviation-check-language-packs-only"><code>partOfSpeech</code> abbreviation check (language packs only)</h3>
+<p>For packs where <code>sourceLanguageCode ≠ targetLanguageCode</code>, the validator rejects single-letter <code>partOfSpeech</code> values:</p>
+<pre><code>n  v  a  d  r  p  c  i
+</code></pre>
+<p>Use the full English word instead: <code>noun</code>, <code>verb</code>, <code>adjective</code>, <code>adverb</code>, <code>preposition</code>, <code>pronoun</code>, <code>conjunction</code>, <code>interjection</code>.</p>
+<p>Non-language packs should use <code>"keyword"</code> for all vocab items.</p>
+<h3 id="same-word-vocab-check">Same-word vocab check</h3>
+<table>
+<thead>
+<tr>
+<th>Pack type</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-language (<code>srcCode === tgtCode</code>)</td>
+<td><strong>ERROR</strong> — <code>targetWord</code> repeating <code>sourceWord</code> means no definition was written</td>
+</tr>
+<tr>
+<td>Language (<code>srcCode ≠ tgtCode</code>)</td>
+<td><strong>WARNING</strong> — identical source/target is allowed for cognates (e.g. Latin <code>toga</code> → English <code>toga</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentencebuilder-tile-check"><code>sentenceBuilder</code> tile check</h3>
+<p><code>" ".join(tiles)</code> must exactly equal <code>answer</code>. Common causes of failure:</p>
+<ul>
+<li>Terminal punctuation as a separate tile: <code>[…, "organisms", "."]</code> → merge to <code>[…, "organisms."]</code></li>
+<li>Word-spelled numbers vs digits: <code>"seventy"</code> vs <code>"70"</code> — match whatever the <code>answer</code> uses</li>
+<li>Missing commas: tiles <code>["income", "health"]</code> vs answer <code>"income, health"</code> — add commas to the tiles</li>
+</ul>
+<hr />
+<h2 id="adding-a-new-pack">Adding a New Pack</h2>
+<ol>
+<li>Create the pack directory: <code>data/Packs/&lt;curriculum&gt;/&lt;subject&gt;/&lt;id&gt;/</code></li>
+<li>Create <code>pack_unified.json</code> with the <a href="#unified-pack-format-pack_unifiedjson">unified pack header</a> and revision items</li>
+<li>If the pack has passage content, create <code>passages.json</code> in the same directory</li>
+<li>Add one entry to <code>packs[]</code> in <code>data/generated/manifest.json</code>; include <code>passagePath</code> and <code>"passages"</code> in <code>capabilities</code> if <code>passages.json</code> exists</li>
+<li>Set <code>supportsSentences: false</code> if the pack has no sentence items</li>
+<li>Run <code>python3 scripts/validate_pack.py data/Packs/&lt;curriculum&gt;/&lt;subject&gt;/&lt;id&gt;/pack_unified.json</code> to check the pack</li>
+</ol>
+</body>
+</html>

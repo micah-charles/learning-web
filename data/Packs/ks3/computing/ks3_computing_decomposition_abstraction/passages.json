@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_decomposition_abstraction",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "computational thinking"],
+  "items": [
+    {
+      "id": "ks3_computing_decomp_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Decomposition"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Decomposition: Dividing to Conquer",
+        "targetTitle": "Decomposition: Dividing to Conquer",
+        "sourcePassage": "Decomposition is the first pillar of computational thinking. It means breaking a large, complex problem into smaller, more manageable sub-problems. Think of building a house: no one tries to build the whole thing in a single step. Instead, the project is split into foundations, walls, roof, windows, and decoration. Each part can be handled by a specialist and tested independently before being combined.\n\nIn computing, decomposition leads directly to modular design. A programmer writing a school library system does not write one enormous block of code. Instead, they create separate modules: one for storing book details, one for searching, one for recording loans, and one for flagging overdue books. Each module can be written and tested on its own. If a bug appears, only the faulty module needs fixing. If a new feature is needed, a new module can be added without disturbing the others.\n\nDecomposition also allows teams to work in parallel. Different programmers tackle different sub-problems at the same time, significantly reducing how long a large project takes.",
+        "targetPassage": "Decomposition is the first pillar of computational thinking. It means breaking a large, complex problem into smaller, more manageable sub-problems. Think of building a house: no one tries to build the whole thing in a single step. Instead, the project is split into foundations, walls, roof, windows, and decoration. Each part can be handled by a specialist and tested independently before being combined.\n\nIn computing, decomposition leads directly to modular design. A programmer writing a school library system does not write one enormous block of code. Instead, they create separate modules: one for storing book details, one for searching, one for recording loans, and one for flagging overdue books. Each module can be written and tested on its own. If a bug appears, only the faulty module needs fixing. If a new feature is needed, a new module can be added without disturbing the others.\n\nDecomposition also allows teams to work in parallel. Different programmers tackle different sub-problems at the same time, significantly reducing how long a large project takes.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_decomp_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does decomposition mean in computing?",
+            "options": [
+              "Breaking a complex problem into smaller sub-problems",
+              "Removing unnecessary detail from a model",
+              "Writing an algorithm in pseudocode",
+              "Testing a program with many inputs"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Breaking a complex problem into smaller sub-problems",
+            "acceptedKeywords": ["breaking", "sub-problems", "smaller"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the passage, what does decomposition lead to in programming?",
+            "options": [
+              "Faster computers",
+              "Modular design",
+              "Better graphics",
+              "Shorter variable names"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Modular design",
+            "acceptedKeywords": ["modular", "modules"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why does decomposition make debugging easier?",
+            "options": [
+              "The program runs faster so errors disappear",
+              "Only the faulty module needs to be fixed",
+              "Modules automatically fix themselves",
+              "Fewer lines of code are written overall"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Only the faulty module needs to be fixed, not the whole program",
+            "acceptedKeywords": ["module", "faulty", "fixing", "isolated"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_001_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Give two benefits of using decomposition when developing a large software project.",
+            "modelAnswer": "Any two from: different programmers can work on different modules simultaneously; each module can be tested independently; if a bug is found only that module needs fixing; completed modules can be reused in other projects; new features can be added as new modules without disturbing existing code.",
+            "acceptedKeywords": ["parallel", "simultaneously", "independent", "reuse", "testing", "module", "bug"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Abstraction"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Abstraction: Hiding Complexity",
+        "targetTitle": "Abstraction: Hiding Complexity",
+        "sourcePassage": "Abstraction is the second pillar of computational thinking. It means removing irrelevant detail from a model or system so that only the information needed for the task at hand remains. The key insight is that you do not need to understand every detail of a system to use it effectively.\n\nConsider a map. The real world contains textured roads, three-dimensional buildings, changing weather, and thousands of people moving around. A navigation map abstracts all of that away. It shows roads as lines, buildings as rectangles, and ignores people entirely. The detail it keeps — road connections, distances, and landmarks — is exactly what a traveller needs. The detail it removes would only cause confusion.\n\nIn programming, variables are a powerful form of abstraction. When a programmer writes playerScore = 10, they are storing a value without needing to know its binary representation or memory address. Similarly, when a programmer calls calculateTax(income), they use the function without knowing how the tax calculation works internally. The function's name, inputs, and output form its interface — the only part other programmers need to understand. The internal logic is abstracted away. This makes large programs much easier to build and maintain.",
+        "targetPassage": "Abstraction is the second pillar of computational thinking. It means removing irrelevant detail from a model or system so that only the information needed for the task at hand remains. The key insight is that you do not need to understand every detail of a system to use it effectively.\n\nConsider a map. The real world contains textured roads, three-dimensional buildings, changing weather, and thousands of people moving around. A navigation map abstracts all of that away. It shows roads as lines, buildings as rectangles, and ignores people entirely. The detail it keeps — road connections, distances, and landmarks — is exactly what a traveller needs. The detail it removes would only cause confusion.\n\nIn programming, variables are a powerful form of abstraction. When a programmer writes playerScore = 10, they are storing a value without needing to know its binary representation or memory address. Similarly, when a programmer calls calculateTax(income), they use the function without knowing how the tax calculation works internally. The function's name, inputs, and output form its interface — the only part other programmers need to understand. The internal logic is abstracted away. This makes large programs much easier to build and maintain.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_decomp_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does abstraction involve?",
+            "options": [
+              "Adding as much detail as possible to a model",
+              "Removing irrelevant detail so only important information remains",
+              "Breaking a problem into sub-problems",
+              "Writing code in a specific programming language"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Removing irrelevant detail so only important information remains",
+            "acceptedKeywords": ["removing", "irrelevant", "detail"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the passage, what detail does a navigation map keep because it is relevant?",
+            "options": [
+              "The texture of road surfaces",
+              "The presence of people on streets",
+              "Road connections, distances, and landmarks",
+              "The three-dimensional height of buildings"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Road connections, distances, and landmarks",
+            "acceptedKeywords": ["connections", "distances", "landmarks"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "In programming, what is meant by the 'interface' of a function?",
+            "options": [
+              "The graphical window the function opens",
+              "The function's name, inputs, and output",
+              "The memory address where the function is stored",
+              "The number of lines of code inside the function"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "The function's name, inputs, and output — the only part other programmers need to understand",
+            "acceptedKeywords": ["name", "inputs", "output", "interface"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_002_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain how using variables in a program is an example of abstraction.",
+            "modelAnswer": "A variable name such as playerScore abstracts away the binary memory address and binary representation of the stored value. The programmer can read and update the value using a meaningful name without needing to know where it is stored in memory or how it is represented in binary. This allows the programmer to think about game logic rather than hardware details.",
+            "acceptedKeywords": ["memory", "address", "binary", "name", "hides", "representation"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_decomp_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Decomposition", "Computational Thinking: Abstraction"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Decomposition and Abstraction Working Together",
+        "targetTitle": "Decomposition and Abstraction Working Together",
+        "sourcePassage": "Decomposition and abstraction are always used together in software development. Consider building a quiz application. First, decomposition splits the project into sub-problems: load questions, display a question, accept a user answer, check correctness, update the score, and show final results. Each sub-problem becomes a subroutine.\n\nThen abstraction is applied within each subroutine. The loadQuestions() module hides how it reads and parses a file — the rest of the program simply receives a list of questions. The displayQuestion() module hides how it renders text on screen — the rest of the program just calls it with a question object. The checkAnswer() module hides the comparison logic — the rest of the program only sees the result.\n\nThe outcome is a program built from clean, independent modules. Each module does one job, has a clear interface, and hides unnecessary detail from the rest of the system. If the file format changes, only loadQuestions() needs updating. If the screen layout changes, only displayQuestion() needs updating. Programmers can work on different modules simultaneously because each module's interface — not its implementation — is all that matters to the others. This combination of decomposition and abstraction is the foundation of all professional software development.",
+        "targetPassage": "Decomposition and abstraction are always used together in software development. Consider building a quiz application. First, decomposition splits the project into sub-problems: load questions, display a question, accept a user answer, check correctness, update the score, and show final results. Each sub-problem becomes a subroutine.\n\nThen abstraction is applied within each subroutine. The loadQuestions() module hides how it reads and parses a file — the rest of the program simply receives a list of questions. The displayQuestion() module hides how it renders text on screen — the rest of the program just calls it with a question object. The checkAnswer() module hides the comparison logic — the rest of the program only sees the result.\n\nThe outcome is a program built from clean, independent modules. Each module does one job, has a clear interface, and hides unnecessary detail from the rest of the system. If the file format changes, only loadQuestions() needs updating. If the screen layout changes, only displayQuestion() needs updating. Programmers can work on different modules simultaneously because each module's interface — not its implementation — is all that matters to the others. This combination of decomposition and abstraction is the foundation of all professional software development.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_decomp_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the passage, what is the first step when building a quiz application using computational thinking?",
+            "options": [
+              "Apply abstraction to hide internal logic",
+              "Use decomposition to split the project into sub-problems",
+              "Choose a programming language",
+              "Write all the code in one block"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Use decomposition to split the project into sub-problems",
+            "acceptedKeywords": ["decomposition", "split", "sub-problems"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What does the loadQuestions() module hide from the rest of the program?",
+            "options": [
+              "The score calculation",
+              "The screen layout",
+              "How it reads and parses the file",
+              "The user's answer"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "How it reads and parses the file — the rest of the program simply receives a list of questions",
+            "acceptedKeywords": ["reads", "parses", "file", "hides"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why can programmers work on different modules at the same time?",
+            "options": [
+              "All modules share the same code",
+              "Each module's interface is what matters, not its implementation",
+              "Modules automatically synchronise with each other",
+              "Only one programmer works on the whole project"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Each module's interface is what matters to the others, not its internal implementation",
+            "acceptedKeywords": ["interface", "implementation", "independent"]
+          },
+          {
+            "id": "ks3_computing_decomp_passage_003_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "Explain the difference between decomposition and abstraction, and describe how they are used together in the quiz application example from the passage.",
+            "modelAnswer": "Decomposition divides the quiz application into separate sub-problems: load questions, display question, accept answer, check correctness, update score, show results. Each becomes a subroutine. Abstraction is then applied inside each subroutine: each module hides its internal logic and exposes only its interface. For example, loadQuestions() hides file-reading details and just provides a list; checkAnswer() hides comparison logic and returns a result. Together, decomposition creates independent units of work and abstraction keeps each unit's implementation hidden, making the program easier to build, maintain, and extend.",
+            "acceptedKeywords": ["decomposition", "abstraction", "sub-problems", "interface", "hides", "modules", "independent"]
+          }
+        ]
+      }
+    }
+  ]
+}

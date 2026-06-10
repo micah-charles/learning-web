@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_variables_datatypes",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Variables, Data Types & Input/Output",
+  "subtitle": "Storing data in variables, understanding data types, and handling user input and output.",
+  "items": [
+    {
+      "id": "vdt_v01",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "variable",
+        "targetWord": "A named storage location in the computer's memory that holds a value which can change while the program is running",
+        "examples": {
+          "en-GB": "The variable 'score' holds the player's current score and updates each time they earn points."
+        }
+      }
+    },
+    {
+      "id": "vdt_v02",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "constant",
+        "targetWord": "A named value that is set once at the start of a program and does not change during execution; written in UPPERCASE by convention",
+        "examples": {
+          "en-GB": "CONSTANT MAX_ATTEMPTS = 3 — this value never changes while the program runs."
+        }
+      }
+    },
+    {
+      "id": "vdt_v03",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "integer",
+        "targetWord": "A whole-number data type with no decimal point; can be positive, negative, or zero",
+        "examples": {
+          "en-GB": "The values 42, -7, and 0 are all integers; they have no fractional part."
+        }
+      }
+    },
+    {
+      "id": "vdt_v04",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "float",
+        "targetWord": "A data type for numbers that include a decimal point (real numbers), used for measurements and averages",
+        "examples": {
+          "en-GB": "The value 3.14 is a float; it cannot be stored as an integer without losing precision."
+        }
+      }
+    },
+    {
+      "id": "vdt_v05",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "string",
+        "targetWord": "A data type that stores text — any sequence of characters enclosed in quotation marks",
+        "examples": {
+          "en-GB": "\"Hello\", \"42\", and \"SW1A 1AA\" are all strings because they are enclosed in quotation marks."
+        }
+      }
+    },
+    {
+      "id": "vdt_v06",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boolean",
+        "targetWord": "A data type with only two possible values: True or False; used in conditions and logic",
+        "examples": {
+          "en-GB": "The expression age >= 18 evaluates to the Boolean True if age is 18 or more, and False otherwise."
+        }
+      }
+    },
+    {
+      "id": "vdt_v07",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "assignment",
+        "targetWord": "The operation of storing a value in a variable using the = operator in Python or ← in pseudocode",
+        "examples": {
+          "en-GB": "The statement score = 0 assigns the value 0 to the variable score."
+        }
+      }
+    },
+    {
+      "id": "vdt_v08",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "type casting",
+        "targetWord": "Explicitly converting a value from one data type to another, for example converting a string to an integer",
+        "examples": {
+          "en-GB": "int(\"42\") uses type casting to convert the string \"42\" into the integer 42 so arithmetic can be performed."
+        }
+      }
+    },
+    {
+      "id": "vdt_v09",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "input",
+        "targetWord": "Data received into a program from the user, typically typed via the keyboard and stored in a variable",
+        "examples": {
+          "en-GB": "In Python, name = input(\"Enter your name: \") reads the user's keyboard entry and stores it."
+        }
+      }
+    },
+    {
+      "id": "vdt_v10",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "output",
+        "targetWord": "Data displayed from a program to the user, typically shown on screen using print() in Python or OUTPUT in pseudocode",
+        "examples": {
+          "en-GB": "print(\"Your score is:\", score) sends the value of score to the screen as output."
+        }
+      }
+    },
+    {
+      "id": "vdt_v11",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "data type",
+        "targetWord": "A classification that tells the computer what kind of value a variable holds and what operations can be performed on it",
+        "examples": {
+          "en-GB": "Knowing the data type of a variable matters: you can add two integers but cannot add an integer to a string without casting."
+        }
+      }
+    },
+    {
+      "id": "vdt_v12",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "declaration",
+        "targetWord": "The act of creating a variable and giving it a name, sometimes also assigning an initial value",
+        "examples": {
+          "en-GB": "Writing score = 0 at the start of a program is both a declaration and an initialisation of the variable."
+        }
+      }
+    },
+    {
+      "id": "vdt_v13",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "identifier",
+        "targetWord": "The name given to a variable, constant, or subroutine by the programmer; must be unique and meaningful",
+        "examples": {
+          "en-GB": "In the statement age = 14, the identifier is 'age' — the name used to refer to that memory location."
+        }
+      }
+    },
+    {
+      "id": "vdt_v14",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "value",
+        "targetWord": "The piece of data currently stored inside a variable or constant at a given moment during program execution",
+        "examples": {
+          "en-GB": "After score = 85, the value stored in the variable score is 85."
+        }
+      }
+    },
+    {
+      "id": "vdt_v15",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "operand",
+        "targetWord": "A value or variable that an operator acts upon in an expression",
+        "examples": {
+          "en-GB": "In the expression score + 10, 'score' and '10' are the operands and '+' is the operator."
+        }
+      }
+    },
+    {
+      "id": "vdt_v16",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "memory",
+        "targetWord": "The area inside the computer where data is temporarily stored while a program is running; variables occupy named locations in memory",
+        "examples": {
+          "en-GB": "When you create a variable, the computer reserves a location in memory and labels it with the variable's name."
+        }
+      }
+    },
+    {
+      "id": "vdt_v17",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "naming convention",
+        "targetWord": "An agreed style for writing variable and constant names to make code consistent and readable across a codebase",
+        "examples": {
+          "en-GB": "A common naming convention for Python variables is snake_case, where words are separated by underscores: player_score."
+        }
+      }
+    },
+    {
+      "id": "vdt_v18",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "int()",
+        "targetWord": "A Python function that converts a value to an integer data type; commonly used to cast user input from string to integer",
+        "examples": {
+          "en-GB": "int(\"42\") converts the string \"42\" to the integer 42, making arithmetic possible."
+        }
+      }
+    },
+    {
+      "id": "vdt_v19",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "str()",
+        "targetWord": "A Python function that converts a value to a string data type; used when joining numbers with text for output",
+        "examples": {
+          "en-GB": "str(99) converts the integer 99 to the string \"99\" so it can be joined with other text using +."
+        }
+      }
+    },
+    {
+      "id": "vdt_v20",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "float()",
+        "targetWord": "A Python function that converts a value to a float data type; used when decimal precision is required from user input",
+        "examples": {
+          "en-GB": "float(\"3.14\") converts the string \"3.14\" to the float 3.14 so it can be used in calculations."
+        }
+      }
+    },
+    {
+      "id": "vdt_v21",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "USERINPUT",
+        "targetWord": "A pseudocode keyword that reads data entered by the user from the keyboard and stores it in a variable",
+        "examples": {
+          "en-GB": "name ← USERINPUT pauses the program and waits for the user to type something, then stores it in 'name'."
+        }
+      }
+    },
+    {
+      "id": "vdt_v22",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "print",
+        "targetWord": "The Python function used to display output to the user on screen; equivalent to OUTPUT in pseudocode",
+        "examples": {
+          "en-GB": "print(\"Hello, World!\") sends the text Hello, World! to the screen."
+        }
+      }
+    },
+    {
+      "id": "vdt_v23",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "OUTPUT",
+        "targetWord": "A pseudocode keyword that displays data to the user; equivalent to print() in Python",
+        "examples": {
+          "en-GB": "OUTPUT \"Well done, \" + name displays a greeting message on screen in pseudocode programs."
+        }
+      }
+    },
+    {
+      "id": "vdt_v24",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "camelCase",
+        "targetWord": "A naming convention where the first word is lowercase and each subsequent word starts with an uppercase letter, with no spaces",
+        "examples": {
+          "en-GB": "playerScore, firstName, and numberOfLives are all written in camelCase naming convention."
+        }
+      }
+    },
+    {
+      "id": "vdt_v25",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "snake_case",
+        "targetWord": "A naming convention where all letters are lowercase and words are separated by underscores; commonly used in Python",
+        "examples": {
+          "en-GB": "player_score, first_name, and number_of_lives are all written in snake_case naming convention."
+        }
+      }
+    },
+    {
+      "id": "vdt_v26",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "scope",
+        "targetWord": "The region of a program in which a variable exists and can be accessed; variables created inside subroutines have local scope",
+        "examples": {
+          "en-GB": "A variable declared in a function has local scope — it cannot be read or changed from outside that function."
+        }
+      }
+    },
+    {
+      "id": "vdt_v27",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "initialisation",
+        "targetWord": "Setting a variable's first value at the start of a program or before it is used for the first time",
+        "examples": {
+          "en-GB": "Writing score = 0 at the start of a game initialises the score variable so it is ready to be updated."
+        }
+      }
+    },
+    {
+      "id": "vdt_v28",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "literal",
+        "targetWord": "A fixed value written directly into the source code, such as the number 42 or the text \"Hello\"",
+        "examples": {
+          "en-GB": "In score = 100, the number 100 is a literal — it is a fixed value typed directly into the code."
+        }
+      }
+    },
+    {
+      "id": "vdt_v29",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "expression",
+        "targetWord": "A combination of values, variables, and operators that the computer evaluates to produce a single result",
+        "examples": {
+          "en-GB": "score + 10 is an expression; when score is 85, the expression evaluates to 95."
+        }
+      }
+    },
+    {
+      "id": "vdt_v30",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "statement",
+        "targetWord": "A single instruction in a program that performs one action, such as an assignment, a print, or an if condition",
+        "examples": {
+          "en-GB": "name = input(\"Enter your name: \") is a statement — it is one complete instruction that the program executes."
+        }
+      }
+    },
+    {
+      "id": "vdt_fb01",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A variable is a named storage location in ____ that holds a value which can change while the program runs.",
+        "answer": "memory",
+        "options": [
+          "memory",
+          "the CPU",
+          "a file",
+          "the keyboard"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb02",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The value \"Hello\" has the data type ____.",
+        "answer": "string",
+        "options": [
+          "string",
+          "integer",
+          "float",
+          "Boolean"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb03",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The value 42 has the data type ____.",
+        "answer": "integer",
+        "options": [
+          "integer",
+          "float",
+          "string",
+          "Boolean"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb04",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The value 3.14 has the data type ____.",
+        "answer": "float",
+        "options": [
+          "float",
+          "integer",
+          "string",
+          "Boolean"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb05",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The value True has the data type ____.",
+        "answer": "Boolean",
+        "options": [
+          "Boolean",
+          "string",
+          "integer",
+          "float"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb06",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In Python, the = symbol is the ____ operator, not a test of equality.",
+        "answer": "assignment",
+        "options": [
+          "assignment",
+          "comparison",
+          "arithmetic",
+          "logical"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb07",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To test whether two values are equal in Python, you use the ____ operator.",
+        "answer": "==",
+        "options": [
+          "==",
+          "=",
+          "!=",
+          ">="
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb08",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "int(\"25\") converts the string \"25\" to the ____ 25.",
+        "answer": "integer",
+        "options": [
+          "integer",
+          "float",
+          "Boolean",
+          "string"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb09",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "str(99) converts the integer 99 to the ____ \"99\".",
+        "answer": "string",
+        "options": [
+          "string",
+          "float",
+          "Boolean",
+          "integer"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb10",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "float(\"3.14\") converts the string \"3.14\" to the ____ 3.14.",
+        "answer": "float",
+        "options": [
+          "float",
+          "integer",
+          "string",
+          "Boolean"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb11",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In Python, input() always returns a value of type ____.",
+        "answer": "string",
+        "options": [
+          "string",
+          "integer",
+          "float",
+          "Boolean"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb12",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The pseudocode keyword used to read data from the user is ____.",
+        "answer": "USERINPUT",
+        "options": [
+          "USERINPUT",
+          "INPUT",
+          "READ",
+          "GET"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb13",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The pseudocode keyword used to display data to the user is ____.",
+        "answer": "OUTPUT",
+        "options": [
+          "OUTPUT",
+          "PRINT",
+          "DISPLAY",
+          "SHOW"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb14",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A constant is different from a variable because its value cannot ____ during the program's execution.",
+        "answer": "change",
+        "options": [
+          "change",
+          "be read",
+          "be printed",
+          "have a name"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb15",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "By convention, constant names are written in ____ to distinguish them from variables.",
+        "answer": "UPPERCASE",
+        "options": [
+          "UPPERCASE",
+          "lowercase",
+          "camelCase",
+          "snake_case"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb16",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "After the statement age = int(input(\"Age: \")), the variable age has data type ____.",
+        "answer": "integer",
+        "options": [
+          "integer",
+          "string",
+          "float",
+          "Boolean"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb17",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The variable name my_score uses the ____ naming convention.",
+        "answer": "snake_case",
+        "options": [
+          "snake_case",
+          "camelCase",
+          "UPPERCASE",
+          "PascalCase"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb18",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The variable name playerScore uses the ____ naming convention.",
+        "answer": "camelCase",
+        "options": [
+          "camelCase",
+          "snake_case",
+          "UPPERCASE",
+          "kebab-case"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb19",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The value \"3\" enclosed in quotes is a ____, not an integer.",
+        "answer": "string",
+        "options": [
+          "string",
+          "float",
+          "Boolean",
+          "integer"
+        ]
+      }
+    },
+    {
+      "id": "vdt_fb20",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Converting one data type to another is called type ____.",
+        "answer": "casting",
+        "options": [
+          "casting",
+          "changing",
+          "converting",
+          "switching"
+        ]
+      }
+    },
+    {
+      "id": "vdt_seq01",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Input and Output"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps: Program that inputs name and age then outputs a greeting",
+        "instruction": "Put the steps of this program in the correct order.",
+        "items": [
+          "Display a prompt asking the user for their name",
+          "Read the user's name using USERINPUT and store it in a variable",
+          "Display a prompt asking the user for their age",
+          "Read the user's age using USERINPUT and cast it to an integer",
+          "Build the greeting string by joining the name and age variables with text",
+          "OUTPUT the greeting to the screen"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "vdt_seq02",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Steps: Fixing a type error when adding string and integer",
+        "instruction": "Put the debugging steps in the correct order.",
+        "items": [
+          "Identify the line that causes the error — a string and integer are being added",
+          "Recognise that input() always returns a string in Python",
+          "Choose the correct cast function: int() to convert the string to an integer",
+          "Wrap the input() call with int() to convert the value before storing it",
+          "Rerun the program to confirm the type error no longer occurs"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "vdt_cs01",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "title": "What data type?",
+        "instruction": "Sort each value into its correct data type.",
+        "categories": [
+          "string",
+          "integer",
+          "float",
+          "Boolean"
+        ],
+        "pairs": [
+          {
+            "text": "\"Hello\"",
+            "category": "string"
+          },
+          {
+            "text": "42",
+            "category": "integer"
+          },
+          {
+            "text": "3.14",
+            "category": "float"
+          },
+          {
+            "text": "True",
+            "category": "Boolean"
+          },
+          {
+            "text": "\"3\"",
+            "category": "string"
+          },
+          {
+            "text": "False",
+            "category": "Boolean"
+          },
+          {
+            "text": "0",
+            "category": "integer"
+          },
+          {
+            "text": "\"Computing\"",
+            "category": "string"
+          },
+          {
+            "text": "-7",
+            "category": "integer"
+          },
+          {
+            "text": "9.81",
+            "category": "float"
+          },
+          {
+            "text": "\"True\"",
+            "category": "string"
+          },
+          {
+            "text": "100.0",
+            "category": "float"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vdt_cs02",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Variables and Data Types"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Variable or Constant?",
+        "instruction": "Sort each use into the correct category.",
+        "categories": [
+          "variable",
+          "constant"
+        ],
+        "pairs": [
+          {
+            "text": "A player's current score in a game",
+            "category": "variable"
+          },
+          {
+            "text": "The number of days in a week",
+            "category": "constant"
+          },
+          {
+            "text": "The user's name after they type it in",
+            "category": "variable"
+          },
+          {
+            "text": "The value of PI (3.14159)",
+            "category": "constant"
+          },
+          {
+            "text": "A countdown timer that decreases each second",
+            "category": "variable"
+          },
+          {
+            "text": "The maximum number of login attempts allowed",
+            "category": "constant"
+          },
+          {
+            "text": "A running total of items in a shopping basket",
+            "category": "variable"
+          },
+          {
+            "text": "A tax rate set by law that never changes mid-program",
+            "category": "constant"
+          }
+        ]
+      }
+    }
+  ]
+}

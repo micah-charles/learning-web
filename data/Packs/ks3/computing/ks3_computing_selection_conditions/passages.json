@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_selection_conditions",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "displayName": "KS3 Computing — Selection & Conditions (Passages)",
+  "items": [
+    {
+      "id": "sel_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Selection and Conditions"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "How IF Statements Work",
+        "targetTitle": "How IF Statements Work",
+        "sourcePassage": "Programs that simply execute every line from top to bottom are very limited. Almost every useful program needs to make decisions — doing different things depending on the situation. The mechanism that allows this is selection, and the most important selection tool is the IF statement.\n\nA basic IF statement has a condition — an expression that evaluates to either True or False. If the condition is True, the block of code inside the IF executes. If the condition is False, that block is skipped entirely and execution continues from the line after the IF. Adding an ELSE clause provides a second block that runs only when the condition is False, ensuring that exactly one of the two blocks always executes.\n\nWhen there are more than two possible outcomes, ELIF (else if) allows additional conditions to be checked in sequence. Python checks conditions from top to bottom and executes the first block whose condition is True. All remaining branches are then skipped. This means the order of conditions in an IF-ELIF-ELSE chain matters: placing the most specific conditions first and the most general last ensures correct results. In pseudocode, every IF structure ends with ENDIF to mark where the selection block closes.",
+        "targetPassage": "Programs that simply execute every line from top to bottom are very limited. Almost every useful program needs to make decisions — doing different things depending on the situation. The mechanism that allows this is selection, and the most important selection tool is the IF statement.\n\nA basic IF statement has a condition — an expression that evaluates to either True or False. If the condition is True, the block of code inside the IF executes. If the condition is False, that block is skipped entirely and execution continues from the line after the IF. Adding an ELSE clause provides a second block that runs only when the condition is False, ensuring that exactly one of the two blocks always executes.\n\nWhen there are more than two possible outcomes, ELIF (else if) allows additional conditions to be checked in sequence. Python checks conditions from top to bottom and executes the first block whose condition is True. All remaining branches are then skipped. This means the order of conditions in an IF-ELIF-ELSE chain matters: placing the most specific conditions first and the most general last ensures correct results. In pseudocode, every IF structure ends with ENDIF to mark where the selection block closes.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "sel_p01_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does an IF statement do when its condition is False?",
+            "options": [
+              "Skips the IF block and continues after it",
+              "Executes the IF block anyway",
+              "Terminates the program",
+              "Repeats the condition until it becomes True"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Skips the IF block and continues after it",
+            "acceptedKeywords": ["skips", "skip", "skipped", "continues"]
+          },
+          {
+            "id": "sel_p01_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "In an IF-ELSE structure, how many of the blocks will execute for any given input?",
+            "options": [
+              "Exactly one",
+              "Both",
+              "Neither",
+              "It depends on the programming language"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Exactly one",
+            "acceptedKeywords": ["exactly one", "one"]
+          },
+          {
+            "id": "sel_p01_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "When Python finds a True condition in an IF-ELIF chain, what happens to the remaining ELIF and ELSE blocks?",
+            "options": [
+              "They are all skipped",
+              "They are all executed",
+              "Only the next ELIF is executed",
+              "They are executed in reverse order"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "They are all skipped",
+            "acceptedKeywords": ["skipped", "skip", "not checked", "ignored"]
+          },
+          {
+            "id": "sel_p01_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why the order of conditions in an IF-ELIF chain matters. Give an example to support your answer.",
+            "modelAnswer": "The order matters because Python executes the first True condition it finds and skips the rest. If a less specific condition appears before a more specific one, the less specific condition may trigger incorrectly. For example, if you check score >= 50 before score >= 75, a score of 80 will always trigger the first condition and never reach the Distinction branch, even though it qualifies.",
+            "acceptedKeywords": ["first", "skips", "order", "specific", "condition"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "sel_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Selection and Conditions"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "Logical Operators: AND, OR, and NOT",
+        "targetTitle": "Logical Operators: AND, OR, and NOT",
+        "sourcePassage": "Simple conditions compare one value to another, but many real-world decisions require multiple conditions to be evaluated together. Logical operators — AND, OR, and NOT — allow conditions to be combined into more powerful expressions.\n\nAND requires both conditions to be True for the combined result to be True. If either condition is False, AND returns False. This is useful for checking ranges: the condition score >= 50 AND score < 75 is True only when both requirements are met simultaneously, which is exactly what a 'Merit' band check needs.\n\nOR requires at least one condition to be True. It returns False only when both conditions are False. This is useful for checking membership: colour == \"red\" OR colour == \"amber\" is True for either of those two colours.\n\nNOT simply inverts a Boolean value. NOT True becomes False, and NOT False becomes True. It is used to make conditions more readable: IF NOT isLoggedIn is clearer than needing a separate False check. A critical point is the difference between AND and OR — AND is more restrictive (both must be true) while OR is more permissive (just one needs to be true). Confusing the two leads to logic errors that produce wrong results without crashing the program.",
+        "targetPassage": "Simple conditions compare one value to another, but many real-world decisions require multiple conditions to be evaluated together. Logical operators — AND, OR, and NOT — allow conditions to be combined into more powerful expressions.\n\nAND requires both conditions to be True for the combined result to be True. If either condition is False, AND returns False. This is useful for checking ranges: the condition score >= 50 AND score < 75 is True only when both requirements are met simultaneously, which is exactly what a 'Merit' band check needs.\n\nOR requires at least one condition to be True. It returns False only when both conditions are False. This is useful for checking membership: colour == \"red\" OR colour == \"amber\" is True for either of those two colours.\n\nNOT simply inverts a Boolean value. NOT True becomes False, and NOT False becomes True. It is used to make conditions more readable: IF NOT isLoggedIn is clearer than needing a separate False check. A critical point is the difference between AND and OR — AND is more restrictive (both must be true) while OR is more permissive (just one needs to be true). Confusing the two leads to logic errors that produce wrong results without crashing the program.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "sel_p02_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does AND return when one of its two conditions is False?",
+            "options": [
+              "False",
+              "True",
+              "The same as the other condition",
+              "An error"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "False",
+            "acceptedKeywords": ["False"]
+          },
+          {
+            "id": "sel_p02_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the only combination of values that makes OR return False?",
+            "options": [
+              "Both conditions are False",
+              "Both conditions are True",
+              "The first condition is True",
+              "The second condition is True"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Both conditions are False",
+            "acceptedKeywords": ["both", "False", "both False"]
+          },
+          {
+            "id": "sel_p02_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the result of NOT False?",
+            "options": [
+              "True",
+              "False",
+              "None",
+              "0"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "True",
+            "acceptedKeywords": ["True"]
+          },
+          {
+            "id": "sel_p02_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Write a condition using AND that checks whether a score is in the range 60 to 79 inclusive. Explain why AND is the correct operator to use here.",
+            "modelAnswer": "score >= 60 AND score <= 79. AND is the correct operator because both conditions must be True at the same time: the score must be at least 60 AND it must be no more than 79. Using OR instead would incorrectly return True for values outside the range.",
+            "acceptedKeywords": [">=", "<=", "AND", "both", "range"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "sel_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Selection and Conditions"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Programming",
+        "sourceTitle": "Nested IFs and When to Use ELIF",
+        "targetTitle": "Nested IFs and When to Use ELIF",
+        "sourcePassage": "Selection becomes more powerful when IF statements are combined. A nested IF is an IF statement placed inside another IF statement. This allows a program to make a second decision only after a first condition has already been confirmed True. For example, a concert entry system might first check whether a visitor is old enough (outer IF), and only then — inside that block — check whether they have a valid ticket (inner IF).\n\nA common mistake is to use two separate IF statements when ELIF should be used instead. A second independent IF is always evaluated, even if the first IF was True. This can cause multiple blocks to execute when only one should. ELIF avoids this because it is only checked when all previous conditions were False. For example, if you use two separate IFs to assign grades, a score of 90 might trigger both 'score >= 50 → Merit' and 'score >= 80 → Distinction', printing two grade labels. Using ELIF ensures only the first matching branch runs.\n\nIndentation is critical in Python — it defines which statements are inside which block. Every level of nesting requires an additional four spaces of indentation. Getting indentation wrong either causes a syntax error or, worse, silently changes which block a statement belongs to, creating a logic error that is hard to spot.",
+        "targetPassage": "Selection becomes more powerful when IF statements are combined. A nested IF is an IF statement placed inside another IF statement. This allows a program to make a second decision only after a first condition has already been confirmed True. For example, a concert entry system might first check whether a visitor is old enough (outer IF), and only then — inside that block — check whether they have a valid ticket (inner IF).\n\nA common mistake is to use two separate IF statements when ELIF should be used instead. A second independent IF is always evaluated, even if the first IF was True. This can cause multiple blocks to execute when only one should. ELIF avoids this because it is only checked when all previous conditions were False. For example, if you use two separate IFs to assign grades, a score of 90 might trigger both 'score >= 50 → Merit' and 'score >= 80 → Distinction', printing two grade labels. Using ELIF ensures only the first matching branch runs.\n\nIndentation is critical in Python — it defines which statements are inside which block. Every level of nesting requires an additional four spaces of indentation. Getting indentation wrong either causes a syntax error or, worse, silently changes which block a statement belongs to, creating a logic error that is hard to spot.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "sel_p03_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a nested IF?",
+            "options": [
+              "An IF statement placed inside another IF statement",
+              "An IF statement with no ELSE block",
+              "Two separate IF statements one after the other",
+              "An IF statement that uses AND to join two conditions"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "An IF statement placed inside another IF statement",
+            "acceptedKeywords": ["inside", "nested", "within"]
+          },
+          {
+            "id": "sel_p03_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the key difference between ELIF and a second separate IF statement?",
+            "options": [
+              "ELIF is only evaluated when all previous conditions were False; a second IF is always evaluated",
+              "ELIF can only be used once; a second IF can be repeated",
+              "A second IF is faster to execute than ELIF",
+              "ELIF requires indentation; a second IF does not"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "ELIF is only evaluated when all previous conditions were False; a second IF is always evaluated",
+            "acceptedKeywords": ["always", "evaluated", "False", "previous", "ELIF"]
+          },
+          {
+            "id": "sel_p03_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "In Python, what does incorrect indentation inside a nested IF cause?",
+            "options": [
+              "A syntax error or a silent logic error",
+              "The program to run faster",
+              "Variables to be deleted",
+              "The inner IF to be ignored"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "A syntax error or a silent logic error",
+            "acceptedKeywords": ["syntax error", "logic error", "indentation"]
+          },
+          {
+            "id": "sel_p03_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "Explain why two separate IF statements can produce incorrect results when checking grade bands, and how using ELIF fixes the problem.",
+            "modelAnswer": "With two separate IF statements, both conditions are always evaluated independently. A score of 90 would satisfy both 'score >= 50' and 'score >= 80', so both blocks would execute and two grade labels would be printed. Using ELIF means the second condition is only checked if the first one was False. Once 'score >= 80' triggers (for a score of 90), all remaining ELIF and ELSE branches are skipped, so only one grade label is produced.",
+            "acceptedKeywords": ["always evaluated", "both", "ELIF", "skipped", "first", "only one"]
+          }
+        ]
+      }
+    }
+  ]
+}

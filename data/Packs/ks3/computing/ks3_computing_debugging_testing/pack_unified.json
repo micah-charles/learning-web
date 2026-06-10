@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_debugging_testing",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_debug_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Syntax error",
+        "targetWord": "An error caused by code that breaks the grammatical rules of the programming language; the program cannot run at all because the interpreter rejects the code before execution.",
+        "examples": {
+          "en-GB": "A missing colon after an if statement — if score > 50 — causes a syntax error."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Runtime error",
+        "targetWord": "An error that occurs during program execution, causing the program to crash; the code is syntactically correct but performs an illegal operation such as dividing by zero.",
+        "examples": {
+          "en-GB": "result = 10 / 0 causes a ZeroDivisionError runtime error when the program runs."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Logic error",
+        "targetWord": "An error where the program runs without crashing but produces incorrect output due to a flaw in the algorithm or conditions.",
+        "examples": {
+          "en-GB": "Writing average = total + 3 instead of total / 3 is a logic error — the program runs but gives the wrong answer."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Debugging",
+        "targetWord": "The process of finding and correcting errors (bugs) in a program, using strategies such as trace tables, print statements, and IDE debuggers.",
+        "examples": {
+          "en-GB": "Debugging the program revealed a logic error where the loop ran one iteration too few."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Bug",
+        "targetWord": "An error in a program that causes it to behave incorrectly, either by crashing or by producing wrong output.",
+        "examples": {
+          "en-GB": "The bug in the code caused every score to be calculated 10 marks too high."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Test data",
+        "targetWord": "The specific inputs used when testing a program to check that it produces the correct outputs.",
+        "examples": {
+          "en-GB": "For a program accepting ages 11–18, test data would include the values 11, 14, 18, 10, and 'abc'."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Normal data",
+        "targetWord": "Typical, valid inputs that the program is designed to handle under expected everyday conditions.",
+        "examples": {
+          "en-GB": "For a program accepting ages 11–18, an age of 14 is normal test data."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boundary data",
+        "targetWord": "Inputs at the very edge of the valid input range, including the minimum value, the maximum value, and values just outside these limits.",
+        "examples": {
+          "en-GB": "For a program accepting ages 11–18, the boundary values to test are 10, 11, 18, and 19."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Erroneous data",
+        "targetWord": "Invalid inputs that the program should reject or handle gracefully without crashing, such as text entered where a number is expected.",
+        "examples": {
+          "en-GB": "Entering \"hello\" when the program expects a number is erroneous test data."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Test table",
+        "targetWord": "A structured table used to document planned tests, recording the test type, input, expected output, actual output, and whether the test passed or failed.",
+        "examples": {
+          "en-GB": "A test table for an age validator would include columns: Test #, Type, Input, Expected Output, Actual Output, Pass/Fail."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Expected output",
+        "targetWord": "The output that a correctly working program should produce for a given input, determined before the test is run.",
+        "examples": {
+          "en-GB": "For an age validator with input 15, the expected output is 'Valid age'."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Actual output",
+        "targetWord": "The output that the program actually produces when run with a specific test input, which is then compared against the expected output.",
+        "examples": {
+          "en-GB": "If the actual output differs from the expected output, the test has failed and a bug must be found."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Trace table",
+        "targetWord": "A table used to manually track the value of every variable at each step of a program's execution, helping to identify where a logic error first occurs.",
+        "examples": {
+          "en-GB": "A trace table for a loop would have columns for the loop variable i and any other variables that change each iteration."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Breakpoint",
+        "targetWord": "A marker set in an IDE debugger that pauses program execution at a specific line, allowing the programmer to inspect variable values at that point.",
+        "examples": {
+          "en-GB": "Setting a breakpoint at line 10 pauses the program so you can check what values the variables hold at that moment."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Print statement debugging",
+        "targetWord": "A debugging technique where temporary print() statements are inserted at key points in the code to display variable values as the program runs, helping to pinpoint where a value first goes wrong.",
+        "examples": {
+          "en-GB": "Adding print(\"total =\", total) inside a loop reveals what the running total is at each iteration."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "IDE debugger",
+        "targetWord": "A built-in tool in an Integrated Development Environment that allows programmers to step through code line by line, watch variable values change in real time, and set breakpoints.",
+        "examples": {
+          "en-GB": "Using the IDE debugger in Thonny, a student stepped through their loop and discovered the counter was not resetting correctly."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Validation",
+        "targetWord": "Checking that user input meets the required criteria before the program uses it, for example checking that a number is within an acceptable range.",
+        "examples": {
+          "en-GB": "Validation checks that an entered age is between 11 and 18 before accepting it."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Exception",
+        "targetWord": "Python's term for a runtime error; an event that disrupts the normal flow of the program and causes it to crash unless the exception is handled.",
+        "examples": {
+          "en-GB": "ZeroDivisionError, IndexError, TypeError, and ValueError are all examples of exceptions in Python."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Error message",
+        "targetWord": "Text output by the Python interpreter when an error occurs, indicating the type of error and the line number where it happened.",
+        "examples": {
+          "en-GB": "The error message 'IndexError: list index out of range' at line 7 helps the programmer find the fault quickly."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Test plan",
+        "targetWord": "A document that describes all the tests to be carried out on a program, specifying what data will be used and what the expected outcomes are for each test.",
+        "examples": {
+          "en-GB": "A test plan for a login system would include tests for correct passwords, wrong passwords, and empty input."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Edge case",
+        "targetWord": "An input or situation at the extreme ends of what a program might encounter, often where bugs are most likely to occur.",
+        "examples": {
+          "en-GB": "Testing a list-sorting program with an empty list or a single-element list represents edge cases."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "White-box testing",
+        "targetWord": "A testing approach where the tester has full knowledge of the program's internal code and structure, and designs tests based on how the code works.",
+        "examples": {
+          "en-GB": "White-box testing lets the developer write tests that target each conditional branch in the code."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Black-box testing",
+        "targetWord": "A testing approach where the tester has no knowledge of the internal code and tests the program purely based on its inputs and expected outputs.",
+        "examples": {
+          "en-GB": "A user testing an app without seeing the source code is performing black-box testing."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Regression testing",
+        "targetWord": "Re-running all previous tests after a bug fix or code change to ensure that the fix has not introduced new bugs elsewhere in the program.",
+        "examples": {
+          "en-GB": "After fixing the login bug, the team ran regression testing to check that the change had not broken the password reset feature."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Verification",
+        "targetWord": "Checking that a program has been built correctly according to its specification, asking 'Did we build it right?'",
+        "examples": {
+          "en-GB": "Verification checks that the code does what the design document specified, not just that it runs."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Crash",
+        "targetWord": "When a program terminates unexpectedly due to a runtime error, stopping execution before completing its task.",
+        "examples": {
+          "en-GB": "The program crashed with a ValueError when the user typed their name instead of a number."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Fix",
+        "targetWord": "A correction made to the code that resolves a bug, restoring the program to correct behaviour.",
+        "examples": {
+          "en-GB": "The fix was to change range(1, 10) to range(1, 11) so that the loop correctly counted up to 10."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Traceback",
+        "targetWord": "The detailed error output Python produces when a runtime error occurs, showing the sequence of function calls that led to the error and the line number where it happened.",
+        "examples": {
+          "en-GB": "Reading the traceback carefully showed that the IndexError originated in the calculate() function at line 23."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A syntax error prevents the program from ____ at all.",
+        "answer": "running",
+        "options": [
+          "running",
+          "compiling",
+          "crashing",
+          "printing"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A runtime error causes the program to ____ during execution.",
+        "answer": "crash",
+        "options": [
+          "crash",
+          "pause",
+          "slow down",
+          "restart"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A logic error produces ____ output without crashing the program.",
+        "answer": "wrong",
+        "options": [
+          "wrong",
+          "no",
+          "random",
+          "slow"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Testing can demonstrate the ____ of bugs, but it cannot prove a program is completely bug-free.",
+        "answer": "presence",
+        "options": [
+          "presence",
+          "absence",
+          "number",
+          "location"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Boundary data tests values at the ____ of the valid input range.",
+        "answer": "edge",
+        "options": [
+          "edge",
+          "middle",
+          "start",
+          "end"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Erroneous data should be ____ by the program rather than causing a crash.",
+        "answer": "rejected",
+        "options": [
+          "rejected",
+          "accepted",
+          "ignored",
+          "stored"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Normal test data represents typical ____ input that the program is designed to handle.",
+        "answer": "valid",
+        "options": [
+          "valid",
+          "invalid",
+          "extreme",
+          "erroneous"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A test table includes columns for test type, input, expected output, actual output, and ____.",
+        "answer": "pass/fail",
+        "options": [
+          "pass/fail",
+          "error type",
+          "line number",
+          "variable name"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Accessing an index that does not exist in a list causes a(n) ____ runtime error.",
+        "answer": "IndexError",
+        "options": [
+          "IndexError",
+          "ValueError",
+          "TypeError",
+          "NameError"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Converting a non-numeric string to an integer with int(\"hello\") causes a ____.",
+        "answer": "ValueError",
+        "options": [
+          "ValueError",
+          "TypeError",
+          "SyntaxError",
+          "IndexError"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The hardest type of error to find is a ____ error because Python gives no error message.",
+        "answer": "logic",
+        "options": [
+          "logic",
+          "syntax",
+          "runtime",
+          "indentation"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A ____ table is used to manually track variable values as each line of a program executes.",
+        "answer": "trace",
+        "options": [
+          "trace",
+          "test",
+          "truth",
+          "flow"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A missing colon after an if statement is an example of a ____ error.",
+        "answer": "syntax",
+        "options": [
+          "syntax",
+          "runtime",
+          "logic",
+          "semantic"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Dividing a number by zero causes a ____ runtime error in Python.",
+        "answer": "ZeroDivisionError",
+        "options": [
+          "ZeroDivisionError",
+          "MathError",
+          "ValueError",
+          "OverflowError"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "After fixing a bug, ____ testing re-runs all previous tests to check no new bugs were introduced.",
+        "answer": "regression",
+        "options": [
+          "regression",
+          "boundary",
+          "white-box",
+          "black-box"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "For a program accepting ages 11–18, the value 10 is ____ test data.",
+        "answer": "boundary",
+        "options": [
+          "boundary",
+          "normal",
+          "erroneous",
+          "valid"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "For a program accepting ages 11–18, an age of 14 is ____ test data.",
+        "answer": "normal",
+        "options": [
+          "normal",
+          "boundary",
+          "erroneous",
+          "invalid"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "For a program accepting ages 11–18, entering the text \"abc\" is ____ test data.",
+        "answer": "erroneous",
+        "options": [
+          "erroneous",
+          "boundary",
+          "normal",
+          "valid"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In ____ testing, the tester has no knowledge of the program's internal code.",
+        "answer": "black-box",
+        "options": [
+          "black-box",
+          "white-box",
+          "regression",
+          "boundary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A program that runs to completion without crashing is not necessarily ____ because it may contain a logic error.",
+        "answer": "correct",
+        "options": [
+          "correct",
+          "finished",
+          "optimised",
+          "fast"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_021",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "When a test fails, the actual output ____ the expected output.",
+        "answer": "differs from",
+        "options": [
+          "differs from",
+          "matches",
+          "is better than",
+          "replaces"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_fill_022",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Setting a ____ in an IDE debugger pauses program execution at a specific line.",
+        "answer": "breakpoint",
+        "options": [
+          "breakpoint",
+          "watchpoint",
+          "stoppoint",
+          "checkpoint"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Debugging a Program That Crashes",
+        "instruction": "Put these steps in the correct order to debug a program that produces a runtime error.",
+        "items": [
+          "Run the program and observe the error message and traceback",
+          "Read the error message to identify the type of error and line number",
+          "Examine the code at and above that line to understand what went wrong",
+          "Make a correction to fix the identified bug",
+          "Run the program again and test with relevant test data to confirm the fix works"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_debug_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Designing a Test Plan",
+        "instruction": "Put these steps in the correct order to design a systematic test plan for a program.",
+        "items": [
+          "Identify the valid input range and any constraints for the program",
+          "Choose normal test data — typical valid inputs the program should accept",
+          "Choose boundary test data — values at the minimum, maximum, and just outside the valid range",
+          "Choose erroneous test data — invalid inputs the program should reject",
+          "For each test, write down the input and the expected output before running the program",
+          "Run the program with each test, record the actual output, and mark each test as pass or fail"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_debug_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Which Type of Error?",
+        "instruction": "Sort each error description into the correct error type category.",
+        "categories": [
+          "Syntax error",
+          "Runtime error",
+          "Logic error"
+        ],
+        "pairs": [
+          {
+            "text": "Missing colon after a while statement",
+            "category": "Syntax error"
+          },
+          {
+            "text": "Program runs but calculates the wrong total",
+            "category": "Logic error"
+          },
+          {
+            "text": "Dividing by zero during execution",
+            "category": "Runtime error"
+          },
+          {
+            "text": "Accessing a list index that does not exist",
+            "category": "Runtime error"
+          },
+          {
+            "text": "Misspelling the keyword 'print' as 'prnt'",
+            "category": "Syntax error"
+          },
+          {
+            "text": "Using > instead of >= in a condition so the minimum valid value is rejected",
+            "category": "Logic error"
+          },
+          {
+            "text": "Converting a text string to an integer with int()",
+            "category": "Runtime error"
+          },
+          {
+            "text": "Off-by-one error in a loop counter",
+            "category": "Logic error"
+          },
+          {
+            "text": "Missing closing bracket on a function call",
+            "category": "Syntax error"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Debugging & Testing"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Which Test Data Type? (Ages 11–18)",
+        "instruction": "A program accepts ages from 11 to 18 inclusive. Sort each input value into the correct test data category.",
+        "categories": [
+          "Normal data",
+          "Boundary data",
+          "Erroneous data"
+        ],
+        "pairs": [
+          {
+            "text": "Age = 14",
+            "category": "Normal data"
+          },
+          {
+            "text": "Age = 11 (minimum valid)",
+            "category": "Boundary data"
+          },
+          {
+            "text": "Age = 18 (maximum valid)",
+            "category": "Boundary data"
+          },
+          {
+            "text": "Age = 10 (just below minimum)",
+            "category": "Boundary data"
+          },
+          {
+            "text": "Age = 19 (just above maximum)",
+            "category": "Boundary data"
+          },
+          {
+            "text": "Age = \"hello\"",
+            "category": "Erroneous data"
+          },
+          {
+            "text": "Age = -5",
+            "category": "Erroneous data"
+          },
+          {
+            "text": "Age = 15",
+            "category": "Normal data"
+          }
+        ]
+      }
+    }
+  ]
+}

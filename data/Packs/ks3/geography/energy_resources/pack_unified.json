@@ -1,0 +1,2205 @@
+{
+  "packId": "ks3_geography_energy_resources",
+  "subject": "geography",
+  "title": "KS3 Geography - Energy Resources",
+  "subtitle": "Revision pack for renewable and non-renewable energy resources, demand, security and sustainability.",
+  "level": "KS3",
+  "language": "English",
+  "topics": [
+    "Energy Resources"
+  ],
+  "tags": [
+    "KS3",
+    "Geography",
+    "Energy Resources"
+  ],
+  "description": "A source-faithful KS3 Geography pack covering energy resources, fossil fuels, nuclear power, renewables, energy demand, energy mix, energy security and sustainable energy choices. It supports revision through key definitions, data-linked recall, classification, sequencing and balanced geographical judgement.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_geo_energy_vocab_001",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Energy resource",
+        "targetWord": "a fuel or natural force used to produce power",
+        "examples": {
+          "en-GB": "Energy resource means a fuel or natural force used to produce power."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_002",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Electricity",
+        "targetWord": "a form of energy used to power devices, lights and machines",
+        "examples": {
+          "en-GB": "Electricity means a form of energy used to power devices, lights and machines."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_003",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Fuel",
+        "targetWord": "a material that releases energy, often when it is burned",
+        "examples": {
+          "en-GB": "Fuel means a material that releases energy, often when it is burned."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_004",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Renewable energy",
+        "targetWord": "energy from a source that is naturally replaced on a human timescale",
+        "examples": {
+          "en-GB": "Renewable energy means energy from a source that is naturally replaced on a human timescale."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_005",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Non-renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Non-renewable energy",
+        "targetWord": "energy from a source that will not be replaced quickly once it has been used",
+        "examples": {
+          "en-GB": "Non-renewable energy means energy from a source that will not be replaced quickly once it has been used."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_006",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Fossil Fuels"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Fossil fuel",
+        "targetWord": "a fuel formed from ancient living material over millions of years, such as coal, oil or natural gas",
+        "examples": {
+          "en-GB": "Fossil fuel means a fuel formed from ancient living material over millions of years, such as coal, oil or natural gas."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_007",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Fossil Fuels"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Coal",
+        "targetWord": "a solid fossil fuel formed from ancient plant material and linked to high carbon emissions",
+        "examples": {
+          "en-GB": "Coal means a solid fossil fuel formed from ancient plant material and linked to high carbon emissions."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_008",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Fossil Fuels"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Oil",
+        "targetWord": "a liquid fossil fuel used for transport fuels, heating and making products such as plastics",
+        "examples": {
+          "en-GB": "Oil means a liquid fossil fuel used for transport fuels, heating and making products such as plastics."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_009",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Fossil Fuels"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Natural gas",
+        "targetWord": "a fossil fuel gas used for heating, cooking and electricity generation",
+        "examples": {
+          "en-GB": "Natural gas means a fossil fuel gas used for heating, cooking and electricity generation."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_010",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Nuclear Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Nuclear fuel",
+        "targetWord": "a limited material such as uranium used in nuclear power stations",
+        "examples": {
+          "en-GB": "Nuclear fuel means a limited material such as uranium used in nuclear power stations."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_011",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Nuclear Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Nuclear fission",
+        "targetWord": "the splitting of atoms to release heat energy in a nuclear power station",
+        "examples": {
+          "en-GB": "Nuclear fission means the splitting of atoms to release heat energy in a nuclear power station."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_012",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Solar power",
+        "targetWord": "energy from sunlight, often converted into electricity by solar panels",
+        "examples": {
+          "en-GB": "Solar power means energy from sunlight, often converted into electricity by solar panels."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_013",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Wind power",
+        "targetWord": "energy from moving air that turns turbine blades",
+        "examples": {
+          "en-GB": "Wind power means energy from moving air that turns turbine blades."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_014",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Hydroelectric power",
+        "targetWord": "electricity generated using moving water, often from rivers or dams",
+        "examples": {
+          "en-GB": "Hydroelectric power means electricity generated using moving water, often from rivers or dams."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_015",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Tidal power",
+        "targetWord": "energy from the regular rise and fall of sea levels caused by tides",
+        "examples": {
+          "en-GB": "Tidal power means energy from the regular rise and fall of sea levels caused by tides."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_016",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Wave power",
+        "targetWord": "energy from the movement of waves at sea",
+        "examples": {
+          "en-GB": "Wave power means energy from the movement of waves at sea."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_017",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Geothermal energy",
+        "targetWord": "energy from heat inside the Earth",
+        "examples": {
+          "en-GB": "Geothermal energy means energy from heat inside the Earth."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_018",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:energy_sources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Biomass",
+        "targetWord": "energy from recently living material, such as wood, crops, food waste or animal waste",
+        "examples": {
+          "en-GB": "Biomass means energy from recently living material, such as wood, crops, food waste or animal waste."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_019",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Demand"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:demand"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Energy demand",
+        "targetWord": "the amount of energy people, businesses or countries want to use",
+        "examples": {
+          "en-GB": "Energy demand means the amount of energy people, businesses or countries want to use."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_020",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Mix"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:data_skills"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Energy mix",
+        "targetWord": "the percentage of energy that comes from different sources",
+        "examples": {
+          "en-GB": "Energy mix means the percentage of energy that comes from different sources."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_021",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:security"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Energy security",
+        "targetWord": "having a reliable and affordable supply of energy",
+        "examples": {
+          "en-GB": "Energy security means having a reliable and affordable supply of energy."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_022",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:trade"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Import",
+        "targetWord": "to buy goods or resources from another country",
+        "examples": {
+          "en-GB": "Import means to buy goods or resources from another country."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_023",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:trade"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Export",
+        "targetWord": "to sell goods or resources to another country",
+        "examples": {
+          "en-GB": "Export means to sell goods or resources to another country."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_024",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:security"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Price shock",
+        "targetWord": "a sudden large increase or decrease in price",
+        "examples": {
+          "en-GB": "Price shock means a sudden large increase or decrease in price."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_025",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:climate"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Greenhouse gases",
+        "targetWord": "gases such as carbon dioxide and methane that trap heat in the atmosphere",
+        "examples": {
+          "en-GB": "Greenhouse gases means gases such as carbon dioxide and methane that trap heat in the atmosphere."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_026",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:climate"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Carbon emissions",
+        "targetWord": "releases of carbon dioxide, often from burning fossil fuels",
+        "examples": {
+          "en-GB": "Carbon emissions means releases of carbon dioxide, often from burning fossil fuels."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_027",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:impact"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Air pollution",
+        "targetWord": "harmful substances in the air, such as smoke, particles or harmful gases",
+        "examples": {
+          "en-GB": "Air pollution means harmful substances in the air, such as smoke, particles or harmful gases."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_028",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:climate"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Climate change",
+        "targetWord": "long-term changes in global climate, including rising average temperatures",
+        "examples": {
+          "en-GB": "Climate change means long-term changes in global climate, including rising average temperatures."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_029",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Combustion",
+        "targetWord": "the process of burning a fuel",
+        "examples": {
+          "en-GB": "Combustion means the process of burning a fuel."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_030",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:solutions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Energy efficiency",
+        "targetWord": "using less energy to do the same job",
+        "examples": {
+          "en-GB": "Energy efficiency means using less energy to do the same job."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_031",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:solutions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Sustainable energy",
+        "targetWord": "energy use that meets present needs without causing serious problems for future generations",
+        "examples": {
+          "en-GB": "Sustainable energy means energy use that meets present needs without causing serious problems for future generations."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_032",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:solutions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Smart grid",
+        "targetWord": "an electricity network using digital technology to balance supply and demand",
+        "examples": {
+          "en-GB": "Smart grid means an electricity network using digital technology to balance supply and demand."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_033",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:security"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Infrastructure",
+        "targetWord": "basic systems such as power stations, cables, pipelines, roads and ports",
+        "examples": {
+          "en-GB": "Infrastructure means basic systems such as power stations, cables, pipelines, roads and ports."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_034",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Mix"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:comparison"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Reliability",
+        "targetWord": "how consistently an energy source can provide power when needed",
+        "examples": {
+          "en-GB": "Reliability means how consistently an energy source can provide power when needed."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_035",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:comparison"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Intermittent",
+        "targetWord": "not constant; stopping and starting depending on conditions",
+        "examples": {
+          "en-GB": "Intermittent means not constant; stopping and starting depending on conditions."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_036",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Global Examples"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Off-grid",
+        "targetWord": "not connected to the main electricity network",
+        "examples": {
+          "en-GB": "Off-grid means not connected to the main electricity network."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_037",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Global Examples"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:development"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Electrification",
+        "targetWord": "giving people or places access to electricity",
+        "examples": {
+          "en-GB": "Electrification means giving people or places access to electricity."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_038",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Nuclear Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:comparison"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Base-load power",
+        "targetWord": "a steady supply of electricity that helps meet regular demand",
+        "examples": {
+          "en-GB": "Base-load power means a steady supply of electricity that helps meet regular demand."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_039",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:climate"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Operational carbon emissions",
+        "targetWord": "carbon emissions produced while an energy system is running",
+        "examples": {
+          "en-GB": "Operational carbon emissions means carbon emissions produced while an energy system is running."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_040",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Social and Economic Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:impact"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Fuel poverty",
+        "targetWord": "when households cannot afford enough heating or electricity for basic needs",
+        "examples": {
+          "en-GB": "Fuel poverty means when households cannot afford enough heating or electricity for basic needs."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_041",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "UK Energy Context"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "North Sea oil and gas",
+        "targetWord": "UK offshore fossil fuel resources that have supported jobs and domestic energy supply",
+        "examples": {
+          "en-GB": "North Sea oil and gas means UK offshore fossil fuel resources that have supported jobs and domestic energy supply."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_vocab_042",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "UK Energy Context"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Offshore wind",
+        "targetWord": "wind power generated by turbines at sea, important for the UK because of windy seas and long coastlines",
+        "examples": {
+          "en-GB": "Offshore wind means wind power generated by turbines at sea, important for the UK because of windy seas and long coastlines."
+        }
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_001",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:fossil_fuels"
+      ],
+      "data": {
+        "sentence": "The main fossil fuels named in the source are coal, oil and ____.",
+        "answer": "natural gas",
+        "hint": "Topic: Energy Resources",
+        "options": [
+          "coal",
+          "natural gas",
+          "tidal power",
+          "solar power"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_002",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Nuclear Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:nuclear"
+      ],
+      "data": {
+        "sentence": "Nuclear power is non-renewable because ____ is a limited resource.",
+        "answer": "uranium",
+        "hint": "Topic: Nuclear Energy",
+        "options": [
+          "uranium",
+          "sunlight",
+          "wind",
+          "rainfall"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_003",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:comparison"
+      ],
+      "data": {
+        "sentence": "Wind and solar power are described as ____ because their output changes with conditions.",
+        "answer": "intermittent",
+        "hint": "Topic: Renewable Energy",
+        "options": [
+          "intermittent",
+          "imported",
+          "fossil",
+          "radioactive"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_004",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Mix"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:data_skills"
+      ],
+      "data": {
+        "sentence": "The percentage of energy that comes from different sources is called the energy ____.",
+        "answer": "mix",
+        "hint": "Topic: Energy Mix",
+        "options": [
+          "mix",
+          "shock",
+          "export",
+          "grid"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_005",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:security"
+      ],
+      "data": {
+        "sentence": "Having a reliable and affordable supply of energy is called energy ____.",
+        "answer": "security",
+        "hint": "Topic: Energy Security",
+        "options": [
+          "security",
+          "combustion",
+          "pollution",
+          "biomass"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_006",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:climate"
+      ],
+      "data": {
+        "sentence": "Burning fossil fuels releases carbon dioxide, a ____ gas.",
+        "answer": "greenhouse",
+        "hint": "Topic: Environmental Impacts",
+        "options": [
+          "greenhouse",
+          "tidal",
+          "geothermal",
+          "nuclear"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_007",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:impact"
+      ],
+      "data": {
+        "sentence": "Coal has high carbon emissions and can also cause air ____.",
+        "answer": "pollution",
+        "hint": "Topic: Environmental Impacts",
+        "options": [
+          "pollution",
+          "efficiency",
+          "imports",
+          "fission"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_008",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Renewable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "Hydroelectric power is often most suitable in wet, ____ areas.",
+        "answer": "mountainous",
+        "hint": "Topic: Renewable Energy",
+        "options": [
+          "mountainous",
+          "flat",
+          "dry",
+          "urban"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_009",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Global Examples"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "Iceland is a strong example for geothermal energy because it has volcanic activity near a plate ____.",
+        "answer": "boundary",
+        "hint": "Topic: Global Examples",
+        "options": [
+          "boundary",
+          "farm",
+          "pipeline",
+          "dam"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_010",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Global Examples"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "Morocco is used as an example where strong ____ can support solar energy.",
+        "answer": "sunshine",
+        "hint": "Topic: Global Examples",
+        "options": [
+          "sunshine",
+          "snowfall",
+          "tidal range",
+          "coal reserves"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_011",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:solutions"
+      ],
+      "data": {
+        "sentence": "Energy ____ means using less energy to do the same job.",
+        "answer": "efficiency",
+        "hint": "Topic: Sustainable Energy",
+        "options": [
+          "efficiency",
+          "security",
+          "export",
+          "combustion"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_012",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:solutions"
+      ],
+      "data": {
+        "sentence": "A smart grid helps balance electricity supply and ____.",
+        "answer": "demand",
+        "hint": "Topic: Sustainable Energy",
+        "options": [
+          "demand",
+          "coal",
+          "uranium",
+          "waste"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_013",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Demand"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:data_skills"
+      ],
+      "data": {
+        "sentence": "Country A rising from 100 to 220 units shows an increase of ____ units.",
+        "answer": "120",
+        "hint": "Topic: Energy Demand",
+        "options": [
+          "120",
+          "84",
+          "20",
+          "220"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_014",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Demand"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:data_skills"
+      ],
+      "data": {
+        "sentence": "In the sample household data, room heating and water heating together use ____% of household energy.",
+        "answer": "63",
+        "hint": "Topic: Energy Demand",
+        "options": [
+          "63",
+          "45",
+          "18",
+          "100"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_015",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:impact"
+      ],
+      "data": {
+        "sentence": "Oil spills can damage marine and coastal ____.",
+        "answer": "ecosystems",
+        "hint": "Topic: Environmental Impacts",
+        "options": [
+          "ecosystems",
+          "turbines",
+          "smart grids",
+          "plate boundaries"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_016",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "UK Energy Context"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:places"
+      ],
+      "data": {
+        "sentence": "The UK has strong offshore wind potential because it has windy seas and a long ____.",
+        "answer": "coastline",
+        "hint": "Topic: UK Energy Context",
+        "options": [
+          "coastline",
+          "desert",
+          "rainforest",
+          "glacier"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_017",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:security"
+      ],
+      "data": {
+        "sentence": "A country that imports most of its gas may face price shocks and supply ____.",
+        "answer": "disruption",
+        "hint": "Topic: Energy Security",
+        "options": [
+          "disruption",
+          "photosynthesis",
+          "sedimentation",
+          "insulation"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_018",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "sentence": "Renewable energy usually has lower carbon emissions, but it can still have local environmental ____.",
+        "answer": "impacts",
+        "hint": "Topic: Environmental Impacts",
+        "options": [
+          "impacts",
+          "exports",
+          "dates",
+          "continents"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_019",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Exam Skills"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:exam_skills"
+      ],
+      "data": {
+        "sentence": "A balanced geographical answer should explain both benefits and ____.",
+        "answer": "costs",
+        "hint": "Topic: Exam Skills",
+        "options": [
+          "costs",
+          "latitudes",
+          "months",
+          "capitals"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_020",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Common Mistakes"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "sentence": "Non-renewable does not mean a resource will run out ____.",
+        "answer": "tomorrow",
+        "hint": "Topic: Common Mistakes",
+        "options": [
+          "tomorrow",
+          "underground",
+          "offshore",
+          "carefully"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_seq_001",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Fossil Fuels"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:processes"
+      ],
+      "data": {
+        "title": "Fossil Fuel to Electricity",
+        "instruction": "Put the fossil-fuel electricity generation process in order.",
+        "items": [
+          "Fuel is extracted from underground or under the sea.",
+          "Fuel is transported to a power station.",
+          "The fuel is burned in combustion.",
+          "Heat energy boils water.",
+          "Steam turns a turbine.",
+          "A generator produces electricity.",
+          "Electricity travels through cables to homes, schools and businesses."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_geo_energy_seq_002",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Environmental Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:climate"
+      ],
+      "data": {
+        "title": "Combustion and Climate Change",
+        "instruction": "Put the climate-change chain of explanation in order.",
+        "items": [
+          "Coal, oil or gas is burned.",
+          "Carbon dioxide is released into the atmosphere.",
+          "The concentration of greenhouse gases increases.",
+          "More heat is trapped near the Earth's surface.",
+          "Average global temperatures rise.",
+          "Climate change affects weather, sea level, ecosystems and people."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_geo_energy_seq_003",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:decision_making"
+      ],
+      "data": {
+        "title": "Choosing an Energy Strategy",
+        "instruction": "Order the decision-making questions for choosing an energy strategy.",
+        "items": [
+          "Identify what the place needs energy for.",
+          "Check which physical resources are available.",
+          "Consider how reliable the supply must be.",
+          "Assess environmental impacts.",
+          "Assess social and economic impacts.",
+          "Look for ways to reduce demand through efficiency.",
+          "Choose a balanced strategy rather than a single source."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_geo_energy_seq_004",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Sustainable Energy"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:solutions"
+      ],
+      "data": {
+        "title": "Reducing Household or School Demand",
+        "instruction": "Put these practical demand-reduction steps from building fabric to behaviour.",
+        "items": [
+          "Improve insulation so less heat escapes.",
+          "Use heating controls carefully.",
+          "Replace older bulbs with LED lighting.",
+          "Choose efficient appliances.",
+          "Switch off devices when they are not needed.",
+          "Walk, cycle or use public transport where possible."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_geo_energy_sort_001",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:classification"
+      ],
+      "data": {
+        "title": "Renewable or Non-Renewable?",
+        "instruction": "Sort each energy source into the correct group.",
+        "categories": [
+          "Renewable",
+          "Non-renewable"
+        ],
+        "pairs": [
+          {
+            "text": "Coal",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "Oil",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "Natural gas",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "Nuclear fuel",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "Solar",
+            "category": "Renewable"
+          },
+          {
+            "text": "Wind",
+            "category": "Renewable"
+          },
+          {
+            "text": "Hydroelectric",
+            "category": "Renewable"
+          },
+          {
+            "text": "Tidal",
+            "category": "Renewable"
+          },
+          {
+            "text": "Geothermal",
+            "category": "Renewable"
+          },
+          {
+            "text": "Biomass if managed well",
+            "category": "Renewable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_sort_002",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Social and Economic Impacts"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:impact"
+      ],
+      "data": {
+        "title": "Social, Economic or Environmental Impact?",
+        "instruction": "Sort each impact of energy choices.",
+        "categories": [
+          "Social",
+          "Economic",
+          "Environmental"
+        ],
+        "pairs": [
+          {
+            "text": "Fuel poverty affecting households",
+            "category": "Social"
+          },
+          {
+            "text": "Access to electricity improving education",
+            "category": "Social"
+          },
+          {
+            "text": "Local opposition to wind farms",
+            "category": "Social"
+          },
+          {
+            "text": "Jobs in construction and maintenance",
+            "category": "Economic"
+          },
+          {
+            "text": "High energy bills pressuring businesses",
+            "category": "Economic"
+          },
+          {
+            "text": "Income from selling gas or electricity",
+            "category": "Economic"
+          },
+          {
+            "text": "Carbon emissions from coal power",
+            "category": "Environmental"
+          },
+          {
+            "text": "Oil spills damaging marine ecosystems",
+            "category": "Environmental"
+          },
+          {
+            "text": "Dams flooding valley habitats",
+            "category": "Environmental"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_sort_003",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Energy Security"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:security"
+      ],
+      "data": {
+        "title": "Energy Security Risk or Solution?",
+        "instruction": "Sort each statement into risk or solution.",
+        "categories": [
+          "Risk",
+          "Solution"
+        ],
+        "pairs": [
+          {
+            "text": "Dependence on imported fuel",
+            "category": "Risk"
+          },
+          {
+            "text": "Pipeline disruption",
+            "category": "Risk"
+          },
+          {
+            "text": "Old power stations and cables",
+            "category": "Risk"
+          },
+          {
+            "text": "Extreme weather damaging infrastructure",
+            "category": "Risk"
+          },
+          {
+            "text": "Developing local renewable energy",
+            "category": "Solution"
+          },
+          {
+            "text": "Improving home insulation",
+            "category": "Solution"
+          },
+          {
+            "text": "Using a balanced energy mix",
+            "category": "Solution"
+          },
+          {
+            "text": "Investing in storage and smart grids",
+            "category": "Solution"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_data_001",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Mix"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:data_skills"
+      ],
+      "data": {
+        "stimulus": {
+          "type": "table",
+          "title": "Simplified energy mix table",
+          "headers": [
+            "Source",
+            "Country X",
+            "Country Y"
+          ],
+          "rows": [
+            [
+              "Coal",
+              "35%",
+              "5%"
+            ],
+            [
+              "Gas",
+              "25%",
+              "30%"
+            ],
+            [
+              "Nuclear",
+              "10%",
+              "20%"
+            ],
+            [
+              "Wind",
+              "10%",
+              "25%"
+            ],
+            [
+              "Solar",
+              "5%",
+              "10%"
+            ],
+            [
+              "Hydroelectric",
+              "10%",
+              "5%"
+            ],
+            [
+              "Other",
+              "5%",
+              "5%"
+            ]
+          ]
+        },
+        "sentence": "Country X gets ____% of its energy from coal and gas together.",
+        "answer": "60",
+        "hint": "Add coal and gas for Country X.",
+        "options": [
+          "60",
+          "35",
+          "25",
+          "30"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geo_energy_gap_data_002",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Energy Demand"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:data_skills"
+      ],
+      "data": {
+        "stimulus": {
+          "type": "table",
+          "title": "Simplified energy demand over time",
+          "headers": [
+            "Year",
+            "Country A",
+            "Country B"
+          ],
+          "rows": [
+            [
+              "2000",
+              "100",
+              "100"
+            ],
+            [
+              "2005",
+              "115",
+              "98"
+            ],
+            [
+              "2010",
+              "135",
+              "94"
+            ],
+            [
+              "2015",
+              "160",
+              "90"
+            ],
+            [
+              "2020",
+              "190",
+              "86"
+            ],
+            [
+              "2025",
+              "220",
+              "84"
+            ]
+          ]
+        },
+        "sentence": "By 2025, Country B has ____ demand than in 2000.",
+        "answer": "lower",
+        "hint": "Compare 84 with 100.",
+        "options": [
+          "lower",
+          "higher",
+          "unchanged",
+          "unknown"
+        ]
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_001",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "carbon footprint",
+        "targetWord": "the total amount of greenhouse gases produced by human activities",
+        "examples": {
+          "en-GB": "Burning fossil fuels increases the carbon footprint."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_002",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "greenhouse effect",
+        "targetWord": "the process by which gases trap heat in the atmosphere, warming the Earth",
+        "examples": {
+          "en-GB": "The greenhouse effect is natural but has been intensified by human activity."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_003",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "nuclear power",
+        "targetWord": "electricity generated by splitting atoms in a reactor to produce heat",
+        "examples": {
+          "en-GB": "Nuclear power produces low carbon emissions."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_004",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "biofuel",
+        "targetWord": "fuel produced from living organisms or their waste products",
+        "examples": {
+          "en-GB": "Biofuels are considered a renewable energy source."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_005",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "fracking",
+        "targetWord": "a method of extracting gas from underground rock by injecting water and chemicals at high pressure",
+        "examples": {
+          "en-GB": "Fracking has raised environmental concerns."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_006",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "energy transition",
+        "targetWord": "the global shift from fossil fuels to renewable energy sources",
+        "examples": {
+          "en-GB": "The energy transition is driven by climate change concerns."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_007",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "global warming",
+        "targetWord": "the increase in average global temperatures over time",
+        "examples": {
+          "en-GB": "Global warming is caused mainly by greenhouse gas emissions."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_008",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "acid rain",
+        "targetWord": "rain made acidic by sulfur dioxide and nitrogen oxides from burning fossil fuels",
+        "examples": {
+          "en-GB": "Acid rain can damage forests and lakes."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_009",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "peak oil",
+        "targetWord": "the point when oil production reaches its maximum before declining",
+        "examples": {
+          "en-GB": "Concerns about peak oil drove investment in alternatives."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_010",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "carbon capture",
+        "targetWord": "technology that captures CO2 emissions before they enter the atmosphere",
+        "examples": {
+          "en-GB": "Carbon capture can reduce the impact of fossil fuel use."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_011",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "power station",
+        "targetWord": "a large facility that generates electricity",
+        "examples": {
+          "en-GB": "Coal-fired power stations produce significant carbon emissions."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_012",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "national grid",
+        "targetWord": "the network of cables and infrastructure that transmits electricity across a country",
+        "examples": {
+          "en-GB": "The national grid connects power stations to homes and businesses."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_013",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "intermittency",
+        "targetWord": "the problem of renewable sources such as solar and wind not producing electricity all the time",
+        "examples": {
+          "en-GB": "Intermittency is a challenge for wind and solar power."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_014",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "insolation",
+        "targetWord": "the amount of solar radiation reaching a given area",
+        "examples": {
+          "en-GB": "Desert areas have high insolation."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_015",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "carbon neutral",
+        "targetWord": "balancing the amount of carbon emitted with the amount removed from the atmosphere",
+        "examples": {
+          "en-GB": "Carbon neutral goals require major changes to energy use."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_016",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "development corridor",
+        "targetWord": "an area linking regions for trade, transport, and economic development",
+        "examples": {
+          "en-GB": "The Belt and Road Initiative creates development corridors."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_017",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "carbon tax",
+        "targetWord": "a charge on the carbon content of fossil fuels to discourage emissions",
+        "examples": {
+          "en-GB": "Carbon taxes make polluting activities more expensive."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_018",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "tipping point",
+        "targetWord": "a threshold beyond which change becomes difficult or impossible to reverse",
+        "examples": {
+          "en-GB": "Scientists warn that climate change may reach tipping points."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_energy_resources_gen_019",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Energy Resources"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "cat:definitions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "tidal energy",
+        "targetWord": "electricity generated from the movement of tides",
+        "examples": {
+          "en-GB": "Tidal energy is predictable and renewable."
+        }
+      }
+    }
+  ]
+}

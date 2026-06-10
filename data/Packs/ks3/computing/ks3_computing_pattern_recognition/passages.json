@@ -1,0 +1,225 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_pattern_recognition",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "computational thinking"],
+  "items": [
+    {
+      "id": "ks3_computing_pattern_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Pattern Recognition"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Patterns in Everyday Computing",
+        "targetTitle": "Patterns in Everyday Computing",
+        "sourcePassage": "Pattern recognition is the third pillar of computational thinking. It means noticing things that repeat, share a structure, or follow a predictable rule, and using that observation to find a more efficient solution.\n\nPatterns appear everywhere in computing. A game that needs ten identical enemies does not require separate code for each one. A programmer recognises that every enemy has the same attributes — position, health, and speed — and the same behaviour. This repetition pattern is resolved with a loop: one block of code processes all ten enemies, and if the design changes, only that one block needs updating.\n\nPatterns also appear in data. If a science experiment records temperature every five minutes and the values are 20, 35, 50, 65, 80, a programmer spots the pattern: temperature rises by 15 degrees every five minutes. This pattern can be expressed as a formula, allowing the temperature at any future time to be predicted without running the experiment again.\n\nWhen the same calculation or process appears at multiple points in a program, a programmer writes it once as a function and calls it wherever needed. This is the response to a repeated-task pattern. Libraries take this further: common patterns across many programs are packaged into reusable modules that any programmer can import.",
+        "targetPassage": "Pattern recognition is the third pillar of computational thinking. It means noticing things that repeat, share a structure, or follow a predictable rule, and using that observation to find a more efficient solution.\n\nPatterns appear everywhere in computing. A game that needs ten identical enemies does not require separate code for each one. A programmer recognises that every enemy has the same attributes — position, health, and speed — and the same behaviour. This repetition pattern is resolved with a loop: one block of code processes all ten enemies, and if the design changes, only that one block needs updating.\n\nPatterns also appear in data. If a science experiment records temperature every five minutes and the values are 20, 35, 50, 65, 80, a programmer spots the pattern: temperature rises by 15 degrees every five minutes. This pattern can be expressed as a formula, allowing the temperature at any future time to be predicted without running the experiment again.\n\nWhen the same calculation or process appears at multiple points in a program, a programmer writes it once as a function and calls it wherever needed. This is the response to a repeated-task pattern. Libraries take this further: common patterns across many programs are packaged into reusable modules that any programmer can import.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_pattern_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is pattern recognition in computing?",
+            "options": [
+              "Breaking a problem into sub-problems",
+              "Noticing things that repeat or share a structure and using that to find a more efficient solution",
+              "Writing pseudocode before coding",
+              "Removing unnecessary detail from a model"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Noticing things that repeat or share a structure and using that to find a more efficient solution",
+            "acceptedKeywords": ["repeat", "structure", "efficient", "similar"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How does a programmer respond to the pattern of ten identical enemies in a game?",
+            "options": [
+              "Write separate code for each enemy",
+              "Use a loop to process all enemies with the same code block",
+              "Create ten separate functions",
+              "Store each enemy in a different file"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Use a loop to process all enemies with the same code block",
+            "acceptedKeywords": ["loop", "same", "block", "process"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is a repeated-task pattern and how is it resolved?",
+            "options": [
+              "The same action repeating a fixed number of times — resolved with a loop",
+              "The same calculation appearing at multiple points — resolved with a function",
+              "The same variable used in different modules — resolved with a constant",
+              "A sequence of steps in an algorithm — resolved with a flowchart"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "The same calculation or process appearing at multiple points in a program — resolved by writing it once as a function",
+            "acceptedKeywords": ["function", "calculation", "multiple", "once"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_001_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain how the temperature data pattern described in the passage can be used to make predictions.",
+            "modelAnswer": "The temperature rises by 15 degrees every 5 minutes. This consistent pattern can be expressed as a formula: Temperature = 20 + (time ÷ 5) × 15. Once the formula is known, the temperature at any future time can be calculated without running the experiment again. For example, at 25 minutes: 20 + (25 ÷ 5) × 15 = 20 + 75 = 95 degrees.",
+            "acceptedKeywords": ["formula", "pattern", "predict", "consistent", "15", "minutes"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Pattern Recognition"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "How Spam Filters Use Pattern Recognition",
+        "targetTitle": "How Spam Filters Use Pattern Recognition",
+        "sourcePassage": "Every day, billions of unwanted emails are sent around the world. Email providers use pattern recognition to automatically identify and block most of them before they reach your inbox.\n\nA spam filter works by identifying patterns common to spam emails. These patterns include: subject lines containing phrases like 'FREE!!!', 'WIN NOW', or 'CLICK HERE'; sender addresses that do not match the name displayed; emails containing links to unknown or suspicious domains; and unusual sending times, such as thousands of emails from the same server in one minute.\n\nEach individual pattern on its own might not indicate spam. But when several patterns are detected together in one email, the filter assigns it a high spam score and routes it to the junk folder. The filter does not read or understand the email's meaning — it simply compares the email's features against known spam patterns.\n\nThe filter learns from mistakes. When a user marks a legitimate email as spam or retrieves an email from the junk folder, the filter updates its pattern database. Over time, the filter becomes more accurate. This ability to improve by recognising patterns in labelled examples is the foundation of machine learning — the technology behind modern spam filters, recommendation engines, and image recognition software.",
+        "targetPassage": "Every day, billions of unwanted emails are sent around the world. Email providers use pattern recognition to automatically identify and block most of them before they reach your inbox.\n\nA spam filter works by identifying patterns common to spam emails. These patterns include: subject lines containing phrases like 'FREE!!!', 'WIN NOW', or 'CLICK HERE'; sender addresses that do not match the name displayed; emails containing links to unknown or suspicious domains; and unusual sending times, such as thousands of emails from the same server in one minute.\n\nEach individual pattern on its own might not indicate spam. But when several patterns are detected together in one email, the filter assigns it a high spam score and routes it to the junk folder. The filter does not read or understand the email's meaning — it simply compares the email's features against known spam patterns.\n\nThe filter learns from mistakes. When a user marks a legitimate email as spam or retrieves an email from the junk folder, the filter updates its pattern database. Over time, the filter becomes more accurate. This ability to improve by recognising patterns in labelled examples is the foundation of machine learning — the technology behind modern spam filters, recommendation engines, and image recognition software.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_pattern_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How does a spam filter identify unwanted emails?",
+            "options": [
+              "It reads and understands the meaning of every email",
+              "It compares email features against known spam patterns",
+              "It blocks all emails from unknown senders completely",
+              "It asks the user to manually check each email"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It compares the email's features against known spam patterns",
+            "acceptedKeywords": ["patterns", "features", "compares", "known"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Give one example of a pattern that a spam filter looks for.",
+            "options": [
+              "The email is written in British English",
+              "The email contains an attachment",
+              "The subject line contains 'FREE!!!' or 'WIN NOW'",
+              "The email was sent on a Monday"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "The subject line contains phrases like 'FREE!!!' or 'WIN NOW'",
+            "acceptedKeywords": ["FREE", "WIN", "subject", "phrase"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "According to the passage, what happens when the spam filter makes a mistake?",
+            "options": [
+              "It deletes the email permanently",
+              "It sends an alert to the user",
+              "It updates its pattern database and improves over time",
+              "It requires a programmer to manually fix the rule"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "It updates its pattern database and becomes more accurate over time",
+            "acceptedKeywords": ["updates", "database", "accurate", "improves", "learns"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_002_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "Explain what machine learning is and how it relates to the spam filter described in the passage.",
+            "modelAnswer": "Machine learning is a branch of AI where a system improves its performance by recognising patterns in labelled examples — data where the correct answer is already known. The spam filter demonstrates machine learning: it starts with a set of known spam patterns, then updates those patterns each time a user corrects a mistake (marking legitimate email as spam or retrieving a wrongly filtered email). Over time, the filter becomes more accurate without a programmer manually changing its rules. This is the same process used in recommendation engines and image recognition.",
+            "acceptedKeywords": ["machine learning", "patterns", "improves", "labelled", "updates", "accurate"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_pattern_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Computational Thinking: Pattern Recognition"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Computational Thinking",
+        "sourceTitle": "Machine Learning and Pattern Recognition",
+        "targetTitle": "Machine Learning and Pattern Recognition",
+        "sourcePassage": "Machine learning is pattern recognition on a very large scale. A traditional program follows rules written explicitly by a programmer. A machine learning system, by contrast, learns its own rules by finding patterns in huge amounts of data.\n\nConsider how a machine learning system learns to identify cats in photographs. A programmer does not write rules like 'look for pointed ears and whiskers'. Instead, the system is shown millions of labelled photographs — images tagged as 'cat' or 'not cat'. The system analyses these images and identifies patterns: combinations of shapes, edges, colours, and textures that appear consistently in cat photographs and not in others. Once trained, it can classify new, unseen photographs with high accuracy.\n\nThe same approach is used for speech recognition, fraud detection, medical diagnosis, and weather forecasting. In each case, the computer is not following hand-written rules. It is finding patterns in training data and generalising those patterns to new situations.\n\nThis is why the quality and size of training data matters enormously. A spam filter trained on old data may not recognise new spam tactics. A medical diagnosis system trained on data from one country may perform poorly in another. Pattern recognition is powerful, but the patterns found are only as good as the data used to find them.",
+        "targetPassage": "Machine learning is pattern recognition on a very large scale. A traditional program follows rules written explicitly by a programmer. A machine learning system, by contrast, learns its own rules by finding patterns in huge amounts of data.\n\nConsider how a machine learning system learns to identify cats in photographs. A programmer does not write rules like 'look for pointed ears and whiskers'. Instead, the system is shown millions of labelled photographs — images tagged as 'cat' or 'not cat'. The system analyses these images and identifies patterns: combinations of shapes, edges, colours, and textures that appear consistently in cat photographs and not in others. Once trained, it can classify new, unseen photographs with high accuracy.\n\nThe same approach is used for speech recognition, fraud detection, medical diagnosis, and weather forecasting. In each case, the computer is not following hand-written rules. It is finding patterns in training data and generalising those patterns to new situations.\n\nThis is why the quality and size of training data matters enormously. A spam filter trained on old data may not recognise new spam tactics. A medical diagnosis system trained on data from one country may perform poorly in another. Pattern recognition is powerful, but the patterns found are only as good as the data used to find them.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_pattern_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How does a machine learning system differ from a traditional program?",
+            "options": [
+              "It uses a flowchart instead of pseudocode",
+              "It learns its own rules by finding patterns in data rather than following explicit programmer-written rules",
+              "It runs faster than a traditional program",
+              "It can only be used for image recognition"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It learns its own rules by finding patterns in data, rather than following rules written explicitly by a programmer",
+            "acceptedKeywords": ["learns", "patterns", "data", "rules"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is training data?",
+            "options": [
+              "Data written by a programmer to define the program's rules",
+              "A large labelled dataset used to teach a machine learning system to recognise patterns",
+              "The output produced by a machine learning system",
+              "A type of loop used in machine learning algorithms"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A large labelled dataset used to teach a machine learning system to recognise patterns",
+            "acceptedKeywords": ["labelled", "dataset", "teach", "patterns"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why does the quality of training data matter for a machine learning system?",
+            "options": [
+              "Better data makes the program run faster",
+              "The patterns found are only as good as the data used to find them",
+              "High-quality data reduces the number of loops needed",
+              "Training data determines the programming language used"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "The patterns found are only as good as the data used to find them — poor quality or outdated data leads to inaccurate results",
+            "acceptedKeywords": ["quality", "patterns", "accurate", "data"]
+          },
+          {
+            "id": "ks3_computing_pattern_passage_003_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "Explain how a machine learning system learns to recognise cats in photographs, using the passage to support your answer.",
+            "modelAnswer": "The system is shown millions of labelled photographs tagged as 'cat' or 'not cat'. It analyses these images and identifies patterns — combinations of shapes, edges, colours, and textures that consistently appear in cat photographs. It does not follow hand-written rules such as 'look for pointed ears'. Instead, it generalises the patterns it found during training and uses them to classify new, unseen photographs. Once trained on sufficient data, it can achieve high accuracy on images it has never seen before.",
+            "acceptedKeywords": ["labelled", "patterns", "shapes", "textures", "training", "generalises", "classify"]
+          }
+        ]
+      }
+    }
+  ]
+}

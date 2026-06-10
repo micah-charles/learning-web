@@ -1,0 +1,1494 @@
+{
+  "packId": "ks3_science_physics_energy",
+  "subject": "science",
+  "title": "KS3 / Year 7-9 Science - Physics Energy",
+  "subtitle": "Energy stores, transfers, efficiency, resources and investigations",
+  "level": "KS3 / Year 7-9",
+  "language": "English",
+  "topics": [
+    "KS3 Science: physics energy"
+  ],
+  "tags": [
+    "KS3 / Year 7-9",
+    "Science",
+    "Physics",
+    "Energy"
+  ],
+  "description": "A KS3 physics revision pack on energy as a conserved quantity. It covers energy stores, transfer pathways, useful and wasted energy, efficiency calculations, Sankey diagrams, energy resources, power, and fair testing in insulation investigations.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_science_physics_energy_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "energy",
+        "targetWord": "a quantity measured in joules that helps scientists describe changes, stores and transfers",
+        "examples": {
+          "en-GB": "Energy is measured in joules and can be stored or transferred in different ways."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:units"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "joule",
+        "targetWord": "the standard unit of energy, written as J",
+        "examples": {
+          "en-GB": "A lamp might transfer 200 J of energy in a short test."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:units"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "kilojoule",
+        "targetWord": "a unit equal to 1000 joules, written as kJ",
+        "examples": {
+          "en-GB": "One kilojoule is the same as 1000 joules."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "energy store",
+        "targetWord": "a way energy is kept in a system, such as a kinetic, thermal or chemical store",
+        "examples": {
+          "en-GB": "A moving cyclist has energy in a kinetic store."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "system",
+        "targetWord": "the object or group of objects being studied in an energy change",
+        "examples": {
+          "en-GB": "A kettle and the water inside it can be treated as a system."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "kinetic store",
+        "targetWord": "the energy store of a moving object",
+        "examples": {
+          "en-GB": "A faster rolling ball has a larger kinetic store."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "thermal store",
+        "targetWord": "the energy store linked to the particles inside an object and its temperature",
+        "examples": {
+          "en-GB": "Hot water has more energy in its thermal store than the same amount of cold water."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "chemical store",
+        "targetWord": "the energy store in food, fuels, cells and batteries",
+        "examples": {
+          "en-GB": "Petrol, breakfast cereal and a phone battery all have chemical stores."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "gravitational potential store",
+        "targetWord": "the energy store of an object raised in a gravitational field",
+        "examples": {
+          "en-GB": "A book on a high shelf has more energy in its gravitational potential store than the same book on the floor."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "elastic potential store",
+        "targetWord": "the energy store in a stretched or compressed object",
+        "examples": {
+          "en-GB": "A stretched elastic band has energy in its elastic potential store."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "magnetic store",
+        "targetWord": "the energy store linked to the positions of magnets or magnetic materials",
+        "examples": {
+          "en-GB": "Pushing two like poles closer together increases the magnetic store."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "electrostatic store",
+        "targetWord": "the energy store when electric charges are separated or moved into changed positions",
+        "examples": {
+          "en-GB": "A charged balloon near hair is an example involving an electrostatic store."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "nuclear store",
+        "targetWord": "the energy store inside atoms, used in nuclear fuels",
+        "examples": {
+          "en-GB": "Nuclear fuel contains energy in nuclear stores."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "transfer pathway",
+        "targetWord": "the way energy is transferred between stores, such as heating or electrical transfer",
+        "examples": {
+          "en-GB": "The pathway is not a store; it describes how energy is transferred."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "heating",
+        "targetWord": "a transfer pathway where energy is transferred because of a temperature difference",
+        "examples": {
+          "en-GB": "A hot radiator warms a room by heating."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "radiation",
+        "targetWord": "a transfer pathway where energy is carried by waves such as light or infrared radiation",
+        "examples": {
+          "en-GB": "Sunlight transfers energy to the Earth by radiation."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "electrical transfer",
+        "targetWord": "a transfer pathway where energy is transferred by an electric current",
+        "examples": {
+          "en-GB": "A circuit transfers energy electrically from a cell to a lamp."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sound",
+        "targetWord": "a transfer pathway where energy is carried by vibrations through a material",
+        "examples": {
+          "en-GB": "A speaker transfers energy by sound through the air."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mechanical work",
+        "targetWord": "a transfer pathway where energy is transferred when a force moves an object",
+        "examples": {
+          "en-GB": "A person lifting a bag transfers energy by mechanical work."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:conservation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "conservation of energy",
+        "targetWord": "the rule that energy cannot be created or destroyed and total energy stays the same",
+        "examples": {
+          "en-GB": "Energy is conserved even when some of it becomes less useful."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:conservation",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dissipation",
+        "targetWord": "energy spreading out into less useful stores in the surroundings, usually thermal stores",
+        "examples": {
+          "en-GB": "Dissipated energy is difficult to use because it is spread out through many particles."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:useful_wasted"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "useful energy",
+        "targetWord": "energy transferred in the way wanted for the intended purpose",
+        "examples": {
+          "en-GB": "Light from a torch is useful if the purpose is to see in the dark."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:useful_wasted",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "wasted energy",
+        "targetWord": "energy transferred in a way that is not useful for the intended purpose",
+        "examples": {
+          "en-GB": "A noisy engine transfers some energy by sound as wasted energy."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:efficiency"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "efficiency",
+        "targetWord": "the fraction or percentage of input energy that is usefully transferred",
+        "examples": {
+          "en-GB": "A device with 80% efficiency usefully transfers 80% of its input energy."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:efficiency",
+        "cat:formulae"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "percentage efficiency",
+        "targetWord": "useful output energy divided by total input energy, then multiplied by 100",
+        "examples": {
+          "en-GB": "If 50 J out of 200 J is useful, the percentage efficiency is 25%."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:sankey"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Sankey diagram",
+        "targetWord": "a diagram that shows energy transfers using arrows whose widths represent amounts of energy",
+        "examples": {
+          "en-GB": "In a Sankey diagram, useful output usually continues in the main direction."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:power",
+        "cat:units"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "power",
+        "targetWord": "the rate of energy transfer, measured in watts",
+        "examples": {
+          "en-GB": "A kettle has a high power because it transfers energy quickly."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:power",
+        "cat:units"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "watt",
+        "targetWord": "the unit of power; one watt means one joule is transferred each second",
+        "examples": {
+          "en-GB": "A 10 W lamp transfers 10 J of energy each second."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_029",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "renewable resource",
+        "targetWord": "an energy resource replaced naturally on a human timescale",
+        "examples": {
+          "en-GB": "Wind, solar, tidal and hydroelectric power are renewable resources."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_030",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "non-renewable resource",
+        "targetWord": "a finite energy resource that can run out",
+        "examples": {
+          "en-GB": "Coal, oil, natural gas and nuclear fuel are non-renewable resources."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_031",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "fossil fuel",
+        "targetWord": "a non-renewable fuel such as coal, oil or natural gas that releases carbon dioxide when burned",
+        "examples": {
+          "en-GB": "Natural gas is a fossil fuel that can respond quickly to electricity demand."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_032",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources",
+        "cat:misconceptions"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "nuclear fuel",
+        "targetWord": "a finite non-renewable fuel that can produce low carbon dioxide emissions during power station operation",
+        "examples": {
+          "en-GB": "Nuclear fuel is non-renewable because the fuel can run out."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_033",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:investigation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "insulator",
+        "targetWord": "a material that reduces energy transfer by heating",
+        "examples": {
+          "en-GB": "An insulator around a cup can slow down cooling."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_034",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "independent variable",
+        "targetWord": "the variable deliberately changed in an investigation",
+        "examples": {
+          "en-GB": "In an insulation investigation, the insulating material is the independent variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_035",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dependent variable",
+        "targetWord": "the variable measured in an investigation",
+        "examples": {
+          "en-GB": "The temperature decrease of the water is a dependent variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_036",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "control variable",
+        "targetWord": "a variable kept the same to make a test fair",
+        "examples": {
+          "en-GB": "The volume of water and starting temperature should be control variables."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_037",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "accuracy",
+        "targetWord": "how close a measurement is to the true value",
+        "examples": {
+          "en-GB": "A calibrated digital thermometer may improve accuracy."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_038",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "precision",
+        "targetWord": "how close repeated measurements are to each other",
+        "examples": {
+          "en-GB": "Readings that are very similar to each other show good precision."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_039",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "repeatability",
+        "targetWord": "when the same person using the same method gets similar results",
+        "examples": {
+          "en-GB": "Repeating each insulation test helps check repeatability."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_040",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "reliability",
+        "targetWord": "how trustworthy results are when repeats are consistent and variables are controlled",
+        "examples": {
+          "en-GB": "Reliability improves when repeated results support the same pattern."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_041",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "anomaly",
+        "targetWord": "a result that does not fit the pattern of the other results",
+        "examples": {
+          "en-GB": "Cooling water suddenly getting hotter would be an anomaly."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_vocab_042",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:graphs"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "trend",
+        "targetWord": "the general pattern shown by data, such as a temperature decreasing over time",
+        "examples": {
+          "en-GB": "A cooling curve should show a downward trend as energy is transferred to the surroundings."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:units",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Energy is measured in ____.",
+        "answer": "joules",
+        "options": [
+          "joules",
+          "watts",
+          "newtons",
+          "degrees Celsius"
+        ],
+        "hint": "The symbol is J."
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:conservation",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Energy cannot be created or destroyed, so energy is ____.",
+        "answer": "conserved",
+        "options": [
+          "conserved",
+          "lost",
+          "renewable",
+          "magnetic"
+        ],
+        "hint": "This word means the total amount stays the same."
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Food, fuels, cells and batteries contain energy in ____ stores.",
+        "answer": "chemical",
+        "options": [
+          "chemical",
+          "kinetic",
+          "gravitational",
+          "electrostatic"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "A moving object has energy in its ____ store.",
+        "answer": "kinetic",
+        "options": [
+          "kinetic",
+          "nuclear",
+          "chemical",
+          "elastic potential"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "Lifting a school bag increases the bag's ____ store.",
+        "answer": "gravitational potential",
+        "options": [
+          "gravitational potential",
+          "chemical",
+          "thermal",
+          "electrostatic"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "A force lifting an object transfers energy by ____.",
+        "answer": "mechanical work",
+        "options": [
+          "mechanical work",
+          "radiation",
+          "electrostatic storage",
+          "nuclear reaction"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:transfer_pathways",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "A circuit powers a lamp by ____ transfer.",
+        "answer": "electrical",
+        "options": [
+          "electrical",
+          "sound",
+          "gravitational",
+          "magnetic"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:useful_wasted",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Energy transferred in the intended way is called ____ energy.",
+        "answer": "useful",
+        "options": [
+          "useful",
+          "wasted",
+          "finite",
+          "static"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:useful_wasted",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Energy transferred in a way that is not useful for the purpose is called ____ energy.",
+        "answer": "wasted",
+        "options": [
+          "wasted",
+          "created",
+          "accurate",
+          "renewable"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:dissipation",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "Energy that spreads out into less useful stores in the surroundings has been ____.",
+        "answer": "dissipated",
+        "options": [
+          "dissipated",
+          "created",
+          "measured",
+          "insulated"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:efficiency",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "If a lamp usefully transfers 50 J from 200 J of input energy, its efficiency is ____%.",
+        "answer": "25",
+        "options": [
+          "25",
+          "50",
+          "75",
+          "150"
+        ],
+        "hint": "50 divided by 200, then multiplied by 100."
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:sankey",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "In a Sankey diagram, a wider arrow means a ____ amount of energy is being transferred.",
+        "answer": "larger",
+        "options": [
+          "larger",
+          "smaller",
+          "destroyed",
+          "renewable"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:power",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "The rate of energy transfer is called ____.",
+        "answer": "power",
+        "options": [
+          "power",
+          "efficiency",
+          "accuracy",
+          "radiation"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:power",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "One watt means one joule is transferred each ____.",
+        "answer": "second",
+        "options": [
+          "second",
+          "minute",
+          "kilogram",
+          "degree Celsius"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "A resource replaced naturally on a human timescale is ____.",
+        "answer": "renewable",
+        "options": [
+          "renewable",
+          "non-renewable",
+          "dissipated",
+          "anomalous"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources",
+        "cat:misconceptions",
+        "difficulty:harder"
+      ],
+      "data": {
+        "sentence": "Nuclear fuel is classed as ____ because the fuel is finite.",
+        "answer": "non-renewable",
+        "options": [
+          "non-renewable",
+          "renewable",
+          "wasted",
+          "electrostatic"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "A variable kept the same in a fair test is a ____ variable.",
+        "answer": "control",
+        "options": [
+          "control",
+          "dependent",
+          "independent",
+          "anomalous"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "difficulty:harder"
+      ],
+      "data": {
+        "sentence": "A cooling result that suddenly increases when all other readings fall is probably an ____.",
+        "answer": "anomaly",
+        "options": [
+          "anomaly",
+          "insulator",
+          "output",
+          "efficiency"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:pathways",
+        "cat:examples"
+      ],
+      "data": {
+        "title": "Energy Transfers in a Torch",
+        "instruction": "Put the energy description for a battery-powered torch in the correct order.",
+        "items": [
+          "Energy starts in the chemical store of the battery.",
+          "Energy is transferred electrically through the circuit.",
+          "Energy reaches the lamp.",
+          "Useful energy is transferred by light to the surroundings.",
+          "Some energy is transferred to thermal stores in the lamp, battery and air.",
+          "The total energy is conserved, even though some is wasted."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:pathways",
+        "cat:examples"
+      ],
+      "data": {
+        "title": "Falling Object Energy Changes",
+        "instruction": "Put the energy changes for a falling ball in the correct order.",
+        "items": [
+          "At the top, the ball has a large gravitational potential store.",
+          "As the ball falls, its gravitational potential store decreases.",
+          "The ball's kinetic store increases as it speeds up.",
+          "At impact, energy is transferred to thermal stores in the ball, ground and air.",
+          "Some energy is transferred by sound.",
+          "The energy has not been destroyed."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_seq_003",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:investigation",
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "title": "Insulation Investigation Method",
+        "instruction": "Put the fair-test method for comparing insulators in the correct order.",
+        "items": [
+          "Measure the same volume of hot water into the same type of cup.",
+          "Wrap the cup in one insulating material.",
+          "Record the starting temperature.",
+          "Record the temperature at regular time intervals.",
+          "Repeat the test several times for the same material.",
+          "Repeat the method for each material.",
+          "Compare the temperature decrease or calculate a mean."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_seq_004",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:efficiency",
+        "cat:formulae"
+      ],
+      "data": {
+        "title": "Calculating Percentage Efficiency",
+        "instruction": "Put the calculation steps in the correct order.",
+        "items": [
+          "Identify the total input energy.",
+          "Identify the useful output energy.",
+          "Divide useful output energy by total input energy.",
+          "Multiply the answer by 100.",
+          "Add the percent sign to the final answer.",
+          "Check that the answer is not above 100%."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:stores",
+        "cat:transfer_pathways"
+      ],
+      "data": {
+        "title": "Store or Transfer Pathway?",
+        "instruction": "Sort each item into energy store or transfer pathway.",
+        "categories": [
+          "Energy store",
+          "Transfer pathway"
+        ],
+        "pairs": [
+          {
+            "text": "chemical store",
+            "category": "Energy store"
+          },
+          {
+            "text": "kinetic store",
+            "category": "Energy store"
+          },
+          {
+            "text": "heating",
+            "category": "Transfer pathway"
+          },
+          {
+            "text": "electrical transfer",
+            "category": "Transfer pathway"
+          },
+          {
+            "text": "gravitational potential store",
+            "category": "Energy store"
+          },
+          {
+            "text": "mechanical work",
+            "category": "Transfer pathway"
+          },
+          {
+            "text": "radiation",
+            "category": "Transfer pathway"
+          },
+          {
+            "text": "elastic potential store",
+            "category": "Energy store"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:resources"
+      ],
+      "data": {
+        "title": "Renewable or Non-Renewable?",
+        "instruction": "Sort each energy resource into the correct category.",
+        "categories": [
+          "Renewable",
+          "Non-renewable"
+        ],
+        "pairs": [
+          {
+            "text": "wind",
+            "category": "Renewable"
+          },
+          {
+            "text": "solar",
+            "category": "Renewable"
+          },
+          {
+            "text": "tidal",
+            "category": "Renewable"
+          },
+          {
+            "text": "hydroelectric",
+            "category": "Renewable"
+          },
+          {
+            "text": "coal",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "oil",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "natural gas",
+            "category": "Non-renewable"
+          },
+          {
+            "text": "nuclear fuel",
+            "category": "Non-renewable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_energy_sort_003",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics energy"
+      ],
+      "tags": [
+        "cat:working_scientifically"
+      ],
+      "data": {
+        "title": "Variables in an Insulation Investigation",
+        "instruction": "Sort each example by the type of variable it describes.",
+        "categories": [
+          "Independent variable",
+          "Dependent variable",
+          "Control variable"
+        ],
+        "pairs": [
+          {
+            "text": "type of insulating material",
+            "category": "Independent variable"
+          },
+          {
+            "text": "temperature decrease after 10 minutes",
+            "category": "Dependent variable"
+          },
+          {
+            "text": "volume of water",
+            "category": "Control variable"
+          },
+          {
+            "text": "starting temperature",
+            "category": "Control variable"
+          },
+          {
+            "text": "cup type",
+            "category": "Control variable"
+          },
+          {
+            "text": "final water temperature",
+            "category": "Dependent variable"
+          },
+          {
+            "text": "whether the cup is wrapped in foil, wool or bubble wrap",
+            "category": "Independent variable"
+          },
+          {
+            "text": "time intervals between readings",
+            "category": "Control variable"
+          }
+        ]
+      }
+    }
+  ],
+  "curriculum": "ks3"
+}

@@ -1,16 +1,8 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { isCorrectAnswer, calculateScore, getAccuracy } from "../utils/scoring.js";
+import { shuffle } from "@/utils.js";
 
 const EMPTY_QUESTIONS = [];
-
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 function initialBuildState(question) {
   if (!question) return null;

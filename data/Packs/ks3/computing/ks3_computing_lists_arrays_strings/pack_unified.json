@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_lists_arrays_strings",
+  "subject": "computing",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_lists_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Array",
+        "targetWord": "An ordered collection of values stored under a single variable name, where each value is accessed by its index position.",
+        "examples": {
+          "en-GB": "scores = [85, 72, 90] is an array storing three exam scores."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "List",
+        "targetWord": "Python's implementation of an array; a mutable ordered collection that can hold values of any type, written with square brackets.",
+        "examples": {
+          "en-GB": "names = [\"Alice\", \"Bob\", \"Charlie\"] is a Python list of three strings."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Index",
+        "targetWord": "The numerical position of an element in a list or string, used to access that element; always starts at 0 in Python.",
+        "examples": {
+          "en-GB": "In scores = [85, 72, 90], the element 72 is at index 1."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Zero-indexed",
+        "targetWord": "A numbering system where the first element has index 0, the second has index 1, and so on; used by arrays and strings in most programming languages.",
+        "examples": {
+          "en-GB": "Because lists are zero-indexed, myList[0] accesses the first element, not myList[1]."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Element",
+        "targetWord": "An individual value stored at a specific position in an array or list.",
+        "examples": {
+          "en-GB": "In [10, 20, 30], the value 20 is the element at index 1."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Length",
+        "targetWord": "The total number of elements in a list, or the total number of characters in a string, returned by the len() function.",
+        "examples": {
+          "en-GB": "len([5, 10, 15, 20]) returns 4 because the list has four elements."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Append",
+        "targetWord": "A list operation that adds a new element to the end of the list, increasing its length by one.",
+        "examples": {
+          "en-GB": "scores.append(88) adds the value 88 as the new last element of the scores list."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Remove",
+        "targetWord": "A list method that deletes the first occurrence of a specified value from the list.",
+        "examples": {
+          "en-GB": "myList.remove(65) deletes the first element equal to 65 from the list."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Iterate",
+        "targetWord": "To process each element of a list or string one at a time, typically using a loop.",
+        "examples": {
+          "en-GB": "for score in scores: iterates through every element in the scores list in order."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "2D array",
+        "targetWord": "An array of arrays that forms a grid or table structure; in Python this is represented as a list of lists.",
+        "examples": {
+          "en-GB": "grid = [[1,2,3],[4,5,6]] is a 2D array; grid[1][2] accesses the value 6."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "String",
+        "targetWord": "A sequence of characters enclosed in quote marks; treated as a data type for storing and manipulating text.",
+        "examples": {
+          "en-GB": "\"Computing\" is a string consisting of nine characters."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Concatenation",
+        "targetWord": "Joining two or more strings together using the + operator to form a single combined string.",
+        "examples": {
+          "en-GB": "\"Hello\" + \" \" + \"World\" produces the string \"Hello World\" through concatenation."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Slicing",
+        "targetWord": "Extracting a portion of a string or list using [start:stop] notation, where the character at start is included but the character at stop is excluded.",
+        "examples": {
+          "en-GB": "\"Computing\"[0:4] returns \"Comp\" using slicing — indices 0, 1, 2, 3 are included."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "String method",
+        "targetWord": "A built-in function associated with string objects that performs an operation on the string, called using dot notation.",
+        "examples": {
+          "en-GB": ".upper(), .lower(), .strip(), .split(), and .replace() are all string methods."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": ".upper()",
+        "targetWord": "A string method that returns a new copy of the string with all alphabetic characters converted to uppercase.",
+        "examples": {
+          "en-GB": "\"hello\".upper() returns \"HELLO\"."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": ".lower()",
+        "targetWord": "A string method that returns a new copy of the string with all alphabetic characters converted to lowercase.",
+        "examples": {
+          "en-GB": "\"HELLO\".lower() returns \"hello\"."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": ".strip()",
+        "targetWord": "A string method that removes any leading and trailing whitespace (spaces, tabs, newlines) from both ends of a string.",
+        "examples": {
+          "en-GB": "\"  hello  \".strip() returns \"hello\" with the surrounding spaces removed."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": ".split()",
+        "targetWord": "A string method that divides a string into a list of substrings at each occurrence of a specified delimiter; defaults to splitting at whitespace.",
+        "examples": {
+          "en-GB": "\"red,green,blue\".split(\",\") returns [\"red\", \"green\", \"blue\"]."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": ".replace()",
+        "targetWord": "A string method that returns a new string with all occurrences of a specified old substring replaced by a new substring.",
+        "examples": {
+          "en-GB": "\"cat\".replace(\"c\", \"b\") returns \"bat\" by replacing 'c' with 'b'."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Substring",
+        "targetWord": "A smaller portion of a string extracted from within it using indexing or slicing.",
+        "examples": {
+          "en-GB": "\"Comp\" is a substring of \"Computing\", obtained by slicing [0:4]."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Character",
+        "targetWord": "A single letter, digit, space, or symbol; the individual unit that makes up a string.",
+        "examples": {
+          "en-GB": "The string \"ABC\" contains three characters: A, B, and C."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Sequence",
+        "targetWord": "An ordered collection of items where each item has a defined position; both strings and lists are sequences in Python.",
+        "examples": {
+          "en-GB": "A string is a sequence of characters, and a list is a sequence of values."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Mutable",
+        "targetWord": "A data structure that can be changed after it is created; elements can be added, removed, or modified.",
+        "examples": {
+          "en-GB": "Python lists are mutable — you can change scores[0] = 99 to update an element."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Immutable",
+        "targetWord": "A data structure that cannot be changed after it is created; any operation that appears to modify it actually creates a new object.",
+        "examples": {
+          "en-GB": "Strings are immutable in Python — word[0] = \"X\" causes a TypeError."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "len()",
+        "targetWord": "A built-in Python function that returns the number of elements in a list or the number of characters in a string.",
+        "examples": {
+          "en-GB": "len(\"Computing\") returns 9; len([1, 2, 3]) returns 3."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Type conversion",
+        "targetWord": "Converting a value from one data type to another, for example turning a string into an integer or an integer into a string.",
+        "examples": {
+          "en-GB": "int(\"42\") converts the string \"42\" to the integer 42; str(99) converts 99 to \"99\"."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Delimiter",
+        "targetWord": "A character used to separate items in a string, often used as the splitting point when applying .split().",
+        "examples": {
+          "en-GB": "In \"a,b,c\".split(\",\"), the comma is the delimiter that separates the three substrings."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Whitespace",
+        "targetWord": "Invisible characters in a string such as spaces, tabs, or newlines; .strip() removes whitespace from the start and end of a string.",
+        "examples": {
+          "en-GB": "The string \"  hello  \" contains whitespace before and after the word hello."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_029",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Indexing",
+        "targetWord": "Accessing a specific element of a list or character of a string by specifying its index position inside square brackets.",
+        "examples": {
+          "en-GB": "word[3] uses indexing to access the character at position 3 in the string word."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_vocab_030",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [
+        "cat:key_terms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "str()",
+        "targetWord": "A Python function that converts a non-string value such as an integer or float into its string representation, enabling concatenation with other strings.",
+        "examples": {
+          "en-GB": "str(85) converts the integer 85 to the string \"85\", so \"Score: \" + str(85) works correctly."
+        }
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Arrays and lists are zero-indexed, which means the first element is always at index ____.",
+        "answer": "0",
+        "options": [
+          "0",
+          "1",
+          "-1",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The Python function that returns the number of elements in a list is ____.",
+        "answer": "len()",
+        "options": [
+          "len()",
+          "size()",
+          "count()",
+          "length()"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Both strings and lists support indexing using ____ brackets.",
+        "answer": "square",
+        "options": [
+          "square",
+          "curly",
+          "round",
+          "angle"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "String concatenation uses the ____ operator to join two strings together.",
+        "answer": "+",
+        "options": [
+          "+",
+          "&",
+          ".",
+          "*"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The slice word[0:4] returns characters from index 0 up to but ____ including index 4.",
+        "answer": "not",
+        "options": [
+          "not",
+          "always",
+          "never",
+          "also"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "\"red,green,blue\".split(\",\") returns a list with ____ elements.",
+        "answer": "3",
+        "options": [
+          "3",
+          "2",
+          "4",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Changing one element of a list ____ affect other elements in the same list.",
+        "answer": "does not",
+        "options": [
+          "does not",
+          "always does",
+          "sometimes does",
+          "usually does"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To concatenate a number with a string you must first convert the number using ____.",
+        "answer": "str()",
+        "options": [
+          "str()",
+          "int()",
+          "float()",
+          "num()"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In the list scores = [45, 78, 62], the value 78 is at index ____.",
+        "answer": "1",
+        "options": [
+          "1",
+          "0",
+          "2",
+          "3"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "After running scores = [10, 20, 30] followed by scores.append(40), len(scores) returns ____.",
+        "answer": "4",
+        "options": [
+          "4",
+          "3",
+          "5",
+          "40"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The string method that removes spaces from the beginning and end of a string is ____.",
+        "answer": ".strip()",
+        "options": [
+          ".strip()",
+          ".trim()",
+          ".clean()",
+          ".remove()"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "\"Computing\"[0] returns the character ____.",
+        "answer": "C",
+        "options": [
+          "C",
+          "o",
+          "g",
+          "9"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "len(\"Computing\") returns ____ because the word has that many characters.",
+        "answer": "9",
+        "options": [
+          "9",
+          "8",
+          "10",
+          "7"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "A 2D array is an array of ____, used to represent a grid or table.",
+        "answer": "arrays",
+        "options": [
+          "arrays",
+          "strings",
+          "integers",
+          "variables"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "To add the value 99 to the end of a list called results, you write ____.",
+        "answer": "results.append(99)",
+        "options": [
+          "results.append(99)",
+          "results.add(99)",
+          "results.insert(99)",
+          "append(results, 99)"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "The .split() method with no argument splits a string at every ____ by default.",
+        "answer": "space",
+        "options": [
+          "space",
+          "comma",
+          "full stop",
+          "letter"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "In a 2D array grid, the value at grid[1][2] means row ____ and column 2.",
+        "answer": "1",
+        "options": [
+          "1",
+          "0",
+          "2",
+          "3"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "Python lists are ____, meaning their elements can be changed after creation.",
+        "answer": "mutable",
+        "options": [
+          "mutable",
+          "immutable",
+          "fixed",
+          "static"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "\"HELLO\".lower() returns ____.",
+        "answer": "\"hello\"",
+        "options": [
+          "\"hello\"",
+          "\"HELLO\"",
+          "\"Hello\"",
+          "None"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_fill_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "sentence": "When iterating through a list of 5 elements using FOR i from 0, the last valid index is ____.",
+        "answer": "4",
+        "options": [
+          "4",
+          "5",
+          "3",
+          "6"
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Finding the Largest Value in a List",
+        "instruction": "Put these steps in the correct order to find the largest value in a list.",
+        "items": [
+          "Set a variable largest to the first element (index 0) of the list",
+          "Start a FOR loop from index 1 to the last index (len(list) - 1)",
+          "Inside the loop, check if the current element is greater than largest",
+          "If it is greater, update largest to the current element",
+          "After the loop ends, output the value of largest"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_lists_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Cleaning User Input with String Operations",
+        "instruction": "Put these steps in the correct order to clean a user's text input using string methods.",
+        "items": [
+          "Accept the raw input from the user as a string",
+          "Apply .strip() to remove any leading and trailing whitespace",
+          "Apply .lower() to convert the text to lowercase for consistency",
+          "Apply .split() to divide the cleaned string into a list of words",
+          "Process or display the resulting list of words"
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_computing_lists_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "title": "String Operation or List Operation?",
+        "instruction": "Sort each method or operation into the correct category.",
+        "categories": [
+          "String operation",
+          "List operation"
+        ],
+        "pairs": [
+          {
+            "text": ".upper()",
+            "category": "String operation"
+          },
+          {
+            "text": ".lower()",
+            "category": "String operation"
+          },
+          {
+            "text": ".strip()",
+            "category": "String operation"
+          },
+          {
+            "text": ".split()",
+            "category": "String operation"
+          },
+          {
+            "text": ".replace()",
+            "category": "String operation"
+          },
+          {
+            "text": ".append()",
+            "category": "List operation"
+          },
+          {
+            "text": ".remove()",
+            "category": "List operation"
+          },
+          {
+            "text": "Slicing with [start:stop]",
+            "category": "String operation"
+          },
+          {
+            "text": "len()",
+            "category": "String operation"
+          },
+          {
+            "text": "Adding element at end",
+            "category": "List operation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_lists_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "Lists, Arrays & String Handling"
+      ],
+      "tags": [],
+      "data": {
+        "title": "Valid Code or Would Cause a Type Error?",
+        "instruction": "Sort each Python expression into the correct category.",
+        "categories": [
+          "Valid code",
+          "Would cause a type error"
+        ],
+        "pairs": [
+          {
+            "text": "\"Score: \" + str(85)",
+            "category": "Valid code"
+          },
+          {
+            "text": "\"Score: \" + 85",
+            "category": "Would cause a type error"
+          },
+          {
+            "text": "int(\"42\") + 10",
+            "category": "Valid code"
+          },
+          {
+            "text": "\"hello\" + \"world\"",
+            "category": "Valid code"
+          },
+          {
+            "text": "\"Total: \" + 100",
+            "category": "Would cause a type error"
+          },
+          {
+            "text": "str(50) + \" points\"",
+            "category": "Valid code"
+          },
+          {
+            "text": "\"Age: \" + 17",
+            "category": "Would cause a type error"
+          },
+          {
+            "text": "int(\"abc\")",
+            "category": "Would cause a type error"
+          }
+        ]
+      }
+    }
+  ]
+}

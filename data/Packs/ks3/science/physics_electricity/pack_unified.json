@@ -1,0 +1,1520 @@
+{
+  "packId": "ks3_science_physics_electricity",
+  "subject": "science",
+  "title": "KS3 / Year 7-9 Science - Physics: Electricity",
+  "subtitle": "Circuits, current, voltage, resistance, practical measurement and electrical safety.",
+  "level": "KS3 / Year 7-9",
+  "language": "English",
+  "topics": [
+    "KS3 Science: physics electricity"
+  ],
+  "tags": [
+    "KS3 / Year 7-9",
+    "Science",
+    "Physics",
+    "Electricity"
+  ],
+  "description": "A KS3 physics revision pack on electricity, including complete circuits, circuit symbols, current, voltage, resistance, series and parallel circuits, conductors, insulators, practical investigations and electrical safety. It focuses on accurate explanations, calculations using V = I x R, data interpretation and common misconceptions.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_science_physics_electricity_vocab_001",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:circuits"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "electricity",
+        "targetWord": "a way of transferring energy using moving electric charge",
+        "examples": {
+          "en-GB": "Electricity transfers energy around a circuit by moving electric charge."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_002",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:circuits"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "circuit",
+        "targetWord": "a complete conducting loop that allows charge to flow",
+        "examples": {
+          "en-GB": "A simple circuit needs a complete loop and an energy source."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_003",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:circuits"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "closed circuit",
+        "targetWord": "a complete circuit with no gap, so current can flow",
+        "examples": {
+          "en-GB": "The lamp lights when the switch closes the circuit."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_004",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:circuits"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "open circuit",
+        "targetWord": "a circuit with a gap, so current cannot flow",
+        "examples": {
+          "en-GB": "An open switch creates a gap in the circuit."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_005",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:components"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "cell",
+        "targetWord": "an energy source with one positive terminal and one negative terminal",
+        "examples": {
+          "en-GB": "A cell provides a voltage that can cause charge to move."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_006",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:components"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "battery",
+        "targetWord": "two or more cells connected together",
+        "examples": {
+          "en-GB": "Three 1.5 V cells in series make a 4.5 V battery."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_007",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "load",
+        "targetWord": "a component that transfers electrical energy into another useful form",
+        "examples": {
+          "en-GB": "A lamp is a load because it transfers electrical energy into light and thermal energy."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_008",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:current"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "current",
+        "targetWord": "the rate of flow of electric charge",
+        "examples": {
+          "en-GB": "Current tells us how much charge passes a point each second."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_009",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:units",
+        "cat:current"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ampere",
+        "targetWord": "the unit of current, with the symbol A",
+        "examples": {
+          "en-GB": "A current of 0.30 A means 0.30 amperes."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_010",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:measurement"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ammeter",
+        "targetWord": "an instrument used to measure current, connected in series",
+        "examples": {
+          "en-GB": "An ammeter must be part of the same loop as the component being tested."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_011",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:voltage"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "voltage",
+        "targetWord": "energy transferred per coulomb of charge between two points",
+        "examples": {
+          "en-GB": "Voltage tells us how much energy is available to transfer to components."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_012",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:voltage"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "potential difference",
+        "targetWord": "another name for voltage, comparing energy per unit charge between two points",
+        "examples": {
+          "en-GB": "Potential difference is measured across a component."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_013",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:units",
+        "cat:voltage"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "volt",
+        "targetWord": "the unit of voltage, with the symbol V",
+        "examples": {
+          "en-GB": "A 6 V battery has a voltage of six volts."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_014",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:measurement"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "voltmeter",
+        "targetWord": "an instrument used to measure voltage, connected in parallel",
+        "examples": {
+          "en-GB": "A voltmeter is connected across the lamp to measure the voltage across it."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_015",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:key_terms",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "resistance",
+        "targetWord": "how much a component or material opposes current",
+        "examples": {
+          "en-GB": "Increasing resistance decreases current when voltage stays fixed."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_016",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:units",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ohm",
+        "targetWord": "the unit of resistance",
+        "examples": {
+          "en-GB": "A 10 ohm resistor has twice the resistance of a 5 ohm resistor."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_017",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "resistor",
+        "targetWord": "a component designed to have a particular resistance",
+        "examples": {
+          "en-GB": "A resistor can be used to control current in a circuit."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_018",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:resistance"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "variable resistor",
+        "targetWord": "a resistor whose resistance can be changed",
+        "examples": {
+          "en-GB": "A variable resistor can dim a lamp or change motor speed."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_019",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:materials",
+        "cat:conductors"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "conductor",
+        "targetWord": "a material that allows current to flow easily",
+        "examples": {
+          "en-GB": "Copper is used in wires because it is a good conductor."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_020",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:materials",
+        "cat:insulators"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "insulator",
+        "targetWord": "a material that does not allow current to flow easily",
+        "examples": {
+          "en-GB": "Plastic insulation around copper wire helps reduce shock risk."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_021",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "cat:series"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "series circuit",
+        "targetWord": "a circuit with one loop, where components are connected one after another",
+        "examples": {
+          "en-GB": "In a series circuit, the current is the same through each component."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_022",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "cat:parallel"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "parallel circuit",
+        "targetWord": "a circuit with more than one loop or branch",
+        "examples": {
+          "en-GB": "In a parallel circuit, each branch receives the full supply voltage."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_023",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "cat:parallel"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "branch",
+        "targetWord": "one path in a parallel circuit",
+        "examples": {
+          "en-GB": "If one branch breaks, another complete branch can still work."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_024",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "cat:parallel"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "junction",
+        "targetWord": "a point where current splits into branches or rejoins",
+        "examples": {
+          "en-GB": "At a junction, the total current equals the branch currents added together."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_025",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "lamp",
+        "targetWord": "a component that transfers electrical energy into light and thermal energy",
+        "examples": {
+          "en-GB": "A lamp lights when current flows through a complete circuit."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_026",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "motor",
+        "targetWord": "a component that transfers electrical energy into movement",
+        "examples": {
+          "en-GB": "A motor can turn electrical energy into kinetic energy in a fan."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_027",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:energy"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "buzzer",
+        "targetWord": "a component that transfers electrical energy into sound",
+        "examples": {
+          "en-GB": "A buzzer can be used in an alarm circuit."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_028",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:safety"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "fuse",
+        "targetWord": "a safety component that melts and breaks a circuit if current is too high",
+        "examples": {
+          "en-GB": "A fuse helps protect wiring and appliances from excessive current."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_029",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:diodes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "diode",
+        "targetWord": "a component that allows current mainly one way",
+        "examples": {
+          "en-GB": "A diode can help protect parts of a circuit from current in the wrong direction."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_030",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "cat:diodes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "LED",
+        "targetWord": "a light-emitting diode that transfers electrical energy into light",
+        "examples": {
+          "en-GB": "Bike lights often use LEDs because they can be efficient light sources."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_031",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:formulae",
+        "cat:calculations"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "V = I x R",
+        "targetWord": "the equation linking voltage, current and resistance",
+        "examples": {
+          "en-GB": "Use V = I x R to find voltage when current and resistance are known."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_032",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "independent variable",
+        "targetWord": "the variable that is deliberately changed in an investigation",
+        "examples": {
+          "en-GB": "In a voltage-current investigation, voltage can be the independent variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_033",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dependent variable",
+        "targetWord": "the variable that is measured in an investigation",
+        "examples": {
+          "en-GB": "Current through a resistor can be the dependent variable."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_034",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:variables"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "control variable",
+        "targetWord": "a variable kept the same to make a test fair",
+        "examples": {
+          "en-GB": "Using the same resistor is a control variable when voltage is changed."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_035",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "anomalous result",
+        "targetWord": "a result that does not fit the pattern of the other results",
+        "examples": {
+          "en-GB": "A loose connection can cause an anomalous current reading."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_036",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "repeatability",
+        "targetWord": "getting similar results when the same person repeats the same method with the same equipment",
+        "examples": {
+          "en-GB": "Repeatability is checked by taking repeat readings."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_037",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:working_scientifically",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "reliability",
+        "targetWord": "how trustworthy results are after repetition and checking",
+        "examples": {
+          "en-GB": "Reliability improves when readings are repeated and anomalies are investigated."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_038",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:safety",
+        "cat:mains"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mains electricity",
+        "targetWord": "high-voltage electricity supplied to homes, about 230 V in the UK",
+        "examples": {
+          "en-GB": "Mains electricity can be fatal because it can cause a large current through the body."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_039",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:safety",
+        "cat:hazards"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "short circuit",
+        "targetWord": "a very low-resistance path that can cause a large current",
+        "examples": {
+          "en-GB": "Damaged cable conductors touching can create a short circuit."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_vocab_040",
+      "type": "vocab",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:graphs",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "directly proportional",
+        "targetWord": "a relationship where doubling one quantity doubles the other",
+        "examples": {
+          "en-GB": "For a resistor at constant temperature, current can be directly proportional to voltage."
+        }
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_001",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "A circuit must be a complete ____ for current to flow.",
+        "answer": "loop",
+        "options": [
+          "loop",
+          "case",
+          "graph",
+          "scale"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_002",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "An ____ switch creates a gap, so current cannot flow.",
+        "answer": "open",
+        "options": [
+          "open",
+          "closed",
+          "parallel",
+          "metal"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_003",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:components",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "A battery is two or more ____ connected together.",
+        "answer": "cells",
+        "options": [
+          "cells",
+          "lamps",
+          "switches",
+          "wires"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_004",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:current",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Current is measured in ____.",
+        "answer": "amperes",
+        "options": [
+          "amperes",
+          "volts",
+          "ohms",
+          "joules"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_005",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:measurement",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "An ammeter must be connected in ____ so the circuit current flows through it.",
+        "answer": "series",
+        "options": [
+          "series",
+          "parallel",
+          "plastic",
+          "reverse"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_006",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:measurement",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "A voltmeter is connected in ____ across a component.",
+        "answer": "parallel",
+        "options": [
+          "parallel",
+          "series",
+          "one loop",
+          "a fuse"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_007",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:voltage",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "Voltage is also called potential ____.",
+        "answer": "difference",
+        "hint": "It compares two points in a circuit."
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_008",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:misconceptions",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "Current flows around a circuit, but voltage does not ____.",
+        "answer": "flow",
+        "options": [
+          "flow",
+          "exist",
+          "measure",
+          "oppose"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_009",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:resistance",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "For a fixed voltage, increasing resistance ____ current.",
+        "answer": "decreases",
+        "options": [
+          "decreases",
+          "increases",
+          "doubles",
+          "uses up"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_010",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:formulae",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "The equation linking voltage, current and resistance is ____.",
+        "answer": "V = I x R",
+        "options": [
+          "V = I x R",
+          "I = R x V",
+          "R = I x V",
+          "V = I / R"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_011",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:calculations",
+        "difficulty:harder"
+      ],
+      "data": {
+        "sentence": "A 6 V battery across a 12 ohm resistor gives a current of ____ A.",
+        "answer": "0.5",
+        "options": [
+          "0.5",
+          "2",
+          "6",
+          "18"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_012",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:calculations",
+        "difficulty:harder"
+      ],
+      "data": {
+        "sentence": "A resistor with 3 V across it and 0.20 A through it has a resistance of ____ ohm.",
+        "answer": "15",
+        "options": [
+          "15",
+          "0.6",
+          "3.2",
+          "20"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_013",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:series",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "In a series circuit, the supply voltage is ____ between components.",
+        "answer": "shared",
+        "options": [
+          "shared",
+          "cancelled",
+          "blocked",
+          "measured only once"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_014",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:parallel",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "In a parallel circuit, current splits between ____.",
+        "answer": "branches",
+        "options": [
+          "branches",
+          "cells",
+          "symbols",
+          "insulators"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_015",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:parallel",
+        "difficulty:harder"
+      ],
+      "data": {
+        "sentence": "Branch currents of 0.25 A, 0.35 A and 0.40 A give a total current of ____ A.",
+        "answer": "1.00",
+        "options": [
+          "1.00",
+          "0.40",
+          "0.75",
+          "1.50"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_016",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:materials",
+        "difficulty:easy"
+      ],
+      "data": {
+        "sentence": "Copper is useful in wires because it is a good ____.",
+        "answer": "conductor",
+        "options": [
+          "conductor",
+          "insulator",
+          "fuse",
+          "switch"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_017",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:safety",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "Plastic around a wire is useful because it is an ____.",
+        "answer": "insulator",
+        "options": [
+          "insulator",
+          "ammeter",
+          "energy source",
+          "LED"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_018",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:safety",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "UK mains electricity is about ____ V.",
+        "answer": "230",
+        "options": [
+          "230",
+          "1.5",
+          "6",
+          "12"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_019",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:safety",
+        "difficulty:medium"
+      ],
+      "data": {
+        "sentence": "A fuse wire melts when the ____ is too high.",
+        "answer": "current",
+        "options": [
+          "current",
+          "plastic",
+          "branch",
+          "scale"
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_fill_020",
+      "type": "fillBlank",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:graphs",
+        "difficulty:harder"
+      ],
+      "data": {
+        "sentence": "If a current-voltage graph is a straight line through the origin, current is directly ____ to voltage.",
+        "answer": "proportional",
+        "hint": "Doubling one quantity doubles the other."
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_seq_001",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:circuits",
+        "cat:process"
+      ],
+      "data": {
+        "title": "Making a Lamp Light",
+        "instruction": "Put the steps in the correct order for a simple lamp circuit to work.",
+        "items": [
+          "Connect the cell, wires, switch and lamp in one complete loop.",
+          "Close the switch so there is no gap in the circuit.",
+          "The cell provides a voltage across the circuit.",
+          "Charge flows around the loop as current.",
+          "The lamp transfers electrical energy into light and thermal energy."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_seq_002",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:practical",
+        "cat:measurement"
+      ],
+      "data": {
+        "title": "Measuring Current Through a Resistor",
+        "instruction": "Put the practical steps in a sensible order.",
+        "items": [
+          "Build a series circuit with the power supply, switch, resistor and ammeter.",
+          "Connect the voltmeter in parallel across the resistor.",
+          "Set the supply to a low voltage.",
+          "Close the switch and record the current and voltage.",
+          "Open the switch between readings if the resistor becomes warm.",
+          "Repeat readings and calculate a mean if the repeats are close."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_seq_003",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:safety",
+        "cat:process"
+      ],
+      "data": {
+        "title": "How a Fuse Protects a Circuit",
+        "instruction": "Put the fuse action in the correct order.",
+        "items": [
+          "A fault causes the current to become too high.",
+          "The fuse wire heats up because current flows through its resistance.",
+          "The fuse wire gets hot enough to melt.",
+          "The melted fuse breaks the circuit.",
+          "Current stops flowing, reducing the chance of overheating."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_seq_004",
+      "type": "sequence",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:data",
+        "cat:graphs"
+      ],
+      "data": {
+        "title": "Using a Current-Voltage Graph",
+        "instruction": "Put the graph interpretation steps in order.",
+        "items": [
+          "Record voltage and current values in a table with units.",
+          "Plot voltage on the x-axis and current on the y-axis.",
+          "Look for a pattern in the plotted points.",
+          "A straight line through the origin shows direct proportion.",
+          "Use the pattern to make predictions or calculate resistance."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_sort_001",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:series",
+        "cat:parallel"
+      ],
+      "data": {
+        "title": "Series or Parallel?",
+        "instruction": "Sort each feature into the correct circuit type.",
+        "categories": [
+          "Series circuit",
+          "Parallel circuit"
+        ],
+        "pairs": [
+          {
+            "text": "One loop",
+            "category": "Series circuit"
+          },
+          {
+            "text": "More than one branch",
+            "category": "Parallel circuit"
+          },
+          {
+            "text": "Current is the same everywhere",
+            "category": "Series circuit"
+          },
+          {
+            "text": "Current splits at junctions",
+            "category": "Parallel circuit"
+          },
+          {
+            "text": "Supply voltage is shared between components",
+            "category": "Series circuit"
+          },
+          {
+            "text": "Each branch gets the full supply voltage",
+            "category": "Parallel circuit"
+          },
+          {
+            "text": "One broken lamp can stop the whole circuit",
+            "category": "Series circuit"
+          },
+          {
+            "text": "Other branches can still work if one branch breaks",
+            "category": "Parallel circuit"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_sort_002",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:materials"
+      ],
+      "data": {
+        "title": "Conductors or Insulators?",
+        "instruction": "Sort each material or use into the correct category.",
+        "categories": [
+          "Conductor",
+          "Insulator"
+        ],
+        "pairs": [
+          {
+            "text": "Copper",
+            "category": "Conductor"
+          },
+          {
+            "text": "Aluminium foil",
+            "category": "Conductor"
+          },
+          {
+            "text": "Steel paper clip",
+            "category": "Conductor"
+          },
+          {
+            "text": "Graphite",
+            "category": "Conductor"
+          },
+          {
+            "text": "Plastic ruler",
+            "category": "Insulator"
+          },
+          {
+            "text": "Rubber band",
+            "category": "Insulator"
+          },
+          {
+            "text": "Glass",
+            "category": "Insulator"
+          },
+          {
+            "text": "Dry wooden splint",
+            "category": "Insulator"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_science_physics_electricity_sort_003",
+      "type": "categorySort",
+      "level": "KS3 / Year 7-9",
+      "topics": [
+        "KS3 Science: physics electricity"
+      ],
+      "tags": [
+        "cat:measurement",
+        "cat:practical"
+      ],
+      "data": {
+        "title": "Current, Voltage or Resistance?",
+        "instruction": "Sort each statement into the correct quantity.",
+        "categories": [
+          "Current",
+          "Voltage",
+          "Resistance"
+        ],
+        "pairs": [
+          {
+            "text": "Measured in amperes",
+            "category": "Current"
+          },
+          {
+            "text": "Measured by an ammeter in series",
+            "category": "Current"
+          },
+          {
+            "text": "Rate of flow of electric charge",
+            "category": "Current"
+          },
+          {
+            "text": "Measured in volts",
+            "category": "Voltage"
+          },
+          {
+            "text": "Measured by a voltmeter in parallel",
+            "category": "Voltage"
+          },
+          {
+            "text": "Energy transferred per coulomb between two points",
+            "category": "Voltage"
+          },
+          {
+            "text": "Measured in ohms",
+            "category": "Resistance"
+          },
+          {
+            "text": "Opposition to current",
+            "category": "Resistance"
+          },
+          {
+            "text": "Can increase if a wire is longer or thinner",
+            "category": "Resistance"
+          }
+        ]
+      }
+    }
+  ],
+  "curriculum": "ks3"
+}

@@ -4,18 +4,15 @@
  * Pure utility functions for quiz scoring.
  * No side effects, no state, no external dependencies.
  */
+import { normalizeForCompare } from "@/utils.js";
 
 // ─── Normalisation helpers ──────────────────────────────────────────
+// Delegates to the canonical normalizeForCompare in utils.js so that
+// diacritic-folding (German umlauts, French accents, etc.) is consistent
+// with the core quiz engine (quiz.js → gradeQuestion).
 
 function toNorm(str) {
-  return (str || "")
-    .toString()
-    .trim()
-    .toLowerCase()
-    .replace(/[‑–]/g, "-")            // normalise dashes
-    .replace(/['"'']/g, "'")          // normalise apostrophes
-    .replace(/[,.:;!?]+/g, "")       // strip punctuation
-    .replace(/\s+/g, " ");           // collapse whitespace
+  return normalizeForCompare(str);
 }
 
 // ─── Core scoring ───────────────────────────────────────────────────

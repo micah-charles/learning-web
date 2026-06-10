@@ -3,6 +3,12 @@ import { isWordMastered } from "./storage.js";
 import { normLang } from "./lang-utils.js";
 
 const MODE_DEFINITIONS = [
+  {
+    id: "passageQuestionChooseAnswer",
+    kind: "choice",
+    family: "passage",
+    direction: null,
+  },
   // ── German modes ───────────────────────────────────────────────────────
   {
     id: "englishWordChooseGerman",
@@ -64,6 +70,12 @@ const MODE_DEFINITIONS = [
     family: "vocab",
     direction: null,
   },
+  {
+    id: "multipleChoice",
+    kind: "choice",
+    family: "standalone",
+    direction: null,
+  },
   // Note: additional language modes (latinWordChooseEnglish, etc.) are
   // automatically supported by the generic isReverse parser in makeVocabChoiceFromUnified.
   // No MODE_DEFINITIONS entry needed for them.
@@ -89,6 +101,12 @@ function datasetLabels(dataset = null) {
 }
 
 function buildModeTitle(definition, labels) {
+  if (definition.family === "passage") {
+    return "Question -> choose answer";
+  }
+  if (definition.family === "standalone") {
+    return "Multiple choice";
+  }
   // The prompt always shows the STUDY language; the user types/builds the TARGET language.
   const promptLabel = labels.studyLabel;
   const answerLabel = labels.targetLabel;
@@ -137,6 +155,10 @@ function dedupeStrings(items) {
     output.push(text);
   }
   return output;
+}
+
+function firstTopic(item) {
+  return Array.isArray(item && item.topics) ? item.topics[0] || "" : "";
 }
 
 function cyclePick(items, count) {
@@ -246,7 +268,9 @@ function makeWordChoiceQuestions(words, count, allWords, dataset, modeId) {
       answer,
       options,
       wordId: word.id,
+      sourceItemId: word.id,
       topic: word.topic,
+      pos: word.part_of_speech || word.pos || "",
       subtitle: buildSubtitle(word),
       speechText: word.de,
       speechLanguage: labels.speechLanguage,
@@ -271,7 +295,9 @@ function makeWordTypedQuestions(words, count, dataset, modeId) {
       ? collectAcceptedAnswers(word.en, word.accepted_translations)
       : collectAcceptedAnswers(word.de, word.accepted_answers),
     wordId: word.id,
+    sourceItemId: word.id,
     topic: word.topic,
+    pos: word.part_of_speech || word.pos || "",
     subtitle: buildSubtitle(word),
     speechText: word.de,
     speechLanguage: labels.speechLanguage,
@@ -290,6 +316,7 @@ function buildSentenceQuestion(sentence, modeId, dataset, index) {
     answer: modeId === "germanSentenceBuildEnglish" ? sentence.en : sentence.de,
     acceptedAnswers: [modeId === "germanSentenceBuildEnglish" ? sentence.en : sentence.de],
     wordId: sentence.target_vocab_id || (Array.isArray(sentence.vocab_ids) && sentence.vocab_ids.length ? sentence.vocab_ids[0] : null),
+    sourceItemId: sentence.id,
     subtitle: Array.isArray(sentence.topics) ? sentence.topics.join(", ") : "",
   };
 
@@ -381,9 +408,9 @@ export function makeFillBlankQuestions(items, count, dataset) {
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
-      modeTitle: "Fill in the blank",
-      kind: "gap",
-      prompt: item.sentence,
+      modeTitle: "Multiple choice",
+      kind: "choice",
+      prompt: item.question || item.sentence,
       answer: item.answer,
       acceptedAnswers: [item.answer],
       hint: item.hint || "",
@@ -402,13 +429,15 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
   const labels = datasetLabels(dataset);
 
   // Parse the direction from the mode ID string itself — truly generic, no hardcoded languages.
-  // Mode ID format: "{wordShown}Choose{wordChosen}"
-  // e.g. "germanWordChooseEnglish"  → shown=German,  chosen=English
-  // e.g. "englishWordChooseGerman"  → shown=English, chosen=German
-  // e.g. "latinWordChooseEnglish"   → shown=Latin,  chosen=English
-  // isReverse = the mode shows the TARGET language (prompt = target, user picks study).
-  // We detect this by checking if the shown language matches the target label.
-  const shownLang = modeId.replace(/^(.+?)(Choose|Type|Build)(.+)$/, "$1");
+  // Mode ID format: "{language}Word{Action}{language}"
+  // e.g. "germanWordChooseEnglish"  → shown=German,  chosen=English  (studyToTarget)
+  // e.g. "englishWordChooseGerman"  → shown=English, chosen=German   (targetToStudy)
+  // e.g. "latinWordChooseEnglish"   → shown=Latin,   chosen=English  (studyToTarget)
+  //
+  // IMPORTANT: the regex must stop before "Word" or "Sentence" — NOT at "Choose/Type/Build" —
+  // otherwise "englishWord" is captured instead of "english", making the label comparison fail.
+  const shownLang = modeId.replace(/^(.+?)(Word|Sentence)(Choose|Type|Build)(.+)$/, "$1");
+  // isReverse = the prompt is the TARGET language (English shown, user picks study language).
   const isReverse = shownLang.toLowerCase() === labels.targetLabel.toLowerCase();
 
   return picks.map((item, index) => {
@@ -458,17 +487,19 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
     return {
       id:          `choice-${modeId}-${item.id}-${index}`,
       modeId,
-      modeTitle:   buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "studyToTarget" : "targetToStudy" }, labels),
+      modeTitle:   buildModeTitle({ id: modeId, kind: "choice", family: "word", direction: isReverse ? "targetToStudy" : "studyToTarget" }, labels),
       kind:        "choice",
       prompt,
       answer,
       options,
       wordId:      item.id,
+      sourceItemId: item.id,
       topic:       Array.isArray(item.topics) ? item.topics[0] : (item.tags && item.tags[0]) || "",
       subtitle:    item.level || "",
       speechText:  src,
       speechLanguage: labels.speechLanguage,
       example:     exampleSrc,
+      stimulus:    item.data.stimulus || null,
     };
   });
 }
@@ -482,12 +513,14 @@ export function makeSequenceFromUnified(unifiedItems, count, dataset) {
     modeId: "sequenceOrder",
     modeTitle: item.data.title || "Arrange in order",
     kind: "sequence",
-    prompt: item.data.title || "",
-    instruction: item.data.instruction || "",
-    correctOrder: item.data.items || [],
-    shuffledOrder: shuffle([...(item.data.items || [])]),
-    speechText: (item.data.items || []).join(". "),
+      prompt: item.data.title || "",
+      instruction: item.data.instruction || "",
+      correctOrder: item.data.items || [],
+      shuffledOrder: shuffle([...(item.data.items || [])]),
+      sourceItemId: item.id,
+      speechText: (item.data.items || []).join(". "),
     speechLanguage: labels.speechLanguage,
+    stimulus: item.data.stimulus || null,
   }));
 }
 
@@ -506,39 +539,157 @@ export function makeCategorySortFromUnified(unifiedItems, count, dataset) {
       instruction: item.data.instruction || "",
       categories: item.data.categories || [],
       items: shuffle([...pairs]),
+      sourceItemId: item.id,
       speechText: pairs.map((p) => p.text).join(", "),
       speechLanguage: labels.speechLanguage,
+      stimulus: item.data.stimulus || null,
     };
   });
 }
 
-export function makeFillBlankFromUnified(unifiedItems, count, dataset) {
+export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMode = "mixed") {
   const gaps = unifiedItems.filter((item) => item.type === "fillBlank");
   const picks = cyclePick(gaps, count);
   const labels = datasetLabels(dataset);
+  const mode = answerMode === "choice" ? "mcq" : answerMode;
   return picks.map((item, index) => {
-    const wrongAnswers = shuffle(
-      dedupeStrings(
-        gaps
-          .filter((g) => g.id !== item.id)
-          .map((g) => g.data.answer)
-          .filter((v) => normalizeForCompare(v) !== normalizeForCompare(item.data.answer || "")),
-      ),
-    ).slice(0, 3);
+    const d = item.data || {};
+    // Respect the user's answerMode selection:
+    //   "typed"  → never show MCQ buttons; always render as free-text
+    //   "mcq"    → always show MCQ buttons; generate options from pool when not explicit
+    //   "mixed"  → MCQ only for items that carry explicit options; typed for the rest
+    // The renderer uses `options.length > 0` to decide MCQ vs textarea.
+    const hasExplicitOptions = Array.isArray(d.options) && d.options.length >= 2;
+    let options;
+    if (mode === "typed") {
+      options = []; // force textarea regardless of item data
+    } else if (hasExplicitOptions && (mode === "mcq" || mode === "mixed")) {
+      options = shuffle([...d.options]);
+    } else if (mode === "mcq") {
+      // No explicit options: generate distractors from the pool
+      const wrongAnswers = shuffle(
+        dedupeStrings(
+          gaps
+            .filter((g) => g.id !== item.id)
+            .map((g) => g.data.answer)
+            .filter((v) => normalizeForCompare(v) !== normalizeForCompare(d.answer || "")),
+        ),
+      ).slice(0, 3);
+      options = shuffle([d.answer, ...wrongAnswers]);
+    } else {
+      // mixed, no explicit options → typed
+      options = [];
+    }
+    const isChoice = options.length > 0;
+    const prompt = d.question || d.sentence || "";
     return {
       id: `gap-${item.id}-${index}`,
       modeId: "fillBlank",
-      modeTitle: "Fill in the blank",
-      kind: "gap",
-      prompt: item.data.sentence || "",
-      answer: item.data.answer || "",
-      acceptedAnswers: [item.data.answer],
-      hint: item.data.hint || "",
-      options: shuffle([item.data.answer, ...wrongAnswers]),
-      speechText: item.data.sentence || "",
+      modeTitle: isChoice ? "Multiple choice" : "Fill in the blank",
+      kind: isChoice ? "choice" : "gap",
+      prompt,
+      answer: d.answer || "",
+      acceptedAnswers: [d.answer],
+      hint: d.hint || "",
+      options,
+      sourceItemId: item.id,
+      speechText: prompt,
       speechLanguage: labels.speechLanguage,
+      stimulus: d.stimulus || null,
     };
   });
+}
+
+export function makeMultipleChoiceFromUnified(unifiedItems, count, dataset) {
+  const choices = unifiedItems.filter((item) => {
+    if (item.type !== "multipleChoice") return false;
+    const d = item.data || {};
+    const prompt = d.question || d.prompt || "";
+    const answer = d.answer || "";
+    const options = Array.isArray(d.options) ? d.options : [];
+    return prompt && answer && options.length >= 2;
+  });
+  const picks = cyclePick(choices, count);
+  const labels = datasetLabels(dataset);
+
+  return picks.map((item, index) => {
+    const d = item.data || {};
+    const prompt = d.question || d.prompt || "";
+    const answer = d.answer || "";
+    const explicitOptions = Array.isArray(d.options)
+      ? dedupeStrings(d.options)
+      : [];
+    const options = explicitOptions.some((option) => normalizeForCompare(option) === normalizeForCompare(answer))
+      ? explicitOptions
+      : dedupeStrings([answer, ...explicitOptions]);
+
+    return {
+      id: `mcq-${item.id}-${index}`,
+      modeId: "multipleChoice",
+      modeTitle: "Multiple choice",
+      kind: "choice",
+      prompt,
+      answer,
+      acceptedAnswers: [answer],
+      hint: d.hint || "",
+      options: shuffle(options),
+      sourceItemId: item.id,
+      speechText: prompt,
+      speechLanguage: labels.speechLanguage,
+      stimulus: d.stimulus || null,
+      topic: firstTopic(item),
+    };
+  });
+}
+
+export function makePassageChoiceFromUnified(unifiedItems, count, dataset) {
+  const labels = datasetLabels(dataset);
+  const questions = [];
+
+  for (const item of unifiedItems) {
+    if (item.type !== "passage") {
+      continue;
+    }
+    const data = item.data || {};
+    const sourceTitle = data.sourceTitle || data.title || firstTopic(item) || "Passage";
+    const rawQuestions = Array.isArray(data.questions) ? data.questions : [];
+
+    for (const question of rawQuestions) {
+      const options = dedupeStrings(question.options || []);
+      const correctOptionIndex = Number.isInteger(question.correctOptionIndex)
+        ? question.correctOptionIndex
+        : Number.isInteger(question.correct_option_index)
+          ? question.correct_option_index
+          : -1;
+      const correctAnswer = question.correctAnswer
+        || question.correct_answer
+        || question.modelAnswer
+        || question.model_answer_en
+        || (correctOptionIndex >= 0 ? options[correctOptionIndex] : "");
+
+      if (!question.question || options.length < 2 || !correctAnswer) {
+        continue;
+      }
+
+      questions.push({
+        sourceItemId: `${item.id}::${question.id || questions.length}`,
+        id: `passage-choice-${item.id}-${question.id || questions.length}`,
+        modeId: "passageQuestionChooseAnswer",
+        modeTitle: "Question -> choose answer",
+        kind: "choice",
+        prompt: question.question,
+        answer: correctAnswer,
+        options,
+        subtitle: sourceTitle,
+        topic: firstTopic(item),
+        speechText: question.question,
+        speechLanguage: labels.speechLanguage,
+        stimulus: data.stimulus || null,
+      });
+    }
+  }
+
+  return cyclePick(questions, count);
 }
 
 export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
@@ -581,6 +732,7 @@ export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
       speechText:     src,
       speechLanguage: labels.speechLanguage,
       placeholder:    `Type the ${labels.studyLabel} sentence`,
+      stimulus:       item.data.stimulus || null,
     };
   });
 }
@@ -625,29 +777,64 @@ export function getDefaultQuestionModes(dataset = null) {
 //   subject:    "language" | "history" | "geography" | "science"
 //   direction:  "studyToTarget" | "targetToStudy"   (language packs only)
 //   answerMode: "mcq" | "typed" | "mixed"
-export function resolveQuizModesForUI({ subject = "language", direction = "studyToTarget", answerMode = "mixed" }) {
+export function resolveQuizModesForUI({
+  subject = "language",
+  direction = "studyToTarget",
+  answerMode = "mixed",
+  fillBlankCount = 0,
+  multipleChoiceCount = 0,
+  vocabCount = -1,
+}) {
   const isReverse = direction === "targetToStudy";
 
   // Word-level choice/type mode IDs. The engine treats these as direction
   // tokens regardless of the literal "german"/"english" in the name.
   const choiceMode = isReverse ? "englishWordChooseGerman" : "germanWordChooseEnglish";
   const typedMode  = isReverse ? "englishWordTypeGerman"   : "germanWordTypeEnglish";
+  // Sentence-build mode IDs (language packs only).
+  const buildMode  = isReverse ? "englishSentenceBuildGerman" : "germanSentenceBuildEnglish";
+
+  // Normalise UI label → canonical engine value.
+  // "choice" is the React UI label; the legacy engine used "mcq".
+  const mode = answerMode === "choice" ? "mcq" : answerMode;
 
   if (subject === "language") {
-    if (answerMode === "mcq")   return [choiceMode];
-    if (answerMode === "typed") return [typedMode];
-    return [choiceMode, typedMode]; // mixed
+    const standaloneModes = [
+      ...(multipleChoiceCount > 0 ? ["multipleChoice"] : []),
+      ...(fillBlankCount > 0 ? ["fillBlank"] : []),
+    ];
+
+    // Grammar-only packs: no vocab items, only standalone quiz items.
+    if (standaloneModes.length > 0 && vocabCount === 0) {
+      return standaloneModes;
+    }
+
+    // Mixed packs: vocab + standalone grammar/question items.
+    // Include standalone modes alongside the vocab modes so grammar questions are generated too.
+    const vocabModes =
+      mode === "mcq"   ? [choiceMode] :
+      mode === "typed" ? [typedMode]  :
+      mode === "build" ? [buildMode]  :
+      [choiceMode, typedMode];  // mixed
+    return standaloneModes.length > 0 ? [...vocabModes, ...standaloneModes] : vocabModes;
+  }
+
+  if (subject === "literature") {
+    if (mode === "mcq")   return ["passageQuestionChooseAnswer"];
+    if (mode === "typed") return ["fillBlank"];
+    return ["passageQuestionChooseAnswer", "fillBlank", "categorySort"];
   }
 
   // Non-language packs: direction is ignored (prompt language matches the
   // pack's source). Use studyToTarget word modes; the engine will pull MCQ
   // options or typed answers from whatever vocab the pack has.
-  if (answerMode === "mcq")   return ["germanWordChooseEnglish"];
-  if (answerMode === "typed") return ["germanWordTypeEnglish"];
+  // "build" has no sentence pools in non-language packs — fall back to mixed.
+  if (mode === "mcq")   return ["germanWordChooseEnglish"];
+  if (mode === "typed") return ["germanWordTypeEnglish"];
   return ["germanWordChooseEnglish", "germanWordTypeEnglish"];
 }
 
-export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null }) {
+export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null, passageUnifiedPack = null }) {
   const availableModes = getQuestionModes(dataset);
   const activeModes = availableModes.filter((mode) => config.modes.includes(mode.id));
   if (!activeModes.length) {
@@ -655,15 +842,37 @@ export function createQuizSession({ words, sentencePools, config, persistedState
   }
 
   const candidateWords = customWords && customWords.length ? customWords : words;
-  const wordPool = selectWordPool(candidateWords, config, persistedState);
+  const needsWordPool = activeModes.some((mode) => mode.family === "word" || mode.family === "sentence");
+  const wordPool = needsWordPool ? selectWordPool(candidateWords, config, persistedState) : [];
   const needsSentences = activeModes.some((mode) => mode.family === "sentence");
   const sentencePool = needsSentences ? selectSentencePool(wordPool, sentencePools, config) : [];
-  const unifiedItems = unifiedPack && Array.isArray(unifiedPack.items) ? unifiedPack.items : null;
+  const rawUnifiedItems = unifiedPack && Array.isArray(unifiedPack.items) ? unifiedPack.items : null;
+
+  // For stage-based packs (e.g. Cambridge Latin), filter non-vocab unified items
+  // (fillBlank, sequence, etc.) to only the selected stages.  Vocab items are
+  // already filtered upstream by filterWordsForScope; this mirrors that filtering
+  // for the unified-item path so Stage selection works for grammar packs too.
+  const selectedStages = Array.isArray(config.stages) && config.stages.length > 0
+    ? new Set(config.stages.map(String))
+    : null;
+  const unifiedItems = rawUnifiedItems && selectedStages
+    ? rawUnifiedItems.filter((item) => {
+        if (item.type === "vocab") return true; // vocab already filtered via words
+        const stageStr = String(item.level || "").replace(/^Stage\s+/i, "").trim();
+        return !stageStr || isNaN(Number(stageStr)) || selectedStages.has(stageStr);
+      })
+    : rawUnifiedItems;
+
   const counts = distribute(Math.max(activeModes.length * 3, config.questionCount), activeModes.length);
 
   const questionGroups = activeModes.map((mode, index) => {
     const count = counts[index];
     switch (mode.id) {
+      case "passageQuestionChooseAnswer":
+        if (passageUnifiedPack && Array.isArray(passageUnifiedPack.items)) {
+          return makePassageChoiceFromUnified(passageUnifiedPack.items, count, dataset);
+        }
+        return [];
       case "englishWordChooseGerman":
       case "germanWordChooseEnglish":
         if (unifiedItems) {
@@ -692,9 +901,14 @@ export function createQuizSession({ words, sentencePools, config, persistedState
         return makeCategorySortQuestions(categorySortItems, count, dataset);
       case "fillBlank":
         if (unifiedItems) {
-          return makeFillBlankFromUnified(unifiedItems, count, dataset);
+          return makeFillBlankFromUnified(unifiedItems, count, dataset, config.answerMode);
         }
         return makeFillBlankQuestions(fillBlankItems, count, dataset);
+      case "multipleChoice":
+        if (unifiedItems) {
+          return makeMultipleChoiceFromUnified(unifiedItems, count, dataset);
+        }
+        return [];
       default:
         return [];
     }

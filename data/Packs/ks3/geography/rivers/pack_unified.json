@@ -1,0 +1,2338 @@
+{
+  "packId": "ks3_geography_rivers",
+  "subject": "geography",
+  "title": "KS3 Geography - Rivers",
+  "subtitle": "Revision pack for river systems, processes, landforms, flooding, management and fieldwork.",
+  "level": "KS3",
+  "language": "English",
+  "topics": [
+    "Rivers"
+  ],
+  "tags": [
+    "KS3",
+    "Geography",
+    "Rivers"
+  ],
+  "description": "A KS3 geography revision pack on how rivers work from source to mouth. It covers drainage basins, downstream change, river processes, landforms, flooding, flood management, case studies and fieldwork data skills.",
+  "schemaVersion": "1.1",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_rivers_vocab_001",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "River",
+        "targetWord": "a natural flow of water moving through a channel towards a lake, sea, ocean or another river",
+        "examples": {
+          "en-GB": "A river carries water and sediment through a channel towards its mouth."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_002",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Source",
+        "targetWord": "the place where a river begins, often in upland areas",
+        "examples": {
+          "en-GB": "The source of many rivers is found on high ground."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_003",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Mouth",
+        "targetWord": "the place where a river ends, usually where it enters the sea, a lake or a larger river",
+        "examples": {
+          "en-GB": "The mouth is where the river reaches another body of water."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_004",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Drainage basin",
+        "targetWord": "the area of land drained by a river and its tributaries",
+        "examples": {
+          "en-GB": "All rainfall in a drainage basin may eventually feed the river system."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_005",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Watershed",
+        "targetWord": "the high boundary between one drainage basin and another",
+        "examples": {
+          "en-GB": "A watershed often follows ridges of high land."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_006",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Tributary",
+        "targetWord": "a smaller river or stream that joins a larger river",
+        "examples": {
+          "en-GB": "A tributary adds water to the main river downstream."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_007",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Confluence",
+        "targetWord": "the point where two rivers or streams meet",
+        "examples": {
+          "en-GB": "Discharge often increases below a confluence."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_008",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Channel",
+        "targetWord": "the route or hollow that the river flows through",
+        "examples": {
+          "en-GB": "The channel normally becomes wider and deeper downstream."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_009",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:features"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Banks",
+        "targetWord": "the sides of a river channel",
+        "examples": {
+          "en-GB": "Erosion can undercut river banks on the outside of a meander."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_010",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:features"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Bed",
+        "targetWord": "the bottom of a river channel",
+        "examples": {
+          "en-GB": "Abrasion can scrape and deepen the river bed."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_011",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Floodplain",
+        "targetWord": "flat land beside a river that may flood when discharge is high",
+        "examples": {
+          "en-GB": "Floodplains are built by repeated deposition of alluvium."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_012",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Estuary",
+        "targetWord": "a wide tidal area near the river mouth where fresh water mixes with sea water",
+        "examples": {
+          "en-GB": "The Severn Estuary is influenced by tides and deposition."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_013",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Long profile",
+        "targetWord": "the side view of a river from source to mouth",
+        "examples": {
+          "en-GB": "A long profile is steep near the source and gentler near the mouth."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_014",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Cross profile",
+        "targetWord": "the shape of a river valley or channel from one side to the other",
+        "examples": {
+          "en-GB": "Cross profiles show how channel width and depth change downstream."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_015",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Discharge",
+        "targetWord": "the amount of water flowing in a river at a point, usually measured in m3/s",
+        "examples": {
+          "en-GB": "Discharge usually increases downstream as tributaries add water."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_016",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Velocity",
+        "targetWord": "the speed of river flow",
+        "examples": {
+          "en-GB": "Velocity can be measured by timing a float over a known distance."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_017",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Load",
+        "targetWord": "the material carried by a river, such as stones, sand, silt and dissolved minerals",
+        "examples": {
+          "en-GB": "River load is moved by traction, saltation, suspension and solution."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_018",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Erosion",
+        "targetWord": "the wearing away and removal of rock or soil by the river",
+        "examples": {
+          "en-GB": "Hydraulic action and abrasion are types of river erosion."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_019",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Weathering",
+        "targetWord": "the breakdown of rock in place without movement",
+        "examples": {
+          "en-GB": "Freeze-thaw weathering can weaken valley sides before material is removed."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_020",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Transportation",
+        "targetWord": "the movement of material carried by a river",
+        "examples": {
+          "en-GB": "Transportation moves load downstream through the channel."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_021",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Deposition",
+        "targetWord": "the dropping of material carried by a river",
+        "examples": {
+          "en-GB": "Deposition happens when a river loses energy."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_022",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:erosion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Hydraulic action",
+        "targetWord": "erosion caused by the force of water hitting the bed and banks",
+        "examples": {
+          "en-GB": "Hydraulic action can force air into cracks and weaken river banks."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_023",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:erosion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Abrasion",
+        "targetWord": "erosion caused when rocks carried by the river scrape the bed and banks",
+        "examples": {
+          "en-GB": "Abrasion helps deepen channels and plunge pools."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_024",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:erosion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Attrition",
+        "targetWord": "erosion caused when rocks carried by a river hit each other and become smaller and rounder",
+        "examples": {
+          "en-GB": "Attrition helps explain why sediment size decreases downstream."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_025",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:erosion"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Solution",
+        "targetWord": "erosion or transport involving minerals dissolving in river water",
+        "examples": {
+          "en-GB": "Solution can dissolve limestone and carry dissolved minerals."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_026",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:transportation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Traction",
+        "targetWord": "transportation where large stones roll along the river bed",
+        "examples": {
+          "en-GB": "Traction moves boulders and large pebbles in high-energy flows."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_027",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:transportation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Saltation",
+        "targetWord": "transportation where small stones bounce along the river bed",
+        "examples": {
+          "en-GB": "Saltation usually moves pebbles and gravel."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_028",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:transportation"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Suspension",
+        "targetWord": "transportation where fine material is carried within the water",
+        "examples": {
+          "en-GB": "Suspension carries silt and clay in the flow."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_029",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "V-shaped valley",
+        "targetWord": "a narrow valley with steep sides, usually formed in the upper course by vertical erosion",
+        "examples": {
+          "en-GB": "V-shaped valleys are common near the source of a river."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_030",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Interlocking spurs",
+        "targetWord": "ridges of land that stick out into a valley and force a river to wind around them",
+        "examples": {
+          "en-GB": "Interlocking spurs form where a river lacks energy to cut through hillsides."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_031",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Waterfall",
+        "targetWord": "a steep drop in a river channel where water falls vertically or near vertically",
+        "examples": {
+          "en-GB": "Waterfalls often form where hard rock lies above soft rock."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_032",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Gorge",
+        "targetWord": "a narrow, steep-sided valley often formed as a waterfall retreats upstream",
+        "examples": {
+          "en-GB": "A retreating waterfall can leave a gorge behind it."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_033",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Meander",
+        "targetWord": "a bend in a river",
+        "examples": {
+          "en-GB": "Erosion is strongest on the outside of a meander bend."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_034",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Oxbow lake",
+        "targetWord": "a curved lake formed when a meander is cut off from the main river",
+        "examples": {
+          "en-GB": "Deposition can seal an old meander bend to form an oxbow lake."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_035",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Levee",
+        "targetWord": "a raised bank of deposited material beside a river channel",
+        "examples": {
+          "en-GB": "Natural levees can build up after repeated floods."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_036",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:flooding"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Flood",
+        "targetWord": "when water covers land that is normally dry",
+        "examples": {
+          "en-GB": "A flood can happen when discharge is too high for the channel to hold."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_037",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Hydrograph",
+        "targetWord": "a graph showing how river discharge changes after rainfall",
+        "examples": {
+          "en-GB": "A hydrograph shows peak rainfall, peak discharge and lag time."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_038",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Lag time",
+        "targetWord": "the time between peak rainfall and peak discharge on a hydrograph",
+        "examples": {
+          "en-GB": "A short lag time can mean floodwater reaches the river quickly."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_039",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:management"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Hard engineering",
+        "targetWord": "flood management using built structures such as dams, flood walls and embankments",
+        "examples": {
+          "en-GB": "Hard engineering can protect towns but may be expensive."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_040",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:management"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Soft engineering",
+        "targetWord": "flood management that works more with natural processes, such as tree planting and floodplain zoning",
+        "examples": {
+          "en-GB": "Soft engineering can be more sustainable but may not stop the largest floods."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_041",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:causes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Urbanisation",
+        "targetWord": "the growth of built-up areas with more impermeable surfaces such as roads and roofs",
+        "examples": {
+          "en-GB": "Urbanisation can increase surface runoff and flood risk."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_042",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:causes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Deforestation",
+        "targetWord": "the removal of trees, reducing interception and often increasing runoff",
+        "examples": {
+          "en-GB": "Deforestation can make water reach the river more quickly."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_043",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Alluvium",
+        "targetWord": "fine sediment deposited by a river, especially across a floodplain",
+        "examples": {
+          "en-GB": "Alluvium can make floodplain soils fertile."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_044",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:places"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "River Severn",
+        "targetWord": "the longest river in the UK, flowing from Wales to the Bristol Channel",
+        "examples": {
+          "en-GB": "The River Severn is useful for studying downstream river changes."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_vocab_045",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:places",
+        "cat:events"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boscastle 2004",
+        "targetWord": "a severe flash flood in Cornwall on 16 August 2004",
+        "examples": {
+          "en-GB": "Boscastle flooded after heavy rainfall in a steep drainage basin."
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_001",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "sentence": "The area of land drained by a river and its tributaries is a ____.",
+        "answer": "drainage basin",
+        "hint": "Two words.",
+        "options": [
+          "drainage basin",
+          "floodplain",
+          "estuary",
+          "levee"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_002",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "sentence": "The high boundary around a drainage basin is called the ____.",
+        "answer": "watershed",
+        "hint": "It often follows high land.",
+        "options": [
+          "watershed",
+          "confluence",
+          "channel",
+          "mouth"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_003",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "sentence": "A smaller river that joins a larger river is a ____.",
+        "answer": "tributary",
+        "hint": "Do not confuse this with the meeting point.",
+        "options": [
+          "tributary",
+          "confluence",
+          "levee",
+          "estuary"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_004",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:systems"
+      ],
+      "data": {
+        "sentence": "The point where two rivers meet is a ____.",
+        "answer": "confluence",
+        "hint": "This is a point, not the smaller river.",
+        "options": [
+          "confluence",
+          "tributary",
+          "source",
+          "watershed"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_005",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "River ____ is usually measured in cubic metres per second.",
+        "answer": "discharge",
+        "hint": "It is the amount of water flowing past a point.",
+        "options": [
+          "discharge",
+          "attrition",
+          "traction",
+          "alluvium"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_006",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:profiles"
+      ],
+      "data": {
+        "sentence": "The long profile of a river usually becomes less steep towards the ____.",
+        "answer": "mouth",
+        "hint": "This is where the river ends.",
+        "options": [
+          "mouth",
+          "source",
+          "watershed",
+          "upper course"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_007",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "Downstream, the river in the dataset becomes wider, deeper and ____.",
+        "answer": "faster",
+        "options": [
+          "faster",
+          "narrower",
+          "shallower",
+          "steeper"
+        ],
+        "stimulus": {
+          "type": "table",
+          "title": "Simplified downstream dataset",
+          "headers": [
+            "Site",
+            "Course",
+            "Width (m)",
+            "Average depth (m)",
+            "Velocity (m/s)",
+            "Sediment size (mm)"
+          ],
+          "rows": [
+            [
+              "A",
+              "Upper",
+              "2.1",
+              "0.20",
+              "0.45",
+              "90"
+            ],
+            [
+              "B",
+              "Upper-middle",
+              "4.8",
+              "0.42",
+              "0.65",
+              "45"
+            ],
+            [
+              "C",
+              "Middle",
+              "9.5",
+              "0.75",
+              "0.82",
+              "18"
+            ],
+            [
+              "D",
+              "Lower",
+              "18.0",
+              "1.40",
+              "0.95",
+              "5"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_008",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "In the dataset, average sediment size decreases from 90 mm to ____ mm downstream.",
+        "answer": "5",
+        "options": [
+          "5",
+          "18",
+          "45",
+          "90"
+        ],
+        "stimulus": {
+          "type": "table",
+          "title": "Simplified downstream dataset",
+          "headers": [
+            "Site",
+            "Course",
+            "Width (m)",
+            "Average depth (m)",
+            "Velocity (m/s)",
+            "Sediment size (mm)"
+          ],
+          "rows": [
+            [
+              "A",
+              "Upper",
+              "2.1",
+              "0.20",
+              "0.45",
+              "90"
+            ],
+            [
+              "B",
+              "Upper-middle",
+              "4.8",
+              "0.42",
+              "0.65",
+              "45"
+            ],
+            [
+              "C",
+              "Middle",
+              "9.5",
+              "0.75",
+              "0.82",
+              "18"
+            ],
+            [
+              "D",
+              "Lower",
+              "18.0",
+              "1.40",
+              "0.95",
+              "5"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_009",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "The wearing away and removal of rock and soil by a river is called ____.",
+        "answer": "erosion",
+        "options": [
+          "erosion",
+          "weathering",
+          "infiltration",
+          "interception"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_010",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "sentence": "The dropping of sediment when a river loses energy is called ____.",
+        "answer": "deposition",
+        "options": [
+          "deposition",
+          "abrasion",
+          "attrition",
+          "traction"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_011",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:transportation"
+      ],
+      "data": {
+        "sentence": "Large stones rolling along the river bed are transported by ____.",
+        "answer": "traction",
+        "options": [
+          "traction",
+          "suspension",
+          "solution",
+          "hydraulic action"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_012",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:transportation"
+      ],
+      "data": {
+        "sentence": "Fine material carried within the water is moved in ____.",
+        "answer": "suspension",
+        "options": [
+          "suspension",
+          "traction",
+          "saltation",
+          "abrasion"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_013",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "sentence": "A V-shaped valley forms mainly because of vertical ____ in the upper course.",
+        "answer": "erosion",
+        "options": [
+          "erosion",
+          "deposition",
+          "evaporation",
+          "zoning"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_014",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "sentence": "A waterfall often forms where hard rock lies above softer ____.",
+        "answer": "rock",
+        "options": [
+          "rock",
+          "woodland",
+          "tarmac",
+          "alluvium"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_015",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "sentence": "On a meander, erosion is strongest on the ____ bend.",
+        "answer": "outside",
+        "options": [
+          "outside",
+          "inside",
+          "upstream",
+          "dry"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_016",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "sentence": "On a meander, deposition is common on the ____ bend where velocity is lower.",
+        "answer": "inside",
+        "options": [
+          "inside",
+          "outside",
+          "source",
+          "watershed"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_017",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "sentence": "An oxbow lake forms when a ____ is cut off from the main river.",
+        "answer": "meander",
+        "options": [
+          "meander",
+          "tributary",
+          "watershed",
+          "dam"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_018",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:causes"
+      ],
+      "data": {
+        "sentence": "Urbanisation increases flood risk because concrete and tarmac increase surface ____.",
+        "answer": "runoff",
+        "options": [
+          "runoff",
+          "interception",
+          "infiltration",
+          "evaporation"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_019",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "On the hydrograph data, rainfall peaks at 12:00 but discharge peaks later at ____.",
+        "answer": "16:00",
+        "options": [
+          "16:00",
+          "08:00",
+          "10:00",
+          "12:00"
+        ],
+        "stimulus": {
+          "type": "table",
+          "title": "Hydrograph-style flood data",
+          "headers": [
+            "Time",
+            "Rainfall (mm per hour)",
+            "River discharge (m3/s)"
+          ],
+          "rows": [
+            [
+              "08:00",
+              "2",
+              "12"
+            ],
+            [
+              "10:00",
+              "8",
+              "18"
+            ],
+            [
+              "12:00",
+              "20",
+              "30"
+            ],
+            [
+              "14:00",
+              "12",
+              "52"
+            ],
+            [
+              "16:00",
+              "4",
+              "65"
+            ],
+            [
+              "18:00",
+              "0",
+              "54"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_020",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:data"
+      ],
+      "data": {
+        "sentence": "The time between peak rainfall and peak discharge is called ____ time.",
+        "answer": "lag",
+        "options": [
+          "lag",
+          "flow",
+          "load",
+          "bed"
+        ],
+        "stimulus": {
+          "type": "table",
+          "title": "Hydrograph-style flood data",
+          "headers": [
+            "Time",
+            "Rainfall (mm per hour)",
+            "River discharge (m3/s)"
+          ],
+          "rows": [
+            [
+              "08:00",
+              "2",
+              "12"
+            ],
+            [
+              "10:00",
+              "8",
+              "18"
+            ],
+            [
+              "12:00",
+              "20",
+              "30"
+            ],
+            [
+              "14:00",
+              "12",
+              "52"
+            ],
+            [
+              "16:00",
+              "4",
+              "65"
+            ],
+            [
+              "18:00",
+              "0",
+              "54"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_021",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:management"
+      ],
+      "data": {
+        "sentence": "Flood walls, dams and embankments are examples of ____ engineering.",
+        "answer": "hard",
+        "options": [
+          "hard",
+          "soft",
+          "natural",
+          "fieldwork"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_022",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:management"
+      ],
+      "data": {
+        "sentence": "Tree planting, wetlands and floodplain zoning are examples of ____ engineering.",
+        "answer": "soft",
+        "options": [
+          "soft",
+          "hard",
+          "tidal",
+          "vertical"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_023",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:case-study"
+      ],
+      "data": {
+        "sentence": "The 2004 Boscastle flood was made worse by heavy rainfall, steep slopes, saturated ground and a river ____.",
+        "answer": "confluence",
+        "options": [
+          "confluence",
+          "estuary",
+          "desert",
+          "delta"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_gap_024",
+      "type": "fillBlank",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:fieldwork"
+      ],
+      "data": {
+        "sentence": "To calculate average depth, add the readings and divide by the number of ____.",
+        "answer": "readings",
+        "options": [
+          "readings",
+          "rivers",
+          "banks",
+          "floods"
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_seq_001",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "title": "Formation of a V-shaped valley",
+        "instruction": "Put the stages of V-shaped valley formation in the correct order.",
+        "items": [
+          "The river flows over a steep gradient in the upper course.",
+          "Vertical erosion cuts down into the river bed.",
+          "Weathering weakens rocks on the valley sides.",
+          "Loose material moves downslope under gravity.",
+          "The river carries the loosened material away.",
+          "A narrow, steep-sided V-shaped valley forms over time."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_rivers_seq_002",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "title": "Formation of a waterfall and gorge",
+        "instruction": "Put the waterfall formation stages in the correct order.",
+        "items": [
+          "The river flows over bands of hard rock and soft rock.",
+          "Soft rock erodes more quickly by hydraulic action and abrasion.",
+          "A step, plunge pool and hard rock overhang form.",
+          "The unsupported hard rock overhang collapses.",
+          "Collapsed rocks help deepen the plunge pool by abrasion.",
+          "The waterfall retreats upstream and leaves a steep-sided gorge."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_rivers_seq_003",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:landforms"
+      ],
+      "data": {
+        "title": "Formation of an oxbow lake",
+        "instruction": "Put the oxbow lake formation stages in the correct order.",
+        "items": [
+          "A river flows around a meander bend.",
+          "Erosion on the outside bends makes the meander wider.",
+          "Deposition happens on the inside bends where the flow is slower.",
+          "The neck of land between two bends becomes narrower.",
+          "During high flow, the river cuts through the narrow neck.",
+          "Deposition seals off the old bend, leaving an oxbow lake."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_rivers_seq_004",
+      "type": "sequence",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:fieldwork"
+      ],
+      "data": {
+        "title": "Fieldwork method for downstream change",
+        "instruction": "Put the fieldwork stages in a sensible order.",
+        "items": [
+          "Choose several safe sites at different distances downstream.",
+          "Measure width, depth, velocity and sediment size using the same method at each site.",
+          "Repeat measurements to improve reliability.",
+          "Record recent weather and site conditions.",
+          "Calculate averages where needed.",
+          "Describe patterns downstream using figures from the data."
+        ],
+        "shuffle": true
+      }
+    },
+    {
+      "id": "ks3_rivers_cat_001",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "title": "Erosion, Transportation or Deposition?",
+        "instruction": "Sort each river process or example into the correct category.",
+        "categories": [
+          "Erosion",
+          "Transportation",
+          "Deposition"
+        ],
+        "pairs": [
+          {
+            "text": "hydraulic action wears away a river bank",
+            "category": "Erosion"
+          },
+          {
+            "text": "abrasion scrapes the bed of the channel",
+            "category": "Erosion"
+          },
+          {
+            "text": "traction rolls large stones along the bed",
+            "category": "Transportation"
+          },
+          {
+            "text": "saltation bounces pebbles along the bed",
+            "category": "Transportation"
+          },
+          {
+            "text": "fine sediment is dropped on a floodplain",
+            "category": "Deposition"
+          },
+          {
+            "text": "larger material is dropped near the channel during a flood",
+            "category": "Deposition"
+          },
+          {
+            "text": "attrition makes pebbles smaller and rounder",
+            "category": "Erosion"
+          },
+          {
+            "text": "silt is carried within the water",
+            "category": "Transportation"
+          },
+          {
+            "text": "alluvium builds up over repeated floods",
+            "category": "Deposition"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_cat_002",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:management"
+      ],
+      "data": {
+        "title": "Hard or Soft Engineering?",
+        "instruction": "Sort each flood management method into the correct type.",
+        "categories": [
+          "Hard engineering",
+          "Soft engineering"
+        ],
+        "pairs": [
+          {
+            "text": "dam and reservoir",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "flood wall",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "channel straightening",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "flood relief channel",
+            "category": "Hard engineering"
+          },
+          {
+            "text": "tree planting upstream",
+            "category": "Soft engineering"
+          },
+          {
+            "text": "floodplain zoning",
+            "category": "Soft engineering"
+          },
+          {
+            "text": "wetland restoration",
+            "category": "Soft engineering"
+          },
+          {
+            "text": "flood warning system",
+            "category": "Soft engineering"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_cat_003",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:causes"
+      ],
+      "data": {
+        "title": "Physical or Human Flood Cause?",
+        "instruction": "Sort each flood cause into the correct category.",
+        "categories": [
+          "Physical cause",
+          "Human cause"
+        ],
+        "pairs": [
+          {
+            "text": "heavy rainfall",
+            "category": "Physical cause"
+          },
+          {
+            "text": "long-lasting rainfall",
+            "category": "Physical cause"
+          },
+          {
+            "text": "saturated ground",
+            "category": "Physical cause"
+          },
+          {
+            "text": "impermeable rock",
+            "category": "Physical cause"
+          },
+          {
+            "text": "steep slopes",
+            "category": "Physical cause"
+          },
+          {
+            "text": "urbanisation",
+            "category": "Human cause"
+          },
+          {
+            "text": "deforestation",
+            "category": "Human cause"
+          },
+          {
+            "text": "building on floodplains",
+            "category": "Human cause"
+          },
+          {
+            "text": "climate change increasing extreme rainfall risk",
+            "category": "Human cause"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_rivers_cat_004",
+      "type": "categorySort",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:profiles"
+      ],
+      "data": {
+        "title": "Upper, Middle or Lower Course?",
+        "instruction": "Sort each feature into the course where it is most common.",
+        "categories": [
+          "Upper course",
+          "Middle course",
+          "Lower course"
+        ],
+        "pairs": [
+          {
+            "text": "steep gradient",
+            "category": "Upper course"
+          },
+          {
+            "text": "V-shaped valley",
+            "category": "Upper course"
+          },
+          {
+            "text": "waterfalls and gorges",
+            "category": "Upper course"
+          },
+          {
+            "text": "meanders becoming more developed",
+            "category": "Middle course"
+          },
+          {
+            "text": "more lateral erosion",
+            "category": "Middle course"
+          },
+          {
+            "text": "wider valley than the upper course",
+            "category": "Middle course"
+          },
+          {
+            "text": "wide floodplain",
+            "category": "Lower course"
+          },
+          {
+            "text": "levees",
+            "category": "Lower course"
+          },
+          {
+            "text": "estuary near the mouth",
+            "category": "Lower course"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_001",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "cross-profile",
+        "targetWord": "a side view of a river valley at a particular point",
+        "examples": {
+          "en-GB": "The cross-profile changes from source to mouth."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_002",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "corrosion",
+        "targetWord": "erosion where chemicals in water dissolve rock",
+        "examples": {
+          "en-GB": "Limestone is dissolved by the corrosion action of river water."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_003",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "transport",
+        "targetWord": "the movement of material by a river",
+        "examples": {
+          "en-GB": "Rivers can carry material in solution, suspension, or as bedload."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_004",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "ox-bow lake",
+        "targetWord": "a curved lake formed when a meander is cut off",
+        "examples": {
+          "en-GB": "Ox-bow lakes form when rivers change course."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_005",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "river cliff",
+        "targetWord": "a steep bank on the outside of a river meander",
+        "examples": {
+          "en-GB": "River cliffs form through erosion on the outer bend."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_006",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "point bar",
+        "targetWord": "a gentle deposit of sand on the inside of a river meander",
+        "examples": {
+          "en-GB": "Point bars form through deposition."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_007",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "delta",
+        "targetWord": "a triangular deposit at a river's mouth",
+        "examples": {
+          "en-GB": "Deltas form where rivers deposit material as they enter the sea."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_008",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "flooding",
+        "targetWord": "when water overflows the river channel onto the floodplain",
+        "examples": {
+          "en-GB": "Flooding can be caused by heavy rainfall or snowmelt."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_009",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "embankment",
+        "targetWord": "a raised wall along a river to prevent flooding",
+        "examples": {
+          "en-GB": "Embankments increase the capacity of the river channel."
+        }
+      }
+    },
+    {
+      "id": "ks3_geography_rivers_gen_010",
+      "type": "vocab",
+      "level": "KS3",
+      "topics": [
+        "Rivers"
+      ],
+      "tags": [
+        "KS3",
+        "Geography",
+        "Rivers",
+        "cat:processes"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "dams and reservoirs",
+        "targetWord": "structures built across rivers to store water",
+        "examples": {
+          "en-GB": "Dams reduce flooding downstream and generate hydroelectric power."
+        }
+      }
+    }
+  ]
+}

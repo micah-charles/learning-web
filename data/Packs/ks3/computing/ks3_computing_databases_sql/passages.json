@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_databases_sql",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "title": "KS3 Computing — Databases & SQL",
+  "subtitle": "Database concepts, relational databases, SQL queries, and data validation.",
+  "items": [
+    {
+      "id": "db_p01",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Databases: Structure and SQL"],
+      "tags": ["KS3", "computing", "databases"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Database Structure: Tables, Fields, Records, and Keys",
+        "targetTitle": "Database Structure: Tables, Fields, Records, and Keys",
+        "sourcePassage": "A database is an organised collection of data that allows information to be stored, searched, and retrieved efficiently. Data in a database is arranged in tables. Each table stores data about one type of entity — for example, a Students table stores information about students. Tables are divided into fields and records. A field is a column that represents one attribute of the entity, such as Name, Age, or Subject. A record is a row containing all the data about one individual entity — for example, one complete student entry.\n\nEvery table has a primary key — a field that uniquely identifies each record. No two records can share the same primary key value, and it can never be empty. StudentID is a good primary key because it is unique to each student and does not change. A student's name is a poor choice because two students might share the same name.\n\nWhen two tables need to be connected, a foreign key is used. A foreign key is a field in one table that holds the primary key value from another table, creating a relationship between them.",
+        "targetPassage": "A database is an organised collection of data that allows information to be stored, searched, and retrieved efficiently. Data in a database is arranged in tables. Each table stores data about one type of entity — for example, a Students table stores information about students. Tables are divided into fields and records. A field is a column that represents one attribute of the entity, such as Name, Age, or Subject. A record is a row containing all the data about one individual entity — for example, one complete student entry.\n\nEvery table has a primary key — a field that uniquely identifies each record. No two records can share the same primary key value, and it can never be empty. StudentID is a good primary key because it is unique to each student and does not change. A student's name is a poor choice because two students might share the same name.\n\nWhen two tables need to be connected, a foreign key is used. A foreign key is a field in one table that holds the primary key value from another table, creating a relationship between them.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "db_p01_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a field in a database table?",
+            "options": [
+              "A row containing all data about one entity",
+              "A column representing one attribute of an entity",
+              "A unique identifier for each record",
+              "A link between two tables"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A field is a column in a database table that represents one attribute or property of the entity being stored.",
+            "acceptedKeywords": ["column", "attribute", "property"]
+          },
+          {
+            "id": "db_p01_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Why is a student's name a poor choice of primary key?",
+            "options": [
+              "Names are too long to store in a database",
+              "Two students might share the same name, so it cannot be guaranteed unique",
+              "Names cannot be used as a data type",
+              "Names change too slowly to be useful"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "A primary key must be unique for every record. Two students could share the same name, so a name cannot guarantee uniqueness — making it a poor primary key.",
+            "acceptedKeywords": ["unique", "same name", "duplicates", "not unique"]
+          },
+          {
+            "id": "db_p01_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the purpose of a foreign key?",
+            "options": [
+              "To uniquely identify each record in a table",
+              "To validate data before it is stored",
+              "To link one table to another by holding the primary key of another table",
+              "To sort records in ascending order"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "A foreign key is a field in one table that holds the primary key value from another table, creating a relationship (link) between the two tables.",
+            "acceptedKeywords": ["link", "relationship", "primary key", "another table", "connect"]
+          },
+          {
+            "id": "db_p01_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain two rules that apply to a primary key in a database table.",
+            "modelAnswer": "First, a primary key must be unique — no two records in the table can have the same primary key value, otherwise it could not uniquely identify a specific record. Second, a primary key cannot be empty (null) — every record must have a primary key value, otherwise there would be records that cannot be identified at all.",
+            "acceptedKeywords": ["unique", "not null", "cannot be empty", "no duplicates", "every record"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "db_p02",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Databases: Structure and SQL"],
+      "tags": ["KS3", "computing", "databases"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "Flat-File Databases vs Relational Databases",
+        "targetTitle": "Flat-File Databases vs Relational Databases",
+        "sourcePassage": "A flat-file database stores all data in a single table, similar to a spreadsheet. While simple to create, flat-file databases have serious problems when dealing with large amounts of data. The most significant is data redundancy — the same information is repeated in many rows. For example, if a teacher's name and email appear in every student row, and the teacher changes their name, every single row must be updated. Missing even one row causes inconsistency, which is called an update anomaly.\n\nA relational database solves these problems by splitting data into multiple tables, each storing data about one type of entity. Tables are linked using primary and foreign keys. Teacher information is stored once in a Teachers table; all student records simply reference the TeacherID. Changing the teacher's name requires updating only one row in one table. This makes relational databases more consistent, more scalable, and better suited to large organisations such as schools, hospitals, or businesses.",
+        "targetPassage": "A flat-file database stores all data in a single table, similar to a spreadsheet. While simple to create, flat-file databases have serious problems when dealing with large amounts of data. The most significant is data redundancy — the same information is repeated in many rows. For example, if a teacher's name and email appear in every student row, and the teacher changes their name, every single row must be updated. Missing even one row causes inconsistency, which is called an update anomaly.\n\nA relational database solves these problems by splitting data into multiple tables, each storing data about one type of entity. Tables are linked using primary and foreign keys. Teacher information is stored once in a Teachers table; all student records simply reference the TeacherID. Changing the teacher's name requires updating only one row in one table. This makes relational databases more consistent, more scalable, and better suited to large organisations such as schools, hospitals, or businesses.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "db_p02_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is data redundancy?",
+            "options": [
+              "Data that has been deleted from the database",
+              "The unnecessary repetition of the same data in multiple rows",
+              "Data stored in more than two tables",
+              "Backup copies of the database"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Data redundancy is the unnecessary repetition of the same information across multiple rows in a database, which wastes storage and risks inconsistency.",
+            "acceptedKeywords": ["repetition", "repeated", "same data", "multiple rows"]
+          },
+          {
+            "id": "db_p02_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is an update anomaly?",
+            "options": [
+              "An error caused by entering data of the wrong type",
+              "An inconsistency caused when data is updated in some rows but not all",
+              "A SQL query that returns the wrong results",
+              "A missing primary key in a table"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "An update anomaly occurs when data stored in multiple rows is only updated in some of them, leaving the database in an inconsistent state.",
+            "acceptedKeywords": ["inconsistency", "not all rows", "updated in some", "missed rows", "inconsistent"]
+          },
+          {
+            "id": "db_p02_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "How does a relational database avoid the update anomaly problem?",
+            "options": [
+              "By encrypting all data before storage",
+              "By validating all data with a range check",
+              "By storing each piece of information once in its own table and linking tables with keys",
+              "By backing up the database after every change"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "A relational database stores each piece of data only once in its own table. When data changes, only one record in one table needs to be updated — all linked records automatically reflect the change, preventing anomalies.",
+            "acceptedKeywords": ["stored once", "one table", "linked", "foreign key", "only one record"]
+          },
+          {
+            "id": "db_p02_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "A school uses a flat-file database with 2000 students and 100 teachers. Explain two problems this causes and how a relational database would solve them.",
+            "modelAnswer": "Problem 1 — data redundancy: each teacher's name and email would be repeated in every student row for that teacher, potentially appearing hundreds of times and wasting storage. A relational database stores each teacher's data once in a Teachers table, with student records linking to it via a foreign key. Problem 2 — update anomaly: if a teacher changes their name, all 2000 student rows for that teacher would need updating; missing even one causes inconsistency. In a relational database, only one row in the Teachers table needs changing.",
+            "acceptedKeywords": ["redundancy", "repeated", "update anomaly", "inconsistency", "relational", "one table", "foreign key", "stored once"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "db_p03",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Databases: Structure and SQL"],
+      "tags": ["KS3", "computing", "databases"],
+      "data": {
+        "chapter": "KS3 Computing",
+        "sourceTitle": "SQL Queries and Data Validation",
+        "targetTitle": "SQL Queries and Data Validation",
+        "sourcePassage": "SQL (Structured Query Language) is the standard language used to retrieve and manage data in relational databases. The most common type of SQL query uses the SELECT keyword to choose which fields to display, FROM to specify the table, WHERE to filter records, and ORDER BY to sort the results. SELECT * returns all fields. Using AND in a WHERE clause means both conditions must be true; using OR means at least one must be true.\n\nBefore data is stored in a database, validation rules check that entries are acceptable. A presence check ensures a required field is not left empty. A range check verifies a value falls between a minimum and maximum. A format check ensures data matches a required pattern, such as a date format. A type check rejects data of the wrong type. A length check limits the number of characters allowed.\n\nValidation is performed automatically by the system. Verification is different — it checks that data accurately matches the original source and is typically done by a human, for example through proofreading or entering data twice (double data entry).",
+        "targetPassage": "SQL (Structured Query Language) is the standard language used to retrieve and manage data in relational databases. The most common type of SQL query uses the SELECT keyword to choose which fields to display, FROM to specify the table, WHERE to filter records, and ORDER BY to sort the results. SELECT * returns all fields. Using AND in a WHERE clause means both conditions must be true; using OR means at least one must be true.\n\nBefore data is stored in a database, validation rules check that entries are acceptable. A presence check ensures a required field is not left empty. A range check verifies a value falls between a minimum and maximum. A format check ensures data matches a required pattern, such as a date format. A type check rejects data of the wrong type. A length check limits the number of characters allowed.\n\nValidation is performed automatically by the system. Verification is different — it checks that data accurately matches the original source and is typically done by a human, for example through proofreading or entering data twice (double data entry).",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "db_p03_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does SELECT * do in a SQL query?",
+            "options": [
+              "Filters records based on a condition",
+              "Returns all fields from the specified table",
+              "Sorts results in ascending order",
+              "Specifies which table to query"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "SELECT * returns all fields (all columns) from the table specified in the FROM clause, rather than just named fields.",
+            "acceptedKeywords": ["all fields", "all columns", "everything", "all data"]
+          },
+          {
+            "id": "db_p03_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A student enters their age as 'fifteen' into a numeric Age field. Which validation check would reject this?",
+            "options": [
+              "Presence check",
+              "Range check",
+              "Format check",
+              "Type check"
+            ],
+            "correctOptionIndex": 3,
+            "modelAnswer": "A type check would reject this entry because the Age field expects an integer (a whole number) but 'fifteen' is text (a string). The data is the wrong type.",
+            "acceptedKeywords": ["type check", "wrong type", "integer", "text", "not a number"]
+          },
+          {
+            "id": "db_p03_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the key difference between validation and verification?",
+            "options": [
+              "Validation is faster than verification",
+              "Validation checks if data is within rules; verification checks if data accurately matches the original source",
+              "Validation is done by humans; verification is done by computers",
+              "They are the same process with different names"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Validation is an automated check that data meets defined rules. Verification is checking that data accurately matches the original source document, typically performed by a human through proofreading or double data entry.",
+            "acceptedKeywords": ["automated", "rules", "original source", "accurate", "human", "proofreading"]
+          },
+          {
+            "id": "db_p03_q4",
+            "questionType": "open",
+            "difficulty": "hard",
+            "question": "Write a SQL query to select the Name and Age of all students in the Students table who are over 13 years old, sorted by age with the oldest first.",
+            "modelAnswer": "SELECT Name, Age FROM Students WHERE Age > 13 ORDER BY Age DESC",
+            "acceptedKeywords": ["SELECT Name, Age", "FROM Students", "WHERE Age > 13", "ORDER BY Age DESC"]
+          }
+        ]
+      }
+    }
+  ]
+}

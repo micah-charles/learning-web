@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_os_software",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "computer systems"],
+  "items": [
+    {
+      "id": "ks3_computing_os_software_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Operating Systems & Software"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Operating Systems",
+        "sourceTitle": "What Does an Operating System Do?",
+        "targetTitle": "What Does an Operating System Do?",
+        "sourcePassage": "An operating system (OS) is a type of system software that sits between the user and the hardware of a computer. Without an operating system, no application software could run, because each application would need to be programmed to control every piece of hardware directly — an almost impossible task.\n\nThe operating system has five key functions. First, memory management: the OS allocates portions of RAM to each running program and ensures programs cannot overwrite each other's data. Second, process management: the OS schedules CPU time among all running processes, rapidly switching between them to give the illusion that they all run simultaneously — this is called multitasking. Third, file management: the OS organises files in a hierarchical folder structure on storage devices using a file system such as NTFS or APFS.\n\nFourth, device management: the OS communicates with hardware devices through specialised software called device drivers. Each driver acts as a translator between the OS and a specific piece of hardware, such as a printer or graphics card. This means application programs do not need to know the details of every hardware device — the OS handles this through hardware abstraction.\n\nFifth, the OS provides a user interface. This may be a graphical user interface (GUI), which uses windows, icons, menus, and a pointer, or a command line interface (CLI), which is text-based. Together, these five functions make the OS the essential foundation of every computing device, from smartphones to supercomputers.",
+        "targetPassage": "An operating system (OS) is a type of system software that sits between the user and the hardware of a computer. Without an operating system, no application software could run, because each application would need to be programmed to control every piece of hardware directly — an almost impossible task.\n\nThe operating system has five key functions. First, memory management: the OS allocates portions of RAM to each running program and ensures programs cannot overwrite each other's data. Second, process management: the OS schedules CPU time among all running processes, rapidly switching between them to give the illusion that they all run simultaneously — this is called multitasking. Third, file management: the OS organises files in a hierarchical folder structure on storage devices using a file system such as NTFS or APFS.\n\nFourth, device management: the OS communicates with hardware devices through specialised software called device drivers. Each driver acts as a translator between the OS and a specific piece of hardware, such as a printer or graphics card. This means application programs do not need to know the details of every hardware device — the OS handles this through hardware abstraction.\n\nFifth, the OS provides a user interface. This may be a graphical user interface (GUI), which uses windows, icons, menus, and a pointer, or a command line interface (CLI), which is text-based. Together, these five functions make the OS the essential foundation of every computing device, from smartphones to supercomputers.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_os_software_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What type of software is the operating system?",
+            "options": ["Application software", "System software", "Utility software", "Firmware"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "System software",
+            "acceptedKeywords": ["system software", "system"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the name for software that allows the OS to communicate with a specific hardware device?",
+            "options": ["File system", "Process", "Device driver", "Kernel"],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Device driver",
+            "acceptedKeywords": ["device driver", "driver"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Which OS function gives the illusion that all programs run simultaneously on a single CPU?",
+            "options": ["Memory management", "File management", "Device management", "Multitasking via process scheduling"],
+            "correctOptionIndex": 3,
+            "modelAnswer": "Multitasking via process scheduling",
+            "acceptedKeywords": ["multitasking", "process scheduling", "process management"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "Why does hardware abstraction benefit application software developers?",
+            "options": [
+              "It makes applications run faster by using the GPU",
+              "It means applications do not need to know the specific details of each hardware device",
+              "It removes the need for an operating system entirely",
+              "It allows applications to access RAM directly without the OS"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It means applications do not need to know the specific details of each hardware device",
+            "acceptedKeywords": ["hardware abstraction", "do not need to know", "details of hardware", "OS handles"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Operating Systems & Software"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Types of Software",
+        "sourceTitle": "System Software vs Application Software",
+        "targetTitle": "System Software vs Application Software",
+        "sourcePassage": "All software can be placed into one of three categories: system software, application software, or utility software. Understanding the difference helps you classify any program you encounter.\n\nSystem software manages and controls the hardware of a computer, providing the foundation on which everything else runs. The operating system is the most important type of system software. Device drivers are also system software: they translate between the OS and specific hardware devices such as printers, graphics cards, and audio hardware. Without system software, no other software could function.\n\nApplication software is designed to help users perform specific tasks. Word processors such as Microsoft Word, web browsers such as Google Chrome, music streaming apps such as Spotify, and games such as Minecraft are all application software. Applications run on top of the operating system and make use of its services — they request memory, file access, and hardware control through the OS rather than dealing with hardware directly.\n\nUtility software is a sub-category of system software that performs maintenance, optimisation, and security tasks. Examples include antivirus programs, which detect and remove malware; disk defragmenters, which reorganise fragmented files on hard drives for faster access; backup software, which creates copies of data to prevent loss; and firewall software, which monitors and controls network traffic. Utility software keeps the computer system healthy and secure, rather than helping the user complete a personal task.",
+        "targetPassage": "All software can be placed into one of three categories: system software, application software, or utility software. Understanding the difference helps you classify any program you encounter.\n\nSystem software manages and controls the hardware of a computer, providing the foundation on which everything else runs. The operating system is the most important type of system software. Device drivers are also system software: they translate between the OS and specific hardware devices such as printers, graphics cards, and audio hardware. Without system software, no other software could function.\n\nApplication software is designed to help users perform specific tasks. Word processors such as Microsoft Word, web browsers such as Google Chrome, music streaming apps such as Spotify, and games such as Minecraft are all application software. Applications run on top of the operating system and make use of its services — they request memory, file access, and hardware control through the OS rather than dealing with hardware directly.\n\nUtility software is a sub-category of system software that performs maintenance, optimisation, and security tasks. Examples include antivirus programs, which detect and remove malware; disk defragmenters, which reorganise fragmented files on hard drives for faster access; backup software, which creates copies of data to prevent loss; and firewall software, which monitors and controls network traffic. Utility software keeps the computer system healthy and secure, rather than helping the user complete a personal task.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_os_software_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which of the following is an example of application software?",
+            "options": ["Windows 11", "A printer driver", "Google Chrome", "A disk defragmenter"],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Google Chrome",
+            "acceptedKeywords": ["Google Chrome", "application", "browser"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What category of software does an antivirus program belong to?",
+            "options": ["Application software", "Utility software", "Open source software", "Firmware"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Utility software",
+            "acceptedKeywords": ["utility", "utility software", "system software"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why is a disk defragmenter classed as utility software rather than application software?",
+            "options": [
+              "Because it is free to download",
+              "Because its purpose is to maintain and optimise the computer system, not help the user with a personal task",
+              "Because it requires an internet connection",
+              "Because it was made by Microsoft"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because its purpose is to maintain and optimise the computer system, not help the user with a personal task",
+            "acceptedKeywords": ["maintain", "optimise", "system", "maintenance"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "Application software does not communicate directly with hardware. Instead, what does it use?",
+            "options": [
+              "It accesses hardware directly through the CPU",
+              "It uses the operating system's services to request hardware access",
+              "It uses utility software as an intermediary",
+              "It communicates with hardware through the file system only"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It uses the operating system's services to request hardware access",
+            "acceptedKeywords": ["operating system", "OS services", "through the OS"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_os_software_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Operating Systems & Software"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "User Interfaces",
+        "sourceTitle": "Types of User Interface: GUI vs CLI",
+        "targetTitle": "Types of User Interface: GUI vs CLI",
+        "sourcePassage": "The user interface is the part of the operating system that allows people to interact with a computer. There are two main types: the graphical user interface (GUI) and the command line interface (CLI). Each has its own strengths and is suited to different users and situations.\n\nA GUI uses visual elements — windows, icons, menus, and a pointer — which together are described by the acronym WIMP. Users interact primarily using a mouse, touchpad, or touchscreen. The GUI has a low learning curve because users can see their options and click on them without memorising any commands. However, GUIs require significantly more system resources than CLIs because they constantly process and render graphics. They can also be slower for expert users who must navigate through multiple menus to complete common tasks.\n\nA CLI requires the user to type precise text commands. The OS reads each command, executes it, and returns a text response. CLIs use very few system resources — no graphics processing is needed — and are considerably faster for users who know the commands well. Experts can chain multiple commands together and write scripts to automate repetitive tasks. The main disadvantages are a steep learning curve (commands and their exact syntax must be memorised) and a higher risk of error, since a single typing mistake can have unintended consequences.\n\nGUIs are preferred by general users and beginners. CLIs are preferred by IT professionals, system administrators, and developers, particularly for managing remote servers where low bandwidth and high speed are essential. Most modern operating systems provide both interfaces.",
+        "targetPassage": "The user interface is the part of the operating system that allows people to interact with a computer. There are two main types: the graphical user interface (GUI) and the command line interface (CLI). Each has its own strengths and is suited to different users and situations.\n\nA GUI uses visual elements — windows, icons, menus, and a pointer — which together are described by the acronym WIMP. Users interact primarily using a mouse, touchpad, or touchscreen. The GUI has a low learning curve because users can see their options and click on them without memorising any commands. However, GUIs require significantly more system resources than CLIs because they constantly process and render graphics. They can also be slower for expert users who must navigate through multiple menus to complete common tasks.\n\nA CLI requires the user to type precise text commands. The OS reads each command, executes it, and returns a text response. CLIs use very few system resources — no graphics processing is needed — and are considerably faster for users who know the commands well. Experts can chain multiple commands together and write scripts to automate repetitive tasks. The main disadvantages are a steep learning curve (commands and their exact syntax must be memorised) and a higher risk of error, since a single typing mistake can have unintended consequences.\n\nGUIs are preferred by general users and beginners. CLIs are preferred by IT professionals, system administrators, and developers, particularly for managing remote servers where low bandwidth and high speed are essential. Most modern operating systems provide both interfaces.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_os_software_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does the acronym WIMP stand for?",
+            "options": [
+              "Windows, Internet, Memory, Processor",
+              "Windows, Icons, Menus, Pointer",
+              "Wireless, Input, Mouse, Pointer",
+              "Windows, Interface, Monitor, Program"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Windows, Icons, Menus, Pointer",
+            "acceptedKeywords": ["windows", "icons", "menus", "pointer", "WIMP"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which type of user interface uses less system resources?",
+            "options": ["GUI", "CLI", "Both use the same amount", "It depends on the operating system"],
+            "correctOptionIndex": 1,
+            "modelAnswer": "CLI",
+            "acceptedKeywords": ["CLI", "command line", "text-based"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why is a CLI faster than a GUI for expert users?",
+            "options": [
+              "Because CLIs use more RAM to speed up processing",
+              "Because experts can type commands directly and chain them without navigating menus",
+              "Because CLIs have a simpler learning curve than GUIs",
+              "Because CLI commands are executed on a faster processor"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because experts can type commands directly and chain them without navigating menus",
+            "acceptedKeywords": ["chain commands", "directly", "no menus", "faster"]
+          },
+          {
+            "id": "ks3_computing_os_software_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "A company needs to manage hundreds of web servers remotely over a low-bandwidth connection. Which interface type is most suitable, and why?",
+            "options": [
+              "GUI, because it is easier for all staff to use",
+              "CLI, because it uses very few resources and allows fast, scriptable management over low-bandwidth connections",
+              "GUI, because it provides better security for remote connections",
+              "CLI, because it supports touchscreen input which GUIs do not"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "CLI, because it uses very few resources and allows fast, scriptable management over low-bandwidth connections",
+            "acceptedKeywords": ["CLI", "low bandwidth", "resources", "scripts", "fast"]
+          }
+        ]
+      }
+    }
+  ]
+}

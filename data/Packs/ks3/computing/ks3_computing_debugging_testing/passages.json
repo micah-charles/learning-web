@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_debugging_testing",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "ks3_computing_debug_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Debugging & Testing"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Debugging & Testing",
+        "sourceTitle": "The Three Types of Programming Error",
+        "targetTitle": "The Three Types of Programming Error",
+        "sourcePassage": "All programmers make mistakes. Understanding the three categories of programming error is the first step to fixing them efficiently.\n\nA syntax error occurs when code breaks the grammatical rules of the programming language. Python cannot run the program at all — it rejects the code before execution begins. Common examples include a missing colon after an if statement, misspelling a keyword such as writing 'whlie' instead of 'while', or leaving out a closing bracket. The Python interpreter shows a clear error message with the line number, and most IDEs highlight syntax errors as you type.\n\nA runtime error occurs when the code is syntactically correct and the program starts, but crashes during execution because of an illegal operation. Common runtime errors include dividing by zero (ZeroDivisionError), accessing a list at an index that does not exist (IndexError), using a variable before it is defined (NameError), or passing the wrong type to a function (TypeError). Python displays a traceback showing exactly where the crash occurred.\n\nA logic error is the hardest type to find. The program runs from start to finish without crashing, but produces the wrong output because of a flaw in the algorithm. No error message is generated. Examples include using the wrong operator in a condition, an off-by-one error in a loop, or an incorrect formula. Logic errors are only revealed by careful testing.",
+        "targetPassage": "All programmers make mistakes. Understanding the three categories of programming error is the first step to fixing them efficiently.\n\nA syntax error occurs when code breaks the grammatical rules of the programming language. Python cannot run the program at all — it rejects the code before execution begins. Common examples include a missing colon after an if statement, misspelling a keyword such as writing 'whlie' instead of 'while', or leaving out a closing bracket. The Python interpreter shows a clear error message with the line number, and most IDEs highlight syntax errors as you type.\n\nA runtime error occurs when the code is syntactically correct and the program starts, but crashes during execution because of an illegal operation. Common runtime errors include dividing by zero (ZeroDivisionError), accessing a list at an index that does not exist (IndexError), using a variable before it is defined (NameError), or passing the wrong type to a function (TypeError). Python displays a traceback showing exactly where the crash occurred.\n\nA logic error is the hardest type to find. The program runs from start to finish without crashing, but produces the wrong output because of a flaw in the algorithm. No error message is generated. Examples include using the wrong operator in a condition, an off-by-one error in a loop, or an incorrect formula. Logic errors are only revealed by careful testing.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_debug_p1_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "Which type of error prevents a program from running at all?",
+            "options": ["Syntax error", "Runtime error", "Logic error", "Traceback error"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Syntax error",
+            "acceptedKeywords": ["syntax"]
+          },
+          {
+            "id": "ks3_computing_debug_p1_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What type of error is caused by dividing by zero?",
+            "options": ["Runtime error", "Syntax error", "Logic error", "Indentation error"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Runtime error",
+            "acceptedKeywords": ["runtime", "ZeroDivisionError"]
+          },
+          {
+            "id": "ks3_computing_debug_p1_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "A program runs to completion but gives incorrect output with no error message. What type of error is this?",
+            "options": ["Logic error", "Syntax error", "Runtime error", "ValueError"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Logic error",
+            "acceptedKeywords": ["logic"]
+          },
+          {
+            "id": "ks3_computing_debug_p1_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why logic errors are considered the most dangerous type of programming error.",
+            "modelAnswer": "Logic errors are the most dangerous because they produce no error message and the program appears to work correctly. The program runs from start to finish without crashing, so the programmer may not realise there is a problem. The only way to detect logic errors is through careful testing with known inputs, comparing the actual output to the expected output. In contrast, syntax errors are immediately flagged by the IDE and runtime errors provide a clear traceback, making them much easier to locate and fix.",
+            "acceptedKeywords": ["no error message", "runs without crashing", "wrong output", "testing"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Debugging & Testing"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Debugging & Testing",
+        "sourceTitle": "Testing and Why It Matters",
+        "targetTitle": "Testing and Why It Matters",
+        "sourcePassage": "Testing is the process of running a program with carefully chosen inputs to verify that it produces correct outputs. It is not enough to check that a program works with one example that you know is correct. Good testing must cover a range of situations, including the cases where programs most commonly fail.\n\nThere are three types of test data. Normal data is typical, valid input that the program is designed to handle — for a program accepting ages 11 to 18, an age of 14 would be normal data. Boundary data tests values at the very edge of the valid input range: the minimum (11), the maximum (18), and the values just outside (10 and 19). Boundary testing is particularly important because programmers most often make mistakes at the edges — a condition written as age > 11 instead of age >= 11 would incorrectly reject 11, and only boundary testing would reveal this. Erroneous data tests invalid inputs that the program should reject gracefully, such as a negative number or a text string where a number was expected.\n\nAn important principle is that testing can show the presence of bugs, but it can never prove that a program is completely bug-free. There are always input combinations that have not been tested. This is why systematic test planning, covering all three data types, is essential.",
+        "targetPassage": "Testing is the process of running a program with carefully chosen inputs to verify that it produces correct outputs. It is not enough to check that a program works with one example that you know is correct. Good testing must cover a range of situations, including the cases where programs most commonly fail.\n\nThere are three types of test data. Normal data is typical, valid input that the program is designed to handle — for a program accepting ages 11 to 18, an age of 14 would be normal data. Boundary data tests values at the very edge of the valid input range: the minimum (11), the maximum (18), and the values just outside (10 and 19). Boundary testing is particularly important because programmers most often make mistakes at the edges — a condition written as age > 11 instead of age >= 11 would incorrectly reject 11, and only boundary testing would reveal this. Erroneous data tests invalid inputs that the program should reject gracefully, such as a negative number or a text string where a number was expected.\n\nAn important principle is that testing can show the presence of bugs, but it can never prove that a program is completely bug-free. There are always input combinations that have not been tested. This is why systematic test planning, covering all three data types, is essential.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_debug_p2_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "For a program accepting ages 11–18, which of the following is boundary test data?",
+            "options": ["Age = 10", "Age = 14", "Age = \"hello\"", "Age = 15"],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Age = 10",
+            "acceptedKeywords": ["10", "boundary", "just below minimum"]
+          },
+          {
+            "id": "ks3_computing_debug_p2_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What does erroneous test data test?",
+            "options": [
+              "Invalid inputs the program should reject without crashing",
+              "Typical valid inputs the program should accept",
+              "Values at the exact minimum and maximum of the valid range",
+              "Inputs that will definitely make the program pass"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Invalid inputs the program should reject without crashing",
+            "acceptedKeywords": ["invalid", "reject", "erroneous"]
+          },
+          {
+            "id": "ks3_computing_debug_p2_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What can testing prove about a program?",
+            "options": [
+              "That bugs exist, but not that the program is completely bug-free",
+              "That the program is completely bug-free",
+              "That no bugs exist",
+              "That the program will never crash"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "That bugs exist, but not that the program is completely bug-free",
+            "acceptedKeywords": ["presence", "not prove", "bug-free"]
+          },
+          {
+            "id": "ks3_computing_debug_p2_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why boundary test data is particularly important, using an example from the passage to support your answer.",
+            "modelAnswer": "Boundary test data is particularly important because programmers most commonly make mistakes at the edges of the valid input range, not in the middle. For example, a condition written as age > 11 instead of age >= 11 would incorrectly reject the value 11. Testing with normal data like 14 would not reveal this bug. Only by testing with the boundary value 11 (and the value just below, 10) would the error be discovered. Both the boundary value itself and the value just outside it must be tested to catch these off-by-one style errors.",
+            "acceptedKeywords": ["boundary", "edge", "off-by-one", "11", "reveal", "minimum"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_debug_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["Debugging & Testing"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Debugging & Testing",
+        "sourceTitle": "Designing a Systematic Test Plan",
+        "targetTitle": "Designing a Systematic Test Plan",
+        "sourcePassage": "Professional programmers do not test programs randomly. They design a systematic test plan before testing begins, identifying every category of input that needs to be checked and writing down the expected output for each test before running it. This prevents bias: if you see the actual output first, you might unconsciously accept a wrong answer.\n\nA test table documents all of this. Its columns typically include: the test number, the test type (normal, boundary, or erroneous), the input being used, the expected output, the actual output recorded when the program runs, and a pass or fail judgment. If a test fails — meaning actual output does not match expected output — the programmer investigates, finds the bug, applies a fix, and re-runs the test.\n\nAfter any fix, it is essential to re-run all the other tests as well, not just the one that failed. This is called regression testing. A code change that fixes one bug can accidentally introduce a new bug elsewhere. Only by re-testing everything can you be confident the program still behaves correctly in all other cases.\n\nTest plans should include all three types of test data: normal, boundary, and erroneous. Using only normal data will leave many potential bugs undiscovered, particularly those lurking at the edges of the input range.",
+        "targetPassage": "Professional programmers do not test programs randomly. They design a systematic test plan before testing begins, identifying every category of input that needs to be checked and writing down the expected output for each test before running it. This prevents bias: if you see the actual output first, you might unconsciously accept a wrong answer.\n\nA test table documents all of this. Its columns typically include: the test number, the test type (normal, boundary, or erroneous), the input being used, the expected output, the actual output recorded when the program runs, and a pass or fail judgment. If a test fails — meaning actual output does not match expected output — the programmer investigates, finds the bug, applies a fix, and re-runs the test.\n\nAfter any fix, it is essential to re-run all the other tests as well, not just the one that failed. This is called regression testing. A code change that fixes one bug can accidentally introduce a new bug elsewhere. Only by re-testing everything can you be confident the program still behaves correctly in all other cases.\n\nTest plans should include all three types of test data: normal, boundary, and erroneous. Using only normal data will leave many potential bugs undiscovered, particularly those lurking at the edges of the input range.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_debug_p3_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What columns does a test table typically include?",
+            "options": [
+              "Test number, type, input, expected output, actual output, pass/fail",
+              "Test number, variable name, line number, error type",
+              "Input, output, algorithm, data type",
+              "Bug description, fix applied, programmer name"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Test number, type, input, expected output, actual output, pass/fail",
+            "acceptedKeywords": ["expected output", "actual output", "pass", "fail"]
+          },
+          {
+            "id": "ks3_computing_debug_p3_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is regression testing?",
+            "options": [
+              "Re-running all previous tests after a code change to check no new bugs were introduced",
+              "Testing the program for the first time before any bugs are fixed",
+              "Testing only the part of the code that was changed",
+              "Running the program without any test data"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "Re-running all previous tests after a code change to check no new bugs were introduced",
+            "acceptedKeywords": ["regression", "re-run", "all tests", "after fix"]
+          },
+          {
+            "id": "ks3_computing_debug_p3_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why should expected output be written down before a test is run?",
+            "options": [
+              "To prevent bias — seeing the actual output first might cause you to accept an incorrect answer",
+              "Because the program needs to know the expected output in advance",
+              "So the computer can automatically check the result",
+              "Because the IDE requires expected outputs before testing"
+            ],
+            "correctOptionIndex": 0,
+            "modelAnswer": "To prevent bias — seeing the actual output first might cause you to accept an incorrect answer",
+            "acceptedKeywords": ["bias", "before", "expected", "accept"]
+          },
+          {
+            "id": "ks3_computing_debug_p3_q4",
+            "questionType": "open",
+            "difficulty": "medium",
+            "question": "Explain why using only normal test data is not sufficient for testing a program thoroughly.",
+            "modelAnswer": "Normal test data only tests typical inputs in the middle of the valid range, where the program is least likely to fail. It does not test the edges of the range where off-by-one errors often hide. Boundary data is needed to test minimum and maximum values and the values just outside them, because conditions using > instead of >= will fail precisely at these points. Erroneous data is also needed to ensure the program handles invalid inputs gracefully rather than crashing. A program may pass all normal tests and still fail with boundary or erroneous inputs.",
+            "acceptedKeywords": ["boundary", "edges", "erroneous", "invalid", "off-by-one", "not sufficient"]
+          }
+        ]
+      }
+    }
+  ]
+}

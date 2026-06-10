@@ -1,0 +1,246 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_text_image_representation",
+  "subject": "science",
+  "curriculum": "ks3",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "tags": ["KS3", "computing", "data representation"],
+  "items": [
+    {
+      "id": "ks3_computing_text_image_representation_passage_001",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["How Computers Store Text: ASCII and Unicode"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Data Representation",
+        "sourceTitle": "How Computers Store Text: ASCII and Unicode",
+        "targetTitle": "How Computers Store Text: ASCII and Unicode",
+        "sourcePassage": "Computers can only process and store binary numbers — sequences of 0s and 1s. To store text, every character must be assigned a unique number, which is then converted to binary. The agreed mapping between characters and their numerical codes is called a character set. Without an agreed character set, a file created on one computer would appear as nonsense on another.\n\nASCII (American Standard Code for Information Interchange) was the original character encoding standard, developed in the 1960s. ASCII uses 7 bits per character, giving 128 possible values (2 to the power of 7 equals 128). These 128 slots cover uppercase letters A to Z, lowercase letters a to z, the digits 0 to 9, punctuation marks, spaces, and control characters such as newline and tab. Some key codes to know are: A = 65, a = 97, and the digit character '0' = 48. There is a useful pattern: uppercase and lowercase versions of the same letter always differ by exactly 32 in their ASCII values.\n\nASCII worked well for English text, but it had a fundamental limitation — it could only represent 128 characters, which is far too few for the world's many writing systems. Chinese alone has tens of thousands of characters, and languages such as Arabic, Hindi, and Japanese use completely different scripts that ASCII cannot represent at all. Sharing text files between countries resulted in garbled symbols wherever non-ASCII characters appeared.\n\nUnicode was developed to solve this problem. It supports over 143,000 characters, covering virtually every written language in the world, as well as symbols and emoji. The most common implementation of Unicode is UTF-8, which uses variable-length encoding: standard ASCII characters still use just one byte (keeping UTF-8 backwards compatible with ASCII), while less common characters use two, three, or four bytes. This means UTF-8 is efficient for English text while still being able to represent any language on Earth.",
+        "targetPassage": "Computers can only process and store binary numbers — sequences of 0s and 1s. To store text, every character must be assigned a unique number, which is then converted to binary. The agreed mapping between characters and their numerical codes is called a character set. Without an agreed character set, a file created on one computer would appear as nonsense on another.\n\nASCII (American Standard Code for Information Interchange) was the original character encoding standard, developed in the 1960s. ASCII uses 7 bits per character, giving 128 possible values (2 to the power of 7 equals 128). These 128 slots cover uppercase letters A to Z, lowercase letters a to z, the digits 0 to 9, punctuation marks, spaces, and control characters such as newline and tab. Some key codes to know are: A = 65, a = 97, and the digit character '0' = 48. There is a useful pattern: uppercase and lowercase versions of the same letter always differ by exactly 32 in their ASCII values.\n\nASCII worked well for English text, but it had a fundamental limitation — it could only represent 128 characters, which is far too few for the world's many writing systems. Chinese alone has tens of thousands of characters, and languages such as Arabic, Hindi, and Japanese use completely different scripts that ASCII cannot represent at all. Sharing text files between countries resulted in garbled symbols wherever non-ASCII characters appeared.\n\nUnicode was developed to solve this problem. It supports over 143,000 characters, covering virtually every written language in the world, as well as symbols and emoji. The most common implementation of Unicode is UTF-8, which uses variable-length encoding: standard ASCII characters still use just one byte (keeping UTF-8 backwards compatible with ASCII), while less common characters use two, three, or four bytes. This means UTF-8 is efficient for English text while still being able to represent any language on Earth.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_text_image_representation_passage_001_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How many characters can ASCII represent, and how many bits does it use per character?",
+            "options": [
+              "256 characters using 8 bits",
+              "128 characters using 7 bits",
+              "143,000 characters using variable bits",
+              "64 characters using 6 bits"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "128 characters using 7 bits",
+            "acceptedKeywords": ["128", "7 bits", "ASCII"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_001_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the passage, what is the ASCII code for the uppercase letter A?",
+            "options": [
+              "48",
+              "65",
+              "97",
+              "32"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "65",
+            "acceptedKeywords": ["65"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_001_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "Why was Unicode developed as a replacement for ASCII?",
+            "options": [
+              "Because ASCII uses too many bits per character, making files unnecessarily large",
+              "Because ASCII could only represent 128 characters, which is insufficient for the world's many different writing systems",
+              "Because ASCII was not compatible with binary storage and needed to be redesigned",
+              "Because ASCII lacked control characters such as newline and tab"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because ASCII could only represent 128 characters, which is insufficient for the world's many different writing systems",
+            "acceptedKeywords": ["128 characters", "writing systems", "other languages", "insufficient"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_001_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage states that UTF-8 is backwards compatible with ASCII. Based on the passage, what is the practical benefit of this compatibility?",
+            "options": [
+              "It means UTF-8 files can be compressed more efficiently than ASCII files",
+              "It means existing ASCII text documents and systems continue to work correctly with UTF-8 without modification, because the first 128 character codes are identical",
+              "It means UTF-8 can only be used for English text, just like ASCII",
+              "It means UTF-8 uses exactly 7 bits per character for all languages, the same as ASCII"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "It means existing ASCII text documents and systems continue to work correctly with UTF-8 without modification, because the first 128 character codes are identical",
+            "acceptedKeywords": ["backwards compatible", "same codes", "existing", "continue to work", "identical"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_text_image_representation_passage_002",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["How Digital Images Work: Pixels and Colour"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Data Representation",
+        "sourceTitle": "How Digital Images Work: Pixels and Colour",
+        "targetTitle": "How Digital Images Work: Pixels and Colour",
+        "sourcePassage": "A digital image is stored as a grid of tiny coloured squares called pixels — short for picture elements. A pixel is the smallest addressable unit of a digital image; it cannot be divided further into any smaller meaningful part. When you zoom into a digital photograph far enough, you can see the individual coloured squares that make it up. Every image on a screen — from a simple icon to a cinema-quality film frame — is ultimately a grid of pixels.\n\nResolution describes the number of pixels in an image and is usually expressed as width multiplied by height. A Full HD image, for example, is 1920 by 1080 pixels, giving a total of over two million pixels. A higher resolution means more pixels and therefore more fine detail — a high-resolution photograph appears sharper and clearer than a low-resolution one of the same subject. However, more pixels also means more data to store.\n\nColour depth, also called bit depth, is the number of bits used to represent the colour of a single pixel. The number of possible colours is calculated using the formula 2 to the power of the colour depth. A 1-bit image can show only two colours (typically black and white). An 8-bit image can show 256 different colours. A 24-bit image uses 8 bits each for the red, green, and blue channels — giving 256 levels per channel and a total of 256 × 256 × 256 = approximately 16.7 million different colours. This is known as true colour, and it is the standard used for digital photographs.\n\nBoth resolution and colour depth affect the quality of an image. Higher resolution captures more detail; greater colour depth produces more realistic, subtly shaded colours. However, both also increase the amount of data in the image file. This creates a fundamental trade-off: higher quality always means a larger file size. In practice, compression techniques are used to reduce file sizes while preserving as much quality as possible.",
+        "targetPassage": "A digital image is stored as a grid of tiny coloured squares called pixels — short for picture elements. A pixel is the smallest addressable unit of a digital image; it cannot be divided further into any smaller meaningful part. When you zoom into a digital photograph far enough, you can see the individual coloured squares that make it up. Every image on a screen — from a simple icon to a cinema-quality film frame — is ultimately a grid of pixels.\n\nResolution describes the number of pixels in an image and is usually expressed as width multiplied by height. A Full HD image, for example, is 1920 by 1080 pixels, giving a total of over two million pixels. A higher resolution means more pixels and therefore more fine detail — a high-resolution photograph appears sharper and clearer than a low-resolution one of the same subject. However, more pixels also means more data to store.\n\nColour depth, also called bit depth, is the number of bits used to represent the colour of a single pixel. The number of possible colours is calculated using the formula 2 to the power of the colour depth. A 1-bit image can show only two colours (typically black and white). An 8-bit image can show 256 different colours. A 24-bit image uses 8 bits each for the red, green, and blue channels — giving 256 levels per channel and a total of 256 × 256 × 256 = approximately 16.7 million different colours. This is known as true colour, and it is the standard used for digital photographs.\n\nBoth resolution and colour depth affect the quality of an image. Higher resolution captures more detail; greater colour depth produces more realistic, subtly shaded colours. However, both also increase the amount of data in the image file. This creates a fundamental trade-off: higher quality always means a larger file size. In practice, compression techniques are used to reduce file sizes while preserving as much quality as possible.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_text_image_representation_passage_002_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is a pixel?",
+            "options": [
+              "The number of bits used to store the colour of an image",
+              "The smallest addressable coloured unit in a digital image",
+              "The total number of colours an image can display",
+              "A unit of file size used to measure image data"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "The smallest addressable coloured unit in a digital image",
+            "acceptedKeywords": ["smallest", "pixel", "picture element", "coloured square"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_002_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "How many colour channels does a 24-bit true colour image use, and how many bits does each channel have?",
+            "options": [
+              "Two channels of 12 bits each",
+              "Four channels of 6 bits each",
+              "Three channels (red, green, blue) of 8 bits each",
+              "One channel of 24 bits"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "Three channels (red, green, blue) of 8 bits each",
+            "acceptedKeywords": ["three", "red green blue", "RGB", "8 bits each"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_002_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "How many different colours can an 8-bit image display?",
+            "options": [
+              "8",
+              "64",
+              "128",
+              "256"
+            ],
+            "correctOptionIndex": 3,
+            "modelAnswer": "256",
+            "acceptedKeywords": ["256", "2 to the power of 8"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_002_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage describes a trade-off between image quality and file size. Which statement best explains why it is impossible to achieve the highest quality without also having the largest file?",
+            "options": [
+              "Because compression always reduces colour depth, so high-quality images cannot be compressed",
+              "Because higher resolution and greater colour depth both require more bits to store each pixel and more pixels in total, so more data is always needed to represent greater quality",
+              "Because true colour images use three separate files for red, green, and blue channels",
+              "Because high-resolution images cannot use 8-bit colour depth due to a hardware limitation"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Because higher resolution and greater colour depth both require more bits to store each pixel and more pixels in total, so more data is always needed to represent greater quality",
+            "acceptedKeywords": ["more bits", "more pixels", "more data", "quality", "trade-off"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks3_computing_text_image_representation_passage_003",
+      "type": "passage",
+      "level": "KS3 / Year 7-9",
+      "topics": ["File Size Calculations for Images"],
+      "tags": [],
+      "data": {
+        "chapter": "KS3 Computing",
+        "section": "Data Representation",
+        "sourceTitle": "Calculating Image File Sizes",
+        "targetTitle": "Calculating Image File Sizes",
+        "sourcePassage": "Knowing how to calculate the file size of an uncompressed digital image is an important skill in computing. The calculation follows directly from the two properties of an image you have already studied: its resolution (the number of pixels) and its colour depth (the number of bits per pixel). The formula is straightforward: multiply the width in pixels by the height in pixels by the colour depth in bits per pixel. This gives the total number of bits in the image. To convert to bytes, divide by eight, since there are eight bits in every byte.\n\nAs a worked example, consider a small image that is 100 pixels wide and 200 pixels tall, with a colour depth of 8 bits per pixel. The calculation runs: 100 × 200 = 20,000 pixels in total; 20,000 × 8 = 160,000 bits; 160,000 ÷ 8 = 20,000 bytes, which is approximately 19.5 kilobytes. Now consider a larger photograph at 800 pixels wide and 600 pixels tall, stored in true colour at 24 bits per pixel. The calculation gives: 800 × 600 × 24 = 11,520,000 bits; divided by 8 gives 1,440,000 bytes, or approximately 1.37 megabytes. A Full HD image at 1920 by 1080 pixels in 24-bit colour would be approximately 5.93 megabytes uncompressed.\n\nThese calculations reveal something important: colour depth has a powerful effect on file size. Doubling the colour depth from 8-bit to 16-bit doubles the file size for any given image, just as doubling either the width or height doubles it. This means an image with high resolution but low colour depth can end up smaller than an image with lower resolution but higher colour depth — the result can be counterintuitive.\n\nIn practice, image files are almost always compressed before being stored or transmitted. Common formats such as JPEG use lossy compression, which discards some image data to achieve much smaller file sizes, while PNG uses lossless compression, which reduces file size without losing any data. The uncompressed calculation gives the maximum possible file size — the starting point before compression is applied.",
+        "targetPassage": "Knowing how to calculate the file size of an uncompressed digital image is an important skill in computing. The calculation follows directly from the two properties of an image you have already studied: its resolution (the number of pixels) and its colour depth (the number of bits per pixel). The formula is straightforward: multiply the width in pixels by the height in pixels by the colour depth in bits per pixel. This gives the total number of bits in the image. To convert to bytes, divide by eight, since there are eight bits in every byte.\n\nAs a worked example, consider a small image that is 100 pixels wide and 200 pixels tall, with a colour depth of 8 bits per pixel. The calculation runs: 100 × 200 = 20,000 pixels in total; 20,000 × 8 = 160,000 bits; 160,000 ÷ 8 = 20,000 bytes, which is approximately 19.5 kilobytes. Now consider a larger photograph at 800 pixels wide and 600 pixels tall, stored in true colour at 24 bits per pixel. The calculation gives: 800 × 600 × 24 = 11,520,000 bits; divided by 8 gives 1,440,000 bytes, or approximately 1.37 megabytes. A Full HD image at 1920 by 1080 pixels in 24-bit colour would be approximately 5.93 megabytes uncompressed.\n\nThese calculations reveal something important: colour depth has a powerful effect on file size. Doubling the colour depth from 8-bit to 16-bit doubles the file size for any given image, just as doubling either the width or height doubles it. This means an image with high resolution but low colour depth can end up smaller than an image with lower resolution but higher colour depth — the result can be counterintuitive.\n\nIn practice, image files are almost always compressed before being stored or transmitted. Common formats such as JPEG use lossy compression, which discards some image data to achieve much smaller file sizes, while PNG uses lossless compression, which reduces file size without losing any data. The uncompressed calculation gives the maximum possible file size — the starting point before compression is applied.",
+        "speechLanguage": "en-GB",
+        "questions": [
+          {
+            "id": "ks3_computing_text_image_representation_passage_003_q1",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "What is the formula for calculating the uncompressed file size of an image in bits?",
+            "options": [
+              "Width + Height + Colour depth",
+              "Width × Height × Colour depth",
+              "Width × Height ÷ Colour depth",
+              "(Width + Height) × Colour depth"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Width × Height × Colour depth",
+            "acceptedKeywords": ["width", "height", "colour depth", "multiply"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_003_q2",
+            "questionType": "multiple_choice",
+            "difficulty": "easy",
+            "question": "According to the worked example in the passage, what is the file size of a 100 × 200 pixel image with 8-bit colour depth, in bytes?",
+            "options": [
+              "160,000 bytes",
+              "1,600 bytes",
+              "20,000 bytes",
+              "2,500 bytes"
+            ],
+            "correctOptionIndex": 2,
+            "modelAnswer": "20,000 bytes",
+            "acceptedKeywords": ["20,000", "20000", "bytes"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_003_q3",
+            "questionType": "multiple_choice",
+            "difficulty": "medium",
+            "question": "What is the difference between lossy and lossless compression, as described in the passage?",
+            "options": [
+              "Lossy compression is used for text files while lossless compression is used for images",
+              "Lossy compression discards some image data to achieve smaller files, while lossless compression reduces file size without losing any data",
+              "Lossy compression works only on colour images while lossless compression works only on black-and-white images",
+              "Lossy compression is faster to apply but lossless compression produces better visual quality in all cases"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Lossy compression discards some image data to achieve smaller files, while lossless compression reduces file size without losing any data",
+            "acceptedKeywords": ["discards", "data", "without losing", "lossless", "lossy"]
+          },
+          {
+            "id": "ks3_computing_text_image_representation_passage_003_q4",
+            "questionType": "multiple_choice",
+            "difficulty": "hard",
+            "question": "The passage says the result of comparing file sizes across images 'can be counterintuitive'. Image A is 400 × 300 pixels at 8-bit colour depth. Image B is 200 × 150 pixels at 24-bit colour depth. Which image is larger and why?",
+            "options": [
+              "Image B is larger because 24-bit colour depth always produces a bigger file than any resolution",
+              "Image A is larger because 400 × 300 × 8 = 960,000 bits, compared to 200 × 150 × 24 = 720,000 bits for Image B",
+              "Image B is larger because higher colour depth always dominates over resolution in the calculation",
+              "Both images are the same size because they have proportionally equivalent resolutions and colour depths"
+            ],
+            "correctOptionIndex": 1,
+            "modelAnswer": "Image A is larger because 400 × 300 × 8 = 960,000 bits, compared to 200 × 150 × 24 = 720,000 bits for Image B",
+            "acceptedKeywords": ["960,000", "720,000", "Image A", "larger", "calculation"]
+          }
+        ]
+      }
+    }
+  ]
+}

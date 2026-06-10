@@ -170,6 +170,7 @@ function wrapStudyBookPage(title, description, canonical, bookTitle, bookDesc, t
         <div data-file-content="main">${contentHtml}</div>
         ${relatedHtml}
         <div class="cta-section">
+
           <a href="/" class="cta-button secondary">Practice this topic</a>
         </div>
       </div>
