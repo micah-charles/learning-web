@@ -186,9 +186,22 @@ function wrapStudyBookPage(title, description, canonical, bookTitle, bookDesc, t
 function main() {
   // marked is already configured by importing study-book-core.js
 
-  // Read manifest
+  // Read manifest — collect ALL packs from both arrays
   const manifest = JSON.parse(readFileSync(MANIFEST_PATH, "utf-8"));
+  const allPacks = [...(manifest.packs || []), ...(manifest.revisionPacks || [])];
   const packs = manifest.revisionPacks || manifest.packs || [];
+
+  // Collect ALL subjects from the manifest (even packs without contentMdPath)
+  const allSubjects = new Map();
+  for (const pack of allPacks) {
+    const subject = pack.subject || "other";
+    const conf = getSubjectConfig(subject);
+    const key = conf.slug;
+    if (!allSubjects.has(key)) {
+      allSubjects.set(key, { slug: conf.slug, label: conf.label, bookCount: 0 });
+    }
+    allSubjects.get(key).bookCount++;
+  }
 
   // Collect study book packs (those with contentMdPath)
   const studyBooks = [];
@@ -219,13 +232,20 @@ function main() {
     });
   }
 
-  // Group by subject
+  // Group study books by subject (only for subjects that have them)
   const bySubject = new Map();
   for (const sb of studyBooks) {
     if (!bySubject.has(sb.subjectSlug)) {
       bySubject.set(sb.subjectSlug, { slug: sb.subjectSlug, label: sb.subjectLabel, books: [] });
     }
     bySubject.get(sb.subjectSlug).books.push(sb);
+  }
+
+  // Ensure all known subjects appear even without study books
+  for (const [slug, info] of allSubjects) {
+    if (!bySubject.has(slug)) {
+      bySubject.set(slug, { slug, label: info.label, books: [] });
+    }
   }
 
   // Sort subjects by label
