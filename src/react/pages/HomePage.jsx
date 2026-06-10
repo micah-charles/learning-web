@@ -169,9 +169,7 @@ export default function HomePage({ onNavigate }) {
         </p>
         <a
           className="lw-btn lw-btn-promote lw-btn-promote-blue"
-          href="https://www.foxchildidea.com/revision/subjects/"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/revision/subjects/"
         >
           Browse all subjects &rarr;
         </a>
