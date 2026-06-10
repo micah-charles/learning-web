@@ -2,6 +2,475 @@
 
 Generated from `data/generated/manifest.json`.
 
+## 1 The Study Of Religions Buddhism (June 2020)
+
+- Pack ID: `gcse_rs_1-the-study-of-religions-buddhism_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_1-the-study-of-religions-buddhism_november_2020.md`
+
+## 1 The Study Of Religions Buddhism (June 2021)
+
+- Pack ID: `gcse_rs_1-the-study-of-religions-buddhism_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_1-the-study-of-religions-buddhism_november_2021.md`
+
+## 1 The Study Of Religions Buddhism (June 2022)
+
+- Pack ID: `gcse_rs_1-the-study-of-religions-buddhism_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_1-the-study-of-religions-buddhism_june_2022.md`
+
+## 1 The Study Of Religions Buddhism (June 2023)
+
+- Pack ID: `gcse_rs_1-the-study-of-religions-buddhism_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_1-the-study-of-religions-buddhism_june_2023.md`
+
+## 1 The Study Of Religions Buddhism (June 2024)
+
+- Pack ID: `gcse_rs_1-the-study-of-religions-buddhism_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_1-the-study-of-religions-buddhism_june_2024.md`
+
+## 2 The Study Of Religions Catholic Christianity (June 2020)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-catholic-christianity_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-catholic-christianity_november_2020.md`
+
+## 2 The Study Of Religions Catholic Christianity (June 2024)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-catholic-christianity_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-catholic-christianity_june_2024.md`
+
+## 2 The Study Of Religions Christianity (June 2020)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-christianity_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-christianity_november_2020.md`
+
+## 2 The Study Of Religions Christianity (June 2021)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-christianity_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-christianity_november_2021.md`
+
+## 2 The Study Of Religions Christianity (June 2022)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-christianity_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-christianity_june_2022.md`
+
+## 2 The Study Of Religions Christianity (June 2023)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-christianity_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-christianity_june_2023.md`
+
+## 2 The Study Of Religions Christianity (June 2024)
+
+- Pack ID: `gcse_rs_2-the-study-of-religions-christianity_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_2-the-study-of-religions-christianity_june_2024.md`
+
+## 3 The Study Of Religions Christianity (June 2020)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-christianity_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-christianity_november_2020.md`
+
+## 3 The Study Of Religions Christianity (June 2021)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-christianity_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-christianity_november_2021.md`
+
+## 3 The Study Of Religions Christianity (June 2022)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-christianity_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-christianity_june_2022.md`
+
+## 3 The Study Of Religions Christianity (June 2023)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-christianity_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-christianity_june_2023.md`
+
+## 3 The Study Of Religions Christianity (June 2024)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-christianity_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-christianity_june_2024.md`
+
+## 3 The Study Of Religions Islam (June 2020)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-islam_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-islam_november_2020.md`
+
+## 3 The Study Of Religions Islam (June 2021)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-islam_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-islam_november_2021.md`
+
+## 3 The Study Of Religions Islam (June 2022)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-islam_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-islam_june_2022.md`
+
+## 3 The Study Of Religions Islam (June 2023)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-islam_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-islam_june_2023.md`
+
+## 3 The Study Of Religions Islam (June 2024)
+
+- Pack ID: `gcse_rs_3-the-study-of-religions-islam_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_3-the-study-of-religions-islam_june_2024.md`
+
+## 4 The Study Of Religions Hinduism (June 2020)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-hinduism_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-hinduism_november_2020.md`
+
+## 4 The Study Of Religions Hinduism (June 2021)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-hinduism_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-hinduism_november_2021.md`
+
+## 4 The Study Of Religions Hinduism (June 2022)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-hinduism_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-hinduism_june_2022.md`
+
+## 4 The Study Of Religions Hinduism (June 2023)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-hinduism_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-hinduism_june_2023.md`
+
+## 4 The Study Of Religions Hinduism (June 2024)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-hinduism_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-hinduism_june_2024.md`
+
+## 4 The Study Of Religions Judaism (June 2020)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-judaism_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-judaism_november_2020.md`
+
+## 4 The Study Of Religions Judaism (June 2021)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-judaism_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-judaism_november_2021.md`
+
+## 4 The Study Of Religions Judaism (June 2022)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-judaism_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-judaism_june_2022.md`
+
+## 4 The Study Of Religions Judaism (June 2023)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-judaism_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-judaism_june_2023.md`
+
+## 4 The Study Of Religions Judaism (June 2024)
+
+- Pack ID: `gcse_rs_4-the-study-of-religions-judaism_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_4-the-study-of-religions-judaism_june_2024.md`
+
+## 5 The Study Of Religions Islam (June 2020)
+
+- Pack ID: `gcse_rs_5-the-study-of-religions-islam_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_5-the-study-of-religions-islam_november_2020.md`
+
+## 5 The Study Of Religions Islam (June 2021)
+
+- Pack ID: `gcse_rs_5-the-study-of-religions-islam_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_5-the-study-of-religions-islam_november_2021.md`
+
+## 5 The Study Of Religions Islam (June 2022)
+
+- Pack ID: `gcse_rs_5-the-study-of-religions-islam_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_5-the-study-of-religions-islam_june_2022.md`
+
+## 5 The Study Of Religions Islam (June 2023)
+
+- Pack ID: `gcse_rs_5-the-study-of-religions-islam_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_5-the-study-of-religions-islam_june_2023.md`
+
+## 5 The Study Of Religions Islam (June 2024)
+
+- Pack ID: `gcse_rs_5-the-study-of-religions-islam_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_5-the-study-of-religions-islam_june_2024.md`
+
+## 6 The Study Of Religions Judaism (June 2020)
+
+- Pack ID: `gcse_rs_6-the-study-of-religions-judaism_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_6-the-study-of-religions-judaism_november_2020.md`
+
+## 6 The Study Of Religions Judaism (June 2022)
+
+- Pack ID: `gcse_rs_6-the-study-of-religions-judaism_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_6-the-study-of-religions-judaism_june_2022.md`
+
+## 6 The Study Of Religions Judaism (June 2023)
+
+- Pack ID: `gcse_rs_6-the-study-of-religions-judaism_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_6-the-study-of-religions-judaism_june_2023.md`
+
+## 6 The Study Of Religions Judaism (June 2024)
+
+- Pack ID: `gcse_rs_6-the-study-of-religions-judaism_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_6-the-study-of-religions-judaism_june_2024.md`
+
+## 6 The Study Of Religions Judaism (November 2021)
+
+- Pack ID: `gcse_rs_6-the-study-of-religions-judaism_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_6-the-study-of-religions-judaism_november_2021.md`
+
+## 7 The Study Of Religions Sikhism (June 2020)
+
+- Pack ID: `gcse_rs_7-the-study-of-religions-sikhism_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_7-the-study-of-religions-sikhism_november_2020.md`
+
+## 7 The Study Of Religions Sikhism (June 2021)
+
+- Pack ID: `gcse_rs_7-the-study-of-religions-sikhism_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_7-the-study-of-religions-sikhism_november_2021.md`
+
+## 7 The Study Of Religions Sikhism (June 2022)
+
+- Pack ID: `gcse_rs_7-the-study-of-religions-sikhism_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_7-the-study-of-religions-sikhism_june_2022.md`
+
+## 7 The Study Of Religions Sikhism (June 2023)
+
+- Pack ID: `gcse_rs_7-the-study-of-religions-sikhism_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_7-the-study-of-religions-sikhism_june_2023.md`
+
+## 7 The Study Of Religions Sikhism (June 2024)
+
+- Pack ID: `gcse_rs_7-the-study-of-religions-sikhism_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_7-the-study-of-religions-sikhism_june_2024.md`
+
+## A America 1840 1895 Expansion And Consolidation (June 2020)
+
+- Pack ID: `gcse_hist_a-america-1840-1895-expansion-and-consolidation_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-america-1840-1895-expansion-and-consolidation_november_2020.md`
+
+## A America 1840 1895 Expansion And Consolidation (June 2021)
+
+- Pack ID: `gcse_hist_a-america-1840-1895-expansion-and-consolidation_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-america-1840-1895-expansion-and-consolidation_november_2021.md`
+
+## A America 1840 1895 Expansion And Consolidation (June 2022)
+
+- Pack ID: `gcse_hist_a-america-1840-1895-expansion-and-consolidation_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-america-1840-1895-expansion-and-consolidation_june_2022.md`
+
+## A America 1840 1895 Expansion And Consolidation (June 2023)
+
+- Pack ID: `gcse_hist_a-america-1840-1895-expansion-and-consolidation_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-america-1840-1895-expansion-and-consolidation_june_2023.md`
+
+## A America 1840 1895 Expansion And Consolidation (June 2024)
+
+- Pack ID: `gcse_hist_a-america-1840-1895-expansion-and-consolidation_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-america-1840-1895-expansion-and-consolidation_june_2024.md`
+
+## A Britain Health And The People C1000 To The Present Day (June 2020)
+
+- Pack ID: `gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_november_2020.md`
+
+## A Britain Health And The People C1000 To The Present Day (June 2021)
+
+- Pack ID: `gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_november_2021.md`
+
+## A Britain Health And The People C1000 To The Present Day (June 2022)
+
+- Pack ID: `gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_june_2022.md`
+
+## A Britain Health And The People C1000 To The Present Day (June 2023)
+
+- Pack ID: `gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_june_2023.md`
+
+## A Britain Health And The People C1000 To The Present Day (June 2024)
+
+- Pack ID: `gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-britain-health-and-the-people-c1000-to-the-present-day_june_2024.md`
+
+## A Conflict And Tension The First World War 1894 1918 (June 2020)
+
+- Pack ID: `gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_november_2020.md`
+
+## A Conflict And Tension The First World War 1894 1918 (June 2021)
+
+- Pack ID: `gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_november_2021.md`
+
+## A Conflict And Tension The First World War 1894 1918 (June 2022)
+
+- Pack ID: `gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_june_2022.md`
+
+## A Conflict And Tension The First World War 1894 1918 (June 2023)
+
+- Pack ID: `gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_june_2023.md`
+
+## A Conflict And Tension The First World War 1894 1918 (paperTitle: Paper 1 Section B/A: Conflict and tension:)
+
+- Pack ID: `gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-conflict-and-tension-the-first-world-war-1894-1918_june_2024.md`
+
+## A Norman England C1066 C1100 (June 2020)
+
+- Pack ID: `gcse_hist_a-norman-england-c1066-c1100_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-norman-england-c1066-c1100_november_2020.md`
+
+## A Norman England C1066 C1100 (June 2021)
+
+- Pack ID: `gcse_hist_a-norman-england-c1066-c1100_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-norman-england-c1066-c1100_november_2021.md`
+
+## A Norman England C1066 C1100 (June 2022)
+
+- Pack ID: `gcse_hist_a-norman-england-c1066-c1100_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-norman-england-c1066-c1100_june_2022.md`
+
+## A Norman England C1066 C1100 (June 2023)
+
+- Pack ID: `gcse_hist_a-norman-england-c1066-c1100_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-norman-england-c1066-c1100_june_2023.md`
+
+## A Norman England C1066 C1100 (June 2024)
+
+- Pack ID: `gcse_hist_a-norman-england-c1066-c1100_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_a-norman-england-c1066-c1100_june_2024.md`
+
 ## AQA GCSE RS 2024 — Buddhism
 
 - Pack ID: `gcse_rs_2024_buddhism`
@@ -825,6 +1294,685 @@ Generated from `data/generated/manifest.json`.
 - Curriculum: `gcse`
 - Study notes: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt6_judaism.md`
 - Pack JSON: `/data/Packs/gcse/religion/gcse_rs_november_2021_p1_opt6_judaism/pack_unified.json`
+
+## B Britain Power And The People C1170 To The Present Day (June 2020)
+
+- Pack ID: `gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_november_2020.md`
+
+## B Britain Power And The People C1170 To The Present Day (June 2021)
+
+- Pack ID: `gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_november_2021.md`
+
+## B Britain Power And The People C1170 To The Present Day (June 2022)
+
+- Pack ID: `gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_june_2022.md`
+
+## B Britain Power And The People C1170 To The Present Day (June 2023)
+
+- Pack ID: `gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_june_2023.md`
+
+## B Britain Power And The People C1170 To The Present Day (June 2024)
+
+- Pack ID: `gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-britain-power-and-the-people-c1170-to-the-present-day_june_2024.md`
+
+## B Conflict And Tension The Inter War Years 1918 1939 (June 2020)
+
+- Pack ID: `gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_november_2020.md`
+
+## B Conflict And Tension The Inter War Years 1918 1939 (June 2021)
+
+- Pack ID: `gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_november_2021.md`
+
+## B Conflict And Tension The Inter War Years 1918 1939 (June 2022)
+
+- Pack ID: `gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_june_2022.md`
+
+## B Conflict And Tension The Inter War Years 1918 1939 (June 2023)
+
+- Pack ID: `gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_june_2023.md`
+
+## B Conflict And Tension The Inter War Years 1918 1939 (June 2024)
+
+- Pack ID: `gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-conflict-and-tension-the-inter-war-years-1918-1939_june_2024.md`
+
+## B Germany 1890 1945 Democracy And Dictatorship (June 2020)
+
+- Pack ID: `gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_november_2020.md`
+
+## B Germany 1890 1945 Democracy And Dictatorship (June 2021)
+
+- Pack ID: `gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_november_2021.md`
+
+## B Germany 1890 1945 Democracy And Dictatorship (June 2022)
+
+- Pack ID: `gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_june_2022.md`
+
+## B Germany 1890 1945 Democracy And Dictatorship (June 2023)
+
+- Pack ID: `gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_june_2023.md`
+
+## B Germany 1890 1945 Democracy And Dictatorship (June 2024)
+
+- Pack ID: `gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-germany-1890-1945-democracy-and-dictatorship_june_2024.md`
+
+## B Medieval England The Reign Of Edward I 1272 1307 (June 2020)
+
+- Pack ID: `gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_november_2020.md`
+
+## B Medieval England The Reign Of Edward I 1272 1307 (June 2021)
+
+- Pack ID: `gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_november_2021.md`
+
+## B Medieval England The Reign Of Edward I 1272 1307 (June 2022)
+
+- Pack ID: `gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_june_2022.md`
+
+## B Medieval England The Reign Of Edward I 1272 1307 (June 2023)
+
+- Pack ID: `gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_june_2023.md`
+
+## B Medieval England The Reign Of Edward I 1272 1307 (June 2024)
+
+- Pack ID: `gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_b-medieval-england-the-reign-of-edward-i-1272-1307_june_2024.md`
+
+## C Britain Migration Empires And The People C790 To The Present Day (June 2020)
+
+- Pack ID: `gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_november_2020.md`
+
+## C Britain Migration Empires And The People C790 To The Present Day (June 2021)
+
+- Pack ID: `gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_november_2021.md`
+
+## C Britain Migration Empires And The People C790 To The Present Day (June 2022)
+
+- Pack ID: `gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_june_2022.md`
+
+## C Britain Migration Empires And The People C790 To The Present Day (June 2023)
+
+- Pack ID: `gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_june_2023.md`
+
+## C Britain Migration Empires And The People C790 To The Present Day (June 2024)
+
+- Pack ID: `gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-britain-migration-empires-and-the-people-c790-to-the-present-day_june_2024.md`
+
+## C Conflict And Tension Between East And West 1945 1972 (June 2020)
+
+- Pack ID: `gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_november_2020.md`
+
+## C Conflict And Tension Between East And West 1945 1972 (June 2021)
+
+- Pack ID: `gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_november_2021.md`
+
+## C Conflict And Tension Between East And West 1945 1972 (June 2022)
+
+- Pack ID: `gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_june_2022.md`
+
+## C Conflict And Tension Between East And West 1945 1972 (June 2023)
+
+- Pack ID: `gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_june_2023.md`
+
+## C Conflict And Tension Between East And West 1945 1972 (June 2024)
+
+- Pack ID: `gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-conflict-and-tension-between-east-and-west-1945-1972_june_2024.md`
+
+## C Elizabethan England C1568 1603 (June 2020)
+
+- Pack ID: `gcse_hist_c-elizabethan-england-c1568-1603_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-elizabethan-england-c1568-1603_november_2020.md`
+
+## C Elizabethan England C1568 1603 (June 2021)
+
+- Pack ID: `gcse_hist_c-elizabethan-england-c1568-1603_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-elizabethan-england-c1568-1603_november_2021.md`
+
+## C Elizabethan England C1568 1603 (June 2022)
+
+- Pack ID: `gcse_hist_c-elizabethan-england-c1568-1603_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-elizabethan-england-c1568-1603_june_2022.md`
+
+## C Elizabethan England C1568 1603 (June 2023)
+
+- Pack ID: `gcse_hist_c-elizabethan-england-c1568-1603_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-elizabethan-england-c1568-1603_june_2023.md`
+
+## C Elizabethan England C1568 1603 (June 2024)
+
+- Pack ID: `gcse_hist_c-elizabethan-england-c1568-1603_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-elizabethan-england-c1568-1603_june_2024.md`
+
+## C Russia 1894 1945 Tsardom And Communism (June 2020)
+
+- Pack ID: `gcse_hist_c-russia-1894-1945-tsardom-and-communism_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-russia-1894-1945-tsardom-and-communism_november_2020.md`
+
+## C Russia 1894 1945 Tsardom And Communism (June 2021)
+
+- Pack ID: `gcse_hist_c-russia-1894-1945-tsardom-and-communism_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-russia-1894-1945-tsardom-and-communism_november_2021.md`
+
+## C Russia 1894 1945 Tsardom And Communism (June 2022)
+
+- Pack ID: `gcse_hist_c-russia-1894-1945-tsardom-and-communism_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-russia-1894-1945-tsardom-and-communism_june_2022.md`
+
+## C Russia 1894 1945 Tsardom And Communism (June 2023)
+
+- Pack ID: `gcse_hist_c-russia-1894-1945-tsardom-and-communism_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-russia-1894-1945-tsardom-and-communism_june_2023.md`
+
+## C Russia 1894 1945 Tsardom And Communism (June 2024)
+
+- Pack ID: `gcse_hist_c-russia-1894-1945-tsardom-and-communism_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_c-russia-1894-1945-tsardom-and-communism_june_2024.md`
+
+## Catholic Christianity (June 2020)
+
+- Pack ID: `gcse_rs_catholic-christianity_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_catholic-christianity_november_2020.md`
+
+## Catholic Christianity (June 2021)
+
+- Pack ID: `gcse_rs_catholic-christianity_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_catholic-christianity_november_2021.md`
+
+## Catholic Christianity (June 2022)
+
+- Pack ID: `gcse_rs_catholic-christianity_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_catholic-christianity_june_2022.md`
+
+## Catholic Christianity (June 2023)
+
+- Pack ID: `gcse_rs_catholic-christianity_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_catholic-christianity_june_2023.md`
+
+## Catholic Christianity (June 2024)
+
+- Pack ID: `gcse_rs_catholic-christianity_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_catholic-christianity_june_2024.md`
+
+## D America 1920 1973 Opportunity And Inequality (June 2020)
+
+- Pack ID: `gcse_hist_d-america-1920-1973-opportunity-and-inequality_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-america-1920-1973-opportunity-and-inequality_november_2020.md`
+
+## D America 1920 1973 Opportunity And Inequality (June 2021)
+
+- Pack ID: `gcse_hist_d-america-1920-1973-opportunity-and-inequality_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-america-1920-1973-opportunity-and-inequality_november_2021.md`
+
+## D America 1920 1973 Opportunity And Inequality (June 2022)
+
+- Pack ID: `gcse_hist_d-america-1920-1973-opportunity-and-inequality_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-america-1920-1973-opportunity-and-inequality_june_2022.md`
+
+## D America 1920 1973 Opportunity And Inequality (June 2023)
+
+- Pack ID: `gcse_hist_d-america-1920-1973-opportunity-and-inequality_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-america-1920-1973-opportunity-and-inequality_june_2023.md`
+
+## D America 1920 1973 Opportunity And Inequality (June 2024)
+
+- Pack ID: `gcse_hist_d-america-1920-1973-opportunity-and-inequality_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-america-1920-1973-opportunity-and-inequality_june_2024.md`
+
+## D Conflict And Tension In Asia 1950 1975 (June 2020)
+
+- Pack ID: `gcse_hist_d-conflict-and-tension-in-asia-1950-1975_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-conflict-and-tension-in-asia-1950-1975_november_2020.md`
+
+## D Conflict And Tension In Asia 1950 1975 (June 2021)
+
+- Pack ID: `gcse_hist_d-conflict-and-tension-in-asia-1950-1975_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-conflict-and-tension-in-asia-1950-1975_november_2021.md`
+
+## D Conflict And Tension In Asia 1950 1975 (June 2022)
+
+- Pack ID: `gcse_hist_d-conflict-and-tension-in-asia-1950-1975_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-conflict-and-tension-in-asia-1950-1975_june_2022.md`
+
+## D Conflict And Tension In Asia 1950 1975 (June 2023)
+
+- Pack ID: `gcse_hist_d-conflict-and-tension-in-asia-1950-1975_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-conflict-and-tension-in-asia-1950-1975_june_2023.md`
+
+## D Conflict And Tension In Asia 1950 1975 (June 2024)
+
+- Pack ID: `gcse_hist_d-conflict-and-tension-in-asia-1950-1975_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-conflict-and-tension-in-asia-1950-1975_june_2024.md`
+
+## D Restoration England 1660 1685 (June 2020)
+
+- Pack ID: `gcse_hist_d-restoration-england-1660-1685_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-restoration-england-1660-1685_november_2020.md`
+
+## D Restoration England 1660 1685 (June 2021)
+
+- Pack ID: `gcse_hist_d-restoration-england-1660-1685_november_2021`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-restoration-england-1660-1685_november_2021.md`
+
+## D Restoration England 1660 1685 (June 2022)
+
+- Pack ID: `gcse_hist_d-restoration-england-1660-1685_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-restoration-england-1660-1685_june_2022.md`
+
+## D Restoration England 1660 1685 (June 2023)
+
+- Pack ID: `gcse_hist_d-restoration-england-1660-1685_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-restoration-england-1660-1685_june_2023.md`
+
+## D Restoration England 1660 1685 (June 2024)
+
+- Pack ID: `gcse_hist_d-restoration-england-1660-1685_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_d-restoration-england-1660-1685_june_2024.md`
+
+## E Conflict And Tension In The Gulf And Afghanistan 1990 2009 (June 2020)
+
+- Pack ID: `gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_november_2020`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_november_2020.md`
+
+## E Conflict And Tension In The Gulf And Afghanistan 1990 2009 (June 2022)
+
+- Pack ID: `gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_june_2022`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_june_2022.md`
+
+## E Conflict And Tension In The Gulf And Afghanistan 1990 2009 (June 2023)
+
+- Pack ID: `gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_june_2023`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_june_2023.md`
+
+## E Conflict And Tension In The Gulf And Afghanistan 1990 2009 (June 2024)
+
+- Pack ID: `gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_june_2024`
+- Subject: `history`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/history/gcse_hist_e-conflict-and-tension-in-the-gulf-and-afghanistan-1990-2009_june_2024.md`
+
+## Non Textual Studies (June 2020)
+
+- Pack ID: `gcse_rs_non-textual-studies_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_non-textual-studies_november_2020.md`
+
+## Non Textual Studies (June 2021)
+
+- Pack ID: `gcse_rs_non-textual-studies_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_non-textual-studies_november_2021.md`
+
+## Non Textual Studies (June 2022)
+
+- Pack ID: `gcse_rs_non-textual-studies_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_non-textual-studies_june_2022.md`
+
+## Non Textual Studies (June 2023)
+
+- Pack ID: `gcse_rs_non-textual-studies_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_non-textual-studies_june_2023.md`
+
+## Non Textual Studies (June 2024)
+
+- Pack ID: `gcse_rs_non-textual-studies_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_non-textual-studies_june_2024.md`
+
+## Paper 2X Perspectives On Faith Islam (June 2022)
+
+- Pack ID: `gcse_rs_paper-2x-perspectives-on-faith-islam_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_paper-2x-perspectives-on-faith-islam_june_2022.md`
+
+## Paper 2X Perspectives On Faith Islam (June 2023)
+
+- Pack ID: `gcse_rs_paper-2x-perspectives-on-faith-islam_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_paper-2x-perspectives-on-faith-islam_june_2023.md`
+
+## Paper 2X Section A Perspectives On Faith Islam (June 2020)
+
+- Pack ID: `gcse_rs_paper-2x-section-a-perspectives-on-faith-islam_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_paper-2x-section-a-perspectives-on-faith-islam_november_2020.md`
+
+## Paper 2X Section A Perspectives On Faith Islam (June 2024)
+
+- Pack ID: `gcse_rs_paper-2x-section-a-perspectives-on-faith-islam_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_paper-2x-section-a-perspectives-on-faith-islam_june_2024.md`
+
+## Perspectives On Faith Judaism (June 2020)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-judaism_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-judaism_november_2020.md`
+
+## Perspectives On Faith Judaism (June 2021)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-judaism_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-judaism_november_2021.md`
+
+## Perspectives On Faith Judaism (June 2022)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-judaism_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-judaism_june_2022.md`
+
+## Perspectives On Faith Judaism (June 2023)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-judaism_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-judaism_june_2023.md`
+
+## Perspectives On Faith Judaism (June 2024)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-judaism_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-judaism_june_2024.md`
+
+## Perspectives On Faith Non Textual Studies (June 2020)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-non-textual-studies_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-non-textual-studies_november_2020.md`
+
+## Perspectives On Faith Non Textual Studies (June 2021)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-non-textual-studies_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-non-textual-studies_november_2021.md`
+
+## Perspectives On Faith Non Textual Studies (June 2022)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-non-textual-studies_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-non-textual-studies_june_2022.md`
+
+## Perspectives On Faith Non Textual Studies (June 2023)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-non-textual-studies_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-non-textual-studies_june_2023.md`
+
+## Perspectives On Faith Non Textual Studies (June 2024)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-non-textual-studies_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-non-textual-studies_june_2024.md`
+
+## Perspectives On Faith Textual Studies (June 2021)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-textual-studies_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-textual-studies_november_2021.md`
+
+## Perspectives On Faith Textual Studies (June 2022)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-textual-studies_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-textual-studies_june_2022.md`
+
+## Perspectives On Faith Textual Studies (June 2023)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-textual-studies_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-textual-studies_june_2023.md`
+
+## Perspectives On Faith Textual Studies (June 2024)
+
+- Pack ID: `gcse_rs_perspectives-on-faith-textual-studies_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_perspectives-on-faith-textual-studies_june_2024.md`
+
+## Textual Studies (June 2020)
+
+- Pack ID: `gcse_rs_textual-studies_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_textual-studies_november_2020.md`
+
+## Textual Studies (June 2021)
+
+- Pack ID: `gcse_rs_textual-studies_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_textual-studies_november_2021.md`
+
+## Textual Studies (June 2022)
+
+- Pack ID: `gcse_rs_textual-studies_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_textual-studies_june_2022.md`
+
+## Textual Studies (June 2023)
+
+- Pack ID: `gcse_rs_textual-studies_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_textual-studies_june_2023.md`
+
+## Textual Studies (June 2024)
+
+- Pack ID: `gcse_rs_textual-studies_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_textual-studies_june_2024.md`
+
+## Thematics Studies (June 2020)
+
+- Pack ID: `gcse_rs_thematics-studies_november_2020`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_thematics-studies_november_2020.md`
+
+## Thematics Studies (June 2021)
+
+- Pack ID: `gcse_rs_thematics-studies_november_2021`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_thematics-studies_november_2021.md`
+
+## Thematics Studies (June 2022)
+
+- Pack ID: `gcse_rs_thematics-studies_june_2022`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_thematics-studies_june_2022.md`
+
+## Thematics Studies (June 2023)
+
+- Pack ID: `gcse_rs_thematics-studies_june_2023`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_thematics-studies_june_2023.md`
+
+## Thematics Studies (June 2024)
+
+- Pack ID: `gcse_rs_thematics-studies_june_2024`
+- Subject: `religion`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/religion/gcse_rs_thematics-studies_june_2024.md`
 
 ## KS3 Computing — Algorithms, Flowcharts & Pseudocode
 
