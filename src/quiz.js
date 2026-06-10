@@ -833,6 +833,13 @@ export function resolveQuizModesForUI({
     ...(multipleChoiceCount > 0 ? ["multipleChoice"] : []),
     ...(fillBlankCount > 0 ? ["fillBlank"] : []),
   ];
+
+  // Packs with zero vocab items (e.g. MCQ-only revision packs) must skip
+  // word modes entirely to avoid "Not enough words to build a quiz".
+  if (standaloneModes.length > 0 && vocabCount === 0) {
+    return standaloneModes;
+  }
+
   const vocabModes =
     mode === "mcq"   ? ["germanWordChooseEnglish"] :
     mode === "typed" ? ["germanWordTypeEnglish"] :
