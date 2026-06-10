@@ -158,6 +158,25 @@ export default function HomePage({ onNavigate }) {
         </div>
       </div>
 
+      {/* ── Study Books (SEO revision notes) ──────────────────────────── */}
+      <div className="lw-card lw-section">
+        <h2 className="lw-section-title">
+          Study Books <SectionStar />
+        </h2>
+        <p className="lw-subtitle">
+          Read revision study notes across all subjects — no quiz, just the
+          content. Built for Google and your bookmarks.
+        </p>
+        <a
+          className="lw-btn lw-btn-promote lw-btn-promote-blue"
+          href="https://www.foxchildidea.com/revision/subjects/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Browse all subjects &rarr;
+        </a>
+      </div>
+
       {/* ── Study packs ────────────────────────────────────────────────── */}
       {featuredPacks.length > 0 && (
         <div className="lw-card lw-section">

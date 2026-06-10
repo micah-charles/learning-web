@@ -70,8 +70,9 @@ function escapeHtml(str) {
     .replace(/'/g, "&#39;");
 }
 
-function wrapPage(title, description, canonical, contentHtml, structuredData) {
+function wrapPage(title, description, canonical, contentHtml, structuredData, stats = {}) {
   const sdJson = structuredData ? `\n<script type="application/ld+json">${JSON.stringify(structuredData, null, 2)}</script>\n` : "";
+  const { packCount = 0, groupCount = 0, builderCount = 0 } = stats;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -94,7 +95,7 @@ function wrapPage(title, description, canonical, contentHtml, structuredData) {
 </head>
 <body>
   <div class="seo-page">
-    <header class="seo-header">
+    <div class="seo-top-nav">
       <a href="/" class="seo-logo">
         <img src="/revision/logo.png" alt="" class="seo-logo-img" />
         FoxChild@Learn
@@ -103,6 +104,34 @@ function wrapPage(title, description, canonical, contentHtml, structuredData) {
         <a href="/">Home</a>
         <a href="/revision/subjects/">Subjects</a>
       </nav>
+    </div>
+    <header class="lw-app-header lw-app-header--seo" style="background:radial-gradient(circle at 20% 55%, rgba(255,255,255,0.10), transparent 40%), radial-gradient(circle at 85% 20%, rgba(237,184,50,0.18), transparent 30%), linear-gradient(135deg, rgba(43,126,133,0.85) 0%, rgba(61,158,165,0.80) 45%, rgba(79,179,186,0.74) 100%), url(/revision/hero-bg.jpg) center / cover no-repeat">
+      <div class="lw-header-inner">
+        <div class="lw-header-mascot">
+          <img src="/revision/logo.png" alt="FoxChild Idea - Fox Tutor and Girl Tutor" class="lw-mascot-img" />
+          <a class="lw-social-badge" href="https://www.facebook.com/profile.php?id=61589170294693" target="_blank" rel="noopener noreferrer" title="Visit FoxChildIdea on Facebook" aria-label="Visit FoxChildIdea on Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </a>
+        </div>
+        <div class="lw-hero-copy">
+          <div class="lw-hero-brand-block">
+            <p class="lw-hero-eyebrow">POWERED BY FOXCHILD IDEA</p>
+            <h1 class="lw-hero-title"><span style="color:#fff">FoxChild</span><span style="color:#e8841a">@Learn</span></h1>
+            <p class="lw-hero-sub">Your cosy space for learning, practising, and growing — powered by curiosity and AI.</p>
+          </div>
+          <div class="lw-hero-right-col">
+            <div class="lw-hero-counts">
+              <span class="lw-hero-count-badge">📦 ${packCount} packs</span>
+              <span class="lw-hero-count-badge">📖 ${groupCount} reading groups</span>
+              <span class="lw-hero-count-badge">🧩 ${builderCount} builder sets</span>
+            </div>
+            <a href="/" class="lw-hero-promo">
+              <span class="lw-hero-promo-title">✦ AI Learning Pack Creator</span>
+              <span class="lw-hero-promo-sub">Build your own quizzes, readings, and revision packs with AI — then upload the JSON in My Packs.</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </header>
     <main class="seo-main">
       ${contentHtml}
@@ -254,6 +283,16 @@ function main() {
   // Collect all URLs for sitemap
   const sitemapUrls = [];
 
+  // ── Compute build-time stats for the hero banner ─────────────────────────
+  const coreExists = !!manifest.core;
+  const packsWithRevision = (manifest.packs || []).filter(p => (p.capabilities || []).includes("revision"));
+  const packsWithPassages = (manifest.packs || []).filter(p => (p.capabilities || []).includes("passages"));
+  const heroStats = {
+    packCount: (coreExists ? 1 : 0) + packsWithRevision.length,
+    groupCount: packsWithPassages.length,
+    builderCount: (manifest.sentenceBuilderPacks || []).length,
+  };
+
   // ── Clean output dir ─────────────────────────────────────────────────────────
   const subjectsDir = resolve(SEO_DIR, "subjects");
   const studybookDir = resolve(SEO_DIR, "studybook");
@@ -300,7 +339,7 @@ function main() {
       "provider": { "@type": "Organization", "name": "FoxChild Idea", "url": "https://www.foxchildidea.com/" },
     };
 
-    writeFileSync(resolve(subjDir, "index.html"), wrapPage(pageTitle, pageDesc, canonical, contentHtml, sd));
+    writeFileSync(resolve(subjDir, "index.html"), wrapPage(pageTitle, pageDesc, canonical, contentHtml, sd, heroStats));
     sitemapUrls.push(canonical);
     console.log(`[seo] Generated subject page: /revision/subjects/${subj.slug}/`);
   }
@@ -340,7 +379,8 @@ function main() {
       "Browse free KS3 and GCSE revision study notes across all subjects. Choose from Geography, History, Science, Languages, Computing, Religious Studies and more.",
       `${BASE_URL}/revision/subjects/`,
       contentHtml,
-      sd
+      sd,
+      heroStats
     ));
     sitemapUrls.push(`${BASE_URL}/revision/subjects/`);
     console.log("[seo] Generated subject index page: /revision/subjects/");
@@ -431,7 +471,7 @@ function main() {
   try {
     const publicRevision = resolve(ROOT, "public/revision");
     if (existsSync(publicRevision)) {
-      for (const name of ["revision.css", "revision-study-book.js", "logo.png"]) {
+      for (const name of ["revision.css", "revision-study-book.js", "logo.png", "hero-bg.jpg"]) {
         const src = resolve(publicRevision, name);
         const dest = resolve(SEO_DIR, name);
         if (existsSync(src)) writeFileSync(dest, readFileSync(src));
