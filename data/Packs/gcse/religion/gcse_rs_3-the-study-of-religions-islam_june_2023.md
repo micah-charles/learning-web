@@ -1,0 +1,150 @@
+# componentCode:
+
+*June 2023*
+
+## Q1.1: Which one of the following is the name of an angel in Islam?
+
+Put a tick () in the box next to the correct answer.
+A Ali
+B Allah
+C Mika’il
+D Muhammad
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: C Mika’il
+
+---
+
+## Q1.2: Give two Muslim beliefs about the Oneness of God.
+
+**Answer:**
+
+beliefs, practices and sources of authority.
+It is the belief in Tawhid / There is only one God / There is no God but Allah / It is the belief in the
+uniqueness of God / His omnipotence, omni-benevolence / eternal / It is a core belief in Islam and
+without this one cannot be a Muslim / It is one of the six articles of faith / five roots of Usul ad-Din
+/ It is emphasised in the Qur’an and Hadith / Each prophet called towards Tawhid / It is the
+opposite of shirk / It is expressed in the Shahadah and at key events in a person’s life, etc.
+
+---
+
+## Q1.3: Explain two ways in which belief in hell influences Muslims today.
+
+**Answer:**
+
+influence on individuals, communities and societies
+To be a ‘detailed explanation’ the ‘influence’ of the way must be included.
+• Muslims avoid sins and anything that will lead them towards the hell fire, eg not lying, stealing,
+• It will encourage Muslims to do good deeds / eg giving charity / following the pillars etc.
+• Muslims will ask for forgiveness for the bad deeds that they have committed / ‘Except for those
+who repent, believe and do righteous work. For them Allah will replace their evil deeds with good.
+And ever is Allah Forgiving and Merciful’ (25:70).
+• It influences Muslims to live a good honest life / help those that are in need.
+• It may scare them / deter them from committing evil deeds as hell is described in the Qur’an as a
+place of torment.
+• They will continue to do charity work / help those that are in need.
+• They may march and stand up against injustices in the world / as God will question them about
+their inaction on earth.
+• Some Muslims may not be influenced by belief in hell / rather their focus is on heaven etc.
+
+---
+
+## Q1.4: Explain two Muslim beliefs about the revelation of the Qur’an.
+
+Refer to sacred writings or another source of Muslim belief and teaching in
+your answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority.
+Relevant and accurate reference to scripture, sacred writing or another source of Muslim
+belief and teaching – 1 mark
+• It is the word of Allah and provides guidance ‘This is the Book about which there is no doubt, a
+guidance for those conscious of Allah.’ (2:2).
+• It was revealed to the prophet Muhammad on Mount Hira / it was revealed on the Night of Power /
+• The first verses to be revealed were surah 96: ‘Recite in the name of your Lord who created –
+Created man from a clinging substance (clot).’ (96:1-5).
+• It is timeless and free from fault as God has vowed to protect it ‘Verily, We Ourselves have sent
+down this Exhortation, and most surely We will be its Guardian’. (15:10).
+• The Qur’an was revealed over a period of 23 years / it contains 114 Surahs and 30 chapters etc.
+• Some verses were revealed in Makkah and others in Madina.
+• It was revealed to allow Muslims to gain rewards for reciting it. (Hadith).
+• It was revealed to allow Muslims to use it every day / during special occasions throughout a
+Muslim’s life, etc.
+
+---
+
+## Q1.5: ‘For Muslims, Prophets give the best understanding of their faith.’
+
+Evaluate this statement.
+In your answer you should:
+• refer to Muslim teaching
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• reach a justified conclusion.
+
+[SPaG 3 marks]
+
+Extra space
+
+Question .
+number .
+
+Question .
+number .
+
+Question .
+number .
+
+Question .
+number .
+
+Copyright information
+For confidentiality purposes, all acknowledgements of third-party copyright material are published in a separate booklet. This booklet is published
+after each live examination series and is available for free download from www.aqa.org.uk.
+and AQA will be happy to rectify any omissions of acknowledgements. If you have any queries please contact the Copyright Team.
+Copyright © 2023AQA and its licensors. All rights reserved.
+
+236G8061/3
+
+**Answer:**
+
+In your answer you should:
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+[SPaG 3 marks]
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• Prophets bring guidance to humans and it is only through them that Muslims are able to
+understand their faith fully. ‘Prophets are sent as a guide’ (Hadith).
+• Prophets were divinely inspired by God and so have knowledge of the unseen and all things
+pertaining to their faith.
+• All prophets are incapable of major sin/ infallible/ and so cannot make any mistakes (Qur’an).
+• Holy scriptures like the Qur’an and Torah were revealed to them and so they are better
+positioned to make sense of this.
+• Prophets are able to communicate with God and so clarification can be provided on religious
+
+**Arguments in support of other views**
+
+• The world has moved on since the last prophet and new advancements have meant that imams
+and other religious leaders are better positioned to understand the faith for believers.
+• The rightly guided caliphs who lived with the prophet Muhammad interpreted the faith and
+understood it fully.
+• The prophet Muhammad instructed his followers to follow the teachings of the rightly guided
+caliphs as they were like shining stars (Hadith); this implies that they were better positioned to
+understand and explain the faith to believers.
+• Other religious authorities understand the day-to-day issues facing Muslims and so are better
+positioned to understand the faith.
+• Parents, teachers and community workers help to make sense of the faith by giving it context in
+real life situations, etc.
+
+---

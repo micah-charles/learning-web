@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "build:data": "python3 scripts/generate_manifest.py",
-    "start": "python3 -m http.server 4173",
+    "build:study-books": "python3 scripts/generate_study_book_index.py",
+    "generate:seo": "node scripts/generate-seo-pages.mjs",
+    "start": "npm run build && python3 -m http.server --directory dist 4173",
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:study-books && vite build && npm run generate:seo",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -15,5 +17,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "marked": "^18.0.3"
   }
 }

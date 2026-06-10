@@ -1,0 +1,1610 @@
+# Paper 2B: Thematic Studies (including textual studies)
+
+*June 2023*
+
+## Q1.1: Which one of the following means an unmarried couple living together?
+
+A Procreation
+B Cohabitation
+C Divorce
+D Polygamy
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: B Cohabitation
+
+---
+
+## Q1.2: Give two reasons why many religious believers accept remarriage.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Remarriage to a new partner gives a second chance at happiness / want to live in marriage not co-
+habit / didn't choose to get divorced / God wants people to live in marriage / share your life with
+someone you love / want to have children / want a parent for their children / been widowed /
+religious duty to marry / start a new life / marriage failed e.g. abusive, adultery / financial support /
+company / may want to remarry the same person e.g. reconciled after getting divorce, etc.
+
+---
+
+## Q1.3: Explain two contrasting religious beliefs about gender equality.
+
+In your answer you must refer to one or more religious traditions.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+First contrasting belief
+Second contrasting belief
+Contrast may mean opposing or mean different views in terms of either belief or issue.
+Religions teach that male and female are of equal value / men and women have different roles and
+responsibilities in society / the roles and responsibilities may be interpreted as being unequal / some
+religious teachings make women subordinate to male authority / some religious practices may
+nowadays be seen as gender discrimination, etc.
+The practice of Buddhism is the same for men and women / showing no inequality of demand on
+either side / ‘The things which separate and divide people – race, religion, gender and social
+position are all illusory.’ (Dhammapada 6) / in 2015 the Dalai Lama said that he saw no reason why
+a future Dalai Lama could not be a woman / the Lotus Sutra teaches that men and women are equal
+in their ability to practise Buddhism and attain enlightenment / Mahayana Buddhism has had nuns
+for many centuries / however the tradition has died out in the Theravada tradition / some Buddhists
+argue that women can therefore no longer be ordained within the Theravada tradition / the
+Aparimitayur Sutra suggests that women must be reborn as men before they can achieve
+enlightenment / many Theravada societies are male orientated and dominate leadership, etc.
+Jesus treated women with respect and welcomed them as disciples / examples of Mary and Martha
+/ some of the earliest converts to Christianity were women and many became leaders for example
+Dorcas in Joppa, Priscilla in Ephesus and Phoebe in Cenchraea / within the Church of England the
+first women bishops were appointed in 2015 / however within the Roman Catholic church only men
+may be ordained / many non-conformist traditions, such as Methodists, have had women ministers
+for many years / Genesis 1:27 teaches that all humans were created in the image of God / so all
+humans should be treated equally / Galatians 3:27 emphasises this, ‘There is neither Jew nor
+Greek, slave nor free, male nor female for you are all one in Christ Jesus.’
+Some traditional Christians believe that men are the head of the family and women should mainly
+stay at home and care for the children / ‘Wives submit to your husbands as to the Lord, for the
+husband is head of the wife.’ (Ephesians 5:22) / some traditional Christians believe that this
+difference in roles is not gender inequality / but that men and women have different but
+complementary roles / many Christians today see marriage as an equal partnership where the
+different gifts of the couple strengthen family life, etc.
+There is no difference between men and women on a spiritual level / the differences exist only at a
+physical level due to past lives / ‘I look upon all creatures equally.’ (Bhagavad Gita 9:29) / good
+treatment of women is seen as a blessing / Hindu scriptures say a woman passes through three
+stages in life / when she is supported by her father / when she is supported by her husband / and
+when she is supported by her son / this would suggest inequality as the woman is dependent on the
+males in her family / Manusmirti says, ‘Where women are honoured the gods are pleased.’ / all
+Brahmin priests are male with the exception of in the Hare Krishna movement / increasing numbers
+of female priests in the whole range of Hinduism, etc.
+Qur’an 49:13 says, ‘People we created you all from a single man and a single woman and made
+you into races and tribes so that you should recognise one another.’ / all people are created equal
+by Allah / men and women have the same spiritual nature / Muhammad said, ‘I command you to be
+kind to women.’ / Qur’an 3:195 ‘I shall not lose sight of the labour of any of you who labours in my
+way, be it man or woman, each of you is equal to the other.’ / ‘Men are protectors and maintainers
+of women.’ Qur’an 4:34 / men are expected to provide for their families / women have an important
+role in looking after the home and raising children and making decisions about the household / a
+Muslim mother commands great respect and obedience from her children / ‘Heaven is under the
+feet of the mothers.’ (Hadith) / in Islam all religious leaders are male / women do not pray at the
+front of the mosque, etc.
+‘So God created human beings, making them to be like himself. He created them male and female.’
+(Genesis 1:27) / everyone is created by God / in God’s image so everyone is equal in God’s sight /
+Tenakh tells stories of important women who are greatly respected for example, Deborah, Abigail,
+Ruth et al. / Orthodox Judaism sees the roles of men and women as separate but equal / men are
+expected to work to support the family / women are to care for the children and home / mother’s role
+is crucial in Judaism and Judaism passes down the maternal line / at the synagogue women do not
+play a part in the service and sit separately from the men / in Reformed and Liberal Judaism women
+are able to be rabbis / sit with men in the synagogue / handle the Torah Scrolls, etc.
+‘All men and women are equal. We are the children of one God’ (Guru Granth Sahib 611) /
+‘Man is born of woman and woman is born of woman; without women there would be no world at
+all.’ (GGS) / Waheguru is neither male nor female / Sikh marriage is described as ‘two bodies, one
+spirit’ emphasising the equality of the partners / baptised Sikh women use the name ‘Kaur’ (meaning
+princess) which frees them from having to take their husband’s name at marriage / when a Sikh
+woman gives birth she usually takes on the main role of raising the child / however the father will
+usually take on other household duties so that the family’s work is shared evenly / many married
+couples now both work to support their family and so will also share domestic responsibilities, etc.
+
+---
+
+## Q1.4: Explain two religious beliefs about the role of children within the family.
+
+Refer to sacred writings or another source of religious belief and teaching in
+your answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to sacred writings or another source of religious belief and
+teaching – 1 mark
+Generally, all religions see children as having a duty to obey their parents which is part of showing
+respect to them / respect should be shown in return for their parents’ love and commitment to them /
+many religions see children has having roles within the family such as helping out with chores /
+looking after siblings / learning about their religious faith / participating in religious practices / care
+for parents (in old age) / bring joy and happiness to parents, etc.
+The Sigalovada Sutta lists five traditional duties children have / children expected to be obedient /
+respect parents and other relatives /children should deserve their inheritance / preserve the
+traditions of the family / honour their parents after they have died / in caring for parents they can
+repay their parents for bringing them up / support parents when in old age / illness becomes an
+Children told to ‘Honour your father and mother’ (Exodus 20:12) / applies to children of all ages /
+includes giving care / respect to the elderly member of the family / ‘Children obey your parents in
+everything for this pleases the Lord.’ (Colossians 3:20) / children bring joy to parents - ‘Children’s
+children are a crown to the aged, and parents are the pride of their children’ (Proverbs 17:6), etc.
+Children are to learn the traditions of the faith / taught to conduct puja / respect elders / care for the
+elders / fulfilling their duty in this way builds good karma/ sons have specific duties to help parents in
+the afterlife by performing funeral rites when the parents die / sons should perform the shradda
+ceremony at regular intervals / if there is more than one son then the eldest lights the funeral pyre of
+the father and the youngest lights the pyre of the mother / ‘By honouring his mother he gains the
+world, by honouring his father, the middle sphere but by obedience to his teacher, the world of
+Brahman. All duties have been fulfilled by him who honours those three.’ (Upanishads 3:28) etc.
+Muslims have a duty to respect and care for their parents as they get older / the Qur’an says being
+unkind or disrespectful to one’s parents is a great sin, (Qur’an 17:23–24) / ‘It is one of the greatest
+sins that a man should curse his parents’. (Hadith) / ‘Heaven is under the feet of the mothers.’
+Jews are taught to ‘Honour your father and mother’ (Exodus 20:12) / ‘Listen to your father who gave
+you life and do not despise your mother when she is old’ (Proverbs 23:22) / ‘Grandchildren are the
+crown of their elders and the glory of children is their parents.’ (Proverbs 17:6) / The Talmud
+teaches that honouring parents involves much more than just giving them food and drink, clothes
+and shoes, if they wish to go out then they should be able to go out and return home safely,
+implying children have a responsibility for their parent’s wider welfare, etc.
+Children are to respect their parents and elders / care for them as they get older / parents supported
+the children when they were young so children should support when relatives are elderly / help with
+domestic chores / children trained in Sikh virtues such as practising sewa / learn the traditions of the
+religion / ‘If you honour your parents, your children will honour you’. (Guru Granth Sahib) etc.
+
+---
+
+## Q1.5: ‘Married couples should not use contraception.’
+
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+Theme B: Religion and life
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• Expectation that children will be born in a marriage, contraception prevents this.
+• Contraception goes against natural law.
+• Contraception may encourage infidelity.
+• Contraception prevents people from carrying out their religious duty.
+• Some contraception acts by expelling a fertilised egg / and so goes against sanctity of life, etc.
+
+**Arguments in support of other views**
+
+• Contraception useful to plan a family, eg couple newly married and may not be able to afford
+children straightaway / most religious believers agree with family planning.
+• Natural methods are fine to use as they work with the woman’s natural cycle and so cause no
+• Artificial contraception more reliable than natural methods so people are better able to plan
+families by using it.
+• Contraception prevents the passing on of sexually transmitted infections.
+• Contraception prevents serious genetic disorders from being passed on and so prevents pain and
+• Contraception may help to prevent mother’s health and life being put at risk.
+• Contraception helps to limit population size, etc.
+Most Buddhists allow contraception that prevents fertilisation from taking place / other methods such
+as morning after pill may be seen as less acceptable as it can be seen as a form of killing / goes
+against the first moral precept / teaching suggests Buddhists should plan their families and bring
+them up in a happy and safe environment / rebirth takes place at conception, contraception makes
+this impossible / contraception prevents pain for couples who do not want children / unwanted
+All denominations permit birth control / some (eg Roman Catholic) do not permit artificial forms of
+contraception / against natural law / ‘Every sexual act should have the possibility of creating new
+life.’ (Humanae vitae 1968) / for other denominations it is a matter of individual conscience / some
+Christians have reservations about the morning after pill considering it to be abortion rather than
+No objection to birth control / family planning seen as a good thing / any method can be used
+provided it is non-harming / some Hindus do not use contraception until a son has been born as it is
+the eldest son who carries out the funeral rites for his parents / many couples will use natural
+methods / there are many days when couples should avoid sex such as festivals, full or new moon
+and holy days, these can add up to around 208 holy days when sex should be avoided, etc.
+Allah controls when birth takes place / contraception is welcomed but should not be used to prevent
+having children altogether / many Muslims prefer natural methods / believing Allah will give couples
+the strength to cope with any number of children / artificial contraception accepted if the woman’s
+health is at risk / to space out pregnancies / to avoid serious financial difficulty / Qur’an 4:28 ‘God
+wishes to lighten your burden; man was created weak’ is used by some scholars to support family
+planning / ‘Do not kill your children for fear of poverty, we shall provide for them and you, killing
+them is a great sin’ (Qur’an 17:31) is used by some against contraception to argue that it interferes
+with God’s plans and God will give them the strength to cope with the children, etc.
+Family planning is seen as helpful provided it is not used to prevent children altogether / many
+Orthodox Jews will only allow contraception in order to prevent risk to the mother’s health / delay
+having children / to space them out / limit the number of children if this is thought to benefit the
+family / some Orthodox Jews do not believe in contraception at all, believing God will decide the
+size of their family / Reform Jews allow contraception for other reasons such as social / financial
+reasons / Orthodox Jews prefer to use the contraceptive pill as this does not interfere with the
+sexual act / or destroy semen / sterilisation is forbidden as it damages the body God created, etc.
+No opposition to artificial methods of contraception / though sterilisation should only be used if
+medically necessary / primary purpose of sexual intercourse is the union of man and woman not
+procreation / no specific guidance given in Sikh holy books / scriptures teach that God does not
+intend humans to suffer so contraception is seen as a positive way of helping a couple to plan their
+family / some Sikhs consider the morning after pill to be killing life and so would not support its use,
+Theme B: Religion and life
+
+---
+
+## Q2.1: Which one of the following terms may be used when describing the general
+
+well-being of a person?
+
+A Length of life
+B Purpose of life
+C Quality of life
+D Sanctity of life
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: C Quality of life
+
+---
+
+## Q2.2: Give two reasons why some religious people are against experimenting on
+
+animals.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Animals are God’s creation / some animals are regarded as sacred / sanctity of life in some religious
+traditions / against animal rights / involves cruelty / it harms and kills animals / humans given the
+responsibility of stewardship / the results of testing drugs obtained may not be reliable as humans
+are different from animals / cosmetic testing is especially seen as unnecessary / there are other
+methods of testing which can be used which do not involve cruelty to animals / creates bad karma /
+idea of ahimsa / have to answer to Allah on Judgement Day concerning the way animals have been
+
+---
+
+## Q2.3: Explain two contrasting religious beliefs about an afterlife.
+
+In your answer you must refer to one or more religious traditions.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+First contrasting belief
+Second contrasting belief
+Heaven and hell / heaven reward for good / hell for eternal punishment / period of waiting /
+judgement day / resurrection / reincarnation / rebirth / live as another life form / escape from rebirth
+Many Buddhists believe that when they die their non-permanent self (anatta) transfers to a new
+body / the cycle of birth, death and rebirth is known as samsara / the type of world that they are
+reborn into (eg as a human, animal or heavenly being) depends on the quality of their actions
+(kamma) in their previous lives / good actions lead to a more favourable rebirth / the ultimate aim is
+to break free of the cycle of samsara and that is what causes suffering / Buddhists may achieve
+nibbana (a state of liberation, peace and happiness) / Pure Land Buddhists believe they can be
+reborn into Amida Buddha’s Pure Land / might be reborn as Bodhisattva, etc.
+Christians believe that people have souls which live on after death / God judges whether a person
+will spend eternity in either heaven or hell / the Catholic Church believes in purgatory where souls
+undergo purification to achieve the holiness necessary to go to heaven / Christians believe that
+Jesus was resurrected proving the existence of life after death / heaven is indescribably wonderful /
+Revelation 4:2–6 describes John’s vision / no more death, mourning, crying or pain in heaven / hell
+was originally designed for Satan and his demons – Matthew 25:41 / a place of punishment for the
+unrighteous / Parable of the Sheep and the Goats (Matthew 25:31–46) and the Rich Man and
+Lazarus (Luke 16: 19–31), etc.
+After the death of the body the soul continues its journey with the ultimate aim of reaching moksha /
+the soul’s arrival in a new body is determined by its desires (detachment from worldly desires) and
+merits (achievement of good karma) / the levels on Earth are life in water; plants; insects and
+reptiles; birds; animals; humans / the Puranas state that there are worlds of demons and heavenly
+beings / Hindus hope to reach a better level of life afterwards / the Bhagavad Gita describes rebirth
+as ‘putting on new clothes’ BG 2:22 / Puranas describe 14 loka or worlds – humans on lowest of
+higher worlds, ie world 7, demon and hell worlds below / could be reborn into Vishnu/Shiva’s
+On the Day of Judgement the angel Israfil will blow a trumpet announcing the last day and the dead
+will be resurrected in new bodies / barzakh, waiting place before judgement /
+each person will be brought before God and the book of their life, as recorded by two angels, will be
+opened / the good and bad deeds will be weighed and will decide their fate / unbelievers and those
+who did insufficient good deeds will be sent to the punishment of hell (Jahannam) / those with
+sufficient good deeds will spend eternity with God in paradise (Jannah) / everyone will have to cross
+the Sirat Bridge over hell and unbelievers will fall off / paradise is described as a beautiful garden of
+physical and spiritual pleasures and delights / Qur’an 39:20 / delicious food, drink and companions
+Qur’an 52:22 / hell in contrast is a place of blazing fire and terrible punishment / unbelievers must
+wear heavy chains, drink boiling water and eat scalding food and be burnt by fire and smoke, etc.
+The Tenakh gives little teaching about the afterlife / the Torah describes death as a time to rejoin
+one’s ancestors (Genesis 25:8,17) / a place called Sheol is mentioned in the Tenakh and is
+described as a place of silence and darkness (Psalm 115:17) / the Jewish afterlife is called Olam
+Ha-Ba (the world to come) / many Orthodox Jews believe in a resurrection and heaven (Gan Eden)
+but not in a place of permanent punishment / a soul-cleansing process, which is temporary, is part
+of traditional Jewish belief / Judaism does not include the concept of eternal (everlasting)
+punishment / some Jews believe in reincarnation / important to focus on this life now as we cannot
+know what the afterlife is like, etc.
+Sikhs believe in karma – on dying a person is rewarded or punished according to their actions / in
+one tradition messengers take the deceased to be judged by Dharam Raj / two angels, Chitra and
+Gupia, present a balance of the person’s actions during their life / if the balance shows many bad
+deeds the person will go into lower forms of life / if mainly good deeds they will get a human life
+again or be liberated from the samsara cycle / the GGS does describe a place of horror (GGS 1026)
+but most regard this as being out of the presence of God / Sikhs believe that the soul goes through
+many different lives (reincarnation) until the purified become one again with God / no effort to love
+God and purify the soul can result in wandering through 8.4 million species, etc.
+
+---
+
+## Q2.4: Explain two reasons why many religious people believe they have a duty to look
+
+after the world.
+Refer to sacred writings or another source of religious belief and teaching in your
+answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to sacred writings or another source of religious belief and
+teaching – 1 mark
+God created the world / belief in stewardship /Human survival depends on looking after the world /
+there is only one world and it cannot be replaced / need to think of future generations and not abuse
+the world / non-renewable resources cannot be replaced / human actions have a real impact on
+nature and the climate, etc.
+First moral precept – avoid causing harm / concept of dependent arising / karmic consequences if
+there is failure to look after the world / unskilful action to abuse the world / caring for the earth leads
+people towards enlightenment, etc.
+God created humans to look after the world (Genesis – Adam and Eve looked after the Garden of
+Eden) / ideas of stewardship and trusteeship – Genesis 2:15, Psalm 8:6 / important to live
+sustainably / God will hold people accountable on Judgement Day / humans are only tenants of
+God’s world (Leviticus 25:23), etc.
+Idea of karmic consequences so the world should not be abused as it will otherwise affect
+reincarnation / need to live sustainably as the world is precious / the Upanishads teach that mother
+earth should be looked after / idea of stewardship / interdependence / nature is sacred and cannot
+be destroyed without humanity destroying itself, etc.
+Religious duty to look after what Allah has created / khalifah ‘He has given you the earth for your
+heritage.’ / (Surah 6:165) ‘To him belongs all that is in the heavens and the earth’ (Surah 2:256 &
+257) / The Islamic Foundation for Ecology and Environmental Sciences (IFEES) encourages the
+development of conservation projects / belief in importance of sustainable development / oppose the
+abuse of the natural environment, etc.
+God created humans to look after the world (Genesis – Adam and Eve looked after the Garden of
+Eden) / ideas of stewardship and trusteeship / the bal tashchit (do not waste) precept supports
+looking after the world / Leviticus – love thy neighbour / ‘All that I created for you …. do not corrupt
+or desolate my world …’ (Midrash Ecclesiastes Rabbah 7:13) / God will hold people accountable on
+Judgement Day / tikkun olam (healing the world) / the Messiah will come when the world is healed,
+God created everything (Guru Nanak), therefore everything should be treated with respect / ideal to
+live a simple life free from ruining the world / karmic consequences for actions not considering the
+world / need to live in harmony with nature / avoid waste and live sustainably / support conservation
+projects in the Punjab / greed one of the five evils / GGS refers to the earth as mother so should be
+looked after and not exploited, etc.
+
+---
+
+## Q2.5: ‘Euthanasia is never the best option.’
+
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+Theme C: The existence of God and revelation
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• There are other options, eg palliative care.
+• It could lead to euthanasia for trivial reasons.
+• People are God given and every person has a purpose so their life should not be ended
+• Euthanasia may be seen as murder or a person deciding to end their own life or murder as goes
+against the sanctity of life.
+• Relatives might wish to end someone’s life in order to inherit their property.
+• People may give permission for their life to end and then regret it, etc.
+
+**Arguments in support of other views**
+
+• The person’s circumstances should be considered, eg may be suffering and there is no hope of
+• The person’s quality of life may be very poor / allows them to die with dignity.
+• The terminally ill person desperately wants his or her life to end / self-determination / the person
+should have a choice rather than continue to suffer.
+• There is a need for compassion eg ‘Love thy neighbour’.
+• It is mercy killing, not murder – it is more compassionate.
+• Some argue it would allow finite medical or care resources to be used elsewhere, etc.
+N.B. Accept reference to animal euthanasia.
+The first moral precept teaches that Buddhists should try to avoid killing – ahimsa / generally seen
+as unskilful which does not lead towards happiness, wisdom and compassion of enlightenment /
+disrupts the samara cycle / some may think that euthanasia is sometimes the most compassionate
+thing to do eg if the person is suffering or is experiencing a very poor quality of life / many agree
+with judging each situation on its own merits and action taken to minimise suffering of those
+involved / personal choice is important in Buddhism along with care, compassion and kindness, etc
+Many Christians believe that only God has the right to end life / created in the image of God –
+Genesis 1 : 27 / euthanasia goes against the sanctity of life and is therefore wrong / ‘… all the days
+ordained for me were written in your book before one of them came to be – Psalm 139 :16 / modern
+drugs allow people to die with dignity and without severe pain/ support for hospices / other
+Christians generally oppose euthanasia but believe that it is acceptable in some circumstances eg
+it is the merciful thing to do – Matthew 5 : 7 ‘Blessed are the merciful’, etc.
+Hindu scriptures state that all life is sacred (sanctity of life) / ‘His Being is the source of all being, the
+seed of all things that in this life have their life …. He is God, hidden in all beings, their inmost soul
+which is in all. He watches the works of creation, lives in all things …’ – Svetasvatara Upanishad 6.
+and 6.11 / a life taken before the time of its natural death brings bad karma to all those involved as
+interrupts the cycle of birth, death and rebirth / a minority might see passive euthanasia as a moral
+obligation, to practise ahimsa by not harming and not prolonging suffering , etc.
+Muslims believe that God (Allah) creates life and should decide when life should end / life is sacred
+and so taking a life is a sin / “do not take life, which God has made sacred ‘ Qur’an 17:33 / life is a
+gift from God and should be valued and looked after / no one knows God’s plans and if a person is
+suffering then it may be for a reason / God could be testing their faith or providing an opportunity to
+look after someone / euthanasia is haram (forbidden) / Muslims believe in Al-Qadr (predestination)
+that God has planned every person’s life, etc.
+All life is God given / of huge value and sacred / humans are made in the image of God – Genesis
+1: 27 / active euthanasia is seen as murder / in the last stages of life people should receive good
+medical care and attention / doctors have a duty to preserve life, not take it / Ecclesiastes 3: 1-2 / in
+the case of someone dying who is terminally ill, doctors should be allowed to withdraw a life suppor
+machine as it is prolonging the natural process, etc.
+Sikhs teach that life is precious and God given / all human beings are created by Waheguru (God)
+and God lives in them / ‘O my body, the Lord infused His Light into you, and then you came into the
+world’ – Guru Granth Sahib 921 / ‘Those who are sent, com O Nanak; when they are called back,
+they depart and go.’ Guru Granth Sahib 1239 / all life is sacred and should be respected / Sikhs
+teach that it is wrong to deliberately interfere with God’s creative work so escaping suffering in this
+life will lead to suffering in the next / Sikhs believe in providing hospitals and hospices for the sick
+and dying / many do not support artificially prolonging life when a person is in a vegetative state – in
+such cases they may support withdrawing treatment, etc.
+Theme C: The existence of God and revelation
+
+---
+
+## Q3.1: Which one of the following is a form of special revelation?
+
+A Being brought up to believe in God
+B Learning of God through what humans do
+C Meeting God directly
+D Seeing God through nature
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: C Meeting God directly
+
+---
+
+## Q3.2: Give two reasons why some people do not believe that revelations about God are
+
+real.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Don’t trust the person / person has mental health issues / person wants to see God, so deceives
+themselves / person is ill / hallucinating / effect of migraine / don’t believe God exists / nothing real
+about the revelation / religion is seen as superstition / don’t accept as real revelations of religion
+other than their own / the experience did not happen to them / do not fit with a scientific view of the
+world / those who claim this are just wrong or mistaken, etc.
+
+---
+
+## Q3.3: Explain two contrasting beliefs about miracles.
+
+In your answer you must refer to one or more religious traditions.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+First contrasting belief
+Second contrasting belief
+Miracles tell people about God / miracles provide answers to prayer / God advises people through
+miracles which proves God exists / miracles are unexplained events / religious believers are more
+likely to believe miracles / non-religious people are more likely to question/ scrutinise/r eject claims
+of miracles / contrasting forms of miracles e.g. nature and healing, etc.
+NB Where stories of two different miracles are given or explained, these should be awarded
+appropriate credit. Where different interpretations of the same miracle are given these should be
+awarded appropriate credit.
+Miracles are within the capacity of any being so long as they have mastered higher level
+meditational techniques / attributed to yogis in records / the Buddha is recorded to have performed
+miracles, such as duplicating himself, healing, etc / Buddha’s birth was miraculous (walked and
+talked) / no supernatural explanation, ie not God, etc.
+Jesus performed 37 miracles (across the Four Gospels) / miracles are evidence of God’s
+immanence / miracles are evidence of God’s love – always good events / miracles are evidence of
+God’s power – miracles are contrary to what science can explain / miracles can come about from
+prayer / miracles are real events / RC Church uses verified miracles in classifying people as
+‘Blessed’ and ‘Saint’, etc.
+Miracles relating to temple statues of Ganesha are recorded across the world (1995) / countless
+examples of miracles in Hinduism / scriptures record miracles of deities, such as Hanuman being
+able to fly / in this sense more like superhuman powers / yogis and sages recorded to have
+performed miracles such as healings / Krishna performed miracles / miracles linked to saints, such
+as the sage who made a cow recite scripture, the saint who made the Jaganatha chariots move
+after they had become stuck and even elephants had been unable to shift them / seen as evidence
+of great religious devotion/knowledge, etc.
+Considered to be a sign to verify the authenticity of a prophet / ‘And you heal those born blind and
+the lepers by My leave. And behold! You bring forth the dead by My leave’ Qur’an 5:10) / miracles
+performed by the permission of Allah; cannot be performed without His permission / Qur’an is a
+miracle in itself / “Every Prophet was given miracles on account of which their people believed; but, I
+have been given divine revelation which Allah has revealed to me, so I hope that my followers will
+outnumber the followers of other Prophets on Resurrection Day.” (Bukhari Hadith), etc.
+Many recorded miracles in Tenakh, such as separating of Red Sea so that the Israelites could
+cross/escape / acceptance that the writers of the Tenakh believed they witnessed and recorded
+miracles / however this does not mean they were actually miracles / open attitude – they may or
+may not happen / we have to follow the science / Maimonides said that if a miracle occurred, this
+was only a temporary change in nature, and that natural law would reassert itself / Shacharit service
+‘Thanks (to God) for your miracles which are daily with us’, etc.
+Miracles happen only by the will of God / examples of God saving/helping a devotee, such as saint
+Kabir, whose torturers were trying to get an elephant to charge and kill him, but the elephant ran off,
+saying ‘I pay obeisance to the embodiment of God’ / ‘The real miracle is receiving grace of the
+Master’ (Guru Arjan) / miracles in stories of Guru Nanak include him being shielded from the sun by
+a cobra, a stall being refilled with tomatoes after he had given them all away, a field being
+replenished with wheat after he had allowed animals he was minding to eat it all, etc.
+Miracles do not happen / these events are things not yet explainable by science / people who claim
+miracles are mistaken, have misinterpreted what they have seen, or want to interpret the event as a
+miracle / if miracles did exist, they would disprove God because of their random nature (unfairness
+etc) / systematic definition of miracles put forward by David Hulme, following which he dismissed all
+examples as not miracles, ie miracles do not exist, etc.
+
+---
+
+## Q3.4: Explain two religious beliefs about the omnipotence of God.
+
+Refer to sacred writings or another source of religious belief and teaching in
+your answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to sacred writings or another source of religious belief and
+teaching – 1 mark
+That God created the world, so must be omnipotent / that God is beyond everything (transcendent)
+which gives Him omnipotence in the world / that God’s omnipotence is one of the factors which
+separates Him from humans, and makes God unlike humans / that believers think God controls
+everything / different understandings of omnipotence e.g. what is logically possible, etc
+No belief in God, so no relevant answer in positive terms.
+God created the world from nothing in seven days – Genesis / ‘I pray that …you may know … his
+incomparably great power for us who believe. That power is the same as the mighty strength he
+exerted when he raised Christ from the dead…’ (Ephesians 1:18–20) / ‘Great is our Lord and mighty
+in power.’ (Psalm 147:5) / ‘I am the Lord, the Maker of all things, who stretches out the heavens,
+who spreads out the earth by self.’ (Isaiah 44:24) / Jesus (God the Son) performed many miracles,
+eg over nature – calming of the storm, over life and death, eg Lazarus, of healing, eg Bartimaeus;
+God the Son (Jesus) overcame death when he was resurrected, etc.
+Brahman is all-knowing, all-powerful, all-persuasive / Brahman as Trimurti is creator, sustainer and
+destroyer/recreator, hence omnipotent / ‘For the protection of the good, and for the destruction of
+the wicked, for the establishment of Dharma, I am born from age to age’ – Bhagavad Gita 4:8 –
+suggests omnipotence / ‘Completely relinquishing all self-initiated means for your salvation, take
+refuge in me alone. I will release you from all your negative karma’ – Bhagavada Gita 18:66 –
+suggests omnipotence, etc.
+Allah created the world / ‘He who is All-Knowing, the All-Powerful, able to do anything’ – Surah
+30:54 / ‘And among His signs is this, that you see the earth still, but when We send down on it the
+water, it stirs and swells: most surely He Who gives it life is the Giver of life to the dead; surely He
+has power over all things’ – Surah 41:39 / ‘And He has created all things on earth in varying colours
+for you. Surely this is a sign for men who praise Allah’ – Surah 16:13 / ‘It is He who sends down
+rain from the sky in due measure and thereby raises to life a land that is dead; even so will you be
+raised from the dead’ – Surah 43:11, etc.
+God created the world from nothing – Genesis 1–2 / ‘I form the light and create darkness, I bring
+prosperity and create disaster; I, the Lord, do all these things’ – Isaiah 45:7 / ‘G-d alone has made,
+does make and will make all things’ – Maimonides 13 / ‘The heavens declare the glory of G-d, the
+skies proclaim the work of His hands’ – Psalm 19:1, etc.
+‘The Lord and master supports the weave of the fabric of the universe’, ‘The entire creation came
+from him’, ‘All the creation is his body’, ‘Through and through he is blended with his creation’ – all
+GGS 294 / One universal creator…Creative Being personified – Mool Mantra / God is omnipotent,
+possessing all powers – GGS 811 / ‘Your condition and expanse are known only to you; the value of
+your creative omnipotence cannot be estimated’ – GGS 748 / ‘God is all-powerful, vast, lofty and
+infinite’ – GGS 107, etc.
+
+---
+
+## Q3.5: ‘The only way to know God is by being enlightened.’
+
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+Theme D: Religion, peace and conflict
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+
+**Arguments in support**
+
+• A person can become enlightened after learning about God eg by being brought up in a religion.
+• Being enlightened comes after study and devotion / it takes considerable effort and training / thus
+the process to enlightenment is itself a form of learning about the true nature of the divine/God /
+so it must be the best way.
+• Being enlightened is described as ‘awakening’ / once awake a person sees things clearly / and is
+not misled by dreams/sleep / so they can focus properly on the divine/God / so they can fully
+understand the divine/God.
+• Once enlightened a person sees the truth of all things / hence would see / understand the true
+nature of the divine/God / just as the Buddha did.
+• Enlightened is described as ‘awakening’ / once awake a person sees things clearly / and is not
+misled by dreams/sleep / so they can focus properly on the divine/God / so they can fully
+understand the divine/God.
+• Enlightened comes after study and devotion / it takes considerable effort and training / thus the
+process to enlightenment is itself a form of learning about the true nature of the divine/God / so it
+must be the best way.
+• For an atheist, to be enlightened would allow them to see the truth that there is no God / hence no
+nature to be known, etc.
+
+**Arguments in support of other views**
+
+• Most religions do not teach about enlightenment / yet still claim to be able to know the divine/God
+/ hence there must be other ways which reveal the true nature of the divine/God / such as
+studying holy books / or special revelation / or general revelation.
+• Holy books describe the divine/God / these are available to anyone to read for themselves / there
+are many teachers who will explain them / hence believers can learn about God from holy books
+• Few people become enlightened / that is, few have success in attaining enlightenment / because
+it is a very difficult path / eg it took the Buddha hundreds/thousands of lifetimes to achieve
+enlightenment / so it cannot reveal much about the divine/God.
+• There is no such thing as God / hence enlightenment does not reveal God’s true nature / there is
+nothing to reveal.
+• Depends what you mean by ‘true nature’ / different religions interpret this differently / eg
+Vaishnavite Hindus see the true nature as being one with God, though still separate from God /
+whereas Shaivite Hindus see it as being oneself, as one is part of God, etc.
+Theme D: Religion, peace and conflict
+
+---
+
+## Q4.1: Which one of the following best expresses the idea of accepting someone’s
+
+apology for what they have done wrong?
+
+A Forgiveness
+B Justice
+C Protest
+D Punishment
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: A Forgiveness
+
+---
+
+## Q4.2: Give two reasons why a conflict may be said to be a ‘holy war’.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+A belief that God is on their side / a war sanctioned by God / it was authorised by an important
+religious leader / the purpose should be to defend their religion from attacks from within or from
+outside the religion / to spread their religious message / for important religious land / to promote
+justice / defend believers, the weak and innocent / those who take part believe that they will receive
+spiritual rewards / belief that they are fighting for a sacred and noble / just cause eg self-defence,
+
+---
+
+## Q4.3: Explain two similar religious beliefs about a country using weapons of mass
+
+destruction.
+In your answer you must refer to one or more religious traditions.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+First similar belief
+Second similar belief
+If contrasting views are given only one of them may be credited up to 2 marks max.
+All religions recognise that weapons of mass destruction are always a danger / they are too
+powerful to be Just / if they exist that they could be used killing many people (against the sanctity of
+life) / might get into the hands of an unstable leader / concern about states ruled by a dictator / if
+used would cause terrible destruction to God’s world / long term effects eg Hiroshima and Nagasaki
+/ there are enough weapons of mass destruction to destroy the whole world / very expensive to
+make and maintain / there is a need to pray for peace and campaign for disarmament / using
+weapons of mass destruction is immoral / biological and chemical weapons are illegal / may be
+used as a deterrent to prevent war, etc.
+Many Buddhists believe that weapons of mass destruction should be abolished as countries should
+never use them / they kill indiscriminately which is against the 1st Precept (ahimsa) / others say that
+the problem is not the weapons themselves but rather human attitudes / Thich Nhat Hanh said, ‘For
+peace, the basic thing to do is not to remove nuclear weapons but to remove the fear, anger and
+suspicion in us. If we reduce them, reconciliation is easy.’ / Japanese Buddhist Daisaku Ikeda has
+said, ‘The real enemy that we must confront is the ways of thinking that justify nuclear weapons; the
+readiness to annihilate others when they are seen as a threat or as a hindrance to the realisation of
+our objectives.’ etc.
+Some Christians believe that the problem with weapons of mass destruction is not the weapons
+themselves but their use / they can act as a deterrent and result in peace / chemical or biological
+weapons should not be allowed to exist.
+A fundamental Christian belief is that only God has the right to end life that he has created / the Ten
+Commandments say, ‘You shall not murder’ (Exodus 20:13) / using weapons of mass destruction
+would not be supported by the Just War theory as innocent people are killed indiscriminately / ‘Faith
+groups in the UK are united in their conviction that any use of nuclear weapons would violate the
+sanctity of life and the principle of dignity core to our faith traditions.’ (Steve Hucklesby) / many
+Christians have campaigned for nuclear disarmament (CCND) and the destruction of chemical and
+biological weapons, etc.
+The Laws of Manu state that women, children, the elderly and those who have turned their backs or
+dropped their weapons should not be attacked, so Hindus are opposed to using weapons of mass
+destruction as they kill indiscriminately / The Rig Veda states that a warrior should not poison the tip
+of an arrow or attack the sick or old, children or women or it leads a warrior to hell even if he wins /
+belief in ahimsa / India does, however, have nuclear weapons but has pledged only to use them
+only as a deterrent and never use them first, etc.
+Muslims believe that as God created all life they have a duty and responsibility to care for people
+and to work for peace / as life is sacred using weapons which could kill millions of people and even
+destroy the world is wrong / innocent people should be protected / ‘Fight in God’s cause against
+those who fight you, but do not overstep the limits; God does not love those who overstep the limits
+– Qur’an 2 : 190 / ‘Do not contribute to your own destruction with your own hands, but do good, for
+God loves those who do good’ – Qur’an 2 : 195 / oppose the possession and use of biological and
+chemical weapons / nuclear weapons are so destructive they should never ever be used, etc.
+Jewish scientists Albert Einstein and J. Robert Oppenheimer were involved with others in
+developing atom bombs that were dropped on Hiroshima and Nagasaki and brought World War 2 to
+an end / later they opposed nuclear weapons / Israel has nuclear weapons for defence purposes but
+many Jews are totally against their use and other weapons of mass destruction / the Ten
+Commandments say, ‘You shall not murder’ (Exodus 20:13) / belief that it can never be justified to
+kill large numbers of innocent civilians / Rabbi David Saperstein said, ‘We join to call on the world to
+recognise that violence begets violence; that nuclear proliferation benefits no one; that we can, we
+will, and we must find other ways to protect ourselves, our nations and our future.’, etc.
+Many Sikhs live in the Punjab (north India) and are concerned that they could become a target if
+hostilities arose between India and Pakistan as both have nuclear weapons / some have
+campaigned for nuclear disarmament as using any weapon of mass destruction is totally
+unacceptable as so many innocent people would be annihilated / ‘No one is my enemy, and no one
+is a stranger. I get along with everyone’ GGS 1299 / some Sikhs are in favour of keeping nuclear
+weapons as a deterrent as it stops the outbreak of war because of fear of the consequences but
+would always oppose their use, etc.
+
+---
+
+## Q4.4: Explain two reasons why some religious believers choose to work for an
+
+organisation that helps victims of war.
+Refer to sacred writings or another source of religious belief and teaching in your
+answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to sacred writings or another source of religious belief and
+teaching – 1 mark
+Religions are about compassion / helping people in need regardless of which side they are on /
+religions support voluntary work to help those in need / the Golden Rule of ‘Treat others as you
+would be done by’ / it is good to have employment and earn an income / by working for an
+organisation they could do more than they could alone / the organisation does much good work
+helping those with injuries / they have the skills to provide specialist medical care to both civilian and
+military personnel / they want to help people rebuild their lives / recover from the effects of war/ to
+promote peace and reconciliation, etc.
+Buddhists believe in working to prevent suffering / believe in helping refugees overcome anger,
+bitterness and hatred towards the aggressors / victims are likely to need help in letting go of these
+feelings / Dhammapada states: “Hatred does not stop hatred. Only love stops it.” / “To conquer
+oneself is a greater victory than to conquer thousands in battle.” / encourages Right Action and
+Right Livelihood – two of the Noble Eightfold Path / the Tzu Chi Foundation’s mission is ‘expressing
+great kindness to all sentient beings, and taking their suffering as our own’ / helping victims brings
+good kamma and helps all beings become free of suffering and ultimately reach enlightenment, etc.
+Jesus had compassion for those in need / Matthew 22:39: 'Love your neighbour' / the Parable of the
+Good Samaritan (Luke 10:25–37) / Parable of the Sheep and Goats encourages Christians to
+provide food and shelter for those in need / Christian organisations like Caritas and Christian Aid
+help victims of war / Christian Aid operates under the slogan “We believe in life before death” /
+Quakers will work with victims of all sides in order to bring peace /many believe that it is their
+Christian duty to raise funds to help those suffering the consequences of war, including the families
+of those who are killed, etc.
+Hindus are taught to respect life and to practise ahimsa and be compassionate when others are in
+pain / many support the Indian Red Cross providing help through money or in refugee camps / The
+Mahabharata: “This is the sum of duty. Do naught to others, which, if done to thee, could cause
+thee pain.” / good karma is gained by helping victims of war overcome their difficulties / Hinduism
+teaches to help those who are in need, etc.
+Muslims believe that it is their duty to give assistance and support to those injured in war through
+the local community and mosques / this includes help and care for victims wherever they live and
+whichever side they or their family member was fighting for / “Whoever saved a life, it would be as if
+they saved the life of all mankind” Qur’an 5:32 / organisations that help victims of war, like Islamic
+Relief and Muslim Aid, are governed by principles such as compassion, empathy, generosity and
+helping those in need, etc.
+The work of some Jewish organisations is based on the Jewish principles of pikuach nefesh, saving
+a life, and tikkum olam, healing the world / Proverbs 25:21: ‘If your enemy is hungry, give him
+something to eat; if thirsty, something to drink.’ / The Talmud: “What is harmful to yourself do not to
+your fellow men” / the mission of Magen David Adom UK includes providing medical care and
+treatment for people of any nationality, race, religion, ethnic origin, age, disability, sexual orientation,
+or political affiliation, including all victims of conflict, etc.
+Guru Granth Sahib: “As thou deemest thyself, so deem others. Cause suffering to no one.” / in the
+Ardas (prayer), the Sikhs pray for the welfare of everyone / Khalsa Aid was founded on the Sikh
+principles of selfless service and universal love, inspired by the teaching of Guru Gobind Singh and
+this has led to helping victims of war / includes assisting refugees made homeless by fighting / the
+Gurus taught Sikhs to help humanity and treat everybody with love and compassion / helping
+victims brings the reward of good karma, etc.
+
+---
+
+## Q4.5: ‘All religious believers should be pacifists and never fight.’
+
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+Theme E: Religion, crime and punishment
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• There are many other methods of resolving conflicts, eg negotiations, through UN, through
+sanctions or use of peace keeping forces.
+• War ignores the sanctity of life by taking lives and ruining others.
+• War creates refugees and brings terrible destruction.
+• There has to be a better way of resolving problems between countries that doesn’t cause so
+much destruction and harm.
+• Religions are in favour of peace and harmony, not war and killing, etc.
+
+**Arguments in support of other views**
+
+• War can be the lesser of two evils: It can be justified if its purpose is to stop atrocities and may be
+a reason to go to war.
+• It is everyone’s responsibility to defend their country and its values (patriotism).
+• It is right to retaliate against an aggressor.
+• Idea of Holy War – there are many examples in sacred writings where it is claimed that it was
+right to fight and defend their faith and land.
+• The Just War theory gives many reasons why it may be right to fight. These include (1) a just
+cause, eg stopping genocide or to overthrow a cruel dictator. (2) started by a properly constituted
+authority, eg the government. (3) right intention – promote good and avoid evil. (4) must be a last
+resort – have tried every other avenue and that has failed. (5) must be a reasonable chance of
+success. (6) must be reasonable proportion – use only enough force to achieve objectives. (7)
+no civilians to be involved, eg the conflict should be between the armed forces. (8) self-defence
+eg to stop and invasion. (9) need to protect trees and the environment wherever possible, etc.
+Dhammapada 270: ‘A man is not a great man because he is a warrior and kills other men, but
+because he hurts not any living being he is in truth called a great man.’ / the first precept not to take
+life, oppose warfare / concept of ahimsa (non-violence) / Dhammapada 123 ‘Let a man avoid evil
+deeds as a man who lives life avoids poison.’ / Dhammapada also states: ‘Hatred does not stop
+hatred. Only love stops it.’ ‘To conquer oneself is a greater victory than to conquer thousands in
+battle.’ / a peaceful occupation is one of the things that leads to happiness / Right Action and Right
+Livelihood – two of the Noble Paths.
+Matthew 5:9: ‘Happy are those who work for peace.’ / Matthew 5:44: ‘Love your enemies and pray
+for those who persecute you.’ / Matthew 5:38–48: ‘do not take revenge, if anyone slaps you on the
+right cheek, let him slap your left cheek…’ Matthew 22:39: ‘Love your neighbour’ / Matthew 26:51–
+55 At Jesus’ arrest Peter was violent, but Jesus told him to put away his sword – “all who take up
+the sword will die by the sword” / Romans 12:17–21: ‘If someone has done you wrong, do not repay
+him with a wrong ... Do everything possible on your part to live in peace with everybody. Never take
+revenge. God will take revenge ... If your enemy is hungry, feed him ... If he is thirsty, give him a
+drink ... conquer evil with good.’ / Jesus rejected force at the Temptations and at the Triumphal
+Entry he rode on a donkey, a symbol of peace / he came on a mission of peace – hence the dove (a
+symbol of peace) at his baptism / the Quakers are a pacifist Christian denomination who reject
+violence and war / the early Christians would not join the Roman army / Jesus used violence in the
+Temple to oppose injustice / told his followers to sell their cloak to buy a sword / many Christians
+believe in the Just War theory and join the armed forces, etc.
+The Mahabharata: “This is the sum of duty. Do naught to others, which, if done to thee, could cause
+thee pain.” / Hindus believe in the principle of ahimsa (non-violence) / good karma would not involve
+violence, but work towards peace / the Upanishads teach non-violence / expect reference to
+Gandhi, who rejected violence and worked for the independence of India / Gandhi was a fighter for
+freedom, stood up for what he believed, but not with violence / sometimes war is necessary –
+Kshatriyas (warrior caste) in Hinduism / Hindu scriptures contain stories of fighting against evil and
+Surah 49.9: ‘If two parties of believers take up arms ... make peace between them.’ Surah 3.134:
+‘Paradise is for ... those who curb their anger and forgive their fellow men.’ Islam seeks peace
+within the community / in the daily prayers peace is promoted: “peace be unto you.” / the Qur'an
+teaches that revenge is wrong; it is better to seek reconciliation, so forgiveness and love are
+important / the Qur'an says that it is wrong to return evil with evil, and everyone has the right to be
+treated fairly / in the Hadith, Muhammad said that it was important to treat the enemy humanely – he
+believed children were innocent victims, and so the killing of children was forbidden / through the
+Qur'an, Allah is ‘the one who gives safety and peace’ / Muhammad: “None of you ‘truly’ believe, until
+he wishes for his brothers what he wishes for himself.” / Muhammad took part in fighting to protect
+his faith etc.
+Exodus 20:13: ‘Do not kill’ / Micah 4:3 ‘Nation will not lift sword against nation, there will be no more
+training for war.’ / Proverbs 25:21: ‘If your enemy is hungry, give him something to eat; if thirsty,
+something to drink.’ / the Talmud: “What is harmful to yourself do not to your fellow men”. Also
+“Great is peace, because peace is to the Earth what yeast is to dough.” / the Jewish word for peace,
+Shalom, is a common greeting / the Messianic Age will be a time of peace / the Talmud suggests
+that 3 things keep the world safe – truth, judgement and peace / some wars are obligatory
+(Judaism) / there might be a just reason to fight, eg protecting their homeland and religion / many
+Old Testament stories of the Hebrews fighting for the ‘Promised Land’ / God is portrayed as a
+warrior / a pre-emptive strike against an enemy about to invade is allowed, etc.
+Guru Granth Sahib: “As thou deemest thyself, so deem others. Cause suffering to no one.
+Thereby return to your true home with honour.” / Also, despite the Kirpan (sword), Sikhs do not
+approve of violence / Guru Gobind Singh told his followers never to be first to draw a sword / Anger
+is to be avoided / In the Ardas (prayer), the Sikhs pray for the welfare of everyone / Sikhs resisted
+by non-violence when the British passed a law making it illegal for Sikhs to wear their Kirpans /
+there were also peaceful protests when democratic government was suspended in 1976 / Guru
+Nanak was pacifist suggesting that if someone ill-treated you, you had to bear it three times and the
+fourth time God would fight for you / concept of a Just War (Dharam Yudh) / “When all efforts to
+restore peace prove useless and no words avail, lawful is the flash of steel. It is right to draw the
+sword.” Guru Gobind Singh / Sikhs have had to fight for survival / Khalsa Sikhs wear a Kirpan (one
+of the 5 K’s), etc.
+Theme E: Religion, crime and punishment
+
+---
+
+## Q5.1: Which one of the following aims of punishment can be described as
+
+taking revenge?
+
+A Deterrence
+B Protection
+C Reformation
+D Retribution
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: D Retribution
+
+---
+
+## Q5.2: Give two different types of crime.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Hate crime / theft / murder / crimes against the person / crimes of passion / crimes against the state
+/ crimes against property / religious crimes / violent crime / war crime / petty crime / financial crime /
+victimless crime / cyber-crime, etc.
+NB Do not accept causes of crime (eg jealousy)
+
+---
+
+## Q5.3: Explain two contrasting religious views about the treatment of people who have
+
+committed evil actions.
+In your answer you must refer to one or more religious traditions.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+First contrasting view
+Second contrasting view
+If similar views are given only one of them may be credited up to 2 marks max.
+Evil actions which cause suffering, injury or possibly death should not be ignored / people need to
+understand that committing evil actions has consequences / the law is in place to deter such actions
+and to punish those who commit them / in addition to punishment the people who have committed
+these evil actions need to be shown the error of what they have done and encouraged to change
+their ways / hate the evil action and not the sinner / forgiveness may be shown where there is
+repentance / may result in exclusion from the religious community / consequences for the afterlife,
+According to the principle of kamma, a person’s evil actions will cause them to suffer / there is,
+therefore, no need to get retribution but punishment is appropriate / Buddhists may agree that it is
+necessary to protect society from certain evil actions (crimes), the motive being to ensure the
+welfare of society / those committing the crimes should be encouraged to recognise the suffering
+they have caused and apologise to victims / the approach should be to encourage the
+transformation of the person who has committed the evil actions so that they begin to act in a
+sensible and sensitive way, etc.
+Christians believe that God forgives sins / Jesus atoned for all sins / some Christians believe that a
+punishment for evil doers should be equal to the crime / ‘An eye for an eye’ / ‘Spare the rod and
+spoil the child’ – Proverbs / most Christians believe that they should be helped to change their ways
+in order that they do not continue to do evil actions / the main aim of punishment should be to
+reform evil doers /‘Blessed are the merciful’ – Sermon on the Mount / Jesus set an example of
+showing compassion / the Woman caught in Adultery -John 8:1-11 / love thy neighbour, etc.
+The punishment should fit the crime that has been committed / offenders or anyone else should be
+deterred from committing evil actions again / Smriti texts suggest that the threat of punishment may
+make people follow their dharma / punishments should have the aim of reforming the people / ‘an
+eye for an eye ends up making the whole world blind’ – Gandhi / evil actions have karmic
+consequences so people should be deterred from committing them, etc.
+Those that do wrong need to be taught a lesson so they do not repeat the evil actions and it deters
+others from doing the same / Shari’ah law lays down the punishment on behalf of the victim, their
+family and their community / ‘an eye for an eye’ – Qur’an 5 :45 / in the case of an Al-Jinayaat crime,
+if life is taken, the victim can opt to grant mercy and receive compensation from the offender /
+corporal punishment often deters people from breaking the law / it is necessary for offenders to seek
+God’s forgiveness and to become purified, etc.
+The Jewish approach to those who perform evil actions is a mixture of mercy and justice /
+punishments should reflect the severity of their actions / the Torah includes ‘an eye for an eye’ but
+teaches not to seek revenge / Rabbis are also keen to practise the teachings of mercy / Ezekiel 33 :
+11 / offenders should be helped to change their ways and not continue with evil actions once the
+punishment is over / they are encouraged to try and pay back for the wrongs they have committed /
+Love thy neighbour, etc.
+Most Sikhs believe that punishments should be focussed on reforming the person / this change
+involves having the desire to listen to and follow the word of God / ‘Do not be angry with anyone
+else; look within your own self instead – GGS 259 / the Rehat Maryada addresses what should
+happen when Sikhs break their religious vows / evil actions have karmic consequences so it is
+important to have punishments which deter people from committing them / by undergoing a
+punishment an offender’s karmic debt is reduced / Sikhs follow the principles of compassion,
+forgiveness and equality, etc.
+
+---
+
+## Q5.4: Explain two reasons why some religious believers might break the law.
+
+Refer to sacred writings or another source of religious belief and teaching in your
+answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to sacred writings or another source of religious belief and
+teaching – 1 mark
+God has given humans free will / addiction may cause people to lose their moral standards / the
+person’s upbringing eg the environment a person is brought up in / the morals of family, friends or
+neighbourhood / it’s a way of survival because of poverty / mental illness / hate / wanting revenge /
+opposition to what is seen as unjust laws / it might be for the greater good / religious convictions are
+seen as more important than the law, etc.
+Motivation to do wrong may come from the Three Poisons: greed, anger and ignorance / people are
+free to make their own choices although there are karmic consequences / failure to keep the Fifth
+Moral Precept that teaches that Buddhists should abstain from taking drugs (including alcohol) may
+result in crime / Buddhists might regard it as a skilful action to disobey a law that causes harm / the
+Buddha in the Digha Nikaya p67 indicates that if people do not have the basic necessities, crime is
+likely to follow, etc.
+Breaking the law may result in the abuse of the free will God gave to humans which allowed them to
+choose right from wrong / most believe that Satan (the Devil) continually tries to tempt people and
+encourage them to behave badly / story of Adam and Eve and the Fall (Genesis) / original sin /
+although Romans 13 instructs Christians to obey the authorities sometimes there are unjust laws
+which need changing eg laws against religious freedom or which promote racial discrimination /
+many people are selfishness and greedy – ‘the love of money is the root of all evil’, etc.
+There is a constant struggle in the universe, world and the individual between light and dark, good
+and evil / humans have free will which allows them to choose to break the law / ignorance of the
+reality of the world and selfishness encourages people to do wrong things / Hinduism teaches that
+greed and hate which may cause law breaking is wrong because of the consequences resulting
+from the actions / belief that passion and ignorance (the gunas) might push people to break the law,
+Iblis was expelled from heaven and caused Adam and Eve to break God’s law and so were thrown
+out of Eden / Iblis constantly tempts humans to do wrong / humans have free will and sometimes
+make mistakes / people can choose to give in to temptations, selfishness, hate and greed and
+ignore Shari’ah Law / Muslims believe that alcohol or drugs can lead to crime and addiction / unjust
+laws, eg against Islam may be challenged, etc.
+The story of Adam and Eve in Genesis relates how they were tempted by a serpent to disobey
+God’s law / this resulted in the Fall and their expulsion from the Garden of Eden / the ‘serpent’ still
+tempts humans today / humans have been given free will by God and sometimes ignore the
+mitzvoth / Proverbs 28:4–5 / greed can result in law breaking – Ten Commandments / sometimes
+people break what they believe is an unjust law in order to bring changes, etc.
+The concept of selfishness (haumai) is what causes people to break the law and hurt others / this
+lies within the consciousness of a person and the level of selfishness a person has makes it more or
+less likely that laws will be broken / poverty may cause crime but Sikhs serve food in the langar to
+anyone in need thus helping to prevent the poor from stealing / Sikhs forbid the taking of intoxicants
+as when under their influence people may break the law / greed is one of the five evils and can
+result in crimes like stealing / Guru Granth Sahib 1049 / Sikhs have protested against laws which
+they thought unjust, eg concerning wearing motor bike helmets, etc.
+
+---
+
+## Q5.5: ‘Community service does not punish the criminal enough.’
+
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+Theme F: Religion, human rights and social justice
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• Community service is regarded as a soft option.
+• Criminals are not locked up so can continue their life of crime even when they are carrying out
+their community service orders.
+• Their freedom isn’t taken away and the punishment is seen as minimal.
+• The punishment needs to be meaningful and fit the crime. Serious criminals deserve more
+punishment than community service orders.
+
+**Arguments in support of other views**
+
+• The crime might have been small so then community service is an appropriate punishment.
+• It is often the right punishment as it gives the offenders the opportunity of making amends for their
+crime by giving something back to the community.
+• It is the type of punishment that encourages the criminals to take responsibility for their actions
+and reform and become an asset to the community.
+• It punishes the offenders at much less cost than putting them in prison but isn’t soft as it
+embarrasses the criminals as they have to wear high-visibility yellow vests.
+One of the main aims of punishment should be to give the criminals time and space to reflect on
+their actions and so / rehabilitate themselves / ‘We should reflect that by the law of kamma, they are
+in danger of lowly and miserable lives to come, and that our duty to them, as to every being, is to
+help them to rise towards Nirvana, rather than let them sink to lower levels of rebirth’ – Tenzin
+Gyatso (the Dalai Lama) / criminals should be encouraged to recognise the suffering they have
+caused, apologise and reform which is the aim of community service, etc.
+Retribution and revenge are not the main aims of punishment so community service orders might be
+the correct course of action / Christians support the idea of constructive work and education so that
+offenders can learn worthwhile skills / they may take their inspiration from the Parable of the Sheep
+and Goats – Matthew 25:3–46 / they believe that offenders should be helped to change their ways
+once the punishment is over so that they don’t reoffend and community service does this /
+community service may not be appropriate for all criminals but certainly for minor offences as it
+helps with reforming the offender (a major aim of punishment), etc.
+Hindus believe that the treatment of criminals should always be on an individual level – to try to help
+as well as punish / community service might not be punishment enough for some crimes, eg the
+Dharmaśāstras support the idea that some criminals should be imprisoned to act as a deterrent / the
+laws of Manu categorises different types of crimes / everything should be done to try and get the
+offenders to reform, this includes encouraging meditation and education, etc.
+Community service is regarded as soft and isn’t a real deterrent to criminals / Muslims often argue
+that corporal punishment is more effective / those who do serious crimes should be put in prison as
+the protection of the public is the first priority and imposes a loss of liberty and freedom / ‘God
+commands justice … and prohibits wrongdoing, and injustice …’ Qur’an 16:90 / community service
+orders do little to reform criminals, etc.
+Treatment of offenders must be just and fair with a focus on reform / most Jews support the use of
+community service orders for minor crimes but those who do serious crimes should be locked up /
+criminals need the opportunity to reflect on their actions, realise what they have done wrong and
+become determined not to reoffend / community service may be sufficient to bring remorse for the
+past and resolutions to do better in the future / Judaism considers it important for offenders to have
+the opportunity to atone for their crimes, etc.
+Sikhs agree with the use of community service if the focus of the experience is on trying to reform
+the criminal / offenders should be treated with respect and compassion not just punished severely /
+in some cases it is more appropriate to put them in prison / prisons act as a deterrent and protect
+society as they ensure that the criminal is unable to reoffend while locked up / Sikhs believe in
+creating a safe society / “Show kindness and mercy to all life, and realise the Lord is pervading
+everywhere” – Guru Granth Sahib, etc.
+Theme F: Religion, human rights and social justice.
+
+---
+
+## Q6.1: Which one of the following means treating people fairly?
+
+A Exploitation
+B Hatred
+C Inequality
+D Justice
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: D Justice
+
+---
+
+## Q6.2: Give two causes of poverty.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Unemployment / poor pay / excessive interest on loans / injustice / exploitation / modern-day slavery
+/ debt / natural disasters / corruption / addiction / laziness / lack of education / climate change /
+population growth / world trade / war / rising cost of living, etc.
+
+---
+
+## Q6.3: Explain two similar religious beliefs about freedom of religion.
+
+In your answer you must refer to one or more religious traditions.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+First similar belief
+Second similar belief
+The similarity may refer to either the religious belief (s) used or the issue.
+If contrasting beliefs are given only one of them may be credited up to 2 marks max.
+Freedom of religion is a basic human right / freedom to practise your religion / anyone should be
+free to follow whatever religion they choose / no one should be persecuted for their religion /
+It’s wrong to discriminate against other faiths and/or different groups within their own faith / some
+religious groups regard their religion as the only true religion, etc.
+All races and nationalities are welcomed in Buddhism / tolerance and consideration is valued /
+Buddhism teaches all religions are just different ways to the same religious truths / the Dalai Lama
+said that his religion was ‘the religion of kindness’ / ‘The things that divide and separate people-
+race, religion, gender, social position… are all illusory (Dhammapada), etc.
+Christianity is tolerant of other faiths / all are created with equal value and have equal rights/ ‘There
+is neither Jew nor Greek, slave nor free, male nor female for all are one in Christ Jesus (Galatians
+3:28) / many Christians do believe that the only way to salvation is through belief in Jesus which is
+why Christianity has always been a missionary religion; trying to convert others / ‘Therefore go and
+make disciples of all nations’ (Matthew 28:19), etc.
+All have been created by Brahman and so should be treated with respect / Saguna Brahman loves
+everybody equally / Rabindranath Tagore likened all religions to ‘different paths to the top of the
+same mountain’ / as a result Hinduism does not agree with trying to convert others / in India
+different faiths co-exist with all other faiths / though there has been some increase in tension
+between faith groups due to the political situation in India, etc.
+God has created all people equal and with equal rights / Shari’ah law protects the rights of non-
+Muslims to practise their faith / ‘Allah does not look upon your outward appearance; He looks upon
+your hearts and deeds’ (Hadith) / Jews and Christians are seen as ‘People of the Book’ meaning
+they have received revelations from Allah, although these have been corrupted / though there is a
+form of right religion to their beliefs / some extremist groups in Islam are less tolerant of other
+groups within Islam and other faiths, etc.
+All are created equally in the image of God / the prophets emphasised the importance of social
+justice rather than religious ritual / to be a Jew is an accident of birth not design so regarding non-
+Jews the deciding factor is how they live their lives not who they choose to worship / there should be
+no intolerance or religious discrimination shown / it is possible to convert to Judaism but it is not a
+missionary religion, etc.
+Sikhs are tolerant of other faiths / the Rahit Mayada states that ‘Sikhs must in no way give offence
+to other faiths’ / Guru Nanak said ‘There is no Hindu, or Muslim… I shall follow God’s path.’ / the
+Guru Granth Sahib contains both Hindu and Muslim writings / gurdwaras are open to all and all can
+eat at the langar / ‘Know people by the light which illuminates them’ (Guru Granth Sahib), etc.
+
+---
+
+## Q6.4: Explain two reasons why religious believers should challenge racial prejudice.
+
+Refer to sacred writings or another source of religious belief and teaching in
+your answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to writings or another source of religious belief and teaching
+– 1 mark
+All religions believe in equality and justice so would not support racial prejudice / prejudice is unfair /
+isolates people / singles people out as different / makes people more likely to suffer from
+discrimination / racial discrimination is illegal / prevents people working together / can affect
+individual’s physical / mental health, etc.
+Buddhists believe in Right Thought and Right Intention so this would rule out racial prejudice /
+people should seek to develop metta (loving kindness) / karuna (compassion) / racial prejudice is
+wrong thought and so will create bad karma / negative effect on rebirth / ‘The things which separate
+and divide people, race, religion, gender and social position are illusory.’ (Dhammapada 6) / The
+Dalai Lama has said “the best way to live life is to always think compassion”, etc.
+Genesis 1:27 teaches that men and women are created in the image of God so there is no
+difference between anyone / Parables such as the Parable of the Good Samaritan show Jesus
+challenged the prejudices of his day / ‘So in everything, do to others what you would have them do
+to you’ (Matthew 7:12) / Jesus showed no prejudice in dealing with people / healed the Syro-
+Phoenician woman’s daughter / healed the centurion’s servant / ‘There is neither Jew nor Greek,
+slave nor free, male nor female, for you are all one in Christ Jesus’ (Galatians 3:28), etc.
+‘I look upon all creatures equally’ (Bhagavad Gita 9:29) / Brahman is found in everything and so
+prejudiced thoughts would be seen as wrong / wrong attitudes can lead to bad karma / affects future
+reincarnations / Hindus believe that the true self is the atman and everyone has an atman /
+therefore all are equal / the Bhagavad Gita suggests that to reach liberation you should work for the
+welfare of all people, racial prejudice would prevent this, etc.
+‘People we created you from a single man and a single woman and made you into races and tribes
+so that you should know one another’ (Qur’an 49:13) / “An Arab is not better than a non-Arab, a
+non-Arab is no better than an Arab; a white person is no better than a black person, a black person
+no better than a white person” (Muhammad’s last sermon) / people are described as being as equal
+as the teeth on a comb, etc.
+‘So God created human beings, making them to be like himself.’ (Genesis 1:27) / Everyone created
+by God / created in God’s image so everyone is equal in God’s sight / ‘You shall not wrong a
+stranger or oppress him for you were strangers in the land of Egypt’ (Exodus 22:20) / ‘Love your
+neighbour as you love yourself’ (Leviticus 19:18), etc.
+All men and women are equal / ‘We are the children of one God’ (Guru Granth Sahib 611) / ‘The
+clay is the same but the Fashioner has fashioned it in different ways. There is nothing wrong with
+the pot of clay, there is nothing wrong with the Potter’ (Guru Granth Sahib 1350) / ‘God created
+everyone, so all are equal so deserve the same treatment and respect.’ (Mool Mantra), etc.
+
+---
+
+## Q6.5: ‘People living in poverty must help themselves to overcome any difficulties they
+
+face.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to religious arguments
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+End of Section A
+Section B
+You should answer all questions from both themes in Section B.
+Theme G: St Mark’s Gospel: the life of Jesus
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• Everyone has abilities and talents that can be used to earn money.
+• There are opportunities available if people are prepared to look and apply for them.
+• People should take care to budget.
+• There is insufficient support for some people’s needs.
+• People should not rely on others to support them, responsibility to be more self-reliant.
+
+**Arguments in support of other views**
+
+• Some people may not be in a position through illness or disability to help themselves.
+• Some people may be addicted to drugs/gambling etc and so spend money unwisely and find it
+hard to overcome their addictions.
+• Some people may not have the education or the skills to be able to help themselves.
+• Some may only be able to find ‘zero-hours’ contracts and so are not paid regularly or not paid
+enough to escape poverty.
+• Some may have had benefits ‘sanctioned’ and so suddenly find themselves in need of help and
+Right Action / Right Livelihood encourage people to work / honest work builds good karma /
+providing for others shows metta (kindness) / karuna (compassion) monks do not provide for
+themselves but rely on the generosity of others / ‘The greatest quality is seeking to serve others’
+In Christianity there is an expectation that people will work to support themselves / ‘The Lord took
+the man and put him the Garden of Eden to work it and take care of it.’ (Genesis 2:15) / ‘Whatever
+you do, work at it with all your heart, as if working for the Lord and not for men.’ (Colossians 3:23) /
+‘If a man will not work, he shall not eat’ (2 Thessalonians 3:10) / parables such as the Parable of the
+Talents teaches that people are given the opportunity to support themselves / helping others is
+loving and compassionate / helping others is the same as helping Jesus (eg Parable of the Sheep
+and the Goats) / giving charity to help the poor is also following Jesus’ teaching (eg Parable of the
+Rich Fool, story of the widow’s offering), etc.
+‘Perform your prescribed duty, for action is better than inaction. A man cannot maintain his physical
+body without work’ (Bhagavad Gita 3:8) / work is a natural thing for humans to do / working honestly
+to provide for the family builds good karma / earning money allows believers to follow the social
+aspects of their faith / supporting those in need builds good karma / providing food for those in need
+is one of the five daily duties / ‘that gift which is given out of duty, at the proper time and place to a
+worthy person and without expectation of return is considered to be charity in the mode of
+goodness’ (Bhagavad Gita 17:20), etc.
+All wealth is a gift from Allah, humans are stewards of Allah’s wealth and will be judged on its use /
+earning a lawful livelihood is an obligation / ‘No one eats better food than that which they have
+earned by their own labours’ (Hadith) / the value of money is in what it can do which includes
+providing for family and self / people should contribute to the ummah not draw from it / ‘Man can
+have nothing but what he strives for’ (Qur’an), etc.
+Jews are encouraged to work hard for their living so they are not dependent on others / ‘The Lord
+took the man and put him the Garden of Eden to work it and take care of it.’ (Genesis 2:15) / ‘By the
+sweat of your brow’ (Genesis 3:19) / laziness is frowned upon / ‘Go to the ant you sluggard and
+consider its ways and be wise!’ (Proverbs 6:6) / ‘laziness brings on deep sleep and the shiftless
+man goes hungry’ (Proverbs 19:15) / the community should support those in need / if fewer people
+are in need then there is more to help those in genuine need, etc.
+Working honestly to provide for the family builds good karma / ‘The farmers love to work their farms;
+they plough and work the fields, so that their sons and daughters may eat’ (Guru Granth Sahib 166)
+/ ‘My own occupation is to work to praise the Lord’ (Guru Granth Sahib 1331) / working allows Sikhs
+to play a full part in their community / perform sewa / supporting those in need helps to build good
+karma / ‘compassion-mercy and religion are the support of the entire world’ (Japji Sahib), etc.
+Theme G: St Mark’s Gospel: the life of Jesus
+
+---
+
+## Q7.1: How many others were crucified with Jesus according to St Mark’s Gospel?
+
+A One
+B Two
+C Three
+D Four
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: B Two
+
+---
+
+## Q7.2: Give two things Jesus said when he prayed in Gethsemane (on the night of his
+
+arrest).
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Called God Abba, Father / said that all things are possible with you / that the hour might
+pass from him / remove this cup from me / not what I want / but what you want.
+
+---
+
+## Q7.3: Explain two contrasting Christian beliefs about the Feeding of the Five Thousand.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+It was a feeding miracle / Jesus took the 5 loaves and 2 fish and blessed them / it was an
+early example of the Communion or the Eucharist / God gave him the power to feed that
+number of people with very little / Jesus was showing kindness / it was not really a miracle /
+the people just shared what they had / it was more like a military training exercise with
+groups of 50 and 100 / it was a test of the disciples’ faith and the feeding is not the
+important part / the physical feeding was not the point, the message of the story is that
+Jesus gave spiritual teaching, etc.
+
+---
+
+## Q7.4: Explain two lessons Christians might learn from Jesus’ reply to the request made
+
+by James and John.
+You must refer to St Mark’s Gospel in your answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to St Mark’s gospel – 1 mark
+It is a warning against human ambition / James and John wanted positions of importance in
+Jesus’ glory / Jesus taught that they should not seek special treatment / they must learn
+about sharing in Jesus’ suffering (cup that I drink) / reference to baptism may well be about
+the coming suffering Jesus is to face / believers should not become angry with each other /
+they should not seek to be the greatest / those who want to be first must serve others /
+follow Jesus’ example who came as a ransom / discipleship is about service not leadership
+/ the first will be last and the last will be first / raises the question of unanswered prayer –
+James and John did not get what they asked for / only God can decide / people need to be
+careful what they pray for, etc.
+Maximum L2 **[2 marks]** if the student only relates the story.
+
+---
+
+## Q7.5: ‘The titles given to Jesus in St Mark’s Gospel are not helpful to Christians today.’
+
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to St Mark’s Gospel in your answer
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+Theme H: St Mark’s Gospel as a source of religious, moral and spiritual truths
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+relevant evidence and information.
+evidence and information.
+evidence and arguments must be credited.
+The titles of Jesus used in Mark’s Gospel are:
+• Son of God
+• Christ (Messiah)
+• Son of David
+• Son of Man
+• Rabbi (teacher)
+• King of the Jews (Israel)
+• Lord
+• I am.
+
+**Arguments in support**
+
+• They are old titles.
+• Believers today do not understand the meaning eg Son of Man is not used generally today.
+• Would mean more to the people who heard them at the time, especially Messiah.
+• They would be understood better by Jewish hearers, especially Messiah.
+• Titles like this are not used today in general language / the background of the titles is too
+• Son of God is a statement of belief not just a title.
+• Son of David would not necessarily be seen as a Messianic title by believers today.
+• King of the Jews is not relevant today and Pilate used it possibly as an insult.
+• Without explanation the meanings are not self-evident, etc.
+
+**Arguments in support of other views**
+
+• The titles give an indication of different aspects of Jesus and his ministry.
+• Jesus used Son of Man to preserve his messianic secret.
+• Prolong his ministry.
+• Not difficult to understand Son of Man means a person as well as an eschatological figure.
+• The title encourages believers to look back at the OT for understanding.
+• Believers today still pray for the return in the second coming Parousia.
+• Son of David can just mean a Jewish man.
+• The titles create links to the messianic traditions of the OT.
+• The title Messiah links with the anointed one.
+• Son of God is at the beginning of Mark’s Gospel and is the central belief of Christianity.
+• Rabbi is used and can be understood today as a teacher / Jesus could have been regarded just
+as a teacher like the Pharisees.
+• Lord is more a description than a title but is used at various times, eg by Jesus (Lord of the
+Sabbath), John the Baptist (prepare the way of the Lord), Bartimaeus’ called him Lord (in some
+• 'I am' is Jewish name for God, this is not helpful because it led to charges of blasphemy, etc.
+Theme H: St Mark’s Gospel as a source of religious, moral and spiritual truths
+
+---
+
+## Q8.1: Which one of the following did Jesus tell the twelve disciples to take with them on
+
+their mission?
+
+A Bag (pack)
+B Bread
+C Money
+D Staff (stick)
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Answer: D Staff (stick)
+
+---
+
+## Q8.2: Give two instructions that Jesus gave to the rich man who wanted to inherit eternal
+
+life.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+considered for marking.
+Keep the commandments / do not murder / do not commit adultery / do not steal / do not lie / do not
+defraud / honour father and mother / go / sell everything you have / give the money to the poor /
+come and follow me.
+
+---
+
+## Q8.3: Explain two contrasting beliefs about the importance of the meeting of Jesus with
+
+the woman with a haemorrhage.
+
+**Answer:**
+
+similarities and differences within and/or between religions and beliefs
+• She showed faith in Jesus / when many doctors had failed to cure her / she touched his cloak.
+• She had such faith that she believed Jesus did not have to notice her / she could just touch his
+• Jesus felt power go out of him / he knew that someone had touched him for a purpose.
+• Faith can bring healing, salvation / ‘Your faith has healed you’ Jesus said.
+• Some people believed that illness was caused by evil-doing / so healing brings salvation from sin
+/ Jesus said ‘Go in peace, free from your affliction.
+• The disciples learned more of Jesus’ power / they were amazed he asked who had touched him
+given the crowd around him.
+• Some people may believe that the woman was healed through psychology / she so believed that
+her touch of Jesus would heal her that it did.
+• Jesus may have asked who touched him because the woman may have gone away feeling guilty
+that she was healed without even having asked his permission.
+
+---
+
+## Q8.4: Explain two things that Christians might learn from the healing of the man with
+
+leprosy.
+You must refer to St Mark’s Gospel in your answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority
+Relevant and accurate reference to St Mark’s Gospel – 1 mark
+Jesus showed pity / Jesus responded to faith / Jesus was able to heal him/ Jesus met need / he
+was not afraid of those who were regarded by many as unclean / Jesus touched the man –
+something many others would not do / Jesus kept the rules of religion in telling the man to go to the
+priest and make an offering laid down by Moses / Jesus was trying to keep the messianic secret
+because he told the man to say nothing / it inspired others to come to Jesus / Christians might want
+to become involved in healing as a doctor or nurse / faith healing is still practised today / Christian
+might learn that supporting charities can help others in need, etc.
+
+---
+
+## Q8.5: ‘Obeying the Commandment to “love God” is all that a believer must do to live a
+
+Christian life.’
+Evaluate this statement.
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+• should refer to St Mark’s Gospel in your answer
+• may refer to non-religious arguments
+• should reach a justified conclusion.
+
+[Plus SPaG 3 marks]
+
+Copyright information
+For confidentiality purposes, all acknowledgements of third-party copyright material are published in a separate booklet. This booklet is published after
+each live examination series and is available for free download from www.aqa.org.uk.
+AQA will be happy to rectify any omissions of acknowledgements. If you have any queries please contact the Copyright Team.
+Copyright © 2023 AQA and its licensors. All rights reserved.
+
+236G8062/2B
+
+**Answer:**
+
+In your answer you:
+• should give reasoned arguments in support of this statement
+• should give reasoned arguments to support a different point of view
+[Plus SPaG 3 marks]
+understanding of relevant evidence and information.
+relevant evidence and information.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• Love God is a Christian priority commanded by Jesus.
+• It provides motivation for living the Christian life.
+• It places belief at the heart of the Christian life.
+• It reflects the OT teaching that you shall have no together God but me.
+• It is the beginning of the Shema and Jewish hearers would have been familiar with this / it is a
+summary of their approach to God, etc.
+
+**Arguments in support of other views**
+
+• Love God is coupled in Jesus’ words with ‘love your neighbour as yourself’ / this is seen by many
+believers to be just as important.
+• There is no reference to other aspects of the Christian life eg prayer.
+• Charitable actions are an important part of Christian living / love God alone does not demand this.
+• Love God could just be something people believe and then do nothing about it / Christianity is a
+community religion / worship is part of the Christian life.
+• It does not give any advice on appropriate vocations and jobs for Christians.
+• Family life is central to Christianity for some people this is not mentioned.
+• There is no reference to the promise of heaven or life after death which was very important to the
+early Christians and is today.
+• Jesus does not mention his own teachings which set an example.
+• 'Love God and do what you like' was written by St Augustine’, etc.
+Students will be credited if correct examples from any part of St Mark’s Gospel are used.
+
+---
