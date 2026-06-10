@@ -7,10 +7,14 @@ import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset } from "@/data.js";
-import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
+import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset, loadVocabItems } from "@/data.js";
+import { getDatasetStageOptions, usesStageSelection, getSelectedStages, filterWordsForScope } from "@/quiz-helpers.js";
 
-const QUESTION_COUNTS = [12, 18, 24, 30].map((n) => ({ id: n, label: String(n) }));
+const QUESTION_COUNTS = [
+  { id: 18, label: "18" },
+  { id: 30, label: "30" },
+  { id: "all", label: "Full set (until all correct)" },
+];
 // "Build" is kept internally (language packs can still use it via direct pack config)
 // but is not shown as a UI option — users pick Choice / Typed / Mixed.
 const ANSWER_MODES_ALL   = [
@@ -138,7 +142,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
             label="Questions"
             items={QUESTION_COUNTS}
             value={prefs.questionCount}
-            onSelect={(n) => setPref("questionCount", Number(n))}
+            onSelect={(n) => setPref("questionCount", n)}
           />
         </FilterRow>
 
@@ -532,7 +536,13 @@ export default function QuizPage({ initialCustomWords = null }) {
     if (!manifest) return;
     const dataset = (listDatasets(manifest).find(d => d.id === prefs.datasetId)) || { id: prefs.datasetId };
     const fullDataset = dataset.id ? dataset : { id: "core" };
-    await startQuiz({ manifest, dataset: fullDataset, prefs, progress, customWords: initialCustomWords || null });
+    if (prefs.questionCount === "all") {
+      const allWords = await loadVocabItems(manifest, fullDataset.id);
+      const words = filterWordsForScope(allWords, fullDataset, prefs);
+      await startQuiz({ manifest, dataset: fullDataset, prefs: { ...prefs, questionCount: Math.max(words.length, 1) }, progress, customWords: initialCustomWords || null });
+    } else {
+      await startQuiz({ manifest, dataset: fullDataset, prefs, progress, customWords: initialCustomWords || null });
+    }
     setPhase("session");
   }
 
@@ -544,7 +554,13 @@ export default function QuizPage({ initialCustomWords = null }) {
     nextQuestion({ updateProgress });
     const s = session;
     if (s && s.index + 1 >= s.questions.length) {
-      setPhase("summary");
+      if (prefs.questionCount === "all" && s.missedWords?.length > 0) {
+        const dataset = findDataset(manifest, prefs.datasetId);
+        const fullDataset = dataset || { id: prefs.datasetId };
+        startQuiz({ manifest, dataset: fullDataset, prefs: { ...prefs, questionCount: s.missedWords.length, excludeMastered: false }, progress, customWords: s.missedWords });
+      } else {
+        setPhase("summary");
+      }
     }
   }
 

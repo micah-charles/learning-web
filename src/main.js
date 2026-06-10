@@ -2878,13 +2878,15 @@ function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, p
 }
 
 function buildQuestionCountOptions(maxQuestionCount) {
-  const defaults = [12, 18, 24, 30];
+  const defaults = [18, 30];
   const limited = defaults.filter((value) => value <= maxQuestionCount);
   if (maxQuestionCount > 0 && !limited.includes(maxQuestionCount)) {
     limited.push(maxQuestionCount);
   }
   const options = [...new Set(limited)].sort((a, b) => a - b);
-  return options.map((value) => ({ value: String(value), label: String(value) }));
+  const mapped = options.map((value) => ({ value: String(value), label: String(value) }));
+  mapped.push({ value: "all", label: "Full set (until all correct)" });
+  return mapped;
 }
 
 function buildCrosswordWordCountOptions(maxWordCount) {
@@ -4933,7 +4935,7 @@ async function handleChange(event) {
       persisted.prefs.quiz.year = value;
       break;
     case "quiz-question-count":
-      persisted.prefs.quiz.questionCount = Number(value);
+      persisted.prefs.quiz.questionCount = value === "all" ? "all" : Number(value);
       break;
     case "quiz-exclude-mastered":
       persisted.prefs.quiz.excludeMastered = value === "true";
@@ -5225,7 +5227,8 @@ async function startQuiz(customWords = null, label = null) {
     unifiedPack,
     passageUnifiedPack,
   });
-  const boundedQuestionCount = maxQuestionCount > 0 ? Math.min(prefs.questionCount, maxQuestionCount) : prefs.questionCount;
+  const count = prefs.questionCount === "all" ? words.length : prefs.questionCount;
+  const boundedQuestionCount = maxQuestionCount > 0 ? Math.min(count, maxQuestionCount) : count;
 
   // Subject First adapter: translate the high-level UI selections into the
   // legacy mode-ID array the question engine expects. This replaces the old
