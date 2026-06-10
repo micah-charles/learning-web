@@ -7,8 +7,8 @@ import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
-import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset, loadVocabItems } from "@/data.js";
-import { getDatasetStageOptions, usesStageSelection, getSelectedStages, filterWordsForScope } from "@/quiz-helpers.js";
+import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset } from "@/data.js";
+import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
 const QUESTION_COUNTS = [
   { id: 18, label: "18" },
@@ -536,13 +536,7 @@ export default function QuizPage({ initialCustomWords = null }) {
     if (!manifest) return;
     const dataset = (listDatasets(manifest).find(d => d.id === prefs.datasetId)) || { id: prefs.datasetId };
     const fullDataset = dataset.id ? dataset : { id: "core" };
-    if (prefs.questionCount === "all") {
-      const allWords = await loadVocabItems(manifest, fullDataset.id);
-      const words = filterWordsForScope(allWords, fullDataset, prefs);
-      await startQuiz({ manifest, dataset: fullDataset, prefs: { ...prefs, questionCount: Math.max(words.length, 1) }, progress, customWords: initialCustomWords || null });
-    } else {
-      await startQuiz({ manifest, dataset: fullDataset, prefs, progress, customWords: initialCustomWords || null });
-    }
+    await startQuiz({ manifest, dataset: fullDataset, prefs, progress, customWords: initialCustomWords || null });
     setPhase("session");
   }
 

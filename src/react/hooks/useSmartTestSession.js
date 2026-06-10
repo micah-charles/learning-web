@@ -24,9 +24,7 @@ import { recordWordAnswer } from "@/storage.js";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const MCQ_COUNT      = 5;
-const BUILDER_COUNT  = 3;
-const FLASHCARD_COUNT = 3;
+// Use all available items instead of a fixed sample (RC23)
 const MIN_DEF_LENGTH  = 40;   // targetWord must be this long to be a flashcard candidate
 
 // sourceWord prefixes that identify argument/essay scaffold items
@@ -132,7 +130,7 @@ function normalizeAnswer(s) {
     .trim();
 }
 
-function buildSession(words, passages, builderItems, datasetId, sessionId) {
+function buildSession(words, passages, builderItems, fillBlankItems, datasetId, sessionId) {
   const rng = seededRng(strToSeed(sessionId));
 
   // Classify words
@@ -143,7 +141,7 @@ function buildSession(words, passages, builderItems, datasetId, sessionId) {
   const sections = [];
 
   // ── Section: MCQ ───────────────────────────────────────────────────────────
-  const mcqPool = seededShuffle(mcqCandidates, rng).slice(0, MCQ_COUNT);
+  const mcqPool = seededShuffle(mcqCandidates, rng);
   if (mcqPool.length > 0) {
     const questions = mcqPool.map(word => ({
       id: word.id || word.de || word.sourceWord,
@@ -168,7 +166,7 @@ function buildSession(words, passages, builderItems, datasetId, sessionId) {
 
   // ── Section: Sentence Builder ────────────────────────────────────────────────
   // Real sentence-builder section: arrange shuffled tiles into the model answer.
-  const builderPool = seededShuffle(builderItems || [], rng).slice(0, BUILDER_COUNT);
+  const builderPool = seededShuffle(builderItems || [], rng);
   if (builderPool.length > 0) {
     const questions = builderPool.map(item => {
       const data = item.data || {};
@@ -199,7 +197,7 @@ function buildSession(words, passages, builderItems, datasetId, sessionId) {
     });
   } else {
     // Fallback: Flashcard self-assessment when the pack has no sentenceBuilder items
-    const flashPool = seededShuffle(flashCandidates, rng).slice(0, FLASHCARD_COUNT);
+    const flashPool = seededShuffle(flashCandidates, rng);
     if (flashPool.length > 0) {
       const cards = flashPool.map(word => ({
         id: word.id || word.de || word.sourceWord,
@@ -215,6 +213,38 @@ function buildSession(words, passages, builderItems, datasetId, sessionId) {
         icon: "💡",
         description: "Read each concept and mark whether you know it.",
         cards,
+        answers: {},
+        currentIndex: 0,
+        done: false,
+      });
+    }
+  }
+
+  // ── Section: Fill in the Blank ──────────────────────────────────────────────
+  if (fillBlankItems.length > 0) {
+    const fbPool = seededShuffle(fillBlankItems, rng);
+    const questions = fbPool.map(item => {
+      const d = item.data || {};
+      const prompt = d.question || d.sentence || "";
+      const answer = d.answer || "";
+      const hasOptions = Array.isArray(d.options) && d.options.length >= 2;
+      const options = hasOptions ? shuffle([...d.options]) : [];
+      return {
+        id: item.id || `fb-${sessionId}-${Math.random().toString(36).slice(2, 8)}`,
+        prompt,
+        answer,
+        options,
+        isChoice: options.length > 0,
+      };
+    });
+    if (questions.length > 0) {
+      sections.push({
+        id: "fillblank",
+        type: "fillblank",
+        title: "Fill in the Blank",
+        icon: "⬜",
+        description: "Complete each sentence by filling in the missing term.",
+        questions,
         answers: {},
         currentIndex: 0,
         done: false,
@@ -313,7 +343,7 @@ export function calcScore(session) {
   };
 
   for (const sec of session.sections) {
-    if (sec.type === "mcq") {
+    if (sec.type === "mcq" || sec.type === "fillblank") {
       const qs = sec.questions;
       const correct = qs.filter(q => sec.answers[q.id]?.correct).length;
       result.sections.mcq = { correct, total: qs.length };
@@ -384,9 +414,10 @@ export function useSmartTestSession() {
     try {
       const words = await loadVocabItems(manifest, dataset.id).catch(() => []);
 
-      // Load passage + sentenceBuilder items from the unified pack
+      // Load passage + sentenceBuilder + fillBlank items from the unified pack
       let passages = [];
       let builderItems = [];
+      let fillBlankItems = [];
       try {
         const pack = await loadUnifiedPack(manifest, dataset.id);
         if (pack?.items) {
@@ -402,16 +433,17 @@ export function useSmartTestSession() {
             .filter(p => p.text.length > 50);
 
           builderItems = pack.items.filter(item => item.type === "sentenceBuilder");
+          fillBlankItems = pack.items.filter(item => item.type === "fillBlank");
         }
       } catch { /* pack has no extra item types */ }
 
-      if (words.length === 0) {
+      if (words.length === 0 && fillBlankItems.length === 0) {
         setError("No vocab items found in this pack.");
         return;
       }
 
       const sessionId = `st-${dataset.id}-${Date.now()}`;
-      const newSession = buildSession(words, passages, builderItems, dataset.id, sessionId);
+      const newSession = buildSession(words, passages, builderItems, fillBlankItems, dataset.id, sessionId);
       _set(newSession);
     } catch (err) {
       setError(err.message || "Failed to build Smart Test session.");
@@ -463,6 +495,51 @@ export function useSmartTestSession() {
         recordWordAnswer(state, question.word.id, correct);
       });
     }
+  }, []);
+
+  // ── Answer fillBlank ──────────────────────────────────────────────────────
+
+  const answerFillBlank = useCallback((questionId, selectedAnswer, updateProgress) => {
+    const prev = sessionRef.current;
+    if (!prev) return;
+    const sectionIdx = prev.currentSectionIndex;
+    const section    = prev.sections[sectionIdx];
+    if (!section || section.type !== "fillblank") return;
+
+    const question = section.questions.find(q => q.id === questionId);
+    if (!question) return;
+
+    const correct = selectedAnswer === question.answer;
+
+    const newSection = {
+      ...section,
+      answers: {
+        ...section.answers,
+        [questionId]: { selected: selectedAnswer, correct },
+      },
+    };
+
+    const newSections = prev.sections.map((s, i) => i === sectionIdx ? newSection : s);
+    const newSession  = { ...prev, sections: newSections };
+    _set(newSession);
+  }, []);
+
+  // ── Next fillBlank question ───────────────────────────────────────────────
+
+  const nextFillBlankQuestion = useCallback(() => {
+    const prev = sessionRef.current;
+    if (!prev) return;
+    const sectionIdx = prev.currentSectionIndex;
+    const section    = prev.sections[sectionIdx];
+    if (!section || section.type !== "fillblank") return;
+
+    const nextIndex = section.currentIndex + 1;
+    const isDone    = nextIndex >= section.questions.length;
+
+    const newSection  = { ...section, currentIndex: Math.min(nextIndex, section.questions.length - 1), done: isDone };
+    const newSections = prev.sections.map((s, i) => i === sectionIdx ? newSection : s);
+    const newSession  = { ...prev, sections: newSections };
+    _set(newSession);
   }, []);
 
   // ── Next MCQ question ─────────────────────────────────────────────────────
@@ -606,7 +683,7 @@ export function useSmartTestSession() {
   let answered = 0, total = 0;
   if (session) {
     for (const s of session.sections) {
-      if (s.type === "mcq" || s.type === "builder") {
+      if (s.type === "mcq" || s.type === "builder" || s.type === "fillblank") {
         total    += s.questions.length;
         answered += Object.keys(s.answers).length;
       }
@@ -630,6 +707,8 @@ export function useSmartTestSession() {
     startSession,
     answerMcq,
     nextMcqQuestion,
+    answerFillBlank,
+    nextFillBlankQuestion,
     submitBuilder,
     nextBuilderQuestion,
     assessFlashcard,
