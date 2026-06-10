@@ -6,9 +6,9 @@ import { marked, extractTOC } from "../src/study-book-core.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const MANIFEST_PATH = resolve(ROOT, "data/generated/manifest.json");
-const SEO_DIR = resolve(ROOT, "public/revision");
-const SITEMAP_PATH = resolve(ROOT, "public/sitemap.xml");
-const ROBOTS_PATH = resolve(ROOT, "public/robots.txt");
+const SEO_DIR = resolve(ROOT, "dist/revision");
+const SITEMAP_PATH = resolve(ROOT, "dist/sitemap.xml");
+const ROBOTS_PATH = resolve(ROOT, "dist/robots.txt");
 const BASE_URL = "https://www.foxchildidea.com";
 
 const SUBJECT_CONFIG = {
@@ -170,7 +170,7 @@ function wrapStudyBookPage(title, description, canonical, bookTitle, bookDesc, t
         <div data-file-content="main">${contentHtml}</div>
         ${relatedHtml}
         <div class="cta-section">
-          <a href="/" class="cta-button">Open interactive Learning Web</a>
+
           <a href="/" class="cta-button secondary">Practice this topic</a>
         </div>
       </div>
@@ -188,7 +188,7 @@ function main() {
 
   // Read manifest
   const manifest = JSON.parse(readFileSync(MANIFEST_PATH, "utf-8"));
-  const packs = manifest.packs || [];
+  const packs = manifest.revisionPacks || manifest.packs || [];
 
   // Collect study book packs (those with contentMdPath)
   const studyBooks = [];
@@ -238,6 +238,8 @@ function main() {
   const subjectsDir = resolve(SEO_DIR, "subjects");
   const studybookDir = resolve(SEO_DIR, "studybook");
   mkdirSync(resolve(SEO_DIR), { recursive: true });
+  mkdirSync(subjectsDir, { recursive: true });
+  mkdirSync(studybookDir, { recursive: true });
 
   // ── Generate subject landing pages ──────────────────────────────────────────
   for (const subj of sortedSubjects) {
@@ -404,16 +406,18 @@ function main() {
     console.log(`[seo] Generated study book page: /revision/studybook/${sb.subjectSlug}/${sb.slug}/`);
   }
 
-  // ── Copy assets ──────────────────────────────────────────────────────────
-  // revision.css is already in public/revision/revision.css, Vite will copy it.
-  // Copy brand logo for the SEO header
+  // ── Copy assets from public/revision into dist/revision ──────────────────
+  // Vite root is src/react/, so public/ at project root isn't copied automatically.
   try {
-    const logoPath = resolve(ROOT, "brand/logo.png");
-    const logoDest = resolve(SEO_DIR, "logo.png");
-    if (existsSync(logoPath)) {
-      writeFileSync(logoDest, readFileSync(logoPath));
+    const publicRevision = resolve(ROOT, "public/revision");
+    if (existsSync(publicRevision)) {
+      for (const name of ["revision.css", "revision-study-book.js", "logo.png"]) {
+        const src = resolve(publicRevision, name);
+        const dest = resolve(SEO_DIR, name);
+        if (existsSync(src)) writeFileSync(dest, readFileSync(src));
+      }
     }
-  } catch (_) { /* logo copy is non-critical */ }
+  } catch (_) { /* asset copy is non-critical */ }
 
   // ── Generate sitemap.xml ──────────────────────────────────────────────────
   {

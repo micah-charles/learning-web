@@ -1,0 +1,208 @@
+# componentCode:
+
+*June 2022*
+
+## Q1.1: Which one of the following is a word used by Jews to describe the nature of God?
+
+Put a tick () in the box next to the correct answer.
+A Limited
+B Many
+C Merciful
+D Unjust
+
+**Answer:**
+
+beliefs, practices and sources of authority.
+Answer: C: Merciful
+
+---
+
+## Q1.2: Give two Jewish beliefs about the sanctity of human life.
+
+**Answer:**
+
+beliefs, practices and sources of authority.
+considered for marking.
+The sanctity of human life means that humans have especial value / ‘God formed a man from the
+dust of the ground and breathed into his nostrils the breath of life’ (Genesis 2:7) / human life has a
+higher status than animal life / humans are made in the image of God, ‘God created mankind in his
+own image’(Genesis 1:27) / all humans have equal dignity / human life is precious because it is
+God-given / life is sacred / human life is planned and sustained by God / ‘Before I formed you in the
+womb, I knew you’ (Jeremiah 1:5) / Pikuach Nefesh is a principle in Judaism that puts the
+preservation of human life above almost every other religious consideration / breaking Sabbath law
+is permitted if it saves human life, etc.
+
+---
+
+## Q1.3: Explain two ways in which beliefs about life after death influence Jews today.
+
+**Answer:**
+
+individuals, communities and societies.
+To be a ‘detailed explanation’ the ‘influence’ of the way must be included.
+• Some Jews believe that the wicked will be punished in the afterlife so it matters how Jews lead
+their life on earth / ‘Many of those that sleep in the dust of the earth will awake, some to eternal
+life, others to reproaches, to everlasting abhorrence.’ (Daniel 12:2) / Jews will follow the 613
+mitzvot / Judaism wouldn’t have so many rules about how to live an ethical life if God did not
+expect them to follow them / key moral principles such as justice, healing the world, charity and
+kindness to others are expected from Jews / the choices they make will always have
+consequences / they will want to act in a way to please God so that God will judge them
+favourably on the Day of Judgement.
+• For some Jews, the 613 mitzvot, Ten Commandments, chesed (human kindness and love) and
+using freewill for good are not necessarily linked to belief in life after death but are just considered
+the right thing to do / so belief in the afterlife should not affect how Jews live their lives.
+• After death many Jews believe that all but the truly righteous souls descend to a place of
+purification called Sheol for twelve months where they experience the harm they have done,
+reflect on opportunities that they have missed and can show remorse / after Sheol, all but the
+most wicked go on to Gan Eden / this can be seen as a second chance so the current life is not
+• Many Jewish people today do not focus on life after death, but rather focus on this life to get it
+right now / this is because of being pragmatic - no one knows what happens after death, so just
+focus on this life, eg follow mitzvot / if there is an afterlife, then it will be taken care of / Judaism
+teaches that what is important is how a person lives their life and what happens after death
+should be left to God. Good deeds should be done for their own sake / ‘Be not like servants who
+serve their master for the sake of receiving a reward’. (Ethics of the Fathers 1:3).
+• According to Talmud Berakhot 57b, Gehinnom (Hell) is sixty times hotter than earthly fire so
+should be avoided by living good lives / after Sheol (place of purification) all but the most wicked
+go on to Gan Eden a heavenly realm where souls reside after physical death to be reunited with
+their ancestors, but how they live their lives affects this decision / Judaism is clear that there is a
+world to come (Olam Ha-Ba) / and that the righteous of all nations will have a share in it so it is
+important to be classed among the righteous, etc.
+
+---
+
+## Q1.4: Explain two Jewish beliefs about God as Law-Giver.
+
+Refer to sacred writings or another source of Jewish belief and teaching in your
+answer.
+
+**Answer:**
+
+beliefs, practices and sources of authority.
+Relevant and accurate reference to sacred writing or another source of Jewish belief and teaching
+– 1 mark
+• Basic Jewish belief that God gave the Torah to Moses on Mount Sinai / Torah means law,
+believed by some Jews to be the Word of God / Torah the source of 613 mitzvot that form the
+basis of Halakhah / obeying God’s laws is fulfilling God’s will on earth / 613 mizvot provide the
+basis of God’s relationship with his people which is the purpose of God being a Law-Giver / Jews
+believe that all aspects of their lives are ruled by God / If Jews followed these rules, God would
+protect them from harm as outlined in the covenant.
+• God gives laws to guide the Jews to live a life that is pleasing to him / Jews are expected to follow
+God’s laws (mitzvot) to show their obedience to him / through following the laws Jews are
+showing they are God’s chosen people / how an individual can become a Mensch (a person of
+integrity) / acts of loving kindness (gemilut chasadim).
+• God as Law-Giver wanted to give Torah to the world but nations refused after learning of the
+restrictions, when God approached the Jews, they replied, “we will do and we will listen.”
+• God gave the Ten Commandments to Moses on Mount Sinai / inscribed on two tablets of stone /
+given after the escape from slavery in Egypt / first four commandments between man and God,
+rest are how humans should treat each other / Jews believe all are of equal importance.
+• In providing the Ten Commandments and the other mitzvot, Jews believe that God has set the
+basis of his relationship with his people, that is the purpose of God being the Law-Giver / the
+mitzvot are seen as points of guidance to help Jewish people use their free will correctly / Jews
+believe that they have free will to follow the mitzvot / by following the mitzvot, they will live a good
+life, meaning that they will be closer to God, God will forgive those who ask if they break the law,
+
+> **Sources of authority might include:**
+
+Exodus 19:8 ‘Do everything the Lord has said.’
+Exodus 20 ‘You shall have no other gods before me.’
+Exodus 20:4 ‘You shall not make for yourself an image in the form of anything in heaven above or
+on the earth beneath or in the waters below.’
+Exodus 20:7 ‘You shall not misuse the name of the Lord your God.’
+Exodus 20:8 ‘Remember the Sabbath day by keeping it holy’
+Exodus 20:12 ‘Honour your father and your mother, so that you may live long in the land the Lord
+your God is giving you.’
+Exodus 20:13 ‘You shall not murder.’
+Exodus 20:14 ‘You shall not commit adultery.’
+Exodus 20:15 ‘You shall not steal.’
+Exodus 20:16 ‘You shall not give false testimony against your neighbour.’
+Exodus 20:17 ‘You shall not covet your neighbour’s house. You shall not covet your neighbour’s
+wife, or his male or female servant, his ox or donkey, or anything that belongs to your neighbour.’
+Exodus 24:7 7 Then he took the Book of the Covenant and read it to the people. They responded,
+“We will do everything the Lord has said; we will obey.”
+Accept any recognised mitzvot quoted from the Torah.
+
+---
+
+## Q1.5: ‘For Jews, the most important mitzvot are those between man and man.’
+
+Evaluate this statement.
+In your answer you should:
+• refer to Jewish teaching
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+• reach a justified conclusion.
+
+[SPaG 3 marks]
+
+Extra space
+
+Question .
+number .
+
+Question .
+number .
+
+Question .
+number .
+
+Question .
+number .
+
+Copyright information
+For confidentiality purposes, all acknowledgements of third-party copyright material are published in a separate booklet. This booklet is published after
+each live examination series and is available for free download from www.aqa.org.uk.
+and AQA will be happy to rectify any omissions of acknowledgements. If you have any queries please contact the Copyright Team.
+Copyright © 2022AQA and its licensors. All rights reserved.
+
+226G8061/4
+
+**Answer:**
+
+In your answer you should:
+• give reasoned arguments to support this statement
+• give reasoned arguments to support a different point of view
+[SPaG 3 marks]
+understanding of relevant evidence and information.
+References to religion applied to the issue.
+relevant evidence and information.
+Clear reference to religion.
+evidence and information.
+evidence and arguments must be credited.
+
+**Arguments in support**
+
+• The mitzvot between man and man are important for civilised society / how a Jew treats other
+people is very important / man is made in the image of God so to mistreat a human is not obeying
+the sanctity of life / this is why there are mitzvot in relation to how to treat other people (the latter
+six of the Ten Commandments) / Jews need to demonstrate their ethical beliefs in how they deal
+with others / ‘Better to be poor than a liar.’ (Proverbs 19:22)
+• There are mitzvot about how a Jew must treat different groups within society / including women /
+children / the elderly / the poor / the oppressed / the persecuted / those outcast from society /
+people of other faiths / criminals / Jews believe it pleases God if they obey mitzvot between man
+• Living the faith is most important in Judaism / faith does not operate in a vacuum / it would be
+impossible to show a relationship with God if worship was kept purely to the synagogue / Jews
+needs to show their devotion to God by the way in which they participate in their community /
+stand up against injustice / work for social justice / care for the planet / and live their life / ‘Love
+your neighbour as yourself; I am your God’ (Leviticus 19:18) teaches how people treat others is
+part of a Jew's relationship with God, etc.
+
+**Arguments in support of other views**
+
+• The mitzvot between man and God are the foundations of the faith / the Shema is the most
+important belief in Judaism / Jews are commanded to love their God with all their heart, soul and
+might / one cannot be Jewish without a relationship with God / obeying positive mitzvot
+strengthens bond with God / gives Jewish people their identity.
+• Six constant mitzvot that some Jews believe should always be in their minds / know there is a
+God / do not believe in other gods / know that God is one / love God / fear God / do not be misled
+by personal desires.
+• The practices of Judaism are all focused on a Jew’s relationship with God / for instance prayer
+and synagogue worship / first four of the Ten Commandments govern a Jew’s relationship with
+God / only worship one God / do not make images of him / do not misuse his name, etc.
+• The Shabbat is all about prayer and deepening the connection between Jews and God /
+remember and observe the Sabbath / festivals commemorate times when God showed his love
+for the Jewish people.
+• A Jew has a covenant relationship with God / this means that Jews are obliged to keep God’s
+laws / and to try to bring holiness to every aspect of life / by following the mitzvot Jews are
+showing their respect for God / their life is an act of worship, etc.
+
+---

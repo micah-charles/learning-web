@@ -9,7 +9,7 @@
     "generate:seo": "node scripts/generate-seo-pages.mjs",
     "start": "npm run build && python3 -m http.server --directory dist 4173",
     "dev": "vite",
-    "build": "npm run build:study-books && npm run generate:seo && vite build",
+    "build": "npm run build:study-books && vite build && npm run generate:seo",
     "preview": "vite preview"
   },
   "devDependencies": {
