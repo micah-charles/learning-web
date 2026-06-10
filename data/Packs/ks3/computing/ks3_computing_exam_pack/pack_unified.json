@@ -1,0 +1,5203 @@
+{
+  "schemaVersion": "1.1",
+  "packId": "ks3_computing_exam_pack",
+  "subject": "computing",
+  "sourceLanguageCode": "en-GB",
+  "targetLanguageCode": "en-GB",
+  "speechLanguage": "en-GB",
+  "items": [
+    {
+      "id": "t1_v1",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "binary",
+        "targetWord": "A number system that uses only two digits, 0 and 1, and is used by computers to represent all data."
+      }
+    },
+    {
+      "id": "t1_v2",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "denary",
+        "targetWord": "The standard base-10 number system that uses ten digits from 0 to 9, which humans use in everyday life."
+      }
+    },
+    {
+      "id": "t1_v3",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "bit",
+        "targetWord": "The smallest unit of data in computing, representing a single binary digit that is either 0 or 1."
+      }
+    },
+    {
+      "id": "t1_v4",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "byte",
+        "targetWord": "A unit of digital data made up of 8 bits, commonly used to represent a single character such as a letter or number."
+      }
+    },
+    {
+      "id": "t1_v5",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "base-2",
+        "targetWord": "Another name for the binary number system, indicating that it uses two as its base and only the digits 0 and 1."
+      }
+    },
+    {
+      "id": "t1_v6",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "base-10",
+        "targetWord": "Another name for the denary number system, indicating that it uses ten as its base with digits ranging from 0 to 9."
+      }
+    },
+    {
+      "id": "t1_v7",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "place value",
+        "targetWord": "The value of a digit determined by its position within a number, such as units, tens, hundreds in denary or powers of 2 in binary."
+      }
+    },
+    {
+      "id": "t1_v8",
+      "type": "vocab",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "binary digit",
+        "targetWord": "A single character in the binary number system, which can only be the value 0 or 1, and is commonly shortened to the word bit."
+      }
+    },
+    {
+      "id": "t1_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 0001 is equal to the denary value ____.",
+        "answer": "1",
+        "options": [
+          "1",
+          "2",
+          "8",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 0010 is equal to the denary value ____.",
+        "answer": "2",
+        "options": [
+          "2",
+          "1",
+          "4",
+          "3"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 0101 is equal to the denary value ____.",
+        "answer": "5",
+        "options": [
+          "5",
+          "4",
+          "6",
+          "7"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 1000 is equal to the denary value ____.",
+        "answer": "8",
+        "options": [
+          "8",
+          "4",
+          "16",
+          "6"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 1111 is equal to the denary value ____.",
+        "answer": "15",
+        "options": [
+          "15",
+          "7",
+          "8",
+          "14"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 10110 is equal to the denary value ____.",
+        "answer": "22",
+        "options": [
+          "22",
+          "20",
+          "18",
+          "26"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 11001 is equal to the denary value ____.",
+        "answer": "25",
+        "options": [
+          "25",
+          "24",
+          "27",
+          "19"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 11010 is equal to the denary value ____.",
+        "answer": "26",
+        "options": [
+          "26",
+          "25",
+          "28",
+          "22"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb9",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 1010 is equal to the denary value ____.",
+        "answer": "10",
+        "options": [
+          "10",
+          "12",
+          "8",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb10",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number 0110 is equal to the denary value ____.",
+        "answer": "6",
+        "options": [
+          "6",
+          "3",
+          "4",
+          "7"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb11",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A byte is made up of ____ bits.",
+        "answer": "8",
+        "options": [
+          "8",
+          "4",
+          "16",
+          "2"
+        ]
+      }
+    },
+    {
+      "id": "t1_fb12",
+      "type": "fillBlank",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The binary number system uses base ____.",
+        "answer": "2",
+        "options": [
+          "2",
+          "10",
+          "8",
+          "16"
+        ]
+      }
+    },
+    {
+      "id": "t1_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each number into the correct number system",
+        "categories": [
+          "Binary",
+          "Denary"
+        ],
+        "pairs": [
+          {
+            "text": "1010",
+            "category": "Binary"
+          },
+          {
+            "text": "42",
+            "category": "Denary"
+          },
+          {
+            "text": "11001",
+            "category": "Binary"
+          },
+          {
+            "text": "255",
+            "category": "Denary"
+          },
+          {
+            "text": "0101",
+            "category": "Binary"
+          },
+          {
+            "text": "100",
+            "category": "Denary"
+          },
+          {
+            "text": "1111",
+            "category": "Binary"
+          },
+          {
+            "text": "64",
+            "category": "Denary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t1_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each statement into the correct number system it describes",
+        "categories": [
+          "Binary",
+          "Denary"
+        ],
+        "pairs": [
+          {
+            "text": "Uses only 0 and 1",
+            "category": "Binary"
+          },
+          {
+            "text": "Uses digits 0 to 9",
+            "category": "Denary"
+          },
+          {
+            "text": "Base-2 system",
+            "category": "Binary"
+          },
+          {
+            "text": "Base-10 system",
+            "category": "Denary"
+          },
+          {
+            "text": "Used internally by computers",
+            "category": "Binary"
+          },
+          {
+            "text": "Used by humans in everyday life",
+            "category": "Denary"
+          },
+          {
+            "text": "Place values are powers of 2",
+            "category": "Binary"
+          },
+          {
+            "text": "Place values are powers of 10",
+            "category": "Denary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t1_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Match each binary number to its correct denary value",
+        "categories": [
+          "Value 1-5",
+          "Value 6-15"
+        ],
+        "pairs": [
+          {
+            "text": "0001 = 1",
+            "category": "Value 1-5"
+          },
+          {
+            "text": "0010 = 2",
+            "category": "Value 1-5"
+          },
+          {
+            "text": "0100 = 4",
+            "category": "Value 1-5"
+          },
+          {
+            "text": "0011 = 3",
+            "category": "Value 1-5"
+          },
+          {
+            "text": "0110 = 6",
+            "category": "Value 6-15"
+          },
+          {
+            "text": "1000 = 8",
+            "category": "Value 6-15"
+          },
+          {
+            "text": "1010 = 10",
+            "category": "Value 6-15"
+          },
+          {
+            "text": "1111 = 15",
+            "category": "Value 6-15"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t1_cs4",
+      "type": "categorySort",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these data size units from smallest to largest",
+        "categories": [
+          "Smallest units",
+          "Larger units"
+        ],
+        "pairs": [
+          {
+            "text": "Bit",
+            "category": "Smallest units"
+          },
+          {
+            "text": "Nibble (4 bits)",
+            "category": "Smallest units"
+          },
+          {
+            "text": "Byte (8 bits)",
+            "category": "Larger units"
+          },
+          {
+            "text": "Kilobyte (1024 bytes)",
+            "category": "Larger units"
+          },
+          {
+            "text": "0 or 1 only",
+            "category": "Smallest units"
+          },
+          {
+            "text": "Represents one character",
+            "category": "Larger units"
+          },
+          {
+            "text": "Single binary digit",
+            "category": "Smallest units"
+          },
+          {
+            "text": "1000 bytes approximately",
+            "category": "Larger units"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t1_sq1",
+      "type": "sequence",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to convert denary 25 to binary using the place value method",
+        "items": [
+          "Write out the binary place values: 128, 64, 32, 16, 8, 4, 2, 1",
+          "Find the largest place value that fits into 25, which is 16",
+          "Subtract 16 from 25 to get 9, and mark a 1 in the 16 column",
+          "Continue with the remainder: 8 fits into 9, mark 1 in 8 column, remainder is 1",
+          "Mark 1 in the 1 column, all other columns are 0, giving 00011001"
+        ]
+      }
+    },
+    {
+      "id": "t1_sq2",
+      "type": "sequence",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to convert binary 10110 to denary",
+        "items": [
+          "Write out the binary number 10110 with each digit under its place value column",
+          "Identify the place values for each column from right to left: 1, 2, 4, 8, 16",
+          "Multiply each binary digit by its place value: 1×16, 0×8, 1×4, 1×2, 0×1",
+          "Add up the results: 16 + 0 + 4 + 2 + 0 = 22"
+        ]
+      }
+    },
+    {
+      "id": "t2_v1",
+      "type": "vocab",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "Boolean logic",
+        "targetWord": "A system of logic that uses only two values, TRUE and FALSE, to evaluate conditions and control decisions in computing."
+      }
+    },
+    {
+      "id": "t2_v2",
+      "type": "vocab",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "AND operator",
+        "targetWord": "A Boolean operator that returns TRUE only when both of its input conditions are TRUE, and FALSE in all other cases."
+      }
+    },
+    {
+      "id": "t2_v3",
+      "type": "vocab",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "OR operator",
+        "targetWord": "A Boolean operator that returns TRUE when at least one of its input conditions is TRUE, and FALSE only when both inputs are FALSE."
+      }
+    },
+    {
+      "id": "t2_v4",
+      "type": "vocab",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "NOT operator",
+        "targetWord": "A Boolean operator that reverses or inverts its input, so TRUE becomes FALSE and FALSE becomes TRUE."
+      }
+    },
+    {
+      "id": "t2_v5",
+      "type": "vocab",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "truth table",
+        "targetWord": "A table used to show all possible input combinations for a Boolean expression and the resulting output for each combination."
+      }
+    },
+    {
+      "id": "t2_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "TRUE AND TRUE evaluates to ____.",
+        "answer": "TRUE",
+        "options": [
+          "TRUE",
+          "FALSE",
+          "MAYBE",
+          "0"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "TRUE AND FALSE evaluates to ____.",
+        "answer": "FALSE",
+        "options": [
+          "FALSE",
+          "TRUE",
+          "AND",
+          "NOT"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "FALSE OR TRUE evaluates to ____.",
+        "answer": "TRUE",
+        "options": [
+          "TRUE",
+          "FALSE",
+          "OR",
+          "BOTH"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "FALSE OR FALSE evaluates to ____.",
+        "answer": "FALSE",
+        "options": [
+          "FALSE",
+          "TRUE",
+          "NEITHER",
+          "OR"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "NOT FALSE evaluates to ____.",
+        "answer": "TRUE",
+        "options": [
+          "TRUE",
+          "FALSE",
+          "NOTHING",
+          "AND"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "NOT TRUE evaluates to ____.",
+        "answer": "FALSE",
+        "options": [
+          "FALSE",
+          "TRUE",
+          "NOT",
+          "ZERO"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The Boolean operator that returns TRUE only when BOTH inputs are TRUE is called ____.",
+        "answer": "AND",
+        "options": [
+          "AND",
+          "OR",
+          "NOT",
+          "XOR"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The Boolean operator that returns TRUE when AT LEAST ONE input is TRUE is called ____.",
+        "answer": "OR",
+        "options": [
+          "OR",
+          "AND",
+          "NOT",
+          "NOR"
+        ]
+      }
+    },
+    {
+      "id": "t2_fb9",
+      "type": "fillBlank",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A ____ table lists all possible input combinations and their corresponding outputs for a Boolean expression.",
+        "answer": "truth",
+        "options": [
+          "truth",
+          "logic",
+          "fact",
+          "decision"
+        ]
+      }
+    },
+    {
+      "id": "t2_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each Boolean expression by the operator it uses",
+        "categories": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "pairs": [
+          {
+            "text": "TRUE AND FALSE",
+            "category": "AND"
+          },
+          {
+            "text": "FALSE OR TRUE",
+            "category": "OR"
+          },
+          {
+            "text": "NOT FALSE",
+            "category": "NOT"
+          },
+          {
+            "text": "TRUE AND TRUE",
+            "category": "AND"
+          },
+          {
+            "text": "FALSE OR FALSE",
+            "category": "OR"
+          },
+          {
+            "text": "NOT TRUE",
+            "category": "NOT"
+          },
+          {
+            "text": "FALSE AND TRUE",
+            "category": "AND"
+          },
+          {
+            "text": "TRUE OR TRUE",
+            "category": "OR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t2_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each description by the Boolean operator it describes",
+        "categories": [
+          "AND",
+          "OR",
+          "NOT"
+        ],
+        "pairs": [
+          {
+            "text": "Both inputs must be TRUE",
+            "category": "AND"
+          },
+          {
+            "text": "At least one input must be TRUE",
+            "category": "OR"
+          },
+          {
+            "text": "Inverts the input value",
+            "category": "NOT"
+          },
+          {
+            "text": "Returns FALSE if either input is FALSE",
+            "category": "AND"
+          },
+          {
+            "text": "Returns TRUE if any input is TRUE",
+            "category": "OR"
+          },
+          {
+            "text": "Turns TRUE into FALSE",
+            "category": "NOT"
+          },
+          {
+            "text": "All conditions must be met",
+            "category": "AND"
+          },
+          {
+            "text": "Only one condition needs to be met",
+            "category": "OR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t2_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these truth table results into TRUE or FALSE outputs",
+        "categories": [
+          "TRUE",
+          "FALSE"
+        ],
+        "pairs": [
+          {
+            "text": "TRUE AND TRUE",
+            "category": "TRUE"
+          },
+          {
+            "text": "TRUE AND FALSE",
+            "category": "FALSE"
+          },
+          {
+            "text": "FALSE OR TRUE",
+            "category": "TRUE"
+          },
+          {
+            "text": "FALSE OR FALSE",
+            "category": "FALSE"
+          },
+          {
+            "text": "NOT FALSE",
+            "category": "TRUE"
+          },
+          {
+            "text": "NOT TRUE",
+            "category": "FALSE"
+          },
+          {
+            "text": "TRUE OR FALSE",
+            "category": "TRUE"
+          },
+          {
+            "text": "FALSE AND FALSE",
+            "category": "FALSE"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t2_cs4",
+      "type": "categorySort",
+      "topics": [
+        "Boolean Logic"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these Boolean operator facts into the correct category",
+        "categories": [
+          "AND",
+          "OR"
+        ],
+        "pairs": [
+          {
+            "text": "Returns TRUE for only 1 out of 4 input combinations",
+            "category": "AND"
+          },
+          {
+            "text": "Returns TRUE for 3 out of 4 input combinations",
+            "category": "OR"
+          },
+          {
+            "text": "Like a filter requiring all conditions",
+            "category": "AND"
+          },
+          {
+            "text": "Like a gate that accepts any condition",
+            "category": "OR"
+          },
+          {
+            "text": "1 AND 1 = 1 in binary",
+            "category": "AND"
+          },
+          {
+            "text": "0 OR 1 = 1 in binary",
+            "category": "OR"
+          },
+          {
+            "text": "Used when all criteria must be satisfied",
+            "category": "AND"
+          },
+          {
+            "text": "Used when any one option is acceptable",
+            "category": "OR"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t3_v1",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "internet",
+        "targetWord": "A global network of interconnected computers and devices that communicate using standardised protocols to share data and resources."
+      }
+    },
+    {
+      "id": "t3_v2",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "World Wide Web",
+        "targetWord": "A system of interlinked web pages and resources accessed via the internet using a web browser and the HTTP protocol."
+      }
+    },
+    {
+      "id": "t3_v3",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "web browser",
+        "targetWord": "A software application used to access, retrieve, and display web pages and other content from the World Wide Web."
+      }
+    },
+    {
+      "id": "t3_v4",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "search engine",
+        "targetWord": "A web-based service that indexes web pages and allows users to search for information on the internet by entering keywords."
+      }
+    },
+    {
+      "id": "t3_v5",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "URL",
+        "targetWord": "A Uniform Resource Locator, which is a unique web address used to identify and locate a specific resource on the internet."
+      }
+    },
+    {
+      "id": "t3_v6",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "HTTP",
+        "targetWord": "HyperText Transfer Protocol, a set of rules that defines how web browsers and web servers communicate to transfer web pages over the internet."
+      }
+    },
+    {
+      "id": "t3_v7",
+      "type": "vocab",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "webpage",
+        "targetWord": "A single document on the World Wide Web, written in HTML, that can contain text, images, links, and multimedia content."
+      }
+    },
+    {
+      "id": "t3_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The ____ is a global network of interconnected computers.",
+        "answer": "internet",
+        "options": [
+          "internet",
+          "World Wide Web",
+          "browser",
+          "network"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The World Wide Web is a collection of web pages accessed ____ the internet.",
+        "answer": "through",
+        "options": [
+          "through",
+          "without",
+          "instead of",
+          "replacing"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Google Chrome, Firefox, and Safari are all examples of web ____.",
+        "answer": "browsers",
+        "options": [
+          "browsers",
+          "search engines",
+          "servers",
+          "protocols"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Google, Bing, and DuckDuckGo are all examples of ____.",
+        "answer": "search engines",
+        "options": [
+          "search engines",
+          "web browsers",
+          "operating systems",
+          "URLs"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A URL stands for Uniform Resource ____.",
+        "answer": "Locator",
+        "options": [
+          "Locator",
+          "Language",
+          "Link",
+          "Layer"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "HTTP stands for HyperText Transfer ____.",
+        "answer": "Protocol",
+        "options": [
+          "Protocol",
+          "Program",
+          "Page",
+          "Process"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The internet and the World Wide Web are ____ the same thing.",
+        "answer": "not",
+        "options": [
+          "not",
+          "exactly",
+          "always",
+          "fundamentally"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A ____ is the software you use to view websites, such as Chrome or Firefox.",
+        "answer": "web browser",
+        "options": [
+          "web browser",
+          "search engine",
+          "operating system",
+          "server"
+        ]
+      }
+    },
+    {
+      "id": "t3_fb9",
+      "type": "fillBlank",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "HTTPS is a ____ version of HTTP that encrypts data for security.",
+        "answer": "secure",
+        "options": [
+          "secure",
+          "slower",
+          "older",
+          "simpler"
+        ]
+      }
+    },
+    {
+      "id": "t3_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each application into the correct category",
+        "categories": [
+          "Web Browser",
+          "Search Engine"
+        ],
+        "pairs": [
+          {
+            "text": "Google Chrome",
+            "category": "Web Browser"
+          },
+          {
+            "text": "Google Search",
+            "category": "Search Engine"
+          },
+          {
+            "text": "Mozilla Firefox",
+            "category": "Web Browser"
+          },
+          {
+            "text": "Bing",
+            "category": "Search Engine"
+          },
+          {
+            "text": "Safari",
+            "category": "Web Browser"
+          },
+          {
+            "text": "DuckDuckGo",
+            "category": "Search Engine"
+          },
+          {
+            "text": "Microsoft Edge",
+            "category": "Web Browser"
+          },
+          {
+            "text": "Yahoo Search",
+            "category": "Search Engine"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t3_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each description into 'Internet' or 'World Wide Web'",
+        "categories": [
+          "Internet",
+          "World Wide Web"
+        ],
+        "pairs": [
+          {
+            "text": "A global network of computers",
+            "category": "Internet"
+          },
+          {
+            "text": "A collection of web pages and links",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "Uses the TCP/IP protocol",
+            "category": "Internet"
+          },
+          {
+            "text": "Accessed using a web browser",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "Includes email and file transfer services",
+            "category": "Internet"
+          },
+          {
+            "text": "Uses the HTTP protocol",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "The infrastructure that carries data",
+            "category": "Internet"
+          },
+          {
+            "text": "Invented by Tim Berners-Lee",
+            "category": "World Wide Web"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t3_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these URL components by what they represent",
+        "categories": [
+          "Protocol",
+          "Domain",
+          "Path"
+        ],
+        "pairs": [
+          {
+            "text": "https://",
+            "category": "Protocol"
+          },
+          {
+            "text": "http://",
+            "category": "Protocol"
+          },
+          {
+            "text": "www.bbc.co.uk",
+            "category": "Domain"
+          },
+          {
+            "text": "www.google.com",
+            "category": "Domain"
+          },
+          {
+            "text": "/news/article/12345",
+            "category": "Path"
+          },
+          {
+            "text": "/search?q=computing",
+            "category": "Path"
+          },
+          {
+            "text": "ftp://",
+            "category": "Protocol"
+          },
+          {
+            "text": "www.nhs.uk",
+            "category": "Domain"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_v1",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "input device",
+        "targetWord": "Any hardware component that allows a user to enter data into a computer system, such as a keyboard or mouse."
+      }
+    },
+    {
+      "id": "t4_v2",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "output device",
+        "targetWord": "Any hardware component that presents or displays processed data from a computer to the user, such as a monitor or printer."
+      }
+    },
+    {
+      "id": "t4_v3",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "storage device",
+        "targetWord": "Any hardware component used to save and retain data permanently or temporarily, such as a hard drive or USB flash drive."
+      }
+    },
+    {
+      "id": "t4_v4",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "CPU",
+        "targetWord": "The Central Processing Unit, the main chip inside a computer that carries out instructions and performs calculations, often called the brain of the computer."
+      }
+    },
+    {
+      "id": "t4_v5",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "RAM",
+        "targetWord": "Random Access Memory, a type of temporary storage that holds data and programs currently in use by the CPU, and loses its contents when power is removed."
+      }
+    },
+    {
+      "id": "t4_v6",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "manual input",
+        "targetWord": "A method of entering data into a computer that requires direct human action, such as typing on a keyboard or clicking with a mouse."
+      }
+    },
+    {
+      "id": "t4_v7",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "automatic input",
+        "targetWord": "A method of entering data into a computer without direct human action, using sensors or scanners that capture data automatically."
+      }
+    },
+    {
+      "id": "t4_v8",
+      "type": "vocab",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "processing",
+        "targetWord": "The stage in computing where the CPU carries out instructions on input data to produce a useful result or output."
+      }
+    },
+    {
+      "id": "t4_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A keyboard is an example of an ____ device.",
+        "answer": "input",
+        "options": [
+          "input",
+          "output",
+          "storage",
+          "processing"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A monitor is an example of an ____ device.",
+        "answer": "output",
+        "options": [
+          "output",
+          "input",
+          "storage",
+          "CPU"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A hard drive is an example of a ____ device.",
+        "answer": "storage",
+        "options": [
+          "storage",
+          "input",
+          "output",
+          "RAM"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The ____ is often called the brain of the computer because it processes all instructions.",
+        "answer": "CPU",
+        "options": [
+          "CPU",
+          "RAM",
+          "hard drive",
+          "monitor"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "RAM is a type of ____ storage that loses data when the computer is switched off.",
+        "answer": "temporary",
+        "options": [
+          "temporary",
+          "permanent",
+          "optical",
+          "magnetic"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Typing text on a keyboard is an example of ____ input.",
+        "answer": "manual",
+        "options": [
+          "manual",
+          "automatic",
+          "optical",
+          "sensor"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A barcode scanner at a supermarket is an example of ____ input.",
+        "answer": "automatic",
+        "options": [
+          "automatic",
+          "manual",
+          "output",
+          "storage"
+        ]
+      }
+    },
+    {
+      "id": "t4_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "In the IPO model, IPO stands for Input, ____, Output.",
+        "answer": "Processing",
+        "options": [
+          "Processing",
+          "Program",
+          "Protocol",
+          "Print"
+        ]
+      }
+    },
+    {
+      "id": "t4_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each device into the correct category",
+        "categories": [
+          "Input",
+          "Output",
+          "Storage"
+        ],
+        "pairs": [
+          {
+            "text": "Keyboard",
+            "category": "Input"
+          },
+          {
+            "text": "Monitor",
+            "category": "Output"
+          },
+          {
+            "text": "USB flash drive",
+            "category": "Storage"
+          },
+          {
+            "text": "Mouse",
+            "category": "Input"
+          },
+          {
+            "text": "Printer",
+            "category": "Output"
+          },
+          {
+            "text": "Hard disk drive",
+            "category": "Storage"
+          },
+          {
+            "text": "Microphone",
+            "category": "Input"
+          },
+          {
+            "text": "Speakers",
+            "category": "Output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each device by its input type or as an output device",
+        "categories": [
+          "Manual Input",
+          "Automatic Input",
+          "Output"
+        ],
+        "pairs": [
+          {
+            "text": "Keyboard",
+            "category": "Manual Input"
+          },
+          {
+            "text": "Barcode scanner",
+            "category": "Automatic Input"
+          },
+          {
+            "text": "Monitor",
+            "category": "Output"
+          },
+          {
+            "text": "Mouse",
+            "category": "Manual Input"
+          },
+          {
+            "text": "Temperature sensor",
+            "category": "Automatic Input"
+          },
+          {
+            "text": "Printer",
+            "category": "Output"
+          },
+          {
+            "text": "Touchscreen (typing)",
+            "category": "Manual Input"
+          },
+          {
+            "text": "Motion detector",
+            "category": "Automatic Input"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_sq1",
+      "type": "sequence",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put the steps of the CPU fetch-decode-execute cycle in order",
+        "items": [
+          "Fetch: the CPU retrieves the next instruction from RAM",
+          "Decode: the CPU decodes the instruction to understand what action is needed",
+          "Execute: the CPU carries out the instruction, performing the required operation",
+          "Store: the result of the operation is written back to a register or RAM"
+        ]
+      }
+    },
+    {
+      "id": "t5_v1",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "heading",
+        "targetWord": "A piece of formatted text used to label or introduce a section of a document, typically displayed in a larger or bolder font than body text."
+      }
+    },
+    {
+      "id": "t5_v2",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "header",
+        "targetWord": "A section at the top of every page in a document that can contain repeating information such as the title, author name, or page number."
+      }
+    },
+    {
+      "id": "t5_v3",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "footer",
+        "targetWord": "A section at the bottom of every page in a document that can contain repeating information such as page numbers, dates, or copyright notices."
+      }
+    },
+    {
+      "id": "t5_v4",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "page break",
+        "targetWord": "A formatting instruction in a word processor that forces the following text to start at the top of a new page."
+      }
+    },
+    {
+      "id": "t5_v5",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "font",
+        "targetWord": "A set of characters sharing a consistent design and style, such as Arial or Times New Roman, used to control how text appears in a document."
+      }
+    },
+    {
+      "id": "t5_v6",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "table",
+        "targetWord": "A structure in a word processed document that organises text and data into rows and columns for clear presentation."
+      }
+    },
+    {
+      "id": "t5_v7",
+      "type": "vocab",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "column",
+        "targetWord": "A vertical division of text or a table in a document, used to organise content side by side in a structured layout."
+      }
+    },
+    {
+      "id": "t5_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The area that appears at the top of every page and contains repeating information is called a ____.",
+        "answer": "header",
+        "options": [
+          "header",
+          "footer",
+          "heading",
+          "title"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Page numbers placed at the bottom of every page are typically found in the ____.",
+        "answer": "footer",
+        "options": [
+          "footer",
+          "header",
+          "body",
+          "margin"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A word processing feature that organises information into rows and columns is called a ____.",
+        "answer": "table",
+        "options": [
+          "table",
+          "list",
+          "chart",
+          "grid"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Changing the size or colour of text is an example of ____ text.",
+        "answer": "formatting",
+        "options": [
+          "formatting",
+          "editing",
+          "saving",
+          "printing"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Inserting a ____ break forces the next text to start on a new page.",
+        "answer": "page",
+        "options": [
+          "page",
+          "section",
+          "column",
+          "line"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Arial, Times New Roman, and Calibri are all examples of ____.",
+        "answer": "fonts",
+        "options": [
+          "fonts",
+          "styles",
+          "colours",
+          "sizes"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A ____ is used to introduce a new section in a document and is usually displayed in a larger font.",
+        "answer": "heading",
+        "options": [
+          "heading",
+          "header",
+          "footer",
+          "caption"
+        ]
+      }
+    },
+    {
+      "id": "t5_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Making text bold or italic are both examples of character ____.",
+        "answer": "formatting",
+        "options": [
+          "formatting",
+          "aligning",
+          "inserting",
+          "sorting"
+        ]
+      }
+    },
+    {
+      "id": "t5_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each word processing feature into the correct category",
+        "categories": [
+          "Formatting",
+          "Layout",
+          "Navigation"
+        ],
+        "pairs": [
+          {
+            "text": "Bold text",
+            "category": "Formatting"
+          },
+          {
+            "text": "Page break",
+            "category": "Layout"
+          },
+          {
+            "text": "Table of contents",
+            "category": "Navigation"
+          },
+          {
+            "text": "Change font colour",
+            "category": "Formatting"
+          },
+          {
+            "text": "Insert columns",
+            "category": "Layout"
+          },
+          {
+            "text": "Bookmarks",
+            "category": "Navigation"
+          },
+          {
+            "text": "Italic text",
+            "category": "Formatting"
+          },
+          {
+            "text": "Header and footer",
+            "category": "Layout"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_v1",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "workbook",
+        "targetWord": "A spreadsheet file that contains one or more individual worksheets, used to organise and store related data together."
+      }
+    },
+    {
+      "id": "t6_v2",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "worksheet",
+        "targetWord": "A single tab or sheet within a workbook that contains a grid of rows and columns for entering and organising data."
+      }
+    },
+    {
+      "id": "t6_v3",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "cell",
+        "targetWord": "The smallest unit in a spreadsheet, formed by the intersection of a row and a column, identified by a unique reference such as A1 or B3."
+      }
+    },
+    {
+      "id": "t6_v4",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "range",
+        "targetWord": "A group of two or more adjacent cells in a spreadsheet, identified by the reference of the first and last cell separated by a colon, such as A1:A5."
+      }
+    },
+    {
+      "id": "t6_v5",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "formula",
+        "targetWord": "A user-written expression in a spreadsheet cell that starts with an equals sign and performs a calculation using cell references, operators, or values."
+      }
+    },
+    {
+      "id": "t6_v6",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "function",
+        "targetWord": "A built-in preset calculation in a spreadsheet that performs a specific operation on data, such as SUM, AVERAGE, or MAX, saving the need to write complex formulae."
+      }
+    },
+    {
+      "id": "t6_v7",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "absolute reference",
+        "targetWord": "A cell reference in a spreadsheet that does not change when a formula is copied to another cell, indicated by dollar signs such as $A$1."
+      }
+    },
+    {
+      "id": "t6_v8",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "relative reference",
+        "targetWord": "A cell reference in a spreadsheet that automatically adjusts to reflect its new position when the formula is copied to another cell, such as A1."
+      }
+    },
+    {
+      "id": "t6_v9",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "mixed reference",
+        "targetWord": "A cell reference in a spreadsheet that locks either the row or the column but not both, indicated by a single dollar sign such as $A1 or A$1."
+      }
+    },
+    {
+      "id": "t6_v10",
+      "type": "vocab",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "named range",
+        "targetWord": "A label or descriptive name assigned to a cell or group of cells in a spreadsheet, making formulae easier to read and understand."
+      }
+    },
+    {
+      "id": "t6_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The function =SUM(A1:A5) adds together all values in the range ____.",
+        "answer": "A1:A5",
+        "options": [
+          "A1:A5",
+          "A1 to A5",
+          "column A",
+          "rows 1-5"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The function =AVERAGE(B1:B10) calculates the ____ of the values in the range.",
+        "answer": "mean average",
+        "options": [
+          "mean average",
+          "total sum",
+          "maximum value",
+          "count"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The function =COUNT(C1:C8) counts the number of cells containing ____.",
+        "answer": "numbers",
+        "options": [
+          "numbers",
+          "text",
+          "any data",
+          "blank cells"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The function =COUNTA counts cells that are ____.",
+        "answer": "not empty",
+        "options": [
+          "not empty",
+          "numbers only",
+          "text only",
+          "blank"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The function =MAX(D1:D6) returns the ____ value in the range.",
+        "answer": "largest",
+        "options": [
+          "largest",
+          "smallest",
+          "average",
+          "total"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The function =MIN(E1:E6) returns the ____ value in the range.",
+        "answer": "smallest",
+        "options": [
+          "smallest",
+          "largest",
+          "average",
+          "sum"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The cell reference $A$1 is an example of a(n) ____ reference.",
+        "answer": "absolute",
+        "options": [
+          "absolute",
+          "relative",
+          "mixed",
+          "named"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The cell reference A1 (with no dollar signs) is an example of a(n) ____ reference.",
+        "answer": "relative",
+        "options": [
+          "relative",
+          "absolute",
+          "mixed",
+          "fixed"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb9",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The cell reference $A1 locks the ____ but allows the row to change.",
+        "answer": "column",
+        "options": [
+          "column",
+          "row",
+          "cell",
+          "sheet"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb10",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The range A1:A5 refers to cells in column A from row ____ to row 5.",
+        "answer": "1",
+        "options": [
+          "1",
+          "A",
+          "0",
+          "5"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb11",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "All formulae in a spreadsheet must start with the ____ sign.",
+        "answer": "equals",
+        "options": [
+          "equals",
+          "plus",
+          "minus",
+          "hash"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb12",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A spreadsheet file containing multiple sheets is known as a ____.",
+        "answer": "workbook",
+        "options": [
+          "workbook",
+          "worksheet",
+          "database",
+          "document"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb13",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Each individual tab within a workbook is called a ____.",
+        "answer": "worksheet",
+        "options": [
+          "worksheet",
+          "workbook",
+          "cell",
+          "range"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb14",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The cell at the intersection of column B and row 3 is referred to as ____.",
+        "answer": "B3",
+        "options": [
+          "B3",
+          "3B",
+          "B:3",
+          "ROW3COL2"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb15",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "When you copy a formula with a relative reference to a new cell, the reference ____ automatically.",
+        "answer": "adjusts",
+        "options": [
+          "adjusts",
+          "stays fixed",
+          "deletes",
+          "duplicates"
+        ]
+      }
+    },
+    {
+      "id": "t6_fb16",
+      "type": "fillBlank",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Giving a range of cells a descriptive label is called creating a ____ range.",
+        "answer": "named",
+        "options": [
+          "named",
+          "absolute",
+          "relative",
+          "locked"
+        ]
+      }
+    },
+    {
+      "id": "t6_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each cell reference by its type",
+        "categories": [
+          "Absolute",
+          "Relative",
+          "Mixed"
+        ],
+        "pairs": [
+          {
+            "text": "$A$1",
+            "category": "Absolute"
+          },
+          {
+            "text": "B3",
+            "category": "Relative"
+          },
+          {
+            "text": "$C4",
+            "category": "Mixed"
+          },
+          {
+            "text": "$B$5",
+            "category": "Absolute"
+          },
+          {
+            "text": "D7",
+            "category": "Relative"
+          },
+          {
+            "text": "E$2",
+            "category": "Mixed"
+          },
+          {
+            "text": "$G$9",
+            "category": "Absolute"
+          },
+          {
+            "text": "H6",
+            "category": "Relative"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each spreadsheet function by what it does",
+        "categories": [
+          "Adds values",
+          "Finds largest/smallest",
+          "Counts cells"
+        ],
+        "pairs": [
+          {
+            "text": "=SUM(A1:A10)",
+            "category": "Adds values"
+          },
+          {
+            "text": "=MAX(B1:B5)",
+            "category": "Finds largest/smallest"
+          },
+          {
+            "text": "=COUNT(C1:C8)",
+            "category": "Counts cells"
+          },
+          {
+            "text": "=AVERAGE(D1:D6)",
+            "category": "Adds values"
+          },
+          {
+            "text": "=MIN(E1:E4)",
+            "category": "Finds largest/smallest"
+          },
+          {
+            "text": "=COUNTA(F1:F10)",
+            "category": "Counts cells"
+          },
+          {
+            "text": "=SUM(G2:G7)",
+            "category": "Adds values"
+          },
+          {
+            "text": "=MAX(H1:H3)",
+            "category": "Finds largest/smallest"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_sq1",
+      "type": "sequence",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to enter a SUM formula in a spreadsheet cell",
+        "items": [
+          "Click on the cell where you want the result to appear",
+          "Type an equals sign = to start the formula",
+          "Type SUM followed by an opening bracket",
+          "Select or type the range of cells to sum, for example A1:A5",
+          "Close the bracket and press Enter to confirm the formula"
+        ]
+      }
+    },
+    {
+      "id": "t7_v1",
+      "type": "vocab",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "copyright",
+        "targetWord": "A legal right that gives creators exclusive control over how their original work, such as text, images, or music, is used, copied, or shared."
+      }
+    },
+    {
+      "id": "t7_v2",
+      "type": "vocab",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "royalty-free",
+        "targetWord": "A type of licence that allows a person to use a copyrighted work without paying a fee each time it is used, though it does not mean the work is free of copyright."
+      }
+    },
+    {
+      "id": "t7_v3",
+      "type": "vocab",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "public information",
+        "targetWord": "Data or details that are safe and appropriate to share openly with others, such as a person's first name, school year, or favourite colour."
+      }
+    },
+    {
+      "id": "t7_v4",
+      "type": "vocab",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "private information",
+        "targetWord": "Sensitive personal data that should not be shared with strangers or posted online, such as a home address, phone number, or password."
+      }
+    },
+    {
+      "id": "t7_v5",
+      "type": "vocab",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "online safety",
+        "targetWord": "A set of practices and awareness strategies that protect individuals from risks and harm when using the internet and digital devices."
+      }
+    },
+    {
+      "id": "t7_v6",
+      "type": "vocab",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "credit",
+        "targetWord": "Acknowledging the original creator of a piece of work by naming them when their content is used or referenced in another piece of work."
+      }
+    },
+    {
+      "id": "t7_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Your home address is an example of ____ information that should not be shared online.",
+        "answer": "private",
+        "options": [
+          "private",
+          "public",
+          "copyright",
+          "royalty-free"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Your first name and favourite colour are examples of ____ information.",
+        "answer": "public",
+        "options": [
+          "public",
+          "private",
+          "secret",
+          "personal"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "____ protects the rights of creators to control how their work is used.",
+        "answer": "Copyright",
+        "options": [
+          "Copyright",
+          "Royalty",
+          "Licence",
+          "Credit"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A royalty-free image can be used without paying a fee, but the creator may still hold ____.",
+        "answer": "copyright",
+        "options": [
+          "copyright",
+          "credit",
+          "privacy",
+          "public rights"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "When using someone else's image in your work, you should give them ____ by stating their name.",
+        "answer": "credit",
+        "options": [
+          "credit",
+          "copyright",
+          "permission",
+          "money"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "You should never share your ____ with anyone, even trusted friends online.",
+        "answer": "password",
+        "options": [
+          "password",
+          "first name",
+          "favourite film",
+          "school"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "If someone online makes you feel uncomfortable, you should tell a trusted ____ immediately.",
+        "answer": "adult",
+        "options": [
+          "adult",
+          "stranger",
+          "friend",
+          "website"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb8",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Copyright law means you cannot copy or use someone's work without their ____ or a valid licence.",
+        "answer": "permission",
+        "options": [
+          "permission",
+          "credit",
+          "name",
+          "email"
+        ]
+      }
+    },
+    {
+      "id": "t7_fb9",
+      "type": "fillBlank",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Using ____ images means you can use them without paying each time, but you should still check the licence terms.",
+        "answer": "royalty-free",
+        "options": [
+          "royalty-free",
+          "copyright",
+          "private",
+          "plagiarised"
+        ]
+      }
+    },
+    {
+      "id": "t7_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each piece of information as Public or Private",
+        "categories": [
+          "Public",
+          "Private"
+        ],
+        "pairs": [
+          {
+            "text": "Your first name",
+            "category": "Public"
+          },
+          {
+            "text": "Your home address",
+            "category": "Private"
+          },
+          {
+            "text": "Your favourite sport",
+            "category": "Public"
+          },
+          {
+            "text": "Your phone number",
+            "category": "Private"
+          },
+          {
+            "text": "Your school year group",
+            "category": "Public"
+          },
+          {
+            "text": "Your password",
+            "category": "Private"
+          },
+          {
+            "text": "Your favourite colour",
+            "category": "Public"
+          },
+          {
+            "text": "Your full name and school name combined",
+            "category": "Private"
+          },
+          {
+            "text": "The country you live in",
+            "category": "Public"
+          },
+          {
+            "text": "Your daily routine and location",
+            "category": "Private"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t8_v1",
+      "type": "vocab",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "algorithm",
+        "targetWord": "A precise step-by-step set of instructions designed to solve a problem or carry out a task, which can be implemented as a computer program."
+      }
+    },
+    {
+      "id": "t8_v2",
+      "type": "vocab",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sequence",
+        "targetWord": "A programming construct where instructions are executed one after another in a fixed order, from top to bottom."
+      }
+    },
+    {
+      "id": "t8_v3",
+      "type": "vocab",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "selection",
+        "targetWord": "A programming construct that uses a condition to decide which set of instructions to follow, commonly written using IF, THEN, and ELSE statements."
+      }
+    },
+    {
+      "id": "t8_v4",
+      "type": "vocab",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "iteration",
+        "targetWord": "A programming construct that repeats a set of instructions multiple times, either a fixed number of times or until a condition is met, commonly called a loop."
+      }
+    },
+    {
+      "id": "t8_v5",
+      "type": "vocab",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "variable",
+        "targetWord": "A named storage location in a program that holds a value which can change as the program runs, such as a score, name, or count."
+      }
+    },
+    {
+      "id": "t8_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "An IF/THEN statement is an example of the ____ programming construct.",
+        "answer": "selection",
+        "options": [
+          "selection",
+          "sequence",
+          "iteration",
+          "variable"
+        ]
+      }
+    },
+    {
+      "id": "t8_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A FOR loop is an example of the ____ programming construct.",
+        "answer": "iteration",
+        "options": [
+          "iteration",
+          "selection",
+          "sequence",
+          "function"
+        ]
+      }
+    },
+    {
+      "id": "t8_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Running instructions one after another in order is an example of ____.",
+        "answer": "sequence",
+        "options": [
+          "sequence",
+          "selection",
+          "iteration",
+          "recursion"
+        ]
+      }
+    },
+    {
+      "id": "t8_fb4",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A ____ stores a value in a program that can change while the program is running.",
+        "answer": "variable",
+        "options": [
+          "variable",
+          "constant",
+          "function",
+          "parameter"
+        ]
+      }
+    },
+    {
+      "id": "t8_fb5",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A step-by-step set of instructions used to solve a problem is called an ____.",
+        "answer": "algorithm",
+        "options": [
+          "algorithm",
+          "equation",
+          "flowchart",
+          "output"
+        ]
+      }
+    },
+    {
+      "id": "t8_fb6",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "A WHILE loop repeats instructions until a ____ is no longer true.",
+        "answer": "condition",
+        "options": [
+          "condition",
+          "variable",
+          "sequence",
+          "counter"
+        ]
+      }
+    },
+    {
+      "id": "t8_fb7",
+      "type": "fillBlank",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The three main programming constructs are sequence, selection, and ____.",
+        "answer": "iteration",
+        "options": [
+          "iteration",
+          "variable",
+          "function",
+          "output"
+        ]
+      }
+    },
+    {
+      "id": "t8_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each code example by the programming construct it uses",
+        "categories": [
+          "Sequence",
+          "Selection",
+          "Iteration"
+        ],
+        "pairs": [
+          {
+            "text": "print('Hello')",
+            "category": "Sequence"
+          },
+          {
+            "text": "IF score > 10 THEN print('Win')",
+            "category": "Selection"
+          },
+          {
+            "text": "FOR i = 1 TO 10 DO print(i)",
+            "category": "Iteration"
+          },
+          {
+            "text": "name = 'Alice'",
+            "category": "Sequence"
+          },
+          {
+            "text": "IF age >= 18 THEN print('Adult')",
+            "category": "Selection"
+          },
+          {
+            "text": "WHILE answer != 'quit' DO ask()",
+            "category": "Iteration"
+          },
+          {
+            "text": "total = a + b",
+            "category": "Sequence"
+          },
+          {
+            "text": "REPEAT ask() UNTIL correct",
+            "category": "Iteration"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t8_sq1",
+      "type": "sequence",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put the steps of logging into a website in the correct order",
+        "items": [
+          "Open a web browser and navigate to the website's login page",
+          "Enter your username or email address in the first input field",
+          "Enter your password in the password field",
+          "Click the Login or Submit button to send your credentials",
+          "The website checks your credentials and grants or denies access"
+        ]
+      }
+    },
+    {
+      "id": "t9_v1",
+      "type": "vocab",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sprite",
+        "targetWord": "A programmable character or object in Scratch that can be given scripts to control its movement, appearance, and behaviour on the stage."
+      }
+    },
+    {
+      "id": "t9_v2",
+      "type": "vocab",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "stage",
+        "targetWord": "The background area in Scratch where sprites appear and animations are displayed, which can also have its own scripts and backdrops."
+      }
+    },
+    {
+      "id": "t9_v3",
+      "type": "vocab",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "costume",
+        "targetWord": "One of the visual appearances a sprite can have in Scratch, allowing the sprite to change its look to create animations or represent different states."
+      }
+    },
+    {
+      "id": "t9_v4",
+      "type": "vocab",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "broadcast message",
+        "targetWord": "A Scratch block that sends a named signal to all sprites, allowing different sprites to communicate and trigger scripts in response to shared events."
+      }
+    },
+    {
+      "id": "t9_v5",
+      "type": "vocab",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "partOfSpeech": "keyword",
+        "sourceWord": "sensing block",
+        "targetWord": "A category of blocks in Scratch that detect conditions such as whether the mouse is clicked, a key is pressed, or a sprite is touching another object."
+      }
+    },
+    {
+      "id": "t9_fb1",
+      "type": "fillBlank",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The Scratch block that starts a program when the green flag is clicked is found in the ____ category.",
+        "answer": "Events",
+        "options": [
+          "Events",
+          "Control",
+          "Motion",
+          "Looks"
+        ]
+      }
+    },
+    {
+      "id": "t9_fb2",
+      "type": "fillBlank",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "The 'forever' loop block in Scratch keeps repeating its contents and is found in the ____ category.",
+        "answer": "Control",
+        "options": [
+          "Control",
+          "Events",
+          "Motion",
+          "Operators"
+        ]
+      }
+    },
+    {
+      "id": "t9_fb3",
+      "type": "fillBlank",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "sentence": "Changing a sprite's ____ allows you to create simple animations by switching between different images.",
+        "answer": "costume",
+        "options": [
+          "costume",
+          "stage",
+          "sprite",
+          "backdrop"
+        ]
+      }
+    },
+    {
+      "id": "t9_cs1",
+      "type": "categorySort",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each Scratch block into the correct block category",
+        "categories": [
+          "Motion",
+          "Control",
+          "Events",
+          "Operators"
+        ],
+        "pairs": [
+          {
+            "text": "Move 10 steps",
+            "category": "Motion"
+          },
+          {
+            "text": "When green flag clicked",
+            "category": "Events"
+          },
+          {
+            "text": "If <condition> then",
+            "category": "Control"
+          },
+          {
+            "text": "Turn 15 degrees",
+            "category": "Motion"
+          },
+          {
+            "text": "When this sprite clicked",
+            "category": "Events"
+          },
+          {
+            "text": "Repeat 10",
+            "category": "Control"
+          },
+          {
+            "text": "Pick random 1 to 10",
+            "category": "Operators"
+          },
+          {
+            "text": "3 + 4",
+            "category": "Operators"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t1_sq3",
+      "type": "sequence",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put the binary column place values in order from largest to smallest (for an 8-bit number)",
+        "items": [
+          "128",
+          "64",
+          "32",
+          "16",
+          "8",
+          "4",
+          "2",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "t1_sq4",
+      "type": "sequence",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to convert denary 13 to binary",
+        "items": [
+          "Write out binary place values: 8, 4, 2, 1",
+          "8 fits into 13, write 1 in the 8 column; remainder is 5",
+          "4 fits into 5, write 1 in the 4 column; remainder is 1",
+          "1 fits into 1, write 1 in the 1 column; 2 does not fit so write 0",
+          "Result is 1101"
+        ]
+      }
+    },
+    {
+      "id": "t1_sq5",
+      "type": "sequence",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to convert binary 1100 to denary",
+        "items": [
+          "Write the binary number 1100 with each digit under its place value",
+          "Assign place values from right to left: 1, 2, 4, 8",
+          "Identify which columns have a 1: the 8 column and the 4 column",
+          "Add those values: 8 + 4 = 12"
+        ]
+      }
+    },
+    {
+      "id": "t1_sq6",
+      "type": "sequence",
+      "topics": [
+        "Binary and Denary"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these data units in order from smallest to largest",
+        "items": [
+          "Bit (1 binary digit)",
+          "Nibble (4 bits)",
+          "Byte (8 bits)",
+          "Kilobyte (approximately 1000 bytes)",
+          "Megabyte (approximately 1000 kilobytes)"
+        ]
+      }
+    },
+    {
+      "id": "t3_cs4",
+      "type": "categorySort",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each term into 'Internet' or 'World Wide Web'",
+        "categories": [
+          "Internet",
+          "World Wide Web"
+        ],
+        "pairs": [
+          {
+            "text": "Email service",
+            "category": "Internet"
+          },
+          {
+            "text": "A hyperlinked document",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "File Transfer Protocol (FTP)",
+            "category": "Internet"
+          },
+          {
+            "text": "A webpage with images and text",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "Online gaming servers",
+            "category": "Internet"
+          },
+          {
+            "text": "A blog hosted online",
+            "category": "World Wide Web"
+          },
+          {
+            "text": "Video calling over a network",
+            "category": "Internet"
+          },
+          {
+            "text": "HTML documents linked together",
+            "category": "World Wide Web"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t3_cs5",
+      "type": "categorySort",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these networking terms into the correct category",
+        "categories": [
+          "Hardware",
+          "Software",
+          "Protocol"
+        ],
+        "pairs": [
+          {
+            "text": "Router",
+            "category": "Hardware"
+          },
+          {
+            "text": "Web browser",
+            "category": "Software"
+          },
+          {
+            "text": "HTTP",
+            "category": "Protocol"
+          },
+          {
+            "text": "Network switch",
+            "category": "Hardware"
+          },
+          {
+            "text": "Search engine",
+            "category": "Software"
+          },
+          {
+            "text": "TCP/IP",
+            "category": "Protocol"
+          },
+          {
+            "text": "Network cable",
+            "category": "Hardware"
+          },
+          {
+            "text": "FTP",
+            "category": "Protocol"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t3_cs6",
+      "type": "categorySort",
+      "topics": [
+        "Internet Technologies"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these internet safety behaviours as Safe or Unsafe",
+        "categories": [
+          "Safe",
+          "Unsafe"
+        ],
+        "pairs": [
+          {
+            "text": "Using a strong unique password",
+            "category": "Safe"
+          },
+          {
+            "text": "Sharing your address with a stranger online",
+            "category": "Unsafe"
+          },
+          {
+            "text": "Logging out after using a shared computer",
+            "category": "Safe"
+          },
+          {
+            "text": "Clicking unknown links in emails",
+            "category": "Unsafe"
+          },
+          {
+            "text": "Keeping software updated",
+            "category": "Safe"
+          },
+          {
+            "text": "Reusing the same password everywhere",
+            "category": "Unsafe"
+          },
+          {
+            "text": "Checking a website is HTTPS before entering details",
+            "category": "Safe"
+          },
+          {
+            "text": "Downloading files from untrusted sources",
+            "category": "Unsafe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these descriptions by the hardware component they describe",
+        "categories": [
+          "CPU",
+          "RAM",
+          "Storage"
+        ],
+        "pairs": [
+          {
+            "text": "Carries out program instructions",
+            "category": "CPU"
+          },
+          {
+            "text": "Temporary memory lost on shutdown",
+            "category": "RAM"
+          },
+          {
+            "text": "Holds data permanently",
+            "category": "Storage"
+          },
+          {
+            "text": "Known as the brain of the computer",
+            "category": "CPU"
+          },
+          {
+            "text": "Used to load the current running program",
+            "category": "RAM"
+          },
+          {
+            "text": "A hard drive or SSD",
+            "category": "Storage"
+          },
+          {
+            "text": "Performs calculations and logic",
+            "category": "CPU"
+          },
+          {
+            "text": "Faster to access than a hard drive",
+            "category": "RAM"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs4",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each device by its primary function",
+        "categories": [
+          "Input",
+          "Output",
+          "Storage"
+        ],
+        "pairs": [
+          {
+            "text": "Scanner",
+            "category": "Input"
+          },
+          {
+            "text": "Projector",
+            "category": "Output"
+          },
+          {
+            "text": "CD-ROM",
+            "category": "Storage"
+          },
+          {
+            "text": "Graphics tablet",
+            "category": "Input"
+          },
+          {
+            "text": "Headphones",
+            "category": "Output"
+          },
+          {
+            "text": "SD card",
+            "category": "Storage"
+          },
+          {
+            "text": "Webcam",
+            "category": "Input"
+          },
+          {
+            "text": "LED display",
+            "category": "Output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs5",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these statements into the correct IPO stage",
+        "categories": [
+          "Input",
+          "Processing",
+          "Output"
+        ],
+        "pairs": [
+          {
+            "text": "A user types in a number",
+            "category": "Input"
+          },
+          {
+            "text": "The CPU multiplies two values",
+            "category": "Processing"
+          },
+          {
+            "text": "The result is shown on screen",
+            "category": "Output"
+          },
+          {
+            "text": "A barcode is scanned",
+            "category": "Input"
+          },
+          {
+            "text": "The computer checks a password",
+            "category": "Processing"
+          },
+          {
+            "text": "A document is printed",
+            "category": "Output"
+          },
+          {
+            "text": "A temperature sensor reads data",
+            "category": "Input"
+          },
+          {
+            "text": "The CPU executes an instruction",
+            "category": "Processing"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs6",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these storage types by their characteristics",
+        "categories": [
+          "Primary Storage",
+          "Secondary Storage"
+        ],
+        "pairs": [
+          {
+            "text": "RAM",
+            "category": "Primary Storage"
+          },
+          {
+            "text": "Hard disk drive",
+            "category": "Secondary Storage"
+          },
+          {
+            "text": "Directly accessed by the CPU",
+            "category": "Primary Storage"
+          },
+          {
+            "text": "Stores data permanently",
+            "category": "Secondary Storage"
+          },
+          {
+            "text": "ROM",
+            "category": "Primary Storage"
+          },
+          {
+            "text": "USB flash drive",
+            "category": "Secondary Storage"
+          },
+          {
+            "text": "Volatile — loses data when power off",
+            "category": "Primary Storage"
+          },
+          {
+            "text": "Non-volatile — data kept after power off",
+            "category": "Secondary Storage"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs7",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these input devices by type",
+        "categories": [
+          "Manual Input",
+          "Automatic Input"
+        ],
+        "pairs": [
+          {
+            "text": "Keyboard",
+            "category": "Manual Input"
+          },
+          {
+            "text": "Infrared sensor",
+            "category": "Automatic Input"
+          },
+          {
+            "text": "Mouse",
+            "category": "Manual Input"
+          },
+          {
+            "text": "RFID reader",
+            "category": "Automatic Input"
+          },
+          {
+            "text": "Joystick",
+            "category": "Manual Input"
+          },
+          {
+            "text": "Accelerometer in a phone",
+            "category": "Automatic Input"
+          },
+          {
+            "text": "Microphone (for voice commands)",
+            "category": "Manual Input"
+          },
+          {
+            "text": "GPS receiver",
+            "category": "Automatic Input"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_cs8",
+      "type": "categorySort",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these facts about computer components into the correct category",
+        "categories": [
+          "Input",
+          "Output",
+          "Processing"
+        ],
+        "pairs": [
+          {
+            "text": "Sends data INTO the computer",
+            "category": "Input"
+          },
+          {
+            "text": "Displays results to the user",
+            "category": "Output"
+          },
+          {
+            "text": "Transforms data into a result",
+            "category": "Processing"
+          },
+          {
+            "text": "Keyboard and mouse are examples",
+            "category": "Input"
+          },
+          {
+            "text": "Monitor and speakers are examples",
+            "category": "Output"
+          },
+          {
+            "text": "Carried out by the CPU",
+            "category": "Processing"
+          },
+          {
+            "text": "Allows the user to control the system",
+            "category": "Input"
+          },
+          {
+            "text": "Makes the computer useful to the user",
+            "category": "Output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t4_sq2",
+      "type": "sequence",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put the steps of how a printer produces output in the correct order",
+        "items": [
+          "The user creates or selects a document on the computer",
+          "The user sends the print command to the operating system",
+          "The computer converts the document into printer instructions",
+          "The instructions are sent from the computer to the printer",
+          "The printer produces the physical printed page"
+        ]
+      }
+    },
+    {
+      "id": "t4_sq3",
+      "type": "sequence",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these stages of the IPO (Input-Process-Output) model in order",
+        "items": [
+          "Data is entered into the computer via an input device",
+          "The CPU processes the input data according to program instructions",
+          "The processed result is sent to an output device",
+          "The output is displayed or acted upon by the user"
+        ]
+      }
+    },
+    {
+      "id": "t4_sq4",
+      "type": "sequence",
+      "topics": [
+        "Input, Output, Storage and Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order when a user saves a file to a USB drive",
+        "items": [
+          "The user finishes creating or editing the file",
+          "The user selects Save As and chooses the USB drive as the location",
+          "The CPU processes the save command",
+          "The data is written to the USB flash drive storage",
+          "The user safely ejects the USB drive"
+        ]
+      }
+    },
+    {
+      "id": "t5_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these word processing actions into the correct category",
+        "categories": [
+          "Formatting",
+          "Layout",
+          "Proofing"
+        ],
+        "pairs": [
+          {
+            "text": "Changing font size",
+            "category": "Formatting"
+          },
+          {
+            "text": "Setting page margins",
+            "category": "Layout"
+          },
+          {
+            "text": "Running spell check",
+            "category": "Proofing"
+          },
+          {
+            "text": "Applying bold to text",
+            "category": "Formatting"
+          },
+          {
+            "text": "Adjusting line spacing",
+            "category": "Layout"
+          },
+          {
+            "text": "Correcting grammar errors",
+            "category": "Proofing"
+          },
+          {
+            "text": "Underlining a heading",
+            "category": "Formatting"
+          },
+          {
+            "text": "Inserting a page break",
+            "category": "Layout"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t5_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Word Processing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these word processing features by their purpose",
+        "categories": [
+          "Text Formatting",
+          "Document Structure"
+        ],
+        "pairs": [
+          {
+            "text": "Bold",
+            "category": "Text Formatting"
+          },
+          {
+            "text": "Header and footer",
+            "category": "Document Structure"
+          },
+          {
+            "text": "Italic",
+            "category": "Text Formatting"
+          },
+          {
+            "text": "Page numbers",
+            "category": "Document Structure"
+          },
+          {
+            "text": "Font colour",
+            "category": "Text Formatting"
+          },
+          {
+            "text": "Table of contents",
+            "category": "Document Structure"
+          },
+          {
+            "text": "Font size",
+            "category": "Text Formatting"
+          },
+          {
+            "text": "Section breaks",
+            "category": "Document Structure"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these spreadsheet terms by what they describe",
+        "categories": [
+          "Single Cell",
+          "Group of Cells"
+        ],
+        "pairs": [
+          {
+            "text": "A3",
+            "category": "Single Cell"
+          },
+          {
+            "text": "B2:B10",
+            "category": "Group of Cells"
+          },
+          {
+            "text": "C5",
+            "category": "Single Cell"
+          },
+          {
+            "text": "A1:D1",
+            "category": "Group of Cells"
+          },
+          {
+            "text": "G7",
+            "category": "Single Cell"
+          },
+          {
+            "text": "C3:F8",
+            "category": "Group of Cells"
+          },
+          {
+            "text": "Z1",
+            "category": "Single Cell"
+          },
+          {
+            "text": "A1:A100",
+            "category": "Group of Cells"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_cs4",
+      "type": "categorySort",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each spreadsheet term by the correct category",
+        "categories": [
+          "Workbook",
+          "Worksheet",
+          "Cell"
+        ],
+        "pairs": [
+          {
+            "text": "The entire .xlsx file",
+            "category": "Workbook"
+          },
+          {
+            "text": "A single tab within the file",
+            "category": "Worksheet"
+          },
+          {
+            "text": "The intersection of a row and column",
+            "category": "Cell"
+          },
+          {
+            "text": "Can contain multiple sheets",
+            "category": "Workbook"
+          },
+          {
+            "text": "Has its own rows and columns",
+            "category": "Worksheet"
+          },
+          {
+            "text": "Identified by a letter and number like B4",
+            "category": "Cell"
+          },
+          {
+            "text": "Saved with a file extension like .xlsx",
+            "category": "Workbook"
+          },
+          {
+            "text": "Named Sheet1, Sheet2 etc by default",
+            "category": "Worksheet"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_cs5",
+      "type": "categorySort",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these descriptions about cell references into the correct type",
+        "categories": [
+          "Absolute",
+          "Relative"
+        ],
+        "pairs": [
+          {
+            "text": "Does NOT change when copied",
+            "category": "Absolute"
+          },
+          {
+            "text": "Adjusts automatically when copied",
+            "category": "Relative"
+          },
+          {
+            "text": "Contains dollar signs e.g. $A$1",
+            "category": "Absolute"
+          },
+          {
+            "text": "Written as just a column letter and row number e.g. B3",
+            "category": "Relative"
+          },
+          {
+            "text": "Used when a cell must always refer to the same location",
+            "category": "Absolute"
+          },
+          {
+            "text": "Default reference type in a spreadsheet",
+            "category": "Relative"
+          },
+          {
+            "text": "Useful for fixed values like a tax rate",
+            "category": "Absolute"
+          },
+          {
+            "text": "Useful when repeating a formula down a column",
+            "category": "Relative"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_cs6",
+      "type": "categorySort",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each formula into its correct function type",
+        "categories": [
+          "Statistical",
+          "Mathematical"
+        ],
+        "pairs": [
+          {
+            "text": "=AVERAGE(A1:A10)",
+            "category": "Statistical"
+          },
+          {
+            "text": "=SUM(B1:B5)",
+            "category": "Mathematical"
+          },
+          {
+            "text": "=COUNT(C1:C8)",
+            "category": "Statistical"
+          },
+          {
+            "text": "=B2*C2",
+            "category": "Mathematical"
+          },
+          {
+            "text": "=MAX(D1:D6)",
+            "category": "Statistical"
+          },
+          {
+            "text": "=A1+A2+A3",
+            "category": "Mathematical"
+          },
+          {
+            "text": "=MIN(E2:E9)",
+            "category": "Statistical"
+          },
+          {
+            "text": "=D5/B3",
+            "category": "Mathematical"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t6_sq2",
+      "type": "sequence",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to create a chart from spreadsheet data",
+        "items": [
+          "Select the range of data you want to include in the chart",
+          "Click the Insert menu and choose Chart",
+          "Select the type of chart you want, such as a bar chart",
+          "Adjust the chart title and labels to describe the data",
+          "Click OK or Insert to place the chart on the spreadsheet"
+        ]
+      }
+    },
+    {
+      "id": "t6_sq3",
+      "type": "sequence",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to sort a spreadsheet column from A to Z",
+        "items": [
+          "Click on a cell within the column you want to sort",
+          "Click the Data menu in the spreadsheet application",
+          "Select the Sort option from the menu",
+          "Choose the column to sort by and select ascending order A to Z",
+          "Click OK to apply the sort to the data"
+        ]
+      }
+    },
+    {
+      "id": "t6_sq4",
+      "type": "sequence",
+      "topics": [
+        "Spreadsheets"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put the steps in order to use AutoFill to copy a formula down a column",
+        "items": [
+          "Enter the formula in the first cell, for example =A1*2 in cell B1",
+          "Press Enter to confirm the formula in cell B1",
+          "Click back on cell B1 to select it",
+          "Hover over the bottom-right corner of the cell until the fill handle appears",
+          "Click and drag the fill handle down to the last cell you want to fill"
+        ]
+      }
+    },
+    {
+      "id": "t7_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each type of online content by whether it is typically free to use or protected by copyright",
+        "categories": [
+          "Free to use (royalty-free)",
+          "Protected by copyright"
+        ],
+        "pairs": [
+          {
+            "text": "A Creative Commons image",
+            "category": "Free to use (royalty-free)"
+          },
+          {
+            "text": "A photograph from a news website",
+            "category": "Protected by copyright"
+          },
+          {
+            "text": "A public domain piece of music",
+            "category": "Free to use (royalty-free)"
+          },
+          {
+            "text": "A bestselling novel",
+            "category": "Protected by copyright"
+          },
+          {
+            "text": "A government open data file",
+            "category": "Free to use (royalty-free)"
+          },
+          {
+            "text": "A commercially released film",
+            "category": "Protected by copyright"
+          },
+          {
+            "text": "A Wikipedia article text",
+            "category": "Free to use (royalty-free)"
+          },
+          {
+            "text": "A song on a music streaming service",
+            "category": "Protected by copyright"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t7_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these online behaviours as responsible or irresponsible",
+        "categories": [
+          "Responsible",
+          "Irresponsible"
+        ],
+        "pairs": [
+          {
+            "text": "Crediting the original creator when sharing their work",
+            "category": "Responsible"
+          },
+          {
+            "text": "Copying an essay from a website without citation",
+            "category": "Irresponsible"
+          },
+          {
+            "text": "Using royalty-free music in your video",
+            "category": "Responsible"
+          },
+          {
+            "text": "Uploading a film you do not own to social media",
+            "category": "Irresponsible"
+          },
+          {
+            "text": "Asking permission before using someone's photo",
+            "category": "Responsible"
+          },
+          {
+            "text": "Sharing someone's private details online without consent",
+            "category": "Irresponsible"
+          },
+          {
+            "text": "Reporting cyberbullying to a trusted adult",
+            "category": "Responsible"
+          },
+          {
+            "text": "Meeting an online stranger in person without telling anyone",
+            "category": "Irresponsible"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t7_cs4",
+      "type": "categorySort",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each scenario by whether it poses an online risk or is safe practice",
+        "categories": [
+          "Online Risk",
+          "Safe Practice"
+        ],
+        "pairs": [
+          {
+            "text": "A stranger asks for your school name",
+            "category": "Online Risk"
+          },
+          {
+            "text": "Using privacy settings on social media",
+            "category": "Safe Practice"
+          },
+          {
+            "text": "Someone online offers you a gift",
+            "category": "Online Risk"
+          },
+          {
+            "text": "Telling a trusted adult about worrying messages",
+            "category": "Safe Practice"
+          },
+          {
+            "text": "An unknown email asks for your password",
+            "category": "Online Risk"
+          },
+          {
+            "text": "Blocking someone who is unkind online",
+            "category": "Safe Practice"
+          },
+          {
+            "text": "Accepting a friend request from someone you do not know",
+            "category": "Online Risk"
+          },
+          {
+            "text": "Keeping your password secret and complex",
+            "category": "Safe Practice"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t7_cs5",
+      "type": "categorySort",
+      "topics": [
+        "Digital Wellbeing"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these digital content facts into the correct category",
+        "categories": [
+          "Copyright",
+          "Creative Commons / Royalty-free"
+        ],
+        "pairs": [
+          {
+            "text": "Creator has full control over use",
+            "category": "Copyright"
+          },
+          {
+            "text": "Content is free to use under specified conditions",
+            "category": "Creative Commons / Royalty-free"
+          },
+          {
+            "text": "Permission needed before using the work",
+            "category": "Copyright"
+          },
+          {
+            "text": "No fee required to use each time",
+            "category": "Creative Commons / Royalty-free"
+          },
+          {
+            "text": "Automatically applies to original creative works",
+            "category": "Copyright"
+          },
+          {
+            "text": "Often labelled with a CC licence",
+            "category": "Creative Commons / Royalty-free"
+          },
+          {
+            "text": "Infringement can lead to legal consequences",
+            "category": "Copyright"
+          },
+          {
+            "text": "Allows sharing with attribution in many cases",
+            "category": "Creative Commons / Royalty-free"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t8_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort each programming concept into its correct construct type",
+        "categories": [
+          "Sequence",
+          "Selection",
+          "Iteration"
+        ],
+        "pairs": [
+          {
+            "text": "Instructions run one after another",
+            "category": "Sequence"
+          },
+          {
+            "text": "Code that uses IF and ELSE",
+            "category": "Selection"
+          },
+          {
+            "text": "A WHILE loop",
+            "category": "Iteration"
+          },
+          {
+            "text": "Setting a variable to a value",
+            "category": "Sequence"
+          },
+          {
+            "text": "Checking a condition before acting",
+            "category": "Selection"
+          },
+          {
+            "text": "Repeating code until a condition is false",
+            "category": "Iteration"
+          },
+          {
+            "text": "Printing a message to the screen",
+            "category": "Sequence"
+          },
+          {
+            "text": "A FOR loop counting from 1 to 10",
+            "category": "Iteration"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t8_cs3",
+      "type": "categorySort",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these algorithm design tools by what they are",
+        "categories": [
+          "Flowchart symbol",
+          "Pseudocode keyword"
+        ],
+        "pairs": [
+          {
+            "text": "Diamond shape (decision)",
+            "category": "Flowchart symbol"
+          },
+          {
+            "text": "IF ... THEN",
+            "category": "Pseudocode keyword"
+          },
+          {
+            "text": "Rectangle (process)",
+            "category": "Flowchart symbol"
+          },
+          {
+            "text": "WHILE ... DO",
+            "category": "Pseudocode keyword"
+          },
+          {
+            "text": "Oval (start/end)",
+            "category": "Flowchart symbol"
+          },
+          {
+            "text": "OUTPUT",
+            "category": "Pseudocode keyword"
+          },
+          {
+            "text": "Parallelogram (input/output)",
+            "category": "Flowchart symbol"
+          },
+          {
+            "text": "FOR ... TO",
+            "category": "Pseudocode keyword"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t8_sq2",
+      "type": "sequence",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put these steps in order to design and write a simple program",
+        "items": [
+          "Identify the problem you need to solve",
+          "Write an algorithm in pseudocode or a flowchart",
+          "Translate the algorithm into a programming language",
+          "Test the program with different inputs to find errors",
+          "Debug and fix any errors found during testing"
+        ]
+      }
+    },
+    {
+      "id": "t8_sq3",
+      "type": "sequence",
+      "topics": [
+        "Algorithms and Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Put the steps of a selection (IF-ELSE) construct in the correct order",
+        "items": [
+          "The program reaches the IF statement",
+          "The condition in the IF statement is evaluated as TRUE or FALSE",
+          "If TRUE, the THEN branch of instructions is executed",
+          "If FALSE, the ELSE branch of instructions is executed (if one exists)",
+          "Program continues with the code after the IF-ELSE block"
+        ]
+      }
+    },
+    {
+      "id": "t9_cs2",
+      "type": "categorySort",
+      "topics": [
+        "Scratch Programming"
+      ],
+      "tags": [
+        "computing",
+        "ks3"
+      ],
+      "data": {
+        "title": "Sort these Scratch concepts into the correct category",
+        "categories": [
+          "Sprite",
+          "Stage",
+          "Script"
+        ],
+        "pairs": [
+          {
+            "text": "The main character the user programmes",
+            "category": "Sprite"
+          },
+          {
+            "text": "The background where all action takes place",
+            "category": "Stage"
+          },
+          {
+            "text": "A set of connected blocks that runs when triggered",
+            "category": "Script"
+          },
+          {
+            "text": "Can have multiple costumes",
+            "category": "Sprite"
+          },
+          {
+            "text": "Can have multiple backdrops",
+            "category": "Stage"
+          },
+          {
+            "text": "Starts with a hat block like 'When flag clicked'",
+            "category": "Script"
+          },
+          {
+            "text": "Has its own x and y position on screen",
+            "category": "Sprite"
+          },
+          {
+            "text": "Sets the scene for the whole project",
+            "category": "Stage"
+          }
+        ]
+      }
+    }
+  ]
+}

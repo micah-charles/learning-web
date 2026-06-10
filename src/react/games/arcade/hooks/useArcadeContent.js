@@ -13,6 +13,7 @@ import { shuffle } from "@/utils.js";
 import {
   buildQuizHuntQuestions,
   buildQuizHuntQuestionsFromMultipleChoiceItems,
+  buildQuizHuntQuestionsFromFillBlankItems,
   buildSnakeBuilderQuestions,
 } from "../utils/gameQuestionAdapter.js";
 
@@ -45,7 +46,8 @@ export function useArcadeContent({ manifest, mode, datasetId, packId, builderPac
           const vocabQuestions = buildQuizHuntQuestions(words, { direction: "prompt-en", speechLanguage });
           const unifiedPack = await loadUnifiedPack(manifest, datasetId).catch(() => null);
           const multipleChoiceQuestions = buildQuizHuntQuestionsFromMultipleChoiceItems(unifiedPack?.items || [], { speechLanguage });
-          const qs = [...vocabQuestions, ...multipleChoiceQuestions];
+          const fillBlankQuestions = buildQuizHuntQuestionsFromFillBlankItems(unifiedPack?.items || [], { speechLanguage });
+          const qs = [...vocabQuestions, ...multipleChoiceQuestions, ...fillBlankQuestions];
           if (!cancelled) setQuestions(shuffle(qs));
         }
       } catch (e) {

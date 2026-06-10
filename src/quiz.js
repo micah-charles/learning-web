@@ -825,13 +825,19 @@ export function resolveQuizModesForUI({
     return ["passageQuestionChooseAnswer", "fillBlank", "categorySort"];
   }
 
-  // Non-language packs: direction is ignored (prompt language matches the
-  // pack's source). Use studyToTarget word modes; the engine will pull MCQ
-  // options or typed answers from whatever vocab the pack has.
-  // "build" has no sentence pools in non-language packs — fall back to mixed.
-  if (mode === "mcq")   return ["germanWordChooseEnglish"];
-  if (mode === "typed") return ["germanWordTypeEnglish"];
-  return ["germanWordChooseEnglish", "germanWordTypeEnglish"];
+  // Non-language packs: direction is ignored.  Include standalone modes
+  // (fillBlank, multipleChoice) when the pack has those items so that
+  // computing, geography, science, etc. packs with unified items get
+  // their full question types instead of only word modes.
+  const standaloneModes = [
+    ...(multipleChoiceCount > 0 ? ["multipleChoice"] : []),
+    ...(fillBlankCount > 0 ? ["fillBlank"] : []),
+  ];
+  const vocabModes =
+    mode === "mcq"   ? ["germanWordChooseEnglish"] :
+    mode === "typed" ? ["germanWordTypeEnglish"] :
+    ["germanWordChooseEnglish", "germanWordTypeEnglish"];
+  return standaloneModes.length > 0 ? [...vocabModes, ...standaloneModes] : vocabModes;
 }
 
 export function createQuizSession({ words, sentencePools, config, persistedState, customWords = null, label = null, dataset = null, sequenceItems = [], categorySortItems = [], fillBlankItems = [], unifiedPack = null, passageUnifiedPack = null }) {

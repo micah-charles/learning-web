@@ -120,6 +120,42 @@ export function buildQuizHuntQuestionsFromMultipleChoiceItems(items, opts = {}) 
 }
 
 /**
+ * Build Quiz Hunt questions from fillBlank items.
+ *
+ * These are gap-fill questions where the prompt is a sentence with a blank.
+ * The board tokens come from the item's explicit options (required for arcade).
+ */
+export function buildQuizHuntQuestionsFromFillBlankItems(items, opts = {}) {
+  const { speechLanguage = "en-GB" } = opts;
+
+  return (items || [])
+    .filter((item) => item?.type === "fillBlank")
+    .map((item) => {
+      const d = item.data || {};
+      const questionText = String(d.question || d.sentence || "").trim();
+      const correctAnswer = String(d.answer || "").trim();
+      const options = Array.isArray(d.options) ? d.options.map((o) => String(o).trim()).filter(Boolean) : [];
+      if (!questionText || !correctAnswer || options.length < 2) return null;
+
+      const distractors = options.filter((option) => dedupeKey(option) !== dedupeKey(correctAnswer));
+      if (distractors.length === 0) return null;
+
+      return {
+        id: `qh_fb_${item.id}`,
+        mode: "quiz-hunt",
+        questionText,
+        correctAnswer,
+        distractors,
+        topic: Array.isArray(item.topics) ? item.topics[0] || "" : "",
+        speechText: correctAnswer,
+        speechLanguage,
+        wordId: item.id,
+      };
+    })
+    .filter(Boolean);
+}
+
+/**
  * Build Snake Builder questions from normalised builder cards.
  *
  * @param {object[]} cards  builder cards: { id, prompt, answer, tiles:[...] }

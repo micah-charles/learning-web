@@ -57,10 +57,19 @@ export function useQuizSession() {
         vocabCount: words.length,
       });
 
+      const totalItems = words.length
+        + sequenceItems.length
+        + categorySortItems.length
+        + fillBlankItems.length
+        + filteredMultipleChoiceItems.length;
+      const effectiveQuestionCount = prefs.questionCount === "all"
+        ? Math.max(totalItems, 1)
+        : prefs.questionCount;
+
       const newSession = createQuizSession({
         words,
         sentencePools,
-        config: { ...prefs, modes: resolvedModes },
+        config: { ...prefs, questionCount: effectiveQuestionCount, modes: resolvedModes },
         persistedState: progress,
         customWords,
         label: label || dataset.displayName,
