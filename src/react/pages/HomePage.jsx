@@ -165,7 +165,7 @@ export default function HomePage({ onNavigate }) {
         </h2>
         <p className="lw-subtitle">
           Read revision study notes across all subjects — no quiz, just the
-          content. Built for Google and your bookmarks.
+          content.
         </p>
         <a
           className="lw-btn lw-btn-promote lw-btn-promote-blue"
