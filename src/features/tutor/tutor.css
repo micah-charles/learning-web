@@ -368,6 +368,38 @@
   color: #fff;
 }
 
+/* ── Semantic Search Toggle ─────────────────────────────────────────────────── */
+.tutor-panel__semantic-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--tutor-radius-sm);
+  background: transparent;
+  color: var(--tutor-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.tutor-panel__semantic-btn:hover {
+  background: var(--tutor-accent-bg);
+  color: var(--tutor-accent);
+  transform: scale(1.1);
+}
+
+.tutor-panel__semantic-btn.active {
+  background: var(--tutor-primary-bg);
+  color: var(--tutor-primary);
+}
+
+.tutor-panel__semantic-btn:focus-visible {
+  outline: 2px solid var(--tutor-primary);
+  outline-offset: 2px;
+}
+
 /* ── Evidence Button & Source Attribution ───────────────────────────────────── */
 .tutor-panel__evidence-btn {
   margin-top: 8px;

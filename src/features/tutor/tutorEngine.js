@@ -278,6 +278,7 @@ export async function generateTutorResponse({
   vocabItems = null,
   hintGivenForCurrentQuestion = false,
   speechMode = SpeechMode.TOGGLE,
+  semanticSearch = false,
   speechLang = "en-GB",
 }) {
   const trimmedQuery = query.trim();
@@ -333,6 +334,7 @@ What are you working on right now?`,
     readingTargetText,
     studyBookHtml,
     query: trimmedQuery,
+    semanticSearch,
   });
 
   // If no relevant content found, check off-topic and refuse

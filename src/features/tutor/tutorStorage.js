@@ -13,6 +13,7 @@ export const DEFAULT_TUTOR_PREFS = {
   enabled: true,
   speechMode: "toggle", // "none" | "toggle" | "always"
   openOnLoad: false,
+  semanticSearch: false, // Phase 3C: optional semantic search (embeddings)
 };
 
 /**
@@ -88,4 +89,27 @@ export async function cycleSpeechMode() {
   prefs.speechMode = modes[nextIndex];
   saveTutorPrefs(prefs);
   return prefs.speechMode;
+}
+
+/**
+ * Toggle semantic search on/off.
+ * @returns {Promise<boolean>} New semantic search state.
+ */
+export async function toggleSemanticSearch() {
+  const prefs = await loadTutorPrefs();
+  prefs.semanticSearch = !prefs.semanticSearch;
+  saveTutorPrefs(prefs);
+  return prefs.semanticSearch;
+}
+
+/**
+ * Set semantic search explicitly.
+ * @param {boolean} enabled - Whether to enable semantic search.
+ * @returns {Promise<boolean>} New semantic search state.
+ */
+export async function setSemanticSearch(enabled) {
+  const prefs = await loadTutorPrefs();
+  prefs.semanticSearch = !!enabled;
+  saveTutorPrefs(prefs);
+  return prefs.semanticSearch;
 }

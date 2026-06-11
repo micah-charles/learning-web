@@ -95,10 +95,12 @@ export function TutorPanel() {
     messages,
     isLoading,
     speechMode,
+    semanticSearch,
     closePanel,
     sendMessage,
     clearChat,
     toggleSpeechMode,
+    toggleSemanticSearch,
     stopSpeech,
     checkSpeaking,
     SpeechMode,
@@ -203,6 +205,17 @@ export function TutorPanel() {
               title={`Speech: ${speechMode === SpeechMode.NONE ? "Off" : speechMode === SpeechMode.TOGGLE ? "Per message" : "Always"}. Click to change.`}
             >
               {speechMode === SpeechMode.NONE ? "🔇" : speechMode === SpeechMode.TOGGLE ? "🔊" : "🔈"}
+            </button>
+            {/* Semantic search toggle */}
+            <button
+              className={`tutor-panel__semantic-btn ${semanticSearch ? "active" : ""}`}
+              type="button"
+              aria-label={`Smart search: ${semanticSearch ? "enabled" : "disabled"}. Click to toggle.`}
+              aria-pressed={semanticSearch}
+              onClick={toggleSemanticSearch}
+              title={`Smart search (semantic/embedding search): ${semanticSearch ? "On" : "Off"}. Click to toggle.`}
+            >
+              {semanticSearch ? "🧠✨" : "🧠"}
             </button>
             {/* Clear chat */}
             {messages.length > 0 && (

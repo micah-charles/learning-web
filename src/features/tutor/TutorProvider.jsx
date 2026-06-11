@@ -12,7 +12,8 @@ import { useStudyBook } from "../../react/context/StudyBookContext.jsx";
 import "./tutor.css";
 import {
   loadTutorPrefs, saveTutorPrefs, toggleTutorEnabled,
-  cycleSpeechMode, getTutorPref, setTutorPref
+  cycleSpeechMode, getTutorPref, setTutorPref,
+  toggleSemanticSearch, setSemanticSearch
 } from "./tutorStorage.js";
 import {
   generateTutorResponse, maybeSpeakResponse, ResponseType
@@ -31,6 +32,7 @@ const INITIAL_STATE = {
   isLoading: false,
   hintGivenForCurrentQuestion: false,
   speechMode: SpeechMode.TOGGLE,
+  semanticSearch: false,
   speechLang: "en-GB",
   enabled: true,
 };
@@ -61,6 +63,7 @@ export function TutorProvider({ children }) {
         ...prev,
         enabled: prefs.enabled,
         speechMode: prefs.speechMode,
+        semanticSearch: prefs.semanticSearch,
         openOnLoad: prefs.openOnLoad,
       }));
       if (prefs.openOnLoad) {
@@ -130,6 +133,7 @@ export function TutorProvider({ children }) {
         vocabItems: vocabItemsRef.current,
         hintGivenForCurrentQuestion: currentState.hintGivenForCurrentQuestion,
         speechMode: currentState.speechMode,
+        semanticSearch: currentState.semanticSearch,
         speechLang: currentState.speechLang,
       });
 
@@ -201,6 +205,19 @@ export function TutorProvider({ children }) {
     setState(prev => ({ ...prev, speechMode: mode }));
   }, []);
 
+  // Toggle semantic search
+  const toggleSemanticSearchHandler = useCallback(async () => {
+    const newMode = await toggleSemanticSearch();
+    setState(prev => ({ ...prev, semanticSearch: newMode }));
+    return newMode;
+  }, []);
+
+  const setSemanticSearchHandler = useCallback(async (enabled) => {
+    const newMode = await setSemanticSearch(enabled);
+    setState(prev => ({ ...prev, semanticSearch: newMode }));
+    return newMode;
+  }, []);
+
   // Toggle tutor enabled
   const toggleEnabled = useCallback(async () => {
     const newEnabled = await toggleTutorEnabled();
@@ -225,6 +242,8 @@ export function TutorProvider({ children }) {
     closePanel,
     toggleSpeechMode,
     setSpeechMode,
+    toggleSemanticSearch: toggleSemanticSearchHandler,
+    setSemanticSearch: setSemanticSearchHandler,
     toggleEnabled,
     stopSpeech,
     checkSpeaking,

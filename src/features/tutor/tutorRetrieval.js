@@ -106,6 +106,7 @@ export function extractSnippets(text, tokens, maxSnippets = 3, contextChars = 20
  * @param {string|null} params.readingTargetText - Current reading passage target text (translation).
  * @param {string|null} params.studyBookHtml - Current study book HTML content (fallback).
  * @param {string} params.query - User query.
+ * @param {boolean} params.semanticSearch - Use semantic/embedding search (default false).
  * @returns {Promise<object>} Retrieval result with snippets and metadata.
  */
 export async function retrieveContent({
@@ -115,7 +116,8 @@ export async function retrieveContent({
   readingPassage = null,
   readingTargetText = null,
   studyBookHtml = null,
-  query = ""
+  query = "",
+  semanticSearch = false
 }) {
   const tokens = tokenizeQuery(query);
   if (!tokens.length) {
@@ -174,7 +176,8 @@ export async function retrieveContent({
       const results = await searchStudyBookIndex(query, {
         maxResults: 5,
         subject: dataset?.subject,
-        curriculum: dataset?.curriculum
+        curriculum: dataset?.curriculum,
+        semanticSearch
       });
       return results.map(r => ({
         text: extractSnippet(r.chunk, tokenizeQuery(query), 300),
