@@ -1,8 +1,9 @@
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useQuizSession } from "../hooks/useQuizSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { useTutor } from "../../features/tutor/TutorProvider.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
@@ -512,6 +513,7 @@ export default function QuizPage({ initialCustomWords = null }) {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
   const { speak } = useSpeech();
+  const { setQuizSession, setDataset } = useTutor();
   const { session, loading, error, startQuiz, answerQuestion, nextQuestion, updateBuildState, resetQuiz } = useQuizSession();
 
   const [prefs, setPrefs] = useState({
@@ -535,6 +537,20 @@ export default function QuizPage({ initialCustomWords = null }) {
     await startQuiz({ manifest, dataset: fullDataset, prefs, progress, customWords: initialCustomWords || null });
     setPhase("session");
   }
+
+  // Sync quiz session and dataset with tutor
+  useEffect(() => {
+    if (session) {
+      setQuizSession(session);
+    }
+  }, [session, setQuizSession]);
+
+  useEffect(() => {
+    if (manifest && prefs.datasetId) {
+      const dataset = findDataset(manifest, prefs.datasetId);
+      if (dataset) setDataset(dataset);
+    }
+  }, [manifest, prefs.datasetId, setDataset]);
 
   function handleAnswer(response, extra) {
     answerQuestion(response, { progress, updateProgress, extra });
