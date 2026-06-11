@@ -8,7 +8,7 @@
   "items": [
     {
       "id": "is_q1_mcq",
-      "type": "vocab",
+      "type": "multipleChoice",
       "level": "GCSE Year 10-11",
       "topics": [
         "Islam: Prophets"
@@ -17,16 +17,17 @@
         "GCSE",
         "religion",
         "Islam",
-        "AQA-2024",
-        "MCQ"
+        "AQA-2024"
       ],
       "data": {
-        "partOfSpeech": "keyword",
-        "sourceWord": "MCQ: Which one of the following was the first prophet in Islam?",
-        "targetWord": "Adam",
-        "examples": {
-          "en-GB": "AQA MCQ (1 mark) — Answer: Adam | Distractors: Ismail; Musa; Nuh"
-        }
+        "question": "Which one of the following was the first prophet in Islam?",
+        "answer": "Adam",
+        "options": [
+          "Adam",
+          "Ismail",
+          "Musa",
+          "Nuh"
+        ]
       }
     },
     {
@@ -185,7 +186,7 @@
     },
     {
       "id": "is_quran_for_1",
-      "type": "vocab",
+      "type": "multipleChoice",
       "level": "GCSE Year 10-11",
       "topics": [
         "Islam: Qur'an"
@@ -198,14 +199,19 @@
         "12-mark"
       ],
       "data": {
-        "partOfSpeech": "keyword",
-        "sourceWord": "FOR: Qur'an is the direct word of Allah",
-        "targetWord": "The Qur'an is the direct, unaltered word of Allah, protected by him: 'Verily we have revealed it and we are the protectors of it.' (15:9), making it uniquely authoritative."
+        "question": "Which option best explains the argument in favour: “Qur'an is the direct word of Allah”?",
+        "answer": "The Qur'an is the direct, unaltered word of Allah, protected by him: 'Verily we have revealed it and we are the protectors of it.' (15:9).",
+        "options": [
+          "The Qur'an is a comprehensive code of life and the main source of Shari'ah; those who do not judge by it are warned in 5:44.",
+          "The Qur'an does not detail how to perform Salah or Zakah; the Hadith is essential to show how rituals are carried out, suggesting it is.",
+          "The Qur'an is the direct, unaltered word of Allah, protected by him: 'Verily we have revealed it and we are the protectors of it.' (15:9).",
+          "Revealed over 1400 years ago, the Qur'an does not directly address modern issues like IVF or the internet; for Shi'a Muslims the Imam also holds."
+        ]
       }
     },
     {
       "id": "is_quran_for_2",
-      "type": "vocab",
+      "type": "multipleChoice",
       "level": "GCSE Year 10-11",
       "topics": [
         "Islam: Shari'ah"
@@ -218,14 +224,19 @@
         "12-mark"
       ],
       "data": {
-        "partOfSpeech": "keyword",
-        "sourceWord": "FOR: Qur'an is a complete guide for life",
-        "targetWord": "The Qur'an is a comprehensive code of life and the main source of Shari'ah; those who do not judge by it are warned in 5:44, so it stands above other sources."
+        "question": "Which option best explains the argument in favour: “Qur'an is a complete guide for life”?",
+        "answer": "The Qur'an is a comprehensive code of life and the main source of Shari'ah; those who do not judge by it are warned in 5:44.",
+        "options": [
+          "The Qur'an is the direct, unaltered word of Allah, protected by him: 'Verily we have revealed it and we are the protectors of it.' (15:9).",
+          "The Qur'an does not detail how to perform Salah or Zakah; the Hadith is essential to show how rituals are carried out, suggesting it is.",
+          "The Qur'an is a comprehensive code of life and the main source of Shari'ah; those who do not judge by it are warned in 5:44.",
+          "Revealed over 1400 years ago, the Qur'an does not directly address modern issues like IVF or the internet; for Shi'a Muslims the Imam also holds."
+        ]
       }
     },
     {
       "id": "is_quran_against_1",
-      "type": "vocab",
+      "type": "multipleChoice",
       "level": "GCSE Year 10-11",
       "topics": [
         "Islam: Hadith"
@@ -238,14 +249,19 @@
         "12-mark"
       ],
       "data": {
-        "partOfSpeech": "keyword",
-        "sourceWord": "AGAINST: Hadith is needed for practice",
-        "targetWord": "The Qur'an does not detail how to perform Salah or Zakah; the Hadith is essential to show how rituals are carried out, suggesting it is equally vital."
+        "question": "Which option best explains the objection or counter-argument: “Hadith is needed for practice”?",
+        "answer": "The Qur'an does not detail how to perform Salah or Zakah; the Hadith is essential to show how rituals are carried out, suggesting it is.",
+        "options": [
+          "The Qur'an is the direct, unaltered word of Allah, protected by him: 'Verily we have revealed it and we are the protectors of it.' (15:9).",
+          "The Qur'an is a comprehensive code of life and the main source of Shari'ah; those who do not judge by it are warned in 5:44.",
+          "Revealed over 1400 years ago, the Qur'an does not directly address modern issues like IVF or the internet; for Shi'a Muslims the Imam also holds.",
+          "The Qur'an does not detail how to perform Salah or Zakah; the Hadith is essential to show how rituals are carried out, suggesting it is."
+        ]
       }
     },
     {
       "id": "is_quran_against_2",
-      "type": "vocab",
+      "type": "multipleChoice",
       "level": "GCSE Year 10-11",
       "topics": [
         "Islam: Authority"
@@ -258,9 +274,14 @@
         "12-mark"
       ],
       "data": {
-        "partOfSpeech": "keyword",
-        "sourceWord": "AGAINST: Modern life needs more guidance",
-        "targetWord": "Revealed over 1400 years ago, the Qur'an does not directly address modern issues like IVF or the internet; for Shi'a Muslims the Imam also holds great authority."
+        "question": "Which option best explains the objection or counter-argument: “Modern life needs more guidance”?",
+        "answer": "Revealed over 1400 years ago, the Qur'an does not directly address modern issues like IVF or the internet; for Shi'a Muslims the Imam also holds.",
+        "options": [
+          "The Qur'an is the direct, unaltered word of Allah, protected by him: 'Verily we have revealed it and we are the protectors of it.' (15:9).",
+          "Revealed over 1400 years ago, the Qur'an does not directly address modern issues like IVF or the internet; for Shi'a Muslims the Imam also holds.",
+          "The Qur'an is a comprehensive code of life and the main source of Shari'ah; those who do not judge by it are warned in 5:44.",
+          "The Qur'an does not detail how to perform Salah or Zakah; the Hadith is essential to show how rituals are carried out, suggesting it is."
+        ]
       }
     },
     {
