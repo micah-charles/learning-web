@@ -4,6 +4,7 @@
  * Runtime loader for FoxChild Tutor study book search index.
  * Fetches /search/studybook-index.json and provides search functionality.
  * Phase 3B: Uses MiniSearch for better relevance + fuzzy matching.
+ * Phase 3C: Optional semantic search via Transformers.js embeddings.
  */
 
 import MiniSearch from "minisearch";
@@ -11,6 +12,15 @@ import MiniSearch from "minisearch";
 let _indexCache = null;
 let _loadPromise = null;
 let _miniSearch = null;
+let _embedder = null;
+let _embeddingsCache = null;
+let _embeddingsPromise = null;
+
+/**
+ * Model configuration for embeddings.
+ */
+const EMBEDDING_MODEL = "Xenova/all-MiniLM-L6-v2"; // ~90 MB quantized, 384-dim
+const EMBEDDING_DIM = 384;
 
 /**
  * Load the study book index (cached).
@@ -65,16 +75,160 @@ function initMiniSearch(chunks) {
 }
 
 /**
- * Search the study book index using MiniSearch.
+ * Initialize the Transformers.js embedder (lazy-loaded).
+ * Only loads when semantic search is enabled.
+ */
+async function initEmbedder() {
+  if (_embedder) return _embedder;
+
+  try {
+    const { pipeline } = await import("@xenova/transformers");
+    _embedder = await pipeline("feature-extraction", EMBEDDING_MODEL, {
+      quantized: true,
+      progress_callback: (p) => {
+        if (p.status === "downloading") {
+          console.log(`[StudyBookIndex] Downloading embedding model: ${Math.round(p.progress * 100)}%`);
+        }
+      }
+    });
+    console.log("[StudyBookIndex] Embedding model loaded");
+    return _embedder;
+  } catch (err) {
+    console.error("[StudyBookIndex] Failed to load embedding model:", err);
+    throw err;
+  }
+}
+
+/**
+ * Compute embeddings for all chunks and cache in IndexedDB.
+ * Only runs once per session when semantic search is first enabled.
+ */
+async function ensureEmbeddings(chunks) {
+  if (_embeddingsCache) return _embeddingsCache;
+
+  if (_embeddingsPromise) return _embeddingsPromise;
+
+  _embeddingsPromise = computeEmbeddings(chunks);
+  return _embeddingsPromise;
+}
+
+async function computeEmbeddings(chunks) {
+  try {
+    const embedder = await initEmbedder();
+    const embeddings = new Float32Array(chunks.length * EMBEDDING_DIM);
+
+    // Process in batches to avoid memory issues
+    const batchSize = 16;
+    for (let i = 0; i < chunks.length; i += batchSize) {
+      const batch = chunks.slice(i, i + batchSize);
+      const texts = batch.map(c => `${c.heading || ""} ${c.content}`.slice(0, 512));
+      
+      const outputs = await Promise.all(
+        texts.map(text => embedder(text, { pooling: "mean", normalize: true }))
+      );
+
+      for (let j = 0; j < outputs.length; j++) {
+        const idx = i + j;
+        embeddings.set(outputs[j], idx * EMBEDDING_DIM);
+      }
+
+      // Progress (optional)
+      if (i % 128 === 0) {
+        console.log(`[StudyBookIndex] Embedded ${Math.min(i + batchSize, chunks.length)}/${chunks.length} chunks`);
+      }
+    }
+
+    _embeddingsCache = { embeddings, dimension: EMBEDDING_DIM, count: chunks.length };
+    
+    // Cache in IndexedDB for future sessions
+    try {
+      await cacheEmbeddingsInIndexedDB(embeddings, chunks.length);
+    } catch (e) {
+      // Ignore IndexedDB errors
+    }
+
+    return _embeddingsCache;
+  } catch (err) {
+    console.error("[StudyBookIndex] Embedding computation failed:", err);
+    _embeddingsPromise = null;
+    throw err;
+  }
+}
+
+/**
+ * Cache embeddings in IndexedDB for persistence across sessions.
+ */
+async function cacheEmbeddingsInIndexedDB(embeddings, count) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("FoxChildTutor", 1);
+    
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains("embeddings")) {
+        db.createObjectStore("embeddings");
+      }
+    };
+    
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const tx = db.transaction("embeddings", "readwrite");
+      const store = tx.objectStore("embeddings");
+      store.put({ embeddings: Array.from(embeddings), count, dimension: EMBEDDING_DIM, model: EMBEDDING_MODEL, timestamp: Date.now() }, "studybook");
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    };
+    
+    request.onerror = () => reject(request.error);
+  });
+}
+
+/**
+ * Load cached embeddings from IndexedDB.
+ */
+async function loadCachedEmbeddings() {
+  return new Promise((resolve) => {
+    const request = indexedDB.open("FoxChildTutor", 1);
+    
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const tx = db.transaction("embeddings", "readonly");
+      const store = tx.objectStore("embeddings");
+      const getRequest = store.get("studybook");
+      
+      getRequest.onsuccess = () => {
+        if (getRequest.result && getRequest.result.model === EMBEDDING_MODEL) {
+          const { embeddings, count, dimension } = getRequest.result;
+          if (count === count && dimension === EMBEDDING_DIM) {
+            resolve({ embeddings: new Float32Array(embeddings), count, dimension });
+          } else {
+            resolve(null);
+          }
+        } else {
+          resolve(null);
+        }
+      };
+      getRequest.onerror = () => resolve(null);
+    };
+    
+    request.onerror = () => resolve(null);
+    
+    // Timeout after 1s
+    setTimeout(() => resolve(null), 1000);
+  });
+}
+
+/**
+ * Search the study book index using MiniSearch (keyword) or semantic embeddings.
  * @param {string} query - User query
  * @param {object} options
  * @param {number} options.maxResults - Max results (default 8)
  * @param {string} options.subject - Filter by subject
  * @param {string} options.curriculum - Filter by curriculum
+ * @param {boolean} options.semantic - Use semantic/embedding search (default false)
  * @returns {Promise<Array<{chunk: object, score: number}>>}
  */
 export async function searchStudyBookIndex(query, options = {}) {
-  const { maxResults = 8, subject, curriculum } = options;
+  const { maxResults = 8, subject, curriculum, semantic = false } = options;
 
   const index = await loadStudyBookIndex();
   if (!index.chunks?.length) return [];
@@ -83,14 +237,59 @@ export async function searchStudyBookIndex(query, options = {}) {
     initMiniSearch(index.chunks);
   }
 
+  // Keyword search (MiniSearch)
   const filters = [];
   if (subject) filters.push({ field: "subject", value: subject });
   if (curriculum) filters.push({ field: "curriculum", value: curriculum });
 
-  const results = _miniSearch.search(query, {
+  let results = _miniSearch.search(query, {
     filter: filters.length ? (doc => filters.every(f => doc[f.field] === f.value)) : undefined,
     ..._miniSearch.searchOptions
   });
+
+  // If semantic search is enabled and we have enough results to rerank
+  if (semantic && results.length > 0) {
+    try {
+      // Try to load cached embeddings first
+      let embeddingsCache = await loadCachedEmbeddings();
+      if (!embeddingsCache || embeddingsCache.count !== index.chunks.length) {
+        // Compute embeddings if not cached or stale
+        embeddingsCache = await ensureEmbeddings(index.chunks);
+      }
+
+      if (embeddingsCache) {
+        const embedder = await initEmbedder();
+        const queryVec = await embedder(query.slice(0, 512), { pooling: "mean", normalize: true });
+        
+        // Compute cosine similarity for top N keyword results
+        const topN = Math.min(results.length, 20);
+        const scored = [];
+        for (let i = 0; i < topN; i++) {
+          const result = results[i];
+          const chunkIdx = index.chunks.findIndex(c => c.id === result.id);
+          if (chunkIdx >= 0) {
+            const offset = chunkIdx * EMBEDDING_DIM;
+            const chunkVec = embeddingsCache.embeddings.slice(offset, offset + EMBEDDING_DIM);
+            
+            // Cosine similarity (both vectors normalized)
+            let dot = 0;
+            for (let k = 0; k < EMBEDDING_DIM; k++) {
+              dot += queryVec[k] * chunkVec[k];
+            }
+            scored.push({ ...result, semanticScore: dot });
+          }
+        }
+        
+        // Combine keyword and semantic scores (weighted)
+        results = scored
+          .sort((a, b) => (b.semanticScore * 0.7 + b.score * 0.3) - (a.semanticScore * 0.7 + a.score * 0.3))
+          .slice(0, maxResults)
+          .map(r => ({ ...r, score: r.semanticScore * 0.7 + r.score * 0.3 }));
+      }
+    } catch (err) {
+      console.warn("[StudyBookIndex] Semantic search failed, falling back to keyword:", err);
+    }
+  }
 
   // Map to our format
   return results
@@ -140,8 +339,6 @@ export function extractSnippet(chunk, query, contextChars = 300) {
  * Build deep link URL to open StudyBookDrawer at specific heading.
  */
 export function buildStudyBookDeepLink(chunk) {
-  // URL format: /?studybook=<packId>&anchor=<heading-anchor>
-  // The StudyBookDrawer can be opened programmatically via StudyBookContext
   return {
     packId: chunk.packId,
     anchor: chunk.anchor,
@@ -153,11 +350,41 @@ export function buildStudyBookDeepLink(chunk) {
 
 /**
  * Open Study Book in drawer at specific heading (to be called from UI).
- * This should be integrated with the StudyBookContext.
  */
 export async function openStudyBookAtHeading(packId, anchor) {
-  // This will be connected to the StudyBookContext.openBook()
-  // The actual implementation depends on how the tutor accesses the context
-  // For now, return the navigation info
   return { packId, anchor };
+}
+
+/**
+ * Check if semantic search is available (model loaded or cacheable).
+ */
+export async function isSemanticSearchAvailable() {
+  try {
+    const cached = await loadCachedEmbeddings();
+    if (cached) return true;
+    
+    // Check if model can be loaded (network connectivity)
+    const { pipeline } = await import("@xenova/transformers");
+    await pipeline("feature-extraction", EMBEDDING_MODEL, { quantized: true });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Preload embedding model (call when user enables "smart search" setting).
+ */
+export async function preloadEmbeddingModel(onProgress) {
+  try {
+    const { pipeline } = await import("@xenova/transformers");
+    _embedder = await pipeline("feature-extraction", EMBEDDING_MODEL, {
+      quantized: true,
+      progress_callback: onProgress
+    });
+    return true;
+  } catch (err) {
+    console.error("[StudyBookIndex] Failed to preload embedding model:", err);
+    return false;
+  }
 }
