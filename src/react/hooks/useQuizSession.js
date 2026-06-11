@@ -12,7 +12,7 @@ import {
   recordWordAnswer, recordQuizSession
 } from "@/storage.js";
 import { recordAttempt } from "@/progress.js";
-import { filterWordsForScope, getSelectedStages, describeScope } from "@/quiz-helpers.js";
+import { filterWordsForScope, getSelectedStages, describeScope, filterFillBlankByStage, filterMultipleChoiceByStage } from "@/quiz-helpers.js";
 import { shuffle } from "@/utils.js";
 
 function makeInitialBuildState(question) {
@@ -43,17 +43,33 @@ export function useQuizSession() {
       const categorySortItems = await loadCategorySortItems(manifest, dataset.id).catch(() => []);
       const fillBlankItems = await loadFillBlankItems(manifest, dataset.id).catch(() => []);
       const unifiedPack = await loadUnifiedPack(manifest, dataset.id).catch(() => null);
+      const filteredFillBlankItems = filterFillBlankByStage(unifiedPack, prefs, dataset);
+      const filteredMultipleChoiceItems = filterMultipleChoiceByStage(unifiedPack, prefs, dataset);
+      const fillBlankCount = unifiedPack ? filteredFillBlankItems.length : fillBlankItems.length;
+      const multipleChoiceCount = unifiedPack ? filteredMultipleChoiceItems.length : 0;
 
       const resolvedModes = resolveQuizModesForUI({
         subject: getDatasetSubject(dataset),
         direction: prefs.direction || "studyToTarget",
         answerMode: prefs.answerMode || "mixed",
+        fillBlankCount,
+        multipleChoiceCount,
+        vocabCount: words.length,
       });
+
+      const totalItems = words.length
+        + sequenceItems.length
+        + categorySortItems.length
+        + fillBlankItems.length
+        + filteredMultipleChoiceItems.length;
+      const effectiveQuestionCount = prefs.questionCount === "all"
+        ? Math.max(totalItems, 1)
+        : prefs.questionCount;
 
       const newSession = createQuizSession({
         words,
         sentencePools,
-        config: { ...prefs, modes: resolvedModes },
+        config: { ...prefs, questionCount: effectiveQuestionCount, modes: resolvedModes },
         persistedState: progress,
         customWords,
         label: label || dataset.displayName,

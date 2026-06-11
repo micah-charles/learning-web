@@ -209,6 +209,7 @@ variation and spaced repetition.
 **Default minimums:**
 
 - **35–45** vocab / key-term items where possible
+- **10–20** multipleChoice items for standalone authored MCQs where useful
 - **15–20** fillBlank items
 - **3–4** sequence or process items where relevant
 - **2–3** categorySort items
@@ -425,6 +426,7 @@ Wrong names cause silent failures or validation errors.
 | Item type | Required `data` fields | Common wrong names to avoid |
 |---|---|---|
 | `vocab` | `sourceWord` + `targetWord` (non-language), or `translations` (language) | `term`, `definition`, `word`, `meaning` |
+| `multipleChoice` | `question`, `answer`, `options[]` | ❌ `sentence`, `text`, `prompt` |
 | `fillBlank` | `sentence` (contains `____`), `answer`, optional `options[]` | ❌ `question`, `text`, `prompt` |
 | `sequence` | `title`, `items` (array of step strings), optional `instruction` | ❌ `question`, `steps`, `order` |
 | `categorySort` | `categories` (array), `pairs` where each pair has `text` + `category`, optional `title` | ❌ `item`, `label`, `value` in pairs |
@@ -505,8 +507,9 @@ vocab card needs a prompt/answer pair:
 ```
 
 > **Tip for non-language packs:** if you want a clear "term → definition"
-> drill where prompt and answer differ, prefer a `fillBlank` item. Never create
-> a vocab card whose question is the same word as its answer.
+> drill where prompt and answer differ, prefer a `multipleChoice` item for
+> authored MCQs or a `fillBlank` item for cloze recall. Never create a vocab
+> card whose question is the same word as its answer.
 
 ### Useful `tags` for non-language packs
 
@@ -527,7 +530,7 @@ Use **categorisation tags** so filters and analytics can surface clusters:
 ## Item type: `sentence`
 
 Used in language packs for sentence-build and sentence-type drills. Don't
-use for non-language packs (use `fillBlank` instead).
+use for non-language packs (use `multipleChoice` or `fillBlank` instead).
 
 ```json
 {
@@ -647,6 +650,30 @@ Used for testing recall of a single key term in context. Two flavours:
 Always use `____` (four underscores) as the gap placeholder. Distractors
 in `options[]` must be plausible and topic-related.
 
+## Item type: `multipleChoice`
+
+Used for standalone authored multiple-choice questions. This is the correct
+type when the prompt is a full question rather than a cloze sentence.
+
+```json
+{
+  "id":     "grammar_case_001",
+  "type":   "multipleChoice",
+  "level":  "Stage 1",
+  "topics": ["Latin grammar", "cases"],
+  "tags":   ["grammar", "mcq"],
+  "data": {
+    "question": "What case is 'servus' in 'servus dormit'?",
+    "answer":   "nominative",
+    "options":  ["nominative", "accusative", "dative", "ablative"],
+    "hint":     "The noun is doing the verb."
+  }
+}
+```
+
+`options[]` must include `answer`. Do not use `sentence` on this item type;
+`sentence` belongs only to `fillBlank` cloze prompts with a `____` marker.
+
 ## Item type: `sentenceBuilder` (Builder tab — separate file)
 
 Lives at `data/SentenceBuilderPacks/{{PACK_ID}}/pack_unified.json`. The pack
@@ -754,7 +781,8 @@ Adjust by topic size; these are good defaults for a complete pack:
 | Revision pack `sentence` items | 20–40 | Only for language packs, or cause-and-effect statements for history/science |
 | Revision pack `sequence` items | 0–4 | One per process; geography and science benefit most |
 | Revision pack `categorySort` items | 0–4 | One per "X vs Y" distinction |
-| Revision pack `fillBlank` items | 0–20 | Strong fit for non-language packs; mix typed and multiple-choice |
+| Revision pack `multipleChoice` items | 0–20 | Standalone authored MCQs; strong fit for grammar and concept checks |
+| Revision pack `fillBlank` items | 0–20 | Cloze recall prompts; can be typed or choice when options are present |
 | Sentence builder pack `sentenceBuilder` items | 15–30 | Group by `cardType` |
 | Passage pack `passage` items | 4–8 | Each passage 80–220 words depending on level |
 | Per-passage `questions` | 3–6 | Mix difficulties and types |
@@ -876,6 +904,7 @@ If confidence is low, still generate the pack — record the uncertainty in
       `"en-GB"`).
 - ❌ Don't capitalise `subject`.
 - ❌ Don't use `"science"` for computing packs — use `"computing"`.
+- ❌ Don't use `"sentence"` in `multipleChoice` data — the field is `"question"`.
 - ❌ Don't use `"question"` in `fillBlank` data — the field is `"sentence"`.
 - ❌ Don't use `"questionText"` in passage question objects — the field is `"question"`.
 - ❌ Don't use `"steps"` in `sequence` data — the field is `"items"`.

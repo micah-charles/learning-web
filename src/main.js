@@ -271,11 +271,11 @@ function filterWordsForScope(words, dataset, prefSection) {
   return words.filter((word) => levelMatches(word.level, prefSection.year));
 }
 
-// Returns the fillBlank items from unifiedPack filtered to the currently selected
-// stages (mirrors the unifiedItems stage filter in createQuizSession).
-// For packs without stage selection the full item list is returned.
-function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
-  const all = filterUnifiedItems(unifiedPack, "fillBlank");
+// Returns unified quiz items filtered to the currently selected stages (mirrors
+// the unifiedItems stage filter in createQuizSession). For packs without stage
+// selection the full item list is returned.
+function filterUnifiedItemsByTypeAndStage(unifiedPack, itemType, prefSection, dataset) {
+  const all = filterUnifiedItems(unifiedPack, itemType);
   if (!usesStageSelection(dataset)) return all;
   const selectedStages = new Set(getSelectedStages(prefSection, dataset).map(String));
   if (!selectedStages.size) return all;
@@ -283,6 +283,14 @@ function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
     const stageStr = String(item.level || "").replace(/^Stage\s+/i, "").trim();
     return !stageStr || isNaN(Number(stageStr)) || selectedStages.has(stageStr);
   });
+}
+
+function filterFillBlankByStage(unifiedPack, prefSection, dataset) {
+  return filterUnifiedItemsByTypeAndStage(unifiedPack, "fillBlank", prefSection, dataset);
+}
+
+function filterMultipleChoiceByStage(unifiedPack, prefSection, dataset) {
+  return filterUnifiedItemsByTypeAndStage(unifiedPack, "multipleChoice", prefSection, dataset);
 }
 
 function applyDatasetDefaults(sectionKey, options = {}) {
@@ -1530,7 +1538,7 @@ async function renderQuizTab() {
             <p class="muted tiny">Build a clean quiz from your selected topic.</p>
           </div>
           <div class="chip-row">
-            <span class="count-pill blue">${filteredWords.length || filterFillBlankByStage(unifiedPack, prefs, dataset).length} ${filteredWords.length ? "words" : "questions"} in scope</span>
+            <span class="count-pill blue">${filteredWords.length || (filterMultipleChoiceByStage(unifiedPack, prefs, dataset).length + filterFillBlankByStage(unifiedPack, prefs, dataset).length)} ${filteredWords.length ? "words" : "questions"} in scope</span>
             <span class="count-pill green">${mastered} mastered here</span>
           </div>
         </div>
@@ -2826,16 +2834,19 @@ function countPassageMcqQuestions(unifiedPack) {
 }
 
 function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, passageUnifiedPack }) {
-  // Stage-filtered fillBlank count is used both for mode-detection and the
-  // fillBlank question-count calculation so the question-count dropdown and the
-  // "questions in scope" badge stay in sync with the stage checkboxes.
+  // Stage-filtered standalone item counts are used both for mode-detection and
+  // question-count calculation so the dropdown and "questions in scope" badge
+  // stay in sync with the stage checkboxes.
   const filteredFillBlankItems = filterFillBlankByStage(unifiedPack, prefs, dataset);
+  const filteredMultipleChoiceItems = filterMultipleChoiceByStage(unifiedPack, prefs, dataset);
   const fillBlankCount = filteredFillBlankItems.length;
+  const multipleChoiceCount = filteredMultipleChoiceItems.length;
   const modes = resolveQuizModesForUI({
     subject: getDatasetSubject(dataset),
     direction: prefs.direction,
     answerMode: prefs.answerMode,
     fillBlankCount,
+    multipleChoiceCount,
     vocabCount: filteredWords.length,
   });
 
@@ -2856,6 +2867,8 @@ function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, p
         return total + filterUnifiedItems(unifiedPack, "categorySort").length;
       case "fillBlank":
         return total + fillBlankCount; // already stage-filtered above
+      case "multipleChoice":
+        return total + multipleChoiceCount; // already stage-filtered above
       case "passageQuestionChooseAnswer":
         return total + countPassageMcqQuestions(passageUnifiedPack);
       default:
@@ -2865,13 +2878,15 @@ function getQuizMaxQuestionCount({ dataset, prefs, filteredWords, unifiedPack, p
 }
 
 function buildQuestionCountOptions(maxQuestionCount) {
-  const defaults = [12, 18, 24, 30];
+  const defaults = [18, 30];
   const limited = defaults.filter((value) => value <= maxQuestionCount);
   if (maxQuestionCount > 0 && !limited.includes(maxQuestionCount)) {
     limited.push(maxQuestionCount);
   }
   const options = [...new Set(limited)].sort((a, b) => a - b);
-  return options.map((value) => ({ value: String(value), label: String(value) }));
+  const mapped = options.map((value) => ({ value: String(value), label: String(value) }));
+  mapped.push({ value: "all", label: "Full set (until all correct)" });
+  return mapped;
 }
 
 function buildCrosswordWordCountOptions(maxWordCount) {
@@ -3338,6 +3353,7 @@ const ITEM_TYPE_LABELS = {
   sequence:        "Sequences",
   categorySort:    "Sort",
   fillBlank:       "Fill-blank",
+  multipleChoice:  "Multiple choice",
   sentenceBuilder: "Builder cards",
   passage:         "Passages",
 };
@@ -3863,7 +3879,7 @@ function renderSelfUploadTab() {
         <div class="admin-format-grid">
           ${Object.entries(SECTION_LABELS).map(([section, label]) => {
             const typesForSection = {
-              revisionPacks:        ["vocab", "sentence", "sequence", "categorySort", "fillBlank"],
+              revisionPacks:        ["vocab", "sentence", "sequence", "categorySort", "fillBlank", "multipleChoice"],
               passageGroups:        ["passage"],
               sentenceBuilderPacks: ["sentenceBuilder"],
             }[section] || [];
@@ -4919,7 +4935,7 @@ async function handleChange(event) {
       persisted.prefs.quiz.year = value;
       break;
     case "quiz-question-count":
-      persisted.prefs.quiz.questionCount = Number(value);
+      persisted.prefs.quiz.questionCount = value === "all" ? "all" : Number(value);
       break;
     case "quiz-exclude-mastered":
       persisted.prefs.quiz.excludeMastered = value === "true";
@@ -5211,7 +5227,8 @@ async function startQuiz(customWords = null, label = null) {
     unifiedPack,
     passageUnifiedPack,
   });
-  const boundedQuestionCount = maxQuestionCount > 0 ? Math.min(prefs.questionCount, maxQuestionCount) : prefs.questionCount;
+  const count = prefs.questionCount === "all" ? words.length : prefs.questionCount;
+  const boundedQuestionCount = maxQuestionCount > 0 ? Math.min(count, maxQuestionCount) : count;
 
   // Subject First adapter: translate the high-level UI selections into the
   // legacy mode-ID array the question engine expects. This replaces the old
@@ -5222,6 +5239,7 @@ async function startQuiz(customWords = null, label = null) {
     direction: prefs.direction,
     answerMode: prefs.answerMode,
     fillBlankCount: filterFillBlankByStage(unifiedPack, prefs, dataset).length,
+    multipleChoiceCount: filterMultipleChoiceByStage(unifiedPack, prefs, dataset).length,
     vocabCount: words.length,
   });
 

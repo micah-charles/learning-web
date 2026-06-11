@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "learning-web/schemas/pack_unified.schema.json",
   "title": "Learning Web — pack_unified.json",
-  "description": "Revision pack file. Contains vocab, sentence, fillBlank, sequence, categorySort, or sentenceBuilder items. Passage items belong in passages.json, not here.",
+  "description": "Revision pack file. Contains vocab, sentence, multipleChoice, fillBlank, sequence, categorySort, or sentenceBuilder items. Passage items belong in passages.json, not here.",
   "type": "object",
   "required": ["packId", "schemaVersion", "sourceLanguageCode", "targetLanguageCode", "items"],
   "additionalProperties": true,
@@ -41,7 +41,7 @@
         "id":        { "type": "string", "minLength": 1 },
         "type": {
           "type": "string",
-          "enum": ["vocab", "sentence", "sequence", "categorySort", "fillBlank", "sentenceBuilder"],
+          "enum": ["vocab", "sentence", "sequence", "categorySort", "fillBlank", "multipleChoice", "sentenceBuilder"],
           "description": "Do NOT use 'passage' here — passage items go in passages.json."
         },
         "level":     { "type": "string" },
@@ -70,6 +70,10 @@
         {
           "if":   { "properties": { "type": { "const": "fillBlank" } }, "required": ["type"] },
           "then": { "properties": { "data": { "$ref": "#/definitions/FillBlankData" } } }
+        },
+        {
+          "if":   { "properties": { "type": { "const": "multipleChoice" } }, "required": ["type"] },
+          "then": { "properties": { "data": { "$ref": "#/definitions/MultipleChoiceData" } } }
         },
         {
           "if":   { "properties": { "type": { "const": "sentenceBuilder" } }, "required": ["type"] },
@@ -181,6 +185,23 @@
           "minItems": 2,
           "items": { "type": "string" },
           "description": "If present renders as button grid. The correct answer must be included."
+        }
+      }
+    },
+
+    "MultipleChoiceData": {
+      "type": "object",
+      "required": ["question", "answer", "options"],
+      "description": "Standalone multiple-choice question. Use this for grammar tests that are not gap-fill sentences.",
+      "properties": {
+        "question": { "type": "string", "minLength": 1 },
+        "answer":   { "type": "string", "minLength": 1 },
+        "hint":     { "type": "string" },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "Fixed choices shown to the learner. The correct answer must be included."
         }
       }
     },

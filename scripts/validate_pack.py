@@ -20,7 +20,7 @@ from pathlib import Path
 
 VALID_ITEM_TYPES = {
     "vocab", "sentence", "sequence", "categorySort",
-    "fillBlank", "sentenceBuilder", "passage",
+    "fillBlank", "sentenceBuilder", "passage", "multipleChoice",
 }
 
 VALID_SUBJECTS = {"language", "history", "geography", "science", "literature", "computing", "religion", "other"}
@@ -159,6 +159,18 @@ def check_sentence_builder(iid, data, errors):
         ))
 
 
+def check_multiple_choice(iid, data, errors):
+    if not data.get("question"):
+        err(errors, f"{iid} (multipleChoice): missing data.question")
+    if not data.get("answer"):
+        err(errors, f"{iid} (multipleChoice): missing data.answer")
+    opts = data.get("options")
+    if not isinstance(opts, list) or len(opts) < 2:
+        err(errors, f"{iid} (multipleChoice): data.options must be a list of at least 2 items")
+    elif data.get("answer") and data["answer"] not in opts:
+        err(errors, f"{iid} (multipleChoice): data.answer '{data['answer']}' not found in data.options")
+
+
 def check_passage(iid, data, errors, warnings):
     if not data.get("sourcePassage"):
         err(errors, f"{iid} (passage): missing data.sourcePassage")
@@ -281,6 +293,8 @@ def validate_file(path: Path) -> tuple[list[str], list[str]]:
             check_fill_blank(iid, data, is_lang, errors)
         elif itype == "sentenceBuilder":
             check_sentence_builder(iid, data, errors)
+        elif itype == "multipleChoice":
+            check_multiple_choice(iid, data, errors)
         elif itype == "passage":
             check_passage(iid, data, errors, warnings)
 

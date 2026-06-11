@@ -212,6 +212,72 @@ function FlashcardSection({ section, sectionNumber, totalSections, onAssess, onF
   );
 }
 
+// ─── Fill in the Blank Section ────────────────────────────────────────────────
+
+function FillBlankSection({ section, sectionNumber, totalSections, onAnswer, onNext, onFinishSection }) {
+  const question  = section.questions[section.currentIndex];
+  const answered  = section.answers[question?.id];
+  const isLast    = section.currentIndex >= section.questions.length - 1;
+
+  if (!question) return null;
+
+  return (
+    <div>
+      <SectionHeader section={section} sectionNumber={sectionNumber} totalSections={totalSections} />
+      <ProgressBar value={section.currentIndex + (answered ? 1 : 0)} max={section.questions.length} label={`Question ${section.currentIndex + 1} of ${section.questions.length}`} />
+
+      <div style={card}>
+        <div style={{ fontSize: "1rem", lineHeight: 1.6, color: "var(--lw-ink)", marginBottom: "18px" }}>
+          {question.prompt.replace(/____+/g, "________")}
+        </div>
+
+        {question.isChoice ? (
+          <div style={{ display: "grid", gap: "8px" }}>
+            {question.options.map((opt, i) => {
+              let bg = "var(--lw-panel)";
+              let border = "1px solid var(--lw-line)";
+              let color = "var(--lw-ink)";
+              if (answered) {
+                if (opt === question.answer) { bg = "var(--lw-green-soft, #e8f5e9)"; border = "2px solid var(--lw-green)"; color = "var(--lw-green)"; }
+                else if (answered.selected === opt) { bg = "var(--lw-coral-soft, #fdecea)"; border = "2px solid var(--lw-coral)"; color = "var(--lw-coral)"; }
+              }
+              return (
+                <button
+                  key={i}
+                  style={{ textAlign: "left", padding: "10px 14px", borderRadius: "var(--lw-radius-sm)", background: bg, border, color, cursor: answered ? "default" : "pointer", fontWeight: 500, fontSize: "0.92rem" }}
+                  onClick={() => !answered && onAnswer(question.id, opt)}
+                  disabled={!!answered}
+                >
+                  {opt}
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <div style={{ fontSize: "0.88rem", color: "var(--lw-muted)", fontStyle: "italic" }}>
+            Type your answer in the space above.
+          </div>
+        )}
+
+        {answered && (
+          <div style={{ marginTop: "14px", padding: "10px 14px", borderRadius: "var(--lw-radius-sm)", background: answered.correct ? "var(--lw-green-soft, #e8f5e9)" : "var(--lw-coral-soft, #fdecea)", fontSize: "0.9rem", fontWeight: 600, color: answered.correct ? "var(--lw-green)" : "var(--lw-coral)" }}>
+            {answered.correct ? "✓ Correct!" : `✗ The correct answer was: ${question.answer}`}
+          </div>
+        )}
+      </div>
+
+      {answered && (
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          {isLast
+            ? <button style={btn("primary")} onClick={onFinishSection}>Next Section →</button>
+            : <button style={btn("primary")} onClick={onNext}>Next Question →</button>
+          }
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Sentence Builder Section ─────────────────────────────────────────────────
 
 function BuilderSection({ section, sectionNumber, totalSections, onSubmit, onNext, onFinishSection }) {
@@ -452,6 +518,9 @@ function ResultsPage({ score, session, onRetry, onReset }) {
         {score.sections.mcq && (
           <ScoreRow icon="✓" label="Knowledge Check (MCQ)" correct={score.sections.mcq.correct} total={score.sections.mcq.total} />
         )}
+        {score.sections.fillblank && (
+          <ScoreRow icon="⬜" label="Fill in the Blank" correct={score.sections.fillblank.correct} total={score.sections.fillblank.total} />
+        )}
         {score.sections.builder && (
           <ScoreRow icon="🧩" label="Sentence Builder" correct={score.sections.builder.correct} total={score.sections.builder.total} />
         )}
@@ -597,8 +666,9 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
         </h3>
         <div style={{ display: "grid", gap: "8px" }}>
           {[
-            { icon: "✓", title: "Knowledge Check", desc: "5 multiple-choice questions from vocab items" },
-            { icon: "🧩", title: "Sentence Builder", desc: "3 tile-arrange questions (model exam answers)" },
+            { icon: "✓", title: "Knowledge Check", desc: "Multiple-choice questions from vocab items" },
+            { icon: "⬜", title: "Fill in the Blank", desc: "Complete sentences (if pack has gap-fill items)" },
+            { icon: "🧩", title: "Sentence Builder", desc: "Tile-arrange questions (model exam answers)" },
             { icon: "📖", title: "Reading",          desc: "Passage study (if pack has reading content)" },
             { icon: "⚖️", title: "Evaluation",       desc: "FOR / AGAINST argument scaffold (if available)" },
           ].map(s => (
@@ -637,7 +707,8 @@ export default function SmartTestPage() {
     session, loading, error,
     currentSection, sectionNumber, totalSections,
     answered, total,
-    startSession, answerMcq, nextMcqQuestion,
+    startSession,     answerMcq, nextMcqQuestion,
+    answerFillBlank, nextFillBlankQuestion,
     submitBuilder, nextBuilderQuestion,
     assessFlashcard, completeSection, nextSection, resetSession,
     retryWeakItems,
@@ -741,6 +812,17 @@ export default function SmartTestPage() {
           totalSections={totalSections}
           onAnswer={handleAnswerMcq}
           onNext={nextMcqQuestion}
+          onFinishSection={handleSectionComplete}
+        />
+      )}
+
+      {sec.type === "fillblank" && (
+        <FillBlankSection
+          section={sec}
+          sectionNumber={sectionNumber}
+          totalSections={totalSections}
+          onAnswer={answerFillBlank}
+          onNext={nextFillBlankQuestion}
           onFinishSection={handleSectionComplete}
         />
       )}

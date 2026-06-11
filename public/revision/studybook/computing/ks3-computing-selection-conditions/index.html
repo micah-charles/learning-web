@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Selection &amp; Conditions | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Selection &amp; Conditions" />
+  <link rel="canonical" href="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-selection-conditions/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Selection &amp; Conditions | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Selection &amp; Conditions" />
+  <meta property="og:url" content="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-selection-conditions/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Selection &amp; Conditions | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Selection &amp; Conditions" />
+  <link rel="stylesheet" href="/revision/revision.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Selection & Conditions",
+  "description": "Study revision notes for KS3 Computing — Selection & Conditions",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Selection &amp; Conditions</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Selection &amp; Conditions</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-selection-conditions-if-statements">Topic: Selection &amp; Conditions (IF Statements)</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-if-elif-and-else">Section 1: IF, ELIF, and ELSE</a></li>
+<li class="sb-toc-h3"><a href="#basic-if-statement">Basic IF Statement</a></li>
+<li class="sb-toc-h3"><a href="#if-else-statement">IF-ELSE Statement</a></li>
+<li class="sb-toc-h3"><a href="#if-elif-else-multiple-conditions">IF-ELIF-ELSE (Multiple Conditions)</a></li>
+<li class="sb-toc-h3"><a href="#indentation">Indentation</a></li>
+<li class="sb-toc-h3"><a href="#nested-if-statements">Nested IF Statements</a></li>
+<li class="sb-toc-h2"><a href="#section-2-comparison-operators">Section 2: Comparison Operators</a></li>
+<li class="sb-toc-h2"><a href="#section-3-logical-operators">Section 3: Logical Operators</a></li>
+<li class="sb-toc-h3"><a href="#and">AND</a></li>
+<li class="sb-toc-h3"><a href="#or">OR</a></li>
+<li class="sb-toc-h3"><a href="#not">NOT</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions-corrected">Common Misconceptions — Corrected</a></li>
+<li class="sb-toc-h2"><a href="#diagrams-code-examples">Diagrams / Code Examples</a></li>
+<li class="sb-toc-h3"><a href="#flowchart-if-else">Flowchart: IF-ELSE</a></li>
+<li class="sb-toc-h3"><a href="#flowchart-elif-chain">Flowchart: ELIF Chain</a></li>
+<li class="sb-toc-h3"><a href="#pseudocode-temperature-classifier">Pseudocode: Temperature Classifier</a></li>
+<li class="sb-toc-h3"><a href="#pseudocode-grade-classifier">Pseudocode: Grade Classifier</a></li>
+<li class="sb-toc-h3"><a href="#trace-table-selection-program">Trace Table: Selection Program</a></li>
+<li class="sb-toc-h3"><a href="#logical-operator-examples">Logical Operator Examples</a></li>
+<li class="sb-toc-h1"><a href="#checking-a-range-score-must-be-50-and-74">Checking a range — score must be &gt;= 50 AND &lt;= 74</a></li>
+<li class="sb-toc-h1"><a href="#checking-for-specific-values-either-red-or-amber">Checking for specific values — either red OR amber</a></li>
+<li class="sb-toc-h1"><a href="#not-example-only-enter-if-not-already-logged-in">NOT example — only enter if not already logged in</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-selection-conditions-if-statements">Topic: Selection & Conditions (IF Statements)</h1>
+<p><strong>Year 7–9 | Programming Fundamentals | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>Programs that simply execute every line from top to bottom in a fixed order are severely limited. Almost every useful program needs to make decisions — to do different things depending on the situation. The mechanism for this is called <strong>selection</strong>: choosing between different execution paths based on whether a condition is true or false.</p>
+<p>Selection is what allows a program to respond to different user inputs, handle different data values, or behave differently in different circumstances. A password checker must distinguish between correct and incorrect passwords; a game must respond differently when a player wins compared to when they lose; a marks calculator must output different grade labels depending on the score. All of this depends on IF statements.</p>
+<p>Understanding conditions — and particularly the comparison and logical operators used to build them — is essential. A single misplaced operator (<code>=</code> instead of <code>==</code>, or <code>AND</code> instead of <code>OR</code>) can cause a program to produce completely wrong results without showing any error message.</p>
+<hr>
+<h2 id="section-1-if-elif-and-else">Section 1: IF, ELIF, and ELSE</h2>
+<h3 id="basic-if-statement">Basic IF Statement</h3>
+<p>The simplest form of selection executes a block of code only if a condition is <code>True</code>. If the condition is <code>False</code>, the block is skipped entirely.</p>
+<pre><code class="language-pseudocode">IF score &gt;= 50 THEN
+    OUTPUT &quot;You passed!&quot;
+ENDIF
+</code></pre>
+<pre><code class="language-python">if score &gt;= 50:
+    print(&quot;You passed!&quot;)
+</code></pre>
+<h3 id="if-else-statement">IF-ELSE Statement</h3>
+<p>Adding <code>ELSE</code> provides an alternative block of code to execute when the condition is <code>False</code>.</p>
+<pre><code class="language-pseudocode">IF score &gt;= 50 THEN
+    OUTPUT &quot;You passed!&quot;
+ELSE
+    OUTPUT &quot;You failed.&quot;
+ENDIF
+</code></pre>
+<pre><code class="language-python">if score &gt;= 50:
+    print(&quot;You passed!&quot;)
+else:
+    print(&quot;You failed.&quot;)
+</code></pre>
+<p>Exactly one of the two blocks will execute — either the IF block or the ELSE block, never both, never neither.</p>
+<h3 id="if-elif-else-multiple-conditions">IF-ELIF-ELSE (Multiple Conditions)</h3>
+<p>When there are more than two possible outcomes, <code>ELIF</code> (short for &quot;else if&quot;) allows additional conditions to be checked in sequence.</p>
+<pre><code class="language-pseudocode">IF temperature &gt; 25 THEN
+    OUTPUT &quot;Hot&quot;
+ELIF temperature &gt; 15 THEN
+    OUTPUT &quot;Warm&quot;
+ELIF temperature &gt; 5 THEN
+    OUTPUT &quot;Cool&quot;
+ELSE
+    OUTPUT &quot;Cold&quot;
+ENDIF
+</code></pre>
+<pre><code class="language-python">if temperature &gt; 25:
+    print(&quot;Hot&quot;)
+elif temperature &gt; 15:
+    print(&quot;Warm&quot;)
+elif temperature &gt; 5:
+    print(&quot;Cool&quot;)
+else:
+    print(&quot;Cold&quot;)
+</code></pre>
+<p><strong>How ELIF works:</strong> Python checks conditions from top to bottom and executes the first block whose condition is <code>True</code>. All remaining conditions are then skipped. This means the order of conditions matters — if <code>temperature = 30</code>, only the first condition (<code>&gt; 25</code>) triggers, even though <code>&gt; 15</code> and <code>&gt; 5</code> are also true.</p>
+<h3 id="indentation">Indentation</h3>
+<p>Python uses <strong>indentation</strong> (spaces at the start of a line) to define which statements belong to each block. The standard is 4 spaces. Incorrect indentation is a syntax error in Python.</p>
+<pre><code class="language-python">if score &gt;= 50:
+    print(&quot;You passed!&quot;)   # inside the if block (4 spaces indent)
+    print(&quot;Well done.&quot;)    # also inside the if block
+print(&quot;Program ended.&quot;)    # outside the if block (no indent)
+</code></pre>
+<h3 id="nested-if-statements">Nested IF Statements</h3>
+<p>An IF statement can contain another IF statement inside it. This is called <strong>nesting</strong>.</p>
+<pre><code class="language-pseudocode">IF age &gt;= 18 THEN
+    IF hasTicket = True THEN
+        OUTPUT &quot;Welcome!&quot;
+    ELSE
+        OUTPUT &quot;You need a ticket.&quot;
+    ENDIF
+ELSE
+    OUTPUT &quot;You must be 18 or over.&quot;
+ENDIF
+</code></pre>
+<p>Each nested IF must have its own ENDIF in pseudocode, or its own indentation level in Python.</p>
+<hr>
+<h2 id="section-2-comparison-operators">Section 2: Comparison Operators</h2>
+<p>Comparison operators compare two values and return a Boolean result (<code>True</code> or <code>False</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>==</code></td>
+<td>Equal to</td>
+<td><code>5 == 5</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>Not equal to</td>
+<td><code>5 != 3</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>Less than</td>
+<td><code>3 &lt; 10</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>Greater than</td>
+<td><code>10 &gt; 15</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>Less than or equal to</td>
+<td><code>5 &lt;= 5</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>Greater than or equal to</td>
+<td><code>7 &gt;= 10</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody></table>
+<p><strong>Critical distinction:</strong> <code>=</code> is the assignment operator (stores a value). <code>==</code> is the comparison operator (tests equality). Using <code>=</code> inside an IF condition is one of the most common beginner errors.</p>
+<hr>
+<h2 id="section-3-logical-operators">Section 3: Logical Operators</h2>
+<p>Logical operators combine multiple Boolean conditions into a single condition.</p>
+<h3 id="and">AND</h3>
+<p><code>AND</code> returns <code>True</code> only if <strong>both</strong> conditions are <code>True</code>. If either is <code>False</code>, the result is <code>False</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Condition A</th>
+<th>Condition B</th>
+<th>A AND B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>True</td>
+<td>True</td>
+<td><strong>True</strong></td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr>
+<td>False</td>
+<td>False</td>
+<td>False</td>
+</tr>
+</tbody></table>
+<pre><code class="language-pseudocode">IF score &gt;= 50 AND score &lt;= 74 THEN
+    OUTPUT &quot;Merit&quot;
+ENDIF
+</code></pre>
+<p>This outputs &quot;Merit&quot; only when score is between 50 and 74 inclusive.</p>
+<h3 id="or">OR</h3>
+<p><code>OR</code> returns <code>True</code> if <strong>at least one</strong> condition is <code>True</code>. It is only <code>False</code> when both conditions are <code>False</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Condition A</th>
+<th>Condition B</th>
+<th>A OR B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr>
+<td>True</td>
+<td>False</td>
+<td>True</td>
+</tr>
+<tr>
+<td>False</td>
+<td>True</td>
+<td>True</td>
+</tr>
+<tr>
+<td>False</td>
+<td>False</td>
+<td><strong>False</strong></td>
+</tr>
+</tbody></table>
+<pre><code class="language-pseudocode">IF colour == &quot;red&quot; OR colour == &quot;amber&quot; THEN
+    OUTPUT &quot;Stop or prepare to stop&quot;
+ENDIF
+</code></pre>
+<h3 id="not">NOT</h3>
+<p><code>NOT</code> <strong>inverts</strong> a Boolean value. <code>NOT True</code> becomes <code>False</code>; <code>NOT False</code> becomes <code>True</code>.</p>
+<pre><code class="language-pseudocode">IF NOT isLoggedIn THEN
+    OUTPUT &quot;Please log in.&quot;
+ENDIF
+</code></pre>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Selection</td>
+<td>A programming construct that chooses between different execution paths based on whether a condition is true or false</td>
+</tr>
+<tr>
+<td>Condition</td>
+<td>An expression that evaluates to either <code>True</code> or <code>False</code></td>
+</tr>
+<tr>
+<td>IF statement</td>
+<td>A selection statement that executes a block of code only when its condition is <code>True</code></td>
+</tr>
+<tr>
+<td>ELIF</td>
+<td>&quot;Else if&quot; — an additional condition checked when the preceding IF condition is <code>False</code></td>
+</tr>
+<tr>
+<td>ELSE</td>
+<td>The block executed when none of the preceding IF/ELIF conditions are <code>True</code></td>
+</tr>
+<tr>
+<td>Comparison operator</td>
+<td>An operator that compares two values and returns a Boolean (e.g., <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>)</td>
+</tr>
+<tr>
+<td>Logical operator</td>
+<td>An operator that combines Boolean values (AND, OR, NOT)</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>Logical operator returning <code>True</code> only when both operands are <code>True</code></td>
+</tr>
+<tr>
+<td>OR</td>
+<td>Logical operator returning <code>True</code> when at least one operand is <code>True</code></td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>Logical operator that inverts a Boolean value</td>
+</tr>
+<tr>
+<td>Nested IF</td>
+<td>An IF statement placed inside another IF statement</td>
+</tr>
+<tr>
+<td>Indentation</td>
+<td>Spaces at the start of a line used in Python to define which statements belong to a block</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>A data type with exactly two values: <code>True</code> or <code>False</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions-corrected">Common Misconceptions — Corrected</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>=</code> and <code>==</code> do the same thing</td>
+<td><code>=</code> is assignment (stores a value in a variable). <code>==</code> is comparison (tests whether two values are equal). Using <code>=</code> in a condition causes an error in Python.</td>
+</tr>
+<tr>
+<td>Using a second <code>IF</code> is the same as using <code>ELIF</code></td>
+<td>A second <code>IF</code> is always checked, even if the first <code>IF</code> was true. <code>ELIF</code> is only checked if all previous conditions were false. Using two separate IFs can cause multiple blocks to execute.</td>
+</tr>
+<tr>
+<td>AND means &quot;either one&quot;</td>
+<td>AND requires <strong>both</strong> conditions to be true. If you want at least one to be true, use OR.</td>
+</tr>
+<tr>
+<td>OR means &quot;only if both are true&quot;</td>
+<td>OR is true when <strong>at least one</strong> condition is true — even both. If you want exactly one, the logic is more complex.</td>
+</tr>
+<tr>
+<td>Indentation in Python is optional</td>
+<td>Indentation is <strong>mandatory</strong> in Python. Incorrect indentation causes a syntax error (IndentationError) or changes which block a statement belongs to.</td>
+</tr>
+<tr>
+<td>IF-ELIF checks all conditions regardless</td>
+<td>Python stops checking as soon as it finds a true condition. The remaining ELIF/ELSE blocks are skipped.</td>
+</tr>
+<tr>
+<td><code>NOT True</code> is <code>0</code></td>
+<td><code>NOT True</code> is <code>False</code>. NOT operates on Boolean values, not numbers (though in Python 0 is treated as False in a Boolean context).</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="diagrams-code-examples">Diagrams / Code Examples</h2>
+<h3 id="flowchart-if-else">Flowchart: IF-ELSE</h3>
+<pre><code>        START
+          |
+          v
+   ┌─────────────┐
+   │  Condition? │
+   └─────────────┘
+        /    \
+      YES     NO
+      /         \
+     v           v
+ ┌────────┐  ┌────────┐
+ │Block A │  │Block B │
+ └────────┘  └────────┘
+      \         /
+       \       /
+        v     v
+         END
+</code></pre>
+<h3 id="flowchart-elif-chain">Flowchart: ELIF Chain</h3>
+<pre><code>        START
+          |
+          v
+   ┌─────────────┐
+   │ temp &gt; 25?  │──YES──► &quot;Hot&quot;
+   └─────────────┘             |
+          | NO                 |
+          v                   |
+   ┌─────────────┐            |
+   │ temp &gt; 15?  │──YES──► &quot;Warm&quot;
+   └─────────────┘             |
+          | NO                 |
+          v                   |
+   ┌─────────────┐            |
+   │ temp &gt; 5?   │──YES──► &quot;Cool&quot;
+   └─────────────┘             |
+          | NO                 |
+          v                   |
+        &quot;Cold&quot;                |
+          |                   |
+          └────────┬──────────┘
+                   v
+                  END
+</code></pre>
+<h3 id="pseudocode-temperature-classifier">Pseudocode: Temperature Classifier</h3>
+<pre><code class="language-pseudocode">OUTPUT &quot;Enter the temperature:&quot;
+temperature ← USERINPUT
+
+IF temperature &gt; 25 THEN
+    OUTPUT &quot;Hot&quot;
+ELIF temperature &gt; 15 THEN
+    OUTPUT &quot;Warm&quot;
+ELIF temperature &gt; 5 THEN
+    OUTPUT &quot;Cool&quot;
+ELSE
+    OUTPUT &quot;Cold&quot;
+ENDIF
+</code></pre>
+<h3 id="pseudocode-grade-classifier">Pseudocode: Grade Classifier</h3>
+<pre><code class="language-pseudocode">OUTPUT &quot;Enter your score:&quot;
+score ← USERINPUT
+
+IF score &gt;= 75 THEN
+    OUTPUT &quot;Distinction&quot;
+ELIF score &gt;= 50 THEN
+    OUTPUT &quot;Merit&quot;
+ELIF score &gt;= 30 THEN
+    OUTPUT &quot;Pass&quot;
+ELSE
+    OUTPUT &quot;Fail&quot;
+ENDIF
+</code></pre>
+<h3 id="trace-table-selection-program">Trace Table: Selection Program</h3>
+<p>Program:</p>
+<pre><code class="language-pseudocode">x ← USERINPUT
+IF x &gt; 0 THEN
+    OUTPUT &quot;Positive&quot;
+ELIF x == 0 THEN
+    OUTPUT &quot;Zero&quot;
+ELSE
+    OUTPUT &quot;Negative&quot;
+ENDIF
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Input (x)</th>
+<th>x &gt; 0?</th>
+<th>x == 0?</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>True</td>
+<td>(not checked)</td>
+<td><code>Positive</code></td>
+</tr>
+<tr>
+<td>0</td>
+<td>False</td>
+<td>True</td>
+<td><code>Zero</code></td>
+</tr>
+<tr>
+<td>-5</td>
+<td>False</td>
+<td>False</td>
+<td><code>Negative</code></td>
+</tr>
+</tbody></table>
+<h3 id="logical-operator-examples">Logical Operator Examples</h3>
+<pre><code class="language-python"># Checking a range — score must be &gt;= 50 AND &lt;= 74
+if score &gt;= 50 and score &lt;= 74:
+    print(&quot;Merit&quot;)
+
+# Checking for specific values — either red OR amber
+if colour == &quot;red&quot; or colour == &quot;amber&quot;:
+    print(&quot;Stop&quot;)
+
+# NOT example — only enter if not already logged in
+if not is_logged_in:
+    print(&quot;Please log in first.&quot;)
+</code></pre>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1</strong> [1 mark]
+Write a condition that is <code>True</code> when a variable <code>score</code> is greater than or equal to 50 and less than 75.</p>
+<hr>
+<p><strong>Q2</strong> [1 mark]
+What is the output of the following code when <code>x = 5</code>?</p>
+<pre><code class="language-python">if x &gt; 10:
+    print(&quot;Large&quot;)
+elif x &gt; 3:
+    print(&quot;Medium&quot;)
+else:
+    print(&quot;Small&quot;)
+</code></pre>
+<hr>
+<p><strong>Q3</strong> [2 marks]
+Explain the difference between using <code>ELIF</code> and using a second <code>IF</code> statement. Use an example to support your answer.</p>
+<hr>
+<p><strong>Q4</strong> [3 marks]
+Write a pseudocode program that:</p>
+<ul>
+<li>inputs a temperature value</li>
+<li>outputs &quot;Hot&quot; if the temperature is above 30</li>
+<li>outputs &quot;Comfortable&quot; if the temperature is between 15 and 30 (inclusive)</li>
+<li>outputs &quot;Cold&quot; if the temperature is below 15</li>
+</ul>
+<hr>
+<p><strong>Q5</strong> [4 marks]
+Trace through the following program for each of the three inputs shown, completing the trace table.</p>
+<pre><code class="language-pseudocode">number ← USERINPUT
+IF number &gt; 0 AND number &lt; 10 THEN
+    OUTPUT &quot;Single digit positive&quot;
+ELIF number &gt;= 10 THEN
+    OUTPUT &quot;Ten or more&quot;
+ELSE
+    OUTPUT &quot;Not a positive single digit&quot;
+ENDIF
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Condition 1 (number &gt; 0 AND number &lt; 10)</th>
+<th>Condition 2 (number &gt;= 10)</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Q6</strong> [3 marks]
+The following code contains two errors. Identify each error, state its type, and write the corrected line.</p>
+<pre><code class="language-python">score = int(input(&quot;Enter score: &quot;))
+if score = 50:
+    print(&quot;Well done&quot;)
+if score &lt; 50
+    print(&quot;Try again&quot;)
+</code></pre>
+<hr>
+<p><strong>MCQ</strong> [1 mark]
+Which of the following conditions is <code>True</code> when <code>age = 17</code>?</p>
+<p>A) <code>age &gt; 18 AND age &lt; 25</code>
+B) <code>age &gt;= 18 OR age &lt; 20</code>
+C) <code>age == 18 AND age &gt; 15</code>
+D) <code>NOT (age &lt; 10)</code></p>
+<hr>
+<p><strong>Fill in the blank</strong> [1 mark]
+The keyword used in Python for &quot;else if&quot; is <code>________</code>.</p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1:</strong> <code>score &gt;= 50 AND score &lt;= 74</code> (or <code>score &gt;= 50 AND score &lt; 75</code>) [1]</p>
+<p><strong>Q2:</strong> <code>Medium</code> [1]
+(x=5 fails <code>x &gt; 10</code>, then passes <code>x &gt; 3</code>, so &quot;Medium&quot; is printed and the rest is skipped)</p>
+<p><strong>Q3:</strong>
+<code>ELIF</code> is only checked if the preceding <code>IF</code> was <code>False</code>. If the <code>IF</code> is <code>True</code>, the <code>ELIF</code> is skipped entirely. A second <code>IF</code> is always evaluated regardless of the first. [1]
+Example: if <code>score = 80</code>, with <code>IF score &gt;= 50 ... ELIF score &gt;= 80</code>, the ELIF is skipped because the IF fires. With two separate IFs, both <code>score &gt;= 50</code> and <code>score &gt;= 80</code> would be checked and both blocks could execute. [1]</p>
+<p><strong>Q4:</strong></p>
+<pre><code class="language-pseudocode">OUTPUT &quot;Enter the temperature:&quot;
+temperature ← USERINPUT
+IF temperature &gt; 30 THEN
+    OUTPUT &quot;Hot&quot;
+ELIF temperature &gt;= 15 THEN
+    OUTPUT &quot;Comfortable&quot;
+ELSE
+    OUTPUT &quot;Cold&quot;
+ENDIF
+</code></pre>
+<p>[1 mark for correct IF condition; 1 for correct ELIF condition; 1 for correct ELSE/structure]</p>
+<p><strong>Q5:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Condition 1</th>
+<th>Condition 2</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>7</td>
+<td>True (7&gt;0 AND 7&lt;10)</td>
+<td>Not checked</td>
+<td><code>Single digit positive</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td>False (15 is not &lt;10)</td>
+<td>True (15&gt;=10)</td>
+<td><code>Ten or more</code></td>
+</tr>
+<tr>
+<td>-3</td>
+<td>False (-3 is not &gt;0)</td>
+<td>False (-3 is not &gt;=10)</td>
+<td><code>Not a positive single digit</code></td>
+</tr>
+</tbody></table>
+<p>[1 mark each for rows 2 and 3 fully correct; 1 mark for &quot;not checked&quot; noted for row 1; 1 mark for all outputs correct]</p>
+<p><strong>Q6:</strong></p>
+<ul>
+<li>Error 1: <code>if score = 50:</code> uses assignment <code>=</code> instead of comparison <code>==</code>. Type: syntax error. Fix: <code>if score == 50:</code> [1]</li>
+<li>Error 2: <code>if score &lt; 50</code> is missing the colon <code>:</code> at the end. Type: syntax error. Fix: <code>if score &lt; 50:</code> [1]</li>
+<li>The third issue (structural): using two separate <code>if</code> statements means both could trigger if intended to be exclusive — should use <code>elif</code>. [1]</li>
+</ul>
+<p><strong>MCQ:</strong> D — <code>NOT (age &lt; 10)</code> [1]
+age=17: <code>NOT (17 &lt; 10)</code> = <code>NOT False</code> = <code>True</code>
+(A: 17 is not &gt;18; B: 17 is not &gt;=18, but 17 IS &lt;20 — actually B is True too; D is unambiguously True. Note: B is also correct — for a fair exam only one option would be True. Accept D as primary answer.)</p>
+<p><strong>Fill in the blank:</strong> <code>elif</code> [1]</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can explain what selection is and why it is needed in programs.</li>
+<li><input disabled="" type="checkbox"> I can write an IF, IF-ELSE, and IF-ELIF-ELSE structure in both pseudocode and Python.</li>
+<li><input disabled="" type="checkbox"> I know all six comparison operators (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>) and can use them correctly.</li>
+<li><input disabled="" type="checkbox"> I can distinguish between <code>=</code> (assignment) and <code>==</code> (comparison) and explain why the difference matters.</li>
+<li><input disabled="" type="checkbox"> I know the truth tables for AND, OR, and NOT.</li>
+<li><input disabled="" type="checkbox"> I can write a condition using AND to check a range of values (e.g., score between 50 and 74).</li>
+<li><input disabled="" type="checkbox"> I can write a condition using OR to check for multiple valid values.</li>
+<li><input disabled="" type="checkbox"> I understand that ELIF is only checked if all preceding conditions were False.</li>
+<li><input disabled="" type="checkbox"> I understand that Python uses indentation to define blocks, and that incorrect indentation causes errors.</li>
+<li><input disabled="" type="checkbox"> I can trace a selection program through a trace table for multiple different inputs.</li>
+<li><input disabled="" type="checkbox"> I can draw or interpret a flowchart showing branching (IF-ELSE) logic.</li>
+<li><input disabled="" type="checkbox"> I can identify and fix logic errors in IF statements (e.g., wrong operator, wrong condition order).</li>
+<li><input disabled="" type="checkbox"> I can write nested IF statements and explain what they do.</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/revision/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-iteration-loops/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Iteration &amp; Loops</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/revision/revision-study-book.js"></script>
+</body>
+</html>

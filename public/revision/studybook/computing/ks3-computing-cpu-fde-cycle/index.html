@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle" />
+  <link rel="canonical" href="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-cpu-fde-cycle/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle" />
+  <meta property="og:url" content="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-cpu-fde-cycle/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle" />
+  <link rel="stylesheet" href="/revision/revision.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — CPU & Fetch-Decode-Execute Cycle",
+  "description": "Study revision notes for KS3 Computing — CPU & Fetch-Decode-Execute Cycle",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — CPU &amp; Fetch-Decode-Execute Cycle</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-the-cpu-fetch-decode-execute-cycle">Topic: The CPU &amp; Fetch-Decode-Execute Cycle</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-cpu-internal-components">Section 1: CPU Internal Components</a></li>
+<li class="sb-toc-h3"><a href="#control-unit-cu">Control Unit (CU)</a></li>
+<li class="sb-toc-h3"><a href="#arithmetic-and-logic-unit-alu">Arithmetic and Logic Unit (ALU)</a></li>
+<li class="sb-toc-h3"><a href="#registers">Registers</a></li>
+<li class="sb-toc-h3"><a href="#cache">Cache</a></li>
+<li class="sb-toc-h2"><a href="#section-2-the-fetch-decode-execute-cycle">Section 2: The Fetch-Decode-Execute Cycle</a></li>
+<li class="sb-toc-h3"><a href="#the-three-stages">The Three Stages</a></li>
+<li class="sb-toc-h3"><a href="#fde-cycle-flow-diagram">FDE Cycle Flow Diagram</a></li>
+<li class="sb-toc-h3"><a href="#worked-fde-example">Worked FDE Example</a></li>
+<li class="sb-toc-h2"><a href="#section-3-cpu-performance-factors">Section 3: CPU Performance Factors</a></li>
+<li class="sb-toc-h3"><a href="#1-clock-speed">1. Clock Speed</a></li>
+<li class="sb-toc-h3"><a href="#2-number-of-cores">2. Number of Cores</a></li>
+<li class="sb-toc-h3"><a href="#3-cache-size">3. Cache Size</a></li>
+<li class="sb-toc-h3"><a href="#performance-factors-comparison-table">Performance Factors Comparison Table</a></li>
+<li class="sb-toc-h3"><a href="#comparing-two-cpus-which-is-faster">Comparing Two CPUs: Which is Faster?</a></li>
+<li class="sb-toc-h2"><a href="#section-4-von-neumann-architecture">Section 4: Von Neumann Architecture</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions">Common Misconceptions</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h3"><a href="#q1-1-mark">Q1 [1 mark]</a></li>
+<li class="sb-toc-h3"><a href="#q2-2-marks">Q2 [2 marks]</a></li>
+<li class="sb-toc-h3"><a href="#q3-2-marks">Q3 [2 marks]</a></li>
+<li class="sb-toc-h3"><a href="#q4-4-marks">Q4 [4 marks]</a></li>
+<li class="sb-toc-h3"><a href="#q5-6-marks">Q5 [6 marks]</a></li>
+<li class="sb-toc-h3"><a href="#multiple-choice-question">Multiple Choice Question</a></li>
+<li class="sb-toc-h3"><a href="#fill-in-the-blank">Fill in the Blank</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h3"><a href="#q1-model-answer">Q1 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q2-model-answer">Q2 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q3-model-answer">Q3 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q4-model-answer">Q4 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q5-model-answer">Q5 Model Answer</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-the-cpu-fetch-decode-execute-cycle">Topic: The CPU & Fetch-Decode-Execute Cycle</h1>
+<p><strong>Year 7–9 | Computer Systems | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>The CPU (Central Processing Unit) is the most important component of any computer. But the CPU is itself made up of several internal sub-components, each with a specific role. Understanding how these parts work together — and following the precise sequence of steps called the <strong>Fetch-Decode-Execute cycle</strong> — is the key to understanding how any computer program actually runs.</p>
+<p>This pack also explores the factors that determine how fast a CPU can process instructions: clock speed, number of cores, and cache size.</p>
+<p>By the end of this pack you will be able to:</p>
+<ul>
+<li>Name and describe the CPU&#39;s internal components (ALU, Control Unit, Cache, Registers)</li>
+<li>Describe each stage of the Fetch-Decode-Execute cycle in detail</li>
+<li>Explain how clock speed, core count, and cache size affect CPU performance</li>
+<li>Explain the Von Neumann architecture concept</li>
+<li>Apply your knowledge to compare CPUs and predict performance</li>
+</ul>
+<hr>
+<h2 id="section-1-cpu-internal-components">Section 1: CPU Internal Components</h2>
+<p>The CPU is not a single simple chip — it contains several specialised sub-components that each handle a different part of the instruction processing task.</p>
+<h3 id="control-unit-cu">Control Unit (CU)</h3>
+<p>The <strong>Control Unit</strong> is the &quot;manager&quot; or &quot;coordinator&quot; of the CPU. It:</p>
+<ul>
+<li>Directs the flow of data between the CPU&#39;s components and RAM</li>
+<li>Manages and coordinates the Fetch-Decode-Execute cycle</li>
+<li>Does <strong>not</strong> perform calculations itself — it organises and controls everything else</li>
+<li>Sends control signals to other components telling them what to do and when</li>
+</ul>
+<h3 id="arithmetic-and-logic-unit-alu">Arithmetic and Logic Unit (ALU)</h3>
+<p>The <strong>ALU</strong> is where all actual computation happens. It performs:</p>
+<ul>
+<li><strong>Arithmetic operations:</strong> Addition, subtraction, multiplication, division</li>
+<li><strong>Logical operations:</strong> AND, OR, NOT, XOR (Boolean logic comparisons)</li>
+<li><strong>Comparison operations:</strong> Is A greater than B? Are A and B equal?</li>
+</ul>
+<p>The ALU is the component that executes mathematical instructions. The result is temporarily held in a register.</p>
+<h3 id="registers">Registers</h3>
+<p><strong>Registers</strong> are extremely small but ultra-fast memory locations <strong>inside the CPU itself</strong>. They hold data and instructions that the CPU is working with right now — they are faster than cache or RAM.</p>
+<p>Key registers:</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Program Counter (PC)</strong></td>
+<td>Holds the <strong>memory address</strong> of the next instruction to be fetched from RAM</td>
+</tr>
+<tr>
+<td><strong>Accumulator</strong></td>
+<td>Holds the result of the most recent ALU operation</td>
+</tr>
+<tr>
+<td><strong>Memory Address Register (MAR)</strong></td>
+<td>Holds the address in RAM that data/instructions are being read from or written to</td>
+</tr>
+<tr>
+<td><strong>Memory Data Register (MDR)</strong></td>
+<td>Temporarily holds data that has just been fetched from, or is about to be written to, RAM</td>
+</tr>
+</tbody></table>
+<p>At KS3 level, you need to know the Program Counter and Accumulator. The MAR and MDR become more important at GCSE.</p>
+<h3 id="cache">Cache</h3>
+<p><strong>Cache</strong> is a small amount of very high-speed memory located <strong>inside or very close to the CPU</strong>. It stores copies of the most frequently used instructions and data.</p>
+<ul>
+<li><strong>Much faster</strong> than RAM to access</li>
+<li><strong>Much smaller</strong> than RAM (typically a few MB compared to RAM&#39;s many GB)</li>
+<li>Organised in levels: <strong>L1 cache</strong> (smallest, fastest, inside CPU), <strong>L2 cache</strong> (larger, slightly slower), <strong>L3 cache</strong> (largest, shared between cores)</li>
+<li>When the CPU needs data, it checks cache first. If found (a <strong>cache hit</strong>), it reads fast. If not found (a <strong>cache miss</strong>), it must fetch from RAM (slower).</li>
+</ul>
+<p><strong>Why cache matters:</strong> RAM access takes many more clock cycles than cache access. If frequently used instructions are already in cache, the CPU wastes fewer cycles waiting — execution is much faster.</p>
+<hr>
+<h2 id="section-2-the-fetch-decode-execute-cycle">Section 2: The Fetch-Decode-Execute Cycle</h2>
+<p>Every instruction that every program ever runs goes through the same three-stage process, repeated continuously, billions of times per second.</p>
+<h3 id="the-three-stages">The Three Stages</h3>
+<h4 id="stage-1-fetch">Stage 1: FETCH</h4>
+<ol>
+<li>The <strong>Control Unit</strong> reads the memory address stored in the <strong>Program Counter (PC)</strong></li>
+<li>It sends this address to RAM via the address bus</li>
+<li>The instruction stored at that address in RAM is retrieved</li>
+<li>The instruction is copied into the <strong>Memory Data Register (MDR)</strong>, then into the <strong>Current Instruction Register</strong></li>
+<li>The <strong>Program Counter is incremented</strong> (updated to point to the address of the next instruction)</li>
+</ol>
+<p><strong>In plain English:</strong> The CPU finds out where the next instruction is, goes to that location in RAM, brings the instruction back into the CPU, and updates its &quot;bookmark&quot; to remember where to go next.</p>
+<h4 id="stage-2-decode">Stage 2: DECODE</h4>
+<ol>
+<li>The <strong>Control Unit</strong> examines the instruction that has just been fetched</li>
+<li>It interprets what operation is required (e.g. &quot;add these two numbers&quot;, &quot;move this value to that location&quot;, &quot;jump to this address&quot;)</li>
+<li>It determines what data is needed and where to find it</li>
+<li>It prepares the appropriate signals to carry out the operation</li>
+</ol>
+<p><strong>In plain English:</strong> The Control Unit reads the instruction and works out exactly what needs to happen and who needs to do it.</p>
+<h4 id="stage-3-execute">Stage 3: EXECUTE</h4>
+<ol>
+<li>The relevant component carries out the instruction:<ul>
+<li>If it is a calculation: the <strong>ALU</strong> performs the arithmetic or logic operation</li>
+<li>If it is a memory access: data is read from or written to RAM</li>
+<li>If it is a control instruction (e.g. jump/branch): the <strong>Program Counter</strong> is updated to a new address</li>
+</ul>
+</li>
+<li>The result may be stored in a <strong>register</strong> (Accumulator) or written back to RAM</li>
+</ol>
+<p><strong>In plain English:</strong> The instruction is actually carried out by the appropriate part of the CPU (or involves RAM).</p>
+<p>After Execute, the cycle immediately <strong>returns to Fetch</strong> for the next instruction.</p>
+<hr>
+<h3 id="fde-cycle-flow-diagram">FDE Cycle Flow Diagram</h3>
+<pre><code>                    ┌─────────────────┐
+                    │     FETCH       │
+                    │                 │
+                    │ • Read Program  │
+                    │   Counter       │
+                    │ • Retrieve      │
+                    │   instruction   │
+                    │   from RAM      │
+                    │ • Increment PC  │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │     DECODE      │
+                    │                 │
+                    │ • Control Unit  │
+                    │   interprets    │
+                    │   instruction   │
+                    │ • Determines    │
+                    │   operation &amp;   │
+                    │   data needed   │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │     EXECUTE     │
+                    │                 │
+                    │ • ALU performs  │
+                    │   calculation   │
+                    │ • OR RAM is     │
+                    │   read/written  │
+                    │ • Result stored │◄─────┐
+                    └────────┬────────┘      │
+                             │               │
+                             └───────────────┘
+                           (repeat continuously)
+</code></pre>
+<hr>
+<h3 id="worked-fde-example">Worked FDE Example</h3>
+<p>Imagine a program instruction: <strong>&quot;Add the value 5 to the value stored in the Accumulator&quot;</strong></p>
+<pre><code>FETCH:
+  Program Counter says: &quot;Next instruction is at address 0042&quot;
+  CPU retrieves the instruction from RAM address 0042
+  PC is updated to 0043 (ready for next instruction)
+
+DECODE:
+  Control Unit reads: &quot;ADD 5&quot;
+  It recognises this as an addition operation
+  It identifies that the number 5 must be added to the Accumulator
+
+EXECUTE:
+  ALU takes the current value in the Accumulator (say, 10)
+  ALU adds 5 to it: 10 + 5 = 15
+  Result (15) is stored in the Accumulator
+  
+  → Cycle repeats: FETCH next instruction from address 0043
+</code></pre>
+<hr>
+<h2 id="section-3-cpu-performance-factors">Section 3: CPU Performance Factors</h2>
+<h3 id="1-clock-speed">1. Clock Speed</h3>
+<p>The <strong>clock</strong> is an electronic signal that synchronises all operations in the CPU. Each &quot;tick&quot; is one clock cycle, and the CPU performs a set amount of work per cycle.</p>
+<ul>
+<li><strong>Clock speed</strong> is measured in <strong>GHz</strong> (gigahertz = billions of cycles per second)</li>
+<li>A 3.2 GHz CPU performs 3,200,000,000 cycles every second</li>
+<li>Higher clock speed → more instructions processed per second → faster execution</li>
+</ul>
+<p><strong>Limitation:</strong> Higher clock speed generates more heat. There is a physical limit to how fast transistors can switch reliably.</p>
+<pre><code>Clock speed comparison:
+  2.0 GHz  →  2 billion cycles/second
+  3.2 GHz  →  3.2 billion cycles/second  (60% faster)
+  5.0 GHz  →  5 billion cycles/second   (150% faster than 2.0 GHz)
+</code></pre>
+<h3 id="2-number-of-cores">2. Number of Cores</h3>
+<p>A <strong>core</strong> is a complete, independent processing unit. A modern CPU chip typically contains multiple cores on a single piece of silicon.</p>
+<ul>
+<li><strong>Dual-core:</strong> 2 independent cores</li>
+<li><strong>Quad-core:</strong> 4 independent cores</li>
+<li><strong>Octa-core:</strong> 8 independent cores</li>
+</ul>
+<p>Each core can fetch, decode, and execute instructions independently, allowing <strong>genuinely parallel execution</strong> of multiple tasks simultaneously.</p>
+<p><strong>Example:</strong> A quad-core CPU can run four separate threads simultaneously — so while one core runs your web browser, another runs your music app, another handles background updates, and another processes a download.</p>
+<p><strong>Limitation:</strong> Not all software is written to use multiple cores (parallelised code). A single-threaded program can only use one core at a time, no matter how many the CPU has.</p>
+<h3 id="3-cache-size">3. Cache Size</h3>
+<p>As explained earlier, cache is the ultra-fast memory inside the CPU. A <strong>larger cache</strong> means:</p>
+<ul>
+<li>More frequently used instructions and data can be stored close to the CPU</li>
+<li>Fewer <strong>cache misses</strong> (situations where the CPU has to wait for slower RAM)</li>
+<li>Faster execution overall</li>
+</ul>
+<p><strong>Limitation:</strong> Cache is extremely expensive to manufacture. There is a practical limit to how much cache fits on a CPU chip.</p>
+<hr>
+<h3 id="performance-factors-comparison-table">Performance Factors Comparison Table</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>How it improves performance</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Higher clock speed</strong></td>
+<td>More instruction cycles per second</td>
+<td>Generates more heat; physical switch speed limit</td>
+</tr>
+<tr>
+<td><strong>More cores</strong></td>
+<td>Multiple tasks execute truly in parallel</td>
+<td>Requires software written to use multiple cores</td>
+</tr>
+<tr>
+<td><strong>Larger cache</strong></td>
+<td>More frequently used data available instantly; fewer slow RAM accesses</td>
+<td>Expensive; limited physical space on chip</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="comparing-two-cpus-which-is-faster">Comparing Two CPUs: Which is Faster?</h3>
+<pre><code>CPU A: 1 core  @ 2.0 GHz, 1 MB cache
+CPU B: 4 cores @ 3.2 GHz, 8 MB cache
+
+For a single-threaded task (e.g. running one program):
+  CPU B&#39;s 3.2 GHz clock speed wins over CPU A&#39;s 2.0 GHz — 60% more cycles/second.
+
+For heavy multitasking (e.g. video editing while gaming):
+  CPU B&#39;s 4 cores massively outperform CPU A&#39;s 1 core — 4 tasks can run in parallel.
+  CPU A would have to rapidly switch between tasks (slower apparent multitasking).
+
+For cache benefit:
+  CPU B&#39;s 8 MB cache means far fewer RAM accesses needed.
+  CPU A&#39;s 1 MB cache fills quickly; frequent cache misses slow execution.
+
+Overall: CPU B is significantly faster in virtually all scenarios.
+</code></pre>
+<hr>
+<h2 id="section-4-von-neumann-architecture">Section 4: Von Neumann Architecture</h2>
+<p><strong>Von Neumann architecture</strong> is the design principle that underlies virtually all modern general-purpose computers. Its key idea:</p>
+<blockquote>
+<p>Both <strong>program instructions</strong> and <strong>data</strong> are stored together in the same memory (RAM), using the same format (binary numbers).</p>
+</blockquote>
+<p>This is why the same RAM that holds your document text also holds the word-processor program&#39;s instructions. The CPU cannot tell from a binary value alone whether it is data or an instruction — the position in memory and the context of the program determines this.</p>
+<pre><code>Von Neumann Architecture (simplified):
+
+        ┌───────────────────────────────────┐
+        │              CPU                  │
+        │  ┌──────────┐  ┌───────────────┐ │
+        │  │ Control  │  │     ALU       │ │
+        │  │  Unit    │  │ (calculations)│ │
+        │  └──────────┘  └───────────────┘ │
+        │  ┌──────────┐  ┌───────────────┐ │
+        │  │ Registers│  │    Cache      │ │
+        │  │ (PC, Acc)│  │ (fast store)  │ │
+        │  └──────────┘  └───────────────┘ │
+        └──────────────┬────────────────────┘
+                       │ (buses: data, address, control)
+                       ▼
+        ┌───────────────────────────────────┐
+        │              RAM                  │
+        │  ┌─────────────┐ ┌─────────────┐ │
+        │  │  Program    │ │    Data     │ │
+        │  │ Instructions│ │  (values,   │ │
+        │  │  (binary)   │ │  results)   │ │
+        │  └─────────────┘ └─────────────┘ │
+        └───────────────────────────────────┘
+</code></pre>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CPU</strong></td>
+<td>Central Processing Unit; executes all program instructions</td>
+</tr>
+<tr>
+<td><strong>ALU</strong></td>
+<td>Arithmetic and Logic Unit; performs all calculations and logical comparisons</td>
+</tr>
+<tr>
+<td><strong>Control Unit</strong></td>
+<td>Manages the FDE cycle; coordinates data flow between CPU components and RAM</td>
+</tr>
+<tr>
+<td><strong>Register</strong></td>
+<td>Tiny, ultra-fast memory storage inside the CPU</td>
+</tr>
+<tr>
+<td><strong>Program Counter (PC)</strong></td>
+<td>Register that holds the memory address of the next instruction to be fetched</td>
+</tr>
+<tr>
+<td><strong>Accumulator</strong></td>
+<td>Register that holds the result of the most recent ALU operation</td>
+</tr>
+<tr>
+<td><strong>Cache</strong></td>
+<td>Small, fast memory inside/near the CPU; stores frequently used instructions to reduce RAM accesses</td>
+</tr>
+<tr>
+<td><strong>FDE cycle</strong></td>
+<td>Fetch-Decode-Execute; the continuous three-stage process by which a CPU executes instructions</td>
+</tr>
+<tr>
+<td><strong>Clock speed</strong></td>
+<td>The number of cycles per second a CPU performs; measured in GHz</td>
+</tr>
+<tr>
+<td><strong>Core</strong></td>
+<td>An independent processing unit within a CPU; multiple cores allow parallel execution</td>
+</tr>
+<tr>
+<td><strong>Von Neumann architecture</strong></td>
+<td>Design where program instructions and data share the same RAM</td>
+</tr>
+<tr>
+<td><strong>Cache hit</strong></td>
+<td>When requested data is found in cache (fast)</td>
+</tr>
+<tr>
+<td><strong>Cache miss</strong></td>
+<td>When data is not in cache and must be fetched from RAM (slower)</td>
+</tr>
+<tr>
+<td><strong>GHz</strong></td>
+<td>Gigahertz; billions of cycles per second; unit for clock speed</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions">Common Misconceptions</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;The CPU stores programs&quot;</td>
+<td>The CPU <strong>executes</strong> programs. Programs are stored in RAM (while running) and on secondary storage (HDD/SSD) permanently. The CPU only holds the current instruction in a register.</td>
+</tr>
+<tr>
+<td>&quot;More cores always means faster performance&quot;</td>
+<td>More cores improve performance for tasks that can run in parallel. A single-threaded program that cannot be parallelised uses only one core and sees no benefit from additional cores.</td>
+</tr>
+<tr>
+<td>&quot;Cache is the same as RAM&quot;</td>
+<td>Cache is a <strong>smaller, faster</strong> type of memory located inside/near the CPU. RAM is much larger but slower. Cache stores a copy of frequently accessed data from RAM.</td>
+</tr>
+<tr>
+<td>&quot;Higher clock speed always means a faster computer&quot;</td>
+<td>Clock speed is one factor. A 4-core 3.2 GHz CPU will often outperform a single-core 4.0 GHz CPU for typical multitasking workloads. Cache size and core count also matter significantly.</td>
+</tr>
+<tr>
+<td>&quot;The FDE cycle has only two steps&quot;</td>
+<td>There are exactly <strong>three</strong> distinct stages: Fetch, Decode, and Execute. Decode is a separate stage where the Control Unit interprets the instruction — it is not part of Fetch or Execute.</td>
+</tr>
+<tr>
+<td>&quot;The ALU controls the FDE cycle&quot;</td>
+<td>The <strong>Control Unit</strong> manages and coordinates the FDE cycle. The ALU only executes arithmetic and logical operations during the Execute stage.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<h3 id="q1-1-mark">Q1 [1 mark]</h3>
+<p>What does <strong>ALU</strong> stand for?</p>
+<h3 id="q2-2-marks">Q2 [2 marks]</h3>
+<p>Describe what happens during the <strong>Fetch</strong> stage of the Fetch-Decode-Execute cycle. Include reference to the Program Counter in your answer.</p>
+<h3 id="q3-2-marks">Q3 [2 marks]</h3>
+<p>Explain how a <strong>larger cache</strong> improves the performance of a CPU.</p>
+<h3 id="q4-4-marks">Q4 [4 marks]</h3>
+<p>A student is choosing between two computers:</p>
+<ul>
+<li><strong>Computer X:</strong> Single-core CPU running at 2.0 GHz with 2 MB cache</li>
+<li><strong>Computer Y:</strong> Quad-core CPU running at 3.2 GHz with 8 MB cache</li>
+</ul>
+<p>Explain which computer would perform better for (a) running a single program and (b) heavy multitasking. Justify your answers.</p>
+<h3 id="q5-6-marks">Q5 [6 marks]</h3>
+<p>Describe the complete Fetch-Decode-Execute cycle. Your answer should clearly describe what happens at each of the three stages, name the components involved, and explain what happens to the Program Counter.</p>
+<h3 id="multiple-choice-question">Multiple Choice Question</h3>
+<p>Which component of the CPU is responsible for coordinating the Fetch-Decode-Execute cycle and managing the flow of data between components?</p>
+<ul>
+<li>A) ALU</li>
+<li>B) Accumulator</li>
+<li>C) Control Unit</li>
+<li>D) Cache</li>
+</ul>
+<p><em>(Answer: C)</em></p>
+<h3 id="fill-in-the-blank">Fill in the Blank</h3>
+<p>&quot;The __________ holds the memory address of the next instruction to be fetched. After fetching, it is automatically __________ to point to the next instruction. During the Execute stage, calculations are performed by the __________.&quot;</p>
+<p><em>(Answers: Program Counter; incremented; ALU)</em></p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<h3 id="q1-model-answer">Q1 Model Answer</h3>
+<p>Arithmetic and Logic Unit</p>
+<h3 id="q2-model-answer">Q2 Model Answer</h3>
+<p>During the Fetch stage, the Control Unit reads the memory address stored in the Program Counter (PC). It uses this address to retrieve the instruction from that location in RAM. The instruction is copied into the CPU. The Program Counter is then incremented (increased) so that it points to the address of the next instruction to be fetched.</p>
+<h3 id="q3-model-answer">Q3 Model Answer</h3>
+<p>A larger cache can store more frequently used instructions and data close to the CPU. When the CPU needs data, it checks the cache first. If the data is found (a cache hit), the CPU reads it very quickly without having to access the much slower RAM. With a larger cache, more data can be stored — resulting in more cache hits and fewer time-consuming RAM accesses, so the CPU processes instructions faster overall.</p>
+<h3 id="q4-model-answer">Q4 Model Answer</h3>
+<p><strong>(a) Running a single program:</strong>
+Computer Y would still perform better because its 3.2 GHz clock speed is significantly faster than Computer X&#39;s 2.0 GHz, allowing it to complete more instruction cycles per second. Its larger 8 MB cache also means fewer RAM accesses. For a single-threaded program that can only use one core, clock speed and cache size are the decisive factors.</p>
+<p><strong>(b) Heavy multitasking:</strong>
+Computer Y would perform dramatically better. Its 4 cores can execute 4 tasks truly simultaneously — for example, running a game, a browser, a music app, and background updates all at the same time, each on a separate core. Computer X&#39;s single core can only execute one instruction stream at a time, having to rapidly switch between all the tasks (context switching), which creates delays and makes all tasks run slower.</p>
+<h3 id="q5-model-answer">Q5 Model Answer</h3>
+<p><strong>Fetch:</strong>
+The Control Unit reads the value stored in the Program Counter (PC), which contains the memory address of the next instruction. The CPU sends this address to RAM and retrieves the instruction stored there. The instruction is brought into the CPU and held in a register. The Program Counter is then incremented — updated to the address of the next instruction — so the CPU knows where to fetch from next.</p>
+<p><strong>Decode:</strong>
+The Control Unit examines the fetched instruction. It interprets what operation is required (e.g. an addition, a data move, a jump) and determines what data is needed and where it is. The Control Unit then sends the appropriate control signals to the relevant components to prepare them to carry out the operation.</p>
+<p><strong>Execute:</strong>
+The instruction is carried out by the relevant component. If it involves a calculation, the ALU performs the arithmetic or logical operation and stores the result in the Accumulator register. If it involves reading or writing memory, data is transferred between RAM and a register. If it is a branch/jump instruction, the Program Counter may be updated to a new address.</p>
+<p>After Execute, the cycle immediately begins again with the next Fetch. This cycle repeats billions of times per second for every program running on the computer.</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can name the four key internal components of the CPU (Control Unit, ALU, Registers, Cache)</li>
+<li><input disabled="" type="checkbox"> I can describe what the Control Unit does (manages FDE cycle, coordinates data flow)</li>
+<li><input disabled="" type="checkbox"> I can describe what the ALU does (arithmetic and logical operations)</li>
+<li><input disabled="" type="checkbox"> I can explain what registers are and name the Program Counter and Accumulator</li>
+<li><input disabled="" type="checkbox"> I can explain the purpose of cache and why it is faster than RAM</li>
+<li><input disabled="" type="checkbox"> I can describe all three stages of the FDE cycle (Fetch, Decode, Execute)</li>
+<li><input disabled="" type="checkbox"> I know the role of the Program Counter in the Fetch stage (address of next instruction; incremented after fetch)</li>
+<li><input disabled="" type="checkbox"> I can explain how clock speed affects CPU performance (GHz = cycles per second)</li>
+<li><input disabled="" type="checkbox"> I can explain how having more cores improves multitasking</li>
+<li><input disabled="" type="checkbox"> I can explain how larger cache improves performance (fewer RAM accesses, more cache hits)</li>
+<li><input disabled="" type="checkbox"> I can compare two CPUs across clock speed, cores, and cache and predict which is faster</li>
+<li><input disabled="" type="checkbox"> I know the key idea of Von Neumann architecture (data and instructions stored in same RAM)</li>
+<li><input disabled="" type="checkbox"> I can identify and correct common misconceptions about CPU components and performance</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/revision/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/revision/revision-study-book.js"></script>
+</body>
+</html>

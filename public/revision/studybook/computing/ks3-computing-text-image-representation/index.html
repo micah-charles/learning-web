@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Text &amp; Image Representation | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Text &amp; Image Representation" />
+  <link rel="canonical" href="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-text-image-representation/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Text &amp; Image Representation | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Text &amp; Image Representation" />
+  <meta property="og:url" content="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-text-image-representation/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Text &amp; Image Representation | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Text &amp; Image Representation" />
+  <link rel="stylesheet" href="/revision/revision.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Text & Image Representation",
+  "description": "Study revision notes for KS3 Computing — Text & Image Representation",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Text &amp; Image Representation</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Text &amp; Image Representation</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-text-image-representation">Topic: Text &amp; Image Representation</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-text-representation">Section 1: Text Representation</a></li>
+<li class="sb-toc-h3"><a href="#how-characters-are-stored">How Characters Are Stored</a></li>
+<li class="sb-toc-h3"><a href="#ascii-american-standard-code-for-information-interchange">ASCII (American Standard Code for Information Interchange)</a></li>
+<li class="sb-toc-h3"><a href="#extended-ascii">Extended ASCII</a></li>
+<li class="sb-toc-h3"><a href="#unicode">Unicode</a></li>
+<li class="sb-toc-h2"><a href="#section-2-image-representation">Section 2: Image Representation</a></li>
+<li class="sb-toc-h3"><a href="#pixels">Pixels</a></li>
+<li class="sb-toc-h3"><a href="#colour-depth-bit-depth">Colour Depth (Bit Depth)</a></li>
+<li class="sb-toc-h3"><a href="#calculating-image-file-size">Calculating Image File Size</a></li>
+<li class="sb-toc-h3"><a href="#quality-vs-file-size-trade-offs">Quality vs File Size Trade-offs</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions">Common Misconceptions</a></li>
+<li class="sb-toc-h2"><a href="#diagrams-code-examples">Diagrams &amp; Code Examples</a></li>
+<li class="sb-toc-h3"><a href="#ascii-character-grid-excerpt">ASCII Character Grid (excerpt)</a></li>
+<li class="sb-toc-h3"><a href="#44-pixel-grid-simple-black-and-white-image">4×4 Pixel Grid — Simple Black and White Image</a></li>
+<li class="sb-toc-h3"><a href="#true-colour-pixel-breakdown">True Colour Pixel Breakdown</a></li>
+<li class="sb-toc-h3"><a href="#file-size-comparison-table">File Size Comparison Table</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h3"><a href="#q1-1-mark">Q1 [1 mark]</a></li>
+<li class="sb-toc-h3"><a href="#q2-1-mark">Q2 [1 mark]</a></li>
+<li class="sb-toc-h3"><a href="#q3-3-marks">Q3 [3 marks]</a></li>
+<li class="sb-toc-h3"><a href="#q4-3-marks">Q4 [3 marks]</a></li>
+<li class="sb-toc-h3"><a href="#q5-4-marks">Q5 [4 marks]</a></li>
+<li class="sb-toc-h3"><a href="#multiple-choice-question">Multiple Choice Question</a></li>
+<li class="sb-toc-h3"><a href="#fill-in-the-blank">Fill in the Blank</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h3"><a href="#q1-model-answer">Q1 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q2-model-answer">Q2 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q3-model-answer">Q3 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q4-model-answer">Q4 Model Answer</a></li>
+<li class="sb-toc-h3"><a href="#q5-model-answer">Q5 Model Answer</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-text-image-representation">Topic: Text & Image Representation</h1>
+<p><strong>Year 7–9 | Data Representation | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>All computers ultimately store everything — letters, photographs, video clips — as binary numbers. To make this work, computers need agreed systems that map binary values to specific characters, colours, and pixels.</p>
+<p>This pack covers the two most important areas of data representation beyond raw numbers: <strong>text</strong> (how characters are encoded) and <strong>images</strong> (how pictures are stored as grids of coloured dots). These ideas directly explain why files have different sizes and why some images look sharper than others.</p>
+<p>By the end of this pack you will be able to:</p>
+<ul>
+<li>Explain how ASCII and Unicode encode text as binary numbers</li>
+<li>Read and use an ASCII table</li>
+<li>Describe how images are stored using pixels and colour depth</li>
+<li>Calculate the file size of an image from its dimensions and colour depth</li>
+<li>Explain the trade-off between quality and file size</li>
+</ul>
+<hr>
+<h2 id="section-1-text-representation">Section 1: Text Representation</h2>
+<h3 id="how-characters-are-stored">How Characters Are Stored</h3>
+<p>Computers only understand binary numbers. To store text, every character — letters, digits, punctuation, spaces — must be assigned a unique number. That number is then stored in binary. The agreed mapping between numbers and characters is called a <strong>character set</strong> (or character encoding).</p>
+<h3 id="ascii-american-standard-code-for-information-interchange">ASCII (American Standard Code for Information Interchange)</h3>
+<p><strong>ASCII</strong> is the original character encoding standard, developed in the 1960s.</p>
+<ul>
+<li>Uses <strong>7 bits</strong> per character</li>
+<li>Represents <strong>128 characters</strong> in total (2⁷ = 128)</li>
+<li>Covers: uppercase letters (A–Z), lowercase letters (a–z), digits (0–9), punctuation marks, and <strong>control characters</strong> (non-printable codes like &quot;new line&quot; or &quot;tab&quot;)</li>
+</ul>
+<p><strong>Key ASCII values to memorise:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>ASCII Code (Denary)</th>
+<th>ASCII Code (Binary)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>65</td>
+<td>1000001</td>
+</tr>
+<tr>
+<td>B</td>
+<td>66</td>
+<td>1000010</td>
+</tr>
+<tr>
+<td>C</td>
+<td>67</td>
+<td>1000011</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>90</td>
+<td>1011010</td>
+</tr>
+<tr>
+<td>a</td>
+<td>97</td>
+<td>1100001</td>
+</tr>
+<tr>
+<td>b</td>
+<td>98</td>
+<td>1100010</td>
+</tr>
+<tr>
+<td>z</td>
+<td>122</td>
+<td>1111010</td>
+</tr>
+<tr>
+<td>0</td>
+<td>48</td>
+<td>0110000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>49</td>
+<td>0110001</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>32</td>
+<td>0100000</td>
+</tr>
+</tbody></table>
+<p><strong>Useful patterns to notice:</strong></p>
+<ul>
+<li>Uppercase letters start at 65. Each successive letter is +1: B=66, C=67 …</li>
+<li>Lowercase letters start at 97. The difference between uppercase and lowercase is always <strong>32</strong>: <code>a</code> = <code>A</code> + 32.</li>
+<li>Digit characters (not values) start at 48: <code>&#39;0&#39;</code> = 48, <code>&#39;1&#39;</code> = 49, <code>&#39;9&#39;</code> = 57.</li>
+</ul>
+<h4 id="worked-example-encoding-cat-in-ascii">Worked Example: Encoding "Cat" in ASCII</h4>
+<pre><code>C → 67  → 01000011
+a → 97  → 01100001
+t → 116 → 01110100
+
+&quot;Cat&quot; stored as: 01000011  01100001  01110100
+(3 bytes / 24 bits total)
+</code></pre>
+<h3 id="extended-ascii">Extended ASCII</h3>
+<ul>
+<li>Uses <strong>8 bits</strong> per character</li>
+<li>Represents <strong>256 characters</strong> in total (2⁸ = 256)</li>
+<li>The first 128 characters are identical to standard ASCII</li>
+<li>The extra 128 characters include accented letters (é, ü, ñ), currency symbols, and some line-drawing characters</li>
+<li>Still limited to Western European languages</li>
+</ul>
+<hr>
+<h3 id="unicode">Unicode</h3>
+<p><strong>Unicode</strong> was developed to solve the major limitation of ASCII: it can only represent English and a few other Western characters. The world has thousands of different writing systems.</p>
+<ul>
+<li>Supports <strong>over 143,000 characters</strong> covering virtually every written language: Arabic, Chinese, Japanese, Hindi, Korean, emoji, and more</li>
+<li>The most common implementation is <strong>UTF-8</strong>:<ul>
+<li>Compatible with ASCII for the first 128 characters (same binary codes)</li>
+<li>Uses <strong>variable-length encoding</strong>: common characters use 1 byte, less common characters use 2, 3, or 4 bytes</li>
+</ul>
+</li>
+<li>Other Unicode forms: UTF-16 (commonly used internally by Windows), UTF-32</li>
+</ul>
+<p><strong>Why Unicode was developed:</strong></p>
+<ol>
+<li><strong>Globalisation</strong> — the internet connects people worldwide who write in different scripts</li>
+<li><strong>ASCII cannot represent</strong> characters like 中, ع, or 日</li>
+<li>A single universal standard prevents garbled text when sharing files between different systems</li>
+<li><strong>Emoji</strong> and special symbols require more than 128 code points</li>
+</ol>
+<p><strong>Unicode vs ASCII comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ASCII</th>
+<th>Unicode (UTF-8)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bits per character</td>
+<td>7</td>
+<td>8–32 (variable)</td>
+</tr>
+<tr>
+<td>Characters supported</td>
+<td>128</td>
+<td>143,000+</td>
+</tr>
+<tr>
+<td>Languages</td>
+<td>English only</td>
+<td>All major world scripts</td>
+</tr>
+<tr>
+<td>Backwards compatible?</td>
+<td>N/A</td>
+<td>Yes (first 128 codes identical)</td>
+</tr>
+<tr>
+<td>Example use</td>
+<td>Old terminals, simple text</td>
+<td>Modern web pages, all OS</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="section-2-image-representation">Section 2: Image Representation</h2>
+<h3 id="pixels">Pixels</h3>
+<p>A digital image is made up of a grid of tiny coloured squares called <strong>pixels</strong> (short for <em>picture elements</em>). A pixel is the <strong>smallest addressable unit</strong> of a digital image — it cannot be divided further while remaining a meaningful image element.</p>
+<p>When you zoom into a digital photograph far enough, you see individual coloured squares: those are pixels.</p>
+<p><strong>Resolution</strong> describes the number of pixels in an image:</p>
+<ul>
+<li>Usually expressed as <strong>width × height</strong>: e.g. 1920 × 1080 (Full HD)</li>
+<li>A 1920 × 1080 image contains 1920 × 1080 = <strong>2,073,600 pixels</strong> (about 2 megapixels)</li>
+<li>More pixels → <strong>higher resolution</strong> → more detail → sharper image</li>
+</ul>
+<h3 id="colour-depth-bit-depth">Colour Depth (Bit Depth)</h3>
+<p><strong>Colour depth</strong> is the number of <strong>bits used to represent the colour of a single pixel</strong>.</p>
+<p>The number of possible colours = <strong>2^(colour depth)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Colour Depth</th>
+<th>Bits per Pixel</th>
+<th>Number of Colours</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1-bit</td>
+<td>1</td>
+<td>2 colours (black &amp; white only)</td>
+<td>QR codes, simple icons</td>
+</tr>
+<tr>
+<td>4-bit</td>
+<td>4</td>
+<td>16 colours</td>
+<td>Early PC graphics</td>
+</tr>
+<tr>
+<td>8-bit</td>
+<td>8</td>
+<td>256 colours</td>
+<td>Simple graphics, GIF images</td>
+</tr>
+<tr>
+<td>16-bit</td>
+<td>16</td>
+<td>65,536 colours</td>
+<td>Basic digital photography</td>
+</tr>
+<tr>
+<td>24-bit</td>
+<td>24</td>
+<td>16,777,216 (~16.7 million)</td>
+<td><strong>True colour</strong> — photographs</td>
+</tr>
+<tr>
+<td>32-bit</td>
+<td>32</td>
+<td>16,777,216 + transparency</td>
+<td>Web graphics with alpha channel</td>
+</tr>
+</tbody></table>
+<p><strong>True Colour (24-bit)</strong> uses <strong>3 channels</strong>: Red, Green, Blue — each with <strong>8 bits</strong> (0–255 per channel).</p>
+<ul>
+<li>8 bits red × 8 bits green × 8 bits blue = 24 bits per pixel</li>
+<li>This gives 256 × 256 × 256 = <strong>16,777,216 different colours</strong></li>
+</ul>
+<h3 id="calculating-image-file-size">Calculating Image File Size</h3>
+<p>The <strong>uncompressed</strong> file size of an image can be calculated with this formula:</p>
+<pre><code>File size (bits) = Width (pixels) × Height (pixels) × Colour depth (bits per pixel)
+
+File size (bytes) = File size (bits) ÷ 8
+</code></pre>
+<h4 id="worked-example-100-200-image-with-8-bit-colour">Worked Example: 100 × 200 Image with 8-bit Colour</h4>
+<pre><code>Width   = 100 pixels
+Height  = 200 pixels
+Colour depth = 8 bits per pixel
+
+File size (bits)  = 100 × 200 × 8
+                  = 20,000 × 8
+                  = 160,000 bits
+
+File size (bytes) = 160,000 ÷ 8
+                  = 20,000 bytes
+
+File size (KB)    = 20,000 ÷ 1,024
+                  ≈ 19.5 KB
+</code></pre>
+<p><strong>Answer: approximately 19.5 KB</strong></p>
+<h4 id="worked-example-800-600-true-colour-24-bit-image">Worked Example: 800 × 600 True Colour (24-bit) Image</h4>
+<pre><code>File size (bits)  = 800 × 600 × 24
+                  = 480,000 × 24
+                  = 11,520,000 bits
+
+File size (bytes) = 11,520,000 ÷ 8
+                  = 1,440,000 bytes
+
+File size (MB)    = 1,440,000 ÷ 1,024 ÷ 1,024
+                  ≈ 1.37 MB
+</code></pre>
+<hr>
+<h3 id="quality-vs-file-size-trade-offs">Quality vs File Size Trade-offs</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Increasing it...</th>
+<th>Effect on quality</th>
+<th>Effect on file size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Resolution</td>
+<td>More pixels</td>
+<td>Better detail, sharper</td>
+<td><strong>Larger</strong></td>
+</tr>
+<tr>
+<td>Colour depth</td>
+<td>More bits per pixel</td>
+<td>More colours, more realistic</td>
+<td><strong>Larger</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Key principle:</strong> Higher quality always means <strong>more data</strong> and therefore <strong>larger files</strong>. In practice, compression (see the compression pack) is used to reduce file sizes.</p>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Character set</strong></td>
+<td>A defined mapping between numbers and characters that a system can represent</td>
+</tr>
+<tr>
+<td><strong>ASCII</strong></td>
+<td>American Standard Code for Information Interchange; 7-bit encoding of 128 characters</td>
+</tr>
+<tr>
+<td><strong>Extended ASCII</strong></td>
+<td>8-bit extension of ASCII; 256 characters including accented letters</td>
+</tr>
+<tr>
+<td><strong>Unicode</strong></td>
+<td>Universal character encoding standard supporting 143,000+ characters from all world scripts</td>
+</tr>
+<tr>
+<td><strong>UTF-8</strong></td>
+<td>The most common Unicode encoding; variable length (1–4 bytes per character); backwards compatible with ASCII</td>
+</tr>
+<tr>
+<td><strong>Pixel</strong></td>
+<td>The smallest single coloured unit in a digital image; picture element</td>
+</tr>
+<tr>
+<td><strong>Resolution</strong></td>
+<td>The number of pixels in an image, expressed as width × height</td>
+</tr>
+<tr>
+<td><strong>Colour depth</strong></td>
+<td>The number of bits used to represent the colour of one pixel</td>
+</tr>
+<tr>
+<td><strong>True colour</strong></td>
+<td>24-bit colour depth: 8 bits each for Red, Green, Blue — 16.7 million colours</td>
+</tr>
+<tr>
+<td><strong>Bit depth</strong></td>
+<td>Another term for colour depth</td>
+</tr>
+<tr>
+<td><strong>File size</strong></td>
+<td>Total amount of storage space required; calculated from dimensions and colour depth</td>
+</tr>
+<tr>
+<td><strong>Control characters</strong></td>
+<td>Non-printable ASCII codes that perform actions (e.g. newline, tab, carriage return)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions">Common Misconceptions</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;ASCII and Unicode are the same thing&quot;</td>
+<td>ASCII supports only 128 characters (English + basic punctuation). Unicode supports 143,000+ characters from all world scripts. They are different standards, though UTF-8 is backwards-compatible with ASCII.</td>
+</tr>
+<tr>
+<td>&quot;More pixels always means better quality&quot;</td>
+<td>More pixels means more resolution and detail, but colour depth also affects quality. A high-resolution image with 1-bit colour depth would be black-and-white only.</td>
+</tr>
+<tr>
+<td>&quot;File size is measured in bits&quot;</td>
+<td>File size is almost always expressed in <strong>bytes</strong> (or KB, MB). The bits formula must be divided by 8 to get bytes.</td>
+</tr>
+<tr>
+<td>&quot;ASCII can only store letters&quot;</td>
+<td>ASCII stores uppercase and lowercase letters, digits 0–9, punctuation, spaces, and control characters like newline. It cannot store non-English characters.</td>
+</tr>
+<tr>
+<td>&quot;Colour depth is the same as resolution&quot;</td>
+<td>They are completely different. Resolution = number of pixels. Colour depth = bits per pixel (number of colours possible). An image can have high resolution but low colour depth, or vice versa.</td>
+</tr>
+<tr>
+<td>&quot;Unicode uses more memory than ASCII for all text&quot;</td>
+<td>UTF-8 uses the same 1 byte per character as ASCII for the first 128 characters. Only non-ASCII characters require more bytes.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="diagrams-code-examples">Diagrams & Code Examples</h2>
+<h3 id="ascii-character-grid-excerpt">ASCII Character Grid (excerpt)</h3>
+<pre><code>Code  Character    Code  Character    Code  Character
+────  ─────────    ────  ─────────    ────  ─────────
+ 32   (space)       65   A             97   a
+ 48   0             66   B             98   b
+ 49   1             67   C             99   c
+ 50   2             90   Z            122   z
+</code></pre>
+<h3 id="44-pixel-grid-simple-black-and-white-image">4×4 Pixel Grid — Simple Black and White Image</h3>
+<p>Imagine a simple 4×4 image where B = Black (1) and W = White (0):</p>
+<pre><code>Pixel grid (visual):        Binary representation:
+┌───┬───┬───┬───┐           Row 1:  0  1  1  0
+│ W │ B │ B │ W │           Row 2:  1  0  0  1
+├───┼───┼───┼───┤           Row 3:  1  0  0  1
+│ B │ W │ W │ B │           Row 4:  0  1  1  0
+├───┼───┼───┼───┤
+│ B │ W │ W │ B │
+├───┼───┼───┼───┤
+│ W │ B │ B │ W │
+└───┴───┴───┴───┘
+
+File size: 4 × 4 × 1 bit = 16 bits = 2 bytes
+(This diamond/ring pattern uses 1-bit colour depth)
+</code></pre>
+<h3 id="true-colour-pixel-breakdown">True Colour Pixel Breakdown</h3>
+<pre><code>One 24-bit pixel:
+
+[ Red: 8 bits ][ Green: 8 bits ][ Blue: 8 bits ]
+  1111 0000      0101 0111        0011 0011
+
+  R = 240        G = 87           B = 51
+
+This represents a specific shade of warm orange.
+</code></pre>
+<h3 id="file-size-comparison-table">File Size Comparison Table</h3>
+<table>
+<thead>
+<tr>
+<th>Image</th>
+<th>Width</th>
+<th>Height</th>
+<th>Colour Depth</th>
+<th>File Size</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tiny B&amp;W icon</td>
+<td>16</td>
+<td>16</td>
+<td>1-bit</td>
+<td>32 bytes</td>
+</tr>
+<tr>
+<td>Small 8-bit</td>
+<td>100</td>
+<td>200</td>
+<td>8-bit</td>
+<td>~19.5 KB</td>
+</tr>
+<tr>
+<td>Medium 24-bit photo</td>
+<td>800</td>
+<td>600</td>
+<td>24-bit</td>
+<td>~1.37 MB</td>
+</tr>
+<tr>
+<td>Full HD photo</td>
+<td>1920</td>
+<td>1080</td>
+<td>24-bit</td>
+<td>~5.93 MB</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<h3 id="q1-1-mark">Q1 [1 mark]</h3>
+<p>What is the ASCII code (in denary) for the uppercase letter <strong>A</strong>?</p>
+<h3 id="q2-1-mark">Q2 [1 mark]</h3>
+<p>A 4-bit colour depth image can display how many different colours? Show your working.</p>
+<h3 id="q3-3-marks">Q3 [3 marks]</h3>
+<p>An image is 100 pixels wide and 200 pixels tall. It uses a colour depth of 8 bits per pixel. Calculate the file size of this image in <strong>bytes</strong>. Show all working.</p>
+<h3 id="q4-3-marks">Q4 [3 marks]</h3>
+<p>Explain why Unicode was developed to replace ASCII. Your answer should include reference to at least two limitations of ASCII.</p>
+<h3 id="q5-4-marks">Q5 [4 marks]</h3>
+<p>Two images have the following properties:</p>
+<ul>
+<li><strong>Image A:</strong> 400 × 300 pixels, 8-bit colour depth</li>
+<li><strong>Image B:</strong> 200 × 150 pixels, 24-bit colour depth</li>
+</ul>
+<p>Calculate the file size of each image in bytes. State which image has the larger file size and explain why the result might be surprising.</p>
+<h3 id="multiple-choice-question">Multiple Choice Question</h3>
+<p>Which of the following statements about ASCII is <strong>correct</strong>?</p>
+<ul>
+<li>A) ASCII uses 8 bits and supports 256 characters</li>
+<li>B) ASCII uses 7 bits and supports 128 characters, including letters, digits, and control characters</li>
+<li>C) ASCII supports characters from all world languages</li>
+<li>D) ASCII and Unicode are different names for the same standard</li>
+</ul>
+<p><em>(Answer: B)</em></p>
+<h3 id="fill-in-the-blank">Fill in the Blank</h3>
+<p>&quot;The number of colours that can be represented at a given colour depth is calculated using the formula __________. At 24-bit colour depth, this gives approximately __________ million different colours.&quot;</p>
+<p><em>(Answers: 2^colour depth; 16.7)</em></p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<h3 id="q1-model-answer">Q1 Model Answer</h3>
+<p>65</p>
+<h3 id="q2-model-answer">Q2 Model Answer</h3>
+<p>Number of colours = 2^colour depth = 2⁴ = <strong>16 colours</strong></p>
+<h3 id="q3-model-answer">Q3 Model Answer</h3>
+<pre><code>File size (bits) = Width × Height × Colour depth
+                 = 100 × 200 × 8
+                 = 160,000 bits
+
+File size (bytes) = 160,000 ÷ 8
+                  = 20,000 bytes
+</code></pre>
+<h3 id="q4-model-answer">Q4 Model Answer</h3>
+<p>Unicode was developed to replace ASCII because:</p>
+<ol>
+<li><strong>ASCII only supports 128 characters</strong>, which is enough for English but not for languages such as Chinese, Arabic, Japanese, or Hindi that use completely different writing systems and thousands of different characters.</li>
+<li><strong>ASCII only covers Western characters</strong> — it has no way to represent accented letters like é or ü from European languages, let alone entirely different scripts.</li>
+<li><strong>Globalisation of the internet</strong> meant that documents, web pages, and software needed to be shared between people in different countries. Without a universal standard, text sent from one country would appear as garbled symbols on a computer in another country.</li>
+</ol>
+<p>Unicode provides a single universal standard with over 143,000 characters, ensuring text displays correctly on any device worldwide.</p>
+<h3 id="q5-model-answer">Q5 Model Answer</h3>
+<pre><code>Image A: 400 × 300 × 8 = 960,000 bits ÷ 8 = 120,000 bytes
+Image B: 200 × 150 × 24 = 720,000 bits ÷ 8 = 90,000 bytes
+
+Image A has the larger file size (120,000 bytes vs 90,000 bytes).
+</code></pre>
+<p>This might be surprising because Image A has a higher resolution (more pixels). However, Image B&#39;s much greater colour depth (24-bit vs 8-bit) is not enough to overcome Image A&#39;s significantly larger number of pixels (120,000 vs 30,000 pixels). Both dimensions and colour depth together determine file size.</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> I can explain why characters need to be converted to binary numbers for storage</li>
+<li><input disabled="" type="checkbox"> I know that ASCII uses 7 bits and represents 128 characters</li>
+<li><input disabled="" type="checkbox"> I can recall the ASCII codes for A (65), a (97), and 0 (48)</li>
+<li><input disabled="" type="checkbox"> I can explain the difference between ASCII and Unicode</li>
+<li><input disabled="" type="checkbox"> I can give at least two reasons why Unicode was developed</li>
+<li><input disabled="" type="checkbox"> I know that UTF-8 is the most common Unicode encoding</li>
+<li><input disabled="" type="checkbox"> I can define &quot;pixel&quot; as the smallest unit of a digital image</li>
+<li><input disabled="" type="checkbox"> I can define &quot;resolution&quot; as the number of pixels (width × height)</li>
+<li><input disabled="" type="checkbox"> I can define &quot;colour depth&quot; as the number of bits per pixel</li>
+<li><input disabled="" type="checkbox"> I can use the formula 2^n to calculate the number of colours from a colour depth</li>
+<li><input disabled="" type="checkbox"> I know that 24-bit true colour = 8 bits each for R, G, B = ~16.7 million colours</li>
+<li><input disabled="" type="checkbox"> I can calculate image file size using: width × height × colour depth ÷ 8 = bytes</li>
+<li><input disabled="" type="checkbox"> I can explain the trade-off between quality (resolution/colour depth) and file size</li>
+<li><input disabled="" type="checkbox"> I can identify and correct common misconceptions about ASCII, Unicode, and image representation</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/revision/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-sorting-searching/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Sorting &amp; Searching Algorithms</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/revision/revision-study-book.js"></script>
+</body>
+</html>

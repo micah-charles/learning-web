@@ -101,6 +101,8 @@ home | language | quiz | arcade | vocab | reading | builder | crossword |
 
 ### `useQuizSession` (`hooks/useQuizSession.js`) ★ CRITICAL
 - Manages the full quiz lifecycle: load → question → answer → next → complete.
+- Counts stage-filtered `multipleChoice` items separately from `fillBlank` items and passes `multipleChoiceCount` to `resolveQuizModesForUI`.
+- Grammar-only packs can start without a vocab pool when they contain standalone `multipleChoice` items; those render as `kind: "choice"` questions with authored option buttons.
 - Uses a `sessionRef` (mirrors session state) so side-effect callbacks (`updateProgress`, `recordAttempt`) are called **outside** React state updaters — avoids React 18 StrictMode double-invocation.
 - Exposes: `{ session, loading, error, startQuiz, answerQuestion, nextQuestion, updateBuildState, resetQuiz }`.
 - `answerQuestion` calls both `recordWordAnswer` (mastery) and `recordAttempt` (Recent Activity chart) on every answer.
@@ -129,6 +131,11 @@ home | language | quiz | arcade | vocab | reading | builder | crossword |
 ### `usePackLoader` (`hooks/usePackLoader.js`)
 - Generic pack loader; used by MyPacksPage.
 - Also exports standalone `useManifest()` and `usePackList()` — but prefer `ManifestContext.useManifest()` in most pages.
+
+### Arcade content (`games/arcade/hooks/useArcadeContent.js`)
+- Quiz Hunt loads normal vocab questions via `buildQuizHuntQuestions`.
+- It also loads the selected unified pack and adapts `type: "multipleChoice"` items via `buildQuizHuntQuestionsFromMultipleChoiceItems`, preserving authored MCQ distractors.
+- Snake Builder still uses sentence-builder cards only.
 
 ---
 
@@ -204,13 +211,13 @@ These are `src/*.js` files — imported directly by React hooks and pages via th
 | Module | Purpose |
 |--------|---------|
 | `data.js` | Manifest loading, pack loading, vocab/passage/builder item mapping, `findDataset`, `listDatasets`, `listPassageGroups`, `listSentenceBuilderPacks`, `vocabFromItem`, `passageFromItem` |
-| `quiz.js` | Question generation: `createQuizSession`, `gradeQuestion`, `resolveQuizModesForUI`, `makeBuildState` |
+| `quiz.js` | Question generation: `createQuizSession`, `gradeQuestion`, `resolveQuizModesForUI`, `makeMultipleChoiceFromUnified`, `makeBuildState` |
 | `storage.js` | localStorage: `DEFAULT_STATE`, `loadStoredState`, `saveStoredState`, `recordWordAnswer`, `recordQuizSession` |
 | `progress.js` | Analytics: `recordAttempt`, `getRecentActivity`, `getDashboardSummary`, `getPackageProgress`, `getWordProgress` |
 | `admin-storage.js` | Upload handling: `hydrateManifest`, `saveUploadedPack`, `deleteUploadedPack` |
 | `utils.js` | `speakText`, `stopSpeaking`, `shuffle`, `normalizeForCompare`, `escapeHtml`, `humanizeLabel` |
 | `study-book.js` | Markdown: `loadMarkdownFile`, `renderMarkdown`, `extractTOC`, `highlightMatches`, `datasetHasStudyBook`, `getStudyBookFiles` |
-| `quiz-helpers.js` | `filterWordsForScope`, `getSelectedStages`, `describeScope`, `getDatasetStageOptions`, `usesStageSelection` |
+| `quiz-helpers.js` | `filterWordsForScope`, `filterMultipleChoiceByStage`, `filterFillBlankByStage`, `getSelectedStages`, `describeScope`, `getDatasetStageOptions`, `usesStageSelection` |
 | `lang-utils.js` | Language code normalisation |
 | `progressive-language-lesson.js` | Vanilla lesson engine used by LanguagePage |
 | `crossword.js` | Crossword engine used by CrosswordPage |

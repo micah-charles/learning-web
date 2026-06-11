@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KS3 Computing — Sorting &amp; Searching Algorithms | Computing Revision Notes | FoxChild@Learn</title>
+  <meta name="description" content="Study revision notes for KS3 Computing — Sorting &amp; Searching Algorithms" />
+  <link rel="canonical" href="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-sorting-searching/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#3d9ea5" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KS3 Computing — Sorting &amp; Searching Algorithms | Computing Revision Notes | FoxChild@Learn" />
+  <meta property="og:description" content="Study revision notes for KS3 Computing — Sorting &amp; Searching Algorithms" />
+  <meta property="og:url" content="https://www.foxchildidea.com/revision/studybook/computing/ks3-computing-sorting-searching/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KS3 Computing — Sorting &amp; Searching Algorithms | Computing Revision Notes | FoxChild@Learn" />
+  <meta name="twitter:description" content="Study revision notes for KS3 Computing — Sorting &amp; Searching Algorithms" />
+  <link rel="stylesheet" href="/revision/revision.css" />
+  
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "KS3 Computing — Sorting & Searching Algorithms",
+  "description": "Study revision notes for KS3 Computing — Sorting & Searching Algorithms",
+  "educationalLevel": "KS3",
+  "learningResourceType": "Study Guide",
+  "about": "Computing",
+  "provider": {
+    "@type": "Organization",
+    "name": "FoxChild Idea",
+    "url": "https://www.foxchildidea.com/"
+  }
+}</script>
+
+</head>
+<body>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+      </nav>
+    </header>
+    <div class="sb-page-titlebar">
+      <h1 class="sb-page-title">KS3 Computing — Sorting &amp; Searching Algorithms</h1>
+      <p class="sb-page-desc">Study revision notes for KS3 Computing — Sorting &amp; Searching Algorithms</p>
+    </div>
+    <div class="sb-search-bar">
+      <input type="search" id="sb-search-input" class="sb-search-input" placeholder="Search within notes..." aria-label="Search notes" />
+      <span id="sb-search-count" class="sb-search-count"></span>
+      <button id="sb-search-prev" class="sb-search-nav" aria-label="Previous match" title="Previous match">&uarr;</button>
+      <button id="sb-search-next" class="sb-search-nav" aria-label="Next match" title="Next match">&darr;</button>
+    </div>
+    <div class="sb-inner">
+      <nav class="sb-toc" aria-label="Table of contents">
+        <p class="sb-toc-title">Contents</p>
+        <ul class="sb-toc-list">
+          <li class="sb-toc-h1"><a href="#ks3-computing-study-pack">KS3 Computing — Study Pack</a></li>
+<li class="sb-toc-h1"><a href="#topic-sorting-searching-algorithms">Topic: Sorting &amp; Searching Algorithms</a></li>
+<li class="sb-toc-h2"><a href="#overview">Overview</a></li>
+<li class="sb-toc-h2"><a href="#section-1-searching-algorithms">Section 1: Searching Algorithms</a></li>
+<li class="sb-toc-h3"><a href="#linear-search">Linear Search</a></li>
+<li class="sb-toc-h3"><a href="#binary-search">Binary Search</a></li>
+<li class="sb-toc-h3"><a href="#linear-vs-binary-search-comparison">Linear vs. Binary Search — Comparison</a></li>
+<li class="sb-toc-h2"><a href="#section-2-sorting-algorithms">Section 2: Sorting Algorithms</a></li>
+<li class="sb-toc-h3"><a href="#bubble-sort">Bubble Sort</a></li>
+<li class="sb-toc-h3"><a href="#merge-sort-awareness-level">Merge Sort (Awareness Level)</a></li>
+<li class="sb-toc-h3"><a href="#insertion-sort-awareness-level">Insertion Sort (Awareness Level)</a></li>
+<li class="sb-toc-h2"><a href="#key-vocabulary">Key Vocabulary</a></li>
+<li class="sb-toc-h2"><a href="#common-misconceptions-corrected">Common Misconceptions — Corrected</a></li>
+<li class="sb-toc-h2"><a href="#exam-style-questions">Exam-Style Questions</a></li>
+<li class="sb-toc-h2"><a href="#model-answers">Model Answers</a></li>
+<li class="sb-toc-h2"><a href="#revision-checklist">Revision Checklist</a></li>
+
+        </ul>
+      </nav>
+      <div id="sb-content" class="sb-content">
+        <div data-file-content="main"><h1 id="ks3-computing-study-pack">KS3 Computing — Study Pack</h1>
+<h1 id="topic-sorting-searching-algorithms">Topic: Sorting & Searching Algorithms</h1>
+<p><strong>Year 7–9 | Computational Thinking | UK National Curriculum</strong></p>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>Sorting and searching are two of the most common operations a computer performs. Every time you search Google, find a contact on your phone, or see products sorted by price, an algorithm is working behind the scenes. Understanding how these algorithms work — and why some are more efficient than others — is a fundamental computing skill.</p>
+<hr>
+<h2 id="section-1-searching-algorithms">Section 1: Searching Algorithms</h2>
+<h3 id="linear-search">Linear Search</h3>
+<p>A <strong>linear search</strong> (also called a sequential search) checks each item in a list <strong>one by one</strong>, from first to last, until the target value is found or the entire list has been checked.</p>
+<p><strong>How it works</strong>:</p>
+<ol>
+<li>Start at the first item</li>
+<li>Compare it to the target</li>
+<li>If it matches → found; stop</li>
+<li>If not → move to the next item</li>
+<li>Repeat until found or list exhausted</li>
+</ol>
+<p><strong>Pseudocode</strong>:</p>
+<pre><code class="language-pseudocode">FUNCTION linearSearch(list, target)
+    FOR i = 0 TO len(list) - 1
+        IF list[i] == target THEN
+            RETURN i        # Return the position
+        ENDIF
+    ENDFOR
+    RETURN -1               # Not found
+ENDFUNCTION
+</code></pre>
+<p><strong>Worked trace — searching for 7 in [3, 9, 7, 1, 5]</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Index</th>
+<th>list[i]</th>
+<th>Match?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>No</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>9</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>7</td>
+<td><strong>Yes — found at index 2</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Number of comparisons</strong>: 3</p>
+<p><strong>Key facts about linear search</strong>:</p>
+<ul>
+<li>Works on <strong>any list</strong> — sorted or unsorted</li>
+<li>Simple to implement</li>
+<li>Worst case: checks every item (target is last, or not present)</li>
+<li>Best case: target is the first item (1 comparison)</li>
+<li>Suitable for small lists or unsorted data</li>
+</ul>
+<hr>
+<h3 id="binary-search">Binary Search</h3>
+<p>A <strong>binary search</strong> works by repeatedly <strong>halving</strong> the search space. It compares the target to the <strong>middle element</strong> of the sorted list, then eliminates the half that cannot contain the target.</p>
+<p><strong>IMPORTANT</strong>: Binary search only works on a <strong>sorted</strong> list.</p>
+<p><strong>How it works</strong>:</p>
+<ol>
+<li>Find the middle element</li>
+<li>If it matches the target → found; stop</li>
+<li>If the target is less → search the left half</li>
+<li>If the target is greater → search the right half</li>
+<li>Repeat with the new half until found or no items remain</li>
+</ol>
+<p><strong>Pseudocode</strong>:</p>
+<pre><code class="language-pseudocode">FUNCTION binarySearch(list, target)
+    low ← 0
+    high ← len(list) - 1
+
+    WHILE low &lt;= high
+        mid ← (low + high) DIV 2
+        IF list[mid] == target THEN
+            RETURN mid
+        ELIF list[mid] &lt; target THEN
+            low ← mid + 1
+        ELSE
+            high ← mid - 1
+        ENDIF
+    ENDWHILE
+
+    RETURN -1    # Not found
+ENDFUNCTION
+</code></pre>
+<p><strong>Worked trace — searching for 14 in [2, 5, 8, 11, 14, 17, 20]</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>low</th>
+<th>high</th>
+<th>mid</th>
+<th>list[mid]</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>6</td>
+<td>3</td>
+<td>11</td>
+<td>14 &gt; 11 → search right half</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>17</td>
+<td>14 &lt; 17 → search left half</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>14</td>
+<td><strong>Match — found at index 4</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Number of comparisons</strong>: 3 (vs up to 5 for linear search on the same list)</p>
+<p><strong>Key facts about binary search</strong>:</p>
+<ul>
+<li>Requires a <strong>sorted</strong> list</li>
+<li>Much faster than linear search for large lists</li>
+<li>Each step halves the remaining search space</li>
+<li>A list of 1,000 items: at most 10 comparisons with binary search vs up to 1,000 with linear</li>
+</ul>
+<hr>
+<h3 id="linear-vs-binary-search-comparison">Linear vs. Binary Search — Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Linear Search</th>
+<th>Binary Search</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Works on unsorted data?</td>
+<td>✓ Yes</td>
+<td>✗ No — must be sorted</td>
+</tr>
+<tr>
+<td>Maximum comparisons (1000 items)</td>
+<td>1,000</td>
+<td>~10</td>
+</tr>
+<tr>
+<td>Complexity to implement</td>
+<td>Simple</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Small or unsorted lists</td>
+<td>Large, sorted lists</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="section-2-sorting-algorithms">Section 2: Sorting Algorithms</h2>
+<h3 id="bubble-sort">Bubble Sort</h3>
+<p><strong>Bubble sort</strong> works by repeatedly comparing <strong>adjacent pairs</strong> of elements and swapping them if they are in the wrong order. After each <strong>pass</strong> through the list, the largest unsorted element &quot;bubbles up&quot; to its correct position.</p>
+<p><strong>How it works (one pass)</strong>:</p>
+<ol>
+<li>Compare element at index 0 with element at index 1</li>
+<li>If they are in the wrong order, swap them</li>
+<li>Move to index 1 and 2; compare and swap if needed</li>
+<li>Continue to the end of the list</li>
+<li>Repeat passes until no swaps occur in a full pass</li>
+</ol>
+<p><strong>Pseudocode</strong>:</p>
+<pre><code class="language-pseudocode">PROCEDURE bubbleSort(list)
+    n ← len(list)
+    FOR pass = 1 TO n - 1
+        FOR i = 0 TO n - pass - 1
+            IF list[i] &gt; list[i+1] THEN
+                temp ← list[i]
+                list[i] ← list[i+1]
+                list[i+1] ← temp
+            ENDIF
+        ENDFOR
+    ENDFOR
+ENDPROCEDURE
+</code></pre>
+<p><strong>Worked trace — sorting [5, 3, 8, 1, 4]</strong>:</p>
+<p><strong>Pass 1</strong>:</p>
+<ul>
+<li>Compare 5, 3 → swap → [3, 5, 8, 1, 4]</li>
+<li>Compare 5, 8 → no swap → [3, 5, 8, 1, 4]</li>
+<li>Compare 8, 1 → swap → [3, 5, 1, 8, 4]</li>
+<li>Compare 8, 4 → swap → [3, 5, 1, 4, 8] ← 8 in place</li>
+</ul>
+<p><strong>Pass 2</strong>:</p>
+<ul>
+<li>Compare 3, 5 → no swap</li>
+<li>Compare 5, 1 → swap → [3, 1, 5, 4, 8]</li>
+<li>Compare 5, 4 → swap → [3, 1, 4, 5, 8] ← 5 in place</li>
+</ul>
+<p><strong>Pass 3</strong>:</p>
+<ul>
+<li>Compare 3, 1 → swap → [1, 3, 4, 5, 8]</li>
+<li>Compare 3, 4 → no swap → [1, 3, 4, 5, 8] ← 4 in place</li>
+</ul>
+<p><strong>Pass 4</strong>: no swaps → sorted</p>
+<p><strong>Final</strong>: [1, 3, 4, 5, 8]</p>
+<p>Pass-by-pass summary table:</p>
+<table>
+<thead>
+<tr>
+<th>After pass</th>
+<th>List</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0 (start)</td>
+<td>5, 3, 8, 1, 4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3, 5, 1, 4, <strong>8</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>3, 1, 4, <strong>5</strong>, 8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1, 3, <strong>4</strong>, 5, 8</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>1</strong>, <strong>3</strong>, 4, 5, 8</td>
+</tr>
+</tbody></table>
+<p><strong>Key facts about bubble sort</strong>:</p>
+<ul>
+<li>Very simple to understand and implement</li>
+<li>Inefficient for large lists — requires many comparisons</li>
+<li>Maximum passes needed: n - 1 (where n = list length)</li>
+<li>Used mainly for teaching purposes</li>
+</ul>
+<hr>
+<h3 id="merge-sort-awareness-level">Merge Sort (Awareness Level)</h3>
+<p><strong>Merge sort</strong> uses a <strong>divide and conquer</strong> approach:</p>
+<ol>
+<li>Split the list in half</li>
+<li>Recursively sort each half</li>
+<li>Merge the two sorted halves back together</li>
+</ol>
+<p>Merge sort is significantly more efficient than bubble sort for large data sets. It is not required to be implemented at KS3, but students should be aware it exists and is more efficient.</p>
+<h3 id="insertion-sort-awareness-level">Insertion Sort (Awareness Level)</h3>
+<p><strong>Insertion sort</strong> builds a sorted list one element at a time by taking each element and inserting it into the correct position in the already-sorted portion. Also more efficient than bubble sort in many practical cases.</p>
+<hr>
+<h2 id="key-vocabulary">Key Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Linear search</td>
+<td>Checking each item in a list one by one from start to end until the target is found</td>
+</tr>
+<tr>
+<td>Binary search</td>
+<td>Repeatedly halving a sorted list to find a target value</td>
+</tr>
+<tr>
+<td>Bubble sort</td>
+<td>A sorting algorithm that repeatedly swaps adjacent out-of-order pairs</td>
+</tr>
+<tr>
+<td>Merge sort</td>
+<td>A divide-and-conquer sorting algorithm (KS3: awareness only)</td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td>Checking whether one value is greater than, less than, or equal to another</td>
+</tr>
+<tr>
+<td>Pass</td>
+<td>One complete run through the list from start to end during a sort</td>
+</tr>
+<tr>
+<td>Efficiency</td>
+<td>The number of steps or comparisons an algorithm requires to complete</td>
+</tr>
+<tr>
+<td>Sorted list</td>
+<td>A list arranged in ascending (lowest to highest) or descending order</td>
+</tr>
+<tr>
+<td>Swap</td>
+<td>Exchanging the positions of two adjacent elements in a list</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="common-misconceptions-corrected">Common Misconceptions — Corrected</h2>
+<table>
+<thead>
+<tr>
+<th>Misconception</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Binary search works on any list</td>
+<td>Binary search <strong>requires a sorted list</strong>. Applying it to an unsorted list produces incorrect results</td>
+</tr>
+<tr>
+<td>Bubble sort is a good algorithm for large datasets</td>
+<td>Bubble sort is very inefficient for large data — its comparisons grow quadratically with list size</td>
+</tr>
+<tr>
+<td>After one pass of bubble sort, the list is fully sorted</td>
+<td>Multiple passes are needed. After one pass, only the largest element is guaranteed to be in its final position</td>
+</tr>
+<tr>
+<td>Linear search is always worse than binary search</td>
+<td>For small lists or unsorted data, linear search is preferable — binary search would require sorting first, which costs additional steps</td>
+</tr>
+<tr>
+<td>Merge sort and bubble sort are equally efficient</td>
+<td>Merge sort is significantly faster for large datasets</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="exam-style-questions">Exam-Style Questions</h2>
+<p><strong>Q1</strong> [1 mark]
+State one requirement that must be met before a binary search can be used.</p>
+<p><strong>Q2</strong> [2 marks]
+A linear search is performed on the following list to find the value 9:
+<code>[2, 6, 9, 14, 20]</code></p>
+<p>(a) State how many comparisons are made before the value is found. [1 mark]
+(b) State how many comparisons would be made if the value being searched for was 25. [1 mark]</p>
+<p><strong>Q3</strong> [3 marks]
+Show the state of the following list after <strong>each pass</strong> of bubble sort:
+<code>[7, 2, 9, 4, 6]</code></p>
+<p><strong>Q4</strong> [4 marks]
+Compare linear search and binary search. Include in your answer:</p>
+<ul>
+<li>one similarity</li>
+<li>two differences</li>
+<li>a scenario where each would be most appropriate</li>
+</ul>
+<p><strong>Q5</strong> [5 marks]
+A sorted list contains 1,000 names. Explain why binary search is more efficient than linear search for this list. Use the concept of comparisons to support your answer. Calculate the approximate maximum number of comparisons for each algorithm.</p>
+<p><strong>MCQ</strong> [1 mark]
+After two passes of bubble sort on [9, 7, 5, 3, 1], what is the state of the list?</p>
+<p>A) [1, 3, 5, 7, 9]
+B) [7, 9, 5, 3, 1]
+C) [7, 5, 3, 1, 9]
+D) [7, 5, 3, <strong>1</strong>, <strong>9</strong>] then [5, 7, 1, <strong>3</strong>, 9]</p>
+<p><em>(Answer: D — [5, 7, 1, 3, 9] — after pass 1 the 9 is in place; after pass 2 the 7 is in place)</em></p>
+<p><strong>Fill in the blank</strong> [1 mark]
+Binary search works by repeatedly ___ the list in half.</p>
+<p><em>(Answer: dividing / halving)</em></p>
+<hr>
+<h2 id="model-answers">Model Answers</h2>
+<p><strong>Q1</strong>: The list must be <strong>sorted</strong> (in ascending or descending order) before binary search can be applied.</p>
+<p><strong>Q2</strong>:
+(a) 3 comparisons (index 0: 2, index 1: 6, index 2: 9 — found)
+(b) 5 comparisons (all five items checked; 25 not in list)</p>
+<p><strong>Q3</strong>:
+Start: [7, 2, 9, 4, 6]
+After pass 1: [2, 7, 4, 6, <strong>9</strong>]
+After pass 2: [2, 4, 6, <strong>7</strong>, 9]
+After pass 3: [2, 4, <strong>6</strong>, 7, 9]
+After pass 4: [<strong>2</strong>, 4, 6, 7, 9] — fully sorted</p>
+<p><strong>Q4</strong>:
+Similarity: both algorithms are used to locate a specific item in a list.
+Differences:
+(1) Linear search works on any list; binary search requires a sorted list.
+(2) Binary search is far more efficient — each step halves the remaining data; linear search checks each item individually.
+Appropriate use: linear search — for a small, unsorted list such as a list of 10 recent contacts. Binary search — for a large, sorted dataset such as a dictionary or phone directory with thousands of entries.</p>
+<p><strong>Q5</strong>:
+Linear search (worst case): must check all 1,000 names → <strong>1,000 comparisons</strong>.
+Binary search: each comparison halves the list. 1,000 → 500 → 250 → 125 → 62 → 31 → 15 → 7 → 3 → 1. This takes at most <strong>10 comparisons</strong> (since 2^10 = 1,024 &gt; 1,000).
+For 1,000 items, binary search is approximately 100× more efficient in the worst case. As the list grows, this advantage increases dramatically — for 1,000,000 items, binary search needs at most 20 comparisons vs 1,000,000 for linear search.</p>
+<hr>
+<h2 id="revision-checklist">Revision Checklist</h2>
+<p>Before your exam, make sure you can:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Describe how a linear search works step by step</li>
+<li><input disabled="" type="checkbox"> Describe how a binary search works step by step</li>
+<li><input disabled="" type="checkbox"> State that binary search requires a sorted list</li>
+<li><input disabled="" type="checkbox"> Trace a linear search on a given list and count comparisons</li>
+<li><input disabled="" type="checkbox"> Trace a binary search on a sorted list showing midpoint, bounds, and comparisons</li>
+<li><input disabled="" type="checkbox"> Trace bubble sort and show the list after each pass</li>
+<li><input disabled="" type="checkbox"> State how many passes bubble sort needs in the worst case</li>
+<li><input disabled="" type="checkbox"> Compare linear vs binary search (speed, requirements, suitability)</li>
+<li><input disabled="" type="checkbox"> Explain why efficiency matters for large datasets</li>
+</ul>
+</div>
+        <div class="related-section"><h2>Related Topics</h2><div class="book-grid compact">
+          <a href="/revision/studybook/computing/ks3-computing-decomposition-abstraction/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Decomposition &amp; Abstraction</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-pattern-recognition/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Pattern Recognition</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-algorithms-flowcharts/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Algorithms, Flowcharts &amp; Pseudocode</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-variables-datatypes/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Variables, Data Types &amp; I/O</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-selection-conditions/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Selection &amp; Conditions</h3>
+            <span class="book-card-meta">KS3</span>
+          </a>
+          <a href="/revision/studybook/computing/ks3-computing-iteration-loops/" class="book-card compact">
+            <h3 class="book-card-title">KS3 Computing — Iteration &amp; Loops</h3>
+            <span class="book-card-meta">KS3</span>
+          </a></div></div>
+        <div class="cta-section">
+          <a href="/" class="cta-button">Open interactive Learning Web</a>
+          <a href="/" class="cta-button secondary">Practice this topic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/revision/revision-study-book.js"></script>
+</body>
+</html>
