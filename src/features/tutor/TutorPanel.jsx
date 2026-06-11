@@ -8,6 +8,102 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTutor } from "./TutorProvider.jsx";
 
+/**
+ * Escape HTML to prevent XSS.
+ */
+function escapeHtml(text) {
+  if (!text) return "";
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/**
+ * Safe markdown formatting for tutor messages.
+ * Escapes HTML first, then applies **bold**, *italic*, > blockquotes, and line breaks.
+ * Returns an array of React nodes to avoid dangerouslySetInnerHTML.
+ */
+function formatMessage(text) {
+  if (!text) return [];
+  
+  // First, escape all HTML
+  const escaped = escapeHtml(text);
+  
+  // Split by newlines to handle blockquotes and line breaks
+  const lines = escaped.split("\n");
+  const nodes = [];
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    
+    // Handle blockquotes
+    if (line.startsWith("> ")) {
+      const content = line.slice(2);
+      const inlineNodes = parseInlineMarkdown(content);
+      nodes.push(<blockquote key={`bq-${i}`}>{inlineNodes}</blockquote>);
+    } else {
+      const inlineNodes = parseInlineMarkdown(line);
+      nodes.push(<div key={`line-${i}`}>{inlineNodes}</div>);
+    }
+    
+    // Add line break between lines (except last)
+    if (i < lines.length - 1) {
+      nodes.push(<br key={`br-${i}`} />);
+    }
+  }
+  
+  return nodes;
+}
+
+/**
+ * Parse inline markdown: **bold**, *italic*
+ * Returns array of React nodes.
+ */
+function parseInlineMarkdown(text) {
+  if (!text) return [];
+  
+  const nodes = [];
+  let remaining = text;
+  let keyCounter = 0;
+  
+  // Pattern to match **bold** or *italic* (non-greedy)
+  const pattern = /(\*\*.+?\*\*|\*.+?\*)/g;
+  let match;
+  let lastIndex = 0;
+  
+  while ((match = pattern.exec(remaining)) !== null) {
+    // Text before the match
+    if (match.index > lastIndex) {
+      nodes.push(<span key={`text-${keyCounter++}`}>{remaining.slice(lastIndex, match.index)}</span>);
+    }
+    
+    // The matched markdown
+    const matched = match[1];
+    if (matched.startsWith("**") && matched.endsWith("**")) {
+      nodes.push(<strong key={`bold-${keyCounter++}`}>{matched.slice(2, -2)}</strong>);
+    } else if (matched.startsWith("*") && matched.endsWith("*")) {
+      nodes.push(<em key={`italic-${keyCounter++}`}>{matched.slice(1, -1)}</em>);
+    }
+    
+    lastIndex = match.index + matched.length;
+  }
+  
+  // Remaining text after last match
+  if (lastIndex < remaining.length) {
+    nodes.push(<span key={`text-${keyCounter++}`}>{remaining.slice(lastIndex)}</span>);
+  }
+  
+  // If no markdown found, return the whole text
+  if (nodes.length === 0) {
+    return <span>{text}</span>;
+  }
+  
+  return nodes;
+}
+
 export function TutorPanel() {
   const {
     open,
@@ -66,9 +162,15 @@ export function TutorPanel() {
   // Handle read aloud for a specific message
   const handleReadAloud = useCallback(async (text) => {
     await stopSpeech();
-    // This will be handled by the tutor engine's speak function
-    // For manual read-aloud, we need to trigger it
-    // The tutor engine already handles auto-speak
+    // Speak the message text using browser TTS
+    // Use the same speech lang logic as the tutor engine
+    // For simplicity, default to en-GB; could be enhanced to detect language
+    if ("speechSynthesis" in window && text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-GB";
+      utterance.rate = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
   }, [stopSpeech]);
 
   if (!open) return null;
@@ -152,13 +254,13 @@ export function TutorPanel() {
               role={msg.role === "tutor" ? "article" : undefined}
             >
               <div className="tutor-panel__message-bubble">
-                <div className="tutor-panel__message-text" dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }} />
+                <div className="tutor-panel__message-text">{formatMessage(msg.text)}</div>
                 {msg.role === "tutor" && speechMode === SpeechMode.TOGGLE && (
                   <button
                     className="tutor-panel__read-aloud"
                     type="button"
                     aria-label="Read this message aloud"
-                    onClick={() => stopSpeech()} // The tutor engine handles speech
+                    onClick={() => handleReadAloud(msg.text)}
                     title="Read aloud"
                   >
                     🔊
@@ -204,17 +306,4 @@ export function TutorPanel() {
       </aside>
     </>
   );
-}
-
-/**
- * Simple markdown formatting for tutor messages.
- * Supports **bold**, *italic*, and > blockquotes.
- */
-function formatMessage(text) {
-  if (!text) return "";
-  return text
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/^>\s*(.+)$/gm, "<blockquote>$1</blockquote>")
-    .replace(/\n/g, "<br>");
 }

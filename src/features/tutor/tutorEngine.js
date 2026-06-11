@@ -287,6 +287,15 @@ export async function generateTutorResponse({
     return { type: ResponseType.HELP, text: "How can I help you? Ask me about the current quiz, reading passage, vocabulary, or study notes.", shouldSpeak: false };
   }
 
+  // Off-topic check — refuse general knowledge queries unrelated to current content
+  if (OFF_TOPIC_PATTERNS.some(p => p.test(trimmedQuery))) {
+    return {
+      type: ResponseType.REFUSAL,
+      text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+      shouldSpeak: false,
+    };
+  }
+
   // Greeting
   if (GREETING_PATTERNS.some(p => p.test(trimmedQuery))) {
     const greetings = [
