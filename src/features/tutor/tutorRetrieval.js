@@ -21,9 +21,8 @@ export function tokenizeQuery(query) {
     "would", "could", "should", "may", "might", "must", "can", "this",
     "that", "these", "those", "i", "you", "he", "she", "it", "we", "they",
     "me", "him", "her", "us", "them", "my", "your", "his", "its", "our",
-    "their", "what", "which", "who", "whom", "where", "when", "why", "how",
-    "about", "can", "help", "explain", "tell", "show", "give", "answer",
-    "question", "hint", "meaning", "translate", "read", "aloud", "speak"
+    "their", "what", "which", "who", "whom", "where", "when",
+    "about", "can", "help", "tell", "show", "give", "meaning", "translate", "read", "aloud", "speak"
   ]);
   return tokenizeSentence(query.toLowerCase())
     .filter(t => t.length > 1 && !stopWords.has(t));

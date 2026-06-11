@@ -9,31 +9,15 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useTutor } from "./TutorProvider.jsx";
 
 /**
- * Escape HTML to prevent XSS.
- */
-function escapeHtml(text) {
-  if (!text) return "";
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-/**
  * Safe markdown formatting for tutor messages.
- * Escapes HTML first, then applies **bold**, *italic*, > blockquotes, and line breaks.
- * Returns an array of React nodes to avoid dangerouslySetInnerHTML.
+ * Applies **bold**, *italic*, > blockquotes, and line breaks.
+ * Returns an array of React nodes (React handles escaping automatically).
  */
 function formatMessage(text) {
   if (!text) return [];
   
-  // First, escape all HTML
-  const escaped = escapeHtml(text);
-  
   // Split by newlines to handle blockquotes and line breaks
-  const lines = escaped.split("\n");
+  const lines = text.split("\n");
   const nodes = [];
   
   for (let i = 0; i < lines.length; i++) {
@@ -60,7 +44,7 @@ function formatMessage(text) {
 
 /**
  * Parse inline markdown: **bold**, *italic*
- * Returns array of React nodes.
+ * Returns array of React nodes. React handles text escaping.
  */
 function parseInlineMarkdown(text) {
   if (!text) return [];
