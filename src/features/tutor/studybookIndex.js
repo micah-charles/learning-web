@@ -3,10 +3,14 @@
  *
  * Runtime loader for FoxChild Tutor study book search index.
  * Fetches /search/studybook-index.json and provides search functionality.
+ * Phase 3B: Uses MiniSearch for better relevance + fuzzy matching.
  */
+
+import MiniSearch from "minisearch";
 
 let _indexCache = null;
 let _loadPromise = null;
+let _miniSearch = null;
 
 /**
  * Load the study book index (cached).
@@ -19,7 +23,6 @@ export async function loadStudyBookIndex() {
     _loadPromise = (async () => {
       try {
         const res = await fetch("/search/studybook-index.json", {
-          // Allow caching - index only changes on rebuild
           cache: "force-cache"
         });
         if (!res.ok) throw new Error(`Failed to load index: ${res.status}`);
@@ -37,51 +40,32 @@ export async function loadStudyBookIndex() {
 }
 
 /**
- * Simple tokenization for search queries.
+ * Initialize MiniSearch index from loaded chunks.
  */
-function tokenizeQuery(query) {
-  if (!query) return [];
-  const stopWords = new Set([
-    "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
-    "of", "with", "by", "from", "as", "is", "are", "was", "were", "be",
-    "been", "being", "have", "has", "had", "do", "does", "did", "will",
-    "would", "could", "should", "may", "might", "must", "can", "this",
-    "that", "these", "those", "i", "you", "he", "she", "it", "we", "they",
-    "me", "him", "her", "us", "them", "my", "your", "his", "its", "our",
-    "their", "what", "which", "who", "whom", "where", "when", "why", "how",
-    "about", "can", "help", "tell", "show", "give", "meaning", "translate",
-    "read", "aloud", "speak"
-  ]);
-  return query.toLowerCase()
-    .split(/\s+/)
-    .map(t => t.replace(/[^\w]/g, ""))
-    .filter(t => t.length > 1 && !stopWords.has(t));
+function initMiniSearch(chunks) {
+  if (_miniSearch) return _miniSearch;
+
+  _miniSearch = new MiniSearch({
+    fields: ["content", "heading", "subject", "displayName"],
+    storeFields: [
+      "id", "packId", "displayName", "subject", "curriculum",
+      "heading", "anchor", "level", "content", "wordCount",
+      "sourcePath", "packPath", "isCombined"
+    ],
+    searchOptions: {
+      boost: { heading: 3, content: 1, subject: 0.5, displayName: 1 },
+      fuzzy: 0.2,
+      prefix: true
+    },
+    extractField: (document, fieldName) => document[fieldName]
+  });
+
+  _miniSearch.addAll(chunks);
+  return _miniSearch;
 }
 
 /**
- * Score a chunk against query tokens.
- * @returns {number} 0-1 score
- */
-function scoreChunk(chunk, tokens) {
-  if (!tokens.length) return 0;
-  const content = chunk.content.toLowerCase();
-  const heading = (chunk.heading || "").toLowerCase();
-
-  let matches = 0;
-  for (const token of tokens) {
-    if (content.includes(token)) matches++;
-    if (heading.includes(token)) matches += 1.5; // Boost heading matches
-  }
-
-  // Phrase bonus
-  const phrase = tokens.join(" ");
-  if (content.includes(phrase)) matches += tokens.length * 0.5;
-
-  return Math.min(1, matches / Math.max(1, tokens.length * 0.8));
-}
-
-/**
- * Search the study book index.
+ * Search the study book index using MiniSearch.
  * @param {string} query - User query
  * @param {object} options
  * @param {number} options.maxResults - Max results (default 8)
@@ -95,26 +79,26 @@ export async function searchStudyBookIndex(query, options = {}) {
   const index = await loadStudyBookIndex();
   if (!index.chunks?.length) return [];
 
-  const tokens = tokenizeQuery(query);
-  if (!tokens.length) return [];
-
-  // Filter and score
-  const results = [];
-  for (const chunk of index.chunks) {
-    // Optional filters
-    if (subject && chunk.subject !== subject) continue;
-    if (curriculum && chunk.curriculum !== curriculum) continue;
-
-    const score = scoreChunk(chunk, tokens);
-    if (score > 0.05) { // Minimum threshold
-      results.push({ chunk, score });
-    }
+  if (!_miniSearch) {
+    initMiniSearch(index.chunks);
   }
 
-  // Sort by score descending
-  results.sort((a, b) => b.score - a.score);
+  const filters = [];
+  if (subject) filters.push({ field: "subject", value: subject });
+  if (curriculum) filters.push({ field: "curriculum", value: curriculum });
 
-  return results.slice(0, maxResults);
+  const results = _miniSearch.search(query, {
+    filter: filters.length ? (doc => filters.every(f => doc[f.field] === f.value)) : undefined,
+    ..._miniSearch.searchOptions
+  });
+
+  // Map to our format
+  return results
+    .slice(0, maxResults)
+    .map(r => ({
+      chunk: r,
+      score: r.score || 0
+    }));
 }
 
 /**
@@ -128,9 +112,10 @@ export async function getStudyBookChunk(chunkId) {
 /**
  * Extract snippet with context around match.
  */
-export function extractSnippet(chunk, tokens, contextChars = 300) {
-  if (!tokens.length) return chunk.content.slice(0, contextChars);
+export function extractSnippet(chunk, query, contextChars = 300) {
+  if (!query) return chunk.content.slice(0, contextChars);
 
+  const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
   const content = chunk.content.toLowerCase();
   const original = chunk.content;
 
@@ -149,4 +134,30 @@ export function extractSnippet(chunk, tokens, contextChars = 300) {
 
   // Fallback: return beginning
   return original.slice(0, contextChars) + (original.length > contextChars ? "…" : "");
+}
+
+/**
+ * Build deep link URL to open StudyBookDrawer at specific heading.
+ */
+export function buildStudyBookDeepLink(chunk) {
+  // URL format: /?studybook=<packId>&anchor=<heading-anchor>
+  // The StudyBookDrawer can be opened programmatically via StudyBookContext
+  return {
+    packId: chunk.packId,
+    anchor: chunk.anchor,
+    heading: chunk.heading,
+    subject: chunk.subject,
+    curriculum: chunk.curriculum
+  };
+}
+
+/**
+ * Open Study Book in drawer at specific heading (to be called from UI).
+ * This should be integrated with the StudyBookContext.
+ */
+export async function openStudyBookAtHeading(packId, anchor) {
+  // This will be connected to the StudyBookContext.openBook()
+  // The actual implementation depends on how the tutor accesses the context
+  // For now, return the navigation info
+  return { packId, anchor };
 }

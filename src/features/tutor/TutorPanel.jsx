@@ -7,6 +7,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTutor } from "./TutorProvider.jsx";
+import { useStudyBook } from "../../react/context/StudyBookContext.jsx";
 
 /**
  * Safe markdown formatting for tutor messages.
@@ -104,7 +105,10 @@ export function TutorPanel() {
     setQuizSession,
     setReadingPassage,
     setDataset,
+    dataset,
   } = useTutor();
+
+  const { openBook } = useStudyBook();
 
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef(null);
@@ -156,6 +160,15 @@ export function TutorPanel() {
       window.speechSynthesis.speak(utterance);
     }
   }, [stopSpeech]);
+
+  // Handle show evidence - open Study Book at specific anchor
+  const handleShowEvidence = useCallback((packId, anchor) => {
+    // Find the dataset that contains this packId
+    // The current dataset in tutor context should be the one we're viewing
+    if (dataset?.id) {
+      openBook(dataset, { anchor });
+    }
+  }, [openBook, dataset]);
 
   if (!open) return null;
 
@@ -239,6 +252,27 @@ export function TutorPanel() {
             >
               <div className="tutor-panel__message-bubble">
                 <div className="tutor-panel__message-text">{formatMessage(msg.text)}</div>
+                
+                {/* Source attribution for studybook snippets */}
+                {msg.role === "tutor" && msg.metadata && msg.metadata.source === "studybook" && (
+                  <div className="tutor-panel__source-badge">
+                    <span>📖 {msg.metadata.subject || "Study Book"}: {msg.metadata.heading || msg.metadata.packId}</span>
+                  </div>
+                )}
+
+                {/* Show Evidence button for studybook snippets with anchor */}
+                {msg.role === "tutor" && msg.metadata && msg.metadata.source === "studybook" && msg.metadata.anchor && (
+                  <button
+                    className="tutor-panel__evidence-btn"
+                    type="button"
+                    aria-label={`Show evidence in Study Book: ${msg.metadata.heading || msg.metadata.packId}`}
+                    onClick={() => handleShowEvidence(msg.metadata.packId, msg.metadata.anchor)}
+                    title={`Open Study Book at "${msg.metadata.heading || "section"}"`}
+                  >
+                    📖 Show evidence
+                  </button>
+                )}
+                
                 {msg.role === "tutor" && speechMode === SpeechMode.TOGGLE && (
                   <button
                     className="tutor-panel__read-aloud"
