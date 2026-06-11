@@ -3,6 +3,7 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useReadingSession } from "../hooks/useReadingSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { useTutor } from "../../features/tutor/TutorProvider.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
@@ -675,6 +676,7 @@ export default function ReadingPage() {
   const { manifest, loading: manifestLoading } = useManifest();
   const { updateProgress } = useProgress();
   const { speak, stop } = useSpeech();
+  const { setReadingPassage, setDataset } = useTutor();
 
   const [prefs, setPrefs] = useState({
     subject:     "language",
@@ -692,6 +694,22 @@ export default function ReadingPage() {
     revealed, completedCount, message, categoryOptions,
     startSession, answerQuestion, revealPassage, nextPassage, resetSession, jumpToPassage,
   } = useReadingSession({ manifest, groupId: prefs.groupId, packId: prefs.packId, prefs, updateProgress });
+
+  // Sync reading passage and group/dataset with tutor
+  useEffect(() => {
+    if (current) {
+      setReadingPassage(current, current.targetText || null);
+    }
+  }, [current, setReadingPassage]);
+
+  useEffect(() => {
+    if (manifest && prefs.groupId) {
+      // Find the passage group in the manifest
+      const groups = listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
+      const group = groups.find(g => g.id === prefs.groupId);
+      if (group) setDataset(group);
+    }
+  }, [manifest, prefs.groupId, prefs.subject, prefs.curriculum, setDataset]);
 
   if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 

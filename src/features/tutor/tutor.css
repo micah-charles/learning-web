@@ -1,0 +1,470 @@
+/**
+ * tutor.css
+ *
+ * Styles for FoxChild Tutor widget.
+ * Consistent with Learning Web design system (styles.css + global.css).
+ */
+
+/* ── CSS Custom Properties for Tutor ────────────────────────────────────────── */
+:root {
+  --tutor-fab-size: 56px;
+  --tutor-panel-width: 360px;
+  --tutor-panel-height: 520px;
+  --tutor-panel-max-height: calc(100vh - 120px);
+  --tutor-z-index: 2147483000; /* Match embed.js z-index pattern */
+  --tutor-bg: var(--surface-strong, rgba(255, 254, 248, 0.98));
+  --tutor-border: var(--line, rgba(61, 43, 31, 0.12));
+  --tutor-ink: var(--ink, #2d1e0f);
+  --tutor-muted: var(--muted, #7a6552);
+  --tutor-primary: var(--fox-teal, #3d9ea5);
+  --tutor-primary-bg: var(--fox-teal-light, rgba(61, 158, 165, 0.15));
+  --tutor-accent: var(--fox-orange, #e8841a);
+  --tutor-accent-bg: var(--fox-orange-light, rgba(232, 132, 26, 0.15));
+  --tutor-shadow: 0 20px 52px rgba(61, 43, 31, 0.14);
+  --tutor-radius: var(--radius-lg, 20px);
+  --tutor-radius-sm: var(--radius-sm, 12px);
+}
+
+/* ── Floating Action Button ────────────────────────────────────────────────── */
+.tutor-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: var(--tutor-fab-size);
+  height: var(--tutor-fab-size);
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--fox-orange, #e8841a), var(--fox-teal, #3d9ea5));
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--tutor-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--tutor-z-index);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, width 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+  padding: 0;
+}
+
+.tutor-fab:hover {
+  transform: scale(1.07);
+  box-shadow: 0 24px 60px rgba(61, 43, 31, 0.18);
+}
+
+.tutor-fab:active {
+  transform: scale(0.95);
+}
+
+.tutor-fab:focus-visible {
+  outline: 3px solid rgba(61, 158, 165, 0.45);
+  outline-offset: 3px;
+}
+
+.tutor-fab__icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.tutor-fab__tooltip {
+  position: absolute;
+  right: calc(var(--tutor-fab-size) + 12px);
+  bottom: 50%;
+  transform: translateY(50%);
+  background: var(--tutor-ink);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: var(--tutor-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(50%) translateX(8px);
+}
+
+.tutor-fab:hover .tutor-fab__tooltip {
+  opacity: 1;
+  transform: translateY(50%) translateX(0);
+}
+
+/* Open state - button becomes panel trigger */
+.tutor-fab--open {
+  /* Panel is separate, button just indicates open state */
+}
+
+/* ── Panel ─────────────────────────────────────────────────────────────────── */
+.tutor-panel {
+  position: fixed;
+  right: 16px;
+  bottom: calc(var(--tutor-fab-size) + 24px);
+  width: var(--tutor-panel-width);
+  max-width: calc(100vw - 32px);
+  height: var(--tutor-panel-height);
+  max-height: var(--tutor-panel-max-height);
+  background: var(--tutor-bg);
+  border: 1px solid var(--tutor-border);
+  border-radius: var(--tutor-radius);
+  box-shadow: var(--tutor-shadow);
+  display: flex;
+  flex-direction: column;
+  z-index: calc(var(--tutor-z-index) - 1);
+  overflow: hidden;
+  animation: tutor-panel-slide-up 0.25s ease-out;
+}
+
+@keyframes tutor-panel-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Scrim for mobile */
+.tutor-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: calc(var(--tutor-z-index) - 2);
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .tutor-scrim {
+    display: block;
+  }
+
+  .tutor-panel {
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 70vh;
+    max-height: 70vh;
+    border-radius: var(--tutor-radius) var(--tutor-radius) 0 0;
+    bottom: 0;
+  }
+
+  .tutor-fab {
+    right: 16px;
+    bottom: 16px;
+    z-index: calc(var(--tutor-z-index) + 1);
+  }
+}
+
+/* ── Panel Header ──────────────────────────────────────────────────────────── */
+.tutor-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--tutor-border);
+  background: var(--surface, rgba(255, 252, 242, 0.92));
+  flex-shrink: 0;
+}
+
+.tutor-panel__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--tutor-ink);
+  font-family: var(--font-ui, "Avenir Next", sans-serif);
+}
+
+.tutor-panel__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tutor-panel__speech-btn,
+.tutor-panel__clear-btn,
+.tutor-panel__close-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--tutor-radius-sm);
+  background: transparent;
+  color: var(--tutor-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tutor-panel__speech-btn:hover,
+.tutor-panel__clear-btn:hover,
+.tutor-panel__close-btn:hover {
+  background: var(--tutor-accent-bg);
+  color: var(--tutor-accent);
+}
+
+.tutor-panel__speech-btn.active {
+  background: var(--tutor-primary-bg);
+  color: var(--tutor-primary);
+}
+
+.tutor-panel__speech-btn:focus-visible,
+.tutor-panel__clear-btn:focus-visible,
+.tutor-panel__close-btn:focus-visible {
+  outline: 2px solid var(--tutor-primary);
+  outline-offset: 2px;
+}
+
+.tutor-panel__close-btn {
+  color: var(--tutor-muted);
+}
+
+.tutor-panel__close-btn:hover {
+  background: var(--color-error-bg, rgba(192, 78, 54, 0.12));
+  color: var(--color-error, #c04e36);
+}
+
+/* ── Messages Area ─────────────────────────────────────────────────────────── */
+.tutor-panel__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tutor-panel__welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--tutor-muted);
+  padding: 20px;
+  gap: 12px;
+}
+
+.tutor-panel__welcome p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tutor-panel__welcome ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--tutor-muted);
+}
+
+.tutor-panel__welcome li {
+  margin-bottom: 6px;
+}
+
+.tutor-panel__hint {
+  font-size: 0.75rem !important;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.tutor-panel__message {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 85%;
+  animation: tutor-message-fade 0.2s ease-out;
+}
+
+@keyframes tutor-message-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tutor-panel__message--user {
+  align-self: flex-end;
+}
+
+.tutor-panel__message--tutor {
+  align-self: flex-start;
+}
+
+.tutor-panel__message-bubble {
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.tutor-panel__message--user .tutor-panel__message-bubble {
+  background: var(--tutor-primary);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.tutor-panel__message--tutor .tutor-panel__message-bubble {
+  background: var(--surface, rgba(255, 252, 242, 0.92));
+  color: var(--tutor-ink);
+  border: 1px solid var(--tutor-border);
+  border-bottom-left-radius: 4px;
+}
+
+.tutor-panel__message-text {
+  word-wrap: break-word;
+}
+
+.tutor-panel__message-text strong {
+  font-weight: 600;
+}
+
+.tutor-panel__message-text em {
+  font-style: italic;
+}
+
+.tutor-panel__message-text blockquote {
+  margin: 8px 0;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border-left: 3px solid var(--tutor-primary);
+  font-size: 0.85rem;
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+.tutor-panel__read-aloud {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: var(--tutor-primary-bg);
+  color: var(--tutor-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.tutor-panel__message-bubble:hover .tutor-panel__read-aloud {
+  opacity: 1;
+}
+
+.tutor-panel__read-aloud:hover {
+  background: var(--tutor-primary);
+  color: #fff;
+}
+
+/* Loading indicator */
+.tutor-panel__message--loading .tutor-panel__message-bubble {
+  padding: 12px 16px;
+  min-width: 60px;
+}
+
+.tutor-panel__typing-indicator {
+  display: flex;
+  gap: 4px;
+}
+
+.tutor-panel__typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tutor-primary);
+  animation: tutor-typing 1.4s infinite ease-in-out both;
+}
+
+.tutor-panel__typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.tutor-panel__typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes tutor-typing {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Input Area ────────────────────────────────────────────────────────────── */
+.tutor-panel__input-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--tutor-border);
+  background: var(--surface, rgba(255, 252, 242, 0.92));
+  flex-shrink: 0;
+}
+
+.tutor-panel__input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--tutor-border);
+  border-radius: var(--tutor-radius-sm);
+  background: var(--surface-strong, rgba(255, 254, 248, 0.98));
+  color: var(--tutor-ink);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tutor-panel__input::placeholder {
+  color: var(--tutor-muted);
+  opacity: 0.7;
+}
+
+.tutor-panel__input:focus {
+  border-color: var(--tutor-primary);
+  box-shadow: 0 0 0 3px var(--tutor-primary-bg);
+}
+
+.tutor-panel__input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tutor-panel__send-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: var(--tutor-radius-sm);
+  background: var(--tutor-primary);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.15s ease, transform 0.1s ease;
+  flex-shrink: 0;
+}
+
+.tutor-panel__send-btn:hover:not(:disabled) {
+  background: var(--fox-teal, #3d9ea5);
+  transform: scale(1.05);
+}
+
+.tutor-panel__send-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.tutor-panel__send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tutor-panel__send-btn:focus-visible {
+  outline: 2px solid var(--tutor-primary);
+  outline-offset: 2px;
+}

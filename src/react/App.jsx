@@ -15,7 +15,9 @@ import { useState, useCallback } from "react";
 import { ManifestProvider } from "./context/ManifestContext.jsx";
 import { ProgressProvider } from "./context/ProgressContext.jsx";
 import { StudyBookProvider } from "./context/StudyBookContext.jsx";
+import { TutorProvider } from "../features/tutor/TutorProvider.jsx";
 import { StudyBookDrawer } from "./components/learning/StudyBookDrawer.jsx";
+import { TutorWidget } from "../features/tutor/TutorWidget.jsx";
 import Hero from "./components/layout/Hero.jsx";
 import NavBar from "./components/layout/NavBar.jsx";
 import HomePage      from "./pages/HomePage.jsx";
@@ -88,6 +90,9 @@ function AppContent() {
 
       {/* Study Book drawer — rendered once here so it persists across tab switches */}
       <StudyBookDrawer />
+
+      {/* FoxChild Tutor widget — rendered once at App level */}
+      <TutorWidget />
     </div>
   );
 }
@@ -97,7 +102,9 @@ export default function App() {
     <ManifestProvider>
       <ProgressProvider>
         <StudyBookProvider>
-          <AppContent />
+          <TutorProvider>
+            <AppContent />
+          </TutorProvider>
         </StudyBookProvider>
       </ProgressProvider>
     </ManifestProvider>

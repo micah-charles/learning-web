@@ -101,6 +101,11 @@ export const DEFAULT_STATE = {
       lastLang: "",
       langs: {},
     },
+    tutor: {
+      enabled: true,
+      speechMode: "toggle", // "none" | "toggle" | "always"
+      openOnLoad: false,
+    },
   },
   progress: {
     words: {},

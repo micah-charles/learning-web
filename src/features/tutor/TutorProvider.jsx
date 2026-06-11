@@ -1,0 +1,250 @@
+/**
+ * TutorProvider.jsx
+ *
+ * React Context for FoxChild Tutor state management.
+ * Provides chat state, preferences, and integration with existing providers.
+ */
+
+import { createContext, useContext, useState, useCallback, useEffect, useRef } from "react";
+import { useManifest } from "../../react/context/ManifestContext.jsx";
+import { useProgress } from "../../react/context/ProgressContext.jsx";
+import { useStudyBook } from "../../react/context/StudyBookContext.jsx";
+import "./tutor.css";
+import {
+  loadTutorPrefs, saveTutorPrefs, toggleTutorEnabled,
+  cycleSpeechMode, getTutorPref, setTutorPref
+} from "./tutorStorage.js";
+import {
+  generateTutorResponse, maybeSpeakResponse, ResponseType
+} from "./tutorEngine.js";
+import { speak, stop, isSpeaking, SpeechMode } from "./tutorSpeech.js";
+import { loadVocabItems } from "@/data.js";
+
+const TutorContext = createContext(null);
+
+/**
+ * Initial tutor state.
+ */
+const INITIAL_STATE = {
+  open: false,
+  messages: [],
+  isLoading: false,
+  hintGivenForCurrentQuestion: false,
+  speechMode: SpeechMode.TOGGLE,
+  speechLang: "en-GB",
+  enabled: true,
+};
+
+/**
+ * TutorProvider — manages tutor panel state and integrates with Learning Web context.
+ */
+export function TutorProvider({ children }) {
+  const { manifest, loading: manifestLoading } = useManifest();
+  const { progress } = useProgress();
+  const { html: studyBookHtml, open: studyBookOpen } = useStudyBook();
+
+  const [state, setState] = useState(INITIAL_STATE);
+  const stateRef = useRef(state);
+  stateRef.current = state;
+
+  // Refs for async context (quiz session, reading passage, vocab items)
+  const quizSessionRef = useRef(null);
+  const readingPassageRef = useRef(null);
+  const readingTargetTextRef = useRef(null);
+  const vocabItemsRef = useRef(null);
+  const datasetRef = useRef(null);
+
+  // Load preferences on mount
+  useEffect(() => {
+    loadTutorPrefs().then(prefs => {
+      setState(prev => ({
+        ...prev,
+        enabled: prefs.enabled,
+        speechMode: prefs.speechMode,
+        openOnLoad: prefs.openOnLoad,
+      }));
+      if (prefs.openOnLoad) {
+        setState(prev => ({ ...prev, open: true }));
+      }
+    });
+  }, []);
+
+  // Update speech language based on current dataset
+  useEffect(() => {
+    if (datasetRef.current) {
+      const ds = datasetRef.current;
+      const lang = ds.speechLanguage || ds.sourceLanguageCode || "de-DE";
+      setState(prev => ({ ...prev, speechLang: lang }));
+    }
+  }, [datasetRef.current]);
+
+  // Expose methods to update external context refs
+  const setQuizSession = useCallback((session) => {
+    quizSessionRef.current = session;
+    // Reset hint flag when question changes
+    if (session?.questions?.length > 0) {
+      setState(prev => ({ ...prev, hintGivenForCurrentQuestion: false }));
+    }
+  }, []);
+
+  const setReadingPassage = useCallback((passage, targetText = null) => {
+    readingPassageRef.current = passage;
+    readingTargetTextRef.current = targetText;
+  }, []);
+
+  const setDataset = useCallback(async (dataset) => {
+    datasetRef.current = dataset;
+    if (dataset?.id && manifest) {
+      try {
+        const vocab = await loadVocabItems(manifest, dataset.id);
+        vocabItemsRef.current = vocab;
+      } catch (_error) {
+        vocabItemsRef.current = null;
+      }
+    } else {
+      vocabItemsRef.current = null;
+    }
+  }, [manifest]);
+
+  // Core function: send a message to the tutor
+  const sendMessage = useCallback(async (userText) => {
+    const currentState = stateRef.current;
+    if (currentState.isLoading || !userText.trim()) return;
+
+    const trimmedText = userText.trim();
+
+    // Add user message
+    const userMessage = { role: "user", text: trimmedText, timestamp: Date.now() };
+    setState(prev => ({ ...prev, messages: [...prev.messages, userMessage], isLoading: true }));
+
+    try {
+      // Generate tutor response
+      const response = await generateTutorResponse({
+        query: trimmedText,
+        manifest,
+        dataset: datasetRef.current,
+        quizSession: quizSessionRef.current,
+        readingPassage: readingPassageRef.current,
+        readingTargetText: readingTargetTextRef.current,
+        studyBookHtml: studyBookHtml || null,
+        vocabItems: vocabItemsRef.current,
+        hintGivenForCurrentQuestion: currentState.hintGivenForCurrentQuestion,
+        speechMode: currentState.speechMode,
+        speechLang: currentState.speechLang,
+      });
+
+      // Update hint flag if this was a quiz hint
+      let newHintGiven = currentState.hintGivenForCurrentQuestion;
+      if (response.metadata?.hintGiven) {
+        newHintGiven = true;
+      }
+
+      // Add tutor message
+      const tutorMessage = {
+        role: "tutor",
+        text: response.text,
+        timestamp: Date.now(),
+        type: response.type,
+        metadata: response.metadata,
+      };
+
+      setState(prev => ({
+        ...prev,
+        messages: [...prev.messages, tutorMessage],
+        isLoading: false,
+        hintGivenForCurrentQuestion: newHintGiven,
+      }));
+
+      // Speak if needed
+      if (response.shouldSpeak) {
+        await maybeSpeakResponse(response.text, currentState.speechLang, true);
+      }
+    } catch (error) {
+      console.error("Tutor error:", error);
+      const errorMessage = {
+        role: "tutor",
+        text: "Something went wrong. Please try again.",
+        timestamp: Date.now(),
+        type: ResponseType.REFUSAL,
+      };
+      setState(prev => ({
+        ...prev,
+        messages: [...prev.messages, errorMessage],
+        isLoading: false,
+      }));
+    }
+  }, [manifest, studyBookHtml]);
+
+  // Clear chat history
+  const clearChat = useCallback(() => {
+    setState(prev => ({ ...prev, messages: [], hintGivenForCurrentQuestion: false }));
+  }, []);
+
+  // Toggle panel open/closed
+  const toggleOpen = useCallback(() => {
+    setState(prev => ({ ...prev, open: !prev.open }));
+  }, []);
+
+  const openPanel = useCallback(() => setState(prev => ({ ...prev, open: true })), []);
+  const closePanel = useCallback(() => setState(prev => ({ ...prev, open: false })), []);
+
+  // Toggle speech mode
+  const toggleSpeechMode = useCallback(async () => {
+    const newMode = await cycleSpeechMode();
+    setState(prev => ({ ...prev, speechMode: newMode }));
+    return newMode;
+  }, []);
+
+  // Set speech mode directly
+  const setSpeechMode = useCallback(async (mode) => {
+    await setTutorPref("speechMode", mode);
+    setState(prev => ({ ...prev, speechMode: mode }));
+  }, []);
+
+  // Toggle tutor enabled
+  const toggleEnabled = useCallback(async () => {
+    const newEnabled = await toggleTutorEnabled();
+    setState(prev => ({ ...prev, enabled: newEnabled }));
+    return newEnabled;
+  }, []);
+
+  // Stop current speech
+  const stopSpeech = useCallback(() => {
+    stop();
+  }, []);
+
+  // Check if currently speaking
+  const checkSpeaking = useCallback(() => isSpeaking(), []);
+
+  const value = {
+    ...state,
+    sendMessage,
+    clearChat,
+    toggleOpen,
+    openPanel,
+    closePanel,
+    toggleSpeechMode,
+    setSpeechMode,
+    toggleEnabled,
+    stopSpeech,
+    checkSpeaking,
+    setQuizSession,
+    setReadingPassage,
+    setDataset,
+    SpeechMode,
+    ResponseType,
+  };
+
+  return <TutorContext.Provider value={value}>{children}</TutorContext.Provider>;
+}
+
+/**
+ * Hook to access tutor context.
+ */
+export function useTutor() {
+  const ctx = useContext(TutorContext);
+  if (!ctx) {
+    throw new Error("useTutor must be used within TutorProvider");
+  }
+  return ctx;
+}
