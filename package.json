@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build:data": "python3 scripts/generate_manifest.py",
+    "build:study-books": "python3 scripts/generate_study_book_index.py",
+    "build:studybook-index": "node scripts/build-studybook-index.js",
     "start": "npm run build && python3 -m http.server --directory dist 4173",
     "dev": "vite",
     "build": "vite build",

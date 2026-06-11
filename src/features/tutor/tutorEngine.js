@@ -325,7 +325,7 @@ What are you working on right now?`,
   }
 
   // Retrieve relevant content
-  const retrieval = retrieveContent({
+  const retrieval = await retrieveContent({
     manifest,
     dataset,
     quizSession,
