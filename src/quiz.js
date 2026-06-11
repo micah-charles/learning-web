@@ -461,20 +461,27 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
     const answer   = isReverse ? src : tgt;
     const optionF  = isReverse ? src : tgt;
 
-    const wrongAnswers = vocab
-      .filter((v) => v.id !== item.id)
-      .map((v) => {
-        const t = v.data.translations || {};
-        const s = t[labels.studyCode] || t[labels.speechLanguage]
-               || t["de-DE"] || t["en-GB"] || v.data.sourceWord || v.data.de || "";
-        const g = t[labels.targetCode] || t["en-GB"] || t["de-DE"]
-               || v.data.targetWord || v.data.en || "";
-        return isReverse ? s : g;
-      })
-      .filter((v) => normalizeForCompare(v) !== normalizeForCompare(answer));
+    // Use explicit options when the vocab item provides them (like multipleChoice)
+    const explicitOptions = item.data.options;
+    let options;
+    if (Array.isArray(explicitOptions) && explicitOptions.length >= 2) {
+      options = shuffle(dedupeStrings(explicitOptions));
+    } else {
+      const wrongAnswers = vocab
+        .filter((v) => v.id !== item.id)
+        .map((v) => {
+          const t = v.data.translations || {};
+          const s = t[labels.studyCode] || t[labels.speechLanguage]
+                 || t["de-DE"] || t["en-GB"] || v.data.sourceWord || v.data.de || "";
+          const g = t[labels.targetCode] || t["en-GB"] || t["de-DE"]
+                 || v.data.targetWord || v.data.en || "";
+          return isReverse ? s : g;
+        })
+        .filter((v) => normalizeForCompare(v) !== normalizeForCompare(answer));
 
-    const distractors = shuffle(dedupeStrings(wrongAnswers)).slice(0, 3);
-    const options = shuffle([answer, ...distractors]);
+      const distractors = shuffle(dedupeStrings(wrongAnswers)).slice(0, 3);
+      options = shuffle([answer, ...distractors]);
+    }
 
     // ── Read example via new 'examples' dict with legacy fallback ─────────
     const examples = item.data.examples || {};

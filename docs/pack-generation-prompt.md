@@ -425,7 +425,7 @@ Wrong names cause silent failures or validation errors.
 
 | Item type | Required `data` fields | Common wrong names to avoid |
 |---|---|---|
-| `vocab` | `sourceWord` + `targetWord` (non-language), or `translations` (language) | `term`, `definition`, `word`, `meaning` |
+| `vocab` | `sourceWord` + `targetWord` (non-language), or `translations` (language); optional `options[]` for fixed MCQ choices | `term`, `definition`, `word`, `meaning` |
 | `multipleChoice` | `question`, `answer`, `options[]` | ❌ `sentence`, `text`, `prompt` |
 | `fillBlank` | `sentence` (contains `____`), `answer`, optional `options[]` | ❌ `question`, `text`, `prompt` |
 | `sequence` | `title`, `items` (array of step strings), optional `instruction` | ❌ `question`, `steps`, `order` |
@@ -481,12 +481,13 @@ History / Geography / Science.
 ```
 
 | `data` field | Required | Notes |
-|---|---|---|
+|---|---|---|---|
 | `translations` | yes | BCP-47 keyed dict; must contain entries for the pack's source and target codes |
 | `examples` | optional | Same shape as `translations` |
 | `partOfSpeech` | optional | `"noun"`, `"verb"`, `"adj"`, `"adv"`, `"det"`, `"prep"`, `"phrase"`, or `"keyword"` for non-language packs |
 | `gender` | optional | German: `"m"` / `"f"` / `"n"`; `null` for non-nouns or non-language packs |
 | `plural` | optional | Plural form if relevant |
+| `options` | optional | Array of fixed choices — when present, quiz and arcade modes use these instead of auto-generated distractors. Must include the correct answer. |
 
 For non-language packs, use `vocab` sparingly to capture **term → definition**
 pairs. Because non-language packs use `sourceLanguageCode: "en-GB"` and

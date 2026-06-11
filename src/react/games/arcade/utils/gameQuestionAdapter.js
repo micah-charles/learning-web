@@ -63,7 +63,15 @@ export function buildQuizHuntQuestions(words, opts = {}) {
       const questionText = (w[promptKey] || "").trim();
       const correctAnswer = (w[answerKey] || "").trim();
       if (!questionText || !correctAnswer) return null;
-      const distractors = pickDistractors(answerPool, distractorCount, [correctAnswer]);
+
+      // Use explicit options from the vocab item when provided (like multipleChoice)
+      let distractors;
+      if (Array.isArray(w.options) && w.options.length >= 2) {
+        distractors = w.options.filter((o) => normalizeForCompare(o) !== normalizeForCompare(correctAnswer));
+      } else {
+        distractors = pickDistractors(answerPool, distractorCount, [correctAnswer]);
+      }
+
       // Need at least 1 distractor to be a meaningful hunt; skip otherwise.
       if (distractors.length === 0) return null;
       return {

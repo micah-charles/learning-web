@@ -103,7 +103,13 @@
           "additionalProperties": { "type": "string" }
         },
         "sourceWord": { "type": "string", "description": "Legacy fallback — prefer translations{}" },
-        "targetWord": { "type": "string", "description": "Legacy fallback — must be a definition, never repeat sourceWord" }
+        "targetWord": { "type": "string", "description": "Legacy fallback — must be a definition, never repeat sourceWord" },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "If present, used as fixed choices in MCQ/arcade modes instead of auto-generated distractors. The correct answer must be included."
+        }
       }
     },
 

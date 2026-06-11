@@ -83,6 +83,14 @@ def check_vocab(iid, data, is_lang, errors, warnings):
     if is_lang and pos.strip().lower() in POS_ABBREVIATIONS:
         err(errors, f"{iid} (vocab): partOfSpeech '{pos}' is an abbreviation — use full word (noun, verb, adjective…)")
 
+    # options field: structural check (must be an array of at least 2 strings when present)
+    options = data.get("options")
+    if options is not None:
+        if not isinstance(options, list) or len(options) < 2:
+            err(errors, f"{iid} (vocab): data.options must be a list of at least 2 choices, got {type(options).__name__ if not isinstance(options, list) else f'{len(options)} items'}")
+        elif not all(isinstance(o, str) for o in options):
+            err(errors, f"{iid} (vocab): all data.options items must be strings")
+
     # Non-language packs should not use 'keyword' check is a reminder, not an error
     if not is_lang and pos and pos != "keyword":
         warn(warnings, f"{iid} (vocab): non-language pack partOfSpeech should be 'keyword', got '{pos}'")

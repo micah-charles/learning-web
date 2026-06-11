@@ -437,6 +437,7 @@ export async function loadVocabItems(manifest, datasetId) {
       pos:   d.partOfSpeech || "",
       gender:    d.gender    || null,
       plural:    d.plural    || null,
+      options:   Array.isArray(d.options) && d.options.length >= 2 ? d.options : undefined,
       // Only set exampleDe when src and target are different languages; when they
       // are the same (Science, Geography, History: en-GB → en-GB) both fields would
       // resolve to the same string and the card would render the example twice.

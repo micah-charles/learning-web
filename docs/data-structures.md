@@ -241,6 +241,7 @@ Every item in a unified pack has a fixed outer envelope:
 | `plural` | string? | Noun plural form |
 | `sourceWord` | string | **Legacy fallback.** Used if `translations` is absent. |
 | `targetWord` | string | **Legacy fallback.** |
+| `options` | string[]? | If present, used as fixed choices in MCQ/arcade modes instead of auto-generated distractors. Must include the correct answer. |
 
 > **Language code priority:** The quiz engine reads `translations[sourceLanguageCode]` for the study side and `translations[targetLanguageCode]` for the target side, falling back to `translations["de-DE"]` → `translations["en-GB"]` → `sourceWord`/`targetWord` in order.
 
