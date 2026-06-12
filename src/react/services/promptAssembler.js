@@ -138,12 +138,14 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
   lines.push("");
   lines.push(
     "Using the metadata, item types, and source material above, " +
-      "generate **exactly ONE valid `pack_unified.json`** file."
+      "generate **exactly ONE valid `pack_unified.json`** file for Learning Web upload."
   );
   lines.push("");
   lines.push("Requirements:");
   lines.push("- Follow all schema rules in the specification above strictly.");
-  lines.push("- Do **not** generate multiple files or variations.");
+  lines.push("- Do **not** generate multiple files, manifest snippets, folders, or variations.");
+  lines.push("- Keep every requested item type inside the single top-level `items` array.");
+  lines.push("- Keep `passage` and `sentenceBuilder` items in the same `pack_unified.json` file for this Pack Creator workflow.");
   lines.push(`- Set \`packId\` to a snake_case slug derived from the topic: \`${toSlug(topic)}\``);
   if (level) {
     lines.push(
@@ -155,6 +157,11 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
       `- Set the top-level \`curriculum\` field to \`"${curriculum}"\` (the curriculum / exam board exactly as written). ` +
         `The app normalises this for grouping and shows custom curricula automatically in the Quiz / Reading / Vocabulary / Builder filters.`
     );
+  }
+  if (itemTypes.includes("multipleChoice") || itemTypes.includes("fillBlank")) {
+    lines.push("- Write harder MCQs with near distractors: each wrong option should be believable, same-topic, and close enough that the learner must read carefully.");
+    lines.push("- Avoid throwaway distractors, jokes, opposites with no overlap, or answers that are obviously shorter, vaguer, or stylistically different from the correct answer.");
+    lines.push("- Good distractors should reflect common misconceptions, partial truths, adjacent concepts, or likely exam misreadings.");
   }
   lines.push("");
   lines.push("## Output — Save as a Downloadable File");

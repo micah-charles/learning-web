@@ -262,6 +262,7 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ⚠ The correct `answer` must appear in `options` if options are provided.
 ⚠ Field name is `sentence`, not `question`, `text`, or `prompt`.
 ⚠ Do not use `fillBlank` for a standalone question unless it genuinely contains a `____` blank.
+⚠ If `options` are present, make them near distractors from the same topic — not random throwaways.
 
 ### `multipleChoice`
 
@@ -282,6 +283,19 @@ Only reduce if the source material is genuinely very small. Prefer more items ov
 ```
 
 Use `multipleChoice` for authored MCQ prompts such as grammar questions, concept checks, or "Which statement is correct?" questions. Required fields are `question`, `answer`, and `options`; `options` must include `answer`. Do not use `sentence` here.
+
+**Distractor quality rules — make MCQs feel like a real exam:**
+- All four options should belong to the same semantic family, grammatical class, or topic frame.
+- Write **near distractors**: plausible wrong answers based on likely student confusion, not random unrelated words.
+- Prefer distractors built from:
+  - adjacent concepts from the same lesson,
+  - common misconceptions,
+  - partly true statements that fail on one key detail,
+  - same-case / same-tense / same-process alternatives in grammar or science questions.
+- Avoid joke answers, obviously impossible answers, and one option that is much longer, vaguer, or more precise than the others.
+- Keep option style parallel: similar length, register, specificity, and grammar.
+- When using a definition-style correct answer, write distractor definitions that are also believable at first glance.
+- If one distractor is "almost right", make it wrong for one exact reason only — that creates useful exam-style difficulty.
 
 ### `sequence`
 

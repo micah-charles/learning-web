@@ -125,6 +125,7 @@ Wrong format (single flat block — will render as an unreadable wall of text):
 # Output Structure — CRITICAL: follow this exact schema
 
 Generate ONE unified JSON pack called `pack_unified.json`.
+Keep everything in this single file. Do not split passages or questions into separate files.
 
 **Every passage item MUST wrap its fields inside a `data` object.** Fields placed at
 the item root (outside `data`) will be silently ignored by the Learning Web loader.
@@ -203,6 +204,16 @@ For MCQ:
 - distractors must be believable
 - avoid joke answers
 - avoid obviously wrong answers
+- use **near distractors** based on likely misreadings, partial truths, or over-strong interpretations of the passage
+- keep all options in the same register and roughly similar length so the correct answer does not stand out stylistically
+- make at least one distractor tempting because it matches one detail but misses the deeper inference
+- avoid options that can be rejected without reading the passage carefully
+
+Good distractor patterns:
+- a statement supported by one sentence but contradicted by the wider paragraph
+- a plausible emotion or motive that is too strong, too weak, or aimed at the wrong character
+- a literal reading when the correct answer requires inference
+- a nearby vocabulary meaning that fits the sentence surface but not the tone or context
 
 ---
 

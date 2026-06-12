@@ -10,7 +10,7 @@
  *   → Source Material → Additional Instructions → Generate Mode
  */
 import { SUBJECTS as SUBJECT_VALUES } from "@/data.js";
-import { PROMPT_CONFIGS } from "../../services/promptConfigs.js";
+import { PROMPT_CONFIGS, VISIBLE_PROMPT_CONFIGS } from "../../services/promptConfigs.js";
 
 // Derive display objects from the canonical SUBJECTS array in data.js so this
 // list stays in sync automatically (includes "religion", "computing", etc.).
@@ -138,6 +138,11 @@ export default function PromptInputPanel({
     ? (PROMPT_CONFIGS.find((c) => c.id === templateWarning.requestedId)?.label ?? templateWarning.requestedId)
     : null;
 
+  const activeTemplate =
+    VISIBLE_PROMPT_CONFIGS.find((c) => c.id === promptTemplate) ||
+    PROMPT_CONFIGS.find((c) => c.id === promptTemplate) ||
+    null;
+
   return (
     <div className="pb-input-panel">
 
@@ -172,14 +177,14 @@ export default function PromptInputPanel({
           value={promptTemplate}
           onChange={(e) => onChange("promptTemplate", e.target.value)}
         >
-          {PROMPT_CONFIGS.map((c) => (
+          {VISIBLE_PROMPT_CONFIGS.map((c) => (
             <option key={c.id} value={c.id}>{c.label}</option>
           ))}
         </select>
         {/* Description of the active template */}
-        {PROMPT_CONFIGS.find((c) => c.id === promptTemplate) && (
+        {activeTemplate && (
           <p style={field.hint}>
-            {PROMPT_CONFIGS.find((c) => c.id === promptTemplate).description}
+            {activeTemplate.description}
           </p>
         )}
       </div>
