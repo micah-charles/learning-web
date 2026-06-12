@@ -278,6 +278,7 @@ export async function generateTutorResponse({
   vocabItems = null,
   hintGivenForCurrentQuestion = false,
   speechMode = SpeechMode.TOGGLE,
+  semanticSearch = false,
   speechLang = "en-GB",
 }) {
   const trimmedQuery = query.trim();
@@ -325,7 +326,7 @@ What are you working on right now?`,
   }
 
   // Retrieve relevant content
-  const retrieval = retrieveContent({
+  const retrieval = await retrieveContent({
     manifest,
     dataset,
     quizSession,
@@ -333,21 +334,23 @@ What are you working on right now?`,
     readingTargetText,
     studyBookHtml,
     query: trimmedQuery,
+    semanticSearch,
   });
 
-  // If no relevant content found, check off-topic and refuse
+  // If no relevant content found
   if (!retrieval.hasContent) {
-    // Off-topic check — only for general knowledge queries that have no content match
+    // Genuinely off-topic query (weather, sports, etc.)
     if (OFF_TOPIC_PATTERNS.some(p => p.test(trimmedQuery))) {
       return {
         type: ResponseType.REFUSAL,
-        text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+        text: "I'm a study assistant — I can only help with your learning materials. Try asking about something from your study books or current pack.",
         shouldSpeak: false,
       };
     }
+    // No match found in any loaded content — offer helpful fallback
     return {
       type: ResponseType.REFUSAL,
-      text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+      text: `I couldn't find "${trimmedQuery}" in your study books yet. Try asking about something from your current pack or study notes.`,
       shouldSpeak: false,
     };
   }
@@ -432,18 +435,23 @@ What are you working on right now?`,
     }
 
     response += "\n\nWould you like a hint, explanation, or help with something specific?";
+    const meta = { sources: retrieval.sources };
+    // Pass studybook metadata for evidence UI if top snippet is from studybook
+    if (topSnippet.source === "studybook" && topSnippet.metadata) {
+      meta.studybook = topSnippet.metadata;
+    }
     return {
       type: ResponseType.EXPLANATION,
       text: response,
       shouldSpeak: speechMode === SpeechMode.ALWAYS,
-      metadata: { sources: retrieval.sources },
+      metadata: meta,
     };
   }
 
   // Fallback
   return {
     type: ResponseType.REFUSAL,
-    text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+    text: `I couldn't find "${trimmedQuery}" in your study books yet. Try asking about something from your current pack or study notes.`,
     shouldSpeak: false,
   };
 }

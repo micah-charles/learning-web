@@ -6,6 +6,7 @@
  */
 
 import { normalizeForCompare, tokenizeSentence } from "@/utils.js";
+import { searchStudyBookIndex, extractSnippet } from "./studybookIndex.js";
 
 /**
  * Tokenize a query into lowercase words, filtering stop words.
@@ -103,18 +104,20 @@ export function extractSnippets(text, tokens, maxSnippets = 3, contextChars = 20
  * @param {object|null} params.quizSession - Current quiz session.
  * @param {object|null} params.readingPassage - Current reading passage.
  * @param {string|null} params.readingTargetText - Current reading passage target text (translation).
- * @param {string|null} params.studyBookHtml - Current study book HTML content.
+ * @param {string|null} params.studyBookHtml - Current study book HTML content (fallback).
  * @param {string} params.query - User query.
- * @returns {object} Retrieval result with snippets and metadata.
+ * @param {boolean} params.semanticSearch - Use semantic/embedding search (default false).
+ * @returns {Promise<object>} Retrieval result with snippets and metadata.
  */
-export function retrieveContent({
+export async function retrieveContent({
   manifest = null,
   dataset = null,
   quizSession = null,
   readingPassage = null,
   readingTargetText = null,
   studyBookHtml = null,
-  query = ""
+  query = "",
+  semanticSearch = false
 }) {
   const tokens = tokenizeQuery(query);
   if (!tokens.length) {
@@ -166,21 +169,58 @@ export function retrieveContent({
     }
   }
 
-  // 5. Study book content (strip HTML tags for search)
-  if (studyBookHtml) {
-    const plainText = studyBookHtml.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
-    const snippets = extractSnippets(plainText, tokens, 3);
-    if (snippets.length) {
-      allSnippets.push(...snippets.map(s => ({ ...s, source: "studybook", sourceLabel: "Study Book notes" })));
-      sources.push("studybook");
+  // 5. Study book content — search full index (async)
+  let studyBookPromise = null;
+  studyBookPromise = (async () => {
+    try {
+      // First: search within current pack's subject (if any)
+      let results = await searchStudyBookIndex(query, {
+        maxResults: 5,
+        subject: dataset?.subject,
+        curriculum: dataset?.curriculum,
+        semanticSearch
+      });
+
+      // Fallback: if filtered search returned nothing and a pack is open,
+      // search across all study books (broader retrieval)
+      if (results.length === 0 && dataset?.subject) {
+        results = await searchStudyBookIndex(query, {
+          maxResults: 5,
+          semanticSearch
+        });
+      }
+
+      return results.map(r => ({
+        text: extractSnippet(r.chunk, query, 300),
+        score: r.score,
+        source: "studybook",
+        sourceLabel: `Study Book: ${r.chunk.heading || r.chunk.displayName}`,
+        metadata: {
+          packId: r.chunk.packId,
+          subject: r.chunk.subject,
+          curriculum: r.chunk.curriculum,
+          anchor: r.chunk.anchor,
+          heading: r.chunk.heading
+        }
+      }));
+    } catch (err) {
+      console.warn("[tutorRetrieval] Study book search failed:", err);
+      return [];
     }
-  }
+  })();
 
   // 6. Dataset vocabulary (if available via manifest/dataset)
   if (dataset?.id && manifest) {
     // Note: vocab items would need to be loaded asynchronously
     // This is a placeholder for when vocab is available in context
     // The tutorEngine will handle async loading
+  }
+
+  // Await study book search
+  const studyBookSnippets = await studyBookPromise;
+  if (studyBookSnippets.length) {
+    allSnippets.push(...studyBookSnippets);
+    sources.push("studybook");
   }
 
   // Deduplicate by source+text similarity
