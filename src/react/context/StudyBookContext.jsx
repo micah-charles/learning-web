@@ -10,6 +10,7 @@ import {
   loadMarkdownFile, renderMarkdown, extractTOC,
   datasetHasStudyBook, getStudyBookFiles,
 } from "@/study-book.js";
+import { MISSING_ANCHOR_NOTICE, resolveStudyBookAnchor } from "./studyBookAnchorState.js";
 
 const INITIAL_STATE = {
   open: false,
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
   datasetId: null,
   activeFile: null,
   files: [],
+  rawMarkdown: "",
   html: "",
   toc: [],
   searchQuery: "",
@@ -25,6 +27,7 @@ const INITIAL_STATE = {
   currentAnchor: null,
   scrollTop: 0,
   splitMode: false,
+  notice: null,
 };
 
 const Ctx = createContext(null);
@@ -43,11 +46,17 @@ export function StudyBookProvider({ children }) {
 
     // Re-use cached content when dataset + file haven't changed.
     if (prev.datasetId === dataset.id && prev.activeFile === targetPath && prev.html) {
+      const anchorState = !anchor
+        ? { anchorFound: true, anchor: anchor || prev.currentAnchor || prev.toc[0]?.anchor || null }
+        : resolveStudyBookAnchor(prev.rawMarkdown || "", prev.toc || [], anchor);
       setState(p => ({
         ...p, open: true,
-        currentAnchor: anchor || p.currentAnchor || p.toc[0]?.anchor || null,
+        currentAnchor: anchorState.anchorFound
+          ? (anchor || p.currentAnchor || p.toc[0]?.anchor || null)
+          : (p.toc[0]?.anchor || null),
+        notice: anchorState.anchorFound ? null : MISSING_ANCHOR_NOTICE,
       }));
-      return;
+      return { anchorFound: anchorState.anchorFound };
     }
 
     setState(p => ({ ...p, open: true, loading: true }));
@@ -55,29 +64,34 @@ export function StudyBookProvider({ children }) {
       const raw = await loadMarkdownFile(targetPath);
       const toc = extractTOC(raw);
       const html = renderMarkdown(raw);
+      const anchorState = resolveStudyBookAnchor(raw, toc, anchor);
       setState(p => ({
         ...p,
         loading: false,
         datasetId: dataset.id,
         activeFile: targetPath,
         files,
+        rawMarkdown: raw,
         html,
         toc,
         searchQuery: "",
         searchMatchIndex: 0,
         searchMatchCount: 0,
-        currentAnchor: anchor || toc[0]?.anchor || null,
+        currentAnchor: anchorState.anchor,
         scrollTop: 0,
+        notice: anchorState.notice,
       }));
+      return { anchorFound: anchorState.anchorFound };
     } catch (err) {
       console.warn("StudyBook load error:", err);
       const errHtml = renderMarkdown(`# Notes unavailable\n\nCould not load notes for this pack.`);
-      setState(p => ({ ...p, loading: false, html: errHtml, toc: [], files }));
+      setState(p => ({ ...p, loading: false, html: errHtml, toc: [], files, notice: null }));
+      return { anchorFound: false };
     }
   }, []);
 
   const closeBook = useCallback(() => {
-    setState(p => ({ ...p, open: false, splitMode: false }));
+    setState(p => ({ ...p, open: false, splitMode: false, notice: null }));
   }, []);
 
   const toggleSplit = useCallback(() => {
@@ -94,7 +108,9 @@ export function StudyBookProvider({ children }) {
       setState(p => ({
         ...p, loading: false, activeFile: path, html, toc,
         searchQuery: "", searchMatchIndex: 0, searchMatchCount: 0,
+        rawMarkdown: raw,
         currentAnchor: toc[0]?.anchor || null, scrollTop: 0,
+        notice: null,
       }));
     } catch (err) {
       console.warn("StudyBook switch file error:", err);
@@ -125,6 +141,10 @@ export function StudyBookProvider({ children }) {
     setState(p => ({ ...p, scrollTop }));
   }, []);
 
+  const setNotice = useCallback((notice) => {
+    setState(p => ({ ...p, notice }));
+  }, []);
+
   const value = {
     ...state,
     openBook,
@@ -136,6 +156,7 @@ export function StudyBookProvider({ children }) {
     setSearchMatchCount,
     setCurrentAnchor,
     saveScrollTop,
+    setNotice,
   };
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

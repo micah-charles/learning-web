@@ -3101,6 +3101,17 @@ body.sb-split-mode #app {
   flex-shrink: 0;
 }
 
+.sb-notice {
+  margin: 8px 14px 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(143, 81, 0, 0.18);
+  background: rgba(143, 81, 0, 0.08);
+  color: var(--amber, #8f5100);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 /* ── Inner layout (TOC sidebar + content) ────────────────────────────────── */
 .sb-inner {
   display: flex;
