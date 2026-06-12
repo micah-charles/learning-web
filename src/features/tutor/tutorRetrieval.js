@@ -173,12 +173,23 @@ export async function retrieveContent({
   let studyBookPromise = null;
   studyBookPromise = (async () => {
     try {
-      const results = await searchStudyBookIndex(query, {
+      // First: search within current pack's subject (if any)
+      let results = await searchStudyBookIndex(query, {
         maxResults: 5,
         subject: dataset?.subject,
         curriculum: dataset?.curriculum,
         semanticSearch
       });
+
+      // Fallback: if filtered search returned nothing and a pack is open,
+      // search across all study books (broader retrieval)
+      if (results.length === 0 && dataset?.subject) {
+        results = await searchStudyBookIndex(query, {
+          maxResults: 5,
+          semanticSearch
+        });
+      }
+
       return results.map(r => ({
         text: extractSnippet(r.chunk, query, 300),
         score: r.score,

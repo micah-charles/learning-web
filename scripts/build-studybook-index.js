@@ -104,6 +104,7 @@ function splitMarkdownByHeadings(markdown, sourcePath) {
  */
 function collectStudyBookPaths(manifest) {
   const paths = [];
+  const seenFiles = new Set();
 
   function walk(obj) {
     if (!obj || typeof obj !== "object") return;
@@ -113,6 +114,9 @@ function collectStudyBookPaths(manifest) {
     }
     // Check for contentMdPath
     if (obj.contentMdPath && typeof obj.contentMdPath === "string") {
+      const key = `${obj.id}|${obj.contentMdPath}`;
+      if (seenFiles.has(key)) return;
+      seenFiles.add(key);
       const fullPath = path.join(ROOT, obj.contentMdPath);
       if (fs.existsSync(fullPath)) {
         paths.push({
@@ -130,10 +134,14 @@ function collectStudyBookPaths(manifest) {
     if (Array.isArray(obj.extraMdFiles)) {
       obj.extraMdFiles.forEach(extra => {
         if (extra.path && typeof extra.path === "string") {
+          const extraId = obj.id + (extra.path.includes("/") ? `_${path.basename(extra.path, ".md")}` : "");
+          const key = `${extraId}|${extra.path}`;
+          if (seenFiles.has(key)) return;
+          seenFiles.add(key);
           const fullPath = path.join(ROOT, extra.path);
           if (fs.existsSync(fullPath)) {
             paths.push({
-              id: obj.id + (extra.path.includes("/") ? `_${path.basename(extra.path, ".md")}` : ""),
+              id: extraId,
               displayName: obj.displayName || obj.id,
               subject: obj.subject || "",
               curriculum: obj.curriculum || "",
@@ -229,9 +237,9 @@ async function buildIndex() {
       const markdown = fs.readFileSync(file.fullPath, "utf-8");
       const chunks = splitMarkdownByHeadings(markdown, file.filePath);
 
-      for (const chunk of chunks) {
+      for (const [chunkIndex, chunk] of chunks.entries()) {
         allChunks.push({
-          id: `${file.id}|${chunk.anchor || "full"}|${chunk.level}`,
+          id: `${file.id}|${file.filePath.replace(/[|]/g, "_")}|${chunk.anchor || "full"}|${chunk.level}|${chunkIndex}`,
           packId: file.id,
           displayName: file.displayName,
           subject: file.subject,
@@ -254,6 +262,18 @@ async function buildIndex() {
 
   console.log(`  Processed ${processed} files`);
   console.log(`  Generated ${allChunks.length} search chunks`);
+
+  // Validate no duplicate IDs
+  const seenIds = new Set();
+  for (const chunk of allChunks) {
+    if (seenIds.has(chunk.id)) {
+      console.error(`❌ Duplicate chunk ID: ${chunk.id}`);
+      console.error(`  Source file: ${chunk.sourcePath}`);
+      process.exit(1);
+    }
+    seenIds.add(chunk.id);
+  }
+  console.log(`  ✅ All ${allChunks.length} chunk IDs are unique`);
 
   // Build output
   const output = {

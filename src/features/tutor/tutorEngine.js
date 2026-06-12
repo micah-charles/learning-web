@@ -337,19 +337,20 @@ What are you working on right now?`,
     semanticSearch,
   });
 
-  // If no relevant content found, check off-topic and refuse
+  // If no relevant content found
   if (!retrieval.hasContent) {
-    // Off-topic check — only for general knowledge queries that have no content match
+    // Genuinely off-topic query (weather, sports, etc.)
     if (OFF_TOPIC_PATTERNS.some(p => p.test(trimmedQuery))) {
       return {
         type: ResponseType.REFUSAL,
-        text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+        text: "I'm a study assistant — I can only help with your learning materials. Try asking about something from your study books or current pack.",
         shouldSpeak: false,
       };
     }
+    // No match found in any loaded content — offer helpful fallback
     return {
       type: ResponseType.REFUSAL,
-      text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+      text: `I couldn't find "${trimmedQuery}" in your study books yet. Try asking about something from your current pack or study notes.`,
       shouldSpeak: false,
     };
   }
@@ -450,7 +451,7 @@ What are you working on right now?`,
   // Fallback
   return {
     type: ResponseType.REFUSAL,
-    text: "I can only help with the current pack or study book. Ask me about the quiz question, vocabulary, reading passage, or your notes.",
+    text: `I couldn't find "${trimmedQuery}" in your study books yet. Try asking about something from your current pack or study notes.`,
     shouldSpeak: false,
   };
 }

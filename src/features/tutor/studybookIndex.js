@@ -70,7 +70,19 @@ function initMiniSearch(chunks) {
     extractField: (document, fieldName) => document[fieldName]
   });
 
-  _miniSearch.addAll(chunks);
+  // Defensive dedup: warn and skip duplicate IDs
+  const seen = new Set();
+  const uniqueChunks = [];
+  for (const chunk of chunks) {
+    if (seen.has(chunk.id)) {
+      console.warn(`[StudyBookIndex] Duplicate chunk ID: ${chunk.id}. Keeping first occurrence.`);
+      continue;
+    }
+    seen.add(chunk.id);
+    uniqueChunks.push(chunk);
+  }
+
+  _miniSearch.addAll(uniqueChunks);
   return _miniSearch;
 }
 
