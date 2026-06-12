@@ -150,12 +150,10 @@ export function TutorPanel() {
     messages,
     isLoading,
     speechMode,
-    semanticSearch,
     closePanel,
     sendMessage,
     clearChat,
     toggleSpeechMode,
-    toggleSemanticSearch,
     stopSpeech,
     SpeechMode,
     openStudyBookSource,
@@ -173,12 +171,12 @@ export function TutorPanel() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Focus input when panel opens
+  // Focus input when panel opens or loading finishes
   useEffect(() => {
     if (open && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [open]);
+  }, [open, isLoading]);
 
   // Handle Escape key
   useEffect(() => {
@@ -197,6 +195,7 @@ export function TutorPanel() {
     if (inputValue.trim() && !isLoading) {
       sendMessage(inputValue.trim());
       setInputValue("");
+      inputRef.current?.focus();
     }
   }, [inputValue, isLoading, sendMessage]);
 
@@ -252,17 +251,7 @@ export function TutorPanel() {
             >
               {speechMode === SpeechMode.NONE ? "🔇" : speechMode === SpeechMode.TOGGLE ? "🔊" : "🔈"}
             </button>
-            {/* Semantic search toggle */}
-            <button
-              className={`tutor-panel__semantic-btn ${semanticSearch ? "active" : ""}`}
-              type="button"
-              aria-label={`Smart search: ${semanticSearch ? "enabled" : "disabled"}. Click to toggle.`}
-              aria-pressed={semanticSearch}
-              onClick={toggleSemanticSearch}
-              title={`Smart search (semantic/embedding search): ${semanticSearch ? "On" : "Off"}. Click to toggle.`}
-            >
-              {semanticSearch ? "🧠✨" : "🧠"}
-            </button>
+
             {/* Clear chat */}
             {messages.length > 0 && (
               <button
