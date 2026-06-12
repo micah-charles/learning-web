@@ -12,9 +12,12 @@
     "start": "npm run build && python3 -m http.server --directory dist 4173",
     "dev": "npm run prepare:studybook-search && vite",
     "build": "npm run prepare:studybook-search && vite build && npm run generate:seo",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:tutor-studybook:unit": "node --loader ./tests/resolve-alias.mjs tests/tutor-engine-test.mjs && node --loader ./tests/resolve-alias.mjs tests/tutor-studybook-integration-test.mjs",
+    "test:tutor-studybook:e2e": "npx playwright test -c playwright.config.mjs tests/playwright/tutor-studybook.spec.mjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.14",

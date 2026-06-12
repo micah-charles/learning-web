@@ -8,6 +8,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useTutor } from "./TutorProvider.jsx";
 import { useStudyBook } from "../../react/context/StudyBookContext.jsx";
+import { humanizeLabel } from "@/utils.js";
 
 /**
  * Safe markdown formatting for tutor messages.
@@ -89,6 +90,60 @@ function parseInlineMarkdown(text) {
   return nodes;
 }
 
+function formatStudyBookSourceLabel(result) {
+  const subject = result?.subject ? humanizeLabel(result.subject) : "Study Book";
+  const curriculum = result?.curriculum ? humanizeLabel(result.curriculum) : "";
+  return [subject, curriculum, result?.displayName].filter(Boolean).join(" / ");
+}
+
+function getStudyBookResults(metadata) {
+  if (!metadata) return [];
+  if (Array.isArray(metadata.studybookResults) && metadata.studybookResults.length) {
+    return metadata.studybookResults;
+  }
+  if (metadata.studybook) {
+    return [metadata.studybook];
+  }
+  return [];
+}
+
+function StudyBookSourceCards({ results, onOpen }) {
+  if (!results.length) return null;
+
+  return (
+    <div className="tutor-panel__source-list">
+      {results.map((result, index) => (
+        <article
+          key={result.chunkId || `${result.packId}-${result.anchor || index}`}
+          className="tutor-panel__source-card"
+          data-chunk-id={result.chunkId || ""}
+        >
+          <div className="tutor-panel__source-card-header">
+            <span className="tutor-panel__source-rank">{index + 1}.</span>
+            <div className="tutor-panel__source-copy">
+              <h3 className="tutor-panel__source-title">{result.heading || result.displayName || "Study note"}</h3>
+              <p className="tutor-panel__source-meta">{formatStudyBookSourceLabel(result)}</p>
+            </div>
+          </div>
+          {result.snippet && (
+            <p className="tutor-panel__source-snippet">{result.snippet}</p>
+          )}
+          <button
+            className="tutor-panel__source-open-btn"
+            type="button"
+            data-source-pack={result.packId || ""}
+            data-source-anchor={result.anchor || ""}
+            data-source-path={result.sourcePath || ""}
+            onClick={() => onOpen(result)}
+          >
+            Open this study note
+          </button>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 export function TutorPanel() {
   const {
     open,
@@ -102,16 +157,11 @@ export function TutorPanel() {
     toggleSpeechMode,
     toggleSemanticSearch,
     stopSpeech,
-    checkSpeaking,
     SpeechMode,
-    setQuizSession,
-    setReadingPassage,
-    setDataset,
-    dataset,
-    findDatasetByPackId,
+    openStudyBookSource,
   } = useTutor();
 
-  const { openBook } = useStudyBook();
+  const { open: studyBookOpen } = useStudyBook();
 
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef(null);
@@ -164,17 +214,9 @@ export function TutorPanel() {
     }
   }, [stopSpeech]);
 
-  // Handle show evidence - open Study Book at specific anchor
-  const handleShowEvidence = useCallback((packId, anchor) => {
-    // Find the dataset that contains this packId
-    const targetDataset = findDatasetByPackId(packId);
-    if (targetDataset) {
-      openBook(targetDataset, { anchor });
-    } else if (dataset?.id) {
-      // Fallback to current dataset if pack not found
-      openBook(dataset, { anchor });
-    }
-  }, [findDatasetByPackId, openBook, dataset]);
+  const handleOpenStudyBookSource = useCallback((result) => {
+    openStudyBookSource(result);
+  }, [openStudyBookSource]);
 
   if (!open) return null;
 
@@ -190,7 +232,7 @@ export function TutorPanel() {
       {/* Panel */}
       <aside
         ref={panelRef}
-        className="tutor-panel"
+        className={`tutor-panel${studyBookOpen ? " tutor-panel--shifted" : ""}`}
         role="dialog"
         aria-label="FoxChild Tutor"
         aria-modal="true"
@@ -269,30 +311,20 @@ export function TutorPanel() {
             >
               <div className="tutor-panel__message-bubble">
                 <div className="tutor-panel__message-text">{formatMessage(msg.text)}</div>
-                
-                {/* Source attribution for studybook snippets (supports both old and new metadata shapes) */}
-                {msg.role === "tutor" && msg.metadata && (msg.metadata.source === "studybook" || msg.metadata.studybook) && (
+
+                {msg.role === "tutor" && getStudyBookResults(msg.metadata).length > 0 && (
                   <div className="tutor-panel__source-badge">
-                    <span>📖 {msg.metadata.studybook?.subject || msg.metadata.subject || "Study Book"}: {msg.metadata.studybook?.heading || msg.metadata.heading || msg.metadata.packId}</span>
+                    <span>📖 Study Book sources</span>
                   </div>
                 )}
 
-                {/* Show Evidence button for studybook snippets with anchor */}
-                {msg.role === "tutor" && msg.metadata && (msg.metadata.source === "studybook" || msg.metadata.studybook) && (msg.metadata.studybook?.anchor || msg.metadata.anchor) && (
-                  <button
-                    className="tutor-panel__evidence-btn"
-                    type="button"
-                    aria-label={`Show evidence in Study Book: ${msg.metadata.studybook?.heading || msg.metadata.heading || msg.metadata.packId}`}
-                    onClick={() => handleShowEvidence(
-                      msg.metadata.studybook?.packId || msg.metadata.packId,
-                      msg.metadata.studybook?.anchor || msg.metadata.anchor
-                    )}
-                    title={`Open Study Book at "${msg.metadata.studybook?.heading || msg.metadata.heading || "section"}"`}
-                  >
-                    📖 Show evidence
-                  </button>
+                {msg.role === "tutor" && getStudyBookResults(msg.metadata).length > 0 && (
+                  <StudyBookSourceCards
+                    results={getStudyBookResults(msg.metadata)}
+                    onOpen={handleOpenStudyBookSource}
+                  />
                 )}
-                
+
                 {msg.role === "tutor" && speechMode === SpeechMode.TOGGLE && (
                   <button
                     className="tutor-panel__read-aloud"

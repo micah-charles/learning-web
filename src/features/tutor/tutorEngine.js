@@ -5,7 +5,7 @@
  * Deterministic, template-based answers - no LLM in Phase 1.
  */
 
-import { normalizeForCompare } from "@/utils.js";
+import { humanizeLabel, normalizeForCompare } from "@/utils.js";
 import { retrieveContent, getVocabHint } from "./tutorRetrieval.js";
 import { speakWithPreferredVoice, SpeechMode } from "./tutorSpeech.js";
 
@@ -18,6 +18,7 @@ export const ResponseType = {
   VOCABULARY: "vocabulary",
   READING: "reading",
   GRAMMAR: "grammar",
+  STUDYBOOK: "studybook",
   REFUSAL: "refusal",
   GREETING: "greeting",
   HELP: "help",
@@ -251,6 +252,56 @@ function generateGrammarResponse(query) {
   return suggestions.join("\n\n") + "\n\nAsk me about a specific grammar topic!";
 }
 
+function formatStudyBookLabel(result) {
+  const subject = result.subject ? humanizeLabel(result.subject) : "Study Book";
+  const curriculum = result.curriculum ? humanizeLabel(result.curriculum) : "";
+  return [subject, curriculum, result.displayName].filter(Boolean).join(" / ");
+}
+
+export function buildStudyBookResults(snippets) {
+  return snippets
+    .filter((snippet) => snippet.source === "studybook" && snippet.metadata)
+    .slice(0, 3)
+    .map((snippet, index) => ({
+      chunkId: snippet.metadata.chunkId,
+      packId: snippet.metadata.packId,
+      displayName: snippet.metadata.displayName,
+      subject: snippet.metadata.subject,
+      curriculum: snippet.metadata.curriculum,
+      heading: snippet.metadata.heading,
+      anchor: snippet.metadata.anchor,
+      sourcePath: snippet.metadata.sourcePath,
+      packPath: snippet.metadata.packPath,
+      snippet: snippet.metadata.snippet || snippet.text,
+      score: snippet.score,
+      rank: index + 1,
+      label: formatStudyBookLabel({
+        displayName: snippet.metadata.displayName,
+        subject: snippet.metadata.subject,
+        curriculum: snippet.metadata.curriculum,
+      }),
+    }));
+}
+
+export function generateStudyBookResponse(results) {
+  if (!results.length) return "";
+  const strongest = results[0];
+  const title = strongest.heading || strongest.displayName || "Study note";
+  const response = [
+    "Found this in your Study Books:",
+    "",
+    `**${title}** looks like the strongest match.`,
+    "",
+    strongest.snippet,
+  ];
+  if (results.length > 1) {
+    response.push("", `I've also listed ${results.length - 1} nearby note${results.length === 2 ? "" : "s"} below so you can open the exact one you want.`);
+  } else {
+    response.push("", "Use the source card below to jump straight to this study note.");
+  }
+  return response.join("\n");
+}
+
 /**
  * Main tutor response generator.
  * @param {object} params - All context parameters.
@@ -427,6 +478,21 @@ What are you working on right now?`,
 
   // General content-based response using retrieved snippets
   if (retrieval.snippets.length) {
+    const studyBookResults = buildStudyBookResults(retrieval.snippets);
+    if (studyBookResults.length) {
+      return {
+        type: ResponseType.STUDYBOOK,
+        text: generateStudyBookResponse(studyBookResults),
+        shouldSpeak: speechMode === SpeechMode.ALWAYS,
+        metadata: {
+          source: "studybook",
+          sources: retrieval.sources,
+          studybook: studyBookResults[0],
+          studybookResults: studyBookResults,
+        },
+      };
+    }
+
     const topSnippet = retrieval.snippets[0];
     let response = `Based on your **${topSnippet.sourceLabel}**:\n\n> ${topSnippet.text.slice(0, 400)}`;
 

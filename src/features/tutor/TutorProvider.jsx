@@ -10,6 +10,7 @@ import { useManifest } from "../../react/context/ManifestContext.jsx";
 import { useProgress } from "../../react/context/ProgressContext.jsx";
 import { useStudyBook } from "../../react/context/StudyBookContext.jsx";
 import "./tutor.css";
+import { resolveStudyBookSource } from "./studyBookSources.js";
 import {
   loadTutorPrefs, saveTutorPrefs, toggleTutorEnabled,
   cycleSpeechMode, getTutorPref, setTutorPref,
@@ -43,7 +44,7 @@ const INITIAL_STATE = {
 export function TutorProvider({ children }) {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress } = useProgress();
-  const { html: studyBookHtml, open: studyBookOpen } = useStudyBook();
+  const { html: studyBookHtml, open: studyBookOpen, openBook } = useStudyBook();
 
   const [state, setState] = useState(INITIAL_STATE);
   const stateRef = useRef(state);
@@ -72,14 +73,11 @@ export function TutorProvider({ children }) {
     });
   }, []);
 
-  // Update speech language based on current dataset
   useEffect(() => {
-    if (datasetRef.current) {
-      const ds = datasetRef.current;
-      const lang = ds.speechLanguage || ds.sourceLanguageCode || "de-DE";
-      setState(prev => ({ ...prev, speechLang: lang }));
-    }
-  }, [datasetRef.current]);
+    if (!studyBookOpen || typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 960px)").matches) return;
+    setState(prev => (prev.open ? { ...prev, open: false } : prev));
+  }, [studyBookOpen]);
 
   // Expose methods to update external context refs
   const setQuizSession = useCallback((session) => {
@@ -97,6 +95,10 @@ export function TutorProvider({ children }) {
 
   const setDataset = useCallback(async (dataset) => {
     datasetRef.current = dataset;
+    if (dataset) {
+      const lang = dataset.speechLanguage || dataset.sourceLanguageCode || "en-GB";
+      setState(prev => ({ ...prev, speechLang: lang }));
+    }
     if (dataset?.id && manifest) {
       try {
         const vocab = await loadVocabItems(manifest, dataset.id);
@@ -109,22 +111,21 @@ export function TutorProvider({ children }) {
     }
   }, [manifest]);
 
-  // Find a dataset/pack by packId from the manifest
-  const findDatasetByPackId = useCallback((packId) => {
-    if (!manifest || !packId) return null;
-    // Check revisionPacks (study/revision packs)
-    const revPack = manifest.revisionPacks?.find(p => p.id === packId);
-    if (revPack) return revPack;
-    // Check passageGroups
-    const passageGroup = manifest.passageGroups?.find(p => p.id === packId);
-    if (passageGroup) return passageGroup;
-    // Check sentenceBuilderPacks
-    const builderPack = manifest.sentenceBuilderPacks?.find(p => p.id === packId);
-    if (builderPack) return builderPack;
-    // Also check core
-    if (manifest.core?.id === packId) return manifest.core;
-    return null;
+  const findStudyBookSource = useCallback((sourceMeta) => {
+    return resolveStudyBookSource(manifest, sourceMeta);
   }, [manifest]);
+
+  const openStudyBookSource = useCallback(async (sourceMeta) => {
+    const resolved = findStudyBookSource(sourceMeta);
+    if (!resolved?.dataset) {
+      return { opened: false, anchorFound: false };
+    }
+    const result = await openBook(resolved.dataset, {
+      anchor: sourceMeta?.anchor || null,
+      mdPath: resolved.mdPath || sourceMeta?.sourcePath || null,
+    });
+    return { opened: true, ...(result || {}) };
+  }, [findStudyBookSource, openBook]);
 
   // Core function: send a message to the tutor
   const sendMessage = useCallback(async (userText) => {
@@ -267,7 +268,10 @@ export function TutorProvider({ children }) {
     setQuizSession,
     setReadingPassage,
     setDataset,
-    findDatasetByPackId,
+    currentDataset: datasetRef.current,
+    studyBookOpen,
+    findStudyBookSource,
+    openStudyBookSource,
     SpeechMode,
     ResponseType,
   };

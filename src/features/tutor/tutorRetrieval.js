@@ -196,11 +196,16 @@ export async function retrieveContent({
         source: "studybook",
         sourceLabel: `Study Book: ${r.chunk.heading || r.chunk.displayName}`,
         metadata: {
+          chunkId: r.chunk.id,
           packId: r.chunk.packId,
+          displayName: r.chunk.displayName,
           subject: r.chunk.subject,
           curriculum: r.chunk.curriculum,
+          heading: r.chunk.heading,
           anchor: r.chunk.anchor,
-          heading: r.chunk.heading
+          sourcePath: r.chunk.sourcePath,
+          packPath: r.chunk.packPath,
+          snippet: extractSnippet(r.chunk, query, 300),
         }
       }));
     } catch (err) {
