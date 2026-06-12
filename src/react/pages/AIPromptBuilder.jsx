@@ -38,6 +38,10 @@ function loadSavedPrefs() {
     ...saved,
     promptTemplate,
     itemTypes: itemTypes.length > 0 ? itemTypes : [...config.defaultItemTypes],
+    additionalInstructions:
+      hasSherlockExampleInstructions(saved.additionalInstructions) && !hasSherlockSource(saved)
+        ? ""
+        : saved.additionalInstructions,
   };
 }
 
@@ -45,6 +49,18 @@ function savePrefs(prefs) {
   const state = loadStoredState();
   state.prefs.promptBuilder = prefs;
   saveStoredState(state);
+}
+
+function hasSherlockExampleInstructions(text = "") {
+  const value = String(text);
+  return value === SHERLOCK_PRESET.additionalInstructions ||
+    /Helen Stoner|Baker Street|Grimesby Roylott|Stoke Moran|Speckled Band/i.test(value);
+}
+
+function hasSherlockSource(values = {}) {
+  const topic = String(values.topic || "");
+  const sourceUrl = String(values.sourceUrl || "");
+  return /Speckled Band/i.test(topic) || /sherlock-holm\.es\/stories\/html\/spec/i.test(sourceUrl);
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -109,6 +125,8 @@ export default function AIPromptBuilder({ onNavigate }) {
   // before entering setValues — this keeps side-effects (setTemplateWarning)
   // safely outside the state-updater function (see RC9).
   const handleChange = useCallback((key, value) => {
+    const sourceIdentityKeys = new Set(["topic", "sourceMode", "sourceUrl", "sourceMaterial"]);
+
     if (key === "promptTemplate") {
       const config = getPromptConfig(value);
       if (config.linkedSubject && config.linkedSubject !== values.subject) {
@@ -121,6 +139,13 @@ export default function AIPromptBuilder({ onNavigate }) {
 
     setValues((prev) => {
       const next = { ...prev, [key]: value };
+
+      if (
+        sourceIdentityKeys.has(key) &&
+        hasSherlockExampleInstructions(prev.additionalInstructions)
+      ) {
+        next.additionalInstructions = "";
+      }
 
       if (key === "subject") {
         // Auto-switch the prompt template when subject changes
@@ -152,7 +177,11 @@ export default function AIPromptBuilder({ onNavigate }) {
     if (key === "subject" && templateWarning) {
       setTemplateWarning(null);
     }
-  }, [values, templateWarning]);
+
+    if (sourceIdentityKeys.has(key) && exampleLoaded) {
+      setExampleLoaded(false);
+    }
+  }, [values, templateWarning, exampleLoaded]);
 
   // ── Resolve a template/subject conflict from the inline warning ─────────────
   // apply=true  → switch both promptTemplate and subject automatically
