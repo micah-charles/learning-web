@@ -251,47 +251,69 @@ export async function searchStudyBookIndex(query, options = {}) {
 
   // If semantic search is enabled and we have enough results to rerank
   if (useSemantic && results.length > 0) {
-    try {
-      // Try to load cached embeddings first
-      let embeddingsCache = await loadCachedEmbeddings();
-      if (!embeddingsCache || embeddingsCache.count !== index.chunks.length) {
-        // Compute embeddings if not cached or stale
-        embeddingsCache = await ensureEmbeddings(index.chunks);
-      }
-
-      if (embeddingsCache) {
-        const embedder = await initEmbedder();
-        const queryVec = await embedder(query.slice(0, 512), { pooling: "mean", normalize: true });
-        
-        // Compute cosine similarity for top N keyword results
-        const topN = Math.min(results.length, 20);
-        const scored = [];
-        for (let i = 0; i < topN; i++) {
-          const result = results[i];
-          const chunkIdx = index.chunks.findIndex(c => c.id === result.id);
-          if (chunkIdx >= 0) {
-            const offset = chunkIdx * EMBEDDING_DIM;
-            const chunkVec = embeddingsCache.embeddings.slice(offset, offset + EMBEDDING_DIM);
-            
-            // Cosine similarity (both vectors normalized)
-            let dot = 0;
-            for (let k = 0; k < EMBEDDING_DIM; k++) {
-              dot += queryVec[k] * chunkVec[k];
-            }
-            scored.push({ ...result, semanticScore: dot });
-          }
-        }
-        
-        // Combine keyword and semantic scores (weighted)
-        results = scored
-          .sort((a, b) => (b.semanticScore * 0.7 + b.score * 0.3) - (a.semanticScore * 0.7 + a.score * 0.3))
-          .slice(0, maxResults)
-          .map(r => ({ ...r, score: r.semanticScore * 0.7 + r.score * 0.3 }));
-      }
-    } catch (err) {
-      console.warn("[StudyBookIndex] Semantic search failed, falling back to keyword:", err);
-    }
+    // Start semantic reranking in background, return keyword results immediately
+    // This prevents UI hang on first run
+    enhanceWithSemantic(results, query, index, maxResults).catch(err => {
+      console.warn("[StudyBookIndex] Semantic search failed, using keyword results:", err);
+    });
   }
+  
+  // Map to our format
+  return results
+    .slice(0, maxResults)
+    .map(r => ({
+      chunk: r,
+      score: r.score || 0
+    }));
+}
+
+async function enhanceWithSemantic(results, query, index, maxResults) {
+  try {
+    // Try to load cached embeddings first
+    let embeddingsCache = await loadCachedEmbeddings();
+    if (!embeddingsCache || embeddingsCache.count !== index.chunks.length) {
+      // Compute embeddings if not cached or stale
+      embeddingsCache = await ensureEmbeddings(index.chunks);
+    }
+
+    if (embeddingsCache) {
+      const embedder = await initEmbedder();
+      const queryVec = await embedder(query.slice(0, 512), { pooling: "mean", normalize: true });
+      
+      // Compute cosine similarity for top N keyword results
+      const topN = Math.min(results.length, 20);
+      const scored = [];
+      for (let i = 0; i < topN; i++) {
+        const result = results[i];
+        const chunkIdx = index.chunks.findIndex(c => c.id === result.id);
+        if (chunkIdx >= 0) {
+          const offset = chunkIdx * EMBEDDING_DIM;
+          const chunkVec = embeddingsCache.embeddings.slice(offset, offset + EMBEDDING_DIM);
+          
+          // Cosine similarity (both vectors normalized)
+          let dot = 0;
+          for (let k = 0; k < EMBEDDING_DIM; k++) {
+            dot += queryVec[k] * chunkVec[k];
+          }
+          scored.push({ ...result, semanticScore: dot });
+        }
+      }
+      
+      // Combine keyword and semantic scores (weighted)
+      const enhancedResults = scored
+        .sort((a, b) => (b.semanticScore * 0.7 + b.score * 0.3) - (a.semanticScore * 0.7 + a.score * 0.3))
+        .slice(0, maxResults)
+        .map(r => ({ ...r, score: r.semanticScore * 0.7 + r.score * 0.3 }));
+      
+      // Notify UI of enhanced results (could dispatch custom event)
+      window.dispatchEvent(new CustomEvent('tutor:enhanced-results', { detail: enhancedResults }));
+    }
+  } catch (err) {
+    console.warn("[StudyBookIndex] Semantic search failed, using keyword results:", err);
+  }
+}
+
+/**
 
   // Map to our format
   return results
