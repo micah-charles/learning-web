@@ -7,7 +7,7 @@
  * Field order:
  *   Subject → Prompt Template → (inline warning if subject/template mismatch)
  *   → Topic → Level → Curriculum → Locale → Item Types
- *   → Source Material → Additional Instructions → Generate Mode
+ *   → Source Material → Additional Instructions
  */
 import { SUBJECTS as SUBJECT_VALUES } from "@/data.js";
 import { PROMPT_CONFIGS, VISIBLE_PROMPT_CONFIGS } from "../../services/promptConfigs.js";
@@ -48,11 +48,6 @@ const ITEM_TYPES = [
   { value: "categorySort",    label: "categorySort",    tab: "Quiz"          },
   { value: "sentenceBuilder", label: "sentenceBuilder", tab: "Builder"       },
   { value: "passage",         label: "passage",         tab: "Reading"       },
-];
-
-const GENERATE_MODES = [
-  { value: "template",  label: "Structured Template", desc: "Always available" },
-  { value: "chrome-ai", label: "Chrome AI Enhanced",  desc: "Requires Chrome Built-in AI" },
 ];
 
 const SOURCE_MODES = [
@@ -108,7 +103,6 @@ function titleCase(str) {
 export default function PromptInputPanel({
   values,
   onChange,
-  hasChromeAI,
   basePromptLoaded,
   basePromptError,
   allowedItemTypes,           // string[] from the active prompt config
@@ -118,7 +112,7 @@ export default function PromptInputPanel({
   const {
     subject, topic, level, curriculum, locale,
     itemTypes, sourceMode, sourceUrl, sourceMaterial,
-    additionalInstructions, generateMode, promptTemplate,
+    additionalInstructions, promptTemplate,
   } = values;
 
   // Only show item types permitted by the currently loaded prompt template
@@ -415,38 +409,6 @@ export default function PromptInputPanel({
           value={additionalInstructions}
           onChange={(e) => onChange("additionalInstructions", e.target.value)}
         />
-      </div>
-
-      {/* Generate mode */}
-      <div className="pb-field">
-        <span style={field.label}>Generate Mode</span>
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-          {GENERATE_MODES.map((m) => {
-            const disabled = m.value === "chrome-ai" && !hasChromeAI;
-            return (
-              <label
-                key={m.value}
-                className={`pb-mode-option${generateMode === m.value ? " pb-mode-option--on" : ""}${disabled ? " pb-mode-option--disabled" : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="generateMode"
-                  value={m.value}
-                  checked={generateMode === m.value}
-                  disabled={disabled}
-                  onChange={() => onChange("generateMode", m.value)}
-                  style={{ accentColor: "var(--lw-blue)" }}
-                />
-                <span>
-                  <strong>{m.label}</strong>
-                  <span className="pb-mode-desc">
-                    {disabled ? "Chrome AI not detected" : m.desc}
-                  </span>
-                </span>
-              </label>
-            );
-          })}
-        </div>
       </div>
 
     </div>

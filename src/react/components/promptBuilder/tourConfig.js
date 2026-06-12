@@ -83,8 +83,8 @@ export const AI_TOUR_STEPS = [
 ];
 
 /**
- * One-click example. Merged over the existing prefs so generateMode / tourSeen
- * are preserved. Subject + template are kept consistent (literature ↔ lit-11plus)
+ * One-click example. Merged over the existing prefs so tourSeen is preserved.
+ * Subject + template are kept consistent (literature ↔ lit-11plus)
  * so no mismatch warning is triggered.
  */
 export const SHERLOCK_PRESET = {
