@@ -109,6 +109,23 @@ export function TutorProvider({ children }) {
     }
   }, [manifest]);
 
+  // Find a dataset/pack by packId from the manifest
+  const findDatasetByPackId = useCallback((packId) => {
+    if (!manifest || !packId) return null;
+    // Check revisionPacks (study/revision packs)
+    const revPack = manifest.revisionPacks?.find(p => p.id === packId);
+    if (revPack) return revPack;
+    // Check passageGroups
+    const passageGroup = manifest.passageGroups?.find(p => p.id === packId);
+    if (passageGroup) return passageGroup;
+    // Check sentenceBuilderPacks
+    const builderPack = manifest.sentenceBuilderPacks?.find(p => p.id === packId);
+    if (builderPack) return builderPack;
+    // Also check core
+    if (manifest.core?.id === packId) return manifest.core;
+    return null;
+  }, [manifest]);
+
   // Core function: send a message to the tutor
   const sendMessage = useCallback(async (userText) => {
     const currentState = stateRef.current;
@@ -250,6 +267,7 @@ export function TutorProvider({ children }) {
     setQuizSession,
     setReadingPassage,
     setDataset,
+    findDatasetByPackId,
     SpeechMode,
     ResponseType,
   };

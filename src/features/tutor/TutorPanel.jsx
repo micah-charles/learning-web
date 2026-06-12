@@ -108,6 +108,7 @@ export function TutorPanel() {
     setReadingPassage,
     setDataset,
     dataset,
+    findDatasetByPackId,
   } = useTutor();
 
   const { openBook } = useStudyBook();
@@ -166,11 +167,14 @@ export function TutorPanel() {
   // Handle show evidence - open Study Book at specific anchor
   const handleShowEvidence = useCallback((packId, anchor) => {
     // Find the dataset that contains this packId
-    // The current dataset in tutor context should be the one we're viewing
-    if (dataset?.id) {
+    const targetDataset = findDatasetByPackId(packId);
+    if (targetDataset) {
+      openBook(targetDataset, { anchor });
+    } else if (dataset?.id) {
+      // Fallback to current dataset if pack not found
       openBook(dataset, { anchor });
     }
-  }, [openBook, dataset]);
+  }, [findDatasetByPackId, openBook, dataset]);
 
   if (!open) return null;
 
@@ -266,21 +270,24 @@ export function TutorPanel() {
               <div className="tutor-panel__message-bubble">
                 <div className="tutor-panel__message-text">{formatMessage(msg.text)}</div>
                 
-                {/* Source attribution for studybook snippets */}
-                {msg.role === "tutor" && msg.metadata && msg.metadata.source === "studybook" && (
+                {/* Source attribution for studybook snippets (supports both old and new metadata shapes) */}
+                {msg.role === "tutor" && msg.metadata && (msg.metadata.source === "studybook" || msg.metadata.studybook) && (
                   <div className="tutor-panel__source-badge">
-                    <span>📖 {msg.metadata.subject || "Study Book"}: {msg.metadata.heading || msg.metadata.packId}</span>
+                    <span>📖 {msg.metadata.studybook?.subject || msg.metadata.subject || "Study Book"}: {msg.metadata.studybook?.heading || msg.metadata.heading || msg.metadata.packId}</span>
                   </div>
                 )}
 
                 {/* Show Evidence button for studybook snippets with anchor */}
-                {msg.role === "tutor" && msg.metadata && msg.metadata.source === "studybook" && msg.metadata.anchor && (
+                {msg.role === "tutor" && msg.metadata && (msg.metadata.source === "studybook" || msg.metadata.studybook) && (msg.metadata.studybook?.anchor || msg.metadata.anchor) && (
                   <button
                     className="tutor-panel__evidence-btn"
                     type="button"
-                    aria-label={`Show evidence in Study Book: ${msg.metadata.heading || msg.metadata.packId}`}
-                    onClick={() => handleShowEvidence(msg.metadata.packId, msg.metadata.anchor)}
-                    title={`Open Study Book at "${msg.metadata.heading || "section"}"`}
+                    aria-label={`Show evidence in Study Book: ${msg.metadata.studybook?.heading || msg.metadata.heading || msg.metadata.packId}`}
+                    onClick={() => handleShowEvidence(
+                      msg.metadata.studybook?.packId || msg.metadata.packId,
+                      msg.metadata.studybook?.anchor || msg.metadata.anchor
+                    )}
+                    title={`Open Study Book at "${msg.metadata.studybook?.heading || msg.metadata.heading || "section"}"`}
                   >
                     📖 Show evidence
                   </button>
