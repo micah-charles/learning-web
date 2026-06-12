@@ -209,6 +209,98 @@ import MiniSearch from "minisearch";
 }
 
 /**
+ * Test quiz clarification requests stay in hints-first mode and do not leak the answer.
+ */
+{
+  const { generateTutorResponse, ResponseType, resetHintProgress } = await import("../src/features/tutor/tutorEngine.js");
+
+  resetHintProgress();
+  const result = await generateTutorResponse({
+    query: "what is dative",
+    manifest: null,
+    dataset: { id: "latin_pack", subject: "language", curriculum: "ks3", displayName: "Latin Pack" },
+    quizSession: {
+      id: "session-clarify-1",
+      questions: [{
+        id: "q-clarify-1",
+        kind: "choice",
+        prompt: "Which case is dative?",
+        answer: "indirect object",
+        options: ["subject", "direct object", "indirect object"],
+        explanation: "The dative case marks the indirect object.",
+        topic: "Latin cases",
+      }],
+      index: 0,
+    },
+    readingPassage: null,
+    readingTargetText: null,
+    studyBookHtml: null,
+    vocabItems: [],
+    hintGivenForCurrentQuestion: false,
+    speechMode: "toggle",
+    semanticSearch: false,
+    speechLang: "en-GB",
+  });
+
+  assert.equal(result.type, ResponseType.HINT, "Clarification during a live quiz should stay in hint mode");
+  assert.ok(!result.text.includes("indirect object"), "Clarification should not reveal the correct answer");
+  assert.ok(!result.text.includes("marks the indirect object"), "Clarification should not reveal the full explanation");
+}
+
+/**
+ * Test progressive hint counts reset cleanly between sessions/questions.
+ */
+{
+  const { generateTutorResponse, resetHintProgress } = await import("../src/features/tutor/tutorEngine.js");
+
+  resetHintProgress();
+  const baseParams = {
+    manifest: null,
+    dataset: { id: "german_pack", subject: "language", curriculum: "ks3", displayName: "German Pack" },
+    readingPassage: null,
+    readingTargetText: null,
+    studyBookHtml: null,
+    vocabItems: [],
+    hintGivenForCurrentQuestion: false,
+    speechMode: "toggle",
+    semanticSearch: false,
+    speechLang: "en-GB",
+  };
+
+  const question = {
+    id: "q-hint-reset",
+    kind: "choice",
+    prompt: "Which case is dative?",
+    answer: "indirect object",
+    options: ["subject", "direct object", "indirect object"],
+    topic: "Grammar",
+  };
+
+  const first = await generateTutorResponse({
+    ...baseParams,
+    query: "stuck dative",
+    quizSession: { id: "session-a", questions: [question], index: 0 },
+  });
+
+  const second = await generateTutorResponse({
+    ...baseParams,
+    query: "stuck dative",
+    quizSession: { id: "session-a", questions: [question], index: 0 },
+  });
+
+  resetHintProgress();
+
+  const reset = await generateTutorResponse({
+    ...baseParams,
+    query: "stuck dative",
+    quizSession: { id: "session-b", questions: [question], index: 0 },
+  });
+
+  assert.notEqual(first.text, second.text, "Repeated hint requests in one session should progress");
+  assert.equal(first.text, reset.text, "A fresh session should restart hint progression from level 1");
+}
+
+/**
  * Test fallback message includes the quoted query term.
  */
 {

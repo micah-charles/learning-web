@@ -8,6 +8,7 @@
 import { loadStoredState, saveStoredState } from "@/storage.js";
 
 const TUTOR_PREFS_KEY = "tutor";
+const SEMANTIC_SEARCH_EXPOSED = false;
 
 export const DEFAULT_TUTOR_PREFS = {
   enabled: true,
@@ -24,7 +25,11 @@ export async function loadTutorPrefs() {
   try {
     const state = loadStoredState();
     const prefs = state.prefs?.[TUTOR_PREFS_KEY] || {};
-    return { ...DEFAULT_TUTOR_PREFS, ...prefs };
+    return {
+      ...DEFAULT_TUTOR_PREFS,
+      ...prefs,
+      semanticSearch: SEMANTIC_SEARCH_EXPOSED ? !!prefs.semanticSearch : false,
+    };
   } catch (_error) {
     return { ...DEFAULT_TUTOR_PREFS };
   }
@@ -38,7 +43,11 @@ export function saveTutorPrefs(prefs) {
   try {
     const state = loadStoredState();
     if (!state.prefs) state.prefs = {};
-    state.prefs[TUTOR_PREFS_KEY] = { ...DEFAULT_TUTOR_PREFS, ...prefs };
+    state.prefs[TUTOR_PREFS_KEY] = {
+      ...DEFAULT_TUTOR_PREFS,
+      ...prefs,
+      semanticSearch: SEMANTIC_SEARCH_EXPOSED ? !!prefs.semanticSearch : false,
+    };
     saveStoredState(state);
   } catch (_error) {
     // Silently fail - localStorage might be full or unavailable
@@ -97,9 +106,9 @@ export async function cycleSpeechMode() {
  */
 export async function toggleSemanticSearch() {
   const prefs = await loadTutorPrefs();
-  prefs.semanticSearch = !prefs.semanticSearch;
+  prefs.semanticSearch = false;
   saveTutorPrefs(prefs);
-  return prefs.semanticSearch;
+  return false;
 }
 
 /**
@@ -109,7 +118,7 @@ export async function toggleSemanticSearch() {
  */
 export async function setSemanticSearch(enabled) {
   const prefs = await loadTutorPrefs();
-  prefs.semanticSearch = !!enabled;
+  prefs.semanticSearch = SEMANTIC_SEARCH_EXPOSED ? !!enabled : false;
   saveTutorPrefs(prefs);
   return prefs.semanticSearch;
 }

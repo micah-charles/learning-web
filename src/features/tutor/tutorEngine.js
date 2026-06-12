@@ -53,6 +53,14 @@ const OFF_TOPIC_PATTERNS = [
  */
 const hintCountMap = new Map();
 
+export function resetHintProgress(questionId = null) {
+  if (questionId) {
+    hintCountMap.delete(questionId);
+    return;
+  }
+  hintCountMap.clear();
+}
+
 /**
  * Check if query asks for explanation (after trying).
  */
@@ -223,28 +231,31 @@ function generateQuizHint(question, query, intent, hintCount) {
   const pos = question.pos || "";
 
   switch (intent) {
-    case "word_clarification":
-      // Use the question answer/definition to explain the term
-      if (explanation) return explanation;
-      if (answer) return `"${prompt}" refers to: ${answer}.`;
-      if (topic) return `"${prompt}" relates to **${topic}**. Think about what you've learned.`;
-      return `"${prompt}" — consider what this term means in context.`;
+    case "word_clarification": {
+      const clue = topic
+        ? `This question is about **${topic}**.`
+        : "This term matters to the question.";
+      if (kind === "choice" && options.length > 0) {
+        return `${clue} Think about what "${prompt}" means, then compare the options and rule out the ones that do not fit.`;
+      }
+      if (hint) {
+        return `${clue} ${hint}`;
+      }
+      return `${clue} Consider what "${prompt}" means in this context before you answer.`;
+    }
 
     case "concept_explanation": {
-      // Give a full explanation using question fields
       let resp = "";
       if (topic) resp += `**${topic}**: `;
-      if (explanation) {
-        resp += explanation;
-      } else if (answer && kind === "choice") {
-        resp += `The question asks about "${prompt}". Review the definitions of each option and see which one matches.`;
-      } else if (answer) {
-        resp += `"${prompt}" — ${answer}`;
+      if (hint) {
+        resp += hint;
+      } else if (kind === "choice" && options.length > 0) {
+        resp += `The question asks about "${prompt}". Review the options and eliminate the ones that do not match the idea in the question.`;
       } else {
-        resp += `"${prompt}". Consider what you know about this topic.`;
+        resp += `Think through what "${prompt}" means and how it fits this question.`;
       }
-      if (kind === "choice" && options.length > 0) {
-        resp += "\n\nLook at the options and eliminate those that don't fit.";
+      if (kind === "choice" && options.length > 0 && !hint) {
+        resp += "\n\nLook carefully for clues in the wording before you choose.";
       }
       return resp;
     }

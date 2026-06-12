@@ -17,7 +17,7 @@ import {
   toggleSemanticSearch, setSemanticSearch
 } from "./tutorStorage.js";
 import {
-  generateTutorResponse, maybeSpeakResponse, ResponseType
+  generateTutorResponse, maybeSpeakResponse, ResponseType, resetHintProgress
 } from "./tutorEngine.js";
 import { speak, stop, isSpeaking, SpeechMode } from "./tutorSpeech.js";
 import { loadVocabItems } from "@/data.js";
@@ -56,6 +56,8 @@ export function TutorProvider({ children }) {
   const readingTargetTextRef = useRef(null);
   const vocabItemsRef = useRef(null);
   const datasetRef = useRef(null);
+  const quizSessionIdRef = useRef(null);
+  const quizQuestionIdRef = useRef(null);
 
   // Load preferences on mount
   useEffect(() => {
@@ -82,9 +84,26 @@ export function TutorProvider({ children }) {
   // Expose methods to update external context refs
   const setQuizSession = useCallback((session) => {
     quizSessionRef.current = session;
-    // Reset hint flag when question changes
-    if (session?.questions?.length > 0) {
+    const currentQuestionId = session?.questions?.[session.index]?.id || null;
+    const sessionId = session?.id || null;
+
+    if (sessionId && sessionId !== quizSessionIdRef.current) {
+      resetHintProgress();
+      quizSessionIdRef.current = sessionId;
+      quizQuestionIdRef.current = currentQuestionId;
       setState(prev => ({ ...prev, hintGivenForCurrentQuestion: false }));
+      return;
+    }
+
+    if (currentQuestionId && currentQuestionId !== quizQuestionIdRef.current) {
+      resetHintProgress(currentQuestionId);
+      quizQuestionIdRef.current = currentQuestionId;
+      setState(prev => ({ ...prev, hintGivenForCurrentQuestion: false }));
+      return;
+    }
+
+    if (!currentQuestionId) {
+      quizQuestionIdRef.current = null;
     }
   }, []);
 
