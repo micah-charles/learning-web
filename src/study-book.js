@@ -4,7 +4,14 @@
  */
 
 import { marked, ALLOWED_TAGS, ALLOWED_ATTR } from "./study-book-core.js";
-export { extractTOC, highlightMatches, datasetHasStudyBook, getStudyBookFiles } from "./study-book-core.js";
+export {
+  extractTOC,
+  highlightMatches,
+  datasetHasStudyBook,
+  getStudyBookFiles,
+  hasStudyBookAnchor,
+  makeStudyBookAnchor,
+} from "./study-book-core.js";
 import DOMPurify from "dompurify";
 
 // ── Markdown cache ─────────────────────────────────────────────────────────

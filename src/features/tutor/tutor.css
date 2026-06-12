@@ -11,7 +11,10 @@
   --tutor-panel-width: 360px;
   --tutor-panel-height: 520px;
   --tutor-panel-max-height: calc(100vh - 120px);
+  --tutor-panel-gap: 20px;
   --tutor-z-index: 2147483000; /* Match embed.js z-index pattern */
+  --study-book-drawer-width: 420px;
+  --study-book-drawer-offset: 0px;
   --tutor-bg: var(--surface-strong, rgba(255, 254, 248, 0.98));
   --tutor-border: var(--line, rgba(61, 43, 31, 0.12));
   --tutor-ink: var(--ink, #2d1e0f);
@@ -45,6 +48,10 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease, width 0.3s ease, padding 0.3s ease;
   overflow: hidden;
   padding: 0;
+}
+
+.tutor-widget--studybook-open .tutor-fab {
+  right: calc(16px + var(--study-book-drawer-offset));
 }
 
 .tutor-fab:hover {
@@ -116,6 +123,10 @@
   animation: tutor-panel-slide-up 0.25s ease-out;
 }
 
+.tutor-panel--shifted {
+  right: calc(16px + var(--study-book-drawer-offset));
+}
+
 @keyframes tutor-panel-slide-up {
   from {
     opacity: 0;
@@ -134,6 +145,18 @@
   background: rgba(0, 0, 0, 0.3);
   z-index: calc(var(--tutor-z-index) - 2);
   display: none;
+}
+
+@media (max-width: 960px) {
+  .tutor-widget--studybook-open .tutor-fab {
+    right: 16px;
+    top: 16px;
+    bottom: auto;
+  }
+
+  .tutor-widget--studybook-open .tutor-panel {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -401,34 +424,6 @@
 }
 
 /* ── Evidence Button & Source Attribution ───────────────────────────────────── */
-.tutor-panel__evidence-btn {
-  margin-top: 8px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: var(--tutor-radius-sm);
-  background: var(--tutor-primary-bg);
-  color: var(--tutor-primary);
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
-  font-family: inherit;
-}
-
-.tutor-panel__evidence-btn:hover {
-  background: var(--tutor-primary);
-  color: #fff;
-  transform: translateX(2px);
-}
-
-.tutor-panel__evidence-btn:focus-visible {
-  outline: 2px solid var(--tutor-primary);
-  outline-offset: 2px;
-}
-
 /* Source attribution badge for studybook messages */
 .tutor-panel__source-badge {
   margin-top: 6px;
@@ -447,9 +442,90 @@
 
 .tutor-panel__source-badge span {
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
+}
+
+.tutor-panel__source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tutor-panel__source-card {
+  border: 1px solid rgba(61, 158, 165, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tutor-panel__source-card-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.tutor-panel__source-rank {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--tutor-primary);
+  line-height: 1.4;
+}
+
+.tutor-panel__source-copy {
+  min-width: 0;
+}
+
+.tutor-panel__source-title {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--tutor-ink);
+}
+
+.tutor-panel__source-meta {
+  margin: 2px 0 0;
+  font-size: 0.74rem;
+  color: var(--tutor-muted);
+  line-height: 1.45;
+}
+
+.tutor-panel__source-snippet {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--tutor-primary);
+  border-radius: 0 10px 10px 0;
+  background: rgba(61, 158, 165, 0.08);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--tutor-ink);
+}
+
+.tutor-panel__source-open-btn {
+  align-self: flex-start;
+  border: 1px solid rgba(61, 158, 165, 0.28);
+  border-radius: 999px;
+  background: var(--tutor-primary-bg);
+  color: var(--tutor-primary);
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.tutor-panel__source-open-btn:hover {
+  background: var(--tutor-primary);
+  border-color: var(--tutor-primary);
+  color: #fff;
+}
+
+.tutor-panel__source-open-btn:focus-visible {
+  outline: 2px solid var(--tutor-primary);
+  outline-offset: 2px;
 }
 
 /* Loading indicator */

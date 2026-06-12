@@ -27,6 +27,15 @@ marked.use({
 
 export { marked };
 
+export function makeStudyBookAnchor(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 // ── Allowed HTML tags/attrs (for DOMPurify in the browser) ────────────
 
 export const ALLOWED_TAGS = [
@@ -54,15 +63,22 @@ export function extractTOC(rawMarkdown) {
   while ((match = re.exec(rawMarkdown)) !== null) {
     const level = match[1].length;
     const text = match[2].trim();
-    const anchor = text
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .replace(/^-|-$/g, "");
+    const anchor = makeStudyBookAnchor(text);
     toc.push({ level, text, anchor });
   }
   return toc;
+}
+
+export function hasStudyBookAnchor(rawMarkdown, requestedAnchor) {
+  if (!requestedAnchor) return true;
+  const re = /^(#{1,6})\s+(.+)$/gm;
+  let match;
+  while ((match = re.exec(rawMarkdown)) !== null) {
+    if (makeStudyBookAnchor(match[2].trim()) === requestedAnchor) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // ── Search / highlight ─────────────────────────────────────────────────

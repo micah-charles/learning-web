@@ -6,11 +6,28 @@
  */
 
 import { useTutor } from "./TutorProvider.jsx";
+import { useStudyBook } from "../../react/context/StudyBookContext.jsx";
 
 export function TutorButton() {
-  const { open, openPanel, enabled } = useTutor();
+  const { open, openPanel, closePanel, enabled } = useTutor();
+  const { open: studyBookOpen } = useStudyBook();
 
   if (!enabled) return null;
+
+  function handleClick() {
+    if (open) {
+      closePanel();
+      return;
+    }
+    if (
+      studyBookOpen
+      && typeof window !== "undefined"
+      && window.matchMedia("(max-width: 960px)").matches
+    ) {
+      return;
+    }
+    openPanel();
+  }
 
   return (
     <button
@@ -18,7 +35,7 @@ export function TutorButton() {
       type="button"
       aria-label={open ? "Close FoxChild Tutor" : "Open FoxChild Tutor"}
       aria-expanded={open}
-      onClick={openPanel}
+      onClick={handleClick}
     >
       <span className="tutor-fab__icon" aria-hidden="true">🦊</span>
       <span className="tutor-fab__tooltip">FoxChild Tutor</span>

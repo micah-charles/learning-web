@@ -8,7 +8,7 @@
  * CSS reuses the shared .study-book-drawer / .sb-* classes from styles.css.
  * Split-mode adds body class "sb-split-mode" so .lw-app gets margin-right.
  */
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import { highlightMatches } from "@/study-book.js";
 import { useStudyBook } from "../../context/StudyBookContext.jsx";
 
@@ -27,6 +27,32 @@ function useSplitMode(splitMode, drawerRef) {
       document.querySelector(".lw-app")?.style.removeProperty("padding-right");
     };
   }, [splitMode]);
+}
+
+function useDrawerWidthVars(open, drawerRef) {
+  useEffect(() => {
+    const drawer = drawerRef.current;
+    if (!drawer || typeof document === "undefined") return;
+
+    const root = document.documentElement;
+    const update = () => {
+      const width = drawer.offsetWidth || 0;
+      root.style.setProperty("--study-book-drawer-width", `${width}px`);
+      root.style.setProperty("--study-book-drawer-offset", open ? `${width + 20}px` : "0px");
+    };
+
+    update();
+
+    const observer = typeof ResizeObserver === "function" ? new ResizeObserver(update) : null;
+    observer?.observe(drawer);
+
+    return () => {
+      observer?.disconnect();
+      if (!open) {
+        root.style.setProperty("--study-book-drawer-offset", "0px");
+      }
+    };
+  }, [open, drawerRef]);
 }
 
 // ── Drag-to-resize the drawer ─────────────────────────────────────────────────
@@ -66,12 +92,13 @@ function useResizeHandle(handleRef, drawerRef, splitMode) {
 }
 
 // ── Scroll-tracking: update currentAnchor from headings in the content ────────
-function useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor) {
+function useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor, anchorJumpRef) {
   useEffect(() => {
     if (!open || !toc.length || !contentRef.current) return;
     const el = contentRef.current;
     const handler = () => {
-      const headings = [...el.querySelectorAll("h1[id],h2[id],h3[id]")];
+      if (anchorJumpRef.current) return;
+      const headings = [...el.querySelectorAll("h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]")];
       let active = headings[0]?.id || null;
       for (const h of headings) {
         if (h.getBoundingClientRect().top <= el.getBoundingClientRect().top + 60) {
@@ -82,7 +109,7 @@ function useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor) {
     };
     el.addEventListener("scroll", handler, { passive: true });
     return () => el.removeEventListener("scroll", handler);
-  }, [open, toc, setCurrentAnchor]);
+  }, [open, toc, setCurrentAnchor, anchorJumpRef]);
 }
 
 // ── Highlight + match-count sync ──────────────────────────────────────────────
@@ -109,15 +136,40 @@ function useScrollToMatch(contentRef, searchMatchIndex, searchQuery, searchMatch
 }
 
 // ── Scroll to anchor ──────────────────────────────────────────────────────────
-function useScrollToAnchor(contentRef, currentAnchor, open, html) {
-  const prevAnchorRef = useRef(null);
-  useEffect(() => {
+function useScrollToAnchor(contentRef, currentAnchor, open, html, activeFile, anchorJumpRef) {
+  const prevAnchorRef = useRef("");
+  useLayoutEffect(() => {
     if (!open || !currentAnchor || !contentRef.current) return;
-    if (currentAnchor === prevAnchorRef.current) return;
-    prevAnchorRef.current = currentAnchor;
+    const anchorKey = `${activeFile || ""}::${currentAnchor}`;
+    if (anchorKey === prevAnchorRef.current) return;
+    prevAnchorRef.current = anchorKey;
     const el = contentRef.current.querySelector(`#${CSS.escape(currentAnchor)}`);
-    if (el) el.scrollIntoView({ block: "start", behavior: "smooth" });
-  }, [open, currentAnchor, html]);
+    if (el) {
+      anchorJumpRef.current = currentAnchor;
+      el.classList.remove("sb-anchor-flash");
+      void el.offsetWidth;
+      el.classList.add("sb-anchor-flash");
+      const contentTop = contentRef.current.getBoundingClientRect().top;
+      const targetTop = Math.max(
+        0,
+        contentRef.current.scrollTop + el.getBoundingClientRect().top - contentTop - 16,
+      );
+      const previousScrollBehavior = contentRef.current.style.scrollBehavior;
+      contentRef.current.style.scrollBehavior = "auto";
+      contentRef.current.scrollTop = targetTop;
+      window.requestAnimationFrame(() => {
+        if (contentRef.current) {
+          contentRef.current.style.scrollBehavior = previousScrollBehavior;
+        }
+      });
+      const clearJump = window.setTimeout(() => {
+        if (anchorJumpRef.current === currentAnchor) {
+          anchorJumpRef.current = null;
+        }
+      }, 300);
+      return () => window.clearTimeout(clearJump);
+    }
+  }, [open, currentAnchor, html, activeFile, anchorJumpRef]);
 }
 
 // ── Keyboard: Escape to close ─────────────────────────────────────────────────
@@ -157,35 +209,45 @@ export function StudyBookDrawer() {
   const {
     open, loading, html, toc, files, activeFile, datasetId,
     searchQuery, searchMatchIndex, searchMatchCount,
-    currentAnchor, splitMode,
+    currentAnchor, splitMode, scrollTop, notice,
     closeBook, toggleSplit, switchFile,
     setSearchQuery, navigateMatch,
-    setSearchMatchCount, setCurrentAnchor, saveScrollTop,
+    setSearchMatchCount, setCurrentAnchor, saveScrollTop, setNotice,
   } = useStudyBook();
 
   const contentRef = useRef(null);
   const drawerRef  = useRef(null);
   const handleRef  = useRef(null);
+  const anchorJumpRef = useRef(null);
 
   useSplitMode(splitMode, drawerRef);
+  useDrawerWidthVars(open, drawerRef);
   useResizeHandle(handleRef, drawerRef, splitMode);
-  useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor);
+  useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor, anchorJumpRef);
   useEscapeClose(open, closeBook);
 
   const highlightedHtml = useHighlightedHtml(html, searchQuery, setSearchMatchCount);
   useScrollToMatch(contentRef, searchMatchIndex, searchQuery, searchMatchCount);
-  useScrollToAnchor(contentRef, currentAnchor, open, html);
+  useScrollToAnchor(contentRef, currentAnchor, open, html, activeFile, anchorJumpRef);
 
   // Restore scroll position when reopening the same content
   useEffect(() => {
     if (open && contentRef.current && !loading) {
       // small delay to let the DOM paint first
       const id = setTimeout(() => {
-        if (contentRef.current) contentRef.current.scrollTop = 0;
+        if (contentRef.current && !currentAnchor) {
+          contentRef.current.scrollTop = scrollTop || 0;
+        }
       }, 50);
       return () => clearTimeout(id);
     }
-  }, [open, datasetId, activeFile]);
+  }, [open, datasetId, activeFile, loading, currentAnchor, scrollTop]);
+
+  useEffect(() => {
+    if (!notice) return undefined;
+    const id = setTimeout(() => setNotice(null), 4200);
+    return () => clearTimeout(id);
+  }, [notice, setNotice]);
 
   // Save scroll position on scroll
   const handleContentScroll = useCallback((e) => {
@@ -211,6 +273,9 @@ export function StudyBookDrawer() {
       <aside
         className="study-book-drawer"
         data-open={open ? "true" : "false"}
+        data-dataset-id={datasetId || ""}
+        data-active-file={activeFile || ""}
+        data-current-anchor={currentAnchor || ""}
         role="complementary"
         aria-label="Study Book"
         aria-hidden={!open}
@@ -280,6 +345,12 @@ export function StudyBookDrawer() {
             <span className="sb-search-count sb-search-none">no matches</span>
           )}
         </div>
+
+        {notice && (
+          <div className="sb-notice" role="status" aria-live="polite">
+            {notice}
+          </div>
+        )}
 
         {/* Inner: TOC + content */}
         <div className="sb-inner">
