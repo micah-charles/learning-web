@@ -1811,6 +1811,7 @@ body.sb-split-mode .lw-app {
    FoxChild Arcade game mode  (arc-*)
    ══════════════════════════════════════════════════════════════════════ */
 .arc-page { padding-top: 8px; }
+.arc-page-fox { width: 28px; height: 28px; vertical-align: middle; margin-right: 6px; border-radius: 4px; }
 
 /* ── Setup screen ── */
 .arc-setup-sub { color: var(--lw-muted); font-size: 0.9rem; margin: 4px 0 16px; max-width: 620px; }
@@ -1824,7 +1825,8 @@ body.sb-split-mode .lw-app {
 }
 .arc-mode-card:hover { transform: translateY(-1px); }
 .arc-mode-card.is-active { border-color: var(--lw-amber); background: var(--lw-amber-soft); }
-.arc-mode-label { font-weight: 700; font-size: 1rem; }
+.arc-mode-label { font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
+.arc-mode-icon { width: 22px; height: 22px; border-radius: 3px; object-fit: cover; }
 .arc-mode-desc { font-size: 0.8rem; color: var(--lw-muted); }
 .arc-setup-empty { color: var(--lw-muted); font-size: 0.85rem; }
 .arc-sound-row { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 0.9rem; color: var(--lw-ink); }

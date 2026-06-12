@@ -20,7 +20,7 @@ function tileStyle(x, y, cellPx, reducedMotion) {
   };
 }
 
-export default function GameBoard({ map, cellPx, tokens = [], segments = [], playerEmoji = "🦊", reducedMotion }) {
+export default function GameBoard({ map, cellPx, tokens = [], segments = [], playerEmoji = "/images/foxchild-fox.png", reducedMotion }) {
   const walls = [...map.walls].map((key) => {
     const [x, y] = key.split(",").map(Number);
     const isBorder = x === 0 || y === 0 || x === map.cols - 1 || y === map.rows - 1;
