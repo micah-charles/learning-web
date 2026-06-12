@@ -48,6 +48,12 @@ const OFF_TOPIC_PATTERNS = [
 ];
 
 /**
+ * Module-level map tracking hint count per question ID.
+ * Used for progressive hint levels in quiz mode.
+ */
+const hintCountMap = new Map();
+
+/**
  * Check if query asks for explanation (after trying).
  */
 const EXPLANATION_PATTERNS = [
@@ -76,6 +82,118 @@ const GRAMMAR_PATTERNS = [
 ];
 
 /**
+ * Classify the learner's query in quiz context.
+ * @param {string} query - User query.
+ * @param {object} currentQuestion - Current quiz question.
+ * @returns {string} One of: word_clarification, concept_explanation, hint, answer_request, studybook_search, off_topic
+ */
+export function classifyTutorQuizIntent(query, currentQuestion) {
+  const lower = query.trim().toLowerCase();
+
+  // 1. Off-topic (highest priority)
+  if (OFF_TOPIC_PATTERNS.some(p => p.test(lower))) {
+    return "off_topic";
+  }
+
+  // 2. Hint request
+  if (/^(hint|clue|nudge|i[' ]?m stuck|stuck)\b/i.test(lower) ||
+      /\b(give me a hint|give me a clue|what should i do)\b/i.test(lower)) {
+    return "hint";
+  }
+
+  // 3. Answer request — check before concept_explanation
+  if (/^(the )?answer\b/i.test(lower) ||
+      /\b(which one|correct answer|tell me (the )?answer|show me (the )?answer|give me (the )?answer|what('s| is) (the )?answer|reveal|solution)\b/i.test(lower)) {
+    return "answer_request";
+  }
+
+  // 4. Concept explanation
+  if (/^(what (is|are|does|do) |meaning of|explain |define |definition of|describe |what's )/i.test(lower)) {
+    return "concept_explanation";
+  }
+
+  // 5. Short word/phrase that appears in question context — word_clarification
+  const words = lower.split(/\s+/).filter(w => w.length > 0);
+  if (words.length <= 4) {
+    const questionText = `${currentQuestion.prompt || ""} ${currentQuestion.answer || ""} ${(currentQuestion.options || []).join(" ")} ${currentQuestion.topic || ""}`.toLowerCase();
+    if (questionText.includes(lower)) {
+      return "word_clarification";
+    }
+  }
+
+  // 6. Check if query relates to question at all
+  const questionText = `${currentQuestion.prompt || ""} ${currentQuestion.answer || ""} ${(currentQuestion.options || []).join(" ")} ${currentQuestion.topic || ""}`.toLowerCase();
+  const tokens = lower.split(/\s+/).filter(w => w.length > 2);
+  const matchesQuestion = tokens.length === 0 || tokens.some(t => questionText.includes(t));
+
+  if (!matchesQuestion) {
+    return "studybook_search";
+  }
+
+  // 7. Default for related queries
+  return "word_clarification";
+}
+
+/**
+ * Generate a context-aware hint for a quiz question at a given hint level.
+ * Level 1: explain key word simply.
+ * Level 2: point to key clues.
+ * Level 3+: near-answer clue.
+ * @param {object} question - Current quiz question.
+ * @param {string} query - User query.
+ * @param {number} hintLevel - Progressive hint level (1-based).
+ * @returns {string} Hint response.
+ */
+function generateQuestionAwareExplanation(question, query, hintLevel) {
+  const { prompt, answer, options = [], hint, explanation, topic, kind } = question;
+  const promptStr = prompt || "";
+  const topicStr = topic || "";
+
+  if (hintLevel <= 1) {
+    // Level 1: explain key word simply
+    if (topicStr) {
+      return `This question is about **${topicStr}**. The key term is "${promptStr}". Think about what this term means in context.`;
+    }
+    return `The key term here is "${promptStr}". What does this refer to in your studies?`;
+  }
+
+  if (hintLevel === 2) {
+    // Level 2: point to key clues
+    if (hint) {
+      return `Here's a clue: ${hint}`;
+    }
+    if (kind === "choice" && options.length > 0) {
+      const clue = topicStr ? `Think about **${topicStr}**` : "Think about what you've learned";
+      return `${clue} — which option best describes "${promptStr}"? Eliminate ones that don't fit.`;
+    }
+    if (answer) {
+      const trimmed = answer.trim();
+      const firstLetter = trimmed[0] || "";
+      const wordCount = trimmed.split(/\s+/).length;
+      return `The answer ${wordCount > 1 ? `has ${wordCount} words` : "is a single word"} starting with "${firstLetter}". Does that ring a bell?`;
+    }
+    return "Look at the question again. What key details stand out?";
+  }
+
+  if (hintLevel >= 3) {
+    // Level 3+: near-answer clue
+    if (hint) {
+      return `Final clue: ${hint}`;
+    }
+    if (answer && kind === "choice") {
+      return `You're very close. Think about which option directly relates to "${promptStr}".`;
+    }
+    if (answer) {
+      const preview = answer.trim().slice(0, 80);
+      return `The answer relates to "${promptStr}". Consider: ${preview}...`;
+    }
+    return "You've had several hints. Try to reason it out step by step.";
+  }
+
+  return "Take a moment to think. What do you know about this topic?";
+}
+
+/**
  * Determine if user is asking for explanation (after hint).
  * @param {string} query - User query.
  * @param {boolean} hintGiven - Whether a hint was already given for this question.
@@ -87,54 +205,90 @@ export function wantsExplanation(query, hintGiven) {
 }
 
 /**
- * Generate a hint for a quiz question.
+ * Generate a hint for a quiz question, intent-aware.
  * @param {object} question - Current quiz question.
  * @param {string} query - User query.
+ * @param {string} intent - Classified intent from classifyTutorQuizIntent.
+ * @param {number} hintCount - Number of hints already given for this question.
  * @returns {string} Hint response.
  */
-function generateQuizHint(question, query) {
+function generateQuizHint(question, query, intent, hintCount) {
   const kind = question.kind;
   const prompt = question.prompt || "";
   const answer = question.answer || "";
   const options = question.options || [];
   const hint = question.hint || "";
   const topic = question.topic || "";
+  const explanation = question.explanation || "";
   const pos = question.pos || "";
 
-  // For multiple choice: hint towards the right area without giving answer
-  if (kind === "choice") {
-    if (hint) return `Hint: ${hint}`;
-    if (topic) return `Think about the topic: ${topic}. Look at the options carefully — one stands out.`;
-    if (pos) return `This is a ${pos.toLowerCase()}. ${prompt}`;
-    return "Read the question carefully. What is being asked? Eliminate options that don't fit.";
-  }
+  switch (intent) {
+    case "word_clarification":
+      // Use the question answer/definition to explain the term
+      if (explanation) return explanation;
+      if (answer) return `"${prompt}" refers to: ${answer}.`;
+      if (topic) return `"${prompt}" relates to **${topic}**. Think about what you've learned.`;
+      return `"${prompt}" — consider what this term means in context.`;
 
-  // For typed: give a nudge
-  if (kind === "typed" || kind === "gap") {
-    if (hint) return `Hint: ${hint}`;
-    if (answer) {
-      // Give first letter or length hint
-      const len = answer.trim().length;
-      const first = answer.trim()[0] || "";
-      return `The answer is ${len} letters long, starts with "${first}". ${kind === "gap" ? "Check the sentence context." : ""}`;
+    case "concept_explanation": {
+      // Give a full explanation using question fields
+      let resp = "";
+      if (topic) resp += `**${topic}**: `;
+      if (explanation) {
+        resp += explanation;
+      } else if (answer && kind === "choice") {
+        resp += `The question asks about "${prompt}". Review the definitions of each option and see which one matches.`;
+      } else if (answer) {
+        resp += `"${prompt}" — ${answer}`;
+      } else {
+        resp += `"${prompt}". Consider what you know about this topic.`;
+      }
+      if (kind === "choice" && options.length > 0) {
+        resp += "\n\nLook at the options and eliminate those that don't fit.";
+      }
+      return resp;
     }
-    return "Think about what fits the context. Sound it out if it's a word.";
-  }
 
-  // For build/sentence: hint at structure
-  if (kind === "build") {
-    return "Look at the tiles — what grammatical structure do you need? Subject, verb, object...";
-  }
+    case "hint":
+      // Progressive hint levels
+      return generateQuestionAwareExplanation(question, query, hintCount);
 
-  // For sequence/sort: hint at logic
-  if (kind === "sequence") {
-    return "What comes first logically? Look for time markers or cause-effect relationships.";
-  }
-  if (kind === "sort") {
-    return "Group items by their shared characteristics. What categories make sense?";
-  }
+    case "answer_request":
+      // Only reveal if a hint has previously been given
+      if (hintCount > 1) {
+        return generateQuizExplanation(question);
+      }
+      return "I'd like you to try first! Ask me for a hint if you're stuck, and I'll guide you step by step.";
 
-  return "Take a moment to think. What do you know about this topic?";
+    default: {
+      // Legacy fallback based on question kind
+      if (kind === "choice") {
+        if (hint) return `Hint: ${hint}`;
+        if (topic) return `Think about the topic: ${topic}. Look at the options carefully — one stands out.`;
+        if (pos) return `This is a ${pos.toLowerCase()}. ${prompt}`;
+        return "Read the question carefully. What is being asked? Eliminate options that don't fit.";
+      }
+      if (kind === "typed" || kind === "gap") {
+        if (hint) return `Hint: ${hint}`;
+        if (answer) {
+          const len = answer.trim().length;
+          const first = answer.trim()[0] || "";
+          return `The answer is ${len} letters long, starts with "${first}". ${kind === "gap" ? "Check the sentence context." : ""}`;
+        }
+        return "Think about what fits the context. Sound it out if it's a word.";
+      }
+      if (kind === "build") {
+        return "Look at the tiles — what grammatical structure do you need? Subject, verb, object...";
+      }
+      if (kind === "sequence") {
+        return "What comes first logically? Look for time markers or cause-effect relationships.";
+      }
+      if (kind === "sort") {
+        return "Group items by their shared characteristics. What categories make sense?";
+      }
+      return "Take a moment to think. What do you know about this topic?";
+    }
+  }
 }
 
 /**
@@ -410,25 +564,41 @@ What are you working on right now?`,
   if (quizSession?.questions?.length > 0 && quizSession.index < quizSession.questions.length) {
     const currentQuestion = quizSession.questions[quizSession.index];
 
-    // User wants explanation after hint
-    if (wantsExplanation(trimmedQuery, hintGivenForCurrentQuestion)) {
-      return {
-        type: ResponseType.EXPLANATION,
-        text: generateQuizExplanation(currentQuestion),
-        shouldSpeak: speechMode === SpeechMode.ALWAYS,
-        metadata: { questionId: currentQuestion.id },
-      };
-    }
+    // Classify the learner's intent in quiz context
+    const intent = classifyTutorQuizIntent(trimmedQuery, currentQuestion);
 
-    // Check if query is about the current quiz question
-    const quizSnippets = retrieval.snippets.filter(s => s.source === "quiz");
-    if (quizSnippets.length > 0 || retrieval.sources.includes("quiz")) {
-      return {
-        type: ResponseType.HINT,
-        text: generateQuizHint(currentQuestion, trimmedQuery),
-        shouldSpeak: speechMode === SpeechMode.ALWAYS,
-        metadata: { questionId: currentQuestion.id, hintGiven: true },
-      };
+    // If query is off-topic or a studybook search, skip quiz handling and fall through
+    if (intent === "studybook_search" || intent === "off_topic") {
+      // Fall through to other content handlers below
+    } else {
+      // User wants explanation after hint (existing behavior, integrated)
+      if (wantsExplanation(trimmedQuery, hintGivenForCurrentQuestion)) {
+        return {
+          type: ResponseType.EXPLANATION,
+          text: generateQuizExplanation(currentQuestion),
+          shouldSpeak: speechMode === SpeechMode.ALWAYS,
+          metadata: { questionId: currentQuestion.id },
+        };
+      }
+
+      // Check if query is about the current quiz question
+      const quizSnippets = retrieval.snippets.filter(s => s.source === "quiz");
+      if (quizSnippets.length > 0 || retrieval.sources.includes("quiz")) {
+        // Track hint count per question for progressive hint levels
+        let hintCount = hintCountMap.get(currentQuestion.id) || 0;
+        const isProgressiveIntent = intent === "hint" || intent === "answer_request";
+        if (isProgressiveIntent) {
+          hintCount++;
+          hintCountMap.set(currentQuestion.id, hintCount);
+        }
+
+        return {
+          type: ResponseType.HINT,
+          text: generateQuizHint(currentQuestion, trimmedQuery, intent, hintCount),
+          shouldSpeak: speechMode === SpeechMode.ALWAYS,
+          metadata: { questionId: currentQuestion.id, hintGiven: true },
+        };
+      }
     }
   }
 
