@@ -286,7 +286,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
           playerEmoji="/images/foxchild-fox.png" reducedMotion={reducedMotion}
         />
         {view.status === "ready" && (
-          <div className="arc-start-hint">Swipe, use arrow keys, or the D-pad to move 🦊</div>
+          <div className="arc-start-hint">Swipe, use arrow keys, or the D-pad to move</div>
         )}
       </div>
 

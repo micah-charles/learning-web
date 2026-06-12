@@ -30,8 +30,8 @@ import QuizHuntGame from "./QuizHuntGame.jsx";
 import SnakeBuilderGame from "./SnakeBuilderGame.jsx";
 
 const MODES = [
-  { id: "quiz-hunt", label: "Quiz Hunt 🦊", desc: "Eat the correct answer" },
-  { id: "snake-builder", label: "Sentence Snake 🐍", desc: "Build sentences in order" },
+  { id: "quiz-hunt", label: "Quiz Hunt", icon: "/images/foxchild-fox.png", desc: "Eat the correct answer" },
+  { id: "snake-builder", label: "Sentence Snake", icon: "/images/foxchild-girl.png", desc: "Build sentences in order" },
 ];
 // Quiz Hunt uses the pillar map (fox never grows, pillars add navigation challenge).
 // Sentence Snake uses an open map (no walls) so the growing body isn't boxed in.
@@ -178,7 +178,7 @@ export default function ArcadeGamePage() {
   return (
     <div className="lw-page">
       <div className="lw-card arc-setup">
-        <h2 className="lw-section-title">🦊 FoxChild Arcade</h2>
+        <h2 className="lw-section-title"><img src="/images/foxchild-fox.png" alt="" className="arc-page-fox" /> FoxChild Arcade</h2>
         <p className="arc-setup-sub">
           Turn your packs into an arcade game. Move with swipes, arrow keys, or the on-screen pad —
           eat the right answers, dodge the wrong ones. Best on a phone or tablet in landscape.
@@ -194,7 +194,9 @@ export default function ArcadeGamePage() {
               onClick={() => setPref("mode", m.id)}
               aria-pressed={prefs.mode === m.id}
             >
-              <span className="arc-mode-label">{m.label}</span>
+              <span className="arc-mode-label">
+                <img src={m.icon} alt="" className="arc-mode-icon" /> {m.label}
+              </span>
               <span className="arc-mode-desc">{m.desc}</span>
             </button>
           ))}

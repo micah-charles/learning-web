@@ -37,7 +37,7 @@ export function TutorButton() {
       aria-expanded={open}
       onClick={handleClick}
     >
-      <span className="tutor-fab__icon" aria-hidden="true">🦊</span>
+      <img className="tutor-fab__icon" src="/images/foxchild-fox.png" alt="" aria-hidden="true" />
       <span className="tutor-fab__tooltip">FoxChild Tutor</span>
     </button>
   );

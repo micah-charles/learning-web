@@ -69,10 +69,12 @@
 }
 
 .tutor-fab__icon {
-  font-size: 24px;
-  line-height: 1;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
   transition: transform 0.2s ease;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .tutor-fab__tooltip {
