@@ -225,10 +225,12 @@ async function loadCachedEmbeddings() {
  * @param {string} options.subject - Filter by subject
  * @param {string} options.curriculum - Filter by curriculum
  * @param {boolean} options.semantic - Use semantic/embedding search (default false)
+ * @param {boolean} options.semanticSearch - Alias for semantic (for backward compatibility)
  * @returns {Promise<Array<{chunk: object, score: number}>>}
  */
 export async function searchStudyBookIndex(query, options = {}) {
-  const { maxResults = 8, subject, curriculum, semantic = false } = options;
+  const { maxResults = 8, subject, curriculum, semantic = false, semanticSearch = false } = options;
+  const useSemantic = semantic || semanticSearch;
 
   const index = await loadStudyBookIndex();
   if (!index.chunks?.length) return [];
@@ -248,7 +250,7 @@ export async function searchStudyBookIndex(query, options = {}) {
   });
 
   // If semantic search is enabled and we have enough results to rerank
-  if (semantic && results.length > 0) {
+  if (useSemantic && results.length > 0) {
     try {
       // Try to load cached embeddings first
       let embeddingsCache = await loadCachedEmbeddings();

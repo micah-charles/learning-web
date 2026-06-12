@@ -434,11 +434,16 @@ What are you working on right now?`,
     }
 
     response += "\n\nWould you like a hint, explanation, or help with something specific?";
+    const meta = { sources: retrieval.sources };
+    // Pass studybook metadata for evidence UI if top snippet is from studybook
+    if (topSnippet.source === "studybook" && topSnippet.metadata) {
+      meta.studybook = topSnippet.metadata;
+    }
     return {
       type: ResponseType.EXPLANATION,
       text: response,
       shouldSpeak: speechMode === SpeechMode.ALWAYS,
-      metadata: { sources: retrieval.sources },
+      metadata: meta,
     };
   }
 

@@ -180,7 +180,7 @@ export async function retrieveContent({
         semanticSearch
       });
       return results.map(r => ({
-        text: extractSnippet(r.chunk, tokenizeQuery(query), 300),
+        text: extractSnippet(r.chunk, query, 300),
         score: r.score,
         source: "studybook",
         sourceLabel: `Study Book: ${r.chunk.heading || r.chunk.displayName}`,
