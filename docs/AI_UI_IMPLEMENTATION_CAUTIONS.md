@@ -819,7 +819,31 @@ const [values, setValues] = useState(() => loadStoredState().prefs.promptBuilder
 
 ---
 
-### ⚠️ RC15. Arcade (and any) prefs must be written THROUGH `ProgressProvider`, not via a side-channel save
+### ⚠️ RC15. Prompt Builder example presets must not overpower the user's source
+
+**Bug found (2026-06-12):** The 11+ English example preset used Sherlock Holmes
+metadata and detailed `additionalInstructions`. If the learner changed the topic
+and URL to a different source, those Sherlock-specific instructions could remain
+in storage and override the new metadata. The generated prompt then asked for
+Augustine/Trinity in one section but Helen Stoner, Baker Street, Roylott and Stoke
+Moran in another, so the AI reasonably generated the wrong pack.
+
+**Rule:** In Pack Creator prompts, Source Material and Pack Metadata are
+authoritative. `additionalInstructions` are secondary and must be ignored when
+they name a different text, URL, scene, character, topic, or question count.
+
+**Implementation checklist:**
+- [ ] Example presets use generic wording wherever possible.
+- [ ] When topic/source fields change after loading an example, clear
+      preset-specific `additionalInstructions`.
+- [ ] Prompt templates must say that supplied URLs/pasted text are the primary
+      source, not just a loose "anchor".
+- [ ] Never ask for placeholder evidence such as `"short supporting quote"`; use
+      real source text or omit the field.
+
+---
+
+### ⚠️ RC16. Arcade (and any) prefs must be written THROUGH `ProgressProvider`, not via a side-channel save
 
 `ProgressContext` keeps its **own** copy of the entire stored state and writes it
 back on every `updateProgress()`. If a page persists a preference with a
@@ -1147,7 +1171,7 @@ A second issue in the same PR: the commit appended a full `.lw-btn { … }` rede
 
 ---
 
-*Last updated: 2026-05-30*
+*Last updated: 2026-06-12*
 *Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120, #127*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
 *For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*

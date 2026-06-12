@@ -69,25 +69,14 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
     lines.push("");
   }
 
-  // ── Additional instructions ────────────────────────────────────────────────
-  if (additionalInstructions.trim()) {
-    lines.push("## Additional Instructions");
-    lines.push("");
-    additionalInstructions
-      .split("\n")
-      .map((l) => l.trim())
-      .filter(Boolean)
-      .forEach((l) => lines.push(`- ${l}`));
-    lines.push("");
-  }
-
   // ── Source material ────────────────────────────────────────────────────────
   if (sourceMode === "url" && sourceUrl.trim()) {
     lines.push("## Source Material");
     lines.push("");
     lines.push(
-      "The following URL contains the source content. " +
-        "Use it as a factual and terminology anchor for the pack:"
+      "The following URL is the required primary source for this pack. " +
+        "Extract the passage, facts, terminology, and evidence from this source. " +
+        "Do not substitute a different text, scene, topic, or invented passage."
     );
     lines.push("");
     lines.push(`**URL:** ${sourceUrl.trim()}`);
@@ -105,21 +94,39 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
     lines.push("");
     lines.push(
       "The user will upload photos, PDFs, worksheets, or screenshots alongside this prompt. " +
-        "Use the uploaded materials as factual grounding and terminology anchors for the pack. " +
-        "Do not limit the dataset only to the attached source — " +
-        "expand with accurate curriculum-relevant knowledge to ensure a complete pack."
+        "Use the uploaded materials as the required primary source for the pack. " +
+        "Do not substitute a different text, scene, topic, or invented passage. " +
+        "Only add wider curriculum knowledge when it supports the supplied source and does not change the focus."
     );
     lines.push("");
   } else if (sourceMode === "paste" && sourceMaterial.trim()) {
     lines.push("## Source Material");
     lines.push("");
     lines.push(
-      "Use the following pasted content as a factual and terminology anchor for the pack:"
+      "Use the following pasted content as the required primary source for the pack. " +
+        "Do not substitute a different text, scene, topic, or invented passage:"
     );
     lines.push("");
     lines.push("```");
     lines.push(sourceMaterial.trim());
     lines.push("```");
+    lines.push("");
+  }
+
+  // ── Additional instructions ────────────────────────────────────────────────
+  if (additionalInstructions.trim()) {
+    lines.push("## Additional Instructions");
+    lines.push("");
+    lines.push(
+      "These instructions are secondary. If they conflict with the Pack Metadata " +
+        "or Source Material above, ignore the conflicting part and follow the Topic and source."
+    );
+    lines.push("");
+    additionalInstructions
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean)
+      .forEach((l) => lines.push(`- ${l}`));
     lines.push("");
   }
 
@@ -143,6 +150,7 @@ export function assembleTemplatePrompt(basePrompt, ctx, usedChromeAI = false) {
   lines.push("");
   lines.push("Requirements:");
   lines.push("- Follow all schema rules in the specification above strictly.");
+  lines.push("- The Pack Metadata and Source Material are authoritative. Ignore any later or earlier instruction that names a different text, topic, character, scene, or URL.");
   lines.push("- Do **not** generate multiple files, manifest snippets, folders, or variations.");
   lines.push("- Keep every requested item type inside the single top-level `items` array.");
   lines.push("- Keep `passage` and `sentenceBuilder` items in the same `pack_unified.json` file for this Pack Creator workflow.");

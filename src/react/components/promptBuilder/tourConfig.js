@@ -98,9 +98,6 @@ export const SHERLOCK_PRESET = {
   sourceUrl: "https://sherlock-holm.es/stories/html/spec.html",
   sourceMaterial: "",
   additionalInstructions:
-    "Generate 30–40 inferential and open comprehension questions drawing on three sections of the story: " +
-    "(1) Helen Stoner’s early-morning arrival at Baker Street, " +
-    "(2) the confrontation with Dr Grimesby Roylott, and " +
-    "(3) the night-time investigation at Stoke Moran. " +
-    "Use the passage item type, and for each question include a sourceRef with the relevant paragraph number and a short supporting quote so students can hunt for evidence.",
+    "Use the supplied source URL as the primary text. Generate exactly 10 inferential comprehension questions. " +
+    "Use real evidence from the source only; never include placeholder quotes or source references.",
 };
