@@ -22,12 +22,23 @@ import { AI_TOUR_STEPS, SHERLOCK_PRESET } from "../components/promptBuilder/tour
 import { detectChromeAI, createAISession, generateEnhancedPrompt, destroySession } from "../services/chromeAI.js";
 import { loadBasePrompt } from "../services/promptLoader.js";
 import { assembleTemplatePrompt } from "../services/promptAssembler.js";
-import { getPromptConfig, promptConfigForSubject } from "../services/promptConfigs.js";
+import { getPromptConfig, normalizePromptConfigId, promptConfigForSubject } from "../services/promptConfigs.js";
 import { loadStoredState, saveStoredState } from "@/storage.js";
 
 // ── Persist / restore prompt builder prefs via the shared storage layer ─────
 function loadSavedPrefs() {
-  return loadStoredState().prefs.promptBuilder;
+  const saved = loadStoredState().prefs.promptBuilder;
+  const promptTemplate = normalizePromptConfigId(saved.promptTemplate, saved.subject);
+  const config = getPromptConfig(promptTemplate);
+  const itemTypes = Array.isArray(saved.itemTypes)
+    ? saved.itemTypes.filter((type) => config.allowedItemTypes.includes(type))
+    : [];
+
+  return {
+    ...saved,
+    promptTemplate,
+    itemTypes: itemTypes.length > 0 ? itemTypes : [...config.defaultItemTypes],
+  };
 }
 
 function savePrefs(prefs) {

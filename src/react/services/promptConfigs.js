@@ -89,6 +89,19 @@ export const PROMPT_CONFIGS = [
   },
 ];
 
+const VISIBLE_PROMPT_CONFIG_ID_SET = new Set([
+  "standard",
+  "lit-11plus",
+]);
+
+export const VISIBLE_PROMPT_CONFIGS = PROMPT_CONFIGS.filter((config) =>
+  VISIBLE_PROMPT_CONFIG_ID_SET.has(config.id),
+);
+
+export function isPromptConfigVisible(id) {
+  return VISIBLE_PROMPT_CONFIG_ID_SET.has(id);
+}
+
 /** Look up a config by its id, falling back to the first (standard) config. */
 export function getPromptConfig(id) {
   return PROMPT_CONFIGS.find((c) => c.id === id) || PROMPT_CONFIGS[0];
@@ -102,4 +115,14 @@ export function getPromptConfig(id) {
 export function promptConfigForSubject(subject) {
   if (subject === "literature") return "lit-11plus";
   return "standard";
+}
+
+/**
+ * Stored prefs may still reference retired templates. Keep those configs in the
+ * registry for backwards compatibility, but only allow visible templates to be
+ * selected in the current UI.
+ */
+export function normalizePromptConfigId(id, subject) {
+  if (isPromptConfigVisible(id)) return id;
+  return promptConfigForSubject(subject) || VISIBLE_PROMPT_CONFIGS[0].id;
 }

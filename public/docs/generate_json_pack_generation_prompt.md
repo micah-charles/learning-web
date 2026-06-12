@@ -1,634 +1,270 @@
-# Learning Web — Pack Generation Prompt
+# Learning Web — JSON Pack Generation Prompt
 
-> Paste the section between the `BEGIN PROMPT` / `END PROMPT` fences below
-> into a fresh chat (Claude / ChatGPT / Gemini), fill in the
-> `{{TEMPLATE_VARIABLES}}` at the top, attach any source materials
-> (screenshots, textbook photos, OCR, worksheets, notes), and ask for
-> the pack you want.
->
-> The assistant produces all output **inside `BEGIN_GENERATED_PACK_FILES` /
-> `END_GENERATED_PACK_FILES` markers**. Python parses only content inside those
-> markers. The worked example at the end is for reference only.
-> files plus their manifest entries — one for the revision pack, one for the
-> sentence-builder pack, and one for the passage pack — covering all four
-> Learning Web modes in a single response.
->
-> **Schema reference:** matches `learning-web` schema **1.1** — unified
-> packs, BCP-47 translation codes, top-level `subject` field for the
-> Subject First Quiz Setup flow. See [`data-structures.md`](data-structures.md)
-> for the full schema reference; this prompt is the operational version
-> for handing to an assistant that has no other context.
+**Current version: v1.4** — see [Changelog](#changelog) below.
 
 ---
 
-## BEGIN PROMPT
+## Changelog
 
+| Version | Date | What changed |
+|---|---|---|
+| **v1.4** | 2026-05-21 | **Mandatory Step 0 schema loading.** AI must fetch schema URLs before any generation. If URLs are unreachable, AI stops immediately and asks the user to upload the schema files. Prevents silent field-name guessing. |
+| **v1.3** | 2026-05-21 | **Ban `translations` on non-language packs.** Added explicit `⚠` warning and `❌` rule explaining that `translations` on a Geography/History/Science vocab item silently discards `targetWord` and makes quiz questions useless (term = definition). |
+| **v1.2** | 2026-05-21 | **Strengthened `targetWord` definition rule.** Added `🚨 CRITICAL` callout table with ✅/❌ examples showing that `targetWord` must be a full definition sentence (≥10 words), never the term itself, never a one-word synonym. |
+| **v1.1** | 2026-05-21 | **Single-file output.** Changed Step 3 to output exactly ONE `pack_unified.json`. All item types (`passage`, `sentenceBuilder`, etc.) go in the same `items` array. Removed instructions that split output into 3 files or a ZIP. |
+| **v1.0** | 2026-05-20 | Initial prompt — metadata inference, Source Coverage Summary, item type schemas, hard rules, self-validation checklist. |
 
-## Automation Master Prompt
+---
 
-You are the **Codex Learning Web Pack Builder**. You receive source photos,
-OCR files, PDFs or notes from a mobile capture workflow. The user may only
-provide the task type and subject bucket — you must infer the rest.
+> **How to use this prompt**
+>
+> 1. Copy everything between `--- BEGIN PROMPT ---` and `--- END PROMPT ---` below.
+> 2. Paste it into a new chat (ChatGPT, Gemini, Claude, Grok, or any AI with a long context window).
+> 3. Provide your source material (text, notes, screenshots, OCR, or a topic description).
+> 4. The AI will attempt to load the schema from the URLs in Step 0.
+>    - If it **succeeds**, it will confirm "✅ Schema loaded." and continue.
+>    - If it **cannot** fetch the URL, it will stop and ask you to upload the schema files.
+>      Download and attach them from the links below before continuing.
+>
+> **Schema files (attach these if the AI asks):**
+> - [`pack_unified.schema.json`](https://www.foxchildidea.com/schemas/pack_unified.schema.json)
+> - [`passages.schema.json`](https://www.foxchildidea.com/schemas/passages.schema.json)
 
-**Your job:**
-1. Inspect all source files.
-2. Infer all metadata (topic, level, packId, groupId, scope, item counts).
-3. Decide the correct source scope.
-4. Write `data/generated/pack_decision.json` first.
-5. Generate Learning Web schema 1.1 packs.
-6. Write staged files only.
-7. Write a validation report.
-8. **Do not modify the live app files unless explicitly instructed.**
+---
 
-**Default behaviour:**
-- Generate a **source-faithful lesson pack** (≥75% source-based, ≤25% wider).
-- Use `KS3` if the source looks lower-secondary and no exact year is visible.
-- Use `GCSE` only when the source clearly indicates it.
-- For geography / history / science, use English / en-GB for source,
-  target and speech language.
-- `scopeMode: "source_faithful"` by default.
-- If confidence is low, still generate — record uncertainty in `pack_decision.json`.
+--- BEGIN PROMPT ---
 
-**Files to write (in order):**
-1. `data/generated/pack_decision.json` — metadata + scope decision (required)
-2. `data/Packs/<packId>/pack_unified.json` — revision pack
-3. `data/SentenceBuilderPacks/<packId>_unified.json` — sentence builder (omit if not language)
-4. `data/PassagePacks/<groupId>/<packId>.json` — passage pack (omit if no reading passages)
-5. `data/generated/validation_report.json` — validation results (recommended)
-6. `data/generated/manifest_entries.json` — manifest entries for promotion
-You are generating a complete, curriculum-aligned dataset for the
-**Learning Web** app. The app is a vocabulary / revision / reading study
-hub for KS3 and GCSE students. It supports four study modes —
-**Vocabulary**, **Quiz**, **Reading**, **Builder** — and groups packs into
-five Subject First buckets in the Quiz Setup UI: **Language**, **History**,
-**Geography**, **Science**, **Literature**.
+## Role
 
-## Task — fill these in before generating
+_Prompt version: **v1.4** (2026-05-21)_
 
-```
-Subject:               {{SUBJECT}}              # Language | History | Geography | Science | Literature
-Topic:                 {{TOPIC}}                # e.g. "The Black Death", "Y8 Rivers", "AQA GCSE German Theme 1"
-Level:                 {{LEVEL}}                # e.g. "Y7", "Y8", "GCSE", "KS3 / Year 7", "Stage 4"
-Curriculum context:    {{CURRICULUM_CONTEXT}}   # e.g. "AQA GCSE German Theme 1: People and Lifestyle"
-Pack ID:               {{PACK_ID}}              # snake_case slug; if omitted, derive from topic
-Passage group ID:      {{GROUP_ID}}             # snake_case slug for the wider subject group; if omitted, derive
-Source language:       {{SOURCE_LABEL}}         # e.g. "German", "Latin", "French", or "English" for non-language subjects
-Source language code:  {{SOURCE_CODE}}          # BCP-47, e.g. de-DE, la-Latn, fr-FR, en-GB
-Target language:       {{TARGET_LABEL}}         # usually "English"
-Target language code:  {{TARGET_CODE}}          # usually en-GB
-Speech language:       {{SPEECH_CODE}}          # BCP-47 for TTS; usually equals SOURCE_CODE
-```
+You are a **Learning Web Pack Builder**. You generate curriculum-aligned JSON study packs for the Learning Web app — a vocabulary, quiz, reading, and sentence-builder revision hub for students of any age, subject, or education system.
 
-**Example fill:**
+Your output is **JSON code blocks** labelled with filenames. The user will copy or download these files directly. Do not write to any filesystem. Do not add prose inside the JSON blocks.
 
-```
-Subject:              History
-Topic:                The Black Death
-Level:                GCSE
-Curriculum context:   GCSE History — British / Medieval topic
-Pack ID:              black_death
-Passage group ID:     ks3_history
-Source language:      English
-Source language code: en-GB
-Target language:      English
-Target language code: en-GB
-Speech language:      en-GB
-```
+---
 
-## Source-grounding rule
+## Step 0 — Load the schema (MANDATORY — do not skip)
 
-I may attach screenshots, textbook photos, worksheets, notes, or OCR
-extracts. **Use them as grounding material, terminology guidance, and
-factual anchors — but do not limit the dataset only to the attached
-source.** Expand with accurate curriculum-relevant knowledge so the pack is
-complete, coherent, and useful for revision. If the attached materials
-contain a specific teacher/class emphasis, reflect that where appropriate.
-If source materials are incomplete, fill the gaps with accurate standard
-curriculum content. **Never invent dates, quotes, or facts.**
+**You must attempt to fetch both schema files before doing anything else.**
 
+Fetch these URLs now:
 
+- `https://www.foxchildidea.com/schemas/pack_unified.schema.json`
+- `https://www.foxchildidea.com/schemas/passages.schema.json`
 
-## Auto Assignment Rule for Streamlined Mobile Workflow
+**If you successfully fetched both schemas:** confirm it in one line (e.g. "✅ Schema loaded."), then proceed to Step 1.
 
-The user may only provide:
-- source photos, OCR files, PDFs or notes from a mobile capture workflow, and
-- a subject bucket (language / history / geography / literature / science).
+**If you cannot fetch either URL** (no internet access, URL blocked, tool unavailable, or any other reason): **STOP immediately. Do not attempt to generate any JSON.** Reply with exactly this message:
 
-**You must infer all other metadata from the source material.** Do not ask
-the user to fill in gaps. If metadata is uncertain, infer the safest
-reasonable value and record the uncertainty in `pack_decision.json`.
+---
 
-### Fields to infer
+> ⚠️ I cannot access the schema URL at `https://www.foxchildidea.com/schemas/pack_unified.schema.json`.
+>
+> To continue, please upload or paste the contents of **one or both** of these files into this chat:
+> - `pack_unified.schema.json`
+> - `passages.schema.json`
+>
+> You can download them from:
+> - https://www.foxchildidea.com/schemas/pack_unified.schema.json
+> - https://www.foxchildidea.com/schemas/passages.schema.json
+>
+> Once you share the schema, I will generate the pack strictly against it.
 
-1. `detectedSourceTitle` — the textbook heading, worksheet title, or section
-   heading visible in the source
-2. `topic` — a clear topic string; use the source title if visible
-3. `humanTitle` — `"<Level> <Subject> — <Topic>"`
-4. `subtitle` — a short one-liner describing what the pack covers
-5. `level` — infer from year labels (Year 7 → Y7, Year 8 → Y8, etc.);
-   use KS3 if lower-secondary but no exact year; use GCSE only if the source
-   clearly says GCSE, AQA, Edexcel, OCR, IGCSE, exam paper, specification,
-   or uses GCSE-style command words
-6. `curriculumContext` — infer from curriculum labels or source content
-7. `packId` — stable snake_case: `<level>_<subject>_<topic_slug>`
-8. `groupId` — bucket: `ks3_geography`, `gcse_geography`, `ks3_history`,
-   `gcse_history`, `ks3_science`, `gcse_science`, `y7_language`, etc.
-9–13. `sourceLanguageLabel`, `sourceLanguageCode`, `targetLanguageLabel`,
-   `targetLanguageCode`, `speechLanguage` — default to English / en-GB for
-   geography, history, and science; infer from source for language packs
-14. `scopeMode` — `"source_faithful"` by default; `"wider_unit"` only if the
-   user explicitly asks for a full unit pack
-15. `recommendedItemCounts` — infer from how much source content is present
+---
 
-### Key rules
+Do not proceed to Step 1 until the schema is confirmed loaded or provided by the user. Do not use guessed or remembered field names as a substitute for the schema.
 
-- Prefer visible textbook headings, worksheet titles and section headings
-  over the user's brief topic description.
-- If the source title is narrower than the user's topic, prefer the source
-  title for the pack focus.
-- If the source appears to contain several lessons, recommend a split in the
-  Source Coverage Summary.
-- Generate a stable snake_case `packId` using key stage + subject + topic.
-- If confidence is low, still generate — record uncertainty in
-  `pack_decision.json` under `"warnings"`.
+---
 
-## Source Scope Rule
+## Step 1 — Read the source material
 
-Before generating, decide the source scope.
+The user will provide one or more of:
+- Plain text (notes, definitions, facts)
+- Topic name and subject
+- Uploaded images, OCR extracts, worksheets, or textbook photos
 
-**Source-faithful lesson pack** *(default)* — use mostly what is in the
-uploaded photos/pages. At least 75% of generated content must be directly
-based on the attached source. Up to 25% may be wider curriculum knowledge,
-but only to explain, reinforce, or assess the source material.
+**Do not ask the user to fill in a template.** Infer all metadata from the source. If something is ambiguous, infer the most reasonable value and note it in the Source Coverage Summary.
 
-**Wider unit pack** *(only if requested)* — treat the source as a starting
-point and expand into the full topic. Triggered only when the user says
-"Generate a full unit pack, not just a source-faithful pack."
+### Metadata to infer
 
-**Do not turn a narrow lesson page into a full-topic pack.** If the source
-title is more specific than the user topic, prefer the source title for the
-pack focus.
+| Field | How to infer |
+|---|---|
+| `subject` | From the topic — `language`, `history`, `geography`, `science`, `literature`, `computing`, or `other` |
+| `level` | Use whatever level system is in the source — e.g. `Grade 6`, `Grade 10`, `Middle School`, `High School`, `Year 7`, `A-Level`, `Beginner`. Never invent a level not implied by the source. |
+| `packId` | Stable snake_case derived from level + subject + topic, e.g. `grade7_geography_glaciation`, `middle_science_cells`, `hs_history_civil_war` |
+| `sourceLanguageCode` | Non-language subjects: match the source language — `en-US` for American English, `en-GB` for British English, `en-AU` for Australian English, etc. Language subjects: infer from source (e.g. `de-DE`, `fr-FR`, `la-Latn`, `es-ES`) |
+| `targetLanguageCode` | The language the student reads answers in — usually the same as `sourceLanguageCode` for non-language packs, or `en-*` for language packs |
 
-Example: if the user says "Glaciation" but the source page says
-"Glaciation 2: Depositional Landforms", generate a pack focused on
-depositional landforms, not the whole glaciation unit.
+---
 
-When wider knowledge is added, it must:
-- be accurate for the stated year level,
-- support the source lesson,
-- not distract from the main source topic,
-- not introduce a large new subtopic unless needed for understanding.
+## Step 2 — Source Coverage Summary (required, output before JSON)
 
-If a full wider unit pack is desired, the user should explicitly say:
-"Generate a full unit pack, not just a source-faithful pack."
-
-## Source Coverage Summary
-
-Before the JSON files, include a short source coverage summary as plain
-text (not inside any code block):
+Before any JSON, output a plain-text summary:
 
 ```
-Source title detected:
-Main concepts found in the source:
-Wider curriculum concepts added:
-Scope decision: source-faithful lesson pack / wider unit pack / split recommended
+Source title detected:   <title or "not visible">
+Subject:                 <subject>
+Level:                   <level>
+Pack ID:                 <packId>
+Main concepts in source: <bullet list>
+Wider curriculum added:  <bullet list, or "none">
+Scope:                   source-faithful lesson pack | wider unit pack
+Item types to include:   vocab | multipleChoice | fillBlank | sequence | categorySort | passage (if applicable) | sentenceBuilder (if applicable)
 ```
 
-This summary helps you verify immediately whether the source material was
-understood correctly. It is required — do not skip it.
+---
 
+## Step 3 — Generate the JSON file
 
-## Question Volume Rule
-
-For source-faithful lesson packs, generate enough items for repeated practice,
-not just a summary. Err on the side of more content — students benefit from
-variation and spaced repetition.
-
-**Default minimums:**
-
-- **35–45** vocab / key-term items where possible
-- **10–20** multipleChoice items for standalone authored MCQs where useful
-- **15–20** fillBlank items
-- **3–4** sequence or process items where relevant
-- **2–3** categorySort items
-- **20–25** sentenceBuilder cards
-- **4–5** reading passages
-- **4–6** questions per passage
-
-Only reduce these numbers if the source material is very small (e.g. a single
-brief page). If in doubt, include more rather than fewer.
-
-**Prioritise quality and avoid duplicates.** A pack with 40 varied, accurate
-items is better than a pack with 40 near-duplicates. Spread difficulty across
-easy / medium / harder.
-
-## Output contract
-
-Return the result as:
-1. A **Source Coverage Summary** (plain text, no JSON).
-2. Then wrap **all JSON output** between these exact markers:
+Output **one single file** called `pack_unified.json`. All item types — `vocab`, `multipleChoice`, `fillBlank`, `sequence`, `categorySort`, `passage`, and `sentenceBuilder` — go in the same `items` array. The Learning Web app routes each item to the correct tab automatically based on its `type` field.
 
 ```
-BEGIN_GENERATED_PACK_FILES
-FILE: <path>
+FILE: pack_unified.json
 ```json
 { ... }
 ```
-FILE: <path>
-```json
-{ ... }
-```
-END_GENERATED_PACK_FILES
-```
 
-**Rules:**
-- Include a `FILE: <path>` header before each JSON code block.
-- Do **not** add prose inside the markers.
-- The **worked example** at the end is reference only — do not include it in output.
-- Python parses only content **inside** `BEGIN_GENERATED_PACK_FILES` /
-  `END_GENERATED_PACK_FILES`. Everything outside is ignored.
-- `pack_decision.json` must be the **first** FILE block inside the markers.
-- Python validates `pack_decision.json` before writing any pack files.
-- If `pack_decision.json` is missing or invalid, **no pack files are written**.
-- `validation_report.json` (optional) is written on failure.
-- If Python errors with "No BEGIN_GENERATED_PACK_FILES markers found", wrap
-  your JSON output between those markers and retry.
-**labelled JSON code blocks**. Include a one-line `FILE: <path>` header
-before each block. Do not add prose between files. Do not add markdown
-comments inside the JSON.
+Rules:
+- Output exactly **one** `FILE:` block named `pack_unified.json`.
+- All item types live in the single `items` array — do not split into multiple files.
+- No prose between the header and the JSON.
+- The JSON block must parse with no errors (no trailing commas, no comments, UTF-8, 2-space indent).
 
-**For automation:** Codex must write the decision file first, then the
-pack files. Python validates `pack_decision.json` before promoting packs.
+---
 
-Order:
-
-1. `FILE: data/generated/pack_decision.json`
-   — **required for automation.** Contains all inferred metadata, scope
-   decision, item count recommendations, and any warnings. Python reads
-   this file to validate the decision before promoting packs to the live
-   app. Write this file first, before any pack JSON.
-
-2. `FILE: data/Packs/<packId>/pack_unified.json`
-   — the **revision pack** (vocab + optional sentence + optional sequence /
-   categorySort / fillBlank items). Pack header fields use the values
-   inferred in `pack_decision.json`.
-
-3. `FILE: data/SentenceBuilderPacks/<packId>_unified.json`
-   — the **sentence builder pack** (sentenceBuilder items only). Omit if
-   the source is not a language pack.
-
-4. `FILE: data/PassagePacks/<groupId>/<packId>.json`
-   — the **passage pack** (passage items with comprehension questions).
-   Omit if the source does not contain reading passages.
-
-5. `FILE: data/generated/validation_report.json`
-   — **optional but recommended.** Records post-generation validation:
-   total item counts, type breakdown, any schema errors found. Useful for
-   CI/CD pipelines that check pack quality automatically.
-
-6. `FILE: data/generated/manifest_entries.json`
-   — three small JSON objects for the manifest. Python reads this file
-   to update `data/generated/manifest.json` during promotion.
-
-## Hard rules
-
-1. **Valid JSON only.** Pretty-printed, 2-space indent, UTF-8, no trailing
-   commas, no JS-style comments. Each file must parse with `json.loads`
-   without modification.
-2. **`schemaVersion`** is always `"1.1"` on every pack header.
-3. **`subject`** is **lowercase** and exactly one of `language`, `history`,
-   `geography`, `literature`, `science`.
-4. **`translations` uses BCP-47 keys.** Always `de-DE`, `en-GB`, `la-Latn`,
-   `fr-FR`, etc. Never bare `de` / `en`.
-5. **For non-language subjects (history / geography / science / literature),** set both
-   source and target codes to `en-GB`. Do not abuse the `de-DE` slot to
-   hold an English term — use proper `translations: { "en-GB": "..." }`.
-6. **Every item has a unique stable `id`** scoped to the pack.
-7. **One concept per item.** Don't bundle two vocab words or two facts
-   into one entry.
-8. **No duplicates within a pack** — same translation pair, same gap
-   answer, same builder sentence, same passage question.
-9. **British English.** Single quotes for inner quotes if needed.
-10. **Curriculum-safe content.** Match the stated `level` for vocab depth,
-    sentence length, and topic sensitivity.
-11. **No placeholder content.** No "TODO", no "Lorem ipsum", no duplicate
-    strings across items.
-
-## Pack header (required on every `pack_unified.json`)
+## Pack header (every `pack_unified.json`)
 
 ```json
 {
-  "packId":              "{{PACK_ID}}",
-  "subject":             "{{SUBJECT_LOWERCASE}}",
-  "title":               "{{HUMAN_TITLE}}",
-  "subtitle":            "{{SHORT_SUBTITLE_OPTIONAL}}",
-  "level":               "{{LEVEL}}",
-  "language":            "{{SOURCE_LABEL}}",
-  "topics":              ["{{TOPIC}}"],
-  "tags":                ["{{LEVEL}}", "{{SUBJECT}}", "{{TOPIC}}"],
-  "description":         "Two or three sentence revision-friendly summary.",
+  "packId":              "grade7_geography_glaciation",
   "schemaVersion":       "1.1",
-  "sourceLanguageLabel": "{{SOURCE_LABEL}}",
-  "sourceLanguageCode":  "{{SOURCE_CODE}}",
-  "targetLanguageLabel": "{{TARGET_LABEL}}",
-  "targetLanguageCode":  "{{TARGET_CODE}}",
-  "speechLanguage":      "{{SPEECH_CODE}}",
-  "items":               [ /* … */ ]
+  "subject":             "geography",
+  "title":               "Grade 7 Geography — Glaciation",
+  "subtitle":            "Ice, erosion, and depositional landforms",
+  "level":               "Grade 7",
+  "language":            "English",
+  "topics":              ["glaciation"],
+  "tags":                ["Grade 7", "geography", "glaciation"],
+  "description":         "Key terms, processes, and landforms for a Grade 7 glaciation unit.",
+  "sourceLanguageLabel": "English",
+  "sourceLanguageCode":  "en-US",
+  "targetLanguageLabel": "English",
+  "targetLanguageCode":  "en-US",
+  "speechLanguage":      "en-US",
+  "items":               []
 }
 ```
 
-## Manifest entries
+---
 
-Three entries the user pastes into `data/generated/manifest.json`:
+## Item counts — aim for these minimums
 
-```json
-// Revision pack — push to revisionPacks[]
-{
-  "id":                  "{{PACK_ID}}",
-  "displayName":         "{{HUMAN_TITLE}}",
-  "subject":             "{{SUBJECT_LOWERCASE}}",
-  "level":               "{{LEVEL}}",
-  "unifiedPath":         "data/Packs/{{PACK_ID}}/pack_unified.json",
-  "sourceLanguageLabel": "{{SOURCE_LABEL}}",
-  "sourceLanguageCode":  "{{SOURCE_CODE}}",
-  "targetLanguageLabel": "{{TARGET_LABEL}}",
-  "targetLanguageCode":  "{{TARGET_CODE}}",
-  "speechLanguage":      "{{SPEECH_CODE}}",
-  "supportsSentences":   <true if any sentence items, else false>,
-  "stageOptions":        [],
-  "defaultQuizModes":    [],
-  "wordCount":           <count of vocab items>,
-  "sentenceCount":       <count of sentence items>
-}
+| Item type | Minimum | Notes |
+|---|---|---|
+| `vocab` | 30–45 | Key terms, people, dates, events |
+| `multipleChoice` | 10–20 | Standalone authored MCQ prompts that are not cloze sentences |
+| `fillBlank` | 15–20 | Cloze/gap-fill prompts; can be typed or choice when `options` are present |
+| `sequence` | 2–3 | Processes where order matters |
+| `categorySort` | 2–3 | "X vs Y" classification |
+| `sentenceBuilder` | 20–25 | In the same `pack_unified.json` `items` array |
+| `passage` | 4–5 | In the same `pack_unified.json` `items` array |
+| Questions per passage | 4–6 | Mix open and multiple_choice |
 
-// Sentence builder pack — push to sentenceBuilderPacks[]
-{
-  "id":          "{{PACK_ID}}",
-  "displayName": "{{HUMAN_TITLE}}",
-  "unifiedPath": "data/SentenceBuilderPacks/{{PACK_ID}}_unified.json"
-}
+Only reduce if the source material is genuinely very small. Prefer more items over fewer.
 
-// Passage pack — append to the matching passageGroups[].packs (or create the group)
-{
-  "id":          "{{GROUP_ID}}",
-  "displayName": "{{HUMAN_GROUP_TITLE}}",
-  "unifiedPath": "data/PassagePacks/{{GROUP_ID}}/pack_unified.json"
-}
-```
+---
 
-## Coverage requirements
+## Item types — required fields and correct field names
 
-For the topic, the full dataset must cover:
+### `vocab`
 
-- **who** — key people / actors / authors
-- **what** — definitions of key terms, processes, concepts
-- **when** — key dates, sequences, chronology
-- **where** — places, regions, countries
-- **why** — causes, motivations, drivers
-- **consequences** — short- and long-term effects
-- **significance** — why this topic matters, exam-relevance
-- **common misconceptions** if relevant
-- **likely exam knowledge points** for the stated curriculum context
+**Non-language packs** (history, geography, science, literature, computing):
 
-Spread items across **easy / medium / harder** difficulty within the level.
-
-### Split packs
-
-If the source material covers more than one distinct subtopic (e.g. both
-glacier formation *and* glacial deposits), consider recommending a split in
-the Source Coverage Summary. Each JSON file should focus on one coherent
-subtopic. Items that belong to a different subtopic should not be forced
-into the same pack just for convenience — better to produce two focused
-packs than one muddled one.
-
-If in doubt, prefer a narrower pack that the source fully justifies over a
-broader pack that the source only partially covers.
-
-## Quality bar
-
-The output should feel like something a teacher or strong curriculum
-designer would produce. Do not make it generic. Do not make all items the
-same shape. Do not rely only on the attached images if they are partial.
-Use the attached materials plus wider accurate curriculum knowledge. Avoid
-weak filler.
-
-## Item envelope
-
-Every entry in `items[]` has this outer shape:
+> 🚨 **CRITICAL — THE MOST COMMON AI MISTAKE:**
+> `targetWord` must be a **full definition sentence** (10–25 words). It is **never** the term itself, never a one-word synonym, never a fragment.
+>
+> The quiz engine shows `sourceWord` as the question and `targetWord` values from multiple cards as the multiple-choice options. If `targetWord` is just the word again, the quiz asks "which word is Climate?" and "Climate" is one of the buttons — completely useless.
+>
+> | | `sourceWord` | `targetWord` |
+> |---|---|---|
+> | ✅ CORRECT | `"climate"` | `"the average weather conditions of an area measured over many years"` |
+> | ❌ WRONG — same word | `"climate"` | `"Climate"` |
+> | ❌ WRONG — one-word synonym | `"climate"` | `"weather"` |
+> | ❌ WRONG — too vague | `"climate"` | `"a type of weather pattern"` |
 
 ```json
 {
-  "id":     "<unique-id>",
-  "type":   "<one of the types below>",
-  "level":  "<usually matches the pack level>",
-  "topics": ["<topic>"],
-  "tags":   ["<tag>"],
-  "data":   { /* type-specific */ }
-}
-```
-
-## Item type: `vocab`
-
-The default for language packs and for term-↔-definition cards in
-History / Geography / Science.
-
-```json
-{
-  "id":     "y7_birthdays_001",
+  "id":     "glac_001",
   "type":   "vocab",
-  "level":  "Y7",
-  "topics": ["birthdays & months"],
-  "tags":   ["Y7", "noun", "cat:months"],
+  "level":  "Grade 7",
+  "topics": ["glaciation"],
+  "tags":   ["Grade 7", "keyword"],
+  "data": {
+    "partOfSpeech": "keyword",
+    "sourceWord":   "accumulation",
+    "targetWord":   "the build-up of snow in a glacier's source zone where annual snowfall exceeds melting",
+    "examples": {
+      "en-US": "Accumulation is greatest in the cirque, where snow collects and compresses over winter."
+    }
+  }
+}
+```
+
+**Language packs** (German, French, Latin, etc.):
+```json
+{
+  "id":     "de_family_001",
+  "type":   "vocab",
+  "level":  "Grade 7",
+  "topics": ["family"],
+  "tags":   ["Grade 7", "noun"],
   "data": {
     "partOfSpeech": "noun",
-    "gender":       "m",
-    "plural":       "die Geburtstage",
+    "gender":       "f",
+    "plural":       "die Familien",
     "translations": {
-      "de-DE": "der Geburtstag",
-      "en-GB": "birthday"
+      "de-DE": "die Familie",
+      "en-US": "family"
     },
     "examples": {
-      "de-DE": "Mein Geburtstag ist im Mai.",
-      "en-GB": "My birthday is in May."
+      "de-DE": "Meine Familie ist sehr groß.",
+      "en-US": "My family is very large."
     }
   }
 }
 ```
 
-| `data` field | Required | Notes |
-|---|---|---|
-| `translations` | yes | BCP-47 keyed dict; must contain entries for the pack's source and target codes |
-| `examples` | optional | Same shape as `translations` |
-| `partOfSpeech` | optional | `"noun"`, `"verb"`, `"adj"`, `"adv"`, `"det"`, `"prep"`, `"phrase"`, or `"keyword"` for non-language packs |
-| `gender` | optional | German: `"m"` / `"f"` / `"n"`; `null` for non-nouns or non-language packs |
-| `plural` | optional | Plural form if relevant |
+⚠ For non-language packs, `targetWord` = a **full definition sentence** (10–25 words). Never the term itself. Never one word.
+⚠ **Non-language packs must NOT use `translations`.** Use `sourceWord` + `targetWord` only. If you write `"translations": {"en-GB": "Climate"}` on a geography card, the app reads `"en-GB"` for both the question and the answer, so both equal `"Climate"` — your `targetWord` definition is silently discarded and the quiz becomes useless.
+⚠ For language packs, use `translations` (not `sourceWord`/`targetWord`).
+⚠ `partOfSpeech` for non-language packs: always `"keyword"`.
+⚠ `partOfSpeech` for language packs: full English word — `noun`, `verb`, `adjective`, `adverb`, `preposition`, `pronoun`, `conjunction`, `interjection`. Never a single letter.
 
-For non-language packs, use `vocab` sparingly to capture **term → definition**
-pairs. Because non-language packs use `sourceLanguageCode: "en-GB"` and
-`targetLanguageCode: "en-GB"`, a single `translations["en-GB"]` value can make
-the quiz prompt and answer identical. To avoid same-word drills, use
-`sourceWord` for the term and `targetWord` for the definition when a non-language
-vocab card needs a prompt/answer pair:
-
-```json
-"data": {
-  "partOfSpeech": "keyword",
-  "sourceWord": "accumulation",
-  "targetWord": "the build-up of snow where more falls than melts",
-  "examples": {
-    "en-GB": "Accumulation is the build-up of snow where more falls than melts."
-  }
-}
-```
-
-> **Tip for non-language packs:** if you want a clear "term → definition"
-> drill where prompt and answer differ, prefer a `multipleChoice` item for
-> authored MCQs or a `fillBlank` item for cloze recall. Never create a vocab
-> card whose question is the same word as its answer.
-
-### Useful `tags` for non-language packs
-
-Use **categorisation tags** so filters and analytics can surface clusters:
-
-| Tag prefix | Meaning |
-|------------|---------|
-| `cat:causes` | this is a cause |
-| `cat:consequences` | this is a consequence |
-| `cat:people` | a key person |
-| `cat:dates` | a key date |
-| `cat:events` | a key event |
-| `cat:places` | a key location |
-| `cat:treatments` | medical / political response |
-| `cat:beliefs` | religious / cultural belief |
-| `cat:impact` | broader societal impact |
-
-## Item type: `sentence`
-
-Used in language packs for sentence-build and sentence-type drills. Don't
-use for non-language packs (use `multipleChoice` or `fillBlank` instead).
+### `fillBlank`
 
 ```json
 {
-  "id":     "Y7-SENT-0001",
-  "type":   "sentence",
-  "level":  "Y7",
-  "topics": ["family"],
-  "tags":   [],
-  "data": {
-    "translations": {
-      "de-DE": "In meiner Familie gibt es fünf Personen.",
-      "en-GB": "In my family there are five people."
-    }
-  }
-}
-```
-
-Aim for sentences that are 6–14 words long. Short enough to build from
-tiles, long enough to drill grammar. **Strong sentence types:**
-
-- cause-and-effect
-- explanation of a key term
-- significance of an individual
-- chronological fact
-- short exam-style knowledge statement
-- comparison statement
-
-## Item type: `sequence`
-
-Used for processes, narratives, anything where order matters.
-
-```json
-{
-  "id":     "seq_001",
-  "type":   "sequence",
-  "level":  "Y7",
-  "topics": ["glaciation"],
-  "tags":   [],
-  "data": {
-    "title":       "How a Glacier Forms",
-    "instruction": "Put the glacier formation steps in the correct order.",
-    "items": [
-      "More snow falls than melts.",
-      "Snow builds up. This is called accumulation.",
-      "Layers of snow are compressed.",
-      "The snow becomes dense firn.",
-      "Over hundreds of years, firn becomes glacier ice.",
-      "The ice slides downhill due to gravity."
-    ],
-    "shuffle": true
-  }
-}
-```
-
-Aim for 4–7 steps. Each step a single sentence, factually correct, clearly
-distinct from its neighbours.
-
-## Item type: `categorySort`
-
-Used for "Which kind is this?" classification. 2–3 columns, 6–10 items.
-
-```json
-{
-  "id":     "cat_001",
-  "type":   "categorySort",
-  "level":  "Y7",
-  "topics": ["weathering vs erosion"],
-  "tags":   [],
-  "data": {
-    "title":       "Weathering or Erosion?",
-    "instruction": "Sort each process into the correct category.",
-    "categories":  ["Weathering", "Erosion"],
-    "pairs": [
-      { "text": "freeze-thaw",                       "category": "Weathering" },
-      { "text": "plucking",                          "category": "Erosion"    },
-      { "text": "abrasion",                          "category": "Erosion"    },
-      { "text": "rock broken in cracks by ice",      "category": "Weathering" },
-      { "text": "rocks scraped along valley floor",  "category": "Erosion"    }
-    ]
-  }
-}
-```
-
-Use the field name `pairs` (the runtime reads it).
-
-## Item type: `fillBlank`
-
-Used for testing recall of a single key term in context. Two flavours:
-
-**Typed** (no `options`):
-
-```json
-{
-  "id":     "gap_001",
+  "id":     "glac_gap_001",
   "type":   "fillBlank",
-  "level":  "Y7",
+  "level":  "Grade 7",
   "topics": ["glaciation"],
   "tags":   [],
   "data": {
     "sentence": "The build-up of snow where more falls than melts is called ____.",
     "answer":   "accumulation",
-    "hint":     "Starts with 'a'"
+    "options":  ["accumulation", "ablation", "erosion", "deposition"]
   }
 }
 ```
 
-**Multiple-choice** (with `options`, must include the answer):
+⚠ Gap marker is always `____` (four underscores). Never `___`, `[blank]`, `<blank>`, or `...`.
+⚠ The correct `answer` must appear in `options` if options are provided.
+⚠ Field name is `sentence`, not `question`, `text`, or `prompt`.
+⚠ Do not use `fillBlank` for a standalone question unless it genuinely contains a `____` blank.
+⚠ If `options` are present, make them near distractors from the same topic — not random throwaways.
 
-```json
-"data": {
-  "sentence": "The dense, old snow that is not yet ice is called ____.",
-  "answer":   "firn",
-  "options":  ["firn", "moraine", "till", "scree"]
-}
-```
-
-Always use `____` (four underscores) as the gap placeholder. Distractors
-in `options[]` must be plausible and topic-related.
-
-## Item type: `multipleChoice`
-
-Used for standalone authored multiple-choice questions. This is the correct
-type when the prompt is a full question rather than a cloze sentence.
+### `multipleChoice`
 
 ```json
 {
@@ -646,218 +282,237 @@ type when the prompt is a full question rather than a cloze sentence.
 }
 ```
 
-`options[]` must include `answer`. Do not use `sentence` on this item type;
-`sentence` belongs only to `fillBlank` cloze prompts with a `____` marker.
+Use `multipleChoice` for authored MCQ prompts such as grammar questions, concept checks, or "Which statement is correct?" questions. Required fields are `question`, `answer`, and `options`; `options` must include `answer`. Do not use `sentence` here.
 
-## Item type: `sentenceBuilder` (Builder tab — separate file)
+**Distractor quality rules — make MCQs feel like a real exam:**
+- All four options should belong to the same semantic family, grammatical class, or topic frame.
+- Write **near distractors**: plausible wrong answers based on likely student confusion, not random unrelated words.
+- Prefer distractors built from:
+  - adjacent concepts from the same lesson,
+  - common misconceptions,
+  - partly true statements that fail on one key detail,
+  - same-case / same-tense / same-process alternatives in grammar or science questions.
+- Avoid joke answers, obviously impossible answers, and one option that is much longer, vaguer, or more precise than the others.
+- Keep option style parallel: similar length, register, specificity, and grammar.
+- When using a definition-style correct answer, write distractor definitions that are also believable at first glance.
+- If one distractor is "almost right", make it wrong for one exact reason only — that creates useful exam-style difficulty.
 
-Lives at `data/SentenceBuilderPacks/{{PACK_ID}}_unified.json`. The pack
-header is the same shape as a revision pack. Items:
+### `sequence`
 
 ```json
 {
-  "id":     "black_death_builder_001",
-  "type":   "sentenceBuilder",
-  "level":  "KS3 / Year 7",
-  "topics": [],
-  "tags":   ["key_date"],
+  "id":     "glac_seq_001",
+  "type":   "sequence",
+  "level":  "Grade 7",
+  "topics": ["glacier formation"],
+  "tags":   [],
   "data": {
-    "cardType": "key_date",
-    "prompt":   "When did the Black Death arrive in England?",
-    "answer":   "The Black Death arrived in England in June 1348.",
-    "tiles": [
-      "The", "Black", "Death", "arrived", "in", "England", "in", "June", "1348."
+    "title":       "How a glacier forms",
+    "instruction": "Put the steps in the correct order.",
+    "items": [
+      "More snow falls than melts each year.",
+      "Snow accumulates and compresses into firn.",
+      "Firn is compressed further into glacier ice.",
+      "The ice mass moves downhill under gravity."
+    ],
+    "shuffle": true
+  }
+}
+```
+
+⚠ Field name is `items`, not `steps`, `stages`, or `order`.
+⚠ Minimum 2 items; aim for 4–7.
+
+### `categorySort`
+
+```json
+{
+  "id":     "glac_cat_001",
+  "type":   "categorySort",
+  "level":  "Grade 7",
+  "topics": ["glaciation"],
+  "tags":   [],
+  "data": {
+    "title":       "Erosion or Deposition?",
+    "instruction": "Sort each feature into the correct category.",
+    "categories":  ["Erosion", "Deposition"],
+    "pairs": [
+      { "text": "plucking",      "category": "Erosion"    },
+      { "text": "abrasion",      "category": "Erosion"    },
+      { "text": "moraine",       "category": "Deposition" },
+      { "text": "drumlin",       "category": "Deposition" },
+      { "text": "freeze-thaw",   "category": "Erosion"    }
     ]
   }
 }
 ```
 
-`tiles` joined with spaces must reconstruct `answer` exactly. Punctuation
-attaches to the preceding word (`"1348."` not `"1348"` `"."`).
+⚠ Field name is `pairs`, not `items`.
+⚠ Every `pair.category` must exactly match one value in `categories`.
 
-`cardType` examples (consistent across cards in the same pack helps the UI
-group them): `"key_date"`, `"key_term"`, `"example_sentence"`, `"cause"`,
-`"consequence"`, `"belief"`, `"treatment"`, `"significance"`,
-`"key_person"`.
-
-## Item type: `passage` (Reading tab — separate file)
-
-Lives at `data/PassagePacks/{{GROUP_ID}}/pack_unified.json`. Pack header is
-the same shape as a revision pack but `subject` should match the group
-(e.g. `"history"` for a history passage group). Items:
+### `sentenceBuilder`
 
 ```json
 {
-  "id":     "careers_01",
+  "id":     "glac_sb_001",
+  "type":   "sentenceBuilder",
+  "level":  "Grade 7",
+  "topics": ["glaciation"],
+  "tags":   ["key_term"],
+  "data": {
+    "cardType": "key_term",
+    "prompt":   "What is ablation?",
+    "answer":   "Ablation is the melting of ice at the snout of a glacier.",
+    "tiles":    ["Ablation", "is", "the", "melting", "of", "ice", "at", "the", "snout", "of", "a", "glacier."]
+  }
+}
+```
+
+⚠ `tiles` joined with spaces must reconstruct `answer` exactly — character for character.
+⚠ Punctuation attaches to the preceding word (`"glacier."` not `"glacier"` `"."`).
+
+### `passage`
+
+```json
+{
+  "id":     "glac_pass_001",
   "type":   "passage",
-  "level":  "GCSE",
-  "topics": ["careers"],
+  "level":  "Grade 7",
+  "topics": ["glaciation"],
   "tags":   [],
   "data": {
-    "chapter":       "BBC Bitesize - GCSE German",
-    "section":       "Careers",
-    "sourceTitle":   "Arzt im Krankenhaus",
-    "targetTitle":   "Doctor",
-    "sourcePassage": "Ich möchte als Arzt arbeiten…",
-    "targetPassage": "I would like to work as a doctor…",
-    "speechLanguage": "de-DE",
+    "sourceTitle":   "How Glaciers Shape the Land",
+    "targetTitle":   "How Glaciers Shape the Land",
+    "sourcePassage": "Glaciers are large, slow-moving bodies of ice that shape the landscape through erosion and deposition...",
+    "targetPassage": "Glaciers are large, slow-moving bodies of ice that shape the landscape through erosion and deposition...",
+    "speechLanguage": "en-US",
     "questions": [
       {
-        "id":                "careers_01_q1",
+        "id":                "glac_pass_001_q1",
         "questionType":      "multiple_choice",
-        "difficulty":        "medium",
-        "question":          "What does the student want to be?",
-        "options":           ["A doctor", "A teacher", "A farmer", "A driver"],
+        "difficulty":        "easy",
+        "question":          "What are the two main processes glaciers use to shape the landscape?",
+        "options":           ["Erosion and deposition", "Weathering and flooding", "Erosion and weathering", "Transport and flooding"],
         "correctOptionIndex": 0,
-        "modelAnswer":       "A doctor",
-        "acceptedKeywords":  ["doctor"]
+        "modelAnswer":       "Erosion and deposition"
       },
       {
-        "id":                "careers_01_q2",
-        "questionType":      "open",
-        "difficulty":        "easy",
-        "question":          "Why does the student want this job?",
-        "modelAnswer":       "He wants to help sick people and finds biology interesting.",
-        "acceptedKeywords":  ["help", "sick", "biology"]
+        "id":           "glac_pass_001_q2",
+        "questionType": "open",
+        "difficulty":   "medium",
+        "question":     "Explain how a corrie is formed.",
+        "modelAnswer":  "Snow collects in a hollow on a mountainside. It compresses into ice. The ice erodes the hollow through plucking and abrasion, making it deeper and steeper. A rock lip forms at the front.",
+        "acceptedKeywords": ["snow", "ice", "plucking", "abrasion", "hollow"]
       }
     ]
   }
 }
 ```
 
-`questionType` values: `"multiple_choice"`, `"open"`, `"fact"`. Use
-`question` (not `question_en`) — that's what the runtime reads. For
-non-language passage packs, `sourcePassage` and `targetPassage` may hold
-the same text and `speechLanguage` should be `"en-GB"`.
+⚠ Question field is `question`, not `questionText` or `question_en`.
+⚠ `multiple_choice` questions require `options` (array) and `correctOptionIndex` (integer, 0-based).
+⚠ Non-language packs: `sourcePassage` and `targetPassage` contain the same text (in the source language).
 
-**Passage subtopic suggestions** (mix at least 4 of these per pack):
+---
 
-- background / context
-- causes / drivers
-- key people
-- key events / chronology
-- symptoms and treatments (history / science / medicine)
-- beliefs and religion (history)
-- government / authority response
-- impact on society
-- short source-style or interpretation-style reading
+## Hard rules — never break these
 
-**Question type mix per passage** (3–6 questions): include at least one
-**fact retrieval**, one **inference**, and one **explanation /
-significance** question.
+1. **Valid JSON only.** No trailing commas, no `//` comments, no markdown inside code blocks, UTF-8, 2-space indent.
+2. **`schemaVersion`** is always `"1.1"`.
+3. **`subject`** is lowercase — one of: `language`, `history`, `geography`, `science`, `literature`, `computing`, `other`.
+4. **`translations` uses BCP-47 keys** — `de-DE`, `en-US`, `en-GB`, `fr-FR`, `la-Latn`. Never bare `de` or `en`.
+5. **Non-language packs**: both language codes must match the source language (e.g. both `en-US`, both `en-GB`). Never put source-language text under a foreign-language key.
+6. **Every item has a unique `id`** within the pack. No duplicates.
+7. **One concept per item.** Don't bundle two facts into one entry.
+8. **No duplicates within a pack** — same word pair, same gap answer, same passage.
+9. **Match the spelling and language conventions of the source material** — American English for US sources, British English for UK sources, etc.
+10. **No placeholder content.** No "TODO", "example text", or "Lorem ipsum".
+11. **`targetWord` is always a full definition sentence for non-language packs** — minimum 10 words, maximum 30 words. A quiz shows `sourceWord` as the prompt and multiple `targetWord` values as answer buttons. `targetWord: "Climate"` on a card about climate produces a quiz button that says "Climate" — the student just clicks the word they were shown. This is the single most common quality failure.
+12. **All item types go in one `pack_unified.json`.** Do not split into separate files. The app routes `passage` and `sentenceBuilder` items to the correct tabs automatically based on `type`.
+12. **Output exactly one file.** One `FILE: pack_unified.json` code block. Never output a `passages.json`, a `sentenceBuilder/pack_unified.json`, or a ZIP.
 
-## Sizing guidance
+---
 
-Adjust by topic size; these are good defaults for a complete pack:
+## Self-validation checklist — run before outputting
 
-| File | Item count | Notes |
-|------|------------|-------|
-| Revision pack `vocab` items | 30–80 | Cover key people, dates, events, terms, causes, consequences |
-| Revision pack `sentence` items | 20–40 | Only for language packs, or cause-and-effect statements for history/science |
-| Revision pack `sequence` items | 0–4 | One per process; geography and science benefit most |
-| Revision pack `categorySort` items | 0–4 | One per "X vs Y" distinction |
-| Revision pack `multipleChoice` items | 0–20 | Standalone authored MCQs; strong fit for grammar and concept checks |
-| Revision pack `fillBlank` items | 0–20 | Cloze recall prompts; can be typed or choice when options are present |
-| Sentence builder pack `sentenceBuilder` items | 15–30 | Group by `cardType` |
-| Passage pack `passage` items | 4–8 | Each passage 80–220 words depending on level |
-| Per-passage `questions` | 3–6 | Mix difficulties and types |
+Work through this list silently before you output the JSON:
+
+- [ ] Every item has a unique `id`
+- [ ] All `fillBlank` sentences contain `____` (four underscores)
+- [ ] All `fillBlank` answers appear in their `options` array (if options provided)
+- [ ] All `multipleChoice` items have `question`, `answer`, and `options`
+- [ ] All `multipleChoice` answers appear in their `options` array
+- [ ] All `sentenceBuilder` tiles joined with spaces exactly equal `answer`
+- [ ] All `categorySort` `pair.category` values match one of the `categories` entries
+- [ ] All `sequence` items arrays have at least 2 entries
+- [ ] All `multiple_choice` questions have `options` and `correctOptionIndex`
+- [ ] `correctOptionIndex` is a valid 0-based index into `options`
+- [ ] All `passage` and `sentenceBuilder` items are inside `pack_unified.json` (not in separate files)
+- [ ] Output is exactly one `FILE: pack_unified.json` block
+- [ ] `subject` is lowercase
+- [ ] `schemaVersion` is `"1.1"` on every file
+- [ ] All BCP-47 codes use region subtags (`en-US` not `en`, `de-DE` not `de`, `fr-FR` not `fr`)
+- [ ] Non-language pack: every `targetWord` is a full definition sentence (≥ 10 words, not the term itself, not a one-word synonym)
+- [ ] Non-language pack `sourceWord` ≠ `targetWord` (no same-word cards)
+- [ ] Language pack `translations` has both source and target codes
+- [ ] No trailing commas anywhere in the JSON
+
+If any check fails, fix it before outputting.
+
+---
 
 ## Subject-specific guidance
 
-### Language packs (`subject: "language"`)
+### History / Geography / Science
 
-- Source = the language being learned; target = English (typically).
-- The Quiz Setup UI shows a direction toggle so the student can drill
-  in either direction.
-- Default mix: `vocab` heavy, plus `sentence` items for sentence-build/
-  sentence-type drills. Set `supportsSentences: true` if any sentence
-  items exist.
-- Use BCP-47 codes precisely: `de-DE`, `fr-FR`, `es-ES`, `la-Latn`,
-  `it-IT`, `zh-Hans`, `ja-JP`, etc.
+- Both language codes match the source (e.g. both `en-US` for American sources, both `en-GB` for British sources).
+- `vocab` items use `sourceWord` (term) + `targetWord` (definition).
+- Strong item mix: `vocab`, `fillBlank`, `categorySort`, `sequence`.
+- Keep dates explicit (`1861`, not "the mid-nineteenth century").
+- Tag vocab items: `cat:causes`, `cat:consequences`, `cat:people`, `cat:dates`, `cat:events`, `cat:places`, `cat:impact`.
 
-### History packs (`subject: "history"`)
+### Language packs (German, French, Spanish, Latin, etc.)
 
-- Source = target = `"en-GB"`. Set `supportsSentences: true` only if you
-  include cause-and-effect or knowledge-statement sentences.
-- Strong mix: `vocab` (key people / dates / terms), `fillBlank` (key
-  causes / consequences / dates), and a sentence-builder pack for
-  exam-style sentence reconstruction.
-- Keep dates explicit ("1348", not "the mid-14th century").
-- Tag historical sensitivity carefully — factual but neutral phrasing.
+- Source = language being learned; target = the student's native language.
+- Use `translations` dict on `vocab` items (not `sourceWord`/`targetWord`).
+- Include `sentence` items for sentence-build drills.
+- Use precise BCP-47 codes: `de-DE`, `fr-FR`, `es-ES`, `la-Latn`, `it-IT`, `zh-Hans`, `ja-JP`.
 
-### Geography packs (`subject: "geography"`)
+### Literature
 
-- Source = target = `"en-GB"` for KS3 packs. `supportsSentences: false`
-  unless writing case-study sentences.
-- Strong fit for `categorySort` (weathering vs erosion, push vs pull),
-  `sequence` (water cycle, glacier formation), and `fillBlank`.
-- Use units consistently (km, m³, °C).
+- Both language codes match the source language.
+- Prioritise `fillBlank`, `categorySort`, `passage` comprehension.
+- `vocab` only for literary terms — `targetWord` must be an explanation, never the same word.
+- Passage questions: "how", "why", "what does this suggest" — not simple recall.
+- Do not invent quotations; paraphrase if exact wording is unclear and label as inference.
 
-### Literature packs (`subject: "literature"`)
+### Computing
 
-- Source = target = `"en-GB"`. Literature packs should test reading,
-  interpretation, and evidence — not plain vocabulary recall.
-- Default mix: mostly `fillBlank`, `categorySort`, `sequence`, and passage
-  comprehension. Use `vocab` only for a small number of genuinely useful
-  literary terms, character names, or motifs where the answer is a definition
-  or explanation, never the same word.
-- For `vocab`, do **not** put only `translations: { "en-GB": "<word>" }`.
-  That creates same-word question/answer cards. Use `sourceWord` for the prompt
-  and `targetWord` for the answer, for example `sourceWord: "Old Major"` and
-  `targetWord: "the elderly boar whose speech introduces the rebellion"`.
-- Good literature `fillBlank` items ask students to complete analytical
-  statements: themes, character presentation, narrative purpose, symbolism,
-  and cause/effect. The blank should be a meaningful concept or short phrase,
-  not a giveaway copied from the question.
-- Good literature passage questions ask "how", "why", "what does this suggest",
-  "which evidence supports", or "what changes between..." Avoid questions where
-  the question text and answer are the same word.
-- If the source includes exact quotations, use short quotations accurately. If
-  the exact wording is not visible, do not invent quotations; paraphrase and
-  mark the task as inference or summary.
+- Both language codes match the source language. `partOfSpeech: "keyword"` on all vocab items.
+- Use `sourceWord` + `targetWord` on vocab (not `translations`).
+- Pseudocode: use whatever pseudocode conventions the source material uses (e.g. uppercase keywords `IF`, `FOR`, `WHILE`, `OUTPUT`). Match the style of the curriculum if specified.
 
-### Science packs (`subject: "science"`)
-
-- Source = target = `"en-GB"`. `supportsSentences: false` unless you have
-  textbook-style sentences.
-- Strong fit for `vocab` (units, formulae, key terms), `sequence`
-  (cellular respiration, photosynthesis steps), `categorySort` (organic
-  vs inorganic, kingdom classification).
-- Specify Biology / Chemistry / Physics in the title.
-
-## Automation Mode
-
-Do **not** ask clarification questions. If metadata is missing, infer the
-safest reasonable value from the source material and record it.
-
-**Inference defaults:**
-- Level: `"KS3"` if the source appears lower-secondary but the exact year
-  is not visible.
-- Level: `"GCSE"` only if the source clearly states it (GCSE, AQA, Edexcel,
-  OCR, IGCSE, exam paper, specification, or GCSE-style command words).
-- Scope: `"source_faithful"` by default.
-- Language (for geography / history / science): `en-GB` / `en-GB` / `en-GB`.
-- Language (for language packs): infer from the source.
-
-If confidence is low, still generate the pack — record the uncertainty in
-`pack_decision.json` under `"warnings"`.
+---
 
 ## What NOT to do
 
-- ❌ Don't dump partial JSON — every code block must validate as-is.
-- ❌ Don't use bare `"de"` / `"en"` keys; always BCP-47 (`"de-DE"` /
-      `"en-GB"`).
-- ❌ Don't capitalise `subject`.
-- ❌ Don't put `passage` items in a revision pack (`data/Packs/`) —
-      passages live in `data/PassagePacks/<group>/pack_unified.json`.
-- ❌ Don't put `sentenceBuilder` items in a revision pack — they live in
-      `data/SentenceBuilderPacks/<id>_unified.json`.
-- ❌ Don't include comments or markdown inside the JSON code blocks.
-- ❌ Don't generate `options` arrays where the answer isn't included.
-- ❌ Don't repeat content. Each item should teach one distinct thing.
-- ❌ Don't make all items the same shape — vary types per the pack-type
-      guidance above.
-- ❌ Don't rely only on attached images if they are partial; expand
-      with accurate curriculum knowledge.
+- ❌ `"question"` field on `fillBlank` — use `"sentence"`
+- ❌ `"sentence"` field on `multipleChoice` — use `"question"`
+- ❌ `"questionText"` or `"question_en"` in passage questions — use `"question"`
+- ❌ `"steps"` in sequence data — use `"items"`
+- ❌ `"item"` in categorySort pairs — use `"text"`
+- ❌ Bare `"de"` / `"en"` / `"fr"` BCP-47 codes — always include the region subtag (`"de-DE"`, `"en-US"`, `"fr-FR"`)
+- ❌ Capitalised `subject` field — must be lowercase
+- ❌ Splitting output into `passages.json` or `sentenceBuilder/pack_unified.json` — one file only
+- ❌ Offering a ZIP download — the user uploads a single JSON file
+- ❌ Trailing commas in JSON
+- ❌ JS-style comments inside JSON
+- ❌ `translations` field on non-language pack vocab items — use `sourceWord` + `targetWord` instead; `translations` on a monolingual pack makes `sourceWord` and `targetWord` identical in the quiz
+- ❌ `targetWord` that is the same word as `sourceWord` — e.g. `"sourceWord": "climate", "targetWord": "Climate"`
+- ❌ `targetWord` that is a single-word synonym — e.g. `"sourceWord": "climate", "targetWord": "weather"`
+- ❌ `targetWord` shorter than 10 words for non-language packs — definitions must be full sentences
+- ❌ `fillBlank` options list that doesn't include the answer
+- ❌ `multipleChoice` options list that doesn't include the answer
+- ❌ `sentenceBuilder` tiles that don't reconstruct `answer` when joined with spaces
 
-## END PROMPT
+--- END PROMPT ---
