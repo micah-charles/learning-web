@@ -21,6 +21,7 @@ let _embeddingsPromise = null;
  */
 const EMBEDDING_MODEL = "Xenova/all-MiniLM-L6-v2"; // ~90 MB quantized, 384-dim
 const EMBEDDING_DIM = 384;
+const IS_DEV = Boolean(import.meta.env?.DEV);
 
 /**
  * Load the study book index (cached).
@@ -32,8 +33,13 @@ export async function loadStudyBookIndex() {
   if (!_loadPromise) {
     _loadPromise = (async () => {
       try {
-        const res = await fetch("/search/studybook-index.json", {
-          cache: "force-cache"
+        const requestUrl = IS_DEV
+          ? `/search/studybook-index.json?t=${Date.now()}`
+          : "/search/studybook-index.json";
+        const res = await fetch(requestUrl, {
+          // `force-cache` can preserve a stale broken index after a fix lands.
+          // Revalidate in production and bypass cache during dev.
+          cache: IS_DEV ? "no-store" : "no-cache"
         });
         if (!res.ok) throw new Error(`Failed to load index: ${res.status}`);
         const data = await res.json();

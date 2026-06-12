@@ -37,6 +37,35 @@ import MiniSearch from "minisearch";
 }
 
 /**
+ * Test study book index loader avoids `force-cache`, which can preserve a stale
+ * broken index after the search generator has been fixed.
+ */
+{
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+  globalThis.fetch = async (url, options = {}) => {
+    calls.push({ url, options });
+    return {
+      ok: true,
+      async json() {
+        return { chunks: [], version: 1, generatedAt: "2026-06-12T00:00:00.000Z" };
+      },
+    };
+  };
+
+  try {
+    const { loadStudyBookIndex } = await import("../src/features/tutor/studybookIndex.js");
+    const index = await loadStudyBookIndex();
+    assert.equal(index.version, 1, "Should load the mocked index");
+    assert.equal(calls.length, 1, "Should fetch the index once");
+    assert.equal(calls[0].url, "/search/studybook-index.json", "Production-style loads should use the canonical index URL");
+    assert.equal(calls[0].options.cache, "no-cache", "Study book index should revalidate instead of force-caching");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+}
+
+/**
  * Test wantsExplanation helper from tutorEngine.js.
  */
 {

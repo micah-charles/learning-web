@@ -7,10 +7,11 @@
     "build:data": "python3 scripts/generate_manifest.py",
     "build:study-books": "python3 scripts/generate_study_book_index.py",
     "build:studybook-index": "node scripts/build-studybook-index.js",
+    "prepare:studybook-search": "npm run build:study-books && npm run build:studybook-index",
     "generate:seo": "node scripts/generate-seo-pages.mjs",
     "start": "npm run build && python3 -m http.server --directory dist 4173",
-    "dev": "vite",
-    "build": "npm run build:study-books && npm run build:studybook-index && vite build && npm run generate:seo",
+    "dev": "npm run prepare:studybook-search && vite",
+    "build": "npm run prepare:studybook-search && vite build && npm run generate:seo",
     "preview": "vite preview"
   },
   "devDependencies": {
