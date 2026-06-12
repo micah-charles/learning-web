@@ -10,16 +10,13 @@
  *  - NEVER generate pack JSON directly in the browser.
  *  - NEVER send prompts or source material to a backend.
  *  - NEVER use OpenAI API or Gemini cloud API.
- *  - Chrome AI (Gemini Nano) is used only for prompt construction / enhancement.
- *  - Falls back to structured template assembly when Chrome AI is unavailable.
+ *  - Uses deterministic structured template assembly.
  */
-import { useState, useEffect, useCallback, useRef } from "react";
-import ChromeAIStatus from "../components/promptBuilder/ChromeAIStatus.jsx";
+import { useState, useEffect, useCallback } from "react";
 import PromptInputPanel from "../components/promptBuilder/PromptInputPanel.jsx";
 import PromptOutputPanel from "../components/promptBuilder/PromptOutputPanel.jsx";
 import GuidedTour from "../components/promptBuilder/GuidedTour.jsx";
 import { AI_TOUR_STEPS, SHERLOCK_PRESET } from "../components/promptBuilder/tourConfig.js";
-import { detectChromeAI, createAISession, generateEnhancedPrompt, destroySession } from "../services/chromeAI.js";
 import { loadBasePrompt } from "../services/promptLoader.js";
 import { assembleTemplatePrompt } from "../services/promptAssembler.js";
 import { getPromptConfig, normalizePromptConfigId, promptConfigForSubject } from "../services/promptConfigs.js";
@@ -37,6 +34,7 @@ function loadSavedPrefs() {
   return {
     ...saved,
     promptTemplate,
+    generateMode: "template",
     itemTypes: itemTypes.length > 0 ? itemTypes : [...config.defaultItemTypes],
     additionalInstructions:
       hasSherlockExampleInstructions(saved.additionalInstructions) && !hasSherlockSource(saved)
@@ -47,7 +45,7 @@ function loadSavedPrefs() {
 
 function savePrefs(prefs) {
   const state = loadStoredState();
-  state.prefs.promptBuilder = prefs;
+  state.prefs.promptBuilder = { ...prefs, generateMode: "template" };
   saveStoredState(state);
 }
 
@@ -66,8 +64,6 @@ function hasSherlockSource(values = {}) {
 // ──────────────────────────────────────────────────────────────────────────────
 
 export default function AIPromptBuilder({ onNavigate }) {
-  const hasChromeAI = detectChromeAI();
-
   // Form values — initialised from the merged stored state (includes defaults)
   const [values, setValues] = useState(() => loadSavedPrefs());
 
@@ -84,9 +80,6 @@ export default function AIPromptBuilder({ onNavigate }) {
   const [status, setStatus]                   = useState("idle");
   const [errorMsg, setErrorMsg]               = useState("");
 
-  // Keep an AI session alive across multiple "Generate" clicks
-  const aiSessionRef = useRef(null);
-
   // Onboarding: guided tour + one-click example feedback
   const [tourOpen, setTourOpen] = useState(false);
   const [exampleLoaded, setExampleLoaded] = useState(false);
@@ -95,11 +88,6 @@ export default function AIPromptBuilder({ onNavigate }) {
   useEffect(() => {
     savePrefs(values);
   }, [values]);
-
-  // ── Cleanup AI session on unmount ──────────────────────────────────────────
-  useEffect(() => {
-    return () => destroySession(aiSessionRef.current);
-  }, []);
 
   // ── Load base prompt whenever the selected template changes ────────────────
   useEffect(() => {
@@ -223,40 +211,19 @@ export default function AIPromptBuilder({ onNavigate }) {
       additionalInstructions: values.additionalInstructions,
     };
 
-    const useAI = values.generateMode === "chrome-ai" && hasChromeAI;
-
     setStatus("generating");
     setErrorMsg("");
 
     try {
-      let finalPrompt;
-
-      if (useAI) {
-        if (!aiSessionRef.current) {
-          aiSessionRef.current = await createAISession();
-        }
-        finalPrompt = await generateEnhancedPrompt(aiSessionRef.current, basePrompt, ctx);
-      } else {
-        finalPrompt = assembleTemplatePrompt(basePrompt, ctx, false);
-      }
+      const finalPrompt = assembleTemplatePrompt(basePrompt, ctx, false);
 
       setGeneratedPrompt(finalPrompt);
       setStatus("done");
     } catch (err) {
-      destroySession(aiSessionRef.current);
-      aiSessionRef.current = null;
-
-      if (useAI) {
-        const fallback = assembleTemplatePrompt(basePrompt, ctx, false);
-        setGeneratedPrompt(fallback);
-        setStatus("done");
-        setErrorMsg(`Chrome AI failed (${err.message}). Fell back to structured template mode.`);
-      } else {
-        setStatus("error");
-        setErrorMsg(err.message);
-      }
+      setStatus("error");
+      setErrorMsg(err.message);
     }
-  }, [basePrompt, values, hasChromeAI]);
+  }, [basePrompt, values]);
 
   // ── Reset output ───────────────────────────────────────────────────────────
   const handleReset = useCallback(() => {
@@ -274,10 +241,10 @@ export default function AIPromptBuilder({ onNavigate }) {
     setValues((prev) => (prev.tourSeen ? prev : { ...prev, tourSeen: true }));
   }, []);
 
-  // One-click example. Merge over prev so generateMode / tourSeen are preserved.
+  // One-click example. Merge over prev so tourSeen is preserved.
   // Subject + template stay consistent, so no mismatch warning fires.
   const handleLoadExample = useCallback(() => {
-    setValues((prev) => ({ ...prev, ...SHERLOCK_PRESET }));
+    setValues((prev) => ({ ...prev, ...SHERLOCK_PRESET, generateMode: "template" }));
     setTemplateWarning(null);   // independent setState — safe outside the updater
     setGeneratedPrompt("");     // clear any stale output from a previous run
     setExampleLoaded(true);
@@ -314,7 +281,6 @@ export default function AIPromptBuilder({ onNavigate }) {
           </div>
           <div className="pb-header-badges">
             <span className="badge blue">Local Only</span>
-            <ChromeAIStatus available={hasChromeAI} />
           </div>
         </div>
 
@@ -357,7 +323,6 @@ export default function AIPromptBuilder({ onNavigate }) {
           <PromptInputPanel
             values={values}
             onChange={handleChange}
-            hasChromeAI={hasChromeAI}
             basePromptLoaded={!!basePrompt}
             basePromptError={basePromptError}
             allowedItemTypes={activeConfig.allowedItemTypes}
