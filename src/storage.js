@@ -78,7 +78,7 @@ export const DEFAULT_STATE = {
       sourceUrl: "",
       sourceMaterial: "",
       additionalInstructions: "",
-      generateMode: "template",   // "template" | "chrome-ai"
+      generateMode: "template",   // Pack Creator currently uses structured template mode only
       promptTemplate: "standard", // "standard" | "lit-11plus"
       tourSeen: false,            // guided tour completed at least once (UI hint only)
     },
