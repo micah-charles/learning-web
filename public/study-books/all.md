@@ -1778,6 +1778,86 @@ Generated from `data/generated/manifest.json`.
 - Curriculum: `gcse`
 - Study notes: `/data/Packs/gcse/religion/gcse_rs_non-textual-studies_june_2024.md`
 
+## Paper 1: Living with the Physical Environment (June 2020)
+
+- Pack ID: `gcse_geo_p1_physical_environment_november_2020`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_november_2020/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_november_2020/pack_unified.json`
+
+## Paper 1: Living with the Physical Environment (June 2021)
+
+- Pack ID: `gcse_geo_p1_physical_environment_november_2021`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_november_2021/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_november_2021/pack_unified.json`
+
+## Paper 1: Living with the Physical Environment (June 2022)
+
+- Pack ID: `gcse_geo_p1_physical_environment_june_2022`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_june_2022/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_june_2022/pack_unified.json`
+
+## Paper 1: Living with the Physical Environment (June 2023)
+
+- Pack ID: `gcse_geo_p1_physical_environment_june_2023`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_june_2023/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_june_2023/pack_unified.json`
+
+## Paper 1: Living with the Physical Environment (June 2024)
+
+- Pack ID: `gcse_geo_p1_physical_environment_june_2024`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_june_2024/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p1_physical_environment_june_2024/pack_unified.json`
+
+## Paper 2: Challenges in the Human Environment (June 2020)
+
+- Pack ID: `gcse_geo_p2_human_environment_november_2020`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_november_2020/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_november_2020/pack_unified.json`
+
+## Paper 2: Challenges in the Human Environment (June 2021)
+
+- Pack ID: `gcse_geo_p2_human_environment_november_2021`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_november_2021/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_november_2021/pack_unified.json`
+
+## Paper 2: Challenges in the Human Environment (June 2022)
+
+- Pack ID: `gcse_geo_p2_human_environment_june_2022`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_june_2022/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_june_2022/pack_unified.json`
+
+## Paper 2: Challenges in the Human Environment (June 2023)
+
+- Pack ID: `gcse_geo_p2_human_environment_june_2023`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_june_2023/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_june_2023/pack_unified.json`
+
+## Paper 2: Challenges in the Human Environment (June 2024)
+
+- Pack ID: `gcse_geo_p2_human_environment_june_2024`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_june_2024/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p2_human_environment_june_2024/pack_unified.json`
+
 ## Paper 2X Perspectives On Faith Islam (June 2022)
 
 - Pack ID: `gcse_rs_paper-2x-perspectives-on-faith-islam_june_2022`
@@ -1805,6 +1885,46 @@ Generated from `data/generated/manifest.json`.
 - Subject: `religion`
 - Curriculum: `gcse`
 - Study notes: `/data/Packs/gcse/religion/gcse_rs_paper-2x-section-a-perspectives-on-faith-islam_june_2024.md`
+
+## Paper 3: Geographical Applications (June 2020)
+
+- Pack ID: `gcse_geo_p3_geographical_applications_november_2020`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_november_2020/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_november_2020/pack_unified.json`
+
+## Paper 3: Geographical Applications (June 2021)
+
+- Pack ID: `gcse_geo_p3_geographical_applications_november_2021`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_november_2021/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_november_2021/pack_unified.json`
+
+## Paper 3: Geographical Applications (June 2022)
+
+- Pack ID: `gcse_geo_p3_geographical_applications_june_2022`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_june_2022/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_june_2022/pack_unified.json`
+
+## Paper 3: Geographical Applications (June 2023)
+
+- Pack ID: `gcse_geo_p3_geographical_applications_june_2023`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_june_2023/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_june_2023/pack_unified.json`
+
+## Paper 3: Geographical Applications (June 2024)
+
+- Pack ID: `gcse_geo_p3_geographical_applications_june_2024`
+- Subject: `geography`
+- Curriculum: `gcse`
+- Study notes: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_june_2024/study_notes.md`
+- Pack JSON: `/data/Packs/gcse/geography/gcse_geo_p3_geographical_applications_june_2024/pack_unified.json`
 
 ## Perspectives On Faith Judaism (June 2020)
 

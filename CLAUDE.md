@@ -93,8 +93,10 @@ src/
 
 data/
   generated/manifest.json          — THE source of truth for what the app serves
-  Packs/<curriculum>/<subject>/<id>/pack_unified.json
-  PassagePacks/<curriculum>/<subject>/<id>/pack_unified.json
+  Packs/<curriculum>/<subject>/<id>/
+    pack_unified.json              — REQUIRED: all revision items
+    passages.json                  — OPTIONAL: reading content
+    study_notes.md                 — OPTIONAL: study book content (needed for tutor + SEO)
   SentenceBuilderPacks/…
   core_unified.json
 
@@ -117,13 +119,19 @@ A pack file that exists on disk but is NOT in the manifest is invisible to the a
 
 ```json
 {
-  "revisionPacks": [ … ],    // uploaded vocab/quiz/multipleChoice/fillBlank/sequence/categorySort packs
-  "passageGroups":  [ … ],   // reading/passage packs
+  "generatedAt": "…",       // ISO timestamp
+  "schemaVersion": "1.0",
+  "coreUnifiedPath": "data/core_unified.json",
+  "core": { … },           // Core language pack entry
+  "packs": [ … ],          // ALL content packs (revision + passages) — unified list
   "sentenceBuilderPacks": [ … ]
 }
 ```
 
-### Required fields per `revisionPacks` entry
+> ⚠ `revisionPacks` and `passageGroups` are **removed**. All content uses the
+> single `packs[]` array with `capabilities` field declaring what each pack supports.
+
+### Required fields per `packs[]` entry
 
 | Field | Purpose |
 |---|---|
@@ -331,9 +339,10 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 
 ## 10. Adding a new pack — checklist
 
-1. **Create** `data/Packs/<curriculum>/<subject>/<id>/pack_unified.json`
-2. **Register** in `data/generated/manifest.json` under `revisionPacks` with all required fields
-3. **Verify** `id` is unique across all packs in the manifest
+1. **Create** `data/Packs/<curriculum>/<subject>/<id>/pack_unified.json` (and `study_notes.md` if applicable)
+2. **Register** in `data/generated/manifest.json` under `packs[]` with all required fields
+3. **Set `contentMdPath`** if the pack has a `study_notes.md` — this enables the Study Book drawer, FoxChild Tutor search indexing, and SEO page generation
+4. **Verify** `id` is unique across all packs in the manifest
 4. **Check** `sourceLanguageCode` and `targetLanguageCode`:
    - Non-language: both `"en-GB"`
    - Language: correct language codes
@@ -346,7 +355,7 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
 ## 11. Removing a pack — checklist
 
 1. Remove the entry from `manifest.json`
-2. `git rm` the pack directory from `data/Packs/` (or `PassagePacks/`)
+2. `git rm -r` the pack directory from `data/Packs/`
 3. Verify no other pack in the manifest references the removed `id`
 4. If the removed pack was the default `datasetId` in `DEFAULT_STATE`, update that too
 
@@ -423,9 +432,15 @@ git log --oneline origin/main..HEAD
 | `src/quiz.js` | Hand-maintained |
 | `src/storage.js` | Hand-maintained — always update `DEFAULT_STATE` when adding prefs |
 | `data/generated/manifest.json` | Hand-maintained (generator script exists but is rarely run) |
+| `data/generated/consolidated_*_student_model_answers.json` | Tracked — ChatGPT enrichment output, can't be regenerated automatically |
+| `data/generated/*.md`, `data/generated/*.json` (non-enriched) | **gitignored** — intermediate pipeline artifacts, regeneratable |
 | `data/Packs/**/pack_unified.json` | Hand-maintained JSON — schema v1.1 |
 | `public/docs/*.md` | Hand-maintained prompt templates — fetched at runtime |
 | `docs/REACT_ARCHITECTURE.md` | Hand-maintained — update after any structural React change |
 | `docs/AI_UI_IMPLEMENTATION_CAUTIONS.md` | Hand-maintained — add RC/CD/CSS/A entries when new bugs are found; **not CLAUDE.md** |
+| `docs/ARCHITECTURE.md` | Hand-maintained — update when the data pipeline or system architecture changes |
+| `docs/aqa-student-answer-enrichment-prompt.md` | Hand-maintained — update when enrichment format or workflow changes |
+| `docs/AQA_PIPELINE.md` | Hand-maintained — update when stage 1-4 scripts change |
+| `docs/AQA_AI_WORKFLOW.md` | Hand-maintained — update when stage 5 or Smart Test changes |
 | `generated_packs/` | AI draft output — **gitignored**, never committed |
 | `dist/` | Vite build output — **gitignored** |

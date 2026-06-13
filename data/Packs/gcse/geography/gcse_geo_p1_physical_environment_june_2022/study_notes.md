@@ -1,0 +1,868 @@
+# AQA GCSE Geography — Paper 1: Living with the Physical Environment
+
+*June 2022*
+
+---
+
+## Q1.1: Which one of the following events is not an example of a natural hazard?
+
+**Options:**
+- Earthquake
+- Tropical storm
+- Volcanic eruption
+- Oil spill
+
+**Model Answer:**
+
+The correct answer is Oil spill.
+
+**Key Points:**
+- D: Oil spill
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.10: To what extent do the effects of a tectonic hazard vary between areas of contrasting wealth? Use one or more named examples in your answer.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Answers are likely to refer to the effects of a tectonic hazard on two ifferent areas of contrasting levels of wealth. This is likely to be but oes not necessarily have to be an LIC/NEE v HIC. Tectonic hazards o not iscriminate by wealth. However, iscussion is likely to focus on how the effects may vary according to how well the country is able to predict, protect against and prepare for a tectonic hazard. This tends to be linked to wealth and is likely to be exemplified as such. There may also be some iscussion about how wealthier countries tend to recover more quickly (therefore short v long term effects). However, a balanced answer should also recognise that Effects may be categorised into people and the environment//primary and secondary effects /social and economic effects. Social and economic effects may include: people being killed or injured, bereavement, homes being estroyed, transport and communication links not working, infrastructure estroyed, businesses amaged or estroyed, unemployment, looting and other crime, local economy isrupted, including manufacturing and tourism, reduced trade, longer term health effects, insurance claims, estruction of crops, loss of livestock (overlaps environmental effects) water pipes burst and water supplies contaminated (overlaps with environmental effects). May lead to isease risk. Overall, the best conclusion is that the extent depends on the strength of the evidence and the named example used. Environmental effects may include landslides, coastal flooding, isruption of ecosystems, sewage leaks and water pollution. hazards.
+
+**Key Points:**
+- Any examples with ifferences in wealth can be credited, even if both are in HICs/LICs
+- The question only asks for one type of tectonic hazard which is most likely to be an earthquake or volcanic eruption. Tsunamis caused by tectonic activity are also valid. Credit only effects and not causes of the tectonic hazard
+- Answers are likely to refer to the effects of a tectonic hazard on two ifferent areas of contrasting levels of wealth. This is likely to be but oes not necessarily have to be an LIC/NEE v HIC
+- Tectonic hazards o not iscriminate by wealth. However, iscussion is likely to focus on how the effects may vary according to how well the country is able to predict, protect against and prepare for a tectonic hazard. This tends to be linked to wealth and is likely to be exemplified as such. There may also be some iscussion about how wealthier countries tend to recover more quickly (therefore short v long term effects)
+- Effects may be categorised into people and the environment//primary and secondary effects /social and economic effects
+- Social and economic effects may include: people being killed or injured, bereavement, homes being estroyed, transport and communication links not working, infrastructure estroyed, businesses amaged or estroyed, unemployment, looting and other crime, local economy isrupted, including manufacturing and tourism, reduced trade, longer term health effects, insurance claims, estruction of crops, loss of livestock (overlaps environmental effects) water pipes burst and water supplies contaminated (overlaps with environmental effects). May lead to isease risk
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[9 marks]*
+
+---
+
+## Q1.2: Using Figure 1, which one of the following statements is true?
+
+**Options:**
+- Deposition
+- Erosion
+- Hurricane Dorian passed close to the east coast of the USA
+- Weathering
+
+**Model Answer:**
+
+The correct answer is Hurricane Dorian passed close to the east coast of the USA.
+
+**Key Points:**
+- C: Hurricane Dorian passed close to the east coast of the USA
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.3: Using Figure 1, measure the distance travelled by Hurricane Dorian at hurricane force.
+
+**Model Answer:**
+
+Hurricane force. Any value between 2600–3200 km ****. Add two ticks if 2 marks are awarded. Hurricane force.
+
+**Key Points:**
+- hurricane force. Any value between 2600–3200 km ****. Add two ticks if 2 marks are awarded
+- hurricane force
+- Any value between 2600–3200 km ****
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[2 marks]*
+
+---
+
+## Q1.4: Using Figure 2, identify two features of Hurricane Dorian.
+
+**Model Answer:**
+
+(Largely) circular shape of hurricane Bands of (swirling) cloud/ ense cloud/storm cloud/circling cloud/spiralling cloud The clouds are more extensive to the east of the eye than the west Max 1 for cloud escription. Anti-clockwise (rotation of the storm/clouds) A central (circular) eye of the storm where there is no cloud Eye Eye wall/vortex Credit use of scale eg It is (600-1100) km across/W to E. Alow locational features eg it is north of the Bahamas/to the east of the USA . Max 1 mark for locational features. Must be evident from the map. (Largely) circular shape of hurricane.
+
+**Key Points:**
+- (Largely) circular shape of hurricane Bands of (swirling) cloud/ ense cloud/storm cloud/circling cloud/spiralling cloud The clouds are more extensive to the east of the eye than the west Max 1 for cloud escription. Anti-clockwise (rotation of the storm/clouds) A central (circular) eye of the storm where there is no cloud Eye Eye wall/vortex Credit use of scale eg It is (600-1100) km across/W to E. Alow locational features eg it is north of the Bahamas/to the east of the USA . Max 1 mark for locational features. Must be evident from the map
+- (Largely) circular shape of hurricane
+- Bands of (swirling) cloud/ ense cloud/storm cloud/circling cloud/spiralling
+- The clouds are more extensive to the east of the eye than the west
+- Anti-clockwise (rotation of the storm/clouds)
+- A central (circular) eye of the storm where there is no cloud
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q1.5: Use the data from the following table to complete Figure 3.
+
+**Model Answer:**
+
+Number of tropical storms Number of hurricanes Year and hurricanes scale 1–2 scale 3 and above 2018 13 2 Accurate plotting of total number of 15 hurricanes Correct proportion (13:2) and ifferentiation (of shading) obvious Accurate plotting of 13 and shading correct Allow 2 marks if the 2 lines are correctly plotted and the bottom part is shaded, but not the top part. The horizontal lines shouldn’t touch the grid lines. Allow any width. Number of tropical storms Number of hurricanes.
+
+**Key Points:**
+- Number of tropical storms Number of hurricanes Year and hurricanes scale 1–2 scale 3 and above 2018 13 2 Accurate plotting of total number of 15 hurricanes Correct proportion (13:2) and ifferentiation (of shading) obvious Accurate plotting of 13 and shading correct Allow 2 marks if the 2 lines are correctly plotted and the bottom part is shaded, but not the top part. The horizontal lines shouldn’t touch the grid lines. Allow any width
+- Number of tropical storms Number of hurricanes
+- and hurricanes scale 1–2 scale 3 and above
+- 2018 13 2
+- Accurate plotting of total number of 15 hurricanes
+- Correct proportion (13:2) and ifferentiation (of shading) obvious
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[2 marks]*
+
+---
+
+## Q1.6: Suggest one reason for the increase in the total number of tropical storms and hurricanes shown in Figure 3.
+
+**Model Answer:**
+
+Storms and hurricanes shown in Figure 3. Rising (sea) temperatures Climate change Longer storm season More places above 27°C Global warming /greenhouse effect Improved recording of weather events.
+
+**Key Points:**
+- storms and hurricanes shown in Figure 3. Rising (sea) temperatures Climate change Longer storm season More places above 27°C Global warming /greenhouse effect Improved recording of weather events
+- storms and hurricanes shown in Figure 3
+- Rising (sea) temperatures
+- Climate change
+- Longer storm season
+- More places above 27°C
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q1.7: Outline one way that planning can reduce the impact of tropical storms.
+
+**Model Answer:**
+
+Hurricane Preparedness Week/evacuation plans etc encourage people to plan what they need to o in order to minimise loss of life and injury ( Preparing isaster supply kits means people have what they need in the event of a tropical storm ( Evacuation centres/evacuation plan so people know a safe place to go in the event of a hurricane / to minimise loss of life and injury ( Storing loose objects/storm shutters/hurricane straps to prevent amage and injury from flying objects ( Remove trees or cut loose branches from trees close to buildings to prevent amage and injury from flying objects in the event of a tropical storm ( Restrict building in hurricane risk areas to limit the number of people and buildings at immediate risk from storm surges and flooding Coastal flood efences such as levees and flood walls can reduce the impact of storm surges ( Early warning systems are installed in some countries (such as Bangladesh) , helping to reduce the number of eaths (. Advice to stock up on food and water as people may be housebound for several ays following a storm (. Building of storm proof houses/ adapting building structures enables people to be protected against strong winds ( Providing a warning (Allow long term protection strategies as part of planning) Only ONE eveloped strategy to be credited. First mark for strategy, second mark for eveloped point. Hurricane Preparedness Week/evacuation plans etc encourage people to.
+
+**Key Points:**
+- Hurricane Preparedness Week/evacuation plans etc encourage people to plan what they need to o in order to minimise loss of life and injury ( Preparing isaster supply kits means people have what they need in the event of a tropical storm ( Evacuation centres/evacuation plan so people know a safe place to go in the event of a hurricane / to minimise loss of life and injury ( Storing loose objects/storm shutters/hurricane straps to prevent amage and injury from flying objects ( Remove trees or cut loose branches from trees close to buildings to prevent amage and injury from flying objects in the event of a tropical storm ( Restrict building in hurricane risk areas to limit the number of people and buildings at immediate risk from storm surges and flooding Coastal flood efences such as levees and flood walls can reduce the impact of storm surges ( Early warning systems are installed in some countries (such as Bangladesh) , helping to reduce the number of eaths (. Advice to stock up on food and water as people may be housebound for several ays following a storm (. Building of storm proof houses/ adapting building structures enables people to be protected against strong winds ( Providing a warning (Allow long term protection strategies as part of planning) Only ONE eveloped strategy to be credited. First mark for strategy, second mark for eveloped point
+- Hurricane Preparedness Week/evacuation plans etc encourage people to
+- plan what they need to o in order to minimise loss of life and injury (
+- Preparing isaster supply kits means people have what they need in the
+- event of a tropical storm (
+- Evacuation centres/evacuation plan so people know a safe place to go in
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q1.8: ‘UK weather is becoming more extreme.’ Do you agree? Use Figure 4 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The question also requires the student to “support your answer” with reference to Figure 4 as well as their own understanding. Answers should therefore make some reference to Figure 4. Figure 4 shows examples of two extreme weather events – moorland fires and flooding. Whilst these only represent two extreme weather events, the text suggests that their occurrence is becoming more common. However, a balanced answer should also recognise that The effects on the people and/or environment from these two events are likely to have been significant compared to normal seasonal temperatures and rainfall totals in the UK. The moorland fires shown in Figure 4 can be linked to higher temperatures and lack of rainfall which have become more common in the UK in the summer months. Drought conditions like this make areas of ry land more vulnerable to fire (though actual ignition is often caused by human activities). These fires would likely have extreme economic, social and environmental impacts. Overall, the best conclusion is that I partly agree, because the evidence usually supports the statement but also shows that other factors can be important. The flooding shown in Figure 4 is the result of excessive and persistent rainfall which has become more common in the UK in the winter months. Flood events also have extreme economic, social and environmental impacts. UK including strong winds (Storms Ciara, Dennis 2020), rought and heatwaves, cold weather (Beast from the East 2018) and record rainfall and flooding (Cumbria 2009, Somerset Levels 2014, Shrewsbury 2020).
+
+**Key Points:**
+- The question also requires the student to “support your answer” with reference to Figure 4 as well as their own understanding. Answers should therefore make some reference to Figure 4
+- Figure 4 shows examples of two extreme weather events – moorland fires and flooding. Whilst these only represent two extreme weather events, the text suggests that their occurrence is becoming more common
+- The effects on the people and/or environment from these two events are likely to have been significant compared to normal seasonal temperatures and rainfall totals in the UK
+- The moorland fires shown in Figure 4 can be linked to higher temperatures and lack of rainfall which have become more common in the UK in the summer months. Drought conditions like this make areas of ry land more vulnerable to fire (though actual ignition is often caused by human activities). These fires would likely have extreme economic, social and environmental impacts
+- The flooding shown in Figure 4 is the result of excessive and persistent rainfall which has become more common in the UK in the winter months. Flood events also have extreme economic, social and environmental impacts. UK including strong winds (Storms Ciara, Dennis 2020), rought and heatwaves, cold weather (Beast from the East 2018) and record rainfall and flooding (Cumbria 2009, Somerset Levels 2014, Shrewsbury 2020)
+- Evidence from the Met Office suggests that the UK is experiencing more extreme weather events but that all weather is subject to great variability. However, there is evidence that more winter rain has fallen in heavy events since the 1980s and this has increased the frequency and magnitude of river flooding. Likewise, the UK has seen a temperature increase of 1 oC since 1980 which has been linked to hotter summers and greater chance of rought (although the latter also relies on lower seasonal precipitation totals). to ecide whether the weather in the UK is becoming more extreme. They may rightly acknowledge that reference to only a handful of recent events is not evidence of a trend and that many parts of the UK are not experiencing significantly ifferent weather patterns
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q1.9: Explain why earthquakes and volcanic eruptions take place along destructive plate margins.
+
+**Model Answer:**
+
+This question requires an explanation of why earthquakes and volcanoes take place along estructive plate margins. Destructive plate margins occur when two tectonic plates move towards each other and one is subducted under the other. If an oceanic and continental plate collide, the enser oceanic plate is subducted and sinks below the continental plate and into the Earth’s mantle. This causes part of the mantle to melt and hot magma may rise up through the overlying mantle and lithosphere. This may eventually erupt out of the earth’s surface causing a volcano. An earthquake may occur because as the plates converge, pressure builds up, the rock may fracture and the pressure is released as an earthquake.
+
+**Key Points:**
+- This question requires an explanation of why earthquakes and volcanoes take place along estructive plate margins
+- Destructive plate margins occur when two tectonic plates move towards each other and one is subducted under the other
+- If an oceanic and continental plate collide, the enser oceanic plate is subducted and sinks below the continental plate and into the Earth’s mantle. This causes part of the mantle to melt and hot magma may rise up through the overlying mantle and lithosphere. This may eventually erupt out of the earth’s surface causing a volcano
+- An earthquake may occur because as the plates converge, pressure builds up, the rock may fracture and the pressure is released as an earthquake
+- estructive plate margins
+- earthquakes and volcanoes and their link
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q2.1: Using Figure 5, which one of the following statements is true?
+
+**Options:**
+- Deposition
+- Erosion
+- Weathering
+- Coniferous forests occur in large areas of North America, Europe and Asia
+
+**Model Answer:**
+
+The correct answer is Coniferous forests occur in large areas of North America, Europe and Asia.
+
+**Key Points:**
+- D: Coniferous forests occur in large areas of North America, Europe and Asia
+- D: Coniferous forests occur in large areas of North America, Europe and
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.2: Using Figure 5, name the continent with the largest area of savanna.
+
+**Model Answer:**
+
+Africa.
+
+**Key Points:**
+- Africa
+Do not accept south/southern Africa
+AO4 – 1 mark
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.3: Which statement describes the characteristics of temperate deciduous forests?
+
+**Model Answer:**
+
+Forests? B: The trees rop their leaves because of lower temperatures in winter.
+
+**Key Points:**
+- forests? B: The trees rop their leaves because of lower temperatures in winter
+- B: The trees rop their leaves because of lower temperatures in winter
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q2.4: Suggest how plants are adapted to the climate in tropical rainforests. Use Figure 6 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Explanation of buttress roots only without any inferred link to climate prompted by the climate graph Figure 6) with no adaptations. The link to climate can include any reference to rainfall, winds, sunlight or temperature. However, a balanced answer should also recognise that Interpretation of the climate of tropical rainforest environments as shown in Figure 6. The climate is much the same all year round and there are no seasons. The graph shows uniformly high monthly temperatures (28– 29 °C). There is high to very high rainfall in every month, varying from a low of 150 mm in August to a high of 350 mm in March, with a total of over 2000 mm. There are two rainfall maxima (Nov and March), perhaps linked to the position of the overhead sun. The atmosphere is therefore hot and humid. Consistently high temperatures mean that plants grow all year, and will be competing for sunlight. High rainfall and high humidity encourage rapid growth of tall trees and fast rates of nutrient cycling. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Because of the favourable climate, tropical rainforests have high levels of biodiversity. Around 50–60% of all plant species are indigenous to the rainforests. Two-thirds of all flowering plants can be found in rainforests.
+
+**Key Points:**
+- Explanation of buttress roots only without any inferred link to climate prompted by the climate graph Figure 6) with no adaptations
+- The link to climate can include any reference to rainfall, winds, sunlight or temperature
+- Interpretation of the climate of tropical rainforest environments as shown in Figure 6. The climate is much the same all year round and there are no seasons. The graph shows uniformly high monthly temperatures (28– 29 °C). There is high to very high rainfall in every month, varying from a low of 150 mm in August to a high of 350 mm in March, with a total of over 2000 mm. There are two rainfall maxima (Nov and March), perhaps linked to the position of the overhead sun. The atmosphere is therefore hot and humid
+- Consistently high temperatures mean that plants grow all year, and will be competing for sunlight. High rainfall and high humidity encourage rapid growth of tall trees and fast rates of nutrient cycling
+- Because of the favourable climate, tropical rainforests have high levels of biodiversity. Around 50–60% of all plant species are indigenous to the rainforests. Two-thirds of all flowering plants can be found in rainforests
+- Plants rop their leaves gradually throughout the year, meaning they can go on growing all year round
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q2.5: Using Figure 7, describe changes in tropical primary forest loss between 2002 and 2018.
+
+**Model Answer:**
+
+Between 2002 and 2018. From 2002 to 2015 forest loss fluctuated up and own varying between 2.5 and 3.5 million hectares (. Between 2002 and 2015 forest loss was fairly constant at around 3 million hectares ( There was a sudden increase in forest loss in 2016 oubling in a year from 3 million hectares to just over 6 million hectares (. Between 2016 and 2018 forest loss ecreased from 6.1 million hectares to 3.7 million hectares (. Fluctuated over the period 2002–2018 between 2.5 – 6.1 million hectares (. Between 2002 and 2018 there was an increase of about 1 million hectares (. Between 2002 and 2018.
+
+**Key Points:**
+- between 2002 and 2018. From 2002 to 2015 forest loss fluctuated up and own varying between 2.5 and 3.5 million hectares (. Between 2002 and 2015 forest loss was fairly constant at around 3 million hectares ( There was a sudden increase in forest loss in 2016 oubling in a year from 3 million hectares to just over 6 million hectares (. Between 2016 and 2018 forest loss ecreased from 6.1 million hectares to 3.7 million hectares (. Fluctuated over the period 2002–2018 between 2.5 – 6.1 million hectares (. Between 2002 and 2018 there was an increase of about 1 million hectares (
+- between 2002 and 2018
+- From 2002 to 2015 forest loss fluctuated up and own varying between
+- 2.5 and 3.5 million hectares (
+- Between 2002 and 2015 forest loss was fairly constant at around 3
+- million hectares (
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[2 marks]*
+
+---
+
+## Q2.6: Give one reason why deforestation has decreased in some countries.
+
+**Model Answer:**
+
+International agreements (to reduce eforestation)/buying certified timber New/stricter laws have been introduced. Consumer pressure (not to use products from eforested areas) Government restrictions on illegal eforestation Greater awareness of environmental problems caused by eforestation Concerns about climate change /loss of species/ estruction of habitats More sustainable farming practices Debt relief Selective logging Ecotourism, conservation, education needs to be qualified.
+
+**Key Points:**
+- International agreements (to reduce eforestation)/buying certified timber New/stricter laws have been introduced. Consumer pressure (not to use products from eforested areas) Government restrictions on illegal eforestation Greater awareness of environmental problems caused by eforestation Concerns about climate change /loss of species/ estruction of habitats More sustainable farming practices Debt relief Selective logging Ecotourism, conservation, education needs to be qualified
+- International agreements (to reduce eforestation)/buying certified timber
+- New/stricter laws have been introduced
+- Consumer pressure (not to use products from eforested areas)
+- Government restrictions on illegal eforestation
+- Greater awareness of environmental problems caused by eforestation
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.7: Using Figure 8, outline one environmental effect of deforestation.
+
+**Model Answer:**
+
+Where the trees were cut own, the soil was left exposed . It appears to. Have washed away / been eroded ( The rain has cut into the surface.
+
+**Key Points:**
+- Where the trees were cut own, the soil was left exposed . It appears to
+- have washed away / been eroded ( The rain has cut into the surface
+- and created gullies
+- The removal of trees has meant that animal habitats have been estroyed
+- There is little sign of animal life in the foreground of the picture (
+- Less biodiversity , therefore animals lose their homes/habitat (
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q2.8: Explain how ecotourism can be a sustainable management strategy in tropical rainforests.
+
+**Model Answer:**
+
+Tropical rainforests. 2x1 or 1x2 Ecotourism aims to educate visitors , increasing their understanding and appreciation of nature and local cultures (. Ecotourism is small-scale , employing local people ( and using local produce (. Ecotourism provides money for the local area without amaging the environment/trees ( Profits stay in the local community and the environment is protected (. Tourism may take the form of replanting trees /other conservation projects . This helps to minimise negative environmental impacts (. Ecotourism projects use local materials for building . This limits the consumption of non-renewable resources imported from abroad. Ecotourists arrive in small groups so the impact on the environment is limited ( eg by making sure waste and litter are isposed of properly (. Ecotourism is tourism that minimises amage to the environment and benefits the local people (. Ecotourism can help to raise awareness of conservation issues and bring in more money for rainforest conservation (. Ecotourism aims to educate visitors , increasing their understanding and. Appreciation of nature and local cultures (. Ecotourism is small-scale , employing local people ( and using local.
+
+**Key Points:**
+- tropical rainforests. 2x1 or 1x2 Ecotourism aims to educate visitors , increasing their understanding and appreciation of nature and local cultures (. Ecotourism is small-scale , employing local people ( and using local produce (. Ecotourism provides money for the local area without amaging the environment/trees ( Profits stay in the local community and the environment is protected (. Tourism may take the form of replanting trees /other conservation projects . This helps to minimise negative environmental impacts (. Ecotourism projects use local materials for building . This limits the consumption of non-renewable resources imported from abroad. Ecotourists arrive in small groups so the impact on the environment is limited ( eg by making sure waste and litter are isposed of properly (. Ecotourism is tourism that minimises amage to the environment and benefits the local people (. Ecotourism can help to raise awareness of conservation issues and bring in more money for rainforest conservation (
+- tropical rainforests
+- 2x1 or 1x2
+- Ecotourism aims to educate visitors , increasing their understanding and
+- appreciation of nature and local cultures (
+- Ecotourism is small-scale , employing local people ( and using local
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[2 marks]*
+
+---
+
+## Q2.9: Discuss the challenges and opportunities for development in either a hot desert environment or a cold environment. Use either Figure 9 or Figure 10 and a case study. Tick the box to show which environment you have chosen. Hot desert environment (Figure 9) Cold environment (Figure 10)
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The question requires iscussion of ways in which a hot esert area provides challenges and opportunities for evelopment. Answers may focus on the nature of economic opportunities, the scale of evelopment and control over the inhospitable conditions. However, a balanced answer should also recognise that Challenges include environmental constraints, costs/remoteness, and conflicts with indigenous populations. Due to the lack of cloud cover, aily temperatures can range from over 40 °C uring the ay to below freezing at night. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Deserts have low annual rainfall (less than 100 mm in places). Rainfall is unpredictable and most rivers are intermittent. Providing enough water for industry or irrigation is ifficult.
+
+**Key Points:**
+- The question requires iscussion of ways in which a hot esert area provides challenges and opportunities for evelopment
+- Answers may focus on the nature of economic opportunities, the scale of evelopment and control over the inhospitable conditions
+- Challenges include environmental constraints, costs/remoteness, and conflicts with indigenous populations
+- Due to the lack of cloud cover, aily temperatures can range from over 40 °C uring the ay to below freezing at night
+- Deserts have low annual rainfall (less than 100 mm in places). Rainfall is unpredictable and most rivers are intermittent. Providing enough water for industry or irrigation is ifficult
+- Opportunities include resource exploitation relating to agriculture, recreation and tourism. Economic benefits include employment, spending in the local economy, multiplier effect, and improved infrastructure. Many hot esert environments are increasingly important economically. a barren, inhospitable environment with sparse vegetation. The land is uneven, with hilly or mountainous terrain in the background. The area appears to be remote, with no sign of communications and lacks water supply
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[9 marks]*
+
+---
+
+## Q3.1: Using Figure 11, what is the mode of annual rate of erosion along the Holderness coastline?
+
+**Model Answer:**
+
+Holderness coastline? B: 2.0 – 2.9 metres per year.
+
+**Key Points:**
+- Holderness coastline? B: 2.0 – 2.9 metres per year
+- Holderness coastline?
+- B: 2.0 – 2.9 metres per year
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q3.2: Using Figure 11, describe how the rate of erosion changes from north to south.
+
+**Model Answer:**
+
+To south. It increases/generally increases. It tends to increase, but rops at the southernmost site. It changes from 1.5 to over 5 metres per year from N to S. The rate of erosion more than triples between site 1 and site 5.
+
+**Key Points:**
+- to south. It increases/generally increases. It tends to increase, but rops at the southernmost site. It changes from 1.5 to over 5 metres per year from N to S. The rate of erosion more than triples between site 1 and site 5
+- It increases/generally increases
+- It tends to increase, but rops at the southernmost site
+- It changes from 1.5 to over 5 metres per year from N to S
+- The rate of erosion more than triples between site 1 and site 5
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q3.3: Using Figure 11, what is the coastal landform that has formed at Spurn Head?
+
+**Model Answer:**
+
+Spit.
+
+**Key Points:**
+- Head?
+C: Spit
+No credit if two or more answers are shaded.
+AO1 – 1 mark
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q3.4: Using Figure 11, suggest why there is a headland at Flamborough Head.
+
+**Model Answer:**
+
+Head. Chalk is a harder/resistant type of rock than the rocks to the south, so is eroded more slowly It is made of chalk/hard rock.
+
+**Key Points:**
+- Head. Chalk is a harder/resistant type of rock than the rocks to the south, so is eroded more slowly It is made of chalk/hard rock
+- Chalk is a harder/resistant type of rock than the rocks to the south, so is
+- eroded more slowly
+- It is made of chalk/hard rock
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q3.5: Using Figure 12, give one reason why the rate of erosion of the Holderness coast is high.
+
+**Model Answer:**
+
+Holderness coast is high. The rocks appear to be soft/weak The cliffs are liable to slumping/mass movement The cliffs are made of soft boulder clay Because of (powerful) wave energy/sea hits base of cliff There are no hard engineering efences in place There is no beach at the base. (It consists of ) clay.
+
+**Key Points:**
+- Holderness coast is high. The rocks appear to be soft/weak The cliffs are liable to slumping/mass movement The cliffs are made of soft boulder clay Because of (powerful) wave energy/sea hits base of cliff There are no hard engineering efences in place There is no beach at the base. (It consists of ) clay
+- Holderness coast is high
+- The rocks appear to be soft/weak
+- The cliffs are liable to slumping/mass movement
+- The cliffs are made of soft boulder clay
+- Because of (powerful) wave energy/sea hits base of cliff
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q3.6: Explain how a wave cut platform is formed as a cliff is eroded. Use one or more diagrams to support your answer.
+
+**Model Answer:**
+
+Waves cause most erosion at the foot of a cliff. This erosion forms a wave-cut notch, which is enlarged as erosion continues. The rock above the notch becomes unstable and eventually collapses. The collapsed material is washed away and a new wave-cut notch starts to form. Repeated collapsing results in the cliff retreating.
+
+**Key Points:**
+- Waves cause most erosion at the foot of a cliff
+- This erosion forms a wave-cut notch, which is enlarged as erosion continues
+- The rock above the notch becomes unstable and eventually collapses
+- The collapsed material is washed away and a new wave-cut notch starts to form. Repeated collapsing results in the cliff retreating
+- A wave-cut platform is the surface that’s left behind as the cliff retreats. Pebbles grind over the rocky platform, often causing it to become smooth
+- Hydraulic action is the power of the waves as they smash onto a cliff. Trapped air is forced into holes and cracks in the rock, eventually causing the rock to break apart
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q3.7: Assess the effectiveness of strategies used to protect coastlines against erosion. Use Figure 13 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Understanding of hard engineering schemes, which involve using artificial structures to control natural processes. These are esigned to reduce wave energy or create a barrier between the land and sea, so storm waves can’t reach the cliffs. Understanding of soft engineering strategies. Beach nourishment, reprofiling and une regeneration are listed in the specification. Soft engineering works with nature rather than against it, blends in with the environment and can improve it eg adding sand to beaches, oesn’t interfere with processes elsewhere and affect other areas, and is sustainable. However, a balanced answer should also recognise that Figure 13 shows two large rock groynes or barriers that are built own the beach at right angles to the coastline. They are esigned to stop material being moved along the beach by longshore rift. They work by building up the amount of sand and shingle on the updrift side. They act as a buffer against wave attack, helping to protect the cliffs. Both groynes appear to be trapping beach material, providing protection to the cliffs and coastal settlement. However, immediately owndrift of the south groyne, cliffs are being rapidly eroded, as this part of the coast is starved of beach sediment and much more exposed to wave attack. Groynes create a wider beach, which can be popular with tourists and boost local economy. They reduce the risk of amage, making residents and local business feel more secure. Not too expensive. If well maintained, can last up to 40 years. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Benefits of rock armour.
+
+**Key Points:**
+- Understanding of hard engineering schemes, which involve using artificial structures to control natural processes. These are esigned to reduce wave energy or create a barrier between the land and sea, so storm waves can’t reach the cliffs
+- Understanding of soft engineering strategies. Beach nourishment, reprofiling and une regeneration are listed in the specification. Soft engineering works with nature rather than against it, blends in with the environment and can improve it eg adding sand to beaches, oesn’t interfere with processes elsewhere and affect other areas, and is sustainable
+- Application of understanding to Figure 13, showing coastal management in the form of rock groynes, rip rap or rock armour and regraded cliffs. Expect some assessment of the costs and benefits/effectiveness of these approaches. Other types of hard and soft engineering may also be credited
+- Figure 13 shows two large rock groynes or barriers that are built own the beach at right angles to the coastline. They are esigned to stop material being moved along the beach by longshore rift. They work by building up the amount of sand and shingle on the updrift side. They act as a buffer against wave attack, helping to protect the cliffs. Both groynes appear to be trapping beach material, providing protection to the cliffs and coastal settlement. However, immediately owndrift of the south groyne, cliffs are being rapidly eroded, as this part of the coast is starved of beach sediment and much more exposed to wave attack
+- Groynes create a wider beach, which can be popular with tourists and boost local economy. They reduce the risk of amage, making residents and local business feel more secure. Not too expensive. If well maintained, can last up to 40 years
+- Rip rap / rock armour consists of massive blocks of natural rock piled up at the base of a cliff. These can be seen owndrift of the south groyne and between the two groynes. The rocks are umped on top of each other leaving gaps between them that allow water through. The rock armour protects the base of the cliffs from erosion. Credit idea that although rock armour has been placed at the base of the cliffs, some slumping still occurs, so effectiveness might be questioned
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q4.1: Plot the width of the river at Site 6 on to the graph below. Use the following data. Distance from source (km) Width of river (m) 66 9.0
+
+**Model Answer:**
+
+Use the following ata. Distance from source (km) Width of river (m) 66 9.0 Correct plot as shown in figure above. Allow ot or other method of showing correct plot.
+
+**Key Points:**
+- Use the following ata. Distance from source (km) Width of river (m) 66 9.0 Correct plot as shown in figure above. Allow ot or other method of showing correct plot
+- Use the following ata
+- Distance from source (km) Width of river (m)
+- Correct plot as shown in figure above
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q4.2: Using Figure 14, describe the change in river width downstream from the source.
+
+**Model Answer:**
+
+The source. The river increases in width ownstream The width increases from site 1 to 2/ ecreases between sites 2 and site 3 The river increases in width between sites 3 and 5 / ecreases between sites 5 and 6 The river changes from a width of 1.9 metres near the source to almost 15 metres at 78 km from the source The width is almost 8 times greater at site 7 compared with site 1.
+
+**Key Points:**
+- the source. The river increases in width ownstream The width increases from site 1 to 2/ ecreases between sites 2 and site 3 The river increases in width between sites 3 and 5 / ecreases between sites 5 and 6 The river changes from a width of 1.9 metres near the source to almost 15 metres at 78 km from the source The width is almost 8 times greater at site 7 compared with site 1
+- the source
+- The river increases in width ownstream
+- The width increases from site 1 to 2/ ecreases between sites 2 and site 3
+- The river increases in width between sites 3 and 5 / ecreases between sites
+- The river changes from a width of 1.9 metres near the source to almost 15
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q4.3: Give one reason why the median size of sediment tends to decrease downstream from the source of the river.
+
+**Model Answer:**
+
+Ownstream from the source of the river. The river load is broken own by erosion . Erosion Attrition between particles reduces the size of sediment . Heavy river sediment is left behind when the river floods, but takes finer particles ownstream . Allow reference to other specific erosion processes eg abrasion, solution.
+
+**Key Points:**
+- ownstream from the source of the river. The river load is broken own by erosion . Erosion Attrition between particles reduces the size of sediment . Heavy river sediment is left behind when the river floods, but takes finer particles ownstream . Allow reference to other specific erosion processes eg abrasion, solution
+- ownstream from the source of the river
+- The river load is broken own by erosion
+- Attrition between particles reduces the size of sediment
+- Heavy river sediment is left behind when the river floods, but takes finer
+- particles ownstream
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q4.4: Identify the landform shown in Figure 15.
+
+**Options:**
+- Interlocking spurs
+- Spit
+- Stack
+- Meander
+
+**Model Answer:**
+
+The correct answer is Interlocking spurs.
+
+**Key Points:**
+- A: Interlocking spurs
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q4.5: Using Figure 15, describe the shape of the valley sides.
+
+**Model Answer:**
+
+The sides are very steep/steep/quite steep/moderate/uniform/constant . The valley is V shaped . The left side is steeper than the right side of the valley . Do not.
+
+**Key Points:**
+- The sides are very steep/steep/quite steep/moderate/uniform/constant . The valley is V shaped . The left side is steeper than the right side of the valley . Do not
+- The sides are very steep/steep/quite steep/moderate/uniform/constant
+- The valley is V shaped
+- The left side is steeper than the right side of the valley
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q4.6: Explain how a meander may be formed by both erosion and deposition. Use one or more diagrams to support your answer.
+
+**Model Answer:**
+
+The evelopment of meanders is ue to both eposition and erosion. A meander is a winding curve or bend in a river. Water flows fastest on the outer bend of the river where the channel is eeper and there is less friction. Lateral erosion results in undercutting of the river bank and the formation of a steep sided river cliff. On the inside of the bend, where the river flow is slower and water is shallower, material is eposited on a slip off slope, as there is more friction. Over time, because of erosion and eposition, meanders gradually change shape and move across the floodplain and migrate ownstream.
+
+**Key Points:**
+- The evelopment of meanders is ue to both eposition and erosion
+- A meander is a winding curve or bend in a river. Water flows fastest on the outer bend of the river where the channel is eeper and there is less friction. Lateral erosion results in undercutting of the river bank and the formation of a steep sided river cliff
+- On the inside of the bend, where the river flow is slower and water is shallower, material is eposited on a slip off slope, as there is more friction
+- Over time, because of erosion and eposition, meanders gradually change shape and move across the floodplain and migrate ownstream
+- Labelled and annotated iagram(s) can substitute for written text, showing the sequence of changes and processes involved (either cross section or plan view) Either of the two iagrams, fully labelled, would be awarded 4 marks
+- Use one or more iagrams to support your answer
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q4.7: Assess the benefits of using hard engineering and soft engineering to reduce the risk of river flooding. Use Figure 16 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that There is a need to explain how both hard and soft engineering can contribute to managing the risk of flooding and so a link needs to be made between the strategy and the flood risk. Responses may mention the possible effects of climate change or on the fact that more people are likely to be affected by flooding in the future ue to increased building on floodplains. The economic cost of flood amage and flood prevention schemes (hard engineering) will therefore rise. However, a balanced answer should also recognise that Hard engineering involves using man-made structures to prevent or control natural processes from taking place. This form of flood management is usually very expensive – individual projects can cost several million pounds. But this is the preferred option for protecting expensive property or land, such as housing estates, railways and water treatment works. The costs have to be weighed against the benefits. Soft engineering involves working with nature and natural river processes to manage the risk of floods. Strategies that can be implemented include using floodplains only as temporary water stores, restoring old peat bogs in upland areas and planting more trees. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Application of understanding to Figure 16. Differing views are expressed, with the local resident feeling that hard engineering solutions are needed to protect vulnerable properties on river floodplains, paid for by central government. The use of ams and floodwalls/levees keeps the water in the channel and helps to control its floodwaters more effectively.
+
+**Key Points:**
+- There is a need to explain how both hard and soft engineering can contribute to managing the risk of flooding and so a link needs to be made between the strategy and the flood risk
+- Responses may mention the possible effects of climate change or on the fact that more people are likely to be affected by flooding in the future ue to increased building on floodplains. The economic cost of flood amage and flood prevention schemes (hard engineering) will therefore rise
+- Hard engineering involves using man-made structures to prevent or control natural processes from taking place. This form of flood management is usually very expensive – individual projects can cost several million pounds. But this is the preferred option for protecting expensive property or land, such as housing estates, railways and water treatment works. The costs have to be weighed against the benefits
+- Soft engineering involves working with nature and natural river processes to manage the risk of floods. Strategies that can be implemented include using floodplains only as temporary water stores, restoring old peat bogs in upland areas and planting more trees
+- Application of understanding to Figure 16. Differing views are expressed, with the local resident feeling that hard engineering solutions are needed to protect vulnerable properties on river floodplains, paid for by central government. The use of ams and floodwalls/levees keeps the water in the channel and helps to control its floodwaters more effectively
+- The Environment Officer emphasises the benefits of soft engineering, indicating that this is now the more favoured approach. Soft engineering has minimal impact on the environment and is socially sustainable. The costs are significantly less than hard engineering alternatives and they also cost very little to maintain. As they have lower technology requirements they can often be implemented by local people
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q5.1: Using Figure 17, complete Figure 18, a cross section showing the depth of ice between X and Y.
+
+**Model Answer:**
+
+Epth of ice between X and Y. Correct completion of the cross section showing steep rop in ice epth close to Y Line must go to 0 at Y. Allow for variation in shape-could be a straight line.
+
+**Key Points:**
+- epth of ice between X and Y. Correct completion of the cross section showing steep rop in ice epth close to Y Line must go to 0 at Y. Allow for variation in shape-could be a straight line
+- epth of ice between X and Y
+- Correct completion of the cross section showing steep rop in ice epth
+- close to Y
+- Line must go to 0 at Y. Allow for variation in shape-could be a straight line
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q5.2: Using Figure 17, compare the maximum depth of ice over the British Isles with the maximum depth of ice over Scandinavia.
+
+**Model Answer:**
+
+Isles with the maximum epth of ice over Scandinavia. Over Scandinavia the epth was (over) 2500 metres whereas over the British Isles it was (just over) 1500 metres It was (much) eeper over Scandinavia than the British Isles It was around 1000 metres eeper over Scandinavia 1000 metres ifference in epth.
+
+**Key Points:**
+- Isles with the maximum epth of ice over Scandinavia. Over Scandinavia the epth was (over) 2500 metres whereas over the British Isles it was (just over) 1500 metres It was (much) eeper over Scandinavia than the British Isles It was around 1000 metres eeper over Scandinavia 1000 metres ifference in epth
+- Isles with the maximum epth of ice over Scandinavia
+- Over Scandinavia the epth was (over) 2500 metres whereas over the
+- British Isles it was (just over) 1500 metres
+- It was (much) eeper over Scandinavia than the British Isles
+- It was around 1000 metres eeper over Scandinavia
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q5.3: Using Figure 17, which one of the following statements is true?
+
+**Options:**
+- Deposition
+- Erosion
+- The ice sheet extended westwards from Scandinavia to the British Isles
+- Weathering
+
+**Model Answer:**
+
+The correct answer is The ice sheet extended westwards from Scandinavia to the British Isles.
+
+**Key Points:**
+- C: The ice sheet extended westwards from Scandinavia to the British Isles
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q5.4: Identify the feature shown at X.
+
+**Options:**
+- Moraine
+- Corrie
+- Arête
+- Ribbon lake
+
+**Model Answer:**
+
+The correct answer is Moraine.
+
+**Key Points:**
+- A: Moraine
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q5.5: Suggest one reason why the material deposited by a glacier is mixed in size and shape.
+
+**Model Answer:**
+
+Size and shape. It was transported by ice which picks up all sizes of ebris . The glacier bulldozed all types of material in its path . Ice is solid so it can move large boulders as well as fine ebris.
+
+**Key Points:**
+- size and shape. It was transported by ice which picks up all sizes of ebris . The glacier bulldozed all types of material in its path . Ice is solid so it can move large boulders as well as fine ebris
+- size and shape
+- It was transported by ice which picks up all sizes of ebris
+- The glacier bulldozed all types of material in its path
+- Ice is solid so it can move large boulders as well as fine ebris
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q5.6: Explain the formation of a glacial trough (U-shaped valley). Use one or more diagrams to support your answer.
+
+**Model Answer:**
+
+Ice occupies a former river valley, often V shaped. The glacier is fed by several tributary glaciers that start in corries. These join together and cause the ice to erode powerfully. Processes include abrasion-where moraine within the ice to the sides has a sandpapering effect on both sides and base, and plucking – where the ice following melting under pressure, freezes to the rock and tears part of it away when it moves. The valley is widened and eepened and the cross profile becomes a steep sided trough with broad base and steep valley sides (U shaped valley). The ice removes the interlocking spurs of the former river valley. After the ice melts, the valley floor is filled with glacial ebris and river eposits. In places there may be ribbon lakes where water fills hollows.
+
+**Key Points:**
+- Ice occupies a former river valley, often V shaped. The glacier is fed by several tributary glaciers that start in corries. These join together and cause the ice to erode powerfully
+- Processes include abrasion-where moraine within the ice to the sides has a sandpapering effect on both sides and base, and plucking – where the ice following melting under pressure, freezes to the rock and tears part of it away when it moves
+- The valley is widened and eepened and the cross profile becomes a steep sided trough with broad base and steep valley sides (U shaped valley). The ice removes the interlocking spurs of the former river valley
+- After the ice melts, the valley floor is filled with glacial ebris and river eposits. In places there may be ribbon lakes where water fills hollows
+- Labelled and annotated iagram(s) can substitute for written text, showing the sequence of changes and processes involved The iagrams above, fully labelled, would be awarded 4 marks
+- Use one or more iagrams to support your answer
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q5.7: Assess the economic and environmental impacts of tourism in a glaciated upland area of the UK. Use Figure 20 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Economic impacts of tourism in glaciated areas. Tourism offers employment to local people. However, a balanced answer should also recognise that eg in hotels, shops, cafés and the outdoor industry. By iversifying, farmers can generate an alternative source of income, ie B+B, campsites, open farms. Money spent by tourists boosts the local economy and can be used to improve facilities. Tourism may help to preserve rural services like buses, village shops and post offices. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Increased emand for local food and crafts.
+
+**Key Points:**
+- Economic impacts of tourism in glaciated areas
+- Tourism offers employment to local people
+- eg in hotels, shops, cafés and the outdoor industry. By iversifying, farmers can generate an alternative source of income, ie B+B, campsites, open farms
+- Money spent by tourists boosts the local economy and can be used to improve facilities. Tourism may help to preserve rural services like buses, village shops and post offices
+- Increased emand for local food and crafts
+- Tourists mainly come to see the scenery and wildlife, so there is pressure to conserve habitats and wildlife
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
