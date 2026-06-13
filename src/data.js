@@ -51,6 +51,17 @@ function asDisplayPack(pack) {
   };
 }
 
+function imageMetaFrom(item = {}, data = {}) {
+  const image = data.image || item.image || "";
+  if (!image) return {};
+  return {
+    image,
+    imageAlt: data.imageAlt || item.imageAlt || data.alt || data.title || data.prompt || data.question || "Learning image",
+    imageCaption: data.imageCaption || item.imageCaption || "",
+    imagePlacement: data.imagePlacement || item.imagePlacement || "top",
+  };
+}
+
 function sentenceFromItem(item) {
   const data = item.data || {};
   const translations = data.translations || {};
@@ -113,6 +124,7 @@ function builderFromItem(item) {
     answer: data.answer || "",
     tiles: data.tiles || [],
     level: item.level || "",
+    ...imageMetaFrom(item, data),
   };
 }
 
@@ -132,6 +144,7 @@ function passageFromItem(item, packSpeechLanguage) {
     targetTitle: data.targetTitle || data.title || item.targetTitle || item.title || "",
     sourceText: data.sourcePassage || item.sourcePassage || "",
     targetText: data.targetPassage || item.targetPassage || "",
+    ...imageMetaFrom(item, data),
     questions: (data.questions || item.questions || []).map((question) => ({
       id: question.id,
       // Accept both questionType (canonical) and type (AI-generated shorthand)
@@ -147,6 +160,7 @@ function passageFromItem(item, packSpeechLanguage) {
       grammar_focus: question.grammarFocus || null,
       // sourceRef is used by the ReadingWorkspace evidence-linking feature
       sourceRef: question.sourceRef || null,
+      ...imageMetaFrom(question, question),
     })),
   };
 }
@@ -453,6 +467,7 @@ export async function loadVocabItems(manifest, datasetId) {
       english_equivalent: enVal,
       stage_label: d.stageLabel,
       categories: item.topics || [],
+      ...imageMetaFrom(item, d),
       // Keep the original unified item data for quiz.js
       _unified: item,
     };

@@ -3286,6 +3286,58 @@ body.sb-split-mode #app {
   text-decoration: underline;
 }
 
+.sb-markdown-image {
+  display: block;
+  width: 100%;
+  max-height: min(62vh, 680px);
+  object-fit: contain;
+  margin: 16px auto 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  box-shadow: 0 12px 28px rgba(24, 34, 45, 0.12);
+  cursor: zoom-in;
+}
+
+.sb-image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(8, 13, 20, 0.84);
+}
+
+.sb-image-lightbox img {
+  display: block;
+  max-width: min(1120px, 96vw);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.36);
+}
+
+.sb-image-lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  font-size: 1.15rem;
+}
+
+.sb-image-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* ── Anchor flash animation ───────────────────────────────────────────────── */
 .sb-anchor-flash {
   animation: sb-flash 1.6s ease-out;

@@ -161,6 +161,17 @@ function firstTopic(item) {
   return Array.isArray(item && item.topics) ? item.topics[0] || "" : "";
 }
 
+function imageMetaFrom(item = {}, data = {}) {
+  const image = data.image || item.image || "";
+  if (!image) return {};
+  return {
+    image,
+    imageAlt: data.imageAlt || item.imageAlt || data.alt || data.title || data.prompt || data.question || "Quiz image",
+    imageCaption: data.imageCaption || item.imageCaption || "",
+    imagePlacement: data.imagePlacement || item.imagePlacement || "top",
+  };
+}
+
 function cyclePick(items, count) {
   if (!items.length || count <= 0) {
     return [];
@@ -274,6 +285,7 @@ function makeWordChoiceQuestions(words, count, allWords, dataset, modeId) {
       subtitle: buildSubtitle(word),
       speechText: word.de,
       speechLanguage: labels.speechLanguage,
+      ...imageMetaFrom(word),
     };
   });
 }
@@ -302,6 +314,7 @@ function makeWordTypedQuestions(words, count, dataset, modeId) {
     speechText: word.de,
     speechLanguage: labels.speechLanguage,
     placeholder: `Type the ${isReverse ? labels.targetLabel : labels.studyLabel} answer`,
+    ...imageMetaFrom(word),
   }));
 }
 
@@ -500,6 +513,7 @@ export function makeVocabChoiceFromUnified(unifiedItems, count, dataset, modeId)
       speechLanguage: labels.speechLanguage,
       example:     exampleSrc,
       stimulus:    item.data.stimulus || null,
+      ...imageMetaFrom(item, item.data),
     };
   });
 }
@@ -513,14 +527,15 @@ export function makeSequenceFromUnified(unifiedItems, count, dataset) {
     modeId: "sequenceOrder",
     modeTitle: item.data.title || "Arrange in order",
     kind: "sequence",
-      prompt: item.data.title || "",
-      instruction: item.data.instruction || "",
-      correctOrder: item.data.items || [],
-      shuffledOrder: shuffle([...(item.data.items || [])]),
-      sourceItemId: item.id,
-      speechText: (item.data.items || []).join(". "),
+    prompt: item.data.title || "",
+    instruction: item.data.instruction || "",
+    correctOrder: item.data.items || [],
+    shuffledOrder: shuffle([...(item.data.items || [])]),
+    sourceItemId: item.id,
+    speechText: (item.data.items || []).join(". "),
     speechLanguage: labels.speechLanguage,
     stimulus: item.data.stimulus || null,
+    ...imageMetaFrom(item, item.data),
   }));
 }
 
@@ -543,6 +558,7 @@ export function makeCategorySortFromUnified(unifiedItems, count, dataset) {
       speechText: pairs.map((p) => p.text).join(", "),
       speechLanguage: labels.speechLanguage,
       stimulus: item.data.stimulus || null,
+      ...imageMetaFrom(item, item.data),
     };
   });
 }
@@ -596,6 +612,7 @@ export function makeFillBlankFromUnified(unifiedItems, count, dataset, answerMod
       speechText: prompt,
       speechLanguage: labels.speechLanguage,
       stimulus: d.stimulus || null,
+      ...imageMetaFrom(item, d),
     };
   });
 }
@@ -638,6 +655,7 @@ export function makeMultipleChoiceFromUnified(unifiedItems, count, dataset) {
       speechLanguage: labels.speechLanguage,
       stimulus: d.stimulus || null,
       topic: firstTopic(item),
+      ...imageMetaFrom(item, d),
     };
   });
 }
@@ -685,6 +703,7 @@ export function makePassageChoiceFromUnified(unifiedItems, count, dataset) {
         speechText: question.question,
         speechLanguage: labels.speechLanguage,
         stimulus: data.stimulus || null,
+        ...imageMetaFrom(question, question),
       });
     }
   }
@@ -733,6 +752,7 @@ export function makeSentenceFromUnified(unifiedItems, count, dataset, modeId) {
       speechLanguage: labels.speechLanguage,
       placeholder:    `Type the ${labels.studyLabel} sentence`,
       stimulus:       item.data.stimulus || null,
+      ...imageMetaFrom(item, item.data),
     };
   });
 }

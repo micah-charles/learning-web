@@ -4,84 +4,297 @@
   "title": "Learning Web — pack_unified.json",
   "description": "Revision pack file. Contains vocab, sentence, multipleChoice, fillBlank, sequence, categorySort, or sentenceBuilder items. Passage items belong in passages.json, not here.",
   "type": "object",
-  "required": ["packId", "schemaVersion", "sourceLanguageCode", "targetLanguageCode", "items"],
+  "required": [
+    "packId",
+    "schemaVersion",
+    "sourceLanguageCode",
+    "targetLanguageCode",
+    "items"
+  ],
   "additionalProperties": true,
   "properties": {
-    "packId":              { "type": "string", "minLength": 1 },
-    "schemaVersion":       { "type": "string", "enum": ["1.0", "1.1"] },
+    "packId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "type": "string",
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
+    },
     "subject": {
       "type": "string",
-      "enum": ["language", "history", "geography", "science", "literature", "computing", "religion", "other"],
+      "enum": [
+        "language",
+        "history",
+        "geography",
+        "science",
+        "literature",
+        "computing",
+        "religion",
+        "other"
+      ],
       "description": "Must be lowercase. Determines subject bucket in Quiz Setup UI."
     },
-    "title":               { "type": "string" },
-    "subtitle":            { "type": "string" },
-    "level":               { "type": "string" },
-    "language":            { "type": "string" },
-    "topics":              { "type": "array", "items": { "type": "string" } },
-    "tags":                { "type": "array", "items": { "type": "string" } },
-    "description":         { "type": "string" },
-    "sourceLanguageLabel": { "type": "string" },
-    "sourceLanguageCode":  { "type": "string", "description": "BCP-47 code, e.g. de-DE, la-Latn, en-GB" },
-    "targetLanguageLabel": { "type": "string" },
-    "targetLanguageCode":  { "type": "string", "description": "BCP-47 code, e.g. en-GB" },
-    "speechLanguage":      { "type": "string", "description": "BCP-47 TTS language code" },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "sourceLanguageLabel": {
+      "type": "string"
+    },
+    "sourceLanguageCode": {
+      "type": "string",
+      "description": "BCP-47 code, e.g. de-DE, la-Latn, en-GB"
+    },
+    "targetLanguageLabel": {
+      "type": "string"
+    },
+    "targetLanguageCode": {
+      "type": "string",
+      "description": "BCP-47 code, e.g. en-GB"
+    },
+    "speechLanguage": {
+      "type": "string",
+      "description": "BCP-47 TTS language code"
+    },
     "items": {
       "type": "array",
-      "items": { "$ref": "#/definitions/Item" }
+      "items": {
+        "$ref": "#/definitions/Item"
+      }
     }
   },
-
   "definitions": {
-
     "Item": {
       "type": "object",
-      "required": ["id", "type", "data"],
+      "required": [
+        "id",
+        "type",
+        "data"
+      ],
       "properties": {
-        "id":        { "type": "string", "minLength": 1 },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
         "type": {
           "type": "string",
-          "enum": ["vocab", "sentence", "sequence", "categorySort", "fillBlank", "multipleChoice", "sentenceBuilder"],
+          "enum": [
+            "vocab",
+            "sentence",
+            "sequence",
+            "categorySort",
+            "fillBlank",
+            "multipleChoice",
+            "sentenceBuilder"
+          ],
           "description": "Do NOT use 'passage' here — passage items go in passages.json."
         },
-        "level":     { "type": "string" },
-        "topics":    { "type": "array", "items": { "type": "string" } },
-        "tags":      { "type": "array", "items": { "type": "string" } },
-        "sourceRef": { "$ref": "#/definitions/SourceRef" },
-        "data":      { "type": "object" }
+        "level": {
+          "type": "string"
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sourceRef": {
+          "$ref": "#/definitions/SourceRef"
+        },
+        "data": {
+          "type": "object"
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
+        }
       },
       "allOf": [
         {
-          "if":   { "properties": { "type": { "const": "vocab" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/VocabData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "vocab"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/VocabData"
+              }
+            }
+          }
         },
         {
-          "if":   { "properties": { "type": { "const": "sentence" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/SentenceData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "sentence"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/SentenceData"
+              }
+            }
+          }
         },
         {
-          "if":   { "properties": { "type": { "const": "sequence" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/SequenceData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "sequence"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/SequenceData"
+              }
+            }
+          }
         },
         {
-          "if":   { "properties": { "type": { "const": "categorySort" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/CategorySortData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "categorySort"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/CategorySortData"
+              }
+            }
+          }
         },
         {
-          "if":   { "properties": { "type": { "const": "fillBlank" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/FillBlankData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "fillBlank"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/FillBlankData"
+              }
+            }
+          }
         },
         {
-          "if":   { "properties": { "type": { "const": "multipleChoice" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/MultipleChoiceData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "multipleChoice"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/MultipleChoiceData"
+              }
+            }
+          }
         },
         {
-          "if":   { "properties": { "type": { "const": "sentenceBuilder" } }, "required": ["type"] },
-          "then": { "properties": { "data": { "$ref": "#/definitions/SentenceBuilderData" } } }
+          "if": {
+            "properties": {
+              "type": {
+                "const": "sentenceBuilder"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "data": {
+                "$ref": "#/definitions/SentenceBuilderData"
+              }
+            }
+          }
         }
       ]
     },
-
     "VocabData": {
       "type": "object",
       "description": "Language packs use translations{}. Non-language packs use sourceWord + targetWord (where targetWord is a definition, never a repeat of sourceWord).",
@@ -90,23 +303,66 @@
           "type": "string",
           "description": "Language packs: full English word (noun, verb, adjective, adverb, preposition, pronoun, conjunction, interjection). Non-language packs: 'keyword'."
         },
-        "gender":   { "type": ["string", "null"], "enum": ["m", "f", "n", null] },
-        "plural":   { "type": "string" },
+        "gender": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "m",
+            "f",
+            "n",
+            null
+          ]
+        },
+        "plural": {
+          "type": "string"
+        },
         "translations": {
           "type": "object",
           "description": "BCP-47 keyed translations, e.g. { 'de-DE': 'der Hund', 'en-GB': 'dog' }. Preferred over sourceWord/targetWord.",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "examples": {
           "type": "object",
           "description": "BCP-47 keyed example sentences. Only populate both src and tgt codes when sourceLanguageCode !== targetLanguageCode.",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         },
-        "sourceWord": { "type": "string", "description": "Legacy fallback — prefer translations{}" },
-        "targetWord": { "type": "string", "description": "Legacy fallback — must be a definition, never repeat sourceWord" }
+        "sourceWord": {
+          "type": "string",
+          "description": "Legacy fallback — prefer translations{}"
+        },
+        "targetWord": {
+          "type": "string",
+          "description": "Legacy fallback — must be a definition, never repeat sourceWord"
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
+        }
       }
     },
-
     "SentenceData": {
       "type": "object",
       "description": "Full sentence in source and target languages.",
@@ -114,63 +370,165 @@
         "translations": {
           "type": "object",
           "description": "BCP-47 keyed sentences. Preferred.",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         },
-        "sourceSentence": { "type": "string", "description": "Legacy fallback" },
-        "targetSentence": { "type": "string", "description": "Legacy fallback" }
+        "sourceSentence": {
+          "type": "string",
+          "description": "Legacy fallback"
+        },
+        "targetSentence": {
+          "type": "string",
+          "description": "Legacy fallback"
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
+        }
       }
     },
-
     "SequenceData": {
       "type": "object",
-      "required": ["title", "items"],
+      "required": [
+        "title",
+        "items"
+      ],
       "description": "Ordered steps the student must arrange. Wrong names: 'question', 'steps', 'order'.",
       "properties": {
-        "title":       { "type": "string", "description": "Question prompt shown to the student" },
-        "instruction": { "type": "string" },
+        "title": {
+          "type": "string",
+          "description": "Question prompt shown to the student"
+        },
+        "instruction": {
+          "type": "string"
+        },
         "items": {
           "type": "array",
           "minItems": 2,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Steps in correct order. UI shuffles on load."
         },
-        "shuffle": { "type": "boolean" }
+        "shuffle": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
+        }
       }
     },
-
     "CategorySortData": {
       "type": "object",
-      "required": ["categories", "pairs"],
+      "required": [
+        "categories",
+        "pairs"
+      ],
       "description": "Tile-sorting activity. Wrong names for pairs items: 'item', 'label', 'value'.",
       "properties": {
-        "title":       { "type": "string" },
-        "instruction": { "type": "string" },
+        "title": {
+          "type": "string"
+        },
+        "instruction": {
+          "type": "string"
+        },
         "categories": {
           "type": "array",
           "minItems": 2,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Column headers. Every pair.category must match one of these."
         },
         "pairs": {
           "type": "array",
           "minItems": 2,
-          "items": { "$ref": "#/definitions/CategoryPair" }
+          "items": {
+            "$ref": "#/definitions/CategoryPair"
+          }
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
         }
       }
     },
-
     "CategoryPair": {
       "type": "object",
-      "required": ["text", "category"],
+      "required": [
+        "text",
+        "category"
+      ],
       "properties": {
-        "text":     { "type": "string", "description": "Tile label shown to the student" },
-        "category": { "type": "string", "description": "Must match one value in data.categories" }
+        "text": {
+          "type": "string",
+          "description": "Tile label shown to the student"
+        },
+        "category": {
+          "type": "string",
+          "description": "Must match one value in data.categories"
+        }
       }
     },
-
     "FillBlankData": {
       "type": "object",
-      "required": ["sentence", "answer"],
+      "required": [
+        "sentence",
+        "answer"
+      ],
       "description": "Gap-fill item. Wrong field names: 'question', 'text', 'prompt'.",
       "properties": {
         "sentence": {
@@ -178,60 +536,157 @@
           "description": "Prompt containing ____ (four underscores) as the gap. NOT 'question'.",
           "pattern": "____"
         },
-        "answer":  { "type": "string" },
-        "hint":    { "type": "string" },
+        "answer": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
         "options": {
           "type": "array",
           "minItems": 2,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "If present renders as button grid. The correct answer must be included."
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
         }
       }
     },
-
     "MultipleChoiceData": {
       "type": "object",
-      "required": ["question", "answer", "options"],
+      "required": [
+        "question",
+        "answer",
+        "options"
+      ],
       "description": "Standalone multiple-choice question. Use this for grammar tests that are not gap-fill sentences.",
       "properties": {
-        "question": { "type": "string", "minLength": 1 },
-        "answer":   { "type": "string", "minLength": 1 },
-        "hint":     { "type": "string" },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hint": {
+          "type": "string"
+        },
         "options": {
           "type": "array",
           "minItems": 2,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Fixed choices shown to the learner. The correct answer must be included."
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
         }
       }
     },
-
     "SentenceBuilderData": {
       "type": "object",
-      "required": ["answer", "tiles"],
+      "required": [
+        "answer",
+        "tiles"
+      ],
       "description": "Tile-drag sentence builder for the Builder tab.",
       "properties": {
-        "cardType": { "type": "string", "description": "e.g. key_date, key_term, example_sentence" },
-        "prompt":   { "type": "string" },
-        "answer":   { "type": "string" },
+        "cardType": {
+          "type": "string",
+          "description": "e.g. key_date, key_term, example_sentence"
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
         "tiles": {
           "type": "array",
           "minItems": 2,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Word tokens. ' '.join(tiles) must exactly equal answer."
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
         }
       }
     },
-
     "SourceRef": {
       "type": "object",
       "description": "Optional link to a Study Book heading. Renders a 'Jump to [heading]' button in quiz.",
       "properties": {
-        "mdFile":  { "type": "string" },
-        "heading": { "type": "string" },
-        "anchor":  { "type": "string" }
+        "mdFile": {
+          "type": "string"
+        },
+        "heading": {
+          "type": "string"
+        },
+        "anchor": {
+          "type": "string"
+        }
       }
     }
-
   }
 }

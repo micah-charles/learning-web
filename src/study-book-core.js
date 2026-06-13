@@ -5,6 +5,21 @@
 
 import { marked } from "marked";
 
+function escapeHtmlAttr(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+export function isSafeStudyBookImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) return false;
+  if (value.startsWith("/assets/") || value.startsWith("/images/") || value.startsWith("/data/")) return true;
+  return /^https:\/\/[^\s]+$/i.test(value);
+}
+
 // ── Marked configuration ───────────────────────────────────────────────────
 
 marked.use({
@@ -20,6 +35,20 @@ marked.use({
         .replace(/-+/g, "-")
         .replace(/^-|-$/g, "");
       return `<h${depth} id="${anchor}">${text}</h${depth}>\n`;
+    };
+    renderer.image = function ({ href, title, text }) {
+      if (!isSafeStudyBookImageSrc(href)) {
+        return text ? `<span>${escapeHtmlAttr(text)}</span>` : "";
+      }
+      const attrs = [
+        `src="${escapeHtmlAttr(href)}"`,
+        `alt="${escapeHtmlAttr(text || "Study book image")}"`,
+        `class="sb-markdown-image"`,
+        `loading="lazy"`,
+        `decoding="async"`,
+      ];
+      if (title) attrs.push(`title="${escapeHtmlAttr(title)}"`);
+      return `<img ${attrs.join(" ")}>`;
     };
     return renderer;
   })(),
@@ -44,10 +73,10 @@ export const ALLOWED_TAGS = [
   "table", "thead", "tbody", "tr", "th", "td",
   "blockquote", "pre", "code",
   "strong", "em", "a", "hr", "br",
-  "span", "div", "mark",
+  "span", "div", "mark", "img", "figure", "figcaption",
 ];
 
-export const ALLOWED_ATTR = ["href", "id", "class", "target", "rel"];
+export const ALLOWED_ATTR = ["href", "id", "class", "target", "rel", "src", "alt", "title", "loading", "decoding"];
 
 // ── Table of contents ──────────────────────────────────────────────────
 

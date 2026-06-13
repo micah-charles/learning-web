@@ -4,68 +4,196 @@
   "title": "Learning Web — passages.json",
   "description": "Passage pack file for the Reading tab. Contains only 'passage' items. Lives at data/Packs/<curriculum>/<subject>/<id>/passages.json.",
   "type": "object",
-  "required": ["packId", "schemaVersion", "sourceLanguageCode", "targetLanguageCode", "items"],
+  "required": [
+    "packId",
+    "schemaVersion",
+    "sourceLanguageCode",
+    "targetLanguageCode",
+    "items"
+  ],
   "additionalProperties": true,
   "properties": {
-    "packId":              { "type": "string", "minLength": 1 },
-    "schemaVersion":       { "type": "string", "enum": ["1.0", "1.1"] },
+    "packId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "type": "string",
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
+    },
     "subject": {
       "type": "string",
-      "enum": ["language", "history", "geography", "science", "literature", "computing", "religion", "other"],
+      "enum": [
+        "language",
+        "history",
+        "geography",
+        "science",
+        "literature",
+        "computing",
+        "religion",
+        "other"
+      ],
       "description": "Must be lowercase."
     },
-    "sourceLanguageLabel": { "type": "string" },
-    "sourceLanguageCode":  { "type": "string", "description": "BCP-47 code, e.g. de-DE, en-GB" },
-    "targetLanguageLabel": { "type": "string" },
-    "targetLanguageCode":  { "type": "string", "description": "BCP-47 code, e.g. en-GB" },
-    "speechLanguage":      { "type": "string" },
+    "sourceLanguageLabel": {
+      "type": "string"
+    },
+    "sourceLanguageCode": {
+      "type": "string",
+      "description": "BCP-47 code, e.g. de-DE, en-GB"
+    },
+    "targetLanguageLabel": {
+      "type": "string"
+    },
+    "targetLanguageCode": {
+      "type": "string",
+      "description": "BCP-47 code, e.g. en-GB"
+    },
+    "speechLanguage": {
+      "type": "string"
+    },
     "items": {
       "type": "array",
-      "items": { "$ref": "#/definitions/PassageItem" },
+      "items": {
+        "$ref": "#/definitions/PassageItem"
+      },
       "description": "All items must have type 'passage'."
     }
   },
-
   "definitions": {
-
     "PassageItem": {
       "type": "object",
-      "required": ["id", "type", "data"],
+      "required": [
+        "id",
+        "type",
+        "data"
+      ],
       "properties": {
-        "id":     { "type": "string", "minLength": 1 },
-        "type":   { "type": "string", "const": "passage" },
-        "level":  { "type": "string" },
-        "topics": { "type": "array", "items": { "type": "string" } },
-        "tags":   { "type": "array", "items": { "type": "string" } },
-        "data":   { "$ref": "#/definitions/PassageData" }
-      }
-    },
-
-    "PassageData": {
-      "type": "object",
-      "required": ["sourcePassage", "questions"],
-      "properties": {
-        "chapter":        { "type": "string" },
-        "section":        { "type": "string" },
-        "sourceTitle":    { "type": "string" },
-        "targetTitle":    { "type": "string" },
-        "sourcePassage":  { "type": "string", "minLength": 1 },
-        "targetPassage":  { "type": "string" },
-        "speechLanguage": { "type": "string", "description": "BCP-47 TTS code for this passage" },
-        "questions": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "const": "passage"
+        },
+        "level": {
+          "type": "string"
+        },
+        "topics": {
           "type": "array",
-          "items": { "$ref": "#/definitions/PassageQuestion" },
-          "description": "Comprehension questions. Aim for 3–6 per passage."
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "$ref": "#/definitions/PassageData"
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
         }
       }
     },
-
+    "PassageData": {
+      "type": "object",
+      "required": [
+        "sourcePassage",
+        "questions"
+      ],
+      "properties": {
+        "chapter": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "sourceTitle": {
+          "type": "string"
+        },
+        "targetTitle": {
+          "type": "string"
+        },
+        "sourcePassage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetPassage": {
+          "type": "string"
+        },
+        "speechLanguage": {
+          "type": "string",
+          "description": "BCP-47 TTS code for this passage"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PassageQuestion"
+          },
+          "description": "Comprehension questions. Aim for 3–6 per passage."
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
+        }
+      }
+    },
     "PassageQuestion": {
       "type": "object",
-      "required": ["id", "question", "questionType"],
+      "required": [
+        "id",
+        "question",
+        "questionType"
+      ],
       "description": "A single comprehension question. The question text field is 'question' — NOT 'questionText' or 'question_en'.",
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
         "question": {
           "type": "string",
           "minLength": 1,
@@ -73,17 +201,33 @@
         },
         "questionType": {
           "type": "string",
-          "enum": ["open", "multiple_choice", "fact", "inference", "grammar", "explanation", "comprehension", "mcq", "choice"],
+          "enum": [
+            "open",
+            "multiple_choice",
+            "fact",
+            "inference",
+            "grammar",
+            "explanation",
+            "comprehension",
+            "mcq",
+            "choice"
+          ],
           "description": "Use 'open' or 'multiple_choice'. Semantic labels (fact, inference, grammar, explanation, comprehension) are treated as 'open'. mcq/choice are legacy aliases for multiple_choice."
         },
         "difficulty": {
           "type": "string",
-          "enum": ["easy", "medium", "hard"]
+          "enum": [
+            "easy",
+            "medium",
+            "hard"
+          ]
         },
         "options": {
           "type": "array",
           "minItems": 2,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Required when questionType is 'multiple_choice' (or its aliases)."
         },
         "correctOptionIndex": {
@@ -91,21 +235,59 @@
           "minimum": 0,
           "description": "0-based index into options[]. Required for multiple_choice questions."
         },
-        "modelAnswer":      { "type": "string", "description": "Expected answer for open questions" },
+        "modelAnswer": {
+          "type": "string",
+          "description": "Expected answer for open questions"
+        },
         "acceptedKeywords": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Keywords for keyword-based marking of open questions"
+        },
+        "image": {
+          "type": "string",
+          "description": "Optional image URL. Prefer root-relative public assets such as /assets/subject/topic/image.png."
+        },
+        "imageAlt": {
+          "type": "string",
+          "description": "Accessible alt text for image."
+        },
+        "imageCaption": {
+          "type": "string",
+          "description": "Optional caption displayed below the image."
+        },
+        "imagePlacement": {
+          "type": "string",
+          "enum": [
+            "top",
+            "inline",
+            "bottom"
+          ],
+          "description": "Preferred placement relative to the prompt or passage text."
         }
       },
       "if": {
-        "properties": { "questionType": { "enum": ["multiple_choice", "mcq", "choice"] } },
-        "required": ["questionType"]
+        "properties": {
+          "questionType": {
+            "enum": [
+              "multiple_choice",
+              "mcq",
+              "choice"
+            ]
+          }
+        },
+        "required": [
+          "questionType"
+        ]
       },
       "then": {
-        "required": ["options", "correctOptionIndex"]
+        "required": [
+          "options",
+          "correctOptionIndex"
+        ]
       }
     }
-
   }
 }

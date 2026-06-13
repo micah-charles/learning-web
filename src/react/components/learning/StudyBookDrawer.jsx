@@ -8,7 +8,7 @@
  * CSS reuses the shared .study-book-drawer / .sb-* classes from styles.css.
  * Split-mode adds body class "sb-split-mode" so .lw-app gets margin-right.
  */
-import { useEffect, useLayoutEffect, useRef, useCallback } from "react";
+import { useEffect, useLayoutEffect, useRef, useCallback, useState } from "react";
 import { highlightMatches } from "@/study-book.js";
 import { useStudyBook } from "../../context/StudyBookContext.jsx";
 
@@ -173,13 +173,13 @@ function useScrollToAnchor(contentRef, currentAnchor, open, html, activeFile, an
 }
 
 // ── Keyboard: Escape to close ─────────────────────────────────────────────────
-function useEscapeClose(open, closeBook) {
+function useEscapeClose(open, closeBook, disabled = false) {
   useEffect(() => {
-    if (!open) return;
+    if (!open || disabled) return;
     const handler = (e) => { if (e.key === "Escape") closeBook(); };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [open, closeBook]);
+  }, [open, closeBook, disabled]);
 }
 
 // ── TOC ───────────────────────────────────────────────────────────────────────
@@ -219,12 +219,13 @@ export function StudyBookDrawer() {
   const drawerRef  = useRef(null);
   const handleRef  = useRef(null);
   const anchorJumpRef = useRef(null);
+  const [lightboxImage, setLightboxImage] = useState(null);
 
   useSplitMode(splitMode, drawerRef);
   useDrawerWidthVars(open, drawerRef);
   useResizeHandle(handleRef, drawerRef, splitMode);
   useScrollAnchorTracker(open, toc, contentRef, setCurrentAnchor, anchorJumpRef);
-  useEscapeClose(open, closeBook);
+  useEscapeClose(open, closeBook, !!lightboxImage);
 
   const highlightedHtml = useHighlightedHtml(html, searchQuery, setSearchMatchCount);
   useScrollToMatch(contentRef, searchMatchIndex, searchQuery, searchMatchCount);
@@ -249,6 +250,15 @@ export function StudyBookDrawer() {
     return () => clearTimeout(id);
   }, [notice, setNotice]);
 
+  useEffect(() => {
+    if (!lightboxImage) return undefined;
+    const handler = (event) => {
+      if (event.key === "Escape") setLightboxImage(null);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [lightboxImage]);
+
   // Save scroll position on scroll
   const handleContentScroll = useCallback((e) => {
     saveScrollTop(e.target.scrollTop);
@@ -266,6 +276,17 @@ export function StudyBookDrawer() {
       navigateMatch(e.shiftKey ? -1 : 1);
     }
   }, [navigateMatch]);
+
+  const handleContentClick = useCallback((event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLImageElement) || !target.classList.contains("sb-markdown-image")) {
+      return;
+    }
+    setLightboxImage({
+      src: target.currentSrc || target.src,
+      alt: target.alt || "Study book image",
+    });
+  }, []);
 
   return (
     <>
@@ -361,6 +382,7 @@ export function StudyBookDrawer() {
             tabIndex={0}
             ref={contentRef}
             onScroll={handleContentScroll}
+            onClick={handleContentClick}
           >
             {loading
               ? <p style={{ padding: "24px 18px", color: "var(--muted)", fontSize: "0.9rem" }}>Loading…</p>
@@ -377,6 +399,28 @@ export function StudyBookDrawer() {
           onClick={closeBook}
           aria-hidden="true"
         />
+      )}
+
+      {lightboxImage && (
+        <div
+          className="sb-image-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightboxImage.alt}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setLightboxImage(null);
+          }}
+        >
+          <button
+            type="button"
+            className="sb-image-lightbox-close"
+            onClick={() => setLightboxImage(null)}
+            aria-label="Close image"
+          >
+            ×
+          </button>
+          <img src={lightboxImage.src} alt={lightboxImage.alt} />
+        </div>
       )}
     </>
   );
