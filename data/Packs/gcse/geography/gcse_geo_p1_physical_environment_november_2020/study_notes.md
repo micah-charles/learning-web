@@ -1,0 +1,814 @@
+# AQA GCSE Geography — Paper 1: Living with the Physical Environment
+
+*November 2020*
+
+---
+
+## Q1.1: Which one of the following statements about tropical storms is true?
+
+**Model Answer:**
+
+Shade one circle only. D. Tropical storms form above oceans where temperatures are over 27°C.
+
+**Key Points:**
+- Shade one circle only. D. Tropical storms form above oceans where temperatures are over 27°C
+- Shade one circle only
+- D. Tropical storms form above oceans where temperatures are over 27°C
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.10: State one source of evidence for long-term climate change during the Quaternary period.
+
+**Model Answer:**
+
+Quaternary period. Ice cores (which show CO² and methane concentrations) . Evidence from ocean sediments/rocks/ fossils/plankton (helps to show temperature changes) . Pollen analysis. Credit other valid answers.
+
+**Key Points:**
+- Quaternary period. Ice cores (which show CO² and methane concentrations) . Evidence from ocean sediments/rocks/ fossils/plankton (helps to show temperature changes) . Pollen analysis. Credit other valid answers
+- Quaternary period
+- Ice cores (which show CO² and methane concentrations)
+- Evidence from ocean sediments/rocks/ fossils/plankton (helps to show
+- temperature changes)
+- Pollen analysis
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.11: Using Figure 5, which one of the following statements is true?
+
+**Model Answer:**
+
+Shade one circle only. D Areas north of 60°N will have the greatest increase in temperature.
+
+**Key Points:**
+- Shade one circle only. D Areas north of 60°N will have the greatest increase in temperature
+- Shade one circle only
+- D Areas north of 60°N will have the greatest increase in temperature
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.12: ‘Managing climate change involves both reducing causes (mitigation) and responding to change (adaptation).’ Do you agree? Explain your answer. Use Figure 6 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Knowledge of mitigation strategies. Consists of actions to limit the magnitude or rate of long-term global warming. Mitigation involves reductions in human emissions of greenhouse gases. It may also be achieved by increasing the capacity of carbon sinks, eg, through reforestation. Knowledge of adaptation strategies. Action taken to help communities and ecosystems cope with changing climate. The goal is to reduce vulnerability to the harmful effects of climate change (like sea-level rise, more intense extreme weather events or food insecurity). It may also involve making the most of any opportunities (for example, longer growing seasons or increased yields in some regions). However, a balanced answer should also recognise that Understanding of mitigation strategies shown in Figure 6: Alternative energy. To help reduce carbon emissions, alternative sources of energy such as hydro-electricity, nuclear power, solar, wind, and tides are increasing in importance. Most are renewable. Nuclear power uses uranium to generate electricity but oes not emit CO2 as a by-product. Carbon capture and storage uses technology to capture CO2 produced from the use of fossil fuels in electricity generation and industrial processes and safely storing it. Carbon ioxide from atmosphere can be converted into liquid and injected into sedimentary rock. It may be possible to capture up to 90 per cent of the CO2 that would otherwise enter the atmosphere. Evaluation of the importance of both strategies. Mitigation addresses the root causes, by reducing greenhouse gas emissions, while adaptation seeks to lower the risks posed by the consequences of climatic changes.
+
+**Key Points:**
+- Knowledge of mitigation strategies. Consists of actions to limit the magnitude or rate of long-term global warming. Mitigation involves reductions in human emissions of greenhouse gases. It may also be achieved by increasing the capacity of carbon sinks, eg, through reforestation
+- Knowledge of adaptation strategies. Action taken to help communities and ecosystems cope with changing climate. The goal is to reduce vulnerability to the harmful effects of climate change (like sea-level rise, more intense extreme weather events or food insecurity). It may also involve making the most of any opportunities (for example, longer growing seasons or increased yields in some regions)
+- Understanding of mitigation strategies shown in Figure 6: Alternative energy. To help reduce carbon emissions, alternative sources of energy such as hydro-electricity, nuclear power, solar, wind, and tides are increasing in importance. Most are renewable. Nuclear power uses uranium to generate electricity but oes not emit CO2 as a by-product. Carbon capture and storage uses technology to capture CO2 produced from the use of fossil fuels in electricity generation and industrial processes and safely storing it. Carbon ioxide from atmosphere can be converted into liquid and injected into sedimentary rock. It may be possible to capture up to 90 per cent of the CO2 that would otherwise enter the atmosphere
+- Understanding of other mitigation strategies. Planting trees. Trees act as carbon sinks, removing CO2 from the atmosphere by the process of photosynthesis. They also release moisture into the atmosphere. This has a cooling effect by producing more cloud, reducing incoming solar radiation. International agreements. The UN negotiated a new international climate change agreement for all countries at the 2015 Paris climate conference. It will be implemented from 2020. Aim is to reduce global emissions by at least 40 per cent below 2010 levels by 2030, and by 60 per cent by 2050. Intention to keep global temperature increase below 2°C. Credit reference to other climate conferences, including Madrid 2019. Low level mitigation measures include cutting own on food waste and increasing recycling, introducing energy-saving measures at home, walking or cycling instead of taking the car, buying local food to cut own on food miles
+- Understanding of adaptation strategies shown in Figure 6. Agriculture – farmers will have to adapt as some crops may not be able to grow in a warmer or rier climate, however, rought resistant plants may be grown where rainfall is lower and other crops (eg oranges and grapes) will be able to be planted. Cultivation might be shifted to new areas and irrigation increased as rainfall patterns change. Adjusting to rising sea levels – areas at risk from sea level rise may use sea efences to protect the land from being eroded away. Houses built on stilts may help to protect properties in vulnerable areas. Understanding of other adaptation strategies, such as Water supply – water transfer schemes could be used, moving water from an area of water surplus to an area of water shortage. Better management of water resources to ensure evaporation and loss are kept to a minimum. Some countries are installing esalinisation plants to cope with water supply problems. Credit examples of mitigation and adaptation strategies
+- Evaluation of the importance of both strategies. Mitigation addresses the root causes, by reducing greenhouse gas emissions, while adaptation seeks to lower the risks posed by the consequences of climatic changes. Both approaches will be necessary, because even if emissions are ramatically ecreased in the next 20–30 years, adaptation will still be needed to eal with the global changes that have already started. High performance Intermediate performance Threshold performance o not significantly hinder meaning overall
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[9 marks]*
+
+---
+
+## Q1.2: The total number of typhoons reaching Japan was 204. What percentage of the total number of typhoons occurred in August? Give your answer to the nearest whole percentage.
+
+**Model Answer:**
+
+What percentage of the total number of typhoons occurred in August? Give your answer to the nearest whole percentage. 34% **** Working and units not needed. Allow 1 mark for evidence of correct working even if final answer is wrong. Allow maximum 1 mark if figure expressed with 1–2 ecimal places (33.8 or 33.82). What percentage of the total number of typhoons occurred in August?
+
+**Key Points:**
+- What percentage of the total number of typhoons occurred in August? Give your answer to the nearest whole percentage. 34% **** Working and units not needed. Allow 1 mark for evidence of correct working even if final answer is wrong. Allow maximum 1 mark if figure expressed with 1–2 ecimal places (33.8 or 33.82)
+- What percentage of the total number of typhoons occurred in August?
+- Give your answer to the nearest whole percentage
+- 34% **** Working and units not needed
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q1.3: Give one reason why tropical storms have a seasonal pattern.
+
+**Model Answer:**
+
+They occur (in late summer/autumn) when sea temperatures are highest (over 26/27°C)/ water temperatures of at least 26/27°C are needed own to a epth of at least 50 m/they require high sea temperatures . Only occur when atmosphere is unstable (enough for convection and thunderstorms) . Reference to higher temperatures on their own is insufficient-must mention sea or water temperatures.
+
+**Key Points:**
+- They occur (in late summer/autumn) when sea temperatures are highest (over 26/27°C)/ water temperatures of at least 26/27°C are needed own to a epth of at least 50 m/they require high sea temperatures . Only occur when atmosphere is unstable (enough for convection and thunderstorms) . Reference to higher temperatures on their own is insufficient-must mention sea or water temperatures
+- They occur (in late summer/autumn) when sea temperatures are highest (over
+- 26/27°C)/ water temperatures of at least 26/27°C are needed own to a epth
+- of at least 50 m/they require high sea temperatures
+- Only occur when atmosphere is unstable (enough for convection and
+- thunderstorms)
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.4: Describe the structure of Cyclone Idai shown in Figure 2.
+
+**Model Answer:**
+
+The cyclone has an eye at the centre. The centre/circular eye has no cloud.
+
+**Key Points:**
+- The cyclone has an eye at the centre
+- The centre/circular eye has no cloud
+- There is a mass(swirl) of clouds surrounding the eye
+- The vortex around the eye consists of ense cloud
+- Clouds have a circular pattern
+- Clouds appear to be arranged in a clockwise pattern
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[2 marks]*
+
+---
+
+## Q1.5: Suggest why some tropical storms have severe primary and secondary effects. Use Figure 3 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Primary effects are the irect result of a tropical storm, such as collapsed buildings. Secondary effects are the result of primary effects such as fires from broken gas lines. They also include long-term hazards like water-borne iseases. The initial primary effects of a storm involve estructive winds, torrential rain and storm surges. However, a balanced answer should also recognise that Primary effects may include: people being killed or injured, often caused by flying ebris or by rowning. homes estroyed. transport and communication links not working. amage to infrastructure. energy supplies cut off. trees uprooted by strong winds. storm surge raises sea level and floods over the low lying land. Secondary effects may include: people being left homeless. a lack of clean water and sanitation. water-borne iseases. unemployment caused by businesses being amaged. if crops are estroyed and/or livestock is killed there can be a shortage of food. looting and other crime. local economy isrupted, including manufacturing and tourism. reduced trade. longer term health effects. insurance claims. estruction of crops. isruption to coastal habitats. mudslides, landslides. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Analysis of Figure 3. Allow any reasonable inference from the photograph, maps and text. Primary effects include strong winds, torrential rain, roofs and walls of buildings blown away, some buildings estroyed, some buildings underwater, amage to infrastructure, isruption to roads and other communications, large numbers killed or injured.
+
+**Key Points:**
+- Primary effects are the irect result of a tropical storm, such as collapsed buildings. Secondary effects are the result of primary effects such as fires from broken gas lines. They also include long-term hazards like water-borne iseases
+- The initial primary effects of a storm involve estructive winds, torrential rain and storm surges
+- Primary effects may include: people being killed or injured, often caused by flying ebris or by rowning. homes estroyed. transport and communication links not working. amage to infrastructure. energy supplies cut off. trees uprooted by strong winds. storm surge raises sea level and floods over the low lying land
+- Secondary effects may include: people being left homeless. a lack of clean water and sanitation. water-borne iseases. unemployment caused by businesses being amaged. if crops are estroyed and/or livestock is killed there can be a shortage of food. looting and other crime. local economy isrupted, including manufacturing and tourism. reduced trade. longer term health effects. insurance claims. estruction of crops. isruption to coastal habitats. mudslides, landslides
+- Analysis of Figure 3. Allow any reasonable inference from the photograph, maps and text. Primary effects include strong winds, torrential rain, roofs and walls of buildings blown away, some buildings estroyed, some buildings underwater, amage to infrastructure, isruption to roads and other communications, large numbers killed or injured
+- Secondary effects include amage to local economy, longer term financial impacts, people stranded and made homeless/unemployed, pollution risk, anger of water borne iseases
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q1.6: Using Figure 4, which one of the following statements is true?
+
+**Model Answer:**
+
+Shade one circle only. B. Most earthquakes happened to the east and south east of Japan. One mark for correct answer.
+
+**Key Points:**
+- Shade one circle only. B. Most earthquakes happened to the east and south east of Japan. One mark for correct answer
+- Shade one circle only
+- B. Most earthquakes happened to the east and south east of Japan
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.7: Using Figure 4, name the type of plate margin between the Pacific and Eurasian plates.
+
+**Model Answer:**
+
+Eurasian plates. Destructive, convergent.
+
+**Key Points:**
+- Eurasian plates. Destructive, convergent
+- Eurasian plates
+- Destructive, convergent
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.8: Suggest one other tectonic hazard likely to occur near to the plate margins shown in Figure 4.
+
+**Model Answer:**
+
+Margins shown in Figure 4. Volcano/volcanic eruption, tsunami.
+
+**Key Points:**
+- margins shown in Figure 4. Volcano/volcanic eruption, tsunami
+- margins shown in Figure 4
+- Volcano/volcanic eruption, tsunami
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q1.9: Explain how the risks of a tectonic hazard can be reduced.
+
+**Model Answer:**
+
+Answers may focus on one or more of monitoring, prediction, protection and planning. Maximum marks can be achieved for a eveloped answer about any one type of strategy. Strategies to reduce risk are likely to involve one or more of the following, although it is not necessary to use the same terms. Monitoring – recording physical changes, such as earthquake tremors around a volcano, to help forecast when and where a natural hazard might strike. Prediction – attempts to forecast when and where a hazard will strike. This can be one to some extent for volcanic eruptions, but less reliably for earthquakes.
+
+**Key Points:**
+- Answers may focus on one or more of monitoring, prediction, protection and planning. Maximum marks can be achieved for a eveloped answer about any one type of strategy
+- Answers are likely to be specific to earthquakes or volcanoes, but credit more general responses that are appropriate to both. Allow reference to tsunamis as a type of tectonic hazard
+- Strategies to reduce risk are likely to involve one or more of the following, although it is not necessary to use the same terms
+- Monitoring – recording physical changes, such as earthquake tremors around a volcano, to help forecast when and where a natural hazard might strike
+- Prediction – attempts to forecast when and where a hazard will strike. This can be one to some extent for volcanic eruptions, but less reliably for earthquakes
+- Planning – actions taken to enable communities to respond to, and recover from, natural isasters, through emergency evacuation plans and warning systems
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q2.1: For a small scale ecosystem you have studied, name one producer and one consumer.
+
+**Model Answer:**
+
+One consumer. Producer: Any green plants, lichens and algae, phytoplankton, seaweeds, sea grass. Max 1 mark for producer. Consumer: Any part of the ecosystem that feeds from the producer such as flea, tadpoles, fish, heron etc. The answer oes not have to be a primary consumer. Max 1 mark for consumer. Both species should be found in the same ecosystem. Max 1 mark if the two species are not from same ecosystem. One consumer.
+
+**Key Points:**
+- one consumer. Producer: Any green plants, lichens and algae, phytoplankton, seaweeds, sea grass. Max 1 mark for producer. Consumer: Any part of the ecosystem that feeds from the producer such as flea, tadpoles, fish, heron etc. The answer oes not have to be a primary consumer. Max 1 mark for consumer. Both species should be found in the same ecosystem. Max 1 mark if the two species are not from same ecosystem
+- one consumer
+- Producer: Any green plants, lichens and algae, phytoplankton, seaweeds,
+- sea grass. Max 1 mark for producer
+- Consumer: Any part of the ecosystem that feeds from the producer such as
+- flea, tadpoles, fish, heron etc. The answer oes not have to be a primary
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q2.2: What is the role of producers in an ecosystem?
+
+**Model Answer:**
+
+Producers are organisms that produce their own food.
+
+**Key Points:**
+- Producers are organisms that produce their own food
+- They convert the sun’s energy into food
+- They produce food for other animals to eat
+- They produce chemical energy by the process of photosynthesis
+- They convert water, sunlight and CO2 into carbohydrates
+- Plants can also make other nutrients for other organisms to eat
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.3: Using Figure 7, calculate the temperature range in Place A.
+
+**Model Answer:**
+
+8.5 (°C) Working and units not needed.
+
+**Key Points:**
+- 8.5 (°C) Working and units not needed
+- Working and units not needed
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q2.4: Using Figure 7, state two differences between the climate in Place A and Place B.
+
+**Model Answer:**
+
+And Place B. Rainfall is (much) lower in Place A, (totalling 27 mm per year in comparison to 213 mm in Place B). The variation in rainfall is (much) higher in Place B (19mm) than Place A (8mm) The highest average temperature in Place A is 23.9°C compared with 6.2°C in Place B The lowest average temperature is (much) lower in Place B (-14.5°C) compared with Place A (at 15.4°C). Place B has a higher yearly temperature range (of 20.7°C compared to 8.5°C in Place A). B has wetter climate . B has a cooler climate 2 clear contrasts (ifferences) are needed for 2 marks. And Place B.
+
+**Key Points:**
+- and Place B. Rainfall is (much) lower in Place A, (totalling 27 mm per year in comparison to 213 mm in Place B). The variation in rainfall is (much) higher in Place B (19mm) than Place A (8mm) The highest average temperature in Place A is 23.9°C compared with 6.2°C in Place B The lowest average temperature is (much) lower in Place B (-14.5°C) compared with Place A (at 15.4°C). Place B has a higher yearly temperature range (of 20.7°C compared to 8.5°C in Place A). B has wetter climate . B has a cooler climate 2 clear contrasts (ifferences) are needed for 2 marks
+- and Place B
+- Rainfall is (much) lower in Place A, (totalling 27 mm per year in comparison
+- to 213 mm in Place B)
+- The variation in rainfall is (much) higher in Place B (19mm) than Place A
+- The highest average temperature in Place A is 23.9°C compared with 6.2°C
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q2.5: Which global ecosystem matches the following description? An area with trees which drop their leaves in winter.
+
+**Model Answer:**
+
+An area with trees which rop their leaves in winter. Shade one circle only. C Deciduous forest.
+
+**Key Points:**
+- An area with trees which rop their leaves in winter. Shade one circle only. C Deciduous forest
+- An area with trees which rop their leaves in winter
+- Shade one circle only
+- C Deciduous forest
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.6: Suggest how different strategies are used to reduce environmental damage in either: an area on the fringe of a hot desert or  a cold environment.  Use Figure 8 or Figure 9 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that an area on the fringe of a hot esert or. The Great Green wall planting strategy. A scheme launched to plant trees across the southern edge of the Sahara esert to reduce esertification. The trees counter soil erosion, slow wind speeds and stop the spread of eserts. By 2030, the aim is to have restored 100 million hectares of currently egraded land and sequester 250 million tons of carbon. It has already seen positive results with 15 million hectares of egraded land restored in Ethiopia and 11.4 million trees planted in Senegal. However, a balanced answer should also recognise that Building rock walls (bunds). This is an example of appropriate technology – these low rock walls are constructed to follow the contour of the land and therefore capture the ownward flow of water. This also stops sediment from being washed off the slopes as it will be trapped by the bunds and can therefore create a good epth of soil for cultivation. This example of water and soil management can help address the problem of intense rainfall washing away loose soil and causing soil erosion. Other management strategies for hot eserts include. Planting grass on slopes to help stabilise the topsoil. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. The use of intermediate or appropriate technology such as solar cookers and more efficient stoves which reduce the need for fuelwood and thus a cause of soil erosion/esertification. Rainwater can be collected on roofs to be used for irrigation. Cold environments Understanding of management strategies for cold environments shown in Figure 9.
+
+**Key Points:**
+- an area on the fringe of a hot esert or
+- The Great Green wall planting strategy. A scheme launched to plant trees across the southern edge of the Sahara esert to reduce esertification. The trees counter soil erosion, slow wind speeds and stop the spread of eserts. By 2030, the aim is to have restored 100 million hectares of currently egraded land and sequester 250 million tons of carbon. It has already seen positive results with 15 million hectares of egraded land restored in Ethiopia and 11.4 million trees planted in Senegal
+- Building rock walls (bunds). This is an example of appropriate technology – these low rock walls are constructed to follow the contour of the land and therefore capture the ownward flow of water. This also stops sediment from being washed off the slopes as it will be trapped by the bunds and can therefore create a good epth of soil for cultivation. This example of water and soil management can help address the problem of intense rainfall washing away loose soil and causing soil erosion. Other management strategies for hot eserts include
+- Planting grass on slopes to help stabilise the topsoil
+- The use of intermediate or appropriate technology such as solar cookers and more efficient stoves which reduce the need for fuelwood and thus a cause of soil erosion/esertification. Rainwater can be collected on roofs to be used for irrigation. Cold environments Understanding of management strategies for cold environments shown in Figure 9
+- Hot water pipes/insulated utilidors (utility tunnels) raised above the ground so they o not melt or amage the permafrost
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q2.7: Using Figure 10, give one feature of the pattern of wildfires in Brazil.
+
+**Model Answer:**
+
+Concentrated largely south of the Amazon river . North of Brasilia . There is a significant band running from west to east across the centre of Brazil . There are relatively few in coastal areas . Central Brazil . Northern Brazil.
+
+**Key Points:**
+- Concentrated largely south of the Amazon river . North of Brasilia . There is a significant band running from west to east across the centre of Brazil . There are relatively few in coastal areas . Central Brazil . Northern Brazil
+- Concentrated largely south of the Amazon river
+- North of Brasilia
+- There is a significant band running from west to east across the centre of
+- There are relatively few in coastal areas
+- Central Brazil . Northern Brazil
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.8: Outline one reason why wildfires are a threat to global climate.
+
+**Model Answer:**
+
+The Amazon rainforest acts as a huge carbon sink/absorbing and storing carbon ioxide . If the trees are estroyed, this carbon sink is lost (. The forests help to cool global temperatures so burning would lead to rising temperatures (. The burning of trees releases CO2 into the atmosphere contributing to the greenhouse effect (. The Amazon rainforest acts as a huge carbon sink/absorbing and storing.
+
+**Key Points:**
+- The Amazon rainforest acts as a huge carbon sink/absorbing and storing carbon ioxide . If the trees are estroyed, this carbon sink is lost (. The forests help to cool global temperatures so burning would lead to rising temperatures (. The burning of trees releases CO2 into the atmosphere contributing to the greenhouse effect (
+- The Amazon rainforest acts as a huge carbon sink/absorbing and storing
+- carbon ioxide . If the trees are estroyed, this carbon sink is lost (
+- The forests help to cool global temperatures so burning would lead to
+- rising temperatures (
+- The burning of trees releases CO2 into the atmosphere contributing to
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q2.9: ‘Some economic activities in tropical rainforests have major environmental impacts.’ Do you agree? Use Figure 11 and a case study to explain your answer.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Small-scale shifting cultivation or slash and burn has traditionally had a relatively small impact on tropical rainforests because when the soil becomes exhausted the people move on and clear another area leaving the original forest area to regenerate. In contrast, palm oil plantations can lead to the eforestation of huge swathes of rainforest. Large areas of rainforest are cut own to make way for commercial plantations but the land can only sustain crops for a relatively short period of time. After a few years, the farmers have to cut own more rainforest for new plantations. Deforestation for plantations can also contribute to soil erosion since there is still no ground cover crops that help protect the soil. The healthy topsoil gets washed away and can potentially clog up rivers and other bodies of water. Since the soil is no longer as healthy ue to erosion and the lack of biodiversity, chemicals in the form of fertilisers, insecticides, pesticides, etc are added to the soil to promote better growth of oil palm trees. The chemicals used can leach into the ground and pollute both land and water. However, a balanced answer should also recognise that Ecotourism can bring environmental benefits to an area. It tends to be small-scale with a focus on conservation and minimising negative environmental impacts. Tourism may take the form of replanting and other conservation projects. It can also help educate tourists and locals about the need for the sustainable use of rainforest areas. HEP ams have caused huge environmental evastation in some areas of tropical rainforest.
+
+**Key Points:**
+- Small-scale shifting cultivation or slash and burn has traditionally had a relatively small impact on tropical rainforests because when the soil becomes exhausted the people move on and clear another area leaving the original forest area to regenerate
+- In contrast, palm oil plantations can lead to the eforestation of huge swathes of rainforest. Large areas of rainforest are cut own to make way for commercial plantations but the land can only sustain crops for a relatively short period of time. After a few years, the farmers have to cut own more rainforest for new plantations. Deforestation for plantations can also contribute to soil erosion since there is still no ground cover crops that help protect the soil. The healthy topsoil gets washed away and can potentially clog up rivers and other bodies of water. Since the soil is no longer as healthy ue to erosion and the lack of biodiversity, chemicals in the form of fertilisers, insecticides, pesticides, etc are added to the soil to promote better growth of oil palm trees. The chemicals used can leach into the ground and pollute both land and water
+- Ecotourism can bring environmental benefits to an area. It tends to be small-scale with a focus on conservation and minimising negative environmental impacts. Tourism may take the form of replanting and other conservation projects. It can also help educate tourists and locals about the need for the sustainable use of rainforest areas
+- HEP ams have caused huge environmental evastation in some areas of tropical rainforest. Large areas of the Amazon have been eforested and flooded to build ams such as the Belo Monte am. Often the ams have a short lifespan and they may become blocked with soil washed own eforested slopes. Other economic activities which could be iscussed include
+- Mining. Minerals such as bauxite, gold and iron ore are mined and sold to make money. The rainforest is clear-felled for mining which leads to soil erosion. In 1999, 10 000 hectares of the Amazon rainforest were used for gold mining. Today the area is over 50 000 hectares
+- Commercial farming. As well as plantations, forest is cleared to make space for cattle grazing. The rearing of cattle is believed to account for 80% of the tropical rainforest estruction in Brazil. The soil cannot be used for long and the farmers then move on and estroy more rainforest. In August 2019, record numbers of forest fires in Brazil were blamed on clearance of land for farming. The burning releases massive amounts of greenhouses gases contributing to climate change. A valuable carbon sink is also lost. Other environmental impacts linked to farming are soil erosion and pollution from the excessive use of fertilisers and pesticides
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[9 marks]*
+
+---
+
+## Q3.1: Match the following descriptions of coastal landscapes in the UK with the correct letter shown on Figure 12.
+
+**Model Answer:**
+
+The correct letter shown on Figure 12. An uneven coastline with several large islands offshore E A headland which marks the coastal limit of the South Downs C. The correct letter shown on Figure 12.
+
+**Key Points:**
+- the correct letter shown on Figure 12. An uneven coastline with several large islands offshore E A headland which marks the coastal limit of the South Downs C
+- the correct letter shown on Figure 12
+- An uneven coastline with several large islands offshore E
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q3.2: Using Figure 13, state what has happened to the area behind the shingle beach at high tide.
+
+**Model Answer:**
+
+Shingle beach at high tide. The area is flooded/submerged under water.
+
+**Key Points:**
+- shingle beach at high tide. The area is flooded/submerged under water
+- shingle beach at high tide
+- The area is flooded/submerged under water
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q3.3: Suggest one advantage of the coastal management strategy shown in Figure 13.
+
+**Model Answer:**
+
+Figure 13. (The salt marsh and mudflat) provides a habitat for wildlife . Tourists may visit the salt marsh (and spend money in local businesses). Natural flooding is much less costly than hard engineering . Salt marshes are able to store large quantities of water (which act as a buffer to erosion) . It is cheap It is natural looking and won’t amage the environment.
+
+**Key Points:**
+- Figure 13. (The salt marsh and mudflat) provides a habitat for wildlife . Tourists may visit the salt marsh (and spend money in local businesses). Natural flooding is much less costly than hard engineering . Salt marshes are able to store large quantities of water (which act as a buffer to erosion) . It is cheap It is natural looking and won’t amage the environment
+- Figure 13
+- (The salt marsh and mudflat) provides a habitat for wildlife
+- Tourists may visit the salt marsh (and spend money in local businesses)
+- Natural flooding is much less costly than hard engineering
+- Salt marshes are able to store large quantities of water (which act as a buffer
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q3.4: Using Figure 14, what is the projected rate of erosion for 2030?
+
+**Model Answer:**
+
+3.3 (metres per year) Allow 3.25–3.35 metres per year.
+
+**Key Points:**
+- 3.3 (metres per year) Allow 3.25–3.35 metres per year
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q3.5: Explain the benefits of using hard engineering strategies to protect the coastline.
+
+**Model Answer:**
+
+Understanding of hard engineering schemes, which involve using artificial structures to control natural processes. These are esigned to reduce wave energy or create a barrier between the land and sea, so storm waves can’t reach the cliffs. Gabions are wire cages filled with rocks that can be built up to support a cliff or provide a buffer against the sea. Often constructed on site using local pebbles. Benefits. Cheap to produce and flexible in the final esign. Can improve rainage of cliffs. Will eventually become vegetated and merge into the landscape. Much cheaper than sea walls, rock armour or groynes. Ideal as a quick-fix solution. For the cost, they are good value for money, as they may last 20–25 years. Rip rap / rock armour consists of massive blocks of natural rock piled up at the base of a cliff. The rocks are umped on top of each other leaving gaps between them that allow water through. Benefits. Disperses the energy of the waves and reduces their erosional power. Structure is quick to build and easy to maintain. Much cheaper than a sea wall. If well maintained, rock armour lasts a long time. It is versatile, as it can be placed in front of a sea wall to lengthen its lifespan or used to stabilise slopes on sand unes. Often used for fishing. Groynes look like wooden “fences” that are built own the beach at right angles to the coastline. They are esigned to stop material being moved along the beach by longshore rift. They work by building up the amount of sand on the updrift side. Benefits. Act as a buffer against wave attack, helping to protect the cliffs. Create a wider beach, which can be popular with tourists and boost local economy. Reduces risk of amage, making residents and local business feel more secure. Not too expensive.
+
+**Key Points:**
+- Understanding of hard engineering schemes, which involve using artificial structures to control natural processes. These are esigned to reduce wave energy or create a barrier between the land and sea, so storm waves can’t reach the cliffs
+- Gabions are wire cages filled with rocks that can be built up to support a cliff or provide a buffer against the sea. Often constructed on site using local pebbles. Benefits. Cheap to produce and flexible in the final esign. Can improve rainage of cliffs. Will eventually become vegetated and merge into the landscape. Much cheaper than sea walls, rock armour or groynes. Ideal as a quick-fix solution. For the cost, they are good value for money, as they may last 20–25 years
+- Rip rap / rock armour consists of massive blocks of natural rock piled up at the base of a cliff. The rocks are umped on top of each other leaving gaps between them that allow water through. Benefits. Disperses the energy of the waves and reduces their erosional power. Structure is quick to build and easy to maintain. Much cheaper than a sea wall. If well maintained, rock armour lasts a long time. It is versatile, as it can be placed in front of a sea wall to lengthen its lifespan or used to stabilise slopes on sand unes. Often used for fishing
+- Groynes look like wooden “fences” that are built own the beach at right angles to the coastline. They are esigned to stop material being moved along the beach by longshore rift. They work by building up the amount of sand on the updrift side. Benefits. Act as a buffer against wave attack, helping to protect the cliffs. Create a wider beach, which can be popular with tourists and boost local economy. Reduces risk of amage, making residents and local business feel more secure. Not too expensive. If well maintained, can last up to 40 years. Can act as windbreaks
+- Sea walls aim to protect the coast using concrete, steel and/or stone. Benefits. Effective in protecting cliffs from erosion and also act as a barrier to prevent flooding. Deflect wave energy back to sea. Give people a sense of security. Often has a promenade on top, which oubles up as cycle route. Steps at the base of a wall act as seating areas for beach users. If well maintained, sea walls can last for many years. Sea walls o not impede the movement of sediment owndrift, so they o not isadvantage other areas
+- coastline
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q3.6: Explain the formation of the physical features of the coastline shown in Figure 15.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The formation of at least two landforms should be explained to access. Emphasis is on explanation, so processes of erosion should be outlined as well as the sequence of evelopment of landforms as the coastal landscape changes. Some reference to epositional processes is also relevant. However, a balanced answer should also recognise that Understanding of specific processes relevant to the formation of landforms shown-weathering, erosion, hydraulic action, corrasion/abrasion, attrition, ifferential erosion, wave refraction, longshore rift. Analysis of the maps and photograph should emphasise increased unevenness in the shape of the coast from a rounded coastline to jagged headlands and wave cut platforms with bay in between. The photograph illustrates prominent cliffed headlands surrounded by low-lying curved bays. In istance is series of stacks at end of headland, with spit beyond. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Understanding of formation of headlands and bays and changes over time. Because of ifferences in resistance of rocks to erosion, some parts of the coast may retreat faster than others. This will happen where the rocks are at right angles to the coastline (a iscordant coast). Over thousands of years the softer less resistant rock will be eroded more quickly than the harder more resistant rock and ifferences become more pronounced. Eventually there will be headlands that stick out into the sea and bays where the land has been worn back. The headlands are more exposed to wave attack and erosional landforms evelop.
+
+**Key Points:**
+- The formation of at least two landforms should be explained to access
+- Emphasis is on explanation, so processes of erosion should be outlined as well as the sequence of evelopment of landforms as the coastal landscape changes. Some reference to epositional processes is also relevant
+- Understanding of specific processes relevant to the formation of landforms shown-weathering, erosion, hydraulic action, corrasion/abrasion, attrition, ifferential erosion, wave refraction, longshore rift
+- Landforms shown in the maps include headlands and bays, (bayhead) beaches and wave-cut platforms. Credit other associated landforms seen on photograph: cliffs, caves and stacks
+- Analysis of the maps and photograph should emphasise increased unevenness in the shape of the coast from a rounded coastline to jagged headlands and wave cut platforms with bay in between. The photograph illustrates prominent cliffed headlands surrounded by low-lying curved bays. In istance is series of stacks at end of headland, with spit beyond
+- Understanding of formation of headlands and bays and changes over time. Because of ifferences in resistance of rocks to erosion, some parts of the coast may retreat faster than others. This will happen where the rocks are at right angles to the coastline (a iscordant coast). Over thousands of years the softer less resistant rock will be eroded more quickly than the harder more resistant rock and ifferences become more pronounced. Eventually there will be headlands that stick out into the sea and bays where the land has been worn back. The headlands are more exposed to wave attack and erosional landforms evelop. Due to wave refraction the energy of the waves is then focused on the headlands and spread out in the bays
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q4.1: Match the following descriptions of rivers in the UK with the correct letter shown on Figure 16.
+
+**Model Answer:**
+
+Letter shown on Figure 16. Description of river Letter A river which flows west from the Pennines into Liverpool Bay C A river which flows north east through the Fens and into the Wash D. Letter shown on Figure 16.
+
+**Key Points:**
+- letter shown on Figure 16. Description of river Letter A river which flows west from the Pennines into Liverpool Bay C A river which flows north east through the Fens and into the Wash D
+- letter shown on Figure 16
+- Description of river Letter
+- A river which flows west from the Pennines into Liverpool Bay C
+- A river which flows north east through the Fens and into the Wash D
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q4.2: Using Figure 17, describe the relief (height and shape of the land) on either side of the straightened river.
+
+**Model Answer:**
+
+Either side of the straightened river. The land is flat . There is a floodplain on either side of the river . Generally flat but more sloping in background.
+
+**Key Points:**
+- either side of the straightened river. The land is flat . There is a floodplain on either side of the river . Generally flat but more sloping in background
+- either side of the straightened river
+- The land is flat
+- There is a floodplain on either side of the river
+- Generally flat but more sloping in background
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q4.3: Suggest how the strategy shown in Figure 17 helps to manage the river.
+
+**Model Answer:**
+
+River. The straightened river reduces flood risk. By straightening the river, the water flows faster and more irectly, (so there is less chance of flooding) . The straightened river reduces flood risk by moving water out of the area more quickly, (as there is less friction with the bed and banks) . The faster-flowing water removes sediment that would otherwise build up . The straightened river is shorter so improves navigation.
+
+**Key Points:**
+- river. The straightened river reduces flood risk. By straightening the river, the water flows faster and more irectly, (so there is less chance of flooding) . The straightened river reduces flood risk by moving water out of the area more quickly, (as there is less friction with the bed and banks) . The faster-flowing water removes sediment that would otherwise build up . The straightened river is shorter so improves navigation
+- The straightened river reduces flood risk
+- By straightening the river, the water flows faster and more irectly, (so there
+- is less chance of flooding)
+- The straightened river reduces flood risk by moving water out of the area
+- more quickly, (as there is less friction with the bed and banks)
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q4.4: Using Figure 18, calculate the range of maximum discharge.
+
+**Model Answer:**
+
+15 (cubic metres per second ).
+
+**Key Points:**
+- 15 (cubic metres per second )
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q4.5: Explain how river levées are formed.
+
+**Model Answer:**
+
+The sequence of formation and some reference to processes involved are both required to reach the top of level 2. The question implies knowledge of the processes of eposition. Emphasis is on explanation, so processes may be outlined as well as the sequence of formation. Levées are long narrow ridges or raised embankments alongside the river. Composed of gravel, stones and alluvium. Steeper on channel side than land side. Levées occur in the lower course of a river when there is an increase in the volume of water flowing ownstream and flooding occurs.
+
+**Key Points:**
+- The sequence of formation and some reference to processes involved are both required to reach the top of level 2
+- The question implies knowledge of the processes of eposition. Emphasis is on explanation, so processes may be outlined as well as the sequence of formation
+- Levées are long narrow ridges or raised embankments alongside the river. Composed of gravel, stones and alluvium. Steeper on channel side than land side
+- Levées occur in the lower course of a river when there is an increase in the volume of water flowing ownstream and flooding occurs
+- Sediment that has been eroded further upstream is transported ownstream
+- When the river floods, the sediment spreads out across the floodplain. Friction with the land reduces velocity and causes eposition
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q4.6: Explain how physical and human factors may affect flood risk. Use Figure 19 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Physical factors affecting the flood risk include – Geology. Impermeable rocks (eg granite) and soil (eg clay) will not allow water to pass through, resulting in large amounts of surface runoff and a higher risk of flooding. Relief. A rainage basin with steep slopes will result in greater overland flow and a shorter lag time than where the gradient is less steep, allowing more time for infiltration to occur. Precipitation. Heavy rain results in rapid saturation of the upper soil layers and the excess water therefore reaches streams quickly as surface runoff (short lag time). Slow light rain can be absorbed by infiltration and the river takes longer to respond to rainfall as water takes longer to pass through the rainage basin via throughflow and groundwater flow. Levels of previous rainfall may also be relevant. Vegetation. Vegetated areas help to reduce the risk of flooding by increasing the time it takes for water to reach a river (longer lag time) by encouraging infiltration, intercepting water by their leaves and taking up water in their roots. Human factors include: Land use. Surfaces such as concrete and tarmac are impermeable, therefore rivers in urban rainage basins tend to have higher risk of flooding ue to higher amounts of surface runoff and rainage systems taking water to rivers quickly. The increase of house building in towns and villages, especially on river floodplains has meant that rivers respond more quickly to storms. Deforestation may result in greater flood risk as interception and infiltration are reduced and runoff increases.
+
+**Key Points:**
+- Understanding physical factors/causes. Factors listed in the specification are precipitation, geology, and relief, but credit other factors such as snowmelt, levels of previous saturation, vegetation and soil type. The risk of flooding is etermined by the speed in which flood waters are able to reach the river. Credit reference to processes such as infiltration, surface runoff, throughflow and percolation as well peak ischarge, baseflow and lag times
+- Physical factors affecting the flood risk include – Geology. Impermeable rocks (eg granite) and soil (eg clay) will not allow water to pass through, resulting in large amounts of surface runoff and a higher risk of flooding. Relief. A rainage basin with steep slopes will result in greater overland flow and a shorter lag time than where the gradient is less steep, allowing more time for infiltration to occur. Precipitation. Heavy rain results in rapid saturation of the upper soil layers and the excess water therefore reaches streams quickly as surface runoff (short lag time). Slow light rain can be absorbed by infiltration and the river takes longer to respond to rainfall as water takes longer to pass through the rainage basin via throughflow and groundwater flow. Levels of previous rainfall may also be relevant. Vegetation. Vegetated areas help to reduce the risk of flooding by increasing the time it takes for water to reach a river (longer lag time) by encouraging infiltration, intercepting water by their leaves and taking up water in their roots
+- Human factors include: Land use. Surfaces such as concrete and tarmac are impermeable, therefore rivers in urban rainage basins tend to have higher risk of flooding ue to higher amounts of surface runoff and rainage systems taking water to rivers quickly. The increase of house building in towns and villages, especially on river floodplains has meant that rivers respond more quickly to storms. Deforestation may result in greater flood risk as interception and infiltration are reduced and runoff increases. Agricultural practices – such as ploughing up and own slopes – can increase surface runoff and produce higher flood risk. The large amount of rainfall greatly increases flood risk. Soils are saturated, infiltration capacity is exceeded and excess water flows as surface runoff The confluence of two rivers at Cockermouth means that 2 separate flows converge from 2 rainage basins, increasing water levels and therefore flood risk. The surrounding landscape consists of steep hills, which means that rainage basin flows including surface runoff are rapid, so excess water reaches lowland areas quickly. Homes and businesses built on the flood plains are prone to rising flood waters. The concrete surfaces are impermeable so water cannot percolate and lag times are short
+- Analysis may consider the importance of human and/ or physical factors in etermining the flood risk–may emphasise that precipitation is the primary factor, although its impact epends on several aspects such as intensity and uration. However other factors are significant in causing considerable ifferences in flood risk, even over quite small areas
+- Some floods may be more affected by human factors than others – epending on proportion of built-up area, level of tree cover, farming practices, artificial rainage. Many examples of floods where flood levels much higher as a result of human activity, others where physical factors are ominant
+- A eveloped explanation of one physical and one human factor affecting flood risk with clear application of understanding to Figure 19, is sufficient to access maximum marks. Qu Pt Marking guidance Tota mark
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q5.1: Match the following descriptions of glaciated uplands in the UK with the correct letter shown on Figure 20.
+
+**Model Answer:**
+
+The correct letter shown on Figure 20. Description of glaciated upland area Letter A mountainous area which includes the highest point in Wales D A large mountainous area in Scotland where the highest point is A over 1300m. The correct letter shown on Figure 20.
+
+**Key Points:**
+- the correct letter shown on Figure 20. Description of glaciated upland area Letter A mountainous area which includes the highest point in Wales D A large mountainous area in Scotland where the highest point is A over 1300m
+- the correct letter shown on Figure 20
+- Description of glaciated upland area Letter
+- A mountainous area which includes the highest point in Wales D
+- A large mountainous area in Scotland where the highest point is A
+- over 1300m
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q5.2: Describe the shape of the drumlins shown in Figure 21.
+
+**Model Answer:**
+
+Elongated , egg shaped , oblong oval . Low/rounded hill with one side steeper than the other . Allow other valid escription.
+
+**Key Points:**
+- Elongated , egg shaped , oblong oval . Low/rounded hill with one side steeper than the other . Allow other valid escription
+- Elongated , egg shaped , oblong oval
+- Low/rounded hill with one side steeper than the other
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[1 marks]*
+
+---
+
+## Q5.3: Using Figure 21, calculate the mean maximum height of the 6 drumlins.
+
+**Model Answer:**
+
+31.3 metres Allow 31 metres, 31.33 metres.
+
+**Key Points:**
+- 31.3 metres Allow 31 metres, 31.33 metres
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q5.4: Using evidence from Figure 21, suggest the general direction of movement of ice when the drumlins were formed.
+
+**Model Answer:**
+
+Movement of ice when the rumlins were formed. From south east to north west . From south south east to north north west . Towards the north west/NNW . From the south east/SSE.
+
+**Key Points:**
+- movement of ice when the rumlins were formed. From south east to north west . From south south east to north north west . Towards the north west/NNW . From the south east/SSE
+- movement of ice when the rumlins were formed
+- From south east to north west
+- From south south east to north north west
+- Towards the north west/NNW
+- From the south east/SSE
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[1 marks]*
+
+---
+
+## Q5.5: Explain how glaciated areas in the UK provide economic opportunities.
+
+**Model Answer:**
+
+Expect two or more land use opportunities to be explained for top of. Economic activities listed in the specification are tourism, farming, forestry and quarrying. Others might include hydro-electric power/wind/renewable energy, water supply, military training. Opportunities for economic activity are limited. Glaciated upland areas can be extreme environments. For rural landowners, there are few ways to earn a living from the land ue to steep slopes, thin soils, low temperatures and heavy relief rainfall. Many farmers have iversified into other economic activities. Farming. In upland areas, soils in these are thin and acidic. Land is mainly used for grazing. Sheep can tolerate cold, wet and windy conditions, and poor vegetation. Some highland areas also farm cattle and eer for venison meat. Soils in valleys are thicker ue to eposition. Flat-bottomed glacial troughs are ideal for using machinery and farming can be more productive. Typical crops include cereals and potatoes, and grass for winter feed.
+
+**Key Points:**
+- Expect two or more land use opportunities to be explained for top of
+- Economic activities listed in the specification are tourism, farming, forestry and quarrying. Others might include hydro-electric power/wind/renewable energy, water supply, military training
+- Opportunities for economic activity are limited. Glaciated upland areas can be extreme environments. For rural landowners, there are few ways to earn a living from the land ue to steep slopes, thin soils, low temperatures and heavy relief rainfall. Many farmers have iversified into other economic activities
+- Farming. In upland areas, soils in these are thin and acidic. Land is mainly used for grazing. Sheep can tolerate cold, wet and windy conditions, and poor vegetation. Some highland areas also farm cattle and eer for venison meat. Soils in valleys are thicker ue to eposition. Flat-bottomed glacial troughs are ideal for using machinery and farming can be more productive. Typical crops include cereals and potatoes, and grass for winter feed
+- Lowland glaciated areas may be covered by a thick layer of till, which is very fertile. Much of central and eastern Britain has productive farmland growing wheat, barley, potatoes and other crops
+- Tourism is a major source of income in Wales, Scotland and the Lake District. People visit these places to enjoy the mountainous landscape created by glaciation. This environment is popular with tourists because it provides opportunities for walking, cycling, sailing and kayaking
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q5.6: Explain how glacial processes have created the landforms shown in Figure 22.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The formation of at least two landforms should be explained to access. The question implies knowledge of the processes of erosion, as well as the relic landforms associated with glacial erosion in upland areas. However, a balanced answer should also recognise that Landforms epicted in Figure 22 are corrie (with tarn), arete and pyramidal peak. Understanding of glacial processes. Abrasion – as the glacier moves ownhill, rocks that have been frozen into the base and sides of the glacier scrape the rock beneath. The rocks scrape the bedrock like sandpaper, leaving striations behind. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Plucking – rocks become frozen into the bottom and sides of the glacier. As the glacier moves ownhill it 'plucks' or tears away the rocks frozen into the glacier from the ground.
+
+**Key Points:**
+- The formation of at least two landforms should be explained to access
+- The question implies knowledge of the processes of erosion, as well as the relic landforms associated with glacial erosion in upland areas
+- Landforms epicted in Figure 22 are corrie (with tarn), arete and pyramidal peak
+- Understanding of glacial processes. Abrasion – as the glacier moves ownhill, rocks that have been frozen into the base and sides of the glacier scrape the rock beneath. The rocks scrape the bedrock like sandpaper, leaving striations behind
+- Plucking – rocks become frozen into the bottom and sides of the glacier. As the glacier moves ownhill it 'plucks' or tears away the rocks frozen into the glacier from the ground
+- Freeze-thaw weathering. During the ay when temperatures are higher, the snow melts and water enters the cracks in the rock. When the temperature rops below 0°C the water in the crack freezes and expands by about 9 per cent. This makes the crack larger. As this process is repeated through continual thawing and freezing the crack gets larger over time. Eventually pieces of rock break off
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---

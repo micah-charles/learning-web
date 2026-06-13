@@ -1,0 +1,829 @@
+# AQA GCSE Geography — Paper 2: Challenges in the Human Environment
+
+*November 2021*
+
+---
+
+## Q1.1: What is meant by rural-urban migration?
+
+**Model Answer:**
+
+Movement of people from the countryside to the city. Credit words to that effect. Allow ‘migration from the countryside to the city’.
+
+**Key Points:**
+- Movement of people from the countryside to the city. Credit words to that effect. Allow ‘migration from the countryside to the city’
+- Movement of people from the countryside to the city
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.10: Outline one reason why levels of air pollution are so high in many LIC/NEE cities.
+
+**Model Answer:**
+
+LIC/NEE cities. One mark for a basic statement, eg. Many of the vehicles lack technology to reduce emissions.
+
+**Key Points:**
+- LIC/NEE cities. One mark for a basic statement, eg
+- Many of the vehicles lack technology to reduce emissions
+- Factories are unregulated
+- Many of the vehicles are old so they lack technology to reduce emissions which means they emit higher levels of particulates / have ‘irtier’ exhausts (
+- Factories are unregulated which means no-one makes them cut own emissions (
+- Many people still rely on fuelwood / kerosene which leads to high levels of smoke in the air ( Credit any reasonable cause of air pollution which must relate to LIC/NEE cities for credit. Allow 1 mark for generic comment about air pollution
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q1.11: Assess the extent of the challenges created by urban growth in LICs/NEEs. Use a case study of a city in an LIC/NEE.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The question oes not specify the challenges so. Problem of providing services with such rapid population growth eg 600 000 growth per year in Lagos, when the resources available to meet emand are limited in poorer countries. Also poor existing provision of physical services when there is a challenging point from which to start eg in Lagos: only 40% of waste currently collected. However, a balanced answer should also recognise that Much of the population growth in LIC/NEE cities has been in slum areas eg Mumbai has more than oubled from 9 million in 1991 to 20 million in 2018 with 41% (c. 8 million) living in slum settlements. Some 78% of community toilets in Mumbai’s slums lack water supply, 58% have no electricity, and many on’t have proper oors, so this is toilets for 6 million people that will need to be improved, showing the size of the problem. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Infrastructure cannot improve fast enough to cope with the emand eg espite a BRT system and expressways many in Lagos face a 2 hour+ commute.
+
+**Key Points:**
+- The question oes not specify the challenges so
+- Problem of providing services with such rapid population growth eg 600 000 growth per year in Lagos, when the resources available to meet emand are limited in poorer countries. Also poor existing provision of physical services when there is a challenging point from which to start eg in Lagos: only 40% of waste currently collected
+- Much of the population growth in LIC/NEE cities has been in slum areas eg Mumbai has more than oubled from 9 million in 1991 to 20 million in 2018 with 41% (c. 8 million) living in slum settlements
+- Some 78% of community toilets in Mumbai’s slums lack water supply, 58% have no electricity, and many on’t have proper oors, so this is toilets for 6 million people that will need to be improved, showing the size of the problem
+- Infrastructure cannot improve fast enough to cope with the emand eg espite a BRT system and expressways many in Lagos face a 2 hour+ commute
+- There is also challenge in providing access to social services eg only 55% of Rio’s population having access to a health clinic and only half of children continue education past the age of 14
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[9 marks]*
+
+---
+
+## Q1.2: Describe the distribution of the cities shown in Figure 1.
+
+**Model Answer:**
+
+The question focuses on escription, it should be clear the candidate is referring to this and not offering explanation. One mark for an initial overall escriptive comment eg. The majority are in Asia / north of the Equator.
+
+**Key Points:**
+- The question focuses on escription, it should be clear the candidate is referring to this and not offering explanation. One mark for an initial overall escriptive comment eg
+- The majority are in Asia / north of the Equator
+- There are two in Africa / the Middle East
+- There are no new megacities expected in the Americas
+- Mostly near the coast Second mark may be a second separate point or eveloped point for further escriptive clarity eg
+- The majority are in Asia / north of the equator with 4/10 in China alone ( / these adding ouble the number expected in the rest of the world (
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[2 marks]*
+
+---
+
+## Q1.3: Outline one reason why managing transport is important for urban sustainability.
+
+**Model Answer:**
+
+Sustainability. One mark for a basic statement, eg. To reduce carbon emissions.
+
+**Key Points:**
+- sustainability. One mark for a basic statement, eg
+- To reduce carbon emissions
+- To reduce congestion
+- To reduce carbon emissions which will reduce the greenhouse effect and climate change (
+- To reduce congestion which will mean less time is wasted in travel so businesses stay profitable / so people can comfortably travel to work and won’t therefore leave the city (
+- To cut own on air pollution so residents won’t leave the city for a healthier environment elsewhere ( Credit any aspect of sustainability: economic; social; environmental
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q1.4: Explain why creating green space is important for sustainable urban living. Use Figure 2 and your own understanding.
+
+**Model Answer:**
+
+Development need not be through named places but use of an example is likely to add clarity. Development may also be found in explanation of processes of urban greening and the associated effects. Use of the balconies creates space where it would otherwise not be available in a built up urban area with high rise buildings. Plants on the balconies will provide a green view for the residents. Trees so close to the buildings will help to cool them so reducing need for power for air conditioning. Own understanding eg.
+
+**Key Points:**
+- Development need not be through named places but use of an example is likely to add clarity. Development may also be found in explanation of processes of urban greening and the associated effects
+- Use of the balconies creates space where it would otherwise not be available in a built up urban area with high rise buildings
+- Plants on the balconies will provide a green view for the residents
+- Trees so close to the buildings will help to cool them so reducing need for power for air conditioning. Own understanding eg
+- Trees absorb CO and so act as a carbon sink helping to reduce carbon emissions
+- Trees and hedging help to absorb harmful pollutants, especially at ground level where they are closer to the source of emissions from car exhausts. This helps reduce illness and reduces the emissions circulating in the atmosphere
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q1.5: Using Figure 3, give the four-figure grid reference for the park and ride.
+
+**Model Answer:**
+
+8606.
+
+**Key Points:**
+- One mark for the correct answer.
+C. 8606
+No credit if two or more statements are shaded.
+AO4 – 1 mark
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.6: Using Figure 3, what is the distance along the A944 from the junction at 854063 to the edge of the built up area at 890066?
+
+**Model Answer:**
+
+854063 to the edge of the built up area at 890066? One mark for the correct answer. C. 3.8km.
+
+**Key Points:**
+- 854063 to the edge of the built up area at 890066? One mark for the correct answer. C. 3.8km
+- 854063 to the edge of the built up area at 890066?
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.7: Suggest how urban sprawl and the growth of commuter settlements have impacts on the rural-urban fringe. Use Figure 3 and Figure 4 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The specification requires urban sprawl and its impact on the rural-urban fringe to be studied in the context of a named city and candidates may well use such an example but the question oes not explicitly state this so it is possible to answer in a range of ways. Any comment making reference to changes and using map evidence may be assumed to use both maps. However, a balanced answer should also recognise that Reference to figures 3/4 may be inferred even if not explicitly stated through such comments as: the growth on the Western edge of the city; the upgrading / ualling of the road running W-E. Impacts may be positive as well as negative. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. impacts on the rural-urban fringe.
+
+**Key Points:**
+- The specification requires urban sprawl and its impact on the rural-urban fringe to be studied in the context of a named city and candidates may well use such an example but the question oes not explicitly state this so it is possible to answer in a range of ways
+- Any comment making reference to changes and using map evidence may be assumed to use both maps
+- Reference to figures 3/4 may be inferred even if not explicitly stated through such comments as: the growth on the Western edge of the city; the upgrading / ualling of the road running W-E
+- Impacts may be positive as well as negative
+- Impacts are varied and any reasonable ones should be credited:  Loss of green space at the edge of the city for housing and expanded roads  Increased flooding ue to more impermeable surfaces  Loss of habitat leading to reduced biodiversity  Original villages ominated by new modern estates  Loss of ‘sense of place’ as many such evelopments look the same  Increased congestion / air and noise pollution with rise in commuter traffic  Rising housing costs so that many such commuter villages become unaffordable ✓ Improvements in transport infrastructure to meet commuter needs ✓ Improvements in social facilities eg pubs / leisure as there is a market ✓ Increase in the supply of housing in a pleasant area on the edge. Max L1 for escription of ifferences between the two maps with no explanation of impact(s)
+- impacts on the rural-urban fringe
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q1.8: At what time of day is air pollution the highest?
+
+**Model Answer:**
+
+8.am.
+
+**Key Points:**
+- One mark for correct answer:
+8.am
+Accept 0800 or ‘8 in the morning’.
+No credit for ‘8 o’clock’
+AO4 – 1 mark
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q1.9: Calculate the range in air pollution levels shown in Figure 5.
+
+**Model Answer:**
+
+A valid answer should directly answer the question using the information in the figure and accurate geographical terminology.
+
+**Key Points:**
+- AO4 – 1 mark
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q2.1: Use the following data to complete Figure 6.
+
+**Model Answer:**
+
+Width need not be correct along entire length but should be so at the base. Width to be approximately the same, but not greater than, the width of the.
+
+**Key Points:**
+- Width need not be correct along entire length but should be so at the base
+- Width to be approximately the same, but not greater than, the width of the
+- arrow from the Hong Kong to China
+- Second mark for accurate start and finish in USA / China respectively
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[2 marks]*
+
+---
+
+## Q2.10: Social and economic changes in the UK rural landscape are:  positive in an area of population growth  negative in an area of population decline. Do you agree? Justify your answer, using one or more examples.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that positive in an area of population growth. Whilst the question oes not state the need for an example the specification oes state the need for ‘one area’ of each so support of points with exemplification is to be expected. However, a balanced answer should also recognise that The questions asks for a rationale for whether changes are always positive or negative so some judgement as to the appropriateness of this term should be expected. Areas of population growth: ✓ Increased supply of housing on the outskirts of cities in accessible rural areas ✓ Opportunities for farmers and evelopers to make profits from land / house sales ✓ Business opportunities ue to more customers / more affluent customers in the area  House prices can rise, pricing out locals  Roads are congested so that the commute becomes stressful and roads more amaged  Services such as schools and octors surgeries are over crowded Areas of population ecline:  Social sustainability of communities is reduced with eclining / increasingly elderly population  Environmental quality can ecline as buildings and spaces are not maintained  Shops and other services close ue to lack of custom  Schools close ue to few children in the area and remaining children have to travel further to school ✓ Strong community spirit can emerge as a response to ‘keeping these areas alive’ ✓ Villages and small communities remain unchanged / unspoilt by modern ‘identikit’ evelopments. Section C Qu Pt Marking Guidance Total marks. • positive in an area of population growth.
+
+**Key Points:**
+- positive in an area of population growth
+- Whilst the question oes not state the need for an example the specification oes state the need for ‘one area’ of each so support of points with exemplification is to be expected
+- The questions asks for a rationale for whether changes are always positive or negative so some judgement as to the appropriateness of this term should be expected. Areas of population growth: ✓ Increased supply of housing on the outskirts of cities in accessible rural areas ✓ Opportunities for farmers and evelopers to make profits from land / house sales ✓ Business opportunities ue to more customers / more affluent customers in the area  House prices can rise, pricing out locals  Roads are congested so that the commute becomes stressful and roads more amaged  Services such as schools and octors surgeries are over crowded Areas of population ecline:  Social sustainability of communities is reduced with eclining / increasingly elderly population  Environmental quality can ecline as buildings and spaces are not maintained  Shops and other services close ue to lack of custom  Schools close ue to few children in the area and remaining children have to travel further to school ✓ Strong community spirit can emerge as a response to ‘keeping these areas alive’ ✓ Villages and small communities remain unchanged / unspoilt by modern ‘identikit’ evelopments. Section C Qu Pt Marking Guidance Total marks
+- • positive in an area of population growth
+- • negative in an area of population ecline
+- Do you agree?
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[9 marks]*
+
+---
+
+## Q2.2: Guatemala’s gross national income (GNI) in 2016 was US$135 billion. The amount Guatemala receives from migrants in the USA is US$7 billion. Calculate the percentage of Guatemala’s GNI that comes from payments sent home by people who have migrated to the USA. Answer to the nearest whole %.
+
+**Model Answer:**
+
+Amount Guatemala receives from migrants in the USA is US$7 billion. Calculate the percentage of Guatemala’s GNI that comes from payments sent home by people who have migrated to the USA. Answer to the nearest whole %. 5%.
+
+**Key Points:**
+- amount Guatemala receives from migrants in the USA is US$7 billion. Calculate the percentage of Guatemala’s GNI that comes from payments sent home by people who have migrated to the USA. Answer to the nearest whole %. 5%
+- amount Guatemala receives from migrants in the USA is US$7 billion
+- Calculate the percentage of Guatemala’s GNI that comes from payments
+- sent home by people who have migrated to the USA
+- Answer to the nearest whole %
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[1 marks]*
+
+---
+
+## Q2.3: Outline how uneven development can cause international migration.
+
+**Model Answer:**
+
+Candidates are not expected to make any use of Figure 6 and there is. For oing so, however they may use this to inform their answer by realising that.
+
+**Key Points:**
+- Candidates are not expected to make any use of Figure 6 and there is
+- for oing so, however they may use this to inform their answer by realising that
+- the migration has taken place in the opposite irection to that shown by the
+- remittance flows
+- People move from poorer countries to richer ones for better paid jobs / as
+- economic migrants and for a higher quality of life. The wealth ifference
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[3 marks]*
+
+---
+
+## Q2.4: Describe the social or cultural background of a named LIC/NEE country.
+
+**Model Answer:**
+
+Candidates should clarify the social or cultural background for a named country. Content will clearly vary widely according to the one selected. Credit a wide interpretation of social / cultural to include religious. One mark for a basic statement, eg. There are a number of ifferent ethnic groups in Nigeria.
+
+**Key Points:**
+- Candidates should clarify the social or cultural background for a named country. Content will clearly vary widely according to the one selected. Credit a wide interpretation of social / cultural to include religious. One mark for a basic statement, eg
+- There are a number of ifferent ethnic groups in Nigeria
+- Three tribal groups ominate Nigeria
+- There are a number of ifferent ethnic groups in Nigeria who have religious ifferences as some are Christian and others Muslim. (
+- Three tribal groups ominate Nigeria the Hausa in the north and Igbo and Yoruba in the south. (
+- There is religious conflict in Nigeria which has led to the rise of the Boko Haram terror group. (
+
+**Exam Technique:**
+
+Use specific data or visible evidence from the figure, and make comparisons explicit where asked.
+
+*[2 marks]*
+
+---
+
+## Q2.5: Using Figure 7, which trading group in South America has the most member countries?
+
+**Model Answer:**
+
+Member countries?
+
+**Key Points:**
+- member countries?
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.6: Explain how one country’s trading relationships with the wider world have changed. Use Figure 7 and an LIC/NEE you have studied.
+
+**Model Answer:**
+
+Case study content will clearly much epend on country chosen. Figure 7 use will be from naming trading blocs shown on the map. Countries that were once colonies used to serve as sources for primary products solely for the colonising country which was an unfair / exploitative relationship. This has changed because these countries are now independent and can choose with whom to trade and it is more equal and intra-continental trade has increased.
+
+**Key Points:**
+- Case study content will clearly much epend on country chosen
+- Figure 7 use will be from naming trading blocs shown on the map
+- Countries that were once colonies used to serve as sources for primary products solely for the colonising country which was an unfair / exploitative relationship
+- This has changed because these countries are now independent and can choose with whom to trade and it is more equal and intra-continental trade has increased
+- Arguably colonial relationships have simply been replaced by ‘economic colonialism’ through FDI by companies such as Glencore in Zambia (copper) and the DRC (cobalt); Shell in Nigeria or even countries such as the $60 billion China pledged to invest in Africa in 2018 alone
+- Because they now choose trading partners many countries now are part of regional trading blocs, therefore reducing the ominance of the former colonising countries. Eg Nigeria , from being a colony ependant on the UK now only has $1.2 bn of trade with the UK but $15 bn with the USA and India combined
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[4 marks]*
+
+---
+
+## Q2.7: Use Figure 8 to state one source of Asha’s funding.
+
+**Model Answer:**
+
+Any one from: Indian/British/Australian governments, some UK schools, international banks, other charities.
+
+**Key Points:**
+- Any one from: Indian/British/Australian governments, some UK schools, international banks, other charities
+- Any one from: Indian/British/Australian governments, some UK schools,
+- international banks, other charities
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.8: Use Figure 8 to state one way that Asha helps slum dwellers financially.
+
+**Model Answer:**
+
+Access to banks; open accounts with no money; benefit from loans at extremely good rates; tripled their incomes.
+
+**Key Points:**
+- Access to banks; open accounts with no money; benefit from loans at extremely good rates; tripled their incomes
+- Access to banks; open accounts with no money; benefit from loans at
+- extremely good rates; tripled their incomes
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q2.9: ‘Aid is the best way to reduce the development gap.’ To what extent do you agree? Use Figure 8 and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The specification lists: investment, industrial evelopment, tourism, aid, intermediate technology, Fairtrade, ebt relief and microfinance loans as strategies to reduce the evelopment gap. Aid – can help if spent on projects such as schools and health clinics but can be mis-spent and encourage ependency. However, a balanced answer should also recognise that Investment – can improve technology and infrastructure but is easily withdrawn by foreign investors. Tourism – generates increased income but much of the money is lost in leakage. Overall, the best conclusion is that the extent depends on the strength of the evidence and the named example used. Intermediate technology – simple and effective at a ‘grassroots’ level but can be limited in scale.
+
+**Key Points:**
+- The specification lists: investment, industrial evelopment, tourism, aid, intermediate technology, Fairtrade, ebt relief and microfinance loans as strategies to reduce the evelopment gap
+- Figure 8 use should be indicated by referencing the ‘bottom up’ / irect to those in most need aspect of aid and may be addressed as microfinance. Some evelopment beyond quoting the text would be needed for credit beyond L1
+- Aid – can help if spent on projects such as schools and health clinics but can be mis-spent and encourage ependency
+- Investment – can improve technology and infrastructure but is easily withdrawn by foreign investors
+- Tourism – generates increased income but much of the money is lost in leakage
+- Intermediate technology – simple and effective at a ‘grassroots’ level but can be limited in scale
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q3.1: Suggest how access to clean water may influence the differences in levels of well-being shown in Figure 9.
+
+**Model Answer:**
+
+Levels of well-being shown in Figure 9. Credit any reasonable idea or explanation of the link. Must make use of Figure 9 for any marks, this could be through naming places or inferred through use of the well-being scale. Candidates should clarify how ifferences arise for both marks. One mark for a basic statement, which might only explain one level of well- being, eg. Less clean water in Egypt leads to low well-being.
+
+**Key Points:**
+- levels of well-being shown in Figure 9. Credit any reasonable idea or explanation of the link. Must make use of Figure 9 for any marks, this could be through naming places or inferred through use of the well-being scale. Candidates should clarify how ifferences arise for both marks. One mark for a basic statement, which might only explain one level of well- being, eg
+- Less clean water in Egypt leads to low well-being
+- Young people in the UK have high well-being because clean water is always available
+- Low well-being results from childhood illness from irty water. Two marks for a evelopment or alternative idea which focusses on the ifferences, eg
+- Less clean water in Egypt leads to lower well-being than some African countries which might have better water supplies. (
+- Low well-being results from childhood illness from irty water as seen in Africa where well-being is always lower than HICs. (
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q3.2: Name one area in the UK that experiences water deficit.
+
+**Model Answer:**
+
+South East, London, Thames / Anglian Water, Lincolnshire.
+
+**Key Points:**
+- South East, London, Thames / Anglian Water, Lincolnshire
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q3.3: There is a need to transfer water in the UK to maintain supplies. Explain how changing demand for water increases this need.
+
+**Model Answer:**
+
+Explain how changing emand for water increases this need. The candidates need to connect the rising emand as being concentrated in. Areas of eficit, therefore increasing the need eg. The UK’s population is growing which means more water is needed much.
+
+**Key Points:**
+- Explain how changing emand for water increases this need. Credit some basic recognition of the issue for an initial mark. For fuller marks the candidates need to connect the rising emand as being concentrated in areas of eficit, therefore increasing the need eg: The UK’s population is growing which means more water is needed much of this growth is in the south east which means that there will be more unmet emand unless supplies are moved . Many people now have appliances which use water eg ishwashers and these are more likely in the richer south east so the emand in this area goes up when they have little water . Lots of new homes are being built in the south east and London is expected to be more than 10 million by 2035 so there will be more emand where there is already a eficit
+- Explain how changing emand for water increases this need
+- the candidates need to connect the rising emand as being concentrated in
+- areas of eficit, therefore increasing the need eg
+- The UK’s population is growing which means more water is needed much
+- of this growth is in the south east which means that there will be more
+
+**Exam Technique:**
+
+Use a point plus development structure: state the process or factor, then explain how it leads to the outcome.
+
+*[3 marks]*
+
+---
+
+## Q3.4: ‘Growing concern in the UK about the carbon footprint of food creates both opportunities and challenges.’ Use evidence from Figure 10a and Figure 10b to explain this statement.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that Figure 10a shows the carbon emissions from the production of ifferent foods, with beef and lamb creating the highest amount of CO² emissions. Figure 10b shows a screenshot of a website of a not-for-profit organisation which sells and elivers a variety of foods from local producers. However, a balanced answer should also recognise that Candidates should show awareness of how increasing greenhouse gas emissions from production and transport of food, over increasing istances, is causing challenges. The use of figure 10a to show the high levels of carbon emissions from meat production (particularly beef and lamb). Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Food miles and the impact of transportation by plane or lorries.
+
+**Key Points:**
+- Figure 10a shows the carbon emissions from the production of ifferent foods, with beef and lamb creating the highest amount of CO² emissions
+- Figure 10b shows a screenshot of a website of a not-for-profit organisation which sells and elivers a variety of foods from local producers
+- Candidates should show awareness of how increasing greenhouse gas emissions from production and transport of food, over increasing istances, is causing challenges
+- The use of figure 10a to show the high levels of carbon emissions from meat production (particularly beef and lamb)
+- Food miles and the impact of transportation by plane or lorries
+- Emissions created by methane from animals or the estruction of forests for grazing land
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q4.1: Complete Figure 11 using the following data for Somalia. Food % calories Dairy and eggs 24 Meat 7
+
+**Model Answer:**
+
+1+1 First mark for correct plotting of line, second for correct labelling / identification or suitable key. Max one mark if the sections are plotted in the wrong order. First mark for correct plotting of line, second for correct labelling / identification.
+
+**Key Points:**
+- 1+1 First mark for correct plotting of line, second for correct labelling / identification or suitable key. Max one mark if the sections are plotted in the wrong order
+- First mark for correct plotting of line, second for correct labelling / identification
+- or suitable key
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[2 marks]*
+
+---
+
+## Q4.2: State two differences between the typical daily diet in the UK and Somalia shown in Figure 11.
+
+**Model Answer:**
+
+Shown in Figure 11. Clear explicit ifferences from the graph are required. Must be ifferences not similarities. Credit use of contrasting figures as an implicit ifference. Contrasts include. The UK iet includes more meat.
+
+**Key Points:**
+- shown in Figure 11. Clear explicit ifferences from the graph are required. Must be ifferences not similarities. Credit use of contrasting figures as an implicit ifference. Contrasts include
+- The UK iet includes more meat
+- Somalia consumes 9% more airy and eggs than the UK
+- The Somalian iet includes 38% grain. Whereas in contrast the UK iet has less with only 26% . No ouble credit for opposite statements
+- shown in Figure 11
+- similarities
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q4.3: Outline one reason for differences in food supply between countries.
+
+**Model Answer:**
+
+Meat is an expensive food. The climate of a country affects the food that will grow there.
+
+**Key Points:**
+- Meat is an expensive food
+- The climate of a country affects the food that will grow there
+- Meat is an expensive food which fewer people in LICs can afford (
+- The climate of a country affects the food that will grow there . For example the monsoon climate in India is good for growing rice (
+- Some countries import a lot of their food which mean they can eat a more varied iet / food they can’t grow themselves ( Reasons given may consider quantity of food (calories consumed), quality or food types. The specification states food supply may be affected by economic evelopment, rising population, climate, technology, pests and isease, water stress, conflict and poverty. Credit any reasonable answer
+- • Meat is an expensive food
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q4.4: What is meant by food insecurity?
+
+**Model Answer:**
+
+Lack of food.
+
+**Key Points:**
+- Lack of food
+- Not being able to access safe and nutritious food
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q4.5: Suggest how food insecurity can have both economic and social impacts. Use Figure 12a and Figure 12b and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The specification requires food security and its impacts to be studied and makes reference to the economic and social impacts of famine, undernutrition, rising prices and social unrest. The question oes not specify so. However, a balanced answer should also recognise that There is no requirement to use a specific case study example or named place although candidates may well use examples to emonstrate their understanding. Reference to figures 12a/12b may be inferred even if not explicitly stated through such comments as: people are unhappy about rising food prices and gather to protest. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Impacts may be positive as well as negative.
+
+**Key Points:**
+- The specification requires food security and its impacts to be studied and makes reference to the economic and social impacts of famine, undernutrition, rising prices and social unrest
+- The question oes not specify so
+- There is no requirement to use a specific case study example or named place although candidates may well use examples to emonstrate their understanding
+- Reference to figures 12a/12b may be inferred even if not explicitly stated through such comments as: people are unhappy about rising food prices and gather to protest
+- Impacts may be positive as well as negative
+- Impacts are varied and any reasonable ones should be credited, likely impacts are: Social  Famine which may cause eath through starvation as well as malnutrition.  Illness and eath caused by undernutrition (poor iet with vitamin and mineral eficiency).  There may be social unrest if some groups of people have more access to food than others.  Protests and rioting in anger against the government.  Standard of living may ecline if more money is spent on food – at the expense of housing, healthcare and education. Economic  Rising food prices make it harder to afford, especially hitting the poorest hard.  People suffering from malnutrition or undernutrition may lack the energy to work and therefore cannot earn money or farm for themselves. ✓ Farmers or people with access to food may benefit from being able to charge higher prices. Qu Pt Marking Guidance Total marks
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q5.1: Complete Figure 13 using the following data for Asia. Sector % water used Industry 10 Household 9
+
+**Model Answer:**
+
+1+1 First mark for correct plotting of line, second for correct labelling / identification or suitable key. Max one mark if the sections are plotted in the wrong order. First mark for correct plotting of line, second for correct labelling / identification or.
+
+**Key Points:**
+- 1+1 First mark for correct plotting of line, second for correct labelling / identification or suitable key. Max one mark if the sections are plotted in the wrong order
+- First mark for correct plotting of line, second for correct labelling / identification or
+- suitable key
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[2 marks]*
+
+---
+
+## Q5.2: State two differences between the water use in Europe and Africa shown in Figure 13.
+
+**Model Answer:**
+
+In Figure 13. Clear explicit ifferences from the graph are required. Must be ifferences not similarities. Credit use of contrasting figures as an implicit ifference. Contrasts include. Africa uses more water in agriculture.
+
+**Key Points:**
+- in Figure 13. Clear explicit ifferences from the graph are required. Must be ifferences not similarities. Credit use of contrasting figures as an implicit ifference. Contrasts include
+- Africa uses more water in agriculture
+- In Europe industry consumes the most water, whereas in Africa agriculture is the largest section
+- Europe uses 22% of its water in households which is 9% greater than Africa . No ouble credit for opposite statements
+- in Figure 13
+- similarities
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q5.3: Outline one reason for differences in water use between countries.
+
+**Model Answer:**
+
+Countries may have a large population. Many African countries have high temperatures.
+
+**Key Points:**
+- Countries may have a large population
+- Many African countries have high temperatures
+- People in HICs can afford more appliances like washing machines Two marks for a eveloped idea eg
+- Countries may have a large population who will use more water for rinking and washing (
+- Many African countries have high temperatures so they need to use more water to help crops grow (
+- People in HICs can afford more appliances like washing machines which need water to work ( Reasons given may consider quantity of water consumed, quality or how the water is used. The specification states water supply may be affected by economic evelopment, rising population, climate, geology, pollution of supply, over- abstraction, limited infrastructure and poverty. Credit any reasonable answer
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q5.4: What is meant by water insecurity?
+
+**Model Answer:**
+
+Lack of water.
+
+**Key Points:**
+- Lack of water
+- Not being able to access clean and safe water
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q5.5: Suggest how water insecurity can have both economic and social impacts. Use Figure 14a and Figure 14b and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The specification requires water security and its impacts to be studied and makes reference to the economic and social issues of waterborne isease, food production, industrial output, and potential for conflict. The question oes not specify so. However, a balanced answer should also recognise that There is no requirement to use a specific case study example or named place although candidates may well use examples to emonstrate their understanding. Reference to figures 14a/14b may be inferred even if not explicitly stated through such comments as: people may have to spend their time trying to find supplies of water. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Impacts may be positive as well as negative.
+
+**Key Points:**
+- The specification requires water security and its impacts to be studied and makes reference to the economic and social issues of waterborne isease, food production, industrial output, and potential for conflict
+- The question oes not specify so
+- There is no requirement to use a specific case study example or named place although candidates may well use examples to emonstrate their understanding
+- Reference to figures 14a/14b may be inferred even if not explicitly stated through such comments as: people may have to spend their time trying to find supplies of water
+- Impacts may be positive as well as negative
+- Impacts are varied and any reasonable ones should be credited, likely impacts are: Social  Where there are shortages of water people may be forced to rink polluted or untreated water.  Waterborne isease which may lead to serious illness and eath.  Dehydration.  Shortage of food, if no water for irrigation, may also lead to illness and eath.  There may be social unrest if some groups of people have more access to water than others.  Disagreements may occur between countries if they share a water supply and one country extracts unfair amounts or reduces the supply, such as by building a am.  Higher food prices hit poor people isproportionately harder than others. Economic  Time spent queuing for or travelling to collect water may reduce the time available to carry out paid work.  Unreliable or low supplies of water mean farmers struggle to grow crops, leading to lower income.  Less crops may lead to higher prices.  Water shortages lead to lower industrial production, which may lead to lower wages, job losses and slow economic evelopment.  Illness may prevent people working and eaths of family members to waterborne isease may reduce the earning power of the family. ✓ Investment in infrastructure to ensure reliable supplies may create jobs. Qu Pt Marking Guidance Total marks
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
+
+## Q6.1: Complete Figure 15 using the following data for China. Energy source % energy generated Coal 59 Gas 6
+
+**Model Answer:**
+
+1+1 First mark for correct plotting of line, second for correct labelling / identification or suitable key. Max one mark if the sections are plotted in the wrong order. First mark for correct plotting of line, second for correct labelling / identification.
+
+**Key Points:**
+- 1+1 First mark for correct plotting of line, second for correct labelling / identification or suitable key. Max one mark if the sections are plotted in the wrong order
+- First mark for correct plotting of line, second for correct labelling / identification
+- or suitable key
+
+**Exam Technique:**
+
+Show accurate use of data from the figure or table and include units where appropriate.
+
+*[2 marks]*
+
+---
+
+## Q6.2: State two differences between the energy mix in the EU and China shown in Figure 15.
+
+**Model Answer:**
+
+In Figure 15. Clear explicit ifferences from the graph are required. Must be ifferences not similarities. Credit use of contrasting figures as an implicit ifference. Contrasts include. The EU uses more nuclear power.
+
+**Key Points:**
+- in Figure 15. Clear explicit ifferences from the graph are required. Must be ifferences not similarities. Credit use of contrasting figures as an implicit ifference. Contrasts include
+- The EU uses more nuclear power
+- China uses nearly ouble the % amount of Hydro power than the EU
+- China’s largest segment is coal, whereas the EU’s most popular energy source is oil. No ouble credit for opposite statements
+- in Figure 15
+- similarities
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[2 marks]*
+
+---
+
+## Q6.3: Outline one reason for differences in energy use between countries.
+
+**Model Answer:**
+
+Some countries like China have large supplies of coal. HICs and NEEs have more factories.
+
+**Key Points:**
+- Some countries like China have large supplies of coal
+- HICs and NEEs have more factories
+- Some governments invest more money in renewable energy Two marks for a eveloped idea eg
+- Some countries like China have large supplies of coal so it is cheaper to use that rather than oil (
+- HICs and NEEs have more factories which use energy in the production process (
+- Some governments invest more money in renewable energy making it more likely they will get their energy from solar or wind power ( Reasons given may consider quantity of energy consumed, the energy sources used or how the energy is used. The specification states energy supply may be affected by economic evelopment, rising population, technology, physical factors, cost of exploitation, and production and political factors. Credit any reasonable answer
+
+**Exam Technique:**
+
+Give one valid point and develop it briefly with a cause, effect or example.
+
+*[2 marks]*
+
+---
+
+## Q6.4: What is meant by energy insecurity?
+
+**Model Answer:**
+
+Lack of energy.
+
+**Key Points:**
+- Lack of energy
+- Not being able to access affordable and reliable energy supplies
+
+**Exam Technique:**
+
+Answer directly using accurate GCSE geography terminology.
+
+*[1 marks]*
+
+---
+
+## Q6.5: Suggest how energy insecurity can have both economic and environmental impacts. Use Figure 16a and Figure 16b and your own understanding.
+
+**Model Answer:**
+
+A strong answer should make a clear judgement and support it with geographical evidence. One important point is that The specification requires energy security and its impacts to be studied and makes reference to the economic and environmental impacts of exploration of ifficult and environmentally sensitive areas, economic and environmental costs, food production and industrial output. The question oes not specify so. However, a balanced answer should also recognise that There is no requirement to use a specific case study example or named place although candidates may well use examples to emonstrate their understanding. Reference to figures 16a and 16b may be inferred even if not explicitly stated through such comments as: oil can wash up on beaches amaging habitats. Overall, the best conclusion is that both sides should be considered before deciding which factor or impact is most significant. Impacts may be positive as well as negative.
+
+**Key Points:**
+- The specification requires energy security and its impacts to be studied and makes reference to the economic and environmental impacts of exploration of ifficult and environmentally sensitive areas, economic and environmental costs, food production and industrial output
+- The question oes not specify so
+- There is no requirement to use a specific case study example or named place although candidates may well use examples to emonstrate their understanding
+- Reference to figures 16a and 16b may be inferred even if not explicitly stated through such comments as: oil can wash up on beaches amaging habitats
+- Impacts may be positive as well as negative
+- Impacts are varied and any reasonable ones should be credited, likely impacts are: Economic  The price of energy may rise.  Countries that must rely on importing fuel are reliant and more vulnerable to price increases.  Extracting energy sources from more remote areas is more expensive and requires more expensive equipment.  People may have to spend time walking a large istance to collect firewood as their main energy source rather than using that time to grow food or for paid work.  Energy shortages and higher economic costs lead to lower industrial production, which may lead to lower wages, job losses and slow economic evelopment.  Companies may leave and go to a country with more reliable and cheaper energy supplies, leading to job losses.  Growing biofuels rather than agricultural produce increases the price of food and can reduce the income made exporting food. ✓ Some farmers may earn more money growing biofuels. ✓ New jobs may be created in energy companies as countries invest in renewable energy. ✓ Jobs may be created in areas with limited opportunities. Environmental  Countries may need to explore and use environmentally sensitive areas to access energy supplies.  Fragile environments are put at risk and can be amaged, such as the Arctic and the Amazon Rainforest.  The transportation of energy resources, such as oil, can lead to spillages on land and sea, causing catastrophic amage to wildlife.  Air pollution from fossil fuel power stations. ✓ People may use energy more wisely as prices increase, which reduces emissions
+
+**Exam Technique:**
+
+Make a clear judgement, use named examples or figure evidence where required, and explain both sides before reaching a conclusion.
+
+*[6 marks]*
+
+---
