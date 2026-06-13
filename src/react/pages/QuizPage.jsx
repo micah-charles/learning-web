@@ -8,6 +8,7 @@ import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/layout/Controls.jsx";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
+import { LearningImage } from "../components/learning/LearningImage.jsx";
 import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
 
@@ -257,6 +258,14 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
   const { feedback, awaitingNext, buildState } = session;
 
   const speechLang = question?.speechLanguage || "de-DE";
+  const questionImage = question?.image ? (
+    <LearningImage
+      src={question.image}
+      alt={question.imageAlt || question.prompt || "Quiz image"}
+      caption={question.imageCaption || ""}
+      className="lw-question-image"
+    />
+  ) : null;
 
   function handleSpeakPrompt() {
     if (question?.speechText) speak(question.speechText, speechLang);
@@ -292,8 +301,10 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
             {question.modeTitle}
           </div>
         )}
+        {question.imagePlacement !== "bottom" && questionImage}
         <div className="lw-question-prompt">{question.prompt}</div>
         {question.subtitle && <div className="lw-question-subtitle">{question.subtitle}</div>}
+        {question.imagePlacement === "bottom" && questionImage}
       </div>
 
       {question.kind === "choice" && (

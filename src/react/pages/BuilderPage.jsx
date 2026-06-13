@@ -6,6 +6,7 @@ import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
+import { LearningImage } from "../components/learning/LearningImage.jsx";
 import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubjectAndCurriculum, getBuilderPackSubject, SUBJECTS, listCurricula } from "@/data.js";
 
 const FILTER_OPTIONS = [
@@ -187,6 +188,15 @@ export default function BuilderPage() {
               </select>
             )}
           </div>
+
+          {currentCard.image && (
+            <LearningImage
+              src={currentCard.image}
+              alt={currentCard.imageAlt || currentCard.prompt || "Builder image"}
+              caption={currentCard.imageCaption || ""}
+              className="lw-builder-image"
+            />
+          )}
 
           <TileBuilder
             answerTiles={tiles.answerTiles}

@@ -196,6 +196,30 @@ Every item in a unified pack has a fixed outer envelope:
 | `tags` | string[] | Additional labels (origin, category, etc.) |
 | `data` | object | Polymorphic payload — shape depends on `type` |
 
+### Optional image metadata
+
+Any revision, reading, or builder item may include image metadata either on the item envelope or inside `data`. Prefer putting it inside `data` so the image travels with the prompt/passage payload.
+
+```json
+{
+  "data": {
+    "image": "/assets/history/y7/section-c/athelstan_military_conquest_comic.png",
+    "imageAlt": "Six-panel comic showing Athelstan's conquest, law and kingship.",
+    "imageCaption": "Visual argument: conquest gave Athelstan power, while law and Christianity made that power recognised.",
+    "imagePlacement": "top"
+  }
+}
+```
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `image` | string | Optional image source. Prefer root-relative public assets such as `/assets/...`; HTTPS is also supported in the React image renderer. |
+| `imageAlt` | string | Accessible alt text. Required in practice for new packs, even though old data may omit it. |
+| `imageCaption` | string | Optional caption shown below the image. |
+| `imagePlacement` | `"top"` \| `"inline"` \| `"bottom"` | Placement hint. Current renderers treat `inline` like `top`. |
+
+Study Book Markdown also supports image syntax such as `![alt](/assets/...)`. Do not reference an image that is not present under `public/`; the build may still pass, but the learning experience will show a broken visual.
+
 ### Valid item `type` values
 
 | Type | Used by | Quiz mode |

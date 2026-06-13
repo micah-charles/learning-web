@@ -7,6 +7,7 @@ import { useTutor } from "../../features/tutor/TutorProvider.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
+import { LearningImage } from "../components/learning/LearningImage.jsx";
 import { listPassageGroups, listPassageGroupsBySubjectAndCurriculum, listPassagePacks, SUBJECTS, listCurricula } from "@/data.js";
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
@@ -238,6 +239,14 @@ function QuestionCard({ question: q, answers, onAnswer, revealed, onShowEvidence
   const isAnswered = userAnswer !== undefined;
   const isMCQ = q.type === "multiple_choice" || (Array.isArray(q.options) && q.options.length > 0);
   const correctOpt = isMCQ ? (q.options?.[q.correct_option_index] ?? q.correct_answer) : null;
+  const questionImage = q.image ? (
+    <LearningImage
+      src={q.image}
+      alt={q.imageAlt || q.question || "Question image"}
+      caption={q.imageCaption || ""}
+      className="lw-rws-q-image"
+    />
+  ) : null;
 
   return (
     <div className="lw-rws-q-card">
@@ -252,7 +261,9 @@ function QuestionCard({ question: q, answers, onAnswer, revealed, onShowEvidence
       </div>
 
       {/* Question text */}
+      {q.imagePlacement !== "bottom" && questionImage}
       <p className="lw-rws-q-text">{q.question}</p>
+      {q.imagePlacement === "bottom" && questionImage}
 
       {/* Evidence linker — only renders when sourceRef is present in the question */}
       {q.sourceRef && (
@@ -371,6 +382,14 @@ function ReadingWorkspace({
   const displayText = sourceText || targetText;
   // Optional translation block: only when a distinct translation exists.
   const hasTranslation = targetText && targetText !== displayText;
+  const passageImage = passage?.image ? (
+    <LearningImage
+      src={passage.image}
+      alt={passage.imageAlt || passage?.targetTitle || passage?.sourceTitle || "Passage image"}
+      caption={passage.imageCaption || ""}
+      className="lw-rws-image"
+    />
+  ) : null;
 
   const allQuestions  = passage?.questions || [];
   const totalQ        = allQuestions.length;
@@ -532,6 +551,8 @@ function ReadingWorkspace({
             </div>
           )}
 
+          {passage?.imagePlacement !== "bottom" && passageImage}
+
           {/* Main passage text with numbered paragraph anchors */}
           <div
             className="lw-rws-text"
@@ -539,6 +560,8 @@ function ReadingWorkspace({
           >
             {renderNumberedParagraphs(displayText, { highlightPara, highlightQuote })}
           </div>
+
+          {passage?.imagePlacement === "bottom" && passageImage}
 
           {/* Translation block (bilingual packs only — shown when "Show translation" is on) */}
           {showSource && hasTranslation && (
