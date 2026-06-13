@@ -2830,6 +2830,14 @@ Generated from `data/generated/manifest.json`.
 - Study notes: `/data/Packs/ks3/science/working_scientifically_scientific_investigation/study_notes.md`
 - Pack JSON: `/data/Packs/ks3/science/working_scientifically_scientific_investigation/pack_unified.json`
 
+## Y7 RS/RP Exam Visual Practice Pack
+
+- Pack ID: `y7_rs_rp_exam_visual_practice`
+- Subject: `religion`
+- Curriculum: `ks3`
+- Study notes: `/data/Packs/ks3/religion/y7_rs_rp_exam_visual_practice/study_notes.md`
+- Pack JSON: `/data/Packs/ks3/religion/y7_rs_rp_exam_visual_practice/pack_unified.json`
+
 ## Year 7 History Visual Essay Practice
 
 - Pack ID: `ks3_history_y7_examination_practice`
