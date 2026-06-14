@@ -80,6 +80,12 @@ export const INTEREST_OPTIONS = [
     modules: ["quiz", "reading", "builder", "progress"],
   },
   {
+    id: "create-packs",
+    title: "Create my own packs",
+    description: "Upload your own JSON packs or build an AI prompt for new material.",
+    modules: ["mypacks", "ai-prompt", "quiz", "reading", "progress"],
+  },
+  {
     id: "overview",
     title: "I want an overview first",
     description: "Start gently with Home and About before choosing a route.",
@@ -195,6 +201,82 @@ export function getEverythingPrefs() {
     selectedSubjects: [],
     onboardingVersion: ONBOARDING_VERSION,
   };
+}
+
+export function getWizardNeedsLevel(primaryGoal) {
+  return primaryGoal === "school-revision" || primaryGoal === "reading";
+}
+
+function curriculumFromWizardLevel(level) {
+  if (level === "ks3") return ["ks3"];
+  if (level === "gcse") return ["gcse"];
+  if (level === "us-middle-school") return ["us-middle-school"];
+  return [];
+}
+
+export function getPresetPrefsFromWizard({ primaryGoal, level } = {}) {
+  if (primaryGoal === "explore") return getEverythingPrefs();
+
+  if (primaryGoal === "languages") {
+    return normaliseOnboardingPrefs({
+      selectedInterests: ["languages"],
+      selectedModules: ["home", "language", "quiz", "vocab", "builder", "reading", "progress"],
+      selectedSubjects: ["language"],
+      selectedCurriculums: [],
+    });
+  }
+
+  if (primaryGoal === "school-revision") {
+    return normaliseOnboardingPrefs({
+      selectedInterests: ["ks3-gcse"],
+      selectedModules: ["home", "quiz", "reading", "builder", "progress"],
+      selectedSubjects: [],
+      selectedCurriculums: level === "unsure" || !level ? ["ks3", "gcse"] : curriculumFromWizardLevel(level),
+    });
+  }
+
+  if (primaryGoal === "reading") {
+    return normaliseOnboardingPrefs({
+      selectedInterests: ["reading"],
+      selectedModules: ["home", "reading", "quiz", "progress"],
+      selectedSubjects: [],
+      selectedCurriculums: curriculumFromWizardLevel(level),
+    });
+  }
+
+  if (primaryGoal === "games") {
+    return normaliseOnboardingPrefs({
+      selectedInterests: ["mini-games"],
+      selectedModules: ["home", "arcade", "quiz", "builder", "progress"],
+      selectedSubjects: [],
+      selectedCurriculums: [],
+    });
+  }
+
+  if (primaryGoal === "create-packs") {
+    return normaliseOnboardingPrefs({
+      selectedInterests: ["create-packs"],
+      selectedModules: ["home", "mypacks", "ai-prompt", "quiz", "reading", "progress"],
+      selectedSubjects: [],
+      selectedCurriculums: [],
+    });
+  }
+
+  return normaliseOnboardingPrefs({
+    selectedInterests: ["overview"],
+    selectedModules: ["home", "about", "quiz", "reading", "arcade"],
+    selectedSubjects: [],
+    selectedCurriculums: [],
+  });
+}
+
+export function getWizardRecommendationLabels(prefs = {}) {
+  if (isEverythingMode(prefs)) return ["All tabs", "All packs", "All curricula"];
+  const moduleLabels = onboardingSummaryLabels(prefs).modules;
+  const extras = (prefs.selectedInterests || []).some((id) => ["ks3-gcse", "reading", "study-books"].includes(id))
+    ? ["Study Book"]
+    : [];
+  return unique([...moduleLabels, ...extras]).filter((label) => !["Home", "About"].includes(label));
 }
 
 function isUploadedPack(pack) {

@@ -1,12 +1,15 @@
 import { useMemo, useState } from "react";
 import {
-  ALL_MODULE_IDS,
   INTEREST_OPTIONS,
   getDefaultOnboardingPrefs,
   getEverythingPrefs,
+  getPresetPrefsFromWizard,
   getRecommendedCurriculumsFromInterests,
   getRecommendedModulesFromInterests,
   getRecommendedSubjectsFromInterests,
+  getWizardNeedsLevel,
+  getWizardRecommendationLabels,
+  isEverythingMode,
   normaliseOnboardingPrefs,
 } from "../utils/personalisation.js";
 
@@ -42,12 +45,59 @@ const SUBJECT_OPTIONS = [
   { id: "religion", label: "Religious Studies" },
 ];
 
+const LEARNER_OPTIONS = [
+  { id: "student", title: "A child / student", description: "Keep the first route focused and easy to start." },
+  { id: "parent", title: "A parent helping a child", description: "Prioritise clear practice and progress tracking." },
+  { id: "teacher", title: "A teacher / tutor", description: "Surface class-friendly pack and quiz tools." },
+  { id: "explorer", title: "I am exploring the website", description: "Give me a guided tour before I choose deeply." },
+];
+
+const GOAL_OPTIONS = [
+  { id: "languages", title: "Learn a language", description: "Language Ladder, vocabulary, quiz and sentence practice." },
+  { id: "school-revision", title: "School revision", description: "Quiz, reading, builder practice and progress." },
+  { id: "reading", title: "Reading comprehension", description: "Passages with follow-up questions and study support." },
+  { id: "games", title: "Play learning games", description: "Arcade, quiz challenges and builder games." },
+  { id: "create-packs", title: "Create my own packs", description: "Upload your own packs or build an AI prompt." },
+  { id: "explore", title: "Explore everything", description: "Show all tabs, packs and curricula." },
+];
+
+const LEVEL_OPTIONS = [
+  { id: "ks3", title: "KS3", description: "UK Key Stage 3 practice." },
+  { id: "gcse", title: "GCSE", description: "UK GCSE-style revision." },
+  { id: "us-middle-school", title: "US Middle School", description: "US middle-school level practice." },
+  { id: "unsure", title: "Not sure - recommend for me", description: "Start broad and narrow it later." },
+];
+
 function toggleValue(values, value) {
   return values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
 }
 
 function mergeUnique(...groups) {
   return [...new Set(groups.flat().filter(Boolean))];
+}
+
+function saveWithFallback(onComplete, onSkipEverything, prefs) {
+  if (isEverythingMode(prefs)) {
+    if (onSkipEverything) onSkipEverything(prefs);
+    else onComplete?.(prefs);
+    return;
+  }
+  onComplete?.(prefs);
+}
+
+function WizardChoice({ selected, title, description, onClick }) {
+  return (
+    <button
+      type="button"
+      className={`lw-onboarding-choice-card${selected ? " is-selected" : ""}`}
+      onClick={onClick}
+      aria-pressed={selected}
+    >
+      <span className="lw-onboarding-option-title">{title}</span>
+      <span className="lw-onboarding-option-copy">{description}</span>
+      <span className="lw-onboarding-option-state">{selected ? "Selected" : "Choose"}</span>
+    </button>
+  );
 }
 
 function OptionButton({ selected, title, description, onClick, tone = "" }) {
@@ -60,9 +110,7 @@ function OptionButton({ selected, title, description, onClick, tone = "" }) {
     >
       <span className="lw-onboarding-option-title">{title}</span>
       <span className="lw-onboarding-option-copy">{description}</span>
-      <span className="lw-onboarding-option-state">
-        {selected ? "Selected" : "Choose"}
-      </span>
+      <span className="lw-onboarding-option-state">{selected ? "Selected" : "Choose"}</span>
     </button>
   );
 }
@@ -80,18 +128,19 @@ function SmallToggle({ id, label, selected, onToggle }) {
   );
 }
 
-export default function OnboardingPage({
-  initialPrefs,
+function AdvancedSettings({
+  selectedInterests,
+  selectedModules,
+  selectedCurriculums,
+  selectedSubjects,
+  setSelectedInterests,
+  setSelectedModules,
+  setSelectedCurriculums,
+  setSelectedSubjects,
   onComplete,
   onSkipEverything,
-  editMode = false,
+  onBackToWizard,
 }) {
-  const seed = { ...getDefaultOnboardingPrefs(), ...(initialPrefs || {}) };
-  const [selectedInterests, setSelectedInterests] = useState(() => seed.selectedInterests || []);
-  const [selectedModules, setSelectedModules] = useState(() => seed.selectedModules || []);
-  const [selectedCurriculums, setSelectedCurriculums] = useState(() => seed.selectedCurriculums || []);
-  const [selectedSubjects, setSelectedSubjects] = useState(() => seed.selectedSubjects || []);
-
   const recommended = useMemo(() => {
     const modules = getRecommendedModulesFromInterests(selectedInterests);
     const curriculums = getRecommendedCurriculumsFromInterests(selectedInterests);
@@ -132,29 +181,19 @@ export default function OnboardingPage({
   }
 
   function saveEverything() {
-    const next = getEverythingPrefs();
-    if (onSkipEverything) onSkipEverything(next);
-    else onComplete?.(next);
+    saveWithFallback(onComplete, onSkipEverything, getEverythingPrefs());
   }
 
   return (
-    <main className="lw-page lw-onboarding" aria-labelledby="onboarding-title">
-      <section className="lw-card lw-onboarding-hero">
-        <p className="lw-onboarding-eyebrow">{editMode ? "Personalise your space" : "First visit setup"}</p>
-        <h1 id="onboarding-title">Welcome to FoxChild Learning</h1>
-        <p className="lw-onboarding-subtitle">
-          Choose what you want to learn today. You can change this later.
-        </p>
-      </section>
-
+    <>
       <section className="lw-card">
         <div className="lw-onboarding-section-head">
           <div>
-            <h2 className="lw-section-title">What are you looking for?</h2>
-            <p className="lw-subtitle">Pick one or more. We&apos;ll recommend a simpler set of tabs and packs.</p>
+            <h2 className="lw-section-title">Advanced settings</h2>
+            <p className="lw-subtitle">Fine-tune exactly which interests, tabs, curricula and subjects are visible.</p>
           </div>
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={saveEverything}>
-            Show me everything
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={onBackToWizard}>
+            Back to simple setup
           </button>
         </div>
 
@@ -174,7 +213,7 @@ export default function OnboardingPage({
 
       {!everythingSelected && (
         <section className="lw-card">
-          <h2 className="lw-section-title">Recommended modules</h2>
+          <h2 className="lw-section-title">Modules and filters</h2>
           <p className="lw-subtitle">
             These are based on your choices. Add or remove anything you want before saving.
           </p>
@@ -236,15 +275,221 @@ export default function OnboardingPage({
           <button className="lw-btn lw-btn-secondary" type="button" onClick={saveEverything}>
             Show everything
           </button>
-          <button
-            className="lw-btn lw-btn-primary"
-            type="button"
-            onClick={everythingSelected ? saveEverything : saveGuided}
-          >
-            {editMode ? "Save learning setup" : "Start learning"}
+          <button className="lw-btn lw-btn-primary" type="button" onClick={everythingSelected ? saveEverything : saveGuided}>
+            Save learning setup
           </button>
         </div>
       </section>
-    </main>
+    </>
+  );
+}
+
+export default function OnboardingPage({
+  initialPrefs,
+  onComplete,
+  onSkipEverything,
+  editMode = false,
+}) {
+  const seed = { ...getDefaultOnboardingPrefs(), ...(initialPrefs || {}) };
+  const [step, setStep] = useState("learner");
+  const [learnerType, setLearnerType] = useState("");
+  const [primaryGoal, setPrimaryGoal] = useState("");
+  const [level, setLevel] = useState("unsure");
+  const [advancedMode, setAdvancedMode] = useState(false);
+  const [selectedInterests, setSelectedInterests] = useState(() => seed.selectedInterests || []);
+  const [selectedModules, setSelectedModules] = useState(() => seed.selectedModules || []);
+  const [selectedCurriculums, setSelectedCurriculums] = useState(() => seed.selectedCurriculums || []);
+  const [selectedSubjects, setSelectedSubjects] = useState(() => seed.selectedSubjects || []);
+
+  const wizardPrefs = useMemo(
+    () => getPresetPrefsFromWizard({ learnerType, primaryGoal, level }),
+    [learnerType, primaryGoal, level],
+  );
+  const recommendationLabels = useMemo(() => getWizardRecommendationLabels(wizardPrefs), [wizardPrefs]);
+  const needsLevel = getWizardNeedsLevel(primaryGoal);
+
+  function saveEverything() {
+    saveWithFallback(onComplete, onSkipEverything, getEverythingPrefs());
+  }
+
+  function chooseLearner(id) {
+    setLearnerType(id);
+    setStep("goal");
+  }
+
+  function chooseGoal(id) {
+    setPrimaryGoal(id);
+    setStep(getWizardNeedsLevel(id) ? "level" : "summary");
+  }
+
+  function chooseLevel(id) {
+    setLevel(id);
+    setStep("summary");
+  }
+
+  function customiseMore() {
+    setSelectedInterests(wizardPrefs.selectedInterests || []);
+    setSelectedModules(wizardPrefs.selectedModules || []);
+    setSelectedCurriculums(wizardPrefs.selectedCurriculums || []);
+    setSelectedSubjects(wizardPrefs.selectedSubjects || []);
+    setAdvancedMode(true);
+  }
+
+  function startLearning() {
+    saveWithFallback(onComplete, onSkipEverything, wizardPrefs);
+  }
+
+  return (
+    <div className="lw-page lw-onboarding" aria-labelledby="onboarding-title">
+      <section className="lw-card lw-onboarding-hero">
+        <p className="lw-onboarding-eyebrow">{editMode ? "Personalise your space" : "First visit setup"}</p>
+        <h1 id="onboarding-title">Welcome to FoxChild Learning</h1>
+        <p className="lw-onboarding-subtitle">
+          Choose what you want to learn today. You can change this later.
+        </p>
+      </section>
+
+      {advancedMode ? (
+        <AdvancedSettings
+          selectedInterests={selectedInterests}
+          selectedModules={selectedModules}
+          selectedCurriculums={selectedCurriculums}
+          selectedSubjects={selectedSubjects}
+          setSelectedInterests={setSelectedInterests}
+          setSelectedModules={setSelectedModules}
+          setSelectedCurriculums={setSelectedCurriculums}
+          setSelectedSubjects={setSelectedSubjects}
+          onComplete={onComplete}
+          onSkipEverything={onSkipEverything}
+          onBackToWizard={() => setAdvancedMode(false)}
+        />
+      ) : (
+        <>
+          <section className="lw-card lw-onboarding-summary">
+            <div className="lw-onboarding-section-head">
+              <div>
+                <div className="lw-onboarding-stepper" aria-label="Setup progress">
+                  <span className={step === "learner" ? "is-current" : ""}>1. Learner</span>
+                  <span className={step === "goal" ? "is-current" : ""}>2. Goal</span>
+                  <span className={step === "level" ? "is-current" : ""}>3. Level</span>
+                  <span className={step === "summary" ? "is-current" : ""}>4. Start</span>
+                </div>
+              </div>
+              <div className="lw-btn-group">
+                {editMode && (
+                  <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setAdvancedMode(true)}>
+                    Advanced settings
+                  </button>
+                )}
+                <button className="lw-btn lw-btn-secondary" type="button" onClick={saveEverything}>
+                  Show everything
+                </button>
+              </div>
+            </div>
+          </section>
+
+          {step === "learner" && (
+            <section className="lw-card">
+              <h2 className="lw-section-title">Who is learning?</h2>
+              <p className="lw-subtitle">Who are you setting this up for?</p>
+              <div className="lw-onboarding-choice-grid">
+                {LEARNER_OPTIONS.map((option) => (
+                  <WizardChoice
+                    key={option.id}
+                    title={option.title}
+                    description={option.description}
+                    selected={learnerType === option.id}
+                    onClick={() => chooseLearner(option.id)}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {step === "goal" && (
+            <section className="lw-card">
+              <h2 className="lw-section-title">What do you want to do first?</h2>
+              <p className="lw-subtitle">Pick the first thing you want FoxChild to make easy.</p>
+              <div className="lw-onboarding-choice-grid">
+                {GOAL_OPTIONS.map((option) => (
+                  <WizardChoice
+                    key={option.id}
+                    title={option.title}
+                    description={option.description}
+                    selected={primaryGoal === option.id}
+                    onClick={() => chooseGoal(option.id)}
+                  />
+                ))}
+              </div>
+              <div className="lw-onboarding-actions">
+                <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setStep("learner")}>
+                  Back
+                </button>
+              </div>
+            </section>
+          )}
+
+          {step === "level" && needsLevel && (
+            <section className="lw-card">
+              <h2 className="lw-section-title">Which level fits best?</h2>
+              <p className="lw-subtitle">Choose the closest level. You can change this later.</p>
+              <div className="lw-onboarding-choice-grid">
+                {LEVEL_OPTIONS.map((option) => (
+                  <WizardChoice
+                    key={option.id}
+                    title={option.title}
+                    description={option.description}
+                    selected={level === option.id}
+                    onClick={() => chooseLevel(option.id)}
+                  />
+                ))}
+              </div>
+              <div className="lw-onboarding-actions">
+                <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setStep("goal")}>
+                  Back
+                </button>
+              </div>
+            </section>
+          )}
+
+          {step === "summary" && (
+            <section className="lw-card lw-onboarding-summary">
+              <p className="lw-onboarding-eyebrow">Recommended setup</p>
+              <h2 className="lw-section-title">
+                {isEverythingMode(wizardPrefs) ? "Everything mode is ready." : "We recommend starting with:"}
+              </h2>
+              <div className="lw-learning-summary-row">
+                {recommendationLabels.map((label) => (
+                  <span key={label} className="lw-chip blue">{label}</span>
+                ))}
+              </div>
+              <p className="lw-subtitle">
+                {isEverythingMode(wizardPrefs)
+                  ? "You will see all tabs, all packs and all curricula."
+                  : "This keeps the app calmer at first. You can change this later from Manage Learning."}
+              </p>
+              <div className="lw-btn-group">
+                <button
+                  className="lw-btn lw-btn-ghost"
+                  type="button"
+                  onClick={() => setStep(needsLevel ? "level" : "goal")}
+                >
+                  Back
+                </button>
+                <button className="lw-btn lw-btn-primary" type="button" onClick={startLearning}>
+                  Start learning
+                </button>
+                <button className="lw-btn lw-btn-secondary" type="button" onClick={customiseMore}>
+                  Customise more
+                </button>
+                <button className="lw-btn lw-btn-secondary" type="button" onClick={saveEverything}>
+                  Show everything instead
+                </button>
+              </div>
+            </section>
+          )}
+        </>
+      )}
+    </div>
   );
 }
