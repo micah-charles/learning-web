@@ -25,8 +25,8 @@ function compute(box) {
   return { cols, rows, cellPx: cell };
 }
 
-export function useBoardMetrics(wrapperRef) {
-  const [metrics, setMetrics] = useState({ cols: 11, rows: 8, cellPx: 44 });
+export function useBoardMetrics(wrapperRef, observeKey = true) {
+  const [metrics, setMetrics] = useState({ cols: 8, rows: 11, cellPx: 34 });
   const lastRef = useRef("");
 
   useLayoutEffect(() => {
@@ -51,7 +51,7 @@ export function useBoardMetrics(wrapperRef) {
       ro.disconnect();
       window.removeEventListener("orientationchange", measure);
     };
-  }, [wrapperRef]);
+  }, [wrapperRef, observeKey]);
 
   return metrics;
 }

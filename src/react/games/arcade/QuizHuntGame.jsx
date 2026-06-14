@@ -199,12 +199,12 @@ const DEFAULT_GOAL = { mode: "questions", target: 20 };
 
 export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord, hideEndOverlay = false }) {
   const wrapRef = useRef(null);
-  const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
-  const cellPxRef = useRef(cellPx);
-  cellPxRef.current = cellPx;
   const gRef = useRef(null);
   const [view, setView] = useState(null);
   const [paused, setPaused] = useState(false);
+  const { cols, rows, cellPx } = useBoardMetrics(wrapRef, !!view);
+  const cellPxRef = useRef(cellPx);
+  cellPxRef.current = cellPx;
 
   // (Re)initialise when content, grid dimensions, or goal change.
   useEffect(() => {

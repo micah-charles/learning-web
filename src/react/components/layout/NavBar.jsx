@@ -20,16 +20,16 @@ const DESKTOP_UTILITY_TABS = [
 ];
 
 export const MOBILE_PRIMARY_TABS = [
-  { id: "home",     label: "Home",  icon: "🏠" },
-  { id: "language", label: "Ladder", icon: "✨" },
-  { id: "quiz",     label: "Quiz",  icon: "✨" },
-  { id: "reading",  label: "Read",  icon: "📖" },
-  { id: "vocab",    label: "Vocab", icon: "📚" },
+  { id: "home",       label: "Home",       icon: "🏠" },
+  { id: "language",   label: "Ladder",     icon: "✨" },
+  { id: "quiz",       label: "Quiz",       icon: "✨" },
+  { id: "smart-test", label: "Smart Test", icon: "🧪" },
+  { id: "arcade",     label: "Arcade",     icon: "🎮" },
 ];
 
 export const MOBILE_MORE_TABS = [
-  { id: "smart-test", label: "Smart Test", icon: "🧪" },
-  { id: "arcade",     label: "Arcade",     icon: "🎮" },
+  { id: "vocab",      label: "Vocab",      icon: "📚" },
+  { id: "reading",    label: "Read",       icon: "📖" },
   { id: "builder",    label: "Builder",    icon: "🧩" },
   { id: "crossword",  label: "Crossword",  icon: "✏️" },
   { id: "progress",   label: "Progress",   icon: "📈" },
@@ -73,7 +73,7 @@ function DesktopNav({ active, onChange, allowedTabs }) {
 function MobileTabButton({ tab, active, onClick }) {
   return (
     <button
-      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${tab.id === "language" ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test") ? " tone-blue" : ""}`}
+      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test") ? " tone-blue" : ""}`}
       onClick={onClick}
       type="button"
       aria-current={active ? "page" : undefined}
