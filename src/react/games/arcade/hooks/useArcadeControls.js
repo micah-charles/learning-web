@@ -2,13 +2,12 @@
  * useArcadeControls.js — unified directional input for desktop + touch.
  *
  * Desktop: Arrow keys + WASD (keydown on window).
- * Touch:   swipe gestures on the supplied element ref.
+ * Touch:   swipe gestures through handlers placed on the board.
  * Also exposes `press(dir)` for on-screen D-pad buttons.
  *
- * The latest requested direction is written into a ref (`directionRef`) so the
- * game loop can read it each step without causing re-renders. An optional
- * `onDirection` callback fires on each input (for "first move starts the game"
- * and sound).
+ * `directionRef` is the current moving direction. `queuedDirectionRef` is the
+ * latest requested turn; game loops consume it at grid-step boundaries so a
+ * player can swipe just before a junction, Pac-Man style.
  */
 import { useEffect, useRef, useCallback } from "react";
 
@@ -19,17 +18,37 @@ const KEY_MAP = {
   ArrowRight: "right", KeyD: "right",
 };
 
-export function useArcadeControls({ surfaceRef, enabled = true, onDirection, onPause }) {
+const SWIPE_THRESHOLD = 24;
+const SCROLL_GUARD_THRESHOLD = 10;
+
+function directionFromDelta(dx, dy, threshold = SWIPE_THRESHOLD) {
+  if (Math.max(Math.abs(dx), Math.abs(dy)) < threshold) return null;
+  if (Math.abs(dx) > Math.abs(dy)) return dx > 0 ? "right" : "left";
+  return dy > 0 ? "down" : "up";
+}
+
+export function useArcadeControls({ enabled = true, onDirection, onPause } = {}) {
   const directionRef = useRef("none");
+  const queuedDirectionRef = useRef("none");
+  const touchRef = useRef({
+    active: false,
+    startX: 0,
+    startY: 0,
+  });
   const cbRef = useRef(onDirection);
   cbRef.current = onDirection;
   const pauseRef = useRef(onPause);
   pauseRef.current = onPause;
 
-  const setDirection = useCallback((dir) => {
+  const queueDirection = useCallback((dir) => {
     if (!dir) return;
-    directionRef.current = dir;
+    queuedDirectionRef.current = dir;
     cbRef.current?.(dir);
+  }, []);
+
+  const resetDirections = useCallback(() => {
+    directionRef.current = "none";
+    queuedDirectionRef.current = "none";
   }, []);
 
   // Keyboard
@@ -43,48 +62,61 @@ export function useArcadeControls({ surfaceRef, enabled = true, onDirection, onP
       const dir = KEY_MAP[e.code];
       if (dir) {
         e.preventDefault();
-        setDirection(dir);
+        queueDirection(dir);
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [enabled, setDirection]);
+  }, [enabled, queueDirection]);
 
-  // Touch swipe on the game surface
-  useEffect(() => {
-    if (!enabled) return undefined;
-    const el = surfaceRef?.current;
-    if (!el) return undefined;
-
-    let startX = 0, startY = 0, tracking = false;
-    const THRESHOLD = 24; // px before a swipe registers
-
-    function onStart(e) {
-      const t = e.touches ? e.touches[0] : e;
-      startX = t.clientX; startY = t.clientY; tracking = true;
-    }
-    function onMove(e) {
-      if (!tracking) return;
-      const t = e.touches ? e.touches[0] : e;
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-      if (Math.abs(dx) < THRESHOLD && Math.abs(dy) < THRESHOLD) return;
-      if (Math.abs(dx) > Math.abs(dy)) setDirection(dx > 0 ? "right" : "left");
-      else setDirection(dy > 0 ? "down" : "up");
-      tracking = false; // one swipe per touch; lift to swipe again
-      if (e.cancelable) e.preventDefault();
-    }
-    function onEnd() { tracking = false; }
-
-    el.addEventListener("touchstart", onStart, { passive: true });
-    el.addEventListener("touchmove", onMove, { passive: false });
-    el.addEventListener("touchend", onEnd, { passive: true });
-    return () => {
-      el.removeEventListener("touchstart", onStart);
-      el.removeEventListener("touchmove", onMove);
-      el.removeEventListener("touchend", onEnd);
+  const onTouchStart = useCallback((event) => {
+    if (!enabled) return;
+    const touch = event.touches?.[0];
+    if (!touch) return;
+    touchRef.current = {
+      active: true,
+      startX: touch.clientX,
+      startY: touch.clientY,
     };
-  }, [enabled, surfaceRef, setDirection]);
+  }, [enabled]);
 
-  return { directionRef, press: setDirection };
+  const onTouchMove = useCallback((event) => {
+    if (!enabled || !touchRef.current.active) return;
+    const touch = event.touches?.[0];
+    if (!touch) return;
+    const dx = touch.clientX - touchRef.current.startX;
+    const dy = touch.clientY - touchRef.current.startY;
+    const clearIntent = Math.max(Math.abs(dx), Math.abs(dy)) >= SCROLL_GUARD_THRESHOLD;
+    if (!clearIntent) return;
+    // CSS `touch-action: none` on the board prevents page scrolling without
+    // triggering passive-listener warnings in React's synthetic touch events.
+  }, [enabled]);
+
+  const onTouchEnd = useCallback((event) => {
+    if (!enabled || !touchRef.current.active) return;
+    const touch = event.changedTouches?.[0];
+    const { startX, startY } = touchRef.current;
+    touchRef.current.active = false;
+    if (!touch) return;
+
+    const dir = directionFromDelta(touch.clientX - startX, touch.clientY - startY);
+    if (dir) queueDirection(dir);
+  }, [enabled, queueDirection]);
+
+  const onTouchCancel = useCallback(() => {
+    touchRef.current.active = false;
+  }, []);
+
+  return {
+    directionRef,
+    queuedDirectionRef,
+    press: queueDirection,
+    resetDirections,
+    boardControlHandlers: {
+      onTouchStart,
+      onTouchMove,
+      onTouchEnd,
+      onTouchCancel,
+    },
+  };
 }
