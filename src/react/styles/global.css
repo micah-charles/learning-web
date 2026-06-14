@@ -1105,6 +1105,71 @@ body {
   margin-top: 18px;
 }
 
+.lw-onboarding-stepper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: var(--lw-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.lw-onboarding-stepper span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--lw-line);
+}
+
+.lw-onboarding-stepper .is-current {
+  background: var(--lw-blue-soft);
+  border-color: rgba(21, 102, 168, 0.36);
+  color: var(--lw-blue);
+}
+
+.lw-onboarding-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.lw-onboarding-choice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 150px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1.5px solid var(--lw-line);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 251, 239, 0.78));
+  color: var(--lw-ink);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
+}
+
+.lw-onboarding-choice-card:hover,
+.lw-onboarding-choice-card:focus-visible {
+  border-color: rgba(21, 102, 168, 0.42);
+  box-shadow: 0 12px 26px rgba(21, 102, 168, 0.11);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.lw-onboarding-choice-card.is-selected {
+  border-color: var(--lw-blue);
+  background: linear-gradient(135deg, rgba(21, 102, 168, 0.12), rgba(38, 116, 75, 0.08));
+  box-shadow: inset 0 0 0 2px rgba(21, 102, 168, 0.10);
+}
+
+.lw-onboarding-summary {
+  display: grid;
+  gap: 14px;
+}
+
 .lw-chip-toggle-row,
 .lw-learning-summary-row {
   display: flex;
@@ -1836,7 +1901,8 @@ body {
   .lw-onboarding { padding-top: 14px; }
   .lw-onboarding-grid,
   .lw-onboarding-module-grid,
-  .lw-onboarding-filter-row {
+  .lw-onboarding-filter-row,
+  .lw-onboarding-choice-grid {
     grid-template-columns: 1fr;
   }
   .lw-onboarding-section-head,
@@ -1847,6 +1913,9 @@ body {
   .lw-learning-setup-actions {
     width: 100%;
     justify-content: stretch;
+  }
+  .lw-onboarding-choice-card {
+    min-height: 132px;
   }
   .lw-hero-action-stack {
     align-items: stretch;
