@@ -8,6 +8,7 @@
  *   segments     [{ id, x, y, head, word? }]  word = collected word for tail segments
  *   playerEmoji   string — emoji glyph OR a public image path (e.g. "/images/foxchild-fox.png")
  *   reducedMotion bool
+ *   controlHandlers object — touch handlers from useArcadeControls
  */
 import { tokenLayout } from "../utils/tokenLayout.js";
 
@@ -20,7 +21,15 @@ function tileStyle(x, y, cellPx, reducedMotion) {
   };
 }
 
-export default function GameBoard({ map, cellPx, tokens = [], segments = [], playerEmoji = "/images/foxchild-fox.png", reducedMotion }) {
+export default function GameBoard({
+  map,
+  cellPx,
+  tokens = [],
+  segments = [],
+  playerEmoji = "/images/foxchild-fox.png",
+  reducedMotion,
+  controlHandlers,
+}) {
   const walls = [...map.walls].map((key) => {
     const [x, y] = key.split(",").map(Number);
     const isBorder = x === 0 || y === 0 || x === map.cols - 1 || y === map.rows - 1;
@@ -32,6 +41,7 @@ export default function GameBoard({ map, cellPx, tokens = [], segments = [], pla
       className="arc-board"
       style={{ width: map.cols * cellPx, height: map.rows * cellPx }}
       aria-hidden="false"
+      {...(controlHandlers || {})}
     >
       {/* Walls — outer border cells + interior pillars */}
       {walls.map((w) => (
