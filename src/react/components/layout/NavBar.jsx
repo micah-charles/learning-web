@@ -12,10 +12,11 @@ export const TABS = [
   { id: "crossword",  label: "Crossword"   },
   { id: "progress",   label: "Progress"    },
   { id: "mypacks",    label: "My Packs"    },
+  { id: "learning-settings", label: "Manage Learning" },
   { id: "about",      label: "About"       },
 ];
 
-const MOBILE_PRIMARY_TABS = [
+export const MOBILE_PRIMARY_TABS = [
   { id: "home",     label: "Home",  icon: "🏠" },
   { id: "language", label: "Ladder", icon: "✨" },
   { id: "quiz",     label: "Quiz",  icon: "✨" },
@@ -23,21 +24,29 @@ const MOBILE_PRIMARY_TABS = [
   { id: "vocab",    label: "Vocab", icon: "📚" },
 ];
 
-const MOBILE_MORE_TABS = [
+export const MOBILE_MORE_TABS = [
   { id: "smart-test", label: "Smart Test", icon: "🧪" },
   { id: "arcade",     label: "Arcade",     icon: "🎮" },
   { id: "builder",    label: "Builder",    icon: "🧩" },
   { id: "crossword",  label: "Crossword",  icon: "✏️" },
   { id: "progress",   label: "Progress",   icon: "📈" },
   { id: "mypacks",    label: "My Packs",   icon: "📦" },
+  { id: "learning-settings", label: "Manage Learning", icon: "⚙️" },
   { id: "about",      label: "About",      icon: "ℹ️" },
 ];
 
-function DesktopNav({ active, onChange }) {
+function filterTabs(tabs, allowedTabs, active) {
+  if (!Array.isArray(allowedTabs) || allowedTabs.length === 0) return tabs;
+  const allowed = new Set(allowedTabs);
+  return tabs.filter((tab) => allowed.has(tab.id) || tab.id === active);
+}
+
+function DesktopNav({ active, onChange, allowedTabs }) {
+  const tabs = filterTabs(TABS, allowedTabs, active);
   return (
     <div className="lw-nav-desktop">
       <div className="lw-nav-inner">
-        {TABS.map((tab) => (
+        {tabs.map((tab) => (
           <button
             key={tab.id}
             className={`lw-nav-pill${active === tab.id ? " active" : ""}${tab.tone ? ` tone-${tab.tone}` : ""}`}
@@ -67,9 +76,11 @@ function MobileTabButton({ tab, active, onClick }) {
   );
 }
 
-function MobileNav({ active, onChange }) {
+function MobileNav({ active, onChange, allowedTabs }) {
   const [moreOpen, setMoreOpen] = useState(false);
-  const moreActive = MOBILE_MORE_TABS.some((tab) => tab.id === active);
+  const primaryTabs = filterTabs(MOBILE_PRIMARY_TABS, allowedTabs, active);
+  const moreTabs = filterTabs(MOBILE_MORE_TABS, allowedTabs, active);
+  const moreActive = moreTabs.some((tab) => tab.id === active);
 
   function choose(tabId) {
     setMoreOpen(false);
@@ -78,7 +89,7 @@ function MobileNav({ active, onChange }) {
 
   return (
     <div className="lw-nav-mobile">
-      {MOBILE_PRIMARY_TABS.map((tab) => (
+      {primaryTabs.map((tab) => (
         <MobileTabButton
           key={tab.id}
           tab={tab}
@@ -87,6 +98,7 @@ function MobileNav({ active, onChange }) {
         />
       ))}
 
+      {moreTabs.length > 0 && (
       <div className="lw-mobile-more">
         <button
           className={`lw-mobile-nav-pill${moreActive ? " is-active" : ""}`}
@@ -102,7 +114,7 @@ function MobileNav({ active, onChange }) {
 
         {moreOpen && (
           <div className="lw-mobile-more-menu" role="menu">
-            {MOBILE_MORE_TABS.map((tab) => (
+            {moreTabs.map((tab) => (
               <button
                 key={tab.id}
                 className={`lw-mobile-more-item${active === tab.id ? " is-active" : ""}`}
@@ -117,15 +129,16 @@ function MobileNav({ active, onChange }) {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 }
 
-export default function NavBar({ active, onChange }) {
+export default function NavBar({ active, onChange, allowedTabs }) {
   return (
     <nav className="lw-nav-bar" aria-label="Main navigation">
-      <DesktopNav active={active} onChange={onChange} />
-      <MobileNav active={active} onChange={onChange} />
+      <DesktopNav active={active} onChange={onChange} allowedTabs={allowedTabs} />
+      <MobileNav active={active} onChange={onChange} allowedTabs={allowedTabs} />
     </nav>
   );
 }

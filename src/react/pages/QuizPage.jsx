@@ -9,8 +9,9 @@ import { LabeledSelect, PillGroup, ToggleGroup, FilterRow } from "../components/
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { LearningImage } from "../components/learning/LearningImage.jsx";
-import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset } from "@/data.js";
+import { listDatasets, getDatasetCurriculum, getDatasetSubject, SUBJECTS, listCurricula, getDatasetDirections, findDataset } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
+import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 const QUESTION_COUNTS = [
   { id: 18, label: "18" },
@@ -28,8 +29,11 @@ const ANSWER_MODES_BASIC = ANSWER_MODES_ALL; // no Build to strip for non-langua
 
 // ─── Setup Phase ─────────────────────────────────────────────────────────────
 
-function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
-  const datasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
+function QuizSetup({ manifest, prefs, setPrefs, onStart, personalisationPrefs }) {
+  const datasets = useMemo(
+    () => manifest ? filterPacksForPrefs(listDatasets(manifest), personalisationPrefs, "dataset") : [],
+    [manifest, personalisationPrefs],
+  );
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
     [manifest],
@@ -37,14 +41,25 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
       id,
-      count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
+      count: datasets.filter((d) => getDatasetSubject(d) === id && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(d) === prefs.curriculum)).length,
     }));
-  }, [manifest, prefs.curriculum]);
+  }, [datasets, prefs.curriculum]);
 
   const filteredDatasets = useMemo(() => {
-    if (!manifest) return [];
-    return listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
-  }, [manifest, prefs.subject, prefs.curriculum]);
+    return datasets.filter((d) => getDatasetSubject(d) === (prefs.subject || "") && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(d) === prefs.curriculum));
+  }, [datasets, prefs.subject, prefs.curriculum]);
+
+  useEffect(() => {
+    if (!datasets.length || filteredDatasets.length) return;
+    const first = datasets[0];
+    setPrefs((prev) => ({
+      ...prev,
+      subject: getDatasetSubject(first),
+      curriculum: "all",
+      datasetId: first.id,
+      stages: [],
+    }));
+  }, [datasets, filteredDatasets.length, setPrefs]);
 
   const dataset = useMemo(() => {
     if (!manifest) return null;
@@ -90,7 +105,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
           activeSubject={prefs.subject}
           onSelect={(subj) => {
             const newIsLanguage = subj === "language";
-            const firstMatch = listDatasetsBySubjectAndCurriculum(manifest, subj, "all")[0];
+            const firstMatch = datasets.find((d) => getDatasetSubject(d) === subj);
             setPrefs((prev) => ({
               ...prev,
               subject: subj,
@@ -108,7 +123,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart }) {
           items={curriculumOptions}
           value={prefs.curriculum || "all"}
           onSelect={(c) => {
-            const first = listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];
+            const first = datasets.find((d) => getDatasetSubject(d) === (prefs.subject || "") && (c === "all" || getDatasetCurriculum(d) === c));
             setPrefs((prev) => ({
               ...prev,
               curriculum: c,
@@ -601,7 +616,7 @@ export default function QuizPage({ initialCustomWords = null }) {
   if (error) return <div className="lw-page"><p style={{ color: "var(--lw-coral)" }}>Error: {error}</p></div>;
 
   if (phase === "setup" || !session) {
-    return <QuizSetup manifest={manifest} prefs={prefs} setPrefs={setPrefs} onStart={handleStart} />;
+    return <QuizSetup manifest={manifest} prefs={prefs} setPrefs={setPrefs} onStart={handleStart} personalisationPrefs={progress?.prefs || {}} />;
   }
 
   if (loading) return <div className="lw-page"><p>Building quiz…</p></div>;

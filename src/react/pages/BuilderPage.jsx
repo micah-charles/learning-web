@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useBuilderSession } from "../hooks/useBuilderSession.js";
@@ -7,7 +7,8 @@ import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "..
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { LearningImage } from "../components/learning/LearningImage.jsx";
-import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubjectAndCurriculum, getBuilderPackSubject, SUBJECTS, listCurricula } from "@/data.js";
+import { getBuilderPackSubject, getDatasetCurriculum, listSentenceBuilderPacks, SUBJECTS, listCurricula } from "@/data.js";
+import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 const FILTER_OPTIONS = [
   { id: "all",              label: "All"               },
@@ -20,7 +21,10 @@ export default function BuilderPage() {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
 
-  const allPacks = useMemo(() => manifest ? listSentenceBuilderPacks(manifest) : [], [manifest]);
+  const allPacks = useMemo(
+    () => manifest ? filterPacksForPrefs(listSentenceBuilderPacks(manifest), progress?.prefs || {}, "builder") : [],
+    [manifest, progress?.prefs],
+  );
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
     [manifest],
@@ -34,9 +38,9 @@ export default function BuilderPage() {
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map((id) => ({
       id,
-      count: manifest ? listSentenceBuilderPacksBySubjectAndCurriculum(manifest, id, curriculum).length : 0,
+      count: allPacks.filter((pack) => getBuilderPackSubject(pack) === id && (curriculum === "all" || getDatasetCurriculum(pack) === curriculum)).length,
     }));
-  }, [manifest, curriculum]);
+  }, [allPacks, curriculum]);
   const [packId, setPackId]         = useState("");
   const [filter, setFilter]         = useState("all");
 
@@ -45,16 +49,25 @@ export default function BuilderPage() {
 
   // Packs in the dropdown — filtered by active subject + curriculum.
   const visiblePacks = useMemo(() => {
-    if (!manifest || !activeSubject) return allPacks;
-    return listSentenceBuilderPacksBySubjectAndCurriculum(manifest, activeSubject, curriculum);
-  }, [allPacks, activeSubject, curriculum, manifest]);
+    if (!activeSubject) return allPacks;
+    return allPacks.filter((pack) => getBuilderPackSubject(pack) === activeSubject && (curriculum === "all" || getDatasetCurriculum(pack) === curriculum));
+  }, [allPacks, activeSubject, curriculum]);
+
+  useEffect(() => {
+    if (!allPacks.length || visiblePacks.length) return;
+    const first = allPacks[0];
+    setSubject(getBuilderPackSubject(first));
+    setCurriculum("all");
+    setPackId(first.id);
+    setFilter("all");
+  }, [allPacks, visiblePacks.length]);
 
   // Effective pack ID: user's choice, or first visible pack.
   const activePackId = packId || visiblePacks[0]?.id || "";
 
   // When subject changes: reset curriculum + pack + filter.
   function onSubjectChange(newSubject) {
-    const first = listSentenceBuilderPacksBySubjectAndCurriculum(manifest, newSubject, "all")[0];
+    const first = allPacks.find((pack) => getBuilderPackSubject(pack) === newSubject);
     setSubject(newSubject);
     setCurriculum("all");
     setPackId(first?.id ?? "");
@@ -103,7 +116,7 @@ export default function BuilderPage() {
           items={curriculumOptions}
           value={curriculum}
           onSelect={(c) => {
-            const first = listSentenceBuilderPacksBySubjectAndCurriculum(manifest, activeSubject, c)[0];
+            const first = allPacks.find((pack) => getBuilderPackSubject(pack) === activeSubject && (c === "all" || getDatasetCurriculum(pack) === c));
             setCurriculum(c);
             setPackId(first?.id ?? "");
           }}
