@@ -71,17 +71,14 @@
     blockquote p { margin: 0; }
     a { color: #0969da; }
     hr { border: none; border-top: 1px solid #e0e0e0; margin: 28px 0; }
-    p { margin: 8px 0; }
-    ul, ol { padding-left: 24px; }
-    li { margin: 3px 0; }
   </style>
 </head>
 <body>
 <h1 id="data-structures-in-learning-web">Data Structures in <code>learning-web</code></h1>
 <blockquote>
 <p>Complete reference for every data format used in the project.
-Generated: 2026-05-03
 Schema version: 1.1 (multilingual translations)</p>
+<p><strong>Machine-readable schemas:</strong> <code>schemas/pack_unified.schema.json</code> and <code>schemas/passages.schema.json</code></p>
 </blockquote>
 <hr />
 <h2 id="architecture-overview">Architecture Overview</h2>
@@ -136,6 +133,15 @@ The <code>capabilities</code> field on each entry declares what the pack support
   &quot;passagePath&quot;:  &quot;data/Packs/ks3/language/y7_german_full/passages.json&quot;
 }
 </code></pre>
+<p>When the pack has a Study Book markdown file, add:</p>
+<pre><code class="language-json">{
+  &quot;contentMdPath&quot;: &quot;data/Packs/ks3/science/biology_cells/study_notes.md&quot;,
+  &quot;extraMdFiles&quot;: [
+    { &quot;title&quot;: &quot;Exam Tips&quot;,  &quot;path&quot;: &quot;data/Packs/ks3/science/biology_cells/exam_tips.md&quot; }
+  ]
+}
+</code></pre>
+<p>Both <code>contentMdPath</code> and <code>extraMdFiles</code> are <strong>optional and backward-compatible</strong> — omitting them simply means the Study Book button does not appear for that pack. <code>extraMdFiles</code> is only needed when a pack has more than one markdown file; the <code>contentMdPath</code> file is always listed first as "Notes" in the file-tab row.</p>
 <table>
 <thead>
 <tr>
@@ -184,6 +190,16 @@ The <code>capabilities</code> field on each entry declares what the pack support
 <td><code>passagePath</code></td>
 <td>string?</td>
 <td>Path to the pack's <code>passages.json</code> — only present when <code>capabilities</code> includes <code>"passages"</code></td>
+</tr>
+<tr>
+<td><code>contentMdPath</code></td>
+<td>string?</td>
+<td>Path to the primary Study Book markdown file (relative to repo root)</td>
+</tr>
+<tr>
+<td><code>extraMdFiles</code></td>
+<td><code>{ title: string, path: string }[]?</code></td>
+<td>Additional markdown files — shown as tabs in the Study Book drawer</td>
 </tr>
 <tr>
 <td><code>sourceLanguageLabel</code></td>
@@ -266,6 +282,18 @@ The <code>capabilities</code> field on each entry declares what the pack support
 <tr>
 <td><code>literature</code></td>
 <td>Literature and text analysis packs</td>
+</tr>
+<tr>
+<td><code>computing</code></td>
+<td>Computing and digital literacy packs</td>
+</tr>
+<tr>
+<td><code>religion</code></td>
+<td>Religious studies packs</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>Miscellaneous packs that don't fit another bucket</td>
 </tr>
 </tbody>
 </table>
@@ -356,6 +384,49 @@ The <code>capabilities</code> field on each entry declares what the pack support
 </tr>
 </tbody>
 </table>
+<h3 id="optional-image-metadata">Optional image metadata</h3>
+<p>Any revision, reading, or builder item may include image metadata either on the item envelope or inside <code>data</code>. Prefer putting it inside <code>data</code> so the image travels with the prompt/passage payload.</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;image&quot;: &quot;/assets/history/y7/section-c/athelstan_military_conquest_comic.png&quot;,
+    &quot;imageAlt&quot;: &quot;Six-panel comic showing Athelstan's conquest, law and kingship.&quot;,
+    &quot;imageCaption&quot;: &quot;Visual argument: conquest gave Athelstan power, while law and Christianity made that power recognised.&quot;,
+    &quot;imagePlacement&quot;: &quot;top&quot;
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image</code></td>
+<td>string</td>
+<td>Optional image source. Prefer root-relative public assets such as <code>/assets/...</code>; HTTPS is also supported in the React image renderer.</td>
+</tr>
+<tr>
+<td><code>imageAlt</code></td>
+<td>string</td>
+<td>Accessible alt text. Required in practice for new packs, even though old data may omit it.</td>
+</tr>
+<tr>
+<td><code>imageCaption</code></td>
+<td>string</td>
+<td>Optional caption shown below the image.</td>
+</tr>
+<tr>
+<td><code>imagePlacement</code></td>
+<td><code>"top"</code> | <code>"inline"</code> | <code>"bottom"</code></td>
+<td>Placement hint. Current renderers treat <code>inline</code> like <code>top</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Study Book Markdown also supports image syntax such as <code>![alt](/assets/...)</code>. Do not reference an image that is not present under <code>public/</code>; the build may still pass, but the learning experience will show a broken visual.</p>
 <h3 id="valid-item-type-values">Valid item <code>type</code> values</h3>
 <table>
 <thead>
@@ -390,6 +461,11 @@ The <code>capabilities</code> field on each entry declares what the pack support
 <td><code>fillBlank</code></td>
 <td>Revision packs</td>
 <td>Gap-fill</td>
+</tr>
+<tr>
+<td><code>multipleChoice</code></td>
+<td>Revision packs</td>
+<td>Standalone multiple-choice</td>
 </tr>
 <tr>
 <td><code>sentenceBuilder</code></td>
@@ -689,6 +765,64 @@ The <code>capabilities</code> field on each entry declares what the pack support
 </tbody>
 </table>
 <hr />
+<h2 id="item-types-multiplechoice">Item Types: <code>multipleChoice</code></h2>
+<pre><code class="language-json">{
+  &quot;id&quot;:     &quot;grammar_case_001&quot;,
+  &quot;type&quot;:   &quot;multipleChoice&quot;,
+  &quot;level&quot;:  &quot;Stage 1&quot;,
+  &quot;topics&quot;: [&quot;Latin grammar&quot;, &quot;cases&quot;],
+  &quot;tags&quot;:   [&quot;grammar&quot;, &quot;mcq&quot;],
+  &quot;data&quot;: {
+    &quot;question&quot;: &quot;What case is 'servus' in 'servus dormit'?&quot;,
+    &quot;answer&quot;:   &quot;nominative&quot;,
+    &quot;options&quot;:  [&quot;nominative&quot;, &quot;accusative&quot;, &quot;dative&quot;, &quot;ablative&quot;],
+    &quot;hint&quot;:     &quot;The noun is doing the verb.&quot;
+  }
+}
+</code></pre>
+<p>Use <code>multipleChoice</code> for standalone authored MCQ prompts that are <strong>not</strong> gap-fill sentences. This is the correct type for grammar drills such as "What case is...?", "What does this ending show?", or "Which form agrees with...?" where the prompt is a full question and the learner must choose one fixed answer.</p>
+<p>Do <strong>not</strong> encode these as <code>fillBlank</code> unless the prompt genuinely contains a <code>____</code> blank. <code>fillBlank</code> is reserved for cloze/gap-fill prompts; <code>multipleChoice</code> uses <code>data.question</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Data field</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>question</code></td>
+<td>string</td>
+<td>Full prompt shown to the learner. Required.</td>
+</tr>
+<tr>
+<td><code>answer</code></td>
+<td>string</td>
+<td>Correct option. Required and must appear in <code>options</code>.</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>string[]</td>
+<td>Fixed answer choices shown as buttons. Include the correct answer plus distractors.</td>
+</tr>
+<tr>
+<td><code>hint</code></td>
+<td>string?</td>
+<td>Optional hint shown to the student</td>
+</tr>
+<tr>
+<td><code>questionType</code></td>
+<td>string?</td>
+<td>Optional semantic metadata, e.g. <code>"multiple_choice"</code>; the renderer uses <code>type: "multipleChoice"</code> and <code>options</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Runtime behavior:
+- Quiz treats <code>multipleChoice</code> as <code>modeId: "multipleChoice"</code>, <code>kind: "choice"</code>, and <code>modeTitle: "Multiple choice"</code>.
+- Grammar-only language packs with zero <code>vocab</code> items can still start a quiz when they contain <code>multipleChoice</code> items.
+- Arcade Quiz Hunt can load <code>multipleChoice</code> items from the same unified pack and uses the authored <code>options</code> as answer tokens.</p>
+<hr />
 <h2 id="item-types-sentencebuilder">Item Types: <code>sentenceBuilder</code></h2>
 <pre><code class="language-json">{
   &quot;id&quot;:     &quot;black_death_builder_001&quot;,
@@ -759,7 +893,7 @@ The <code>capabilities</code> field on each entry declares what the pack support
         &quot;id&quot;:                  &quot;q1&quot;,
         &quot;questionType&quot;:        &quot;multiple_choice&quot;,
         &quot;difficulty&quot;:          &quot;medium&quot;,
-        &quot;question_en&quot;:         &quot;What does the student want to be?&quot;,
+        &quot;question&quot;:            &quot;What does the student want to be?&quot;,
         &quot;options&quot;:             [&quot;A doctor&quot;, &quot;A teacher&quot;, &quot;A farmer&quot;, &quot;A driver&quot;],
         &quot;correctOptionIndex&quot;:   0,
         &quot;modelAnswer&quot;:         &quot;A doctor&quot;,
@@ -826,7 +960,7 @@ The <code>capabilities</code> field on each entry declares what the pack support
   &quot;id&quot;:                  &quot;q1&quot;,
   &quot;questionType&quot;:        &quot;multiple_choice&quot;,
   &quot;difficulty&quot;:          &quot;medium&quot;,
-  &quot;question_en&quot;:         &quot;What does the student want to be?&quot;,
+  &quot;question&quot;:            &quot;What does the student want to be?&quot;,
   &quot;options&quot;:             [&quot;A doctor&quot;, &quot;A teacher&quot;, &quot;A farmer&quot;, &quot;A driver&quot;],
   &quot;correctOptionIndex&quot;:   0,
   &quot;modelAnswer&quot;:         &quot;A doctor&quot;,
@@ -858,9 +992,9 @@ The <code>capabilities</code> field on each entry declares what the pack support
 <td><code>"easy"</code> | <code>"medium"</code> | <code>"hard"</code></td>
 </tr>
 <tr>
-<td><code>question_en</code></td>
+<td><code>question</code></td>
 <td>string</td>
-<td>The question text</td>
+<td>The question text. <strong>Must use this field name</strong> — not <code>questionText</code>, not <code>question_en</code></td>
 </tr>
 <tr>
 <td><code>options</code></td>
@@ -1064,10 +1198,36 @@ The <code>capabilities</code> field on each entry declares what the pack support
 <p>Valid <code>&lt;curriculum&gt;</code> values: <code>ks3</code> | <code>gcse</code> | <code>other</code>
 Valid <code>&lt;subject&gt;</code> values: <code>language</code> | <code>history</code> | <code>geography</code> | <code>science</code> | <code>literature</code></p>
 <hr />
+<h2 id="json-schemas">JSON Schemas</h2>
+<p>Machine-readable schemas live in <code>schemas/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Validates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schemas/pack_unified.schema.json</code></td>
+<td>Any <code>pack_unified.json</code> (vocab, sentence, fillBlank, sequence, categorySort, sentenceBuilder items)</td>
+</tr>
+<tr>
+<td><code>schemas/passages.schema.json</code></td>
+<td>Any <code>passages.json</code> (passage items only)</td>
+</tr>
+</tbody>
+</table>
+<p>Both schemas use JSON Schema draft-07 and can be used by:
+- <strong>AI generation prompts</strong> — attach or reference the schema so the model can self-validate structure before outputting JSON
+- <strong>Editor plugins</strong> — VS Code will show inline errors if you add <code>"$schema"</code> to pack files or configure <code>json.schemas</code> in <code>.vscode/settings.json</code>
+- <strong><code>ajv</code> or <code>jsonschema</code></strong> — for programmatic validation in CI</p>
+<p>The schemas are the authoritative source for field names and types. <code>validate_pack.py</code> enforces the same rules but also applies semantic checks (tile concatenation, same-word vocab, etc.) that JSON Schema cannot express.</p>
+<hr />
 <h2 id="validator-constraints-scriptsvalidate_packpy">Validator Constraints (<code>scripts/validate_pack.py</code>)</h2>
 <p><code>validate_pack.py</code> enforces the values below. Violations produce either a hard <strong>ERROR</strong> (exit 1) or a <strong>WARNING</strong> (exit 0). AI agents must run the validator and reach 0 errors before committing a pack.</p>
 <h3 id="allowed-subject-values">Allowed <code>subject</code> values</h3>
-<pre><code>language  history  geography  science  literature
+<pre><code>language  history  geography  science  literature  computing  religion  other
 </code></pre>
 <ul>
 <li>Must be <strong>lowercase</strong>. <code>"Geography"</code> or <code>"GCSE Geography"</code> are both errors.</li>
@@ -1186,11 +1346,100 @@ Valid <code>&lt;subject&gt;</code> values: <code>language</code> | <code>history
 <li>Missing commas: tiles <code>["income", "health"]</code> vs answer <code>"income, health"</code> — add commas to the tiles</li>
 </ul>
 <hr />
+<h2 id="study-book-markdown-files">Study Book Markdown Files</h2>
+<p>Packs may optionally ship one or more Markdown files that are displayed in the <strong>Study Book drawer</strong> — a side panel for reference and revision notes.</p>
+<h3 id="file-location">File location</h3>
+<p>Place <code>.md</code> files inside the pack's own directory:</p>
+<pre><code>data/Packs/ks3/science/biology_cells/
+  pack_unified.json
+  passages.json          ← optional
+  study_notes.md         ← primary Study Book file
+  exam_tips.md           ← optional additional file
+</code></pre>
+<p>The filename is not constrained by convention, but <code>study_notes.md</code> is the established default for KS3 Science packs.</p>
+<h3 id="manifest-registration">Manifest registration</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;ks3_science_biology_cells&quot;,
+  &quot;contentMdPath&quot;: &quot;data/Packs/ks3/science/biology_cells/study_notes.md&quot;,
+  &quot;extraMdFiles&quot;: [
+    { &quot;title&quot;: &quot;Exam Tips&quot;, &quot;path&quot;: &quot;data/Packs/ks3/science/biology_cells/exam_tips.md&quot; }
+  ]
+}
+</code></pre>
+<p><code>contentMdPath</code> is always the primary file; <code>extraMdFiles</code> is shown as additional tabs in the drawer header. Both fields are optional — omitting them means no Study Book button appears for the pack.</p>
+<h3 id="markdown-format-rules">Markdown format rules</h3>
+<p>The Study Book renderer uses <code>marked</code> (GFM mode) with a custom heading renderer that generates stable heading IDs from the text. Supported elements:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code># h1</code> / <code>## h2</code> / <code>### h3</code></td>
+<td>Appear in TOC; generate anchor IDs</td>
+</tr>
+<tr>
+<td><code>#### h4</code></td>
+<td>Rendered but not in TOC</td>
+</tr>
+<tr>
+<td>Paragraphs, bold, italic, links</td>
+<td>Standard GFM</td>
+</tr>
+<tr>
+<td>Unordered and ordered lists</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>Tables</td>
+<td>Block-level scroll on mobile</td>
+</tr>
+<tr>
+<td>Code blocks (fenced)</td>
+<td>Monospace, no syntax highlighting</td>
+</tr>
+<tr>
+<td>Blockquotes</td>
+<td>Left teal border</td>
+</tr>
+<tr>
+<td>Horizontal rules</td>
+<td>Section dividers</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Heading anchor generation:</strong> <code>text.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-")</code>.
+Example: <code>## Key Knowledge</code> → <code>id="key-knowledge"</code>.</p>
+<p>The same algorithm is used by <code>extractTOC</code> and the <code>marked</code> custom renderer, so TOC links and <code>sourceRef.anchor</code> fields must use this formula.</p>
+<h3 id="cross-reference-in-quiz-questions">Cross-reference in quiz questions</h3>
+<p>A quiz question item in <code>pack_unified.json</code> may carry an optional <code>sourceRef</code> field to link directly to a Study Book heading:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;q_diffusion&quot;,
+  &quot;type&quot;: &quot;vocab&quot;,
+  &quot;data&quot;: { … },
+  &quot;sourceRef&quot;: {
+    &quot;mdFile&quot;:  &quot;study_notes.md&quot;,
+    &quot;heading&quot;: &quot;Diffusion&quot;,
+    &quot;anchor&quot;:  &quot;diffusion&quot;
+  }
+}
+</code></pre>
+<p><code>sourceRef</code> is consumed by <code>renderQuizSession</code> to render a "Jump to [heading]" button. The quiz engine ignores it entirely — it is purely UI metadata.</p>
+<h3 id="migration-script">Migration script</h3>
+<p><code>scripts/migrate_science_study_notes.py</code> copies KS3 Science <code>.md</code> files from the study prompt repo into the correct pack directories and patches <code>manifest.json</code>. Run it for new study-note batches:</p>
+<pre><code class="language-bash">python3 scripts/migrate_science_study_notes.py           # dry-run
+python3 scripts/migrate_science_study_notes.py --apply   # apply
+</code></pre>
+<hr />
 <h2 id="adding-a-new-pack">Adding a New Pack</h2>
 <ol>
 <li>Create the pack directory: <code>data/Packs/&lt;curriculum&gt;/&lt;subject&gt;/&lt;id&gt;/</code></li>
 <li>Create <code>pack_unified.json</code> with the <a href="#unified-pack-format-pack_unifiedjson">unified pack header</a> and revision items</li>
 <li>If the pack has passage content, create <code>passages.json</code> in the same directory</li>
+<li>If the pack has a Study Book, place <code>study_notes.md</code> (or similar) in the pack directory and add <code>contentMdPath</code> to the manifest entry</li>
 <li>Add one entry to <code>packs[]</code> in <code>data/generated/manifest.json</code>; include <code>passagePath</code> and <code>"passages"</code> in <code>capabilities</code> if <code>passages.json</code> exists</li>
 <li>Set <code>supportsSentences: false</code> if the pack has no sentence items</li>
 <li>Run <code>python3 scripts/validate_pack.py data/Packs/&lt;curriculum&gt;/&lt;subject&gt;/&lt;id&gt;/pack_unified.json</code> to check the pack</li>

@@ -181,8 +181,15 @@ home | language | quiz | arcade | vocab | reading | builder | crossword |
 - Full Study Book panel: markdown content, TOC sidebar, search, split-mode, drag-to-resize.
 - Rendered **once** at `App.jsx` level; persists across tab switches.
 - Also exports `StudyBookButton` — renders a "📖 Study Book" button if the dataset has `contentMdPath`; renders nothing otherwise.
+- Study Book Markdown supports sanitized images. Use root-relative public asset paths such as `/assets/religion/y7/rs-rp/rs_2a_karma.png`; the drawer adds click-to-zoom for `.sb-markdown-image`.
 - CSS from `styles.css` (shared `.study-book-drawer`, `.sb-*` classes).
 - Resize handle: drag the left edge, range 280–820 px. In split-mode, `padding-right` on `.lw-app` is updated in real time.
+
+#### `LearningImage.jsx`
+- Shared optional image renderer for learning content.
+- Used by `QuizPage.jsx`, `ReadingPage.jsx`, and `BuilderPage.jsx` when runtime question/passage/card objects carry `image` metadata.
+- Supports lazy loading, captions, missing-image fallback, and click-to-zoom lightbox.
+- Accepts safe sources only: root-relative `/assets/`, `/images/`, `/data/`, or HTTPS URLs. New built-in packs should prefer `/assets/...` files under `public/`.
 
 #### `TileBuilder.jsx`
 - Word-tile drag interface for Build answer mode in Quiz and for Sentence Builder.

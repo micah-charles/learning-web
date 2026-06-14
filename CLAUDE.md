@@ -348,7 +348,8 @@ Used in the Part-of-speech dropdown and the quiz badge. All new Latin data shoul
    - Language: correct language codes
 5. **Confirm** no `targetWord === sourceWord` in vocab items (broken definition)
 6. **Confirm** `partOfSpeech` uses full words for language packs, `"keyword"` for non-language
-7. **Do NOT** leave the pack only in `generated_packs/` — it is gitignored and the app will not see it
+7. **If the pack uses images**, copy the files under `public/assets/...` and use root-relative paths like `/assets/history/y7/...` in `image`, `imageSrc`, and Study Book Markdown. Do not leave served `images/...` links.
+8. **Do NOT** leave the pack only in `generated_packs/` — it is gitignored and the app will not see it
 
 ---
 

@@ -59,7 +59,7 @@ data/Packs/<curriculum>/<subject>/<id>/
 data/SentenceBuilderPacks/<id>/
   pack_unified.json    ← sentenceBuilder items only
 
-Valid values: `curriculum` = `ks3` | `gcse` | `other` · `subject` = `language` | `history` | `geography` | `science` | `literature`
+Valid values: `curriculum` = `ks3` | `gcse` | `us-middle-school` | `other` · `subject` = `language` | `history` | `geography` | `science` | `literature` | `computing` | `religion` | `other`
 
 Use `multipleChoice` for standalone authored MCQ prompts, such as grammar questions with fixed options. Use `fillBlank` only for cloze prompts containing a `____` blank.
 
@@ -119,6 +119,7 @@ Without `contentMdPath`, the pack will have no study book button, the tutor cann
 When creating or modifying packs, remember these downstream systems:
 
 - **Study Book**: requires `contentMdPath` in manifest + `study_notes.md` with `##` headings in pack dir
+- **Images**: use root-relative public asset paths such as `/assets/history/...` or `/assets/religion/...`; avoid served `images/...` links because Quiz/Reading/Builder/Study Book image renderers intentionally allow only safe app paths
 - **FoxChild Tutor**: rebuilds `public/search/studybook-index.json` at build time from ALL `contentMdPath` files
 - **SEO pages**: regenerated at build time from ALL `contentMdPath` files — any new pack with study notes automatically appears
 - **Subject pages**: grouped by `subject` field in manifest — geography packs appear under /revision/subjects/geography/

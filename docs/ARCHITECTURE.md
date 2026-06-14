@@ -254,6 +254,27 @@ The enrichment prompt is documented in `docs/aqa-student-answer-enrichment-promp
 4. `study-book-core.js` renders it with `marked` + extracts TOC for navigation
 5. StudyBookDrawer displays the rendered HTML with collapsible TOC
 
+Markdown images are supported through the Study Book sanitizer. Use root-relative
+public asset paths such as `/assets/history/y7/section-c/example.png` or
+`/assets/religion/y7/rs-rp/example.png`; do not leave pack-local `images/...`
+links in served Study Book files. Rendered Study Book images receive
+`.sb-markdown-image` and can be opened in the drawer lightbox.
+
+Quiz, Reading, and Builder content can also carry optional image metadata in the
+item `data` payload:
+
+```json
+{
+  "image": "/assets/religion/y7/rs-rp/rs_2a_karma.png",
+  "imageAlt": "2A Karma visual map",
+  "imageCaption": "Part 2 visual map linking karma, samsara, dharma and moksha.",
+  "imagePlacement": "top"
+}
+```
+
+These fields are preserved by `data.js`/`quiz.js` and rendered by
+`LearningImage.jsx`.
+
 ### 5.2 Multiple files
 
 When a pack has more than one markdown file, use:
