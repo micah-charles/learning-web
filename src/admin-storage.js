@@ -11,6 +11,8 @@
  *     without any network requests or changes to the loaders themselves.
  */
 
+import { validatePackSchema } from "./admin-validate.js";
+
 const META_KEY        = "learningWeb.uploadedPacks.meta";
 const DATA_KEY_PREFIX = "learningWeb.uploadedPack.";
 
@@ -24,6 +26,30 @@ const KNOWN_ITEM_TYPES = new Set([
 export const UPLOADED_PATH_PREFIX = "uploaded://";
 
 // ─── Schema validation ────────────────────────────────────────────────────────
+
+function isSafeUploadedImageSrc(src) {
+  const value = String(src || "").trim();
+  if (!value) return true;
+  if (value.startsWith("/assets/") || value.startsWith("/images/") || value.startsWith("/data/")) return true;
+  if (/^https:\/\/[^\s]+$/i.test(value)) return true;
+  return false;
+}
+
+function collectImagePathErrors(data) {
+  const errors = [];
+  for (const [idx, item] of (data?.items || []).entries()) {
+    const itemImage = item?.image;
+    const dataImage = item?.data?.image;
+    if (!isSafeUploadedImageSrc(itemImage)) {
+      errors.push(`items[${idx}].image: uploaded packs cannot use local or relative image paths (${itemImage}). Use HTTPS or an app-served /assets/, /images/, or /data/ path.`);
+    }
+    if (!isSafeUploadedImageSrc(dataImage)) {
+      errors.push(`items[${idx}].data.image: uploaded packs cannot use local or relative image paths (${dataImage}). ZIP image assets are not imported; use HTTPS or serve images under public/assets.`);
+    }
+    if (errors.length >= 4) break;
+  }
+  return errors;
+}
 
 /**
  * Returns { ok: true, typeCounts } or { ok: false, error }.
@@ -53,6 +79,22 @@ export function validatePack(data) {
       error:
         `No recognised item types found in "items". ` +
         `Expected at least one of: ${[...KNOWN_ITEM_TYPES].join(", ")}.`,
+    };
+  }
+
+  const schemaResult = validatePackSchema(data);
+  if (!schemaResult.ok) {
+    return {
+      ok: false,
+      error: schemaResult.errors.join("; "),
+    };
+  }
+
+  const imageErrors = collectImagePathErrors(data);
+  if (imageErrors.length) {
+    return {
+      ok: false,
+      error: imageErrors.join("; "),
     };
   }
 

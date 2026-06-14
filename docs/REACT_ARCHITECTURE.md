@@ -508,6 +508,12 @@ Use this to understand what to change when modifying a feature:
 | Build configuration | `vite.config.js` |
 | Deployment | `render.yaml` |
 
+My Packs accepts `.json` files and `.zip` bundles of JSON files only. Upload
+validation lives in `admin-storage.js` and calls the item-level rules in
+`admin-validate.js`; it rejects broken MCQs, same-word monolingual vocab,
+sentence-builder tile mismatches, and image references that are local/relative
+ZIP paths. A ZIP upload does not import image or markdown assets.
+
 ---
 
 ## 16. Arcade game mode (`src/react/games/arcade/`)

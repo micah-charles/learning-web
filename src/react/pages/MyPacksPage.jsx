@@ -3,7 +3,7 @@
  *
  * "My Packs" tab — upload custom JSON pack files, view and delete them.
  * Uses admin-storage.js for localStorage-backed pack management.
- * Supports single .json files and .zip bundles containing multiple packs.
+ * Supports single .json files and .zip bundles containing multiple JSON packs.
  */
 import { useState, useRef, useCallback } from "react";
 import {
@@ -44,8 +44,9 @@ async function processFile(file) {
     catch { return [{ ok: false, filename: file.name, error: "Invalid JSON." }]; }
     const validation = validatePack(data);
     if (!validation.ok) return [{ ok: false, filename: file.name, error: validation.error }];
-    const entry = saveUploadedPack(data, file.name);
-    return [{ ok: true, filename: file.name, entry }];
+    const saved = saveUploadedPack(data, file.name);
+    if (!saved.ok) return [{ ok: false, filename: file.name, error: saved.error }];
+    return [{ ok: true, filename: file.name, entry: saved.entry }];
   }
 
   if (ext === "zip") {
@@ -72,8 +73,9 @@ async function processFile(file) {
       catch { results.push({ ok: false, filename: name, error: "Invalid JSON." }); continue; }
       const validation = validatePack(data);
       if (!validation.ok) { results.push({ ok: false, filename: name, error: validation.error }); continue; }
-      const entry = saveUploadedPack(data, name);
-      results.push({ ok: true, filename: name, entry });
+      const saved = saveUploadedPack(data, name);
+      if (!saved.ok) { results.push({ ok: false, filename: name, error: saved.error }); continue; }
+      results.push({ ok: true, filename: name, entry: saved.entry });
     }
     return results.length ? results : [{ ok: false, filename: file.name, error: "No JSON files found in ZIP." }];
   }
@@ -237,7 +239,7 @@ export default function MyPacksPage({ onNavigate }) {
       <div className="lw-card" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">My Packs</h2>
         <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem", marginBottom: "16px" }}>
-          Upload your own pack JSON files to use them in Quiz, Vocabulary, and Review.
+          Upload your own pack JSON files to use them in Quiz, Vocabulary, Reading, and Builder.
           Packs are stored only in this browser — nothing is sent to a server.
         </p>
 
@@ -263,7 +265,10 @@ export default function MyPacksPage({ onNavigate }) {
             {uploading ? "Processing…" : "Drop files here, or click to browse"}
           </p>
           <p style={{ color: "var(--lw-muted)", fontSize: "0.82rem" }}>
-            Accepts <code>.json</code> (single pack) or <code>.zip</code> (bundle of JSON files)
+            Accepts <code>.json</code> (single pack) or <code>.zip</code> (JSON files only)
+          </p>
+          <p style={{ color: "var(--lw-muted)", fontSize: "0.76rem", marginTop: "6px" }}>
+            Image files inside ZIPs are not imported. Visual packs should use HTTPS image URLs or app-served paths such as <code>/assets/...</code>.
           </p>
         </div>
         <input
