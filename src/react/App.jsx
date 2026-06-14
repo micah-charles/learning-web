@@ -140,7 +140,6 @@ function AppContent() {
       <Hero
         variant="standard"
         onNavigate={handleNavigate}
-        onManageLearning={() => setActiveTab("learning-settings")}
         showAiPrompt={!Array.isArray(allowedTabs) || allowedTabs.includes("ai-prompt")}
       />
 

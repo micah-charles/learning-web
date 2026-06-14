@@ -31,7 +31,7 @@ function CountBadge({ icon, n, label }) {
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-export default function Hero({ variant = "standard", onNavigate, onManageLearning, showAiPrompt = true }) {
+export default function Hero({ variant = "standard", onNavigate, showAiPrompt = true }) {
   const { manifest } = useManifest();
 
   const packCount    = useMemo(() => (manifest ? listDatasets(manifest).length : 0),            [manifest]);
@@ -106,17 +106,11 @@ export default function Hero({ variant = "standard", onNavigate, onManageLearnin
                 >
                   <span className="lw-hero-promo-title">✦ AI Learning Pack Creator</span>
                   <span className="lw-hero-promo-sub">
-                    Build your own quizzes, readings, and revision packs with AI — then upload the JSON in My Packs.
+                    <span>Build quizzes, readings, and revision packs with AI.</span>
+                    <span>Then upload the JSON in My Packs.</span>
                   </span>
                 </button>
               )}
-              <button
-                type="button"
-                className="lw-hero-manage"
-                onClick={onManageLearning}
-              >
-                Manage Learning
-              </button>
             </div>
           </div>
         </div>
