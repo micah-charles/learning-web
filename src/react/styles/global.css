@@ -698,8 +698,8 @@ body {
 @media (max-width: 740px) {
   .lw-app-header--standard .lw-header-inner,
   .lw-app-header--home .lw-header-inner {
-    min-height: 132px;
-    padding: 0 14px;
+    min-height: 112px;
+    padding: 0 12px;
   }
   .lw-header-mascot   { width: 118px; }
   .lw-mascot-img      { width: 118px; }
@@ -709,11 +709,11 @@ body {
     height: 30px;
   }
   .lw-hero-copy {
-    min-height: 112px;
+    min-height: auto;
     flex-direction: column;
     justify-content: center;
-    gap: 8px;
-    padding: 12px 10px 12px 10px;
+    gap: 6px;
+    padding: 10px 8px;
   }
   .lw-hero-title {
     font-size: 1.42rem;
@@ -726,10 +726,11 @@ body {
   .lw-hero-sub {
     font-size: 0.78rem;
     line-height: 1.4;
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
   .lw-hero-right-col {
     align-items: flex-start;
+    gap: 6px;
     margin-left: 0;
     flex: 0 1 auto;
     min-width: 0;
@@ -740,11 +741,16 @@ body {
     gap: 5px;
   }
   .lw-hero-promo {
+    width: 100%;
     max-width: 100%;
+    padding: 7px 10px;
+  }
+  .lw-hero-action-stack {
+    width: 100%;
   }
   .lw-hero-count-badge {
-    font-size: 0.68rem;
-    padding: 4px 7px;
+    font-size: 0.64rem;
+    padding: 3px 7px;
   }
   .lw-stats-row       { gap: 6px; padding: 10px 10px 14px 10px; }
   .lw-stat-card       { padding: 9px 10px 8px; }
@@ -756,13 +762,16 @@ body {
   .lw-header-mascot { display: none; }
   .lw-app-header--standard .lw-header-inner,
   .lw-app-header--home .lw-header-inner {
-    min-height: 128px;
+    min-height: auto;
   }
   .lw-hero-copy {
-    padding: 14px;
-    min-height: 118px;
+    padding: 12px 14px 10px;
+    min-height: auto;
   }
   .lw-hero-title    { font-size: 1.38rem; }
+  .lw-hero-sub      { display: none; }
+  .lw-hero-promo-title { font-size: 0.78rem; }
+  .lw-hero-promo-sub   { font-size: 0.68rem; }
   .lw-stats-row     { display: grid; grid-template-columns: 1fr 1fr; padding: 10px 10px 14px; }
 }
 
