@@ -594,9 +594,10 @@ Three sections:
 
 ### Pack Admin section
 
-- Drag-and-drop / click upload for `pack_unified.json` files.
-- File input: `#admin-file-upload` — handled by `handleAdminFileUpload(file)`.
-- Upload flow: JSON parse → `validatePack(parsed)` (in `admin-storage.js`) → `saveUploadedPack(parsed, filename)` → `hydrateManifest(manifest, registerPackInCache)` — pack is immediately available in all tabs.
+- Drag-and-drop / click upload for `pack_unified.json` files, or `.zip` bundles containing JSON files only.
+- File input: React My Packs uses `MyPacksPage.jsx`; the legacy vanilla admin used `#admin-file-upload`.
+- Upload flow: JSON parse → `validatePack(parsed)` (in `admin-storage.js`, including item-level checks from `admin-validate.js`) → `saveUploadedPack(parsed, filename)` → `hydrateManifest(manifest, registerPackInCache)` — pack is immediately available in all tabs.
+- ZIP upload does not import image files or markdown assets. Image references in uploaded JSON must be HTTPS or already-served app paths such as `/assets/...`, `/images/...`, or `/data/...`.
 - Upload status banner (`runtime.adminUploadStatus`) shows success or error.
 
 ### Uploaded Packs section

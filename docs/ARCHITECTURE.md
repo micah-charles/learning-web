@@ -454,6 +454,19 @@ Deployment: Render.com picks up `render.yaml` — runs `npm run build`, serves `
 | `dist/revision/**` | Search engines (SEO) | Static HTML for /revision/subjects/ |
 | `src/study-book-core.js` | StudyBookDrawer, SEO generator | Markdown rendering + TOC |
 
+### My Packs Upload Boundary
+
+My Packs upload is browser-local and JSON-only. A `.zip` upload is treated as a
+bundle of JSON pack files; it does not persist images, markdown, PDFs, or other
+assets from the archive.
+
+Uploaded pack image references must already be loadable by the app. The upload
+validator accepts HTTPS images and root-relative app paths such as `/assets/...`,
+`/images/...`, or `/data/...`. It rejects relative ZIP-local paths such as
+`images/foo.png`, because there is no backend file store to serve those bytes
+after upload. Image-heavy ChatGPT ZIPs should be converted into built-in served
+packs under `data/Packs/**` plus `public/assets/**`.
+
 ---
 
 ## 12. Known Gaps & Future Work
@@ -462,3 +475,6 @@ Deployment: Render.com picks up `render.yaml` — runs `npm run build`, serves `
 - **Passages** are not yet generated for Geography packs (only `"revision"` capability, no `"passages"`). Reading content could be added.
 - **CLAUDE.md** references `revisionPacks[]` and `passageGroups[]` which no longer exist — the manifest uses a unified `packs[]` array with `capabilities` field.
 - **Two parallel study book indexers** exist: Python (`generate_study_book_index.py`) and Node (`build-studybook-index.js`). Only the Node version is used at build time.
+- **My Packs ZIP upload is JSON-only**. It does not import image files or
+  markdown files from ZIP archives; visual packs need HTTPS images or served
+  public assets.

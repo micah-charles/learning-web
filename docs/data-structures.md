@@ -220,6 +220,13 @@ Any revision, reading, or builder item may include image metadata either on the 
 
 Study Book Markdown also supports image syntax such as `![alt](/assets/...)`. Do not reference an image that is not present under `public/`; the build may still pass, but the learning experience will show a broken visual.
 
+**My Packs upload boundary:** browser uploads store JSON in `localStorage`; they
+do not store image files. A `.zip` upload is only a bundle of JSON files. For
+uploaded packs, image paths must be HTTPS URLs or already-served app paths such
+as `/assets/...`, `/images/...`, or `/data/...`. ZIP-local paths like
+`images/card.png` are rejected by upload validation because the image bytes
+would be discarded.
+
 ### Valid item `type` values
 
 | Type | Used by | Quiz mode |
@@ -670,7 +677,7 @@ New packs must use `"1.1"`. `"1.0"` is accepted for legacy packs only.
 ### Allowed item `type` values
 
 ```
-vocab  sentence  sequence  categorySort  fillBlank  sentenceBuilder  passage
+vocab  sentence  sequence  categorySort  fillBlank  sentenceBuilder  passage  multipleChoice
 ```
 
 Any other string is an error.
