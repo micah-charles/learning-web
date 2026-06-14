@@ -12,8 +12,11 @@ export const TABS = [
   { id: "crossword",  label: "Crossword"   },
   { id: "progress",   label: "Progress"    },
   { id: "mypacks",    label: "My Packs"    },
-  { id: "learning-settings", label: "Manage Learning" },
   { id: "about",      label: "About"       },
+];
+
+const DESKTOP_UTILITY_TABS = [
+  { id: "learning-settings", label: "Manage Learning" },
 ];
 
 export const MOBILE_PRIMARY_TABS = [
@@ -42,11 +45,16 @@ function filterTabs(tabs, allowedTabs, active) {
 }
 
 function DesktopNav({ active, onChange, allowedTabs }) {
+  const utilityTabs = filterTabs(DESKTOP_UTILITY_TABS, allowedTabs, active);
   const tabs = filterTabs(TABS, allowedTabs, active);
+  const activeUtilityTab = utilityTabs.find((tab) => tab.id === active);
+  const visibleTabs = activeUtilityTab && !tabs.some((tab) => tab.id === activeUtilityTab.id)
+    ? [...tabs, activeUtilityTab]
+    : tabs;
   return (
     <div className="lw-nav-desktop">
       <div className="lw-nav-inner">
-        {tabs.map((tab) => (
+        {visibleTabs.map((tab) => (
           <button
             key={tab.id}
             className={`lw-nav-pill${active === tab.id ? " active" : ""}${tab.tone ? ` tone-${tab.tone}` : ""}`}
