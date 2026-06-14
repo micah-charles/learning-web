@@ -7,7 +7,13 @@
  */
 import { useMemo } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
+import { useProgress } from "../context/ProgressContext.jsx";
 import { listDatasets, getDatasetSubject } from "@/data.js";
+import {
+  filterPacksForPrefs,
+  isEverythingMode,
+  onboardingSummaryLabels,
+} from "../utils/personalisation.js";
 
 // ─── Decorative star used in section headings ────────────────────────────────
 function SectionStar() {
@@ -62,13 +68,33 @@ function PackCard({ pack, onClick }) {
   );
 }
 
-export default function HomePage({ onNavigate }) {
+const START_ACTIONS = [
+  { id: "language", label: "Start language learning", tab: "language", primary: true },
+  { id: "quiz", label: "Start a quiz", tab: "quiz", primary: true },
+  { id: "arcade", label: "Play mini game", tab: "arcade" },
+  { id: "reading", label: "Open reading practice", tab: "reading" },
+  { id: "study-books", label: "Browse study books", href: "/revision/subjects/" },
+  { id: "builder", label: "Sentence building", tab: "builder" },
+  { id: "vocab", label: "Vocabulary", tab: "vocab" },
+];
+
+export default function HomePage({ onNavigate, onManageLearning, onShowEverything }) {
   const { manifest, loading, error } = useManifest();
+  const { progress } = useProgress();
+  const onboardingPrefs = progress?.prefs || {};
+  const setupSummary = onboardingSummaryLabels(onboardingPrefs);
+  const selectedModules = onboardingPrefs.selectedModules || [];
+  const everythingMode = isEverythingMode(onboardingPrefs);
 
   const featuredPacks = useMemo(() => {
     if (!manifest) return [];
-    return listDatasets(manifest).slice(0, 6);
-  }, [manifest]);
+    return filterPacksForPrefs(listDatasets(manifest), onboardingPrefs).slice(0, 6);
+  }, [manifest, onboardingPrefs]);
+
+  const startActions = useMemo(() => {
+    if (everythingMode || !selectedModules.length) return START_ACTIONS.slice(0, 5);
+    return START_ACTIONS.filter((action) => !action.tab || selectedModules.includes(action.tab) || action.id === "study-books").slice(0, 5);
+  }, [everythingMode, selectedModules]);
 
   if (loading) {
     return (
@@ -108,32 +134,25 @@ export default function HomePage({ onNavigate }) {
             <span aria-hidden="true">🔊</span> Speak uses your browser or mobile text-to-speech. You may need to install or enable the language voice on your device.
           </p>
           <div className="lw-btn-group">
-            <button className="lw-btn lw-btn-promote lw-btn-promote-orange" type="button" onClick={() => onNavigate("language")}>
-              Language Ladder <span aria-hidden="true">✨</span>
-            </button>
-            <button className="lw-btn lw-btn-promote lw-btn-promote-blue" type="button" onClick={() => onNavigate("quiz")}>
-              Start Quiz
-            </button>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("vocab")}>
-              Vocabulary
-            </button>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("reading")}>
-              Reading
-            </button>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("builder")}>
-              Builder
-            </button>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onNavigate("crossword")}>
-              Crossword
-            </button>
+            {startActions.map((action) => action.href ? (
+              <a key={action.id} className="lw-btn lw-btn-secondary" href={action.href}>
+                {action.label}
+              </a>
+            ) : (
+              <button
+                key={action.id}
+                className={`lw-btn ${action.primary ? "lw-btn-promote lw-btn-promote-blue" : "lw-btn-secondary"}`}
+                type="button"
+                onClick={() => onNavigate(action.tab)}
+              >
+                {action.label}
+              </button>
+            ))}
             <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("progress")}>
               Progress
             </button>
             <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("mypacks")}>
               My Packs
-            </button>
-            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onNavigate("about")}>
-              About
             </button>
           </div>
         </div>
@@ -155,6 +174,38 @@ export default function HomePage({ onNavigate }) {
             </svg>
             Visit our Facebook page
           </a>
+        </div>
+      </div>
+
+      <div className="lw-card lw-learning-setup-card">
+        <div>
+          <p className="lw-onboarding-eyebrow">Your Learning Setup</p>
+          <h2 className="lw-section-title">{setupSummary.mode}</h2>
+          <p className="lw-subtitle">
+            {everythingMode
+              ? "All tabs, subjects and curricula are visible."
+              : "FoxChild is showing a calmer set of tools based on your choices."}
+          </p>
+          <div className="lw-learning-summary-row">
+            {(setupSummary.interests.length ? setupSummary.interests : ["Overview first"]).slice(0, 5).map((label) => (
+              <span key={label} className="lw-chip blue">{label}</span>
+            ))}
+          </div>
+          <div className="lw-learning-summary-row">
+            {(setupSummary.modules.length ? setupSummary.modules : ["Home", "Quiz", "Reading"]).slice(0, 8).map((label) => (
+              <span key={label} className="lw-chip">{label}</span>
+            ))}
+          </div>
+        </div>
+        <div className="lw-learning-setup-actions">
+          <button className="lw-btn lw-btn-primary" type="button" onClick={onManageLearning}>
+            Manage Learning
+          </button>
+          {!everythingMode && (
+            <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onShowEverything?.()}>
+              Show everything
+            </button>
+          )}
         </div>
       </div>
 

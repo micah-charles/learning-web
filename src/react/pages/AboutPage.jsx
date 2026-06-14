@@ -3,7 +3,7 @@
  *
  * Static about content — direct port of vanilla renderAboutTab().
  */
-export default function AboutPage() {
+export default function AboutPage({ onManageLearning }) {
   return (
     <div className="lw-page">
       <div className="lw-card">
@@ -51,6 +51,14 @@ export default function AboutPage() {
               content. So I started building an experimental local-first learning platform called{" "}
               <strong>Learning Web</strong>.
             </p>
+            <button
+              className="lw-btn lw-btn-primary"
+              type="button"
+              onClick={onManageLearning}
+              style={{ marginTop: "14px" }}
+            >
+              Manage Learning
+            </button>
           </div>
 
           {/* Visual */}

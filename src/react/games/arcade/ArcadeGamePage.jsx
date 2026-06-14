@@ -19,11 +19,10 @@ import { useProgress } from "../../context/ProgressContext.jsx";
 import { SubjectCardGrid } from "../../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, FilterRow, LoadingText } from "../../components/layout/Controls.jsx";
 import {
-  SUBJECTS, listCurricula,
-  listDatasetsBySubjectAndCurriculum,
-  listSentenceBuilderPacksBySubjectAndCurriculum,
+  SUBJECTS, getBuilderPackSubject, getDatasetCurriculum, getDatasetSubject, listCurricula, listDatasets, listSentenceBuilderPacks,
 } from "@/data.js";
 import { recordWordAnswer, recordArcadeResult } from "@/storage.js";
+import { filterPacksForPrefs } from "../../utils/personalisation.js";
 import { useArcadeContent } from "./hooks/useArcadeContent.js";
 import { useArcadeSound } from "./hooks/useArcadeSound.js";
 import QuizHuntGame from "./QuizHuntGame.jsx";
@@ -97,6 +96,14 @@ export default function ArcadeGamePage() {
 
   // ── Setup option lists ──────────────────────────────────────────────────────
   const isBuilder = prefs.mode === "snake-builder";
+  const visibleDatasets = useMemo(
+    () => manifest ? filterPacksForPrefs(listDatasets(manifest), progress?.prefs || {}, "dataset") : [],
+    [manifest, progress?.prefs],
+  );
+  const visibleBuilderPacks = useMemo(
+    () => manifest ? filterPacksForPrefs(listSentenceBuilderPacks(manifest), progress?.prefs || {}, "builder") : [],
+    [manifest, progress?.prefs],
+  );
 
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
@@ -105,17 +112,32 @@ export default function ArcadeGamePage() {
 
   const subjectCounts = useMemo(() => SUBJECTS.map((id) => ({
     id,
-    count: !manifest ? 0 : (isBuilder
-      ? listSentenceBuilderPacksBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length
-      : listDatasetsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length),
-  })), [manifest, isBuilder, prefs.curriculum]);
+    count: (isBuilder ? visibleBuilderPacks : visibleDatasets)
+      .filter((pack) => {
+        const subject = isBuilder ? getBuilderPackSubject(pack) : getDatasetSubject(pack);
+        return subject === id && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(pack) === prefs.curriculum);
+      }).length,
+  })), [isBuilder, prefs.curriculum, visibleBuilderPacks, visibleDatasets]);
 
   const packs = useMemo(() => {
-    if (!manifest) return [];
-    return isBuilder
-      ? listSentenceBuilderPacksBySubjectAndCurriculum(manifest, prefs.subject, prefs.curriculum || "all")
-      : listDatasetsBySubjectAndCurriculum(manifest, prefs.subject, prefs.curriculum || "all");
-  }, [manifest, isBuilder, prefs.subject, prefs.curriculum]);
+    const source = isBuilder ? visibleBuilderPacks : visibleDatasets;
+    return source.filter((pack) => {
+      const subject = isBuilder ? getBuilderPackSubject(pack) : getDatasetSubject(pack);
+      return subject === prefs.subject && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(pack) === prefs.curriculum);
+    });
+  }, [isBuilder, prefs.subject, prefs.curriculum, visibleBuilderPacks, visibleDatasets]);
+
+  useEffect(() => {
+    const source = isBuilder ? visibleBuilderPacks : visibleDatasets;
+    if (!source.length || packs.length) return;
+    const first = source[0];
+    setPrefs((prev) => ({
+      ...prev,
+      subject: isBuilder ? getBuilderPackSubject(first) : getDatasetSubject(first),
+      curriculum: "all",
+      ...(isBuilder ? { packId: first.id } : { datasetId: first.id }),
+    }));
+  }, [isBuilder, packs.length, visibleBuilderPacks, visibleDatasets]);
 
   // Keep a valid pack/dataset selected as filters change.
   useEffect(() => {

@@ -1,13 +1,14 @@
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
-import { listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
+import { getDatasetCurriculum, listDatasets, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
 import { isWordMastered, getWordProgress } from "@/storage.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
+import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 function MasteryBadge({ correct, streak }) {
   if (correct >= 3 && streak >= 2) {
@@ -83,7 +84,10 @@ export default function VocabPage() {
   const { progress } = useProgress();
   const { speak } = useSpeech();
 
-  const allDatasets = useMemo(() => manifest ? listDatasets(manifest) : [], [manifest]);
+  const allDatasets = useMemo(
+    () => manifest ? filterPacksForPrefs(listDatasets(manifest), progress?.prefs || {}, "dataset") : [],
+    [manifest, progress?.prefs],
+  );
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
     [manifest],
@@ -105,19 +109,35 @@ export default function VocabPage() {
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map((id) => ({
       id,
-      count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
+      count: allDatasets.filter((dataset) => getDatasetSubject(dataset) === id && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(dataset) === prefs.curriculum)).length,
     }));
-  }, [manifest, prefs.curriculum]);
+  }, [allDatasets, prefs.curriculum]);
 
   // Datasets visible in the dropdown — filtered by subject + curriculum.
   const subjectDatasets = useMemo(() => {
-    if (!manifest) return [];
-    return listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
-  }, [manifest, prefs.subject, prefs.curriculum]);
+    return allDatasets.filter((dataset) => getDatasetSubject(dataset) === (prefs.subject || "") && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(dataset) === prefs.curriculum));
+  }, [allDatasets, prefs.subject, prefs.curriculum]);
+
+  useEffect(() => {
+    if (!allDatasets.length || subjectDatasets.length) return;
+    const first = allDatasets[0];
+    setPrefs((prev) => ({
+      ...prev,
+      subject: getDatasetSubject(first),
+      curriculum: "all",
+      datasetId: first.id,
+      year: "ALL",
+      stages: [],
+      partOfSpeech: "",
+      category: "",
+      categories: [],
+      search: "",
+    }));
+  }, [allDatasets, subjectDatasets.length]);
 
   // When subject changes: reset curriculum + pick first dataset, reset filters.
   function onSubjectChange(newSubject) {
-    const first = listDatasetsBySubjectAndCurriculum(manifest, newSubject, "all")[0];
+    const first = allDatasets.find((dataset) => getDatasetSubject(dataset) === newSubject);
     setPrefs({
       subject:      newSubject,
       curriculum:   "all",
@@ -189,7 +209,7 @@ export default function VocabPage() {
           items={curriculumOptions}
           value={prefs.curriculum || "all"}
           onSelect={(c) => {
-            const first = listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];
+            const first = allDatasets.find((dataset) => getDatasetSubject(dataset) === (prefs.subject || "") && (c === "all" || getDatasetCurriculum(dataset) === c));
             setPrefs((prev) => ({ ...prev, curriculum: c, datasetId: first?.id ?? prev.datasetId }));
           }}
           style={{ marginTop: "14px" }}

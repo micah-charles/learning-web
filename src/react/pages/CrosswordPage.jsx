@@ -4,8 +4,9 @@
  * Crossword tab — React reimplementation backed by the vanilla crossword.js engine.
  * Two screens: Setup (pick pack + word count) → Game (interactive grid + clues).
  */
-import { useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
+import { useProgress } from "../context/ProgressContext.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import {
@@ -13,8 +14,9 @@ import {
   generateCrossword,
   normalizeCrosswordAnswer,
 } from "@/crossword.js";
-import { loadVocabItems, listDatasets, listDatasetsBySubjectAndCurriculum, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
+import { loadVocabItems, listDatasets, getDatasetCurriculum, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
+import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 const WORD_COUNT_OPTIONS = [8, 10, 12, 15, 20].map((n) => ({ id: n, label: String(n) }));
 
@@ -168,8 +170,11 @@ function ClueSection({ title, entries, revealed }) {
 
 // ─── Setup Screen ─────────────────────────────────────────────────────────────
 
-function CrosswordSetup({ manifest, onStart }) {
-  const datasets = useMemo(() => (manifest ? listDatasets(manifest) : []), [manifest]);
+function CrosswordSetup({ manifest, personalisationPrefs, onStart }) {
+  const datasets = useMemo(
+    () => (manifest ? filterPacksForPrefs(listDatasets(manifest), personalisationPrefs, "dataset") : []),
+    [manifest, personalisationPrefs],
+  );
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
     [manifest],
@@ -182,9 +187,9 @@ function CrosswordSetup({ manifest, onStart }) {
     () =>
       SUBJECTS.map((id) => ({
         id,
-        count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, curriculum).length : 0,
+        count: datasets.filter((d) => getDatasetSubject(d) === id && (curriculum === "all" || getDatasetCurriculum(d) === curriculum)).length,
       })),
-    [manifest, curriculum],
+    [datasets, curriculum],
   );
   const [datasetId, setDatasetId]   = useState(() => datasets[0]?.id || "core");
   const [wordCount, setWordCount]   = useState(10);
@@ -192,14 +197,24 @@ function CrosswordSetup({ manifest, onStart }) {
   const [error, setError]           = useState(null);
 
   const filteredDatasets = useMemo(
-    () => manifest ? listDatasetsBySubjectAndCurriculum(manifest, subject, curriculum) : [],
-    [manifest, subject, curriculum],
+    () => datasets.filter((d) => getDatasetSubject(d) === subject && (curriculum === "all" || getDatasetCurriculum(d) === curriculum)),
+    [datasets, subject, curriculum],
   );
+
+  useEffect(() => {
+    if (!datasets.length) return;
+    if (filteredDatasets.some((d) => d.id === datasetId)) return;
+    const firstForSubject = datasets.find((d) => getDatasetSubject(d) === subject);
+    const next = firstForSubject || datasets[0];
+    setSubject(getDatasetSubject(next));
+    setCurriculum("all");
+    setDatasetId(next.id);
+  }, [datasetId, datasets, filteredDatasets, subject]);
 
   function handleSubjectSelect(subj) {
     setSubject(subj);
     setCurriculum("all");
-    const first = listDatasetsBySubjectAndCurriculum(manifest, subj, "all")[0];
+    const first = datasets.find((d) => getDatasetSubject(d) === subj);
     if (first) setDatasetId(first.id);
   }
 
@@ -247,7 +262,7 @@ function CrosswordSetup({ manifest, onStart }) {
           value={curriculum}
           onSelect={(c) => {
             setCurriculum(c);
-            const first = listDatasetsBySubjectAndCurriculum(manifest, subject, c)[0];
+            const first = datasets.find((d) => getDatasetSubject(d) === subject && (c === "all" || getDatasetCurriculum(d) === c));
             if (first) setDatasetId(first.id);
           }}
           style={{ marginTop: "14px" }}
@@ -400,6 +415,7 @@ function CrosswordGame({ gameState, onNew, onOptions }) {
 
 export default function CrosswordPage() {
   const { manifest, loading } = useManifest();
+  const { progress } = useProgress();
   const [gameState, setGameState] = useState(null);
 
   if (loading) return <div className="lw-page"><LoadingText /></div>;
@@ -425,6 +441,7 @@ export default function CrosswordPage() {
   return (
     <CrosswordSetup
       manifest={manifest}
+      personalisationPrefs={progress?.prefs || {}}
       onStart={(gs) => setGameState(gs)}
     />
   );
