@@ -156,7 +156,7 @@ export default function ArcadeGamePage() {
     mode: prefs.mode,
     datasetId: started && !isBuilder ? prefs.datasetId : null,
     packId: started && isBuilder ? prefs.packId : null,
-    builderPacks: packs,
+    builderPacks: started && isBuilder ? packs : null,
   });
 
   // ── Progress recording ──────────────────────────────────────────────────────

@@ -9,6 +9,15 @@ import { useState, useLayoutEffect, useRef } from "react";
 
 const CELL_MIN = 34;
 const CELL_MAX = 104;
+const DESKTOP_METRICS = { cols: 11, rows: 8, cellPx: 44 };
+const MOBILE_INITIAL_METRICS = { cols: 8, rows: 11, cellPx: 34 };
+const RESPONSIVE_QUERY = "(max-width: 768px), (pointer: coarse)";
+
+function prefersResponsiveBoard() {
+  return typeof window !== "undefined"
+    && typeof window.matchMedia === "function"
+    && window.matchMedia(RESPONSIVE_QUERY).matches;
+}
 
 function compute(box) {
   const w = box.width || 320;
@@ -26,10 +35,32 @@ function compute(box) {
 }
 
 export function useBoardMetrics(wrapperRef, observeKey = true) {
-  const [metrics, setMetrics] = useState({ cols: 8, rows: 11, cellPx: 34 });
+  const [responsiveBoard, setResponsiveBoard] = useState(prefersResponsiveBoard);
+  const [metrics, setMetrics] = useState(() => (
+    prefersResponsiveBoard() ? MOBILE_INITIAL_METRICS : DESKTOP_METRICS
+  ));
   const lastRef = useRef("");
 
   useLayoutEffect(() => {
+    if (typeof window.matchMedia !== "function") return undefined;
+    const media = window.matchMedia(RESPONSIVE_QUERY);
+    const update = () => setResponsiveBoard(media.matches);
+    update();
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", update);
+      return () => media.removeEventListener("change", update);
+    }
+    media.addListener(update);
+    return () => media.removeListener(update);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!responsiveBoard) {
+      lastRef.current = `${DESKTOP_METRICS.cols}x${DESKTOP_METRICS.rows}x${DESKTOP_METRICS.cellPx}`;
+      setMetrics(DESKTOP_METRICS);
+      return undefined;
+    }
+
     const el = wrapperRef.current;
     if (!el) return undefined;
 
@@ -51,7 +82,7 @@ export function useBoardMetrics(wrapperRef, observeKey = true) {
       ro.disconnect();
       window.removeEventListener("orientationchange", measure);
     };
-  }, [wrapperRef, observeKey]);
+  }, [wrapperRef, observeKey, responsiveBoard]);
 
   return metrics;
 }
