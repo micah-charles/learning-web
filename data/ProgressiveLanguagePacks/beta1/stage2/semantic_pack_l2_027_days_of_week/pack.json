@@ -1,7 +1,7 @@
 {
-  "packId": "semantic_pack_l2_023_",
+  "packId": "semantic_pack_l2_027_days_of_week",
   "schemaVersion": "prototype-0.3",
-  "title": "Semantic Pack L2_023 — afternoon_activities",
+  "title": "Semantic Pack L2_027 — days_of_week",
   "description": "A Progressive Language pack for Level 2, Stage 2 (When).",
   "baseLanguageCode": "en",
   "supportedLanguages": [
@@ -21,8 +21,8 @@
     "ja": "Japanese"
   },
   "sourceTopic": {
-    "topicId": "L2-023",
-    "title": "023 — Afternoon Activities",
+    "topicId": "L2-027",
+    "title": "027 — Days of Week",
     "difficultyStage": 2,
     "semanticDomains": [
       "time",
@@ -51,37 +51,37 @@
       ]
     },
     "sentenceGoals": [
-      "When is the birthday?",
+      "What do you do on Saturday?",
       "When is the party?"
     ]
   },
   "vocabulary": [
     {
-      "conceptId": "EVENT_BIRTHDAY",
+      "conceptId": "DAY_SATURDAY",
       "type": "noun",
-      "senseKey": "event_birthday",
+      "senseKey": "day_saturday",
       "semanticCategory": "",
       "translations": {
         "en": {
-          "text": "birthday"
+          "text": "Saturday"
         },
         "de": {
-          "text": "Geburtstag",
+          "text": "Samstag",
           "article": "der"
         },
         "fr": {
-          "text": "anniversaire",
+          "text": "samedi",
           "article": "le"
         },
         "es": {
-          "text": "cumpleaños",
+          "text": "sábado",
           "article": "el"
         },
         "zh": {
-          "text": "生日"
+          "text": "星期六"
         },
         "ja": {
-          "text": "誕生日"
+          "text": "土曜日"
         }
       }
     },
@@ -210,9 +210,9 @@
   ],
   "phraseProgressionChains": [
     {
-      "chainId": "chain_events_and_parties_chain1",
+      "chainId": "chain_weekend_plans_chain1",
       "linkedConcepts": [
-        "EVENT_BIRTHDAY"
+        "DAY_SATURDAY"
       ],
       "difficulty": "A1",
       "steps": [
@@ -357,225 +357,273 @@
           "focus": "full_question",
           "translations": {
             "en": {
-              "text": "When is the birthday?",
+              "text": "What do you do on Saturday?",
               "tiles": [
-                "When",
-                "is",
-                "the",
-                "birthday?"
+                "What",
+                "do",
+                "you",
+                "do",
+                "on",
+                "Saturday?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "When → is → the → birthday?",
+                "literalOrderExplanation": "What → do → you → do → on → Saturday?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
                 "tokens": [
                   {
-                    "text": "When",
+                    "text": "What",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "is",
+                    "text": "do",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "the",
+                    "text": "you",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "birthday?",
+                    "text": "do",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "on",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Saturday?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wann ist der Geburtstag?",
+              "text": "Was machst du am Samstag?",
               "tiles": [
-                "Wann",
-                "ist",
-                "der",
-                "Geburtstag?"
+                "Was",
+                "machst",
+                "du",
+                "am",
+                "Samstag?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wann → ist → der → Geburtstag?",
+                "literalOrderExplanation": "Was → machst → du → am → Samstag?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
                 ],
                 "tokens": [
                   {
-                    "text": "Wann",
+                    "text": "Was",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "ist",
+                    "text": "machst",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "der",
+                    "text": "du",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "Geburtstag?",
+                    "text": "am",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Samstag?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Quand est l'anniversaire?",
+              "text": "Qu'est-ce que tu fais le samedi?",
               "tiles": [
-                "Quand",
-                "est",
-                "l'anniversaire?"
+                "Qu'est-ce",
+                "que",
+                "tu",
+                "fais",
+                "le",
+                "samedi?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Quand → est → l'anniversaire?",
+                "literalOrderExplanation": "Qu'est-ce → que → tu → fais → le → samedi?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
                 ],
                 "tokens": [
                   {
-                    "text": "Quand",
+                    "text": "Qu'est-ce",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "est",
+                    "text": "que",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "l'anniversaire?",
+                    "text": "tu",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fais",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "samedi?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cuándo es el cumpleaños?",
+              "text": "¿Qué haces el sábado?",
               "tiles": [
-                "¿Cuándo",
-                "es",
+                "¿Qué",
+                "haces",
                 "el",
-                "cumpleaños?"
+                "sábado?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cuándo → es → el → cumpleaños?",
+                "literalOrderExplanation": "¿Qué → haces → el → sábado?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
                 ],
                 "tokens": [
                   {
-                    "text": "¿Cuándo",
+                    "text": "¿Qué",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "es",
+                    "text": "haces",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "cumpleaños?",
+                    "text": "sábado?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "生日是什麼時候？",
+              "text": "你星期六做什麼？",
               "tiles": [
-                "生日是什麼時候？"
+                "你星期六做什麼？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "生日是什麼時候？",
+                "literalOrderExplanation": "你星期六做什麼？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "生日是什麼時候？",
+                    "text": "你星期六做什麼？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "誕生日はいつですか？",
+              "text": "土曜日に何をしますか？",
               "tiles": [
-                "誕生日はいつですか？"
+                "土曜日に何をしますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "誕生日はいつですか？",
+                "literalOrderExplanation": "土曜日に何をしますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "誕生日はいつですか？",
+                    "text": "土曜日に何をしますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -586,7 +634,7 @@
       ]
     },
     {
-      "chainId": "chain_events_and_parties_chain2",
+      "chainId": "chain_weekend_plans_chain2",
       "linkedConcepts": [
         "EVENT_PARTY"
       ],
@@ -975,233 +1023,281 @@
       "sentenceId": "S001",
       "difficulty": "A1",
       "concepts": [
-        "EVENT_BIRTHDAY"
+        "DAY_SATURDAY"
       ],
       "grammarFocus": [
         "word_order"
       ],
-      "sourceChainId": "chain_events_and_parties_chain1",
+      "sourceChainId": "chain_weekend_plans_chain1",
       "translations": {
         "en": {
-          "text": "When is the birthday?",
+          "text": "What do you do on Saturday?",
           "tiles": [
-            "When",
-            "is",
-            "the",
-            "birthday?"
+            "What",
+            "do",
+            "you",
+            "do",
+            "on",
+            "Saturday?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "When → is → the → birthday?",
+            "literalOrderExplanation": "What → do → you → do → on → Saturday?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
             "tokens": [
               {
-                "text": "When",
+                "text": "What",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "is",
+                "text": "do",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "the",
+                "text": "you",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "birthday?",
+                "text": "do",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "on",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Saturday?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wann ist der Geburtstag?",
+          "text": "Was machst du am Samstag?",
           "tiles": [
-            "Wann",
-            "ist",
-            "der",
-            "Geburtstag?"
+            "Was",
+            "machst",
+            "du",
+            "am",
+            "Samstag?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wann → ist → der → Geburtstag?",
+            "literalOrderExplanation": "Was → machst → du → am → Samstag?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
             ],
             "tokens": [
               {
-                "text": "Wann",
+                "text": "Was",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "ist",
+                "text": "machst",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "der",
+                "text": "du",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "Geburtstag?",
+                "text": "am",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Samstag?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Quand est l'anniversaire?",
+          "text": "Qu'est-ce que tu fais le samedi?",
           "tiles": [
-            "Quand",
-            "est",
-            "l'anniversaire?"
+            "Qu'est-ce",
+            "que",
+            "tu",
+            "fais",
+            "le",
+            "samedi?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Quand → est → l'anniversaire?",
+            "literalOrderExplanation": "Qu'est-ce → que → tu → fais → le → samedi?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
             ],
             "tokens": [
               {
-                "text": "Quand",
+                "text": "Qu'est-ce",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "est",
+                "text": "que",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "l'anniversaire?",
+                "text": "tu",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "fais",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "samedi?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cuándo es el cumpleaños?",
+          "text": "¿Qué haces el sábado?",
           "tiles": [
-            "¿Cuándo",
-            "es",
+            "¿Qué",
+            "haces",
             "el",
-            "cumpleaños?"
+            "sábado?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cuándo → es → el → cumpleaños?",
+            "literalOrderExplanation": "¿Qué → haces → el → sábado?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
             ],
             "tokens": [
               {
-                "text": "¿Cuándo",
+                "text": "¿Qué",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "es",
+                "text": "haces",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "cumpleaños?",
+                "text": "sábado?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "生日是什麼時候？",
+          "text": "你星期六做什麼？",
           "tiles": [
-            "生日是什麼時候？"
+            "你星期六做什麼？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "生日是什麼時候？",
+            "literalOrderExplanation": "你星期六做什麼？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "生日是什麼時候？",
+                "text": "你星期六做什麼？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "誕生日はいつですか？",
+          "text": "土曜日に何をしますか？",
           "tiles": [
-            "誕生日はいつですか？"
+            "土曜日に何をしますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "誕生日はいつですか？",
+            "literalOrderExplanation": "土曜日に何をしますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "誕生日はいつですか？",
+                "text": "土曜日に何をしますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
@@ -1218,7 +1314,7 @@
       "grammarFocus": [
         "word_order"
       ],
-      "sourceChainId": "chain_events_and_parties_chain2",
+      "sourceChainId": "chain_weekend_plans_chain2",
       "translations": {
         "en": {
           "text": "When is the party?",
@@ -1457,7 +1553,7 @@
     }
   ],
   "conceptSentenceIndex": {
-    "EVENT_BIRTHDAY": [
+    "DAY_SATURDAY": [
       "S001"
     ],
     "EVENT_PARTY": [

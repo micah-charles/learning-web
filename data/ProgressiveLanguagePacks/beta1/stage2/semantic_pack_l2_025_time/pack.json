@@ -359,51 +359,60 @@
             "en": {
               "text": "What time is lunch?",
               "tiles": [
-                "When",
+                "What",
+                "time",
                 "is",
-                "noon?"
+                "lunch?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "When → is → noon?",
+                "literalOrderExplanation": "What → time → is → lunch?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
                 "tokens": [
                   {
-                    "text": "When",
+                    "text": "What",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "time",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "noon?",
+                    "text": "lunch?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wann ist Mittag?",
+              "text": "Wann ist das Mittagessen?",
               "tiles": [
                 "Wann",
                 "ist",
-                "Mittag?"
+                "das",
+                "Mittagessen?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wann → ist → Mittag?",
+                "literalOrderExplanation": "Wann → ist → das → Mittagessen?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -413,36 +422,44 @@
                     "text": "Wann",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "Mittag?",
+                    "text": "das",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mittagessen?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Quand est midi?",
+              "text": "Quand est le déjeuner?",
               "tiles": [
                 "Quand",
                 "est",
-                "midi?"
+                "le",
+                "déjeuner?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Quand → est → midi?",
+                "literalOrderExplanation": "Quand → est → le → déjeuner?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -452,36 +469,44 @@
                     "text": "Quand",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "midi?",
+                    "text": "le",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "déjeuner?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cuándo es mediodía?",
+              "text": "¿Cuándo es el almuerzo?",
               "tiles": [
                 "¿Cuándo",
                 "es",
-                "mediodía?"
+                "el",
+                "almuerzo?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cuándo → es → mediodía?",
+                "literalOrderExplanation": "¿Cuándo → es → el → almuerzo?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -491,67 +516,74 @@
                     "text": "¿Cuándo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "es",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "mediodía?",
+                    "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "almuerzo?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "中午是什麼時候？",
+              "text": "午餐是什麼時候？",
               "tiles": [
-                "中午是什麼時候？"
+                "午餐是什麼時候？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "中午是什麼時候？",
+                "literalOrderExplanation": "午餐是什麼時候？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "中午是什麼時候？",
+                    "text": "午餐是什麼時候？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "正午はいつですか？",
+              "text": "昼食はいつですか？",
               "tiles": [
-                "正午はいつですか？"
+                "昼食はいつですか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "正午はいつですか？",
+                "literalOrderExplanation": "昼食はいつですか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "正午はいつですか？",
+                    "text": "昼食はいつですか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -712,12 +744,14 @@
               "text": "When do you eat dinner?",
               "tiles": [
                 "When",
-                "is",
-                "evening?"
+                "do",
+                "you",
+                "eat",
+                "dinner?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "When → is → evening?",
+                "literalOrderExplanation": "When → do → you → eat → dinner?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
@@ -726,36 +760,52 @@
                     "text": "When",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "is",
+                    "text": "do",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "evening?",
+                    "text": "you",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dinner?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wann ist Abend?",
+              "text": "Wann isst du zu Abend?",
               "tiles": [
                 "Wann",
-                "ist",
+                "isst",
+                "du",
+                "zu",
                 "Abend?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wann → ist → Abend?",
+                "literalOrderExplanation": "Wann → isst → du → zu → Abend?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -765,36 +815,52 @@
                     "text": "Wann",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "ist",
+                    "text": "isst",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zu",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Abend?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Quand est soir?",
+              "text": "Quand est-ce que tu dînes?",
               "tiles": [
                 "Quand",
-                "est",
-                "soir?"
+                "est-ce",
+                "que",
+                "tu",
+                "dînes?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Quand → est → soir?",
+                "literalOrderExplanation": "Quand → est-ce → que → tu → dînes?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -804,36 +870,49 @@
                     "text": "Quand",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "est",
+                    "text": "est-ce",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "soir?",
+                    "text": "que",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tu",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dînes?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cuándo es noche?",
+              "text": "¿Cuándo cenas?",
               "tiles": [
                 "¿Cuándo",
-                "es",
-                "noche?"
+                "cenas?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cuándo → es → noche?",
+                "literalOrderExplanation": "¿Cuándo → cenas?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -843,67 +922,60 @@
                     "text": "¿Cuándo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "es",
+                    "text": "cenas?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "noche?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "晚上是什麼時候？",
+              "text": "你什麼時候吃晚餐？",
               "tiles": [
-                "晚上是什麼時候？"
+                "你什麼時候吃晚餐？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "晚上是什麼時候？",
+                "literalOrderExplanation": "你什麼時候吃晚餐？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "晚上是什麼時候？",
+                    "text": "你什麼時候吃晚餐？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "晩はいつですか？",
+              "text": "いつ夕食を食べますか？",
               "tiles": [
-                "晩はいつですか？"
+                "いつ夕食を食べますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "晩はいつですか？",
+                "literalOrderExplanation": "いつ夕食を食べますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "晩はいつですか？",
+                    "text": "いつ夕食を食べますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -929,51 +1001,60 @@
         "en": {
           "text": "What time is lunch?",
           "tiles": [
-            "When",
+            "What",
+            "time",
             "is",
-            "noon?"
+            "lunch?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "When → is → noon?",
+            "literalOrderExplanation": "What → time → is → lunch?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
             "tokens": [
               {
-                "text": "When",
+                "text": "What",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "time",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "is",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "noon?",
+                "text": "lunch?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wann ist Mittag?",
+          "text": "Wann ist das Mittagessen?",
           "tiles": [
             "Wann",
             "ist",
-            "Mittag?"
+            "das",
+            "Mittagessen?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wann → ist → Mittag?",
+            "literalOrderExplanation": "Wann → ist → das → Mittagessen?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -983,36 +1064,44 @@
                 "text": "Wann",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "Mittag?",
+                "text": "das",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mittagessen?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Quand est midi?",
+          "text": "Quand est le déjeuner?",
           "tiles": [
             "Quand",
             "est",
-            "midi?"
+            "le",
+            "déjeuner?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Quand → est → midi?",
+            "literalOrderExplanation": "Quand → est → le → déjeuner?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1022,36 +1111,44 @@
                 "text": "Quand",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "est",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "midi?",
+                "text": "le",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "déjeuner?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cuándo es mediodía?",
+          "text": "¿Cuándo es el almuerzo?",
           "tiles": [
             "¿Cuándo",
             "es",
-            "mediodía?"
+            "el",
+            "almuerzo?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cuándo → es → mediodía?",
+            "literalOrderExplanation": "¿Cuándo → es → el → almuerzo?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1061,67 +1158,74 @@
                 "text": "¿Cuándo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "es",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "mediodía?",
+                "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "almuerzo?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "中午是什麼時候？",
+          "text": "午餐是什麼時候？",
           "tiles": [
-            "中午是什麼時候？"
+            "午餐是什麼時候？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "中午是什麼時候？",
+            "literalOrderExplanation": "午餐是什麼時候？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "中午是什麼時候？",
+                "text": "午餐是什麼時候？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "正午はいつですか？",
+          "text": "昼食はいつですか？",
           "tiles": [
-            "正午はいつですか？"
+            "昼食はいつですか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "正午はいつですか？",
+            "literalOrderExplanation": "昼食はいつですか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "正午はいつですか？",
+                "text": "昼食はいつですか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
@@ -1144,12 +1248,14 @@
           "text": "When do you eat dinner?",
           "tiles": [
             "When",
-            "is",
-            "evening?"
+            "do",
+            "you",
+            "eat",
+            "dinner?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "When → is → evening?",
+            "literalOrderExplanation": "When → do → you → eat → dinner?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
@@ -1158,36 +1264,52 @@
                 "text": "When",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "is",
+                "text": "do",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "evening?",
+                "text": "you",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "eat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dinner?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wann ist Abend?",
+          "text": "Wann isst du zu Abend?",
           "tiles": [
             "Wann",
-            "ist",
+            "isst",
+            "du",
+            "zu",
             "Abend?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wann → ist → Abend?",
+            "literalOrderExplanation": "Wann → isst → du → zu → Abend?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -1197,36 +1319,52 @@
                 "text": "Wann",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "ist",
+                "text": "isst",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "zu",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Abend?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Quand est soir?",
+          "text": "Quand est-ce que tu dînes?",
           "tiles": [
             "Quand",
-            "est",
-            "soir?"
+            "est-ce",
+            "que",
+            "tu",
+            "dînes?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Quand → est → soir?",
+            "literalOrderExplanation": "Quand → est-ce → que → tu → dînes?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1236,36 +1374,49 @@
                 "text": "Quand",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "est",
+                "text": "est-ce",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "soir?",
+                "text": "que",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "tu",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dînes?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cuándo es noche?",
+          "text": "¿Cuándo cenas?",
           "tiles": [
             "¿Cuándo",
-            "es",
-            "noche?"
+            "cenas?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cuándo → es → noche?",
+            "literalOrderExplanation": "¿Cuándo → cenas?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1275,67 +1426,60 @@
                 "text": "¿Cuándo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "es",
+                "text": "cenas?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "noche?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "晚上是什麼時候？",
+          "text": "你什麼時候吃晚餐？",
           "tiles": [
-            "晚上是什麼時候？"
+            "你什麼時候吃晚餐？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "晚上是什麼時候？",
+            "literalOrderExplanation": "你什麼時候吃晚餐？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "晚上是什麼時候？",
+                "text": "你什麼時候吃晚餐？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "晩はいつですか？",
+          "text": "いつ夕食を食べますか？",
           "tiles": [
-            "晩はいつですか？"
+            "いつ夕食を食べますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "晩はいつですか？",
+            "literalOrderExplanation": "いつ夕食を食べますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "晩はいつですか？",
+                "text": "いつ夕食を食べますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]

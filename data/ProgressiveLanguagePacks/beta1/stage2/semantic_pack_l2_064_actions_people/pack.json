@@ -113,6 +113,64 @@
           "text": "踊り手"
         }
       }
+    },
+    {
+      "conceptId": "VERB_DRAW",
+      "type": "verb",
+      "senseKey": "verb_draw",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "draw"
+        },
+        "de": {
+          "text": "zeichnen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "dessiner",
+          "article": "le"
+        },
+        "es": {
+          "text": "dibujar",
+          "article": "el"
+        },
+        "zh": {
+          "text": "畫畫"
+        },
+        "ja": {
+          "text": "描く"
+        }
+      }
+    },
+    {
+      "conceptId": "VERB_SING",
+      "type": "verb",
+      "senseKey": "verb_sing",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "sing"
+        },
+        "de": {
+          "text": "singen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "chanter",
+          "article": "le"
+        },
+        "es": {
+          "text": "cantar",
+          "article": "el"
+        },
+        "zh": {
+          "text": "唱歌"
+        },
+        "ja": {
+          "text": "歌う"
+        }
+      }
     }
   ],
   "grammarTokens": [
@@ -322,14 +380,16 @@
               "text": "How does the child draw a picture?",
               "tiles": [
                 "How",
-                "can",
+                "does",
                 "the",
                 "child",
-                "draw?"
+                "draw",
+                "a",
+                "picture?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "How → can → the → child → draw?",
+                "literalOrderExplanation": "How → does → the → child → draw → a → picture?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
@@ -338,52 +398,67 @@
                     "text": "How",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "can",
+                    "text": "does",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "child",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "draw?",
+                    "text": "draw",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "picture?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wie kann das Kind zeichnen?",
+              "text": "Wie zeichnet das Kind ein Bild?",
               "tiles": [
                 "Wie",
-                "kann",
+                "zeichnet",
                 "das",
                 "Kind",
-                "zeichnen?"
+                "ein",
+                "Bild?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wie → kann → das → Kind → zeichnen?",
+                "literalOrderExplanation": "Wie → zeichnet → das → Kind → ein → Bild?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -393,51 +468,59 @@
                     "text": "Wie",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "kann",
+                    "text": "zeichnet",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "das",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Kind",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "zeichnen?",
+                    "text": "ein",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Bild?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Comment l'enfant peut dessiner?",
+              "text": "Comment l'enfant dessine-t-il une image?",
               "tiles": [
                 "Comment",
                 "l'enfant",
-                "peut",
-                "dessiner?"
+                "dessine-t-il",
+                "une",
+                "image?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Comment → l'enfant → peut → dessiner?",
+                "literalOrderExplanation": "Comment → l'enfant → dessine-t-il → une → image?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -447,45 +530,53 @@
                     "text": "Comment",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "l'enfant",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "peut",
+                    "text": "dessine-t-il",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "dessiner?",
+                    "text": "une",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "image?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cómo puede el niño dibujar?",
+              "text": "¿Cómo dibuja un cuadro el niño?",
               "tiles": [
                 "¿Cómo",
-                "puede",
+                "dibuja",
+                "un",
+                "cuadro",
                 "el",
-                "niño",
-                "dibujar?"
+                "niño?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cómo → puede → el → niño → dibujar?",
+                "literalOrderExplanation": "¿Cómo → dibuja → un → cuadro → el → niño?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -495,81 +586,88 @@
                     "text": "¿Cómo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "puede",
+                    "text": "dibuja",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuadro",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "niño",
+                    "text": "niño?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "dibujar?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "小朋友怎麼畫畫？",
+              "text": "小朋友怎麼畫圖？",
               "tiles": [
-                "小朋友怎麼畫畫？"
+                "小朋友怎麼畫圖？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "小朋友怎麼畫畫？",
+                "literalOrderExplanation": "小朋友怎麼畫圖？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "小朋友怎麼畫畫？",
+                    "text": "小朋友怎麼畫圖？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "子どもはどうやって描く？",
+              "text": "子どもはどうやって絵を描きますか？",
               "tiles": [
-                "子どもはどうやって描く？"
+                "子どもはどうやって絵を描きますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "子どもはどうやって描く？",
+                "literalOrderExplanation": "子どもはどうやって絵を描きますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "子どもはどうやって描く？",
+                    "text": "子どもはどうやって絵を描きますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -731,14 +829,15 @@
               "text": "How does the dancer practise singing?",
               "tiles": [
                 "How",
-                "can",
+                "does",
                 "the",
                 "dancer",
-                "sing?"
+                "practise",
+                "singing?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "How → can → the → dancer → sing?",
+                "literalOrderExplanation": "How → does → the → dancer → practise → singing?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
@@ -747,52 +846,60 @@
                     "text": "How",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "can",
+                    "text": "does",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "dancer",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "sing?",
+                    "text": "practise",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "singing?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wie kann der Tänzer singen?",
+              "text": "Wie übt der Tänzer das Singen?",
               "tiles": [
                 "Wie",
-                "kann",
+                "übt",
                 "der",
                 "Tänzer",
-                "singen?"
+                "das",
+                "Singen?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wie → kann → der → Tänzer → singen?",
+                "literalOrderExplanation": "Wie → übt → der → Tänzer → das → Singen?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -802,52 +909,60 @@
                     "text": "Wie",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "kann",
+                    "text": "übt",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "der",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Tänzer",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "singen?",
+                    "text": "das",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Singen?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Comment le danseur peut chanter?",
+              "text": "Comment le danseur s'exerce-t-il à chanter?",
               "tiles": [
                 "Comment",
                 "le",
                 "danseur",
-                "peut",
+                "s'exerce-t-il",
+                "à",
                 "chanter?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Comment → le → danseur → peut → chanter?",
+                "literalOrderExplanation": "Comment → le → danseur → s'exerce-t-il → à → chanter?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -857,52 +972,60 @@
                     "text": "Comment",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "danseur",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "peut",
+                    "text": "s'exerce-t-il",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "chanter?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cómo puede el bailarín cantar?",
+              "text": "¿Cómo practica el bailarín el canto?",
               "tiles": [
                 "¿Cómo",
-                "puede",
+                "practica",
                 "el",
                 "bailarín",
-                "cantar?"
+                "el",
+                "canto?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cómo → puede → el → bailarín → cantar?",
+                "literalOrderExplanation": "¿Cómo → practica → el → bailarín → el → canto?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -912,81 +1035,88 @@
                     "text": "¿Cómo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "puede",
+                    "text": "practica",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "bailarín",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "cantar?",
+                    "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "canto?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "舞者怎麼唱歌？",
+              "text": "舞者怎麼練習唱歌？",
               "tiles": [
-                "舞者怎麼唱歌？"
+                "舞者怎麼練習唱歌？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "舞者怎麼唱歌？",
+                "literalOrderExplanation": "舞者怎麼練習唱歌？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "舞者怎麼唱歌？",
+                    "text": "舞者怎麼練習唱歌？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "踊り手はどうやって歌う？",
+              "text": "踊り手はどうやって歌を練習しますか？",
               "tiles": [
-                "踊り手はどうやって歌う？"
+                "踊り手はどうやって歌を練習しますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "踊り手はどうやって歌う？",
+                "literalOrderExplanation": "踊り手はどうやって歌を練習しますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "踊り手はどうやって歌う？",
+                    "text": "踊り手はどうやって歌を練習しますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -1014,14 +1144,16 @@
           "text": "How does the child draw a picture?",
           "tiles": [
             "How",
-            "can",
+            "does",
             "the",
             "child",
-            "draw?"
+            "draw",
+            "a",
+            "picture?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "How → can → the → child → draw?",
+            "literalOrderExplanation": "How → does → the → child → draw → a → picture?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
@@ -1030,52 +1162,67 @@
                 "text": "How",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "can",
+                "text": "does",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "the",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "child",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "draw?",
+                "text": "draw",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "picture?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wie kann das Kind zeichnen?",
+          "text": "Wie zeichnet das Kind ein Bild?",
           "tiles": [
             "Wie",
-            "kann",
+            "zeichnet",
             "das",
             "Kind",
-            "zeichnen?"
+            "ein",
+            "Bild?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wie → kann → das → Kind → zeichnen?",
+            "literalOrderExplanation": "Wie → zeichnet → das → Kind → ein → Bild?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -1085,51 +1232,59 @@
                 "text": "Wie",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "kann",
+                "text": "zeichnet",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "das",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Kind",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "zeichnen?",
+                "text": "ein",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Bild?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Comment l'enfant peut dessiner?",
+          "text": "Comment l'enfant dessine-t-il une image?",
           "tiles": [
             "Comment",
             "l'enfant",
-            "peut",
-            "dessiner?"
+            "dessine-t-il",
+            "une",
+            "image?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Comment → l'enfant → peut → dessiner?",
+            "literalOrderExplanation": "Comment → l'enfant → dessine-t-il → une → image?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1139,45 +1294,53 @@
                 "text": "Comment",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "l'enfant",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "peut",
+                "text": "dessine-t-il",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "dessiner?",
+                "text": "une",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "image?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cómo puede el niño dibujar?",
+          "text": "¿Cómo dibuja un cuadro el niño?",
           "tiles": [
             "¿Cómo",
-            "puede",
+            "dibuja",
+            "un",
+            "cuadro",
             "el",
-            "niño",
-            "dibujar?"
+            "niño?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cómo → puede → el → niño → dibujar?",
+            "literalOrderExplanation": "¿Cómo → dibuja → un → cuadro → el → niño?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1187,81 +1350,88 @@
                 "text": "¿Cómo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "puede",
+                "text": "dibuja",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuadro",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "niño",
+                "text": "niño?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "dibujar?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "小朋友怎麼畫畫？",
+          "text": "小朋友怎麼畫圖？",
           "tiles": [
-            "小朋友怎麼畫畫？"
+            "小朋友怎麼畫圖？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "小朋友怎麼畫畫？",
+            "literalOrderExplanation": "小朋友怎麼畫圖？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "小朋友怎麼畫畫？",
+                "text": "小朋友怎麼畫圖？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "子どもはどうやって描く？",
+          "text": "子どもはどうやって絵を描きますか？",
           "tiles": [
-            "子どもはどうやって描く？"
+            "子どもはどうやって絵を描きますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "子どもはどうやって描く？",
+            "literalOrderExplanation": "子どもはどうやって絵を描きますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "子どもはどうやって描く？",
+                "text": "子どもはどうやって絵を描きますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
@@ -1285,14 +1455,15 @@
           "text": "How does the dancer practise singing?",
           "tiles": [
             "How",
-            "can",
+            "does",
             "the",
             "dancer",
-            "sing?"
+            "practise",
+            "singing?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "How → can → the → dancer → sing?",
+            "literalOrderExplanation": "How → does → the → dancer → practise → singing?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
@@ -1301,52 +1472,60 @@
                 "text": "How",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "can",
+                "text": "does",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "the",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "dancer",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "sing?",
+                "text": "practise",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "singing?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wie kann der Tänzer singen?",
+          "text": "Wie übt der Tänzer das Singen?",
           "tiles": [
             "Wie",
-            "kann",
+            "übt",
             "der",
             "Tänzer",
-            "singen?"
+            "das",
+            "Singen?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wie → kann → der → Tänzer → singen?",
+            "literalOrderExplanation": "Wie → übt → der → Tänzer → das → Singen?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -1356,52 +1535,60 @@
                 "text": "Wie",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "kann",
+                "text": "übt",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "der",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Tänzer",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "singen?",
+                "text": "das",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Singen?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Comment le danseur peut chanter?",
+          "text": "Comment le danseur s'exerce-t-il à chanter?",
           "tiles": [
             "Comment",
             "le",
             "danseur",
-            "peut",
+            "s'exerce-t-il",
+            "à",
             "chanter?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Comment → le → danseur → peut → chanter?",
+            "literalOrderExplanation": "Comment → le → danseur → s'exerce-t-il → à → chanter?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1411,52 +1598,60 @@
                 "text": "Comment",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "le",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "danseur",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "peut",
+                "text": "s'exerce-t-il",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "chanter?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cómo puede el bailarín cantar?",
+          "text": "¿Cómo practica el bailarín el canto?",
           "tiles": [
             "¿Cómo",
-            "puede",
+            "practica",
             "el",
             "bailarín",
-            "cantar?"
+            "el",
+            "canto?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cómo → puede → el → bailarín → cantar?",
+            "literalOrderExplanation": "¿Cómo → practica → el → bailarín → el → canto?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1466,81 +1661,88 @@
                 "text": "¿Cómo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "puede",
+                "text": "practica",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "bailarín",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "cantar?",
+                "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "canto?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "舞者怎麼唱歌？",
+          "text": "舞者怎麼練習唱歌？",
           "tiles": [
-            "舞者怎麼唱歌？"
+            "舞者怎麼練習唱歌？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "舞者怎麼唱歌？",
+            "literalOrderExplanation": "舞者怎麼練習唱歌？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "舞者怎麼唱歌？",
+                "text": "舞者怎麼練習唱歌？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "踊り手はどうやって歌う？",
+          "text": "踊り手はどうやって歌を練習しますか？",
           "tiles": [
-            "踊り手はどうやって歌う？"
+            "踊り手はどうやって歌を練習しますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "踊り手はどうやって歌う？",
+            "literalOrderExplanation": "踊り手はどうやって歌を練習しますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "踊り手はどうやって歌う？",
+                "text": "踊り手はどうやって歌を練習しますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]

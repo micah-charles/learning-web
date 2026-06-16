@@ -59,7 +59,66 @@
       "Where is the sofa?"
     ]
   },
-  "vocabulary": [],
+  "vocabulary": [
+    {
+      "conceptId": "ANIMAL_CAT",
+      "type": "noun",
+      "senseKey": "animal_cat",
+      "semanticCategory": "animals",
+      "translations": {
+        "en": {
+          "text": "cat"
+        },
+        "de": {
+          "text": "Katze",
+          "article": "die"
+        },
+        "fr": {
+          "text": "chat",
+          "article": "le"
+        },
+        "es": {
+          "text": "gato",
+          "article": "el"
+        },
+        "zh": {
+          "text": "貓"
+        },
+        "ja": {
+          "text": "猫"
+        }
+      }
+    },
+    {
+      "conceptId": "OBJECT_SOFA",
+      "type": "noun",
+      "senseKey": "object_sofa",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "sofa"
+        },
+        "de": {
+          "text": "Sofa",
+          "article": "der"
+        },
+        "fr": {
+          "text": "canapé",
+          "article": "le"
+        },
+        "es": {
+          "text": "sofá",
+          "article": "el"
+        },
+        "zh": {
+          "text": "沙發"
+        },
+        "ja": {
+          "text": "ソファ"
+        }
+      }
+    }
+  ],
   "grammarTokens": [
     {
       "tokenId": "QW_WHERE",
