@@ -10,11 +10,11 @@ export default function DpadControls({ onPress, variant = "below" }) {
     onPress(dir);
   };
   return (
-    <div className={`arc-dpad arc-dpad--${variant}`} role="group" aria-label="Movement controls">
-      <button type="button" className="arc-dpad-btn up"    onPointerDown={press("up")}    aria-label="Move up">▲</button>
-      <button type="button" className="arc-dpad-btn left"  onPointerDown={press("left")}  aria-label="Move left">◀</button>
-      <button type="button" className="arc-dpad-btn right" onPointerDown={press("right")} aria-label="Move right">▶</button>
-      <button type="button" className="arc-dpad-btn down"  onPointerDown={press("down")}  aria-label="Move down">▼</button>
+    <div className={`arc-dpad arc-dpad--${variant}`} data-testid={`arcade-dpad-${variant}`} role="group" aria-label="Movement controls">
+      <button type="button" className="arc-dpad-btn up" data-testid={`arcade-dpad-${variant}-up`} onPointerDown={press("up")} aria-label="Move up">▲</button>
+      <button type="button" className="arc-dpad-btn left" data-testid={`arcade-dpad-${variant}-left`} onPointerDown={press("left")} aria-label="Move left">◀</button>
+      <button type="button" className="arc-dpad-btn right" data-testid={`arcade-dpad-${variant}-right`} onPointerDown={press("right")} aria-label="Move right">▶</button>
+      <button type="button" className="arc-dpad-btn down" data-testid={`arcade-dpad-${variant}-down`} onPointerDown={press("down")} aria-label="Move down">▼</button>
     </div>
   );
 }

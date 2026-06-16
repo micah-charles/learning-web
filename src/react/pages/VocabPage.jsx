@@ -45,7 +45,7 @@ function VocabCard({ word, state, onSpeak, speechLang, isLanguage, voicePractice
   }
 
   return (
-    <div className="lw-pack-card" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <div className="lw-pack-card" data-testid="vocab-card" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: "1.05rem", fontWeight: 700, fontFamily: "Georgia, serif", color: "var(--lw-ink)" }}>
@@ -61,6 +61,7 @@ function VocabCard({ word, state, onSpeak, speechLang, isLanguage, voicePractice
           <MasteryBadge correct={wp.correct} streak={wp.streak} />
           <button
             className="lw-btn lw-btn-ghost"
+            data-testid="vocab-audio-button"
             style={{ fontSize: "0.8rem", padding: "4px 10px" }}
             type="button"
             onClick={handleSpeak}
@@ -70,6 +71,7 @@ function VocabCard({ word, state, onSpeak, speechLang, isLanguage, voicePractice
           </button>
           {voicePractice && isLanguage && (
             <VoicePracticeButton
+              dataTestId="vocab-voice-practice-button"
               state={voiceWordId === word.id ? voicePractice.buttonState : "idle"}
               onClick={() => onVoicePractice(word)}
               disabled={voicePractice.phase === "listening" || voicePractice.phase === "processing"}
@@ -243,6 +245,7 @@ export default function VocabPage() {
               label="Pack"
               value={prefs.datasetId}
               onChange={(v) => setPref("datasetId", v)}
+              selectTestId="vocab-pack-select"
             >
               {subjectDatasets.map((d) => (
                 <option key={d.id} value={d.id}>{d.displayName}</option>

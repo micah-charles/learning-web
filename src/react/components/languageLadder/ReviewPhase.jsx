@@ -13,7 +13,7 @@ export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onN
   const otherLangs = TARGET_LANGUAGES.filter(l => l.code !== session.targetLang).slice(0, 2);
 
   return (
-    <div className="section-card pl-lesson-card pl-review-card">
+    <div className="section-card pl-lesson-card pl-review-card" data-testid="progressive-phase-review">
       <div className="pl-review-hero">
         <div>
           <h2 className="pl-review-title">Lesson complete!</h2>
@@ -67,11 +67,11 @@ export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onN
 
       <div className="pl-nav-row pl-review-nav">
         {nextLesson && onNextLesson && (
-          <button type="button" className="button" onClick={onNextLesson} style={{ background: "var(--fox-teal)", color: "#fff", border: "none" }}>
+          <button type="button" className="button" data-testid="progressive-next-lesson-button" onClick={onNextLesson} style={{ background: "var(--fox-teal)", color: "#fff", border: "none" }}>
             Next Lesson →
           </button>
         )}
-        <button type="button" className="button" onClick={() => onDispatch("pl-restart")}>🔄 Restart</button>
+        <button type="button" className="button" data-testid="progressive-restart-button" onClick={() => onDispatch("pl-restart")}>🔄 Restart</button>
         {otherLangs.map(l => (
           <button key={l.code} type="button" className="button ghost"
             style={{ fontSize: "0.85rem" }}

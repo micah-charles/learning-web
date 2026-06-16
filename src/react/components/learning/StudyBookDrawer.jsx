@@ -293,6 +293,7 @@ export function StudyBookDrawer() {
       {/* Drawer */}
       <aside
         className="study-book-drawer"
+        data-testid="studybook-drawer"
         data-open={open ? "true" : "false"}
         data-dataset-id={datasetId || ""}
         data-active-file={activeFile || ""}
@@ -326,6 +327,7 @@ export function StudyBookDrawer() {
             <button
               className="sb-split-btn"
               type="button"
+              data-testid="studybook-split-button"
               title="Toggle split view"
               aria-label="Toggle split view"
               onClick={toggleSplit}
@@ -335,6 +337,7 @@ export function StudyBookDrawer() {
             <button
               className="sb-close"
               type="button"
+              data-testid="studybook-close-button"
               aria-label="Close Study Book"
               onClick={closeBook}
               autoFocus={open}
@@ -348,6 +351,7 @@ export function StudyBookDrawer() {
         <div className="sb-search-bar">
           <input
             className="sb-search-input"
+            data-testid="studybook-search-input"
             type="search"
             placeholder="Search notes…"
             value={searchQuery}
@@ -378,6 +382,7 @@ export function StudyBookDrawer() {
           <TOC toc={toc} currentAnchor={currentAnchor} onJump={handleJumpToAnchor} />
           <div
             className="sb-content"
+            data-testid="studybook-content"
             id="sb-content-area"
             tabIndex={0}
             ref={contentRef}
@@ -434,6 +439,7 @@ export function StudyBookButton({ dataset, anchor = "", mdPath = "", label = "St
   return (
     <button
       className="lw-btn lw-btn-ghost"
+      data-testid="studybook-open-button"
       type="button"
       style={{ fontSize: "0.85rem", padding: "5px 12px", gap: "5px", display: "inline-flex", alignItems: "center" }}
       onClick={() => openBook(dataset, { anchor: anchor || undefined, mdPath: mdPath || undefined })}

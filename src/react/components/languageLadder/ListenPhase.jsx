@@ -75,7 +75,7 @@ export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
   const langLabel = TARGET_LANGUAGES.find(l => l.code === session.targetLang)?.label || "";
 
   return (
-    <div className="section-card pl-lesson-card">
+    <div className="section-card pl-lesson-card" data-testid="progressive-phase-listen">
       <div className="pl-phase-bar">
         <div className="pl-phase-bar-track"><div className="pl-phase-bar-fill" style={{ width: `${pct}%` }} /></div>
         <div className="pl-phase-bar-meta">
@@ -101,7 +101,7 @@ export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
           <div className="pl-phrase-text">{targetTxt}</div>
           {reading && <div className="pl-phrase-reading">{reading}</div>}
           <div className="pl-audio-row">
-            <button className="pl-audio-btn" type="button" onClick={onSpeak} title="Play audio">
+            <button className="pl-audio-btn" data-testid="progressive-listen-play-button" type="button" onClick={onSpeak} title="Play audio">
               <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
               Play
             </button>
@@ -127,8 +127,8 @@ export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
       {session.showGrammar && <GrammarPanel translation={targetTr} lang={session.targetLang} />}
 
       <div className="pl-nav-row">
-        <button type="button" className="button ghost" onClick={() => onDispatch("pl-listen-back")} disabled={isFirst}>← Back</button>
-        <button type="button" className="button" onClick={() => onDispatch("pl-listen-next")}>
+        <button type="button" className="button ghost" data-testid="progressive-listen-back-button" onClick={() => onDispatch("pl-listen-back")} disabled={isFirst}>← Back</button>
+        <button type="button" className="button" data-testid="progressive-next-step-button" onClick={() => onDispatch("pl-listen-next")}>
           {isLast ? "Vocabulary →" : "Next →"}
         </button>
       </div>

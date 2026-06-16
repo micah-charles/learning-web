@@ -9,7 +9,7 @@ const STATES = {
   unsupported: { label: "Voice not supported", icon: "⚠️" },
 };
 
-export default function VoicePracticeButton({ state = "idle", onClick, disabled = false, style }) {
+export default function VoicePracticeButton({ state = "idle", onClick, disabled = false, style, dataTestId }) {
   const s = STATES[state] || STATES.idle;
   const isUnsupported = state === "unsupported" || !isSpeechRecognitionSupported();
 
@@ -36,6 +36,7 @@ export default function VoicePracticeButton({ state = "idle", onClick, disabled 
     <button
       type="button"
       className="lw-btn"
+      data-testid={dataTestId}
       onClick={onClick}
       disabled={disabled || state === "processing" || state === "success"}
       style={{

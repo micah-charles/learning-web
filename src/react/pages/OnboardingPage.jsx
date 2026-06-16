@@ -340,7 +340,7 @@ export default function OnboardingPage({
   }
 
   return (
-    <div className="lw-page lw-onboarding" aria-labelledby="onboarding-title">
+    <div className="lw-page lw-onboarding" data-testid="onboarding-page" aria-labelledby="onboarding-title">
       <section className="lw-card lw-onboarding-hero">
         <p className="lw-onboarding-eyebrow">{editMode ? "Personalise your space" : "First visit setup"}</p>
         <h1 id="onboarding-title">Welcome to FoxChild Learning</h1>
@@ -377,11 +377,11 @@ export default function OnboardingPage({
               </div>
               <div className="lw-btn-group">
                 {editMode && (
-                  <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setAdvancedMode(true)}>
+                  <button className="lw-btn lw-btn-ghost" data-testid="onboarding-advanced-button" type="button" onClick={() => setAdvancedMode(true)}>
                     Advanced settings
                   </button>
                 )}
-                <button className="lw-btn lw-btn-secondary" type="button" onClick={saveEverything}>
+                <button className="lw-btn lw-btn-secondary" data-testid="onboarding-show-everything-button" type="button" onClick={saveEverything}>
                   Show everything
                 </button>
               </div>
@@ -476,13 +476,13 @@ export default function OnboardingPage({
                 >
                   Back
                 </button>
-                <button className="lw-btn lw-btn-primary" type="button" onClick={startLearning}>
+                <button className="lw-btn lw-btn-primary" data-testid="onboarding-start-button" type="button" onClick={startLearning}>
                   Start learning
                 </button>
-                <button className="lw-btn lw-btn-secondary" type="button" onClick={customiseMore}>
+                <button className="lw-btn lw-btn-secondary" data-testid="onboarding-customise-button" type="button" onClick={customiseMore}>
                   Customise more
                 </button>
-                <button className="lw-btn lw-btn-secondary" type="button" onClick={saveEverything}>
+                <button className="lw-btn lw-btn-secondary" data-testid="onboarding-show-everything-button" type="button" onClick={saveEverything}>
                   Show everything instead
                 </button>
               </div>

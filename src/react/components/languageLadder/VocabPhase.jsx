@@ -17,7 +17,7 @@ export default function VocabPhase({ session, pack, onDispatch }) {
   const langLabel = TARGET_LANGUAGES.find(l => l.code === session.targetLang)?.label || "";
 
   return (
-    <div className="section-card pl-lesson-card">
+    <div className="section-card pl-lesson-card" data-testid="progressive-phase-vocab">
       <div className="pl-phase-bar">
         <div className="pl-phase-bar-track"><div className="pl-phase-bar-fill" style={{ width: `${pct}%` }} /></div>
         <div className="pl-phase-bar-meta">
@@ -48,7 +48,7 @@ export default function VocabPhase({ session, pack, onDispatch }) {
             else if (session.vocabFeedback?.selectedText === opt.text) cls += " is-wrong";
           }
           return (
-            <button key={i} type="button" className={cls} disabled={!!answered}
+            <button key={i} type="button" className={cls} data-testid="progressive-vocab-option" disabled={!!answered}
               onClick={() => !answered && onDispatch("pl-vocab-answer", {
                 correct: String(opt.correct),
                 selectedText: opt.text,
@@ -73,9 +73,9 @@ export default function VocabPhase({ session, pack, onDispatch }) {
       )}
 
       <div className="pl-nav-row" style={{ marginTop: answered ? 14 : 10 }}>
-        <button type="button" className="button ghost" onClick={() => onDispatch("pl-vocab-back")}>← Back</button>
+        <button type="button" className="button ghost" data-testid="progressive-vocab-back-button" onClick={() => onDispatch("pl-vocab-back")}>← Back</button>
         {answered && (
-          <button type="button" className="button" onClick={() => onDispatch("pl-vocab-next")}>
+          <button type="button" className="button" data-testid="progressive-next-step-button" onClick={() => onDispatch("pl-vocab-next")}>
             {isLast ? "Builder →" : "Next word →"}
           </button>
         )}

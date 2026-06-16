@@ -245,6 +245,7 @@ export default function ArcadeGamePage() {
               label={isBuilder ? "Builder pack" : "Pack"}
               value={activeId}
               onChange={(v) => setPref(isBuilder ? "packId" : "datasetId", v)}
+              selectTestId="arcade-pack-select"
             >
               {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
             </LabeledSelect>
@@ -270,6 +271,7 @@ export default function ArcadeGamePage() {
         <div className="arc-setup-actions">
           <button
             className="lw-btn lw-btn-primary arc-start-btn"
+            data-testid="arcade-start-button"
             type="button"
             disabled={!canStart}
             onClick={() => setStarted(true)}

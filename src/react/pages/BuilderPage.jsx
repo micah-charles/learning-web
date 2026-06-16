@@ -130,6 +130,7 @@ export default function BuilderPage() {
         <SubjectCardGrid
           subjects={subjectCounts}
           activeSubject={activeSubject}
+          itemTestIdPrefix="builder-subject"
           onSelect={onSubjectChange}
         />
 
@@ -137,6 +138,7 @@ export default function BuilderPage() {
           label="Curriculum"
           items={curriculumOptions}
           value={curriculum}
+          itemTestIdPrefix="builder-curriculum"
           onSelect={(c) => {
             const first = allPacks.find((pack) => getBuilderPackSubject(pack) === activeSubject && (c === "all" || getDatasetCurriculum(pack) === c));
             setCurriculum(c);
@@ -147,7 +149,7 @@ export default function BuilderPage() {
 
         {/* ── Pack + filter row ── */}
         <FilterRow style={{ marginTop: "16px", marginBottom: "16px" }}>
-          <LabeledSelect label="Pack" value={activePackId} onChange={setPackId}>
+          <LabeledSelect label="Pack" value={activePackId} onChange={setPackId} selectTestId="builder-pack-select">
             {visiblePacks.map((p) => (
               <option key={p.id} value={p.id}>{p.displayName}</option>
             ))}
@@ -199,7 +201,7 @@ export default function BuilderPage() {
       )}
 
       {!loading && currentCard && (
-        <div className="lw-card">
+        <div className="lw-card" data-testid="builder-card">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "12px", gap: "10px", flexWrap: "wrap" }}>
             <div style={{ flex: 1, minWidth: "160px" }}>
               {currentCard.type && (
@@ -256,7 +258,7 @@ export default function BuilderPage() {
           />
 
           {feedback && (
-            <div className={`lw-feedback ${feedback.correct ? "correct" : "wrong"}`} style={{ marginTop: "14px" }}>
+            <div className={`lw-feedback ${feedback.correct ? "correct" : "wrong"}`} data-testid={feedback.correct ? "feedback-correct" : "feedback-incorrect"} style={{ marginTop: "14px" }}>
               <span className="lw-feedback-icon">{feedback.correct ? "✓" : "✗"}</span>
               <div>
                 {feedback.correct ? "Correct!" : `Incorrect — answer: ${feedback.expected}`}
@@ -269,6 +271,7 @@ export default function BuilderPage() {
               <>
                 <button
                   className="lw-btn lw-btn-primary"
+                  data-testid="sentence-submit-button"
                   type="button"
                   onClick={checkAnswer}
                   disabled={tiles.answerTiles.length === 0}
@@ -277,16 +280,17 @@ export default function BuilderPage() {
                 </button>
                 {speakInstead && currentCard?.answer && (
                   <VoicePracticeButton
+                    dataTestId="builder-voice-practice-button"
                     state={voice.buttonState}
                     onClick={() => voice.startPractice(currentCard.answer, speechLang)}
                     disabled={voice.phase === "listening" || voice.phase === "processing"}
                   />
                 )}
-                <button className="lw-btn lw-btn-ghost" type="button" onClick={hintTile}>Hint</button>
-                <button className="lw-btn lw-btn-ghost" type="button" onClick={clearTiles}>Clear</button>
+                <button className="lw-btn lw-btn-ghost" data-testid="sentence-hint-button" type="button" onClick={hintTile}>Hint</button>
+                <button className="lw-btn lw-btn-ghost" data-testid="sentence-reset-button" type="button" onClick={clearTiles}>Clear</button>
               </>
             ) : (
-              <button className="lw-btn lw-btn-primary" type="button" onClick={nextCard}>
+              <button className="lw-btn lw-btn-primary" data-testid="builder-next-button" type="button" onClick={nextCard}>
                 Next card
               </button>
             )}
