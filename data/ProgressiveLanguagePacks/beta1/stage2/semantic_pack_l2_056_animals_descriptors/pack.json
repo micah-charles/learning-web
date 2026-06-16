@@ -1,0 +1,1586 @@
+{
+  "packId": "semantic_pack_l2_056_animals_descriptors",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_056 — angry_reasons",
+  "description": "A Progressive Language pack for Level 2, Stage 2 (Why).",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L2-056",
+    "title": "056 — Angry Reasons",
+    "difficultyStage": 2,
+    "semanticDomains": [
+      "reason",
+      "emotions"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_why",
+        "because_clauses"
+      ],
+      "german": [
+        "warum_fragen",
+        "weil_saetze"
+      ],
+      "french": [
+        "pourquoi_questions",
+        "parce_que"
+      ],
+      "spanish": [
+        "por_que_questions",
+        "porque"
+      ],
+      "chinese": [
+        "为什么_questions",
+        "因为_所以"
+      ],
+      "japanese": [
+        "なぜ_questions",
+        "から_理由"
+      ]
+    },
+    "sentenceGoals": [
+      "Why is the cat happy?",
+      "Why is the dog sad?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "ANIMAL_CAT",
+      "type": "noun",
+      "senseKey": "animal_cat",
+      "semanticCategory": "animals",
+      "translations": {
+        "en": {
+          "text": "cat"
+        },
+        "de": {
+          "text": "Katze",
+          "article": "die"
+        },
+        "fr": {
+          "text": "chat",
+          "article": "le"
+        },
+        "es": {
+          "text": "gato",
+          "article": "el"
+        },
+        "zh": {
+          "text": "貓"
+        },
+        "ja": {
+          "text": "猫"
+        }
+      }
+    },
+    {
+      "conceptId": "ANIMAL_DOG",
+      "type": "noun",
+      "senseKey": "animal_dog",
+      "semanticCategory": "animals",
+      "translations": {
+        "en": {
+          "text": "dog"
+        },
+        "de": {
+          "text": "Hund",
+          "article": "der"
+        },
+        "fr": {
+          "text": "chien",
+          "article": "le"
+        },
+        "es": {
+          "text": "perro",
+          "article": "el"
+        },
+        "zh": {
+          "text": "狗"
+        },
+        "ja": {
+          "text": "犬"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_WHY",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "Why",
+        "de": "Warum",
+        "fr": "Pourquoi",
+        "es": "¿Por qué",
+        "zh": "為什麼",
+        "ja": "なぜ"
+      }
+    },
+    {
+      "tokenId": "CAUSE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "zh": "因為",
+        "ja": "から"
+      }
+    },
+    {
+      "tokenId": "VB_IS",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "is",
+        "de": "ist",
+        "fr": "est",
+        "es": "está",
+        "zh": "是",
+        "ja": "です"
+      }
+    },
+    {
+      "tokenId": "ART_THE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la",
+        "es": "el/la",
+        "zh": "",
+        "ja": ""
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_animals_chain1",
+      "linkedConcepts": [
+        "ANIMAL_CAT",
+        "ADJ_HAPPY"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Why",
+              "tiles": [
+                "Why"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Why",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum",
+              "tiles": [
+                "Warum"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Warum",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi",
+              "tiles": [
+                "Pourquoi"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Pourquoi",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué",
+              "tiles": [
+                "¿Por qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Por qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼",
+              "tiles": [
+                "為什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "為什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ",
+              "tiles": [
+                "なぜ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "なぜ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Why is the cat happy?",
+              "tiles": [
+                "Why",
+                "is",
+                "the",
+                "cat",
+                "happy?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Why → is → the → cat → happy?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "happy?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum ist die Katze glücklich?",
+              "tiles": [
+                "Warum",
+                "ist",
+                "die",
+                "Katze",
+                "glücklich?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Warum → ist → die → Katze → glücklich?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Katze",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "glücklich?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi le chat est heureux?",
+              "tiles": [
+                "Pourquoi",
+                "le",
+                "chat",
+                "est",
+                "heureux?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Pourquoi → le → chat → est → heureux?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "heureux?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué está el gato feliz?",
+              "tiles": [
+                "¿Por qué",
+                "está",
+                "el",
+                "gato",
+                "feliz?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Por qué → está → el → gato → feliz?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gato",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "feliz?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼貓很開心？",
+              "tiles": [
+                "為什麼貓很開心？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "為什麼貓很開心？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼貓很開心？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ猫は嬉しい？",
+              "tiles": [
+                "なぜ猫は嬉しい？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "なぜ猫は嬉しい？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ猫は嬉しい？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_animals_chain2",
+      "linkedConcepts": [
+        "ANIMAL_DOG",
+        "ADJ_SAD"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Why",
+              "tiles": [
+                "Why"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Why",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum",
+              "tiles": [
+                "Warum"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Warum",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi",
+              "tiles": [
+                "Pourquoi"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Pourquoi",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué",
+              "tiles": [
+                "¿Por qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Por qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼",
+              "tiles": [
+                "為什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "為什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ",
+              "tiles": [
+                "なぜ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "なぜ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Why is the dog sad?",
+              "tiles": [
+                "Why",
+                "is",
+                "the",
+                "dog",
+                "sad?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Why → is → the → dog → sad?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dog",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sad?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum ist der Hund traurig?",
+              "tiles": [
+                "Warum",
+                "ist",
+                "der",
+                "Hund",
+                "traurig?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Warum → ist → der → Hund → traurig?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Hund",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "traurig?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi le chien est triste?",
+              "tiles": [
+                "Pourquoi",
+                "le",
+                "chien",
+                "est",
+                "triste?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Pourquoi → le → chien → est → triste?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chien",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "triste?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué está el perro triste?",
+              "tiles": [
+                "¿Por qué",
+                "está",
+                "el",
+                "perro",
+                "triste?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Por qué → está → el → perro → triste?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "perro",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "triste?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼狗很難過？",
+              "tiles": [
+                "為什麼狗很難過？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "為什麼狗很難過？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼狗很難過？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ犬は悲しい？",
+              "tiles": [
+                "なぜ犬は悲しい？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "なぜ犬は悲しい？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ犬は悲しい？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "ANIMAL_CAT",
+        "ADJ_HAPPY"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_animals_chain1",
+      "translations": {
+        "en": {
+          "text": "Why is the cat happy?",
+          "tiles": [
+            "Why",
+            "is",
+            "the",
+            "cat",
+            "happy?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Why → is → the → cat → happy?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "happy?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum ist die Katze glücklich?",
+          "tiles": [
+            "Warum",
+            "ist",
+            "die",
+            "Katze",
+            "glücklich?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Warum → ist → die → Katze → glücklich?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Katze",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "glücklich?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi le chat est heureux?",
+          "tiles": [
+            "Pourquoi",
+            "le",
+            "chat",
+            "est",
+            "heureux?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Pourquoi → le → chat → est → heureux?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "chat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "heureux?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué está el gato feliz?",
+          "tiles": [
+            "¿Por qué",
+            "está",
+            "el",
+            "gato",
+            "feliz?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Por qué → está → el → gato → feliz?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Por qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gato",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "feliz?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "為什麼貓很開心？",
+          "tiles": [
+            "為什麼貓很開心？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "為什麼貓很開心？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "為什麼貓很開心？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ猫は嬉しい？",
+          "tiles": [
+            "なぜ猫は嬉しい？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "なぜ猫は嬉しい？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "なぜ猫は嬉しい？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "ANIMAL_DOG",
+        "ADJ_SAD"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_animals_chain2",
+      "translations": {
+        "en": {
+          "text": "Why is the dog sad?",
+          "tiles": [
+            "Why",
+            "is",
+            "the",
+            "dog",
+            "sad?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Why → is → the → dog → sad?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dog",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sad?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum ist der Hund traurig?",
+          "tiles": [
+            "Warum",
+            "ist",
+            "der",
+            "Hund",
+            "traurig?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Warum → ist → der → Hund → traurig?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Hund",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "traurig?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi le chien est triste?",
+          "tiles": [
+            "Pourquoi",
+            "le",
+            "chien",
+            "est",
+            "triste?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Pourquoi → le → chien → est → triste?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "chien",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "triste?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué está el perro triste?",
+          "tiles": [
+            "¿Por qué",
+            "está",
+            "el",
+            "perro",
+            "triste?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Por qué → está → el → perro → triste?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Por qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "perro",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "triste?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "為什麼狗很難過？",
+          "tiles": [
+            "為什麼狗很難過？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "為什麼狗很難過？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "為什麼狗很難過？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ犬は悲しい？",
+          "tiles": [
+            "なぜ犬は悲しい？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "なぜ犬は悲しい？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "なぜ犬は悲しい？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "ANIMAL_CAT": [
+      "S001"
+    ],
+    "ADJ_HAPPY": [
+      "S001"
+    ],
+    "ANIMAL_DOG": [
+      "S002"
+    ],
+    "ADJ_SAD": [
+      "S002"
+    ]
+  }
+}

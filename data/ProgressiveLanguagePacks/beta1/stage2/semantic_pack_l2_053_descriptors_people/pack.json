@@ -1,0 +1,1628 @@
+{
+  "packId": "semantic_pack_l2_053_descriptors_people",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_053 — excited_reasons",
+  "description": "A Progressive Language pack for Level 2, Stage 2 (Why).",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L2-053",
+    "title": "053 — Excited Reasons",
+    "difficultyStage": 2,
+    "semanticDomains": [
+      "reason",
+      "emotions"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_why",
+        "because_clauses"
+      ],
+      "german": [
+        "warum_fragen",
+        "weil_saetze"
+      ],
+      "french": [
+        "pourquoi_questions",
+        "parce_que"
+      ],
+      "spanish": [
+        "por_que_questions",
+        "porque"
+      ],
+      "chinese": [
+        "为什么_questions",
+        "因为_所以"
+      ],
+      "japanese": [
+        "なぜ_questions",
+        "から_理由"
+      ]
+    },
+    "sentenceGoals": [
+      "Why is the child sick?",
+      "Why is the cat hungry?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "ADJ_HUNGRY",
+      "type": "adjective",
+      "senseKey": "adj_hungry",
+      "semanticCategory": "descriptors",
+      "translations": {
+        "en": {
+          "text": "hungry"
+        },
+        "de": {
+          "text": "hungrig",
+          "article": "der"
+        },
+        "fr": {
+          "text": "affamé",
+          "article": "le"
+        },
+        "es": {
+          "text": "hambriento",
+          "article": "el"
+        },
+        "zh": {
+          "text": "餓"
+        },
+        "ja": {
+          "text": "お腹すいた"
+        }
+      }
+    },
+    {
+      "conceptId": "ADJ_SICK",
+      "type": "adjective",
+      "senseKey": "adj_sick",
+      "semanticCategory": "descriptors",
+      "translations": {
+        "en": {
+          "text": "sick"
+        },
+        "de": {
+          "text": "krank",
+          "article": "der"
+        },
+        "fr": {
+          "text": "malade",
+          "article": "le"
+        },
+        "es": {
+          "text": "enfermo",
+          "article": "el"
+        },
+        "zh": {
+          "text": "不舒服"
+        },
+        "ja": {
+          "text": "具合が悪い"
+        }
+      }
+    },
+    {
+      "conceptId": "ANIMAL_CAT",
+      "type": "noun",
+      "senseKey": "animal_cat",
+      "semanticCategory": "animals",
+      "translations": {
+        "en": {
+          "text": "cat"
+        },
+        "de": {
+          "text": "Katze",
+          "article": "die"
+        },
+        "fr": {
+          "text": "chat",
+          "article": "le"
+        },
+        "es": {
+          "text": "gato",
+          "article": "el"
+        },
+        "zh": {
+          "text": "貓"
+        },
+        "ja": {
+          "text": "猫"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_CHILD",
+      "type": "noun",
+      "senseKey": "person_child",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "child"
+        },
+        "de": {
+          "text": "Kind",
+          "article": "das"
+        },
+        "fr": {
+          "text": "enfant",
+          "article": "l'"
+        },
+        "es": {
+          "text": "niño",
+          "article": "el"
+        },
+        "zh": {
+          "text": "小朋友"
+        },
+        "ja": {
+          "text": "子ども"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_WHY",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "Why",
+        "de": "Warum",
+        "fr": "Pourquoi",
+        "es": "¿Por qué",
+        "zh": "為什麼",
+        "ja": "なぜ"
+      }
+    },
+    {
+      "tokenId": "CAUSE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "zh": "因為",
+        "ja": "から"
+      }
+    },
+    {
+      "tokenId": "VB_IS",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "is",
+        "de": "ist",
+        "fr": "est",
+        "es": "está",
+        "zh": "是",
+        "ja": "です"
+      }
+    },
+    {
+      "tokenId": "ART_THE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la",
+        "es": "el/la",
+        "zh": "",
+        "ja": ""
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_at_home_chain1",
+      "linkedConcepts": [
+        "PERSON_CHILD",
+        "ADJ_SICK"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Why",
+              "tiles": [
+                "Why"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Why",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum",
+              "tiles": [
+                "Warum"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Warum",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi",
+              "tiles": [
+                "Pourquoi"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Pourquoi",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué",
+              "tiles": [
+                "¿Por qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Por qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼",
+              "tiles": [
+                "為什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "為什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ",
+              "tiles": [
+                "なぜ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "なぜ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Why is the child sick?",
+              "tiles": [
+                "Why",
+                "is",
+                "the",
+                "child",
+                "sick?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Why → is → the → child → sick?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "child",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sick?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum ist das Kind krank?",
+              "tiles": [
+                "Warum",
+                "ist",
+                "das",
+                "Kind",
+                "krank?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Warum → ist → das → Kind → krank?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Kind",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "krank?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi l'enfant est malade?",
+              "tiles": [
+                "Pourquoi",
+                "l'enfant",
+                "est",
+                "malade?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Pourquoi → l'enfant → est → malade?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l'enfant",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "malade?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué está el niño enfermo?",
+              "tiles": [
+                "¿Por qué",
+                "está",
+                "el",
+                "niño",
+                "enfermo?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Por qué → está → el → niño → enfermo?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "niño",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "enfermo?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼小朋友很不舒服？",
+              "tiles": [
+                "為什麼小朋友很不舒服？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "為什麼小朋友很不舒服？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼小朋友很不舒服？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ子どもは具合が悪い？",
+              "tiles": [
+                "なぜ子どもは具合が悪い？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "なぜ子どもは具合が悪い？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ子どもは具合が悪い？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_at_home_chain2",
+      "linkedConcepts": [
+        "ANIMAL_CAT",
+        "ADJ_HUNGRY"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Why",
+              "tiles": [
+                "Why"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Why",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum",
+              "tiles": [
+                "Warum"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Warum",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi",
+              "tiles": [
+                "Pourquoi"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Pourquoi",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué",
+              "tiles": [
+                "¿Por qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Por qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼",
+              "tiles": [
+                "為什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "為什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ",
+              "tiles": [
+                "なぜ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "なぜ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Why is the cat hungry?",
+              "tiles": [
+                "Why",
+                "is",
+                "the",
+                "cat",
+                "hungry?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Why → is → the → cat → hungry?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hungry?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum ist die Katze hungrig?",
+              "tiles": [
+                "Warum",
+                "ist",
+                "die",
+                "Katze",
+                "hungrig?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Warum → ist → die → Katze → hungrig?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Katze",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hungrig?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi le chat est affamé?",
+              "tiles": [
+                "Pourquoi",
+                "le",
+                "chat",
+                "est",
+                "affamé?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Pourquoi → le → chat → est → affamé?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "affamé?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué está el gato hambriento?",
+              "tiles": [
+                "¿Por qué",
+                "está",
+                "el",
+                "gato",
+                "hambriento?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Por qué → está → el → gato → hambriento?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gato",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hambriento?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼貓很餓？",
+              "tiles": [
+                "為什麼貓很餓？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "為什麼貓很餓？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼貓很餓？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ猫はお腹すいた？",
+              "tiles": [
+                "なぜ猫はお腹すいた？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "なぜ猫はお腹すいた？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ猫はお腹すいた？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_CHILD",
+        "ADJ_SICK"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_at_home_chain1",
+      "translations": {
+        "en": {
+          "text": "Why is the child sick?",
+          "tiles": [
+            "Why",
+            "is",
+            "the",
+            "child",
+            "sick?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Why → is → the → child → sick?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "child",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sick?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum ist das Kind krank?",
+          "tiles": [
+            "Warum",
+            "ist",
+            "das",
+            "Kind",
+            "krank?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Warum → ist → das → Kind → krank?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Kind",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "krank?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi l'enfant est malade?",
+          "tiles": [
+            "Pourquoi",
+            "l'enfant",
+            "est",
+            "malade?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Pourquoi → l'enfant → est → malade?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l'enfant",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "malade?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué está el niño enfermo?",
+          "tiles": [
+            "¿Por qué",
+            "está",
+            "el",
+            "niño",
+            "enfermo?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Por qué → está → el → niño → enfermo?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Por qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "niño",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "enfermo?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "為什麼小朋友很不舒服？",
+          "tiles": [
+            "為什麼小朋友很不舒服？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "為什麼小朋友很不舒服？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "為什麼小朋友很不舒服？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ子どもは具合が悪い？",
+          "tiles": [
+            "なぜ子どもは具合が悪い？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "なぜ子どもは具合が悪い？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "なぜ子どもは具合が悪い？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "ANIMAL_CAT",
+        "ADJ_HUNGRY"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_at_home_chain2",
+      "translations": {
+        "en": {
+          "text": "Why is the cat hungry?",
+          "tiles": [
+            "Why",
+            "is",
+            "the",
+            "cat",
+            "hungry?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Why → is → the → cat → hungry?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hungry?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum ist die Katze hungrig?",
+          "tiles": [
+            "Warum",
+            "ist",
+            "die",
+            "Katze",
+            "hungrig?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Warum → ist → die → Katze → hungrig?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Katze",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hungrig?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi le chat est affamé?",
+          "tiles": [
+            "Pourquoi",
+            "le",
+            "chat",
+            "est",
+            "affamé?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Pourquoi → le → chat → est → affamé?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "chat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "affamé?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué está el gato hambriento?",
+          "tiles": [
+            "¿Por qué",
+            "está",
+            "el",
+            "gato",
+            "hambriento?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Por qué → está → el → gato → hambriento?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Por qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gato",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hambriento?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "為什麼貓很餓？",
+          "tiles": [
+            "為什麼貓很餓？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "為什麼貓很餓？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "為什麼貓很餓？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ猫はお腹すいた？",
+          "tiles": [
+            "なぜ猫はお腹すいた？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "なぜ猫はお腹すいた？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "なぜ猫はお腹すいた？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_CHILD": [
+      "S001"
+    ],
+    "ADJ_SICK": [
+      "S001"
+    ],
+    "ANIMAL_CAT": [
+      "S002"
+    ],
+    "ADJ_HUNGRY": [
+      "S002"
+    ]
+  }
+}

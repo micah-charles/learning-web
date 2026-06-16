@@ -1,0 +1,1474 @@
+{
+  "packId": "semantic_pack_l2_019_people",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_019 — library_gym",
+  "description": "A Progressive Language pack for Level 2, Stage 2 (Where).",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L2-019",
+    "title": "019 — Library Gym",
+    "difficultyStage": 2,
+    "semanticDomains": [
+      "location",
+      "home"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_where",
+        "location_phrases"
+      ],
+      "german": [
+        "wo_fragen",
+        "ort_im_dativ"
+      ],
+      "french": [
+        "ou_questions",
+        "etre_location"
+      ],
+      "spanish": [
+        "donde_questions",
+        "estar_location"
+      ],
+      "chinese": [
+        "在哪里_questions",
+        "location_phrases"
+      ],
+      "japanese": [
+        "どこ_questions",
+        "います_あります"
+      ]
+    },
+    "sentenceGoals": [
+      "Where is the grandmother?",
+      "Where is the balcony?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_GRANDMOTHER",
+      "type": "noun",
+      "senseKey": "person_grandmother",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "grandmother"
+        },
+        "de": {
+          "text": "Großmutter",
+          "article": "die"
+        },
+        "fr": {
+          "text": "grand-mère",
+          "article": "la"
+        },
+        "es": {
+          "text": "abuela",
+          "article": "la"
+        },
+        "zh": {
+          "text": "祖母"
+        },
+        "ja": {
+          "text": "おばあさん"
+        }
+      }
+    },
+    {
+      "conceptId": "PLACE_BALCONY",
+      "type": "noun",
+      "senseKey": "place_balcony",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "balcony"
+        },
+        "de": {
+          "text": "Balkon",
+          "article": "der"
+        },
+        "fr": {
+          "text": "balcon",
+          "article": "le"
+        },
+        "es": {
+          "text": "balcón",
+          "article": "el"
+        },
+        "zh": {
+          "text": "陽台"
+        },
+        "ja": {
+          "text": "ベランダ"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_WHERE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "Where",
+        "de": "Wo",
+        "fr": "Où",
+        "es": "¿Dónde",
+        "zh": "哪裡",
+        "ja": "どこ"
+      }
+    },
+    {
+      "tokenId": "VB_IS",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "is",
+        "de": "ist",
+        "fr": "est",
+        "es": "está",
+        "zh": "在",
+        "ja": "です"
+      }
+    },
+    {
+      "tokenId": "VB_ARE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "are",
+        "de": "sind",
+        "fr": "sont",
+        "es": "están",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "ART_THE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la",
+        "es": "el/la",
+        "zh": "",
+        "ja": ""
+      }
+    },
+    {
+      "tokenId": "POSS_DET",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "zh": "我的",
+        "ja": "私の"
+      }
+    },
+    {
+      "tokenId": "SER_VS_ESTAR",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "ser/estar (identity vs location)",
+        "de": "sein (Zustand vs Ort)",
+        "fr": "être (identité vs lieu)",
+        "es": "ser/estar (identidad vs ubicación)",
+        "zh": "ser/estar（身份與位置）",
+        "ja": "ser/estar（同一性と場所）"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_at_home_chain1",
+      "linkedConcepts": [
+        "PERSON_GRANDMOTHER"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Where",
+              "tiles": [
+                "Where"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Where",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo",
+              "tiles": [
+                "Wo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wo",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où",
+              "tiles": [
+                "Où"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Où",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde",
+              "tiles": [
+                "¿Dónde"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Dónde",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Dónde",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "哪裡",
+              "tiles": [
+                "哪裡"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "哪裡",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "哪裡",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "どこ",
+              "tiles": [
+                "どこ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "どこ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "どこ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Where is the grandmother?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "grandmother?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Where → is → the → grandmother?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "grandmother?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist die Großmutter?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "die",
+                "Großmutter?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wo → ist → die → Großmutter?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Großmutter?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est la grand-mère?",
+              "tiles": [
+                "Où",
+                "est",
+                "la",
+                "grand-mère?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Où → est → la → grand-mère?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "grand-mère?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está la abuela?",
+              "tiles": [
+                "¿Dónde",
+                "está",
+                "la",
+                "abuela?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Dónde → está → la → abuela?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Dónde",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "abuela?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "祖母在哪裡？",
+              "tiles": [
+                "祖母在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "祖母在哪裡？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "祖母在哪裡？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "おばあさんはどこですか？",
+              "tiles": [
+                "おばあさんはどこですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "おばあさんはどこですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "おばあさんはどこですか？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_at_home_chain2",
+      "linkedConcepts": [
+        "PLACE_BALCONY"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Where",
+              "tiles": [
+                "Where"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Where",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo",
+              "tiles": [
+                "Wo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wo",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où",
+              "tiles": [
+                "Où"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Où",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde",
+              "tiles": [
+                "¿Dónde"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Dónde",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Dónde",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "哪裡",
+              "tiles": [
+                "哪裡"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "哪裡",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "哪裡",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "どこ",
+              "tiles": [
+                "どこ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "どこ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "どこ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Where is the balcony?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "balcony?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Where → is → the → balcony?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "balcony?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist der Balkon?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "der",
+                "Balkon?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wo → ist → der → Balkon?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Balkon?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est le balcon?",
+              "tiles": [
+                "Où",
+                "est",
+                "le",
+                "balcon?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Où → est → le → balcon?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "balcon?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está el balcón?",
+              "tiles": [
+                "¿Dónde",
+                "está",
+                "el",
+                "balcón?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Dónde → está → el → balcón?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Dónde",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "balcón?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "陽台在哪裡？",
+              "tiles": [
+                "陽台在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "陽台在哪裡？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "陽台在哪裡？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ベランダはどこですか？",
+              "tiles": [
+                "ベランダはどこですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "ベランダはどこですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "ベランダはどこですか？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_GRANDMOTHER"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_at_home_chain1",
+      "translations": {
+        "en": {
+          "text": "Where is the grandmother?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "grandmother?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Where → is → the → grandmother?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "grandmother?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist die Großmutter?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "die",
+            "Großmutter?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wo → ist → die → Großmutter?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Großmutter?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est la grand-mère?",
+          "tiles": [
+            "Où",
+            "est",
+            "la",
+            "grand-mère?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Où → est → la → grand-mère?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "grand-mère?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está la abuela?",
+          "tiles": [
+            "¿Dónde",
+            "está",
+            "la",
+            "abuela?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Dónde → está → la → abuela?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Dónde",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "abuela?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "祖母在哪裡？",
+          "tiles": [
+            "祖母在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "祖母在哪裡？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "祖母在哪裡？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "おばあさんはどこですか？",
+          "tiles": [
+            "おばあさんはどこですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "おばあさんはどこですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "おばあさんはどこですか？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PLACE_BALCONY"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_at_home_chain2",
+      "translations": {
+        "en": {
+          "text": "Where is the balcony?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "balcony?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Where → is → the → balcony?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "balcony?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist der Balkon?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "der",
+            "Balkon?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wo → ist → der → Balkon?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Balkon?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est le balcon?",
+          "tiles": [
+            "Où",
+            "est",
+            "le",
+            "balcon?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Où → est → le → balcon?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "balcon?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está el balcón?",
+          "tiles": [
+            "¿Dónde",
+            "está",
+            "el",
+            "balcón?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Dónde → está → el → balcón?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Dónde",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "balcón?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "陽台在哪裡？",
+          "tiles": [
+            "陽台在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "陽台在哪裡？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "陽台在哪裡？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ベランダはどこですか？",
+          "tiles": [
+            "ベランダはどこですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "ベランダはどこですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "ベランダはどこですか？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_GRANDMOTHER": [
+      "S001"
+    ],
+    "PLACE_BALCONY": [
+      "S002"
+    ]
+  }
+}

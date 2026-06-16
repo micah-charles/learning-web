@@ -162,13 +162,17 @@ def book_to_json(book: StudyBook, base_url: str) -> dict:
     }
 
 
-def html_page(title: str, body: str) -> str:
+def html_page(title: str, body: str, books: list[StudyBook] | None = None) -> str:
+    pack_count = 0
+    if books:
+        pack_count = len(books)
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(title)}</title>
+  <link rel="stylesheet" href="/revision/revision.css" />
   <style>
     :root {{ color-scheme: light; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
     body {{ margin: 0; background: #fbf7ef; color: #2f281f; }}
@@ -189,9 +193,51 @@ def html_page(title: str, body: str) -> str:
   </style>
 </head>
 <body>
-<main>
+  <div class="sb-page">
+    <header class="sb-page-header">
+      <a href="/" class="sb-page-logo">
+        <img src="/revision/logo.png" alt="" class="seo-logo-img" />
+        FoxChild@Learn
+      </a>
+      <nav class="sb-page-nav">
+        <a href="/">Home</a>
+        <a href="/revision/subjects/">Subjects</a>
+        <a href="/study-books/">Study Books</a>
+      </nav>
+    </header>
+    <header class="lw-app-header lw-app-header--seo" style="background:radial-gradient(circle at 20% 55%, rgba(255,255,255,0.10), transparent 40%), radial-gradient(circle at 85% 20%, rgba(237,184,50,0.18), transparent 30%), linear-gradient(135deg, rgba(43,126,133,0.85) 0%, rgba(61,158,165,0.80) 45%, rgba(79,179,186,0.74) 100%), url(/revision/hero-bg.jpg) center / cover no-repeat">
+      <div class="lw-header-inner">
+        <div class="lw-header-mascot">
+          <img src="/revision/logo.png" alt="FoxChild Idea - Fox Tutor and Girl Tutor" class="lw-mascot-img" />
+          <a class="lw-social-badge" href="https://www.facebook.com/profile.php?id=61589170294693" target="_blank" rel="noopener noreferrer" title="Visit FoxChildIdea on Facebook" aria-label="Visit FoxChildIdea on Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          </a>
+        </div>
+        <div class="lw-hero-copy">
+          <div class="lw-hero-brand-block">
+            <p class="lw-hero-eyebrow">POWERED BY FOXCHILD IDEA</p>
+            <h1 class="lw-hero-title"><span style="color:#fff">FoxChild</span><span style="color:#e8841a">@Learn</span></h1>
+            <p class="lw-hero-sub">Your cosy space for learning, practising, and growing — powered by curiosity and AI.</p>
+          </div>
+          <div class="lw-hero-right-col">
+            <div class="lw-hero-counts">
+              <span class="lw-hero-count-badge">📦 {pack_count} packs</span>
+            </div>
+            <a href="/" class="lw-hero-promo">
+              <span class="lw-hero-promo-title">✦ AI Learning Pack Creator</span>
+              <span class="lw-hero-promo-sub">Build your own quizzes, readings, and revision packs with AI — then upload the JSON in My Packs.</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="seo-main">
 {body}
-</main>
+    </main>
+    <footer class="seo-footer">
+      <p>&copy; FoxChild Idea. <a href="/">Return to the interactive Learning Web app</a></p>
+    </footer>
+  </div>
 </body>
 </html>
 """
@@ -227,7 +273,7 @@ def render_root_index(books: list[StudyBook], base_url: str) -> str:
 <section class="grid">
 {''.join(cards)}
 </section>"""
-    return html_page("FoxChild@Learn Study Book Index", body)
+    return html_page("FoxChild@Learn Study Book Index", body, books)
 
 
 def render_subject_index(subject: str, books: list[StudyBook]) -> str:
@@ -260,7 +306,7 @@ def render_subject_index(subject: str, books: list[StudyBook]) -> str:
   <p><a href="./index.json">Subject JSON</a> · <a href="./all.md">Combined subject Markdown</a></p>
 </header>
 {''.join(sections)}"""
-    return html_page(f"FoxChild@Learn {label} Study Books", body)
+    return html_page(f"FoxChild@Learn {label} Study Books", body, books)
 
 
 def render_book_item(book: StudyBook) -> str:

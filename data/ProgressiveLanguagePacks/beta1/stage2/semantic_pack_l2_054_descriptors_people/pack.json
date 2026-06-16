@@ -1,0 +1,1615 @@
+{
+  "packId": "semantic_pack_l2_054_descriptors_people",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_054 — tired_reasons",
+  "description": "A Progressive Language pack for Level 2, Stage 2 (Why).",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L2-054",
+    "title": "054 — Tired Reasons",
+    "difficultyStage": 2,
+    "semanticDomains": [
+      "reason",
+      "emotions"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_why",
+        "because_clauses"
+      ],
+      "german": [
+        "warum_fragen",
+        "weil_saetze"
+      ],
+      "french": [
+        "pourquoi_questions",
+        "parce_que"
+      ],
+      "spanish": [
+        "por_que_questions",
+        "porque"
+      ],
+      "chinese": [
+        "为什么_questions",
+        "因为_所以"
+      ],
+      "japanese": [
+        "なぜ_questions",
+        "から_理由"
+      ]
+    },
+    "sentenceGoals": [
+      "Why is the tourist happy?",
+      "Why is the shopkeeper excited?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "ADJ_EXCITED",
+      "type": "adjective",
+      "senseKey": "adj_excited",
+      "semanticCategory": "descriptors",
+      "translations": {
+        "en": {
+          "text": "excited"
+        },
+        "de": {
+          "text": "aufgeregt",
+          "article": "der"
+        },
+        "fr": {
+          "text": "excité",
+          "article": "le"
+        },
+        "es": {
+          "text": "emocionado",
+          "article": "el"
+        },
+        "zh": {
+          "text": "興奮"
+        },
+        "ja": {
+          "text": "興奮した"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_SHOPKEEPER",
+      "type": "noun",
+      "senseKey": "person_shopkeeper",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "shopkeeper"
+        },
+        "de": {
+          "text": "Verkäufer",
+          "article": "der"
+        },
+        "fr": {
+          "text": "commerçant",
+          "article": "le"
+        },
+        "es": {
+          "text": "vendedor",
+          "article": "el"
+        },
+        "zh": {
+          "text": "店主"
+        },
+        "ja": {
+          "text": "店主"
+        }
+      }
+    },
+    {
+      "conceptId": "PERSON_TOURIST",
+      "type": "noun",
+      "senseKey": "person_tourist",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "tourist"
+        },
+        "de": {
+          "text": "Tourist",
+          "article": "der"
+        },
+        "fr": {
+          "text": "touriste",
+          "article": "le"
+        },
+        "es": {
+          "text": "turista",
+          "article": "el"
+        },
+        "zh": {
+          "text": "遊客"
+        },
+        "ja": {
+          "text": "観光客"
+        }
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_WHY",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "Why",
+        "de": "Warum",
+        "fr": "Pourquoi",
+        "es": "¿Por qué",
+        "zh": "為什麼",
+        "ja": "なぜ"
+      }
+    },
+    {
+      "tokenId": "CAUSE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "zh": "因為",
+        "ja": "から"
+      }
+    },
+    {
+      "tokenId": "VB_IS",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "is",
+        "de": "ist",
+        "fr": "est",
+        "es": "está",
+        "zh": "是",
+        "ja": "です"
+      }
+    },
+    {
+      "tokenId": "ART_THE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la",
+        "es": "el/la",
+        "zh": "",
+        "ja": ""
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_in_town_chain1",
+      "linkedConcepts": [
+        "PERSON_TOURIST",
+        "ADJ_HAPPY"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Why",
+              "tiles": [
+                "Why"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Why",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum",
+              "tiles": [
+                "Warum"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Warum",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi",
+              "tiles": [
+                "Pourquoi"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Pourquoi",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué",
+              "tiles": [
+                "¿Por qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Por qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼",
+              "tiles": [
+                "為什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "為什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ",
+              "tiles": [
+                "なぜ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "なぜ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Why is the tourist happy?",
+              "tiles": [
+                "Why",
+                "is",
+                "the",
+                "tourist",
+                "happy?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Why → is → the → tourist → happy?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "happy?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum ist der Tourist glücklich?",
+              "tiles": [
+                "Warum",
+                "ist",
+                "der",
+                "Tourist",
+                "glücklich?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Warum → ist → der → Tourist → glücklich?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Tourist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "glücklich?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi le touriste est heureux?",
+              "tiles": [
+                "Pourquoi",
+                "le",
+                "touriste",
+                "est",
+                "heureux?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Pourquoi → le → touriste → est → heureux?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "touriste",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "heureux?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué está el turista feliz?",
+              "tiles": [
+                "¿Por qué",
+                "está",
+                "el",
+                "turista",
+                "feliz?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Por qué → está → el → turista → feliz?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "turista",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "feliz?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼遊客很開心？",
+              "tiles": [
+                "為什麼遊客很開心？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "為什麼遊客很開心？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼遊客很開心？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ観光客は嬉しい？",
+              "tiles": [
+                "なぜ観光客は嬉しい？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "なぜ観光客は嬉しい？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ観光客は嬉しい？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_in_town_chain2",
+      "linkedConcepts": [
+        "PERSON_SHOPKEEPER",
+        "ADJ_EXCITED"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "Why",
+              "tiles": [
+                "Why"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Why",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum",
+              "tiles": [
+                "Warum"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Warum",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi",
+              "tiles": [
+                "Pourquoi"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Pourquoi",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué",
+              "tiles": [
+                "¿Por qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Por qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼",
+              "tiles": [
+                "為什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "為什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ",
+              "tiles": [
+                "なぜ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "なぜ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Why is the shopkeeper excited?",
+              "tiles": [
+                "Why",
+                "is",
+                "the",
+                "shopkeeper",
+                "excited?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Why → is → the → shopkeeper → excited?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "shopkeeper",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "excited?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum ist der Verkäufer aufgeregt?",
+              "tiles": [
+                "Warum",
+                "ist",
+                "der",
+                "Verkäufer",
+                "aufgeregt?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Warum → ist → der → Verkäufer → aufgeregt?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Verkäufer",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aufgeregt?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi le commerçant est excité?",
+              "tiles": [
+                "Pourquoi",
+                "le",
+                "commerçant",
+                "est",
+                "excité?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Pourquoi → le → commerçant → est → excité?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "commerçant",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "excité?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué está el vendedor emocionado?",
+              "tiles": [
+                "¿Por qué",
+                "está",
+                "el",
+                "vendedor",
+                "emocionado?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Por qué → está → el → vendedor → emocionado?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Por qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "vendedor",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "emocionado?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "為什麼店主很興奮？",
+              "tiles": [
+                "為什麼店主很興奮？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "為什麼店主很興奮？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "為什麼店主很興奮？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ店主は興奮した？",
+              "tiles": [
+                "なぜ店主は興奮した？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "なぜ店主は興奮した？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "なぜ店主は興奮した？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_TOURIST",
+        "ADJ_HAPPY"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_in_town_chain1",
+      "translations": {
+        "en": {
+          "text": "Why is the tourist happy?",
+          "tiles": [
+            "Why",
+            "is",
+            "the",
+            "tourist",
+            "happy?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Why → is → the → tourist → happy?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "happy?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum ist der Tourist glücklich?",
+          "tiles": [
+            "Warum",
+            "ist",
+            "der",
+            "Tourist",
+            "glücklich?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Warum → ist → der → Tourist → glücklich?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Tourist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "glücklich?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi le touriste est heureux?",
+          "tiles": [
+            "Pourquoi",
+            "le",
+            "touriste",
+            "est",
+            "heureux?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Pourquoi → le → touriste → est → heureux?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "touriste",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "heureux?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué está el turista feliz?",
+          "tiles": [
+            "¿Por qué",
+            "está",
+            "el",
+            "turista",
+            "feliz?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Por qué → está → el → turista → feliz?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Por qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "turista",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "feliz?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "為什麼遊客很開心？",
+          "tiles": [
+            "為什麼遊客很開心？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "為什麼遊客很開心？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "為什麼遊客很開心？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ観光客は嬉しい？",
+          "tiles": [
+            "なぜ観光客は嬉しい？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "なぜ観光客は嬉しい？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "なぜ観光客は嬉しい？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_SHOPKEEPER",
+        "ADJ_EXCITED"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_in_town_chain2",
+      "translations": {
+        "en": {
+          "text": "Why is the shopkeeper excited?",
+          "tiles": [
+            "Why",
+            "is",
+            "the",
+            "shopkeeper",
+            "excited?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Why → is → the → shopkeeper → excited?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "shopkeeper",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "excited?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum ist der Verkäufer aufgeregt?",
+          "tiles": [
+            "Warum",
+            "ist",
+            "der",
+            "Verkäufer",
+            "aufgeregt?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Warum → ist → der → Verkäufer → aufgeregt?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Verkäufer",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aufgeregt?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi le commerçant est excité?",
+          "tiles": [
+            "Pourquoi",
+            "le",
+            "commerçant",
+            "est",
+            "excité?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Pourquoi → le → commerçant → est → excité?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "commerçant",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "excité?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué está el vendedor emocionado?",
+          "tiles": [
+            "¿Por qué",
+            "está",
+            "el",
+            "vendedor",
+            "emocionado?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Por qué → está → el → vendedor → emocionado?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Por qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "vendedor",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "emocionado?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "為什麼店主很興奮？",
+          "tiles": [
+            "為什麼店主很興奮？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "為什麼店主很興奮？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "為什麼店主很興奮？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ店主は興奮した？",
+          "tiles": [
+            "なぜ店主は興奮した？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "なぜ店主は興奮した？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "なぜ店主は興奮した？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_TOURIST": [
+      "S001"
+    ],
+    "ADJ_HAPPY": [
+      "S001"
+    ],
+    "PERSON_SHOPKEEPER": [
+      "S002"
+    ],
+    "ADJ_EXCITED": [
+      "S002"
+    ]
+  }
+}
