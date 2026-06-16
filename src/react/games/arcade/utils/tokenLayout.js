@@ -65,6 +65,19 @@ export function tokenContains(token, px, py, cellPx) {
     .some((c) => c.x === px && c.y === py);
 }
 
+function tokenFitsVisualBounds(map, cell, text, cellPx) {
+  const { vertical, estPx } = tokenLayout(text, cellPx);
+  const half = estPx / 2;
+  const centerX = (cell.x + 0.5) * cellPx;
+  const centerY = (cell.y + 0.5) * cellPx;
+  const gutter = cellPx * 0.35;
+
+  if (vertical) {
+    return centerY - half >= gutter && centerY + half <= (map.rows * cellPx) - gutter;
+  }
+  return centerX - half >= gutter && centerX + half <= (map.cols * cellPx) - gutter;
+}
+
 /**
  * Build a Set of "x,y" keys representing the combined footprint of all wrong
  * (non-correct) tokens. This is the "blocked" set for the solvability BFS.
@@ -99,6 +112,13 @@ export function placeTokensNoOverlap(map, items, reserved, cellPx) {
   const interior = floorCells(map).filter(
     (c) => c.x > 0 && c.y > 0 && c.x < map.cols - 1 && c.y < map.rows - 1,
   );
+  const visualSafe = interior.filter(
+    (c) => c.x > 1 && c.y > 1 && c.x < map.cols - 2 && c.y < map.rows - 2,
+  );
+  // Prefer a one-cell visual gutter so long/rotated answer pills do not clip
+  // against the rounded board edge on phones. Fall back to the wider interior
+  // pool on very tight/generated maps.
+  const preferredPool = visualSafe.length >= items.length ? visualSafe : interior;
   const pool = interior.length ? interior : floorCells(map);
   const playerCell = reserved[0] || { x: Math.floor(map.cols / 2), y: Math.floor(map.rows / 2) };
 
@@ -123,7 +143,9 @@ export function placeTokensNoOverlap(map, items, reserved, cellPx) {
     for (const item of order) {
       let anchor = null;
       let footprint = null;
-      for (const c of shuffle(pool)) {
+      const visuallySafePool = preferredPool.filter((c) => tokenFitsVisualBounds(map, c, item.text, cellPx));
+      const candidatePool = visuallySafePool.length ? visuallySafePool : preferredPool;
+      for (const c of shuffle(candidatePool.length ? candidatePool : pool)) {
         const fc = tokenCells(c.x, c.y, item.text, cellPx, RESERVE_COVERAGE);
         if (free(fc)) { anchor = c; footprint = fc; break; }
       }

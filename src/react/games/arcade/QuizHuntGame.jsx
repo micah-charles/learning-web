@@ -89,7 +89,32 @@ function snapshot(g) {
   };
 }
 
-function step(g, direction, dt, cellPx) {
+function canMove(map, pos, direction) {
+  if (!direction || direction === "none") return false;
+  const next = stepInDirection(map, pos, direction);
+  return next.x !== pos.x || next.y !== pos.y;
+}
+
+function resolveDirection(g, directionRef, queuedDirectionRef) {
+  const queued = queuedDirectionRef.current;
+  const current = directionRef.current !== "none" ? directionRef.current : g.direction;
+
+  if (canMove(g.map, g.player, queued)) {
+    directionRef.current = queued;
+    queuedDirectionRef.current = "none";
+    return queued;
+  }
+
+  if (canMove(g.map, g.player, current)) {
+    directionRef.current = current;
+    return current;
+  }
+
+  directionRef.current = "none";
+  return "none";
+}
+
+function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
   const events = [];
   if (g.status !== "playing") return events;
 
@@ -99,8 +124,8 @@ function step(g, direction, dt, cellPx) {
     if (g.timeLeft <= 0) { g.timeLeft = 0; g.status = "over"; events.push({ type: "over" }); return events; }
   }
 
-  g.direction = direction;
   if (g.freeze > 0) { g.freeze -= 1; return events; }
+  g.direction = resolveDirection(g, directionRef, queuedDirectionRef);
 
   const prevPos = g.player;
   g.player = stepInDirection(g.map, g.player, g.direction);
@@ -174,12 +199,12 @@ const DEFAULT_GOAL = { mode: "questions", target: 20 };
 
 export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord, hideEndOverlay = false }) {
   const wrapRef = useRef(null);
-  const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
-  const cellPxRef = useRef(cellPx);
-  cellPxRef.current = cellPx;
   const gRef = useRef(null);
   const [view, setView] = useState(null);
   const [paused, setPaused] = useState(false);
+  const { cols, rows, cellPx } = useBoardMetrics(wrapRef, !!view);
+  const cellPxRef = useRef(cellPx);
+  cellPxRef.current = cellPx;
 
   // (Re)initialise when content, grid dimensions, or goal change.
   useEffect(() => {
@@ -205,8 +230,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
     setPaused((p) => !p);
   }, []);
 
-  const { directionRef, press } = useArcadeControls({
-    surfaceRef: wrapRef,
+  const { directionRef, queuedDirectionRef, press, resetDirections, boardControlHandlers } = useArcadeControls({
     enabled: !!view && view.status !== "over",
     onDirection,
     onPause: togglePause,
@@ -215,11 +239,11 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
   const handleStep = useCallback((dt) => {
     const g = gRef.current;
     if (!g) return;
-    const events = step(g, directionRef.current, dt, cellPxRef.current);
+    const events = step(g, directionRef, queuedDirectionRef, dt, cellPxRef.current);
     // Stand still after eating any token (correct or wrong) — the player must
     // give a fresh input to start moving again.
     if (events.some((e) => e.type === "correct" || e.type === "wrong")) {
-      directionRef.current = "none";
+      resetDirections();
     }
     setView(snapshot(g));
     for (const ev of events) {
@@ -231,7 +255,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
       else if (ev.type === "wrong") { sound.play("wrong"); onRecord?.("answer", { wordId: ev.wordId, correct: false }); }
       else if (ev.type === "over") { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
-  }, [directionRef, sound, onRecord]);
+  }, [directionRef, queuedDirectionRef, resetDirections, sound, onRecord]);
 
   const running = !!view && view.status === "playing" && !paused;
   useGameLoop({ running, stepIntervalMs: STEP_MS, onStep: handleStep });
@@ -239,7 +263,7 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
   function restart() {
     const map = generateMap(mapType, cols, rows);
     gRef.current = initState(map, questions, goal, cellPx);
-    directionRef.current = "none";
+    resetDirections();
     setView(snapshot(gRef.current));
     setPaused(false);
   }
@@ -284,13 +308,15 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
           map={view.map} cellPx={cellPx}
           tokens={view.tokens} segments={segments}
           playerEmoji="/images/foxchild-fox.png" reducedMotion={reducedMotion}
+          controlHandlers={boardControlHandlers}
         />
         {view.status === "ready" && (
-          <div className="arc-start-hint">Swipe, use arrow keys, or the D-pad to move</div>
+          <div className="arc-start-hint">Swipe to move</div>
         )}
+        <DpadControls onPress={press} variant="overlay" />
       </div>
 
-      <DpadControls onPress={press} />
+      <DpadControls onPress={press} variant="below" />
 
       {(paused || (over && !hideEndOverlay)) && (
         <PauseOverlay

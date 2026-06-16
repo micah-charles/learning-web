@@ -11,7 +11,7 @@
  *   2. <NavBar> — sticky pill-tab navigation (warm cream background)
  *   3. <main>   — per-tab page content
  */
-import { useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { ManifestProvider } from "./context/ManifestContext.jsx";
 import { ProgressProvider } from "./context/ProgressContext.jsx";
 import { StudyBookProvider } from "./context/StudyBookContext.jsx";
@@ -34,24 +34,85 @@ import AboutPage        from "./pages/AboutPage.jsx";
 import AIPromptBuilder  from "./pages/AIPromptBuilder.jsx";
 import ArcadeGamePage   from "./games/arcade/ArcadeGamePage.jsx";
 import SmartTestPage    from "./pages/SmartTestPage.jsx";
+import OnboardingPage   from "./pages/OnboardingPage.jsx";
+import { useProgress } from "./context/ProgressContext.jsx";
+import { listUploadedPacks } from "@/admin-storage.js";
+import {
+  getAllowedTabsFromPrefs,
+  getEverythingPrefs,
+  isEverythingMode,
+  isLikelyExistingUser,
+} from "./utils/personalisation.js";
 
 // Tabs that have active sessions — re-clicking asks the user to confirm reload.
 const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword", "smart-test"]);
 
 function AppContent() {
+  const { progress, updateProgress } = useProgress();
   const [activeTab, setActiveTab]         = useState("home");
   const [quizCustomWords, setQuizCustomWords] = useState(null);
 
+  const prefs = progress?.prefs || {};
+  const hasUploadedPacks = useMemo(() => listUploadedPacks().length > 0, []);
+  const existingUser = isLikelyExistingUser(progress) || hasUploadedPacks;
+  const onboardingCompleted = prefs.onboardingCompleted === true;
+  const shouldDefaultExistingUserToEverything = existingUser && !onboardingCompleted;
+  const shouldShowOnboarding = !onboardingCompleted && !existingUser;
+  const allowedTabs = useMemo(
+    () => shouldDefaultExistingUserToEverything ? null : onboardingCompleted ? getAllowedTabsFromPrefs(prefs) : null,
+    [onboardingCompleted, prefs, shouldDefaultExistingUserToEverything],
+  );
+
+  const canAccessTab = useCallback((tab) => {
+    if (!Array.isArray(allowedTabs) || isEverythingMode(prefs)) return true;
+    return allowedTabs.includes(tab);
+  }, [allowedTabs, prefs]);
+
   const handleNavigate = useCallback((tab, opts = {}) => {
-    if (tab === "quiz" && opts.customWords) {
+    const targetTab = canAccessTab(tab) ? tab : "home";
+    if (targetTab === "quiz" && opts.customWords) {
       setQuizCustomWords(opts.customWords);
     } else {
       setQuizCustomWords(null);
     }
-    setActiveTab(tab);
-  }, []);
+    setActiveTab(targetTab);
+  }, [canAccessTab]);
+
+  const saveOnboarding = useCallback((nextPrefs) => {
+    updateProgress((state) => {
+      Object.assign(state.prefs, nextPrefs);
+    });
+    setActiveTab(nextPrefs.selectedInterests?.includes("overview") ? "about" : "home");
+  }, [updateProgress]);
+
+  const saveEverything = useCallback((nextPrefs = getEverythingPrefs()) => {
+    updateProgress((state) => {
+      Object.assign(state.prefs, nextPrefs);
+    });
+    setActiveTab("home");
+  }, [updateProgress]);
+
+  useEffect(() => {
+    if (!shouldDefaultExistingUserToEverything) return;
+    updateProgress((state) => {
+      Object.assign(state.prefs, getEverythingPrefs());
+    });
+  }, [shouldDefaultExistingUserToEverything, updateProgress]);
+
+  useEffect(() => {
+    if (!Array.isArray(allowedTabs)) return;
+    if (activeTab === "__reset__") return;
+    if (!allowedTabs.includes(activeTab)) {
+      setQuizCustomWords(null);
+      setActiveTab("home");
+    }
+  }, [activeTab, allowedTabs]);
 
   function handleTabChange(tab) {
+    if (!canAccessTab(tab)) {
+      setActiveTab("home");
+      return;
+    }
     // Re-clicking the same session tab: ask whether to restart
     if (tab === activeTab && SESSION_TABS.has(tab)) {
       if (!window.confirm("Restart this session from the beginning?")) return;
@@ -64,15 +125,29 @@ function AppContent() {
     setActiveTab(tab);
   }
 
+  if (shouldShowOnboarding) {
+    return (
+      <OnboardingPage
+        initialPrefs={prefs}
+        onComplete={saveOnboarding}
+        onSkipEverything={saveEverything}
+      />
+    );
+  }
+
   return (
     <div className="lw-app">
-      <Hero variant="standard" onNavigate={handleNavigate} />
+      <Hero
+        variant="standard"
+        onNavigate={handleNavigate}
+        showAiPrompt={!Array.isArray(allowedTabs) || allowedTabs.includes("ai-prompt")}
+      />
 
-      <NavBar active={activeTab} onChange={handleTabChange} />
+      <NavBar active={activeTab} onChange={handleTabChange} allowedTabs={allowedTabs} />
 
       {/* Page content */}
       <main className="lw-main">
-        {activeTab === "home"      && <HomePage      onNavigate={handleNavigate} />}
+        {activeTab === "home"      && <HomePage      onNavigate={handleNavigate} onManageLearning={() => setActiveTab("learning-settings")} onShowEverything={saveEverything} />}
         {activeTab === "vocab"     && <VocabPage     />}
         {activeTab === "quiz"      && <QuizPage      initialCustomWords={quizCustomWords} />}
         {activeTab === "reading"   && <ReadingPage   />}
@@ -82,10 +157,18 @@ function AppContent() {
         {activeTab === "review"    && <ReviewPage    onNavigate={handleNavigate} />}
         {activeTab === "progress"  && <ProgressPage  />}
         {activeTab === "mypacks"   && <MyPacksPage   onNavigate={handleNavigate} />}
-        {activeTab === "about"     && <AboutPage     />}
+        {activeTab === "about"     && <AboutPage     onManageLearning={() => setActiveTab("learning-settings")} />}
         {activeTab === "ai-prompt" && <AIPromptBuilder onNavigate={handleNavigate} />}
         {activeTab === "arcade"     && <ArcadeGamePage />}
         {activeTab === "smart-test" && <SmartTestPage  />}
+        {activeTab === "learning-settings" && (
+          <OnboardingPage
+            editMode
+            initialPrefs={prefs}
+            onComplete={saveOnboarding}
+            onSkipEverything={saveEverything}
+          />
+        )}
       </main>
 
       {/* Study Book drawer — rendered once here so it persists across tab switches */}

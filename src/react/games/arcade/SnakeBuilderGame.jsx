@@ -117,7 +117,38 @@ function snapshot(g) {
   };
 }
 
-function step(g, inputDir, dt, cellPx) {
+function canMove(map, pos, direction) {
+  if (!direction || direction === "none") return false;
+  const next = stepInDirection(map, pos, direction);
+  return next.x !== pos.x || next.y !== pos.y;
+}
+
+function canUseDirection(g, direction) {
+  if (!direction || direction === "none") return false;
+  if (g.body.length > 1 && direction === OPPOSITE[g.heading]) return false;
+  return canMove(g.map, g.body[0], direction);
+}
+
+function resolveDirection(g, directionRef, queuedDirectionRef) {
+  const queued = queuedDirectionRef.current;
+  const current = directionRef.current !== "none" ? directionRef.current : g.heading;
+
+  if (canUseDirection(g, queued)) {
+    directionRef.current = queued;
+    queuedDirectionRef.current = "none";
+    return queued;
+  }
+
+  if (canUseDirection(g, current)) {
+    directionRef.current = current;
+    return current;
+  }
+
+  directionRef.current = "none";
+  return "none";
+}
+
+function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
   const events = [];
   if (g.status !== "playing") return events;
 
@@ -130,7 +161,7 @@ function step(g, inputDir, dt, cellPx) {
 
   if (g.freeze > 0) { g.freeze -= 1; return events; }
 
-  let dir = inputDir;
+  let dir = resolveDirection(g, directionRef, queuedDirectionRef);
   if (dir === "none") return events; // stay still until input given
   // Classic snake rule: can't reverse into own body.
   if (g.body.length > 1 && dir === OPPOSITE[g.heading]) dir = g.heading;
@@ -239,12 +270,12 @@ const DEFAULT_GOAL = { mode: "questions", target: 20 };
 
 export default function SnakeBuilderGame({ questions, mapType = "open", goal = DEFAULT_GOAL, sound, reducedMotion, onExit, onRecord, hideEndOverlay = false }) {
   const wrapRef = useRef(null);
-  const { cols, rows, cellPx } = useBoardMetrics(wrapRef);
-  const cellPxRef = useRef(cellPx);
-  cellPxRef.current = cellPx;
   const gRef = useRef(null);
   const [view, setView] = useState(null);
   const [paused, setPaused] = useState(false);
+  const { cols, rows, cellPx } = useBoardMetrics(wrapRef, !!view);
+  const cellPxRef = useRef(cellPx);
+  cellPxRef.current = cellPx;
 
   useEffect(() => {
     if (!questions || questions.length === 0) { gRef.current = null; setView(null); return; }
@@ -269,8 +300,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
     setPaused((p) => !p);
   }, []);
 
-  const { directionRef, press } = useArcadeControls({
-    surfaceRef: wrapRef,
+  const { directionRef, queuedDirectionRef, press, resetDirections, boardControlHandlers } = useArcadeControls({
     enabled: !!view && view.status !== "over",
     onDirection,
     onPause: togglePause,
@@ -279,10 +309,10 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
   const handleStep = useCallback((dt) => {
     const g = gRef.current;
     if (!g) return;
-    const events = step(g, directionRef.current, dt, cellPxRef.current);
+    const events = step(g, directionRef, queuedDirectionRef, dt, cellPxRef.current);
     // After eating, self-hit, or wrong token — stop gliding until next input.
     if (events.some((e) => ["collect", "wrong", "complete", "self-hit"].includes(e.type))) {
-      directionRef.current = "none";
+      resetDirections();
     }
     setView(snapshot(g));
     for (const ev of events) {
@@ -295,7 +325,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
       else if (ev.type === "self-hit")  sound.play("wrong");
       else if (ev.type === "over")      { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
-  }, [directionRef, sound, onRecord]);
+  }, [directionRef, queuedDirectionRef, resetDirections, sound, onRecord]);
 
   const running = !!view && view.status === "playing" && !paused;
   useGameLoop({ running, stepIntervalMs: STEP_MS, onStep: handleStep });
@@ -303,7 +333,7 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
   function restart() {
     const map = generateMap(mapType, cols, rows);
     gRef.current = initState(map, questions, goal, cellPx);
-    directionRef.current = "none";
+    resetDirections();
     setView(snapshot(gRef.current));
     setPaused(false);
   }
@@ -363,13 +393,15 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
           map={view.map} cellPx={cellPx}
           tokens={view.tokens} segments={segments}
           playerEmoji="/images/foxchild-girl.png" reducedMotion={reducedMotion}
+          controlHandlers={boardControlHandlers}
         />
         {view.status === "ready" && (
-          <div className="arc-start-hint">Read the question above, then eat words in order to build the answer 🐍</div>
+          <div className="arc-start-hint">Swipe to move</div>
         )}
+        <DpadControls onPress={press} variant="overlay" />
       </div>
 
-      <DpadControls onPress={press} />
+      <DpadControls onPress={press} variant="below" />
 
       {(paused || (over && !hideEndOverlay)) && (
         <PauseOverlay

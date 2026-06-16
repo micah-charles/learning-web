@@ -5,6 +5,13 @@ const STORAGE_KEY = "learningGermanWeb.v1";
 export const DEFAULT_STATE = {
   activeTab: "home",
   prefs: {
+    onboardingCompleted: false,
+    learningMode: "guided", // "guided" | "everything"
+    selectedInterests: [],
+    selectedModules: [],
+    selectedCurriculums: [],
+    selectedSubjects: [],
+    onboardingVersion: 1,
     vocab: {
       datasetId: "core",
       subject: "language",                      // language | history | geography | science

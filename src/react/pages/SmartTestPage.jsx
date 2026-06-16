@@ -11,19 +11,21 @@
  * Uses ManifestContext, ProgressContext. No direct localStorage.
  */
 
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { useManifest }  from "../context/ManifestContext.jsx";
 import { useProgress }  from "../context/ProgressContext.jsx";
 import { useSmartTestSession, calcScore } from "../hooks/useSmartTestSession.js";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import {
-  listDatasetsBySubjectAndCurriculum,
   listCurricula,
+  listDatasets,
   findDataset,
+  getDatasetCurriculum,
   getDatasetSubject,
   SUBJECTS,
 } from "@/data.js";
+import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 // ─── Tiny shared style helpers (inline — keeps this self-contained) ───────────
 
@@ -582,7 +584,12 @@ function ScoreRow({ icon, label, correct, total, done }) {
 
 // ─── Setup Page ───────────────────────────────────────────────────────────────
 
-function SetupPage({ manifest, prefs, setPrefs, onStart }) {
+function SetupPage({ manifest, prefs, setPrefs, personalisationPrefs, onStart }) {
+  const datasets = useMemo(
+    () => manifest ? filterPacksForPrefs(listDatasets(manifest), personalisationPrefs, "dataset") : [],
+    [manifest, personalisationPrefs],
+  );
+
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All Curricula" }, ...(manifest ? listCurricula(manifest) : [])],
     [manifest],
@@ -591,15 +598,30 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
   const subjectCounts = useMemo(() =>
     SUBJECTS.map(id => ({
       id,
-      count: manifest ? listDatasetsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
+      count: datasets.filter((d) => getDatasetSubject(d) === id && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(d) === prefs.curriculum)).length,
     })),
-    [manifest, prefs.curriculum],
+    [datasets, prefs.curriculum],
   );
 
   const filteredDatasets = useMemo(() => {
-    if (!manifest) return [];
-    return listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
-  }, [manifest, prefs.subject, prefs.curriculum]);
+    return datasets.filter(
+      (d) => getDatasetSubject(d) === (prefs.subject || "") &&
+             ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(d) === prefs.curriculum),
+    );
+  }, [datasets, prefs.subject, prefs.curriculum]);
+
+  useEffect(() => {
+    if (!datasets.length) return;
+    if (filteredDatasets.some((d) => d.id === prefs.datasetId)) return;
+    const firstForSubject = datasets.find((d) => getDatasetSubject(d) === prefs.subject);
+    const next = firstForSubject || datasets[0];
+    setPrefs((p) => ({
+      ...p,
+      subject: getDatasetSubject(next),
+      curriculum: "all",
+      datasetId: next.id,
+    }));
+  }, [datasets, filteredDatasets, prefs.datasetId, prefs.subject, setPrefs]);
 
   const datasetOptions = filteredDatasets.map(d => ({ id: d.id, label: d.displayName }));
 
@@ -623,7 +645,7 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
           subjects={subjectCounts}
           activeSubject={prefs.subject}
           onSelect={subj => {
-            const first = manifest ? listDatasetsBySubjectAndCurriculum(manifest, subj, "all")[0] : null;
+            const first = datasets.find((d) => getDatasetSubject(d) === subj);
             setPrefs(p => ({ ...p, subject: subj, curriculum: "all", datasetId: first?.id || "" }));
           }}
         />
@@ -635,9 +657,7 @@ function SetupPage({ manifest, prefs, setPrefs, onStart }) {
             onChange={v => {
               // P2 fix: reset datasetId when curriculum changes so the
               // Start button can't launch a pack outside the new filter.
-              const first = manifest
-                ? listDatasetsBySubjectAndCurriculum(manifest, prefs.subject || "", v)[0]
-                : null;
+              const first = datasets.find((d) => getDatasetSubject(d) === (prefs.subject || "") && (v === "all" || getDatasetCurriculum(d) === v));
               setPrefs(p => ({ ...p, curriculum: v, datasetId: first?.id || "" }));
             }}
           >
@@ -785,7 +805,13 @@ export default function SmartTestPage() {
             {error}
           </div>
         )}
-        <SetupPage manifest={manifest} prefs={prefs} setPrefs={setPrefs} onStart={handleStart} />
+        <SetupPage
+          manifest={manifest}
+          prefs={prefs}
+          setPrefs={setPrefs}
+          personalisationPrefs={progress?.prefs || {}}
+          onStart={handleStart}
+        />
       </>
     );
   }

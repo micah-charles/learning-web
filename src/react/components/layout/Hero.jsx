@@ -31,7 +31,7 @@ function CountBadge({ icon, n, label }) {
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-export default function Hero({ variant = "standard", onNavigate }) {
+export default function Hero({ variant = "standard", onNavigate, showAiPrompt = true }) {
   const { manifest } = useManifest();
 
   const packCount    = useMemo(() => (manifest ? listDatasets(manifest).length : 0),            [manifest]);
@@ -96,17 +96,22 @@ export default function Hero({ variant = "standard", onNavigate }) {
                 <CountBadge icon="🧩" n={builderCount} label="builder sets"   />
               </div>
             )}
-            <button
-              type="button"
-              className="lw-hero-promo"
-              onClick={() => onNavigate?.("ai-prompt")}
-              aria-label="Open AI Learning Pack Creator"
-            >
-              <span className="lw-hero-promo-title">✦ AI Learning Pack Creator</span>
-              <span className="lw-hero-promo-sub">
-                Build your own quizzes, readings, and revision packs with AI — then upload the JSON in My Packs.
-              </span>
-            </button>
+            <div className="lw-hero-action-stack">
+              {showAiPrompt && (
+                <button
+                  type="button"
+                  className="lw-hero-promo"
+                  onClick={() => onNavigate?.("ai-prompt")}
+                  aria-label="Open AI Learning Pack Creator"
+                >
+                  <span className="lw-hero-promo-title">✦ AI Learning Pack Creator</span>
+                  <span className="lw-hero-promo-sub">
+                    <span>Build quizzes, readings, and revision packs with AI.</span>
+                    <span>Then upload the JSON in My Packs.</span>
+                  </span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

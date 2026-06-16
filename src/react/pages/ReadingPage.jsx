@@ -11,13 +11,16 @@ import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { LearningImage } from "../components/learning/LearningImage.jsx";
 import VoicePracticeButton from "../components/learning/VoicePracticeButton.jsx";
 import VoiceFeedbackPanel from "../components/learning/VoiceFeedbackPanel.jsx";
-import { listPassageGroups, listPassageGroupsBySubjectAndCurriculum, listPassagePacks, SUBJECTS, listCurricula } from "@/data.js";
-import { normalizeForCompare, tokenizeSentence } from "@/utils.js";
+import { getDatasetCurriculum, getPassageGroupSubject, listPassageGroups, listPassagePacks, SUBJECTS, listCurricula } from "@/data.js";
+import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
 
-function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, categoryOptions }) {
-  const groups = useMemo(() => manifest ? listPassageGroups(manifest) : [], [manifest]);
+function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, categoryOptions, personalisationPrefs }) {
+  const groups = useMemo(
+    () => manifest ? filterPacksForPrefs(listPassageGroups(manifest), personalisationPrefs, "passage") : [],
+    [manifest, personalisationPrefs],
+  );
   const curriculumOptions = useMemo(
     () => [{ id: "all", label: "All" }, ...(manifest ? listCurricula(manifest) : [])],
     [manifest],
@@ -25,14 +28,13 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
   const subjectCounts = useMemo(() => {
     return SUBJECTS.map(id => ({
       id,
-      count: manifest ? listPassageGroupsBySubjectAndCurriculum(manifest, id, prefs.curriculum || "all").length : 0,
+      count: groups.filter((group) => getPassageGroupSubject(group) === id && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(group) === prefs.curriculum)).length,
     }));
-  }, [manifest, prefs.curriculum]);
+  }, [groups, prefs.curriculum]);
 
   const filteredGroups = useMemo(() => {
-    if (!manifest) return [];
-    return listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
-  }, [manifest, prefs.subject, prefs.curriculum]);
+    return groups.filter((group) => getPassageGroupSubject(group) === (prefs.subject || "") && ((prefs.curriculum || "all") === "all" || getDatasetCurriculum(group) === prefs.curriculum));
+  }, [groups, prefs.subject, prefs.curriculum]);
 
   const packs = useMemo(() => {
     if (!manifest || !prefs.groupId) return [];
@@ -57,10 +59,22 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
   }
 
   useEffect(() => {
+    if (groups.length > 0 && filteredGroups.length === 0) {
+      setPrefs((prev) => ({
+        ...prev,
+        subject: getPassageGroupSubject(groups[0]),
+        curriculum: "all",
+        groupId: groups[0].id,
+        packId: "",
+        category: "all",
+        difficulty: "all",
+      }));
+      return;
+    }
     if (filteredGroups.length > 0 && !filteredGroups.find(g => g.id === prefs.groupId)) {
       setPref("groupId", filteredGroups[0].id);
     }
-  }, [filteredGroups]);
+  }, [groups, filteredGroups]);
 
   useEffect(() => {
     if (packs.length > 0 && !packs.find(p => p.id === prefs.packId)) {
@@ -80,7 +94,7 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
               subjects={subjectCounts}
               activeSubject={prefs.subject}
               onSelect={(s) => {
-                const firstGroup = listPassageGroupsBySubjectAndCurriculum(manifest, s, "all")[0];
+                const firstGroup = groups.find((group) => getPassageGroupSubject(group) === s);
                 setPrefs((prev) => ({ ...prev, subject: s, curriculum: "all", groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
               }}
             />
@@ -90,7 +104,7 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
               items={curriculumOptions}
               value={prefs.curriculum || "all"}
               onSelect={(c) => {
-                const firstGroup = listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", c)[0];
+                const firstGroup = groups.find((group) => getPassageGroupSubject(group) === (prefs.subject || "") && (c === "all" || getDatasetCurriculum(group) === c));
                 setPrefs((prev) => ({ ...prev, curriculum: c, groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
               }}
               style={{ marginTop: "14px" }}
@@ -784,12 +798,10 @@ export default function ReadingPage() {
 
   useEffect(() => {
     if (manifest && prefs.groupId) {
-      // Find the passage group in the manifest
-      const groups = listPassageGroupsBySubjectAndCurriculum(manifest, prefs.subject || "", prefs.curriculum || "all");
-      const group = groups.find(g => g.id === prefs.groupId);
+      const group = listPassageGroups(manifest).find(g => g.id === prefs.groupId);
       if (group) setDataset(group);
     }
-  }, [manifest, prefs.groupId, prefs.subject, prefs.curriculum, setDataset]);
+  }, [manifest, prefs.groupId, setDataset]);
 
   if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
@@ -803,6 +815,7 @@ export default function ReadingPage() {
         message={message}
         loading={loading}
         categoryOptions={categoryOptions}
+        personalisationPrefs={progress?.prefs || {}}
       />
     );
   }
