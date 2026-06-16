@@ -1,0 +1,2212 @@
+{
+  "packId": "semantic_pack_l1_078_actions_people",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_078 — eating_drinking",
+  "description": "A corrected multilingual Progressive Language pack for Eating Drinking.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_078",
+    "title": "078 — Eating Drinking",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "ability",
+      "actions"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_how",
+        "manner_adverbs"
+      ],
+      "german": [
+        "wie_fragen",
+        "modalverben"
+      ],
+      "french": [
+        "comment_questions"
+      ],
+      "spanish": [
+        "como_questions"
+      ],
+      "chinese": [
+        "怎么_questions"
+      ],
+      "japanese": [
+        "どうやって_questions"
+      ]
+    },
+    "sentenceGoals": [
+      "How does the mother cook dinner?",
+      "What does the cook like to drink?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_COOK",
+      "type": "noun",
+      "senseKey": "person_cook",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "Koch",
+          "article": "der"
+        },
+        "fr": {
+          "text": "cuisinier",
+          "article": "le"
+        },
+        "es": {
+          "text": "cocinero",
+          "article": "el"
+        },
+        "zh": {
+          "text": "廚師"
+        },
+        "ja": {
+          "text": "料理人"
+        }
+      },
+      "distractors": {
+        "de": [
+          "die Mutter",
+          "die Großmutter",
+          "der Mitschüler"
+        ],
+        "fr": [
+          "la mère",
+          "la grand-mère",
+          "le camarade de classe"
+        ],
+        "es": [
+          "la madre",
+          "la abuela",
+          "el compañero"
+        ],
+        "zh": [
+          "媽媽",
+          "祖母",
+          "同學"
+        ],
+        "ja": [
+          "お母さん",
+          "おばあさん",
+          "クラスメート"
+        ]
+      }
+    },
+    {
+      "conceptId": "PERSON_MOTHER",
+      "type": "noun",
+      "senseKey": "person_mother",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "mother"
+        },
+        "de": {
+          "text": "Mutter",
+          "article": "die"
+        },
+        "fr": {
+          "text": "mère",
+          "article": "la"
+        },
+        "es": {
+          "text": "madre",
+          "article": "la"
+        },
+        "zh": {
+          "text": "媽媽"
+        },
+        "ja": {
+          "text": "お母さん"
+        }
+      },
+      "distractors": {
+        "de": [
+          "die Großmutter",
+          "der Mitschüler",
+          "der Lehrer"
+        ],
+        "fr": [
+          "la grand-mère",
+          "le camarade de classe",
+          "le professeur"
+        ],
+        "es": [
+          "la abuela",
+          "el compañero",
+          "el profesor"
+        ],
+        "zh": [
+          "祖母",
+          "同學",
+          "老師"
+        ],
+        "ja": [
+          "おばあさん",
+          "クラスメート",
+          "先生"
+        ]
+      }
+    },
+    {
+      "conceptId": "VERB_COOK",
+      "type": "verb",
+      "senseKey": "verb_cook",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "kochen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "cuisiner",
+          "article": "le"
+        },
+        "es": {
+          "text": "cocinar",
+          "article": "el"
+        },
+        "zh": {
+          "text": "煮飯"
+        },
+        "ja": {
+          "text": "料理する"
+        }
+      },
+      "distractors": {
+        "de": [
+          "essen",
+          "sitzen",
+          "öffnen"
+        ],
+        "fr": [
+          "manger",
+          "s'asseoir",
+          "ouvrir"
+        ],
+        "es": [
+          "comer",
+          "sentarse",
+          "abrir"
+        ],
+        "zh": [
+          "吃",
+          "坐",
+          "打開"
+        ],
+        "ja": [
+          "食べる",
+          "座る",
+          "開ける"
+        ]
+      }
+    },
+    {
+      "conceptId": "VERB_DRINK",
+      "type": "verb",
+      "senseKey": "verb_drink",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "drink"
+        },
+        "de": {
+          "text": "trinken",
+          "article": "der"
+        },
+        "fr": {
+          "text": "boire",
+          "article": "le"
+        },
+        "es": {
+          "text": "beber",
+          "article": "el"
+        },
+        "zh": {
+          "text": "喝"
+        },
+        "ja": {
+          "text": "飲む"
+        }
+      },
+      "distractors": {
+        "de": [
+          "essen",
+          "sitzen",
+          "öffnen"
+        ],
+        "fr": [
+          "manger",
+          "s'asseoir",
+          "ouvrir"
+        ],
+        "es": [
+          "comer",
+          "sentarse",
+          "abrir"
+        ],
+        "zh": [
+          "吃",
+          "坐",
+          "打開"
+        ],
+        "ja": [
+          "食べる",
+          "座る",
+          "開ける"
+        ]
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_HOW",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "How",
+        "de": "Wie",
+        "fr": "Comment",
+        "es": "¿Cómo",
+        "zh": "怎麼",
+        "ja": "どうやって"
+      }
+    },
+    {
+      "tokenId": "VB_CAN",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "zh": "可以",
+        "ja": "ことができる"
+      }
+    },
+    {
+      "tokenId": "PREP_WITH",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "with",
+        "de": "mit",
+        "fr": "avec",
+        "es": "con",
+        "zh": "跟",
+        "ja": "と"
+      }
+    },
+    {
+      "tokenId": "ART_THE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la",
+        "es": "el/la",
+        "zh": "",
+        "ja": ""
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_in_the_kitchen_chain1",
+      "linkedConcepts": [
+        "PERSON_MOTHER",
+        "VERB_COOK"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "How",
+              "tiles": [
+                "How"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "How",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie",
+              "tiles": [
+                "Wie"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wie",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment",
+              "tiles": [
+                "Comment"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Comment",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo",
+              "tiles": [
+                "¿Cómo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cómo",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "怎麼",
+              "tiles": [
+                "怎麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "怎麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "怎麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "どうやって",
+              "tiles": [
+                "どうやって"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "どうやって",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "どうやって",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "How does the mother cook dinner?",
+              "tiles": [
+                "How",
+                "does",
+                "the",
+                "mother",
+                "cook",
+                "dinner?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "How → does → the → mother → cook → dinner?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "does",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mother",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cook",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dinner?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie kocht die Mutter das Abendessen?",
+              "tiles": [
+                "Wie",
+                "kocht",
+                "die",
+                "Mutter",
+                "das",
+                "Abendessen?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wie → kocht → die → Mutter → das → Abendessen?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kocht",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mutter",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Abendessen?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment la mère prépare-t-elle le dîner?",
+              "tiles": [
+                "Comment",
+                "la",
+                "mère",
+                "prépare-t-elle",
+                "le",
+                "dîner?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Comment → la → mère → prépare-t-elle → le → dîner?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mère",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "prépare-t-elle",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dîner?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo cocina la cena la madre?",
+              "tiles": [
+                "¿Cómo",
+                "cocina",
+                "la",
+                "cena",
+                "la",
+                "madre?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Cómo → cocina → la → cena → la → madre?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocina",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cena",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "madre?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "媽媽怎麼煮晚餐？",
+              "tiles": [
+                "媽媽",
+                "怎麼",
+                "煮",
+                "晚餐？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "媽媽 → 怎麼 → 煮 → 晚餐？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "媽媽",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "怎麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "煮",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "晚餐？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "お母さんはどうやって夕食を作りますか？",
+              "tiles": [
+                "お母さん",
+                "は",
+                "どう",
+                "や",
+                "って",
+                "夕食",
+                "を",
+                "作りますか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "お母さん → は → どう → や → って → 夕食 → を → 作りますか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "お母さん",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どう",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "や",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "って",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "夕食",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "作りますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_in_the_kitchen_chain2",
+      "linkedConcepts": [
+        "PERSON_COOK",
+        "VERB_DRINK"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "How",
+              "tiles": [
+                "How"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "How",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie",
+              "tiles": [
+                "Wie"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wie",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment",
+              "tiles": [
+                "Comment"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Comment",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo",
+              "tiles": [
+                "¿Cómo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cómo",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "怎麼",
+              "tiles": [
+                "怎麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "怎麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "怎麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "どうやって",
+              "tiles": [
+                "どうやって"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "どうやって",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "どうやって",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "What does the cook like to drink?",
+              "tiles": [
+                "What",
+                "does",
+                "the",
+                "cook",
+                "like",
+                "to",
+                "drink?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "What → does → the → cook → like → to → drink?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "does",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cook",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "to",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "drink?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Was trinkt der Koch gern?",
+              "tiles": [
+                "Was",
+                "trinkt",
+                "der",
+                "Koch",
+                "gern?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Was → trinkt → der → Koch → gern?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Was",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "trinkt",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Koch",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gern?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Qu'est-ce que le cuisinier aime boire?",
+              "tiles": [
+                "Qu'est-ce",
+                "que",
+                "le",
+                "cuisinier",
+                "aime",
+                "boire?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Qu'est-ce → que → le → cuisinier → aime → boire?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Qu'est-ce",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisinier",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aime",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "boire?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Qué le gusta beber al cocinero?",
+              "tiles": [
+                "¿Qué",
+                "le",
+                "gusta",
+                "beber",
+                "al",
+                "cocinero?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Qué → le → gusta → beber → al → cocinero?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "beber",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "al",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocinero?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "廚師喜歡喝什麼？",
+              "tiles": [
+                "廚師",
+                "喜歡",
+                "喝",
+                "什麼？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "廚師 → 喜歡 → 喝 → 什麼？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "廚師",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "喜歡",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "喝",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "什麼？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "料理人は何を飲むのが好きですか？",
+              "tiles": [
+                "料理",
+                "人",
+                "は",
+                "何",
+                "を",
+                "飲む",
+                "の",
+                "が",
+                "好きですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "料理 → 人 → は → 何 → を → 飲む → の → が → 好きですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "料理",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "人",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "何",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "飲む",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "の",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "が",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "好きですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_MOTHER",
+        "VERB_COOK"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_in_the_kitchen_chain1",
+      "translations": {
+        "en": {
+          "text": "How does the mother cook dinner?",
+          "tiles": [
+            "How",
+            "does",
+            "the",
+            "mother",
+            "cook",
+            "dinner?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "How → does → the → mother → cook → dinner?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "does",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "mother",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cook",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dinner?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie kocht die Mutter das Abendessen?",
+          "tiles": [
+            "Wie",
+            "kocht",
+            "die",
+            "Mutter",
+            "das",
+            "Abendessen?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wie → kocht → die → Mutter → das → Abendessen?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "kocht",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mutter",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Abendessen?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Comment la mère prépare-t-elle le dîner?",
+          "tiles": [
+            "Comment",
+            "la",
+            "mère",
+            "prépare-t-elle",
+            "le",
+            "dîner?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Comment → la → mère → prépare-t-elle → le → dîner?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Comment",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "mère",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "prépare-t-elle",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dîner?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cómo cocina la cena la madre?",
+          "tiles": [
+            "¿Cómo",
+            "cocina",
+            "la",
+            "cena",
+            "la",
+            "madre?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Cómo → cocina → la → cena → la → madre?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Cómo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocina",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cena",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "madre?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "媽媽怎麼煮晚餐？",
+          "tiles": [
+            "媽媽",
+            "怎麼",
+            "煮",
+            "晚餐？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "媽媽 → 怎麼 → 煮 → 晚餐？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "媽媽",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "怎麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "煮",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "晚餐？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "お母さんはどうやって夕食を作りますか？",
+          "tiles": [
+            "お母さん",
+            "は",
+            "どう",
+            "や",
+            "って",
+            "夕食",
+            "を",
+            "作りますか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "お母さん → は → どう → や → って → 夕食 → を → 作りますか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "お母さん",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どう",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "や",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "って",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "夕食",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "作りますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_COOK",
+        "VERB_DRINK"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_in_the_kitchen_chain2",
+      "translations": {
+        "en": {
+          "text": "What does the cook like to drink?",
+          "tiles": [
+            "What",
+            "does",
+            "the",
+            "cook",
+            "like",
+            "to",
+            "drink?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "What → does → the → cook → like → to → drink?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "What",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "does",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cook",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "to",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "drink?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Was trinkt der Koch gern?",
+          "tiles": [
+            "Was",
+            "trinkt",
+            "der",
+            "Koch",
+            "gern?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Was → trinkt → der → Koch → gern?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Was",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "trinkt",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Koch",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "gern?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Qu'est-ce que le cuisinier aime boire?",
+          "tiles": [
+            "Qu'est-ce",
+            "que",
+            "le",
+            "cuisinier",
+            "aime",
+            "boire?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Qu'est-ce → que → le → cuisinier → aime → boire?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Qu'est-ce",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisinier",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "aime",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "boire?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Qué le gusta beber al cocinero?",
+          "tiles": [
+            "¿Qué",
+            "le",
+            "gusta",
+            "beber",
+            "al",
+            "cocinero?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Qué → le → gusta → beber → al → cocinero?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "beber",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "al",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocinero?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "廚師喜歡喝什麼？",
+          "tiles": [
+            "廚師",
+            "喜歡",
+            "喝",
+            "什麼？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "廚師 → 喜歡 → 喝 → 什麼？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "廚師",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "喜歡",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "喝",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "什麼？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "料理人は何を飲むのが好きですか？",
+          "tiles": [
+            "料理",
+            "人",
+            "は",
+            "何",
+            "を",
+            "飲む",
+            "の",
+            "が",
+            "好きですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "料理 → 人 → は → 何 → を → 飲む → の → が → 好きですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "料理",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "人",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "何",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "飲む",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "の",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "が",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "好きですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_MOTHER": [
+      "S001"
+    ],
+    "VERB_COOK": [
+      "S001"
+    ],
+    "PERSON_COOK": [
+      "S002"
+    ],
+    "VERB_DRINK": [
+      "S002"
+    ]
+  }
+}

@@ -1,0 +1,1743 @@
+{
+  "packId": "semantic_pack_l1_042_objects",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_042 — classroom_items",
+  "description": "A corrected multilingual Progressive Language pack for Classroom Items.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_042",
+    "title": "042 — Classroom Items",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "quantity",
+      "numbers"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_how_many",
+        "plural_nouns"
+      ],
+      "german": [
+        "wie_viele",
+        "pluralbildung"
+      ],
+      "french": [
+        "combien_questions"
+      ],
+      "spanish": [
+        "cuantos_questions"
+      ],
+      "chinese": [
+        "几_question",
+        "measure_words"
+      ],
+      "japanese": [
+        "いくつ_questions",
+        "counters"
+      ]
+    },
+    "sentenceGoals": [
+      "How many cups are there?",
+      "How many bowls are there?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "OBJECT_BOWL",
+      "type": "noun",
+      "senseKey": "object_bowl",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "bowl"
+        },
+        "de": {
+          "text": "Schüssel",
+          "article": "der"
+        },
+        "fr": {
+          "text": "bol",
+          "article": "le"
+        },
+        "es": {
+          "text": "cuenco",
+          "article": "el"
+        },
+        "zh": {
+          "text": "碗"
+        },
+        "ja": {
+          "text": "ボウル"
+        }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Bett",
+          "das Buch"
+        ],
+        "fr": [
+          "la chaise",
+          "le lit",
+          "le livre"
+        ],
+        "es": [
+          "la silla",
+          "la cama",
+          "el libro"
+        ],
+        "zh": [
+          "椅子",
+          "床",
+          "書"
+        ],
+        "ja": [
+          "いす",
+          "ベッド",
+          "本"
+        ]
+      }
+    },
+    {
+      "conceptId": "OBJECT_CUP",
+      "type": "noun",
+      "senseKey": "object_cup",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "cup"
+        },
+        "de": {
+          "text": "Tasse",
+          "article": "der"
+        },
+        "fr": {
+          "text": "tasse",
+          "article": "le"
+        },
+        "es": {
+          "text": "taza",
+          "article": "el"
+        },
+        "zh": {
+          "text": "杯子"
+        },
+        "ja": {
+          "text": "カップ"
+        }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Bett",
+          "das Buch"
+        ],
+        "fr": [
+          "la chaise",
+          "le lit",
+          "le livre"
+        ],
+        "es": [
+          "la silla",
+          "la cama",
+          "el libro"
+        ],
+        "zh": [
+          "椅子",
+          "床",
+          "書"
+        ],
+        "ja": [
+          "いす",
+          "ベッド",
+          "本"
+        ]
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_HOW_MANY",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "How many",
+        "de": "Wie viele",
+        "fr": "Combien de",
+        "es": "¿Cuántos",
+        "zh": "多少",
+        "ja": "何"
+      }
+    },
+    {
+      "tokenId": "VB_ARE_THERE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "are there",
+        "de": "gibt es",
+        "fr": "y a-t-il",
+        "es": "hay",
+        "zh": "有",
+        "ja": "ありますか"
+      }
+    },
+    {
+      "tokenId": "CAUSE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "zh": "因為",
+        "ja": "から"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_in_the_kitchen_chain1",
+      "linkedConcepts": [
+        "OBJECT_CUP"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "How many",
+              "tiles": [
+                "How many"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "How many",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How many",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viele",
+              "tiles": [
+                "Wie viele"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wie viele",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie viele",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien de",
+              "tiles": [
+                "Combien de"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Combien de",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Combien de",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuántos",
+              "tiles": [
+                "¿Cuántos"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cuántos",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cuántos",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "多少",
+              "tiles": [
+                "多少"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "多少",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "多少",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "何",
+              "tiles": [
+                "何"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "何",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "何",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "How many cups are there?",
+              "tiles": [
+                "How",
+                "many",
+                "cups",
+                "are",
+                "there?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "How → many → cups → are → there?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "many",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cups",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "are",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "there?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viele Tassen gibt es?",
+              "tiles": [
+                "Wie",
+                "viele",
+                "Tassen",
+                "gibt",
+                "es?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wie → viele → Tassen → gibt → es?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "viele",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Tassen",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gibt",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien de tasses y a-t-il?",
+              "tiles": [
+                "Combien",
+                "de",
+                "tasses",
+                "y",
+                "a-t-il?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Combien → de → tasses → y → a-t-il?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Combien",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tasses",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "y",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a-t-il?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuántas tazas hay?",
+              "tiles": [
+                "¿Cuántas",
+                "tazas",
+                "hay?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Cuántas → tazas → hay?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cuántas",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tazas",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hay?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "有多少杯子？",
+              "tiles": [
+                "有",
+                "多少",
+                "杯子？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "有 → 多少 → 杯子？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "有",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "多少",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "杯子？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "カップは何個ありますか？",
+              "tiles": [
+                "カップ",
+                "は",
+                "何",
+                "個",
+                "ありますか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "カップ → は → 何 → 個 → ありますか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "カップ",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "何",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "個",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ありますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_in_the_kitchen_chain2",
+      "linkedConcepts": [
+        "OBJECT_BOWL"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "How many",
+              "tiles": [
+                "How many"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "How many",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How many",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viele",
+              "tiles": [
+                "Wie viele"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wie viele",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie viele",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien de",
+              "tiles": [
+                "Combien de"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Combien de",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Combien de",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuántos",
+              "tiles": [
+                "¿Cuántos"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cuántos",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cuántos",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "多少",
+              "tiles": [
+                "多少"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "多少",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "多少",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "何",
+              "tiles": [
+                "何"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "何",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "何",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "How many bowls are there?",
+              "tiles": [
+                "How",
+                "many",
+                "bowls",
+                "are",
+                "there?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "How → many → bowls → are → there?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "many",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bowls",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "are",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "there?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viele Schüsseln gibt es?",
+              "tiles": [
+                "Wie",
+                "viele",
+                "Schüsseln",
+                "gibt",
+                "es?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wie → viele → Schüsseln → gibt → es?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "viele",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Schüsseln",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gibt",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien de bols y a-t-il?",
+              "tiles": [
+                "Combien",
+                "de",
+                "bols",
+                "y",
+                "a-t-il?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Combien → de → bols → y → a-t-il?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Combien",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bols",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "y",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a-t-il?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuántos cuencos hay?",
+              "tiles": [
+                "¿Cuántos",
+                "cuencos",
+                "hay?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Cuántos → cuencos → hay?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cuántos",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuencos",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hay?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "有多少碗？",
+              "tiles": [
+                "有",
+                "多少",
+                "碗？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "有 → 多少 → 碗？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "有",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "多少",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "碗？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ボウルは何個ありますか？",
+              "tiles": [
+                "ボウル",
+                "は",
+                "何",
+                "個",
+                "ありますか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "ボウル → は → 何 → 個 → ありますか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "ボウル",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "何",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "個",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ありますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "OBJECT_CUP"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_in_the_kitchen_chain1",
+      "translations": {
+        "en": {
+          "text": "How many cups are there?",
+          "tiles": [
+            "How",
+            "many",
+            "cups",
+            "are",
+            "there?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "How → many → cups → are → there?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "many",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cups",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "are",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "there?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie viele Tassen gibt es?",
+          "tiles": [
+            "Wie",
+            "viele",
+            "Tassen",
+            "gibt",
+            "es?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wie → viele → Tassen → gibt → es?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "viele",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Tassen",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "gibt",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "es?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Combien de tasses y a-t-il?",
+          "tiles": [
+            "Combien",
+            "de",
+            "tasses",
+            "y",
+            "a-t-il?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Combien → de → tasses → y → a-t-il?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Combien",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "tasses",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "y",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "a-t-il?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuántas tazas hay?",
+          "tiles": [
+            "¿Cuántas",
+            "tazas",
+            "hay?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Cuántas → tazas → hay?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Cuántas",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "tazas",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "hay?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "有多少杯子？",
+          "tiles": [
+            "有",
+            "多少",
+            "杯子？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "有 → 多少 → 杯子？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "有",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "多少",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "杯子？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "カップは何個ありますか？",
+          "tiles": [
+            "カップ",
+            "は",
+            "何",
+            "個",
+            "ありますか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "カップ → は → 何 → 個 → ありますか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "カップ",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "何",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "個",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "ありますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "OBJECT_BOWL"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_in_the_kitchen_chain2",
+      "translations": {
+        "en": {
+          "text": "How many bowls are there?",
+          "tiles": [
+            "How",
+            "many",
+            "bowls",
+            "are",
+            "there?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "How → many → bowls → are → there?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "many",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "bowls",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "are",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "there?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie viele Schüsseln gibt es?",
+          "tiles": [
+            "Wie",
+            "viele",
+            "Schüsseln",
+            "gibt",
+            "es?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wie → viele → Schüsseln → gibt → es?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "viele",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Schüsseln",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "gibt",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "es?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Combien de bols y a-t-il?",
+          "tiles": [
+            "Combien",
+            "de",
+            "bols",
+            "y",
+            "a-t-il?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Combien → de → bols → y → a-t-il?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Combien",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "bols",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "y",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "a-t-il?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuántos cuencos hay?",
+          "tiles": [
+            "¿Cuántos",
+            "cuencos",
+            "hay?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Cuántos → cuencos → hay?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Cuántos",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuencos",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "hay?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "有多少碗？",
+          "tiles": [
+            "有",
+            "多少",
+            "碗？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "有 → 多少 → 碗？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "有",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "多少",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "碗？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ボウルは何個ありますか？",
+          "tiles": [
+            "ボウル",
+            "は",
+            "何",
+            "個",
+            "ありますか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "ボウル → は → 何 → 個 → ありますか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "ボウル",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "何",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "個",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "ありますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "OBJECT_CUP": [
+      "S001"
+    ],
+    "OBJECT_BOWL": [
+      "S002"
+    ]
+  }
+}

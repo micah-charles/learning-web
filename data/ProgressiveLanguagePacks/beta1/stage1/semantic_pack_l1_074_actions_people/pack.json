@@ -1,0 +1,2244 @@
+{
+  "packId": "semantic_pack_l1_074_actions_people",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_074 — dancing_singing",
+  "description": "A corrected multilingual Progressive Language pack for Dancing Singing.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_074",
+    "title": "074 — Dancing Singing",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "ability",
+      "actions"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "question_word_how",
+        "manner_adverbs"
+      ],
+      "german": [
+        "wie_fragen",
+        "modalverben"
+      ],
+      "french": [
+        "comment_questions"
+      ],
+      "spanish": [
+        "como_questions"
+      ],
+      "chinese": [
+        "怎么_questions"
+      ],
+      "japanese": [
+        "どうやって_questions"
+      ]
+    },
+    "sentenceGoals": [
+      "How does the child draw a picture?",
+      "How does the dancer practise singing?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "PERSON_CHILD",
+      "type": "noun",
+      "senseKey": "person_child",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "child"
+        },
+        "de": {
+          "text": "Kind",
+          "article": "das"
+        },
+        "fr": {
+          "text": "enfant",
+          "article": "l'"
+        },
+        "es": {
+          "text": "niño",
+          "article": "el"
+        },
+        "zh": {
+          "text": "小朋友"
+        },
+        "ja": {
+          "text": "子ども"
+        }
+      },
+      "distractors": {
+        "de": [
+          "die Mutter",
+          "die Großmutter",
+          "der Mitschüler"
+        ],
+        "fr": [
+          "la mère",
+          "la grand-mère",
+          "le camarade de classe"
+        ],
+        "es": [
+          "la madre",
+          "la abuela",
+          "el compañero"
+        ],
+        "zh": [
+          "媽媽",
+          "祖母",
+          "同學"
+        ],
+        "ja": [
+          "お母さん",
+          "おばあさん",
+          "クラスメート"
+        ]
+      }
+    },
+    {
+      "conceptId": "PERSON_DANCER",
+      "type": "noun",
+      "senseKey": "person_dancer",
+      "semanticCategory": "people",
+      "translations": {
+        "en": {
+          "text": "dancer"
+        },
+        "de": {
+          "text": "Tänzer",
+          "article": "der"
+        },
+        "fr": {
+          "text": "danseur",
+          "article": "le"
+        },
+        "es": {
+          "text": "bailarín",
+          "article": "el"
+        },
+        "zh": {
+          "text": "舞者"
+        },
+        "ja": {
+          "text": "踊り手"
+        }
+      },
+      "distractors": {
+        "de": [
+          "die Mutter",
+          "die Großmutter",
+          "der Mitschüler"
+        ],
+        "fr": [
+          "la mère",
+          "la grand-mère",
+          "le camarade de classe"
+        ],
+        "es": [
+          "la madre",
+          "la abuela",
+          "el compañero"
+        ],
+        "zh": [
+          "媽媽",
+          "祖母",
+          "同學"
+        ],
+        "ja": [
+          "お母さん",
+          "おばあさん",
+          "クラスメート"
+        ]
+      }
+    },
+    {
+      "conceptId": "VERB_DRAW",
+      "type": "verb",
+      "senseKey": "verb_draw",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "draw"
+        },
+        "de": {
+          "text": "zeichnen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "dessiner",
+          "article": "le"
+        },
+        "es": {
+          "text": "dibujar",
+          "article": "el"
+        },
+        "zh": {
+          "text": "畫畫"
+        },
+        "ja": {
+          "text": "描く"
+        }
+      },
+      "distractors": {
+        "de": [
+          "essen",
+          "sitzen",
+          "öffnen"
+        ],
+        "fr": [
+          "manger",
+          "s'asseoir",
+          "ouvrir"
+        ],
+        "es": [
+          "comer",
+          "sentarse",
+          "abrir"
+        ],
+        "zh": [
+          "吃",
+          "坐",
+          "打開"
+        ],
+        "ja": [
+          "食べる",
+          "座る",
+          "開ける"
+        ]
+      }
+    },
+    {
+      "conceptId": "VERB_SING",
+      "type": "verb",
+      "senseKey": "verb_sing",
+      "semanticCategory": "actions",
+      "translations": {
+        "en": {
+          "text": "sing"
+        },
+        "de": {
+          "text": "singen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "chanter",
+          "article": "le"
+        },
+        "es": {
+          "text": "cantar",
+          "article": "el"
+        },
+        "zh": {
+          "text": "唱歌"
+        },
+        "ja": {
+          "text": "歌う"
+        }
+      },
+      "distractors": {
+        "de": [
+          "essen",
+          "sitzen",
+          "öffnen"
+        ],
+        "fr": [
+          "manger",
+          "s'asseoir",
+          "ouvrir"
+        ],
+        "es": [
+          "comer",
+          "sentarse",
+          "abrir"
+        ],
+        "zh": [
+          "吃",
+          "坐",
+          "打開"
+        ],
+        "ja": [
+          "食べる",
+          "座る",
+          "開ける"
+        ]
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_HOW",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "How",
+        "de": "Wie",
+        "fr": "Comment",
+        "es": "¿Cómo",
+        "zh": "怎麼",
+        "ja": "どうやって"
+      }
+    },
+    {
+      "tokenId": "VB_CAN",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "zh": "可以",
+        "ja": "ことができる"
+      }
+    },
+    {
+      "tokenId": "PREP_WITH",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "with",
+        "de": "mit",
+        "fr": "avec",
+        "es": "con",
+        "zh": "跟",
+        "ja": "と"
+      }
+    },
+    {
+      "tokenId": "ART_THE",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "the",
+        "de": "der/die/das",
+        "fr": "le/la",
+        "es": "el/la",
+        "zh": "",
+        "ja": ""
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_art_and_music_chain1",
+      "linkedConcepts": [
+        "PERSON_CHILD",
+        "VERB_DRAW"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "How",
+              "tiles": [
+                "How"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "How",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie",
+              "tiles": [
+                "Wie"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wie",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment",
+              "tiles": [
+                "Comment"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Comment",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo",
+              "tiles": [
+                "¿Cómo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cómo",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "怎麼",
+              "tiles": [
+                "怎麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "怎麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "怎麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "どうやって",
+              "tiles": [
+                "どうやって"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "どうやって",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "どうやって",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "How does the child draw a picture?",
+              "tiles": [
+                "How",
+                "does",
+                "the",
+                "child",
+                "draw",
+                "a",
+                "picture?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "How → does → the → child → draw → a → picture?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "does",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "child",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "draw",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "picture?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie zeichnet das Kind ein Bild?",
+              "tiles": [
+                "Wie",
+                "zeichnet",
+                "das",
+                "Kind",
+                "ein",
+                "Bild?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wie → zeichnet → das → Kind → ein → Bild?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zeichnet",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Kind",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ein",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Bild?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment l'enfant dessine-t-il une image?",
+              "tiles": [
+                "Comment",
+                "l'enfant",
+                "dessine-t-il",
+                "une",
+                "image?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Comment → l'enfant → dessine-t-il → une → image?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l'enfant",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dessine-t-il",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "une",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "image?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo dibuja un cuadro el niño?",
+              "tiles": [
+                "¿Cómo",
+                "dibuja",
+                "un",
+                "cuadro",
+                "el",
+                "niño?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Cómo → dibuja → un → cuadro → el → niño?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dibuja",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuadro",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "niño?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "小朋友怎麼畫圖？",
+              "tiles": [
+                "小朋友",
+                "怎麼",
+                "畫圖？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "小朋友 → 怎麼 → 畫圖？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "小朋友",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "怎麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "畫圖？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "子どもはどうやって絵を描きますか？",
+              "tiles": [
+                "子ども",
+                "は",
+                "どう",
+                "や",
+                "って",
+                "絵",
+                "を",
+                "描",
+                "きますか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "子ども → は → どう → や → って → 絵 → を → 描 → きますか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "子ども",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どう",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "や",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "って",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "絵",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "描",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "きますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_art_and_music_chain2",
+      "linkedConcepts": [
+        "PERSON_DANCER",
+        "VERB_SING"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "How",
+              "tiles": [
+                "How"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "How",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie",
+              "tiles": [
+                "Wie"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wie",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment",
+              "tiles": [
+                "Comment"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Comment",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo",
+              "tiles": [
+                "¿Cómo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cómo",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "怎麼",
+              "tiles": [
+                "怎麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "怎麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "怎麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "どうやって",
+              "tiles": [
+                "どうやって"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "どうやって",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "どうやって",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "How does the dancer practise singing?",
+              "tiles": [
+                "How",
+                "does",
+                "the",
+                "dancer",
+                "practise",
+                "singing?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "How → does → the → dancer → practise → singing?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "does",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dancer",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "practise",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "singing?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie übt der Tänzer das Singen?",
+              "tiles": [
+                "Wie",
+                "übt",
+                "der",
+                "Tänzer",
+                "das",
+                "Singen?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wie → übt → der → Tänzer → das → Singen?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "übt",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Tänzer",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Singen?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment le danseur s'exerce-t-il à chanter?",
+              "tiles": [
+                "Comment",
+                "le",
+                "danseur",
+                "s'exerce-t-il",
+                "à",
+                "chanter?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Comment → le → danseur → s'exerce-t-il → à → chanter?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "danseur",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "s'exerce-t-il",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chanter?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo practica el bailarín el canto?",
+              "tiles": [
+                "¿Cómo",
+                "practica",
+                "el",
+                "bailarín",
+                "el",
+                "canto?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Cómo → practica → el → bailarín → el → canto?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cómo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "practica",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bailarín",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "canto?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "舞者怎麼練習唱歌？",
+              "tiles": [
+                "舞",
+                "者",
+                "怎麼",
+                "練習",
+                "唱歌？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "舞 → 者 → 怎麼 → 練習 → 唱歌？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "舞",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "者",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "怎麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "練習",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "唱歌？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "踊り手はどうやって歌を練習しますか？",
+              "tiles": [
+                "踊り",
+                "手",
+                "は",
+                "どう",
+                "や",
+                "って",
+                "歌",
+                "を",
+                "練習",
+                "しますか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "踊り → 手 → は → どう → や → って → 歌 → を → 練習 → しますか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "踊り",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "手",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どう",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "や",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "って",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "歌",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "練習",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "しますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_CHILD",
+        "VERB_DRAW"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_art_and_music_chain1",
+      "translations": {
+        "en": {
+          "text": "How does the child draw a picture?",
+          "tiles": [
+            "How",
+            "does",
+            "the",
+            "child",
+            "draw",
+            "a",
+            "picture?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "How → does → the → child → draw → a → picture?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "does",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "child",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "draw",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "picture?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie zeichnet das Kind ein Bild?",
+          "tiles": [
+            "Wie",
+            "zeichnet",
+            "das",
+            "Kind",
+            "ein",
+            "Bild?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wie → zeichnet → das → Kind → ein → Bild?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "zeichnet",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Kind",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "ein",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Bild?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Comment l'enfant dessine-t-il une image?",
+          "tiles": [
+            "Comment",
+            "l'enfant",
+            "dessine-t-il",
+            "une",
+            "image?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Comment → l'enfant → dessine-t-il → une → image?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Comment",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "l'enfant",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dessine-t-il",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "une",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "image?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cómo dibuja un cuadro el niño?",
+          "tiles": [
+            "¿Cómo",
+            "dibuja",
+            "un",
+            "cuadro",
+            "el",
+            "niño?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Cómo → dibuja → un → cuadro → el → niño?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Cómo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dibuja",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuadro",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "niño?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "小朋友怎麼畫圖？",
+          "tiles": [
+            "小朋友",
+            "怎麼",
+            "畫圖？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "小朋友 → 怎麼 → 畫圖？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "小朋友",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "怎麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "畫圖？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "子どもはどうやって絵を描きますか？",
+          "tiles": [
+            "子ども",
+            "は",
+            "どう",
+            "や",
+            "って",
+            "絵",
+            "を",
+            "描",
+            "きますか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "子ども → は → どう → や → って → 絵 → を → 描 → きますか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "子ども",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どう",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "や",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "って",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "絵",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "描",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "きますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "PERSON_DANCER",
+        "VERB_SING"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_art_and_music_chain2",
+      "translations": {
+        "en": {
+          "text": "How does the dancer practise singing?",
+          "tiles": [
+            "How",
+            "does",
+            "the",
+            "dancer",
+            "practise",
+            "singing?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "How → does → the → dancer → practise → singing?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "does",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dancer",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "practise",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "singing?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie übt der Tänzer das Singen?",
+          "tiles": [
+            "Wie",
+            "übt",
+            "der",
+            "Tänzer",
+            "das",
+            "Singen?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wie → übt → der → Tänzer → das → Singen?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "übt",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Tänzer",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Singen?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Comment le danseur s'exerce-t-il à chanter?",
+          "tiles": [
+            "Comment",
+            "le",
+            "danseur",
+            "s'exerce-t-il",
+            "à",
+            "chanter?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Comment → le → danseur → s'exerce-t-il → à → chanter?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Comment",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "danseur",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "s'exerce-t-il",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "chanter?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cómo practica el bailarín el canto?",
+          "tiles": [
+            "¿Cómo",
+            "practica",
+            "el",
+            "bailarín",
+            "el",
+            "canto?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Cómo → practica → el → bailarín → el → canto?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Cómo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "practica",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "bailarín",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "canto?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "舞者怎麼練習唱歌？",
+          "tiles": [
+            "舞",
+            "者",
+            "怎麼",
+            "練習",
+            "唱歌？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "舞 → 者 → 怎麼 → 練習 → 唱歌？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "舞",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "者",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "怎麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "練習",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "唱歌？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "踊り手はどうやって歌を練習しますか？",
+          "tiles": [
+            "踊り",
+            "手",
+            "は",
+            "どう",
+            "や",
+            "って",
+            "歌",
+            "を",
+            "練習",
+            "しますか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "踊り → 手 → は → どう → や → って → 歌 → を → 練習 → しますか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "踊り",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "手",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どう",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "や",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "って",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "歌",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "練習",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "しますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PERSON_CHILD": [
+      "S001"
+    ],
+    "VERB_DRAW": [
+      "S001"
+    ],
+    "PERSON_DANCER": [
+      "S002"
+    ],
+    "VERB_SING": [
+      "S002"
+    ]
+  }
+}

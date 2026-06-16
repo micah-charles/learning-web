@@ -1,0 +1,1762 @@
+{
+  "packId": "semantic_pack_l1_102_places",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_102 — mixed_review_2",
+  "description": "A corrected multilingual Progressive Language pack for Mixed Review 2.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_102",
+    "title": "102 — Mixed Review 2",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "review",
+      "mixed"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "review",
+        "mixed_grammar"
+      ],
+      "german": [
+        "wiederholung"
+      ],
+      "french": [
+        "révision"
+      ],
+      "spanish": [
+        "repaso"
+      ],
+      "chinese": [
+        "复习"
+      ],
+      "japanese": [
+        "復習"
+      ]
+    },
+    "sentenceGoals": [
+      "What do you do in the kitchen?",
+      "Where is the bed?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "OBJECT_BED",
+      "type": "noun",
+      "senseKey": "object_bed",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "bed"
+        },
+        "de": {
+          "text": "Bett",
+          "article": "das"
+        },
+        "fr": {
+          "text": "lit",
+          "article": "le"
+        },
+        "es": {
+          "text": "cama",
+          "article": "la"
+        },
+        "zh": {
+          "text": "床"
+        },
+        "ja": {
+          "text": "ベッド"
+        }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Buch",
+          "die Tasche"
+        ],
+        "fr": [
+          "la chaise",
+          "le livre",
+          "le cartable"
+        ],
+        "es": [
+          "la silla",
+          "el libro",
+          "la mochila"
+        ],
+        "zh": [
+          "椅子",
+          "書",
+          "書包"
+        ],
+        "ja": [
+          "いす",
+          "本",
+          "かばん"
+        ]
+      }
+    },
+    {
+      "conceptId": "PLACE_KITCHEN",
+      "type": "noun",
+      "senseKey": "place_kitchen",
+      "semanticCategory": "places",
+      "translations": {
+        "en": {
+          "text": "kitchen"
+        },
+        "de": {
+          "text": "Küche",
+          "article": "die"
+        },
+        "fr": {
+          "text": "cuisine",
+          "article": "la"
+        },
+        "es": {
+          "text": "cocina",
+          "article": "la"
+        },
+        "zh": {
+          "text": "廚房"
+        },
+        "ja": {
+          "text": "台所"
+        }
+      },
+      "distractors": {
+        "de": [
+          "der Garten",
+          "das Wohnzimmer",
+          "das Klassenzimmer"
+        ],
+        "fr": [
+          "le jardin",
+          "le salon",
+          "la salle de classe"
+        ],
+        "es": [
+          "el jardín",
+          "la sala",
+          "el aula"
+        ],
+        "zh": [
+          "花園",
+          "客廳",
+          "教室"
+        ],
+        "ja": [
+          "庭",
+          "リビング",
+          "きょうしつ"
+        ]
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_WHAT",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "What",
+        "de": "Was",
+        "fr": "Qu'est-ce que c'est",
+        "es": "¿Qué",
+        "zh": "什麼",
+        "ja": "何"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_home_review_chain1",
+      "linkedConcepts": [
+        "PLACE_KITCHEN"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "What",
+              "tiles": [
+                "What"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "What",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Was",
+              "tiles": [
+                "Was"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Was",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Was",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Qu'est-ce que c'est",
+              "tiles": [
+                "Qu'est-ce que c'est"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Qu'est-ce que c'est",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Qu'est-ce que c'est",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Qué",
+              "tiles": [
+                "¿Qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "什麼",
+              "tiles": [
+                "什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "何",
+              "tiles": [
+                "何"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "何",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "何",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "What do you do in the kitchen?",
+              "tiles": [
+                "What",
+                "do",
+                "you",
+                "do",
+                "in",
+                "the",
+                "kitchen?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "What → do → you → do → in → the → kitchen?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kitchen?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Was machst du in der Küche?",
+              "tiles": [
+                "Was",
+                "machst",
+                "du",
+                "in",
+                "der",
+                "Küche?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Was → machst → du → in → der → Küche?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Was",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "machst",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Küche?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Qu'est-ce que tu fais dans la cuisine?",
+              "tiles": [
+                "Qu'est-ce",
+                "que",
+                "tu",
+                "fais",
+                "dans",
+                "la",
+                "cuisine?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Qu'est-ce → que → tu → fais → dans → la → cuisine?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Qu'est-ce",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tu",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fais",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisine?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Qué haces en la cocina?",
+              "tiles": [
+                "¿Qué",
+                "haces",
+                "en",
+                "la",
+                "cocina?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Qué → haces → en → la → cocina?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "haces",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocina?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你在廚房做什麼？",
+              "tiles": [
+                "你在",
+                "廚房",
+                "做什麼？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "你在 → 廚房 → 做什麼？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "你在",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "廚房",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "做什麼？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "台所で何をしますか？",
+              "tiles": [
+                "台所",
+                "で",
+                "何",
+                "を",
+                "しますか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "台所 → で → 何 → を → しますか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "台所",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "で",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "何",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "しますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_home_review_chain2",
+      "linkedConcepts": [
+        "OBJECT_BED"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "What",
+              "tiles": [
+                "What"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "What",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Was",
+              "tiles": [
+                "Was"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Was",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Was",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Qu'est-ce que c'est",
+              "tiles": [
+                "Qu'est-ce que c'est"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Qu'est-ce que c'est",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Qu'est-ce que c'est",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Qué",
+              "tiles": [
+                "¿Qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "什麼",
+              "tiles": [
+                "什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "何",
+              "tiles": [
+                "何"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "何",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "何",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Where is the bed?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "bed?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Where → is → the → bed?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bed?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist das Bett?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "das",
+                "Bett?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wo → ist → das → Bett?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Bett?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est le lit?",
+              "tiles": [
+                "Où",
+                "est",
+                "le",
+                "lit?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Où → est → le → lit?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lit?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está la cama?",
+              "tiles": [
+                "¿Dónde",
+                "está",
+                "la",
+                "cama?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Dónde → está → la → cama?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Dónde",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cama?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "床在哪裡？",
+              "tiles": [
+                "床",
+                "在",
+                "哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "床 → 在 → 哪裡？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "床",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "在",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "哪裡？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ベッドはどこですか？",
+              "tiles": [
+                "ベッド",
+                "は",
+                "どこですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "ベッド → は → どこですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "ベッド",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どこですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "PLACE_KITCHEN"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_home_review_chain1",
+      "translations": {
+        "en": {
+          "text": "What do you do in the kitchen?",
+          "tiles": [
+            "What",
+            "do",
+            "you",
+            "do",
+            "in",
+            "the",
+            "kitchen?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "What → do → you → do → in → the → kitchen?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "What",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "kitchen?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Was machst du in der Küche?",
+          "tiles": [
+            "Was",
+            "machst",
+            "du",
+            "in",
+            "der",
+            "Küche?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Was → machst → du → in → der → Küche?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Was",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "machst",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Küche?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Qu'est-ce que tu fais dans la cuisine?",
+          "tiles": [
+            "Qu'est-ce",
+            "que",
+            "tu",
+            "fais",
+            "dans",
+            "la",
+            "cuisine?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Qu'est-ce → que → tu → fais → dans → la → cuisine?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Qu'est-ce",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "tu",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "fais",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisine?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Qué haces en la cocina?",
+          "tiles": [
+            "¿Qué",
+            "haces",
+            "en",
+            "la",
+            "cocina?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Qué → haces → en → la → cocina?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "haces",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocina?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你在廚房做什麼？",
+          "tiles": [
+            "你在",
+            "廚房",
+            "做什麼？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "你在 → 廚房 → 做什麼？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "你在",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "廚房",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "做什麼？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "台所で何をしますか？",
+          "tiles": [
+            "台所",
+            "で",
+            "何",
+            "を",
+            "しますか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "台所 → で → 何 → を → しますか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "台所",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "で",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "何",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "しますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "OBJECT_BED"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_home_review_chain2",
+      "translations": {
+        "en": {
+          "text": "Where is the bed?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "bed?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Where → is → the → bed?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "bed?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist das Bett?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "das",
+            "Bett?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wo → ist → das → Bett?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Bett?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est le lit?",
+          "tiles": [
+            "Où",
+            "est",
+            "le",
+            "lit?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Où → est → le → lit?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "lit?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está la cama?",
+          "tiles": [
+            "¿Dónde",
+            "está",
+            "la",
+            "cama?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Dónde → está → la → cama?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Dónde",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "cama?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "床在哪裡？",
+          "tiles": [
+            "床",
+            "在",
+            "哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "床 → 在 → 哪裡？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "床",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "在",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "哪裡？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ベッドはどこですか？",
+          "tiles": [
+            "ベッド",
+            "は",
+            "どこですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "ベッド → は → どこですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "ベッド",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どこですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "PLACE_KITCHEN": [
+      "S001"
+    ],
+    "OBJECT_BED": [
+      "S002"
+    ]
+  }
+}

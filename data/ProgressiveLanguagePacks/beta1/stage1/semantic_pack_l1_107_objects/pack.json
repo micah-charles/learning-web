@@ -1,0 +1,1794 @@
+{
+  "packId": "semantic_pack_l1_107_objects",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L1_107 — mixed_review_7",
+  "description": "A corrected multilingual Progressive Language pack for Mixed Review 7.",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "zh",
+    "ja"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "sourceTopic": {
+    "topicId": "L1_107",
+    "title": "107 — Mixed Review 7",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "review",
+      "mixed"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "review",
+        "mixed_grammar"
+      ],
+      "german": [
+        "wiederholung"
+      ],
+      "french": [
+        "révision"
+      ],
+      "spanish": [
+        "repaso"
+      ],
+      "chinese": [
+        "复习"
+      ],
+      "japanese": [
+        "復習"
+      ]
+    },
+    "sentenceGoals": [
+      "What colour is the coat?",
+      "Whose hat is this?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "OBJECT_COAT",
+      "type": "noun",
+      "senseKey": "object_coat",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "coat"
+        },
+        "de": {
+          "text": "Mantel",
+          "article": "der"
+        },
+        "fr": {
+          "text": "manteau",
+          "article": "le"
+        },
+        "es": {
+          "text": "abrigo",
+          "article": "el"
+        },
+        "zh": {
+          "text": "外套"
+        },
+        "ja": {
+          "text": "コート"
+        }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Bett",
+          "das Buch"
+        ],
+        "fr": [
+          "la chaise",
+          "le lit",
+          "le livre"
+        ],
+        "es": [
+          "la silla",
+          "la cama",
+          "el libro"
+        ],
+        "zh": [
+          "椅子",
+          "床",
+          "書"
+        ],
+        "ja": [
+          "いす",
+          "ベッド",
+          "本"
+        ]
+      }
+    },
+    {
+      "conceptId": "OBJECT_HAT",
+      "type": "noun",
+      "senseKey": "object_hat",
+      "semanticCategory": "objects",
+      "translations": {
+        "en": {
+          "text": "hat"
+        },
+        "de": {
+          "text": "Hut",
+          "article": "der"
+        },
+        "fr": {
+          "text": "chapeau",
+          "article": "le"
+        },
+        "es": {
+          "text": "sombrero",
+          "article": "el"
+        },
+        "zh": {
+          "text": "帽子"
+        },
+        "ja": {
+          "text": "帽子"
+        }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Bett",
+          "das Buch"
+        ],
+        "fr": [
+          "la chaise",
+          "le lit",
+          "le livre"
+        ],
+        "es": [
+          "la silla",
+          "la cama",
+          "el libro"
+        ],
+        "zh": [
+          "椅子",
+          "床",
+          "書"
+        ],
+        "ja": [
+          "いす",
+          "ベッド",
+          "本"
+        ]
+      }
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "QW_WHAT",
+      "type": "function_word",
+      "linkToConcept": false,
+      "translations": {
+        "en": "What",
+        "de": "Was",
+        "fr": "Qu'est-ce que c'est",
+        "es": "¿Qué",
+        "zh": "什麼",
+        "ja": "何"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "chain_clothing_review_chain1",
+      "linkedConcepts": [
+        "OBJECT_COAT"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "What",
+              "tiles": [
+                "What"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "What",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Was",
+              "tiles": [
+                "Was"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Was",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Was",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Qu'est-ce que c'est",
+              "tiles": [
+                "Qu'est-ce que c'est"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Qu'est-ce que c'est",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Qu'est-ce que c'est",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Qué",
+              "tiles": [
+                "¿Qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "什麼",
+              "tiles": [
+                "什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "何",
+              "tiles": [
+                "何"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "何",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "何",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "What colour is the coat?",
+              "tiles": [
+                "What",
+                "colour",
+                "is",
+                "the",
+                "coat?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "What → colour → is → the → coat?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "colour",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coat?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Welche Farbe hat der Mantel?",
+              "tiles": [
+                "Welche",
+                "Farbe",
+                "hat",
+                "der",
+                "Mantel?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Welche → Farbe → hat → der → Mantel?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Welche",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Farbe",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mantel?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "De quelle couleur est le manteau?",
+              "tiles": [
+                "De",
+                "quelle",
+                "couleur",
+                "est",
+                "le",
+                "manteau?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "De → quelle → couleur → est → le → manteau?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "De",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "quelle",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "couleur",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "manteau?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿De qué color es el abrigo?",
+              "tiles": [
+                "¿De",
+                "qué",
+                "color",
+                "es",
+                "el",
+                "abrigo?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿De → qué → color → es → el → abrigo?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿De",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qué",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "color",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "abrigo?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "外套是什麼顏色？",
+              "tiles": [
+                "外套",
+                "是",
+                "什麼",
+                "顏色？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "外套 → 是 → 什麼 → 顏色？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "外套",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "是",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "什麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "顏色？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "コートは何色ですか？",
+              "tiles": [
+                "コート",
+                "は",
+                "何",
+                "色ですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "コート → は → 何 → 色ですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "コート",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "何",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "色ですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "chain_clothing_review_chain2",
+      "linkedConcepts": [
+        "OBJECT_HAT"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "What",
+              "tiles": [
+                "What"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "What",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "What",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Was",
+              "tiles": [
+                "Was"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Was",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Was",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Qu'est-ce que c'est",
+              "tiles": [
+                "Qu'est-ce que c'est"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Qu'est-ce que c'est",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Qu'est-ce que c'est",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Qué",
+              "tiles": [
+                "¿Qué"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Qué",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Qué",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "什麼",
+              "tiles": [
+                "什麼"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "什麼",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "什麼",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "何",
+              "tiles": [
+                "何"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "何",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "何",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "Whose hat is this?",
+              "tiles": [
+                "Whose",
+                "hat",
+                "is",
+                "this?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Whose → hat → is → this?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "Whose",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hat",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "this?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wessen Hut ist das?",
+              "tiles": [
+                "Wessen",
+                "Hut",
+                "ist",
+                "das?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wessen → Hut → ist → das?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wessen",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Hut",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "À qui est ce chapeau?",
+              "tiles": [
+                "À",
+                "qui",
+                "est",
+                "ce",
+                "chapeau?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "À → qui → est → ce → chapeau?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "À",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qui",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ce",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chapeau?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿De quién es este sombrero?",
+              "tiles": [
+                "¿De",
+                "quién",
+                "es",
+                "este",
+                "sombrero?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿De → quién → es → este → sombrero?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿De",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "quién",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "este",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sombrero?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "這是誰的帽子？",
+              "tiles": [
+                "這是",
+                "誰",
+                "的",
+                "帽子？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "這是 → 誰 → 的 → 帽子？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "這是",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "誰",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "的",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "帽子？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "この帽子は誰のですか？",
+              "tiles": [
+                "この",
+                "帽子",
+                "は",
+                "誰",
+                "のですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "この → 帽子 → は → 誰 → のですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "この",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "帽子",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "誰",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "のですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1",
+      "concepts": [
+        "OBJECT_COAT"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_clothing_review_chain1",
+      "translations": {
+        "en": {
+          "text": "What colour is the coat?",
+          "tiles": [
+            "What",
+            "colour",
+            "is",
+            "the",
+            "coat?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "What → colour → is → the → coat?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "What",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "colour",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "coat?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Welche Farbe hat der Mantel?",
+          "tiles": [
+            "Welche",
+            "Farbe",
+            "hat",
+            "der",
+            "Mantel?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Welche → Farbe → hat → der → Mantel?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Welche",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Farbe",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "hat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mantel?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "De quelle couleur est le manteau?",
+          "tiles": [
+            "De",
+            "quelle",
+            "couleur",
+            "est",
+            "le",
+            "manteau?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "De → quelle → couleur → est → le → manteau?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "De",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "quelle",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "couleur",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "manteau?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿De qué color es el abrigo?",
+          "tiles": [
+            "¿De",
+            "qué",
+            "color",
+            "es",
+            "el",
+            "abrigo?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿De → qué → color → es → el → abrigo?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿De",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "qué",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "color",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "abrigo?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "外套是什麼顏色？",
+          "tiles": [
+            "外套",
+            "是",
+            "什麼",
+            "顏色？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "外套 → 是 → 什麼 → 顏色？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "外套",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "是",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "什麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "顏色？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "コートは何色ですか？",
+          "tiles": [
+            "コート",
+            "は",
+            "何",
+            "色ですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "コート → は → 何 → 色ですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "コート",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "何",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "色ですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "OBJECT_HAT"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_clothing_review_chain2",
+      "translations": {
+        "en": {
+          "text": "Whose hat is this?",
+          "tiles": [
+            "Whose",
+            "hat",
+            "is",
+            "this?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Whose → hat → is → this?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "Whose",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "hat",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "this?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wessen Hut ist das?",
+          "tiles": [
+            "Wessen",
+            "Hut",
+            "ist",
+            "das?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wessen → Hut → ist → das?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wessen",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Hut",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "das?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "À qui est ce chapeau?",
+          "tiles": [
+            "À",
+            "qui",
+            "est",
+            "ce",
+            "chapeau?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "À → qui → est → ce → chapeau?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "À",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "qui",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "ce",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "chapeau?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿De quién es este sombrero?",
+          "tiles": [
+            "¿De",
+            "quién",
+            "es",
+            "este",
+            "sombrero?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿De → quién → es → este → sombrero?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿De",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "quién",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "este",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "sombrero?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "這是誰的帽子？",
+          "tiles": [
+            "這是",
+            "誰",
+            "的",
+            "帽子？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "這是 → 誰 → 的 → 帽子？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "這是",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "誰",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "的",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "帽子？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "この帽子は誰のですか？",
+          "tiles": [
+            "この",
+            "帽子",
+            "は",
+            "誰",
+            "のですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "この → 帽子 → は → 誰 → のですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "この",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "帽子",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "誰",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "のですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "OBJECT_COAT": [
+      "S001"
+    ],
+    "OBJECT_HAT": [
+      "S002"
+    ]
+  }
+}
