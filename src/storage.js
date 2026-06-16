@@ -113,6 +113,13 @@ export const DEFAULT_STATE = {
       speechMode: "toggle", // "none" | "toggle" | "always"
       openOnLoad: false,
     },
+    voice: {
+      voicePracticeEnabled: false,
+      speakInsteadOfClick: false,
+      voicePracticeMode: false,
+      readingVoicePractice: false,
+      vocabVoicePractice: false,
+    },
   },
   progress: {
     words: {},
@@ -121,6 +128,7 @@ export const DEFAULT_STATE = {
     builderStats: {},
     passageStats: {},
     arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
+    voicePractice: {},            // keyed by lesson/activity: { attempts, successes, lastScore }
   },
 };
 

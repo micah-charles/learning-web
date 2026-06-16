@@ -1,13 +1,17 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useBuilderSession } from "../hooks/useBuilderSession.js";
+import { useVoicePractice } from "../hooks/useVoicePractice.js";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { LearningImage } from "../components/learning/LearningImage.jsx";
+import VoicePracticeButton from "../components/learning/VoicePracticeButton.jsx";
+import VoiceFeedbackPanel from "../components/learning/VoiceFeedbackPanel.jsx";
 import { getBuilderPackSubject, getDatasetCurriculum, listSentenceBuilderPacks, SUBJECTS, listCurricula } from "@/data.js";
+import { normLang } from "@/lang-utils.js";
 import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 const FILTER_OPTIONS = [
@@ -85,6 +89,24 @@ export default function BuilderPage() {
     updateProgress,
   });
 
+  const [speakInstead, setSpeakInstead] = useState(
+    progress?.prefs?.voice?.speakInsteadOfClick ?? false
+  );
+
+  const activePack = visiblePacks.find(p => p.id === activePackId);
+  const speechLang = activePack?.sourceLanguageCode
+    ? normLang(activePack.sourceLanguageCode)
+    : "en-GB";
+
+  const voice = useVoicePractice({
+    languageCode: speechLang,
+    onResult: useCallback((transcript, confidence) => {
+      if (currentCard && feedback === null) {
+        checkAnswer(transcript);
+      }
+    }, [currentCard, feedback, checkAnswer]),
+  });
+
   if (manifestLoading) return <div className="lw-page"><LoadingText /></div>;
 
   if (!allPacks.length) {
@@ -149,7 +171,21 @@ export default function BuilderPage() {
           <span style={{ fontSize: "0.85rem", color: "var(--lw-blue)" }}>
             Streak: <strong>{stats.streak}</strong>
           </span>
-          <StudyBookButton dataset={visiblePacks.find(p => p.id === activePackId)} />
+          <StudyBookButton dataset={activePack} />
+          <label className="lw-check-row" style={{ fontSize: "0.82rem", marginLeft: "auto" }}>
+            <input
+              type="checkbox"
+              checked={speakInstead}
+              onChange={(e) => {
+                setSpeakInstead(e.target.checked);
+                updateProgress(state => {
+                  if (!state.prefs.voice) state.prefs.voice = {};
+                  state.prefs.voice.speakInsteadOfClick = e.target.checked;
+                });
+              }}
+            />
+            🎤 Speak Instead of Click
+          </label>
         </div>
       </div>
 
@@ -239,6 +275,13 @@ export default function BuilderPage() {
                 >
                   Check
                 </button>
+                {speakInstead && currentCard?.answer && (
+                  <VoicePracticeButton
+                    state={voice.buttonState}
+                    onClick={() => voice.startPractice(currentCard.answer, speechLang)}
+                    disabled={voice.phase === "listening" || voice.phase === "processing"}
+                  />
+                )}
                 <button className="lw-btn lw-btn-ghost" type="button" onClick={hintTile}>Hint</button>
                 <button className="lw-btn lw-btn-ghost" type="button" onClick={clearTiles}>Clear</button>
               </>
@@ -248,6 +291,25 @@ export default function BuilderPage() {
               </button>
             )}
           </div>
+
+          {speakInstead && (
+            <VoiceFeedbackPanel
+              status={
+                voice.phase === "unclear" ? "unclear"
+                : voice.phase === "wrong-language" ? "wrong-language"
+                : voice.phase === "incorrect" ? "mispronounced"
+                : voice.phase === "correct" ? "correct"
+                : null
+              }
+              expected={voice.lastResult?.expected}
+              recognized={voice.lastResult?.transcript}
+              confidence={voice.lastResult?.confidence}
+              attempt={voice.attempt}
+              maxAttempts={3}
+              onRetry={voice.retry}
+              onCancel={voice.cancel}
+            />
+          )}
         </div>
       )}
     </div>

@@ -972,6 +972,78 @@ Do not revert to all-at-once placement. Do not use decoys from other questions
 
 ---
 
+### ⚠️ RC21. Extracted React components must not read parent-local state unless it is passed explicitly
+
+**Bug found (PR #179):** `PassageSetup` was extracted as a top-level helper component but read `readingVoicePractice`, `setReadingVoicePractice`, `updateProgress`, and `voice` directly from the parent page scope. The file still built, but the first render of Reading setup threw a runtime `ReferenceError` because those names do not exist inside the child component's lexical scope.
+
+**Rule:** If an extracted component needs parent-owned state, callbacks, or service objects, pass them as props. Never "reach upward" by referencing a variable declared in the parent component body.
+
+```jsx
+// BAD — child reads variables that only exist inside ReadingPage()
+function PassageSetup({ manifest, prefs }) {
+  return <input checked={readingVoicePractice} onChange={() => updateProgress(...)} />;
+}
+
+// GOOD — every dependency is explicit in the props list
+function PassageSetup({ manifest, prefs, readingVoicePractice, setReadingVoicePractice, updateProgress, voice }) {
+  return <input checked={readingVoicePractice} onChange={() => updateProgress(...)} />;
+}
+```
+
+**Checklist when extracting JSX into a helper component:**
+- [ ] Search the child body for identifiers not declared in the child itself.
+- [ ] Every parent-owned state value or callback is listed in the props signature.
+- [ ] Re-test the first render path, not just the interaction path — these bugs fail on mount.
+
+---
+
+### ⚠️ RC22. Voice / async UI states must be mapped exhaustively into both UI feedback and domain actions
+
+**Bug found (PR #179):**
+- The voice hook added a new `wrong-language` phase, but page-level feedback mappers only handled `unclear`, `incorrect`, and `correct`, so the new branch in `VoiceFeedbackPanel` was dead.
+- Language Ladder treated a `"correct"` voice result as UI-only success and then dispatched the regular tile-check reducer path, which still graded against `selectedTiles` instead of the spoken answer.
+
+**Rule 1:** Whenever a hook exports a new state enum, update **every** consumer that maps that enum into UI status.
+
+```js
+// BAD — new hook phase is silently dropped
+const status =
+  voice.phase === "unclear" ? "unclear" :
+  voice.phase === "incorrect" ? "mispronounced" :
+  voice.phase === "correct" ? "correct" :
+  null;
+
+// GOOD — exhaustive mapping for every public hook phase
+const status =
+  voice.phase === "unclear" ? "unclear" :
+  voice.phase === "wrong-language" ? "wrong-language" :
+  voice.phase === "incorrect" ? "mispronounced" :
+  voice.phase === "correct" ? "correct" :
+  null;
+```
+
+**Rule 2:** A success state in UI is not enough. If a feature is meant to complete a lesson step, record progress through the authoritative reducer / session API using the actual payload the reducer expects.
+
+```js
+// BAD — flashes success UI, then grades empty selectedTiles
+if (voice.phase === "correct") {
+  onDispatch("pl-builder-check");
+}
+
+// GOOD — pass the spoken answer into the reducer path that records progress
+if (voice.phase === "correct" && voice.lastResult?.transcript) {
+  onDispatch("pl-builder-check", { spokenAnswer: voice.lastResult.transcript });
+}
+```
+
+**Checklist when integrating a voice / async helper hook:**
+- [ ] Every exported phase is mapped by every consumer.
+- [ ] Success transitions call the real domain action, not just UI state setters.
+- [ ] Retry paths and first-attempt paths share the same validation branches.
+- [ ] Add at least one regression test for any reducer/action path that now accepts async payloads.
+
+---
+
 ## PART C — Build & Deployment
 
 ---
@@ -1171,7 +1243,7 @@ A second issue in the same PR: the commit appended a full `.lw-btn { … }` rede
 
 ---
 
-*Last updated: 2026-06-12*
-*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120, #127*
+*Last updated: 2026-06-16*
+*Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120, #127, #179*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
 *For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*

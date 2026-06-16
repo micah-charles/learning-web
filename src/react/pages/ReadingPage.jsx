@@ -3,17 +3,33 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useReadingSession } from "../hooks/useReadingSession.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { useVoicePractice } from "../hooks/useVoicePractice.js";
 import { useTutor } from "../../features/tutor/TutorProvider.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
 import { LabeledSelect, PillGroup, FilterRow, LoadingText } from "../components/layout/Controls.jsx";
 import { StudyBookButton } from "../components/learning/StudyBookDrawer.jsx";
 import { LearningImage } from "../components/learning/LearningImage.jsx";
+import VoicePracticeButton from "../components/learning/VoicePracticeButton.jsx";
+import VoiceFeedbackPanel from "../components/learning/VoiceFeedbackPanel.jsx";
 import { getDatasetCurriculum, getPassageGroupSubject, listPassageGroups, listPassagePacks, SUBJECTS, listCurricula } from "@/data.js";
 import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
 
-function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, categoryOptions, personalisationPrefs }) {
+function PassageSetup({
+  manifest,
+  prefs,
+  setPrefs,
+  onStart,
+  message,
+  loading,
+  categoryOptions,
+  personalisationPrefs,
+  readingVoicePractice,
+  setReadingVoicePractice,
+  updateProgress,
+  voice,
+}) {
   const groups = useMemo(
     () => manifest ? filterPacksForPrefs(listPassageGroups(manifest), personalisationPrefs, "passage") : [],
     [manifest, personalisationPrefs],
@@ -152,6 +168,21 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
                   onChange={e => setPref("voiceEnabled", e.target.checked)}
                 />
                 Autoplay voice
+              </label>
+              <label className="lw-check-row">
+                <input
+                  type="checkbox"
+                  checked={readingVoicePractice}
+                  onChange={e => {
+                    setReadingVoicePractice(e.target.checked);
+                    updateProgress(state => {
+                      if (!state.prefs.voice) state.prefs.voice = {};
+                      state.prefs.voice.readingVoicePractice = e.target.checked;
+                    });
+                    if (!e.target.checked) voice.cancel();
+                  }}
+                />
+                🎤 Read Aloud Practice
               </label>
             </div>
 
@@ -377,6 +408,7 @@ function ReadingWorkspace({
   showSource, answers, onAnswer,
   revealed, onReveal, onNext, isLast,
   voiceEnabled, speak, stop, onBack,
+  voicePractice,
 }) {
   // ── Runtime-only display state ──────────────────────────────────────────────
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -541,6 +573,15 @@ function ReadingWorkspace({
               >
                 {isSpeaking ? "⏹" : "🔊"}
               </button>
+              {/* Read Aloud voice practice */}
+              {voicePractice && displayText && (
+                <VoicePracticeButton
+                  state={voicePractice.buttonState}
+                  onClick={() => voicePractice.startPractice(displayText, speechLang)}
+                  disabled={voicePractice.phase === "listening" || voicePractice.phase === "processing"}
+                  style={{ minWidth: "44px", minHeight: "44px", fontSize: "0.82rem", padding: "6px 12px" }}
+                />
+              )}
             </div>
           </div>
 
@@ -577,6 +618,26 @@ function ReadingWorkspace({
           </div>
 
           {passage?.imagePlacement === "bottom" && passageImage}
+
+          {/* Voice practice results */}
+          {voicePractice && (
+            <VoiceFeedbackPanel
+              status={
+                voicePractice.phase === "unclear" ? "unclear"
+                : voicePractice.phase === "wrong-language" ? "wrong-language"
+                : voicePractice.phase === "incorrect" ? "mispronounced"
+                : voicePractice.phase === "correct" ? "correct"
+                : null
+              }
+              expected={voicePractice.lastResult?.expected}
+              recognized={voicePractice.lastResult?.transcript}
+              confidence={voicePractice.lastResult?.confidence}
+              attempt={voicePractice.attempt}
+              maxAttempts={3}
+              onRetry={voicePractice.retry}
+              onCancel={voicePractice.cancel}
+            />
+          )}
 
           {/* Translation block (bilingual packs only — shown when "Show translation" is on) */}
           {showSource && hasTranslation && (
@@ -727,6 +788,15 @@ export default function ReadingPage() {
     voiceEnabled: false,
   });
 
+  const [readingVoicePractice, setReadingVoicePractice] = useState(
+    progress?.prefs?.voice?.readingVoicePractice ?? false
+  );
+
+  const voice = useVoicePractice({
+    languageCode: "en-GB",
+    onResult: () => {},
+  });
+
   const {
     loading, started, current, deck, currentIndex, answers,
     revealed, completedCount, message, categoryOptions,
@@ -760,6 +830,10 @@ export default function ReadingPage() {
         loading={loading}
         categoryOptions={categoryOptions}
         personalisationPrefs={progress?.prefs || {}}
+        readingVoicePractice={readingVoicePractice}
+        setReadingVoicePractice={setReadingVoicePractice}
+        updateProgress={updateProgress}
+        voice={voice}
       />
     );
   }
@@ -783,22 +857,23 @@ export default function ReadingPage() {
   }
 
   return (
-    <ReadingWorkspace
-      passage={current}
-      deck={deck}
-      currentIndex={currentIndex}
-      onJump={jumpToPassage}
-      showSource={prefs.showGerman}
-      answers={answers}
-      onAnswer={answerQuestion}
-      revealed={revealed}
-      onReveal={revealPassage}
-      onNext={nextPassage}
-      isLast={currentIndex + 1 >= deck.length}
-      voiceEnabled={prefs.voiceEnabled}
-      speak={speak}
-      stop={stop}
-      onBack={resetSession}
-    />
+      <ReadingWorkspace
+        passage={current}
+        deck={deck}
+        currentIndex={currentIndex}
+        onJump={jumpToPassage}
+        showSource={prefs.showGerman}
+        answers={answers}
+        onAnswer={answerQuestion}
+        revealed={revealed}
+        onReveal={revealPassage}
+        onNext={nextPassage}
+        isLast={currentIndex + 1 >= deck.length}
+        voiceEnabled={prefs.voiceEnabled}
+        speak={speak}
+        stop={stop}
+        onBack={resetSession}
+        voicePractice={readingVoicePractice ? voice : null}
+      />
   );
 }

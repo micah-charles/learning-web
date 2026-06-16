@@ -3,8 +3,11 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useVocabBrowser } from "../hooks/useVocabBrowser.js";
 import { useSpeech } from "../hooks/useSpeech.js";
+import { useVoicePractice } from "../hooks/useVoicePractice.js";
 import { LabeledSelect, PillGroup, ToggleGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
+import VoicePracticeButton from "../components/learning/VoicePracticeButton.jsx";
+import VoiceFeedbackPanel from "../components/learning/VoiceFeedbackPanel.jsx";
 import { getDatasetCurriculum, listDatasets, getDatasetSubject, SUBJECTS, listCurricula } from "@/data.js";
 import { isWordMastered, getWordProgress } from "@/storage.js";
 import { getDatasetStageOptions, usesStageSelection, getSelectedStages } from "@/quiz-helpers.js";
@@ -24,7 +27,7 @@ function MasteryBadge({ correct, streak }) {
 // For language packs (isLanguage=true):  primary = foreign word (word.de), secondary = translation (word.en)
 // For non-language packs (isLanguage=false): primary = definition (word.en), secondary = term (word.de)
 // Speak: language packs → speak foreign word only; non-language → speak "term: definition" in English.
-function VocabCard({ word, state, onSpeak, speechLang, isLanguage }) {
+function VocabCard({ word, state, onSpeak, speechLang, isLanguage, voicePractice, voiceWordId, onVoicePractice }) {
   const wp = getWordProgress(state, word.id);
 
   const primaryText   = isLanguage ? word.de : word.en;
@@ -65,6 +68,14 @@ function VocabCard({ word, state, onSpeak, speechLang, isLanguage }) {
           >
             🔊
           </button>
+          {voicePractice && isLanguage && (
+            <VoicePracticeButton
+              state={voiceWordId === word.id ? voicePractice.buttonState : "idle"}
+              onClick={() => onVoicePractice(word)}
+              disabled={voicePractice.phase === "listening" || voicePractice.phase === "processing"}
+              style={{ fontSize: "0.75rem", padding: "2px 8px", minWidth: "36px", minHeight: "36px" }}
+            />
+          )}
         </div>
       </div>
       {word.pos && <div style={{ fontSize: "0.75rem", color: "var(--lw-muted)" }}>{word.pos}</div>}
@@ -81,8 +92,18 @@ function VocabCard({ word, state, onSpeak, speechLang, isLanguage }) {
 
 export default function VocabPage() {
   const { manifest, loading: manifestLoading } = useManifest();
-  const { progress } = useProgress();
+  const { progress, updateProgress } = useProgress();
   const { speak } = useSpeech();
+
+  const [vocabVoicePractice, setVocabVoicePractice] = useState(
+    progress?.prefs?.voice?.vocabVoicePractice ?? false
+  );
+  const [activeVoiceWordId, setActiveVoiceWordId] = useState(null);
+
+  const voice = useVoicePractice({
+    languageCode: "de-DE",
+    onResult: () => {},
+  });
 
   const allDatasets = useMemo(
     () => manifest ? filterPacksForPrefs(listDatasets(manifest), progress?.prefs || {}, "dataset") : [],
@@ -265,6 +286,24 @@ export default function VocabPage() {
               </LabeledSelect>
             )
           )}
+
+          {isLanguage && (
+            <label className="lw-check-row" style={{ fontSize: "0.82rem", whiteSpace: "nowrap" }}>
+              <input
+                type="checkbox"
+                checked={vocabVoicePractice}
+                onChange={(e) => {
+                  setVocabVoicePractice(e.target.checked);
+                  updateProgress(state => {
+                    if (!state.prefs.voice) state.prefs.voice = {};
+                    state.prefs.voice.vocabVoicePractice = e.target.checked;
+                  });
+                  if (!e.target.checked) voice.cancel();
+                }}
+              />
+              🎤 Voice Practice
+            </label>
+          )}
         </FilterRow>
 
         <input
@@ -301,6 +340,13 @@ export default function VocabPage() {
                 onSpeak={speak}
                 speechLang={speechLang}
                 isLanguage={isLanguage}
+                voicePractice={vocabVoicePractice ? voice : null}
+                voiceWordId={activeVoiceWordId}
+                onVoicePractice={(w) => {
+                  setActiveVoiceWordId(w.id);
+                  const targetText = isLanguage ? w.de : w.en;
+                  voice.startPractice(targetText, speechLang);
+                }}
               />
             ))}
             {displayWords.length === 0 && (
@@ -311,6 +357,32 @@ export default function VocabPage() {
               />
             )}
           </div>
+
+          {vocabVoicePractice && (
+            <VoiceFeedbackPanel
+              status={
+                voice.phase === "unclear" ? "unclear"
+                : voice.phase === "wrong-language" ? "wrong-language"
+                : voice.phase === "incorrect" ? "mispronounced"
+                : voice.phase === "correct" ? "correct"
+                : null
+              }
+              expected={voice.lastResult?.expected}
+              recognized={voice.lastResult?.transcript}
+              confidence={voice.lastResult?.confidence}
+              attempt={voice.attempt}
+              maxAttempts={3}
+              onRetry={() => {
+                if (voice.lastResult?.expected) {
+                  voice.retry();
+                }
+              }}
+              onCancel={() => {
+                voice.cancel();
+                setActiveVoiceWordId(null);
+              }}
+            />
+          )}
         </>
       )}
     </div>
