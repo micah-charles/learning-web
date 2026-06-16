@@ -5,7 +5,21 @@ import { getDisplayText, getReadingHint, buildVocabOptions, TARGET_LANGUAGES } f
 
 export default function VocabPhase({ session, pack, onDispatch }) {
   const vocab = pack?.vocabulary || [];
-  if (!vocab.length) return <div className="section-card pl-lesson-card"><p className="muted">No vocabulary in this pack.</p></div>;
+  const builders = pack?.sentenceBuilders || [];
+  if (!vocab.length) {
+    return (
+      <div className="section-card pl-lesson-card">
+        <p className="muted">No vocabulary in this pack.</p>
+        {builders.length > 0 && (
+          <div className="pl-nav-row" style={{ marginTop: 14 }}>
+            <button type="button" className="button" onClick={() => onDispatch("pl-jump-phase", { phase: "builder" })}>
+              Builder →
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   const current  = vocab[session.vocabIndex];
   const pct      = Math.round((session.vocabIndex / vocab.length) * 100);

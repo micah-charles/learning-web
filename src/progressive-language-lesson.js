@@ -161,6 +161,35 @@ export function compareTiles(selected, expected) {
   return selected.every((tile, i) => tile.text === expected[i]);
 }
 
+function startBuilderState(state, pack, builders, targetLang = state.targetLang) {
+  return {
+    ...state,
+    phase: "builder",
+    sentenceIndex: 0,
+    bankTiles: makeBankTiles(pack, 0, targetLang),
+    selectedTiles: [],
+    builderFeedback: null,
+    vocabFeedback: null,
+  };
+}
+
+function nextLearningPhaseState(state, pack, vocab, builders, targetLang = state.targetLang) {
+  if (vocab.length > 0) {
+    return {
+      ...state,
+      phase: "vocab",
+      vocabIndex: 0,
+      vocabOptions: buildVocabOptions(pack, 0, targetLang),
+      vocabFeedback: null,
+      showGrammar: false,
+    };
+  }
+  if (builders.length > 0) {
+    return startBuilderState({ ...state, showGrammar: false }, pack, builders, targetLang);
+  }
+  return { ...state, phase: "review", vocabFeedback: null, builderFeedback: null, showGrammar: false };
+}
+
 // ── Speech cue ────────────────────────────────────────────────────────────────
 
 export function getCurrentSpeechCue(state, pack) {
@@ -196,6 +225,12 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
         };
       }
       if (phase === "vocab") {
+        if (!vocab.length && builders.length) {
+          return {
+            state: startBuilderState(state, pack, builders),
+            effect: null,
+          };
+        }
         const idx = Math.min(state.vocabIndex, Math.max(0, vocab.length - 1));
         return {
           state: {
@@ -254,12 +289,7 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
       }
       // Advance to vocab
       return {
-        state: {
-          ...state, phase: "vocab",
-          vocabIndex: 0,
-          vocabOptions: buildVocabOptions(pack, 0, state.targetLang),
-          vocabFeedback: null, showGrammar: false,
-        },
+        state: nextLearningPhaseState(state, pack, vocab, builders),
         effect: null,
       };
     }
@@ -324,12 +354,9 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
       }
       // Advance to builder
       return {
-        state: {
-          ...state, phase: "builder",
-          sentenceIndex: 0,
-          bankTiles: makeBankTiles(pack, 0, state.targetLang),
-          selectedTiles: [], builderFeedback: null, vocabFeedback: null,
-        },
+        state: builders.length
+          ? startBuilderState(state, pack, builders)
+          : { ...state, phase: "review", builderFeedback: null, vocabFeedback: null },
         effect: null,
       };
     }
