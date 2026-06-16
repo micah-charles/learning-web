@@ -789,14 +789,15 @@
               "text": "How does your friend play football?",
               "tiles": [
                 "How",
-                "can",
-                "the",
+                "does",
+                "your",
                 "friend",
-                "play?"
+                "play",
+                "football?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "How → can → the → friend → play?",
+                "literalOrderExplanation": "How → does → your → friend → play → football?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
@@ -805,52 +806,59 @@
                     "text": "How",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "can",
+                    "text": "does",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "the",
+                    "text": "your",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "friend",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "play?",
+                    "text": "play",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wie kann der Freund spielen?",
+              "text": "Wie spielt dein Freund Fußball?",
               "tiles": [
                 "Wie",
-                "kann",
-                "der",
+                "spielt",
+                "dein",
                 "Freund",
-                "spielen?"
+                "Fußball?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wie → kann → der → Freund → spielen?",
+                "literalOrderExplanation": "Wie → spielt → dein → Freund → Fußball?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -860,51 +868,53 @@
                     "text": "Wie",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "kann",
+                    "text": "spielt",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "der",
+                    "text": "dein",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Freund",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "spielen?",
+                    "text": "Fußball?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Comment l'ami peut jouer?",
+              "text": "Comment ton ami joue-t-il au football?",
               "tiles": [
                 "Comment",
-                "l'ami",
-                "peut",
-                "jouer?"
+                "ton",
+                "ami",
+                "joue-t-il",
+                "au",
+                "football?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Comment → l'ami → peut → jouer?",
+                "literalOrderExplanation": "Comment → ton → ami → joue-t-il → au → football?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -914,45 +924,60 @@
                     "text": "Comment",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "l'ami",
+                    "text": "ton",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "peut",
+                    "text": "ami",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "jouer?",
+                    "text": "joue-t-il",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "au",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cómo puede el amigo jugar?",
+              "text": "¿Cómo juega al fútbol tu amigo?",
               "tiles": [
                 "¿Cómo",
-                "puede",
-                "el",
-                "amigo",
-                "jugar?"
+                "juega",
+                "al",
+                "fútbol",
+                "tu",
+                "amigo?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cómo → puede → el → amigo → jugar?",
+                "literalOrderExplanation": "¿Cómo → juega → al → fútbol → tu → amigo?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -962,81 +987,88 @@
                     "text": "¿Cómo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "puede",
+                    "text": "juega",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "el",
+                    "text": "al",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "amigo",
+                    "text": "fútbol",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "jugar?",
+                    "text": "tu",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "amigo?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "朋友怎麼玩？",
+              "text": "你的朋友怎麼踢足球？",
               "tiles": [
-                "朋友怎麼玩？"
+                "你的朋友怎麼踢足球？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "朋友怎麼玩？",
+                "literalOrderExplanation": "你的朋友怎麼踢足球？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "朋友怎麼玩？",
+                    "text": "你的朋友怎麼踢足球？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "友だちは遊びたいですか？",
+              "text": "あなたの友だちはどうやってサッカーをしますか？",
               "tiles": [
-                "友だちは遊びたいですか？"
+                "あなたの友だちはどうやってサッカーをしますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "友だちは遊びたいですか？",
+                "literalOrderExplanation": "あなたの友だちはどうやってサッカーをしますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "友だちは遊びたいですか？",
+                    "text": "あなたの友だちはどうやってサッカーをしますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -1335,14 +1367,15 @@
           "text": "How does your friend play football?",
           "tiles": [
             "How",
-            "can",
-            "the",
+            "does",
+            "your",
             "friend",
-            "play?"
+            "play",
+            "football?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "How → can → the → friend → play?",
+            "literalOrderExplanation": "How → does → your → friend → play → football?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
@@ -1351,52 +1384,59 @@
                 "text": "How",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "can",
+                "text": "does",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "the",
+                "text": "your",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "friend",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "play?",
+                "text": "play",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "football?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wie kann der Freund spielen?",
+          "text": "Wie spielt dein Freund Fußball?",
           "tiles": [
             "Wie",
-            "kann",
-            "der",
+            "spielt",
+            "dein",
             "Freund",
-            "spielen?"
+            "Fußball?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wie → kann → der → Freund → spielen?",
+            "literalOrderExplanation": "Wie → spielt → dein → Freund → Fußball?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -1406,51 +1446,53 @@
                 "text": "Wie",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "kann",
+                "text": "spielt",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "der",
+                "text": "dein",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Freund",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "spielen?",
+                "text": "Fußball?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Comment l'ami peut jouer?",
+          "text": "Comment ton ami joue-t-il au football?",
           "tiles": [
             "Comment",
-            "l'ami",
-            "peut",
-            "jouer?"
+            "ton",
+            "ami",
+            "joue-t-il",
+            "au",
+            "football?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Comment → l'ami → peut → jouer?",
+            "literalOrderExplanation": "Comment → ton → ami → joue-t-il → au → football?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1460,45 +1502,60 @@
                 "text": "Comment",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "l'ami",
+                "text": "ton",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "peut",
+                "text": "ami",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "jouer?",
+                "text": "joue-t-il",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "au",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "football?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cómo puede el amigo jugar?",
+          "text": "¿Cómo juega al fútbol tu amigo?",
           "tiles": [
             "¿Cómo",
-            "puede",
-            "el",
-            "amigo",
-            "jugar?"
+            "juega",
+            "al",
+            "fútbol",
+            "tu",
+            "amigo?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cómo → puede → el → amigo → jugar?",
+            "literalOrderExplanation": "¿Cómo → juega → al → fútbol → tu → amigo?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1508,81 +1565,88 @@
                 "text": "¿Cómo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "puede",
+                "text": "juega",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "el",
+                "text": "al",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "amigo",
+                "text": "fútbol",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "jugar?",
+                "text": "tu",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "amigo?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "朋友怎麼玩？",
+          "text": "你的朋友怎麼踢足球？",
           "tiles": [
-            "朋友怎麼玩？"
+            "你的朋友怎麼踢足球？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "朋友怎麼玩？",
+            "literalOrderExplanation": "你的朋友怎麼踢足球？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "朋友怎麼玩？",
+                "text": "你的朋友怎麼踢足球？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "友だちは遊びたいですか？",
+          "text": "あなたの友だちはどうやってサッカーをしますか？",
           "tiles": [
-            "友だちは遊びたいですか？"
+            "あなたの友だちはどうやってサッカーをしますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "友だちは遊びたいですか？",
+            "literalOrderExplanation": "あなたの友だちはどうやってサッカーをしますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "友だちは遊びたいですか？",
+                "text": "あなたの友だちはどうやってサッカーをしますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]

@@ -380,14 +380,15 @@
               "text": "How does the child learn songs?",
               "tiles": [
                 "How",
-                "can",
+                "does",
                 "the",
                 "child",
-                "sing?"
+                "learn",
+                "songs?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "How → can → the → child → sing?",
+                "literalOrderExplanation": "How → does → the → child → learn → songs?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
@@ -396,52 +397,59 @@
                     "text": "How",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "can",
+                    "text": "does",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "child",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "sing?",
+                    "text": "learn",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "songs?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wie kann das Kind singen?",
+              "text": "Wie lernt das Kind Lieder?",
               "tiles": [
                 "Wie",
-                "kann",
+                "lernt",
                 "das",
                 "Kind",
-                "singen?"
+                "Lieder?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wie → kann → das → Kind → singen?",
+                "literalOrderExplanation": "Wie → lernt → das → Kind → Lieder?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -451,51 +459,52 @@
                     "text": "Wie",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "kann",
+                    "text": "lernt",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "das",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Kind",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "singen?",
+                    "text": "Lieder?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Comment l'enfant peut chanter?",
+              "text": "Comment l'enfant apprend-il des chansons?",
               "tiles": [
                 "Comment",
                 "l'enfant",
-                "peut",
-                "chanter?"
+                "apprend-il",
+                "des",
+                "chansons?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Comment → l'enfant → peut → chanter?",
+                "literalOrderExplanation": "Comment → l'enfant → apprend-il → des → chansons?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -505,45 +514,52 @@
                     "text": "Comment",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "l'enfant",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "peut",
+                    "text": "apprend-il",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "chanter?",
+                    "text": "des",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chansons?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cómo puede el niño cantar?",
+              "text": "¿Cómo aprende canciones el niño?",
               "tiles": [
                 "¿Cómo",
-                "puede",
+                "aprende",
+                "canciones",
                 "el",
-                "niño",
-                "cantar?"
+                "niño?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cómo → puede → el → niño → cantar?",
+                "literalOrderExplanation": "¿Cómo → aprende → canciones → el → niño?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -553,81 +569,81 @@
                     "text": "¿Cómo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "puede",
+                    "text": "aprende",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "canciones",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "niño",
+                    "text": "niño?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "cantar?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "小朋友怎麼唱歌？",
+              "text": "小朋友怎麼學歌？",
               "tiles": [
-                "小朋友怎麼唱歌？"
+                "小朋友怎麼學歌？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "小朋友怎麼唱歌？",
+                "literalOrderExplanation": "小朋友怎麼學歌？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "小朋友怎麼唱歌？",
+                    "text": "小朋友怎麼學歌？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "子どもはどうやって歌う？",
+              "text": "子どもはどうやって歌を覚えますか？",
               "tiles": [
-                "子どもはどうやって歌う？"
+                "子どもはどうやって歌を覚えますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "子どもはどうやって歌う？",
+                "literalOrderExplanation": "子どもはどうやって歌を覚えますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "子どもはどうやって歌う？",
+                    "text": "子どもはどうやって歌を覚えますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -789,14 +805,16 @@
               "text": "How does the teacher draw a map?",
               "tiles": [
                 "How",
-                "can",
+                "does",
                 "the",
                 "teacher",
-                "draw?"
+                "draw",
+                "a",
+                "map?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "How → can → the → teacher → draw?",
+                "literalOrderExplanation": "How → does → the → teacher → draw → a → map?",
                 "grammarExplanation": [
                   "English word order: question word + auxiliary + subject + main verb."
                 ],
@@ -805,52 +823,67 @@
                     "text": "How",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "can",
+                    "text": "does",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "teacher",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "draw?",
+                    "text": "draw",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "map?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "de": {
-              "text": "Wie kann der Lehrer zeichnen?",
+              "text": "Wie zeichnet der Lehrer eine Karte?",
               "tiles": [
                 "Wie",
-                "kann",
+                "zeichnet",
                 "der",
                 "Lehrer",
-                "zeichnen?"
+                "eine",
+                "Karte?"
               ],
               "analysis": {
                 "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Wie → kann → der → Lehrer → zeichnen?",
+                "literalOrderExplanation": "Wie → zeichnet → der → Lehrer → eine → Karte?",
                 "grammarExplanation": [
                   "German verb-second order in questions.",
                   "Question word + verb + subject + rest."
@@ -860,52 +893,60 @@
                     "text": "Wie",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "kann",
+                    "text": "zeichnet",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "der",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Lehrer",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "zeichnen?",
+                    "text": "eine",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Karte?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "fr": {
-              "text": "Comment le professeur peut dessiner?",
+              "text": "Comment le professeur dessine-t-il une carte?",
               "tiles": [
                 "Comment",
                 "le",
                 "professeur",
-                "peut",
-                "dessiner?"
+                "dessine-t-il",
+                "une",
+                "carte?"
               ],
               "analysis": {
                 "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Comment → le → professeur → peut → dessiner?",
+                "literalOrderExplanation": "Comment → le → professeur → dessine-t-il → une → carte?",
                 "grammarExplanation": [
                   "French questions: question word + verb + subject + complement.",
                   "Inversion may be used in formal French."
@@ -915,52 +956,60 @@
                     "text": "Comment",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "professeur",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "peut",
+                    "text": "dessine-t-il",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "dessiner?",
+                    "text": "une",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "carte?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "es": {
-              "text": "¿Cómo puede el profesor dibujar?",
+              "text": "¿Cómo dibuja un mapa el profesor?",
               "tiles": [
                 "¿Cómo",
-                "puede",
+                "dibuja",
+                "un",
+                "mapa",
                 "el",
-                "profesor",
-                "dibujar?"
+                "profesor?"
               ],
               "analysis": {
                 "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Cómo → puede → el → profesor → dibujar?",
+                "literalOrderExplanation": "¿Cómo → dibuja → un → mapa → el → profesor?",
                 "grammarExplanation": [
                   "Spanish questions: question word + verb + subject.",
                   "Question words carry a written accent."
@@ -970,81 +1019,88 @@
                     "text": "¿Cómo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "puede",
+                    "text": "dibuja",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mapa",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
-                    "text": "profesor",
+                    "text": "profesor?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "dibujar?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "zh": {
-              "text": "老師怎麼畫畫？",
+              "text": "老師怎麼畫地圖？",
               "tiles": [
-                "老師怎麼畫畫？"
+                "老師怎麼畫地圖？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "老師怎麼畫畫？",
+                "literalOrderExplanation": "老師怎麼畫地圖？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "老師怎麼畫畫？",
+                    "text": "老師怎麼畫地圖？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
               }
             },
             "ja": {
-              "text": "先生はどうやって描く？",
+              "text": "先生はどうやって地図を描きますか？",
               "tiles": [
-                "先生はどうやって描く？"
+                "先生はどうやって地図を描きますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "先生はどうやって描く？",
+                "literalOrderExplanation": "先生はどうやって地図を描きますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "先生はどうやって描く？",
+                    "text": "先生はどうやって地図を描きますか？",
                     "type": "sentence",
                     "role": "full_question",
-                    "meaning": "",
+                    "meaning": "full question",
                     "grammarNote": ""
                   }
                 ]
@@ -1072,14 +1128,15 @@
           "text": "How does the child learn songs?",
           "tiles": [
             "How",
-            "can",
+            "does",
             "the",
             "child",
-            "sing?"
+            "learn",
+            "songs?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "How → can → the → child → sing?",
+            "literalOrderExplanation": "How → does → the → child → learn → songs?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
@@ -1088,52 +1145,59 @@
                 "text": "How",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "can",
+                "text": "does",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "the",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "child",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "sing?",
+                "text": "learn",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "songs?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wie kann das Kind singen?",
+          "text": "Wie lernt das Kind Lieder?",
           "tiles": [
             "Wie",
-            "kann",
+            "lernt",
             "das",
             "Kind",
-            "singen?"
+            "Lieder?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wie → kann → das → Kind → singen?",
+            "literalOrderExplanation": "Wie → lernt → das → Kind → Lieder?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -1143,51 +1207,52 @@
                 "text": "Wie",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "kann",
+                "text": "lernt",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "das",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Kind",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "singen?",
+                "text": "Lieder?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Comment l'enfant peut chanter?",
+          "text": "Comment l'enfant apprend-il des chansons?",
           "tiles": [
             "Comment",
             "l'enfant",
-            "peut",
-            "chanter?"
+            "apprend-il",
+            "des",
+            "chansons?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Comment → l'enfant → peut → chanter?",
+            "literalOrderExplanation": "Comment → l'enfant → apprend-il → des → chansons?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1197,45 +1262,52 @@
                 "text": "Comment",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "l'enfant",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "peut",
+                "text": "apprend-il",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "chanter?",
+                "text": "des",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "chansons?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cómo puede el niño cantar?",
+          "text": "¿Cómo aprende canciones el niño?",
           "tiles": [
             "¿Cómo",
-            "puede",
+            "aprende",
+            "canciones",
             "el",
-            "niño",
-            "cantar?"
+            "niño?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cómo → puede → el → niño → cantar?",
+            "literalOrderExplanation": "¿Cómo → aprende → canciones → el → niño?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1245,81 +1317,81 @@
                 "text": "¿Cómo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "puede",
+                "text": "aprende",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "canciones",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "niño",
+                "text": "niño?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "cantar?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "小朋友怎麼唱歌？",
+          "text": "小朋友怎麼學歌？",
           "tiles": [
-            "小朋友怎麼唱歌？"
+            "小朋友怎麼學歌？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "小朋友怎麼唱歌？",
+            "literalOrderExplanation": "小朋友怎麼學歌？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "小朋友怎麼唱歌？",
+                "text": "小朋友怎麼學歌？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "子どもはどうやって歌う？",
+          "text": "子どもはどうやって歌を覚えますか？",
           "tiles": [
-            "子どもはどうやって歌う？"
+            "子どもはどうやって歌を覚えますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "子どもはどうやって歌う？",
+            "literalOrderExplanation": "子どもはどうやって歌を覚えますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "子どもはどうやって歌う？",
+                "text": "子どもはどうやって歌を覚えますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
@@ -1343,14 +1415,16 @@
           "text": "How does the teacher draw a map?",
           "tiles": [
             "How",
-            "can",
+            "does",
             "the",
             "teacher",
-            "draw?"
+            "draw",
+            "a",
+            "map?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "How → can → the → teacher → draw?",
+            "literalOrderExplanation": "How → does → the → teacher → draw → a → map?",
             "grammarExplanation": [
               "English word order: question word + auxiliary + subject + main verb."
             ],
@@ -1359,52 +1433,67 @@
                 "text": "How",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "can",
+                "text": "does",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "the",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "teacher",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "draw?",
+                "text": "draw",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "map?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "de": {
-          "text": "Wie kann der Lehrer zeichnen?",
+          "text": "Wie zeichnet der Lehrer eine Karte?",
           "tiles": [
             "Wie",
-            "kann",
+            "zeichnet",
             "der",
             "Lehrer",
-            "zeichnen?"
+            "eine",
+            "Karte?"
           ],
           "analysis": {
             "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Wie → kann → der → Lehrer → zeichnen?",
+            "literalOrderExplanation": "Wie → zeichnet → der → Lehrer → eine → Karte?",
             "grammarExplanation": [
               "German verb-second order in questions.",
               "Question word + verb + subject + rest."
@@ -1414,52 +1503,60 @@
                 "text": "Wie",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "kann",
+                "text": "zeichnet",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "der",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Lehrer",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "zeichnen?",
+                "text": "eine",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "Karte?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "fr": {
-          "text": "Comment le professeur peut dessiner?",
+          "text": "Comment le professeur dessine-t-il une carte?",
           "tiles": [
             "Comment",
             "le",
             "professeur",
-            "peut",
-            "dessiner?"
+            "dessine-t-il",
+            "une",
+            "carte?"
           ],
           "analysis": {
             "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Comment → le → professeur → peut → dessiner?",
+            "literalOrderExplanation": "Comment → le → professeur → dessine-t-il → une → carte?",
             "grammarExplanation": [
               "French questions: question word + verb + subject + complement.",
               "Inversion may be used in formal French."
@@ -1469,52 +1566,60 @@
                 "text": "Comment",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "le",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "professeur",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "peut",
+                "text": "dessine-t-il",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "dessiner?",
+                "text": "une",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "carte?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "es": {
-          "text": "¿Cómo puede el profesor dibujar?",
+          "text": "¿Cómo dibuja un mapa el profesor?",
           "tiles": [
             "¿Cómo",
-            "puede",
+            "dibuja",
+            "un",
+            "mapa",
             "el",
-            "profesor",
-            "dibujar?"
+            "profesor?"
           ],
           "analysis": {
             "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Cómo → puede → el → profesor → dibujar?",
+            "literalOrderExplanation": "¿Cómo → dibuja → un → mapa → el → profesor?",
             "grammarExplanation": [
               "Spanish questions: question word + verb + subject.",
               "Question words carry a written accent."
@@ -1524,81 +1629,88 @@
                 "text": "¿Cómo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "puede",
+                "text": "dibuja",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "mapa",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "el",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
-                "text": "profesor",
+                "text": "profesor?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "dibujar?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
           }
         },
         "zh": {
-          "text": "老師怎麼畫畫？",
+          "text": "老師怎麼畫地圖？",
           "tiles": [
-            "老師怎麼畫畫？"
+            "老師怎麼畫地圖？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "老師怎麼畫畫？",
+            "literalOrderExplanation": "老師怎麼畫地圖？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "老師怎麼畫畫？",
+                "text": "老師怎麼畫地圖？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]
           }
         },
         "ja": {
-          "text": "先生はどうやって描く？",
+          "text": "先生はどうやって地図を描きますか？",
           "tiles": [
-            "先生はどうやって描く？"
+            "先生はどうやって地図を描きますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "先生はどうやって描く？",
+            "literalOrderExplanation": "先生はどうやって地図を描きますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "先生はどうやって描く？",
+                "text": "先生はどうやって地図を描きますか？",
                 "type": "sentence",
                 "role": "full_question",
-                "meaning": "",
+                "meaning": "full question",
                 "grammarNote": ""
               }
             ]

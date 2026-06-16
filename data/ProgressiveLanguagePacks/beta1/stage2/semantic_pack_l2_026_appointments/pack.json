@@ -1,7 +1,7 @@
 {
-  "packId": "semantic_pack_l2_028_",
+  "packId": "semantic_pack_l2_026_appointments",
   "schemaVersion": "prototype-0.3",
-  "title": "Semantic Pack L2_028 — months_year",
+  "title": "Semantic Pack L2_026 — appointments",
   "description": "A Progressive Language pack for Level 2, Stage 2 (When).",
   "baseLanguageCode": "en",
   "supportedLanguages": [
@@ -21,8 +21,8 @@
     "ja": "Japanese"
   },
   "sourceTopic": {
-    "topicId": "L2-028",
-    "title": "028 — Months Year",
+    "topicId": "L2-026",
+    "title": "026 — Appointments",
     "difficultyStage": 2,
     "semanticDomains": [
       "time",
@@ -51,37 +51,66 @@
       ]
     },
     "sentenceGoals": [
-      "What do you do on Monday?",
-      "When is the appointment?"
+      "When is the appointment?",
+      "When is the dinner?"
     ]
   },
   "vocabulary": [
     {
-      "conceptId": "DAY_MONDAY",
+      "conceptId": "EVENT_APPOINTMENT",
       "type": "noun",
-      "senseKey": "day_monday",
+      "senseKey": "event_appointment",
       "semanticCategory": "",
       "translations": {
         "en": {
-          "text": "Monday"
+          "text": "appointment"
         },
         "de": {
-          "text": "Montag",
+          "text": "Termin",
           "article": "der"
         },
         "fr": {
-          "text": "lundi",
+          "text": "rendez-vous",
           "article": "le"
         },
         "es": {
-          "text": "lunes",
+          "text": "cita",
           "article": "el"
         },
         "zh": {
-          "text": "星期一"
+          "text": "約會"
         },
         "ja": {
-          "text": "月曜日"
+          "text": "予約"
+        }
+      }
+    },
+    {
+      "conceptId": "EVENT_DINNER",
+      "type": "noun",
+      "senseKey": "event_dinner",
+      "semanticCategory": "",
+      "translations": {
+        "en": {
+          "text": "dinner"
+        },
+        "de": {
+          "text": "Abendessen",
+          "article": "der"
+        },
+        "fr": {
+          "text": "dîner",
+          "article": "le"
+        },
+        "es": {
+          "text": "cena",
+          "article": "el"
+        },
+        "zh": {
+          "text": "晚餐"
+        },
+        "ja": {
+          "text": "夕食"
         }
       }
     }
@@ -181,431 +210,7 @@
   ],
   "phraseProgressionChains": [
     {
-      "chainId": "chain_the_school_week_chain1",
-      "linkedConcepts": [
-        "DAY_MONDAY"
-      ],
-      "difficulty": "A1",
-      "steps": [
-        {
-          "step": 1,
-          "focus": "question_word",
-          "translations": {
-            "en": {
-              "text": "When",
-              "tiles": [
-                "When"
-              ],
-              "analysis": {
-                "sentencePattern": "Question word",
-                "literalOrderExplanation": "When",
-                "grammarExplanation": [],
-                "tokens": [
-                  {
-                    "text": "When",
-                    "type": "question_word",
-                    "role": "question_introducer",
-                    "meaning": "question word",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "de": {
-              "text": "Wann",
-              "tiles": [
-                "Wann"
-              ],
-              "analysis": {
-                "sentencePattern": "Question word",
-                "literalOrderExplanation": "Wann",
-                "grammarExplanation": [
-                  "German question words often trigger verb-second order."
-                ],
-                "tokens": [
-                  {
-                    "text": "Wann",
-                    "type": "question_word",
-                    "role": "question_introducer",
-                    "meaning": "question word",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "fr": {
-              "text": "Quand",
-              "tiles": [
-                "Quand"
-              ],
-              "analysis": {
-                "sentencePattern": "Question word",
-                "literalOrderExplanation": "Quand",
-                "grammarExplanation": [
-                  "French question words can start a sentence."
-                ],
-                "tokens": [
-                  {
-                    "text": "Quand",
-                    "type": "question_word",
-                    "role": "question_introducer",
-                    "meaning": "question word",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "es": {
-              "text": "¿Cuándo",
-              "tiles": [
-                "¿Cuándo"
-              ],
-              "analysis": {
-                "sentencePattern": "Question word",
-                "literalOrderExplanation": "¿Cuándo",
-                "grammarExplanation": [
-                  "Spanish question words carry an accent."
-                ],
-                "tokens": [
-                  {
-                    "text": "¿Cuándo",
-                    "type": "question_word",
-                    "role": "question_introducer",
-                    "meaning": "question word",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "zh": {
-              "text": "什麼時候",
-              "tiles": [
-                "什麼時候"
-              ],
-              "analysis": {
-                "sentencePattern": "Question word",
-                "literalOrderExplanation": "什麼時候",
-                "grammarExplanation": [
-                  "Chinese question words stay in the same position as the answer."
-                ],
-                "tokens": [
-                  {
-                    "text": "什麼時候",
-                    "type": "question_word",
-                    "role": "question_introducer",
-                    "meaning": "question word",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "ja": {
-              "text": "いつ",
-              "tiles": [
-                "いつ"
-              ],
-              "analysis": {
-                "sentencePattern": "Question word",
-                "literalOrderExplanation": "いつ",
-                "grammarExplanation": [
-                  "Japanese question words take particles like が or を."
-                ],
-                "tokens": [
-                  {
-                    "text": "いつ",
-                    "type": "question_word",
-                    "role": "question_introducer",
-                    "meaning": "question word",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            }
-          }
-        },
-        {
-          "step": 2,
-          "focus": "full_question",
-          "translations": {
-            "en": {
-              "text": "What do you do on Monday?",
-              "tiles": [
-                "What",
-                "do",
-                "you",
-                "do",
-                "on",
-                "Monday?"
-              ],
-              "analysis": {
-                "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "What → do → you → do → on → Monday?",
-                "grammarExplanation": [
-                  "English word order: question word + auxiliary + subject + main verb."
-                ],
-                "tokens": [
-                  {
-                    "text": "What",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "do",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "you",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "do",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "on",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "Monday?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "de": {
-              "text": "Was machst du am Montag?",
-              "tiles": [
-                "Was",
-                "machst",
-                "du",
-                "am",
-                "Montag?"
-              ],
-              "analysis": {
-                "sentencePattern": "Frage: Where",
-                "literalOrderExplanation": "Was → machst → du → am → Montag?",
-                "grammarExplanation": [
-                  "German verb-second order in questions.",
-                  "Question word + verb + subject + rest."
-                ],
-                "tokens": [
-                  {
-                    "text": "Was",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "machst",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "du",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "am",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "Montag?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "fr": {
-              "text": "Qu'est-ce que tu fais le lundi?",
-              "tiles": [
-                "Qu'est-ce",
-                "que",
-                "tu",
-                "fais",
-                "le",
-                "lundi?"
-              ],
-              "analysis": {
-                "sentencePattern": "Question: Where",
-                "literalOrderExplanation": "Qu'est-ce → que → tu → fais → le → lundi?",
-                "grammarExplanation": [
-                  "French questions: question word + verb + subject + complement.",
-                  "Inversion may be used in formal French."
-                ],
-                "tokens": [
-                  {
-                    "text": "Qu'est-ce",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "que",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "tu",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "fais",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "le",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "lundi?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "es": {
-              "text": "¿Qué haces el lunes?",
-              "tiles": [
-                "¿Qué",
-                "haces",
-                "el",
-                "lunes?"
-              ],
-              "analysis": {
-                "sentencePattern": "Pregunta: Where",
-                "literalOrderExplanation": "¿Qué → haces → el → lunes?",
-                "grammarExplanation": [
-                  "Spanish questions: question word + verb + subject.",
-                  "Question words carry a written accent."
-                ],
-                "tokens": [
-                  {
-                    "text": "¿Qué",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "haces",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "el",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "lunes?",
-                    "type": "word",
-                    "role": "sentence_element",
-                    "meaning": "",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "zh": {
-              "text": "你星期一做什麼？",
-              "tiles": [
-                "你星期一做什麼？"
-              ],
-              "analysis": {
-                "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "你星期一做什麼？",
-                "grammarExplanation": [
-                  "Chinese word order stays the same in questions.",
-                  "Question words replace the information being asked about."
-                ],
-                "tokens": [
-                  {
-                    "text": "你星期一做什麼？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            },
-            "ja": {
-              "text": "月曜日に何をしますか？",
-              "tiles": [
-                "月曜日に何をしますか？"
-              ],
-              "analysis": {
-                "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "月曜日に何をしますか？",
-                "grammarExplanation": [
-                  "Japanese keeps the verb at the end in questions.",
-                  "The か particle marks a question."
-                ],
-                "tokens": [
-                  {
-                    "text": "月曜日に何をしますか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "",
-                    "grammarNote": ""
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "chainId": "chain_the_school_week_chain2",
+      "chainId": "chain_doctor_appointment_chain1",
       "linkedConcepts": [
         "EVENT_APPOINTMENT"
       ],
@@ -987,6 +592,390 @@
           }
         }
       ]
+    },
+    {
+      "chainId": "chain_doctor_appointment_chain2",
+      "linkedConcepts": [
+        "EVENT_DINNER"
+      ],
+      "difficulty": "A1",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "question_word",
+          "translations": {
+            "en": {
+              "text": "When",
+              "tiles": [
+                "When"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "When",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "When",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wann",
+              "tiles": [
+                "Wann"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Wann",
+                "grammarExplanation": [
+                  "German question words often trigger verb-second order."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wann",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Quand",
+              "tiles": [
+                "Quand"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "Quand",
+                "grammarExplanation": [
+                  "French question words can start a sentence."
+                ],
+                "tokens": [
+                  {
+                    "text": "Quand",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuándo",
+              "tiles": [
+                "¿Cuándo"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "¿Cuándo",
+                "grammarExplanation": [
+                  "Spanish question words carry an accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cuándo",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "什麼時候",
+              "tiles": [
+                "什麼時候"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "什麼時候",
+                "grammarExplanation": [
+                  "Chinese question words stay in the same position as the answer."
+                ],
+                "tokens": [
+                  {
+                    "text": "什麼時候",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "いつ",
+              "tiles": [
+                "いつ"
+              ],
+              "analysis": {
+                "sentencePattern": "Question word",
+                "literalOrderExplanation": "いつ",
+                "grammarExplanation": [
+                  "Japanese question words take particles like が or を."
+                ],
+                "tokens": [
+                  {
+                    "text": "いつ",
+                    "type": "question_word",
+                    "role": "question_introducer",
+                    "meaning": "question word",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "step": 2,
+          "focus": "full_question",
+          "translations": {
+            "en": {
+              "text": "When is the dinner?",
+              "tiles": [
+                "When",
+                "is",
+                "the",
+                "dinner?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "When → is → the → dinner?",
+                "grammarExplanation": [
+                  "English word order: question word + auxiliary + subject + main verb."
+                ],
+                "tokens": [
+                  {
+                    "text": "When",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dinner?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wann ist der Abendessen?",
+              "tiles": [
+                "Wann",
+                "ist",
+                "der",
+                "Abendessen?"
+              ],
+              "analysis": {
+                "sentencePattern": "Frage: Where",
+                "literalOrderExplanation": "Wann → ist → der → Abendessen?",
+                "grammarExplanation": [
+                  "German verb-second order in questions.",
+                  "Question word + verb + subject + rest."
+                ],
+                "tokens": [
+                  {
+                    "text": "Wann",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Abendessen?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Quand est le dîner?",
+              "tiles": [
+                "Quand",
+                "est",
+                "le",
+                "dîner?"
+              ],
+              "analysis": {
+                "sentencePattern": "Question: Where",
+                "literalOrderExplanation": "Quand → est → le → dîner?",
+                "grammarExplanation": [
+                  "French questions: question word + verb + subject + complement.",
+                  "Inversion may be used in formal French."
+                ],
+                "tokens": [
+                  {
+                    "text": "Quand",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dîner?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuándo es el cena?",
+              "tiles": [
+                "¿Cuándo",
+                "es",
+                "el",
+                "cena?"
+              ],
+              "analysis": {
+                "sentencePattern": "Pregunta: Where",
+                "literalOrderExplanation": "¿Cuándo → es → el → cena?",
+                "grammarExplanation": [
+                  "Spanish questions: question word + verb + subject.",
+                  "Question words carry a written accent."
+                ],
+                "tokens": [
+                  {
+                    "text": "¿Cuándo",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cena?",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "晚餐是什麼時候？",
+              "tiles": [
+                "晚餐是什麼時候？"
+              ],
+              "analysis": {
+                "sentencePattern": "提问: Where",
+                "literalOrderExplanation": "晚餐是什麼時候？",
+                "grammarExplanation": [
+                  "Chinese word order stays the same in questions.",
+                  "Question words replace the information being asked about."
+                ],
+                "tokens": [
+                  {
+                    "text": "晚餐是什麼時候？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "夕食はいつですか？",
+              "tiles": [
+                "夕食はいつですか？"
+              ],
+              "analysis": {
+                "sentencePattern": "質問: Where",
+                "literalOrderExplanation": "夕食はいつですか？",
+                "grammarExplanation": [
+                  "Japanese keeps the verb at the end in questions.",
+                  "The か particle marks a question."
+                ],
+                "tokens": [
+                  {
+                    "text": "夕食はいつですか？",
+                    "type": "sentence",
+                    "role": "full_question",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
     }
   ],
   "sentenceBuilders": [
@@ -994,298 +983,12 @@
       "sentenceId": "S001",
       "difficulty": "A1",
       "concepts": [
-        "DAY_MONDAY"
-      ],
-      "grammarFocus": [
-        "word_order"
-      ],
-      "sourceChainId": "chain_the_school_week_chain1",
-      "translations": {
-        "en": {
-          "text": "What do you do on Monday?",
-          "tiles": [
-            "What",
-            "do",
-            "you",
-            "do",
-            "on",
-            "Monday?"
-          ],
-          "analysis": {
-            "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "What → do → you → do → on → Monday?",
-            "grammarExplanation": [
-              "English word order: question word + auxiliary + subject + main verb."
-            ],
-            "tokens": [
-              {
-                "text": "What",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "do",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "you",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "do",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "on",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "Monday?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "de": {
-          "text": "Was machst du am Montag?",
-          "tiles": [
-            "Was",
-            "machst",
-            "du",
-            "am",
-            "Montag?"
-          ],
-          "analysis": {
-            "sentencePattern": "Frage: Where",
-            "literalOrderExplanation": "Was → machst → du → am → Montag?",
-            "grammarExplanation": [
-              "German verb-second order in questions.",
-              "Question word + verb + subject + rest."
-            ],
-            "tokens": [
-              {
-                "text": "Was",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "machst",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "du",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "am",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "Montag?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "fr": {
-          "text": "Qu'est-ce que tu fais le lundi?",
-          "tiles": [
-            "Qu'est-ce",
-            "que",
-            "tu",
-            "fais",
-            "le",
-            "lundi?"
-          ],
-          "analysis": {
-            "sentencePattern": "Question: Where",
-            "literalOrderExplanation": "Qu'est-ce → que → tu → fais → le → lundi?",
-            "grammarExplanation": [
-              "French questions: question word + verb + subject + complement.",
-              "Inversion may be used in formal French."
-            ],
-            "tokens": [
-              {
-                "text": "Qu'est-ce",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "que",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "tu",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "fais",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "le",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "lundi?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "es": {
-          "text": "¿Qué haces el lunes?",
-          "tiles": [
-            "¿Qué",
-            "haces",
-            "el",
-            "lunes?"
-          ],
-          "analysis": {
-            "sentencePattern": "Pregunta: Where",
-            "literalOrderExplanation": "¿Qué → haces → el → lunes?",
-            "grammarExplanation": [
-              "Spanish questions: question word + verb + subject.",
-              "Question words carry a written accent."
-            ],
-            "tokens": [
-              {
-                "text": "¿Qué",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "haces",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "el",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "lunes?",
-                "type": "word",
-                "role": "sentence_element",
-                "meaning": "",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "zh": {
-          "text": "你星期一做什麼？",
-          "tiles": [
-            "你星期一做什麼？"
-          ],
-          "analysis": {
-            "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "你星期一做什麼？",
-            "grammarExplanation": [
-              "Chinese word order stays the same in questions.",
-              "Question words replace the information being asked about."
-            ],
-            "tokens": [
-              {
-                "text": "你星期一做什麼？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "",
-                "grammarNote": ""
-              }
-            ]
-          }
-        },
-        "ja": {
-          "text": "月曜日に何をしますか？",
-          "tiles": [
-            "月曜日に何をしますか？"
-          ],
-          "analysis": {
-            "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "月曜日に何をしますか？",
-            "grammarExplanation": [
-              "Japanese keeps the verb at the end in questions.",
-              "The か particle marks a question."
-            ],
-            "tokens": [
-              {
-                "text": "月曜日に何をしますか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "",
-                "grammarNote": ""
-              }
-            ]
-          }
-        }
-      }
-    },
-    {
-      "sentenceId": "S002",
-      "difficulty": "A1",
-      "concepts": [
         "EVENT_APPOINTMENT"
       ],
       "grammarFocus": [
         "word_order"
       ],
-      "sourceChainId": "chain_the_school_week_chain2",
+      "sourceChainId": "chain_doctor_appointment_chain1",
       "translations": {
         "en": {
           "text": "When is the appointment?",
@@ -1521,13 +1224,259 @@
           }
         }
       }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1",
+      "concepts": [
+        "EVENT_DINNER"
+      ],
+      "grammarFocus": [
+        "word_order"
+      ],
+      "sourceChainId": "chain_doctor_appointment_chain2",
+      "translations": {
+        "en": {
+          "text": "When is the dinner?",
+          "tiles": [
+            "When",
+            "is",
+            "the",
+            "dinner?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "When → is → the → dinner?",
+            "grammarExplanation": [
+              "English word order: question word + auxiliary + subject + main verb."
+            ],
+            "tokens": [
+              {
+                "text": "When",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dinner?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wann ist der Abendessen?",
+          "tiles": [
+            "Wann",
+            "ist",
+            "der",
+            "Abendessen?"
+          ],
+          "analysis": {
+            "sentencePattern": "Frage: Where",
+            "literalOrderExplanation": "Wann → ist → der → Abendessen?",
+            "grammarExplanation": [
+              "German verb-second order in questions.",
+              "Question word + verb + subject + rest."
+            ],
+            "tokens": [
+              {
+                "text": "Wann",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Abendessen?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Quand est le dîner?",
+          "tiles": [
+            "Quand",
+            "est",
+            "le",
+            "dîner?"
+          ],
+          "analysis": {
+            "sentencePattern": "Question: Where",
+            "literalOrderExplanation": "Quand → est → le → dîner?",
+            "grammarExplanation": [
+              "French questions: question word + verb + subject + complement.",
+              "Inversion may be used in formal French."
+            ],
+            "tokens": [
+              {
+                "text": "Quand",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dîner?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuándo es el cena?",
+          "tiles": [
+            "¿Cuándo",
+            "es",
+            "el",
+            "cena?"
+          ],
+          "analysis": {
+            "sentencePattern": "Pregunta: Where",
+            "literalOrderExplanation": "¿Cuándo → es → el → cena?",
+            "grammarExplanation": [
+              "Spanish questions: question word + verb + subject.",
+              "Question words carry a written accent."
+            ],
+            "tokens": [
+              {
+                "text": "¿Cuándo",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cena?",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "晚餐是什麼時候？",
+          "tiles": [
+            "晚餐是什麼時候？"
+          ],
+          "analysis": {
+            "sentencePattern": "提问: Where",
+            "literalOrderExplanation": "晚餐是什麼時候？",
+            "grammarExplanation": [
+              "Chinese word order stays the same in questions.",
+              "Question words replace the information being asked about."
+            ],
+            "tokens": [
+              {
+                "text": "晚餐是什麼時候？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "夕食はいつですか？",
+          "tiles": [
+            "夕食はいつですか？"
+          ],
+          "analysis": {
+            "sentencePattern": "質問: Where",
+            "literalOrderExplanation": "夕食はいつですか？",
+            "grammarExplanation": [
+              "Japanese keeps the verb at the end in questions.",
+              "The か particle marks a question."
+            ],
+            "tokens": [
+              {
+                "text": "夕食はいつですか？",
+                "type": "sentence",
+                "role": "full_question",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
     }
   ],
   "conceptSentenceIndex": {
-    "DAY_MONDAY": [
+    "EVENT_APPOINTMENT": [
       "S001"
     ],
-    "EVENT_APPOINTMENT": [
+    "EVENT_DINNER": [
       "S002"
     ]
   }
