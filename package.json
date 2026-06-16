@@ -13,6 +13,11 @@
     "dev": "npm run prepare:studybook-search && vite",
     "build": "npm run prepare:studybook-search && vite build && npm run generate:seo",
     "preview": "vite preview",
+    "qa:config-check": "node scripts/validate-qa-behaviour-config.mjs",
+    "qa:smoke": "npx playwright test -c playwright.config.ts qa/tests/smoke-home.spec.ts qa/tests/onboarding.spec.ts",
+    "qa:data-sample": "npx playwright test -c playwright.config.ts --grep @data-sample",
+    "qa:full": "QA_FULL_DATA=true npx playwright test -c playwright.config.ts",
+    "qa:report": "npx playwright show-report qa/reports/html",
     "test:tutor-studybook:unit": "node --loader ./tests/resolve-alias.mjs tests/tutor-engine-test.mjs && node --loader ./tests/resolve-alias.mjs tests/tutor-studybook-integration-test.mjs",
     "test:tutor-studybook:e2e": "npx playwright test -c playwright.config.mjs tests/playwright/tutor-studybook.spec.mjs"
   },

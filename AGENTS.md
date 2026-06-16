@@ -152,3 +152,59 @@ For AQA past-paper subjects (Geography, RS, History):
 - One logical change per PR — keep PRs small
 - Push to `origin` and open PR against `main` via `gh pr create`
 - **Never auto-merge** — wait for the repo owner to review and approve
+
+---
+
+## 8. QA behaviour configuration rule
+
+When changing any user-facing behaviour, check whether the Learning Web QA
+engine expectations must also change.
+
+Product behaviour config:
+- `src/config/learningBehaviourConfig.js`
+
+QA behaviour config:
+- `qa/config/qa-behaviour.config.json`
+
+Validation command:
+- `npm run qa:config-check`
+
+Examples that require QA config review:
+- Sentence Builder expected rounds change
+- Quiz question count or supported options change
+- Progressive Learning adds, removes, or reorders steps
+- Voice practice is enabled, disabled, or changes retry behaviour
+- Study Book image or split-view behaviour changes
+- Onboarding presets or first-run flow change
+- Mobile game controls or navigation behaviour change
+
+Do not leave product behaviour and QA expectations out of sync.
+
+## 9. Playwright QA rule
+
+When adding or changing user-facing functionality, add or update Playwright
+coverage where practical.
+
+Prefer stable selectors:
+- `data-testid`
+- semantic roles
+- user-visible labels that are intentionally stable
+
+Avoid fragile selectors:
+- CSS class names
+- visual position
+- `nth-child`
+- styling-dependent layout assumptions
+
+Run the appropriate checks before shipping:
+- `npm run qa:smoke`
+- `npm run qa:data-sample`
+- `npm run qa:full` for broad regression coverage
+
+## 10. Data-driven QA rule
+
+For data-driven features, tests should read pack JSON and resolve answers from
+the same source data the app uses.
+
+Do not hardcode answers unless a test is explicitly using a dedicated fixture
+pack created for that purpose.

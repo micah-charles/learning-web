@@ -11,7 +11,7 @@ const SUBJECT_META = {
   other:      { label: "Other",      icon: "🗂️" },
 };
 
-export function SubjectCardGrid({ subjects, activeSubject, onSelect }) {
+export function SubjectCardGrid({ subjects, activeSubject, onSelect, itemTestIdPrefix }) {
   return (
     <div className={styles.grid}>
       {subjects.map(({ id, count }) => {
@@ -22,6 +22,7 @@ export function SubjectCardGrid({ subjects, activeSubject, onSelect }) {
             key={id}
             type="button"
             className={`${styles.card} ${activeSubject === id ? styles.active : ""} ${empty ? styles.empty : ""}`}
+            data-testid={itemTestIdPrefix ? `${itemTestIdPrefix}-${id}` : undefined}
             onClick={() => !empty && onSelect(id)}
             disabled={empty}
           >

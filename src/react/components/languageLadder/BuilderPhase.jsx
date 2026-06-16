@@ -49,7 +49,7 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
     : "";
 
   return (
-    <div className="section-card pl-lesson-card">
+    <div className="section-card pl-lesson-card" data-testid="progressive-phase-builder">
       <div className="pl-phase-bar">
         <div className="pl-phase-bar-track"><div className="pl-phase-bar-fill" style={{ width: `${pct}%` }} /></div>
         <div className="pl-phase-bar-meta">
@@ -87,6 +87,7 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
               ? session.selectedTiles.map(t => (
                   <button key={t.id} type="button"
                     className={`tile answer${answered && !session.builderFeedback?.correct ? " shake" : ""}`}
+                    data-testid="progressive-builder-answer-token"
                     disabled={!!answered}
                     onClick={() => !answered && onDispatch("pl-builder-remove", { tileId: t.id })}>
                     {t.text}
@@ -112,6 +113,7 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
             {session.bankTiles.length
               ? session.bankTiles.map(t => (
                   <button key={t.id} type="button" className="tile" disabled={!!answered}
+                    data-testid="progressive-builder-token"
                     onClick={() => !answered && onDispatch("pl-builder-pick", { tileId: t.id })}>
                     {t.text}
                   </button>
@@ -136,18 +138,20 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
           <>
             {voicePractice && targetTr?.text && (
               <VoicePracticeButton
+                dataTestId="progressive-builder-voice-practice-button"
                 state={voicePractice.buttonState}
                 onClick={() => voicePractice.startPractice(targetTr.text, speechLang)}
                 disabled={voicePractice.phase === "listening" || voicePractice.phase === "processing"}
               />
             )}
-            <button type="button" className="button secondary" onClick={() => onDispatch("pl-builder-reset")}>Reset</button>
+            <button type="button" className="button secondary" data-testid="progressive-builder-reset-button" onClick={() => onDispatch("pl-builder-reset")}>Reset</button>
             <button type="button" className="button"
+              data-testid="progressive-builder-check-button"
               disabled={!session.selectedTiles.length}
               onClick={() => onDispatch("pl-builder-check")}>Check answer</button>
           </>
         ) : (
-          <button type="button" className="button" onClick={() => onDispatch("pl-builder-next")}>
+          <button type="button" className="button" data-testid="progressive-next-step-button" onClick={() => onDispatch("pl-builder-next")}>
             {isLast ? "Finish →" : "Next →"}
           </button>
         )}

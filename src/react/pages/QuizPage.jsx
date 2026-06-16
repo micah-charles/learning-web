@@ -103,6 +103,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart, personalisationPrefs })
         <SubjectCardGrid
           subjects={subjectCounts}
           activeSubject={prefs.subject}
+          itemTestIdPrefix="quiz-subject"
           onSelect={(subj) => {
             const newIsLanguage = subj === "language";
             const firstMatch = datasets.find((d) => getDatasetSubject(d) === subj);
@@ -122,6 +123,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart, personalisationPrefs })
           label="Curriculum"
           items={curriculumOptions}
           value={prefs.curriculum || "all"}
+          itemTestIdPrefix="quiz-curriculum"
           onSelect={(c) => {
             const first = datasets.find((d) => getDatasetSubject(d) === (prefs.subject || "") && (c === "all" || getDatasetCurriculum(d) === c));
             setPrefs((prev) => ({
@@ -142,7 +144,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart, personalisationPrefs })
               datasetId: v,
               answerMode: safeAnswerMode(prev.answerMode, newIsLanguage),
             }));
-          }}>
+          }} selectTestId="quiz-dataset-select">
             {filteredDatasets.map((d) => <option key={d.id} value={d.id}>{d.displayName}</option>)}
           </LabeledSelect>
 
@@ -194,7 +196,7 @@ function QuizSetup({ manifest, prefs, setPrefs, onStart, personalisationPrefs })
         />
 
         <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-          <button className="lw-btn lw-btn-primary" type="button" onClick={onStart}>
+          <button className="lw-btn lw-btn-primary" data-testid="start-quiz-button" type="button" onClick={onStart}>
             Start quiz
           </button>
           <StudyBookButton dataset={dataset} />
@@ -288,7 +290,7 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
   }
 
   const feedbackEl = feedback && (
-    <div className={`lw-feedback ${feedback.correct ? "correct" : "wrong"}`}>
+    <div className={`lw-feedback ${feedback.correct ? "correct" : "wrong"}`} data-testid={feedback.correct ? "feedback-correct" : "feedback-incorrect"}>
       <span className="lw-feedback-icon">{feedback.correct ? "✓" : "✗"}</span>
       <div>
         {feedback.correct ? "Correct!" : `Incorrect — correct answer: ${question?.answer || ""}`}
@@ -300,17 +302,17 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
   if (!question) return null;
 
   return (
-    <div className="lw-card">
+    <div className="lw-card" data-testid="quiz-session">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
         <span style={{ color: "var(--lw-muted)", fontSize: "0.85rem" }}>
           {session.index + 1} / {session.questions.length} · Score: {session.score}
         </span>
-        <button className="lw-btn lw-btn-ghost" type="button" style={{ fontSize: "0.85rem", padding: "4px 10px" }} onClick={handleSpeakPrompt}>
+        <button className="lw-btn lw-btn-ghost" data-testid="quiz-speak-button" type="button" style={{ fontSize: "0.85rem", padding: "4px 10px" }} onClick={handleSpeakPrompt}>
           🔊 Speak
         </button>
       </div>
 
-      <div className="lw-question-box">
+      <div className="lw-question-box" data-testid="quiz-question">
         {question.modeTitle && (
           <div style={{ fontSize: "0.75rem", color: "var(--lw-muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "6px" }}>
             {question.modeTitle}
@@ -335,6 +337,7 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
                 key={i}
                 type="button"
                 className={cls}
+                data-testid="quiz-option"
                 disabled={awaitingNext}
                 onClick={() => !awaitingNext && onAnswer(opt)}
               >
@@ -396,7 +399,7 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
             ))}
           </div>
           {!awaitingNext && (
-            <button className="lw-btn lw-btn-primary" type="button" style={{ marginTop: "12px" }}
+            <button className="lw-btn lw-btn-primary" data-testid="sequence-check-button" type="button" style={{ marginTop: "12px" }}
               onClick={() => onAnswer(buildState.userOrder, { extra: buildState.userOrder })}>
               Check order
             </button>
@@ -465,7 +468,7 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
             })}
           </div>
           {!awaitingNext && (
-            <button className="lw-btn lw-btn-primary" type="button" style={{ marginTop: "12px" }}
+            <button className="lw-btn lw-btn-primary" data-testid="sort-check-button" type="button" style={{ marginTop: "12px" }}
               onClick={() => onAnswer(buildState.placedItems, { extra: buildState.placedItems })}>
               Check answers
             </button>
@@ -477,7 +480,7 @@ function QuizQuestion({ session, onAnswer, onNext, updateBuildState, speak }) {
 
       {awaitingNext && (
         <div style={{ marginTop: "14px" }}>
-          <button className="lw-btn lw-btn-primary" type="button" onClick={onNext}>
+          <button className="lw-btn lw-btn-primary" data-testid="next-question-button" type="button" onClick={onNext}>
             {session.index + 1 >= session.questions.length ? "Finish" : "Next question"}
           </button>
         </div>
@@ -495,7 +498,7 @@ function QuizSummary({ session, onRetry, onReviewMissed, onReset }) {
 
   return (
     <div className="lw-page">
-      <div className="lw-card" style={{ marginBottom: "20px" }}>
+      <div className="lw-card" data-testid="quiz-summary" style={{ marginBottom: "20px" }}>
         <h2 className="lw-section-title">Quiz complete!</h2>
         <div style={{ fontSize: "2.5rem", fontWeight: 700, color: pct >= 70 ? "var(--lw-green)" : "var(--lw-coral)", fontFamily: "Georgia, serif" }}>
           {pct}%

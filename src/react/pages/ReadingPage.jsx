@@ -106,6 +106,7 @@ function PassageSetup({
             <SubjectCardGrid
               subjects={subjectCounts}
               activeSubject={prefs.subject}
+              itemTestIdPrefix="reading-subject"
               onSelect={(s) => {
                 const firstGroup = groups.find((group) => getPassageGroupSubject(group) === s);
                 setPrefs((prev) => ({ ...prev, subject: s, curriculum: "all", groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
@@ -116,6 +117,7 @@ function PassageSetup({
               label="Curriculum"
               items={curriculumOptions}
               value={prefs.curriculum || "all"}
+              itemTestIdPrefix="reading-curriculum"
               onSelect={(c) => {
                 const firstGroup = groups.find((group) => getPassageGroupSubject(group) === (prefs.subject || "") && (c === "all" || getDatasetCurriculum(group) === c));
                 setPrefs((prev) => ({ ...prev, curriculum: c, groupId: firstGroup?.id ?? "", packId: "", category: "all", difficulty: "all" }));
@@ -125,13 +127,13 @@ function PassageSetup({
 
             <FilterRow style={{ marginTop: "18px" }}>
               {filteredGroups.length > 0 && (
-                <LabeledSelect label="Book / Group" value={prefs.groupId} onChange={(v) => setPrefs((prev) => ({ ...prev, groupId: v, category: "all", difficulty: "all" }))}>
+                <LabeledSelect label="Book / Group" value={prefs.groupId} onChange={(v) => setPrefs((prev) => ({ ...prev, groupId: v, category: "all", difficulty: "all" }))} selectTestId="reading-group-select">
                   {filteredGroups.map((g) => <option key={g.id} value={g.id}>{g.displayName}</option>)}
                 </LabeledSelect>
               )}
 
               {packs.length > 1 && (
-                <LabeledSelect label="Set" value={prefs.packId} onChange={(v) => setPrefs((prev) => ({ ...prev, packId: v, category: "all", difficulty: "all" }))}>
+                <LabeledSelect label="Set" value={prefs.packId} onChange={(v) => setPrefs((prev) => ({ ...prev, packId: v, category: "all", difficulty: "all" }))} selectTestId="reading-pack-select">
                   {packs.map((p) => <option key={p.id} value={p.id}>{p.displayName}</option>)}
                 </LabeledSelect>
               )}
@@ -191,6 +193,7 @@ function PassageSetup({
             <div className="lw-reading-actions">
               <button
                 className="lw-btn lw-btn-primary"
+                data-testid="start-reading-button"
                 type="button"
                 onClick={onStart}
                 disabled={!prefs.groupId || loading}
@@ -295,7 +298,7 @@ function QuestionCard({ question: q, answers, onAnswer, revealed, onShowEvidence
   ) : null;
 
   return (
-    <div className="lw-rws-q-card">
+    <div className="lw-rws-q-card" data-testid="reading-question-card">
       {/* Metadata badges */}
       <div className="lw-rws-q-meta">
         {q.difficulty && (
@@ -315,6 +318,7 @@ function QuestionCard({ question: q, answers, onAnswer, revealed, onShowEvidence
       {q.sourceRef && (
         <button
           className="lw-btn lw-btn-ghost lw-rws-evidence-btn"
+          data-testid="reading-evidence-button"
           type="button"
           onClick={() => onShowEvidence(q.sourceRef)}
         >
@@ -338,6 +342,7 @@ function QuestionCard({ question: q, answers, onAnswer, revealed, onShowEvidence
                 key={oi}
                 type="button"
                 className={cls}
+                data-testid="reading-option"
                 disabled={revealed}
                 onClick={() => onAnswer(q.id, opt)}
               >
@@ -525,11 +530,11 @@ function ReadingWorkspace({
   }
 
   return (
-    <div className="lw-page lw-rws-page">
+    <div className="lw-page lw-rws-page" data-testid="reading-session">
       <div className="lw-rws">
 
         {/* ── LEFT: Passage panel ── */}
-        <section className="lw-rws-passage" aria-label="Reading passage">
+        <section className="lw-rws-passage" aria-label="Reading passage" data-testid="reading-passage">
 
           {/* Sticky toolbar — title + font controls + audio */}
           <div className="lw-rws-toolbar">
@@ -565,6 +570,7 @@ function ReadingWorkspace({
               {/* Audio — reads the primary (source-language) passage; toggles stop */}
               <button
                 className={`lw-btn lw-btn-ghost lw-rws-audio-btn${isSpeaking ? " is-speaking" : ""}`}
+                data-testid="reading-audio-button"
                 type="button"
                 onClick={toggleSpeak}
                 title={isSpeaking ? "Stop reading" : "Read aloud"}
@@ -576,6 +582,7 @@ function ReadingWorkspace({
               {/* Read Aloud voice practice */}
               {voicePractice && displayText && (
                 <VoicePracticeButton
+                  dataTestId="reading-voice-practice-button"
                   state={voicePractice.buttonState}
                   onClick={() => voicePractice.startPractice(displayText, speechLang)}
                   disabled={voicePractice.phase === "listening" || voicePractice.phase === "processing"}
@@ -746,18 +753,18 @@ function ReadingWorkspace({
           {/* Passage-level actions: reveal / next passage / back */}
           <div className="lw-rws-passage-actions">
             {!revealed ? (
-              <button className="lw-btn lw-btn-secondary" type="button" onClick={onReveal}
+              <button className="lw-btn lw-btn-secondary" data-testid="reading-show-answers-button" type="button" onClick={onReveal}
                 style={{ width: "100%" }}>
                 Show answers
               </button>
             ) : (
-              <button className="lw-btn lw-btn-primary" type="button" onClick={onNext}
+              <button className="lw-btn lw-btn-primary" data-testid="reading-next-button" type="button" onClick={onNext}
                 style={{ width: "100%" }}>
                 {isLast ? "Finish" : "Next passage →"}
               </button>
             )}
             {/* Back button lives here so it is always reachable on both desktop and mobile */}
-            <button className="lw-btn lw-btn-ghost" type="button" onClick={onBack}
+            <button className="lw-btn lw-btn-ghost" data-testid="reading-back-button" type="button" onClick={onBack}
               style={{ width: "100%" }}>
               ← Back to setup
             </button>

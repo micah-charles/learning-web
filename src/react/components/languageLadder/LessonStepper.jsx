@@ -26,9 +26,9 @@ export default function LessonStepper({ currentPhase, onJump }) {
           <span key={phase.id} style={{ display: "contents" }}>
             {i > 0 && <div className={`pl-step-line${done ? " done" : ""}`} />}
             {JUMPABLE.has(phase.id) && onJump
-              ? <button className={`pl-step ${cls}`} onClick={() => onJump(phase.id)}
+              ? <button className={`pl-step ${cls}`} data-testid={`lesson-step-${phase.id}`} onClick={() => onJump(phase.id)}
                   aria-current={active ? "step" : undefined}>{inner}</button>
-              : <div className={`pl-step ${cls}`} aria-current={active ? "step" : undefined}>{inner}</div>
+              : <div className={`pl-step ${cls}`} data-testid={`lesson-step-${phase.id}`} aria-current={active ? "step" : undefined}>{inner}</div>
             }
           </span>
         );

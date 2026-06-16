@@ -85,10 +85,10 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
   };
 
   return (
-    <div className="lw-page arc-page">
+    <div className="lw-page arc-page" data-testid="progressive-phase-arcade">
       {/* Retry overlay — shown when last attempt was <100% */}
       {needsRetry && (
-        <div className="lap-retry-overlay">
+        <div className="lap-retry-overlay" data-testid="progressive-arcade-retry">
           <div className="lap-retry-card">
             <div className="lap-retry-icon">🎯</div>
             <h3 className="lap-retry-title">Almost there!</h3>

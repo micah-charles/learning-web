@@ -58,6 +58,7 @@ function DesktopNav({ active, onChange, allowedTabs }) {
           <button
             key={tab.id}
             className={`lw-nav-pill${active === tab.id ? " active" : ""}${tab.tone ? ` tone-${tab.tone}` : ""}`}
+            data-testid={`nav-${tab.id}`}
             onClick={() => onChange(tab.id)}
             type="button"
             aria-current={active === tab.id ? "page" : undefined}
@@ -74,6 +75,7 @@ function MobileTabButton({ tab, active, onClick }) {
   return (
     <button
       className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test") ? " tone-blue" : ""}`}
+      data-testid={`nav-${tab.id}`}
       onClick={onClick}
       type="button"
       aria-current={active ? "page" : undefined}
@@ -110,6 +112,7 @@ function MobileNav({ active, onChange, allowedTabs }) {
       <div className="lw-mobile-more">
         <button
           className={`lw-mobile-nav-pill${moreActive ? " is-active" : ""}`}
+          data-testid="nav-more"
           type="button"
           aria-haspopup="menu"
           aria-expanded={moreOpen}
@@ -126,6 +129,7 @@ function MobileNav({ active, onChange, allowedTabs }) {
               <button
                 key={tab.id}
                 className={`lw-mobile-more-item${active === tab.id ? " is-active" : ""}`}
+                data-testid={`nav-${tab.id}`}
                 type="button"
                 role="menuitem"
                 onClick={() => choose(tab.id)}

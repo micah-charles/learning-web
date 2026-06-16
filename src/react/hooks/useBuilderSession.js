@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { loadSentenceBuilderPack } from "@/data.js";
 import { getBuilderStats, markBuilderCorrect, markBuilderSkip, noteBuilderCardAttempt } from "@/storage.js";
 import { shuffle, normalizeForCompare } from "@/utils.js";
@@ -16,6 +16,17 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
   const [index, setIndex] = useState(0);
   const [tiles, setTiles] = useState({ answerTiles: [], bankTiles: [] });
   const [feedback, setFeedback] = useState(null);
+  const tilesRef = useRef(tiles);
+
+  const commitTiles = useCallback((nextValueOrUpdater) => {
+    setTiles((prev) => {
+      const next = typeof nextValueOrUpdater === "function"
+        ? nextValueOrUpdater(prev)
+        : nextValueOrUpdater;
+      tilesRef.current = next;
+      return next;
+    });
+  }, []);
 
   useEffect(() => {
     if (!manifest || !packId) return;
@@ -27,15 +38,15 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
         setCards(deck);
         setIndex(0);
         setFeedback(null);
-        if (deck[0]) setTiles(makeTiles(deck[0]));
+        if (deck[0]) commitTiles(makeTiles(deck[0]));
       })
       .finally(() => setLoading(false));
-  }, [manifest, packId, filter]);
+  }, [manifest, packId, filter, commitTiles]);
 
   const currentCard = cards[index] || null;
 
   const pickTile = useCallback((tileId) => {
-    setTiles(prev => {
+    commitTiles(prev => {
       const tile = prev.bankTiles.find(t => t.id === tileId);
       if (!tile) return prev;
       return {
@@ -43,10 +54,10 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
         bankTiles: prev.bankTiles.filter(t => t.id !== tileId),
       };
     });
-  }, []);
+  }, [commitTiles]);
 
   const returnTile = useCallback((tileId) => {
-    setTiles(prev => {
+    commitTiles(prev => {
       const tile = prev.answerTiles.find(t => t.id === tileId);
       if (!tile) return prev;
       return {
@@ -54,17 +65,17 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
         bankTiles: [...prev.bankTiles, tile],
       };
     });
-  }, []);
+  }, [commitTiles]);
 
   const clearTiles = useCallback(() => {
     if (!currentCard) return;
-    setTiles(makeTiles(currentCard));
-  }, [currentCard]);
+    commitTiles(makeTiles(currentCard));
+  }, [currentCard, commitTiles]);
 
   const hintTile = useCallback(() => {
     if (!currentCard) return;
     const answer = (currentCard.answer || "").split(/\s+/);
-    setTiles(prev => {
+    commitTiles(prev => {
       const nextIdx = prev.answerTiles.length;
       if (nextIdx >= answer.length) return prev;
       const hintText = answer[nextIdx];
@@ -75,12 +86,20 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
         bankTiles: prev.bankTiles.filter(t => t.id !== fromBank.id),
       };
     });
-  }, [currentCard]);
+  }, [currentCard, commitTiles]);
 
   const checkAnswer = useCallback((spokenAnswer) => {
     if (!currentCard) return;
-    const userAnswer = spokenAnswer || tiles.answerTiles.map(t => t.text).join(" ");
-    const correct = normalizeForCompare(userAnswer) === normalizeForCompare(currentCard.answer || "");
+    const latestTiles = tilesRef.current.answerTiles;
+    const userAnswer = spokenAnswer || latestTiles.map(t => t.text).join(" ");
+    const expectedTiles = Array.isArray(currentCard.tiles)
+      ? currentCard.tiles.map((token) => normalizeForCompare(token))
+      : [];
+    const actualTiles = latestTiles.map((tile) => normalizeForCompare(tile.text));
+    const tilesMatch = expectedTiles.length > 0
+      && expectedTiles.length === actualTiles.length
+      && expectedTiles.every((token, index) => token === actualTiles[index]);
+    const correct = tilesMatch || normalizeForCompare(userAnswer) === normalizeForCompare(currentCard.answer || "");
     if (updateProgress) {
       updateProgress(state => {
         noteBuilderCardAttempt(state, packId, currentCard.id);
@@ -88,7 +107,7 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
       });
     }
     setFeedback({ correct, expected: currentCard.answer, actual: userAnswer });
-  }, [currentCard, tiles, packId, updateProgress]);
+  }, [currentCard, packId, updateProgress]);
 
   const nextCard = useCallback(() => {
     if (updateProgress && currentCard) {
@@ -97,15 +116,15 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
     const nextIdx = index + 1 < cards.length ? index + 1 : 0;
     setIndex(nextIdx);
     setFeedback(null);
-    if (cards[nextIdx]) setTiles(makeTiles(cards[nextIdx]));
-  }, [index, cards, currentCard, packId, updateProgress]);
+    if (cards[nextIdx]) commitTiles(makeTiles(cards[nextIdx]));
+  }, [index, cards, currentCard, packId, updateProgress, commitTiles]);
 
   const jumpToCard = useCallback((idx) => {
     if (idx < 0 || idx >= cards.length) return;
     setIndex(idx);
     setFeedback(null);
-    if (cards[idx]) setTiles(makeTiles(cards[idx]));
-  }, [cards]);
+    if (cards[idx]) commitTiles(makeTiles(cards[idx]));
+  }, [cards, commitTiles]);
 
   const stats = progress ? getBuilderStats(progress, packId) : { totalAttempted: 0, totalCorrect: 0, streak: 0 };
 

@@ -25,7 +25,7 @@
  * @param {boolean}  [flex]     - Whether to set flex: "1 1 200px" (default true)
  * @param {ReactNode} children  - <option> elements
  */
-export function LabeledSelect({ label, value, onChange, style, flex = true, children }) {
+export function LabeledSelect({ label, value, onChange, style, flex = true, children, selectTestId }) {
   return (
     <div
       style={{
@@ -50,6 +50,7 @@ export function LabeledSelect({ label, value, onChange, style, flex = true, chil
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        data-testid={selectTestId}
         style={{
           padding: "8px 12px",
           borderRadius: "8px",
@@ -78,7 +79,7 @@ export function LabeledSelect({ label, value, onChange, style, flex = true, chil
  * @param {Function} onSelect   - Called with item id when a pill is clicked
  * @param {object}   [style]    - Extra style for the outer wrapper
  */
-export function PillGroup({ label, items = [], value, onSelect, style }) {
+export function PillGroup({ label, items = [], value, onSelect, style, itemTestIdPrefix }) {
   return (
     <div
       style={{
@@ -111,6 +112,7 @@ export function PillGroup({ label, items = [], value, onSelect, style }) {
               key={id}
               type="button"
               className={`lw-nav-pill${active ? " active" : ""}`}
+              data-testid={itemTestIdPrefix ? `${itemTestIdPrefix}-${id}` : undefined}
               style={{ padding: "6px 14px", fontSize: "0.85rem" }}
               onClick={() => onSelect(id)}
             >
@@ -134,7 +136,7 @@ export function PillGroup({ label, items = [], value, onSelect, style }) {
  * @param {Function} onToggle     - Called with item id to toggle
  * @param {object}   [style]      - Extra style
  */
-export function ToggleGroup({ label, items = [], selected = [], onToggle, style }) {
+export function ToggleGroup({ label, items = [], selected = [], onToggle, style, itemTestIdPrefix }) {
   const selectedSet = selected instanceof Set ? selected : new Set(selected.map(String));
 
   return (
@@ -169,6 +171,7 @@ export function ToggleGroup({ label, items = [], selected = [], onToggle, style 
               key={id}
               type="button"
               className={`lw-nav-pill${active ? " active" : ""}`}
+              data-testid={itemTestIdPrefix ? `${itemTestIdPrefix}-${id}` : undefined}
               style={{ padding: "6px 14px", fontSize: "0.85rem" }}
               onClick={() => onToggle(id)}
             >
