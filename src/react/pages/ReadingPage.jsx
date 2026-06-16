@@ -16,7 +16,20 @@ import { filterPacksForPrefs } from "../utils/personalisation.js";
 
 // ─── Setup screen ─────────────────────────────────────────────────────────────
 
-function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, categoryOptions, personalisationPrefs }) {
+function PassageSetup({
+  manifest,
+  prefs,
+  setPrefs,
+  onStart,
+  message,
+  loading,
+  categoryOptions,
+  personalisationPrefs,
+  readingVoicePractice,
+  setReadingVoicePractice,
+  updateProgress,
+  voice,
+}) {
   const groups = useMemo(
     () => manifest ? filterPacksForPrefs(listPassageGroups(manifest), personalisationPrefs, "passage") : [],
     [manifest, personalisationPrefs],
@@ -611,6 +624,7 @@ function ReadingWorkspace({
             <VoiceFeedbackPanel
               status={
                 voicePractice.phase === "unclear" ? "unclear"
+                : voicePractice.phase === "wrong-language" ? "wrong-language"
                 : voicePractice.phase === "incorrect" ? "mispronounced"
                 : voicePractice.phase === "correct" ? "correct"
                 : null
@@ -816,6 +830,10 @@ export default function ReadingPage() {
         loading={loading}
         categoryOptions={categoryOptions}
         personalisationPrefs={progress?.prefs || {}}
+        readingVoicePractice={readingVoicePractice}
+        setReadingVoicePractice={setReadingVoicePractice}
+        updateProgress={updateProgress}
+        voice={voice}
       />
     );
   }

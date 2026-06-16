@@ -26,11 +26,11 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
   const builders = pack?.sentenceBuilders || [];
 
   useEffect(() => {
-    if (voicePractice?.phase === "correct") {
-      onDispatch("pl-builder-check");
+    if (voicePractice?.phase === "correct" && voicePractice.lastResult?.transcript) {
+      onDispatch("pl-builder-check", { spokenAnswer: voicePractice.lastResult.transcript });
       voicePractice.reset();
     }
-  }, [voicePractice?.phase]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [onDispatch, voicePractice]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!builders.length) return <div className="section-card pl-lesson-card"><p className="muted">No sentence builders in this pack.</p></div>;
 
@@ -157,6 +157,7 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
         <VoiceFeedbackPanel
           status={
             voicePractice.phase === "unclear" ? "unclear"
+            : voicePractice.phase === "wrong-language" ? "wrong-language"
             : voicePractice.phase === "incorrect" ? "mispronounced"
             : voicePractice.phase === "correct" ? "correct"
             : null

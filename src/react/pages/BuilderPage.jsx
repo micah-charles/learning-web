@@ -296,6 +296,7 @@ export default function BuilderPage() {
             <VoiceFeedbackPanel
               status={
                 voice.phase === "unclear" ? "unclear"
+                : voice.phase === "wrong-language" ? "wrong-language"
                 : voice.phase === "incorrect" ? "mispronounced"
                 : voice.phase === "correct" ? "correct"
                 : null

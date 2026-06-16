@@ -8,7 +8,7 @@
  * No framework. Follows the Learning Web vanilla JS + Vite pattern.
  */
 
-import { escapeHtml, shuffle } from "./utils.js";
+import { escapeHtml, normalizeForCompare, shuffle } from "./utils.js";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -403,7 +403,12 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
       const sentence   = builders[state.sentenceIndex];
       const trans      = sentence?.translations?.[state.targetLang];
       const expected   = trans?.tiles || [];
-      const correct    = compareTiles(state.selectedTiles, expected);
+      const expectedText = expected.join(" ");
+      const spokenAnswer = typeof data.spokenAnswer === "string" ? data.spokenAnswer : "";
+      const selectedText = spokenAnswer || state.selectedTiles.map(t => t.text).join(" ");
+      const correct    = spokenAnswer
+        ? normalizeForCompare(spokenAnswer) === normalizeForCompare(expectedText)
+        : compareTiles(state.selectedTiles, expected);
       const sid        = sentence?.sentenceId;
       const isFirst    = sid && !state.answered.builder[sid];
       const newAnswered = sid
@@ -421,15 +426,15 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
             phase:    "Sentence builder",
             conceptId:(sentence.concepts || [])[0] || sid,
             prompt:   sentence.translations?.en?.text || "",
-            expected: expected.join(" "),
-            selected: state.selectedTiles.map(t => t.text).join(" "),
+            expected: expectedText,
+            selected: selectedText,
           });
         }
       }
 
       // Speak the full target-language sentence when the answer is correct.
       const builderSpeakEffect = correct
-        ? { speak: { text: expected.join(" "), lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB" } }
+        ? { speak: { text: expectedText, lang: SPEECH_LANG_MAP[state.targetLang] || "en-GB" } }
         : null;
 
       return {

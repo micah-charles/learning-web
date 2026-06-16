@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { startListening, stopListening, isSpeechRecognitionSupported } from "../services/speechRecognitionService.js";
 import { normalizeForCompare } from "@/utils.js";
 
@@ -96,6 +96,8 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
   const targetRef = useRef("");
   const languageRef = useRef(languageCode || "en");
 
+  useEffect(() => () => stopListening(), []);
+
   const reset = useCallback(() => {
     stopListening();
     setPhase(PHASES.IDLE);
@@ -170,8 +172,16 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         }
 
         if (isLikelyWrongLanguage(transcript, langCode, targetText)) {
+          attemptRef.current += 1;
+          setAttempt(attemptRef.current);
           setPhase(PHASES.WRONG_LANGUAGE);
-          setLastResult({ transcript, confidence, status: "wrong-language", expected: targetText });
+          setLastResult({
+            transcript,
+            confidence,
+            status: "wrong-language",
+            expected: targetText,
+            attempt: attemptRef.current,
+          });
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("wrong-language");
           return;
@@ -241,6 +251,22 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         const sim = tokenSimilarity(target, normalized);
         if (sim >= 0.85 || (confidence >= CONFIDENCE_PASS && normalized === target)) {
           handleCorrect(transcript, confidence, "similar");
+          return;
+        }
+
+        if (isLikelyWrongLanguage(transcript, lang, target)) {
+          attemptRef.current += 1;
+          setAttempt(attemptRef.current);
+          setPhase(PHASES.WRONG_LANGUAGE);
+          setLastResult({
+            transcript,
+            confidence,
+            status: "wrong-language",
+            expected: target,
+            attempt: attemptRef.current,
+          });
+          setButtonState(SPEECH_STATE.error);
+          if (onError) onError("wrong-language");
           return;
         }
 
