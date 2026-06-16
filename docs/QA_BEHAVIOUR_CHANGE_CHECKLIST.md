@@ -3,6 +3,14 @@
 Any developer or AI coding agent who changes Learning Web behaviour should
 check whether the QA expectations need updating too.
 
+Playwright QA is a local-first workflow in this repo.
+
+- Automatic GitHub Actions Playwright QA on `push`, `pull_request`, and nightly
+  schedule is disabled.
+- The GitHub Actions workflow is manual-only if someone explicitly triggers it.
+- By default, run Playwright QA on your local machine before merging important
+  product, data, or behaviour changes.
+
 Examples of behaviour changes:
 
 - Number of cards or rounds exercised in Builder QA
@@ -17,33 +25,51 @@ Examples of behaviour changes:
 
 Required steps:
 
-1. Update product behaviour config:
+1. Install dependencies and browsers if needed:
+
+   `npm ci`
+
+   `npx playwright install`
+
+2. Update product behaviour config:
 
    `src/config/learningBehaviourConfig.js`
 
-2. Update QA behaviour config:
+3. Update QA behaviour config:
 
    `qa/config/qa-behaviour.config.json`
 
-3. Run:
+4. Run:
 
    `npm run qa:config-check`
 
-4. Run smoke test:
+5. Run smoke test:
 
    `npm run qa:smoke`
 
-5. If the change affects data-driven questions, run:
+6. If the change affects data-driven questions, run:
 
    `npm run qa:data-sample`
 
-6. Before release, run:
+7. Before release, run:
 
    `npm run qa:full`
+
+Useful manual variants:
+
+- Local production build:
+
+  `npm run build`
+
+  `npm run qa:smoke`
+
+- Production URL smoke check:
+
+  `QA_USE_LOCAL_SERVER=false QA_BASE_URL=https://www.foxchildidea.com npm run qa:smoke`
 
 Important:
 
 - Do not change hardcoded UI behaviour without updating the shared behaviour config.
 - The QA engine reads expectations from QA config and local pack JSON.
-- If behaviour changes but QA config is not updated, scheduled verification may
+- If behaviour changes but QA config is not updated, local verification may
   give false failures or false passes.

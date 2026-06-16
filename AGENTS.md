@@ -185,6 +185,15 @@ Do not leave product behaviour and QA expectations out of sync.
 When adding or changing user-facing functionality, add or update Playwright
 coverage where practical.
 
+Learning Web Playwright QA is local-first:
+
+- Automatic GitHub Actions execution on `push`, `pull_request`, and nightly
+  schedule is disabled.
+- The workflow may remain in GitHub as manual-only `workflow_dispatch`.
+- Do not remove the QA engine, configs, fixtures, scripts, or Playwright setup
+  unless the user explicitly asks for that.
+- Default expectation: run Playwright locally before merging important changes.
+
 Prefer stable selectors:
 - `data-testid`
 - semantic roles
@@ -197,9 +206,16 @@ Avoid fragile selectors:
 - styling-dependent layout assumptions
 
 Run the appropriate checks before shipping:
+- `npm ci`
+- `npx playwright install`
+- `npm run qa:config-check`
 - `npm run qa:smoke`
 - `npm run qa:data-sample`
 - `npm run qa:full` for broad regression coverage
+
+Useful manual variants:
+- `npm run build && npm run qa:smoke`
+- `QA_USE_LOCAL_SERVER=false QA_BASE_URL=https://www.foxchildidea.com npm run qa:smoke`
 
 ## 10. Data-driven QA rule
 
