@@ -42,6 +42,18 @@ function tokenSimilarity(expected, recognized) {
   return matched / Math.max(eTokens.length, rTokens.length);
 }
 
+function estimateAccuracyPercent(expected, recognized, confidence = 0) {
+  const e = normalizeSentence(expected);
+  const r = normalizeSentence(recognized);
+  if (!e || !r) return Math.round(Math.max(0, confidence) * 100);
+  if (e === r) return 100;
+  const charBase = Math.max(e.length, r.length, 1);
+  const charSimilarity = Math.max(0, 1 - (levenshteinDistance(e, r) / charBase));
+  const tokenScore = tokenSimilarity(e, r);
+  const blended = Math.max(tokenScore, charSimilarity, confidence || 0);
+  return Math.max(0, Math.min(100, Math.round(blended * 100)));
+}
+
 function normalizeSentence(text) {
   return normalizeForCompare(text || "")
     .replace(/[^a-z0-9\s]/g, "")
@@ -118,10 +130,11 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
   }, []);
 
   const handleCorrect = useCallback((transcript, confidence, status) => {
+    const accuracy = estimateAccuracyPercent(targetRef.current, transcript, confidence);
     setPhase(PHASES.CORRECT);
     setButtonState(SPEECH_STATE.success);
-    setLastResult({ transcript, confidence, status });
-    if (onResult) onResult(transcript, confidence, status);
+    setLastResult({ transcript, confidence, status, expected: targetRef.current, accuracy });
+    if (onResult) onResult(transcript, confidence, status, { accuracy });
   }, [onResult]);
 
   const startPractice = useCallback((targetText, lang) => {
@@ -149,7 +162,13 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
           setAttempt(attemptRef.current);
           if (attemptRef.current >= maxAttempts) {
             setPhase(PHASES.INCORRECT);
-            setLastResult({ transcript, confidence, status: "max-attempts", expected: targetText });
+            setLastResult({
+              transcript,
+              confidence,
+              status: "max-attempts",
+              expected: targetText,
+              accuracy: estimateAccuracyPercent(targetText, transcript, confidence),
+            });
             setButtonState(SPEECH_STATE.error);
             if (onError) onError("max-attempts");
           } else {
@@ -181,6 +200,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
             status: "wrong-language",
             expected: targetText,
             attempt: attemptRef.current,
+            accuracy: estimateAccuracyPercent(targetText, transcript, confidence),
           });
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("wrong-language");
@@ -191,12 +211,24 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         setAttempt(attemptRef.current);
         if (attemptRef.current >= maxAttempts) {
           setPhase(PHASES.INCORRECT);
-          setLastResult({ transcript, confidence, status: "max-attempts", expected: targetText });
+          setLastResult({
+            transcript,
+            confidence,
+            status: "max-attempts",
+            expected: targetText,
+            accuracy: estimateAccuracyPercent(targetText, transcript, confidence),
+          });
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("max-attempts");
         } else {
           handleMispronunciation();
-          setLastResult({ transcript, confidence, expected: targetText, attempt: attemptRef.current });
+          setLastResult({
+            transcript,
+            confidence,
+            expected: targetText,
+            attempt: attemptRef.current,
+            accuracy: estimateAccuracyPercent(targetText, transcript, confidence),
+          });
         }
       },
       (error) => {
@@ -234,7 +266,13 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
           setAttempt(attemptRef.current);
           if (attemptRef.current >= maxAttempts) {
             setPhase(PHASES.INCORRECT);
-            setLastResult({ transcript, confidence, status: "max-attempts", expected: target });
+            setLastResult({
+              transcript,
+              confidence,
+              status: "max-attempts",
+              expected: target,
+              accuracy: estimateAccuracyPercent(target, transcript, confidence),
+            });
             setButtonState(SPEECH_STATE.error);
             if (onError) onError("max-attempts");
           } else {
@@ -264,6 +302,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
             status: "wrong-language",
             expected: target,
             attempt: attemptRef.current,
+            accuracy: estimateAccuracyPercent(target, transcript, confidence),
           });
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("wrong-language");
@@ -274,12 +313,24 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         setAttempt(attemptRef.current);
         if (attemptRef.current >= maxAttempts) {
           setPhase(PHASES.INCORRECT);
-          setLastResult({ transcript, confidence, status: "max-attempts", expected: target });
+          setLastResult({
+            transcript,
+            confidence,
+            status: "max-attempts",
+            expected: target,
+            accuracy: estimateAccuracyPercent(target, transcript, confidence),
+          });
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("max-attempts");
         } else {
           handleMispronunciation();
-          setLastResult({ transcript, confidence, expected: target, attempt: attemptRef.current });
+          setLastResult({
+            transcript,
+            confidence,
+            expected: target,
+            attempt: attemptRef.current,
+            accuracy: estimateAccuracyPercent(target, transcript, confidence),
+          });
         }
       },
       (error) => {

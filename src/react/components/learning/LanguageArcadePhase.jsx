@@ -1,16 +1,10 @@
 /**
  * LanguageArcadePhase.jsx
  *
- * Runs the 2-round Arcade challenge:
- *   🦊 Quiz Hunt  → 🐍 Sentence Snake
+ * Runs the current Language Ladder arcade challenge.
  *
- * Pass rule (Feature 3):
- *   - 100% accuracy → advance to next round automatically.
- *   - <100% accuracy → show "Please retry" overlay. Player must replay
- *     until they achieve 100%.
- *
- * On all rounds complete → marks the lesson done and calls onComplete
- * (which triggers goToLesson for auto-advance to the next lesson).
+ * Today that means a single Quiz Hunt round. The learner must score 100%;
+ * otherwise the same round remounts automatically until they get it right.
  */
 import { useRef, useMemo, useEffect } from "react";
 import { useLanguageArcadeSession } from "../../hooks/useLanguageArcadeSession.js";
@@ -29,12 +23,9 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
   const {
     round, roundIndex,
     questions, hasContent,
-    done, needsRetry, lastAccuracy,
-    onRoundEnd, clearRetry,
+    done, retryNonce,
+    onRoundEnd,
   } = useLanguageArcadeSession(pack, targetLang);
-
-  // retryKey forces a game remount when the player clicks "Try again".
-  const retryKeyRef = useRef(0);
 
   // Sound
   const mutedRef = useRef(!prefs?.sound);
@@ -60,11 +51,6 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
     }
   }
 
-  function handleRetryAgain() {
-    retryKeyRef.current += 1;
-    clearRetry();
-  }
-
   if (!pack) return null;
 
   // Auto-skip rounds with no content.
@@ -74,7 +60,7 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
   }
 
   const mapType = round.mode === "quiz-hunt" ? "pillars" : "open";
-  const gameKey = `${round.mode}-${roundIndex}-${retryKeyRef.current}`;
+  const gameKey = `${round.mode}-${roundIndex}-${retryNonce}`;
 
   const commonProps = {
     questions, mapType, goal: FULL_SET_GOAL, sound,
@@ -86,27 +72,6 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
 
   return (
     <div className="lw-page arc-page" data-testid="progressive-phase-arcade">
-      {/* Retry overlay — shown when last attempt was <100% */}
-      {needsRetry && (
-        <div className="lap-retry-overlay" data-testid="progressive-arcade-retry">
-          <div className="lap-retry-card">
-            <div className="lap-retry-icon">🎯</div>
-            <h3 className="lap-retry-title">Almost there!</h3>
-            <p className="lap-retry-msg">
-              You scored <strong>{lastAccuracy}%</strong> — please reach{" "}
-              <strong>100%</strong> to move on.
-            </p>
-            <button
-              type="button"
-              className="lw-btn lw-btn-primary"
-              onClick={handleRetryAgain}
-            >
-              Try again →
-            </button>
-          </div>
-        </div>
-      )}
-
       {round.mode === "quiz-hunt"
         ? <QuizHuntGame    key={gameKey} {...commonProps} />
         : <SnakeBuilderGame key={gameKey} {...commonProps} />

@@ -2,6 +2,8 @@
  * ListenPhase — phrase-chain listen & repeat cards with grammar analysis.
  */
 import { getDisplayText, getReadingHint, TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
+import VoicePracticeButton from "../learning/VoicePracticeButton.jsx";
+import VoiceFeedbackPanel from "../learning/VoiceFeedbackPanel.jsx";
 
 function GrammarPanel({ translation, lang }) {
   const a = translation?.analysis;
@@ -50,7 +52,7 @@ function TokenRow({ translation, showLabels }) {
   );
 }
 
-export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
+export default function ListenPhase({ session, pack, onDispatch, onSpeak, voicePractice = null, speechLang = "de-DE" }) {
   const chains = pack?.phraseProgressionChains || [];
   if (!chains.length) return <div className="section-card pl-lesson-card"><p className="muted">No phrase chains in this pack.</p></div>;
 
@@ -105,6 +107,14 @@ export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
               <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
               Play
             </button>
+            {voicePractice && targetTxt && (
+              <VoicePracticeButton
+                dataTestId="progressive-listen-voice-practice-button"
+                state={voicePractice.buttonState}
+                onClick={() => voicePractice.startPractice(targetTxt, speechLang)}
+                disabled={voicePractice.phase === "listening" || voicePractice.phase === "processing"}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -132,6 +142,26 @@ export default function ListenPhase({ session, pack, onDispatch, onSpeak }) {
           {isLast ? "Vocabulary →" : "Next →"}
         </button>
       </div>
+
+      {voicePractice && (
+        <VoiceFeedbackPanel
+          status={
+            voicePractice.phase === "unclear" ? "unclear"
+            : voicePractice.phase === "wrong-language" ? "wrong-language"
+            : voicePractice.phase === "incorrect" ? "mispronounced"
+            : voicePractice.phase === "correct" ? "correct"
+            : null
+          }
+          expected={targetTxt}
+          recognized={voicePractice.lastResult?.transcript}
+          confidence={voicePractice.lastResult?.confidence}
+          accuracy={voicePractice.lastResult?.accuracy}
+          attempt={voicePractice.attempt}
+          maxAttempts={3}
+          onRetry={voicePractice.retry}
+          onCancel={voicePractice.cancel}
+        />
+      )}
     </div>
   );
 }

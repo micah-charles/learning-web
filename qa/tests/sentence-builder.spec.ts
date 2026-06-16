@@ -79,3 +79,76 @@ test("@data-sample standalone builder shows incorrect feedback for wrong order",
 
   await expectNoConsoleErrors(errors);
 });
+
+test("@data-sample standalone builder speak helper reads tiles instead of moving them", async ({ page }) => {
+  await page.addInitScript(() => {
+    class MockSpeechSynthesisUtterance {
+      text: string;
+      lang: string;
+      rate: number;
+
+      constructor(text: string) {
+        this.text = text;
+        this.lang = "";
+        this.rate = 1;
+      }
+    }
+
+    Object.defineProperty(window, "SpeechSynthesisUtterance", {
+      configurable: true,
+      writable: true,
+      value: MockSpeechSynthesisUtterance,
+    });
+    Object.defineProperty(globalThis, "SpeechSynthesisUtterance", {
+      configurable: true,
+      writable: true,
+      value: MockSpeechSynthesisUtterance,
+    });
+    (window as any).__spokenUtterances = [];
+    Object.defineProperty(window, "speechSynthesis", {
+      configurable: true,
+      value: {
+      speak(utterance: { text?: string; lang?: string }) {
+        (window as any).__spokenUtterances.push({
+          text: utterance?.text || "",
+          lang: utterance?.lang || "",
+        });
+      },
+      cancel() {},
+      pause() {},
+      resume() {},
+      getVoices() {
+        return [];
+      },
+      speaking: false,
+      pending: false,
+      paused: false,
+      addEventListener() {},
+      removeEventListener() {},
+      dispatchEvent() {
+        return true;
+      },
+      onvoiceschanged: null,
+      },
+    });
+  });
+
+  const errors = collectConsoleErrors(page);
+  await openHome(page);
+  await goToTab(page, "builder");
+
+  await page.getByTestId("builder-speak-instead-toggle").locator("input").check();
+  const firstTile = page.getByTestId("sentence-word-token").first();
+  const tileText = normalizeText(await firstTile.innerText());
+
+  await firstTile.click();
+  await expect(page.getByTestId("sentence-builder-answer-token")).toHaveCount(0);
+
+  const spoken = await page.evaluate(() => {
+    const utterances = (window as any).__spokenUtterances || [];
+    return utterances[utterances.length - 1] || null;
+  });
+  expect(normalizeText(spoken?.text || "")).toBe(tileText);
+
+  await expectNoConsoleErrors(errors);
+});

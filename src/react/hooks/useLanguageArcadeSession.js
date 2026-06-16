@@ -2,30 +2,58 @@
  * useLanguageArcadeSession.js
  *
  * Converts a progressive-language-lesson pack into Arcade game questions,
- * and tracks the 2-round completion sequence:
+ * and tracks the Language Ladder arcade sequence.
  *
- *   Round 1 — Quiz Hunt     (vocab words)
- *   Round 2 — Sentence Snake (sentence builders)
- *
- * Pass condition (Feature 3):
- *   - accuracy === 100 → advance to next round / mark done
- *   - accuracy < 100   → stay on same round, return { needsRetry: true }
- *     so LanguageArcadePhase can show a "Please retry" message.
+ * We keep the full two-round sequence exported for future reuse, but the
+ * current Language Ladder flow uses only the first round (Quiz Hunt). If the
+ * learner scores below 100%, the same round remounts immediately and repeats
+ * until they clear it perfectly.
  */
 import { useMemo, useState } from "react";
 import { buildQuizHuntQuestions, buildSnakeBuilderQuestions } from "../games/arcade/utils/gameQuestionAdapter.js";
 import { SPEECH_LANG_MAP } from "@/progressive-language-lesson.js";
 
-const SEQUENCE = [
+export const FULL_LANGUAGE_ARCADE_SEQUENCE = [
   { mode: "quiz-hunt",     label: "Quiz Hunt"      },
   { mode: "snake-builder", label: "Sentence Snake" },
 ];
 
+export const LANGUAGE_LADDER_ARCADE_SEQUENCE = [FULL_LANGUAGE_ARCADE_SEQUENCE[0]];
+
+export function resolveLanguageArcadeRoundState(previousState, result, sequence = LANGUAGE_LADDER_ARCADE_SEQUENCE) {
+  const accuracy = result?.accuracy ?? 0;
+  const nextState = {
+    ...previousState,
+    lastAccuracy: accuracy,
+  };
+
+  if (accuracy < 100) {
+    return {
+      ...nextState,
+      retryNonce: (previousState?.retryNonce || 0) + 1,
+      done: false,
+    };
+  }
+
+  const nextIdx = (previousState?.roundIndex || 0) + 1;
+  if (nextIdx >= sequence.length) {
+    return {
+      ...nextState,
+      done: true,
+    };
+  }
+
+  return {
+    ...nextState,
+    roundIndex: nextIdx,
+  };
+}
+
 export function useLanguageArcadeSession(pack, targetLang) {
   const [roundIndex, setRoundIndex] = useState(0);
   const [done, setDone]             = useState(false);
-  const [needsRetry, setNeedsRetry] = useState(false);
   const [lastAccuracy, setLastAccuracy] = useState(null);
+  const [retryNonce, setRetryNonce] = useState(0);
 
   const quizQuestions = useMemo(() => {
     if (!pack?.vocabulary?.length) return [];
@@ -63,57 +91,40 @@ export function useLanguageArcadeSession(pack, targetLang) {
     return buildSnakeBuilderQuestions(cards, { speechLanguage });
   }, [pack, targetLang]);
 
-  const round = SEQUENCE[roundIndex] ?? SEQUENCE[SEQUENCE.length - 1];
+  const round = LANGUAGE_LADDER_ARCADE_SEQUENCE[roundIndex]
+    ?? LANGUAGE_LADDER_ARCADE_SEQUENCE[LANGUAGE_LADDER_ARCADE_SEQUENCE.length - 1];
   const questions = round.mode === "quiz-hunt" ? quizQuestions : snakeQuestions;
   const hasContent = questions.length > 0;
 
-  /**
-   * Called when a round ends.
-   * accuracy === 100 → advance; otherwise → set needsRetry so the UI can
-   * show a "Please retry" message before the player tries again.
-   */
   function onRoundEnd(result) {
-    const accuracy = result?.accuracy ?? 0;
-    setLastAccuracy(accuracy);
-
-    if (accuracy < 100) {
-      setNeedsRetry(true);
-      return;
-    }
-
-    // 100% — clear any previous retry state and advance.
-    setNeedsRetry(false);
-    const nextIdx = roundIndex + 1;
-    if (nextIdx >= SEQUENCE.length) {
-      setDone(true);
-    } else {
-      setRoundIndex(nextIdx);
-    }
-  }
-
-  /** Called when the player acknowledges the retry message and plays again. */
-  function clearRetry() {
-    setNeedsRetry(false);
+    const next = resolveLanguageArcadeRoundState(
+      { roundIndex, done, lastAccuracy, retryNonce },
+      result,
+      LANGUAGE_LADDER_ARCADE_SEQUENCE,
+    );
+    setLastAccuracy(next.lastAccuracy);
+    setRetryNonce(next.retryNonce || 0);
+    setDone(!!next.done);
+    setRoundIndex(next.roundIndex || 0);
   }
 
   function restart() {
     setRoundIndex(0);
     setDone(false);
-    setNeedsRetry(false);
     setLastAccuracy(null);
+    setRetryNonce(0);
   }
 
   return {
     round,
     roundIndex,
-    totalRounds: SEQUENCE.length,
+    totalRounds: LANGUAGE_LADDER_ARCADE_SEQUENCE.length,
     questions,
     hasContent,
     done,
-    needsRetry,   // true when last round ended with accuracy < 100%
     lastAccuracy, // the accuracy value from the last round attempt
+    retryNonce,
     onRoundEnd,
-    clearRetry,
     restart,
   };
 }

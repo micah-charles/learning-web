@@ -30,6 +30,9 @@ export default function LanguagePage() {
   const [voicePracticeMode, setVoicePracticeMode] = useState(
     progress?.prefs?.voice?.voicePracticeMode ?? false
   );
+  const [speakInstead, setSpeakInstead] = useState(
+    progress?.prefs?.voice?.speakInsteadOfClick ?? false
+  );
   const [nextLesson, setNextLesson]   = useState(null);
 
   const {
@@ -48,6 +51,12 @@ export default function LanguagePage() {
     languageCode: speechLang,
     onResult: () => {},
   });
+
+  useEffect(() => {
+    if (session?.phase !== "listen" && session?.phase !== "builder") {
+      voice.reset();
+    }
+  }, [session?.phase, voice.reset]);
 
   useEffect(() => {
     if (!speechPlaybackSupported && session?.phase === "listen") {
@@ -179,7 +188,14 @@ export default function LanguagePage() {
       )}
 
       {pack && phase === "listen"  && (
-        <ListenPhase  session={session} pack={pack} onDispatch={dispatch} onSpeak={speakCurrentCue} />
+        <ListenPhase
+          session={session}
+          pack={pack}
+          onDispatch={dispatch}
+          onSpeak={speakCurrentCue}
+          voicePractice={voicePracticeSupported && voicePracticeMode ? voice : null}
+          speechLang={speechLang}
+        />
       )}
       {pack && phase === "vocab"   && (
         <VocabPhase session={session} pack={pack} onDispatch={dispatch} canGoBack={speechPlaybackSupported} />
@@ -191,6 +207,14 @@ export default function LanguagePage() {
           onDispatch={handleDispatch}
           voicePractice={voicePracticeSupported && voicePracticeMode ? voice : null}
           speechLang={speechLang}
+          speakInstead={speechPlaybackSupported && speakInstead}
+          onToggleSpeakInstead={(checked) => {
+            setSpeakInstead(checked);
+            updateProgress((state) => {
+              if (!state.prefs.voice) state.prefs.voice = {};
+              state.prefs.voice.speakInsteadOfClick = checked;
+            });
+          }}
         />
       )}
       {pack && (phase === "review" || phase === "arcade") && (
