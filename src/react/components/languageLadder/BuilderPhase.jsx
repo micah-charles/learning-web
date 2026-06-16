@@ -3,6 +3,7 @@
  */
 import { useEffect } from "react";
 import { TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
+import { useSpeech } from "../../hooks/useSpeech.js";
 import VoicePracticeButton from "../learning/VoicePracticeButton.jsx";
 import VoiceFeedbackPanel from "../learning/VoiceFeedbackPanel.jsx";
 
@@ -22,8 +23,17 @@ function GrammarPanel({ translation, lang }) {
   );
 }
 
-export default function BuilderPhase({ session, pack, onDispatch, voicePractice = null, speechLang = "de-DE" }) {
+export default function BuilderPhase({
+  session,
+  pack,
+  onDispatch,
+  voicePractice = null,
+  speechLang = "de-DE",
+  speakInstead = false,
+  onToggleSpeakInstead = null,
+}) {
   const builders = pack?.sentenceBuilders || [];
+  const { speak } = useSpeech();
 
   useEffect(() => {
     if (voicePractice?.phase === "correct" && voicePractice.lastResult?.transcript) {
@@ -47,6 +57,24 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
   const answerCls = answered
     ? session.builderFeedback?.correct ? "answer-correct" : "answer-wrong"
     : "";
+
+  function handleSpeakOrPick(tile) {
+    if (answered) return;
+    if (speakInstead) {
+      speak(tile.text, speechLang);
+      return;
+    }
+    onDispatch("pl-builder-pick", { tileId: tile.id });
+  }
+
+  function handleSpeakOrRemove(tile) {
+    if (answered) return;
+    if (speakInstead) {
+      speak(tile.text, speechLang);
+      return;
+    }
+    onDispatch("pl-builder-remove", { tileId: tile.id });
+  }
 
   return (
     <div className="section-card pl-lesson-card" data-testid="progressive-phase-builder">
@@ -89,7 +117,7 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
                     className={`tile answer${answered && !session.builderFeedback?.correct ? " shake" : ""}`}
                     data-testid="progressive-builder-answer-token"
                     disabled={!!answered}
-                    onClick={() => !answered && onDispatch("pl-builder-remove", { tileId: t.id })}>
+                    onClick={() => handleSpeakOrRemove(t)}>
                     {t.text}
                   </button>
                 ))
@@ -101,20 +129,36 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
         <div className="pl-builder-zone">
           <div className="pl-builder-zone-head">
             <label className="pl-zone-label">Tiles</label>
-            {hasGram && (
-              <button type="button" className="button ghost pl-labels-btn"
-                style={{ fontSize: "0.78rem", padding: "3px 8px" }}
-                onClick={() => onDispatch("pl-toggle-grammar-labels")}>
-                {session.showGrammarLabels ? "Hide labels" : "Word labels"}
-              </button>
-            )}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+              {hasGram && (
+                <button type="button" className="button ghost pl-labels-btn"
+                  style={{ fontSize: "0.78rem", padding: "3px 8px" }}
+                  onClick={() => onDispatch("pl-toggle-grammar-labels")}>
+                  {session.showGrammarLabels ? "Hide labels" : "Word labels"}
+                </button>
+              )}
+              {onToggleSpeakInstead && (
+                <label
+                  className="lw-check-row"
+                  data-testid="progressive-builder-speak-instead-toggle"
+                  style={{ fontSize: "0.78rem", gap: "6px" }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={speakInstead}
+                    onChange={(e) => onToggleSpeakInstead(e.target.checked)}
+                  />
+                  🎤 Speak Instead of Click
+                </label>
+              )}
+            </div>
           </div>
           <div className="tile-area">
             {session.bankTiles.length
               ? session.bankTiles.map(t => (
                   <button key={t.id} type="button" className="tile" disabled={!!answered}
                     data-testid="progressive-builder-token"
-                    onClick={() => !answered && onDispatch("pl-builder-pick", { tileId: t.id })}>
+                    onClick={() => handleSpeakOrPick(t)}>
                     {t.text}
                   </button>
                 ))
@@ -169,6 +213,7 @@ export default function BuilderPhase({ session, pack, onDispatch, voicePractice 
           expected={voicePractice.lastResult?.expected}
           recognized={voicePractice.lastResult?.transcript}
           confidence={voicePractice.lastResult?.confidence}
+          accuracy={voicePractice.lastResult?.accuracy}
           attempt={voicePractice.attempt}
           maxAttempts={3}
           onRetry={voicePractice.retry}

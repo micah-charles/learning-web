@@ -97,7 +97,7 @@ function canMove(map, pos, direction) {
 
 function resolveDirection(g, directionRef, queuedDirectionRef) {
   const queued = queuedDirectionRef.current;
-  const current = directionRef.current !== "none" ? directionRef.current : g.direction;
+  const current = directionRef.current;
 
   if (canMove(g.map, g.player, queued)) {
     directionRef.current = queued;
@@ -111,6 +111,7 @@ function resolveDirection(g, directionRef, queuedDirectionRef) {
   }
 
   directionRef.current = "none";
+  queuedDirectionRef.current = "none";
   return "none";
 }
 

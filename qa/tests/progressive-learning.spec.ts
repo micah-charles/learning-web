@@ -67,3 +67,143 @@ test("@data-sample progressive learning uses the configured step order and reach
   await expect(page.getByTestId("progressive-phase-arcade")).toBeVisible();
   await expectNoConsoleErrors(errors);
 });
+
+test("@data-sample progressive learning supports listen voice practice feedback and builder speak-on-tap help", async ({ page }) => {
+  await page.addInitScript(() => {
+    const bag = window as any;
+    bag.__spokenUtterances = [];
+    bag.__nextSpeechTranscript = "";
+    bag.__nextSpeechConfidence = 0.96;
+
+    class FakeUtterance {
+      constructor(text) {
+        this.text = text;
+        this.lang = "";
+        this.rate = 1;
+        this.voice = null;
+      }
+    }
+
+    class FakeSpeechRecognition {
+      constructor() {
+        this.continuous = false;
+        this.interimResults = false;
+        this.maxAlternatives = 1;
+        this.lang = "en-GB";
+        this.onresult = null;
+        this.onerror = null;
+        this.onend = null;
+      }
+
+      start() {
+        const bag = window as any;
+        setTimeout(() => {
+          this.onresult?.({
+            results: [
+              [
+                {
+                  transcript: bag.__nextSpeechTranscript,
+                  confidence: bag.__nextSpeechConfidence,
+                },
+              ],
+            ],
+          });
+          this.onend?.();
+        }, 0);
+      }
+
+      stop() {
+        this.onend?.();
+      }
+    }
+
+    Object.defineProperty(window, "SpeechSynthesisUtterance", {
+      value: FakeUtterance,
+      configurable: true,
+    });
+    Object.defineProperty(window, "speechSynthesis", {
+      configurable: true,
+      value: {
+        speaking: false,
+        pending: false,
+        cancel() {},
+        speak(utterance) {
+          const bag = window as any;
+          bag.__spokenUtterances.push({ text: utterance.text, lang: utterance.lang });
+        },
+        getVoices() {
+          return [];
+        },
+      },
+    });
+    Object.defineProperty(window, "SpeechRecognition", {
+      value: FakeSpeechRecognition,
+      configurable: true,
+    });
+    Object.defineProperty(window, "webkitSpeechRecognition", {
+      value: FakeSpeechRecognition,
+      configurable: true,
+    });
+  });
+
+  const { pack } = await findFirstProgressiveLesson();
+  const builderRecords = (pack.sentenceBuilders || []).map((item: any, index: number) => ({
+    id: item.sentenceId || `builder-${index + 1}`,
+    prompt: String(item.translations?.en?.text || "").trim(),
+    tiles: Array.isArray(item.translations?.de?.tiles) ? item.translations.de.tiles : String(item.translations?.de?.text || "").split(/\s+/).filter(Boolean),
+  }));
+
+  const errors = collectConsoleErrors(page);
+  await openHome(page);
+  await goToTab(page, "language");
+
+  await page.getByTestId("progressive-voice-practice-toggle").check();
+  await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeVisible();
+
+  const targetText = (await page.locator(".pl-phrase-card.target .pl-phrase-text").first().innerText()).trim();
+  await page.evaluate((text) => {
+    const bag = window as any;
+    bag.__nextSpeechTranscript = text;
+    bag.__nextSpeechConfidence = 0.97;
+  }, targetText);
+  await page.getByTestId("progressive-listen-voice-practice-button").click();
+  await expect(page.getByTestId("voice-feedback-panel")).toBeVisible();
+  await expect(page.getByTestId("voice-feedback-accuracy")).toContainText("100%");
+
+  for (let guard = 0; guard < 20; guard += 1) {
+    if (await page.getByTestId("progressive-phase-vocab").isVisible()) break;
+    await page.getByTestId("progressive-next-step-button").click();
+  }
+  await expect(page.getByTestId("progressive-phase-vocab")).toBeVisible();
+
+  for (let guard = 0; guard < (pack.vocabulary || []).length; guard += 1) {
+    if (await page.getByTestId("progressive-phase-builder").isVisible()) break;
+    const prompt = await page.locator(".question-prompt").first().innerText();
+    const correct = getProgressiveVocabAnswer(pack, prompt);
+    await clickOptionByText(page.getByTestId("progressive-vocab-option"), correct);
+    await page.getByTestId("progressive-next-step-button").click();
+  }
+  await expect(page.getByTestId("progressive-phase-builder")).toBeVisible();
+
+  const builderPrompt = await page.locator(".question-prompt").first().innerText();
+  expect(findBuilderRecordForPrompt(builderPrompt, builderRecords)).toBeTruthy();
+
+  await page.getByTestId("progressive-builder-speak-instead-toggle").check();
+  await page.evaluate(() => {
+    (window as any).__spokenUtterances = [];
+  });
+
+  const firstTile = page.getByTestId("progressive-builder-token").first();
+  const firstTileText = (await firstTile.innerText()).trim();
+  await firstTile.click();
+  await expect(page.getByTestId("progressive-builder-answer-token")).toHaveCount(0);
+
+  const spoken = await page.evaluate(() => {
+    const bag = window as any;
+    return bag.__spokenUtterances[bag.__spokenUtterances.length - 1] || null;
+  });
+  expect(spoken).toBeTruthy();
+  expect(String(spoken.text || "").trim()).toBe(firstTileText);
+
+  await expectNoConsoleErrors(errors);
+});

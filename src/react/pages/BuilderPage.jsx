@@ -3,6 +3,7 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { useBuilderSession } from "../hooks/useBuilderSession.js";
 import { useVoicePractice } from "../hooks/useVoicePractice.js";
+import { useSpeech } from "../hooks/useSpeech.js";
 import { TileBuilder } from "../components/learning/TileBuilder.jsx";
 import { LabeledSelect, PillGroup, FilterRow, EmptyState, LoadingText } from "../components/layout/Controls.jsx";
 import { SubjectCardGrid } from "../components/layout/SubjectCardGrid.jsx";
@@ -92,6 +93,7 @@ export default function BuilderPage() {
   const [speakInstead, setSpeakInstead] = useState(
     progress?.prefs?.voice?.speakInsteadOfClick ?? false
   );
+  const { speak } = useSpeech();
 
   const activePack = visiblePacks.find(p => p.id === activePackId);
   const speechLang = activePack?.sourceLanguageCode
@@ -174,7 +176,11 @@ export default function BuilderPage() {
             Streak: <strong>{stats.streak}</strong>
           </span>
           <StudyBookButton dataset={activePack} />
-          <label className="lw-check-row" style={{ fontSize: "0.82rem", marginLeft: "auto" }}>
+          <label
+            className="lw-check-row"
+            data-testid="builder-speak-instead-toggle"
+            style={{ fontSize: "0.82rem", marginLeft: "auto" }}
+          >
             <input
               type="checkbox"
               checked={speakInstead}
@@ -255,6 +261,8 @@ export default function BuilderPage() {
             onPick={pickTile}
             onReturn={returnTile}
             disabled={!!feedback}
+            speakInstead={speakInstead}
+            onSpeakTile={(text) => speak(text, speechLang)}
           />
 
           {feedback && (
@@ -308,6 +316,7 @@ export default function BuilderPage() {
               expected={voice.lastResult?.expected}
               recognized={voice.lastResult?.transcript}
               confidence={voice.lastResult?.confidence}
+              accuracy={voice.lastResult?.accuracy}
               attempt={voice.attempt}
               maxAttempts={3}
               onRetry={voice.retry}

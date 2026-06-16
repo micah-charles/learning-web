@@ -1,4 +1,4 @@
-export default function VoiceFeedbackPanel({ status, expected, recognized, confidence, attempt, maxAttempts, onRetry, onCancel }) {
+export default function VoiceFeedbackPanel({ status, expected, recognized, confidence, accuracy, attempt, maxAttempts, onRetry, onCancel }) {
   if (!status) return null;
 
   const styles = {
@@ -14,7 +14,7 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
     styles.container.borderColor = "var(--lw-line, #ddd)";
     styles.container.background = "var(--lw-panel, #f9f9f9)";
     return (
-      <div style={styles.container}>
+      <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, fontSize: "0.95rem" }}>
           🤔 I didn't catch that. Please try again.
         </p>
@@ -35,7 +35,7 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
     styles.container.background = "var(--lw-coral-light, #fde8e8)";
     const remaining = maxAttempts - attempt;
     return (
-      <div style={styles.container}>
+      <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, color: "var(--lw-coral, #c0392b)" }}>
           ❌ Almost correct.
         </p>
@@ -47,6 +47,11 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
         {recognized && (
           <p style={{ margin: "2px 0 0", fontSize: "0.85rem", color: "var(--lw-muted)" }}>
             Heard: <em>{recognized}</em>
+          </p>
+        )}
+        {accuracy !== undefined && (
+          <p data-testid="voice-feedback-accuracy" style={{ margin: "6px 0 0", fontSize: "0.82rem", color: "var(--lw-muted)" }}>
+            Accuracy: {accuracy}%
           </p>
         )}
         {remaining > 0 && (
@@ -72,10 +77,15 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
     styles.container.borderColor = "var(--lw-green, #27ae60)";
     styles.container.background = "var(--lw-green-light, #e8f8f0)";
     return (
-      <div style={styles.container}>
+      <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, color: "var(--lw-green, #27ae60)" }}>
           ✅ Excellent!
         </p>
+        {accuracy !== undefined && (
+          <p data-testid="voice-feedback-accuracy" style={{ margin: "2px 0 0", fontSize: "0.82rem", color: "var(--lw-muted)" }}>
+            Accuracy: {accuracy}%
+          </p>
+        )}
         {confidence !== undefined && (
           <p style={{ margin: "2px 0 0", fontSize: "0.82rem", color: "var(--lw-muted)" }}>
             Confidence: {Math.round(confidence * 100)}%
@@ -90,13 +100,18 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
     styles.container.background = "var(--lw-coral-light, #fde8e8)";
     const remaining = maxAttempts - attempt;
     return (
-      <div style={styles.container}>
+      <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, color: "var(--lw-coral, #c0392b)" }}>
           ❌ Please respond in the target language.
         </p>
         {expected && (
           <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "var(--lw-muted)" }}>
             Expected: <strong>{expected}</strong>
+          </p>
+        )}
+        {accuracy !== undefined && (
+          <p data-testid="voice-feedback-accuracy" style={{ margin: "6px 0 0", fontSize: "0.82rem", color: "var(--lw-muted)" }}>
+            Accuracy: {accuracy}%
           </p>
         )}
         {remaining > 0 && (

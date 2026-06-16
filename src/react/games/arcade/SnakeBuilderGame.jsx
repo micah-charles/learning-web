@@ -131,7 +131,7 @@ function canUseDirection(g, direction) {
 
 function resolveDirection(g, directionRef, queuedDirectionRef) {
   const queued = queuedDirectionRef.current;
-  const current = directionRef.current !== "none" ? directionRef.current : g.heading;
+  const current = directionRef.current;
 
   if (canUseDirection(g, queued)) {
     directionRef.current = queued;
@@ -145,6 +145,7 @@ function resolveDirection(g, directionRef, queuedDirectionRef) {
   }
 
   directionRef.current = "none";
+  queuedDirectionRef.current = "none";
   return "none";
 }
 

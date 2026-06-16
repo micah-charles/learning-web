@@ -56,9 +56,10 @@ export const learningBehaviourConfig = {
 
   languageArcade: {
     enabled: true,
-    expectedRounds: 2,
-    expectedSequence: ["quiz-hunt", "snake-builder"],
+    expectedRounds: 1,
+    expectedSequence: ["quiz-hunt"],
     passAccuracyPercent: 100,
+    autoRetryUntilPerfect: true,
   },
 
   lessonMode: {
