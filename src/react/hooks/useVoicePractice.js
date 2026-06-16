@@ -2,6 +2,19 @@ import { useState, useCallback, useRef } from "react";
 import { startListening, stopListening, isSpeechRecognitionSupported } from "../services/speechRecognitionService.js";
 import { normalizeForCompare } from "@/utils.js";
 
+const COMMON_EN_WORDS = new Set([
+  "the","a","an","is","are","was","were","be","been","being","have","has","had",
+  "do","does","did","will","would","could","should","may","might","shall","can",
+  "need","dare","ought","to","of","in","for","on","with","at","by","from","as",
+  "into","through","during","before","after","above","below","between","out","off",
+  "over","under","again","further","then","once","here","there","when","where",
+  "why","how","all","each","every","both","few","more","most","other","some",
+  "such","no","nor","not","only","own","same","so","than","too","very","just",
+  "because","but","and","or","if","while","that","this","these","those","it",
+  "its","they","them","their","we","us","our","you","your","he","him","his",
+  "she","her","what","which","who","whom","about","up","down","like","also",
+]);
+
 function levenshteinDistance(a, b) {
   const matrix = [];
   for (let i = 0; i <= b.length; i++) matrix[i] = [i];
@@ -36,6 +49,18 @@ function normalizeSentence(text) {
     .trim();
 }
 
+function isLikelyWrongLanguage(transcript, targetLang, expected) {
+  if (targetLang === "en" || targetLang.startsWith("en")) return false;
+  const words = transcript.toLowerCase().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return false;
+  const enCount = words.filter(w => COMMON_EN_WORDS.has(w)).length;
+  const enRatio = enCount / words.length;
+  const normalizedTranscript = normalizeSentence(transcript);
+  const normalizedExpected = normalizeSentence(expected);
+  const sim = tokenSimilarity(normalizedExpected, normalizedTranscript);
+  return enRatio > 0.35 && sim < 0.3;
+}
+
 const MAX_ATTEMPTS = 3;
 const CONFIDENCE_PASS = 0.75;
 const CONFIDENCE_UNCLEAR = 0.40;
@@ -47,6 +72,7 @@ const PHASES = {
   CORRECT: "correct",
   INCORRECT: "incorrect",
   UNCLEAR: "unclear",
+  WRONG_LANGUAGE: "wrong-language",
 };
 
 const SPEECH_STATE = {
@@ -140,6 +166,14 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         const sim = tokenSimilarity(target, normalized);
         if (sim >= 0.85 || (confidence >= CONFIDENCE_PASS && normalized === target)) {
           handleCorrect(transcript, confidence, "similar");
+          return;
+        }
+
+        if (isLikelyWrongLanguage(transcript, langCode, targetText)) {
+          setPhase(PHASES.WRONG_LANGUAGE);
+          setLastResult({ transcript, confidence, status: "wrong-language", expected: targetText });
+          setButtonState(SPEECH_STATE.error);
+          if (onError) onError("wrong-language");
           return;
         }
 

@@ -110,6 +110,8 @@ export const DEFAULT_STATE = {
       voicePracticeEnabled: false,
       speakInsteadOfClick: false,
       voicePracticeMode: false,
+      readingVoicePractice: false,
+      vocabVoicePractice: false,
     },
   },
   progress: {

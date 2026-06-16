@@ -12,7 +12,6 @@ import VoicePracticeButton from "../components/learning/VoicePracticeButton.jsx"
 import VoiceFeedbackPanel from "../components/learning/VoiceFeedbackPanel.jsx";
 import { listSentenceBuilderPacks, listSentenceBuilderPacksBySubjectAndCurriculum, getBuilderPackSubject, SUBJECTS, listCurricula } from "@/data.js";
 import { normLang } from "@/lang-utils.js";
-import { normalizeForCompare } from "@/utils.js";
 
 const FILTER_OPTIONS = [
   { id: "all",              label: "All"               },
@@ -90,11 +89,7 @@ export default function BuilderPage() {
     languageCode: speechLang,
     onResult: useCallback((transcript, confidence) => {
       if (currentCard && feedback === null) {
-        const expected = normalizeForCompare(currentCard.answer || "");
-        const spoken = normalizeForCompare(transcript);
-        if (spoken === expected) {
-          checkAnswer();
-        }
+        checkAnswer(transcript);
       }
     }, [currentCard, feedback, checkAnswer]),
   });

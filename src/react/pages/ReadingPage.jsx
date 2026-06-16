@@ -142,6 +142,21 @@ function PassageSetup({ manifest, prefs, setPrefs, onStart, message, loading, ca
                 />
                 Autoplay voice
               </label>
+              <label className="lw-check-row">
+                <input
+                  type="checkbox"
+                  checked={readingVoicePractice}
+                  onChange={e => {
+                    setReadingVoicePractice(e.target.checked);
+                    updateProgress(state => {
+                      if (!state.prefs.voice) state.prefs.voice = {};
+                      state.prefs.voice.readingVoicePractice = e.target.checked;
+                    });
+                    if (!e.target.checked) voice.cancel();
+                  }}
+                />
+                🎤 Read Aloud Practice
+              </label>
             </div>
 
             {friendlyMessage && <p className="lw-reading-message">{friendlyMessage}</p>}
@@ -745,7 +760,10 @@ export default function ReadingPage() {
     voiceEnabled: false,
   });
 
-  const voicePracticeEnabled = progress?.prefs?.voice?.voicePracticeEnabled ?? false;
+  const [readingVoicePractice, setReadingVoicePractice] = useState(
+    progress?.prefs?.voice?.readingVoicePractice ?? false
+  );
+
   const voice = useVoicePractice({
     languageCode: "en-GB",
     onResult: () => {},
@@ -824,7 +842,7 @@ export default function ReadingPage() {
         speak={speak}
         stop={stop}
         onBack={resetSession}
-        voicePractice={voicePracticeEnabled ? voice : null}
+        voicePractice={readingVoicePractice ? voice : null}
       />
   );
 }

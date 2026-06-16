@@ -77,9 +77,9 @@ export function useBuilderSession({ manifest, packId, filter, progress, updatePr
     });
   }, [currentCard]);
 
-  const checkAnswer = useCallback(() => {
+  const checkAnswer = useCallback((spokenAnswer) => {
     if (!currentCard) return;
-    const userAnswer = tiles.answerTiles.map(t => t.text).join(" ");
+    const userAnswer = spokenAnswer || tiles.answerTiles.map(t => t.text).join(" ");
     const correct = normalizeForCompare(userAnswer) === normalizeForCompare(currentCard.answer || "");
     if (updateProgress) {
       updateProgress(state => {

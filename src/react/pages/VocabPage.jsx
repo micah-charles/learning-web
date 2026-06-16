@@ -94,7 +94,9 @@ export default function VocabPage() {
   const { progress, updateProgress } = useProgress();
   const { speak } = useSpeech();
 
-  const voicePracticeEnabled = progress?.prefs?.voice?.voicePracticeEnabled ?? false;
+  const [vocabVoicePractice, setVocabVoicePractice] = useState(
+    progress?.prefs?.voice?.vocabVoicePractice ?? false
+  );
   const [activeVoiceWordId, setActiveVoiceWordId] = useState(null);
 
   const voice = useVoicePractice({
@@ -269,11 +271,12 @@ export default function VocabPage() {
             <label className="lw-check-row" style={{ fontSize: "0.82rem", whiteSpace: "nowrap" }}>
               <input
                 type="checkbox"
-                checked={voicePracticeEnabled}
+                checked={vocabVoicePractice}
                 onChange={(e) => {
+                  setVocabVoicePractice(e.target.checked);
                   updateProgress(state => {
                     if (!state.prefs.voice) state.prefs.voice = {};
-                    state.prefs.voice.voicePracticeEnabled = e.target.checked;
+                    state.prefs.voice.vocabVoicePractice = e.target.checked;
                   });
                   if (!e.target.checked) voice.cancel();
                 }}
@@ -317,7 +320,7 @@ export default function VocabPage() {
                 onSpeak={speak}
                 speechLang={speechLang}
                 isLanguage={isLanguage}
-                voicePractice={voicePracticeEnabled ? voice : null}
+                voicePractice={vocabVoicePractice ? voice : null}
                 voiceWordId={activeVoiceWordId}
                 onVoicePractice={(w) => {
                   setActiveVoiceWordId(w.id);
@@ -335,7 +338,7 @@ export default function VocabPage() {
             )}
           </div>
 
-          {voicePracticeEnabled && (
+          {vocabVoicePractice && (
             <VoiceFeedbackPanel
               status={
                 voice.phase === "unclear" ? "unclear"

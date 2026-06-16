@@ -1,6 +1,7 @@
 /**
  * BuilderPhase — tile-based sentence construction with optional voice practice.
  */
+import { useEffect } from "react";
 import { TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
 import VoicePracticeButton from "../learning/VoicePracticeButton.jsx";
 import VoiceFeedbackPanel from "../learning/VoiceFeedbackPanel.jsx";
@@ -23,6 +24,14 @@ function GrammarPanel({ translation, lang }) {
 
 export default function BuilderPhase({ session, pack, onDispatch, voicePractice = null, speechLang = "de-DE" }) {
   const builders = pack?.sentenceBuilders || [];
+
+  useEffect(() => {
+    if (voicePractice?.phase === "correct") {
+      onDispatch("pl-builder-check");
+      voicePractice.reset();
+    }
+  }, [voicePractice?.phase]); // eslint-disable-line react-hooks/exhaustive-deps
+
   if (!builders.length) return <div className="section-card pl-lesson-card"><p className="muted">No sentence builders in this pack.</p></div>;
 
   const sentence = builders[session.sentenceIndex];
