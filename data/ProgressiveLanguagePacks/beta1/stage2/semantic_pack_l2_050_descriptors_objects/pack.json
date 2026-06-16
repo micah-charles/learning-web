@@ -83,6 +83,33 @@
         "ja": {
           "text": "大きい"
         }
+      },
+      "distractors": {
+        "de": [
+          "der klein",
+          "der lang",
+          "der kurz"
+        ],
+        "fr": [
+          "le petit",
+          "le long",
+          "le court"
+        ],
+        "es": [
+          "el pequeño",
+          "el largo",
+          "el corto"
+        ],
+        "zh": [
+          "小的",
+          "長的",
+          "短的"
+        ],
+        "ja": [
+          "小さい",
+          "長い",
+          "短い"
+        ]
       }
     },
     {
@@ -112,6 +139,33 @@
         "ja": {
           "text": "新しい"
         }
+      },
+      "distractors": {
+        "de": [
+          "der groß",
+          "der klein",
+          "der lang"
+        ],
+        "fr": [
+          "le grand",
+          "le petit",
+          "le long"
+        ],
+        "es": [
+          "el grande",
+          "el pequeño",
+          "el largo"
+        ],
+        "zh": [
+          "大的",
+          "小的",
+          "長的"
+        ],
+        "ja": [
+          "大きい",
+          "小さい",
+          "長い"
+        ]
       }
     },
     {
@@ -141,6 +195,33 @@
         "ja": {
           "text": "自転車"
         }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Buch",
+          "der Boot"
+        ],
+        "fr": [
+          "la chaise",
+          "le livre",
+          "le bateau"
+        ],
+        "es": [
+          "la silla",
+          "el libro",
+          "el barco"
+        ],
+        "zh": [
+          "椅子",
+          "書",
+          "船"
+        ],
+        "ja": [
+          "いす",
+          "本",
+          "ボート"
+        ]
       }
     },
     {
@@ -170,6 +251,33 @@
         "ja": {
           "text": "電車"
         }
+      },
+      "distractors": {
+        "de": [
+          "der Stuhl",
+          "das Buch",
+          "der Boot"
+        ],
+        "fr": [
+          "la chaise",
+          "le livre",
+          "le bateau"
+        ],
+        "es": [
+          "la silla",
+          "el libro",
+          "el barco"
+        ],
+        "zh": [
+          "椅子",
+          "書",
+          "船"
+        ],
+        "ja": [
+          "いす",
+          "本",
+          "ボート"
+        ]
       }
     }
   ],
@@ -369,28 +477,28 @@
                     "text": "Which",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "bicycle",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "new?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -416,28 +524,28 @@
                     "text": "Welches",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Fahrrad",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "neu?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -463,28 +571,28 @@
                     "text": "Quel",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "vélo",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "nouveau?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -510,28 +618,28 @@
                     "text": "¿Qué",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "bicicleta",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "es",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "nueva?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -540,21 +648,53 @@
             "zh": {
               "text": "哪輛單車是新的？",
               "tiles": [
-                "哪輛單車是新的？"
+                "哪",
+                "輛",
+                "單車",
+                "是",
+                "新的？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "哪輛單車是新的？",
+                "literalOrderExplanation": "哪 → 輛 → 單車 → 是 → 新的？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "哪輛單車是新的？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "",
+                    "text": "哪",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "輛",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "單車",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "是",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "新的？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -563,21 +703,45 @@
             "ja": {
               "text": "どの自転車が新しいですか？",
               "tiles": [
-                "どの自転車が新しいですか？"
+                "どの",
+                "自転車",
+                "が",
+                "新しいですか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "どの自転車が新しいですか？",
+                "literalOrderExplanation": "どの → 自転車 → が → 新しいですか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "どの自転車が新しいですか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "",
+                    "text": "どの",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "自転車",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "が",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "新しいですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -754,28 +918,28 @@
                     "text": "Which",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "train",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "big?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -801,28 +965,28 @@
                     "text": "Welcher",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "Zug",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "groß?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -848,28 +1012,28 @@
                     "text": "Quel",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "train",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "grand?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -895,28 +1059,28 @@
                     "text": "¿Qué",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "tren",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "es",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   },
                   {
                     "text": "grande?",
                     "type": "word",
                     "role": "sentence_element",
-                    "meaning": "",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -925,21 +1089,61 @@
             "zh": {
               "text": "哪列火車是大的？",
               "tiles": [
-                "哪列火車是大的？"
+                "哪",
+                "列",
+                "火車",
+                "是",
+                "大",
+                "的？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "哪列火車是大的？",
+                "literalOrderExplanation": "哪 → 列 → 火車 → 是 → 大 → 的？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "哪列火車是大的？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "",
+                    "text": "哪",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "列",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "火車",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "是",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "大",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "的？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -948,21 +1152,45 @@
             "ja": {
               "text": "どの電車が大きいですか？",
               "tiles": [
-                "どの電車が大きいですか？"
+                "どの",
+                "電車",
+                "が",
+                "大きいですか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "どの電車が大きいですか？",
+                "literalOrderExplanation": "どの → 電車 → が → 大きいですか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "どの電車が大きいですか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "",
+                    "text": "どの",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "電車",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "が",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "大きいですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1005,28 +1233,28 @@
                 "text": "Which",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "bicycle",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "is",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "new?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1052,28 +1280,28 @@
                 "text": "Welches",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Fahrrad",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "neu?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1099,28 +1327,28 @@
                 "text": "Quel",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "vélo",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "est",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "nouveau?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1146,28 +1374,28 @@
                 "text": "¿Qué",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "bicicleta",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "es",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "nueva?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1176,21 +1404,53 @@
         "zh": {
           "text": "哪輛單車是新的？",
           "tiles": [
-            "哪輛單車是新的？"
+            "哪",
+            "輛",
+            "單車",
+            "是",
+            "新的？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "哪輛單車是新的？",
+            "literalOrderExplanation": "哪 → 輛 → 單車 → 是 → 新的？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "哪輛單車是新的？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "",
+                "text": "哪",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "輛",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "單車",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "是",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "新的？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1199,21 +1459,45 @@
         "ja": {
           "text": "どの自転車が新しいですか？",
           "tiles": [
-            "どの自転車が新しいですか？"
+            "どの",
+            "自転車",
+            "が",
+            "新しいですか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "どの自転車が新しいですか？",
+            "literalOrderExplanation": "どの → 自転車 → が → 新しいですか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "どの自転車が新しいですか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "",
+                "text": "どの",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "自転車",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "が",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "新しいですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1252,28 +1536,28 @@
                 "text": "Which",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "train",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "is",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "big?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1299,28 +1583,28 @@
                 "text": "Welcher",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "Zug",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "groß?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1346,28 +1630,28 @@
                 "text": "Quel",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "train",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "est",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "grand?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1393,28 +1677,28 @@
                 "text": "¿Qué",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "tren",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "es",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               },
               {
                 "text": "grande?",
                 "type": "word",
                 "role": "sentence_element",
-                "meaning": "",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1423,21 +1707,61 @@
         "zh": {
           "text": "哪列火車是大的？",
           "tiles": [
-            "哪列火車是大的？"
+            "哪",
+            "列",
+            "火車",
+            "是",
+            "大",
+            "的？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "哪列火車是大的？",
+            "literalOrderExplanation": "哪 → 列 → 火車 → 是 → 大 → 的？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "哪列火車是大的？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "",
+                "text": "哪",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "列",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "火車",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "是",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "大",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "的？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1446,21 +1770,45 @@
         "ja": {
           "text": "どの電車が大きいですか？",
           "tiles": [
-            "どの電車が大きいですか？"
+            "どの",
+            "電車",
+            "が",
+            "大きいですか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "どの電車が大きいですか？",
+            "literalOrderExplanation": "どの → 電車 → が → 大きいですか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "どの電車が大きいですか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "",
+                "text": "どの",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "電車",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "が",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "大きいですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]

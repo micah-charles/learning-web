@@ -100,7 +100,7 @@ export function formatPercent(value) {
 
 /** Return all available TTS voices that match the given BCP-47 language code. */
 export function getVoicesForLanguage(langCode) {
-  if (!("speechSynthesis" in window)) return [];
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return [];
   const voices = window.speechSynthesis.getVoices();
   const primary = (langCode || "").toLowerCase();
   const base = primary.split("-")[0];
@@ -110,8 +110,14 @@ export function getVoicesForLanguage(langCode) {
   });
 }
 
+export function isSpeechSynthesisSupported() {
+  return typeof window !== "undefined"
+    && "speechSynthesis" in window
+    && typeof window.SpeechSynthesisUtterance !== "undefined";
+}
+
 export function speakText(text, language = "de-DE", voiceName = "") {
-  if (!("speechSynthesis" in window) || !text) return false;
+  if (!isSpeechSynthesisSupported() || !text) return false;
   const synth = window.speechSynthesis;
 
   const doSpeak = () => {
@@ -138,7 +144,7 @@ export function speakText(text, language = "de-DE", voiceName = "") {
 }
 
 export function stopSpeaking() {
-  if (!("speechSynthesis" in window)) {
+  if (!isSpeechSynthesisSupported()) {
     return false;
   }
   window.speechSynthesis.cancel();

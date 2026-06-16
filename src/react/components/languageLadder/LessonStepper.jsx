@@ -8,11 +8,12 @@ const PHASES = [
 ];
 const JUMPABLE = new Set(["listen", "vocab", "builder"]);
 
-export default function LessonStepper({ currentPhase, onJump }) {
-  const currentIdx = PHASES.findIndex(p => p.id === currentPhase);
+export default function LessonStepper({ currentPhase, onJump, showListen = true }) {
+  const phases = showListen ? PHASES : PHASES.filter((phase) => phase.id !== "listen");
+  const currentIdx = phases.findIndex(p => p.id === currentPhase);
   return (
     <nav className="pl-stepper" aria-label="Lesson phases">
-      {PHASES.map((phase, i) => {
+      {phases.map((phase, i) => {
         const done   = i < currentIdx;
         const active = i === currentIdx;
         const cls    = done ? "done" : active ? "active" : "";

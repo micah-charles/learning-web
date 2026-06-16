@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { getDisplayText, segmentLessonText } from "../src/progressive-language-lesson.js";
 
 const repoRoot = process.cwd();
 const manifestPath = path.join(repoRoot, "data/ProgressiveLanguagePacks/manifest.json");
@@ -173,23 +174,10 @@ function slugifyTopicTitle(title) {
 }
 
 function tokenize(lang, text) {
-  if (lang === "zh" || lang === "ja") return [text];
-  return String(text).trim().split(/\s+/).filter(Boolean);
+  return segmentLessonText(lang, text);
 }
 
 function analysisTokens(lang, tiles) {
-  if (lang === "zh" || lang === "ja") {
-    return [
-      {
-        text: tiles[0] || "",
-        type: "sentence",
-        role: "full_question",
-        meaning: "full question",
-        grammarNote: "",
-      },
-    ];
-  }
-
   return tiles.map((tile) => ({
     text: tile,
     type: "word",
@@ -206,9 +194,71 @@ function applyTranslation(translation, lang, text) {
   translation.tiles = tiles;
   translation.analysis = {
     ...existingAnalysis,
-    literalOrderExplanation: lang === "zh" || lang === "ja" ? text : tiles.join(" → "),
+    literalOrderExplanation: lang === "zh" || lang === "ja" ? tiles.join(" → ") : tiles.join(" → "),
     tokens: analysisTokens(lang, tiles),
   };
+}
+
+function buildDistractorPool(packs) {
+  const pool = [];
+  for (const pack of packs) {
+    for (const vocab of pack.vocabulary || []) {
+      pool.push(vocab);
+    }
+  }
+  return pool;
+}
+
+function addDistractorTexts(target, seen, vocab, candidates, lang, count = 3) {
+  const correctText = getDisplayText(vocab.translations?.[lang], lang);
+  seen.add(correctText);
+
+  for (const candidate of candidates) {
+    const text = getDisplayText(candidate.translations?.[lang], lang);
+    if (!text || seen.has(text) || candidate.conceptId === vocab.conceptId) continue;
+    target.push(text);
+    seen.add(text);
+    if (target.length >= count) break;
+  }
+}
+
+function enrichVocabDistractors(pack, stageVocabPool) {
+  let changed = false;
+  for (const vocab of pack.vocabulary || []) {
+    const sameCategoryAndType = stageVocabPool.filter((candidate) =>
+      candidate.conceptId !== vocab.conceptId
+      && candidate.semanticCategory === vocab.semanticCategory
+      && candidate.type === vocab.type,
+    );
+    const sameType = stageVocabPool.filter((candidate) =>
+      candidate.conceptId !== vocab.conceptId
+      && candidate.type === vocab.type,
+    );
+    const sameCategory = stageVocabPool.filter((candidate) =>
+      candidate.conceptId !== vocab.conceptId
+      && candidate.semanticCategory === vocab.semanticCategory,
+    );
+    const fallback = stageVocabPool.filter((candidate) => candidate.conceptId !== vocab.conceptId);
+
+    const languages = Object.keys(vocab.translations || {}).filter((lang) => lang !== "en");
+    const nextDistractors = {};
+
+    for (const lang of languages) {
+      const chosen = [];
+      const seen = new Set();
+      addDistractorTexts(chosen, seen, vocab, sameCategoryAndType, lang, 3);
+      if (chosen.length < 3) addDistractorTexts(chosen, seen, vocab, sameType, lang, 3);
+      if (chosen.length < 3) addDistractorTexts(chosen, seen, vocab, sameCategory, lang, 3);
+      if (chosen.length < 3) addDistractorTexts(chosen, seen, vocab, fallback, lang, 3);
+      nextDistractors[lang] = chosen.slice(0, 3);
+    }
+
+    if (JSON.stringify(vocab.distractors || {}) !== JSON.stringify(nextDistractors)) {
+      vocab.distractors = nextDistractors;
+      changed = true;
+    }
+  }
+  return changed;
 }
 
 function buildConceptIndex() {
@@ -248,10 +298,35 @@ function packPathFromLesson(lesson) {
   return path.join(repoRoot, rel);
 }
 
-function updatePackFile(packPath, conceptIndex) {
+function updatePackFile(packPath, conceptIndex, stageVocabPool) {
   const pack = readJson(packPath);
   const topicId = pack.sourceTopic?.topicId;
   let changed = false;
+
+  for (const sentence of pack.sentenceBuilders || []) {
+    const chain = (pack.phraseProgressionChains || []).find(
+      (item) => item.chainId === sentence.sourceChainId,
+    );
+    const finalStep = chain?.steps?.length ? chain.steps[chain.steps.length - 1] : null;
+
+    for (const [lang, translation] of Object.entries(sentence.translations || {})) {
+      const before = JSON.stringify({
+        text: translation?.text,
+        tiles: translation?.tiles,
+        tokens: translation?.analysis?.tokens,
+      });
+      applyTranslation(translation, lang, translation.text || "");
+      if (finalStep?.translations?.[lang]) {
+        applyTranslation(finalStep.translations[lang], lang, finalStep.translations[lang].text || "");
+      }
+      const after = JSON.stringify({
+        text: translation?.text,
+        tiles: translation?.tiles,
+        tokens: translation?.analysis?.tokens,
+      });
+      if (before !== after) changed = true;
+    }
+  }
 
   if (translationOverrides[topicId]) {
     for (const [sentenceId, langMap] of Object.entries(translationOverrides[topicId])) {
@@ -305,6 +380,10 @@ function updatePackFile(packPath, conceptIndex) {
     changed = true;
   }
 
+  if (enrichVocabDistractors(pack, stageVocabPool)) {
+    changed = true;
+  }
+
   if (changed) {
     writeJson(packPath, pack);
   }
@@ -318,6 +397,8 @@ function updateManifestAndPacks() {
   if (!stage2) throw new Error("Could not find beta1/stage2 manifest block");
 
   const conceptIndex = buildConceptIndex();
+  const stagedPacks = stage2.lessons.map((lesson) => readJson(packPathFromLesson(lesson)));
+  const stageVocabPool = buildDistractorPool(stagedPacks);
 
   for (const lesson of stage2.lessons) {
     if (malformedPackRenames[lesson.id]) {
@@ -339,7 +420,7 @@ function updateManifestAndPacks() {
     }
 
     const packPath = packPathFromLesson(lesson);
-    const pack = updatePackFile(packPath, conceptIndex);
+    const pack = updatePackFile(packPath, conceptIndex, stageVocabPool);
     lesson.title = pack.title;
     lesson.packId = pack.packId;
     lesson.vocabularyCount = (pack.vocabulary || []).length;

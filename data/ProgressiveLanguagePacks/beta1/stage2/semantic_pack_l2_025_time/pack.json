@@ -83,6 +83,33 @@
         "ja": {
           "text": "晩"
         }
+      },
+      "distractors": {
+        "de": [
+          "der Nachmittag",
+          "der Mittag",
+          "der Stuhl"
+        ],
+        "fr": [
+          "le après-midi",
+          "le midi",
+          "la chaise"
+        ],
+        "es": [
+          "el tarde",
+          "el mediodía",
+          "la silla"
+        ],
+        "zh": [
+          "下午",
+          "中午",
+          "椅子"
+        ],
+        "ja": [
+          "午後",
+          "正午",
+          "いす"
+        ]
       }
     },
     {
@@ -112,6 +139,33 @@
         "ja": {
           "text": "正午"
         }
+      },
+      "distractors": {
+        "de": [
+          "der Nachmittag",
+          "der Abend",
+          "der Stuhl"
+        ],
+        "fr": [
+          "le après-midi",
+          "le soir",
+          "la chaise"
+        ],
+        "es": [
+          "el tarde",
+          "el noche",
+          "la silla"
+        ],
+        "zh": [
+          "下午",
+          "晚上",
+          "椅子"
+        ],
+        "ja": [
+          "午後",
+          "晩",
+          "いす"
+        ]
       }
     }
   ],
@@ -546,21 +600,37 @@
             "zh": {
               "text": "午餐是什麼時候？",
               "tiles": [
-                "午餐是什麼時候？"
+                "午餐",
+                "是",
+                "什麼時候？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "午餐是什麼時候？",
+                "literalOrderExplanation": "午餐 → 是 → 什麼時候？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "午餐是什麼時候？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "午餐",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "是",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "什麼時候？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -569,21 +639,37 @@
             "ja": {
               "text": "昼食はいつですか？",
               "tiles": [
-                "昼食はいつですか？"
+                "昼食",
+                "は",
+                "いつですか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "昼食はいつですか？",
+                "literalOrderExplanation": "昼食 → は → いつですか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "昼食はいつですか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "昼食",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "いつですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -938,21 +1024,45 @@
             "zh": {
               "text": "你什麼時候吃晚餐？",
               "tiles": [
-                "你什麼時候吃晚餐？"
+                "你",
+                "什麼時候",
+                "吃",
+                "晚餐？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "你什麼時候吃晚餐？",
+                "literalOrderExplanation": "你 → 什麼時候 → 吃 → 晚餐？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "你什麼時候吃晚餐？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "你",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "什麼時候",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "吃",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "晚餐？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -961,21 +1071,53 @@
             "ja": {
               "text": "いつ夕食を食べますか？",
               "tiles": [
-                "いつ夕食を食べますか？"
+                "いつ",
+                "夕食",
+                "を",
+                "食",
+                "べますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "いつ夕食を食べますか？",
+                "literalOrderExplanation": "いつ → 夕食 → を → 食 → べますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "いつ夕食を食べますか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "いつ",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "夕食",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "食",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "べますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1188,21 +1330,37 @@
         "zh": {
           "text": "午餐是什麼時候？",
           "tiles": [
-            "午餐是什麼時候？"
+            "午餐",
+            "是",
+            "什麼時候？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "午餐是什麼時候？",
+            "literalOrderExplanation": "午餐 → 是 → 什麼時候？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "午餐是什麼時候？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "午餐",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "是",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "什麼時候？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1211,21 +1369,37 @@
         "ja": {
           "text": "昼食はいつですか？",
           "tiles": [
-            "昼食はいつですか？"
+            "昼食",
+            "は",
+            "いつですか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "昼食はいつですか？",
+            "literalOrderExplanation": "昼食 → は → いつですか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "昼食はいつですか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "昼食",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "いつですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1442,21 +1616,45 @@
         "zh": {
           "text": "你什麼時候吃晚餐？",
           "tiles": [
-            "你什麼時候吃晚餐？"
+            "你",
+            "什麼時候",
+            "吃",
+            "晚餐？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "你什麼時候吃晚餐？",
+            "literalOrderExplanation": "你 → 什麼時候 → 吃 → 晚餐？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "你什麼時候吃晚餐？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "你",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "什麼時候",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "吃",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "晚餐？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1465,21 +1663,53 @@
         "ja": {
           "text": "いつ夕食を食べますか？",
           "tiles": [
-            "いつ夕食を食べますか？"
+            "いつ",
+            "夕食",
+            "を",
+            "食",
+            "べますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "いつ夕食を食べますか？",
+            "literalOrderExplanation": "いつ → 夕食 → を → 食 → べますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "いつ夕食を食べますか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "いつ",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "夕食",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "食",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "べますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]

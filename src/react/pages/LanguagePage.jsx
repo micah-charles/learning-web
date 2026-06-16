@@ -7,12 +7,14 @@
  *   - On mount, restores the most-progressed language's next lesson.
  *   - When Arcade completes, marks the lesson done and auto-advances.
  */
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { loadStoredState } from "@/storage.js";
 import { useLessonSession } from "../hooks/useLessonSession.js";
 import { useVoicePractice } from "../hooks/useVoicePractice.js";
 import { SPEECH_LANG_MAP } from "@/progressive-language-lesson.js";
+import { isSpeechSynthesisSupported } from "@/utils.js";
+import { isSpeechRecognitionSupported } from "../services/speechRecognitionService.js";
 
 import LessonHeader   from "../components/languageLadder/LessonHeader.jsx";
 import LessonStepper  from "../components/languageLadder/LessonStepper.jsx";
@@ -39,11 +41,19 @@ export default function LanguagePage() {
 
   const targetLang = session?.targetLang || "de";
   const speechLang = SPEECH_LANG_MAP[targetLang] || "de-DE";
+  const speechPlaybackSupported = isSpeechSynthesisSupported();
+  const voicePracticeSupported = isSpeechRecognitionSupported();
 
   const voice = useVoicePractice({
     languageCode: speechLang,
     onResult: () => {},
   });
+
+  useEffect(() => {
+    if (!speechPlaybackSupported && session?.phase === "listen") {
+      dispatch("pl-jump-phase", { phase: "vocab" });
+    }
+  }, [dispatch, session?.phase, speechPlaybackSupported]);
 
   // Intercept builder → review: show Arcade first.
   function handleDispatch(action, data) {
@@ -103,6 +113,7 @@ export default function LanguagePage() {
   }
 
   const activePhase = showArcade ? "arcade" : (session.phase || "listen");
+  const effectivePhase = !speechPlaybackSupported && activePhase === "listen" ? "vocab" : activePhase;
 
   // ── Arcade challenge ───────────────────────────────────────────────────────
   if (showArcade && pack) {
@@ -113,7 +124,7 @@ export default function LanguagePage() {
           onPackChange={setPackSelection} onStageChange={setStageSelection}
           onLessonChange={setLessonSelection} onLanguageChange={setLanguageSelection}
         />
-        <LessonStepper currentPhase="arcade" onJump={handleJump} />
+        <LessonStepper currentPhase="arcade" onJump={handleJump} showListen={speechPlaybackSupported} />
         <LanguageArcadePhase
           pack={pack}
           targetLang={session.targetLang}
@@ -126,7 +137,9 @@ export default function LanguagePage() {
   }
 
   // ── Normal lesson phases ───────────────────────────────────────────────────
-  const phase = session.phase || "listen";
+  const phase = !speechPlaybackSupported && session.phase === "listen"
+    ? "vocab"
+    : (session.phase || "listen");
 
   return (
     <div className="lw-page section-stack pl-shell">
@@ -135,23 +148,29 @@ export default function LanguagePage() {
         onPackChange={setPackSelection} onStageChange={setStageSelection}
         onLessonChange={setLessonSelection} onLanguageChange={setLanguageSelection}
       />
-      <LessonStepper currentPhase={activePhase} onJump={handleJump} />
+      <LessonStepper currentPhase={effectivePhase} onJump={handleJump} showListen={speechPlaybackSupported} />
 
-      <label className="lw-check-row" style={{ padding: "6px 16px", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "8px" }}>
-        <input
-          type="checkbox"
-          checked={voicePracticeMode}
-          onChange={(e) => {
-            setVoicePracticeMode(e.target.checked);
-            updateProgress(state => {
-              if (!state.prefs.voice) state.prefs.voice = {};
-              state.prefs.voice.voicePracticeMode = e.target.checked;
-            });
-            if (!e.target.checked) voice.cancel();
-          }}
-        />
-        🎤 Voice Practice Mode
-      </label>
+      {voicePracticeSupported && (
+        <label
+          className="lw-check-row"
+          data-testid="progressive-voice-practice-toggle"
+          style={{ padding: "6px 16px", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "8px" }}
+        >
+          <input
+            type="checkbox"
+            checked={voicePracticeMode}
+            onChange={(e) => {
+              setVoicePracticeMode(e.target.checked);
+              updateProgress(state => {
+                if (!state.prefs.voice) state.prefs.voice = {};
+                state.prefs.voice.voicePracticeMode = e.target.checked;
+              });
+              if (!e.target.checked) voice.cancel();
+            }}
+          />
+          🎤 Voice Practice Mode
+        </label>
+      )}
 
       {!pack && (
         <div className="section-card pl-lesson-card">
@@ -163,14 +182,14 @@ export default function LanguagePage() {
         <ListenPhase  session={session} pack={pack} onDispatch={dispatch} onSpeak={speakCurrentCue} />
       )}
       {pack && phase === "vocab"   && (
-        <VocabPhase   session={session} pack={pack} onDispatch={dispatch} />
+        <VocabPhase session={session} pack={pack} onDispatch={dispatch} canGoBack={speechPlaybackSupported} />
       )}
       {pack && phase === "builder" && (
         <BuilderPhase
           session={session}
           pack={pack}
           onDispatch={handleDispatch}
-          voicePractice={voicePracticeMode ? voice : null}
+          voicePractice={voicePracticeSupported && voicePracticeMode ? voice : null}
           speechLang={speechLang}
         />
       )}

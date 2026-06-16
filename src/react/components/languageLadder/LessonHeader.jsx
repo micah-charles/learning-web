@@ -33,22 +33,22 @@ export default function LessonHeader({ catalog, session, pack,
 
       <div className="pl-header-controls">
         <label className="pl-ctrl-label">Pack
-          <select value={session.catalogPackId} onChange={e => onPackChange(e.target.value)}>
+          <select data-testid="progressive-pack-select" value={session.catalogPackId} onChange={e => onPackChange(e.target.value)}>
             {catalog.packs.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
           </select>
         </label>
         <label className="pl-ctrl-label">Stage
-          <select value={session.catalogStageId} onChange={e => onStageChange(e.target.value)}>
+          <select data-testid="progressive-stage-select" value={session.catalogStageId} onChange={e => onStageChange(e.target.value)}>
             {(catPack?.stages || []).map(s => <option key={s.id} value={s.id}>{s.label}</option>)}
           </select>
         </label>
         <label className="pl-ctrl-label">Lesson
-          <select value={session.catalogLessonId} onChange={e => onLessonChange(e.target.value)}>
+          <select data-testid="progressive-lesson-select" value={session.catalogLessonId} onChange={e => onLessonChange(e.target.value)}>
             {(catStage?.lessons || []).map(l => <option key={l.id} value={l.id}>{l.label}</option>)}
           </select>
         </label>
         <label className="pl-ctrl-label">Language
-          <select value={session.targetLang} onChange={e => onLanguageChange(e.target.value)}>
+          <select data-testid="progressive-language-select" value={session.targetLang} onChange={e => onLanguageChange(e.target.value)}>
             {TARGET_LANGUAGES.map(l => (
               <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
             ))}

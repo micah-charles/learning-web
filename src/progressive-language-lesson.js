@@ -36,6 +36,23 @@ const PHASES = [
   { id: "review",  label: "Review",     icon: "✓"  },
 ];
 
+const CJK_PUNCTUATION = /^[。！？!?、，,.；：:）】》」』〉》]$/u;
+const JAPANESE_MERGE_SUFFIXES = new Set([
+  "です",
+  "でした",
+  "ですか",
+  "ます",
+  "ました",
+  "ますか",
+  "ません",
+  "ませんか",
+  "たい",
+  "たくない",
+  "す",
+  "すか",
+  "か",
+]);
+
 // ── Data loading ──────────────────────────────────────────────────────────────
 
 export async function loadProgressiveLessonCatalog() {
@@ -77,6 +94,54 @@ function getLangLabel(code) {
 
 function getLangFlag(code) {
   return TARGET_LANGUAGES.find(l => l.code === code)?.flag || "";
+}
+
+function mergeSegmentTokens(lang, segments) {
+  const merged = [];
+  for (const rawSegment of segments) {
+    const segment = String(rawSegment || "").trim();
+    if (!segment) continue;
+
+    if (CJK_PUNCTUATION.test(segment) && merged.length) {
+      merged[merged.length - 1] += segment;
+      continue;
+    }
+
+    if (lang === "ja" && merged.length) {
+      const previous = merged[merged.length - 1];
+      if (JAPANESE_MERGE_SUFFIXES.has(segment) && /[ぁ-ゖァ-ヺー一-龯]$/u.test(previous)) {
+        merged[merged.length - 1] = `${previous}${segment}`;
+        continue;
+      }
+    }
+
+    merged.push(segment);
+  }
+  return merged;
+}
+
+export function segmentLessonText(lang, text) {
+  const value = String(text || "").trim();
+  if (!value) return [];
+
+  if ((lang === "zh" || lang === "ja") && typeof Intl !== "undefined" && typeof Intl.Segmenter === "function") {
+    const segmenter = new Intl.Segmenter(lang, { granularity: "word" });
+    const segments = [...segmenter.segment(value)].map((part) => part.segment);
+    return mergeSegmentTokens(lang, segments);
+  }
+
+  return value.split(/\s+/).filter(Boolean);
+}
+
+export function getTranslationTiles(translation, lang) {
+  const explicitTiles = Array.isArray(translation?.tiles)
+    ? translation.tiles.map((tile) => String(tile || "").trim()).filter(Boolean)
+    : [];
+  if (explicitTiles.length > 1) return explicitTiles;
+  if (explicitTiles.length === 1 && explicitTiles[0] !== String(translation?.text || "").trim()) {
+    return explicitTiles;
+  }
+  return segmentLessonText(lang, translation?.text || "");
 }
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -132,10 +197,16 @@ export function buildVocabOptions(pack, vocabIndex, targetLang) {
   const current = vocab[vocabIndex];
   if (!current) return [];
   const correctText = getDisplayText(current.translations?.[targetLang], targetLang);
-  const distractors = vocab
+  const curated = Array.isArray(current.distractors?.[targetLang])
+    ? current.distractors[targetLang]
+    : [];
+  const distractors = [
+    ...curated,
+    ...vocab
     .filter((_, i) => i !== vocabIndex)
     .map(v => getDisplayText(v.translations?.[targetLang], targetLang))
-    .filter(t => t && t !== correctText);
+    .filter(t => t && t !== correctText),
+  ];
   const seen = new Set([correctText]);
   const unique = shuffle(distractors).filter(t => { if (seen.has(t)) return false; seen.add(t); return true; });
   return shuffle([
@@ -150,7 +221,7 @@ function makeBankTiles(pack, sentenceIndex, targetLang) {
   const sentence = pack?.sentenceBuilders?.[sentenceIndex];
   const translation = sentence?.translations?.[targetLang];
   if (!translation) return [];
-  const tiles = (translation.tiles || translation.text?.split(" ") || [])
+  const tiles = getTranslationTiles(translation, targetLang)
     .map((text, i) => ({ id: `t${i}_${encodeURIComponent(text)}`, text }));
   return shuffle(tiles);
 }
@@ -429,8 +500,10 @@ export function runProgressiveLessonAction(state, pack, actionType, data = {}) {
     case "pl-builder-check": {
       const sentence   = builders[state.sentenceIndex];
       const trans      = sentence?.translations?.[state.targetLang];
-      const expected   = trans?.tiles || [];
-      const expectedText = expected.join(" ");
+      const expected   = getTranslationTiles(trans, state.targetLang);
+      const expectedText = (state.targetLang === "zh" || state.targetLang === "ja")
+        ? expected.join("")
+        : expected.join(" ");
       const spokenAnswer = typeof data.spokenAnswer === "string" ? data.spokenAnswer : "";
       const selectedText = spokenAnswer || state.selectedTiles.map(t => t.text).join(" ");
       const correct    = spokenAnswer

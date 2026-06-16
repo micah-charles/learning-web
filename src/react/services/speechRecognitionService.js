@@ -27,6 +27,7 @@ let resultCallback = null;
 let errorCallback = null;
 
 function getRecognizer() {
+  if (typeof window === "undefined") return null;
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) return null;
   if (recognizer) return recognizer;
@@ -56,7 +57,7 @@ function getRecognizer() {
 }
 
 export function isSpeechRecognitionSupported() {
-  return !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+  return typeof window !== "undefined" && !!(window.SpeechRecognition || window.webkitSpeechRecognition);
 }
 
 export function startListening(languageCode, onResult, onError) {
