@@ -1044,6 +1044,44 @@ if (voice.phase === "correct" && voice.lastResult?.transcript) {
 
 ---
 
+### ⚠️ RC23. Language Ladder speech features must be capability-gated per browser, and data fallbacks must preserve the learning flow
+
+**Bug found (PR #181 follow-up):**
+- Browsers without `SpeechRecognition` still rendered the Language Ladder "Voice Practice Mode" toggle, inviting the learner into a dead feature.
+- Browsers without speech playback could strand the lesson in the Listen phase even though no audio could play.
+- Stage 2 builder data relied on monolithic CJK sentence tiles, so even after the React UI was fixed the data still produced a one-button "builder".
+
+**Rule 1:** Gate speech UI from the actual browser capability, not from optimistic assumptions.
+
+```js
+// BAD — always shows speech-only controls
+<label><input type="checkbox" checked={voicePracticeMode} /> Voice Practice Mode</label>
+
+// GOOD — only render recognition UI when the browser supports it
+const voicePracticeSupported = isSpeechRecognitionSupported();
+{voicePracticeSupported && <VoicePracticeToggle ... />}
+```
+
+**Rule 2:** If a prerequisite phase is unavailable, remove it from the visible step order and jump to the next valid phase. Do not leave Back/Next paths pointing at hidden phases.
+
+```js
+// GOOD — listen is hidden and the session starts at vocab when playback is unavailable
+const phase = !speechPlaybackSupported && session.phase === "listen"
+  ? "vocab"
+  : session.phase;
+```
+
+**Rule 3:** For CJK builder content, never trust `translation.tiles` blindly when it is a single full-sentence string. Use a segmentation fallback in the runtime, and repair the source data so the fallback is not the only protection.
+
+**Checklist for Language Ladder speech / builder work:**
+- [ ] `speechSynthesis` and `SpeechRecognition` are checked separately.
+- [ ] Listen and Voice Practice controls disappear cleanly when unsupported.
+- [ ] Hidden phases are removed from the stepper and from Back/Next behaviour.
+- [ ] Stage 2 builder data has multi-token `tiles` for zh/ja sentences.
+- [ ] Add a browser regression test that forces speech APIs off and verifies the fallback flow.
+
+---
+
 ## PART C — Build & Deployment
 
 ---

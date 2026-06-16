@@ -1,12 +1,20 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import { buildVocabOptions } from "../src/progressive-language-lesson.js";
 
 const repoRoot = process.cwd();
 const manifestPath = path.join(repoRoot, "data/ProgressiveLanguagePacks/manifest.json");
 
+function shiftedPackId(oldPackId) {
+  const match = String(oldPackId).match(/^semantic_pack_l2_(\d{3})_(.+)$/);
+  if (!match) throw new Error(`Unexpected Stage 2 pack id: ${oldPackId}`);
+  const next = String(Number(match[1]) + 10).padStart(3, "0");
+  return `semantic_pack_l1_${next}_${match[2]}`;
+}
+
 const expectedTranslations = {
-  semantic_pack_l2_025_time: {
+  [shiftedPackId("semantic_pack_l2_025_time")]: {
     S001: {
       en: "What time is lunch?",
       de: "Wann ist das Mittagessen?",
@@ -24,7 +32,7 @@ const expectedTranslations = {
       ja: "いつ夕食を食べますか？",
     },
   },
-  semantic_pack_l2_027_days_of_week: {
+  [shiftedPackId("semantic_pack_l2_027_days_of_week")]: {
     S001: {
       en: "What do you do on Saturday?",
       de: "Was machst du am Samstag?",
@@ -34,7 +42,7 @@ const expectedTranslations = {
       ja: "土曜日に何をしますか？",
     },
   },
-  semantic_pack_l2_030_bedtime: {
+  [shiftedPackId("semantic_pack_l2_030_bedtime")]: {
     S002: {
       en: "What do you do on Saturday?",
       de: "Was machst du am Samstag?",
@@ -44,7 +52,7 @@ const expectedTranslations = {
       ja: "土曜日に何をしますか？",
     },
   },
-  semantic_pack_l2_064_actions_people: {
+  [shiftedPackId("semantic_pack_l2_064_actions_people")]: {
     S001: {
       en: "How does the child draw a picture?",
       de: "Wie zeichnet das Kind ein Bild?",
@@ -62,7 +70,7 @@ const expectedTranslations = {
       ja: "踊り手はどうやって歌を練習しますか？",
     },
   },
-  semantic_pack_l2_066_actions_people: {
+  [shiftedPackId("semantic_pack_l2_066_actions_people")]: {
     S002: {
       en: "How does your friend play football?",
       de: "Wie spielt dein Freund Fußball?",
@@ -72,7 +80,7 @@ const expectedTranslations = {
       ja: "あなたの友だちはどうやってサッカーをしますか？",
     },
   },
-  semantic_pack_l2_067_actions_people: {
+  [shiftedPackId("semantic_pack_l2_067_actions_people")]: {
     S001: {
       en: "How does the child draw a picture?",
       de: "Wie zeichnet das Kind ein Bild?",
@@ -90,7 +98,7 @@ const expectedTranslations = {
       ja: "親はどうやってこの本を読みますか？",
     },
   },
-  semantic_pack_l2_068_actions_people: {
+  [shiftedPackId("semantic_pack_l2_068_actions_people")]: {
     S001: {
       en: "How does the mother cook dinner?",
       de: "Wie kocht die Mutter das Abendessen?",
@@ -108,7 +116,7 @@ const expectedTranslations = {
       ja: "料理人は何を飲むのが好きですか？",
     },
   },
-  semantic_pack_l2_070_actions_people: {
+  [shiftedPackId("semantic_pack_l2_070_actions_people")]: {
     S001: {
       en: "How does the child learn songs?",
       de: "Wie lernt das Kind Lieder?",
@@ -132,20 +140,37 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+function expectedJoin(lang, tiles) {
+  return lang === "zh" || lang === "ja" ? tiles.join("") : tiles.join(" ");
+}
+
 const manifest = readJson(manifestPath);
 const beta1 = manifest.packs.find((pack) => pack.id === "beta1");
-const stage2 = beta1.stages.find((stage) => stage.id === "stage2");
+assert.equal(beta1.stages.length, 1, "Beta 1 should expose a single merged Stage 1");
+const stage1 = beta1.stages.find((stage) => stage.id === "stage1");
+assert.ok(stage1, "Stage 1 should exist");
+assert.equal(stage1.lessons.length, 110, "Merged Stage 1 should expose 110 lessons");
 
-assert.equal(stage2.lessons.length, 100, "Stage 2 should expose 100 lessons");
+const lessonIds = new Set();
+const packIds = new Set();
 
-for (const lesson of stage2.lessons) {
+for (const [index, lesson] of stage1.lessons.entries()) {
+  const expectedNumber = String(index + 1).padStart(3, "0");
+  assert.ok(lesson.id.startsWith(`semantic_pack_l1_${expectedNumber}_`), `lesson id should be resequenced: ${lesson.id}`);
+  assert.ok(lesson.packId.startsWith(`semantic_pack_l1_${expectedNumber}_`), `packId should be resequenced: ${lesson.packId}`);
   assert.ok(!lesson.id.endsWith("_"), `manifest lesson id still malformed: ${lesson.id}`);
   assert.ok(!lesson.packId.endsWith("_"), `manifest lesson packId still malformed: ${lesson.packId}`);
+  assert.ok(!lessonIds.has(lesson.id), `duplicate lesson id: ${lesson.id}`);
+  assert.ok(!packIds.has(lesson.packId), `duplicate pack id: ${lesson.packId}`);
+  lessonIds.add(lesson.id);
+  packIds.add(lesson.packId);
 
   const packPath = path.join(repoRoot, lesson.path.replace(/^\.\//, ""));
   const pack = readJson(packPath);
 
   assert.equal(pack.packId, lesson.packId, `packId mismatch for ${lesson.id}`);
+  assert.equal(pack.sourceTopic?.topicId, `L1_${expectedNumber}`, `topicId should be resequenced for ${lesson.id}`);
+  assert.equal(pack.sourceTopic?.difficultyStage, 1, `difficultyStage should be 1 for ${lesson.id}`);
   assert.equal((pack.vocabulary || []).length, lesson.vocabularyCount, `vocabularyCount mismatch for ${lesson.id}`);
 
   const vocabIds = new Set((pack.vocabulary || []).map((item) => item.conceptId));
@@ -165,6 +190,15 @@ for (const lesson of stage2.lessons) {
     assert.ok(chain, `${lesson.id} ${sentence.sentenceId} missing source chain ${sentence.sourceChainId}`);
     const finalStep = chain.steps[chain.steps.length - 1];
     for (const lang of Object.keys(sentence.translations || {})) {
+      const tiles = sentence.translations?.[lang]?.tiles || [];
+      if (lang === "zh" || lang === "ja") {
+        assert.ok(tiles.length > 1, `${lesson.id} ${sentence.sentenceId} ${lang} should have segmented tiles`);
+      }
+      assert.equal(
+        expectedJoin(lang, tiles),
+        sentence.translations?.[lang]?.text,
+        `${lesson.id} ${sentence.sentenceId} ${lang} tiles do not match text`,
+      );
       assert.equal(
         finalStep.translations?.[lang]?.text,
         sentence.translations?.[lang]?.text,
@@ -172,10 +206,20 @@ for (const lesson of stage2.lessons) {
       );
     }
   }
+
+  for (const [index, vocab] of (pack.vocabulary || []).entries()) {
+    for (const lang of ["de", "fr", "es", "zh", "ja"]) {
+      const distractors = vocab.distractors?.[lang] || [];
+      assert.equal(distractors.length, 3, `${lesson.id} ${vocab.conceptId} ${lang} should have 3 distractors`);
+      assert.equal(new Set(distractors).size, distractors.length, `${lesson.id} ${vocab.conceptId} ${lang} distractors should be unique`);
+      const options = buildVocabOptions(pack, index, lang);
+      assert.equal(options.length, 4, `${lesson.id} ${vocab.conceptId} ${lang} should render 4 vocab choices`);
+    }
+  }
 }
 
 for (const [packId, sentenceMap] of Object.entries(expectedTranslations)) {
-  const lesson = stage2.lessons.find((item) => item.packId === packId);
+  const lesson = stage1.lessons.find((item) => item.packId === packId);
   assert.ok(lesson, `Missing manifest lesson for ${packId}`);
   const pack = readJson(path.join(repoRoot, lesson.path.replace(/^\.\//, "")));
   for (const [sentenceId, expectedLangMap] of Object.entries(sentenceMap)) {
@@ -191,4 +235,6 @@ for (const [packId, sentenceMap] of Object.entries(expectedTranslations)) {
   }
 }
 
-console.log("progressive Stage 2 audit passed");
+assert.ok(!fs.existsSync(path.join(repoRoot, "data/ProgressiveLanguagePacks/beta1/stage2")), "legacy stage2 directory should be removed");
+
+console.log("progressive Beta 1 merged-stage audit passed");

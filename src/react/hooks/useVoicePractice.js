@@ -103,7 +103,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
     setPhase(PHASES.IDLE);
     setAttempt(0);
     setLastResult(null);
-    setButtonState(SPEECH_STATE.idle);
+    setButtonState(isSpeechRecognitionSupported() ? SPEECH_STATE.idle : SPEECH_STATE.unsupported);
     attemptRef.current = 0;
   }, []);
 
