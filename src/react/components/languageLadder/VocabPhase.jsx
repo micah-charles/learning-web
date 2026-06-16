@@ -3,7 +3,7 @@
  */
 import { getDisplayText, getReadingHint, buildVocabOptions, TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
 
-export default function VocabPhase({ session, pack, onDispatch }) {
+export default function VocabPhase({ session, pack, onDispatch, canGoBack = true }) {
   const vocab = pack?.vocabulary || [];
   if (!vocab.length) return <div className="section-card pl-lesson-card"><p className="muted">No vocabulary in this pack.</p></div>;
 
@@ -73,7 +73,15 @@ export default function VocabPhase({ session, pack, onDispatch }) {
       )}
 
       <div className="pl-nav-row" style={{ marginTop: answered ? 14 : 10 }}>
-        <button type="button" className="button ghost" data-testid="progressive-vocab-back-button" onClick={() => onDispatch("pl-vocab-back")}>← Back</button>
+        <button
+          type="button"
+          className="button ghost"
+          data-testid="progressive-vocab-back-button"
+          onClick={() => onDispatch("pl-vocab-back")}
+          disabled={!canGoBack}
+        >
+          ← Back
+        </button>
         {answered && (
           <button type="button" className="button" data-testid="progressive-next-step-button" onClick={() => onDispatch("pl-vocab-next")}>
             {isLast ? "Builder →" : "Next word →"}

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
+import { buildVocabOptions } from "../src/progressive-language-lesson.js";
 
 const repoRoot = process.cwd();
 const manifestPath = path.join(repoRoot, "data/ProgressiveLanguagePacks/manifest.json");
@@ -132,6 +133,10 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+function expectedJoin(lang, tiles) {
+  return lang === "zh" || lang === "ja" ? tiles.join("") : tiles.join(" ");
+}
+
 const manifest = readJson(manifestPath);
 const beta1 = manifest.packs.find((pack) => pack.id === "beta1");
 const stage2 = beta1.stages.find((stage) => stage.id === "stage2");
@@ -165,11 +170,30 @@ for (const lesson of stage2.lessons) {
     assert.ok(chain, `${lesson.id} ${sentence.sentenceId} missing source chain ${sentence.sourceChainId}`);
     const finalStep = chain.steps[chain.steps.length - 1];
     for (const lang of Object.keys(sentence.translations || {})) {
+      const tiles = sentence.translations?.[lang]?.tiles || [];
+      if (lang === "zh" || lang === "ja") {
+        assert.ok(tiles.length > 1, `${lesson.id} ${sentence.sentenceId} ${lang} should have segmented tiles`);
+      }
+      assert.equal(
+        expectedJoin(lang, tiles),
+        sentence.translations?.[lang]?.text,
+        `${lesson.id} ${sentence.sentenceId} ${lang} tiles do not match text`,
+      );
       assert.equal(
         finalStep.translations?.[lang]?.text,
         sentence.translations?.[lang]?.text,
         `${lesson.id} ${sentence.sentenceId} ${lang} chain/builder drift`,
       );
+    }
+  }
+
+  for (const [index, vocab] of (pack.vocabulary || []).entries()) {
+    for (const lang of ["de", "fr", "es", "zh", "ja"]) {
+      const distractors = vocab.distractors?.[lang] || [];
+      assert.equal(distractors.length, 3, `${lesson.id} ${vocab.conceptId} ${lang} should have 3 distractors`);
+      assert.equal(new Set(distractors).size, distractors.length, `${lesson.id} ${vocab.conceptId} ${lang} distractors should be unique`);
+      const options = buildVocabOptions(pack, index, lang);
+      assert.equal(options.length, 4, `${lesson.id} ${vocab.conceptId} ${lang} should render 4 vocab choices`);
     }
   }
 }

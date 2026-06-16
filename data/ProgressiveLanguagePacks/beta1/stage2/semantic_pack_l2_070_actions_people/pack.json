@@ -83,6 +83,33 @@
         "ja": {
           "text": "子ども"
         }
+      },
+      "distractors": {
+        "de": [
+          "die Mutter",
+          "der Lehrer",
+          "der Tourist"
+        ],
+        "fr": [
+          "la mère",
+          "le professeur",
+          "le touriste"
+        ],
+        "es": [
+          "la madre",
+          "el profesor",
+          "el turista"
+        ],
+        "zh": [
+          "媽媽",
+          "老師",
+          "遊客"
+        ],
+        "ja": [
+          "お母さん",
+          "先生",
+          "観光客"
+        ]
       }
     },
     {
@@ -112,6 +139,33 @@
         "ja": {
           "text": "先生"
         }
+      },
+      "distractors": {
+        "de": [
+          "die Mutter",
+          "der Tourist",
+          "der Verkäufer"
+        ],
+        "fr": [
+          "la mère",
+          "le touriste",
+          "le commerçant"
+        ],
+        "es": [
+          "la madre",
+          "el turista",
+          "el vendedor"
+        ],
+        "zh": [
+          "媽媽",
+          "遊客",
+          "店主"
+        ],
+        "ja": [
+          "お母さん",
+          "観光客",
+          "店主"
+        ]
       }
     },
     {
@@ -141,6 +195,33 @@
         "ja": {
           "text": "描く"
         }
+      },
+      "distractors": {
+        "de": [
+          "der tanzen",
+          "der singen",
+          "der lesen"
+        ],
+        "fr": [
+          "le danser",
+          "le chanter",
+          "le lire"
+        ],
+        "es": [
+          "el bailar",
+          "el cantar",
+          "el leer"
+        ],
+        "zh": [
+          "跳舞",
+          "唱歌",
+          "讀"
+        ],
+        "ja": [
+          "踊る",
+          "歌う",
+          "読む"
+        ]
       }
     },
     {
@@ -170,6 +251,33 @@
         "ja": {
           "text": "歌う"
         }
+      },
+      "distractors": {
+        "de": [
+          "der tanzen",
+          "der zeichnen",
+          "der lesen"
+        ],
+        "fr": [
+          "le danser",
+          "le dessiner",
+          "le lire"
+        ],
+        "es": [
+          "el bailar",
+          "el dibujar",
+          "el leer"
+        ],
+        "zh": [
+          "跳舞",
+          "畫畫",
+          "讀"
+        ],
+        "ja": [
+          "踊る",
+          "描く",
+          "読む"
+        ]
       }
     }
   ],
@@ -606,21 +714,45 @@
             "zh": {
               "text": "小朋友怎麼學歌？",
               "tiles": [
-                "小朋友怎麼學歌？"
+                "小朋友",
+                "怎麼",
+                "學",
+                "歌？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "小朋友怎麼學歌？",
+                "literalOrderExplanation": "小朋友 → 怎麼 → 學 → 歌？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "小朋友怎麼學歌？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "小朋友",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "怎麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "學",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "歌？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -629,21 +761,77 @@
             "ja": {
               "text": "子どもはどうやって歌を覚えますか？",
               "tiles": [
-                "子どもはどうやって歌を覚えますか？"
+                "子ども",
+                "は",
+                "どう",
+                "や",
+                "って",
+                "歌",
+                "を",
+                "覚えますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "子どもはどうやって歌を覚えますか？",
+                "literalOrderExplanation": "子ども → は → どう → や → って → 歌 → を → 覚えますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "子どもはどうやって歌を覚えますか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "子ども",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どう",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "や",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "って",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "歌",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "覚えますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1063,21 +1251,45 @@
             "zh": {
               "text": "老師怎麼畫地圖？",
               "tiles": [
-                "老師怎麼畫地圖？"
+                "老師",
+                "怎麼",
+                "畫",
+                "地圖？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "老師怎麼畫地圖？",
+                "literalOrderExplanation": "老師 → 怎麼 → 畫 → 地圖？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "老師怎麼畫地圖？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "老師",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "怎麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "畫",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "地圖？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1086,21 +1298,85 @@
             "ja": {
               "text": "先生はどうやって地図を描きますか？",
               "tiles": [
-                "先生はどうやって地図を描きますか？"
+                "先生",
+                "は",
+                "どう",
+                "や",
+                "って",
+                "地図",
+                "を",
+                "描",
+                "きますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "先生はどうやって地図を描きますか？",
+                "literalOrderExplanation": "先生 → は → どう → や → って → 地図 → を → 描 → きますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "先生はどうやって地図を描きますか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "先生",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どう",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "や",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "って",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "地図",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "描",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "きますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1354,21 +1630,45 @@
         "zh": {
           "text": "小朋友怎麼學歌？",
           "tiles": [
-            "小朋友怎麼學歌？"
+            "小朋友",
+            "怎麼",
+            "學",
+            "歌？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "小朋友怎麼學歌？",
+            "literalOrderExplanation": "小朋友 → 怎麼 → 學 → 歌？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "小朋友怎麼學歌？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "小朋友",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "怎麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "學",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "歌？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1377,21 +1677,77 @@
         "ja": {
           "text": "子どもはどうやって歌を覚えますか？",
           "tiles": [
-            "子どもはどうやって歌を覚えますか？"
+            "子ども",
+            "は",
+            "どう",
+            "や",
+            "って",
+            "歌",
+            "を",
+            "覚えますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "子どもはどうやって歌を覚えますか？",
+            "literalOrderExplanation": "子ども → は → どう → や → って → 歌 → を → 覚えますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "子どもはどうやって歌を覚えますか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "子ども",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どう",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "や",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "って",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "歌",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "覚えますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1673,21 +2029,45 @@
         "zh": {
           "text": "老師怎麼畫地圖？",
           "tiles": [
-            "老師怎麼畫地圖？"
+            "老師",
+            "怎麼",
+            "畫",
+            "地圖？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "老師怎麼畫地圖？",
+            "literalOrderExplanation": "老師 → 怎麼 → 畫 → 地圖？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "老師怎麼畫地圖？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "老師",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "怎麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "畫",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "地圖？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1696,21 +2076,85 @@
         "ja": {
           "text": "先生はどうやって地図を描きますか？",
           "tiles": [
-            "先生はどうやって地図を描きますか？"
+            "先生",
+            "は",
+            "どう",
+            "や",
+            "って",
+            "地図",
+            "を",
+            "描",
+            "きますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "先生はどうやって地図を描きますか？",
+            "literalOrderExplanation": "先生 → は → どう → や → って → 地図 → を → 描 → きますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "先生はどうやって地図を描きますか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "先生",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どう",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "や",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "って",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "地図",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "描",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "きますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]

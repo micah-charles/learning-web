@@ -83,6 +83,33 @@
         "ja": {
           "text": "料理人"
         }
+      },
+      "distractors": {
+        "de": [
+          "die Mutter",
+          "der Lehrer",
+          "der Tourist"
+        ],
+        "fr": [
+          "la mère",
+          "le professeur",
+          "le touriste"
+        ],
+        "es": [
+          "la madre",
+          "el profesor",
+          "el turista"
+        ],
+        "zh": [
+          "媽媽",
+          "老師",
+          "遊客"
+        ],
+        "ja": [
+          "お母さん",
+          "先生",
+          "観光客"
+        ]
       }
     },
     {
@@ -112,6 +139,33 @@
         "ja": {
           "text": "お母さん"
         }
+      },
+      "distractors": {
+        "de": [
+          "der Lehrer",
+          "der Tourist",
+          "der Verkäufer"
+        ],
+        "fr": [
+          "le professeur",
+          "le touriste",
+          "le commerçant"
+        ],
+        "es": [
+          "el profesor",
+          "el turista",
+          "el vendedor"
+        ],
+        "zh": [
+          "老師",
+          "遊客",
+          "店主"
+        ],
+        "ja": [
+          "先生",
+          "観光客",
+          "店主"
+        ]
       }
     },
     {
@@ -141,6 +195,33 @@
         "ja": {
           "text": "料理する"
         }
+      },
+      "distractors": {
+        "de": [
+          "der tanzen",
+          "der singen",
+          "der zeichnen"
+        ],
+        "fr": [
+          "le danser",
+          "le chanter",
+          "le dessiner"
+        ],
+        "es": [
+          "el bailar",
+          "el cantar",
+          "el dibujar"
+        ],
+        "zh": [
+          "跳舞",
+          "唱歌",
+          "畫畫"
+        ],
+        "ja": [
+          "踊る",
+          "歌う",
+          "描く"
+        ]
       }
     },
     {
@@ -170,6 +251,33 @@
         "ja": {
           "text": "飲む"
         }
+      },
+      "distractors": {
+        "de": [
+          "der tanzen",
+          "der singen",
+          "der zeichnen"
+        ],
+        "fr": [
+          "le danser",
+          "le chanter",
+          "le dessiner"
+        ],
+        "es": [
+          "el bailar",
+          "el cantar",
+          "el dibujar"
+        ],
+        "zh": [
+          "跳舞",
+          "唱歌",
+          "畫畫"
+        ],
+        "ja": [
+          "踊る",
+          "歌う",
+          "描く"
+        ]
       }
     }
   ],
@@ -630,21 +738,45 @@
             "zh": {
               "text": "媽媽怎麼煮晚餐？",
               "tiles": [
-                "媽媽怎麼煮晚餐？"
+                "媽媽",
+                "怎麼",
+                "煮",
+                "晚餐？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "媽媽怎麼煮晚餐？",
+                "literalOrderExplanation": "媽媽 → 怎麼 → 煮 → 晚餐？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "媽媽怎麼煮晚餐？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "媽媽",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "怎麼",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "煮",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "晚餐？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -653,21 +785,77 @@
             "ja": {
               "text": "お母さんはどうやって夕食を作りますか？",
               "tiles": [
-                "お母さんはどうやって夕食を作りますか？"
+                "お母さん",
+                "は",
+                "どう",
+                "や",
+                "って",
+                "夕食",
+                "を",
+                "作りますか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "お母さんはどうやって夕食を作りますか？",
+                "literalOrderExplanation": "お母さん → は → どう → や → って → 夕食 → を → 作りますか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "お母さんはどうやって夕食を作りますか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "お母さん",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "どう",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "や",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "って",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "夕食",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "作りますか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1079,21 +1267,45 @@
             "zh": {
               "text": "廚師喜歡喝什麼？",
               "tiles": [
-                "廚師喜歡喝什麼？"
+                "廚師",
+                "喜歡",
+                "喝",
+                "什麼？"
               ],
               "analysis": {
                 "sentencePattern": "提问: Where",
-                "literalOrderExplanation": "廚師喜歡喝什麼？",
+                "literalOrderExplanation": "廚師 → 喜歡 → 喝 → 什麼？",
                 "grammarExplanation": [
                   "Chinese word order stays the same in questions.",
                   "Question words replace the information being asked about."
                 ],
                 "tokens": [
                   {
-                    "text": "廚師喜歡喝什麼？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "廚師",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "喜歡",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "喝",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "什麼？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1102,21 +1314,85 @@
             "ja": {
               "text": "料理人は何を飲むのが好きですか？",
               "tiles": [
-                "料理人は何を飲むのが好きですか？"
+                "料理",
+                "人",
+                "は",
+                "何",
+                "を",
+                "飲む",
+                "の",
+                "が",
+                "好きですか？"
               ],
               "analysis": {
                 "sentencePattern": "質問: Where",
-                "literalOrderExplanation": "料理人は何を飲むのが好きですか？",
+                "literalOrderExplanation": "料理 → 人 → は → 何 → を → 飲む → の → が → 好きですか？",
                 "grammarExplanation": [
                   "Japanese keeps the verb at the end in questions.",
                   "The か particle marks a question."
                 ],
                 "tokens": [
                   {
-                    "text": "料理人は何を飲むのが好きですか？",
-                    "type": "sentence",
-                    "role": "full_question",
-                    "meaning": "full question",
+                    "text": "料理",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "人",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "は",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "何",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "を",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "飲む",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "の",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "が",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "好きですか？",
+                    "type": "word",
+                    "role": "sentence_element",
+                    "meaning": "sentence element",
                     "grammarNote": ""
                   }
                 ]
@@ -1394,21 +1670,45 @@
         "zh": {
           "text": "媽媽怎麼煮晚餐？",
           "tiles": [
-            "媽媽怎麼煮晚餐？"
+            "媽媽",
+            "怎麼",
+            "煮",
+            "晚餐？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "媽媽怎麼煮晚餐？",
+            "literalOrderExplanation": "媽媽 → 怎麼 → 煮 → 晚餐？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "媽媽怎麼煮晚餐？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "媽媽",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "怎麼",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "煮",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "晚餐？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1417,21 +1717,77 @@
         "ja": {
           "text": "お母さんはどうやって夕食を作りますか？",
           "tiles": [
-            "お母さんはどうやって夕食を作りますか？"
+            "お母さん",
+            "は",
+            "どう",
+            "や",
+            "って",
+            "夕食",
+            "を",
+            "作りますか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "お母さんはどうやって夕食を作りますか？",
+            "literalOrderExplanation": "お母さん → は → どう → や → って → 夕食 → を → 作りますか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "お母さんはどうやって夕食を作りますか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "お母さん",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "どう",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "や",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "って",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "夕食",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "作りますか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1705,21 +2061,45 @@
         "zh": {
           "text": "廚師喜歡喝什麼？",
           "tiles": [
-            "廚師喜歡喝什麼？"
+            "廚師",
+            "喜歡",
+            "喝",
+            "什麼？"
           ],
           "analysis": {
             "sentencePattern": "提问: Where",
-            "literalOrderExplanation": "廚師喜歡喝什麼？",
+            "literalOrderExplanation": "廚師 → 喜歡 → 喝 → 什麼？",
             "grammarExplanation": [
               "Chinese word order stays the same in questions.",
               "Question words replace the information being asked about."
             ],
             "tokens": [
               {
-                "text": "廚師喜歡喝什麼？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "廚師",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "喜歡",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "喝",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "什麼？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
@@ -1728,21 +2108,85 @@
         "ja": {
           "text": "料理人は何を飲むのが好きですか？",
           "tiles": [
-            "料理人は何を飲むのが好きですか？"
+            "料理",
+            "人",
+            "は",
+            "何",
+            "を",
+            "飲む",
+            "の",
+            "が",
+            "好きですか？"
           ],
           "analysis": {
             "sentencePattern": "質問: Where",
-            "literalOrderExplanation": "料理人は何を飲むのが好きですか？",
+            "literalOrderExplanation": "料理 → 人 → は → 何 → を → 飲む → の → が → 好きですか？",
             "grammarExplanation": [
               "Japanese keeps the verb at the end in questions.",
               "The か particle marks a question."
             ],
             "tokens": [
               {
-                "text": "料理人は何を飲むのが好きですか？",
-                "type": "sentence",
-                "role": "full_question",
-                "meaning": "full question",
+                "text": "料理",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "人",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "は",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "何",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "を",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "飲む",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "の",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "が",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
+                "grammarNote": ""
+              },
+              {
+                "text": "好きですか？",
+                "type": "word",
+                "role": "sentence_element",
+                "meaning": "sentence element",
                 "grammarNote": ""
               }
             ]
