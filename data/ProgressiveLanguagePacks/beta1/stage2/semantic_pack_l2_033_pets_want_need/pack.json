@@ -58,8 +58,8 @@
       ]
     },
     "sentenceGoals": [
-      "I want the ball.",
-      "Do you need the ball?"
+      "I want a ball.",
+      "Do you need a ball?"
     ]
   },
   "vocabulary": [
@@ -298,51 +298,51 @@
           "focus": "full_sentence",
           "translations": {
             "en": {
-              "text": "I want the ball.",
+              "text": "I want a ball.",
               "tiles": [
                 "I",
                 "want",
-                "the",
+                "a",
                 "ball",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Want and need sentence",
-                "literalOrderExplanation": "I → want → the → ball → .",
+                "literalOrderExplanation": "I → want → a → ball → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
                     "text": "I",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "want",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
-                    "text": "the",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "text": "a",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "ball",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main sentence action",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -365,36 +365,36 @@
                 "tokens": [
                   {
                     "text": "Ich",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "möchte",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "desire",
+                    "meaning": "desire action",
                     "grammarNote": ""
                   },
                   {
                     "text": "einen",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Ball",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -417,36 +417,36 @@
                 "tokens": [
                   {
                     "text": "Je",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "veux",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "desire",
+                    "meaning": "desire action",
                     "grammarNote": ""
                   },
                   {
                     "text": "un",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "ballon",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -468,29 +468,29 @@
                 "tokens": [
                   {
                     "text": "Quiero",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "desire",
+                    "meaning": "desire action",
                     "grammarNote": ""
                   },
                   {
                     "text": "una",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "pelota",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -509,9 +509,9 @@
                 "tokens": [
                   {
                     "text": "ボールがほしいです。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence",
+                    "meaning": "japanese sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -529,9 +529,9 @@
                 "tokens": [
                   {
                     "text": "我想要一個球。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "desire",
+                    "meaning": "desire sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -558,59 +558,59 @@
           "focus": "full_sentence",
           "translations": {
             "en": {
-              "text": "Do you need the ball?",
+              "text": "Do you need a ball?",
               "tiles": [
                 "Do",
                 "you",
                 "need",
-                "the",
+                "a",
                 "ball",
                 "?"
               ],
               "analysis": {
                 "sentencePattern": "Want and need sentence",
-                "literalOrderExplanation": "Do → you → need → the → ball → ?",
+                "literalOrderExplanation": "Do → you → need → a → ball → ?",
                 "grammarExplanation": [],
                 "tokens": [
                   {
                     "text": "Do",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "auxiliary",
+                    "role": "question_marker",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "you",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "need",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
-                    "text": "the",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "text": "a",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "ball",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main sentence action",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -633,36 +633,36 @@
                 "tokens": [
                   {
                     "text": "Brauchst",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "desire",
+                    "meaning": "desire action",
                     "grammarNote": ""
                   },
                   {
                     "text": "du",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "einen",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Ball",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -686,43 +686,43 @@
                 "tokens": [
                   {
                     "text": "As-tu",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "besoin",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "desire",
+                    "meaning": "desire action",
                     "grammarNote": ""
                   },
                   {
                     "text": "de",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "ballon",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -745,36 +745,36 @@
                 "tokens": [
                   {
                     "text": "¿",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
                     "text": "Necesitas",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "desire",
+                    "meaning": "desire action",
                     "grammarNote": ""
                   },
                   {
                     "text": "una",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "pelota",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -793,9 +793,9 @@
                 "tokens": [
                   {
                     "text": "ボールが必要ですか。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence",
+                    "meaning": "japanese sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -813,9 +813,9 @@
                 "tokens": [
                   {
                     "text": "你需要球嗎？",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "desire",
+                    "meaning": "desire sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -844,51 +844,51 @@
       "sourceChainId": "CHAIN_4_1",
       "translations": {
         "en": {
-          "text": "I want the ball.",
+          "text": "I want a ball.",
           "tiles": [
             "I",
             "want",
-            "the",
+            "a",
             "ball",
             "."
           ],
           "analysis": {
             "sentencePattern": "Want and need sentence",
-            "literalOrderExplanation": "I → want → the → ball → .",
+            "literalOrderExplanation": "I → want → a → ball → .",
             "grammarExplanation": [],
             "tokens": [
               {
                 "text": "I",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "want",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
-                "text": "the",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "text": "a",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "ball",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main sentence action",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -911,36 +911,36 @@
             "tokens": [
               {
                 "text": "Ich",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "möchte",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "desire",
+                "meaning": "desire action",
                 "grammarNote": ""
               },
               {
                 "text": "einen",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Ball",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -963,36 +963,36 @@
             "tokens": [
               {
                 "text": "Je",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "veux",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "desire",
+                "meaning": "desire action",
                 "grammarNote": ""
               },
               {
                 "text": "un",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "ballon",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1014,29 +1014,29 @@
             "tokens": [
               {
                 "text": "Quiero",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "desire",
+                "meaning": "desire action",
                 "grammarNote": ""
               },
               {
                 "text": "una",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "pelota",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1055,9 +1055,9 @@
             "tokens": [
               {
                 "text": "ボールがほしいです。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence",
+                "meaning": "japanese sentence",
                 "grammarNote": ""
               }
             ]
@@ -1075,9 +1075,9 @@
             "tokens": [
               {
                 "text": "我想要一個球。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "desire",
+                "meaning": "desire sentence",
                 "grammarNote": ""
               }
             ]
@@ -1102,59 +1102,59 @@
       "sourceChainId": "CHAIN_4_2",
       "translations": {
         "en": {
-          "text": "Do you need the ball?",
+          "text": "Do you need a ball?",
           "tiles": [
             "Do",
             "you",
             "need",
-            "the",
+            "a",
             "ball",
             "?"
           ],
           "analysis": {
             "sentencePattern": "Want and need sentence",
-            "literalOrderExplanation": "Do → you → need → the → ball → ?",
+            "literalOrderExplanation": "Do → you → need → a → ball → ?",
             "grammarExplanation": [],
             "tokens": [
               {
                 "text": "Do",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "auxiliary",
+                "role": "question_marker",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "you",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "need",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
-                "text": "the",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "text": "a",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "ball",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main sentence action",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1177,36 +1177,36 @@
             "tokens": [
               {
                 "text": "Brauchst",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "desire",
+                "meaning": "desire action",
                 "grammarNote": ""
               },
               {
                 "text": "du",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "einen",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Ball",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1230,43 +1230,43 @@
             "tokens": [
               {
                 "text": "As-tu",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "besoin",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "desire",
+                "meaning": "desire action",
                 "grammarNote": ""
               },
               {
                 "text": "de",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "le",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "ballon",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1289,36 +1289,36 @@
             "tokens": [
               {
                 "text": "¿",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
                 "text": "Necesitas",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "desire",
+                "meaning": "desire action",
                 "grammarNote": ""
               },
               {
                 "text": "una",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "pelota",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1337,9 +1337,9 @@
             "tokens": [
               {
                 "text": "ボールが必要ですか。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence",
+                "meaning": "japanese sentence",
                 "grammarNote": ""
               }
             ]
@@ -1357,9 +1357,9 @@
             "tokens": [
               {
                 "text": "你需要球嗎？",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "desire",
+                "meaning": "desire sentence",
                 "grammarNote": ""
               }
             ]

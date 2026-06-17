@@ -313,36 +313,36 @@
                 "tokens": [
                   {
                     "text": "Where",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "train",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main sentence action",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -365,36 +365,36 @@
                 "tokens": [
                   {
                     "text": "Wo",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "der",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Zug",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -417,36 +417,36 @@
                 "tokens": [
                   {
                     "text": "Où",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "le",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "train",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -470,43 +470,43 @@
                 "tokens": [
                   {
                     "text": "¿",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
                     "text": "Dónde",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "tren",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -525,9 +525,9 @@
                 "tokens": [
                   {
                     "text": "電車はどこですか。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence",
+                    "meaning": "japanese sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -545,9 +545,9 @@
                 "tokens": [
                   {
                     "text": "火車在哪裡？",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "location sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -591,50 +591,50 @@
                 "tokens": [
                   {
                     "text": "The",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "train",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "at",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "station",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main sentence action",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -658,43 +658,43 @@
                 "tokens": [
                   {
                     "text": "Der",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "zug",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "am",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "Bahnhof",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -719,50 +719,50 @@
                 "tokens": [
                   {
                     "text": "Le",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "train",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "à",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "gare",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -787,50 +787,50 @@
                 "tokens": [
                   {
                     "text": "El",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "tren",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "está",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "en",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "estación",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -849,9 +849,9 @@
                 "tokens": [
                   {
                     "text": "電車は駅にあります。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence",
+                    "meaning": "japanese sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -869,9 +869,9 @@
                 "tokens": [
                   {
                     "text": "火車在車站。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "location sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -915,36 +915,36 @@
             "tokens": [
               {
                 "text": "Where",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "is",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "the",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "train",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main sentence action",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -967,36 +967,36 @@
             "tokens": [
               {
                 "text": "Wo",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "der",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Zug",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1019,36 +1019,36 @@
             "tokens": [
               {
                 "text": "Où",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "le",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "train",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1072,43 +1072,43 @@
             "tokens": [
               {
                 "text": "¿",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
                 "text": "Dónde",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "tren",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1127,9 +1127,9 @@
             "tokens": [
               {
                 "text": "電車はどこですか。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence",
+                "meaning": "japanese sentence",
                 "grammarNote": ""
               }
             ]
@@ -1147,9 +1147,9 @@
             "tokens": [
               {
                 "text": "火車在哪裡？",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "location sentence",
                 "grammarNote": ""
               }
             ]
@@ -1191,50 +1191,50 @@
             "tokens": [
               {
                 "text": "The",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "train",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "is",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "at",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "the",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "station",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main sentence action",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1258,43 +1258,43 @@
             "tokens": [
               {
                 "text": "Der",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "zug",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "am",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "Bahnhof",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1319,50 +1319,50 @@
             "tokens": [
               {
                 "text": "Le",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "train",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "à",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "gare",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1387,50 +1387,50 @@
             "tokens": [
               {
                 "text": "El",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "tren",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "está",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "en",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "estación",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1449,9 +1449,9 @@
             "tokens": [
               {
                 "text": "電車は駅にあります。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence",
+                "meaning": "japanese sentence",
                 "grammarNote": ""
               }
             ]
@@ -1469,9 +1469,9 @@
             "tokens": [
               {
                 "text": "火車在車站。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "location sentence",
                 "grammarNote": ""
               }
             ]

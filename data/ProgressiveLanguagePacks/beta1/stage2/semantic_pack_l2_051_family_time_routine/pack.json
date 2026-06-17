@@ -313,36 +313,36 @@
                 "tokens": [
                   {
                     "text": "When",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "the",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "meeting",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main sentence action",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -365,36 +365,36 @@
                 "tokens": [
                   {
                     "text": "Wann",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "das",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Treffen",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -417,36 +417,36 @@
                 "tokens": [
                   {
                     "text": "Quand",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "est",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "réunion",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -470,43 +470,43 @@
                 "tokens": [
                   {
                     "text": "¿",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
                     "text": "Cuándo",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "question_word",
+                    "role": "question",
+                    "meaning": "question detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "es",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "la",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "reunión",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "?",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -525,9 +525,9 @@
                 "tokens": [
                   {
                     "text": "会議はいつですか。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence",
+                    "meaning": "japanese sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -545,9 +545,9 @@
                 "tokens": [
                   {
                     "text": "會議是什麼時候？",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "ability",
+                    "meaning": "ability sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -592,57 +592,57 @@
                 "tokens": [
                   {
                     "text": "It",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "is",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "at",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "seven",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "o’clock",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "on",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence_detail",
+                    "meaning": "sentence detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Saturday",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "main_action",
+                    "meaning": "main sentence action",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -668,57 +668,57 @@
                 "tokens": [
                   {
                     "text": "Es",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "ist",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "am",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "Samstag",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "um",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "sieben",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "Uhr",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -742,43 +742,43 @@
                 "tokens": [
                   {
                     "text": "C’est",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "samedi",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "à",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "sept",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "noun",
+                    "role": "subject",
+                    "meaning": "person or topic",
                     "grammarNote": ""
                   },
                   {
                     "text": "heures",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -803,50 +803,50 @@
                 "tokens": [
                   {
                     "text": "Es",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "verb",
+                    "role": "being/location",
+                    "meaning": "being/location",
                     "grammarNote": ""
                   },
                   {
                     "text": "el",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "sábado",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "a",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "location_phrase",
+                    "role": "location",
+                    "meaning": "where it happens",
                     "grammarNote": ""
                   },
                   {
                     "text": "las",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "article",
+                    "role": "object_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": "siete",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "object_phrase",
+                    "role": "object_or_detail",
+                    "meaning": "object or detail",
                     "grammarNote": ""
                   },
                   {
                     "text": ".",
-                    "type": "word",
-                    "role": "component",
+                    "type": "punctuation",
+                    "role": "punct",
                     "meaning": "",
                     "grammarNote": ""
                   }
@@ -865,9 +865,9 @@
                 "tokens": [
                   {
                     "text": "土曜日の七時です。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "sentence",
+                    "meaning": "japanese sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -885,9 +885,9 @@
                 "tokens": [
                   {
                     "text": "是在星期六七點。",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
+                    "type": "phrase",
+                    "role": "location",
+                    "meaning": "location sentence",
                     "grammarNote": ""
                   }
                 ]
@@ -931,36 +931,36 @@
             "tokens": [
               {
                 "text": "When",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "is",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "the",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "meeting",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main sentence action",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -983,36 +983,36 @@
             "tokens": [
               {
                 "text": "Wann",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "das",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Treffen",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1035,36 +1035,36 @@
             "tokens": [
               {
                 "text": "Quand",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "est",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "réunion",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1088,43 +1088,43 @@
             "tokens": [
               {
                 "text": "¿",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
                 "text": "Cuándo",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "question_word",
+                "role": "question",
+                "meaning": "question detail",
                 "grammarNote": ""
               },
               {
                 "text": "es",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "la",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "reunión",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "?",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1143,9 +1143,9 @@
             "tokens": [
               {
                 "text": "会議はいつですか。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence",
+                "meaning": "japanese sentence",
                 "grammarNote": ""
               }
             ]
@@ -1163,9 +1163,9 @@
             "tokens": [
               {
                 "text": "會議是什麼時候？",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "ability",
+                "meaning": "ability sentence",
                 "grammarNote": ""
               }
             ]
@@ -1208,57 +1208,57 @@
             "tokens": [
               {
                 "text": "It",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "is",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "at",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "seven",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "o’clock",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "on",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence_detail",
+                "meaning": "sentence detail",
                 "grammarNote": ""
               },
               {
                 "text": "Saturday",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "main_action",
+                "meaning": "main sentence action",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1284,57 +1284,57 @@
             "tokens": [
               {
                 "text": "Es",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "ist",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "am",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "Samstag",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "um",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "sieben",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "Uhr",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1358,43 +1358,43 @@
             "tokens": [
               {
                 "text": "C’est",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "samedi",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "à",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "sept",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "noun",
+                "role": "subject",
+                "meaning": "person or topic",
                 "grammarNote": ""
               },
               {
                 "text": "heures",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1419,50 +1419,50 @@
             "tokens": [
               {
                 "text": "Es",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "verb",
+                "role": "being/location",
+                "meaning": "being/location",
                 "grammarNote": ""
               },
               {
                 "text": "el",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "sábado",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "a",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "location_phrase",
+                "role": "location",
+                "meaning": "where it happens",
                 "grammarNote": ""
               },
               {
                 "text": "las",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "article",
+                "role": "object_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": "siete",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "object_phrase",
+                "role": "object_or_detail",
+                "meaning": "object or detail",
                 "grammarNote": ""
               },
               {
                 "text": ".",
-                "type": "word",
-                "role": "component",
+                "type": "punctuation",
+                "role": "punct",
                 "meaning": "",
                 "grammarNote": ""
               }
@@ -1481,9 +1481,9 @@
             "tokens": [
               {
                 "text": "土曜日の七時です。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "sentence",
+                "meaning": "japanese sentence",
                 "grammarNote": ""
               }
             ]
@@ -1501,9 +1501,9 @@
             "tokens": [
               {
                 "text": "是在星期六七點。",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
+                "type": "phrase",
+                "role": "location",
+                "meaning": "location sentence",
                 "grammarNote": ""
               }
             ]
