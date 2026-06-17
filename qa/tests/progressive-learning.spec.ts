@@ -169,6 +169,24 @@ test("@data-sample progressive learning supports listen voice practice feedback 
   await page.getByTestId("progressive-listen-voice-practice-button").click();
   await expect(page.getByTestId("voice-feedback-panel")).toBeVisible();
   await expect(page.getByTestId("voice-feedback-accuracy")).toContainText("100%");
+  await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeEnabled();
+  await expect(page.getByTestId("progressive-listen-voice-practice-button")).toContainText("Speak again");
+
+  await page.evaluate((text) => {
+    const bag = window as any;
+    bag.__nextSpeechTranscript = text;
+    bag.__nextSpeechConfidence = 0.98;
+  }, targetText);
+  await page.getByTestId("progressive-listen-voice-practice-button").click();
+  await expect(page.getByTestId("voice-feedback-accuracy")).toContainText("100%");
+  await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeEnabled();
+
+  await page.getByTestId("progressive-next-step-button").click();
+  if (await page.getByTestId("progressive-phase-listen").isVisible()) {
+    await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeVisible();
+    await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeEnabled();
+    await expect(page.getByTestId("progressive-listen-voice-practice-button")).toContainText("Speak");
+  }
 
   for (let guard = 0; guard < 20; guard += 1) {
     if (await page.getByTestId("progressive-phase-vocab").isVisible()) break;

@@ -7,7 +7,7 @@
  *   - On mount, restores the most-progressed language's next lesson.
  *   - When Arcade completes, marks the lesson done and auto-advances.
  */
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { loadStoredState } from "@/storage.js";
 import { useLessonSession } from "../hooks/useLessonSession.js";
@@ -51,12 +51,29 @@ export default function LanguagePage() {
     languageCode: speechLang,
     onResult: () => {},
   });
+  const voicePracticePromptKeyRef = useRef("");
+
+  const voicePracticePromptKey = session
+    ? session.phase === "listen"
+      ? `listen:${session.catalogLessonId}:${session.targetLang}:${session.chainIndex}:${session.stepIndex}`
+      : session.phase === "builder"
+        ? `builder:${session.catalogLessonId}:${session.targetLang}:${session.sentenceIndex}`
+        : session.phase || ""
+    : "";
 
   useEffect(() => {
     if (session?.phase !== "listen" && session?.phase !== "builder") {
       voice.reset();
     }
   }, [session?.phase, voice.reset]);
+
+  useEffect(() => {
+    if (!voicePracticePromptKey) return;
+    if (voicePracticePromptKeyRef.current && voicePracticePromptKeyRef.current !== voicePracticePromptKey) {
+      voice.reset();
+    }
+    voicePracticePromptKeyRef.current = voicePracticePromptKey;
+  }, [voicePracticePromptKey, voice.reset]);
 
   useEffect(() => {
     if (!speechPlaybackSupported && session?.phase === "listen") {
