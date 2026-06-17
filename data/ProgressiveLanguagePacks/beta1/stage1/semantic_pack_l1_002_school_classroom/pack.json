@@ -799,45 +799,62 @@
               }
             },
             "zh": {
-              "text": "同學在教室裡。",
+              "text": "在教室裡",
               "tiles": [
-                "同學在教室裡。"
+                "在",
+                "教室",
+                "裡"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "同學在教室裡",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在教室裡",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "同學在教室裡",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "教室",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "裡",
+                    "type": "particle",
+                    "role": "locative",
+                    "meaning": "inside",
+                    "grammarNote": "Locative particle for enclosed spaces"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "教室にいます。",
+              "text": "教室に",
               "tiles": [
-                "教室にいます。"
+                "教室に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "教室にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "教室に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "教室にいます",
+                    "text": "教室に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -2086,10 +2103,12 @@
           }
         },
         "zh": {
-          "text": "同學在教室裡。",
+          "text": "同學在教室裡",
           "tiles": [
             "同學",
-            "在教室裡。"
+            "在",
+            "教室",
+            "裡"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2117,11 +2136,11 @@
           }
         },
         "ja": {
-          "text": "クラスメートは教室にいます。",
+          "text": "クラスメイトは教室にいます",
           "tiles": [
-            "クラスメートは",
+            "クラスメイトは",
             "教室に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2393,11 +2412,11 @@
           }
         },
         "zh": {
-          "text": "老師打開書。",
+          "text": "老師打開書",
           "tiles": [
             "老師",
             "打開",
-            "書。"
+            "書"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2432,11 +2451,11 @@
           }
         },
         "ja": {
-          "text": "先生は本を開けます。",
+          "text": "先生は本を開きます",
           "tiles": [
             "先生は",
             "本を",
-            "開けます。"
+            "開きます"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

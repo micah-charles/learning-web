@@ -799,45 +799,62 @@
               }
             },
             "zh": {
-              "text": "廚師在廚房裡。",
+              "text": "在廚房裡",
               "tiles": [
-                "廚師在廚房裡。"
+                "在",
+                "廚房",
+                "裡"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "廚師在廚房裡",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在廚房裡",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "廚師在廚房裡",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "廚房",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "裡",
+                    "type": "particle",
+                    "role": "locative",
+                    "meaning": "inside",
+                    "grammarNote": "Locative particle for enclosed spaces"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "台所にいます。",
+              "text": "台所に",
               "tiles": [
-                "台所にいます。"
+                "台所に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "台所にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "台所に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "台所にいます",
+                    "text": "台所に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -2014,10 +2031,12 @@
           }
         },
         "zh": {
-          "text": "廚師在廚房裡。",
+          "text": "廚師在廚房裡",
           "tiles": [
             "廚師",
-            "在廚房裡。"
+            "在",
+            "廚房",
+            "裡"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2045,11 +2064,11 @@
           }
         },
         "ja": {
-          "text": "料理人は台所にいます。",
+          "text": "料理人は台所にいます",
           "tiles": [
             "料理人は",
             "台所に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2297,11 +2316,11 @@
           }
         },
         "zh": {
-          "text": "媽媽吃麵包。",
+          "text": "媽媽吃麵包",
           "tiles": [
             "媽媽",
             "吃",
-            "麵包。"
+            "麵包"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2336,11 +2355,11 @@
           }
         },
         "ja": {
-          "text": "お母さんはパンを食べます。",
+          "text": "母はパンを食べます",
           "tiles": [
-            "お母さんは",
+            "母は",
             "パンを",
-            "食べます。"
+            "食べます"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

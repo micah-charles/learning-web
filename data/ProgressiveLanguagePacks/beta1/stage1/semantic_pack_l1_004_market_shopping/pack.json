@@ -799,45 +799,62 @@
               }
             },
             "zh": {
-              "text": "店主在市場裡。",
+              "text": "在市場裡",
               "tiles": [
-                "店主在市場裡。"
+                "在",
+                "市場",
+                "裡"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "店主在市場裡",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在市場裡",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "店主在市場裡",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "市場",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "裡",
+                    "type": "particle",
+                    "role": "locative",
+                    "meaning": "inside",
+                    "grammarNote": "Locative particle for enclosed spaces"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "市場にいます。",
+              "text": "市場に",
               "tiles": [
-                "市場にいます。"
+                "市場に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "市場にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "市場に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "市場にいます",
+                    "text": "市場に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -1990,10 +2007,12 @@
           }
         },
         "zh": {
-          "text": "店主在市場裡。",
+          "text": "店主在市場裡",
           "tiles": [
             "店主",
-            "在市場裡。"
+            "在",
+            "市場",
+            "裡"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2021,11 +2040,11 @@
           }
         },
         "ja": {
-          "text": "店主は市場にいます。",
+          "text": "店主は市場にいます",
           "tiles": [
             "店主は",
             "市場に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2265,11 +2284,11 @@
           }
         },
         "zh": {
-          "text": "朋友買水果。",
+          "text": "朋友買水果",
           "tiles": [
             "朋友",
             "買",
-            "水果。"
+            "水果"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2304,11 +2323,11 @@
           }
         },
         "ja": {
-          "text": "友だちは果物を買います。",
+          "text": "友達は果物を買います",
           "tiles": [
-            "友だちは",
+            "友達は",
             "果物を",
-            "買います。"
+            "買います"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

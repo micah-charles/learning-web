@@ -800,45 +800,62 @@
               }
             },
             "zh": {
-              "text": "媽媽在花園裡。",
+              "text": "在花園裡",
               "tiles": [
-                "媽媽在花園裡。"
+                "在",
+                "花園",
+                "裡"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "媽媽在花園裡",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在花園裡",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "媽媽在花園裡",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "花園",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "裡",
+                    "type": "particle",
+                    "role": "locative",
+                    "meaning": "inside",
+                    "grammarNote": "Locative particle for enclosed spaces"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "庭にいます。",
+              "text": "庭に",
               "tiles": [
-                "庭にいます。"
+                "庭に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "庭にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "庭に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "庭にいます",
+                    "text": "庭に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -2087,10 +2104,12 @@
           }
         },
         "zh": {
-          "text": "媽媽在花園裡。",
+          "text": "媽媽在花園裡",
           "tiles": [
             "媽媽",
-            "在花園裡。"
+            "在",
+            "花園",
+            "裡"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2118,11 +2137,11 @@
           }
         },
         "ja": {
-          "text": "お母さんは庭にいます。",
+          "text": "お母さんは庭にいます",
           "tiles": [
             "お母さんは",
             "庭に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2458,11 +2477,12 @@
           }
         },
         "zh": {
-          "text": "祖母坐在椅子旁邊。",
+          "text": "祖母坐在椅子旁邊",
           "tiles": [
             "祖母",
             "坐在",
-            "椅子旁邊。"
+            "椅子",
+            "旁邊"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2497,11 +2517,11 @@
           }
         },
         "ja": {
-          "text": "おばあさんはいすの近くに座ります。",
+          "text": "おばあさんは椅子の近くに座ります",
           "tiles": [
             "おばあさんは",
-            "いすの近くに",
-            "座ります。"
+            "椅子の近くに",
+            "座ります"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

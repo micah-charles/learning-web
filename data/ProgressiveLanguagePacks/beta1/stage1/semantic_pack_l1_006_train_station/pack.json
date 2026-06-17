@@ -800,21 +800,30 @@
               }
             },
             "zh": {
-              "text": "乘客在車站。",
+              "text": "在車站",
               "tiles": [
-                "乘客在車站。"
+                "在",
+                "車站"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "乘客在車站",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在車站",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "乘客在車站",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "車站",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
                   }
@@ -822,23 +831,23 @@
               }
             },
             "ja": {
-              "text": "駅にいます。",
+              "text": "駅に",
               "tiles": [
-                "駅にいます。"
+                "駅に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "駅にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "駅に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "駅にいます",
+                    "text": "駅に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -2023,10 +2032,11 @@
           }
         },
         "zh": {
-          "text": "乘客在車站。",
+          "text": "乘客在車站",
           "tiles": [
             "乘客",
-            "在車站。"
+            "在",
+            "車站"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2054,11 +2064,11 @@
           }
         },
         "ja": {
-          "text": "乗客は駅にいます。",
+          "text": "乗客は駅にいます",
           "tiles": [
             "乗客は",
             "駅に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2330,11 +2340,11 @@
           }
         },
         "zh": {
-          "text": "旅客看車票。",
+          "text": "旅客看車票",
           "tiles": [
             "旅客",
             "看",
-            "車票。"
+            "車票"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2369,11 +2379,11 @@
           }
         },
         "ja": {
-          "text": "旅行者は切符を読みます。",
+          "text": "旅行者は切符を見ます",
           "tiles": [
             "旅行者は",
             "切符を",
-            "読みます。"
+            "見ます"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

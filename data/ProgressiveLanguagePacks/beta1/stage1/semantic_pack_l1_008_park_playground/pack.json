@@ -798,45 +798,62 @@
               }
             },
             "zh": {
-              "text": "家長在公園裡。",
+              "text": "在公園裡",
               "tiles": [
-                "家長在公園裡。"
+                "在",
+                "公園",
+                "裡"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "家長在公園裡",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在公園裡",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "家長在公園裡",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "公園",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "裡",
+                    "type": "particle",
+                    "role": "locative",
+                    "meaning": "inside",
+                    "grammarNote": "Locative particle for enclosed spaces"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "公園にいます。",
+              "text": "公園に",
               "tiles": [
-                "公園にいます。"
+                "公園に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "公園にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "公園に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "公園にいます",
+                    "text": "公園に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -2045,10 +2062,12 @@
           }
         },
         "zh": {
-          "text": "家長在公園裡。",
+          "text": "家長在公園裡",
           "tiles": [
             "家長",
-            "在公園裡。"
+            "在",
+            "公園",
+            "裡"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2076,11 +2095,11 @@
           }
         },
         "ja": {
-          "text": "親は公園にいます。",
+          "text": "保護者は公園にいます",
           "tiles": [
-            "親は",
+            "保護者は",
             "公園に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2376,11 +2395,11 @@
           }
         },
         "zh": {
-          "text": "小朋友玩球。",
+          "text": "小朋友玩球",
           "tiles": [
             "小朋友",
             "玩",
-            "球。"
+            "球"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2415,11 +2434,11 @@
           }
         },
         "ja": {
-          "text": "子どもはボールで遊びます。",
+          "text": "子供はボールで遊びます",
           "tiles": [
-            "子どもは",
+            "子供は",
             "ボールで",
-            "遊びます。"
+            "遊びます"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",
