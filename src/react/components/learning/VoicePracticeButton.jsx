@@ -4,7 +4,7 @@ const STATES = {
   idle: { label: "Speak", icon: "🎤" },
   listening: { label: "Listening...", icon: "🔴" },
   processing: { label: "Checking...", icon: "⏳" },
-  success: { label: "Correct", icon: "✅" },
+  success: { label: "Speak again", icon: "✅" },
   error: { label: "Try again", icon: "🔄" },
   unsupported: { label: "Voice not supported", icon: "⚠️" },
 };
@@ -38,7 +38,7 @@ export default function VoicePracticeButton({ state = "idle", onClick, disabled 
       className="lw-btn"
       data-testid={dataTestId}
       onClick={onClick}
-      disabled={disabled || state === "processing" || state === "success"}
+      disabled={disabled || state === "processing"}
       style={{
         minWidth: "44px",
         minHeight: "44px",
