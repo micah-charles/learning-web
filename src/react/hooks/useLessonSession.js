@@ -59,7 +59,7 @@ function findNextLesson(catalog, currentLessonId) {
       if (idx !== -1) {
         const next = stage.lessons[idx + 1];
         return next
-          ? { packId: catPack.id, stageId: stage.id, lessonId: next.id, packPath: next.path }
+          ? { packId: catPack.id, stageId: stage.id, id: next.id, packPath: next.path }
           : null;
       }
     }

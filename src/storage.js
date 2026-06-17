@@ -147,23 +147,30 @@ function mergeState(base, incoming) {
 
 function migrateLanguageLadder(parsed) {
   const ll = parsed.prefs.languageLadder;
-  if (!ll || ll.lessonStatus !== undefined) return; // already migrated
+  if (!ll) return;
+  
+  // Check if already migrated using a version marker
+  if (ll.migrationVersion === 1) return;
 
   // MIGRATE: Convert old completedLessons to lessonStatus
   for (const [lang, info] of Object.entries(ll.langs ?? {})) {
     if (!info) continue;
-    info.lessonStatus = {};
-    info.weakLessons = [];
-    info.currentLessonId = info.currentLessonId || "";
+    
+    // Only initialize missing fields, don't overwrite existing
+    if (!info.lessonStatus) info.lessonStatus = {};
+    if (!info.weakLessons) info.weakLessons = [];
+    if (!info.currentLessonId) info.currentLessonId = "";
 
-    // Mark completed lessons
+    // Mark completed lessons (only if not already in lessonStatus)
     (info.completedLessons || []).forEach(lessonId => {
-      info.lessonStatus[lessonId] = {
-        status: "completed",
-        completedAt: info.lastOpenedAt || new Date().toISOString(),
-        attempts: 1,
-        lastScore: 100, // unknown, assume passing
-      };
+      if (!info.lessonStatus[lessonId]) {
+        info.lessonStatus[lessonId] = {
+          status: "completed",
+          completedAt: info.lastOpenedAt || new Date().toISOString(),
+          attempts: 1,
+          lastScore: 100, // unknown, assume passing
+        };
+      }
     });
 
     // Determine current lesson from lastOpenedAt or first uncompleted
@@ -177,6 +184,9 @@ function migrateLanguageLadder(parsed) {
     ? `${ll.lastLang}-${ll.langs[ll.lastLang]?.currentLessonId || ""}`
     : "";
   ll.lessonOrder = Object.keys(ll.langs ?? {}); // preserve existing order
+  
+  // Mark as migrated
+  ll.migrationVersion = 1;
 }
 
 export function loadStoredState() {
