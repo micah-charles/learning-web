@@ -91,11 +91,14 @@ export default function LanguagePage() {
   const handleArcadeComplete = useCallback(() => {
     const lessonId   = session?.catalogLessonId;
     const targetLang = session?.targetLang;
-    const next = markLessonComplete(lessonId, targetLang);
+    const pct = session?.score && (session.score.vocabTotal + session.score.builderTotal > 0)
+      ? Math.round(((session.score.vocabCorrect + session.score.builderCorrect) / (session.score.vocabTotal + session.score.builderTotal)) * 100)
+      : 100; // default to 100 if no score data
+    const next = markLessonComplete(lessonId, targetLang, pct);
     setNextLesson(next);   // may be null (last lesson)
     setShowArcade(false);
     advanceToReview();
-  }, [session?.catalogLessonId, session?.targetLang, markLessonComplete, advanceToReview]);
+  }, [session?.catalogLessonId, session?.targetLang, session?.score, markLessonComplete, advanceToReview]);
 
   // Called from ReviewPhase "Next Lesson" button.
   const handleNextLesson = useCallback(() => {

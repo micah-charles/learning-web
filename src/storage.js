@@ -24,20 +24,15 @@ export const DEFAULT_STATE = {
       categories: [],     // used by language-pack category checkboxes ([] = all selected)
     },
     quiz: {
-      // Subject First selections (added in the Subject First refactor)
       subject: "language",                    // language | history | geography | science
       curriculum: "all",                      // ks3 | gcse | other | all
       direction: "studyToTarget",             // studyToTarget | targetToStudy (language packs only)
       answerMode: "mcq",                      // mcq | typed | mixed
-      // Existing fields
       datasetId: "core",
       year: "Y7",
       stages: [],
       excludeMastered: true,
       questionCount: 18,
-      // Legacy mode IDs are kept internally for the question engine; they are
-      // derived from (subject, direction, answerMode) via the adapter at
-      // session-build time. Persisted here only as a safety net.
       modes: [
         "englishWordChooseGerman",
         "englishSentenceBuildGerman",
@@ -100,18 +95,6 @@ export const DEFAULT_STATE = {
       speech: false,              // speak the correct word/answer aloud via TTS
     },
     languageLadder: {
-      // Language-specific lesson progress. Keyed by targetLang code (e.g. "de", "ja").
-      // lastLang: the most-recently-used language code — restored on next open.
-      // currentLessonId: denormalized global current lesson (e.g. "de-semantic_pack_l1_004").
-      // lessonOrder: user's preferred language order for dashboard display.
-      // langs[code].completedLessons: ordered list of completed lesson IDs.
-      // langs[code].currentLessonId: the lesson to resume next time.
-      // langs[code].lastOpenedAt: ISO timestamp for "most recently used" ordering.
-      // langs[code].lessonStatus: detailed per-lesson state keyed by lessonId.
-      //   status: "not_started" | "in_progress" | "completed" | "needs_review" | "skipped"
-      //   startedAt, completedAt, lastScore, attempts
-      // langs[code].weakLessons: lessonIds with score < 70% (need review)
-      // langs[code].studyStreak: { current, longest, lastStudyDate }
       lastLang: "",
       currentLessonId: "",
       lessonOrder: [],
@@ -163,7 +146,7 @@ function mergeState(base, incoming) {
 }
 
 function migrateLanguageLadder(parsed) {
-  const ll = parsed.languageLadder;
+  const ll = parsed.prefs.languageLadder;
   if (!ll || ll.lessonStatus !== undefined) return; // already migrated
 
   // MIGRATE: Convert old completedLessons to lessonStatus
@@ -251,7 +234,7 @@ export function findLessonById(catalog, lessonId) {
   for (const catPack of catalog.packs) {
     for (const stage of catPack.stages) {
       const lesson = stage.lessons.find(l => l.id === lessonId);
-      if (lesson) return { ...lesson, packId: catPack.id, stageId: stage.id, packPath: lesson.path };
+      if (lesson) return { ...lesson, lessonId: lesson.id, packId: catPack.id, stageId: stage.id, packPath: lesson.path };
     }
   }
   return null;
@@ -280,7 +263,7 @@ export function countTotalLessons(catalog, targetLang) {
  * Record when a lesson is started (or resumed).
  */
 export function recordLessonStart(state, lessonId, targetLang) {
-  const ll = state.languageLadder;
+  const ll = state.prefs.languageLadder;
   if (!ll.langs[targetLang]) {
     ll.langs[targetLang] = {
       completedLessons: [],
@@ -311,7 +294,7 @@ export function recordLessonStart(state, lessonId, targetLang) {
  * Auto-sets "needs_review" if score < 70.
  */
 export function recordLessonCompletion(state, lessonId, targetLang, score) {
-  const ll = state.languageLadder;
+  const ll = state.prefs.languageLadder;
   if (!ll.langs[targetLang]) return;
 
   const lang = ll.langs[targetLang];
@@ -338,7 +321,7 @@ export function recordLessonCompletion(state, lessonId, targetLang, score) {
  * Returns array of { id, label } for lessons before current that aren't completed.
  * Also marks them as "skipped" in lessonStatus.
  */
-export function detectSkippedLessons(catalog, targetLang, currentLessonId, completedSet) {
+export function detectSkippedLessons(state, catalog, targetLang, currentLessonId, completedSet) {
   const allLessons = getAllLessonsInOrder(catalog, targetLang);
   const currentIndex = allLessons.findIndex(l => l.id === currentLessonId);
   if (currentIndex <= 0) return [];
@@ -349,7 +332,17 @@ export function detectSkippedLessons(catalog, targetLang, currentLessonId, compl
     .filter(l => !completed.has(l.id))
     .map(l => ({ id: l.id, label: l.label }));
 
-  // Mark as skipped in storage (will be applied by caller)
+  // Mark as skipped in storage
+  const ll = state.prefs.languageLadder;
+  const lang = ll.langs[targetLang];
+  if (lang) {
+    skipped.forEach(s => {
+      if (!lang.lessonStatus[s.id] || lang.lessonStatus[s.id].status === "not_started") {
+        lang.lessonStatus[s.id] = { status: "skipped", reason: "jumped_ahead" };
+      }
+    });
+  }
+
   return skipped;
 }
 
@@ -358,7 +351,7 @@ export function detectSkippedLessons(catalog, targetLang, currentLessonId, compl
  * Returns { lesson, targetLang, skippedLessons, weakLessons, source } or null.
  */
 export function getResumeRecommendation(state, catalog) {
-  const ll = state.languageLadder;
+  const ll = state.prefs.languageLadder;
   const langs = ll.langs ?? {};
   const lastLang = ll.lastLang;
 
@@ -367,7 +360,7 @@ export function getResumeRecommendation(state, catalog) {
     const lesson = findLessonById(catalog, langs[lastLang].currentLessonId);
     if (lesson) {
       const completed = new Set(langs[lastLang].completedLessons ?? []);
-      const skipped = detectSkippedLessons(catalog, lastLang, lesson.id, completed);
+      const skipped = detectSkippedLessons(state, catalog, lastLang, lesson.id, completed);
       const weak = langs[lastLang].weakLessons ?? [];
       return { lesson, targetLang: lastLang, skippedLessons: skipped, weakLessons: weak, source: "last_lang" };
     }
@@ -382,7 +375,7 @@ export function getResumeRecommendation(state, catalog) {
     const lesson = findLessonById(catalog, info.currentLessonId);
     if (lesson) {
       const completed = new Set(info.completedLessons ?? []);
-      const skipped = detectSkippedLessons(catalog, langCode, lesson.id, completed);
+      const skipped = detectSkippedLessons(state, catalog, langCode, lesson.id, completed);
       const weak = info.weakLessons ?? [];
       return { lesson, targetLang: langCode, skippedLessons: skipped, weakLessons: weak, source: "recent_lang" };
     }
@@ -398,7 +391,7 @@ export function getResumeRecommendation(state, catalog) {
     const lesson = findFirstUncompletedLesson(catalog, bestLang, langs[bestLang].completedLessons);
     if (lesson) {
       const completed = new Set(langs[bestLang].completedLessons ?? []);
-      const skipped = detectSkippedLessons(catalog, bestLang, lesson.id, completed);
+      const skipped = detectSkippedLessons(state, catalog, bestLang, lesson.id, completed);
       const weak = langs[bestLang].weakLessons ?? [];
       return { lesson, targetLang: bestLang, skippedLessons: skipped, weakLessons: weak, source: "most_progress" };
     }

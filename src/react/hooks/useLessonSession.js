@@ -94,8 +94,9 @@ export function useLessonSession() {
         setCatalog(cat);
 
         // Get resume recommendation with skipped/weak lesson info
-        const recommendation = getResumeRecommendation(loadStoredState(), cat);
-        let state = createProgressiveLessonState(cat);
+        const state = loadStoredState();
+        const recommendation = getResumeRecommendation(state, cat);
+        let sessState = createProgressiveLessonState(cat);
 
         if (recommendation) {
           const { lesson, targetLang, skippedLessons: skipped, weakLessons: weak, source } = recommendation;
@@ -103,8 +104,8 @@ export function useLessonSession() {
           const catStage = catPack?.stages.find(s => s.id === lesson.stageId);
           const l        = catStage?.lessons.find(l => l.id === lesson.id);
           if (l) {
-            state = {
-              ...state,
+            sessState = {
+              ...sessState,
               catalogPackId:   lesson.packId,
               catalogStageId:  lesson.stageId,
               catalogLessonId: lesson.id,
@@ -113,14 +114,14 @@ export function useLessonSession() {
             };
           }
           // Record lesson start for progress tracking
-          recordLessonStart(loadStoredState(), lesson.id, targetLang);
-          saveStoredState(loadStoredState());
+          recordLessonStart(state, lesson.id, targetLang);
+          saveStoredState(state);
 
           setSkippedLessons(skipped);
           setWeakLessons(weak);
           setResumeSource(source);
         }
-        setSession(state);
+        setSession(sessState);
       })
       .catch(err => { if (!cancelled) setLoadError(err.message); });
     return () => { cancelled = true; };
@@ -265,8 +266,9 @@ export function useLessonSession() {
    */
   const markLessonComplete = useCallback((lessonId, targetLang, score) => {
     if (!catalog || !lessonId) return null;
-    recordLessonCompletion(loadStoredState(), lessonId, targetLang, score);
-    saveStoredState(loadStoredState());
+    const state = loadStoredState();
+    recordLessonCompletion(state, lessonId, targetLang, score);
+    saveStoredState(state);
     return findNextLesson(catalog, lessonId);
   }, [catalog]);
 
@@ -281,8 +283,9 @@ export function useLessonSession() {
       return;
     }
     // Record lesson start for the new lesson
-    recordLessonStart(loadStoredState(), nextLesson.lessonId, targetLang);
-    saveStoredState(loadStoredState());
+    const state = loadStoredState();
+    recordLessonStart(state, nextLesson.id, targetLang);
+    saveStoredState(state);
 
     // Update storage with the new "current" lesson for this language.
     writeProgress(prog => {
@@ -290,7 +293,7 @@ export function useLessonSession() {
       if (!prog.langs[targetLang]) {
         prog.langs[targetLang] = { completedLessons: [], currentLessonId: "", lastOpenedAt: "" };
       }
-      prog.langs[targetLang].currentLessonId = nextLesson.lessonId;
+      prog.langs[targetLang].currentLessonId = nextLesson.id;
       prog.langs[targetLang].lastOpenedAt = new Date().toISOString();
       prog.lastLang = targetLang;
     });
@@ -299,7 +302,7 @@ export function useLessonSession() {
       ...prev,
       catalogPackId:   nextLesson.packId,
       catalogStageId:  nextLesson.stageId,
-      catalogLessonId: nextLesson.lessonId,
+      catalogLessonId: nextLesson.id,
       packPath:        nextLesson.packPath,
       phase: "listen", chainIndex: 0, stepIndex: 0, vocabIndex: 0,
       // Reset scoring for fresh lesson.
