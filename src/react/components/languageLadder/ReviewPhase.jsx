@@ -2,8 +2,9 @@
  * ReviewPhase — lesson score, mistakes, restart options.
  */
 import { TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
+import { loadStoredState } from "@/storage.js";
 
-export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onNextLesson }) {
+export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onNextLesson, weakLessons }) {
   const { score, mistakes } = session;
   const total   = score.vocabTotal + score.builderTotal;
   const correct = score.vocabCorrect + score.builderCorrect;
@@ -11,6 +12,13 @@ export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onN
   const color   = pct >= 70 ? "var(--color-success)" : pct >= 50 ? "var(--color-attention)" : "var(--color-error)";
 
   const otherLangs = TARGET_LANGUAGES.filter(l => l.code !== session.targetLang).slice(0, 2);
+  
+  // Get weak lessons from storage
+  const progress = loadStoredState().prefs.languageLadder;
+  const langInfo = progress?.langs?.[session.targetLang];
+  const storedWeakLessons = langInfo?.weakLessons || [];
+  const hasWeakLessons = (weakLessons && weakLessons.length > 0) || storedWeakLessons.length > 0;
+  const allWeakLessons = [...new Set([...(weakLessons || []), ...storedWeakLessons])];
 
   return (
     <div className="section-card pl-lesson-card pl-review-card" data-testid="progressive-phase-review">
@@ -63,6 +71,20 @@ export default function ReviewPhase({ session, pack, onDispatch, nextLesson, onN
         </div>
       ) : (
         <p className="pl-perfect">🎉 No mistakes — excellent work!</p>
+      )}
+
+      {hasWeakLessons && (
+        <div className="pl-weak-review-card">
+          <h3 className="pl-weak-review-title">⚠ Review weak lessons</h3>
+          <p className="pl-weak-review-text">You scored below 70% on {allWeakLessons.length} lesson{allWeakLessons.length > 1 ? 's' : ''}.</p>
+          <button
+            type="button"
+            className="button button-ghost pl-weak-review-btn"
+            onClick={() => onDispatch("pl-jump-phase", { phase: "vocab" })}
+          >
+            Review weak lessons now
+          </button>
+        </div>
       )}
 
       <div className="pl-nav-row pl-review-nav">

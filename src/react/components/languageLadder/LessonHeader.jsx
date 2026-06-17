@@ -2,6 +2,7 @@
  * LessonHeader.jsx — pack/stage/lesson/language selector bar + title.
  */
 import { TARGET_LANGUAGES } from "@/progressive-language-lesson.js";
+import { loadStoredState } from "@/storage.js";
 
 export default function LessonHeader({ catalog, session, pack,
   onPackChange, onStageChange, onLessonChange, onLanguageChange }) {
@@ -10,9 +11,24 @@ export default function LessonHeader({ catalog, session, pack,
   const catPack  = catalog.packs.find(p => p.id === session.catalogPackId);
   const catStage = catPack?.stages.find(s => s.id === session.catalogStageId);
 
+  // Get lesson status from progress
+  const progress = loadStoredState().prefs.languageLadder;
+  const langInfo = progress?.langs?.[session.targetLang];
+  const lessonStatus = langInfo?.lessonStatus || {};
+
   const grammarTargets = pack?.sourceTopic?.grammarTargets?.[session.targetLang] || [];
   const langFlag = TARGET_LANGUAGES.find(l => l.code === session.targetLang)?.flag || "";
   const langLabel = TARGET_LANGUAGES.find(l => l.code === session.targetLang)?.label || session.targetLang;
+
+  function getStatusPrefix(status) {
+    switch (status) {
+      case "completed": return "✓ ";
+      case "in_progress": return "▶ ";
+      case "needs_review": return "⚠ ";
+      case "skipped": return "⏭ ";
+      default: return "";
+    }
+  }
 
   return (
     <div className="pl-header-card section-card">
@@ -44,7 +60,11 @@ export default function LessonHeader({ catalog, session, pack,
         </label>
         <label className="pl-ctrl-label">Lesson
           <select data-testid="progressive-lesson-select" value={session.catalogLessonId} onChange={e => onLessonChange(e.target.value)}>
-            {(catStage?.lessons || []).map(l => <option key={l.id} value={l.id}>{l.label}</option>)}
+            {(catStage?.lessons || []).map(l => {
+              const status = lessonStatus[l.id]?.status || "not_started";
+              const prefix = getStatusPrefix(status);
+              return <option key={l.id} value={l.id}>{prefix}{l.label}</option>;
+            })}
           </select>
         </label>
         <label className="pl-ctrl-label">Language

@@ -14,6 +14,8 @@ import {
   isEverythingMode,
   onboardingSummaryLabels,
 } from "../utils/personalisation.js";
+import ResumeCard from "../components/dashboard/ResumeCard.jsx";
+import { loadProgressiveLessonCatalog } from "@/progressive-language-lesson.js";
 
 // ─── Decorative star used in section headings ────────────────────────────────
 function SectionStar() {
@@ -176,6 +178,14 @@ export default function HomePage({ onNavigate, onManageLearning, onShowEverythin
           </a>
         </div>
       </div>
+
+      {/* ── Language Ladder Resume Card ───────────────────────────────── */}
+      <ResumeCard
+        onContinue={() => onNavigate("language")}
+        onReview={() => onNavigate("language")}
+        onChooseLanguage={() => onNavigate("language")}
+        onViewMap={() => onNavigate("language")}
+      />
 
       <div className="lw-card lw-learning-setup-card">
         <div>
