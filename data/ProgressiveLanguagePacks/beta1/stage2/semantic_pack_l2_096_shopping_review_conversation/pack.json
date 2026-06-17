@@ -1,0 +1,1784 @@
+{
+  "packId": "semantic_pack_l2_096_shopping_review_conversation",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_096 Shopping Review Conversation",
+  "description": "A1+ Review conversation pack: Shopping",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_10_096_shopping_review_conversation",
+    "title": "Shopping",
+    "difficultyStage": 10,
+    "semanticDomains": [
+      "shopping"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "mixed review"
+      ],
+      "german": [
+        "Wiederholung",
+        "Frage",
+        "Antwort"
+      ],
+      "french": [
+        "révision",
+        "question",
+        "réponse"
+      ],
+      "spanish": [
+        "repaso",
+        "pregunta",
+        "respuesta"
+      ],
+      "japanese": [
+        "復習",
+        "質問",
+        "答え"
+      ],
+      "chinese": [
+        "複習",
+        "問題",
+        "答案"
+      ]
+    },
+    "sentenceGoals": [
+      "The supermarket is in the shop.",
+      "The supermarket likes shop because it is cheap."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BREAD",
+      "type": "noun",
+      "senseKey": "bread",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "bread"
+        },
+        "de": {
+          "text": "das Brot"
+        },
+        "fr": {
+          "text": "le pain"
+        },
+        "es": {
+          "text": "el pan"
+        },
+        "ja": {
+          "text": "パン"
+        },
+        "zh": {
+          "text": "麵包"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "BUY",
+      "type": "verb",
+      "senseKey": "buy",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "buy"
+        },
+        "de": {
+          "text": "kaufen"
+        },
+        "fr": {
+          "text": "acheter"
+        },
+        "es": {
+          "text": "comprar"
+        },
+        "ja": {
+          "text": "買います"
+        },
+        "zh": {
+          "text": "買"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CHEAP",
+      "type": "adjective",
+      "senseKey": "cheap",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cheap"
+        },
+        "de": {
+          "text": "billig"
+        },
+        "fr": {
+          "text": "bon marché"
+        },
+        "es": {
+          "text": "barato"
+        },
+        "ja": {
+          "text": "安いです"
+        },
+        "zh": {
+          "text": "便宜"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SHOP",
+      "type": "noun",
+      "senseKey": "shop",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "shop"
+        },
+        "de": {
+          "text": "das Geschäft"
+        },
+        "fr": {
+          "text": "le magasin"
+        },
+        "es": {
+          "text": "la tienda"
+        },
+        "ja": {
+          "text": "店"
+        },
+        "zh": {
+          "text": "商店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUPERMARKET",
+      "type": "noun",
+      "senseKey": "supermarket",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "supermarket"
+        },
+        "de": {
+          "text": "der Supermarkt"
+        },
+        "fr": {
+          "text": "le supermarché"
+        },
+        "es": {
+          "text": "el supermercado"
+        },
+        "ja": {
+          "text": "スーパー"
+        },
+        "zh": {
+          "text": "超級市場"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_10_MIXED_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "review",
+        "de": "Wiederholung",
+        "fr": "révision",
+        "es": "repaso",
+        "ja": "復習",
+        "zh": "複習"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "question",
+        "de": "Frage",
+        "fr": "question",
+        "es": "pregunta",
+        "ja": "質問",
+        "zh": "問題"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "answer",
+        "de": "Antwort",
+        "fr": "réponse",
+        "es": "respuesta",
+        "ja": "答え",
+        "zh": "答案"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "conversation",
+        "de": "Gespräch",
+        "fr": "conversation",
+        "es": "conversación",
+        "ja": "会話",
+        "zh": "對話"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_10_1",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The supermarket is in the shop.",
+              "tiles": [
+                "The",
+                "supermarket",
+                "is",
+                "in",
+                "the",
+                "shop",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → supermarket → is → in → the → shop → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermarket",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "shop",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der supermarkt ist im Geschäft.",
+              "tiles": [
+                "Der",
+                "supermarkt",
+                "ist",
+                "im",
+                "Geschäft",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → supermarkt → ist → im → Geschäft → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermarkt",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geschäft",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le supermarché est dans le magasin.",
+              "tiles": [
+                "Le",
+                "supermarché",
+                "est",
+                "dans",
+                "le",
+                "magasin",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → supermarché → est → dans → le → magasin → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermarché",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magasin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El supermercado está en la tienda.",
+              "tiles": [
+                "El",
+                "supermercado",
+                "está",
+                "en",
+                "la",
+                "tienda",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → supermercado → está → en → la → tienda → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermercado",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tienda",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "スーパーは店にいます。",
+              "tiles": [
+                "スーパーは店にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "スーパーは店にいます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "スーパーは店にいます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "超級市場在商店。",
+              "tiles": [
+                "超級市場在商店。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "超級市場在商店。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "超級市場在商店。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_10_2",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The supermarket likes shop because it is cheap.",
+              "tiles": [
+                "The",
+                "supermarket",
+                "likes",
+                "shop",
+                "because",
+                "it",
+                "is",
+                "cheap",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → supermarket → likes → shop → because → it → is → cheap → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermarket",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "likes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "shop",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cheap",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der supermarkt mag das Geschäft, weil es billig ist.",
+              "tiles": [
+                "Der",
+                "supermarkt",
+                "mag",
+                "das",
+                "Geschäft,",
+                "weil",
+                "es",
+                "billig",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → supermarkt → mag → das → Geschäft, → weil → es → billig → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermarkt",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geschäft,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "billig",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le supermarché aime le magasin parce que c’est bon marché.",
+              "tiles": [
+                "Le",
+                "supermarché",
+                "aime",
+                "le",
+                "magasin",
+                "parce",
+                "que",
+                "c’est",
+                "bon",
+                "marché",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → supermarché → aime → le → magasin → parce → que → c’est → bon → marché → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermarché",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magasin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "marché",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El supermercado le gusta la tienda porque es barato.",
+              "tiles": [
+                "El",
+                "supermercado",
+                "le",
+                "gusta",
+                "la",
+                "tienda",
+                "porque",
+                "es",
+                "barato",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → supermercado → le → gusta → la → tienda → porque → es → barato → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "supermercado",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tienda",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "barato",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "安いから、スーパーは店が好きです。",
+              "tiles": [
+                "安いから、スーパーは店が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "安いから、スーパーは店が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "安いから、スーパーは店が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "超級市場喜歡商店，因為它很便宜。",
+              "tiles": [
+                "超級市場喜歡商店，因為它很便宜。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "超級市場喜歡商店，因為它很便宜。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "超級市場喜歡商店，因為它很便宜。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_1",
+      "translations": {
+        "en": {
+          "text": "The supermarket is in the shop.",
+          "tiles": [
+            "The",
+            "supermarket",
+            "is",
+            "in",
+            "the",
+            "shop",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → supermarket → is → in → the → shop → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermarket",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "shop",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der supermarkt ist im Geschäft.",
+          "tiles": [
+            "Der",
+            "supermarkt",
+            "ist",
+            "im",
+            "Geschäft",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → supermarkt → ist → im → Geschäft → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermarkt",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geschäft",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le supermarché est dans le magasin.",
+          "tiles": [
+            "Le",
+            "supermarché",
+            "est",
+            "dans",
+            "le",
+            "magasin",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → supermarché → est → dans → le → magasin → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermarché",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magasin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El supermercado está en la tienda.",
+          "tiles": [
+            "El",
+            "supermercado",
+            "está",
+            "en",
+            "la",
+            "tienda",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → supermercado → está → en → la → tienda → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermercado",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tienda",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "スーパーは店にいます。",
+          "tiles": [
+            "スーパーは店にいます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "スーパーは店にいます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "スーパーは店にいます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "超級市場在商店。",
+          "tiles": [
+            "超級市場在商店。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "超級市場在商店。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "超級市場在商店。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_2",
+      "translations": {
+        "en": {
+          "text": "The supermarket likes shop because it is cheap.",
+          "tiles": [
+            "The",
+            "supermarket",
+            "likes",
+            "shop",
+            "because",
+            "it",
+            "is",
+            "cheap",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → supermarket → likes → shop → because → it → is → cheap → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermarket",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "likes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "shop",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cheap",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der supermarkt mag das Geschäft, weil es billig ist.",
+          "tiles": [
+            "Der",
+            "supermarkt",
+            "mag",
+            "das",
+            "Geschäft,",
+            "weil",
+            "es",
+            "billig",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → supermarkt → mag → das → Geschäft, → weil → es → billig → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermarkt",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geschäft,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "billig",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le supermarché aime le magasin parce que c’est bon marché.",
+          "tiles": [
+            "Le",
+            "supermarché",
+            "aime",
+            "le",
+            "magasin",
+            "parce",
+            "que",
+            "c’est",
+            "bon",
+            "marché",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → supermarché → aime → le → magasin → parce → que → c’est → bon → marché → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermarché",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magasin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "marché",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El supermercado le gusta la tienda porque es barato.",
+          "tiles": [
+            "El",
+            "supermercado",
+            "le",
+            "gusta",
+            "la",
+            "tienda",
+            "porque",
+            "es",
+            "barato",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → supermercado → le → gusta → la → tienda → porque → es → barato → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "supermercado",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tienda",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "barato",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "安いから、スーパーは店が好きです。",
+          "tiles": [
+            "安いから、スーパーは店が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "安いから、スーパーは店が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "安いから、スーパーは店が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "超級市場喜歡商店，因為它很便宜。",
+          "tiles": [
+            "超級市場喜歡商店，因為它很便宜。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "超級市場喜歡商店，因為它很便宜。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "超級市場喜歡商店，因為它很便宜。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "SUPERMARKET": [
+      "S001",
+      "S002"
+    ],
+    "SHOP": [
+      "S001",
+      "S001",
+      "S002",
+      "S002"
+    ],
+    "BUY": [
+      "S001",
+      "S002"
+    ],
+    "BREAD": [
+      "S001",
+      "S002"
+    ],
+    "CHEAP": [
+      "S001",
+      "S002"
+    ]
+  }
+}

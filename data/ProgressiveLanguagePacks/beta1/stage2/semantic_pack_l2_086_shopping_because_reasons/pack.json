@@ -1,0 +1,1656 @@
+{
+  "packId": "semantic_pack_l2_086_shopping_because_reasons",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_086 Shopping Because Reasons",
+  "description": "A1+ Reasons with because pack: Shopping",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_9_086_shopping_because_reasons",
+    "title": "Shopping",
+    "difficultyStage": 9,
+    "semanticDomains": [
+      "shopping"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "why, because"
+      ],
+      "german": [
+        "warum",
+        "weil",
+        "ich mag"
+      ],
+      "french": [
+        "pourquoi",
+        "parce que",
+        "j’aime"
+      ],
+      "spanish": [
+        "por qué",
+        "porque",
+        "me gusta"
+      ],
+      "japanese": [
+        "なぜ",
+        "から",
+        "好きです"
+      ],
+      "chinese": [
+        "為什麼",
+        "因為",
+        "我喜歡"
+      ]
+    },
+    "sentenceGoals": [
+      "Why do you like shop?",
+      "I like shop because it is cheap."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BREAD",
+      "type": "noun",
+      "senseKey": "bread",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "bread"
+        },
+        "de": {
+          "text": "das Brot"
+        },
+        "fr": {
+          "text": "le pain"
+        },
+        "es": {
+          "text": "el pan"
+        },
+        "ja": {
+          "text": "パン"
+        },
+        "zh": {
+          "text": "麵包"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "BUY",
+      "type": "verb",
+      "senseKey": "buy",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "buy"
+        },
+        "de": {
+          "text": "kaufen"
+        },
+        "fr": {
+          "text": "acheter"
+        },
+        "es": {
+          "text": "comprar"
+        },
+        "ja": {
+          "text": "買います"
+        },
+        "zh": {
+          "text": "買"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CHEAP",
+      "type": "adjective",
+      "senseKey": "cheap",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cheap"
+        },
+        "de": {
+          "text": "billig"
+        },
+        "fr": {
+          "text": "bon marché"
+        },
+        "es": {
+          "text": "barato"
+        },
+        "ja": {
+          "text": "安いです"
+        },
+        "zh": {
+          "text": "便宜"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SHOP",
+      "type": "noun",
+      "senseKey": "shop",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "shop"
+        },
+        "de": {
+          "text": "das Geschäft"
+        },
+        "fr": {
+          "text": "le magasin"
+        },
+        "es": {
+          "text": "la tienda"
+        },
+        "ja": {
+          "text": "店"
+        },
+        "zh": {
+          "text": "商店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUPERMARKET",
+      "type": "noun",
+      "senseKey": "supermarket",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "supermarket"
+        },
+        "de": {
+          "text": "der Supermarkt"
+        },
+        "fr": {
+          "text": "le supermarché"
+        },
+        "es": {
+          "text": "el supermercado"
+        },
+        "ja": {
+          "text": "スーパー"
+        },
+        "zh": {
+          "text": "超級市場"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_9_WHY,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "why",
+        "de": "warum",
+        "fr": "pourquoi",
+        "es": "por qué",
+        "ja": "なぜ",
+        "zh": "為什麼"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "ja": "から",
+        "zh": "因為"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I like",
+        "de": "ich mag",
+        "fr": "j’aime",
+        "es": "me gusta",
+        "ja": "好きです",
+        "zh": "我喜歡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "reason",
+        "de": "Grund",
+        "fr": "raison",
+        "es": "razón",
+        "ja": "理由",
+        "zh": "原因"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_9_1",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Why do you like shop?",
+              "tiles": [
+                "Why",
+                "do",
+                "you",
+                "like",
+                "shop",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Why → do → you → like → shop → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "shop",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum magst du das Geschäft?",
+              "tiles": [
+                "Warum",
+                "magst",
+                "du",
+                "das",
+                "Geschäft",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Warum → magst → du → das → Geschäft → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geschäft",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi aimes-tu le magasin ?",
+              "tiles": [
+                "Pourquoi",
+                "aimes-tu",
+                "le",
+                "magasin",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Pourquoi → aimes-tu → le → magasin → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aimes-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magasin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué te gusta la tienda?",
+              "tiles": [
+                "¿",
+                "Por",
+                "qué",
+                "te",
+                "gusta",
+                "la",
+                "tienda",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "¿ → Por → qué → te → gusta → la → tienda → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qué",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tienda",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ店が好きですか。",
+              "tiles": [
+                "なぜ店が好きですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "なぜ店が好きですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "なぜ店が好きですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你為什麼喜歡商店？",
+              "tiles": [
+                "你為什麼喜歡商店？"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "你為什麼喜歡商店？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你為什麼喜歡商店？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_9_2",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I like shop because it is cheap.",
+              "tiles": [
+                "I",
+                "like",
+                "shop",
+                "because",
+                "it",
+                "is",
+                "cheap",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "I → like → shop → because → it → is → cheap → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "shop",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cheap",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich mag das Geschäft, weil es billig ist.",
+              "tiles": [
+                "Ich",
+                "mag",
+                "das",
+                "Geschäft,",
+                "weil",
+                "es",
+                "billig",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Ich → mag → das → Geschäft, → weil → es → billig → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geschäft,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "billig",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’aime le magasin parce que c’est bon marché.",
+              "tiles": [
+                "J’aime",
+                "le",
+                "magasin",
+                "parce",
+                "que",
+                "c’est",
+                "bon",
+                "marché",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "J’aime → le → magasin → parce → que → c’est → bon → marché → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magasin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "marché",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Me gusta la tienda porque es barato.",
+              "tiles": [
+                "Me",
+                "gusta",
+                "la",
+                "tienda",
+                "porque",
+                "es",
+                "barato",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Me → gusta → la → tienda → porque → es → barato → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Me",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tienda",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "barato",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "安いから、店が好きです。",
+              "tiles": [
+                "安いから、店が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "安いから、店が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "安いから、店が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我喜歡商店，因為它很便宜。",
+              "tiles": [
+                "我喜歡商店，因為它很便宜。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "我喜歡商店，因為它很便宜。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我喜歡商店，因為它很便宜。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_1",
+      "translations": {
+        "en": {
+          "text": "Why do you like shop?",
+          "tiles": [
+            "Why",
+            "do",
+            "you",
+            "like",
+            "shop",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Why → do → you → like → shop → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "shop",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum magst du das Geschäft?",
+          "tiles": [
+            "Warum",
+            "magst",
+            "du",
+            "das",
+            "Geschäft",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Warum → magst → du → das → Geschäft → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geschäft",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi aimes-tu le magasin ?",
+          "tiles": [
+            "Pourquoi",
+            "aimes-tu",
+            "le",
+            "magasin",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Pourquoi → aimes-tu → le → magasin → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aimes-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magasin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué te gusta la tienda?",
+          "tiles": [
+            "¿",
+            "Por",
+            "qué",
+            "te",
+            "gusta",
+            "la",
+            "tienda",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "¿ → Por → qué → te → gusta → la → tienda → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "qué",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tienda",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ店が好きですか。",
+          "tiles": [
+            "なぜ店が好きですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "なぜ店が好きですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "なぜ店が好きですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你為什麼喜歡商店？",
+          "tiles": [
+            "你為什麼喜歡商店？"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "你為什麼喜歡商店？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你為什麼喜歡商店？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_2",
+      "translations": {
+        "en": {
+          "text": "I like shop because it is cheap.",
+          "tiles": [
+            "I",
+            "like",
+            "shop",
+            "because",
+            "it",
+            "is",
+            "cheap",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "I → like → shop → because → it → is → cheap → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "shop",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cheap",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich mag das Geschäft, weil es billig ist.",
+          "tiles": [
+            "Ich",
+            "mag",
+            "das",
+            "Geschäft,",
+            "weil",
+            "es",
+            "billig",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Ich → mag → das → Geschäft, → weil → es → billig → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geschäft,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "billig",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’aime le magasin parce que c’est bon marché.",
+          "tiles": [
+            "J’aime",
+            "le",
+            "magasin",
+            "parce",
+            "que",
+            "c’est",
+            "bon",
+            "marché",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "J’aime → le → magasin → parce → que → c’est → bon → marché → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magasin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "marché",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Me gusta la tienda porque es barato.",
+          "tiles": [
+            "Me",
+            "gusta",
+            "la",
+            "tienda",
+            "porque",
+            "es",
+            "barato",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Me → gusta → la → tienda → porque → es → barato → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Me",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tienda",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "barato",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "安いから、店が好きです。",
+          "tiles": [
+            "安いから、店が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "安いから、店が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "安いから、店が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我喜歡商店，因為它很便宜。",
+          "tiles": [
+            "我喜歡商店，因為它很便宜。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "我喜歡商店，因為它很便宜。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我喜歡商店，因為它很便宜。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "SUPERMARKET": [
+      "S001",
+      "S002"
+    ],
+    "SHOP": [
+      "S001",
+      "S001",
+      "S002",
+      "S002"
+    ],
+    "BUY": [
+      "S001",
+      "S002"
+    ],
+    "BREAD": [
+      "S001",
+      "S002"
+    ],
+    "CHEAP": [
+      "S001",
+      "S002"
+    ]
+  }
+}

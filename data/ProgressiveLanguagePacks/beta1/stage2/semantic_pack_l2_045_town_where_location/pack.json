@@ -1,0 +1,1525 @@
+{
+  "packId": "semantic_pack_l2_045_town_where_location",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_045 Town Where Location",
+  "description": "A1+ Where and location pack: Town",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_5_045_town_where_location",
+    "title": "Town",
+    "difficultyStage": 5,
+    "semanticDomains": [
+      "town"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "where, in/at/on"
+      ],
+      "german": [
+        "wo",
+        "in/im",
+        "am"
+      ],
+      "french": [
+        "où",
+        "dans",
+        "à"
+      ],
+      "spanish": [
+        "dónde",
+        "en",
+        "a"
+      ],
+      "japanese": [
+        "どこ",
+        "に",
+        "で"
+      ],
+      "chinese": [
+        "哪裡",
+        "在",
+        "有"
+      ]
+    },
+    "sentenceGoals": [
+      "Where is the museum?",
+      "The museum is in the town."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "GO",
+      "type": "verb",
+      "senseKey": "go",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "go"
+        },
+        "de": {
+          "text": "gehen"
+        },
+        "fr": {
+          "text": "aller"
+        },
+        "es": {
+          "text": "ir"
+        },
+        "ja": {
+          "text": "行きます"
+        },
+        "zh": {
+          "text": "去"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MUSEUM",
+      "type": "noun",
+      "senseKey": "museum",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "museum"
+        },
+        "de": {
+          "text": "das Museum"
+        },
+        "fr": {
+          "text": "le musée"
+        },
+        "es": {
+          "text": "el museo"
+        },
+        "ja": {
+          "text": "博物館"
+        },
+        "zh": {
+          "text": "博物館"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "NEAR",
+      "type": "adjective",
+      "senseKey": "near",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "near"
+        },
+        "de": {
+          "text": "nah"
+        },
+        "fr": {
+          "text": "près"
+        },
+        "es": {
+          "text": "cerca"
+        },
+        "ja": {
+          "text": "近いです"
+        },
+        "zh": {
+          "text": "近"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TICKET",
+      "type": "noun",
+      "senseKey": "ticket",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "ticket"
+        },
+        "de": {
+          "text": "die Fahrkarte"
+        },
+        "fr": {
+          "text": "le billet"
+        },
+        "es": {
+          "text": "el billete"
+        },
+        "ja": {
+          "text": "切符"
+        },
+        "zh": {
+          "text": "車票"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOURIST",
+      "type": "noun",
+      "senseKey": "tourist",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "tourist"
+        },
+        "de": {
+          "text": "der Tourist"
+        },
+        "fr": {
+          "text": "le touriste"
+        },
+        "es": {
+          "text": "el turista"
+        },
+        "ja": {
+          "text": "観光客"
+        },
+        "zh": {
+          "text": "遊客"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOWN",
+      "type": "noun",
+      "senseKey": "town",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "town"
+        },
+        "de": {
+          "text": "die Stadt"
+        },
+        "fr": {
+          "text": "la ville"
+        },
+        "es": {
+          "text": "la ciudad"
+        },
+        "ja": {
+          "text": "町"
+        },
+        "zh": {
+          "text": "城鎮"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_5_WHERE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "where",
+        "de": "wo",
+        "fr": "où",
+        "es": "dónde",
+        "ja": "どこ",
+        "zh": "哪裡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im",
+        "fr": "dans",
+        "es": "en",
+        "ja": "に",
+        "zh": "在"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "at",
+        "de": "am",
+        "fr": "à",
+        "es": "a",
+        "ja": "で",
+        "zh": "有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "there is",
+        "de": "es gibt",
+        "fr": "il y a",
+        "es": "hay",
+        "ja": "あります/います",
+        "zh": "裡"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_5_1",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Where is the museum?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "museum",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Where → is → the → museum → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist das Museum?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "das",
+                "Museum",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Wo → ist → das → Museum → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Museum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est le musée ?",
+              "tiles": [
+                "Où",
+                "est",
+                "le",
+                "musée",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Où → est → le → musée → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "musée",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está el museo?",
+              "tiles": [
+                "¿",
+                "Dónde",
+                "está",
+                "el",
+                "museo",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "¿ → Dónde → está → el → museo → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Dónde",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "博物館はどこですか。",
+              "tiles": [
+                "博物館はどこですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "博物館はどこですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "博物館はどこですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "博物館在哪裡？",
+              "tiles": [
+                "博物館在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "博物館在哪裡？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "博物館在哪裡？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_5_2",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The museum is in the town.",
+              "tiles": [
+                "The",
+                "museum",
+                "is",
+                "in",
+                "the",
+                "town",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "The → museum → is → in → the → town → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "town",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das museum ist in der Stadt.",
+              "tiles": [
+                "Das",
+                "museum",
+                "ist",
+                "in",
+                "der",
+                "Stadt",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Das → museum → ist → in → der → Stadt → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Stadt",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le musée est dans la ville.",
+              "tiles": [
+                "Le",
+                "musée",
+                "est",
+                "dans",
+                "la",
+                "ville",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Le → musée → est → dans → la → ville → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "musée",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ville",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El museo está en la ciudad.",
+              "tiles": [
+                "El",
+                "museo",
+                "está",
+                "en",
+                "la",
+                "ciudad",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "El → museo → está → en → la → ciudad → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ciudad",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "博物館は町にあります。",
+              "tiles": [
+                "博物館は町にあります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "博物館は町にあります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "博物館は町にあります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "博物館在城鎮。",
+              "tiles": [
+                "博物館在城鎮。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "博物館在城鎮。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "博物館在城鎮。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_1",
+      "translations": {
+        "en": {
+          "text": "Where is the museum?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "museum",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Where → is → the → museum → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist das Museum?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "das",
+            "Museum",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Wo → ist → das → Museum → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Museum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est le musée ?",
+          "tiles": [
+            "Où",
+            "est",
+            "le",
+            "musée",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Où → est → le → musée → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "musée",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está el museo?",
+          "tiles": [
+            "¿",
+            "Dónde",
+            "está",
+            "el",
+            "museo",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "¿ → Dónde → está → el → museo → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Dónde",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "博物館はどこですか。",
+          "tiles": [
+            "博物館はどこですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "博物館はどこですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "博物館はどこですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "博物館在哪裡？",
+          "tiles": [
+            "博物館在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "博物館在哪裡？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "博物館在哪裡？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_2",
+      "translations": {
+        "en": {
+          "text": "The museum is in the town.",
+          "tiles": [
+            "The",
+            "museum",
+            "is",
+            "in",
+            "the",
+            "town",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "The → museum → is → in → the → town → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "town",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das museum ist in der Stadt.",
+          "tiles": [
+            "Das",
+            "museum",
+            "ist",
+            "in",
+            "der",
+            "Stadt",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Das → museum → ist → in → der → Stadt → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Stadt",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le musée est dans la ville.",
+          "tiles": [
+            "Le",
+            "musée",
+            "est",
+            "dans",
+            "la",
+            "ville",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Le → musée → est → dans → la → ville → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "musée",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ville",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El museo está en la ciudad.",
+          "tiles": [
+            "El",
+            "museo",
+            "está",
+            "en",
+            "la",
+            "ciudad",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "El → museo → está → en → la → ciudad → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ciudad",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "博物館は町にあります。",
+          "tiles": [
+            "博物館は町にあります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "博物館は町にあります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "博物館は町にあります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "博物館在城鎮。",
+          "tiles": [
+            "博物館在城鎮。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "博物館在城鎮。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "博物館在城鎮。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TOURIST": [
+      "S001",
+      "S002"
+    ],
+    "MUSEUM": [
+      "S001",
+      "S002"
+    ],
+    "TOWN": [
+      "S001",
+      "S002"
+    ],
+    "GO": [
+      "S001",
+      "S002"
+    ],
+    "TICKET": [
+      "S001",
+      "S002"
+    ],
+    "NEAR": [
+      "S001",
+      "S002"
+    ]
+  }
+}

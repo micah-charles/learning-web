@@ -1,0 +1,1781 @@
+{
+  "packId": "semantic_pack_l2_092_school_review_conversation",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_092 School Review Conversation",
+  "description": "A1+ Review conversation pack: School",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_10_092_school_review_conversation",
+    "title": "School",
+    "difficultyStage": 10,
+    "semanticDomains": [
+      "school"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "mixed review"
+      ],
+      "german": [
+        "Wiederholung",
+        "Frage",
+        "Antwort"
+      ],
+      "french": [
+        "révision",
+        "question",
+        "réponse"
+      ],
+      "spanish": [
+        "repaso",
+        "pregunta",
+        "respuesta"
+      ],
+      "japanese": [
+        "復習",
+        "質問",
+        "答え"
+      ],
+      "chinese": [
+        "複習",
+        "問題",
+        "答案"
+      ]
+    },
+    "sentenceGoals": [
+      "The teacher is at the school.",
+      "The teacher likes maths because it is interesting."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BOOK",
+      "type": "noun",
+      "senseKey": "book",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "book"
+        },
+        "de": {
+          "text": "das Buch"
+        },
+        "fr": {
+          "text": "le livre"
+        },
+        "es": {
+          "text": "el libro"
+        },
+        "ja": {
+          "text": "本"
+        },
+        "zh": {
+          "text": "書"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "INTERESTING",
+      "type": "adjective",
+      "senseKey": "interesting",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "interesting"
+        },
+        "de": {
+          "text": "interessant"
+        },
+        "fr": {
+          "text": "intéressant"
+        },
+        "es": {
+          "text": "interesante"
+        },
+        "ja": {
+          "text": "おもしろいです"
+        },
+        "zh": {
+          "text": "有趣"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MATHS",
+      "type": "noun",
+      "senseKey": "maths",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "maths"
+        },
+        "de": {
+          "text": "Mathe"
+        },
+        "fr": {
+          "text": "les maths"
+        },
+        "es": {
+          "text": "las matemáticas"
+        },
+        "ja": {
+          "text": "数学"
+        },
+        "zh": {
+          "text": "數學"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SCHOOL",
+      "type": "noun",
+      "senseKey": "school",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "school"
+        },
+        "de": {
+          "text": "die Schule"
+        },
+        "fr": {
+          "text": "l’école"
+        },
+        "es": {
+          "text": "la escuela"
+        },
+        "ja": {
+          "text": "学校"
+        },
+        "zh": {
+          "text": "學校"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDY",
+      "type": "verb",
+      "senseKey": "study",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "study"
+        },
+        "de": {
+          "text": "lernen"
+        },
+        "fr": {
+          "text": "étudier"
+        },
+        "es": {
+          "text": "estudiar"
+        },
+        "ja": {
+          "text": "勉強します"
+        },
+        "zh": {
+          "text": "學習"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TEACHER",
+      "type": "noun",
+      "senseKey": "teacher",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "teacher"
+        },
+        "de": {
+          "text": "der Lehrer"
+        },
+        "fr": {
+          "text": "le professeur"
+        },
+        "es": {
+          "text": "el profesor"
+        },
+        "ja": {
+          "text": "先生"
+        },
+        "zh": {
+          "text": "老師"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_10_MIXED_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "review",
+        "de": "Wiederholung",
+        "fr": "révision",
+        "es": "repaso",
+        "ja": "復習",
+        "zh": "複習"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "question",
+        "de": "Frage",
+        "fr": "question",
+        "es": "pregunta",
+        "ja": "質問",
+        "zh": "問題"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "answer",
+        "de": "Antwort",
+        "fr": "réponse",
+        "es": "respuesta",
+        "ja": "答え",
+        "zh": "答案"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "conversation",
+        "de": "Gespräch",
+        "fr": "conversation",
+        "es": "conversación",
+        "ja": "会話",
+        "zh": "對話"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_10_1",
+      "linkedConcepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The teacher is at the school.",
+              "tiles": [
+                "The",
+                "teacher",
+                "is",
+                "at",
+                "the",
+                "school",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → teacher → is → at → the → school → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "teacher",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "at",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "school",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der lehrer ist in der Schule.",
+              "tiles": [
+                "Der",
+                "lehrer",
+                "ist",
+                "in",
+                "der",
+                "Schule",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → lehrer → ist → in → der → Schule → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lehrer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Schule",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le professeur est à l’école.",
+              "tiles": [
+                "Le",
+                "professeur",
+                "est",
+                "à",
+                "l’école",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → professeur → est → à → l’école → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "professeur",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’école",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El profesor está en la escuela.",
+              "tiles": [
+                "El",
+                "profesor",
+                "está",
+                "en",
+                "la",
+                "escuela",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → profesor → está → en → la → escuela → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "profesor",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "escuela",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "先生は学校にいます。",
+              "tiles": [
+                "先生は学校にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "先生は学校にいます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "先生は学校にいます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "老師在學校。",
+              "tiles": [
+                "老師在學校。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "老師在學校。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "老師在學校。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_10_2",
+      "linkedConcepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The teacher likes maths because it is interesting.",
+              "tiles": [
+                "The",
+                "teacher",
+                "likes",
+                "maths",
+                "because",
+                "it",
+                "is",
+                "interesting",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → teacher → likes → maths → because → it → is → interesting → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "teacher",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "likes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "maths",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "interesting",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der lehrer mag Mathe, weil es interessant ist.",
+              "tiles": [
+                "Der",
+                "lehrer",
+                "mag",
+                "Mathe,",
+                "weil",
+                "es",
+                "interessant",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → lehrer → mag → Mathe, → weil → es → interessant → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lehrer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mathe,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "interessant",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le professeur aime les maths parce que c’est intéressant.",
+              "tiles": [
+                "Le",
+                "professeur",
+                "aime",
+                "les",
+                "maths",
+                "parce",
+                "que",
+                "c’est",
+                "intéressant",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → professeur → aime → les → maths → parce → que → c’est → intéressant → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "professeur",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "les",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "maths",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "intéressant",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El profesor le gusta las matemáticas porque es interesante.",
+              "tiles": [
+                "El",
+                "profesor",
+                "le",
+                "gusta",
+                "las",
+                "matemáticas",
+                "porque",
+                "es",
+                "interesante",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → profesor → le → gusta → las → matemáticas → porque → es → interesante → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "profesor",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "las",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "matemáticas",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "interesante",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "おもしろいから、先生は数学が好きです。",
+              "tiles": [
+                "おもしろいから、先生は数学が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "おもしろいから、先生は数学が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "おもしろいから、先生は数学が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "老師喜歡數學，因為它很有趣。",
+              "tiles": [
+                "老師喜歡數學，因為它很有趣。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "老師喜歡數學，因為它很有趣。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "老師喜歡數學，因為它很有趣。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_1",
+      "translations": {
+        "en": {
+          "text": "The teacher is at the school.",
+          "tiles": [
+            "The",
+            "teacher",
+            "is",
+            "at",
+            "the",
+            "school",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → teacher → is → at → the → school → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "teacher",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "at",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "school",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der lehrer ist in der Schule.",
+          "tiles": [
+            "Der",
+            "lehrer",
+            "ist",
+            "in",
+            "der",
+            "Schule",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → lehrer → ist → in → der → Schule → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lehrer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Schule",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le professeur est à l’école.",
+          "tiles": [
+            "Le",
+            "professeur",
+            "est",
+            "à",
+            "l’école",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → professeur → est → à → l’école → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "professeur",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’école",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El profesor está en la escuela.",
+          "tiles": [
+            "El",
+            "profesor",
+            "está",
+            "en",
+            "la",
+            "escuela",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → profesor → está → en → la → escuela → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "profesor",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "escuela",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "先生は学校にいます。",
+          "tiles": [
+            "先生は学校にいます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "先生は学校にいます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "先生は学校にいます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "老師在學校。",
+          "tiles": [
+            "老師在學校。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "老師在學校。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "老師在學校。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_2",
+      "translations": {
+        "en": {
+          "text": "The teacher likes maths because it is interesting.",
+          "tiles": [
+            "The",
+            "teacher",
+            "likes",
+            "maths",
+            "because",
+            "it",
+            "is",
+            "interesting",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → teacher → likes → maths → because → it → is → interesting → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "teacher",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "likes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "maths",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "interesting",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der lehrer mag Mathe, weil es interessant ist.",
+          "tiles": [
+            "Der",
+            "lehrer",
+            "mag",
+            "Mathe,",
+            "weil",
+            "es",
+            "interessant",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → lehrer → mag → Mathe, → weil → es → interessant → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lehrer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mathe,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "interessant",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le professeur aime les maths parce que c’est intéressant.",
+          "tiles": [
+            "Le",
+            "professeur",
+            "aime",
+            "les",
+            "maths",
+            "parce",
+            "que",
+            "c’est",
+            "intéressant",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → professeur → aime → les → maths → parce → que → c’est → intéressant → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "professeur",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "les",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "maths",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "intéressant",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El profesor le gusta las matemáticas porque es interesante.",
+          "tiles": [
+            "El",
+            "profesor",
+            "le",
+            "gusta",
+            "las",
+            "matemáticas",
+            "porque",
+            "es",
+            "interesante",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → profesor → le → gusta → las → matemáticas → porque → es → interesante → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "profesor",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "las",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "matemáticas",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "interesante",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "おもしろいから、先生は数学が好きです。",
+          "tiles": [
+            "おもしろいから、先生は数学が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "おもしろいから、先生は数学が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "おもしろいから、先生は数学が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "老師喜歡數學，因為它很有趣。",
+          "tiles": [
+            "老師喜歡數學，因為它很有趣。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "老師喜歡數學，因為它很有趣。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "老師喜歡數學，因為它很有趣。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TEACHER": [
+      "S001",
+      "S002"
+    ],
+    "MATHS": [
+      "S001",
+      "S002"
+    ],
+    "SCHOOL": [
+      "S001",
+      "S002"
+    ],
+    "STUDY": [
+      "S001",
+      "S002"
+    ],
+    "BOOK": [
+      "S001",
+      "S002"
+    ],
+    "INTERESTING": [
+      "S001",
+      "S002"
+    ]
+  }
+}

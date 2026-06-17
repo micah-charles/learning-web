@@ -1,0 +1,1637 @@
+{
+  "packId": "semantic_pack_l2_084_sports_because_reasons",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_084 Sports Because Reasons",
+  "description": "A1+ Reasons with because pack: Sports",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_9_084_sports_because_reasons",
+    "title": "Sports",
+    "difficultyStage": 9,
+    "semanticDomains": [
+      "sports"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "why, because"
+      ],
+      "german": [
+        "warum",
+        "weil",
+        "ich mag"
+      ],
+      "french": [
+        "pourquoi",
+        "parce que",
+        "j’aime"
+      ],
+      "spanish": [
+        "por qué",
+        "porque",
+        "me gusta"
+      ],
+      "japanese": [
+        "なぜ",
+        "から",
+        "好きです"
+      ],
+      "chinese": [
+        "為什麼",
+        "因為",
+        "我喜歡"
+      ]
+    },
+    "sentenceGoals": [
+      "Why do you like football?",
+      "I like football because it is sporty."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIKE",
+      "type": "noun",
+      "senseKey": "bike",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "bike"
+        },
+        "de": {
+          "text": "das Fahrrad"
+        },
+        "fr": {
+          "text": "le vélo"
+        },
+        "es": {
+          "text": "la bicicleta"
+        },
+        "ja": {
+          "text": "自転車"
+        },
+        "zh": {
+          "text": "單車"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FOOTBALL",
+      "type": "noun",
+      "senseKey": "football",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "football"
+        },
+        "de": {
+          "text": "Fußball"
+        },
+        "fr": {
+          "text": "le football"
+        },
+        "es": {
+          "text": "el fútbol"
+        },
+        "ja": {
+          "text": "サッカー"
+        },
+        "zh": {
+          "text": "足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FRIEND",
+      "type": "noun",
+      "senseKey": "friend",
+      "semanticCategory": "social",
+      "translations": {
+        "en": {
+          "text": "friend"
+        },
+        "de": {
+          "text": "der Freund"
+        },
+        "fr": {
+          "text": "l’ami"
+        },
+        "es": {
+          "text": "el amigo"
+        },
+        "ja": {
+          "text": "友だち"
+        },
+        "zh": {
+          "text": "朋友"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PARK",
+      "type": "noun",
+      "senseKey": "park",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "park"
+        },
+        "de": {
+          "text": "der Park"
+        },
+        "fr": {
+          "text": "le parc"
+        },
+        "es": {
+          "text": "el parque"
+        },
+        "ja": {
+          "text": "公園"
+        },
+        "zh": {
+          "text": "公園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PLAY_FOOTBALL",
+      "type": "verb",
+      "senseKey": "play_football",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "play football"
+        },
+        "de": {
+          "text": "Fußball spielen"
+        },
+        "fr": {
+          "text": "jouer au football"
+        },
+        "es": {
+          "text": "jugar al fútbol"
+        },
+        "ja": {
+          "text": "サッカーをします"
+        },
+        "zh": {
+          "text": "踢足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SPORTY",
+      "type": "adjective",
+      "senseKey": "sporty",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sporty"
+        },
+        "de": {
+          "text": "sportlich"
+        },
+        "fr": {
+          "text": "sportif"
+        },
+        "es": {
+          "text": "deportivo"
+        },
+        "ja": {
+          "text": "スポーティーです"
+        },
+        "zh": {
+          "text": "愛運動"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_9_WHY,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "why",
+        "de": "warum",
+        "fr": "pourquoi",
+        "es": "por qué",
+        "ja": "なぜ",
+        "zh": "為什麼"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "ja": "から",
+        "zh": "因為"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I like",
+        "de": "ich mag",
+        "fr": "j’aime",
+        "es": "me gusta",
+        "ja": "好きです",
+        "zh": "我喜歡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "reason",
+        "de": "Grund",
+        "fr": "raison",
+        "es": "razón",
+        "ja": "理由",
+        "zh": "原因"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_9_1",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Why do you like football?",
+              "tiles": [
+                "Why",
+                "do",
+                "you",
+                "like",
+                "football",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Why → do → you → like → football → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum magst du Fußball?",
+              "tiles": [
+                "Warum",
+                "magst",
+                "du",
+                "Fußball",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Warum → magst → du → Fußball → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fußball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi aimes-tu le football ?",
+              "tiles": [
+                "Pourquoi",
+                "aimes-tu",
+                "le",
+                "football",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Pourquoi → aimes-tu → le → football → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aimes-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué te gusta el fútbol?",
+              "tiles": [
+                "¿",
+                "Por",
+                "qué",
+                "te",
+                "gusta",
+                "el",
+                "fútbol",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "¿ → Por → qué → te → gusta → el → fútbol → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qué",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fútbol",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜサッカーが好きですか。",
+              "tiles": [
+                "なぜサッカーが好きですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "なぜサッカーが好きですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "なぜサッカーが好きですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你為什麼喜歡足球？",
+              "tiles": [
+                "你為什麼喜歡足球？"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "你為什麼喜歡足球？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你為什麼喜歡足球？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_9_2",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I like football because it is sporty.",
+              "tiles": [
+                "I",
+                "like",
+                "football",
+                "because",
+                "it",
+                "is",
+                "sporty",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "I → like → football → because → it → is → sporty → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sporty",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich mag Fußball, weil es sportlich ist.",
+              "tiles": [
+                "Ich",
+                "mag",
+                "Fußball,",
+                "weil",
+                "es",
+                "sportlich",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Ich → mag → Fußball, → weil → es → sportlich → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fußball,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sportlich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’aime le football parce que c’est sportif.",
+              "tiles": [
+                "J’aime",
+                "le",
+                "football",
+                "parce",
+                "que",
+                "c’est",
+                "sportif",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "J’aime → le → football → parce → que → c’est → sportif → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sportif",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Me gusta el fútbol porque es deportivo.",
+              "tiles": [
+                "Me",
+                "gusta",
+                "el",
+                "fútbol",
+                "porque",
+                "es",
+                "deportivo",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Me → gusta → el → fútbol → porque → es → deportivo → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Me",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fútbol",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "deportivo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "スポーティーから、サッカーが好きです。",
+              "tiles": [
+                "スポーティーから、サッカーが好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "スポーティーから、サッカーが好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "スポーティーから、サッカーが好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我喜歡足球，因為它很愛運動。",
+              "tiles": [
+                "我喜歡足球，因為它很愛運動。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "我喜歡足球，因為它很愛運動。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我喜歡足球，因為它很愛運動。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_1",
+      "translations": {
+        "en": {
+          "text": "Why do you like football?",
+          "tiles": [
+            "Why",
+            "do",
+            "you",
+            "like",
+            "football",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Why → do → you → like → football → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum magst du Fußball?",
+          "tiles": [
+            "Warum",
+            "magst",
+            "du",
+            "Fußball",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Warum → magst → du → Fußball → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fußball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi aimes-tu le football ?",
+          "tiles": [
+            "Pourquoi",
+            "aimes-tu",
+            "le",
+            "football",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Pourquoi → aimes-tu → le → football → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aimes-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué te gusta el fútbol?",
+          "tiles": [
+            "¿",
+            "Por",
+            "qué",
+            "te",
+            "gusta",
+            "el",
+            "fútbol",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "¿ → Por → qué → te → gusta → el → fútbol → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "qué",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "fútbol",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜサッカーが好きですか。",
+          "tiles": [
+            "なぜサッカーが好きですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "なぜサッカーが好きですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "なぜサッカーが好きですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你為什麼喜歡足球？",
+          "tiles": [
+            "你為什麼喜歡足球？"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "你為什麼喜歡足球？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你為什麼喜歡足球？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_2",
+      "translations": {
+        "en": {
+          "text": "I like football because it is sporty.",
+          "tiles": [
+            "I",
+            "like",
+            "football",
+            "because",
+            "it",
+            "is",
+            "sporty",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "I → like → football → because → it → is → sporty → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sporty",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich mag Fußball, weil es sportlich ist.",
+          "tiles": [
+            "Ich",
+            "mag",
+            "Fußball,",
+            "weil",
+            "es",
+            "sportlich",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Ich → mag → Fußball, → weil → es → sportlich → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fußball,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sportlich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’aime le football parce que c’est sportif.",
+          "tiles": [
+            "J’aime",
+            "le",
+            "football",
+            "parce",
+            "que",
+            "c’est",
+            "sportif",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "J’aime → le → football → parce → que → c’est → sportif → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sportif",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Me gusta el fútbol porque es deportivo.",
+          "tiles": [
+            "Me",
+            "gusta",
+            "el",
+            "fútbol",
+            "porque",
+            "es",
+            "deportivo",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Me → gusta → el → fútbol → porque → es → deportivo → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Me",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "fútbol",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "deportivo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "スポーティーから、サッカーが好きです。",
+          "tiles": [
+            "スポーティーから、サッカーが好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "スポーティーから、サッカーが好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "スポーティーから、サッカーが好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我喜歡足球，因為它很愛運動。",
+          "tiles": [
+            "我喜歡足球，因為它很愛運動。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "我喜歡足球，因為它很愛運動。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我喜歡足球，因為它很愛運動。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FRIEND": [
+      "S001",
+      "S002"
+    ],
+    "FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "PARK": [
+      "S001",
+      "S002"
+    ],
+    "PLAY FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "BIKE": [
+      "S001",
+      "S002"
+    ],
+    "SPORTY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

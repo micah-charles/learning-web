@@ -1,0 +1,1301 @@
+{
+  "packId": "semantic_pack_l2_030_holiday_can_ability",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_030 Holiday Can Ability",
+  "description": "A1+ Can and ability pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_3_030_holiday_can_ability",
+    "title": "Holiday",
+    "difficultyStage": 3,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "can + infinitive"
+      ],
+      "german": [
+        "kann",
+        "kannst du",
+        "Infinitiv"
+      ],
+      "french": [
+        "peut",
+        "peux-tu",
+        "infinitif"
+      ],
+      "spanish": [
+        "puede",
+        "puedes",
+        "infinitivo"
+      ],
+      "japanese": [
+        "できます",
+        "できますか",
+        "動詞"
+      ],
+      "chinese": [
+        "可以",
+        "你可以嗎",
+        "動詞"
+      ]
+    },
+    "sentenceGoals": [
+      "The family can swim.",
+      "Can you swim?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_3_CAN_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "ja": "できます",
+        "zh": "可以"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can you",
+        "de": "kannst du",
+        "fr": "peux-tu",
+        "es": "puedes",
+        "ja": "できますか",
+        "zh": "你可以嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "infinitive",
+        "de": "Infinitiv",
+        "fr": "infinitif",
+        "es": "infinitivo",
+        "ja": "動詞",
+        "zh": "動詞"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "ability",
+        "de": "Fähigkeit",
+        "fr": "capacité",
+        "es": "habilidad",
+        "ja": "能力",
+        "zh": "能力"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_3_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The family can swim.",
+              "tiles": [
+                "The",
+                "family",
+                "can",
+                "swim",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "The → family → can → swim → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "family",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "swim",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die familie kann schwimmen.",
+              "tiles": [
+                "Die",
+                "familie",
+                "kann",
+                "schwimmen",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Die → familie → kann → schwimmen → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "familie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kann",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "schwimmen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La famille peut nager.",
+              "tiles": [
+                "La",
+                "famille",
+                "peut",
+                "nager",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "La → famille → peut → nager → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "famille",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "peut",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "nager",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La familia puede nadar.",
+              "tiles": [
+                "La",
+                "familia",
+                "puede",
+                "nadar",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "La → familia → puede → nadar → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "familia",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "puede",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "nadar",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "家族は泳ぎますことができます。",
+              "tiles": [
+                "家族は泳ぎますことができます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "家族は泳ぎますことができます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "家族は泳ぎますことができます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "家庭可以游泳。",
+              "tiles": [
+                "家庭可以游泳。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "家庭可以游泳。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "家庭可以游泳。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_3_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Can you swim?",
+              "tiles": [
+                "Can",
+                "you",
+                "swim",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Can → you → swim → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "swim",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Kannst du schwimmen?",
+              "tiles": [
+                "Kannst",
+                "du",
+                "schwimmen",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Kannst → du → schwimmen → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Kannst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "schwimmen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Peux-tu nager ?",
+              "tiles": [
+                "Peux-tu",
+                "nager",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Peux-tu → nager → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Peux-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "nager",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Puedes nadar?",
+              "tiles": [
+                "¿",
+                "Puedes",
+                "nadar",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "¿ → Puedes → nadar → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Puedes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "nadar",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "泳ぎますことができますか。",
+              "tiles": [
+                "泳ぎますことができますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "泳ぎますことができますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "泳ぎますことができますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你可以游泳嗎？",
+              "tiles": [
+                "你可以游泳嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "你可以游泳嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你可以游泳嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_1",
+      "translations": {
+        "en": {
+          "text": "The family can swim.",
+          "tiles": [
+            "The",
+            "family",
+            "can",
+            "swim",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "The → family → can → swim → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "family",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "swim",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die familie kann schwimmen.",
+          "tiles": [
+            "Die",
+            "familie",
+            "kann",
+            "schwimmen",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Die → familie → kann → schwimmen → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "familie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kann",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "schwimmen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La famille peut nager.",
+          "tiles": [
+            "La",
+            "famille",
+            "peut",
+            "nager",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "La → famille → peut → nager → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "famille",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "peut",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "nager",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La familia puede nadar.",
+          "tiles": [
+            "La",
+            "familia",
+            "puede",
+            "nadar",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "La → familia → puede → nadar → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "familia",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "puede",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "nadar",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "家族は泳ぎますことができます。",
+          "tiles": [
+            "家族は泳ぎますことができます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "家族は泳ぎますことができます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "家族は泳ぎますことができます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "家庭可以游泳。",
+          "tiles": [
+            "家庭可以游泳。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "家庭可以游泳。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "家庭可以游泳。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_2",
+      "translations": {
+        "en": {
+          "text": "Can you swim?",
+          "tiles": [
+            "Can",
+            "you",
+            "swim",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Can → you → swim → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "swim",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Kannst du schwimmen?",
+          "tiles": [
+            "Kannst",
+            "du",
+            "schwimmen",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Kannst → du → schwimmen → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Kannst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "schwimmen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Peux-tu nager ?",
+          "tiles": [
+            "Peux-tu",
+            "nager",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Peux-tu → nager → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Peux-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "nager",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Puedes nadar?",
+          "tiles": [
+            "¿",
+            "Puedes",
+            "nadar",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "¿ → Puedes → nadar → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Puedes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "nadar",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "泳ぎますことができますか。",
+          "tiles": [
+            "泳ぎますことができますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "泳ぎますことができますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "泳ぎますことができますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你可以游泳嗎？",
+          "tiles": [
+            "你可以游泳嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "你可以游泳嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你可以游泳嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

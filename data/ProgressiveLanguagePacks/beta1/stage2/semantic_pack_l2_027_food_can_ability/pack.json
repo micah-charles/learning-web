@@ -1,0 +1,1301 @@
+{
+  "packId": "semantic_pack_l2_027_food_can_ability",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_027 Food Can Ability",
+  "description": "A1+ Can and ability pack: Food",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_3_027_food_can_ability",
+    "title": "Food",
+    "difficultyStage": 3,
+    "semanticDomains": [
+      "food"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "can + infinitive"
+      ],
+      "german": [
+        "kann",
+        "kannst du",
+        "Infinitiv"
+      ],
+      "french": [
+        "peut",
+        "peux-tu",
+        "infinitif"
+      ],
+      "spanish": [
+        "puede",
+        "puedes",
+        "infinitivo"
+      ],
+      "japanese": [
+        "できます",
+        "できますか",
+        "動詞"
+      ],
+      "chinese": [
+        "可以",
+        "你可以嗎",
+        "動詞"
+      ]
+    },
+    "sentenceGoals": [
+      "The cook can eat.",
+      "Can you eat?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "COOK",
+      "type": "noun",
+      "senseKey": "cook",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "der Koch"
+        },
+        "fr": {
+          "text": "le cuisinier"
+        },
+        "es": {
+          "text": "el cocinero"
+        },
+        "ja": {
+          "text": "料理人"
+        },
+        "zh": {
+          "text": "廚師"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "DELICIOUS",
+      "type": "adjective",
+      "senseKey": "delicious",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "delicious"
+        },
+        "de": {
+          "text": "lecker"
+        },
+        "fr": {
+          "text": "délicieux"
+        },
+        "es": {
+          "text": "delicioso"
+        },
+        "ja": {
+          "text": "おいしいです"
+        },
+        "zh": {
+          "text": "好吃"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EAT",
+      "type": "verb",
+      "senseKey": "eat",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "eat"
+        },
+        "de": {
+          "text": "essen"
+        },
+        "fr": {
+          "text": "manger"
+        },
+        "es": {
+          "text": "comer"
+        },
+        "ja": {
+          "text": "食べます"
+        },
+        "zh": {
+          "text": "吃"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PIZZA",
+      "type": "noun",
+      "senseKey": "pizza",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "pizza"
+        },
+        "de": {
+          "text": "die Pizza"
+        },
+        "fr": {
+          "text": "la pizza"
+        },
+        "es": {
+          "text": "la pizza"
+        },
+        "ja": {
+          "text": "ピザ"
+        },
+        "zh": {
+          "text": "薄餅"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "RESTAURANT",
+      "type": "noun",
+      "senseKey": "restaurant",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "restaurant"
+        },
+        "de": {
+          "text": "das Restaurant"
+        },
+        "fr": {
+          "text": "le restaurant"
+        },
+        "es": {
+          "text": "el restaurante"
+        },
+        "ja": {
+          "text": "レストラン"
+        },
+        "zh": {
+          "text": "餐廳"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WATER",
+      "type": "noun",
+      "senseKey": "water",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "water"
+        },
+        "de": {
+          "text": "das Wasser"
+        },
+        "fr": {
+          "text": "l’eau"
+        },
+        "es": {
+          "text": "el agua"
+        },
+        "ja": {
+          "text": "水"
+        },
+        "zh": {
+          "text": "水"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_3_CAN_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "ja": "できます",
+        "zh": "可以"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can you",
+        "de": "kannst du",
+        "fr": "peux-tu",
+        "es": "puedes",
+        "ja": "できますか",
+        "zh": "你可以嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "infinitive",
+        "de": "Infinitiv",
+        "fr": "infinitif",
+        "es": "infinitivo",
+        "ja": "動詞",
+        "zh": "動詞"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "ability",
+        "de": "Fähigkeit",
+        "fr": "capacité",
+        "es": "habilidad",
+        "ja": "能力",
+        "zh": "能力"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_3_1",
+      "linkedConcepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The cook can eat.",
+              "tiles": [
+                "The",
+                "cook",
+                "can",
+                "eat",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "The → cook → can → eat → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cook",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der koch kann essen.",
+              "tiles": [
+                "Der",
+                "koch",
+                "kann",
+                "essen",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Der → koch → kann → essen → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "koch",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kann",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "essen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le cuisinier peut manger.",
+              "tiles": [
+                "Le",
+                "cuisinier",
+                "peut",
+                "manger",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Le → cuisinier → peut → manger → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisinier",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "peut",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "manger",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El cocinero puede comer.",
+              "tiles": [
+                "El",
+                "cocinero",
+                "puede",
+                "comer",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "El → cocinero → puede → comer → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocinero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "puede",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "comer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "料理人は食べますことができます。",
+              "tiles": [
+                "料理人は食べますことができます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "料理人は食べますことができます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "料理人は食べますことができます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "廚師可以吃。",
+              "tiles": [
+                "廚師可以吃。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "廚師可以吃。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "廚師可以吃。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_3_2",
+      "linkedConcepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Can you eat?",
+              "tiles": [
+                "Can",
+                "you",
+                "eat",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Can → you → eat → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Kannst du essen?",
+              "tiles": [
+                "Kannst",
+                "du",
+                "essen",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Kannst → du → essen → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Kannst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "essen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Peux-tu manger ?",
+              "tiles": [
+                "Peux-tu",
+                "manger",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Peux-tu → manger → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Peux-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "manger",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Puedes comer?",
+              "tiles": [
+                "¿",
+                "Puedes",
+                "comer",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "¿ → Puedes → comer → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Puedes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "comer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "食べますことができますか。",
+              "tiles": [
+                "食べますことができますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "食べますことができますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "食べますことができますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你可以吃嗎？",
+              "tiles": [
+                "你可以吃嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "你可以吃嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你可以吃嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_1",
+      "translations": {
+        "en": {
+          "text": "The cook can eat.",
+          "tiles": [
+            "The",
+            "cook",
+            "can",
+            "eat",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "The → cook → can → eat → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cook",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "eat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der koch kann essen.",
+          "tiles": [
+            "Der",
+            "koch",
+            "kann",
+            "essen",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Der → koch → kann → essen → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "koch",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kann",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "essen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le cuisinier peut manger.",
+          "tiles": [
+            "Le",
+            "cuisinier",
+            "peut",
+            "manger",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Le → cuisinier → peut → manger → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisinier",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "peut",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "manger",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El cocinero puede comer.",
+          "tiles": [
+            "El",
+            "cocinero",
+            "puede",
+            "comer",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "El → cocinero → puede → comer → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocinero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "puede",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "comer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "料理人は食べますことができます。",
+          "tiles": [
+            "料理人は食べますことができます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "料理人は食べますことができます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "料理人は食べますことができます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "廚師可以吃。",
+          "tiles": [
+            "廚師可以吃。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "廚師可以吃。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "廚師可以吃。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_2",
+      "translations": {
+        "en": {
+          "text": "Can you eat?",
+          "tiles": [
+            "Can",
+            "you",
+            "eat",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Can → you → eat → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "eat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Kannst du essen?",
+          "tiles": [
+            "Kannst",
+            "du",
+            "essen",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Kannst → du → essen → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Kannst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "essen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Peux-tu manger ?",
+          "tiles": [
+            "Peux-tu",
+            "manger",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Peux-tu → manger → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Peux-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "manger",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Puedes comer?",
+          "tiles": [
+            "¿",
+            "Puedes",
+            "comer",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "¿ → Puedes → comer → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Puedes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "comer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "食べますことができますか。",
+          "tiles": [
+            "食べますことができますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "食べますことができますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "食べますことができますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你可以吃嗎？",
+          "tiles": [
+            "你可以吃嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "你可以吃嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你可以吃嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "COOK": [
+      "S001",
+      "S002"
+    ],
+    "PIZZA": [
+      "S001",
+      "S002"
+    ],
+    "RESTAURANT": [
+      "S001",
+      "S002"
+    ],
+    "EAT": [
+      "S001",
+      "S002"
+    ],
+    "WATER": [
+      "S001",
+      "S002"
+    ],
+    "DELICIOUS": [
+      "S001",
+      "S002"
+    ]
+  }
+}

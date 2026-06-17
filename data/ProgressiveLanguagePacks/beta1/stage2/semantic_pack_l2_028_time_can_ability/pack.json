@@ -1,0 +1,1285 @@
+{
+  "packId": "semantic_pack_l2_028_time_can_ability",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_028 Time Can Ability",
+  "description": "A1+ Can and ability pack: Time",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_3_028_time_can_ability",
+    "title": "Time",
+    "difficultyStage": 3,
+    "semanticDomains": [
+      "time"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "can + infinitive"
+      ],
+      "german": [
+        "kann",
+        "kannst du",
+        "Infinitiv"
+      ],
+      "french": [
+        "peut",
+        "peux-tu",
+        "infinitif"
+      ],
+      "spanish": [
+        "puede",
+        "puedes",
+        "infinitivo"
+      ],
+      "japanese": [
+        "できます",
+        "できますか",
+        "動詞"
+      ],
+      "chinese": [
+        "可以",
+        "你可以嗎",
+        "動詞"
+      ]
+    },
+    "sentenceGoals": [
+      "The student can wait.",
+      "Can you wait?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIRTHDAY",
+      "type": "noun",
+      "senseKey": "birthday",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "birthday"
+        },
+        "de": {
+          "text": "der Geburtstag"
+        },
+        "fr": {
+          "text": "l’anniversaire"
+        },
+        "es": {
+          "text": "el cumpleaños"
+        },
+        "ja": {
+          "text": "誕生日"
+        },
+        "zh": {
+          "text": "生日"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLASSROOM",
+      "type": "noun",
+      "senseKey": "classroom",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "classroom"
+        },
+        "de": {
+          "text": "das Klassenzimmer"
+        },
+        "fr": {
+          "text": "la salle de classe"
+        },
+        "es": {
+          "text": "el aula"
+        },
+        "ja": {
+          "text": "教室"
+        },
+        "zh": {
+          "text": "課室"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLOCK",
+      "type": "noun",
+      "senseKey": "clock",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "clock"
+        },
+        "de": {
+          "text": "die Uhr"
+        },
+        "fr": {
+          "text": "l’horloge"
+        },
+        "es": {
+          "text": "el reloj"
+        },
+        "ja": {
+          "text": "時計"
+        },
+        "zh": {
+          "text": "時鐘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EARLY",
+      "type": "adjective",
+      "senseKey": "early",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "early"
+        },
+        "de": {
+          "text": "früh"
+        },
+        "fr": {
+          "text": "tôt"
+        },
+        "es": {
+          "text": "temprano"
+        },
+        "ja": {
+          "text": "早いです"
+        },
+        "zh": {
+          "text": "早"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDENT",
+      "type": "noun",
+      "senseKey": "student",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "student"
+        },
+        "de": {
+          "text": "der Schüler"
+        },
+        "fr": {
+          "text": "l’élève"
+        },
+        "es": {
+          "text": "el estudiante"
+        },
+        "ja": {
+          "text": "生徒"
+        },
+        "zh": {
+          "text": "學生"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WAIT",
+      "type": "verb",
+      "senseKey": "wait",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "wait"
+        },
+        "de": {
+          "text": "warten"
+        },
+        "fr": {
+          "text": "attendre"
+        },
+        "es": {
+          "text": "esperar"
+        },
+        "ja": {
+          "text": "待ちます"
+        },
+        "zh": {
+          "text": "等"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_3_CAN_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "ja": "できます",
+        "zh": "可以"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can you",
+        "de": "kannst du",
+        "fr": "peux-tu",
+        "es": "puedes",
+        "ja": "できますか",
+        "zh": "你可以嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "infinitive",
+        "de": "Infinitiv",
+        "fr": "infinitif",
+        "es": "infinitivo",
+        "ja": "動詞",
+        "zh": "動詞"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "ability",
+        "de": "Fähigkeit",
+        "fr": "capacité",
+        "es": "habilidad",
+        "ja": "能力",
+        "zh": "能力"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_3_1",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The student can wait.",
+              "tiles": [
+                "The",
+                "student",
+                "can",
+                "wait",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "The → student → can → wait → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "student",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "wait",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der schüler kann warten.",
+              "tiles": [
+                "Der",
+                "schüler",
+                "kann",
+                "warten",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Der → schüler → kann → warten → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "schüler",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kann",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "warten",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L’élève peut attendre.",
+              "tiles": [
+                "L’élève",
+                "peut",
+                "attendre",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "L’élève → peut → attendre → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "L’élève",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "peut",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "attendre",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El estudiante puede esperar.",
+              "tiles": [
+                "El",
+                "estudiante",
+                "puede",
+                "esperar",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "El → estudiante → puede → esperar → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "estudiante",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "puede",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "esperar",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "生徒は待ちますことができます。",
+              "tiles": [
+                "生徒は待ちますことができます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "生徒は待ちますことができます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "生徒は待ちますことができます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "學生可以等。",
+              "tiles": [
+                "學生可以等。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "學生可以等。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "學生可以等。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_3_2",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Can you wait?",
+              "tiles": [
+                "Can",
+                "you",
+                "wait",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Can → you → wait → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "wait",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Kannst du warten?",
+              "tiles": [
+                "Kannst",
+                "du",
+                "warten",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Kannst → du → warten → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Kannst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "warten",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Peux-tu attendre ?",
+              "tiles": [
+                "Peux-tu",
+                "attendre",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Peux-tu → attendre → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Peux-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "attendre",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Puedes esperar?",
+              "tiles": [
+                "¿",
+                "Puedes",
+                "esperar",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "¿ → Puedes → esperar → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Puedes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "esperar",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "待ちますことができますか。",
+              "tiles": [
+                "待ちますことができますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "待ちますことができますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "待ちますことができますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你可以等嗎？",
+              "tiles": [
+                "你可以等嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "你可以等嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你可以等嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_1",
+      "translations": {
+        "en": {
+          "text": "The student can wait.",
+          "tiles": [
+            "The",
+            "student",
+            "can",
+            "wait",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "The → student → can → wait → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "student",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "wait",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der schüler kann warten.",
+          "tiles": [
+            "Der",
+            "schüler",
+            "kann",
+            "warten",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Der → schüler → kann → warten → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "schüler",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kann",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "warten",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L’élève peut attendre.",
+          "tiles": [
+            "L’élève",
+            "peut",
+            "attendre",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "L’élève → peut → attendre → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "L’élève",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "peut",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "attendre",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El estudiante puede esperar.",
+          "tiles": [
+            "El",
+            "estudiante",
+            "puede",
+            "esperar",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "El → estudiante → puede → esperar → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "estudiante",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "puede",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "esperar",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "生徒は待ちますことができます。",
+          "tiles": [
+            "生徒は待ちますことができます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "生徒は待ちますことができます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "生徒は待ちますことができます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "學生可以等。",
+          "tiles": [
+            "學生可以等。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "學生可以等。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "學生可以等。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_2",
+      "translations": {
+        "en": {
+          "text": "Can you wait?",
+          "tiles": [
+            "Can",
+            "you",
+            "wait",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Can → you → wait → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "wait",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Kannst du warten?",
+          "tiles": [
+            "Kannst",
+            "du",
+            "warten",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Kannst → du → warten → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Kannst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "warten",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Peux-tu attendre ?",
+          "tiles": [
+            "Peux-tu",
+            "attendre",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Peux-tu → attendre → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Peux-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "attendre",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Puedes esperar?",
+          "tiles": [
+            "¿",
+            "Puedes",
+            "esperar",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "¿ → Puedes → esperar → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Puedes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "esperar",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "待ちますことができますか。",
+          "tiles": [
+            "待ちますことができますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "待ちますことができますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "待ちますことができますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你可以等嗎？",
+          "tiles": [
+            "你可以等嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "你可以等嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你可以等嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "STUDENT": [
+      "S001",
+      "S002"
+    ],
+    "BIRTHDAY": [
+      "S001",
+      "S002"
+    ],
+    "CLASSROOM": [
+      "S001",
+      "S002"
+    ],
+    "WAIT": [
+      "S001",
+      "S002"
+    ],
+    "CLOCK": [
+      "S001",
+      "S002"
+    ],
+    "EARLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

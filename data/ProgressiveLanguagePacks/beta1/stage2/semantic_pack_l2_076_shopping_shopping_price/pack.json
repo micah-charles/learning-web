@@ -1,0 +1,1464 @@
+{
+  "packId": "semantic_pack_l2_076_shopping_shopping_price",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_076 Shopping Shopping Price",
+  "description": "A1+ Shopping and price pack: Shopping",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_8_076_shopping_shopping_price",
+    "title": "Shopping",
+    "difficultyStage": 8,
+    "semanticDomains": [
+      "shopping"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "how much, costs, euros"
+      ],
+      "german": [
+        "wie viel",
+        "kostet",
+        "Euro"
+      ],
+      "french": [
+        "combien",
+        "coûte",
+        "euros"
+      ],
+      "spanish": [
+        "cuánto",
+        "cuesta",
+        "euros"
+      ],
+      "japanese": [
+        "いくら",
+        "かかります",
+        "ユーロ"
+      ],
+      "chinese": [
+        "多少錢",
+        "要",
+        "歐元"
+      ]
+    },
+    "sentenceGoals": [
+      "How much is the bread?",
+      "The bread costs three euros."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BREAD",
+      "type": "noun",
+      "senseKey": "bread",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "bread"
+        },
+        "de": {
+          "text": "das Brot"
+        },
+        "fr": {
+          "text": "le pain"
+        },
+        "es": {
+          "text": "el pan"
+        },
+        "ja": {
+          "text": "パン"
+        },
+        "zh": {
+          "text": "麵包"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "BUY",
+      "type": "verb",
+      "senseKey": "buy",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "buy"
+        },
+        "de": {
+          "text": "kaufen"
+        },
+        "fr": {
+          "text": "acheter"
+        },
+        "es": {
+          "text": "comprar"
+        },
+        "ja": {
+          "text": "買います"
+        },
+        "zh": {
+          "text": "買"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CHEAP",
+      "type": "adjective",
+      "senseKey": "cheap",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cheap"
+        },
+        "de": {
+          "text": "billig"
+        },
+        "fr": {
+          "text": "bon marché"
+        },
+        "es": {
+          "text": "barato"
+        },
+        "ja": {
+          "text": "安いです"
+        },
+        "zh": {
+          "text": "便宜"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SHOP",
+      "type": "noun",
+      "senseKey": "shop",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "shop"
+        },
+        "de": {
+          "text": "das Geschäft"
+        },
+        "fr": {
+          "text": "le magasin"
+        },
+        "es": {
+          "text": "la tienda"
+        },
+        "ja": {
+          "text": "店"
+        },
+        "zh": {
+          "text": "商店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUPERMARKET",
+      "type": "noun",
+      "senseKey": "supermarket",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "supermarket"
+        },
+        "de": {
+          "text": "der Supermarkt"
+        },
+        "fr": {
+          "text": "le supermarché"
+        },
+        "es": {
+          "text": "el supermercado"
+        },
+        "ja": {
+          "text": "スーパー"
+        },
+        "zh": {
+          "text": "超級市場"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_8_HOW_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "how much",
+        "de": "wie viel",
+        "fr": "combien",
+        "es": "cuánto",
+        "ja": "いくら",
+        "zh": "多少錢"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "costs",
+        "de": "kostet",
+        "fr": "coûte",
+        "es": "cuesta",
+        "ja": "かかります",
+        "zh": "要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "euros",
+        "de": "Euro",
+        "fr": "euros",
+        "es": "euros",
+        "ja": "ユーロ",
+        "zh": "歐元"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_8_1",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "How much is the bread?",
+              "tiles": [
+                "How",
+                "much",
+                "is",
+                "the",
+                "bread",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "How → much → is → the → bread → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "much",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bread",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viel kostet das Brot?",
+              "tiles": [
+                "Wie",
+                "viel",
+                "kostet",
+                "das",
+                "Brot",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Wie → viel → kostet → das → Brot → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "viel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Brot",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien coûte le pain ?",
+              "tiles": [
+                "Combien",
+                "coûte",
+                "le",
+                "pain",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Combien → coûte → le → pain → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Combien",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pain",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuánto cuesta el pan?",
+              "tiles": [
+                "¿",
+                "Cuánto",
+                "cuesta",
+                "el",
+                "pan",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "¿ → Cuánto → cuesta → el → pan → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cuánto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pan",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "パンはいくらですか。",
+              "tiles": [
+                "パンはいくらですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "パンはいくらですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "パンはいくらですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "麵包多少錢？",
+              "tiles": [
+                "麵包多少錢？"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "麵包多少錢？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "麵包多少錢？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_8_2",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The bread costs three euros.",
+              "tiles": [
+                "The",
+                "bread",
+                "costs",
+                "three",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "The → bread → costs → three → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bread",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "costs",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "three",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das brot kostet drei Euro.",
+              "tiles": [
+                "Das",
+                "brot",
+                "kostet",
+                "drei",
+                "Euro",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Das → brot → kostet → drei → Euro → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "brot",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "drei",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Euro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le pain coûte trois euros.",
+              "tiles": [
+                "Le",
+                "pain",
+                "coûte",
+                "trois",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Le → pain → coûte → trois → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pain",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "trois",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El pan cuesta tres euros.",
+              "tiles": [
+                "El",
+                "pan",
+                "cuesta",
+                "tres",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "El → pan → cuesta → tres → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pan",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tres",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "パンは三ユーロです。",
+              "tiles": [
+                "パンは三ユーロです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "パンは三ユーロです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "パンは三ユーロです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "麵包三歐元。",
+              "tiles": [
+                "麵包三歐元。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "麵包三歐元。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "麵包三歐元。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_1",
+      "translations": {
+        "en": {
+          "text": "How much is the bread?",
+          "tiles": [
+            "How",
+            "much",
+            "is",
+            "the",
+            "bread",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "How → much → is → the → bread → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "much",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bread",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie viel kostet das Brot?",
+          "tiles": [
+            "Wie",
+            "viel",
+            "kostet",
+            "das",
+            "Brot",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Wie → viel → kostet → das → Brot → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "viel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Brot",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Combien coûte le pain ?",
+          "tiles": [
+            "Combien",
+            "coûte",
+            "le",
+            "pain",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Combien → coûte → le → pain → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Combien",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pain",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuánto cuesta el pan?",
+          "tiles": [
+            "¿",
+            "Cuánto",
+            "cuesta",
+            "el",
+            "pan",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "¿ → Cuánto → cuesta → el → pan → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cuánto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pan",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "パンはいくらですか。",
+          "tiles": [
+            "パンはいくらですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "パンはいくらですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "パンはいくらですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "麵包多少錢？",
+          "tiles": [
+            "麵包多少錢？"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "麵包多少錢？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "麵包多少錢？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_2",
+      "translations": {
+        "en": {
+          "text": "The bread costs three euros.",
+          "tiles": [
+            "The",
+            "bread",
+            "costs",
+            "three",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "The → bread → costs → three → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bread",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "costs",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "three",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das brot kostet drei Euro.",
+          "tiles": [
+            "Das",
+            "brot",
+            "kostet",
+            "drei",
+            "Euro",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Das → brot → kostet → drei → Euro → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "brot",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "drei",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Euro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le pain coûte trois euros.",
+          "tiles": [
+            "Le",
+            "pain",
+            "coûte",
+            "trois",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Le → pain → coûte → trois → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pain",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "trois",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El pan cuesta tres euros.",
+          "tiles": [
+            "El",
+            "pan",
+            "cuesta",
+            "tres",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "El → pan → cuesta → tres → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pan",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tres",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "パンは三ユーロです。",
+          "tiles": [
+            "パンは三ユーロです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "パンは三ユーロです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "パンは三ユーロです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "麵包三歐元。",
+          "tiles": [
+            "麵包三歐元。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "麵包三歐元。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "麵包三歐元。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "SUPERMARKET": [
+      "S001",
+      "S002"
+    ],
+    "SHOP": [
+      "S001",
+      "S001",
+      "S002",
+      "S002"
+    ],
+    "BUY": [
+      "S001",
+      "S002"
+    ],
+    "BREAD": [
+      "S001",
+      "S002"
+    ],
+    "CHEAP": [
+      "S001",
+      "S002"
+    ]
+  }
+}

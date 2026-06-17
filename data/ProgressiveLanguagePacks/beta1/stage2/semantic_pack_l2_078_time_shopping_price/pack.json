@@ -1,0 +1,1461 @@
+{
+  "packId": "semantic_pack_l2_078_time_shopping_price",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_078 Time Shopping Price",
+  "description": "A1+ Shopping and price pack: Time",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_8_078_time_shopping_price",
+    "title": "Time",
+    "difficultyStage": 8,
+    "semanticDomains": [
+      "time"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "how much, costs, euros"
+      ],
+      "german": [
+        "wie viel",
+        "kostet",
+        "Euro"
+      ],
+      "french": [
+        "combien",
+        "coûte",
+        "euros"
+      ],
+      "spanish": [
+        "cuánto",
+        "cuesta",
+        "euros"
+      ],
+      "japanese": [
+        "いくら",
+        "かかります",
+        "ユーロ"
+      ],
+      "chinese": [
+        "多少錢",
+        "要",
+        "歐元"
+      ]
+    },
+    "sentenceGoals": [
+      "How much is the clock?",
+      "The clock costs three euros."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIRTHDAY",
+      "type": "noun",
+      "senseKey": "birthday",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "birthday"
+        },
+        "de": {
+          "text": "der Geburtstag"
+        },
+        "fr": {
+          "text": "l’anniversaire"
+        },
+        "es": {
+          "text": "el cumpleaños"
+        },
+        "ja": {
+          "text": "誕生日"
+        },
+        "zh": {
+          "text": "生日"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLASSROOM",
+      "type": "noun",
+      "senseKey": "classroom",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "classroom"
+        },
+        "de": {
+          "text": "das Klassenzimmer"
+        },
+        "fr": {
+          "text": "la salle de classe"
+        },
+        "es": {
+          "text": "el aula"
+        },
+        "ja": {
+          "text": "教室"
+        },
+        "zh": {
+          "text": "課室"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLOCK",
+      "type": "noun",
+      "senseKey": "clock",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "clock"
+        },
+        "de": {
+          "text": "die Uhr"
+        },
+        "fr": {
+          "text": "l’horloge"
+        },
+        "es": {
+          "text": "el reloj"
+        },
+        "ja": {
+          "text": "時計"
+        },
+        "zh": {
+          "text": "時鐘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EARLY",
+      "type": "adjective",
+      "senseKey": "early",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "early"
+        },
+        "de": {
+          "text": "früh"
+        },
+        "fr": {
+          "text": "tôt"
+        },
+        "es": {
+          "text": "temprano"
+        },
+        "ja": {
+          "text": "早いです"
+        },
+        "zh": {
+          "text": "早"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDENT",
+      "type": "noun",
+      "senseKey": "student",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "student"
+        },
+        "de": {
+          "text": "der Schüler"
+        },
+        "fr": {
+          "text": "l’élève"
+        },
+        "es": {
+          "text": "el estudiante"
+        },
+        "ja": {
+          "text": "生徒"
+        },
+        "zh": {
+          "text": "學生"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WAIT",
+      "type": "verb",
+      "senseKey": "wait",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "wait"
+        },
+        "de": {
+          "text": "warten"
+        },
+        "fr": {
+          "text": "attendre"
+        },
+        "es": {
+          "text": "esperar"
+        },
+        "ja": {
+          "text": "待ちます"
+        },
+        "zh": {
+          "text": "等"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_8_HOW_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "how much",
+        "de": "wie viel",
+        "fr": "combien",
+        "es": "cuánto",
+        "ja": "いくら",
+        "zh": "多少錢"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "costs",
+        "de": "kostet",
+        "fr": "coûte",
+        "es": "cuesta",
+        "ja": "かかります",
+        "zh": "要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "euros",
+        "de": "Euro",
+        "fr": "euros",
+        "es": "euros",
+        "ja": "ユーロ",
+        "zh": "歐元"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_8_1",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "How much is the clock?",
+              "tiles": [
+                "How",
+                "much",
+                "is",
+                "the",
+                "clock",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "How → much → is → the → clock → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "much",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "clock",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viel kostet die Uhr?",
+              "tiles": [
+                "Wie",
+                "viel",
+                "kostet",
+                "die",
+                "Uhr",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Wie → viel → kostet → die → Uhr → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "viel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Uhr",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien coûte l’horloge ?",
+              "tiles": [
+                "Combien",
+                "coûte",
+                "l’horloge",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Combien → coûte → l’horloge → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Combien",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’horloge",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuánto cuesta el reloj?",
+              "tiles": [
+                "¿",
+                "Cuánto",
+                "cuesta",
+                "el",
+                "reloj",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "¿ → Cuánto → cuesta → el → reloj → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cuánto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "reloj",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "時計はいくらですか。",
+              "tiles": [
+                "時計はいくらですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "時計はいくらですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "時計はいくらですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "時鐘多少錢？",
+              "tiles": [
+                "時鐘多少錢？"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "時鐘多少錢？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "時鐘多少錢？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_8_2",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The clock costs three euros.",
+              "tiles": [
+                "The",
+                "clock",
+                "costs",
+                "three",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "The → clock → costs → three → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "clock",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "costs",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "three",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die uhr kostet drei Euro.",
+              "tiles": [
+                "Die",
+                "uhr",
+                "kostet",
+                "drei",
+                "Euro",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Die → uhr → kostet → drei → Euro → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "uhr",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "drei",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Euro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L’horloge coûte trois euros.",
+              "tiles": [
+                "L’horloge",
+                "coûte",
+                "trois",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "L’horloge → coûte → trois → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "L’horloge",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "trois",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El reloj cuesta tres euros.",
+              "tiles": [
+                "El",
+                "reloj",
+                "cuesta",
+                "tres",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "El → reloj → cuesta → tres → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "reloj",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tres",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "時計は三ユーロです。",
+              "tiles": [
+                "時計は三ユーロです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "時計は三ユーロです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "時計は三ユーロです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "時鐘三歐元。",
+              "tiles": [
+                "時鐘三歐元。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "時鐘三歐元。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "時鐘三歐元。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_1",
+      "translations": {
+        "en": {
+          "text": "How much is the clock?",
+          "tiles": [
+            "How",
+            "much",
+            "is",
+            "the",
+            "clock",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "How → much → is → the → clock → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "much",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "clock",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie viel kostet die Uhr?",
+          "tiles": [
+            "Wie",
+            "viel",
+            "kostet",
+            "die",
+            "Uhr",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Wie → viel → kostet → die → Uhr → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "viel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Uhr",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Combien coûte l’horloge ?",
+          "tiles": [
+            "Combien",
+            "coûte",
+            "l’horloge",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Combien → coûte → l’horloge → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Combien",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’horloge",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuánto cuesta el reloj?",
+          "tiles": [
+            "¿",
+            "Cuánto",
+            "cuesta",
+            "el",
+            "reloj",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "¿ → Cuánto → cuesta → el → reloj → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cuánto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "reloj",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "時計はいくらですか。",
+          "tiles": [
+            "時計はいくらですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "時計はいくらですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "時計はいくらですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "時鐘多少錢？",
+          "tiles": [
+            "時鐘多少錢？"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "時鐘多少錢？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "時鐘多少錢？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_2",
+      "translations": {
+        "en": {
+          "text": "The clock costs three euros.",
+          "tiles": [
+            "The",
+            "clock",
+            "costs",
+            "three",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "The → clock → costs → three → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "clock",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "costs",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "three",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die uhr kostet drei Euro.",
+          "tiles": [
+            "Die",
+            "uhr",
+            "kostet",
+            "drei",
+            "Euro",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Die → uhr → kostet → drei → Euro → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "uhr",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "drei",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Euro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L’horloge coûte trois euros.",
+          "tiles": [
+            "L’horloge",
+            "coûte",
+            "trois",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "L’horloge → coûte → trois → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "L’horloge",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "trois",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El reloj cuesta tres euros.",
+          "tiles": [
+            "El",
+            "reloj",
+            "cuesta",
+            "tres",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "El → reloj → cuesta → tres → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "reloj",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tres",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "時計は三ユーロです。",
+          "tiles": [
+            "時計は三ユーロです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "時計は三ユーロです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "時計は三ユーロです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "時鐘三歐元。",
+          "tiles": [
+            "時鐘三歐元。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "時鐘三歐元。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "時鐘三歐元。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "STUDENT": [
+      "S001",
+      "S002"
+    ],
+    "BIRTHDAY": [
+      "S001",
+      "S002"
+    ],
+    "CLASSROOM": [
+      "S001",
+      "S002"
+    ],
+    "WAIT": [
+      "S001",
+      "S002"
+    ],
+    "CLOCK": [
+      "S001",
+      "S002"
+    ],
+    "EARLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

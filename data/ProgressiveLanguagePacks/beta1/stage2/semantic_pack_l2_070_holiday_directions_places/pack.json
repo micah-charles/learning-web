@@ -1,0 +1,1589 @@
+{
+  "packId": "semantic_pack_l2_070_holiday_directions_places",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_070 Holiday Directions Places",
+  "description": "A1+ Directions and places pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_7_070_holiday_directions_places",
+    "title": "Holiday",
+    "difficultyStage": 7,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "how to get to, go to"
+      ],
+      "german": [
+        "wie komme ich zu",
+        "geh zu",
+        "links/rechts"
+      ],
+      "french": [
+        "comment aller à",
+        "va à",
+        "gauche/droite"
+      ],
+      "spanish": [
+        "cómo llego a",
+        "ve a",
+        "izquierda/derecha"
+      ],
+      "japanese": [
+        "どうやって行きますか",
+        "行ってください",
+        "左/右"
+      ],
+      "chinese": [
+        "怎樣去",
+        "請去",
+        "左/右"
+      ]
+    },
+    "sentenceGoals": [
+      "How do I get to the hotel?",
+      "Go to the hotel, please."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_7_HOW_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "how do I get to",
+        "de": "wie komme ich zu",
+        "fr": "comment aller à",
+        "es": "cómo llego a",
+        "ja": "どうやって行きますか",
+        "zh": "怎樣去"
+      }
+    },
+    {
+      "tokenId": "TOKEN_7_HOW_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "go to",
+        "de": "geh zu",
+        "fr": "va à",
+        "es": "ve a",
+        "ja": "行ってください",
+        "zh": "請去"
+      }
+    },
+    {
+      "tokenId": "TOKEN_7_HOW_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "left/right",
+        "de": "links/rechts",
+        "fr": "gauche/droite",
+        "es": "izquierda/derecha",
+        "ja": "左/右",
+        "zh": "左/右"
+      }
+    },
+    {
+      "tokenId": "TOKEN_7_HOW_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "please",
+        "de": "bitte",
+        "fr": "s’il te plaît",
+        "es": "por favor",
+        "ja": "お願いします",
+        "zh": "請"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_7_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "How do I get to the hotel?",
+              "tiles": [
+                "How",
+                "do",
+                "I",
+                "get",
+                "to",
+                "the",
+                "hotel",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "How → do → I → get → to → the → hotel → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "get",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "to",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie komme ich zu das Hotel?",
+              "tiles": [
+                "Wie",
+                "komme",
+                "ich",
+                "zu",
+                "das",
+                "Hotel",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Wie → komme → ich → zu → das → Hotel → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "komme",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment aller à l’hôtel ?",
+              "tiles": [
+                "Comment",
+                "aller",
+                "à",
+                "l’hôtel",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Comment → aller → à → l’hôtel → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aller",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’hôtel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo llego a el hotel?",
+              "tiles": [
+                "¿",
+                "Cómo",
+                "llego",
+                "a",
+                "el",
+                "hotel",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "¿ → Cómo → llego → a → el → hotel → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cómo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "llego",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ホテルへはどうやって行きますか。",
+              "tiles": [
+                "ホテルへはどうやって行きますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "ホテルへはどうやって行きますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "ホテルへはどうやって行きますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "怎樣去酒店？",
+              "tiles": [
+                "怎樣去酒店？"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "怎樣去酒店？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "怎樣去酒店？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_7_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Go to the hotel, please.",
+              "tiles": [
+                "Go",
+                "to",
+                "the",
+                "hotel,",
+                "please",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Go → to → the → hotel, → please → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Go",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "to",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "please",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Geh bitte zu das Hotel.",
+              "tiles": [
+                "Geh",
+                "bitte",
+                "zu",
+                "das",
+                "Hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Geh → bitte → zu → das → Hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Geh",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bitte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Va à l’hôtel, s’il te plaît.",
+              "tiles": [
+                "Va",
+                "à",
+                "l’hôtel,",
+                "s’il",
+                "te",
+                "plaît",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Va → à → l’hôtel, → s’il → te → plaît → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Va",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’hôtel,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "s’il",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plaît",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Ve a el hotel, por favor.",
+              "tiles": [
+                "Ve",
+                "a",
+                "el",
+                "hotel,",
+                "por",
+                "favor",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Ve → a → el → hotel, → por → favor → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ve",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "favor",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ホテルへ行ってください。",
+              "tiles": [
+                "ホテルへ行ってください。"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "ホテルへ行ってください。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "ホテルへ行ってください。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "請去酒店。",
+              "tiles": [
+                "請去酒店。"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "請去酒店。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "請去酒店。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "how to get to, go to"
+      ],
+      "sourceChainId": "CHAIN_7_1",
+      "translations": {
+        "en": {
+          "text": "How do I get to the hotel?",
+          "tiles": [
+            "How",
+            "do",
+            "I",
+            "get",
+            "to",
+            "the",
+            "hotel",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "How → do → I → get → to → the → hotel → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "get",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "to",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie komme ich zu das Hotel?",
+          "tiles": [
+            "Wie",
+            "komme",
+            "ich",
+            "zu",
+            "das",
+            "Hotel",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Wie → komme → ich → zu → das → Hotel → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "komme",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "zu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Comment aller à l’hôtel ?",
+          "tiles": [
+            "Comment",
+            "aller",
+            "à",
+            "l’hôtel",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Comment → aller → à → l’hôtel → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Comment",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aller",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’hôtel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cómo llego a el hotel?",
+          "tiles": [
+            "¿",
+            "Cómo",
+            "llego",
+            "a",
+            "el",
+            "hotel",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "¿ → Cómo → llego → a → el → hotel → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cómo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "llego",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ホテルへはどうやって行きますか。",
+          "tiles": [
+            "ホテルへはどうやって行きますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "ホテルへはどうやって行きますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "ホテルへはどうやって行きますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "怎樣去酒店？",
+          "tiles": [
+            "怎樣去酒店？"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "怎樣去酒店？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "怎樣去酒店？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "how to get to, go to"
+      ],
+      "sourceChainId": "CHAIN_7_2",
+      "translations": {
+        "en": {
+          "text": "Go to the hotel, please.",
+          "tiles": [
+            "Go",
+            "to",
+            "the",
+            "hotel,",
+            "please",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Go → to → the → hotel, → please → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Go",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "to",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "please",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Geh bitte zu das Hotel.",
+          "tiles": [
+            "Geh",
+            "bitte",
+            "zu",
+            "das",
+            "Hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Geh → bitte → zu → das → Hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Geh",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bitte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "zu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Va à l’hôtel, s’il te plaît.",
+          "tiles": [
+            "Va",
+            "à",
+            "l’hôtel,",
+            "s’il",
+            "te",
+            "plaît",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Va → à → l’hôtel, → s’il → te → plaît → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Va",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’hôtel,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "s’il",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plaît",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Ve a el hotel, por favor.",
+          "tiles": [
+            "Ve",
+            "a",
+            "el",
+            "hotel,",
+            "por",
+            "favor",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Ve → a → el → hotel, → por → favor → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ve",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "favor",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ホテルへ行ってください。",
+          "tiles": [
+            "ホテルへ行ってください。"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "ホテルへ行ってください。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "ホテルへ行ってください。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "請去酒店。",
+          "tiles": [
+            "請去酒店。"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "請去酒店。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "請去酒店。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

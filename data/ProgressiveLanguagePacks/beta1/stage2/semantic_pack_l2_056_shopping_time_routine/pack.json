@@ -1,0 +1,1512 @@
+{
+  "packId": "semantic_pack_l2_056_shopping_time_routine",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_056 Shopping Time Routine",
+  "description": "A1+ When and routine pack: Shopping",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_6_056_shopping_time_routine",
+    "title": "Shopping",
+    "difficultyStage": 6,
+    "semanticDomains": [
+      "shopping"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "when, at, on days"
+      ],
+      "german": [
+        "wann",
+        "um sieben Uhr",
+        "am Samstag"
+      ],
+      "french": [
+        "quand",
+        "à sept heures",
+        "le samedi"
+      ],
+      "spanish": [
+        "cuándo",
+        "a las siete",
+        "el sábado"
+      ],
+      "japanese": [
+        "いつ",
+        "七時に",
+        "土曜日に"
+      ],
+      "chinese": [
+        "什麼時候",
+        "七點",
+        "星期六"
+      ]
+    },
+    "sentenceGoals": [
+      "When is the sale?",
+      "It is at seven o’clock on Saturday."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BREAD",
+      "type": "noun",
+      "senseKey": "bread",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "bread"
+        },
+        "de": {
+          "text": "das Brot"
+        },
+        "fr": {
+          "text": "le pain"
+        },
+        "es": {
+          "text": "el pan"
+        },
+        "ja": {
+          "text": "パン"
+        },
+        "zh": {
+          "text": "麵包"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "BUY",
+      "type": "verb",
+      "senseKey": "buy",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "buy"
+        },
+        "de": {
+          "text": "kaufen"
+        },
+        "fr": {
+          "text": "acheter"
+        },
+        "es": {
+          "text": "comprar"
+        },
+        "ja": {
+          "text": "買います"
+        },
+        "zh": {
+          "text": "買"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CHEAP",
+      "type": "adjective",
+      "senseKey": "cheap",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cheap"
+        },
+        "de": {
+          "text": "billig"
+        },
+        "fr": {
+          "text": "bon marché"
+        },
+        "es": {
+          "text": "barato"
+        },
+        "ja": {
+          "text": "安いです"
+        },
+        "zh": {
+          "text": "便宜"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SHOP",
+      "type": "noun",
+      "senseKey": "shop",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "shop"
+        },
+        "de": {
+          "text": "das Geschäft"
+        },
+        "fr": {
+          "text": "le magasin"
+        },
+        "es": {
+          "text": "la tienda"
+        },
+        "ja": {
+          "text": "店"
+        },
+        "zh": {
+          "text": "商店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUPERMARKET",
+      "type": "noun",
+      "senseKey": "supermarket",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "supermarket"
+        },
+        "de": {
+          "text": "der Supermarkt"
+        },
+        "fr": {
+          "text": "le supermarché"
+        },
+        "es": {
+          "text": "el supermercado"
+        },
+        "ja": {
+          "text": "スーパー"
+        },
+        "zh": {
+          "text": "超級市場"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_6_WHEN,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "when",
+        "de": "wann",
+        "fr": "quand",
+        "es": "cuándo",
+        "ja": "いつ",
+        "zh": "什麼時候"
+      }
+    },
+    {
+      "tokenId": "TOKEN_6_WHEN,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "at seven",
+        "de": "um sieben Uhr",
+        "fr": "à sept heures",
+        "es": "a las siete",
+        "ja": "七時に",
+        "zh": "七點"
+      }
+    },
+    {
+      "tokenId": "TOKEN_6_WHEN,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "on Saturday",
+        "de": "am Samstag",
+        "fr": "le samedi",
+        "es": "el sábado",
+        "ja": "土曜日に",
+        "zh": "星期六"
+      }
+    },
+    {
+      "tokenId": "TOKEN_6_WHEN,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "early/late",
+        "de": "früh/spät",
+        "fr": "tôt/tard",
+        "es": "temprano/tarde",
+        "ja": "早い/遅い",
+        "zh": "早/遲"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_6_1",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "When is the sale?",
+              "tiles": [
+                "When",
+                "is",
+                "the",
+                "sale",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "When → is → the → sale → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "When",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sale",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wann ist der Verkauf?",
+              "tiles": [
+                "Wann",
+                "ist",
+                "der",
+                "Verkauf",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "Wann → ist → der → Verkauf → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wann",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Verkauf",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Quand est la vente ?",
+              "tiles": [
+                "Quand",
+                "est",
+                "la",
+                "vente",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "Quand → est → la → vente → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Quand",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "vente",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuándo es la venta?",
+              "tiles": [
+                "¿",
+                "Cuándo",
+                "es",
+                "la",
+                "venta",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "¿ → Cuándo → es → la → venta → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cuándo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "venta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "セールはいつですか。",
+              "tiles": [
+                "セールはいつですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "セールはいつですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "セールはいつですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "減價是什麼時候？",
+              "tiles": [
+                "減價是什麼時候？"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "減價是什麼時候？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "減價是什麼時候？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_6_2",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "It is at seven o’clock on Saturday.",
+              "tiles": [
+                "It",
+                "is",
+                "at",
+                "seven",
+                "o’clock",
+                "on",
+                "Saturday",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "It → is → at → seven → o’clock → on → Saturday → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "It",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "at",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "seven",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "o’clock",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "on",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Saturday",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Es ist am Samstag um sieben Uhr.",
+              "tiles": [
+                "Es",
+                "ist",
+                "am",
+                "Samstag",
+                "um",
+                "sieben",
+                "Uhr",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "Es → ist → am → Samstag → um → sieben → Uhr → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "am",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Samstag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "um",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sieben",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Uhr",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "C’est samedi à sept heures.",
+              "tiles": [
+                "C’est",
+                "samedi",
+                "à",
+                "sept",
+                "heures",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "C’est → samedi → à → sept → heures → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "C’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "samedi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sept",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "heures",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Es el sábado a las siete.",
+              "tiles": [
+                "Es",
+                "el",
+                "sábado",
+                "a",
+                "las",
+                "siete",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "Es → el → sábado → a → las → siete → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sábado",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "las",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "siete",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "土曜日の七時です。",
+              "tiles": [
+                "土曜日の七時です。"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "土曜日の七時です。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "土曜日の七時です。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "是在星期六七點。",
+              "tiles": [
+                "是在星期六七點。"
+              ],
+              "analysis": {
+                "sentencePattern": "When and routine sentence",
+                "literalOrderExplanation": "是在星期六七點。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "是在星期六七點。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "when, at, on days"
+      ],
+      "sourceChainId": "CHAIN_6_1",
+      "translations": {
+        "en": {
+          "text": "When is the sale?",
+          "tiles": [
+            "When",
+            "is",
+            "the",
+            "sale",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "When → is → the → sale → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "When",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sale",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wann ist der Verkauf?",
+          "tiles": [
+            "Wann",
+            "ist",
+            "der",
+            "Verkauf",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "Wann → ist → der → Verkauf → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wann",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Verkauf",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Quand est la vente ?",
+          "tiles": [
+            "Quand",
+            "est",
+            "la",
+            "vente",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "Quand → est → la → vente → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Quand",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "vente",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuándo es la venta?",
+          "tiles": [
+            "¿",
+            "Cuándo",
+            "es",
+            "la",
+            "venta",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "¿ → Cuándo → es → la → venta → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cuándo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "venta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "セールはいつですか。",
+          "tiles": [
+            "セールはいつですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "セールはいつですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "セールはいつですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "減價是什麼時候？",
+          "tiles": [
+            "減價是什麼時候？"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "減價是什麼時候？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "減價是什麼時候？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "when, at, on days"
+      ],
+      "sourceChainId": "CHAIN_6_2",
+      "translations": {
+        "en": {
+          "text": "It is at seven o’clock on Saturday.",
+          "tiles": [
+            "It",
+            "is",
+            "at",
+            "seven",
+            "o’clock",
+            "on",
+            "Saturday",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "It → is → at → seven → o’clock → on → Saturday → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "It",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "at",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "seven",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "o’clock",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "on",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Saturday",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Es ist am Samstag um sieben Uhr.",
+          "tiles": [
+            "Es",
+            "ist",
+            "am",
+            "Samstag",
+            "um",
+            "sieben",
+            "Uhr",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "Es → ist → am → Samstag → um → sieben → Uhr → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "am",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Samstag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "um",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sieben",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Uhr",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "C’est samedi à sept heures.",
+          "tiles": [
+            "C’est",
+            "samedi",
+            "à",
+            "sept",
+            "heures",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "C’est → samedi → à → sept → heures → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "C’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "samedi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sept",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "heures",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Es el sábado a las siete.",
+          "tiles": [
+            "Es",
+            "el",
+            "sábado",
+            "a",
+            "las",
+            "siete",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "Es → el → sábado → a → las → siete → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sábado",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "las",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "siete",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "土曜日の七時です。",
+          "tiles": [
+            "土曜日の七時です。"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "土曜日の七時です。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "土曜日の七時です。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "是在星期六七點。",
+          "tiles": [
+            "是在星期六七點。"
+          ],
+          "analysis": {
+            "sentencePattern": "When and routine sentence",
+            "literalOrderExplanation": "是在星期六七點。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "是在星期六七點。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "SUPERMARKET": [
+      "S001",
+      "S002"
+    ],
+    "SHOP": [
+      "S001",
+      "S001",
+      "S002",
+      "S002"
+    ],
+    "BUY": [
+      "S001",
+      "S002"
+    ],
+    "BREAD": [
+      "S001",
+      "S002"
+    ],
+    "CHEAP": [
+      "S001",
+      "S002"
+    ]
+  }
+}

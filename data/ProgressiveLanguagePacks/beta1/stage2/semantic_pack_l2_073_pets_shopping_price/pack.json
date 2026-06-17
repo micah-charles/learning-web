@@ -1,0 +1,1493 @@
+{
+  "packId": "semantic_pack_l2_073_pets_shopping_price",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_073 Pets Shopping Price",
+  "description": "A1+ Shopping and price pack: Pets",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_8_073_pets_shopping_price",
+    "title": "Pets",
+    "difficultyStage": 8,
+    "semanticDomains": [
+      "pets"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "how much, costs, euros"
+      ],
+      "german": [
+        "wie viel",
+        "kostet",
+        "Euro"
+      ],
+      "french": [
+        "combien",
+        "coûte",
+        "euros"
+      ],
+      "spanish": [
+        "cuánto",
+        "cuesta",
+        "euros"
+      ],
+      "japanese": [
+        "いくら",
+        "かかります",
+        "ユーロ"
+      ],
+      "chinese": [
+        "多少錢",
+        "要",
+        "歐元"
+      ]
+    },
+    "sentenceGoals": [
+      "How much is the ball?",
+      "The ball costs three euros."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BALL",
+      "type": "noun",
+      "senseKey": "ball",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "ball"
+        },
+        "de": {
+          "text": "der Ball"
+        },
+        "fr": {
+          "text": "le ballon"
+        },
+        "es": {
+          "text": "la pelota"
+        },
+        "ja": {
+          "text": "ボール"
+        },
+        "zh": {
+          "text": "球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CAT",
+      "type": "noun",
+      "senseKey": "cat",
+      "semanticCategory": "pets",
+      "translations": {
+        "en": {
+          "text": "cat"
+        },
+        "de": {
+          "text": "die Katze"
+        },
+        "fr": {
+          "text": "le chat"
+        },
+        "es": {
+          "text": "el gato"
+        },
+        "ja": {
+          "text": "猫"
+        },
+        "zh": {
+          "text": "貓"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CUTE",
+      "type": "adjective",
+      "senseKey": "cute",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cute"
+        },
+        "de": {
+          "text": "niedlich"
+        },
+        "fr": {
+          "text": "mignon"
+        },
+        "es": {
+          "text": "mono"
+        },
+        "ja": {
+          "text": "かわいいです"
+        },
+        "zh": {
+          "text": "可愛"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "DOG",
+      "type": "noun",
+      "senseKey": "dog",
+      "semanticCategory": "pets",
+      "translations": {
+        "en": {
+          "text": "dog"
+        },
+        "de": {
+          "text": "der Hund"
+        },
+        "fr": {
+          "text": "le chien"
+        },
+        "es": {
+          "text": "el perro"
+        },
+        "ja": {
+          "text": "犬"
+        },
+        "zh": {
+          "text": "狗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "GARDEN",
+      "type": "noun",
+      "senseKey": "garden",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "garden"
+        },
+        "de": {
+          "text": "der Garten"
+        },
+        "fr": {
+          "text": "le jardin"
+        },
+        "es": {
+          "text": "el jardín"
+        },
+        "ja": {
+          "text": "庭"
+        },
+        "zh": {
+          "text": "花園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "JUMP",
+      "type": "verb",
+      "senseKey": "jump",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "jump"
+        },
+        "de": {
+          "text": "springen"
+        },
+        "fr": {
+          "text": "sauter"
+        },
+        "es": {
+          "text": "saltar"
+        },
+        "ja": {
+          "text": "ジャンプします"
+        },
+        "zh": {
+          "text": "跳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_8_HOW_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "how much",
+        "de": "wie viel",
+        "fr": "combien",
+        "es": "cuánto",
+        "ja": "いくら",
+        "zh": "多少錢"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "costs",
+        "de": "kostet",
+        "fr": "coûte",
+        "es": "cuesta",
+        "ja": "かかります",
+        "zh": "要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "euros",
+        "de": "Euro",
+        "fr": "euros",
+        "es": "euros",
+        "ja": "ユーロ",
+        "zh": "歐元"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_8_1",
+      "linkedConcepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "How much is the ball?",
+              "tiles": [
+                "How",
+                "much",
+                "is",
+                "the",
+                "ball",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "How → much → is → the → ball → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "much",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viel kostet der Ball?",
+              "tiles": [
+                "Wie",
+                "viel",
+                "kostet",
+                "der",
+                "Ball",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Wie → viel → kostet → der → Ball → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "viel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Ball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien coûte le ballon ?",
+              "tiles": [
+                "Combien",
+                "coûte",
+                "le",
+                "ballon",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Combien → coûte → le → ballon → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Combien",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ballon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuánto cuesta la pelota?",
+              "tiles": [
+                "¿",
+                "Cuánto",
+                "cuesta",
+                "la",
+                "pelota",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "¿ → Cuánto → cuesta → la → pelota → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cuánto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pelota",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ボールはいくらですか。",
+              "tiles": [
+                "ボールはいくらですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "ボールはいくらですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "ボールはいくらですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "球多少錢？",
+              "tiles": [
+                "球多少錢？"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "球多少錢？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "球多少錢？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_8_2",
+      "linkedConcepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The ball costs three euros.",
+              "tiles": [
+                "The",
+                "ball",
+                "costs",
+                "three",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "The → ball → costs → three → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "costs",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "three",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der ball kostet drei Euro.",
+              "tiles": [
+                "Der",
+                "ball",
+                "kostet",
+                "drei",
+                "Euro",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Der → ball → kostet → drei → Euro → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "drei",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Euro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le ballon coûte trois euros.",
+              "tiles": [
+                "Le",
+                "ballon",
+                "coûte",
+                "trois",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Le → ballon → coûte → trois → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ballon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "trois",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La pelota cuesta tres euros.",
+              "tiles": [
+                "La",
+                "pelota",
+                "cuesta",
+                "tres",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "La → pelota → cuesta → tres → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pelota",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tres",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "ボールは三ユーロです。",
+              "tiles": [
+                "ボールは三ユーロです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "ボールは三ユーロです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "ボールは三ユーロです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "球三歐元。",
+              "tiles": [
+                "球三歐元。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "球三歐元。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "球三歐元。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_1",
+      "translations": {
+        "en": {
+          "text": "How much is the ball?",
+          "tiles": [
+            "How",
+            "much",
+            "is",
+            "the",
+            "ball",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "How → much → is → the → ball → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "much",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie viel kostet der Ball?",
+          "tiles": [
+            "Wie",
+            "viel",
+            "kostet",
+            "der",
+            "Ball",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Wie → viel → kostet → der → Ball → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "viel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Ball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Combien coûte le ballon ?",
+          "tiles": [
+            "Combien",
+            "coûte",
+            "le",
+            "ballon",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Combien → coûte → le → ballon → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Combien",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ballon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuánto cuesta la pelota?",
+          "tiles": [
+            "¿",
+            "Cuánto",
+            "cuesta",
+            "la",
+            "pelota",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "¿ → Cuánto → cuesta → la → pelota → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cuánto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pelota",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ボールはいくらですか。",
+          "tiles": [
+            "ボールはいくらですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "ボールはいくらですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "ボールはいくらですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "球多少錢？",
+          "tiles": [
+            "球多少錢？"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "球多少錢？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "球多少錢？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_2",
+      "translations": {
+        "en": {
+          "text": "The ball costs three euros.",
+          "tiles": [
+            "The",
+            "ball",
+            "costs",
+            "three",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "The → ball → costs → three → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "costs",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "three",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der ball kostet drei Euro.",
+          "tiles": [
+            "Der",
+            "ball",
+            "kostet",
+            "drei",
+            "Euro",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Der → ball → kostet → drei → Euro → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "drei",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Euro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le ballon coûte trois euros.",
+          "tiles": [
+            "Le",
+            "ballon",
+            "coûte",
+            "trois",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Le → ballon → coûte → trois → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ballon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "trois",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La pelota cuesta tres euros.",
+          "tiles": [
+            "La",
+            "pelota",
+            "cuesta",
+            "tres",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "La → pelota → cuesta → tres → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pelota",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tres",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "ボールは三ユーロです。",
+          "tiles": [
+            "ボールは三ユーロです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "ボールは三ユーロです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "ボールは三ユーロです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "球三歐元。",
+          "tiles": [
+            "球三歐元。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "球三歐元。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "球三歐元。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "DOG": [
+      "S001",
+      "S002"
+    ],
+    "CAT": [
+      "S001",
+      "S002"
+    ],
+    "GARDEN": [
+      "S001",
+      "S002"
+    ],
+    "JUMP": [
+      "S001",
+      "S002"
+    ],
+    "BALL": [
+      "S001",
+      "S002"
+    ],
+    "CUTE": [
+      "S001",
+      "S002"
+    ]
+  }
+}
