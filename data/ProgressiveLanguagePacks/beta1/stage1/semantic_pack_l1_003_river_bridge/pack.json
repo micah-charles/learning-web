@@ -798,21 +798,30 @@
               }
             },
             "zh": {
-              "text": "遊客在河邊。",
+              "text": "在河邊",
               "tiles": [
-                "遊客在河邊。"
+                "在",
+                "河邊"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "遊客在河邊",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在河邊",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "遊客在河邊",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "河邊",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
                   }
@@ -820,23 +829,23 @@
               }
             },
             "ja": {
-              "text": "川のそばにいます。",
+              "text": "河邊に",
               "tiles": [
-                "川のそばにいます。"
+                "河邊に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "川のそばにいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "河邊に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "川のそばにいます",
+                    "text": "河邊に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -2061,10 +2070,11 @@
           }
         },
         "zh": {
-          "text": "遊客在河邊。",
+          "text": "遊客在河邊",
           "tiles": [
             "遊客",
-            "在河邊。"
+            "在",
+            "河邊"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2092,11 +2102,11 @@
           }
         },
         "ja": {
-          "text": "観光客は川のそばにいます。",
+          "text": "観光客は川のそばにいます",
           "tiles": [
             "観光客は",
             "川のそばに",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2392,11 +2402,12 @@
           }
         },
         "zh": {
-          "text": "朋友在橋上走。",
+          "text": "朋友在橋上走",
           "tiles": [
             "朋友",
-            "在橋上",
-            "走。"
+            "在",
+            "橋上",
+            "走"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location + Action",
@@ -2431,11 +2442,11 @@
           }
         },
         "ja": {
-          "text": "友だちは橋の上を歩きます。",
+          "text": "友達は橋の上を歩きます",
           "tiles": [
-            "友だちは",
+            "友達は",
             "橋の上を",
-            "歩きます。"
+            "歩きます"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

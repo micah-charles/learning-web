@@ -799,45 +799,62 @@
               }
             },
             "zh": {
-              "text": "侍應在餐廳裡。",
+              "text": "在餐廳裡",
               "tiles": [
-                "侍應在餐廳裡。"
+                "在",
+                "餐廳",
+                "裡"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "侍應在餐廳裡",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在餐廳裡",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "侍應在餐廳裡",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "餐廳",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
+                  },
+                  {
+                    "text": "裡",
+                    "type": "particle",
+                    "role": "locative",
+                    "meaning": "inside",
+                    "grammarNote": "Locative particle for enclosed spaces"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "レストランにいます。",
+              "text": "レストランに",
               "tiles": [
-                "レストランにいます。"
+                "レストランに"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "レストランにいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "レストランに",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "レストランにいます",
+                    "text": "レストランに",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -1998,10 +2015,12 @@
           }
         },
         "zh": {
-          "text": "侍應在餐廳裡。",
+          "text": "侍應在餐廳裡",
           "tiles": [
             "侍應",
-            "在餐廳裡。"
+            "在",
+            "餐廳",
+            "裡"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2029,11 +2048,11 @@
           }
         },
         "ja": {
-          "text": "ウェイターはレストランにいます。",
+          "text": "ウェイターはレストランにいます",
           "tiles": [
             "ウェイターは",
             "レストランに",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2281,11 +2300,11 @@
           }
         },
         "zh": {
-          "text": "顧客喝水。",
+          "text": "顧客喝水",
           "tiles": [
             "顧客",
             "喝",
-            "水。"
+            "水"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2320,11 +2339,11 @@
           }
         },
         "ja": {
-          "text": "お客さんは水を飲みます。",
+          "text": "客は水を飲みます",
           "tiles": [
-            "お客さんは",
+            "客は",
             "水を",
-            "飲みます。"
+            "飲みます"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

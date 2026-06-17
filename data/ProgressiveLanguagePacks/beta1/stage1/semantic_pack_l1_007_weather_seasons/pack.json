@@ -798,45 +798,54 @@
               }
             },
             "zh": {
-              "text": "小朋友在雨中。",
+              "text": "在雨中",
               "tiles": [
-                "小朋友在雨中。"
+                "在",
+                "雨中"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "小朋友在雨中",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在雨中",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place for location phrases.",
+                  "雨中 (in the rain) is a fixed location expression without 裡."
                 ],
                 "tokens": [
                   {
-                    "text": "小朋友在雨中",
-                    "type": "phrase",
-                    "role": "supporting_detail",
-                    "meaning": "place",
-                    "grammarNote": ""
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "雨中",
+                    "type": "noun",
+                    "role": "place",
+                    "meaning": "in the rain",
+                    "grammarNote": "Fixed location expression"
                   }
                 ]
               }
             },
             "ja": {
-              "text": "雨の中にいます。",
+              "text": "雨の中に",
               "tiles": [
-                "雨の中にいます。"
+                "雨の中に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "雨の中にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "雨の中に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "雨の中にいます",
+                    "text": "雨の中に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -1997,10 +2006,11 @@
           }
         },
         "zh": {
-          "text": "小朋友在雨中。",
+          "text": "小朋友在雨中",
           "tiles": [
             "小朋友",
-            "在雨中。"
+            "在",
+            "雨中"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2028,11 +2038,11 @@
           }
         },
         "ja": {
-          "text": "子どもは雨の中にいます。",
+          "text": "子供は雨の中にいます",
           "tiles": [
-            "子どもは",
+            "子供は",
             "雨の中に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2296,11 +2306,11 @@
           }
         },
         "zh": {
-          "text": "朋友拿著雨傘。",
+          "text": "朋友拿著雨傘",
           "tiles": [
             "朋友",
             "拿著",
-            "雨傘。"
+            "雨傘"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2335,11 +2345,11 @@
           }
         },
         "ja": {
-          "text": "友だちは傘を持っています。",
+          "text": "友達は傘を持っています",
           "tiles": [
-            "友だちは",
+            "友達は",
             "傘を",
-            "持っています。"
+            "持っています"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",

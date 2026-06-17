@@ -798,21 +798,30 @@
               }
             },
             "zh": {
-              "text": "旅客在機場。",
+              "text": "在機場",
               "tiles": [
-                "旅客在機場。"
+                "在",
+                "機場"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk",
-                "literalOrderExplanation": "旅客在機場",
+                "sentencePattern": "Location phrase",
+                "literalOrderExplanation": "在機場",
                 "grammarExplanation": [
-                  "Chinese learning chunks keep useful words together."
+                  "Chinese uses 在 + place (+ 裡 for enclosed spaces) for location phrases.",
+                  "The preposition 在 marks where someone/something is."
                 ],
                 "tokens": [
                   {
-                    "text": "旅客在機場",
-                    "type": "phrase",
-                    "role": "supporting_detail",
+                    "text": "在",
+                    "type": "preposition",
+                    "role": "location_marker",
+                    "meaning": "in/at",
+                    "grammarNote": "Location preposition"
+                  },
+                  {
+                    "text": "機場",
+                    "type": "noun",
+                    "role": "place",
                     "meaning": "place",
                     "grammarNote": ""
                   }
@@ -820,23 +829,23 @@
               }
             },
             "ja": {
-              "text": "空港にいます。",
+              "text": "空港に",
               "tiles": [
-                "空港にいます。"
+                "空港に"
               ],
               "analysis": {
-                "sentencePattern": "Phrase chunk with particle",
-                "literalOrderExplanation": "空港にいます",
+                "sentencePattern": "Place phrase with particle",
+                "literalOrderExplanation": "空港に",
                 "grammarExplanation": [
-                  "Japanese chunks keep particles attached to the word they mark."
+                  "Japanese marks location with the particle に attached to the place."
                 ],
                 "tokens": [
                   {
-                    "text": "空港にいます",
+                    "text": "空港に",
                     "type": "phrase",
-                    "role": "supporting_detail",
+                    "role": "location",
                     "meaning": "place",
-                    "grammarNote": ""
+                    "grammarNote": "Place marked with に"
                   }
                 ]
               }
@@ -1997,10 +2006,11 @@
           }
         },
         "zh": {
-          "text": "旅客在機場。",
+          "text": "旅客在機場",
           "tiles": [
             "旅客",
-            "在機場。"
+            "在",
+            "機場"
           ],
           "analysis": {
             "sentencePattern": "Subject + Location",
@@ -2028,11 +2038,11 @@
           }
         },
         "ja": {
-          "text": "旅行者は空港にいます。",
+          "text": "旅行者は空港にいます",
           "tiles": [
             "旅行者は",
             "空港に",
-            "います。"
+            "います"
           ],
           "analysis": {
             "sentencePattern": "Topic + place + います",
@@ -2296,11 +2306,11 @@
           }
         },
         "zh": {
-          "text": "機師駕駛飛機。",
+          "text": "機師駕駛飛機",
           "tiles": [
             "機師",
             "駕駛",
-            "飛機。"
+            "飛機"
           ],
           "analysis": {
             "sentencePattern": "Subject + Action + Object/Detail",
@@ -2335,11 +2345,11 @@
           }
         },
         "ja": {
-          "text": "パイロットは飛行機を操縦します。",
+          "text": "パイロットは飛行機を操縦します",
           "tiles": [
             "パイロットは",
             "飛行機を",
-            "操縦します。"
+            "操縦します"
           ],
           "analysis": {
             "sentencePattern": "Topic + object/detail + verb-final",
