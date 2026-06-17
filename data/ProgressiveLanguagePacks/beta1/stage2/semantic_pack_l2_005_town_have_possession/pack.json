@@ -58,7 +58,7 @@
       ]
     },
     "sentenceGoals": [
-      "I have a museum.",
+      "The town has a museum.",
       "This is my ticket."
     ]
   },
@@ -298,28 +298,36 @@
           "focus": "full_sentence",
           "translations": {
             "en": {
-              "text": "I have a museum.",
+              "text": "The town has a museum.",
               "tiles": [
-                "I",
-                "have",
+                "The",
+                "town",
+                "has",
                 "a",
                 "museum",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "I → have → a → museum → .",
+                "literalOrderExplanation": "The → town → has → a → museum → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "I",
+                    "text": "The",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "have",
+                    "text": "town",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "has",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -350,28 +358,36 @@
               }
             },
             "de": {
-              "text": "Ich habe ein Museum.",
+              "text": "Die Stadt hat ein Museum.",
               "tiles": [
-                "Ich",
-                "habe",
+                "Die",
+                "Stadt",
+                "hat",
                 "ein",
                 "Museum",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "Ich → habe → ein → Museum → .",
+                "literalOrderExplanation": "Die → Stadt → hat → ein → Museum → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "Ich",
+                    "text": "Die",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "habe",
+                    "text": "Stadt",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hat",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -402,20 +418,36 @@
               }
             },
             "fr": {
-              "text": "J’ai un musée.",
+              "text": "La ville a un musée.",
               "tiles": [
-                "J’ai",
+                "La",
+                "ville",
+                "a",
                 "un",
                 "musée",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "J’ai → un → musée → .",
+                "literalOrderExplanation": "La → ville → a → un → musée → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "J’ai",
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ville",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -446,20 +478,36 @@
               }
             },
             "es": {
-              "text": "Tengo un museo.",
+              "text": "El pueblo tiene un museo.",
               "tiles": [
-                "Tengo",
+                "El",
+                "pueblo",
+                "tiene",
                 "un",
                 "museo",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "Tengo → un → museo → .",
+                "literalOrderExplanation": "El → pueblo → tiene → un → museo → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "Tengo",
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pueblo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tiene",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -490,17 +538,17 @@
               }
             },
             "ja": {
-              "text": "博物館があります。",
+              "text": "町には博物館があります。",
               "tiles": [
-                "博物館があります。"
+                "町には博物館があります。"
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "博物館があります。",
+                "literalOrderExplanation": "町には博物館があります。",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "博物館があります。",
+                    "text": "町には博物館があります。",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -510,17 +558,17 @@
               }
             },
             "zh": {
-              "text": "我有一間博物館。",
+              "text": "鎮上有一座博物館。",
               "tiles": [
-                "我有一間博物館。"
+                "鎮上有一座博物館。"
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "我有一間博物館。",
+                "literalOrderExplanation": "鎮上有一座博物館。",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "我有一間博物館。",
+                    "text": "鎮上有一座博物館。",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -602,17 +650,17 @@
               }
             },
             "de": {
-              "text": "Das ist mein Fahrkarte.",
+              "text": "Das ist meine Fahrkarte.",
               "tiles": [
                 "Das",
                 "ist",
-                "mein",
+                "meine",
                 "Fahrkarte",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Have and possession sentence",
-                "literalOrderExplanation": "Das → ist → mein → Fahrkarte → .",
+                "literalOrderExplanation": "Das → ist → meine → Fahrkarte → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
@@ -630,7 +678,7 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "mein",
+                    "text": "meine",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -812,28 +860,36 @@
       "sourceChainId": "CHAIN_1_1",
       "translations": {
         "en": {
-          "text": "I have a museum.",
+          "text": "The town has a museum.",
           "tiles": [
-            "I",
-            "have",
+            "The",
+            "town",
+            "has",
             "a",
             "museum",
             "."
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "I → have → a → museum → .",
+            "literalOrderExplanation": "The → town → has → a → museum → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "I",
+                "text": "The",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "have",
+                "text": "town",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "has",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -864,28 +920,36 @@
           }
         },
         "de": {
-          "text": "Ich habe ein Museum.",
+          "text": "Die Stadt hat ein Museum.",
           "tiles": [
-            "Ich",
-            "habe",
+            "Die",
+            "Stadt",
+            "hat",
             "ein",
             "Museum",
             "."
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "Ich → habe → ein → Museum → .",
+            "literalOrderExplanation": "Die → Stadt → hat → ein → Museum → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "Ich",
+                "text": "Die",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "habe",
+                "text": "Stadt",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hat",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -916,20 +980,36 @@
           }
         },
         "fr": {
-          "text": "J’ai un musée.",
+          "text": "La ville a un musée.",
           "tiles": [
-            "J’ai",
+            "La",
+            "ville",
+            "a",
             "un",
             "musée",
             "."
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "J’ai → un → musée → .",
+            "literalOrderExplanation": "La → ville → a → un → musée → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "J’ai",
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ville",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -960,20 +1040,36 @@
           }
         },
         "es": {
-          "text": "Tengo un museo.",
+          "text": "El pueblo tiene un museo.",
           "tiles": [
-            "Tengo",
+            "El",
+            "pueblo",
+            "tiene",
             "un",
             "museo",
             "."
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "Tengo → un → museo → .",
+            "literalOrderExplanation": "El → pueblo → tiene → un → museo → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "Tengo",
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pueblo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tiene",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1004,17 +1100,17 @@
           }
         },
         "ja": {
-          "text": "博物館があります。",
+          "text": "町には博物館があります。",
           "tiles": [
-            "博物館があります。"
+            "町には博物館があります。"
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "博物館があります。",
+            "literalOrderExplanation": "町には博物館があります。",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "博物館があります。",
+                "text": "町には博物館があります。",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1024,17 +1120,17 @@
           }
         },
         "zh": {
-          "text": "我有一間博物館。",
+          "text": "鎮上有一座博物館。",
           "tiles": [
-            "我有一間博物館。"
+            "鎮上有一座博物館。"
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "我有一間博物館。",
+            "literalOrderExplanation": "鎮上有一座博物館。",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "我有一間博物館。",
+                "text": "鎮上有一座博物館。",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1114,17 +1210,17 @@
           }
         },
         "de": {
-          "text": "Das ist mein Fahrkarte.",
+          "text": "Das ist meine Fahrkarte.",
           "tiles": [
             "Das",
             "ist",
-            "mein",
+            "meine",
             "Fahrkarte",
             "."
           ],
           "analysis": {
             "sentencePattern": "Have and possession sentence",
-            "literalOrderExplanation": "Das → ist → mein → Fahrkarte → .",
+            "literalOrderExplanation": "Das → ist → meine → Fahrkarte → .",
             "grammarExplanation": [],
             "tokens": [
               {
@@ -1142,7 +1238,7 @@
                 "grammarNote": ""
               },
               {
-                "text": "mein",
+                "text": "meine",
                 "type": "word",
                 "role": "component",
                 "meaning": "",

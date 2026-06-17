@@ -59,7 +59,7 @@
     },
     "sentenceGoals": [
       "Where is the beach?",
-      "The beach is in the hotel."
+      "The hotel is near the beach."
     ]
   },
   "vocabulary": [
@@ -574,19 +574,19 @@
           "focus": "full_sentence",
           "translations": {
             "en": {
-              "text": "The beach is in the hotel.",
+              "text": "The hotel is near the beach.",
               "tiles": [
                 "The",
-                "beach",
-                "is",
-                "in",
-                "the",
                 "hotel",
+                "is",
+                "near",
+                "the",
+                "beach",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Where and location sentence",
-                "literalOrderExplanation": "The → beach → is → in → the → hotel → .",
+                "literalOrderExplanation": "The → hotel → is → near → the → beach → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
@@ -597,7 +597,7 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "beach",
+                    "text": "hotel",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -611,7 +611,7 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "in",
+                    "text": "near",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -625,7 +625,7 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "hotel",
+                    "text": "beach",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -642,29 +642,32 @@
               }
             },
             "de": {
-              "text": "Der strand ist im Hotel.",
+              "text": "Das Hotel ist in der Nähe vom Strand.",
               "tiles": [
-                "Der",
-                "strand",
-                "ist",
-                "im",
+                "Das",
                 "Hotel",
+                "ist",
+                "in",
+                "der",
+                "Nähe",
+                "vom",
+                "Strand",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Where and location sentence",
-                "literalOrderExplanation": "Der → strand → ist → im → Hotel → .",
+                "literalOrderExplanation": "Das → Hotel → ist → in → der → Nähe → vom → Strand → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "Der",
+                    "text": "Das",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "strand",
+                    "text": "Hotel",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -678,14 +681,35 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "im",
+                    "text": "in",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "Hotel",
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Nähe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "vom",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Strand",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -702,29 +726,23 @@
               }
             },
             "fr": {
-              "text": "La plage est dans l’hôtel.",
+              "text": "L'hôtel est près de la plage.",
               "tiles": [
-                "La",
-                "plage",
+                "L'hôtel",
                 "est",
-                "dans",
-                "l’hôtel",
+                "près",
+                "de",
+                "la",
+                "plage",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Where and location sentence",
-                "literalOrderExplanation": "La → plage → est → dans → l’hôtel → .",
+                "literalOrderExplanation": "L'hôtel → est → près → de → la → plage → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "La",
-                    "type": "word",
-                    "role": "component",
-                    "meaning": "",
-                    "grammarNote": ""
-                  },
-                  {
-                    "text": "plage",
+                    "text": "L'hôtel",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -738,14 +756,28 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "dans",
+                    "text": "près",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "l’hôtel",
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plage",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -762,30 +794,31 @@
               }
             },
             "es": {
-              "text": "La playa está en el hotel.",
+              "text": "El hotel está cerca de la playa.",
               "tiles": [
-                "La",
-                "playa",
-                "está",
-                "en",
-                "el",
+                "El",
                 "hotel",
+                "está",
+                "cerca",
+                "de",
+                "la",
+                "playa",
                 "."
               ],
               "analysis": {
                 "sentencePattern": "Where and location sentence",
-                "literalOrderExplanation": "La → playa → está → en → el → hotel → .",
+                "literalOrderExplanation": "El → hotel → está → cerca → de → la → playa → .",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "La",
+                    "text": "El",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "playa",
+                    "text": "hotel",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -799,21 +832,28 @@
                     "grammarNote": ""
                   },
                   {
-                    "text": "en",
+                    "text": "cerca",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "el",
+                    "text": "de",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
                     "grammarNote": ""
                   },
                   {
-                    "text": "hotel",
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "playa",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -830,17 +870,17 @@
               }
             },
             "ja": {
-              "text": "海辺はホテルにあります。",
+              "text": "ホテルはビーチの近くにあります。",
               "tiles": [
-                "海辺はホテルにあります。"
+                "ホテルはビーチの近くにあります。"
               ],
               "analysis": {
                 "sentencePattern": "Where and location sentence",
-                "literalOrderExplanation": "海辺はホテルにあります。",
+                "literalOrderExplanation": "ホテルはビーチの近くにあります。",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "海辺はホテルにあります。",
+                    "text": "ホテルはビーチの近くにあります。",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -850,17 +890,17 @@
               }
             },
             "zh": {
-              "text": "海灘在酒店。",
+              "text": "酒店在海灘附近。",
               "tiles": [
-                "海灘在酒店。"
+                "酒店在海灘附近。"
               ],
               "analysis": {
                 "sentencePattern": "Where and location sentence",
-                "literalOrderExplanation": "海灘在酒店。",
+                "literalOrderExplanation": "酒店在海灘附近。",
                 "grammarExplanation": [],
                 "tokens": [
                   {
-                    "text": "海灘在酒店。",
+                    "text": "酒店在海灘附近。",
                     "type": "word",
                     "role": "component",
                     "meaning": "",
@@ -1166,19 +1206,19 @@
       "sourceChainId": "CHAIN_5_2",
       "translations": {
         "en": {
-          "text": "The beach is in the hotel.",
+          "text": "The hotel is near the beach.",
           "tiles": [
             "The",
-            "beach",
-            "is",
-            "in",
-            "the",
             "hotel",
+            "is",
+            "near",
+            "the",
+            "beach",
             "."
           ],
           "analysis": {
             "sentencePattern": "Where and location sentence",
-            "literalOrderExplanation": "The → beach → is → in → the → hotel → .",
+            "literalOrderExplanation": "The → hotel → is → near → the → beach → .",
             "grammarExplanation": [],
             "tokens": [
               {
@@ -1189,7 +1229,7 @@
                 "grammarNote": ""
               },
               {
-                "text": "beach",
+                "text": "hotel",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1203,7 +1243,7 @@
                 "grammarNote": ""
               },
               {
-                "text": "in",
+                "text": "near",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1217,7 +1257,7 @@
                 "grammarNote": ""
               },
               {
-                "text": "hotel",
+                "text": "beach",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1234,29 +1274,32 @@
           }
         },
         "de": {
-          "text": "Der strand ist im Hotel.",
+          "text": "Das Hotel ist in der Nähe vom Strand.",
           "tiles": [
-            "Der",
-            "strand",
-            "ist",
-            "im",
+            "Das",
             "Hotel",
+            "ist",
+            "in",
+            "der",
+            "Nähe",
+            "vom",
+            "Strand",
             "."
           ],
           "analysis": {
             "sentencePattern": "Where and location sentence",
-            "literalOrderExplanation": "Der → strand → ist → im → Hotel → .",
+            "literalOrderExplanation": "Das → Hotel → ist → in → der → Nähe → vom → Strand → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "Der",
+                "text": "Das",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "strand",
+                "text": "Hotel",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1270,14 +1313,35 @@
                 "grammarNote": ""
               },
               {
-                "text": "im",
+                "text": "in",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "Hotel",
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Nähe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "vom",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Strand",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1294,29 +1358,23 @@
           }
         },
         "fr": {
-          "text": "La plage est dans l’hôtel.",
+          "text": "L'hôtel est près de la plage.",
           "tiles": [
-            "La",
-            "plage",
+            "L'hôtel",
             "est",
-            "dans",
-            "l’hôtel",
+            "près",
+            "de",
+            "la",
+            "plage",
             "."
           ],
           "analysis": {
             "sentencePattern": "Where and location sentence",
-            "literalOrderExplanation": "La → plage → est → dans → l’hôtel → .",
+            "literalOrderExplanation": "L'hôtel → est → près → de → la → plage → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "La",
-                "type": "word",
-                "role": "component",
-                "meaning": "",
-                "grammarNote": ""
-              },
-              {
-                "text": "plage",
+                "text": "L'hôtel",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1330,14 +1388,28 @@
                 "grammarNote": ""
               },
               {
-                "text": "dans",
+                "text": "près",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "l’hôtel",
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plage",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1354,30 +1426,31 @@
           }
         },
         "es": {
-          "text": "La playa está en el hotel.",
+          "text": "El hotel está cerca de la playa.",
           "tiles": [
-            "La",
-            "playa",
-            "está",
-            "en",
-            "el",
+            "El",
             "hotel",
+            "está",
+            "cerca",
+            "de",
+            "la",
+            "playa",
             "."
           ],
           "analysis": {
             "sentencePattern": "Where and location sentence",
-            "literalOrderExplanation": "La → playa → está → en → el → hotel → .",
+            "literalOrderExplanation": "El → hotel → está → cerca → de → la → playa → .",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "La",
+                "text": "El",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "playa",
+                "text": "hotel",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1391,21 +1464,28 @@
                 "grammarNote": ""
               },
               {
-                "text": "en",
+                "text": "cerca",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "el",
+                "text": "de",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
                 "grammarNote": ""
               },
               {
-                "text": "hotel",
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "playa",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1422,17 +1502,17 @@
           }
         },
         "ja": {
-          "text": "海辺はホテルにあります。",
+          "text": "ホテルはビーチの近くにあります。",
           "tiles": [
-            "海辺はホテルにあります。"
+            "ホテルはビーチの近くにあります。"
           ],
           "analysis": {
             "sentencePattern": "Where and location sentence",
-            "literalOrderExplanation": "海辺はホテルにあります。",
+            "literalOrderExplanation": "ホテルはビーチの近くにあります。",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "海辺はホテルにあります。",
+                "text": "ホテルはビーチの近くにあります。",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
@@ -1442,17 +1522,17 @@
           }
         },
         "zh": {
-          "text": "海灘在酒店。",
+          "text": "酒店在海灘附近。",
           "tiles": [
-            "海灘在酒店。"
+            "酒店在海灘附近。"
           ],
           "analysis": {
             "sentencePattern": "Where and location sentence",
-            "literalOrderExplanation": "海灘在酒店。",
+            "literalOrderExplanation": "酒店在海灘附近。",
             "grammarExplanation": [],
             "tokens": [
               {
-                "text": "海灘在酒店。",
+                "text": "酒店在海灘附近。",
                 "type": "word",
                 "role": "component",
                 "meaning": "",
