@@ -1,0 +1,1397 @@
+{
+  "packId": "semantic_pack_l2_032_school_want_need",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_032 School Want Need",
+  "description": "A1+ Want and need pack: School",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_4_032_school_want_need",
+    "title": "School",
+    "difficultyStage": 4,
+    "semanticDomains": [
+      "school"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "want, need, would like"
+      ],
+      "german": [
+        "ich möchte",
+        "brauchst du",
+        "ich hätte gern"
+      ],
+      "french": [
+        "je veux",
+        "as-tu besoin de",
+        "je voudrais"
+      ],
+      "spanish": [
+        "quiero",
+        "necesitas",
+        "quisiera"
+      ],
+      "japanese": [
+        "ほしいです",
+        "必要ですか",
+        "お願いします"
+      ],
+      "chinese": [
+        "我想要",
+        "你需要嗎",
+        "我想要"
+      ]
+    },
+    "sentenceGoals": [
+      "I want the book.",
+      "Do you need the book?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BOOK",
+      "type": "noun",
+      "senseKey": "book",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "book"
+        },
+        "de": {
+          "text": "das Buch"
+        },
+        "fr": {
+          "text": "le livre"
+        },
+        "es": {
+          "text": "el libro"
+        },
+        "ja": {
+          "text": "本"
+        },
+        "zh": {
+          "text": "書"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "INTERESTING",
+      "type": "adjective",
+      "senseKey": "interesting",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "interesting"
+        },
+        "de": {
+          "text": "interessant"
+        },
+        "fr": {
+          "text": "intéressant"
+        },
+        "es": {
+          "text": "interesante"
+        },
+        "ja": {
+          "text": "おもしろいです"
+        },
+        "zh": {
+          "text": "有趣"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MATHS",
+      "type": "noun",
+      "senseKey": "maths",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "maths"
+        },
+        "de": {
+          "text": "Mathe"
+        },
+        "fr": {
+          "text": "les maths"
+        },
+        "es": {
+          "text": "las matemáticas"
+        },
+        "ja": {
+          "text": "数学"
+        },
+        "zh": {
+          "text": "數學"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SCHOOL",
+      "type": "noun",
+      "senseKey": "school",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "school"
+        },
+        "de": {
+          "text": "die Schule"
+        },
+        "fr": {
+          "text": "l’école"
+        },
+        "es": {
+          "text": "la escuela"
+        },
+        "ja": {
+          "text": "学校"
+        },
+        "zh": {
+          "text": "學校"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDY",
+      "type": "verb",
+      "senseKey": "study",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "study"
+        },
+        "de": {
+          "text": "lernen"
+        },
+        "fr": {
+          "text": "étudier"
+        },
+        "es": {
+          "text": "estudiar"
+        },
+        "ja": {
+          "text": "勉強します"
+        },
+        "zh": {
+          "text": "學習"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TEACHER",
+      "type": "noun",
+      "senseKey": "teacher",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "teacher"
+        },
+        "de": {
+          "text": "der Lehrer"
+        },
+        "fr": {
+          "text": "le professeur"
+        },
+        "es": {
+          "text": "el profesor"
+        },
+        "ja": {
+          "text": "先生"
+        },
+        "zh": {
+          "text": "老師"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_4_WANT,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I want",
+        "de": "ich möchte",
+        "fr": "je veux",
+        "es": "quiero",
+        "ja": "ほしいです",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "do you need",
+        "de": "brauchst du",
+        "fr": "as-tu besoin de",
+        "es": "necesitas",
+        "ja": "必要ですか",
+        "zh": "你需要嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "object",
+        "de": "Objekt",
+        "fr": "objet",
+        "es": "objeto",
+        "ja": "物",
+        "zh": "物件"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_4_1",
+      "linkedConcepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I want the book.",
+              "tiles": [
+                "I",
+                "want",
+                "the",
+                "book",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "I → want → the → book → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "want",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "book",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich möchte ein Buch.",
+              "tiles": [
+                "Ich",
+                "möchte",
+                "ein",
+                "Buch",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Ich → möchte → ein → Buch → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "möchte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Buch",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Je veux un livre.",
+              "tiles": [
+                "Je",
+                "veux",
+                "un",
+                "livre",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Je → veux → un → livre → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Je",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "veux",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "livre",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Quiero un libro.",
+              "tiles": [
+                "Quiero",
+                "un",
+                "libro",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Quiero → un → libro → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Quiero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "libro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "本がほしいです。",
+              "tiles": [
+                "本がほしいです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "本がほしいです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "本がほしいです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我想要一本書。",
+              "tiles": [
+                "我想要一本書。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "我想要一本書。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我想要一本書。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_4_2",
+      "linkedConcepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Do you need the book?",
+              "tiles": [
+                "Do",
+                "you",
+                "need",
+                "the",
+                "book",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Do → you → need → the → book → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "need",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "book",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Brauchst du ein Buch?",
+              "tiles": [
+                "Brauchst",
+                "du",
+                "ein",
+                "Buch",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Brauchst → du → ein → Buch → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Brauchst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Buch",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "As-tu besoin de le livre ?",
+              "tiles": [
+                "As-tu",
+                "besoin",
+                "de",
+                "le",
+                "livre",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "As-tu → besoin → de → le → livre → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "As-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "besoin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "livre",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Necesitas un libro?",
+              "tiles": [
+                "¿",
+                "Necesitas",
+                "un",
+                "libro",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "¿ → Necesitas → un → libro → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Necesitas",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "libro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "本が必要ですか。",
+              "tiles": [
+                "本が必要ですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "本が必要ですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "本が必要ですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你需要書嗎？",
+              "tiles": [
+                "你需要書嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "你需要書嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你需要書嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_1",
+      "translations": {
+        "en": {
+          "text": "I want the book.",
+          "tiles": [
+            "I",
+            "want",
+            "the",
+            "book",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "I → want → the → book → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "want",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "book",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich möchte ein Buch.",
+          "tiles": [
+            "Ich",
+            "möchte",
+            "ein",
+            "Buch",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Ich → möchte → ein → Buch → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "möchte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Buch",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Je veux un livre.",
+          "tiles": [
+            "Je",
+            "veux",
+            "un",
+            "livre",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Je → veux → un → livre → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Je",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "veux",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "livre",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Quiero un libro.",
+          "tiles": [
+            "Quiero",
+            "un",
+            "libro",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Quiero → un → libro → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Quiero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "libro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "本がほしいです。",
+          "tiles": [
+            "本がほしいです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "本がほしいです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "本がほしいです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我想要一本書。",
+          "tiles": [
+            "我想要一本書。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "我想要一本書。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我想要一本書。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_2",
+      "translations": {
+        "en": {
+          "text": "Do you need the book?",
+          "tiles": [
+            "Do",
+            "you",
+            "need",
+            "the",
+            "book",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Do → you → need → the → book → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "need",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "book",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Brauchst du ein Buch?",
+          "tiles": [
+            "Brauchst",
+            "du",
+            "ein",
+            "Buch",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Brauchst → du → ein → Buch → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Brauchst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Buch",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "As-tu besoin de le livre ?",
+          "tiles": [
+            "As-tu",
+            "besoin",
+            "de",
+            "le",
+            "livre",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "As-tu → besoin → de → le → livre → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "As-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "besoin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "livre",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Necesitas un libro?",
+          "tiles": [
+            "¿",
+            "Necesitas",
+            "un",
+            "libro",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "¿ → Necesitas → un → libro → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Necesitas",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "libro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "本が必要ですか。",
+          "tiles": [
+            "本が必要ですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "本が必要ですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "本が必要ですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你需要書嗎？",
+          "tiles": [
+            "你需要書嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "你需要書嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你需要書嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TEACHER": [
+      "S001",
+      "S002"
+    ],
+    "MATHS": [
+      "S001",
+      "S002"
+    ],
+    "SCHOOL": [
+      "S001",
+      "S002"
+    ],
+    "STUDY": [
+      "S001",
+      "S002"
+    ],
+    "BOOK": [
+      "S001",
+      "S002"
+    ],
+    "INTERESTING": [
+      "S001",
+      "S002"
+    ]
+  }
+}

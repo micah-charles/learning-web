@@ -1,0 +1,1493 @@
+{
+  "packId": "semantic_pack_l2_050_holiday_where_location",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_050 Holiday Where Location",
+  "description": "A1+ Where and location pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_5_050_holiday_where_location",
+    "title": "Holiday",
+    "difficultyStage": 5,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "where, in/at/on"
+      ],
+      "german": [
+        "wo",
+        "in/im",
+        "am"
+      ],
+      "french": [
+        "où",
+        "dans",
+        "à"
+      ],
+      "spanish": [
+        "dónde",
+        "en",
+        "a"
+      ],
+      "japanese": [
+        "どこ",
+        "に",
+        "で"
+      ],
+      "chinese": [
+        "哪裡",
+        "在",
+        "有"
+      ]
+    },
+    "sentenceGoals": [
+      "Where is the beach?",
+      "The beach is in the hotel."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_5_WHERE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "where",
+        "de": "wo",
+        "fr": "où",
+        "es": "dónde",
+        "ja": "どこ",
+        "zh": "哪裡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im",
+        "fr": "dans",
+        "es": "en",
+        "ja": "に",
+        "zh": "在"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "at",
+        "de": "am",
+        "fr": "à",
+        "es": "a",
+        "ja": "で",
+        "zh": "有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "there is",
+        "de": "es gibt",
+        "fr": "il y a",
+        "es": "hay",
+        "ja": "あります/います",
+        "zh": "裡"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_5_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Where is the beach?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "beach",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Where → is → the → beach → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "beach",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist der Strand?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "der",
+                "Strand",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Wo → ist → der → Strand → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Strand",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est la plage ?",
+              "tiles": [
+                "Où",
+                "est",
+                "la",
+                "plage",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Où → est → la → plage → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plage",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está la playa?",
+              "tiles": [
+                "¿",
+                "Dónde",
+                "está",
+                "la",
+                "playa",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "¿ → Dónde → está → la → playa → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Dónde",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "playa",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "海辺はどこですか。",
+              "tiles": [
+                "海辺はどこですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "海辺はどこですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "海辺はどこですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "海灘在哪裡？",
+              "tiles": [
+                "海灘在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "海灘在哪裡？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "海灘在哪裡？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_5_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The beach is in the hotel.",
+              "tiles": [
+                "The",
+                "beach",
+                "is",
+                "in",
+                "the",
+                "hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "The → beach → is → in → the → hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "beach",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der strand ist im Hotel.",
+              "tiles": [
+                "Der",
+                "strand",
+                "ist",
+                "im",
+                "Hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Der → strand → ist → im → Hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "strand",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La plage est dans l’hôtel.",
+              "tiles": [
+                "La",
+                "plage",
+                "est",
+                "dans",
+                "l’hôtel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "La → plage → est → dans → l’hôtel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plage",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’hôtel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La playa está en el hotel.",
+              "tiles": [
+                "La",
+                "playa",
+                "está",
+                "en",
+                "el",
+                "hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "La → playa → está → en → el → hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "playa",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "海辺はホテルにあります。",
+              "tiles": [
+                "海辺はホテルにあります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "海辺はホテルにあります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "海辺はホテルにあります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "海灘在酒店。",
+              "tiles": [
+                "海灘在酒店。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "海灘在酒店。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "海灘在酒店。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_1",
+      "translations": {
+        "en": {
+          "text": "Where is the beach?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "beach",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Where → is → the → beach → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "beach",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist der Strand?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "der",
+            "Strand",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Wo → ist → der → Strand → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Strand",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est la plage ?",
+          "tiles": [
+            "Où",
+            "est",
+            "la",
+            "plage",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Où → est → la → plage → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plage",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está la playa?",
+          "tiles": [
+            "¿",
+            "Dónde",
+            "está",
+            "la",
+            "playa",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "¿ → Dónde → está → la → playa → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Dónde",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "playa",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "海辺はどこですか。",
+          "tiles": [
+            "海辺はどこですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "海辺はどこですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "海辺はどこですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "海灘在哪裡？",
+          "tiles": [
+            "海灘在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "海灘在哪裡？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "海灘在哪裡？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_2",
+      "translations": {
+        "en": {
+          "text": "The beach is in the hotel.",
+          "tiles": [
+            "The",
+            "beach",
+            "is",
+            "in",
+            "the",
+            "hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "The → beach → is → in → the → hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "beach",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der strand ist im Hotel.",
+          "tiles": [
+            "Der",
+            "strand",
+            "ist",
+            "im",
+            "Hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Der → strand → ist → im → Hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "strand",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La plage est dans l’hôtel.",
+          "tiles": [
+            "La",
+            "plage",
+            "est",
+            "dans",
+            "l’hôtel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "La → plage → est → dans → l’hôtel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plage",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’hôtel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La playa está en el hotel.",
+          "tiles": [
+            "La",
+            "playa",
+            "está",
+            "en",
+            "el",
+            "hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "La → playa → está → en → el → hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "playa",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "海辺はホテルにあります。",
+          "tiles": [
+            "海辺はホテルにあります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "海辺はホテルにあります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "海辺はホテルにあります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "海灘在酒店。",
+          "tiles": [
+            "海灘在酒店。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "海灘在酒店。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "海灘在酒店。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

@@ -1,0 +1,1397 @@
+{
+  "packId": "semantic_pack_l2_035_town_want_need",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_035 Town Want Need",
+  "description": "A1+ Want and need pack: Town",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_4_035_town_want_need",
+    "title": "Town",
+    "difficultyStage": 4,
+    "semanticDomains": [
+      "town"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "want, need, would like"
+      ],
+      "german": [
+        "ich möchte",
+        "brauchst du",
+        "ich hätte gern"
+      ],
+      "french": [
+        "je veux",
+        "as-tu besoin de",
+        "je voudrais"
+      ],
+      "spanish": [
+        "quiero",
+        "necesitas",
+        "quisiera"
+      ],
+      "japanese": [
+        "ほしいです",
+        "必要ですか",
+        "お願いします"
+      ],
+      "chinese": [
+        "我想要",
+        "你需要嗎",
+        "我想要"
+      ]
+    },
+    "sentenceGoals": [
+      "I want the ticket.",
+      "Do you need the ticket?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "GO",
+      "type": "verb",
+      "senseKey": "go",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "go"
+        },
+        "de": {
+          "text": "gehen"
+        },
+        "fr": {
+          "text": "aller"
+        },
+        "es": {
+          "text": "ir"
+        },
+        "ja": {
+          "text": "行きます"
+        },
+        "zh": {
+          "text": "去"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MUSEUM",
+      "type": "noun",
+      "senseKey": "museum",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "museum"
+        },
+        "de": {
+          "text": "das Museum"
+        },
+        "fr": {
+          "text": "le musée"
+        },
+        "es": {
+          "text": "el museo"
+        },
+        "ja": {
+          "text": "博物館"
+        },
+        "zh": {
+          "text": "博物館"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "NEAR",
+      "type": "adjective",
+      "senseKey": "near",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "near"
+        },
+        "de": {
+          "text": "nah"
+        },
+        "fr": {
+          "text": "près"
+        },
+        "es": {
+          "text": "cerca"
+        },
+        "ja": {
+          "text": "近いです"
+        },
+        "zh": {
+          "text": "近"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TICKET",
+      "type": "noun",
+      "senseKey": "ticket",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "ticket"
+        },
+        "de": {
+          "text": "die Fahrkarte"
+        },
+        "fr": {
+          "text": "le billet"
+        },
+        "es": {
+          "text": "el billete"
+        },
+        "ja": {
+          "text": "切符"
+        },
+        "zh": {
+          "text": "車票"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOURIST",
+      "type": "noun",
+      "senseKey": "tourist",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "tourist"
+        },
+        "de": {
+          "text": "der Tourist"
+        },
+        "fr": {
+          "text": "le touriste"
+        },
+        "es": {
+          "text": "el turista"
+        },
+        "ja": {
+          "text": "観光客"
+        },
+        "zh": {
+          "text": "遊客"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOWN",
+      "type": "noun",
+      "senseKey": "town",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "town"
+        },
+        "de": {
+          "text": "die Stadt"
+        },
+        "fr": {
+          "text": "la ville"
+        },
+        "es": {
+          "text": "la ciudad"
+        },
+        "ja": {
+          "text": "町"
+        },
+        "zh": {
+          "text": "城鎮"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_4_WANT,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I want",
+        "de": "ich möchte",
+        "fr": "je veux",
+        "es": "quiero",
+        "ja": "ほしいです",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "do you need",
+        "de": "brauchst du",
+        "fr": "as-tu besoin de",
+        "es": "necesitas",
+        "ja": "必要ですか",
+        "zh": "你需要嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "object",
+        "de": "Objekt",
+        "fr": "objet",
+        "es": "objeto",
+        "ja": "物",
+        "zh": "物件"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_4_1",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I want the ticket.",
+              "tiles": [
+                "I",
+                "want",
+                "the",
+                "ticket",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "I → want → the → ticket → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "want",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ticket",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich möchte eine Fahrkarte.",
+              "tiles": [
+                "Ich",
+                "möchte",
+                "eine",
+                "Fahrkarte",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Ich → möchte → eine → Fahrkarte → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "möchte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eine",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fahrkarte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Je veux un billet.",
+              "tiles": [
+                "Je",
+                "veux",
+                "un",
+                "billet",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Je → veux → un → billet → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Je",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "veux",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "billet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Quiero un billete.",
+              "tiles": [
+                "Quiero",
+                "un",
+                "billete",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Quiero → un → billete → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Quiero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "billete",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "切符がほしいです。",
+              "tiles": [
+                "切符がほしいです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "切符がほしいです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "切符がほしいです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我想要一張車票。",
+              "tiles": [
+                "我想要一張車票。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "我想要一張車票。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我想要一張車票。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_4_2",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Do you need the ticket?",
+              "tiles": [
+                "Do",
+                "you",
+                "need",
+                "the",
+                "ticket",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Do → you → need → the → ticket → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "need",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ticket",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Brauchst du eine Fahrkarte?",
+              "tiles": [
+                "Brauchst",
+                "du",
+                "eine",
+                "Fahrkarte",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Brauchst → du → eine → Fahrkarte → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Brauchst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eine",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fahrkarte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "As-tu besoin de le billet ?",
+              "tiles": [
+                "As-tu",
+                "besoin",
+                "de",
+                "le",
+                "billet",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "As-tu → besoin → de → le → billet → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "As-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "besoin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "billet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Necesitas un billete?",
+              "tiles": [
+                "¿",
+                "Necesitas",
+                "un",
+                "billete",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "¿ → Necesitas → un → billete → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Necesitas",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "billete",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "切符が必要ですか。",
+              "tiles": [
+                "切符が必要ですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "切符が必要ですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "切符が必要ですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你需要車票嗎？",
+              "tiles": [
+                "你需要車票嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "你需要車票嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你需要車票嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_1",
+      "translations": {
+        "en": {
+          "text": "I want the ticket.",
+          "tiles": [
+            "I",
+            "want",
+            "the",
+            "ticket",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "I → want → the → ticket → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "want",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ticket",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich möchte eine Fahrkarte.",
+          "tiles": [
+            "Ich",
+            "möchte",
+            "eine",
+            "Fahrkarte",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Ich → möchte → eine → Fahrkarte → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "möchte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "eine",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fahrkarte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Je veux un billet.",
+          "tiles": [
+            "Je",
+            "veux",
+            "un",
+            "billet",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Je → veux → un → billet → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Je",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "veux",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "billet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Quiero un billete.",
+          "tiles": [
+            "Quiero",
+            "un",
+            "billete",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Quiero → un → billete → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Quiero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "billete",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "切符がほしいです。",
+          "tiles": [
+            "切符がほしいです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "切符がほしいです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "切符がほしいです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我想要一張車票。",
+          "tiles": [
+            "我想要一張車票。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "我想要一張車票。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我想要一張車票。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_2",
+      "translations": {
+        "en": {
+          "text": "Do you need the ticket?",
+          "tiles": [
+            "Do",
+            "you",
+            "need",
+            "the",
+            "ticket",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Do → you → need → the → ticket → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "need",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ticket",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Brauchst du eine Fahrkarte?",
+          "tiles": [
+            "Brauchst",
+            "du",
+            "eine",
+            "Fahrkarte",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Brauchst → du → eine → Fahrkarte → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Brauchst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "eine",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fahrkarte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "As-tu besoin de le billet ?",
+          "tiles": [
+            "As-tu",
+            "besoin",
+            "de",
+            "le",
+            "billet",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "As-tu → besoin → de → le → billet → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "As-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "besoin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "billet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Necesitas un billete?",
+          "tiles": [
+            "¿",
+            "Necesitas",
+            "un",
+            "billete",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "¿ → Necesitas → un → billete → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Necesitas",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "billete",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "切符が必要ですか。",
+          "tiles": [
+            "切符が必要ですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "切符が必要ですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "切符が必要ですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你需要車票嗎？",
+          "tiles": [
+            "你需要車票嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "你需要車票嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你需要車票嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TOURIST": [
+      "S001",
+      "S002"
+    ],
+    "MUSEUM": [
+      "S001",
+      "S002"
+    ],
+    "TOWN": [
+      "S001",
+      "S002"
+    ],
+    "GO": [
+      "S001",
+      "S002"
+    ],
+    "TICKET": [
+      "S001",
+      "S002"
+    ],
+    "NEAR": [
+      "S001",
+      "S002"
+    ]
+  }
+}

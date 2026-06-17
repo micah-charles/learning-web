@@ -1,0 +1,1317 @@
+{
+  "packId": "semantic_pack_l2_037_food_want_need",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_037 Food Want Need",
+  "description": "A1+ Want and need pack: Food",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_4_037_food_want_need",
+    "title": "Food",
+    "difficultyStage": 4,
+    "semanticDomains": [
+      "food"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "want, need, would like"
+      ],
+      "german": [
+        "ich möchte",
+        "brauchst du",
+        "ich hätte gern"
+      ],
+      "french": [
+        "je veux",
+        "as-tu besoin de",
+        "je voudrais"
+      ],
+      "spanish": [
+        "quiero",
+        "necesitas",
+        "quisiera"
+      ],
+      "japanese": [
+        "ほしいです",
+        "必要ですか",
+        "お願いします"
+      ],
+      "chinese": [
+        "我想要",
+        "你需要嗎",
+        "我想要"
+      ]
+    },
+    "sentenceGoals": [
+      "I want the water.",
+      "Do you need the water?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "COOK",
+      "type": "noun",
+      "senseKey": "cook",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "der Koch"
+        },
+        "fr": {
+          "text": "le cuisinier"
+        },
+        "es": {
+          "text": "el cocinero"
+        },
+        "ja": {
+          "text": "料理人"
+        },
+        "zh": {
+          "text": "廚師"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "DELICIOUS",
+      "type": "adjective",
+      "senseKey": "delicious",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "delicious"
+        },
+        "de": {
+          "text": "lecker"
+        },
+        "fr": {
+          "text": "délicieux"
+        },
+        "es": {
+          "text": "delicioso"
+        },
+        "ja": {
+          "text": "おいしいです"
+        },
+        "zh": {
+          "text": "好吃"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EAT",
+      "type": "verb",
+      "senseKey": "eat",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "eat"
+        },
+        "de": {
+          "text": "essen"
+        },
+        "fr": {
+          "text": "manger"
+        },
+        "es": {
+          "text": "comer"
+        },
+        "ja": {
+          "text": "食べます"
+        },
+        "zh": {
+          "text": "吃"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PIZZA",
+      "type": "noun",
+      "senseKey": "pizza",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "pizza"
+        },
+        "de": {
+          "text": "die Pizza"
+        },
+        "fr": {
+          "text": "la pizza"
+        },
+        "es": {
+          "text": "la pizza"
+        },
+        "ja": {
+          "text": "ピザ"
+        },
+        "zh": {
+          "text": "薄餅"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "RESTAURANT",
+      "type": "noun",
+      "senseKey": "restaurant",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "restaurant"
+        },
+        "de": {
+          "text": "das Restaurant"
+        },
+        "fr": {
+          "text": "le restaurant"
+        },
+        "es": {
+          "text": "el restaurante"
+        },
+        "ja": {
+          "text": "レストラン"
+        },
+        "zh": {
+          "text": "餐廳"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WATER",
+      "type": "noun",
+      "senseKey": "water",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "water"
+        },
+        "de": {
+          "text": "das Wasser"
+        },
+        "fr": {
+          "text": "l’eau"
+        },
+        "es": {
+          "text": "el agua"
+        },
+        "ja": {
+          "text": "水"
+        },
+        "zh": {
+          "text": "水"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_4_WANT,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I want",
+        "de": "ich möchte",
+        "fr": "je veux",
+        "es": "quiero",
+        "ja": "ほしいです",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "do you need",
+        "de": "brauchst du",
+        "fr": "as-tu besoin de",
+        "es": "necesitas",
+        "ja": "必要ですか",
+        "zh": "你需要嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "object",
+        "de": "Objekt",
+        "fr": "objet",
+        "es": "objeto",
+        "ja": "物",
+        "zh": "物件"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_4_1",
+      "linkedConcepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I want the water.",
+              "tiles": [
+                "I",
+                "want",
+                "the",
+                "water",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "I → want → the → water → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "want",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "water",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich möchte Wasser.",
+              "tiles": [
+                "Ich",
+                "möchte",
+                "Wasser",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Ich → möchte → Wasser → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "möchte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Wasser",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Je veux de l’eau.",
+              "tiles": [
+                "Je",
+                "veux",
+                "de",
+                "l’eau",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Je → veux → de → l’eau → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Je",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "veux",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’eau",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Quiero agua.",
+              "tiles": [
+                "Quiero",
+                "agua",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Quiero → agua → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Quiero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "agua",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "水がほしいです。",
+              "tiles": [
+                "水がほしいです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "水がほしいです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "水がほしいです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我想要一杯水。",
+              "tiles": [
+                "我想要一杯水。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "我想要一杯水。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我想要一杯水。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_4_2",
+      "linkedConcepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Do you need the water?",
+              "tiles": [
+                "Do",
+                "you",
+                "need",
+                "the",
+                "water",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Do → you → need → the → water → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "need",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "water",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Brauchst du Wasser?",
+              "tiles": [
+                "Brauchst",
+                "du",
+                "Wasser",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Brauchst → du → Wasser → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Brauchst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Wasser",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "As-tu besoin de l’eau ?",
+              "tiles": [
+                "As-tu",
+                "besoin",
+                "de",
+                "l’eau",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "As-tu → besoin → de → l’eau → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "As-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "besoin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’eau",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Necesitas agua?",
+              "tiles": [
+                "¿",
+                "Necesitas",
+                "agua",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "¿ → Necesitas → agua → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Necesitas",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "agua",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "水が必要ですか。",
+              "tiles": [
+                "水が必要ですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "水が必要ですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "水が必要ですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你需要水嗎？",
+              "tiles": [
+                "你需要水嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "你需要水嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你需要水嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_1",
+      "translations": {
+        "en": {
+          "text": "I want the water.",
+          "tiles": [
+            "I",
+            "want",
+            "the",
+            "water",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "I → want → the → water → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "want",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "water",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich möchte Wasser.",
+          "tiles": [
+            "Ich",
+            "möchte",
+            "Wasser",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Ich → möchte → Wasser → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "möchte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Wasser",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Je veux de l’eau.",
+          "tiles": [
+            "Je",
+            "veux",
+            "de",
+            "l’eau",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Je → veux → de → l’eau → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Je",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "veux",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’eau",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Quiero agua.",
+          "tiles": [
+            "Quiero",
+            "agua",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Quiero → agua → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Quiero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "agua",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "水がほしいです。",
+          "tiles": [
+            "水がほしいです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "水がほしいです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "水がほしいです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我想要一杯水。",
+          "tiles": [
+            "我想要一杯水。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "我想要一杯水。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我想要一杯水。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_2",
+      "translations": {
+        "en": {
+          "text": "Do you need the water?",
+          "tiles": [
+            "Do",
+            "you",
+            "need",
+            "the",
+            "water",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Do → you → need → the → water → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "need",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "water",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Brauchst du Wasser?",
+          "tiles": [
+            "Brauchst",
+            "du",
+            "Wasser",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Brauchst → du → Wasser → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Brauchst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Wasser",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "As-tu besoin de l’eau ?",
+          "tiles": [
+            "As-tu",
+            "besoin",
+            "de",
+            "l’eau",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "As-tu → besoin → de → l’eau → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "As-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "besoin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’eau",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Necesitas agua?",
+          "tiles": [
+            "¿",
+            "Necesitas",
+            "agua",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "¿ → Necesitas → agua → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Necesitas",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "agua",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "水が必要ですか。",
+          "tiles": [
+            "水が必要ですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "水が必要ですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "水が必要ですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你需要水嗎？",
+          "tiles": [
+            "你需要水嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "你需要水嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你需要水嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "COOK": [
+      "S001",
+      "S002"
+    ],
+    "PIZZA": [
+      "S001",
+      "S002"
+    ],
+    "RESTAURANT": [
+      "S001",
+      "S002"
+    ],
+    "EAT": [
+      "S001",
+      "S002"
+    ],
+    "WATER": [
+      "S001",
+      "S002"
+    ],
+    "DELICIOUS": [
+      "S001",
+      "S002"
+    ]
+  }
+}

@@ -1,0 +1,1301 @@
+{
+  "packId": "semantic_pack_l2_025_town_can_ability",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_025 Town Can Ability",
+  "description": "A1+ Can and ability pack: Town",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_3_025_town_can_ability",
+    "title": "Town",
+    "difficultyStage": 3,
+    "semanticDomains": [
+      "town"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "can + infinitive"
+      ],
+      "german": [
+        "kann",
+        "kannst du",
+        "Infinitiv"
+      ],
+      "french": [
+        "peut",
+        "peux-tu",
+        "infinitif"
+      ],
+      "spanish": [
+        "puede",
+        "puedes",
+        "infinitivo"
+      ],
+      "japanese": [
+        "できます",
+        "できますか",
+        "動詞"
+      ],
+      "chinese": [
+        "可以",
+        "你可以嗎",
+        "動詞"
+      ]
+    },
+    "sentenceGoals": [
+      "The tourist can go.",
+      "Can you go?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "GO",
+      "type": "verb",
+      "senseKey": "go",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "go"
+        },
+        "de": {
+          "text": "gehen"
+        },
+        "fr": {
+          "text": "aller"
+        },
+        "es": {
+          "text": "ir"
+        },
+        "ja": {
+          "text": "行きます"
+        },
+        "zh": {
+          "text": "去"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MUSEUM",
+      "type": "noun",
+      "senseKey": "museum",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "museum"
+        },
+        "de": {
+          "text": "das Museum"
+        },
+        "fr": {
+          "text": "le musée"
+        },
+        "es": {
+          "text": "el museo"
+        },
+        "ja": {
+          "text": "博物館"
+        },
+        "zh": {
+          "text": "博物館"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "NEAR",
+      "type": "adjective",
+      "senseKey": "near",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "near"
+        },
+        "de": {
+          "text": "nah"
+        },
+        "fr": {
+          "text": "près"
+        },
+        "es": {
+          "text": "cerca"
+        },
+        "ja": {
+          "text": "近いです"
+        },
+        "zh": {
+          "text": "近"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TICKET",
+      "type": "noun",
+      "senseKey": "ticket",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "ticket"
+        },
+        "de": {
+          "text": "die Fahrkarte"
+        },
+        "fr": {
+          "text": "le billet"
+        },
+        "es": {
+          "text": "el billete"
+        },
+        "ja": {
+          "text": "切符"
+        },
+        "zh": {
+          "text": "車票"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOURIST",
+      "type": "noun",
+      "senseKey": "tourist",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "tourist"
+        },
+        "de": {
+          "text": "der Tourist"
+        },
+        "fr": {
+          "text": "le touriste"
+        },
+        "es": {
+          "text": "el turista"
+        },
+        "ja": {
+          "text": "観光客"
+        },
+        "zh": {
+          "text": "遊客"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOWN",
+      "type": "noun",
+      "senseKey": "town",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "town"
+        },
+        "de": {
+          "text": "die Stadt"
+        },
+        "fr": {
+          "text": "la ville"
+        },
+        "es": {
+          "text": "la ciudad"
+        },
+        "ja": {
+          "text": "町"
+        },
+        "zh": {
+          "text": "城鎮"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_3_CAN_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "ja": "できます",
+        "zh": "可以"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can you",
+        "de": "kannst du",
+        "fr": "peux-tu",
+        "es": "puedes",
+        "ja": "できますか",
+        "zh": "你可以嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "infinitive",
+        "de": "Infinitiv",
+        "fr": "infinitif",
+        "es": "infinitivo",
+        "ja": "動詞",
+        "zh": "動詞"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "ability",
+        "de": "Fähigkeit",
+        "fr": "capacité",
+        "es": "habilidad",
+        "ja": "能力",
+        "zh": "能力"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_3_1",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The tourist can go.",
+              "tiles": [
+                "The",
+                "tourist",
+                "can",
+                "go",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "The → tourist → can → go → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "go",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der tourist kann gehen.",
+              "tiles": [
+                "Der",
+                "tourist",
+                "kann",
+                "gehen",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Der → tourist → kann → gehen → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kann",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gehen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le touriste peut aller.",
+              "tiles": [
+                "Le",
+                "touriste",
+                "peut",
+                "aller",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Le → touriste → peut → aller → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "touriste",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "peut",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aller",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El turista puede ir.",
+              "tiles": [
+                "El",
+                "turista",
+                "puede",
+                "ir",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "El → turista → puede → ir → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "turista",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "puede",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ir",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "観光客は行きますことができます。",
+              "tiles": [
+                "観光客は行きますことができます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "観光客は行きますことができます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "観光客は行きますことができます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "遊客可以去。",
+              "tiles": [
+                "遊客可以去。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "遊客可以去。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "遊客可以去。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_3_2",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Can you go?",
+              "tiles": [
+                "Can",
+                "you",
+                "go",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Can → you → go → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "go",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Kannst du gehen?",
+              "tiles": [
+                "Kannst",
+                "du",
+                "gehen",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Kannst → du → gehen → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Kannst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gehen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Peux-tu aller ?",
+              "tiles": [
+                "Peux-tu",
+                "aller",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Peux-tu → aller → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Peux-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aller",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Puedes ir?",
+              "tiles": [
+                "¿",
+                "Puedes",
+                "ir",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "¿ → Puedes → ir → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Puedes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ir",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "行きますことができますか。",
+              "tiles": [
+                "行きますことができますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "行きますことができますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "行きますことができますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你可以去嗎？",
+              "tiles": [
+                "你可以去嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "你可以去嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你可以去嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_1",
+      "translations": {
+        "en": {
+          "text": "The tourist can go.",
+          "tiles": [
+            "The",
+            "tourist",
+            "can",
+            "go",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "The → tourist → can → go → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "go",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der tourist kann gehen.",
+          "tiles": [
+            "Der",
+            "tourist",
+            "kann",
+            "gehen",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Der → tourist → kann → gehen → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kann",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gehen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le touriste peut aller.",
+          "tiles": [
+            "Le",
+            "touriste",
+            "peut",
+            "aller",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Le → touriste → peut → aller → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "touriste",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "peut",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aller",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El turista puede ir.",
+          "tiles": [
+            "El",
+            "turista",
+            "puede",
+            "ir",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "El → turista → puede → ir → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "turista",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "puede",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ir",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "観光客は行きますことができます。",
+          "tiles": [
+            "観光客は行きますことができます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "観光客は行きますことができます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "観光客は行きますことができます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "遊客可以去。",
+          "tiles": [
+            "遊客可以去。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "遊客可以去。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "遊客可以去。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_2",
+      "translations": {
+        "en": {
+          "text": "Can you go?",
+          "tiles": [
+            "Can",
+            "you",
+            "go",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Can → you → go → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "go",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Kannst du gehen?",
+          "tiles": [
+            "Kannst",
+            "du",
+            "gehen",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Kannst → du → gehen → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Kannst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gehen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Peux-tu aller ?",
+          "tiles": [
+            "Peux-tu",
+            "aller",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Peux-tu → aller → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Peux-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aller",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Puedes ir?",
+          "tiles": [
+            "¿",
+            "Puedes",
+            "ir",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "¿ → Puedes → ir → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Puedes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ir",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "行きますことができますか。",
+          "tiles": [
+            "行きますことができますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "行きますことができますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "行きますことができますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你可以去嗎？",
+          "tiles": [
+            "你可以去嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "你可以去嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你可以去嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TOURIST": [
+      "S001",
+      "S002"
+    ],
+    "MUSEUM": [
+      "S001",
+      "S002"
+    ],
+    "TOWN": [
+      "S001",
+      "S002"
+    ],
+    "GO": [
+      "S001",
+      "S002"
+    ],
+    "TICKET": [
+      "S001",
+      "S002"
+    ],
+    "NEAR": [
+      "S001",
+      "S002"
+    ]
+  }
+}

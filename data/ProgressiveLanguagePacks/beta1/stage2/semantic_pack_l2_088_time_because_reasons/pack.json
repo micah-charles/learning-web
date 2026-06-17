@@ -1,0 +1,1637 @@
+{
+  "packId": "semantic_pack_l2_088_time_because_reasons",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_088 Time Because Reasons",
+  "description": "A1+ Reasons with because pack: Time",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_9_088_time_because_reasons",
+    "title": "Time",
+    "difficultyStage": 9,
+    "semanticDomains": [
+      "time"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "why, because"
+      ],
+      "german": [
+        "warum",
+        "weil",
+        "ich mag"
+      ],
+      "french": [
+        "pourquoi",
+        "parce que",
+        "j’aime"
+      ],
+      "spanish": [
+        "por qué",
+        "porque",
+        "me gusta"
+      ],
+      "japanese": [
+        "なぜ",
+        "から",
+        "好きです"
+      ],
+      "chinese": [
+        "為什麼",
+        "因為",
+        "我喜歡"
+      ]
+    },
+    "sentenceGoals": [
+      "Why do you like birthday?",
+      "I like birthday because it is early."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIRTHDAY",
+      "type": "noun",
+      "senseKey": "birthday",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "birthday"
+        },
+        "de": {
+          "text": "der Geburtstag"
+        },
+        "fr": {
+          "text": "l’anniversaire"
+        },
+        "es": {
+          "text": "el cumpleaños"
+        },
+        "ja": {
+          "text": "誕生日"
+        },
+        "zh": {
+          "text": "生日"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLASSROOM",
+      "type": "noun",
+      "senseKey": "classroom",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "classroom"
+        },
+        "de": {
+          "text": "das Klassenzimmer"
+        },
+        "fr": {
+          "text": "la salle de classe"
+        },
+        "es": {
+          "text": "el aula"
+        },
+        "ja": {
+          "text": "教室"
+        },
+        "zh": {
+          "text": "課室"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLOCK",
+      "type": "noun",
+      "senseKey": "clock",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "clock"
+        },
+        "de": {
+          "text": "die Uhr"
+        },
+        "fr": {
+          "text": "l’horloge"
+        },
+        "es": {
+          "text": "el reloj"
+        },
+        "ja": {
+          "text": "時計"
+        },
+        "zh": {
+          "text": "時鐘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EARLY",
+      "type": "adjective",
+      "senseKey": "early",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "early"
+        },
+        "de": {
+          "text": "früh"
+        },
+        "fr": {
+          "text": "tôt"
+        },
+        "es": {
+          "text": "temprano"
+        },
+        "ja": {
+          "text": "早いです"
+        },
+        "zh": {
+          "text": "早"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDENT",
+      "type": "noun",
+      "senseKey": "student",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "student"
+        },
+        "de": {
+          "text": "der Schüler"
+        },
+        "fr": {
+          "text": "l’élève"
+        },
+        "es": {
+          "text": "el estudiante"
+        },
+        "ja": {
+          "text": "生徒"
+        },
+        "zh": {
+          "text": "學生"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WAIT",
+      "type": "verb",
+      "senseKey": "wait",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "wait"
+        },
+        "de": {
+          "text": "warten"
+        },
+        "fr": {
+          "text": "attendre"
+        },
+        "es": {
+          "text": "esperar"
+        },
+        "ja": {
+          "text": "待ちます"
+        },
+        "zh": {
+          "text": "等"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_9_WHY,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "why",
+        "de": "warum",
+        "fr": "pourquoi",
+        "es": "por qué",
+        "ja": "なぜ",
+        "zh": "為什麼"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "ja": "から",
+        "zh": "因為"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I like",
+        "de": "ich mag",
+        "fr": "j’aime",
+        "es": "me gusta",
+        "ja": "好きです",
+        "zh": "我喜歡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "reason",
+        "de": "Grund",
+        "fr": "raison",
+        "es": "razón",
+        "ja": "理由",
+        "zh": "原因"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_9_1",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Why do you like birthday?",
+              "tiles": [
+                "Why",
+                "do",
+                "you",
+                "like",
+                "birthday",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Why → do → you → like → birthday → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "birthday",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum magst du der Geburtstag?",
+              "tiles": [
+                "Warum",
+                "magst",
+                "du",
+                "der",
+                "Geburtstag",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Warum → magst → du → der → Geburtstag → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geburtstag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi aimes-tu l’anniversaire ?",
+              "tiles": [
+                "Pourquoi",
+                "aimes-tu",
+                "l’anniversaire",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Pourquoi → aimes-tu → l’anniversaire → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aimes-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’anniversaire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué te gusta el cumpleaños?",
+              "tiles": [
+                "¿",
+                "Por",
+                "qué",
+                "te",
+                "gusta",
+                "el",
+                "cumpleaños",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "¿ → Por → qué → te → gusta → el → cumpleaños → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qué",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cumpleaños",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ誕生日が好きですか。",
+              "tiles": [
+                "なぜ誕生日が好きですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "なぜ誕生日が好きですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "なぜ誕生日が好きですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你為什麼喜歡生日？",
+              "tiles": [
+                "你為什麼喜歡生日？"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "你為什麼喜歡生日？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你為什麼喜歡生日？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_9_2",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I like birthday because it is early.",
+              "tiles": [
+                "I",
+                "like",
+                "birthday",
+                "because",
+                "it",
+                "is",
+                "early",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "I → like → birthday → because → it → is → early → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "birthday",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "early",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich mag der Geburtstag, weil es früh ist.",
+              "tiles": [
+                "Ich",
+                "mag",
+                "der",
+                "Geburtstag,",
+                "weil",
+                "es",
+                "früh",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Ich → mag → der → Geburtstag, → weil → es → früh → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geburtstag,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "früh",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’aime l’anniversaire parce que c’est tôt.",
+              "tiles": [
+                "J’aime",
+                "l’anniversaire",
+                "parce",
+                "que",
+                "c’est",
+                "tôt",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "J’aime → l’anniversaire → parce → que → c’est → tôt → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’anniversaire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tôt",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Me gusta el cumpleaños porque es temprano.",
+              "tiles": [
+                "Me",
+                "gusta",
+                "el",
+                "cumpleaños",
+                "porque",
+                "es",
+                "temprano",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Me → gusta → el → cumpleaños → porque → es → temprano → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Me",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cumpleaños",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "temprano",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "早いから、誕生日が好きです。",
+              "tiles": [
+                "早いから、誕生日が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "早いから、誕生日が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "早いから、誕生日が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我喜歡生日，因為它很早。",
+              "tiles": [
+                "我喜歡生日，因為它很早。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "我喜歡生日，因為它很早。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我喜歡生日，因為它很早。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_1",
+      "translations": {
+        "en": {
+          "text": "Why do you like birthday?",
+          "tiles": [
+            "Why",
+            "do",
+            "you",
+            "like",
+            "birthday",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Why → do → you → like → birthday → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "birthday",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum magst du der Geburtstag?",
+          "tiles": [
+            "Warum",
+            "magst",
+            "du",
+            "der",
+            "Geburtstag",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Warum → magst → du → der → Geburtstag → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geburtstag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi aimes-tu l’anniversaire ?",
+          "tiles": [
+            "Pourquoi",
+            "aimes-tu",
+            "l’anniversaire",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Pourquoi → aimes-tu → l’anniversaire → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aimes-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’anniversaire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué te gusta el cumpleaños?",
+          "tiles": [
+            "¿",
+            "Por",
+            "qué",
+            "te",
+            "gusta",
+            "el",
+            "cumpleaños",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "¿ → Por → qué → te → gusta → el → cumpleaños → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "qué",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cumpleaños",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ誕生日が好きですか。",
+          "tiles": [
+            "なぜ誕生日が好きですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "なぜ誕生日が好きですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "なぜ誕生日が好きですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你為什麼喜歡生日？",
+          "tiles": [
+            "你為什麼喜歡生日？"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "你為什麼喜歡生日？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你為什麼喜歡生日？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_2",
+      "translations": {
+        "en": {
+          "text": "I like birthday because it is early.",
+          "tiles": [
+            "I",
+            "like",
+            "birthday",
+            "because",
+            "it",
+            "is",
+            "early",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "I → like → birthday → because → it → is → early → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "birthday",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "early",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich mag der Geburtstag, weil es früh ist.",
+          "tiles": [
+            "Ich",
+            "mag",
+            "der",
+            "Geburtstag,",
+            "weil",
+            "es",
+            "früh",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Ich → mag → der → Geburtstag, → weil → es → früh → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geburtstag,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "früh",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’aime l’anniversaire parce que c’est tôt.",
+          "tiles": [
+            "J’aime",
+            "l’anniversaire",
+            "parce",
+            "que",
+            "c’est",
+            "tôt",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "J’aime → l’anniversaire → parce → que → c’est → tôt → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’anniversaire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tôt",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Me gusta el cumpleaños porque es temprano.",
+          "tiles": [
+            "Me",
+            "gusta",
+            "el",
+            "cumpleaños",
+            "porque",
+            "es",
+            "temprano",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Me → gusta → el → cumpleaños → porque → es → temprano → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Me",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cumpleaños",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "temprano",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "早いから、誕生日が好きです。",
+          "tiles": [
+            "早いから、誕生日が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "早いから、誕生日が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "早いから、誕生日が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我喜歡生日，因為它很早。",
+          "tiles": [
+            "我喜歡生日，因為它很早。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "我喜歡生日，因為它很早。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我喜歡生日，因為它很早。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "STUDENT": [
+      "S001",
+      "S002"
+    ],
+    "BIRTHDAY": [
+      "S001",
+      "S002"
+    ],
+    "CLASSROOM": [
+      "S001",
+      "S002"
+    ],
+    "WAIT": [
+      "S001",
+      "S002"
+    ],
+    "CLOCK": [
+      "S001",
+      "S002"
+    ],
+    "EARLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

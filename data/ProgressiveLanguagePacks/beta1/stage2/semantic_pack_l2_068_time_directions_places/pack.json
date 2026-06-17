@@ -1,0 +1,1685 @@
+{
+  "packId": "semantic_pack_l2_068_time_directions_places",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_068 Time Directions Places",
+  "description": "A1+ Directions and places pack: Time",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_7_068_time_directions_places",
+    "title": "Time",
+    "difficultyStage": 7,
+    "semanticDomains": [
+      "time"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "how to get to, go to"
+      ],
+      "german": [
+        "wie komme ich zu",
+        "geh zu",
+        "links/rechts"
+      ],
+      "french": [
+        "comment aller à",
+        "va à",
+        "gauche/droite"
+      ],
+      "spanish": [
+        "cómo llego a",
+        "ve a",
+        "izquierda/derecha"
+      ],
+      "japanese": [
+        "どうやって行きますか",
+        "行ってください",
+        "左/右"
+      ],
+      "chinese": [
+        "怎樣去",
+        "請去",
+        "左/右"
+      ]
+    },
+    "sentenceGoals": [
+      "How do I get to the classroom?",
+      "Go to the classroom, please."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIRTHDAY",
+      "type": "noun",
+      "senseKey": "birthday",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "birthday"
+        },
+        "de": {
+          "text": "der Geburtstag"
+        },
+        "fr": {
+          "text": "l’anniversaire"
+        },
+        "es": {
+          "text": "el cumpleaños"
+        },
+        "ja": {
+          "text": "誕生日"
+        },
+        "zh": {
+          "text": "生日"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLASSROOM",
+      "type": "noun",
+      "senseKey": "classroom",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "classroom"
+        },
+        "de": {
+          "text": "das Klassenzimmer"
+        },
+        "fr": {
+          "text": "la salle de classe"
+        },
+        "es": {
+          "text": "el aula"
+        },
+        "ja": {
+          "text": "教室"
+        },
+        "zh": {
+          "text": "課室"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLOCK",
+      "type": "noun",
+      "senseKey": "clock",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "clock"
+        },
+        "de": {
+          "text": "die Uhr"
+        },
+        "fr": {
+          "text": "l’horloge"
+        },
+        "es": {
+          "text": "el reloj"
+        },
+        "ja": {
+          "text": "時計"
+        },
+        "zh": {
+          "text": "時鐘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EARLY",
+      "type": "adjective",
+      "senseKey": "early",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "early"
+        },
+        "de": {
+          "text": "früh"
+        },
+        "fr": {
+          "text": "tôt"
+        },
+        "es": {
+          "text": "temprano"
+        },
+        "ja": {
+          "text": "早いです"
+        },
+        "zh": {
+          "text": "早"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDENT",
+      "type": "noun",
+      "senseKey": "student",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "student"
+        },
+        "de": {
+          "text": "der Schüler"
+        },
+        "fr": {
+          "text": "l’élève"
+        },
+        "es": {
+          "text": "el estudiante"
+        },
+        "ja": {
+          "text": "生徒"
+        },
+        "zh": {
+          "text": "學生"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WAIT",
+      "type": "verb",
+      "senseKey": "wait",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "wait"
+        },
+        "de": {
+          "text": "warten"
+        },
+        "fr": {
+          "text": "attendre"
+        },
+        "es": {
+          "text": "esperar"
+        },
+        "ja": {
+          "text": "待ちます"
+        },
+        "zh": {
+          "text": "等"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_7_HOW_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "how do I get to",
+        "de": "wie komme ich zu",
+        "fr": "comment aller à",
+        "es": "cómo llego a",
+        "ja": "どうやって行きますか",
+        "zh": "怎樣去"
+      }
+    },
+    {
+      "tokenId": "TOKEN_7_HOW_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "go to",
+        "de": "geh zu",
+        "fr": "va à",
+        "es": "ve a",
+        "ja": "行ってください",
+        "zh": "請去"
+      }
+    },
+    {
+      "tokenId": "TOKEN_7_HOW_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "left/right",
+        "de": "links/rechts",
+        "fr": "gauche/droite",
+        "es": "izquierda/derecha",
+        "ja": "左/右",
+        "zh": "左/右"
+      }
+    },
+    {
+      "tokenId": "TOKEN_7_HOW_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "please",
+        "de": "bitte",
+        "fr": "s’il te plaît",
+        "es": "por favor",
+        "ja": "お願いします",
+        "zh": "請"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_7_1",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "How do I get to the classroom?",
+              "tiles": [
+                "How",
+                "do",
+                "I",
+                "get",
+                "to",
+                "the",
+                "classroom",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "How → do → I → get → to → the → classroom → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "get",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "to",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classroom",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie komme ich zu das Klassenzimmer?",
+              "tiles": [
+                "Wie",
+                "komme",
+                "ich",
+                "zu",
+                "das",
+                "Klassenzimmer",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Wie → komme → ich → zu → das → Klassenzimmer → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "komme",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Klassenzimmer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Comment aller à la salle de classe ?",
+              "tiles": [
+                "Comment",
+                "aller",
+                "à",
+                "la",
+                "salle",
+                "de",
+                "classe",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Comment → aller → à → la → salle → de → classe → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Comment",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aller",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "salle",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cómo llego a el aula?",
+              "tiles": [
+                "¿",
+                "Cómo",
+                "llego",
+                "a",
+                "el",
+                "aula",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "¿ → Cómo → llego → a → el → aula → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cómo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "llego",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aula",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "教室へはどうやって行きますか。",
+              "tiles": [
+                "教室へはどうやって行きますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "教室へはどうやって行きますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "教室へはどうやって行きますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "怎樣去課室？",
+              "tiles": [
+                "怎樣去課室？"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "怎樣去課室？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "怎樣去課室？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_7_2",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Go to the classroom, please.",
+              "tiles": [
+                "Go",
+                "to",
+                "the",
+                "classroom,",
+                "please",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Go → to → the → classroom, → please → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Go",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "to",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classroom,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "please",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Geh bitte zu das Klassenzimmer.",
+              "tiles": [
+                "Geh",
+                "bitte",
+                "zu",
+                "das",
+                "Klassenzimmer",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Geh → bitte → zu → das → Klassenzimmer → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Geh",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bitte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Klassenzimmer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Va à la salle de classe, s’il te plaît.",
+              "tiles": [
+                "Va",
+                "à",
+                "la",
+                "salle",
+                "de",
+                "classe,",
+                "s’il",
+                "te",
+                "plaît",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Va → à → la → salle → de → classe, → s’il → te → plaît → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Va",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "salle",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classe,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "s’il",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plaît",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Ve a el aula, por favor.",
+              "tiles": [
+                "Ve",
+                "a",
+                "el",
+                "aula,",
+                "por",
+                "favor",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "Ve → a → el → aula, → por → favor → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ve",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aula,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "favor",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "教室へ行ってください。",
+              "tiles": [
+                "教室へ行ってください。"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "教室へ行ってください。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "教室へ行ってください。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "請去課室。",
+              "tiles": [
+                "請去課室。"
+              ],
+              "analysis": {
+                "sentencePattern": "Directions and places sentence",
+                "literalOrderExplanation": "請去課室。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "請去課室。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "how to get to, go to"
+      ],
+      "sourceChainId": "CHAIN_7_1",
+      "translations": {
+        "en": {
+          "text": "How do I get to the classroom?",
+          "tiles": [
+            "How",
+            "do",
+            "I",
+            "get",
+            "to",
+            "the",
+            "classroom",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "How → do → I → get → to → the → classroom → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "get",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "to",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "classroom",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie komme ich zu das Klassenzimmer?",
+          "tiles": [
+            "Wie",
+            "komme",
+            "ich",
+            "zu",
+            "das",
+            "Klassenzimmer",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Wie → komme → ich → zu → das → Klassenzimmer → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "komme",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "zu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Klassenzimmer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Comment aller à la salle de classe ?",
+          "tiles": [
+            "Comment",
+            "aller",
+            "à",
+            "la",
+            "salle",
+            "de",
+            "classe",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Comment → aller → à → la → salle → de → classe → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Comment",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aller",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "salle",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "classe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cómo llego a el aula?",
+          "tiles": [
+            "¿",
+            "Cómo",
+            "llego",
+            "a",
+            "el",
+            "aula",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "¿ → Cómo → llego → a → el → aula → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cómo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "llego",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aula",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "教室へはどうやって行きますか。",
+          "tiles": [
+            "教室へはどうやって行きますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "教室へはどうやって行きますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "教室へはどうやって行きますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "怎樣去課室？",
+          "tiles": [
+            "怎樣去課室？"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "怎樣去課室？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "怎樣去課室？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "how to get to, go to"
+      ],
+      "sourceChainId": "CHAIN_7_2",
+      "translations": {
+        "en": {
+          "text": "Go to the classroom, please.",
+          "tiles": [
+            "Go",
+            "to",
+            "the",
+            "classroom,",
+            "please",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Go → to → the → classroom, → please → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Go",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "to",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "classroom,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "please",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Geh bitte zu das Klassenzimmer.",
+          "tiles": [
+            "Geh",
+            "bitte",
+            "zu",
+            "das",
+            "Klassenzimmer",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Geh → bitte → zu → das → Klassenzimmer → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Geh",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bitte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "zu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Klassenzimmer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Va à la salle de classe, s’il te plaît.",
+          "tiles": [
+            "Va",
+            "à",
+            "la",
+            "salle",
+            "de",
+            "classe,",
+            "s’il",
+            "te",
+            "plaît",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Va → à → la → salle → de → classe, → s’il → te → plaît → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Va",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "salle",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "classe,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "s’il",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plaît",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Ve a el aula, por favor.",
+          "tiles": [
+            "Ve",
+            "a",
+            "el",
+            "aula,",
+            "por",
+            "favor",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "Ve → a → el → aula, → por → favor → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ve",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aula,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "favor",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "教室へ行ってください。",
+          "tiles": [
+            "教室へ行ってください。"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "教室へ行ってください。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "教室へ行ってください。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "請去課室。",
+          "tiles": [
+            "請去課室。"
+          ],
+          "analysis": {
+            "sentencePattern": "Directions and places sentence",
+            "literalOrderExplanation": "請去課室。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "請去課室。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "STUDENT": [
+      "S001",
+      "S002"
+    ],
+    "BIRTHDAY": [
+      "S001",
+      "S002"
+    ],
+    "CLASSROOM": [
+      "S001",
+      "S002"
+    ],
+    "WAIT": [
+      "S001",
+      "S002"
+    ],
+    "CLOCK": [
+      "S001",
+      "S002"
+    ],
+    "EARLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

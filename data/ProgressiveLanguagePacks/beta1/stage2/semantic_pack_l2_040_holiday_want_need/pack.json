@@ -1,0 +1,1397 @@
+{
+  "packId": "semantic_pack_l2_040_holiday_want_need",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_040 Holiday Want Need",
+  "description": "A1+ Want and need pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_4_040_holiday_want_need",
+    "title": "Holiday",
+    "difficultyStage": 4,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "want, need, would like"
+      ],
+      "german": [
+        "ich möchte",
+        "brauchst du",
+        "ich hätte gern"
+      ],
+      "french": [
+        "je veux",
+        "as-tu besoin de",
+        "je voudrais"
+      ],
+      "spanish": [
+        "quiero",
+        "necesitas",
+        "quisiera"
+      ],
+      "japanese": [
+        "ほしいです",
+        "必要ですか",
+        "お願いします"
+      ],
+      "chinese": [
+        "我想要",
+        "你需要嗎",
+        "我想要"
+      ]
+    },
+    "sentenceGoals": [
+      "I want the photo.",
+      "Do you need the photo?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_4_WANT,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I want",
+        "de": "ich möchte",
+        "fr": "je veux",
+        "es": "quiero",
+        "ja": "ほしいです",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "do you need",
+        "de": "brauchst du",
+        "fr": "as-tu besoin de",
+        "es": "necesitas",
+        "ja": "必要ですか",
+        "zh": "你需要嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_4_WANT,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "object",
+        "de": "Objekt",
+        "fr": "objet",
+        "es": "objeto",
+        "ja": "物",
+        "zh": "物件"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_4_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I want the photo.",
+              "tiles": [
+                "I",
+                "want",
+                "the",
+                "photo",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "I → want → the → photo → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "want",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich möchte ein Foto.",
+              "tiles": [
+                "Ich",
+                "möchte",
+                "ein",
+                "Foto",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Ich → möchte → ein → Foto → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "möchte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Je veux une photo.",
+              "tiles": [
+                "Je",
+                "veux",
+                "une",
+                "photo",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Je → veux → une → photo → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Je",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "veux",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "une",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Quiero una foto.",
+              "tiles": [
+                "Quiero",
+                "una",
+                "foto",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Quiero → una → foto → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Quiero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "una",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "写真がほしいです。",
+              "tiles": [
+                "写真がほしいです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "写真がほしいです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "写真がほしいです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我想要一張相片。",
+              "tiles": [
+                "我想要一張相片。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "我想要一張相片。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我想要一張相片。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_4_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Do you need the photo?",
+              "tiles": [
+                "Do",
+                "you",
+                "need",
+                "the",
+                "photo",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Do → you → need → the → photo → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "need",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Brauchst du ein Foto?",
+              "tiles": [
+                "Brauchst",
+                "du",
+                "ein",
+                "Foto",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "Brauchst → du → ein → Foto → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Brauchst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "As-tu besoin de la photo ?",
+              "tiles": [
+                "As-tu",
+                "besoin",
+                "de",
+                "la",
+                "photo",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "As-tu → besoin → de → la → photo → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "As-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "besoin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Necesitas una foto?",
+              "tiles": [
+                "¿",
+                "Necesitas",
+                "una",
+                "foto",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "¿ → Necesitas → una → foto → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Necesitas",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "una",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "写真が必要ですか。",
+              "tiles": [
+                "写真が必要ですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "写真が必要ですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "写真が必要ですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你需要相片嗎？",
+              "tiles": [
+                "你需要相片嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Want and need sentence",
+                "literalOrderExplanation": "你需要相片嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你需要相片嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_1",
+      "translations": {
+        "en": {
+          "text": "I want the photo.",
+          "tiles": [
+            "I",
+            "want",
+            "the",
+            "photo",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "I → want → the → photo → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "want",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich möchte ein Foto.",
+          "tiles": [
+            "Ich",
+            "möchte",
+            "ein",
+            "Foto",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Ich → möchte → ein → Foto → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "möchte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Je veux une photo.",
+          "tiles": [
+            "Je",
+            "veux",
+            "une",
+            "photo",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Je → veux → une → photo → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Je",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "veux",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "une",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Quiero una foto.",
+          "tiles": [
+            "Quiero",
+            "una",
+            "foto",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Quiero → una → foto → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Quiero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "una",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "写真がほしいです。",
+          "tiles": [
+            "写真がほしいです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "写真がほしいです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "写真がほしいです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我想要一張相片。",
+          "tiles": [
+            "我想要一張相片。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "我想要一張相片。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我想要一張相片。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "want, need, would like"
+      ],
+      "sourceChainId": "CHAIN_4_2",
+      "translations": {
+        "en": {
+          "text": "Do you need the photo?",
+          "tiles": [
+            "Do",
+            "you",
+            "need",
+            "the",
+            "photo",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Do → you → need → the → photo → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "need",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Brauchst du ein Foto?",
+          "tiles": [
+            "Brauchst",
+            "du",
+            "ein",
+            "Foto",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "Brauchst → du → ein → Foto → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Brauchst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "As-tu besoin de la photo ?",
+          "tiles": [
+            "As-tu",
+            "besoin",
+            "de",
+            "la",
+            "photo",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "As-tu → besoin → de → la → photo → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "As-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "besoin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Necesitas una foto?",
+          "tiles": [
+            "¿",
+            "Necesitas",
+            "una",
+            "foto",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "¿ → Necesitas → una → foto → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Necesitas",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "una",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "写真が必要ですか。",
+          "tiles": [
+            "写真が必要ですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "写真が必要ですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "写真が必要ですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你需要相片嗎？",
+          "tiles": [
+            "你需要相片嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Want and need sentence",
+            "literalOrderExplanation": "你需要相片嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你需要相片嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

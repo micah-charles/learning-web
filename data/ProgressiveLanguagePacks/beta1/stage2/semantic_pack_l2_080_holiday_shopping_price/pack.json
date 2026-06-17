@@ -1,0 +1,1493 @@
+{
+  "packId": "semantic_pack_l2_080_holiday_shopping_price",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_080 Holiday Shopping Price",
+  "description": "A1+ Shopping and price pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_8_080_holiday_shopping_price",
+    "title": "Holiday",
+    "difficultyStage": 8,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "how much, costs, euros"
+      ],
+      "german": [
+        "wie viel",
+        "kostet",
+        "Euro"
+      ],
+      "french": [
+        "combien",
+        "coûte",
+        "euros"
+      ],
+      "spanish": [
+        "cuánto",
+        "cuesta",
+        "euros"
+      ],
+      "japanese": [
+        "いくら",
+        "かかります",
+        "ユーロ"
+      ],
+      "chinese": [
+        "多少錢",
+        "要",
+        "歐元"
+      ]
+    },
+    "sentenceGoals": [
+      "How much is the photo?",
+      "The photo costs three euros."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_8_HOW_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "how much",
+        "de": "wie viel",
+        "fr": "combien",
+        "es": "cuánto",
+        "ja": "いくら",
+        "zh": "多少錢"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "costs",
+        "de": "kostet",
+        "fr": "coûte",
+        "es": "cuesta",
+        "ja": "かかります",
+        "zh": "要"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "euros",
+        "de": "Euro",
+        "fr": "euros",
+        "es": "euros",
+        "ja": "ユーロ",
+        "zh": "歐元"
+      }
+    },
+    {
+      "tokenId": "TOKEN_8_HOW_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I would like",
+        "de": "ich hätte gern",
+        "fr": "je voudrais",
+        "es": "quisiera",
+        "ja": "お願いします",
+        "zh": "我想要"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_8_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "How much is the photo?",
+              "tiles": [
+                "How",
+                "much",
+                "is",
+                "the",
+                "photo",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "How → much → is → the → photo → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "How",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "much",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wie viel kostet das Foto?",
+              "tiles": [
+                "Wie",
+                "viel",
+                "kostet",
+                "das",
+                "Foto",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Wie → viel → kostet → das → Foto → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "viel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Combien coûte la photo ?",
+              "tiles": [
+                "Combien",
+                "coûte",
+                "la",
+                "photo",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Combien → coûte → la → photo → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Combien",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Cuánto cuesta la foto?",
+              "tiles": [
+                "¿",
+                "Cuánto",
+                "cuesta",
+                "la",
+                "foto",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "¿ → Cuánto → cuesta → la → foto → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Cuánto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "写真はいくらですか。",
+              "tiles": [
+                "写真はいくらですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "写真はいくらですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "写真はいくらですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "相片多少錢？",
+              "tiles": [
+                "相片多少錢？"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "相片多少錢？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "相片多少錢？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_8_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The photo costs three euros.",
+              "tiles": [
+                "The",
+                "photo",
+                "costs",
+                "three",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "The → photo → costs → three → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "costs",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "three",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das foto kostet drei Euro.",
+              "tiles": [
+                "Das",
+                "foto",
+                "kostet",
+                "drei",
+                "Euro",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "Das → foto → kostet → drei → Euro → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kostet",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "drei",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Euro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La photo coûte trois euros.",
+              "tiles": [
+                "La",
+                "photo",
+                "coûte",
+                "trois",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "La → photo → coûte → trois → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "photo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "coûte",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "trois",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La foto cuesta tres euros.",
+              "tiles": [
+                "La",
+                "foto",
+                "cuesta",
+                "tres",
+                "euros",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "La → foto → cuesta → tres → euros → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "foto",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuesta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tres",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "euros",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "写真は三ユーロです。",
+              "tiles": [
+                "写真は三ユーロです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "写真は三ユーロです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "写真は三ユーロです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "相片三歐元。",
+              "tiles": [
+                "相片三歐元。"
+              ],
+              "analysis": {
+                "sentencePattern": "Shopping and price sentence",
+                "literalOrderExplanation": "相片三歐元。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "相片三歐元。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_1",
+      "translations": {
+        "en": {
+          "text": "How much is the photo?",
+          "tiles": [
+            "How",
+            "much",
+            "is",
+            "the",
+            "photo",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "How → much → is → the → photo → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "How",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "much",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wie viel kostet das Foto?",
+          "tiles": [
+            "Wie",
+            "viel",
+            "kostet",
+            "das",
+            "Foto",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Wie → viel → kostet → das → Foto → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "viel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Combien coûte la photo ?",
+          "tiles": [
+            "Combien",
+            "coûte",
+            "la",
+            "photo",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Combien → coûte → la → photo → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Combien",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Cuánto cuesta la foto?",
+          "tiles": [
+            "¿",
+            "Cuánto",
+            "cuesta",
+            "la",
+            "foto",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "¿ → Cuánto → cuesta → la → foto → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Cuánto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "写真はいくらですか。",
+          "tiles": [
+            "写真はいくらですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "写真はいくらですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "写真はいくらですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "相片多少錢？",
+          "tiles": [
+            "相片多少錢？"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "相片多少錢？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "相片多少錢？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "how much, costs, euros"
+      ],
+      "sourceChainId": "CHAIN_8_2",
+      "translations": {
+        "en": {
+          "text": "The photo costs three euros.",
+          "tiles": [
+            "The",
+            "photo",
+            "costs",
+            "three",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "The → photo → costs → three → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "costs",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "three",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das foto kostet drei Euro.",
+          "tiles": [
+            "Das",
+            "foto",
+            "kostet",
+            "drei",
+            "Euro",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "Das → foto → kostet → drei → Euro → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kostet",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "drei",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Euro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La photo coûte trois euros.",
+          "tiles": [
+            "La",
+            "photo",
+            "coûte",
+            "trois",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "La → photo → coûte → trois → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "photo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "coûte",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "trois",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La foto cuesta tres euros.",
+          "tiles": [
+            "La",
+            "foto",
+            "cuesta",
+            "tres",
+            "euros",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "La → foto → cuesta → tres → euros → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "foto",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuesta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tres",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "euros",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "写真は三ユーロです。",
+          "tiles": [
+            "写真は三ユーロです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "写真は三ユーロです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "写真は三ユーロです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "相片三歐元。",
+          "tiles": [
+            "相片三歐元。"
+          ],
+          "analysis": {
+            "sentencePattern": "Shopping and price sentence",
+            "literalOrderExplanation": "相片三歐元。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "相片三歐元。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

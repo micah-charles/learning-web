@@ -1,0 +1,1381 @@
+{
+  "packId": "semantic_pack_l2_014_sports_likes_opinions",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_014 Sports Likes Opinions",
+  "description": "A1+ Likes and opinions pack: Sports",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_2_014_sports_likes_opinions",
+    "title": "Sports",
+    "difficultyStage": 2,
+    "semanticDomains": [
+      "sports"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "like, think, adjectives"
+      ],
+      "german": [
+        "ich mag",
+        "ich finde",
+        "es ist"
+      ],
+      "french": [
+        "j’aime",
+        "je trouve que",
+        "c’est"
+      ],
+      "spanish": [
+        "me gusta",
+        "creo que",
+        "es"
+      ],
+      "japanese": [
+        "好きです",
+        "と思います",
+        "です"
+      ],
+      "chinese": [
+        "我喜歡",
+        "我覺得",
+        "是"
+      ]
+    },
+    "sentenceGoals": [
+      "I like football.",
+      "I think it is sporty."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIKE",
+      "type": "noun",
+      "senseKey": "bike",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "bike"
+        },
+        "de": {
+          "text": "das Fahrrad"
+        },
+        "fr": {
+          "text": "le vélo"
+        },
+        "es": {
+          "text": "la bicicleta"
+        },
+        "ja": {
+          "text": "自転車"
+        },
+        "zh": {
+          "text": "單車"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FOOTBALL",
+      "type": "noun",
+      "senseKey": "football",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "football"
+        },
+        "de": {
+          "text": "Fußball"
+        },
+        "fr": {
+          "text": "le football"
+        },
+        "es": {
+          "text": "el fútbol"
+        },
+        "ja": {
+          "text": "サッカー"
+        },
+        "zh": {
+          "text": "足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FRIEND",
+      "type": "noun",
+      "senseKey": "friend",
+      "semanticCategory": "social",
+      "translations": {
+        "en": {
+          "text": "friend"
+        },
+        "de": {
+          "text": "der Freund"
+        },
+        "fr": {
+          "text": "l’ami"
+        },
+        "es": {
+          "text": "el amigo"
+        },
+        "ja": {
+          "text": "友だち"
+        },
+        "zh": {
+          "text": "朋友"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PARK",
+      "type": "noun",
+      "senseKey": "park",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "park"
+        },
+        "de": {
+          "text": "der Park"
+        },
+        "fr": {
+          "text": "le parc"
+        },
+        "es": {
+          "text": "el parque"
+        },
+        "ja": {
+          "text": "公園"
+        },
+        "zh": {
+          "text": "公園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PLAY_FOOTBALL",
+      "type": "verb",
+      "senseKey": "play_football",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "play football"
+        },
+        "de": {
+          "text": "Fußball spielen"
+        },
+        "fr": {
+          "text": "jouer au football"
+        },
+        "es": {
+          "text": "jugar al fútbol"
+        },
+        "ja": {
+          "text": "サッカーをします"
+        },
+        "zh": {
+          "text": "踢足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SPORTY",
+      "type": "adjective",
+      "senseKey": "sporty",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sporty"
+        },
+        "de": {
+          "text": "sportlich"
+        },
+        "fr": {
+          "text": "sportif"
+        },
+        "es": {
+          "text": "deportivo"
+        },
+        "ja": {
+          "text": "スポーティーです"
+        },
+        "zh": {
+          "text": "愛運動"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_2_LIKE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I like",
+        "de": "ich mag",
+        "fr": "j’aime",
+        "es": "me gusta",
+        "ja": "好きです",
+        "zh": "我喜歡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_2_LIKE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I think",
+        "de": "ich finde",
+        "fr": "je trouve que",
+        "es": "creo que",
+        "ja": "と思います",
+        "zh": "我覺得"
+      }
+    },
+    {
+      "tokenId": "TOKEN_2_LIKE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "it is",
+        "de": "es ist",
+        "fr": "c’est",
+        "es": "es",
+        "ja": "です",
+        "zh": "是"
+      }
+    },
+    {
+      "tokenId": "TOKEN_2_LIKE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "adjectives",
+        "de": "Adjektive",
+        "fr": "adjectifs",
+        "es": "adjetivos",
+        "ja": "形容詞",
+        "zh": "形容詞"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_2_1",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I like football.",
+              "tiles": [
+                "I",
+                "like",
+                "football",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "I → like → football → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich mag Fußball.",
+              "tiles": [
+                "Ich",
+                "mag",
+                "Fußball",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "Ich → mag → Fußball → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fußball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’aime le football.",
+              "tiles": [
+                "J’aime",
+                "le",
+                "football",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "J’aime → le → football → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Me gusta el fútbol.",
+              "tiles": [
+                "Me",
+                "gusta",
+                "el",
+                "fútbol",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "Me → gusta → el → fútbol → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Me",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fútbol",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "サッカーが好きです。",
+              "tiles": [
+                "サッカーが好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "サッカーが好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "サッカーが好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我喜歡足球。",
+              "tiles": [
+                "我喜歡足球。"
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "我喜歡足球。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我喜歡足球。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_2_2",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I think it is sporty.",
+              "tiles": [
+                "I",
+                "think",
+                "it",
+                "is",
+                "sporty",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "I → think → it → is → sporty → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "think",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sporty",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich finde, es ist sportlich.",
+              "tiles": [
+                "Ich",
+                "finde,",
+                "es",
+                "ist",
+                "sportlich",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "Ich → finde, → es → ist → sportlich → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "finde,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sportlich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Je trouve que c’est sportif.",
+              "tiles": [
+                "Je",
+                "trouve",
+                "que",
+                "c’est",
+                "sportif",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "Je → trouve → que → c’est → sportif → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Je",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "trouve",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sportif",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Creo que es deportivo.",
+              "tiles": [
+                "Creo",
+                "que",
+                "es",
+                "deportivo",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "Creo → que → es → deportivo → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Creo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "deportivo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "スポーティーですと思います。",
+              "tiles": [
+                "スポーティーですと思います。"
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "スポーティーですと思います。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "スポーティーですと思います。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我覺得它很愛運動。",
+              "tiles": [
+                "我覺得它很愛運動。"
+              ],
+              "analysis": {
+                "sentencePattern": "Likes and opinions sentence",
+                "literalOrderExplanation": "我覺得它很愛運動。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我覺得它很愛運動。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "like, think, adjectives"
+      ],
+      "sourceChainId": "CHAIN_2_1",
+      "translations": {
+        "en": {
+          "text": "I like football.",
+          "tiles": [
+            "I",
+            "like",
+            "football",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "I → like → football → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich mag Fußball.",
+          "tiles": [
+            "Ich",
+            "mag",
+            "Fußball",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "Ich → mag → Fußball → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fußball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’aime le football.",
+          "tiles": [
+            "J’aime",
+            "le",
+            "football",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "J’aime → le → football → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Me gusta el fútbol.",
+          "tiles": [
+            "Me",
+            "gusta",
+            "el",
+            "fútbol",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "Me → gusta → el → fútbol → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Me",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "fútbol",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "サッカーが好きです。",
+          "tiles": [
+            "サッカーが好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "サッカーが好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "サッカーが好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我喜歡足球。",
+          "tiles": [
+            "我喜歡足球。"
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "我喜歡足球。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我喜歡足球。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "like, think, adjectives"
+      ],
+      "sourceChainId": "CHAIN_2_2",
+      "translations": {
+        "en": {
+          "text": "I think it is sporty.",
+          "tiles": [
+            "I",
+            "think",
+            "it",
+            "is",
+            "sporty",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "I → think → it → is → sporty → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "think",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sporty",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich finde, es ist sportlich.",
+          "tiles": [
+            "Ich",
+            "finde,",
+            "es",
+            "ist",
+            "sportlich",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "Ich → finde, → es → ist → sportlich → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "finde,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sportlich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Je trouve que c’est sportif.",
+          "tiles": [
+            "Je",
+            "trouve",
+            "que",
+            "c’est",
+            "sportif",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "Je → trouve → que → c’est → sportif → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Je",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "trouve",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sportif",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Creo que es deportivo.",
+          "tiles": [
+            "Creo",
+            "que",
+            "es",
+            "deportivo",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "Creo → que → es → deportivo → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Creo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "deportivo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "スポーティーですと思います。",
+          "tiles": [
+            "スポーティーですと思います。"
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "スポーティーですと思います。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "スポーティーですと思います。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我覺得它很愛運動。",
+          "tiles": [
+            "我覺得它很愛運動。"
+          ],
+          "analysis": {
+            "sentencePattern": "Likes and opinions sentence",
+            "literalOrderExplanation": "我覺得它很愛運動。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我覺得它很愛運動。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FRIEND": [
+      "S001",
+      "S002"
+    ],
+    "FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "PARK": [
+      "S001",
+      "S002"
+    ],
+    "PLAY FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "BIKE": [
+      "S001",
+      "S002"
+    ],
+    "SPORTY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

@@ -1,0 +1,1669 @@
+{
+  "packId": "semantic_pack_l2_083_pets_because_reasons",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_083 Pets Because Reasons",
+  "description": "A1+ Reasons with because pack: Pets",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_9_083_pets_because_reasons",
+    "title": "Pets",
+    "difficultyStage": 9,
+    "semanticDomains": [
+      "pets"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "why, because"
+      ],
+      "german": [
+        "warum",
+        "weil",
+        "ich mag"
+      ],
+      "french": [
+        "pourquoi",
+        "parce que",
+        "j’aime"
+      ],
+      "spanish": [
+        "por qué",
+        "porque",
+        "me gusta"
+      ],
+      "japanese": [
+        "なぜ",
+        "から",
+        "好きです"
+      ],
+      "chinese": [
+        "為什麼",
+        "因為",
+        "我喜歡"
+      ]
+    },
+    "sentenceGoals": [
+      "Why do you like cat?",
+      "I like cat because it is cute."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BALL",
+      "type": "noun",
+      "senseKey": "ball",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "ball"
+        },
+        "de": {
+          "text": "der Ball"
+        },
+        "fr": {
+          "text": "le ballon"
+        },
+        "es": {
+          "text": "la pelota"
+        },
+        "ja": {
+          "text": "ボール"
+        },
+        "zh": {
+          "text": "球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CAT",
+      "type": "noun",
+      "senseKey": "cat",
+      "semanticCategory": "pets",
+      "translations": {
+        "en": {
+          "text": "cat"
+        },
+        "de": {
+          "text": "die Katze"
+        },
+        "fr": {
+          "text": "le chat"
+        },
+        "es": {
+          "text": "el gato"
+        },
+        "ja": {
+          "text": "猫"
+        },
+        "zh": {
+          "text": "貓"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CUTE",
+      "type": "adjective",
+      "senseKey": "cute",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cute"
+        },
+        "de": {
+          "text": "niedlich"
+        },
+        "fr": {
+          "text": "mignon"
+        },
+        "es": {
+          "text": "mono"
+        },
+        "ja": {
+          "text": "かわいいです"
+        },
+        "zh": {
+          "text": "可愛"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "DOG",
+      "type": "noun",
+      "senseKey": "dog",
+      "semanticCategory": "pets",
+      "translations": {
+        "en": {
+          "text": "dog"
+        },
+        "de": {
+          "text": "der Hund"
+        },
+        "fr": {
+          "text": "le chien"
+        },
+        "es": {
+          "text": "el perro"
+        },
+        "ja": {
+          "text": "犬"
+        },
+        "zh": {
+          "text": "狗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "GARDEN",
+      "type": "noun",
+      "senseKey": "garden",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "garden"
+        },
+        "de": {
+          "text": "der Garten"
+        },
+        "fr": {
+          "text": "le jardin"
+        },
+        "es": {
+          "text": "el jardín"
+        },
+        "ja": {
+          "text": "庭"
+        },
+        "zh": {
+          "text": "花園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "JUMP",
+      "type": "verb",
+      "senseKey": "jump",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "jump"
+        },
+        "de": {
+          "text": "springen"
+        },
+        "fr": {
+          "text": "sauter"
+        },
+        "es": {
+          "text": "saltar"
+        },
+        "ja": {
+          "text": "ジャンプします"
+        },
+        "zh": {
+          "text": "跳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_9_WHY,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "why",
+        "de": "warum",
+        "fr": "pourquoi",
+        "es": "por qué",
+        "ja": "なぜ",
+        "zh": "為什麼"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "ja": "から",
+        "zh": "因為"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I like",
+        "de": "ich mag",
+        "fr": "j’aime",
+        "es": "me gusta",
+        "ja": "好きです",
+        "zh": "我喜歡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "reason",
+        "de": "Grund",
+        "fr": "raison",
+        "es": "razón",
+        "ja": "理由",
+        "zh": "原因"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_9_1",
+      "linkedConcepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Why do you like cat?",
+              "tiles": [
+                "Why",
+                "do",
+                "you",
+                "like",
+                "cat",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Why → do → you → like → cat → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum magst du die Katze?",
+              "tiles": [
+                "Warum",
+                "magst",
+                "du",
+                "die",
+                "Katze",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Warum → magst → du → die → Katze → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Katze",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi aimes-tu le chat ?",
+              "tiles": [
+                "Pourquoi",
+                "aimes-tu",
+                "le",
+                "chat",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Pourquoi → aimes-tu → le → chat → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aimes-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué te gusta el gato?",
+              "tiles": [
+                "¿",
+                "Por",
+                "qué",
+                "te",
+                "gusta",
+                "el",
+                "gato",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "¿ → Por → qué → te → gusta → el → gato → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qué",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gato",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ猫が好きですか。",
+              "tiles": [
+                "なぜ猫が好きですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "なぜ猫が好きですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "なぜ猫が好きですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你為什麼喜歡貓？",
+              "tiles": [
+                "你為什麼喜歡貓？"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "你為什麼喜歡貓？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你為什麼喜歡貓？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_9_2",
+      "linkedConcepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I like cat because it is cute.",
+              "tiles": [
+                "I",
+                "like",
+                "cat",
+                "because",
+                "it",
+                "is",
+                "cute",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "I → like → cat → because → it → is → cute → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cute",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich mag die Katze, weil es niedlich ist.",
+              "tiles": [
+                "Ich",
+                "mag",
+                "die",
+                "Katze,",
+                "weil",
+                "es",
+                "niedlich",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Ich → mag → die → Katze, → weil → es → niedlich → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Katze,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "niedlich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’aime le chat parce que c’est mignon.",
+              "tiles": [
+                "J’aime",
+                "le",
+                "chat",
+                "parce",
+                "que",
+                "c’est",
+                "mignon",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "J’aime → le → chat → parce → que → c’est → mignon → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mignon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Me gusta el gato porque es mono.",
+              "tiles": [
+                "Me",
+                "gusta",
+                "el",
+                "gato",
+                "porque",
+                "es",
+                "mono",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Me → gusta → el → gato → porque → es → mono → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Me",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gato",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mono",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "かわいいから、猫が好きです。",
+              "tiles": [
+                "かわいいから、猫が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "かわいいから、猫が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "かわいいから、猫が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我喜歡貓，因為它很可愛。",
+              "tiles": [
+                "我喜歡貓，因為它很可愛。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "我喜歡貓，因為它很可愛。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我喜歡貓，因為它很可愛。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_1",
+      "translations": {
+        "en": {
+          "text": "Why do you like cat?",
+          "tiles": [
+            "Why",
+            "do",
+            "you",
+            "like",
+            "cat",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Why → do → you → like → cat → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum magst du die Katze?",
+          "tiles": [
+            "Warum",
+            "magst",
+            "du",
+            "die",
+            "Katze",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Warum → magst → du → die → Katze → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Katze",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi aimes-tu le chat ?",
+          "tiles": [
+            "Pourquoi",
+            "aimes-tu",
+            "le",
+            "chat",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Pourquoi → aimes-tu → le → chat → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aimes-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "chat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué te gusta el gato?",
+          "tiles": [
+            "¿",
+            "Por",
+            "qué",
+            "te",
+            "gusta",
+            "el",
+            "gato",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "¿ → Por → qué → te → gusta → el → gato → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "qué",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gato",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ猫が好きですか。",
+          "tiles": [
+            "なぜ猫が好きですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "なぜ猫が好きですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "なぜ猫が好きですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你為什麼喜歡貓？",
+          "tiles": [
+            "你為什麼喜歡貓？"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "你為什麼喜歡貓？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你為什麼喜歡貓？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_2",
+      "translations": {
+        "en": {
+          "text": "I like cat because it is cute.",
+          "tiles": [
+            "I",
+            "like",
+            "cat",
+            "because",
+            "it",
+            "is",
+            "cute",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "I → like → cat → because → it → is → cute → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cute",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich mag die Katze, weil es niedlich ist.",
+          "tiles": [
+            "Ich",
+            "mag",
+            "die",
+            "Katze,",
+            "weil",
+            "es",
+            "niedlich",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Ich → mag → die → Katze, → weil → es → niedlich → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Katze,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "niedlich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’aime le chat parce que c’est mignon.",
+          "tiles": [
+            "J’aime",
+            "le",
+            "chat",
+            "parce",
+            "que",
+            "c’est",
+            "mignon",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "J’aime → le → chat → parce → que → c’est → mignon → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "chat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mignon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Me gusta el gato porque es mono.",
+          "tiles": [
+            "Me",
+            "gusta",
+            "el",
+            "gato",
+            "porque",
+            "es",
+            "mono",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Me → gusta → el → gato → porque → es → mono → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Me",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gato",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mono",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "かわいいから、猫が好きです。",
+          "tiles": [
+            "かわいいから、猫が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "かわいいから、猫が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "かわいいから、猫が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我喜歡貓，因為它很可愛。",
+          "tiles": [
+            "我喜歡貓，因為它很可愛。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "我喜歡貓，因為它很可愛。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我喜歡貓，因為它很可愛。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "DOG": [
+      "S001",
+      "S002"
+    ],
+    "CAT": [
+      "S001",
+      "S002"
+    ],
+    "GARDEN": [
+      "S001",
+      "S002"
+    ],
+    "JUMP": [
+      "S001",
+      "S002"
+    ],
+    "BALL": [
+      "S001",
+      "S002"
+    ],
+    "CUTE": [
+      "S001",
+      "S002"
+    ]
+  }
+}

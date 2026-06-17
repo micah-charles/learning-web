@@ -1,0 +1,1301 @@
+{
+  "packId": "semantic_pack_l2_002_school_have_possession",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_002 School Have Possession",
+  "description": "A1+ Have and possession pack: School",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_1_002_school_have_possession",
+    "title": "School",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "school"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "have, my, your"
+      ],
+      "german": [
+        "ich habe",
+        "mein/meine",
+        "dein/deine"
+      ],
+      "french": [
+        "j’ai",
+        "mon/ma",
+        "ton/ta"
+      ],
+      "spanish": [
+        "tengo",
+        "mi",
+        "tu"
+      ],
+      "japanese": [
+        "あります/います",
+        "私の",
+        "あなたの"
+      ],
+      "chinese": [
+        "我有",
+        "我的",
+        "你的"
+      ]
+    },
+    "sentenceGoals": [
+      "I have a maths.",
+      "This is my book."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BOOK",
+      "type": "noun",
+      "senseKey": "book",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "book"
+        },
+        "de": {
+          "text": "das Buch"
+        },
+        "fr": {
+          "text": "le livre"
+        },
+        "es": {
+          "text": "el libro"
+        },
+        "ja": {
+          "text": "本"
+        },
+        "zh": {
+          "text": "書"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "INTERESTING",
+      "type": "adjective",
+      "senseKey": "interesting",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "interesting"
+        },
+        "de": {
+          "text": "interessant"
+        },
+        "fr": {
+          "text": "intéressant"
+        },
+        "es": {
+          "text": "interesante"
+        },
+        "ja": {
+          "text": "おもしろいです"
+        },
+        "zh": {
+          "text": "有趣"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MATHS",
+      "type": "noun",
+      "senseKey": "maths",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "maths"
+        },
+        "de": {
+          "text": "Mathe"
+        },
+        "fr": {
+          "text": "les maths"
+        },
+        "es": {
+          "text": "las matemáticas"
+        },
+        "ja": {
+          "text": "数学"
+        },
+        "zh": {
+          "text": "數學"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SCHOOL",
+      "type": "noun",
+      "senseKey": "school",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "school"
+        },
+        "de": {
+          "text": "die Schule"
+        },
+        "fr": {
+          "text": "l’école"
+        },
+        "es": {
+          "text": "la escuela"
+        },
+        "ja": {
+          "text": "学校"
+        },
+        "zh": {
+          "text": "學校"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDY",
+      "type": "verb",
+      "senseKey": "study",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "study"
+        },
+        "de": {
+          "text": "lernen"
+        },
+        "fr": {
+          "text": "étudier"
+        },
+        "es": {
+          "text": "estudiar"
+        },
+        "ja": {
+          "text": "勉強します"
+        },
+        "zh": {
+          "text": "學習"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TEACHER",
+      "type": "noun",
+      "senseKey": "teacher",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "teacher"
+        },
+        "de": {
+          "text": "der Lehrer"
+        },
+        "fr": {
+          "text": "le professeur"
+        },
+        "es": {
+          "text": "el profesor"
+        },
+        "ja": {
+          "text": "先生"
+        },
+        "zh": {
+          "text": "老師"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_1_HAVE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I have",
+        "de": "ich habe",
+        "fr": "j’ai",
+        "es": "tengo",
+        "ja": "あります/います",
+        "zh": "我有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "ja": "私の",
+        "zh": "我的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "your",
+        "de": "dein/deine",
+        "fr": "ton/ta",
+        "es": "tu",
+        "ja": "あなたの",
+        "zh": "你的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "this is",
+        "de": "das ist",
+        "fr": "c’est",
+        "es": "este/esta es",
+        "ja": "これは",
+        "zh": "這是"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_1_1",
+      "linkedConcepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I have a maths.",
+              "tiles": [
+                "I",
+                "have",
+                "a",
+                "maths",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "I → have → a → maths → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "have",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "maths",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich habe Mathe.",
+              "tiles": [
+                "Ich",
+                "habe",
+                "Mathe",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Ich → habe → Mathe → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "habe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Mathe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’ai les maths.",
+              "tiles": [
+                "J’ai",
+                "les",
+                "maths",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "J’ai → les → maths → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’ai",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "les",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "maths",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Tengo matemáticas.",
+              "tiles": [
+                "Tengo",
+                "matemáticas",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Tengo → matemáticas → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Tengo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "matemáticas",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "数学があります。",
+              "tiles": [
+                "数学があります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "数学があります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "数学があります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我有數學。",
+              "tiles": [
+                "我有數學。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "我有數學。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我有數學。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_1_2",
+      "linkedConcepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "This is my book.",
+              "tiles": [
+                "This",
+                "is",
+                "my",
+                "book",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "This → is → my → book → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "This",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "my",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "book",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das ist mein Buch.",
+              "tiles": [
+                "Das",
+                "ist",
+                "mein",
+                "Buch",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Das → ist → mein → Buch → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Buch",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "C’est mon livre.",
+              "tiles": [
+                "C’est",
+                "mon",
+                "livre",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "C’est → mon → livre → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "C’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "livre",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Este es mi libro.",
+              "tiles": [
+                "Este",
+                "es",
+                "mi",
+                "libro",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Este → es → mi → libro → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Este",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "libro",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "これは私の本です。",
+              "tiles": [
+                "これは私の本です。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "これは私の本です。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "これは私の本です。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "這是我的書。",
+              "tiles": [
+                "這是我的書。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "這是我的書。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "這是我的書。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_1",
+      "translations": {
+        "en": {
+          "text": "I have a maths.",
+          "tiles": [
+            "I",
+            "have",
+            "a",
+            "maths",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "I → have → a → maths → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "have",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "maths",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich habe Mathe.",
+          "tiles": [
+            "Ich",
+            "habe",
+            "Mathe",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Ich → habe → Mathe → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "habe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Mathe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’ai les maths.",
+          "tiles": [
+            "J’ai",
+            "les",
+            "maths",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "J’ai → les → maths → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’ai",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "les",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "maths",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Tengo matemáticas.",
+          "tiles": [
+            "Tengo",
+            "matemáticas",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Tengo → matemáticas → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Tengo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "matemáticas",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "数学があります。",
+          "tiles": [
+            "数学があります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "数学があります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "数学があります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我有數學。",
+          "tiles": [
+            "我有數學。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "我有數學。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我有數學。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TEACHER",
+        "MATHS",
+        "SCHOOL",
+        "STUDY",
+        "BOOK",
+        "INTERESTING"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_2",
+      "translations": {
+        "en": {
+          "text": "This is my book.",
+          "tiles": [
+            "This",
+            "is",
+            "my",
+            "book",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "This → is → my → book → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "This",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "my",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "book",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das ist mein Buch.",
+          "tiles": [
+            "Das",
+            "ist",
+            "mein",
+            "Buch",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Das → ist → mein → Buch → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Buch",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "C’est mon livre.",
+          "tiles": [
+            "C’est",
+            "mon",
+            "livre",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "C’est → mon → livre → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "C’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "livre",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Este es mi libro.",
+          "tiles": [
+            "Este",
+            "es",
+            "mi",
+            "libro",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Este → es → mi → libro → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Este",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "libro",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "これは私の本です。",
+          "tiles": [
+            "これは私の本です。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "これは私の本です。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "これは私の本です。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "這是我的書。",
+          "tiles": [
+            "這是我的書。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "這是我的書。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "這是我的書。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TEACHER": [
+      "S001",
+      "S002"
+    ],
+    "MATHS": [
+      "S001",
+      "S002"
+    ],
+    "SCHOOL": [
+      "S001",
+      "S002"
+    ],
+    "STUDY": [
+      "S001",
+      "S002"
+    ],
+    "BOOK": [
+      "S001",
+      "S002"
+    ],
+    "INTERESTING": [
+      "S001",
+      "S002"
+    ]
+  }
+}

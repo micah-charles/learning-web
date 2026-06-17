@@ -1,0 +1,1509 @@
+{
+  "packId": "semantic_pack_l2_048_time_where_location",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_048 Time Where Location",
+  "description": "A1+ Where and location pack: Time",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_5_048_time_where_location",
+    "title": "Time",
+    "difficultyStage": 5,
+    "semanticDomains": [
+      "time"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "where, in/at/on"
+      ],
+      "german": [
+        "wo",
+        "in/im",
+        "am"
+      ],
+      "french": [
+        "où",
+        "dans",
+        "à"
+      ],
+      "spanish": [
+        "dónde",
+        "en",
+        "a"
+      ],
+      "japanese": [
+        "どこ",
+        "に",
+        "で"
+      ],
+      "chinese": [
+        "哪裡",
+        "在",
+        "有"
+      ]
+    },
+    "sentenceGoals": [
+      "Where is the birthday?",
+      "The birthday is in the classroom."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIRTHDAY",
+      "type": "noun",
+      "senseKey": "birthday",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "birthday"
+        },
+        "de": {
+          "text": "der Geburtstag"
+        },
+        "fr": {
+          "text": "l’anniversaire"
+        },
+        "es": {
+          "text": "el cumpleaños"
+        },
+        "ja": {
+          "text": "誕生日"
+        },
+        "zh": {
+          "text": "生日"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLASSROOM",
+      "type": "noun",
+      "senseKey": "classroom",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "classroom"
+        },
+        "de": {
+          "text": "das Klassenzimmer"
+        },
+        "fr": {
+          "text": "la salle de classe"
+        },
+        "es": {
+          "text": "el aula"
+        },
+        "ja": {
+          "text": "教室"
+        },
+        "zh": {
+          "text": "課室"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLOCK",
+      "type": "noun",
+      "senseKey": "clock",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "clock"
+        },
+        "de": {
+          "text": "die Uhr"
+        },
+        "fr": {
+          "text": "l’horloge"
+        },
+        "es": {
+          "text": "el reloj"
+        },
+        "ja": {
+          "text": "時計"
+        },
+        "zh": {
+          "text": "時鐘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EARLY",
+      "type": "adjective",
+      "senseKey": "early",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "early"
+        },
+        "de": {
+          "text": "früh"
+        },
+        "fr": {
+          "text": "tôt"
+        },
+        "es": {
+          "text": "temprano"
+        },
+        "ja": {
+          "text": "早いです"
+        },
+        "zh": {
+          "text": "早"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDENT",
+      "type": "noun",
+      "senseKey": "student",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "student"
+        },
+        "de": {
+          "text": "der Schüler"
+        },
+        "fr": {
+          "text": "l’élève"
+        },
+        "es": {
+          "text": "el estudiante"
+        },
+        "ja": {
+          "text": "生徒"
+        },
+        "zh": {
+          "text": "學生"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WAIT",
+      "type": "verb",
+      "senseKey": "wait",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "wait"
+        },
+        "de": {
+          "text": "warten"
+        },
+        "fr": {
+          "text": "attendre"
+        },
+        "es": {
+          "text": "esperar"
+        },
+        "ja": {
+          "text": "待ちます"
+        },
+        "zh": {
+          "text": "等"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_5_WHERE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "where",
+        "de": "wo",
+        "fr": "où",
+        "es": "dónde",
+        "ja": "どこ",
+        "zh": "哪裡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im",
+        "fr": "dans",
+        "es": "en",
+        "ja": "に",
+        "zh": "在"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "at",
+        "de": "am",
+        "fr": "à",
+        "es": "a",
+        "ja": "で",
+        "zh": "有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "there is",
+        "de": "es gibt",
+        "fr": "il y a",
+        "es": "hay",
+        "ja": "あります/います",
+        "zh": "裡"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_5_1",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Where is the birthday?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "birthday",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Where → is → the → birthday → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "birthday",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist der Geburtstag?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "der",
+                "Geburtstag",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Wo → ist → der → Geburtstag → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geburtstag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est l’anniversaire ?",
+              "tiles": [
+                "Où",
+                "est",
+                "l’anniversaire",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Où → est → l’anniversaire → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’anniversaire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está el cumpleaños?",
+              "tiles": [
+                "¿",
+                "Dónde",
+                "está",
+                "el",
+                "cumpleaños",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "¿ → Dónde → está → el → cumpleaños → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Dónde",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cumpleaños",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "誕生日はどこですか。",
+              "tiles": [
+                "誕生日はどこですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "誕生日はどこですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "誕生日はどこですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "生日在哪裡？",
+              "tiles": [
+                "生日在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "生日在哪裡？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "生日在哪裡？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_5_2",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The birthday is in the classroom.",
+              "tiles": [
+                "The",
+                "birthday",
+                "is",
+                "in",
+                "the",
+                "classroom",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "The → birthday → is → in → the → classroom → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "birthday",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classroom",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der geburtstag ist im Klassenzimmer.",
+              "tiles": [
+                "Der",
+                "geburtstag",
+                "ist",
+                "im",
+                "Klassenzimmer",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Der → geburtstag → ist → im → Klassenzimmer → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "geburtstag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Klassenzimmer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "L’anniversaire est dans la salle de classe.",
+              "tiles": [
+                "L’anniversaire",
+                "est",
+                "dans",
+                "la",
+                "salle",
+                "de",
+                "classe",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "L’anniversaire → est → dans → la → salle → de → classe → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "L’anniversaire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "salle",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "de",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "classe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El cumpleaños está en el aula.",
+              "tiles": [
+                "El",
+                "cumpleaños",
+                "está",
+                "en",
+                "el",
+                "aula",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "El → cumpleaños → está → en → el → aula → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cumpleaños",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aula",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "誕生日は教室にあります。",
+              "tiles": [
+                "誕生日は教室にあります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "誕生日は教室にあります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "誕生日は教室にあります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "生日在課室。",
+              "tiles": [
+                "生日在課室。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "生日在課室。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "生日在課室。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_1",
+      "translations": {
+        "en": {
+          "text": "Where is the birthday?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "birthday",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Where → is → the → birthday → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "birthday",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist der Geburtstag?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "der",
+            "Geburtstag",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Wo → ist → der → Geburtstag → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geburtstag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est l’anniversaire ?",
+          "tiles": [
+            "Où",
+            "est",
+            "l’anniversaire",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Où → est → l’anniversaire → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’anniversaire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está el cumpleaños?",
+          "tiles": [
+            "¿",
+            "Dónde",
+            "está",
+            "el",
+            "cumpleaños",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "¿ → Dónde → está → el → cumpleaños → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Dónde",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cumpleaños",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "誕生日はどこですか。",
+          "tiles": [
+            "誕生日はどこですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "誕生日はどこですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "誕生日はどこですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "生日在哪裡？",
+          "tiles": [
+            "生日在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "生日在哪裡？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "生日在哪裡？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_2",
+      "translations": {
+        "en": {
+          "text": "The birthday is in the classroom.",
+          "tiles": [
+            "The",
+            "birthday",
+            "is",
+            "in",
+            "the",
+            "classroom",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "The → birthday → is → in → the → classroom → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "birthday",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "classroom",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der geburtstag ist im Klassenzimmer.",
+          "tiles": [
+            "Der",
+            "geburtstag",
+            "ist",
+            "im",
+            "Klassenzimmer",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Der → geburtstag → ist → im → Klassenzimmer → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "geburtstag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Klassenzimmer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "L’anniversaire est dans la salle de classe.",
+          "tiles": [
+            "L’anniversaire",
+            "est",
+            "dans",
+            "la",
+            "salle",
+            "de",
+            "classe",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "L’anniversaire → est → dans → la → salle → de → classe → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "L’anniversaire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "salle",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "de",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "classe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El cumpleaños está en el aula.",
+          "tiles": [
+            "El",
+            "cumpleaños",
+            "está",
+            "en",
+            "el",
+            "aula",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "El → cumpleaños → está → en → el → aula → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cumpleaños",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aula",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "誕生日は教室にあります。",
+          "tiles": [
+            "誕生日は教室にあります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "誕生日は教室にあります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "誕生日は教室にあります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "生日在課室。",
+          "tiles": [
+            "生日在課室。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "生日在課室。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "生日在課室。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "STUDENT": [
+      "S001",
+      "S002"
+    ],
+    "BIRTHDAY": [
+      "S001",
+      "S002"
+    ],
+    "CLASSROOM": [
+      "S001",
+      "S002"
+    ],
+    "WAIT": [
+      "S001",
+      "S002"
+    ],
+    "CLOCK": [
+      "S001",
+      "S002"
+    ],
+    "EARLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

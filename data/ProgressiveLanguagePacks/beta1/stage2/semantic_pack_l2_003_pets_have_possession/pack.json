@@ -1,0 +1,1333 @@
+{
+  "packId": "semantic_pack_l2_003_pets_have_possession",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_003 Pets Have Possession",
+  "description": "A1+ Have and possession pack: Pets",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_1_003_pets_have_possession",
+    "title": "Pets",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "pets"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "have, my, your"
+      ],
+      "german": [
+        "ich habe",
+        "mein/meine",
+        "dein/deine"
+      ],
+      "french": [
+        "j’ai",
+        "mon/ma",
+        "ton/ta"
+      ],
+      "spanish": [
+        "tengo",
+        "mi",
+        "tu"
+      ],
+      "japanese": [
+        "あります/います",
+        "私の",
+        "あなたの"
+      ],
+      "chinese": [
+        "我有",
+        "我的",
+        "你的"
+      ]
+    },
+    "sentenceGoals": [
+      "I have a cat.",
+      "This is my ball."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BALL",
+      "type": "noun",
+      "senseKey": "ball",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "ball"
+        },
+        "de": {
+          "text": "der Ball"
+        },
+        "fr": {
+          "text": "le ballon"
+        },
+        "es": {
+          "text": "la pelota"
+        },
+        "ja": {
+          "text": "ボール"
+        },
+        "zh": {
+          "text": "球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CAT",
+      "type": "noun",
+      "senseKey": "cat",
+      "semanticCategory": "pets",
+      "translations": {
+        "en": {
+          "text": "cat"
+        },
+        "de": {
+          "text": "die Katze"
+        },
+        "fr": {
+          "text": "le chat"
+        },
+        "es": {
+          "text": "el gato"
+        },
+        "ja": {
+          "text": "猫"
+        },
+        "zh": {
+          "text": "貓"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CUTE",
+      "type": "adjective",
+      "senseKey": "cute",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cute"
+        },
+        "de": {
+          "text": "niedlich"
+        },
+        "fr": {
+          "text": "mignon"
+        },
+        "es": {
+          "text": "mono"
+        },
+        "ja": {
+          "text": "かわいいです"
+        },
+        "zh": {
+          "text": "可愛"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "DOG",
+      "type": "noun",
+      "senseKey": "dog",
+      "semanticCategory": "pets",
+      "translations": {
+        "en": {
+          "text": "dog"
+        },
+        "de": {
+          "text": "der Hund"
+        },
+        "fr": {
+          "text": "le chien"
+        },
+        "es": {
+          "text": "el perro"
+        },
+        "ja": {
+          "text": "犬"
+        },
+        "zh": {
+          "text": "狗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "GARDEN",
+      "type": "noun",
+      "senseKey": "garden",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "garden"
+        },
+        "de": {
+          "text": "der Garten"
+        },
+        "fr": {
+          "text": "le jardin"
+        },
+        "es": {
+          "text": "el jardín"
+        },
+        "ja": {
+          "text": "庭"
+        },
+        "zh": {
+          "text": "花園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "JUMP",
+      "type": "verb",
+      "senseKey": "jump",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "jump"
+        },
+        "de": {
+          "text": "springen"
+        },
+        "fr": {
+          "text": "sauter"
+        },
+        "es": {
+          "text": "saltar"
+        },
+        "ja": {
+          "text": "ジャンプします"
+        },
+        "zh": {
+          "text": "跳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_1_HAVE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I have",
+        "de": "ich habe",
+        "fr": "j’ai",
+        "es": "tengo",
+        "ja": "あります/います",
+        "zh": "我有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "ja": "私の",
+        "zh": "我的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "your",
+        "de": "dein/deine",
+        "fr": "ton/ta",
+        "es": "tu",
+        "ja": "あなたの",
+        "zh": "你的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "this is",
+        "de": "das ist",
+        "fr": "c’est",
+        "es": "este/esta es",
+        "ja": "これは",
+        "zh": "這是"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_1_1",
+      "linkedConcepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I have a cat.",
+              "tiles": [
+                "I",
+                "have",
+                "a",
+                "cat",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "I → have → a → cat → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "have",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich habe eine Katze.",
+              "tiles": [
+                "Ich",
+                "habe",
+                "eine",
+                "Katze",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Ich → habe → eine → Katze → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "habe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "eine",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Katze",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’ai un chat.",
+              "tiles": [
+                "J’ai",
+                "un",
+                "chat",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "J’ai → un → chat → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’ai",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "chat",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Tengo un gato.",
+              "tiles": [
+                "Tengo",
+                "un",
+                "gato",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Tengo → un → gato → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Tengo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gato",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "猫がいます。",
+              "tiles": [
+                "猫がいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "猫がいます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "猫がいます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我有一隻貓。",
+              "tiles": [
+                "我有一隻貓。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "我有一隻貓。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我有一隻貓。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_1_2",
+      "linkedConcepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "This is my ball.",
+              "tiles": [
+                "This",
+                "is",
+                "my",
+                "ball",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "This → is → my → ball → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "This",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "my",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das ist mein Ball.",
+              "tiles": [
+                "Das",
+                "ist",
+                "mein",
+                "Ball",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Das → ist → mein → Ball → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Ball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "C’est mon ballon.",
+              "tiles": [
+                "C’est",
+                "mon",
+                "ballon",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "C’est → mon → ballon → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "C’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ballon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Este es mi pelota.",
+              "tiles": [
+                "Este",
+                "es",
+                "mi",
+                "pelota",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Este → es → mi → pelota → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Este",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pelota",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "これは私のボールです。",
+              "tiles": [
+                "これは私のボールです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "これは私のボールです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "これは私のボールです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "這是我的球。",
+              "tiles": [
+                "這是我的球。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "這是我的球。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "這是我的球。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_1",
+      "translations": {
+        "en": {
+          "text": "I have a cat.",
+          "tiles": [
+            "I",
+            "have",
+            "a",
+            "cat",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "I → have → a → cat → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "have",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich habe eine Katze.",
+          "tiles": [
+            "Ich",
+            "habe",
+            "eine",
+            "Katze",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Ich → habe → eine → Katze → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "habe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "eine",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Katze",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’ai un chat.",
+          "tiles": [
+            "J’ai",
+            "un",
+            "chat",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "J’ai → un → chat → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’ai",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "chat",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Tengo un gato.",
+          "tiles": [
+            "Tengo",
+            "un",
+            "gato",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Tengo → un → gato → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Tengo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gato",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "猫がいます。",
+          "tiles": [
+            "猫がいます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "猫がいます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "猫がいます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我有一隻貓。",
+          "tiles": [
+            "我有一隻貓。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "我有一隻貓。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我有一隻貓。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "DOG",
+        "CAT",
+        "GARDEN",
+        "JUMP",
+        "BALL",
+        "CUTE"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_2",
+      "translations": {
+        "en": {
+          "text": "This is my ball.",
+          "tiles": [
+            "This",
+            "is",
+            "my",
+            "ball",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "This → is → my → ball → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "This",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "my",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das ist mein Ball.",
+          "tiles": [
+            "Das",
+            "ist",
+            "mein",
+            "Ball",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Das → ist → mein → Ball → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Ball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "C’est mon ballon.",
+          "tiles": [
+            "C’est",
+            "mon",
+            "ballon",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "C’est → mon → ballon → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "C’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ballon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Este es mi pelota.",
+          "tiles": [
+            "Este",
+            "es",
+            "mi",
+            "pelota",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Este → es → mi → pelota → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Este",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pelota",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "これは私のボールです。",
+          "tiles": [
+            "これは私のボールです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "これは私のボールです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "これは私のボールです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "這是我的球。",
+          "tiles": [
+            "這是我的球。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "這是我的球。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "這是我的球。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "DOG": [
+      "S001",
+      "S002"
+    ],
+    "CAT": [
+      "S001",
+      "S002"
+    ],
+    "GARDEN": [
+      "S001",
+      "S002"
+    ],
+    "JUMP": [
+      "S001",
+      "S002"
+    ],
+    "BALL": [
+      "S001",
+      "S002"
+    ],
+    "CUTE": [
+      "S001",
+      "S002"
+    ]
+  }
+}

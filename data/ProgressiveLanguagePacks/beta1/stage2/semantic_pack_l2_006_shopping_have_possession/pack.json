@@ -1,0 +1,1304 @@
+{
+  "packId": "semantic_pack_l2_006_shopping_have_possession",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_006 Shopping Have Possession",
+  "description": "A1+ Have and possession pack: Shopping",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_1_006_shopping_have_possession",
+    "title": "Shopping",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "shopping"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "have, my, your"
+      ],
+      "german": [
+        "ich habe",
+        "mein/meine",
+        "dein/deine"
+      ],
+      "french": [
+        "j’ai",
+        "mon/ma",
+        "ton/ta"
+      ],
+      "spanish": [
+        "tengo",
+        "mi",
+        "tu"
+      ],
+      "japanese": [
+        "あります/います",
+        "私の",
+        "あなたの"
+      ],
+      "chinese": [
+        "我有",
+        "我的",
+        "你的"
+      ]
+    },
+    "sentenceGoals": [
+      "I have a shop.",
+      "This is my bread."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BREAD",
+      "type": "noun",
+      "senseKey": "bread",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "bread"
+        },
+        "de": {
+          "text": "das Brot"
+        },
+        "fr": {
+          "text": "le pain"
+        },
+        "es": {
+          "text": "el pan"
+        },
+        "ja": {
+          "text": "パン"
+        },
+        "zh": {
+          "text": "麵包"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "BUY",
+      "type": "verb",
+      "senseKey": "buy",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "buy"
+        },
+        "de": {
+          "text": "kaufen"
+        },
+        "fr": {
+          "text": "acheter"
+        },
+        "es": {
+          "text": "comprar"
+        },
+        "ja": {
+          "text": "買います"
+        },
+        "zh": {
+          "text": "買"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CHEAP",
+      "type": "adjective",
+      "senseKey": "cheap",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "cheap"
+        },
+        "de": {
+          "text": "billig"
+        },
+        "fr": {
+          "text": "bon marché"
+        },
+        "es": {
+          "text": "barato"
+        },
+        "ja": {
+          "text": "安いです"
+        },
+        "zh": {
+          "text": "便宜"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SHOP",
+      "type": "noun",
+      "senseKey": "shop",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "shop"
+        },
+        "de": {
+          "text": "das Geschäft"
+        },
+        "fr": {
+          "text": "le magasin"
+        },
+        "es": {
+          "text": "la tienda"
+        },
+        "ja": {
+          "text": "店"
+        },
+        "zh": {
+          "text": "商店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUPERMARKET",
+      "type": "noun",
+      "senseKey": "supermarket",
+      "semanticCategory": "shopping",
+      "translations": {
+        "en": {
+          "text": "supermarket"
+        },
+        "de": {
+          "text": "der Supermarkt"
+        },
+        "fr": {
+          "text": "le supermarché"
+        },
+        "es": {
+          "text": "el supermercado"
+        },
+        "ja": {
+          "text": "スーパー"
+        },
+        "zh": {
+          "text": "超級市場"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_1_HAVE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I have",
+        "de": "ich habe",
+        "fr": "j’ai",
+        "es": "tengo",
+        "ja": "あります/います",
+        "zh": "我有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "ja": "私の",
+        "zh": "我的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "your",
+        "de": "dein/deine",
+        "fr": "ton/ta",
+        "es": "tu",
+        "ja": "あなたの",
+        "zh": "你的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "this is",
+        "de": "das ist",
+        "fr": "c’est",
+        "es": "este/esta es",
+        "ja": "これは",
+        "zh": "這是"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_1_1",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I have a shop.",
+              "tiles": [
+                "I",
+                "have",
+                "a",
+                "shop",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "I → have → a → shop → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "have",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "shop",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich habe ein Geschäft.",
+              "tiles": [
+                "Ich",
+                "habe",
+                "ein",
+                "Geschäft",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Ich → habe → ein → Geschäft → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "habe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geschäft",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’ai un magasin.",
+              "tiles": [
+                "J’ai",
+                "un",
+                "magasin",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "J’ai → un → magasin → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’ai",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magasin",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Tengo una tienda.",
+              "tiles": [
+                "Tengo",
+                "una",
+                "tienda",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Tengo → una → tienda → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Tengo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "una",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tienda",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "店があります。",
+              "tiles": [
+                "店があります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "店があります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "店があります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我有一間商店。",
+              "tiles": [
+                "我有一間商店。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "我有一間商店。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我有一間商店。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_1_2",
+      "linkedConcepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "This is my bread.",
+              "tiles": [
+                "This",
+                "is",
+                "my",
+                "bread",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "This → is → my → bread → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "This",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "my",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bread",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das ist mein Brot.",
+              "tiles": [
+                "Das",
+                "ist",
+                "mein",
+                "Brot",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Das → ist → mein → Brot → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Brot",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "C’est mon pain.",
+              "tiles": [
+                "C’est",
+                "mon",
+                "pain",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "C’est → mon → pain → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "C’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pain",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Este es mi pan.",
+              "tiles": [
+                "Este",
+                "es",
+                "mi",
+                "pan",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Este → es → mi → pan → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Este",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pan",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "これは私のパンです。",
+              "tiles": [
+                "これは私のパンです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "これは私のパンです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "これは私のパンです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "這是我的麵包。",
+              "tiles": [
+                "這是我的麵包。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "這是我的麵包。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "這是我的麵包。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_1",
+      "translations": {
+        "en": {
+          "text": "I have a shop.",
+          "tiles": [
+            "I",
+            "have",
+            "a",
+            "shop",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "I → have → a → shop → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "have",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "shop",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich habe ein Geschäft.",
+          "tiles": [
+            "Ich",
+            "habe",
+            "ein",
+            "Geschäft",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Ich → habe → ein → Geschäft → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "habe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geschäft",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’ai un magasin.",
+          "tiles": [
+            "J’ai",
+            "un",
+            "magasin",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "J’ai → un → magasin → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’ai",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magasin",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Tengo una tienda.",
+          "tiles": [
+            "Tengo",
+            "una",
+            "tienda",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Tengo → una → tienda → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Tengo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "una",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tienda",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "店があります。",
+          "tiles": [
+            "店があります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "店があります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "店があります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我有一間商店。",
+          "tiles": [
+            "我有一間商店。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "我有一間商店。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我有一間商店。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "SUPERMARKET",
+        "SHOP",
+        "SHOP",
+        "BUY",
+        "BREAD",
+        "CHEAP"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_2",
+      "translations": {
+        "en": {
+          "text": "This is my bread.",
+          "tiles": [
+            "This",
+            "is",
+            "my",
+            "bread",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "This → is → my → bread → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "This",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "my",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bread",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das ist mein Brot.",
+          "tiles": [
+            "Das",
+            "ist",
+            "mein",
+            "Brot",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Das → ist → mein → Brot → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Brot",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "C’est mon pain.",
+          "tiles": [
+            "C’est",
+            "mon",
+            "pain",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "C’est → mon → pain → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "C’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pain",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Este es mi pan.",
+          "tiles": [
+            "Este",
+            "es",
+            "mi",
+            "pan",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Este → es → mi → pan → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Este",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pan",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "これは私のパンです。",
+          "tiles": [
+            "これは私のパンです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "これは私のパンです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "これは私のパンです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "這是我的麵包。",
+          "tiles": [
+            "這是我的麵包。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "這是我的麵包。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "這是我的麵包。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "SUPERMARKET": [
+      "S001",
+      "S002"
+    ],
+    "SHOP": [
+      "S001",
+      "S001",
+      "S002",
+      "S002"
+    ],
+    "BUY": [
+      "S001",
+      "S002"
+    ],
+    "BREAD": [
+      "S001",
+      "S002"
+    ],
+    "CHEAP": [
+      "S001",
+      "S002"
+    ]
+  }
+}

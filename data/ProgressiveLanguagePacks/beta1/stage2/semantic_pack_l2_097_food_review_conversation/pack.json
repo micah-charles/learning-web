@@ -1,0 +1,1797 @@
+{
+  "packId": "semantic_pack_l2_097_food_review_conversation",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_097 Food Review Conversation",
+  "description": "A1+ Review conversation pack: Food",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_10_097_food_review_conversation",
+    "title": "Food",
+    "difficultyStage": 10,
+    "semanticDomains": [
+      "food"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "mixed review"
+      ],
+      "german": [
+        "Wiederholung",
+        "Frage",
+        "Antwort"
+      ],
+      "french": [
+        "révision",
+        "question",
+        "réponse"
+      ],
+      "spanish": [
+        "repaso",
+        "pregunta",
+        "respuesta"
+      ],
+      "japanese": [
+        "復習",
+        "質問",
+        "答え"
+      ],
+      "chinese": [
+        "複習",
+        "問題",
+        "答案"
+      ]
+    },
+    "sentenceGoals": [
+      "The cook is in the restaurant.",
+      "The cook likes pizza because it is delicious."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "COOK",
+      "type": "noun",
+      "senseKey": "cook",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "cook"
+        },
+        "de": {
+          "text": "der Koch"
+        },
+        "fr": {
+          "text": "le cuisinier"
+        },
+        "es": {
+          "text": "el cocinero"
+        },
+        "ja": {
+          "text": "料理人"
+        },
+        "zh": {
+          "text": "廚師"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "DELICIOUS",
+      "type": "adjective",
+      "senseKey": "delicious",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "delicious"
+        },
+        "de": {
+          "text": "lecker"
+        },
+        "fr": {
+          "text": "délicieux"
+        },
+        "es": {
+          "text": "delicioso"
+        },
+        "ja": {
+          "text": "おいしいです"
+        },
+        "zh": {
+          "text": "好吃"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EAT",
+      "type": "verb",
+      "senseKey": "eat",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "eat"
+        },
+        "de": {
+          "text": "essen"
+        },
+        "fr": {
+          "text": "manger"
+        },
+        "es": {
+          "text": "comer"
+        },
+        "ja": {
+          "text": "食べます"
+        },
+        "zh": {
+          "text": "吃"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PIZZA",
+      "type": "noun",
+      "senseKey": "pizza",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "pizza"
+        },
+        "de": {
+          "text": "die Pizza"
+        },
+        "fr": {
+          "text": "la pizza"
+        },
+        "es": {
+          "text": "la pizza"
+        },
+        "ja": {
+          "text": "ピザ"
+        },
+        "zh": {
+          "text": "薄餅"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "RESTAURANT",
+      "type": "noun",
+      "senseKey": "restaurant",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "restaurant"
+        },
+        "de": {
+          "text": "das Restaurant"
+        },
+        "fr": {
+          "text": "le restaurant"
+        },
+        "es": {
+          "text": "el restaurante"
+        },
+        "ja": {
+          "text": "レストラン"
+        },
+        "zh": {
+          "text": "餐廳"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WATER",
+      "type": "noun",
+      "senseKey": "water",
+      "semanticCategory": "food",
+      "translations": {
+        "en": {
+          "text": "water"
+        },
+        "de": {
+          "text": "das Wasser"
+        },
+        "fr": {
+          "text": "l’eau"
+        },
+        "es": {
+          "text": "el agua"
+        },
+        "ja": {
+          "text": "水"
+        },
+        "zh": {
+          "text": "水"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_10_MIXED_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "review",
+        "de": "Wiederholung",
+        "fr": "révision",
+        "es": "repaso",
+        "ja": "復習",
+        "zh": "複習"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "question",
+        "de": "Frage",
+        "fr": "question",
+        "es": "pregunta",
+        "ja": "質問",
+        "zh": "問題"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "answer",
+        "de": "Antwort",
+        "fr": "réponse",
+        "es": "respuesta",
+        "ja": "答え",
+        "zh": "答案"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "conversation",
+        "de": "Gespräch",
+        "fr": "conversation",
+        "es": "conversación",
+        "ja": "会話",
+        "zh": "對話"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_10_1",
+      "linkedConcepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The cook is in the restaurant.",
+              "tiles": [
+                "The",
+                "cook",
+                "is",
+                "in",
+                "the",
+                "restaurant",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → cook → is → in → the → restaurant → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cook",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "restaurant",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der koch ist im Restaurant.",
+              "tiles": [
+                "Der",
+                "koch",
+                "ist",
+                "im",
+                "Restaurant",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → koch → ist → im → Restaurant → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "koch",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Restaurant",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le cuisinier est dans le restaurant.",
+              "tiles": [
+                "Le",
+                "cuisinier",
+                "est",
+                "dans",
+                "le",
+                "restaurant",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → cuisinier → est → dans → le → restaurant → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisinier",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "restaurant",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El cocinero está en el restaurante.",
+              "tiles": [
+                "El",
+                "cocinero",
+                "está",
+                "en",
+                "el",
+                "restaurante",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → cocinero → está → en → el → restaurante → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocinero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "restaurante",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "料理人はレストランにいます。",
+              "tiles": [
+                "料理人はレストランにいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "料理人はレストランにいます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "料理人はレストランにいます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "廚師在餐廳。",
+              "tiles": [
+                "廚師在餐廳。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "廚師在餐廳。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "廚師在餐廳。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_10_2",
+      "linkedConcepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The cook likes pizza because it is delicious.",
+              "tiles": [
+                "The",
+                "cook",
+                "likes",
+                "pizza",
+                "because",
+                "it",
+                "is",
+                "delicious",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → cook → likes → pizza → because → it → is → delicious → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cook",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "likes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pizza",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "delicious",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der koch mag die Pizza, weil es lecker ist.",
+              "tiles": [
+                "Der",
+                "koch",
+                "mag",
+                "die",
+                "Pizza,",
+                "weil",
+                "es",
+                "lecker",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → koch → mag → die → Pizza, → weil → es → lecker → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "koch",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Pizza,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lecker",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le cuisinier aime la pizza parce que c’est délicieux.",
+              "tiles": [
+                "Le",
+                "cuisinier",
+                "aime",
+                "la",
+                "pizza",
+                "parce",
+                "que",
+                "c’est",
+                "délicieux",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → cuisinier → aime → la → pizza → parce → que → c’est → délicieux → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cuisinier",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pizza",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "délicieux",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El cocinero le gusta la pizza porque es delicioso.",
+              "tiles": [
+                "El",
+                "cocinero",
+                "le",
+                "gusta",
+                "la",
+                "pizza",
+                "porque",
+                "es",
+                "delicioso",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → cocinero → le → gusta → la → pizza → porque → es → delicioso → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cocinero",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "pizza",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "delicioso",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "おいしいから、料理人はピザが好きです。",
+              "tiles": [
+                "おいしいから、料理人はピザが好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "おいしいから、料理人はピザが好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "おいしいから、料理人はピザが好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "廚師喜歡薄餅，因為它很好吃。",
+              "tiles": [
+                "廚師喜歡薄餅，因為它很好吃。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "廚師喜歡薄餅，因為它很好吃。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "廚師喜歡薄餅，因為它很好吃。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_1",
+      "translations": {
+        "en": {
+          "text": "The cook is in the restaurant.",
+          "tiles": [
+            "The",
+            "cook",
+            "is",
+            "in",
+            "the",
+            "restaurant",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → cook → is → in → the → restaurant → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cook",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "restaurant",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der koch ist im Restaurant.",
+          "tiles": [
+            "Der",
+            "koch",
+            "ist",
+            "im",
+            "Restaurant",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → koch → ist → im → Restaurant → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "koch",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Restaurant",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le cuisinier est dans le restaurant.",
+          "tiles": [
+            "Le",
+            "cuisinier",
+            "est",
+            "dans",
+            "le",
+            "restaurant",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → cuisinier → est → dans → le → restaurant → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisinier",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "restaurant",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El cocinero está en el restaurante.",
+          "tiles": [
+            "El",
+            "cocinero",
+            "está",
+            "en",
+            "el",
+            "restaurante",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → cocinero → está → en → el → restaurante → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocinero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "restaurante",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "料理人はレストランにいます。",
+          "tiles": [
+            "料理人はレストランにいます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "料理人はレストランにいます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "料理人はレストランにいます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "廚師在餐廳。",
+          "tiles": [
+            "廚師在餐廳。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "廚師在餐廳。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "廚師在餐廳。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "COOK",
+        "PIZZA",
+        "RESTAURANT",
+        "EAT",
+        "WATER",
+        "DELICIOUS"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_2",
+      "translations": {
+        "en": {
+          "text": "The cook likes pizza because it is delicious.",
+          "tiles": [
+            "The",
+            "cook",
+            "likes",
+            "pizza",
+            "because",
+            "it",
+            "is",
+            "delicious",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → cook → likes → pizza → because → it → is → delicious → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cook",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "likes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pizza",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "delicious",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der koch mag die Pizza, weil es lecker ist.",
+          "tiles": [
+            "Der",
+            "koch",
+            "mag",
+            "die",
+            "Pizza,",
+            "weil",
+            "es",
+            "lecker",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → koch → mag → die → Pizza, → weil → es → lecker → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "koch",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Pizza,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lecker",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le cuisinier aime la pizza parce que c’est délicieux.",
+          "tiles": [
+            "Le",
+            "cuisinier",
+            "aime",
+            "la",
+            "pizza",
+            "parce",
+            "que",
+            "c’est",
+            "délicieux",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → cuisinier → aime → la → pizza → parce → que → c’est → délicieux → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cuisinier",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pizza",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "délicieux",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El cocinero le gusta la pizza porque es delicioso.",
+          "tiles": [
+            "El",
+            "cocinero",
+            "le",
+            "gusta",
+            "la",
+            "pizza",
+            "porque",
+            "es",
+            "delicioso",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → cocinero → le → gusta → la → pizza → porque → es → delicioso → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cocinero",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "pizza",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "delicioso",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "おいしいから、料理人はピザが好きです。",
+          "tiles": [
+            "おいしいから、料理人はピザが好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "おいしいから、料理人はピザが好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "おいしいから、料理人はピザが好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "廚師喜歡薄餅，因為它很好吃。",
+          "tiles": [
+            "廚師喜歡薄餅，因為它很好吃。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "廚師喜歡薄餅，因為它很好吃。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "廚師喜歡薄餅，因為它很好吃。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "COOK": [
+      "S001",
+      "S002"
+    ],
+    "PIZZA": [
+      "S001",
+      "S002"
+    ],
+    "RESTAURANT": [
+      "S001",
+      "S002"
+    ],
+    "EAT": [
+      "S001",
+      "S002"
+    ],
+    "WATER": [
+      "S001",
+      "S002"
+    ],
+    "DELICIOUS": [
+      "S001",
+      "S002"
+    ]
+  }
+}

@@ -1,0 +1,1301 @@
+{
+  "packId": "semantic_pack_l2_004_sports_have_possession",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_004 Sports Have Possession",
+  "description": "A1+ Have and possession pack: Sports",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_1_004_sports_have_possession",
+    "title": "Sports",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "sports"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "have, my, your"
+      ],
+      "german": [
+        "ich habe",
+        "mein/meine",
+        "dein/deine"
+      ],
+      "french": [
+        "j’ai",
+        "mon/ma",
+        "ton/ta"
+      ],
+      "spanish": [
+        "tengo",
+        "mi",
+        "tu"
+      ],
+      "japanese": [
+        "あります/います",
+        "私の",
+        "あなたの"
+      ],
+      "chinese": [
+        "我有",
+        "我的",
+        "你的"
+      ]
+    },
+    "sentenceGoals": [
+      "I have a football.",
+      "This is my bike."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIKE",
+      "type": "noun",
+      "senseKey": "bike",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "bike"
+        },
+        "de": {
+          "text": "das Fahrrad"
+        },
+        "fr": {
+          "text": "le vélo"
+        },
+        "es": {
+          "text": "la bicicleta"
+        },
+        "ja": {
+          "text": "自転車"
+        },
+        "zh": {
+          "text": "單車"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FOOTBALL",
+      "type": "noun",
+      "senseKey": "football",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "football"
+        },
+        "de": {
+          "text": "Fußball"
+        },
+        "fr": {
+          "text": "le football"
+        },
+        "es": {
+          "text": "el fútbol"
+        },
+        "ja": {
+          "text": "サッカー"
+        },
+        "zh": {
+          "text": "足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FRIEND",
+      "type": "noun",
+      "senseKey": "friend",
+      "semanticCategory": "social",
+      "translations": {
+        "en": {
+          "text": "friend"
+        },
+        "de": {
+          "text": "der Freund"
+        },
+        "fr": {
+          "text": "l’ami"
+        },
+        "es": {
+          "text": "el amigo"
+        },
+        "ja": {
+          "text": "友だち"
+        },
+        "zh": {
+          "text": "朋友"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PARK",
+      "type": "noun",
+      "senseKey": "park",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "park"
+        },
+        "de": {
+          "text": "der Park"
+        },
+        "fr": {
+          "text": "le parc"
+        },
+        "es": {
+          "text": "el parque"
+        },
+        "ja": {
+          "text": "公園"
+        },
+        "zh": {
+          "text": "公園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PLAY_FOOTBALL",
+      "type": "verb",
+      "senseKey": "play_football",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "play football"
+        },
+        "de": {
+          "text": "Fußball spielen"
+        },
+        "fr": {
+          "text": "jouer au football"
+        },
+        "es": {
+          "text": "jugar al fútbol"
+        },
+        "ja": {
+          "text": "サッカーをします"
+        },
+        "zh": {
+          "text": "踢足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SPORTY",
+      "type": "adjective",
+      "senseKey": "sporty",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sporty"
+        },
+        "de": {
+          "text": "sportlich"
+        },
+        "fr": {
+          "text": "sportif"
+        },
+        "es": {
+          "text": "deportivo"
+        },
+        "ja": {
+          "text": "スポーティーです"
+        },
+        "zh": {
+          "text": "愛運動"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_1_HAVE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I have",
+        "de": "ich habe",
+        "fr": "j’ai",
+        "es": "tengo",
+        "ja": "あります/います",
+        "zh": "我有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "ja": "私の",
+        "zh": "我的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "your",
+        "de": "dein/deine",
+        "fr": "ton/ta",
+        "es": "tu",
+        "ja": "あなたの",
+        "zh": "你的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "this is",
+        "de": "das ist",
+        "fr": "c’est",
+        "es": "este/esta es",
+        "ja": "これは",
+        "zh": "這是"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_1_1",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I have a football.",
+              "tiles": [
+                "I",
+                "have",
+                "a",
+                "football",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "I → have → a → football → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "have",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich habe Fußball.",
+              "tiles": [
+                "Ich",
+                "habe",
+                "Fußball",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Ich → habe → Fußball → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "habe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fußball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’ai le football.",
+              "tiles": [
+                "J’ai",
+                "le",
+                "football",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "J’ai → le → football → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’ai",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Tengo fútbol.",
+              "tiles": [
+                "Tengo",
+                "fútbol",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Tengo → fútbol → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Tengo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fútbol",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "サッカーがあります。",
+              "tiles": [
+                "サッカーがあります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "サッカーがあります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "サッカーがあります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我有足球。",
+              "tiles": [
+                "我有足球。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "我有足球。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我有足球。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_1_2",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "This is my bike.",
+              "tiles": [
+                "This",
+                "is",
+                "my",
+                "bike",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "This → is → my → bike → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "This",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "my",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bike",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das ist mein Fahrrad.",
+              "tiles": [
+                "Das",
+                "ist",
+                "mein",
+                "Fahrrad",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Das → ist → mein → Fahrrad → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fahrrad",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "C’est mon vélo.",
+              "tiles": [
+                "C’est",
+                "mon",
+                "vélo",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "C’est → mon → vélo → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "C’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "vélo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Este es mi bicicleta.",
+              "tiles": [
+                "Este",
+                "es",
+                "mi",
+                "bicicleta",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Este → es → mi → bicicleta → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Este",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "bicicleta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "これは私の自転車です。",
+              "tiles": [
+                "これは私の自転車です。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "これは私の自転車です。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "これは私の自転車です。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "這是我的單車。",
+              "tiles": [
+                "這是我的單車。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "這是我的單車。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "這是我的單車。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_1",
+      "translations": {
+        "en": {
+          "text": "I have a football.",
+          "tiles": [
+            "I",
+            "have",
+            "a",
+            "football",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "I → have → a → football → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "have",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich habe Fußball.",
+          "tiles": [
+            "Ich",
+            "habe",
+            "Fußball",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Ich → habe → Fußball → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "habe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fußball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’ai le football.",
+          "tiles": [
+            "J’ai",
+            "le",
+            "football",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "J’ai → le → football → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’ai",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Tengo fútbol.",
+          "tiles": [
+            "Tengo",
+            "fútbol",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Tengo → fútbol → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Tengo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "fútbol",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "サッカーがあります。",
+          "tiles": [
+            "サッカーがあります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "サッカーがあります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "サッカーがあります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我有足球。",
+          "tiles": [
+            "我有足球。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "我有足球。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我有足球。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_2",
+      "translations": {
+        "en": {
+          "text": "This is my bike.",
+          "tiles": [
+            "This",
+            "is",
+            "my",
+            "bike",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "This → is → my → bike → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "This",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "my",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bike",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das ist mein Fahrrad.",
+          "tiles": [
+            "Das",
+            "ist",
+            "mein",
+            "Fahrrad",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Das → ist → mein → Fahrrad → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fahrrad",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "C’est mon vélo.",
+          "tiles": [
+            "C’est",
+            "mon",
+            "vélo",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "C’est → mon → vélo → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "C’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "vélo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Este es mi bicicleta.",
+          "tiles": [
+            "Este",
+            "es",
+            "mi",
+            "bicicleta",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Este → es → mi → bicicleta → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Este",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "bicicleta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "これは私の自転車です。",
+          "tiles": [
+            "これは私の自転車です。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "これは私の自転車です。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "これは私の自転車です。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "這是我的單車。",
+          "tiles": [
+            "這是我的單車。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "這是我的單車。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "這是我的單車。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FRIEND": [
+      "S001",
+      "S002"
+    ],
+    "FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "PARK": [
+      "S001",
+      "S002"
+    ],
+    "PLAY FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "BIKE": [
+      "S001",
+      "S002"
+    ],
+    "SPORTY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

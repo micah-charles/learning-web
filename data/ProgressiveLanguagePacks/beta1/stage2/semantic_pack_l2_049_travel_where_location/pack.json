@@ -1,0 +1,1509 @@
+{
+  "packId": "semantic_pack_l2_049_travel_where_location",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_049 Travel Where Location",
+  "description": "A1+ Where and location pack: Travel",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_5_049_travel_where_location",
+    "title": "Travel",
+    "difficultyStage": 5,
+    "semanticDomains": [
+      "travel"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "where, in/at/on"
+      ],
+      "german": [
+        "wo",
+        "in/im",
+        "am"
+      ],
+      "french": [
+        "où",
+        "dans",
+        "à"
+      ],
+      "spanish": [
+        "dónde",
+        "en",
+        "a"
+      ],
+      "japanese": [
+        "どこ",
+        "に",
+        "で"
+      ],
+      "chinese": [
+        "哪裡",
+        "在",
+        "有"
+      ]
+    },
+    "sentenceGoals": [
+      "Where is the train?",
+      "The train is at the station."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "LATE",
+      "type": "adjective",
+      "senseKey": "late",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "late"
+        },
+        "de": {
+          "text": "spät"
+        },
+        "fr": {
+          "text": "tard"
+        },
+        "es": {
+          "text": "tarde"
+        },
+        "ja": {
+          "text": "遅いです"
+        },
+        "zh": {
+          "text": "遲"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STATION",
+      "type": "noun",
+      "senseKey": "station",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "station"
+        },
+        "de": {
+          "text": "der Bahnhof"
+        },
+        "fr": {
+          "text": "la gare"
+        },
+        "es": {
+          "text": "la estación"
+        },
+        "ja": {
+          "text": "駅"
+        },
+        "zh": {
+          "text": "車站"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TICKET",
+      "type": "noun",
+      "senseKey": "ticket",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "ticket"
+        },
+        "de": {
+          "text": "die Fahrkarte"
+        },
+        "fr": {
+          "text": "le billet"
+        },
+        "es": {
+          "text": "el billete"
+        },
+        "ja": {
+          "text": "切符"
+        },
+        "zh": {
+          "text": "車票"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TRAIN",
+      "type": "noun",
+      "senseKey": "train",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "train"
+        },
+        "de": {
+          "text": "der Zug"
+        },
+        "fr": {
+          "text": "le train"
+        },
+        "es": {
+          "text": "el tren"
+        },
+        "ja": {
+          "text": "電車"
+        },
+        "zh": {
+          "text": "火車"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TRAVEL",
+      "type": "verb",
+      "senseKey": "travel",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "travel"
+        },
+        "de": {
+          "text": "reisen"
+        },
+        "fr": {
+          "text": "voyager"
+        },
+        "es": {
+          "text": "viajar"
+        },
+        "ja": {
+          "text": "旅行します"
+        },
+        "zh": {
+          "text": "旅行"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TRAVELLER",
+      "type": "noun",
+      "senseKey": "traveller",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "traveller"
+        },
+        "de": {
+          "text": "der Reisende"
+        },
+        "fr": {
+          "text": "le voyageur"
+        },
+        "es": {
+          "text": "el viajero"
+        },
+        "ja": {
+          "text": "旅行者"
+        },
+        "zh": {
+          "text": "旅客"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_5_WHERE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "where",
+        "de": "wo",
+        "fr": "où",
+        "es": "dónde",
+        "ja": "どこ",
+        "zh": "哪裡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im",
+        "fr": "dans",
+        "es": "en",
+        "ja": "に",
+        "zh": "在"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "at",
+        "de": "am",
+        "fr": "à",
+        "es": "a",
+        "ja": "で",
+        "zh": "有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "there is",
+        "de": "es gibt",
+        "fr": "il y a",
+        "es": "hay",
+        "ja": "あります/います",
+        "zh": "裡"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_5_1",
+      "linkedConcepts": [
+        "TRAVELLER",
+        "TRAIN",
+        "STATION",
+        "TRAVEL",
+        "TICKET",
+        "LATE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Where is the train?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "train",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Where → is → the → train → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "train",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist der Zug?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "der",
+                "Zug",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Wo → ist → der → Zug → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Zug",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est le train ?",
+              "tiles": [
+                "Où",
+                "est",
+                "le",
+                "train",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Où → est → le → train → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "train",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está el tren?",
+              "tiles": [
+                "¿",
+                "Dónde",
+                "está",
+                "el",
+                "tren",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "¿ → Dónde → está → el → tren → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Dónde",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tren",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "電車はどこですか。",
+              "tiles": [
+                "電車はどこですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "電車はどこですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "電車はどこですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "火車在哪裡？",
+              "tiles": [
+                "火車在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "火車在哪裡？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "火車在哪裡？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_5_2",
+      "linkedConcepts": [
+        "TRAVELLER",
+        "TRAIN",
+        "STATION",
+        "TRAVEL",
+        "TICKET",
+        "LATE"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The train is at the station.",
+              "tiles": [
+                "The",
+                "train",
+                "is",
+                "at",
+                "the",
+                "station",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "The → train → is → at → the → station → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "train",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "at",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "station",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der zug ist am Bahnhof.",
+              "tiles": [
+                "Der",
+                "zug",
+                "ist",
+                "am",
+                "Bahnhof",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Der → zug → ist → am → Bahnhof → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "zug",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "am",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Bahnhof",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le train est à la gare.",
+              "tiles": [
+                "Le",
+                "train",
+                "est",
+                "à",
+                "la",
+                "gare",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Le → train → est → à → la → gare → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "train",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "à",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gare",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El tren está en la estación.",
+              "tiles": [
+                "El",
+                "tren",
+                "está",
+                "en",
+                "la",
+                "estación",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "El → tren → está → en → la → estación → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tren",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "estación",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "電車は駅にあります。",
+              "tiles": [
+                "電車は駅にあります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "電車は駅にあります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "電車は駅にあります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "火車在車站。",
+              "tiles": [
+                "火車在車站。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "火車在車站。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "火車在車站。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TRAVELLER",
+        "TRAIN",
+        "STATION",
+        "TRAVEL",
+        "TICKET",
+        "LATE"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_1",
+      "translations": {
+        "en": {
+          "text": "Where is the train?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "train",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Where → is → the → train → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "train",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist der Zug?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "der",
+            "Zug",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Wo → ist → der → Zug → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Zug",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est le train ?",
+          "tiles": [
+            "Où",
+            "est",
+            "le",
+            "train",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Où → est → le → train → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "train",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está el tren?",
+          "tiles": [
+            "¿",
+            "Dónde",
+            "está",
+            "el",
+            "tren",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "¿ → Dónde → está → el → tren → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Dónde",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tren",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "電車はどこですか。",
+          "tiles": [
+            "電車はどこですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "電車はどこですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "電車はどこですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "火車在哪裡？",
+          "tiles": [
+            "火車在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "火車在哪裡？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "火車在哪裡？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TRAVELLER",
+        "TRAIN",
+        "STATION",
+        "TRAVEL",
+        "TICKET",
+        "LATE"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_2",
+      "translations": {
+        "en": {
+          "text": "The train is at the station.",
+          "tiles": [
+            "The",
+            "train",
+            "is",
+            "at",
+            "the",
+            "station",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "The → train → is → at → the → station → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "train",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "at",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "station",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der zug ist am Bahnhof.",
+          "tiles": [
+            "Der",
+            "zug",
+            "ist",
+            "am",
+            "Bahnhof",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Der → zug → ist → am → Bahnhof → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "zug",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "am",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Bahnhof",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le train est à la gare.",
+          "tiles": [
+            "Le",
+            "train",
+            "est",
+            "à",
+            "la",
+            "gare",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Le → train → est → à → la → gare → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "train",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "à",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gare",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El tren está en la estación.",
+          "tiles": [
+            "El",
+            "tren",
+            "está",
+            "en",
+            "la",
+            "estación",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "El → tren → está → en → la → estación → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tren",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "estación",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "電車は駅にあります。",
+          "tiles": [
+            "電車は駅にあります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "電車は駅にあります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "電車は駅にあります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "火車在車站。",
+          "tiles": [
+            "火車在車站。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "火車在車站。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "火車在車站。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TRAVELLER": [
+      "S001",
+      "S002"
+    ],
+    "TRAIN": [
+      "S001",
+      "S002"
+    ],
+    "STATION": [
+      "S001",
+      "S002"
+    ],
+    "TRAVEL": [
+      "S001",
+      "S002"
+    ],
+    "TICKET": [
+      "S001",
+      "S002"
+    ],
+    "LATE": [
+      "S001",
+      "S002"
+    ]
+  }
+}

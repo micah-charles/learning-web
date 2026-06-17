@@ -1,0 +1,1781 @@
+{
+  "packId": "semantic_pack_l2_100_holiday_review_conversation",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_100 Holiday Review Conversation",
+  "description": "A1+ Review conversation pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_10_100_holiday_review_conversation",
+    "title": "Holiday",
+    "difficultyStage": 10,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "mixed review"
+      ],
+      "german": [
+        "Wiederholung",
+        "Frage",
+        "Antwort"
+      ],
+      "french": [
+        "révision",
+        "question",
+        "réponse"
+      ],
+      "spanish": [
+        "repaso",
+        "pregunta",
+        "respuesta"
+      ],
+      "japanese": [
+        "復習",
+        "質問",
+        "答え"
+      ],
+      "chinese": [
+        "複習",
+        "問題",
+        "答案"
+      ]
+    },
+    "sentenceGoals": [
+      "The family is in the hotel.",
+      "The family likes beach because it is sunny."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_10_MIXED_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "review",
+        "de": "Wiederholung",
+        "fr": "révision",
+        "es": "repaso",
+        "ja": "復習",
+        "zh": "複習"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "question",
+        "de": "Frage",
+        "fr": "question",
+        "es": "pregunta",
+        "ja": "質問",
+        "zh": "問題"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "answer",
+        "de": "Antwort",
+        "fr": "réponse",
+        "es": "respuesta",
+        "ja": "答え",
+        "zh": "答案"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "conversation",
+        "de": "Gespräch",
+        "fr": "conversation",
+        "es": "conversación",
+        "ja": "会話",
+        "zh": "對話"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_10_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The family is in the hotel.",
+              "tiles": [
+                "The",
+                "family",
+                "is",
+                "in",
+                "the",
+                "hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → family → is → in → the → hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "family",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die familie ist im Hotel.",
+              "tiles": [
+                "Die",
+                "familie",
+                "ist",
+                "im",
+                "Hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Die → familie → ist → im → Hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "familie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La famille est dans l’hôtel.",
+              "tiles": [
+                "La",
+                "famille",
+                "est",
+                "dans",
+                "l’hôtel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "La → famille → est → dans → l’hôtel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "famille",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "l’hôtel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La familia está en el hotel.",
+              "tiles": [
+                "La",
+                "familia",
+                "está",
+                "en",
+                "el",
+                "hotel",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "La → familia → está → en → el → hotel → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "familia",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "hotel",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "家族はホテルにいます。",
+              "tiles": [
+                "家族はホテルにいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "家族はホテルにいます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "家族はホテルにいます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "家庭在酒店。",
+              "tiles": [
+                "家庭在酒店。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "家庭在酒店。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "家庭在酒店。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_10_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The family likes beach because it is sunny.",
+              "tiles": [
+                "The",
+                "family",
+                "likes",
+                "beach",
+                "because",
+                "it",
+                "is",
+                "sunny",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → family → likes → beach → because → it → is → sunny → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "family",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "likes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "beach",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sunny",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die familie mag der Strand, weil es sonnig ist.",
+              "tiles": [
+                "Die",
+                "familie",
+                "mag",
+                "der",
+                "Strand,",
+                "weil",
+                "es",
+                "sonnig",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Die → familie → mag → der → Strand, → weil → es → sonnig → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "familie",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Strand,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sonnig",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La famille aime la plage parce que c’est ensoleillé.",
+              "tiles": [
+                "La",
+                "famille",
+                "aime",
+                "la",
+                "plage",
+                "parce",
+                "que",
+                "c’est",
+                "ensoleillé",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "La → famille → aime → la → plage → parce → que → c’est → ensoleillé → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "famille",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plage",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ensoleillé",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La familia le gusta la playa porque es soleado.",
+              "tiles": [
+                "La",
+                "familia",
+                "le",
+                "gusta",
+                "la",
+                "playa",
+                "porque",
+                "es",
+                "soleado",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "La → familia → le → gusta → la → playa → porque → es → soleado → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "familia",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "playa",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "soleado",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "晴れから、家族は海辺が好きです。",
+              "tiles": [
+                "晴れから、家族は海辺が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "晴れから、家族は海辺が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "晴れから、家族は海辺が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "家庭喜歡海灘，因為它很晴朗。",
+              "tiles": [
+                "家庭喜歡海灘，因為它很晴朗。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "家庭喜歡海灘，因為它很晴朗。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "家庭喜歡海灘，因為它很晴朗。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_1",
+      "translations": {
+        "en": {
+          "text": "The family is in the hotel.",
+          "tiles": [
+            "The",
+            "family",
+            "is",
+            "in",
+            "the",
+            "hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → family → is → in → the → hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "family",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die familie ist im Hotel.",
+          "tiles": [
+            "Die",
+            "familie",
+            "ist",
+            "im",
+            "Hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Die → familie → ist → im → Hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "familie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La famille est dans l’hôtel.",
+          "tiles": [
+            "La",
+            "famille",
+            "est",
+            "dans",
+            "l’hôtel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "La → famille → est → dans → l’hôtel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "famille",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "l’hôtel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La familia está en el hotel.",
+          "tiles": [
+            "La",
+            "familia",
+            "está",
+            "en",
+            "el",
+            "hotel",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "La → familia → está → en → el → hotel → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "familia",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "hotel",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "家族はホテルにいます。",
+          "tiles": [
+            "家族はホテルにいます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "家族はホテルにいます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "家族はホテルにいます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "家庭在酒店。",
+          "tiles": [
+            "家庭在酒店。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "家庭在酒店。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "家庭在酒店。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_2",
+      "translations": {
+        "en": {
+          "text": "The family likes beach because it is sunny.",
+          "tiles": [
+            "The",
+            "family",
+            "likes",
+            "beach",
+            "because",
+            "it",
+            "is",
+            "sunny",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → family → likes → beach → because → it → is → sunny → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "family",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "likes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "beach",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sunny",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die familie mag der Strand, weil es sonnig ist.",
+          "tiles": [
+            "Die",
+            "familie",
+            "mag",
+            "der",
+            "Strand,",
+            "weil",
+            "es",
+            "sonnig",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Die → familie → mag → der → Strand, → weil → es → sonnig → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "familie",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Strand,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sonnig",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La famille aime la plage parce que c’est ensoleillé.",
+          "tiles": [
+            "La",
+            "famille",
+            "aime",
+            "la",
+            "plage",
+            "parce",
+            "que",
+            "c’est",
+            "ensoleillé",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "La → famille → aime → la → plage → parce → que → c’est → ensoleillé → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "famille",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plage",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ensoleillé",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La familia le gusta la playa porque es soleado.",
+          "tiles": [
+            "La",
+            "familia",
+            "le",
+            "gusta",
+            "la",
+            "playa",
+            "porque",
+            "es",
+            "soleado",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "La → familia → le → gusta → la → playa → porque → es → soleado → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "familia",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "playa",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "soleado",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "晴れから、家族は海辺が好きです。",
+          "tiles": [
+            "晴れから、家族は海辺が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "晴れから、家族は海辺が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "晴れから、家族は海辺が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "家庭喜歡海灘，因為它很晴朗。",
+          "tiles": [
+            "家庭喜歡海灘，因為它很晴朗。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "家庭喜歡海灘，因為它很晴朗。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "家庭喜歡海灘，因為它很晴朗。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

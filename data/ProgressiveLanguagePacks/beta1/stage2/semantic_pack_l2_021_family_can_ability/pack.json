@@ -1,0 +1,1301 @@
+{
+  "packId": "semantic_pack_l2_021_family_can_ability",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_021 Family Can Ability",
+  "description": "A1+ Can and ability pack: Family",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_3_021_family_can_ability",
+    "title": "Family",
+    "difficultyStage": 3,
+    "semanticDomains": [
+      "family"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "can + infinitive"
+      ],
+      "german": [
+        "kann",
+        "kannst du",
+        "Infinitiv"
+      ],
+      "french": [
+        "peut",
+        "peux-tu",
+        "infinitif"
+      ],
+      "spanish": [
+        "puede",
+        "puedes",
+        "infinitivo"
+      ],
+      "japanese": [
+        "できます",
+        "できますか",
+        "動詞"
+      ],
+      "chinese": [
+        "可以",
+        "你可以嗎",
+        "動詞"
+      ]
+    },
+    "sentenceGoals": [
+      "The mother can read.",
+      "Can you read?"
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BOOK",
+      "type": "noun",
+      "senseKey": "book",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "book"
+        },
+        "de": {
+          "text": "das Buch"
+        },
+        "fr": {
+          "text": "le livre"
+        },
+        "es": {
+          "text": "el libro"
+        },
+        "ja": {
+          "text": "本"
+        },
+        "zh": {
+          "text": "書"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "BROTHER",
+      "type": "noun",
+      "senseKey": "brother",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "brother"
+        },
+        "de": {
+          "text": "der Bruder"
+        },
+        "fr": {
+          "text": "le frère"
+        },
+        "es": {
+          "text": "el hermano"
+        },
+        "ja": {
+          "text": "兄弟"
+        },
+        "zh": {
+          "text": "哥哥"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FRIENDLY",
+      "type": "adjective",
+      "senseKey": "friendly",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "friendly"
+        },
+        "de": {
+          "text": "freundlich"
+        },
+        "fr": {
+          "text": "sympa"
+        },
+        "es": {
+          "text": "simpático"
+        },
+        "ja": {
+          "text": "親切です"
+        },
+        "zh": {
+          "text": "友善"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOME",
+      "type": "noun",
+      "senseKey": "home",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "home"
+        },
+        "de": {
+          "text": "das Zuhause"
+        },
+        "fr": {
+          "text": "la maison"
+        },
+        "es": {
+          "text": "la casa"
+        },
+        "ja": {
+          "text": "家"
+        },
+        "zh": {
+          "text": "家"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MOTHER",
+      "type": "noun",
+      "senseKey": "mother",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "mother"
+        },
+        "de": {
+          "text": "die Mutter"
+        },
+        "fr": {
+          "text": "la mère"
+        },
+        "es": {
+          "text": "la madre"
+        },
+        "ja": {
+          "text": "お母さん"
+        },
+        "zh": {
+          "text": "媽媽"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "READ",
+      "type": "verb",
+      "senseKey": "read",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "read"
+        },
+        "de": {
+          "text": "lesen"
+        },
+        "fr": {
+          "text": "lire"
+        },
+        "es": {
+          "text": "leer"
+        },
+        "ja": {
+          "text": "読みます"
+        },
+        "zh": {
+          "text": "閱讀"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_3_CAN_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can",
+        "de": "kann",
+        "fr": "peut",
+        "es": "puede",
+        "ja": "できます",
+        "zh": "可以"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "can you",
+        "de": "kannst du",
+        "fr": "peux-tu",
+        "es": "puedes",
+        "ja": "できますか",
+        "zh": "你可以嗎"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "infinitive",
+        "de": "Infinitiv",
+        "fr": "infinitif",
+        "es": "infinitivo",
+        "ja": "動詞",
+        "zh": "動詞"
+      }
+    },
+    {
+      "tokenId": "TOKEN_3_CAN_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "ability",
+        "de": "Fähigkeit",
+        "fr": "capacité",
+        "es": "habilidad",
+        "ja": "能力",
+        "zh": "能力"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_3_1",
+      "linkedConcepts": [
+        "MOTHER",
+        "BROTHER",
+        "HOME",
+        "READ",
+        "BOOK",
+        "FRIENDLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The mother can read.",
+              "tiles": [
+                "The",
+                "mother",
+                "can",
+                "read",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "The → mother → can → read → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mother",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "read",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Die mutter kann lesen.",
+              "tiles": [
+                "Die",
+                "mutter",
+                "kann",
+                "lesen",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Die → mutter → kann → lesen → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Die",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mutter",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "kann",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lesen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "La mère peut lire.",
+              "tiles": [
+                "La",
+                "mère",
+                "peut",
+                "lire",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "La → mère → peut → lire → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mère",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "peut",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "La madre puede leer.",
+              "tiles": [
+                "La",
+                "madre",
+                "puede",
+                "leer",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "La → madre → puede → leer → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "La",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "madre",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "puede",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "leer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "お母さんは読みますことができます。",
+              "tiles": [
+                "お母さんは読みますことができます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "お母さんは読みますことができます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "お母さんは読みますことができます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "媽媽可以閱讀。",
+              "tiles": [
+                "媽媽可以閱讀。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "媽媽可以閱讀。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "媽媽可以閱讀。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_3_2",
+      "linkedConcepts": [
+        "MOTHER",
+        "BROTHER",
+        "HOME",
+        "READ",
+        "BOOK",
+        "FRIENDLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Can you read?",
+              "tiles": [
+                "Can",
+                "you",
+                "read",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Can → you → read → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Can",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "read",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Kannst du lesen?",
+              "tiles": [
+                "Kannst",
+                "du",
+                "lesen",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Kannst → du → lesen → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Kannst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lesen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Peux-tu lire ?",
+              "tiles": [
+                "Peux-tu",
+                "lire",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "Peux-tu → lire → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Peux-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "lire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Puedes leer?",
+              "tiles": [
+                "¿",
+                "Puedes",
+                "leer",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "¿ → Puedes → leer → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Puedes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "leer",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "読みますことができますか。",
+              "tiles": [
+                "読みますことができますか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "読みますことができますか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "読みますことができますか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你可以閱讀嗎？",
+              "tiles": [
+                "你可以閱讀嗎？"
+              ],
+              "analysis": {
+                "sentencePattern": "Can and ability sentence",
+                "literalOrderExplanation": "你可以閱讀嗎？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你可以閱讀嗎？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "MOTHER",
+        "BROTHER",
+        "HOME",
+        "READ",
+        "BOOK",
+        "FRIENDLY"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_1",
+      "translations": {
+        "en": {
+          "text": "The mother can read.",
+          "tiles": [
+            "The",
+            "mother",
+            "can",
+            "read",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "The → mother → can → read → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mother",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "read",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Die mutter kann lesen.",
+          "tiles": [
+            "Die",
+            "mutter",
+            "kann",
+            "lesen",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Die → mutter → kann → lesen → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Die",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mutter",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "kann",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lesen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "La mère peut lire.",
+          "tiles": [
+            "La",
+            "mère",
+            "peut",
+            "lire",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "La → mère → peut → lire → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mère",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "peut",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "La madre puede leer.",
+          "tiles": [
+            "La",
+            "madre",
+            "puede",
+            "leer",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "La → madre → puede → leer → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "La",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "madre",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "puede",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "leer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "お母さんは読みますことができます。",
+          "tiles": [
+            "お母さんは読みますことができます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "お母さんは読みますことができます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "お母さんは読みますことができます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "媽媽可以閱讀。",
+          "tiles": [
+            "媽媽可以閱讀。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "媽媽可以閱讀。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "媽媽可以閱讀。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "MOTHER",
+        "BROTHER",
+        "HOME",
+        "READ",
+        "BOOK",
+        "FRIENDLY"
+      ],
+      "grammarFocus": [
+        "can + infinitive"
+      ],
+      "sourceChainId": "CHAIN_3_2",
+      "translations": {
+        "en": {
+          "text": "Can you read?",
+          "tiles": [
+            "Can",
+            "you",
+            "read",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Can → you → read → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Can",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "read",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Kannst du lesen?",
+          "tiles": [
+            "Kannst",
+            "du",
+            "lesen",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Kannst → du → lesen → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Kannst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lesen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Peux-tu lire ?",
+          "tiles": [
+            "Peux-tu",
+            "lire",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "Peux-tu → lire → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Peux-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "lire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Puedes leer?",
+          "tiles": [
+            "¿",
+            "Puedes",
+            "leer",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "¿ → Puedes → leer → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Puedes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "leer",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "読みますことができますか。",
+          "tiles": [
+            "読みますことができますか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "読みますことができますか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "読みますことができますか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你可以閱讀嗎？",
+          "tiles": [
+            "你可以閱讀嗎？"
+          ],
+          "analysis": {
+            "sentencePattern": "Can and ability sentence",
+            "literalOrderExplanation": "你可以閱讀嗎？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你可以閱讀嗎？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "MOTHER": [
+      "S001",
+      "S002"
+    ],
+    "BROTHER": [
+      "S001",
+      "S002"
+    ],
+    "HOME": [
+      "S001",
+      "S002"
+    ],
+    "READ": [
+      "S001",
+      "S002"
+    ],
+    "BOOK": [
+      "S001",
+      "S002"
+    ],
+    "FRIENDLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

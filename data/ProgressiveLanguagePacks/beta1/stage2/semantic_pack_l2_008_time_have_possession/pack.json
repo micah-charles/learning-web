@@ -1,0 +1,1333 @@
+{
+  "packId": "semantic_pack_l2_008_time_have_possession",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_008 Time Have Possession",
+  "description": "A1+ Have and possession pack: Time",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_1_008_time_have_possession",
+    "title": "Time",
+    "difficultyStage": 1,
+    "semanticDomains": [
+      "time"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "have, my, your"
+      ],
+      "german": [
+        "ich habe",
+        "mein/meine",
+        "dein/deine"
+      ],
+      "french": [
+        "j’ai",
+        "mon/ma",
+        "ton/ta"
+      ],
+      "spanish": [
+        "tengo",
+        "mi",
+        "tu"
+      ],
+      "japanese": [
+        "あります/います",
+        "私の",
+        "あなたの"
+      ],
+      "chinese": [
+        "我有",
+        "我的",
+        "你的"
+      ]
+    },
+    "sentenceGoals": [
+      "I have a birthday.",
+      "This is my clock."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIRTHDAY",
+      "type": "noun",
+      "senseKey": "birthday",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "birthday"
+        },
+        "de": {
+          "text": "der Geburtstag"
+        },
+        "fr": {
+          "text": "l’anniversaire"
+        },
+        "es": {
+          "text": "el cumpleaños"
+        },
+        "ja": {
+          "text": "誕生日"
+        },
+        "zh": {
+          "text": "生日"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLASSROOM",
+      "type": "noun",
+      "senseKey": "classroom",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "classroom"
+        },
+        "de": {
+          "text": "das Klassenzimmer"
+        },
+        "fr": {
+          "text": "la salle de classe"
+        },
+        "es": {
+          "text": "el aula"
+        },
+        "ja": {
+          "text": "教室"
+        },
+        "zh": {
+          "text": "課室"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "CLOCK",
+      "type": "noun",
+      "senseKey": "clock",
+      "semanticCategory": "time",
+      "translations": {
+        "en": {
+          "text": "clock"
+        },
+        "de": {
+          "text": "die Uhr"
+        },
+        "fr": {
+          "text": "l’horloge"
+        },
+        "es": {
+          "text": "el reloj"
+        },
+        "ja": {
+          "text": "時計"
+        },
+        "zh": {
+          "text": "時鐘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "EARLY",
+      "type": "adjective",
+      "senseKey": "early",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "early"
+        },
+        "de": {
+          "text": "früh"
+        },
+        "fr": {
+          "text": "tôt"
+        },
+        "es": {
+          "text": "temprano"
+        },
+        "ja": {
+          "text": "早いです"
+        },
+        "zh": {
+          "text": "早"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "STUDENT",
+      "type": "noun",
+      "senseKey": "student",
+      "semanticCategory": "school",
+      "translations": {
+        "en": {
+          "text": "student"
+        },
+        "de": {
+          "text": "der Schüler"
+        },
+        "fr": {
+          "text": "l’élève"
+        },
+        "es": {
+          "text": "el estudiante"
+        },
+        "ja": {
+          "text": "生徒"
+        },
+        "zh": {
+          "text": "學生"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "WAIT",
+      "type": "verb",
+      "senseKey": "wait",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "wait"
+        },
+        "de": {
+          "text": "warten"
+        },
+        "fr": {
+          "text": "attendre"
+        },
+        "es": {
+          "text": "esperar"
+        },
+        "ja": {
+          "text": "待ちます"
+        },
+        "zh": {
+          "text": "等"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_1_HAVE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I have",
+        "de": "ich habe",
+        "fr": "j’ai",
+        "es": "tengo",
+        "ja": "あります/います",
+        "zh": "我有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "my",
+        "de": "mein/meine",
+        "fr": "mon/ma",
+        "es": "mi",
+        "ja": "私の",
+        "zh": "我的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "your",
+        "de": "dein/deine",
+        "fr": "ton/ta",
+        "es": "tu",
+        "ja": "あなたの",
+        "zh": "你的"
+      }
+    },
+    {
+      "tokenId": "TOKEN_1_HAVE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "this is",
+        "de": "das ist",
+        "fr": "c’est",
+        "es": "este/esta es",
+        "ja": "これは",
+        "zh": "這是"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_1_1",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I have a birthday.",
+              "tiles": [
+                "I",
+                "have",
+                "a",
+                "birthday",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "I → have → a → birthday → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "have",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "a",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "birthday",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich habe einen Geburtstag.",
+              "tiles": [
+                "Ich",
+                "habe",
+                "einen",
+                "Geburtstag",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Ich → habe → einen → Geburtstag → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "habe",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "einen",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Geburtstag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’ai un anniversaire.",
+              "tiles": [
+                "J’ai",
+                "un",
+                "anniversaire",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "J’ai → un → anniversaire → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’ai",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "anniversaire",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Tengo un cumpleaños.",
+              "tiles": [
+                "Tengo",
+                "un",
+                "cumpleaños",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Tengo → un → cumpleaños → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Tengo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "un",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cumpleaños",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "誕生日があります。",
+              "tiles": [
+                "誕生日があります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "誕生日があります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "誕生日があります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我有一個生日。",
+              "tiles": [
+                "我有一個生日。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "我有一個生日。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我有一個生日。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_1_2",
+      "linkedConcepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "This is my clock.",
+              "tiles": [
+                "This",
+                "is",
+                "my",
+                "clock",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "This → is → my → clock → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "This",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "my",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "clock",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Das ist mein Uhr.",
+              "tiles": [
+                "Das",
+                "ist",
+                "mein",
+                "Uhr",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Das → ist → mein → Uhr → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mein",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Uhr",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "C’est mon horloge.",
+              "tiles": [
+                "C’est",
+                "mon",
+                "horloge",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "C’est → mon → horloge → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "C’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mon",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "horloge",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Este es mi reloj.",
+              "tiles": [
+                "Este",
+                "es",
+                "mi",
+                "reloj",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "Este → es → mi → reloj → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Este",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "reloj",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "これは私の時計です。",
+              "tiles": [
+                "これは私の時計です。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "これは私の時計です。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "これは私の時計です。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "這是我的時鐘。",
+              "tiles": [
+                "這是我的時鐘。"
+              ],
+              "analysis": {
+                "sentencePattern": "Have and possession sentence",
+                "literalOrderExplanation": "這是我的時鐘。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "這是我的時鐘。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_1",
+      "translations": {
+        "en": {
+          "text": "I have a birthday.",
+          "tiles": [
+            "I",
+            "have",
+            "a",
+            "birthday",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "I → have → a → birthday → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "have",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "a",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "birthday",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich habe einen Geburtstag.",
+          "tiles": [
+            "Ich",
+            "habe",
+            "einen",
+            "Geburtstag",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Ich → habe → einen → Geburtstag → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "habe",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "einen",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Geburtstag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’ai un anniversaire.",
+          "tiles": [
+            "J’ai",
+            "un",
+            "anniversaire",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "J’ai → un → anniversaire → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’ai",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "anniversaire",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Tengo un cumpleaños.",
+          "tiles": [
+            "Tengo",
+            "un",
+            "cumpleaños",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Tengo → un → cumpleaños → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Tengo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "un",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cumpleaños",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "誕生日があります。",
+          "tiles": [
+            "誕生日があります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "誕生日があります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "誕生日があります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我有一個生日。",
+          "tiles": [
+            "我有一個生日。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "我有一個生日。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我有一個生日。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "STUDENT",
+        "BIRTHDAY",
+        "CLASSROOM",
+        "WAIT",
+        "CLOCK",
+        "EARLY"
+      ],
+      "grammarFocus": [
+        "have, my, your"
+      ],
+      "sourceChainId": "CHAIN_1_2",
+      "translations": {
+        "en": {
+          "text": "This is my clock.",
+          "tiles": [
+            "This",
+            "is",
+            "my",
+            "clock",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "This → is → my → clock → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "This",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "my",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "clock",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Das ist mein Uhr.",
+          "tiles": [
+            "Das",
+            "ist",
+            "mein",
+            "Uhr",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Das → ist → mein → Uhr → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mein",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Uhr",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "C’est mon horloge.",
+          "tiles": [
+            "C’est",
+            "mon",
+            "horloge",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "C’est → mon → horloge → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "C’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mon",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "horloge",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Este es mi reloj.",
+          "tiles": [
+            "Este",
+            "es",
+            "mi",
+            "reloj",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "Este → es → mi → reloj → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Este",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "reloj",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "これは私の時計です。",
+          "tiles": [
+            "これは私の時計です。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "これは私の時計です。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "これは私の時計です。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "這是我的時鐘。",
+          "tiles": [
+            "這是我的時鐘。"
+          ],
+          "analysis": {
+            "sentencePattern": "Have and possession sentence",
+            "literalOrderExplanation": "這是我的時鐘。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "這是我的時鐘。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "STUDENT": [
+      "S001",
+      "S002"
+    ],
+    "BIRTHDAY": [
+      "S001",
+      "S002"
+    ],
+    "CLASSROOM": [
+      "S001",
+      "S002"
+    ],
+    "WAIT": [
+      "S001",
+      "S002"
+    ],
+    "CLOCK": [
+      "S001",
+      "S002"
+    ],
+    "EARLY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

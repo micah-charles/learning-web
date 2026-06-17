@@ -1,0 +1,1669 @@
+{
+  "packId": "semantic_pack_l2_090_holiday_because_reasons",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_090 Holiday Because Reasons",
+  "description": "A1+ Reasons with because pack: Holiday",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_9_090_holiday_because_reasons",
+    "title": "Holiday",
+    "difficultyStage": 9,
+    "semanticDomains": [
+      "holiday"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "why, because"
+      ],
+      "german": [
+        "warum",
+        "weil",
+        "ich mag"
+      ],
+      "french": [
+        "pourquoi",
+        "parce que",
+        "j’aime"
+      ],
+      "spanish": [
+        "por qué",
+        "porque",
+        "me gusta"
+      ],
+      "japanese": [
+        "なぜ",
+        "から",
+        "好きです"
+      ],
+      "chinese": [
+        "為什麼",
+        "因為",
+        "我喜歡"
+      ]
+    },
+    "sentenceGoals": [
+      "Why do you like beach?",
+      "I like beach because it is sunny."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BEACH",
+      "type": "noun",
+      "senseKey": "beach",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "beach"
+        },
+        "de": {
+          "text": "der Strand"
+        },
+        "fr": {
+          "text": "la plage"
+        },
+        "es": {
+          "text": "la playa"
+        },
+        "ja": {
+          "text": "海辺"
+        },
+        "zh": {
+          "text": "海灘"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FAMILY",
+      "type": "noun",
+      "senseKey": "family",
+      "semanticCategory": "family",
+      "translations": {
+        "en": {
+          "text": "family"
+        },
+        "de": {
+          "text": "die Familie"
+        },
+        "fr": {
+          "text": "la famille"
+        },
+        "es": {
+          "text": "la familia"
+        },
+        "ja": {
+          "text": "家族"
+        },
+        "zh": {
+          "text": "家庭"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "HOTEL",
+      "type": "noun",
+      "senseKey": "hotel",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "hotel"
+        },
+        "de": {
+          "text": "das Hotel"
+        },
+        "fr": {
+          "text": "l’hôtel"
+        },
+        "es": {
+          "text": "el hotel"
+        },
+        "ja": {
+          "text": "ホテル"
+        },
+        "zh": {
+          "text": "酒店"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PHOTO",
+      "type": "noun",
+      "senseKey": "photo",
+      "semanticCategory": "holiday",
+      "translations": {
+        "en": {
+          "text": "photo"
+        },
+        "de": {
+          "text": "das Foto"
+        },
+        "fr": {
+          "text": "la photo"
+        },
+        "es": {
+          "text": "la foto"
+        },
+        "ja": {
+          "text": "写真"
+        },
+        "zh": {
+          "text": "相片"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SUNNY",
+      "type": "adjective",
+      "senseKey": "sunny",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sunny"
+        },
+        "de": {
+          "text": "sonnig"
+        },
+        "fr": {
+          "text": "ensoleillé"
+        },
+        "es": {
+          "text": "soleado"
+        },
+        "ja": {
+          "text": "晴れです"
+        },
+        "zh": {
+          "text": "晴朗"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SWIM",
+      "type": "verb",
+      "senseKey": "swim",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "swim"
+        },
+        "de": {
+          "text": "schwimmen"
+        },
+        "fr": {
+          "text": "nager"
+        },
+        "es": {
+          "text": "nadar"
+        },
+        "ja": {
+          "text": "泳ぎます"
+        },
+        "zh": {
+          "text": "游泳"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_9_WHY,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "why",
+        "de": "warum",
+        "fr": "pourquoi",
+        "es": "por qué",
+        "ja": "なぜ",
+        "zh": "為什麼"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "because",
+        "de": "weil",
+        "fr": "parce que",
+        "es": "porque",
+        "ja": "から",
+        "zh": "因為"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "I like",
+        "de": "ich mag",
+        "fr": "j’aime",
+        "es": "me gusta",
+        "ja": "好きです",
+        "zh": "我喜歡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_9_WHY,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "reason",
+        "de": "Grund",
+        "fr": "raison",
+        "es": "razón",
+        "ja": "理由",
+        "zh": "原因"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_9_1",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Why do you like beach?",
+              "tiles": [
+                "Why",
+                "do",
+                "you",
+                "like",
+                "beach",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Why → do → you → like → beach → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Why",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "do",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "you",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "beach",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Warum magst du der Strand?",
+              "tiles": [
+                "Warum",
+                "magst",
+                "du",
+                "der",
+                "Strand",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Warum → magst → du → der → Strand → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Warum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "magst",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "du",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Strand",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Pourquoi aimes-tu la plage ?",
+              "tiles": [
+                "Pourquoi",
+                "aimes-tu",
+                "la",
+                "plage",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Pourquoi → aimes-tu → la → plage → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Pourquoi",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aimes-tu",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plage",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Por qué te gusta la playa?",
+              "tiles": [
+                "¿",
+                "Por",
+                "qué",
+                "te",
+                "gusta",
+                "la",
+                "playa",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "¿ → Por → qué → te → gusta → la → playa → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Por",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "qué",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "te",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "playa",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "なぜ海辺が好きですか。",
+              "tiles": [
+                "なぜ海辺が好きですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "なぜ海辺が好きですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "なぜ海辺が好きですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "你為什麼喜歡海灘？",
+              "tiles": [
+                "你為什麼喜歡海灘？"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "你為什麼喜歡海灘？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "你為什麼喜歡海灘？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_9_2",
+      "linkedConcepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "I like beach because it is sunny.",
+              "tiles": [
+                "I",
+                "like",
+                "beach",
+                "because",
+                "it",
+                "is",
+                "sunny",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "I → like → beach → because → it → is → sunny → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "I",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "like",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "beach",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sunny",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Ich mag der Strand, weil es sonnig ist.",
+              "tiles": [
+                "Ich",
+                "mag",
+                "der",
+                "Strand,",
+                "weil",
+                "es",
+                "sonnig",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Ich → mag → der → Strand, → weil → es → sonnig → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Ich",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Strand,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "sonnig",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "J’aime la plage parce que c’est ensoleillé.",
+              "tiles": [
+                "J’aime",
+                "la",
+                "plage",
+                "parce",
+                "que",
+                "c’est",
+                "ensoleillé",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "J’aime → la → plage → parce → que → c’est → ensoleillé → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "J’aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "plage",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ensoleillé",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "Me gusta la playa porque es soleado.",
+              "tiles": [
+                "Me",
+                "gusta",
+                "la",
+                "playa",
+                "porque",
+                "es",
+                "soleado",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "Me → gusta → la → playa → porque → es → soleado → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Me",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "playa",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "soleado",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "晴れから、海辺が好きです。",
+              "tiles": [
+                "晴れから、海辺が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "晴れから、海辺が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "晴れから、海辺が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "我喜歡海灘，因為它很晴朗。",
+              "tiles": [
+                "我喜歡海灘，因為它很晴朗。"
+              ],
+              "analysis": {
+                "sentencePattern": "Reasons with because sentence",
+                "literalOrderExplanation": "我喜歡海灘，因為它很晴朗。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "我喜歡海灘，因為它很晴朗。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_1",
+      "translations": {
+        "en": {
+          "text": "Why do you like beach?",
+          "tiles": [
+            "Why",
+            "do",
+            "you",
+            "like",
+            "beach",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Why → do → you → like → beach → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Why",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "do",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "you",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "beach",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Warum magst du der Strand?",
+          "tiles": [
+            "Warum",
+            "magst",
+            "du",
+            "der",
+            "Strand",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Warum → magst → du → der → Strand → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Warum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "magst",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "du",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Strand",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Pourquoi aimes-tu la plage ?",
+          "tiles": [
+            "Pourquoi",
+            "aimes-tu",
+            "la",
+            "plage",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Pourquoi → aimes-tu → la → plage → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Pourquoi",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aimes-tu",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plage",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Por qué te gusta la playa?",
+          "tiles": [
+            "¿",
+            "Por",
+            "qué",
+            "te",
+            "gusta",
+            "la",
+            "playa",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "¿ → Por → qué → te → gusta → la → playa → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Por",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "qué",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "te",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "playa",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "なぜ海辺が好きですか。",
+          "tiles": [
+            "なぜ海辺が好きですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "なぜ海辺が好きですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "なぜ海辺が好きですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "你為什麼喜歡海灘？",
+          "tiles": [
+            "你為什麼喜歡海灘？"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "你為什麼喜歡海灘？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "你為什麼喜歡海灘？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FAMILY",
+        "BEACH",
+        "HOTEL",
+        "SWIM",
+        "PHOTO",
+        "SUNNY"
+      ],
+      "grammarFocus": [
+        "why, because"
+      ],
+      "sourceChainId": "CHAIN_9_2",
+      "translations": {
+        "en": {
+          "text": "I like beach because it is sunny.",
+          "tiles": [
+            "I",
+            "like",
+            "beach",
+            "because",
+            "it",
+            "is",
+            "sunny",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "I → like → beach → because → it → is → sunny → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "I",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "like",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "beach",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sunny",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Ich mag der Strand, weil es sonnig ist.",
+          "tiles": [
+            "Ich",
+            "mag",
+            "der",
+            "Strand,",
+            "weil",
+            "es",
+            "sonnig",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Ich → mag → der → Strand, → weil → es → sonnig → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Ich",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Strand,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "sonnig",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "J’aime la plage parce que c’est ensoleillé.",
+          "tiles": [
+            "J’aime",
+            "la",
+            "plage",
+            "parce",
+            "que",
+            "c’est",
+            "ensoleillé",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "J’aime → la → plage → parce → que → c’est → ensoleillé → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "J’aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "plage",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ensoleillé",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "Me gusta la playa porque es soleado.",
+          "tiles": [
+            "Me",
+            "gusta",
+            "la",
+            "playa",
+            "porque",
+            "es",
+            "soleado",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "Me → gusta → la → playa → porque → es → soleado → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Me",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "playa",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "soleado",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "晴れから、海辺が好きです。",
+          "tiles": [
+            "晴れから、海辺が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "晴れから、海辺が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "晴れから、海辺が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "我喜歡海灘，因為它很晴朗。",
+          "tiles": [
+            "我喜歡海灘，因為它很晴朗。"
+          ],
+          "analysis": {
+            "sentencePattern": "Reasons with because sentence",
+            "literalOrderExplanation": "我喜歡海灘，因為它很晴朗。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "我喜歡海灘，因為它很晴朗。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FAMILY": [
+      "S001",
+      "S002"
+    ],
+    "BEACH": [
+      "S001",
+      "S002"
+    ],
+    "HOTEL": [
+      "S001",
+      "S002"
+    ],
+    "SWIM": [
+      "S001",
+      "S002"
+    ],
+    "PHOTO": [
+      "S001",
+      "S002"
+    ],
+    "SUNNY": [
+      "S001",
+      "S002"
+    ]
+  }
+}

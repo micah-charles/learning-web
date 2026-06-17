@@ -1,0 +1,1813 @@
+{
+  "packId": "semantic_pack_l2_095_town_review_conversation",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_095 Town Review Conversation",
+  "description": "A1+ Review conversation pack: Town",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_10_095_town_review_conversation",
+    "title": "Town",
+    "difficultyStage": 10,
+    "semanticDomains": [
+      "town"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "mixed review"
+      ],
+      "german": [
+        "Wiederholung",
+        "Frage",
+        "Antwort"
+      ],
+      "french": [
+        "révision",
+        "question",
+        "réponse"
+      ],
+      "spanish": [
+        "repaso",
+        "pregunta",
+        "respuesta"
+      ],
+      "japanese": [
+        "復習",
+        "質問",
+        "答え"
+      ],
+      "chinese": [
+        "複習",
+        "問題",
+        "答案"
+      ]
+    },
+    "sentenceGoals": [
+      "The tourist is in the town.",
+      "The tourist likes museum because it is near."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "GO",
+      "type": "verb",
+      "senseKey": "go",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "go"
+        },
+        "de": {
+          "text": "gehen"
+        },
+        "fr": {
+          "text": "aller"
+        },
+        "es": {
+          "text": "ir"
+        },
+        "ja": {
+          "text": "行きます"
+        },
+        "zh": {
+          "text": "去"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "MUSEUM",
+      "type": "noun",
+      "senseKey": "museum",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "museum"
+        },
+        "de": {
+          "text": "das Museum"
+        },
+        "fr": {
+          "text": "le musée"
+        },
+        "es": {
+          "text": "el museo"
+        },
+        "ja": {
+          "text": "博物館"
+        },
+        "zh": {
+          "text": "博物館"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "NEAR",
+      "type": "adjective",
+      "senseKey": "near",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "near"
+        },
+        "de": {
+          "text": "nah"
+        },
+        "fr": {
+          "text": "près"
+        },
+        "es": {
+          "text": "cerca"
+        },
+        "ja": {
+          "text": "近いです"
+        },
+        "zh": {
+          "text": "近"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TICKET",
+      "type": "noun",
+      "senseKey": "ticket",
+      "semanticCategory": "travel",
+      "translations": {
+        "en": {
+          "text": "ticket"
+        },
+        "de": {
+          "text": "die Fahrkarte"
+        },
+        "fr": {
+          "text": "le billet"
+        },
+        "es": {
+          "text": "el billete"
+        },
+        "ja": {
+          "text": "切符"
+        },
+        "zh": {
+          "text": "車票"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOURIST",
+      "type": "noun",
+      "senseKey": "tourist",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "tourist"
+        },
+        "de": {
+          "text": "der Tourist"
+        },
+        "fr": {
+          "text": "le touriste"
+        },
+        "es": {
+          "text": "el turista"
+        },
+        "ja": {
+          "text": "観光客"
+        },
+        "zh": {
+          "text": "遊客"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "TOWN",
+      "type": "noun",
+      "senseKey": "town",
+      "semanticCategory": "town",
+      "translations": {
+        "en": {
+          "text": "town"
+        },
+        "de": {
+          "text": "die Stadt"
+        },
+        "fr": {
+          "text": "la ville"
+        },
+        "es": {
+          "text": "la ciudad"
+        },
+        "ja": {
+          "text": "町"
+        },
+        "zh": {
+          "text": "城鎮"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_10_MIXED_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "review",
+        "de": "Wiederholung",
+        "fr": "révision",
+        "es": "repaso",
+        "ja": "復習",
+        "zh": "複習"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "question",
+        "de": "Frage",
+        "fr": "question",
+        "es": "pregunta",
+        "ja": "質問",
+        "zh": "問題"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "answer",
+        "de": "Antwort",
+        "fr": "réponse",
+        "es": "respuesta",
+        "ja": "答え",
+        "zh": "答案"
+      }
+    },
+    {
+      "tokenId": "TOKEN_10_MIXED_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "conversation",
+        "de": "Gespräch",
+        "fr": "conversation",
+        "es": "conversación",
+        "ja": "会話",
+        "zh": "對話"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_10_1",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The tourist is in the town.",
+              "tiles": [
+                "The",
+                "tourist",
+                "is",
+                "in",
+                "the",
+                "town",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → tourist → is → in → the → town → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "town",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der tourist ist in der Stadt.",
+              "tiles": [
+                "Der",
+                "tourist",
+                "ist",
+                "in",
+                "der",
+                "Stadt",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → tourist → ist → in → der → Stadt → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Stadt",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le touriste est dans la ville.",
+              "tiles": [
+                "Le",
+                "touriste",
+                "est",
+                "dans",
+                "la",
+                "ville",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → touriste → est → dans → la → ville → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "touriste",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ville",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El turista está en la ciudad.",
+              "tiles": [
+                "El",
+                "turista",
+                "está",
+                "en",
+                "la",
+                "ciudad",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → turista → está → en → la → ciudad → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "turista",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "la",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ciudad",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "観光客は町にいます。",
+              "tiles": [
+                "観光客は町にいます。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "観光客は町にいます。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "観光客は町にいます。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "遊客在城鎮。",
+              "tiles": [
+                "遊客在城鎮。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "遊客在城鎮。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "遊客在城鎮。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_10_2",
+      "linkedConcepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The tourist likes museum because it is near.",
+              "tiles": [
+                "The",
+                "tourist",
+                "likes",
+                "museum",
+                "because",
+                "it",
+                "is",
+                "near",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "The → tourist → likes → museum → because → it → is → near → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "likes",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museum",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "because",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "it",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "near",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Der tourist mag das Museum, weil es nah ist.",
+              "tiles": [
+                "Der",
+                "tourist",
+                "mag",
+                "das",
+                "Museum,",
+                "weil",
+                "es",
+                "nah",
+                "ist",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Der → tourist → mag → das → Museum, → weil → es → nah → ist → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Der",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "tourist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "mag",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "das",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Museum,",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "weil",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "nah",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le touriste aime le musée parce que c’est près.",
+              "tiles": [
+                "Le",
+                "touriste",
+                "aime",
+                "le",
+                "musée",
+                "parce",
+                "que",
+                "c’est",
+                "près",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "Le → touriste → aime → le → musée → parce → que → c’est → près → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "touriste",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "aime",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "musée",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parce",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "que",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "c’est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "près",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El turista le gusta el museo porque es cerca.",
+              "tiles": [
+                "El",
+                "turista",
+                "le",
+                "gusta",
+                "el",
+                "museo",
+                "porque",
+                "es",
+                "cerca",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "El → turista → le → gusta → el → museo → porque → es → cerca → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "turista",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "gusta",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "museo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "porque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "es",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "cerca",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "近いから、観光客は博物館が好きです。",
+              "tiles": [
+                "近いから、観光客は博物館が好きです。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "近いから、観光客は博物館が好きです。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "近いから、観光客は博物館が好きです。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "遊客喜歡博物館，因為它很近。",
+              "tiles": [
+                "遊客喜歡博物館，因為它很近。"
+              ],
+              "analysis": {
+                "sentencePattern": "Review conversation sentence",
+                "literalOrderExplanation": "遊客喜歡博物館，因為它很近。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "遊客喜歡博物館，因為它很近。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_1",
+      "translations": {
+        "en": {
+          "text": "The tourist is in the town.",
+          "tiles": [
+            "The",
+            "tourist",
+            "is",
+            "in",
+            "the",
+            "town",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → tourist → is → in → the → town → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "town",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der tourist ist in der Stadt.",
+          "tiles": [
+            "Der",
+            "tourist",
+            "ist",
+            "in",
+            "der",
+            "Stadt",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → tourist → ist → in → der → Stadt → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Stadt",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le touriste est dans la ville.",
+          "tiles": [
+            "Le",
+            "touriste",
+            "est",
+            "dans",
+            "la",
+            "ville",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → touriste → est → dans → la → ville → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "touriste",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ville",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El turista está en la ciudad.",
+          "tiles": [
+            "El",
+            "turista",
+            "está",
+            "en",
+            "la",
+            "ciudad",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → turista → está → en → la → ciudad → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "turista",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "la",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ciudad",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "観光客は町にいます。",
+          "tiles": [
+            "観光客は町にいます。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "観光客は町にいます。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "観光客は町にいます。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "遊客在城鎮。",
+          "tiles": [
+            "遊客在城鎮。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "遊客在城鎮。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "遊客在城鎮。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "TOURIST",
+        "MUSEUM",
+        "TOWN",
+        "GO",
+        "TICKET",
+        "NEAR"
+      ],
+      "grammarFocus": [
+        "mixed review"
+      ],
+      "sourceChainId": "CHAIN_10_2",
+      "translations": {
+        "en": {
+          "text": "The tourist likes museum because it is near.",
+          "tiles": [
+            "The",
+            "tourist",
+            "likes",
+            "museum",
+            "because",
+            "it",
+            "is",
+            "near",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "The → tourist → likes → museum → because → it → is → near → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "likes",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museum",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "because",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "it",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "near",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Der tourist mag das Museum, weil es nah ist.",
+          "tiles": [
+            "Der",
+            "tourist",
+            "mag",
+            "das",
+            "Museum,",
+            "weil",
+            "es",
+            "nah",
+            "ist",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Der → tourist → mag → das → Museum, → weil → es → nah → ist → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Der",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "tourist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "mag",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "das",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Museum,",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "weil",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "nah",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le touriste aime le musée parce que c’est près.",
+          "tiles": [
+            "Le",
+            "touriste",
+            "aime",
+            "le",
+            "musée",
+            "parce",
+            "que",
+            "c’est",
+            "près",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "Le → touriste → aime → le → musée → parce → que → c’est → près → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "touriste",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "aime",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "musée",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parce",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "que",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "c’est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "près",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El turista le gusta el museo porque es cerca.",
+          "tiles": [
+            "El",
+            "turista",
+            "le",
+            "gusta",
+            "el",
+            "museo",
+            "porque",
+            "es",
+            "cerca",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "El → turista → le → gusta → el → museo → porque → es → cerca → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "turista",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "gusta",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "museo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "porque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "es",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "cerca",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "近いから、観光客は博物館が好きです。",
+          "tiles": [
+            "近いから、観光客は博物館が好きです。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "近いから、観光客は博物館が好きです。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "近いから、観光客は博物館が好きです。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "遊客喜歡博物館，因為它很近。",
+          "tiles": [
+            "遊客喜歡博物館，因為它很近。"
+          ],
+          "analysis": {
+            "sentencePattern": "Review conversation sentence",
+            "literalOrderExplanation": "遊客喜歡博物館，因為它很近。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "遊客喜歡博物館，因為它很近。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "TOURIST": [
+      "S001",
+      "S002"
+    ],
+    "MUSEUM": [
+      "S001",
+      "S002"
+    ],
+    "TOWN": [
+      "S001",
+      "S002"
+    ],
+    "GO": [
+      "S001",
+      "S002"
+    ],
+    "TICKET": [
+      "S001",
+      "S002"
+    ],
+    "NEAR": [
+      "S001",
+      "S002"
+    ]
+  }
+}

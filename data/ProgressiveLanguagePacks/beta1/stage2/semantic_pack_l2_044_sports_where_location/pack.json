@@ -1,0 +1,1477 @@
+{
+  "packId": "semantic_pack_l2_044_sports_where_location",
+  "schemaVersion": "prototype-0.3",
+  "title": "Semantic Pack L2_044 Sports Where Location",
+  "description": "A1+ Where and location pack: Sports",
+  "baseLanguageCode": "en",
+  "supportedLanguages": [
+    "en",
+    "de",
+    "fr",
+    "es",
+    "ja",
+    "zh"
+  ],
+  "languageLabels": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh": "Chinese"
+  },
+  "sourceTopic": {
+    "topicId": "L2_5_044_sports_where_location",
+    "title": "Sports",
+    "difficultyStage": 5,
+    "semanticDomains": [
+      "sports"
+    ],
+    "grammarTargets": {
+      "universal": [
+        "where, in/at/on"
+      ],
+      "german": [
+        "wo",
+        "in/im",
+        "am"
+      ],
+      "french": [
+        "où",
+        "dans",
+        "à"
+      ],
+      "spanish": [
+        "dónde",
+        "en",
+        "a"
+      ],
+      "japanese": [
+        "どこ",
+        "に",
+        "で"
+      ],
+      "chinese": [
+        "哪裡",
+        "在",
+        "有"
+      ]
+    },
+    "sentenceGoals": [
+      "Where is the football?",
+      "The football is in the park."
+    ]
+  },
+  "vocabulary": [
+    {
+      "conceptId": "BIKE",
+      "type": "noun",
+      "senseKey": "bike",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "bike"
+        },
+        "de": {
+          "text": "das Fahrrad"
+        },
+        "fr": {
+          "text": "le vélo"
+        },
+        "es": {
+          "text": "la bicicleta"
+        },
+        "ja": {
+          "text": "自転車"
+        },
+        "zh": {
+          "text": "單車"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FOOTBALL",
+      "type": "noun",
+      "senseKey": "football",
+      "semanticCategory": "sports",
+      "translations": {
+        "en": {
+          "text": "football"
+        },
+        "de": {
+          "text": "Fußball"
+        },
+        "fr": {
+          "text": "le football"
+        },
+        "es": {
+          "text": "el fútbol"
+        },
+        "ja": {
+          "text": "サッカー"
+        },
+        "zh": {
+          "text": "足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "FRIEND",
+      "type": "noun",
+      "senseKey": "friend",
+      "semanticCategory": "social",
+      "translations": {
+        "en": {
+          "text": "friend"
+        },
+        "de": {
+          "text": "der Freund"
+        },
+        "fr": {
+          "text": "l’ami"
+        },
+        "es": {
+          "text": "el amigo"
+        },
+        "ja": {
+          "text": "友だち"
+        },
+        "zh": {
+          "text": "朋友"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PARK",
+      "type": "noun",
+      "senseKey": "park",
+      "semanticCategory": "outdoor",
+      "translations": {
+        "en": {
+          "text": "park"
+        },
+        "de": {
+          "text": "der Park"
+        },
+        "fr": {
+          "text": "le parc"
+        },
+        "es": {
+          "text": "el parque"
+        },
+        "ja": {
+          "text": "公園"
+        },
+        "zh": {
+          "text": "公園"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "PLAY_FOOTBALL",
+      "type": "verb",
+      "senseKey": "play_football",
+      "semanticCategory": "action",
+      "translations": {
+        "en": {
+          "text": "play football"
+        },
+        "de": {
+          "text": "Fußball spielen"
+        },
+        "fr": {
+          "text": "jouer au football"
+        },
+        "es": {
+          "text": "jugar al fútbol"
+        },
+        "ja": {
+          "text": "サッカーをします"
+        },
+        "zh": {
+          "text": "踢足球"
+        }
+      },
+      "distractors": []
+    },
+    {
+      "conceptId": "SPORTY",
+      "type": "adjective",
+      "senseKey": "sporty",
+      "semanticCategory": "description",
+      "translations": {
+        "en": {
+          "text": "sporty"
+        },
+        "de": {
+          "text": "sportlich"
+        },
+        "fr": {
+          "text": "sportif"
+        },
+        "es": {
+          "text": "deportivo"
+        },
+        "ja": {
+          "text": "スポーティーです"
+        },
+        "zh": {
+          "text": "愛運動"
+        }
+      },
+      "distractors": []
+    }
+  ],
+  "grammarTokens": [
+    {
+      "tokenId": "TOKEN_5_WHERE,_1",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "where",
+        "de": "wo",
+        "fr": "où",
+        "es": "dónde",
+        "ja": "どこ",
+        "zh": "哪裡"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_2",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "in",
+        "de": "in/im",
+        "fr": "dans",
+        "es": "en",
+        "ja": "に",
+        "zh": "在"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_3",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "at",
+        "de": "am",
+        "fr": "à",
+        "es": "a",
+        "ja": "で",
+        "zh": "有"
+      }
+    },
+    {
+      "tokenId": "TOKEN_5_WHERE,_4",
+      "type": "grammar",
+      "linkToConcept": false,
+      "translations": {
+        "en": "there is",
+        "de": "es gibt",
+        "fr": "il y a",
+        "es": "hay",
+        "ja": "あります/います",
+        "zh": "裡"
+      }
+    }
+  ],
+  "phraseProgressionChains": [
+    {
+      "chainId": "CHAIN_5_1",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "Where is the football?",
+              "tiles": [
+                "Where",
+                "is",
+                "the",
+                "football",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Where → is → the → football → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Where",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Wo ist Fußball?",
+              "tiles": [
+                "Wo",
+                "ist",
+                "Fußball",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Wo → ist → Fußball → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Wo",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Fußball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Où est le football ?",
+              "tiles": [
+                "Où",
+                "est",
+                "le",
+                "football",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Où → est → le → football → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Où",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "¿Dónde está el fútbol?",
+              "tiles": [
+                "¿",
+                "Dónde",
+                "está",
+                "el",
+                "fútbol",
+                "?"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "¿ → Dónde → está → el → fútbol → ?",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "¿",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Dónde",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fútbol",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "?",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "サッカーはどこですか。",
+              "tiles": [
+                "サッカーはどこですか。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "サッカーはどこですか。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "サッカーはどこですか。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "足球在哪裡？",
+              "tiles": [
+                "足球在哪裡？"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "足球在哪裡？",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "足球在哪裡？",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "chainId": "CHAIN_5_2",
+      "linkedConcepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "difficulty": "A1+",
+      "steps": [
+        {
+          "step": 1,
+          "focus": "full_sentence",
+          "translations": {
+            "en": {
+              "text": "The football is in the park.",
+              "tiles": [
+                "The",
+                "football",
+                "is",
+                "in",
+                "the",
+                "park",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "The → football → is → in → the → park → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "The",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "is",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "in",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "the",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "park",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "de": {
+              "text": "Fußball ist im Park.",
+              "tiles": [
+                "Fußball",
+                "ist",
+                "im",
+                "Park",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Fußball → ist → im → Park → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Fußball",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "ist",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "im",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "Park",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "fr": {
+              "text": "Le football est dans le parc.",
+              "tiles": [
+                "Le",
+                "football",
+                "est",
+                "dans",
+                "le",
+                "parc",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "Le → football → est → dans → le → parc → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "Le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "football",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "est",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "dans",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "le",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parc",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "es": {
+              "text": "El fútbol está en el parque.",
+              "tiles": [
+                "El",
+                "fútbol",
+                "está",
+                "en",
+                "el",
+                "parque",
+                "."
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "El → fútbol → está → en → el → parque → .",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "El",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "fútbol",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "está",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "en",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "el",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": "parque",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  },
+                  {
+                    "text": ".",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "ja": {
+              "text": "サッカーは公園にあります。",
+              "tiles": [
+                "サッカーは公園にあります。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "サッカーは公園にあります。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "サッカーは公園にあります。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            },
+            "zh": {
+              "text": "足球在公園。",
+              "tiles": [
+                "足球在公園。"
+              ],
+              "analysis": {
+                "sentencePattern": "Where and location sentence",
+                "literalOrderExplanation": "足球在公園。",
+                "grammarExplanation": [],
+                "tokens": [
+                  {
+                    "text": "足球在公園。",
+                    "type": "word",
+                    "role": "component",
+                    "meaning": "",
+                    "grammarNote": ""
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sentenceBuilders": [
+    {
+      "sentenceId": "S001",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_1",
+      "translations": {
+        "en": {
+          "text": "Where is the football?",
+          "tiles": [
+            "Where",
+            "is",
+            "the",
+            "football",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Where → is → the → football → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Where",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Wo ist Fußball?",
+          "tiles": [
+            "Wo",
+            "ist",
+            "Fußball",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Wo → ist → Fußball → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Wo",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Fußball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Où est le football ?",
+          "tiles": [
+            "Où",
+            "est",
+            "le",
+            "football",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Où → est → le → football → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Où",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "¿Dónde está el fútbol?",
+          "tiles": [
+            "¿",
+            "Dónde",
+            "está",
+            "el",
+            "fútbol",
+            "?"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "¿ → Dónde → está → el → fútbol → ?",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "¿",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Dónde",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "fútbol",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "?",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "サッカーはどこですか。",
+          "tiles": [
+            "サッカーはどこですか。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "サッカーはどこですか。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "サッカーはどこですか。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "足球在哪裡？",
+          "tiles": [
+            "足球在哪裡？"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "足球在哪裡？",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "足球在哪裡？",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "sentenceId": "S002",
+      "difficulty": "A1+",
+      "concepts": [
+        "FRIEND",
+        "FOOTBALL",
+        "PARK",
+        "PLAY FOOTBALL",
+        "BIKE",
+        "SPORTY"
+      ],
+      "grammarFocus": [
+        "where, in/at/on"
+      ],
+      "sourceChainId": "CHAIN_5_2",
+      "translations": {
+        "en": {
+          "text": "The football is in the park.",
+          "tiles": [
+            "The",
+            "football",
+            "is",
+            "in",
+            "the",
+            "park",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "The → football → is → in → the → park → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "The",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "is",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "in",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "the",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "park",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "de": {
+          "text": "Fußball ist im Park.",
+          "tiles": [
+            "Fußball",
+            "ist",
+            "im",
+            "Park",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Fußball → ist → im → Park → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Fußball",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "ist",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "im",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "Park",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "fr": {
+          "text": "Le football est dans le parc.",
+          "tiles": [
+            "Le",
+            "football",
+            "est",
+            "dans",
+            "le",
+            "parc",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "Le → football → est → dans → le → parc → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "Le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "football",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "est",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "dans",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "le",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parc",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "es": {
+          "text": "El fútbol está en el parque.",
+          "tiles": [
+            "El",
+            "fútbol",
+            "está",
+            "en",
+            "el",
+            "parque",
+            "."
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "El → fútbol → está → en → el → parque → .",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "El",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "fútbol",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "está",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "en",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "el",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": "parque",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              },
+              {
+                "text": ".",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "ja": {
+          "text": "サッカーは公園にあります。",
+          "tiles": [
+            "サッカーは公園にあります。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "サッカーは公園にあります。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "サッカーは公園にあります。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        },
+        "zh": {
+          "text": "足球在公園。",
+          "tiles": [
+            "足球在公園。"
+          ],
+          "analysis": {
+            "sentencePattern": "Where and location sentence",
+            "literalOrderExplanation": "足球在公園。",
+            "grammarExplanation": [],
+            "tokens": [
+              {
+                "text": "足球在公園。",
+                "type": "word",
+                "role": "component",
+                "meaning": "",
+                "grammarNote": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "conceptSentenceIndex": {
+    "FRIEND": [
+      "S001",
+      "S002"
+    ],
+    "FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "PARK": [
+      "S001",
+      "S002"
+    ],
+    "PLAY FOOTBALL": [
+      "S001",
+      "S002"
+    ],
+    "BIKE": [
+      "S001",
+      "S002"
+    ],
+    "SPORTY": [
+      "S001",
+      "S002"
+    ]
+  }
+}
