@@ -262,6 +262,27 @@ export function findFirstUncompletedLesson(catalog, targetLang, completedSet) {
   return null;
 }
 
+function getCompletedLessonSet(info) {
+  const completed = new Set(info?.completedLessons ?? []);
+  for (const [lessonId, status] of Object.entries(info?.lessonStatus ?? {})) {
+    if (status?.status === "completed") completed.add(lessonId);
+  }
+  return completed;
+}
+
+function getResumeLessonForLang(catalog, targetLang, info) {
+  const completed = getCompletedLessonSet(info);
+  const currentLessonId = info?.currentLessonId || "";
+
+  if (currentLessonId && !completed.has(currentLessonId)) {
+    const current = findLessonById(catalog, currentLessonId);
+    if (current) return { lesson: current, completed };
+  }
+
+  const next = findFirstUncompletedLesson(catalog, targetLang, completed);
+  return next ? { lesson: next, completed } : null;
+}
+
 /**
  * Count total lessons for a language.
  */
@@ -367,9 +388,9 @@ export function getResumeRecommendation(state, catalog) {
 
   // Priority 1: lastLang with currentLessonId
   if (lastLang && langs[lastLang]?.currentLessonId) {
-    const lesson = findLessonById(catalog, langs[lastLang].currentLessonId);
-    if (lesson) {
-      const completed = new Set(langs[lastLang].completedLessons ?? []);
+    const resume = getResumeLessonForLang(catalog, lastLang, langs[lastLang]);
+    if (resume) {
+      const { lesson, completed } = resume;
       const skipped = detectSkippedLessons(state, catalog, lastLang, lesson.id, completed);
       const weak = langs[lastLang].weakLessons ?? [];
       return { lesson, targetLang: lastLang, skippedLessons: skipped, weakLessons: weak, source: "last_lang" };
@@ -382,9 +403,9 @@ export function getResumeRecommendation(state, catalog) {
     .sort((a, b) => new Date(b[1].lastOpenedAt) - new Date(a[1].lastOpenedAt));
 
   for (const [langCode, info] of sortedLangs) {
-    const lesson = findLessonById(catalog, info.currentLessonId);
-    if (lesson) {
-      const completed = new Set(info.completedLessons ?? []);
+    const resume = getResumeLessonForLang(catalog, langCode, info);
+    if (resume) {
+      const { lesson, completed } = resume;
       const skipped = detectSkippedLessons(state, catalog, langCode, lesson.id, completed);
       const weak = info.weakLessons ?? [];
       return { lesson, targetLang: langCode, skippedLessons: skipped, weakLessons: weak, source: "recent_lang" };
@@ -398,9 +419,9 @@ export function getResumeRecommendation(state, catalog) {
     if (count > bestCount) { bestCount = count; bestLang = langCode; }
   }
   if (bestLang) {
-    const lesson = findFirstUncompletedLesson(catalog, bestLang, langs[bestLang].completedLessons);
+    const completed = getCompletedLessonSet(langs[bestLang]);
+    const lesson = findFirstUncompletedLesson(catalog, bestLang, completed);
     if (lesson) {
-      const completed = new Set(langs[bestLang].completedLessons ?? []);
       const skipped = detectSkippedLessons(state, catalog, bestLang, lesson.id, completed);
       const weak = langs[bestLang].weakLessons ?? [];
       return { lesson, targetLang: bestLang, skippedLessons: skipped, weakLessons: weak, source: "most_progress" };

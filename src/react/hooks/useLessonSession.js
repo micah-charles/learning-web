@@ -266,10 +266,19 @@ export function useLessonSession() {
    */
   const markLessonComplete = useCallback((lessonId, targetLang, score) => {
     if (!catalog || !lessonId) return null;
+    const nextLesson = findNextLesson(catalog, lessonId);
     const state = loadStoredState();
     recordLessonCompletion(state, lessonId, targetLang, score);
+    const progress = state.prefs.languageLadder;
+    const lang = progress.langs?.[targetLang];
+    if (lang) {
+      lang.currentLessonId = nextLesson?.id || "";
+      progress.currentLessonId = nextLesson ? `${targetLang}-${nextLesson.id}` : "";
+      progress.lastLang = targetLang;
+      if (!progress.lessonOrder.includes(targetLang)) progress.lessonOrder.push(targetLang);
+    }
     saveStoredState(state);
-    return findNextLesson(catalog, lessonId);
+    return nextLesson;
   }, [catalog]);
 
   /**
