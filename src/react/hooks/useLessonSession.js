@@ -6,8 +6,8 @@
  *
  * Session memory (Features 1 & 2):
  *   - On mount: restores the most-recently-used language's next uncompleted lesson.
- *     Priority: language with the most lessons completed (furthest progress).
- *   - markLessonComplete(lessonId, targetLang): persists lesson completion and
+ *     Priority: last opened language > recent activity > most progress > default
+ *   - markLessonComplete(lessonId, targetLang, score): persists lesson completion and
  *     advances to the next lesson automatically.
  *   - Language-specific: German progress is stored separately from Japanese, etc.
  */
@@ -22,7 +22,16 @@ import {
   SPEECH_LANG_MAP,
 } from "@/progressive-language-lesson.js";
 import { speakText } from "@/utils.js";
-import { loadStoredState, saveStoredState } from "@/storage.js";
+import {
+  loadStoredState,
+  saveStoredState,
+  getResumeRecommendation,
+  recordLessonStart,
+  recordLessonCompletion,
+  detectSkippedLessons,
+  getAllLessonsInOrder,
+  findLessonById,
+} from "@/storage.js";
 
 // ── Lesson progress helpers ──────────────────────────────────────────────────
 
@@ -40,54 +49,6 @@ function writeProgress(fn) {
 }
 
 /**
- * Given the catalog and stored progress, find the best lesson to resume:
- * - Pick the language with the most completed lessons (furthest progress).
- * - Within that language, pick the first lesson NOT yet completed.
- * - Falls back to first lesson of first language if nothing is stored.
- *
- * @returns {{ packId, stageId, lessonId, packPath, targetLang } | null}
- */
-function pickResumeLesson(catalog) {
-  if (!catalog?.packs?.length) return null;
-
-  const progress = readProgress();
-  const langs = progress?.langs ?? {};
-
-  // Find the language with the most completed lessons (highest progress).
-  let bestLang = null;
-  let bestCount = -1;
-  for (const [code, info] of Object.entries(langs)) {
-    const count = info.completedLessons?.length ?? 0;
-    if (count > bestCount) { bestCount = count; bestLang = code; }
-  }
-
-  // Prefer the lastLang if it has progress too (recency tie-break).
-  const lastLang = progress?.lastLang;
-  if (lastLang && langs[lastLang] && (langs[lastLang].completedLessons?.length ?? 0) > 0) {
-    bestLang = lastLang;
-  }
-
-  const targetLang = bestLang || null;
-  const completed  = new Set(langs[targetLang]?.completedLessons ?? []);
-
-  // Walk catalog: first lesson not yet in completedLessons.
-  for (const catPack of catalog.packs) {
-    for (const stage of catPack.stages) {
-      for (const lesson of stage.lessons) {
-        if (!completed.has(lesson.id)) {
-          return {
-            packId: catPack.id, stageId: stage.id,
-            lessonId: lesson.id, packPath: lesson.path,
-            targetLang,
-          };
-        }
-      }
-    }
-  }
-  return null; // all lessons complete — fall through to default
-}
-
-/**
  * Given the current lessonId in a catalog, return the next lesson descriptor
  * or null if there is none.
  */
@@ -98,7 +59,7 @@ function findNextLesson(catalog, currentLessonId) {
       if (idx !== -1) {
         const next = stage.lessons[idx + 1];
         return next
-          ? { packId: catPack.id, stageId: stage.id, lessonId: next.id, packPath: next.path }
+          ? { packId: catPack.id, stageId: stage.id, id: next.id, packPath: next.path }
           : null;
       }
     }
@@ -114,6 +75,14 @@ export function useLessonSession() {
   const [session,   setSession]   = useState(null);
   const [loadError, setLoadError] = useState(null);
 
+  // Resume state for skipped/weak lesson prompts
+  const [skippedLessons, setSkippedLessons] = useState([]);
+  const [weakLessons, setWeakLessons] = useState([]);
+  const [showSkippedPrompt, setShowSkippedPrompt] = useState(false);
+  const [showWeakPrompt, setShowWeakPrompt] = useState(false);
+  const [resumeSource, setResumeSource] = useState(null);
+
+  const resumeShownRef = useRef(false);
   const spokenKeyRef = useRef(null);
 
   // ── Load catalog on mount ──────────────────────────────────────────────────
@@ -124,30 +93,52 @@ export function useLessonSession() {
         if (cancelled) return;
         setCatalog(cat);
 
-        // Restore last position from session memory.
-        const resume = pickResumeLesson(cat);
-        let state = createProgressiveLessonState(cat);
+        // Get resume recommendation with skipped/weak lesson info
+        const state = loadStoredState();
+        const recommendation = getResumeRecommendation(state, cat);
+        let sessState = createProgressiveLessonState(cat);
 
-        if (resume) {
-          const catPack  = cat.packs.find(p => p.id === resume.packId);
-          const catStage = catPack?.stages.find(s => s.id === resume.stageId);
-          const lesson   = catStage?.lessons.find(l => l.id === resume.lessonId);
-          if (lesson) {
-            state = {
-              ...state,
-              catalogPackId:   resume.packId,
-              catalogStageId:  resume.stageId,
-              catalogLessonId: resume.lessonId,
-              packPath:        resume.packPath,
-              ...(resume.targetLang ? { targetLang: resume.targetLang } : {}),
+        if (recommendation) {
+          const { lesson, targetLang, skippedLessons: skipped, weakLessons: weak, source } = recommendation;
+          const catPack  = cat.packs.find(p => p.id === lesson.packId);
+          const catStage = catPack?.stages.find(s => s.id === lesson.stageId);
+          const l        = catStage?.lessons.find(l => l.id === lesson.id);
+          if (l) {
+            sessState = {
+              ...sessState,
+              catalogPackId:   lesson.packId,
+              catalogStageId:  lesson.stageId,
+              catalogLessonId: lesson.id,
+              packPath:        lesson.packPath,
+              targetLang,
             };
           }
+          // Record lesson start for progress tracking
+          recordLessonStart(state, lesson.id, targetLang);
+          saveStoredState(state);
+
+          setSkippedLessons(skipped);
+          setWeakLessons(weak);
+          setResumeSource(source);
         }
-        setSession(state);
+        setSession(sessState);
       })
       .catch(err => { if (!cancelled) setLoadError(err.message); });
     return () => { cancelled = true; };
   }, []);
+
+  // ── Show skipped/weak prompts on first render after session loads ────────────
+  useEffect(() => {
+    if (session && !resumeShownRef.current) {
+      if (skippedLessons.length > 0) {
+        setShowSkippedPrompt(true);
+        resumeShownRef.current = true;
+      } else if (weakLessons.length > 0) {
+        setShowWeakPrompt(true);
+        resumeShownRef.current = true;
+      }
+    }
+  }, [session, skippedLessons, weakLessons]);
 
   // ── Load pack whenever packPath changes ────────────────────────────────────
   useEffect(() => {
@@ -271,22 +262,13 @@ export function useLessonSession() {
   // ── Session memory: mark a lesson complete ────────────────────────────────
   /**
    * Called when the Arcade phase completes (all vocabulary + sentences passed).
-   * Persists the completion and returns the next lesson info (or null if last).
+   * Persists the completion with score and returns the next lesson info (or null if last).
    */
-  const markLessonComplete = useCallback((lessonId, targetLang) => {
+  const markLessonComplete = useCallback((lessonId, targetLang, score) => {
     if (!catalog || !lessonId) return null;
-    writeProgress(prog => {
-      if (!prog.langs) prog.langs = {};
-      if (!prog.langs[targetLang]) {
-        prog.langs[targetLang] = { completedLessons: [], currentLessonId: "", lastOpenedAt: "" };
-      }
-      const entry = prog.langs[targetLang];
-      if (!entry.completedLessons.includes(lessonId)) {
-        entry.completedLessons.push(lessonId);
-      }
-      entry.lastOpenedAt = new Date().toISOString();
-      prog.lastLang = targetLang;
-    });
+    const state = loadStoredState();
+    recordLessonCompletion(state, lessonId, targetLang, score);
+    saveStoredState(state);
     return findNextLesson(catalog, lessonId);
   }, [catalog]);
 
@@ -300,13 +282,18 @@ export function useLessonSession() {
       setSession(prev => prev ? { ...prev, phase: "review" } : prev);
       return;
     }
+    // Record lesson start for the new lesson
+    const state = loadStoredState();
+    recordLessonStart(state, nextLesson.id, targetLang);
+    saveStoredState(state);
+
     // Update storage with the new "current" lesson for this language.
     writeProgress(prog => {
       if (!prog.langs) prog.langs = {};
       if (!prog.langs[targetLang]) {
         prog.langs[targetLang] = { completedLessons: [], currentLessonId: "", lastOpenedAt: "" };
       }
-      prog.langs[targetLang].currentLessonId = nextLesson.lessonId;
+      prog.langs[targetLang].currentLessonId = nextLesson.id;
       prog.langs[targetLang].lastOpenedAt = new Date().toISOString();
       prog.lastLang = targetLang;
     });
@@ -315,7 +302,7 @@ export function useLessonSession() {
       ...prev,
       catalogPackId:   nextLesson.packId,
       catalogStageId:  nextLesson.stageId,
-      catalogLessonId: nextLesson.lessonId,
+      catalogLessonId: nextLesson.id,
       packPath:        nextLesson.packPath,
       phase: "listen", chainIndex: 0, stepIndex: 0, vocabIndex: 0,
       // Reset scoring for fresh lesson.
@@ -328,11 +315,36 @@ export function useLessonSession() {
     setSession(prev => prev ? { ...prev, phase: "review" } : prev);
   }, []);
 
+  // ── Helper to dismiss resume prompts ───────────────────────────────────────
+  const dismissSkippedPrompt = useCallback((goToSkipped) => {
+    setShowSkippedPrompt(false);
+    if (goToSkipped && skippedLessons[0]) {
+      const lesson = findLessonById(catalog, skippedLessons[0].id);
+      if (lesson) goToLesson(lesson, session?.targetLang);
+    }
+  }, [catalog, session?.targetLang, skippedLessons, goToLesson]);
+
+  const dismissWeakPrompt = useCallback((goToWeak) => {
+    setShowWeakPrompt(false);
+    if (goToWeak && weakLessons[0]) {
+      const lesson = findLessonById(catalog, weakLessons[0]);
+      if (lesson) goToLesson(lesson, session?.targetLang);
+    }
+  }, [catalog, session?.targetLang, weakLessons, goToLesson]);
+
   return {
     catalog, pack, session, loadError,
     dispatch, speakCurrentCue,
     setPackSelection, setStageSelection, setLessonSelection, setLanguageSelection,
     markLessonComplete, goToLesson, advanceToReview,
     SPEECH_LANG_MAP,
+    // Resume UI state
+    skippedLessons,
+    weakLessons,
+    showSkippedPrompt,
+    showWeakPrompt,
+    resumeSource,
+    dismissSkippedPrompt,
+    dismissWeakPrompt,
   };
 }

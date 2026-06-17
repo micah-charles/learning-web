@@ -24,20 +24,15 @@ export const DEFAULT_STATE = {
       categories: [],     // used by language-pack category checkboxes ([] = all selected)
     },
     quiz: {
-      // Subject First selections (added in the Subject First refactor)
       subject: "language",                    // language | history | geography | science
       curriculum: "all",                      // ks3 | gcse | other | all
       direction: "studyToTarget",             // studyToTarget | targetToStudy (language packs only)
       answerMode: "mcq",                      // mcq | typed | mixed
-      // Existing fields
       datasetId: "core",
       year: "Y7",
       stages: [],
       excludeMastered: true,
       questionCount: 18,
-      // Legacy mode IDs are kept internally for the question engine; they are
-      // derived from (subject, direction, answerMode) via the adapter at
-      // session-build time. Persisted here only as a safety net.
       modes: [
         "englishWordChooseGerman",
         "englishSentenceBuildGerman",
@@ -100,12 +95,9 @@ export const DEFAULT_STATE = {
       speech: false,              // speak the correct word/answer aloud via TTS
     },
     languageLadder: {
-      // Language-specific lesson progress. Keyed by targetLang code (e.g. "de", "ja").
-      // lastLang: the most-recently-used language code — restored on next open.
-      // langs[code].completedLessons: ordered list of completed lesson IDs.
-      // langs[code].currentLessonId: the lesson to resume next time.
-      // langs[code].lastOpenedAt: ISO timestamp for "most recently used" ordering.
       lastLang: "",
+      currentLessonId: "",
+      lessonOrder: [],
       langs: {},
     },
     tutor: {
@@ -153,6 +145,50 @@ function mergeState(base, incoming) {
   return incoming === undefined || incoming === null ? base : incoming;
 }
 
+function migrateLanguageLadder(parsed) {
+  const ll = parsed.prefs.languageLadder;
+  if (!ll) return;
+  
+  // Check if already migrated using a version marker
+  if (ll.migrationVersion === 1) return;
+
+  // MIGRATE: Convert old completedLessons to lessonStatus
+  for (const [lang, info] of Object.entries(ll.langs ?? {})) {
+    if (!info) continue;
+    
+    // Only initialize missing fields, don't overwrite existing
+    if (!info.lessonStatus) info.lessonStatus = {};
+    if (!info.weakLessons) info.weakLessons = [];
+    if (!info.currentLessonId) info.currentLessonId = "";
+
+    // Mark completed lessons (only if not already in lessonStatus)
+    (info.completedLessons || []).forEach(lessonId => {
+      if (!info.lessonStatus[lessonId]) {
+        info.lessonStatus[lessonId] = {
+          status: "completed",
+          completedAt: info.lastOpenedAt || new Date().toISOString(),
+          attempts: 1,
+          lastScore: 100, // unknown, assume passing
+        };
+      }
+    });
+
+    // Determine current lesson from lastOpenedAt or first uncompleted
+    if (!info.currentLessonId && info.completedLessons?.length) {
+      // Will be determined by resume logic based on catalog
+    }
+  }
+
+  // Set denormalized currentLessonId
+  ll.currentLessonId = ll.lastLang
+    ? `${ll.lastLang}-${ll.langs[ll.lastLang]?.currentLessonId || ""}`
+    : "";
+  ll.lessonOrder = Object.keys(ll.langs ?? {}); // preserve existing order
+  
+  // Mark as migrated
+  ll.migrationVersion = 1;
+}
+
 export function loadStoredState() {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -160,6 +196,7 @@ export function loadStoredState() {
       return clone(DEFAULT_STATE);
     }
     const parsed = JSON.parse(raw);
+    migrateLanguageLadder(parsed);
     const merged = mergeState(DEFAULT_STATE, parsed);
     if (!Array.isArray(merged.prefs.quiz.modes) || merged.prefs.quiz.modes.length === 0) {
       merged.prefs.quiz.modes = [...DEFAULT_STATE.prefs.quiz.modes];
@@ -172,6 +209,206 @@ export function loadStoredState() {
 
 export function saveStoredState(state) {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// ── Language Ladder Helpers ────────────────────────────────────────────────
+
+/**
+ * Get all lessons for a target language in catalog order.
+ * Returns array of { id, label, packId, stageId, packPath }.
+ */
+export function getAllLessonsInOrder(catalog, targetLang) {
+  if (!catalog?.packs) return [];
+  const lessons = [];
+  for (const catPack of catalog.packs) {
+    for (const stage of catPack.stages) {
+      for (const lesson of stage.lessons) {
+        lessons.push({
+          id: lesson.id,
+          label: lesson.label,
+          packId: catPack.id,
+          stageId: stage.id,
+          packPath: lesson.path,
+        });
+      }
+    }
+  }
+  return lessons;
+}
+
+/**
+ * Find a lesson by ID across all packs/stages.
+ */
+export function findLessonById(catalog, lessonId) {
+  if (!catalog?.packs) return null;
+  for (const catPack of catalog.packs) {
+    for (const stage of catPack.stages) {
+      const lesson = stage.lessons.find(l => l.id === lessonId);
+      if (lesson) return { ...lesson, lessonId: lesson.id, packId: catPack.id, stageId: stage.id, packPath: lesson.path };
+    }
+  }
+  return null;
+}
+
+/**
+ * Find the first lesson not in completedSet.
+ */
+export function findFirstUncompletedLesson(catalog, targetLang, completedSet) {
+  const lessons = getAllLessonsInOrder(catalog, targetLang);
+  const completed = completedSet || new Set();
+  for (const lesson of lessons) {
+    if (!completed.has(lesson.id)) return lesson;
+  }
+  return null;
+}
+
+/**
+ * Count total lessons for a language.
+ */
+export function countTotalLessons(catalog, targetLang) {
+  return getAllLessonsInOrder(catalog, targetLang).length;
+}
+
+/**
+ * Record when a lesson is started (or resumed).
+ */
+export function recordLessonStart(state, lessonId, targetLang) {
+  const ll = state.prefs.languageLadder;
+  if (!ll.langs[targetLang]) {
+    ll.langs[targetLang] = {
+      completedLessons: [],
+      currentLessonId: "",
+      lastOpenedAt: "",
+      lessonStatus: {},
+      weakLessons: [],
+      studyStreak: { current: 0, longest: 0, lastStudyDate: "" },
+    };
+  }
+  const lang = ll.langs[targetLang];
+  if (!lang.lessonStatus[lessonId]) {
+    lang.lessonStatus[lessonId] = { status: "in_progress", startedAt: new Date().toISOString(), attempts: 0 };
+  } else if (lang.lessonStatus[lessonId].status === "not_started") {
+    lang.lessonStatus[lessonId].status = "in_progress";
+    lang.lessonStatus[lessonId].startedAt = new Date().toISOString();
+  }
+  lang.lessonStatus[lessonId].attempts = (lang.lessonStatus[lessonId].attempts || 0) + 1;
+  lang.currentLessonId = lessonId;
+  lang.lastOpenedAt = new Date().toISOString();
+  ll.lastLang = targetLang;
+  ll.currentLessonId = `${targetLang}-${lessonId}`;
+  if (!ll.lessonOrder.includes(targetLang)) ll.lessonOrder.push(targetLang);
+}
+
+/**
+ * Record lesson completion with score.
+ * Auto-sets "needs_review" if score < 70.
+ */
+export function recordLessonCompletion(state, lessonId, targetLang, score) {
+  const ll = state.prefs.languageLadder;
+  if (!ll.langs[targetLang]) return;
+
+  const lang = ll.langs[targetLang];
+  const status = lang.lessonStatus[lessonId] || { attempts: 0 };
+
+  if (score < 70) {
+    status.status = "needs_review";
+    if (!lang.weakLessons.includes(lessonId)) lang.weakLessons.push(lessonId);
+  } else {
+    status.status = "completed";
+    lang.weakLessons = lang.weakLessons.filter(id => id !== lessonId);
+    if (!lang.completedLessons.includes(lessonId)) lang.completedLessons.push(lessonId);
+  }
+
+  status.completedAt = new Date().toISOString();
+  status.lastScore = score;
+  status.attempts = (status.attempts || 0) + 1;
+  lang.lessonStatus[lessonId] = status;
+  lang.lastOpenedAt = new Date().toISOString();
+}
+
+/**
+ * Detect skipped lessons when user jumps ahead.
+ * Returns array of { id, label } for lessons before current that aren't completed.
+ * Also marks them as "skipped" in lessonStatus.
+ */
+export function detectSkippedLessons(state, catalog, targetLang, currentLessonId, completedSet) {
+  const allLessons = getAllLessonsInOrder(catalog, targetLang);
+  const currentIndex = allLessons.findIndex(l => l.id === currentLessonId);
+  if (currentIndex <= 0) return [];
+
+  const completed = completedSet || new Set();
+  const skipped = allLessons
+    .slice(0, currentIndex)
+    .filter(l => !completed.has(l.id))
+    .map(l => ({ id: l.id, label: l.label }));
+
+  // Mark as skipped in storage
+  const ll = state.prefs.languageLadder;
+  const lang = ll.langs[targetLang];
+  if (lang) {
+    skipped.forEach(s => {
+      if (!lang.lessonStatus[s.id] || lang.lessonStatus[s.id].status === "not_started") {
+        lang.lessonStatus[s.id] = { status: "skipped", reason: "jumped_ahead" };
+      }
+    });
+  }
+
+  return skipped;
+}
+
+/**
+ * Get resume recommendation with skipped/weak lesson info.
+ * Returns { lesson, targetLang, skippedLessons, weakLessons, source } or null.
+ */
+export function getResumeRecommendation(state, catalog) {
+  const ll = state.prefs.languageLadder;
+  const langs = ll.langs ?? {};
+  const lastLang = ll.lastLang;
+
+  // Priority 1: lastLang with currentLessonId
+  if (lastLang && langs[lastLang]?.currentLessonId) {
+    const lesson = findLessonById(catalog, langs[lastLang].currentLessonId);
+    if (lesson) {
+      const completed = new Set(langs[lastLang].completedLessons ?? []);
+      const skipped = detectSkippedLessons(state, catalog, lastLang, lesson.id, completed);
+      const weak = langs[lastLang].weakLessons ?? [];
+      return { lesson, targetLang: lastLang, skippedLessons: skipped, weakLessons: weak, source: "last_lang" };
+    }
+  }
+
+  // Priority 2: most recently opened language with incomplete lesson
+  const sortedLangs = Object.entries(langs)
+    .filter(([_, v]) => v.currentLessonId)
+    .sort((a, b) => new Date(b[1].lastOpenedAt) - new Date(a[1].lastOpenedAt));
+
+  for (const [langCode, info] of sortedLangs) {
+    const lesson = findLessonById(catalog, info.currentLessonId);
+    if (lesson) {
+      const completed = new Set(info.completedLessons ?? []);
+      const skipped = detectSkippedLessons(state, catalog, langCode, lesson.id, completed);
+      const weak = info.weakLessons ?? [];
+      return { lesson, targetLang: langCode, skippedLessons: skipped, weakLessons: weak, source: "recent_lang" };
+    }
+  }
+
+  // Priority 3: most completed language, first uncompleted
+  let bestLang = null, bestCount = -1;
+  for (const [langCode, info] of Object.entries(langs)) {
+    const count = info.completedLessons?.length ?? 0;
+    if (count > bestCount) { bestCount = count; bestLang = langCode; }
+  }
+  if (bestLang) {
+    const lesson = findFirstUncompletedLesson(catalog, bestLang, langs[bestLang].completedLessons);
+    if (lesson) {
+      const completed = new Set(langs[bestLang].completedLessons ?? []);
+      const skipped = detectSkippedLessons(state, catalog, bestLang, lesson.id, completed);
+      const weak = langs[bestLang].weakLessons ?? [];
+      return { lesson, targetLang: bestLang, skippedLessons: skipped, weakLessons: weak, source: "most_progress" };
+    }
+  }
+
+  // Fallback
+  return null;
 }
 
 export function getWordProgress(state, wordId) {

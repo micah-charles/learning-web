@@ -40,6 +40,14 @@ export default function LanguagePage() {
     dispatch, speakCurrentCue,
     setPackSelection, setStageSelection, setLessonSelection, setLanguageSelection,
     markLessonComplete, goToLesson, advanceToReview,
+    SPEECH_LANG_MAP,
+    // Resume UI state
+    skippedLessons,
+    weakLessons,
+    showSkippedPrompt,
+    showWeakPrompt,
+    dismissSkippedPrompt,
+    dismissWeakPrompt,
   } = useLessonSession();
 
   const targetLang = session?.targetLang || "de";
@@ -100,11 +108,14 @@ export default function LanguagePage() {
   const handleArcadeComplete = useCallback(() => {
     const lessonId   = session?.catalogLessonId;
     const targetLang = session?.targetLang;
-    const next = markLessonComplete(lessonId, targetLang);
+    const pct = session?.score && (session.score.vocabTotal + session.score.builderTotal > 0)
+      ? Math.round(((session.score.vocabCorrect + session.score.builderCorrect) / (session.score.vocabTotal + session.score.builderTotal)) * 100)
+      : 100; // default to 100 if no score data
+    const next = markLessonComplete(lessonId, targetLang, pct);
     setNextLesson(next);   // may be null (last lesson)
     setShowArcade(false);
     advanceToReview();
-  }, [session?.catalogLessonId, session?.targetLang, markLessonComplete, advanceToReview]);
+  }, [session?.catalogLessonId, session?.targetLang, session?.score, markLessonComplete, advanceToReview]);
 
   // Called from ReviewPhase "Next Lesson" button.
   const handleNextLesson = useCallback(() => {
@@ -175,6 +186,61 @@ export default function LanguagePage() {
         onLessonChange={setLessonSelection} onLanguageChange={setLanguageSelection}
       />
       <LessonStepper currentPhase={effectivePhase} onJump={handleJump} showListen={speechPlaybackSupported} />
+
+      {/* ── Resume prompts ─────────────────────────────────────────────────────── */}
+      {showSkippedPrompt && (
+        <div className="section-card pl-prompt-card pl-skipped-prompt" data-testid="progressive-skipped-prompt">
+          <div className="pl-prompt-icon" aria-hidden="true">⏭️</div>
+          <div className="pl-prompt-content">
+            <h3>Welcome back! 👋</h3>
+            <p>You have <strong>{skippedLessons.length}</strong> earlier lesson{skippedLessons.length > 1 ? 's' : ''} not completed.</p>
+            <p className="pl-prompt-sub">Skipped: {skippedLessons.map(l => l.label).join(', ')}</p>
+          </div>
+          <div className="pl-prompt-actions">
+            <button
+              type="button"
+              className="button button-primary"
+              onClick={() => dismissSkippedPrompt(false)}
+            >
+              Continue Lesson {session?.catalogLessonId ? '—' : '—'}
+            </button>
+            <button
+              type="button"
+              className="button button-ghost"
+              onClick={() => dismissSkippedPrompt(true)}
+            >
+              Resume from Lesson {skippedLessons[0]?.label}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showWeakPrompt && (
+        <div className="section-card pl-prompt-card pl-weak-prompt" data-testid="progressive-weak-prompt">
+          <div className="pl-prompt-icon" aria-hidden="true">📚</div>
+          <div className="pl-prompt-content">
+            <h3>Review recommended</h3>
+            <p>You scored below 70% on <strong>{weakLessons.length}</strong> lesson{weakLessons.length > 1 ? 's' : ''}.</p>
+            <p className="pl-prompt-sub">Weak: {weakLessons.join(', ')}</p>
+          </div>
+          <div className="pl-prompt-actions">
+            <button
+              type="button"
+              className="button button-primary"
+              onClick={() => dismissWeakPrompt(false)}
+            >
+              Continue Anyway
+            </button>
+            <button
+              type="button"
+              className="button button-ghost"
+              onClick={() => dismissWeakPrompt(true)}
+            >
+              Review Weak Lessons
+            </button>
+          </div>
+        </div>
+      )}
 
       {voicePracticeSupported && (
         <label
