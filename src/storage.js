@@ -124,6 +124,14 @@ export const DEFAULT_STATE = {
   },
   speakShadow: {
     sessions: {},
+    preferences: {
+      chineseVoiceLocale: "zh-HK",
+      passThreshold: 0.85,
+      minConfidence: 0.6,
+      tutorMode: true,
+      autoAdvanceOnPass: true,
+      autoReadNextPhrase: true,
+    },
     recentSessionIds: [],
     lastSessionId: "",
   },
