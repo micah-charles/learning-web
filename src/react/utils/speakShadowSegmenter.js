@@ -1,14 +1,16 @@
 import { normalizeForCompare } from "@/utils.js";
 import {
+  DEFAULT_SPEAK_SHADOW_SETTINGS,
   getSpeakShadowLanguage,
   getSpeakShadowLanguageByLocale,
   PHRASE_LENGTHS,
   PHRASE_STATUS,
+  resolveSpeakShadowSpeech,
 } from "./speakShadowConfig.js";
 
 const SENTENCE_ENDINGS = new Set([".", "?", "!", ";", ":", "。", "！", "？", "；", "："]);
 const PHRASE_BREAKS = new Set([",", ";", ":", "，", "、", "；", "："]);
-const CJK_LANGS = new Set(["zh", "zh-Hant", "ja"]);
+const CJK_LANGS = new Set(["zh", "ja"]);
 
 function makeSessionId() {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -39,7 +41,7 @@ export function tokenizePhrase(phrase, language = "en") {
   if (!text) return [];
 
   if (isCjkLanguage(language)) {
-    const locale = getSpeakShadowLanguage(language).ttsLang;
+    const locale = language === "zh" ? "zh-HK" : getSpeakShadowLanguage(language).ttsLang;
     if (typeof Intl !== "undefined" && Intl.Segmenter) {
       return [...new Intl.Segmenter(locale, { granularity: "word" }).segment(text)]
         .map((part) => part.segment.trim())
@@ -125,13 +127,29 @@ export function getSpeakShadowTextLimit(text, language = "en") {
   return { ok: count <= 1000, count, limit: 1000, unit: "words" };
 }
 
-export function createSpeakShadowSession({ title, text, language = "en", phraseLength = "medium", savedToBrowser = true, sourceType = "pasted_text", sourcePackageId = null }) {
-  const languageConfig = getSpeakShadowLanguage(language);
+export function createSpeakShadowSession({
+  title,
+  text,
+  language = "en",
+  voiceLocale = "",
+  phraseLength = "medium",
+  savedToBrowser = true,
+  sourceType = "pasted_text",
+  sourcePackageId = null,
+  settings = {},
+}) {
+  const speech = resolveSpeakShadowSpeech({ language, voiceLocale });
   const lengthConfig = PHRASE_LENGTHS[phraseLength] || PHRASE_LENGTHS.medium;
   const sentences = splitIntoSentences(text);
-  const phrases = sentences.flatMap((sentence) => splitSentenceIntoPhrases(sentence, languageConfig.id, lengthConfig.maxTokens));
+  const phrases = sentences.flatMap((sentence) => splitSentenceIntoPhrases(sentence, speech.language, lengthConfig.maxTokens));
   const now = new Date().toISOString();
   const sessionId = makeSessionId();
+  const mergedSettings = {
+    ...DEFAULT_SPEAK_SHADOW_SETTINGS,
+    ...settings,
+    phraseLength,
+    maxTokensPerPhrase: lengthConfig.maxTokens,
+  };
 
   return {
     schemaVersion: 1,
@@ -140,26 +158,20 @@ export function createSpeakShadowSession({ title, text, language = "en", phraseL
     title: title?.trim() || "Read-aloud practice",
     sourceType,
     sourcePackageId,
-    language: languageConfig.id,
-    ttsLang: languageConfig.ttsLang,
-    recognitionLang: languageConfig.recognitionLang,
+    language: speech.language,
+    voiceLocale: speech.voiceLocale,
+    ttsLang: speech.ttsLang,
+    recognitionLang: speech.recognitionLang,
     createdAt: now,
     lastOpenedAt: now,
     savedToBrowser,
     currentPhraseId: "phrase-001",
-    settings: {
-      phraseLength,
-      maxTokensPerPhrase: lengthConfig.maxTokens,
-      minSimilarity: 0.85,
-      minConfidence: 0.6,
-      autoPlayTutor: true,
-      autoAdvanceOnPass: true,
-    },
+    settings: mergedSettings,
     phrases: phrases.map((phrase, index) => ({
       id: `phrase-${String(index + 1).padStart(3, "0")}`,
       text: phrase,
-      tokens: tokenizePhrase(phrase, languageConfig.id),
-      expectedNormalized: normalizeForSpeechCompare(phrase, languageConfig.id),
+      tokens: tokenizePhrase(phrase, speech.language),
+      expectedNormalized: normalizeForSpeechCompare(phrase, speech.language),
       status: index === 0 ? PHRASE_STATUS.CURRENT : PHRASE_STATUS.NOT_STARTED,
       attempts: [],
     })),
@@ -181,6 +193,7 @@ export function createSpeakShadowSessionFromPack({ pack, title, language, savedT
     title: title || pack?.title || pack?.displayName || "Imported read-aloud practice",
     text: readable,
     language: resolvedLanguage,
+    voiceLocale: resolvedLanguage === "zh" ? "zh-HK" : "",
     savedToBrowser,
     sourceType: "json_package",
     sourcePackageId: pack?.packId || pack?.id || null,
@@ -189,18 +202,21 @@ export function createSpeakShadowSessionFromPack({ pack, title, language, savedT
 
 export function ensureSpeakShadowSession(input, { savedToBrowser = true } = {}) {
   if (input?.type === "speak_shadow_session" && Array.isArray(input.phrases)) {
-    const languageConfig = getSpeakShadowLanguage(input.language);
+    const speech = resolveSpeakShadowSpeech({ language: input.language, voiceLocale: input.voiceLocale });
     return {
       ...input,
+      language: speech.language,
       savedToBrowser,
-      ttsLang: input.ttsLang || languageConfig.ttsLang,
-      recognitionLang: input.recognitionLang || languageConfig.recognitionLang,
+      voiceLocale: input.voiceLocale || speech.voiceLocale,
+      ttsLang: input.ttsLang || speech.ttsLang,
+      recognitionLang: input.recognitionLang || speech.recognitionLang,
+      settings: { ...DEFAULT_SPEAK_SHADOW_SETTINGS, ...(input.settings || {}) },
       lastOpenedAt: new Date().toISOString(),
       phrases: input.phrases.map((phrase, index) => ({
         id: phrase.id || `phrase-${String(index + 1).padStart(3, "0")}`,
         text: phrase.text || "",
-        tokens: phrase.tokens || tokenizePhrase(phrase.text || "", input.language),
-        expectedNormalized: phrase.expectedNormalized || normalizeForSpeechCompare(phrase.text || "", input.language),
+        tokens: phrase.tokens || tokenizePhrase(phrase.text || "", speech.language),
+        expectedNormalized: phrase.expectedNormalized || normalizeForSpeechCompare(phrase.text || "", speech.language),
         status: index === 0 ? PHRASE_STATUS.CURRENT : phrase.status || PHRASE_STATUS.NOT_STARTED,
         attempts: Array.isArray(phrase.attempts) ? phrase.attempts : [],
       })),
