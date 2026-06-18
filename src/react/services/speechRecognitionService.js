@@ -10,15 +10,21 @@ const SPEECH_LANG_MAP = {
   nl: "nl-NL",
   el: "el-GR",
   ru: "ru-RU",
-  zh: "zh-CN",
+  zh: "zh-HK",
   ja: "ja-JP",
   ko: "ko-KR",
   ar: "ar-SA",
 };
 
 function getSpeechRecognitionLang(langCode) {
-  const short = (langCode || "en").slice(0, 2).toLowerCase();
-  return SPEECH_LANG_MAP[short] || normLang(langCode) || "en-GB";
+  const raw = String(langCode || "en").replace("_", "-");
+  const lower = raw.toLowerCase();
+  if (lower === "zh") return SPEECH_LANG_MAP.zh;
+  if (raw.includes("-")) return raw;
+  const normalized = normLang(raw) || "en-GB";
+  if (String(normalized).includes("-")) return normalized;
+  const short = String(normalized || "en").slice(0, 2).toLowerCase();
+  return SPEECH_LANG_MAP[short] || "en-GB";
 }
 
 let recognizer = null;
