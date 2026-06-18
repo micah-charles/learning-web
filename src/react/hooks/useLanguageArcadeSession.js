@@ -4,10 +4,9 @@
  * Converts a progressive-language-lesson pack into Arcade game questions,
  * and tracks the Language Ladder arcade sequence.
  *
- * We keep the full two-round sequence exported for future reuse, but the
- * current Language Ladder flow uses only the first round (Quiz Hunt). If the
- * learner scores below 100%, the same round remounts immediately and repeats
- * until they clear it perfectly.
+ * Language Ladder runs Quiz Hunt, then Sentence Snake. Each round starts with
+ * every playable item once; a correction pass remounts with only the missed
+ * item ids until the learner clears that round.
  */
 import { useMemo, useState } from "react";
 import { buildQuizHuntQuestions, buildSnakeBuilderQuestions } from "../games/arcade/utils/gameQuestionAdapter.js";
@@ -18,18 +17,24 @@ export const FULL_LANGUAGE_ARCADE_SEQUENCE = [
   { mode: "snake-builder", label: "Sentence Snake" },
 ];
 
-export const LANGUAGE_LADDER_ARCADE_SEQUENCE = [FULL_LANGUAGE_ARCADE_SEQUENCE[0]];
+export const LANGUAGE_LADDER_ARCADE_SEQUENCE = FULL_LANGUAGE_ARCADE_SEQUENCE;
+
+function uniqueIds(ids) {
+  return [...new Set((ids || []).map((id) => String(id || "").trim()).filter(Boolean))];
+}
 
 export function resolveLanguageArcadeRoundState(previousState, result, sequence = LANGUAGE_LADDER_ARCADE_SEQUENCE) {
   const accuracy = result?.accuracy ?? 0;
+  const missedItemIds = uniqueIds(result?.missedItemIds || result?.missedQuestionIds);
   const nextState = {
     ...previousState,
     lastAccuracy: accuracy,
   };
 
-  if (accuracy < 100) {
+  if (missedItemIds.length || accuracy < 100) {
     return {
       ...nextState,
+      retryItemIds: missedItemIds,
       retryNonce: (previousState?.retryNonce || 0) + 1,
       done: false,
     };
@@ -39,12 +44,14 @@ export function resolveLanguageArcadeRoundState(previousState, result, sequence 
   if (nextIdx >= sequence.length) {
     return {
       ...nextState,
+      retryItemIds: [],
       done: true,
     };
   }
 
   return {
     ...nextState,
+    retryItemIds: [],
     roundIndex: nextIdx,
   };
 }
@@ -54,6 +61,7 @@ export function useLanguageArcadeSession(pack, targetLang) {
   const [done, setDone]             = useState(false);
   const [lastAccuracy, setLastAccuracy] = useState(null);
   const [retryNonce, setRetryNonce] = useState(0);
+  const [retryItemIds, setRetryItemIds] = useState([]);
 
   const quizQuestions = useMemo(() => {
     if (!pack?.vocabulary?.length) return [];
@@ -93,17 +101,24 @@ export function useLanguageArcadeSession(pack, targetLang) {
 
   const round = LANGUAGE_LADDER_ARCADE_SEQUENCE[roundIndex]
     ?? LANGUAGE_LADDER_ARCADE_SEQUENCE[LANGUAGE_LADDER_ARCADE_SEQUENCE.length - 1];
-  const questions = round.mode === "quiz-hunt" ? quizQuestions : snakeQuestions;
+  const allRoundQuestions = round.mode === "quiz-hunt" ? quizQuestions : snakeQuestions;
+  const questions = useMemo(() => {
+    if (!retryItemIds.length) return allRoundQuestions;
+    const retryIds = new Set(retryItemIds);
+    const retryQuestions = allRoundQuestions.filter((question) => retryIds.has(question.wordId || question.itemId || question.id));
+    return retryQuestions.length ? retryQuestions : allRoundQuestions;
+  }, [allRoundQuestions, retryItemIds]);
   const hasContent = questions.length > 0;
 
   function onRoundEnd(result) {
     const next = resolveLanguageArcadeRoundState(
-      { roundIndex, done, lastAccuracy, retryNonce },
+      { roundIndex, done, lastAccuracy, retryNonce, retryItemIds },
       result,
       LANGUAGE_LADDER_ARCADE_SEQUENCE,
     );
     setLastAccuracy(next.lastAccuracy);
     setRetryNonce(next.retryNonce || 0);
+    setRetryItemIds(next.retryItemIds || []);
     setDone(!!next.done);
     setRoundIndex(next.roundIndex || 0);
   }
@@ -113,6 +128,7 @@ export function useLanguageArcadeSession(pack, targetLang) {
     setDone(false);
     setLastAccuracy(null);
     setRetryNonce(0);
+    setRetryItemIds([]);
   }
 
   return {

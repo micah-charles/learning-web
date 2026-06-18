@@ -148,7 +148,13 @@ function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
     g.combo += 1;
     g.correct += 1;
     g.bestStreak = Math.max(g.bestStreak, g.combo);
-    events.push({ type: "correct", wordId: q.wordId, speechText: q.speechText || q.correctAnswer, speechLanguage: q.speechLanguage || "en-GB" });
+    events.push({
+      type: "correct",
+      questionId: q.id,
+      wordId: q.wordId,
+      speechText: q.speechText || q.correctAnswer,
+      speechLanguage: q.speechLanguage || "en-GB",
+    });
 
     if (g.goal.mode === "fullset") {
       g.doneInSet += 1;
@@ -171,16 +177,26 @@ function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
     g.combo = 0;
     g.freeze = 2;
     hit.state = "wrong";
-    events.push({ type: "wrong", wordId: q.wordId });
+    events.push({ type: "wrong", questionId: q.id, wordId: q.wordId });
     if (g.lives <= 0) {
       g.status = "over"; events.push({ type: "over" });
     } else if (g.goal.mode === "fullset") {
-      // Move this question to the back of the queue so it reappears later,
-      // then immediately show the next question while the fox is frozen.
+      // Standard arcade fullset immediately requeues misses. Language Ladder
+      // can opt out so misses are retried in a separate correction pass.
       const idx = g.queue.shift();
-      g.queue.push(idx);
-      g.qIndex = g.queue[0];
-      placeTokens(g, cellPx);
+      if (g.goal.retryWrongInRound === false) {
+        g.doneInSet += 1;
+        if (g.queue.length === 0) {
+          g.status = "over"; events.push({ type: "over" });
+        } else {
+          g.qIndex = g.queue[0];
+          placeTokens(g, cellPx);
+        }
+      } else {
+        g.queue.push(idx);
+        g.qIndex = g.queue[0];
+        placeTokens(g, cellPx);
+      }
     }
   }
   return events;
@@ -251,9 +267,9 @@ export default function QuizHuntGame({ questions, mapType = "open", goal = DEFAU
       if (ev.type === "correct") {
         sound.play("correct");
         sound.speakWord(ev.speechText, ev.speechLanguage); // speak the word the fox just ate
-        onRecord?.("answer", { wordId: ev.wordId, correct: true });
+        onRecord?.("answer", { questionId: ev.questionId, wordId: ev.wordId, correct: true });
       }
-      else if (ev.type === "wrong") { sound.play("wrong"); onRecord?.("answer", { wordId: ev.wordId, correct: false }); }
+      else if (ev.type === "wrong") { sound.play("wrong"); onRecord?.("answer", { questionId: ev.questionId, wordId: ev.wordId, correct: false }); }
       else if (ev.type === "over") { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
   }, [directionRef, queuedDirectionRef, resetDirections, sound, onRecord]);

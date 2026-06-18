@@ -192,6 +192,7 @@ function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
   let grew = false;
   const q = g.questions[g.qIndex];
   const hit = g.tokens.find((t) => tokenContains(t, nh.x, nh.y, cellPx));
+  let bodyWasReset = false;
   if (hit) {
     if (hit.isCorrect) {
       g.score += 10 + g.combo * 2;
@@ -206,7 +207,7 @@ function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
         // Sentence complete.
         g.score += 25;
         g.correct += 1;
-        events.push({ type: "complete", itemId: q.itemId });
+        events.push({ type: "complete", questionId: q.id, itemId: q.itemId });
 
         let nextIdx;
         if (g.goal.mode === "fullset") {
@@ -242,16 +243,31 @@ function step(g, directionRef, queuedDirectionRef, dt, cellPx) {
       g.combo = 0;
       g.wrong += 1;
       g.freeze = 3;
-      events.push({ type: "wrong", itemId: q.itemId });
+      events.push({ type: "wrong", questionId: q.id, itemId: q.itemId });
       if (g.lives <= 0) {
         g.status = "over"; events.push({ type: "over" });
+      } else if (g.goal.mode === "fullset" && g.goal.retryWrongInRound === false) {
+        g.doneInSet += 1;
+        g.queue.shift();
+        if (g.queue.length === 0) {
+          g.status = "over"; events.push({ type: "over" });
+        } else {
+          const nextIdx = g.queue[0];
+          g.qIndex = nextIdx;
+          g.expected = 1;
+          g.tokenCount = g.questions[nextIdx]?.tokens?.length || 0;
+          g.collected = [];
+          g.body = [g.body[0]];
+          bodyWasReset = true;
+          spawnPair(g, cellPx);
+        }
       } else {
         spawnPair(g, cellPx); // move tokens so snake isn't forced into wrong again
       }
     }
   }
 
-  if (!grew) g.body.pop(); // normal Snake tail movement
+  if (!grew && !bodyWasReset) g.body.pop(); // normal Snake tail movement
   return events;
 }
 
@@ -321,8 +337,8 @@ export default function SnakeBuilderGame({ questions, mapType = "open", goal = D
         sound.play("collect");
         sound.speakWord(ev.word, ev.speechLanguage); // speak the word just eaten
       }
-      else if (ev.type === "complete")  { sound.play("correct"); onRecord?.("builderComplete", { itemId: ev.itemId, correct: true }); }
-      else if (ev.type === "wrong")     { sound.play("wrong");   onRecord?.("builderComplete", { itemId: ev.itemId, correct: false }); }
+      else if (ev.type === "complete")  { sound.play("correct"); onRecord?.("builderComplete", { questionId: ev.questionId, itemId: ev.itemId, correct: true }); }
+      else if (ev.type === "wrong")     { sound.play("wrong");   onRecord?.("builderComplete", { questionId: ev.questionId, itemId: ev.itemId, correct: false }); }
       else if (ev.type === "self-hit")  sound.play("wrong");
       else if (ev.type === "over")      { sound.play("complete"); onRecord?.("over", summaryOf(g)); }
     }
