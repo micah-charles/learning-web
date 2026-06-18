@@ -21,6 +21,7 @@ const MODULE_OPTIONS = [
   { id: "arcade", label: "Arcade", description: "Mini games for revision." },
   { id: "vocab", label: "Vocabulary", description: "Browse words, terms and definitions." },
   { id: "reading", label: "Reading", description: "Comprehension passages and questions." },
+  { id: "speak-shadow", label: "Speak Lab", description: "Guided read-aloud and shadowing practice." },
   { id: "builder", label: "Builder", description: "Sentence and idea building." },
   { id: "crossword", label: "Crossword", description: "Puzzle-style vocabulary recall." },
   { id: "progress", label: "Progress", description: "See recent activity and mastery." },

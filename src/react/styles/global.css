@@ -977,6 +977,371 @@ body {
 .lw-btn-ghost:hover { border-color: var(--lw-muted); color: var(--lw-ink); }
 .lw-btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
 
+/* Speak & Shadow Lab */
+.ss-page {
+  display: grid;
+  gap: 18px;
+}
+
+.ss-entry-card h1,
+.ss-session-top h1 {
+  margin: 4px 0 2px;
+  font-family: var(--lw-font);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.ss-source-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.ss-source-tabs button {
+  border: 1.5px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  background: var(--lw-panel);
+  color: var(--lw-muted);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.ss-source-tabs button.is-active {
+  background: var(--lw-blue);
+  border-color: var(--lw-blue);
+  color: #fff;
+}
+
+.ss-form-grid {
+  display: grid;
+  gap: 14px;
+  max-width: 760px;
+}
+
+.ss-field {
+  display: grid;
+  gap: 6px;
+  color: var(--lw-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.ss-field input,
+.ss-field textarea {
+  width: 100%;
+  border: 1.5px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  background: #fff;
+  color: var(--lw-ink);
+  font: inherit;
+  padding: 11px 12px;
+}
+
+.ss-field textarea {
+  min-height: 220px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.ss-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--lw-ink);
+  font-weight: 650;
+}
+
+.ss-checkbox input {
+  width: 18px;
+  height: 18px;
+}
+
+.ss-privacy-note,
+.ss-alert {
+  border-radius: var(--lw-radius-sm);
+  padding: 10px 12px;
+  font-size: 0.88rem;
+}
+
+.ss-privacy-note {
+  background: var(--lw-blue-soft);
+  color: var(--lw-blue);
+}
+
+.ss-alert {
+  background: var(--lw-coral-soft);
+  color: var(--lw-coral);
+  font-weight: 650;
+}
+
+.ss-resume-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ss-recent-list {
+  flex-basis: 100%;
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.ss-recent-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  background: #fff;
+  color: var(--lw-ink);
+  cursor: pointer;
+  padding: 9px 12px;
+  text-align: left;
+}
+
+.ss-workspace {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+  align-items: start;
+}
+
+.ss-article-panel,
+.ss-tutor-panel {
+  border: 1px solid var(--lw-line);
+  border-radius: var(--lw-radius);
+  background: var(--lw-panel);
+  box-shadow: var(--lw-shadow);
+}
+
+.ss-article-panel {
+  min-height: 70vh;
+  padding: 22px;
+}
+
+.ss-session-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.ss-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(24, 34, 45, 0.08);
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.ss-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--lw-green);
+  transition: width 180ms ease;
+}
+
+.ss-article {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 7px;
+  max-height: 68vh;
+  overflow: auto;
+  padding-right: 6px;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.ss-phrase {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 4px 6px;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.ss-phrase-current {
+  background: var(--lw-amber-soft);
+  border-color: rgba(143, 81, 0, 0.35);
+  color: var(--lw-ink);
+}
+
+.ss-phrase-passed {
+  background: var(--lw-green-soft);
+  color: var(--lw-green);
+}
+
+.ss-phrase-retry {
+  background: var(--lw-coral-soft);
+  color: var(--lw-coral);
+}
+
+.ss-phrase-skipped {
+  color: var(--lw-muted);
+  text-decoration: line-through;
+}
+
+.ss-tutor-panel {
+  position: sticky;
+  top: 14px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.ss-tutor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ss-tutor-header strong {
+  color: var(--lw-muted);
+  font-size: 0.82rem;
+  text-transform: capitalize;
+}
+
+.ss-tutor-message {
+  color: var(--lw-ink);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ss-current-phrase {
+  display: grid;
+  gap: 4px;
+  border-left: 4px solid var(--lw-blue);
+  padding-left: 12px;
+}
+
+.ss-current-phrase span,
+.ss-result span,
+.ss-summary-grid span {
+  color: var(--lw-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ss-token-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ss-token-row span {
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--lw-line);
+  color: var(--lw-ink);
+  padding: 4px 9px;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.ss-action-row .lw-btn,
+.ss-next-row .lw-btn {
+  min-height: 44px;
+}
+
+.ss-result {
+  display: grid;
+  gap: 5px;
+  border-radius: var(--lw-radius-sm);
+  background: #fff;
+  border: 1px solid var(--lw-line);
+  padding: 12px;
+}
+
+.ss-result p {
+  color: var(--lw-ink);
+}
+
+.ss-result small {
+  color: var(--lw-muted);
+}
+
+.ss-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.ss-summary-grid div {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  background: #fff;
+  padding: 12px;
+}
+
+.ss-summary-grid strong {
+  font-size: 1.3rem;
+  color: var(--lw-ink);
+}
+
+.ss-weak-list {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 16px;
+}
+
+.ss-weak-list h3 {
+  font-size: 0.95rem;
+  color: var(--lw-ink);
+}
+
+.ss-weak-list p {
+  border-left: 3px solid var(--lw-coral);
+  background: var(--lw-coral-soft);
+  border-radius: 0 8px 8px 0;
+  color: var(--lw-ink);
+  padding: 7px 10px;
+}
+
+@media (max-width: 920px) {
+  .ss-workspace {
+    grid-template-columns: 1fr;
+    padding-bottom: 140px;
+  }
+
+  .ss-tutor-panel {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 76px;
+    top: auto;
+    z-index: 20;
+    max-height: 48vh;
+    overflow: auto;
+  }
+
+  .ss-article-panel {
+    min-height: 58vh;
+  }
+
+  .ss-article {
+    max-height: 58vh;
+  }
+
+  .ss-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ss-session-top {
+    flex-direction: column;
+  }
+}
+
 /* ── Onboarding and personalisation ───────────────────────────────── */
 .lw-onboarding {
   max-width: 1120px;

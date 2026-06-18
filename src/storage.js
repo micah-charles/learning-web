@@ -122,6 +122,11 @@ export const DEFAULT_STATE = {
     arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
     voicePractice: {},            // keyed by lesson/activity: { attempts, successes, lastScore }
   },
+  speakShadow: {
+    sessions: {},
+    recentSessionIds: [],
+    lastSessionId: "",
+  },
 };
 
 function mergeState(base, incoming) {

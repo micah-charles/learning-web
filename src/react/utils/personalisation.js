@@ -15,6 +15,7 @@ export const ALL_MODULE_IDS = [
   "arcade",
   "vocab",
   "reading",
+  "speak-shadow",
   "builder",
   "crossword",
   "progress",
@@ -31,7 +32,7 @@ export const INTEREST_OPTIONS = [
     id: "languages",
     title: "Learn languages",
     description: "Language Ladder, vocabulary, quizzes, reading and sentence practice.",
-    modules: ["language", "quiz", "vocab", "builder", "reading"],
+    modules: ["language", "quiz", "vocab", "builder", "reading", "speak-shadow"],
     subjects: ["language"],
   },
   {
@@ -44,14 +45,14 @@ export const INTEREST_OPTIONS = [
     id: "uk-curriculum",
     title: "UK curriculum",
     description: "KS3 and GCSE-friendly revision routes.",
-    modules: ["quiz", "reading", "builder", "progress", "about"],
+    modules: ["quiz", "reading", "speak-shadow", "builder", "progress", "about"],
     curriculums: ["ks3", "gcse"],
   },
   {
     id: "us-curriculum",
     title: "US curriculum",
     description: "Middle-school style geography and science practice.",
-    modules: ["quiz", "reading", "builder", "progress", "about"],
+    modules: ["quiz", "reading", "speak-shadow", "builder", "progress", "about"],
     curriculums: ["us-middle-school"],
   },
   {
@@ -64,8 +65,8 @@ export const INTEREST_OPTIONS = [
   {
     id: "reading",
     title: "Reading and comprehension",
-    description: "Passages, quiz follow-up and Study Book support.",
-    modules: ["reading", "quiz"],
+    description: "Passages, read-aloud practice, quiz follow-up and Study Book support.",
+    modules: ["reading", "speak-shadow", "quiz"],
   },
   {
     id: "sentence-building",
@@ -89,7 +90,7 @@ export const INTEREST_OPTIONS = [
     id: "overview",
     title: "I want an overview first",
     description: "Start gently with Home and About before choosing a route.",
-    modules: ["home", "about", "quiz", "reading", "arcade"],
+    modules: ["home", "about", "quiz", "reading", "speak-shadow", "arcade"],
   },
   {
     id: "everything",

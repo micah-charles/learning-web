@@ -116,18 +116,26 @@ export function isSpeechSynthesisSupported() {
     && typeof window.SpeechSynthesisUtterance !== "undefined";
 }
 
-export function speakText(text, language = "de-DE", voiceName = "") {
+export function speakText(text, language = "de-DE", voiceNameOrOptions = "") {
   if (!isSpeechSynthesisSupported() || !text) return false;
   const synth = window.speechSynthesis;
+  const options = voiceNameOrOptions && typeof voiceNameOrOptions === "object"
+    ? voiceNameOrOptions
+    : { voiceName: voiceNameOrOptions || "" };
 
   const doSpeak = () => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = language;
-    utterance.rate = language.startsWith("de") ? 0.95 : 1;
-    if (voiceName) {
-      const match = synth.getVoices().find((v) => v.name === voiceName);
+    utterance.rate = options.rate ?? (language.startsWith("de") ? 0.95 : 1);
+    if (typeof options.pitch === "number") utterance.pitch = options.pitch;
+    if (typeof options.volume === "number") utterance.volume = options.volume;
+    if (options.voiceName) {
+      const match = synth.getVoices().find((v) => v.name === options.voiceName);
       if (match) utterance.voice = match;
     }
+    if (options.onStart) utterance.onstart = options.onStart;
+    if (options.onEnd) utterance.onend = options.onEnd;
+    if (options.onError) utterance.onerror = options.onError;
     synth.speak(utterance);
   };
 
