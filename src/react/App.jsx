@@ -24,6 +24,7 @@ import HomePage      from "./pages/HomePage.jsx";
 import VocabPage     from "./pages/VocabPage.jsx";
 import QuizPage      from "./pages/QuizPage.jsx";
 import ReadingPage   from "./pages/ReadingPage.jsx";
+import SpeakShadowPage from "./pages/SpeakShadowPage.jsx";
 import BuilderPage   from "./pages/BuilderPage.jsx";
 import LanguagePage  from "./pages/LanguagePage.jsx";
 import CrosswordPage from "./pages/CrosswordPage.jsx";
@@ -45,7 +46,7 @@ import {
 } from "./utils/personalisation.js";
 
 // Tabs that have active sessions — re-clicking asks the user to confirm reload.
-const SESSION_TABS = new Set(["quiz", "reading", "builder", "language", "crossword", "smart-test"]);
+const SESSION_TABS = new Set(["quiz", "reading", "speak-shadow", "builder", "language", "crossword", "smart-test"]);
 
 function AppContent() {
   const { progress, updateProgress } = useProgress();
@@ -151,6 +152,7 @@ function AppContent() {
         {activeTab === "vocab"     && <VocabPage     />}
         {activeTab === "quiz"      && <QuizPage      initialCustomWords={quizCustomWords} />}
         {activeTab === "reading"   && <ReadingPage   />}
+        {activeTab === "speak-shadow" && <SpeakShadowPage />}
         {activeTab === "builder"   && <BuilderPage   />}
         {activeTab === "language"  && <LanguagePage  />}
         {activeTab === "crossword" && <CrosswordPage />}

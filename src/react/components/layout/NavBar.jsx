@@ -8,6 +8,7 @@ export const TABS = [
   { id: "arcade",     label: "Arcade 🎮", tone: "orange" },
   { id: "vocab",      label: "Vocabulary"  },
   { id: "reading",    label: "Reading"     },
+  { id: "speak-shadow", label: "Speak Lab", tone: "blue" },
   { id: "builder",    label: "Builder"     },
   { id: "crossword",  label: "Crossword"   },
   { id: "progress",   label: "Progress"    },
@@ -30,6 +31,7 @@ export const MOBILE_PRIMARY_TABS = [
 export const MOBILE_MORE_TABS = [
   { id: "vocab",      label: "Vocab",      icon: "📚" },
   { id: "reading",    label: "Read",       icon: "📖" },
+  { id: "speak-shadow", label: "Speak",     icon: "S" },
   { id: "builder",    label: "Builder",    icon: "🧩" },
   { id: "crossword",  label: "Crossword",  icon: "✏️" },
   { id: "progress",   label: "Progress",   icon: "📈" },
@@ -74,7 +76,7 @@ function DesktopNav({ active, onChange, allowedTabs }) {
 function MobileTabButton({ tab, active, onClick }) {
   return (
     <button
-      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test") ? " tone-blue" : ""}`}
+      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test" || tab.id === "speak-shadow") ? " tone-blue" : ""}`}
       data-testid={`nav-${tab.id}`}
       onClick={onClick}
       type="button"
