@@ -10,7 +10,8 @@ const SPEECH_LANG_MAP = {
   nl: "nl-NL",
   el: "el-GR",
   ru: "ru-RU",
-  zh: "zh-HK",
+  zh: "yue-Hant-HK",
+  yue: "yue-Hant-HK",
   ja: "ja-JP",
   ko: "ko-KR",
   ar: "ar-SA",
@@ -20,6 +21,7 @@ function getSpeechRecognitionLang(langCode) {
   const raw = String(langCode || "en").replace("_", "-");
   const lower = raw.toLowerCase();
   if (lower === "zh") return SPEECH_LANG_MAP.zh;
+  if (lower === "yue") return SPEECH_LANG_MAP.yue;
   if (raw.includes("-")) return raw;
   const normalized = normLang(raw) || "en-GB";
   if (String(normalized).includes("-")) return normalized;
@@ -40,14 +42,17 @@ function getRecognizer() {
   recognizer = new SR();
   recognizer.continuous = false;
   recognizer.interimResults = false;
-  recognizer.maxAlternatives = 1;
+  recognizer.maxAlternatives = 5;
 
   recognizer.onresult = (event) => {
     isRunning = false;
     const last = event.results.length - 1;
-    const transcript = event.results[last][0].transcript;
-    const confidence = event.results[last][0].confidence;
-    if (resultCallback) resultCallback(transcript, confidence);
+    const alternatives = Array.from(event.results[last] || []).map((result) => ({
+      transcript: result.transcript,
+      confidence: result.confidence,
+    }));
+    const best = alternatives[0] || { transcript: "", confidence: null };
+    if (resultCallback) resultCallback(best.transcript, best.confidence, alternatives, recognizer.lang);
   };
 
   recognizer.onerror = (event) => {

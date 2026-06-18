@@ -26,6 +26,7 @@ import {
   createSpeakShadowSession,
   ensureSpeakShadowSession,
   getSpeakShadowTextLimit,
+  normalizeTranscriptForDisplay,
 } from "../utils/speakShadowSegmenter.js";
 import { scoreSpeakShadowAttempt } from "../utils/speakShadowScoring.js";
 
@@ -411,8 +412,8 @@ export default function SpeakShadowPage() {
       ...nextSession,
       language: speech.language,
       voiceLocale: speech.voiceLocale,
-      ttsLang: nextSession.ttsLang || speech.ttsLang,
-      recognitionLang: nextSession.recognitionLang || speech.recognitionLang,
+      ttsLang: speech.language === "zh" ? speech.ttsLang : nextSession.ttsLang || speech.ttsLang,
+      recognitionLang: speech.language === "zh" ? speech.recognitionLang : nextSession.recognitionLang || speech.recognitionLang,
       settings: { ...DEFAULT_SPEAK_SHADOW_SETTINGS, ...(nextSession.settings || {}) },
     };
     const normalized = markCurrentPhrase(withDefaults, withDefaults.currentPhraseId || withDefaults.phrases[0].id);
@@ -461,19 +462,34 @@ export default function SpeakShadowPage() {
     }
   }
 
-  function handleScoredTranscript(transcript, confidence = null) {
+  function handleScoredTranscript(transcript, confidence = null, alternatives = []) {
     if (!session || !currentPhrase || !String(transcript || "").trim()) return;
     clearAutoTimer();
     setTutorState(TUTOR_STATES.CHECKING);
-    const score = scoreSpeakShadowAttempt({
-      expected: currentPhrase.text,
-      transcript,
-      confidence,
-      language: session.language,
-      settings: session.settings,
+    const transcriptOptions = (Array.isArray(alternatives) && alternatives.length ? alternatives : [{ transcript, confidence }])
+      .map((option) => ({
+        transcript: String(option?.transcript || "").trim(),
+        confidence: Number.isFinite(option?.confidence) ? option.confidence : confidence,
+      }))
+      .filter((option) => option.transcript);
+    const scoredOptions = transcriptOptions.map((option) => {
+      const displayTranscript = normalizeTranscriptForDisplay(option.transcript, session.language);
+      const scoreResult = scoreSpeakShadowAttempt({
+        expected: currentPhrase.text,
+        transcript: displayTranscript,
+        confidence: option.confidence,
+        language: session.language,
+        settings: session.settings,
+      });
+      return { ...option, displayTranscript, score: scoreResult };
     });
+    const bestOption = scoredOptions.sort((left, right) => (
+      (right.score.similarity - left.score.similarity) || ((right.score.confidence || 0) - (left.score.confidence || 0))
+    ))[0];
+    if (!bestOption) return;
+    const score = bestOption.score;
     const attempt = {
-      transcript,
+      transcript: bestOption.displayTranscript,
       confidence: score.confidence,
       similarity: score.similarity,
       minSimilarity: session.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity,

@@ -4,7 +4,7 @@ export const SPEAK_SHADOW_LANGUAGES = [
   { id: "fr", label: "French", ttsLang: "fr-FR", recognitionLang: "fr-FR" },
   { id: "es", label: "Spanish", ttsLang: "es-ES", recognitionLang: "es-ES" },
   { id: "it", label: "Italian", ttsLang: "it-IT", recognitionLang: "it-IT" },
-  { id: "zh", label: "Chinese", ttsLang: "zh-HK", recognitionLang: "zh-HK" },
+  { id: "zh", label: "Chinese", ttsLang: "zh-HK", recognitionLang: "yue-Hant-HK" },
   { id: "ja", label: "Japanese", ttsLang: "ja-JP", recognitionLang: "ja-JP" },
 ];
 
@@ -15,13 +15,13 @@ export const CHINESE_VOICE_LOCALES = [
     nativeLabel: "粵語",
     description: "Hong Kong Cantonese speech",
     ttsLang: "zh-HK",
-    recognitionLang: "zh-HK",
+    recognitionLang: "yue-Hant-HK",
   },
   {
     id: "zh-TW",
-    label: "Mandarin",
-    nativeLabel: "國語",
-    description: "Mandarin speech with Traditional Chinese text",
+    label: "Taiwan Mandarin",
+    nativeLabel: "台灣國語",
+    description: "Taiwan Mandarin speech with Traditional Chinese output",
     ttsLang: "zh-TW",
     recognitionLang: "zh-TW",
   },
@@ -72,7 +72,7 @@ export const TUTOR_MESSAGES = {
   completed: "Excellent. You have finished the whole passage.",
   unsupportedTts: "Text-to-speech is not supported in this browser.",
   unsupportedRecognition: "Speech recognition is not supported in this browser. Try Chrome or Edge.",
-  cantoneseSupportWarning: "Cantonese speech recognition may not be fully supported in this browser. You can still use Cantonese listening, or switch to Mandarin recognition.",
+  cantoneseSupportWarning: "Cantonese speech recognition uses the browser's Cantonese locale. If the browser still returns Mandarin text, use the manual transcript fallback or switch to Taiwan Mandarin recognition.",
 };
 
 export function getSpeakShadowLanguage(languageId) {

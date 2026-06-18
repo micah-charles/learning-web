@@ -11,6 +11,116 @@ import {
 const SENTENCE_ENDINGS = new Set([".", "?", "!", ";", ":", "。", "！", "？", "；", "："]);
 const PHRASE_BREAKS = new Set([",", ";", ":", "，", "、", "；", "："]);
 const CJK_LANGS = new Set(["zh", "ja"]);
+const SIMPLIFIED_TO_TRADITIONAL_CHINESE = {
+  个: "個",
+  进: "進",
+  电: "電",
+  梯: "梯",
+  远: "遠",
+  鲜: "鮮",
+  圣: "聖",
+  开: "開",
+  这: "這",
+  说: "說",
+  为: "為",
+  与: "與",
+  会: "會",
+  们: "們",
+  听: "聽",
+  读: "讀",
+  语: "語",
+  学: "學",
+  习: "習",
+  国: "國",
+  时: "時",
+  后: "後",
+  发: "發",
+  现: "現",
+  过: "過",
+  还: "還",
+  头: "頭",
+  里: "裡",
+  间: "間",
+  问: "問",
+  门: "門",
+  长: "長",
+  车: "車",
+  书: "書",
+  东: "東",
+  万: "萬",
+  无: "無",
+  业: "業",
+  专: "專",
+  变: "變",
+  当: "當",
+  实: "實",
+  对: "對",
+  将: "將",
+  尔: "爾",
+  尽: "盡",
+  层: "層",
+  岁: "歲",
+  带: "帶",
+  广: "廣",
+  应: "應",
+  张: "張",
+  录: "錄",
+  总: "總",
+  报: "報",
+  换: "換",
+  数: "數",
+  旧: "舊",
+  来: "來",
+  机: "機",
+  楼: "樓",
+  欢: "歡",
+  气: "氣",
+  汉: "漢",
+  没: "沒",
+  泽: "澤",
+  浅: "淺",
+  温: "溫",
+  湾: "灣",
+  爱: "愛",
+  画: "畫",
+  礼: "禮",
+  种: "種",
+  称: "稱",
+  简: "簡",
+  给: "給",
+  经: "經",
+  统: "統",
+  觉: "覺",
+  观: "觀",
+  让: "讓",
+  讲: "講",
+  论: "論",
+  识: "識",
+  诉: "訴",
+  词: "詞",
+  试: "試",
+  话: "話",
+  该: "該",
+  请: "請",
+  谁: "誰",
+  调: "調",
+  谢: "謝",
+  贵: "貴",
+  费: "費",
+  赞: "讚",
+  选: "選",
+  钱: "錢",
+  铁: "鐵",
+  闻: "聞",
+  队: "隊",
+  难: "難",
+  题: "題",
+  风: "風",
+  飞: "飛",
+  饮: "飲",
+  马: "馬",
+  龙: "龍",
+};
 
 function makeSessionId() {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -27,6 +137,7 @@ export function isCjkLanguage(language) {
 export function normalizeForSpeechCompare(text, language = "en") {
   const value = String(text || "")
     .normalize("NFC")
+    .replace(/[\u3400-\u9fff]/gu, (char) => (language === "zh" ? SIMPLIFIED_TO_TRADITIONAL_CHINESE[char] || char : char))
     .replace(/[!?.,;:，。！？；：、"'`()[\]{}]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -34,6 +145,11 @@ export function normalizeForSpeechCompare(text, language = "en") {
     return value.replace(/\s+/g, "");
   }
   return normalizeForCompare(value);
+}
+
+export function normalizeTranscriptForDisplay(text, language = "en") {
+  if (language !== "zh") return String(text || "");
+  return String(text || "").replace(/[\u3400-\u9fff]/gu, (char) => SIMPLIFIED_TO_TRADITIONAL_CHINESE[char] || char);
 }
 
 export function tokenizePhrase(phrase, language = "en") {
@@ -208,8 +324,8 @@ export function ensureSpeakShadowSession(input, { savedToBrowser = true } = {}) 
       language: speech.language,
       savedToBrowser,
       voiceLocale: input.voiceLocale || speech.voiceLocale,
-      ttsLang: input.ttsLang || speech.ttsLang,
-      recognitionLang: input.recognitionLang || speech.recognitionLang,
+      ttsLang: speech.language === "zh" ? speech.ttsLang : input.ttsLang || speech.ttsLang,
+      recognitionLang: speech.language === "zh" ? speech.recognitionLang : input.recognitionLang || speech.recognitionLang,
       settings: { ...DEFAULT_SPEAK_SHADOW_SETTINGS, ...(input.settings || {}) },
       lastOpenedAt: new Date().toISOString(),
       phrases: input.phrases.map((phrase, index) => ({
