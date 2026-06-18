@@ -73,7 +73,7 @@ function isLikelyWrongLanguage(transcript, targetLang, expected) {
   return enRatio > 0.35 && sim < 0.3;
 }
 
-const MAX_ATTEMPTS = 3;
+const UNLIMITED_ATTEMPTS = Number.POSITIVE_INFINITY;
 const CONFIDENCE_PASS = 0.75;
 const CONFIDENCE_UNCLEAR = 0.40;
 
@@ -96,7 +96,11 @@ const SPEECH_STATE = {
   unsupported: "unsupported",
 };
 
-export function useVoicePractice({ languageCode, onResult, onError, maxAttempts = MAX_ATTEMPTS } = {}) {
+function reachedAttemptLimit(attempt, maxAttempts) {
+  return Number.isFinite(maxAttempts) && attempt >= maxAttempts;
+}
+
+export function useVoicePractice({ languageCode, onResult, onError, maxAttempts = UNLIMITED_ATTEMPTS } = {}) {
   const [phase, setPhase] = useState(PHASES.IDLE);
   const [attempt, setAttempt] = useState(0);
   const [lastResult, setLastResult] = useState(null);
@@ -160,7 +164,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         if (confidence < CONFIDENCE_UNCLEAR) {
           attemptRef.current += 1;
           setAttempt(attemptRef.current);
-          if (attemptRef.current >= maxAttempts) {
+          if (reachedAttemptLimit(attemptRef.current, maxAttempts)) {
             setPhase(PHASES.INCORRECT);
             setLastResult({
               transcript,
@@ -209,7 +213,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
 
         attemptRef.current += 1;
         setAttempt(attemptRef.current);
-        if (attemptRef.current >= maxAttempts) {
+        if (reachedAttemptLimit(attemptRef.current, maxAttempts)) {
           setPhase(PHASES.INCORRECT);
           setLastResult({
             transcript,
@@ -238,7 +242,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         }
         attemptRef.current += 1;
         setAttempt(attemptRef.current);
-        if (attemptRef.current >= maxAttempts) {
+        if (reachedAttemptLimit(attemptRef.current, maxAttempts)) {
           setPhase(PHASES.INCORRECT);
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("max-attempts");
@@ -264,7 +268,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         if (confidence < CONFIDENCE_UNCLEAR) {
           attemptRef.current += 1;
           setAttempt(attemptRef.current);
-          if (attemptRef.current >= maxAttempts) {
+          if (reachedAttemptLimit(attemptRef.current, maxAttempts)) {
             setPhase(PHASES.INCORRECT);
             setLastResult({
               transcript,
@@ -311,7 +315,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
 
         attemptRef.current += 1;
         setAttempt(attemptRef.current);
-        if (attemptRef.current >= maxAttempts) {
+        if (reachedAttemptLimit(attemptRef.current, maxAttempts)) {
           setPhase(PHASES.INCORRECT);
           setLastResult({
             transcript,
@@ -340,7 +344,7 @@ export function useVoicePractice({ languageCode, onResult, onError, maxAttempts 
         }
         attemptRef.current += 1;
         setAttempt(attemptRef.current);
-        if (attemptRef.current >= maxAttempts) {
+        if (reachedAttemptLimit(attemptRef.current, maxAttempts)) {
           setPhase(PHASES.INCORRECT);
           setButtonState(SPEECH_STATE.error);
           if (onError) onError("max-attempts");

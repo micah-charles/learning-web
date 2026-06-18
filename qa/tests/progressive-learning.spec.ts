@@ -181,6 +181,16 @@ test("@data-sample progressive learning supports listen voice practice feedback 
   await expect(page.getByTestId("voice-feedback-accuracy")).toContainText("100%");
   await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeEnabled();
 
+  await page.evaluate(() => {
+    const bag = window as any;
+    bag.__nextSpeechTranscript = "not the expected answer";
+    bag.__nextSpeechConfidence = 0.96;
+  });
+  await page.getByTestId("progressive-listen-voice-practice-button").click();
+  await expect(page.getByTestId("voice-feedback-panel")).toBeVisible();
+  await expect(page.getByTestId("voice-feedback-panel")).not.toContainText(/attempts? remaining/i);
+  await expect(page.getByTestId("voice-feedback-panel")).not.toContainText(/cancel/i);
+
   await page.getByTestId("progressive-next-step-button").click();
   if (await page.getByTestId("progressive-phase-listen").isVisible()) {
     await expect(page.getByTestId("progressive-listen-voice-practice-button")).toBeVisible();

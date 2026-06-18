@@ -1,4 +1,4 @@
-export default function VoiceFeedbackPanel({ status, expected, recognized, confidence, accuracy, attempt, maxAttempts, onRetry, onCancel }) {
+export default function VoiceFeedbackPanel({ status, expected, recognized, confidence, accuracy }) {
   if (!status) return null;
 
   const styles = {
@@ -16,16 +16,8 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
     return (
       <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, fontSize: "0.95rem" }}>
-          🤔 I didn't catch that. Please try again.
+          🤔 I didn't catch that. Tap Speak to try again.
         </p>
-        <div style={{ marginTop: "10px", display: "flex", gap: "8px" }}>
-          <button className="lw-btn lw-btn-primary" type="button" onClick={onRetry}>
-            🎤 Try Again
-          </button>
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={onCancel}>
-            ❌ Cancel
-          </button>
-        </div>
       </div>
     );
   }
@@ -33,7 +25,6 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
   if (status === "mispronounced") {
     styles.container.borderColor = "var(--lw-coral, #e74c3c)";
     styles.container.background = "var(--lw-coral-light, #fde8e8)";
-    const remaining = maxAttempts - attempt;
     return (
       <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, color: "var(--lw-coral, #c0392b)" }}>
@@ -54,21 +45,6 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
             Accuracy: {accuracy}%
           </p>
         )}
-        {remaining > 0 && (
-          <p style={{ margin: "6px 0 0", fontSize: "0.82rem", color: "var(--lw-muted)" }}>
-            {remaining} attempt{remaining > 1 ? "s" : ""} remaining.
-          </p>
-        )}
-        <div style={{ marginTop: "8px", display: "flex", gap: "8px" }}>
-          {remaining > 0 && (
-            <button className="lw-btn lw-btn-primary" type="button" onClick={onRetry}>
-              🔄 Try again
-            </button>
-          )}
-          <button className="lw-btn lw-btn-ghost" type="button" onClick={onCancel}>
-            ❌ Cancel
-          </button>
-        </div>
       </div>
     );
   }
@@ -98,7 +74,6 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
   if (status === "wrong-language") {
     styles.container.borderColor = "var(--lw-coral, #e74c3c)";
     styles.container.background = "var(--lw-coral-light, #fde8e8)";
-    const remaining = maxAttempts - attempt;
     return (
       <div style={styles.container} data-testid="voice-feedback-panel">
         <p style={{ margin: 0, fontWeight: 600, color: "var(--lw-coral, #c0392b)" }}>
@@ -109,20 +84,15 @@ export default function VoiceFeedbackPanel({ status, expected, recognized, confi
             Expected: <strong>{expected}</strong>
           </p>
         )}
+        {recognized && (
+          <p style={{ margin: "2px 0 0", fontSize: "0.85rem", color: "var(--lw-muted)" }}>
+            Heard: <em>{recognized}</em>
+          </p>
+        )}
         {accuracy !== undefined && (
           <p data-testid="voice-feedback-accuracy" style={{ margin: "6px 0 0", fontSize: "0.82rem", color: "var(--lw-muted)" }}>
             Accuracy: {accuracy}%
           </p>
-        )}
-        {remaining > 0 && (
-          <div style={{ marginTop: "8px", display: "flex", gap: "8px" }}>
-            <button className="lw-btn lw-btn-primary" type="button" onClick={onRetry}>
-              🔄 Try again
-            </button>
-            <button className="lw-btn lw-btn-ghost" type="button" onClick={onCancel}>
-              ❌ Cancel
-            </button>
-          </div>
         )}
       </div>
     );

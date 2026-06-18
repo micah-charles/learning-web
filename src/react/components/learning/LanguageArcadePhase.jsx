@@ -3,8 +3,8 @@
  *
  * Runs the current Language Ladder arcade challenge.
  *
- * Today that means a single Quiz Hunt round. The learner must score 100%;
- * otherwise the same round remounts automatically until they get it right.
+ * Each arcade game starts with every playable item once. If anything is missed,
+ * the same game remounts with only those missed items until that round is clear.
  */
 import { useRef, useMemo, useEffect } from "react";
 import { useLanguageArcadeSession } from "../../hooks/useLanguageArcadeSession.js";
@@ -13,7 +13,7 @@ import QuizHuntGame from "../../games/arcade/QuizHuntGame.jsx";
 import SnakeBuilderGame from "../../games/arcade/SnakeBuilderGame.jsx";
 import { recordWordAnswer, recordArcadeResult } from "@/storage.js";
 
-const FULL_SET_GOAL = { mode: "fullset", target: 0 };
+const FULL_SET_GOAL = { mode: "fullset", target: 0, retryWrongInRound: false };
 const REDUCED_MOTION =
   typeof window !== "undefined" && window.matchMedia
     ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -26,6 +26,7 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
     done, retryNonce,
     onRoundEnd,
   } = useLanguageArcadeSession(pack, targetLang);
+  const missedItemIdsRef = useRef(new Set());
 
   // Sound
   const mutedRef = useRef(!prefs?.sound);
@@ -39,15 +40,32 @@ export default function LanguageArcadePhase({ pack, targetLang, prefs, updatePro
     toggleMute: () => {}, toggleSpeech: () => {},
   }), [audio, prefs?.sound, prefs?.speech]);
 
+  useEffect(() => {
+    missedItemIdsRef.current = new Set();
+  }, [round.mode, roundIndex, retryNonce]);
+
   // All rounds passed → notify parent (which marks lesson complete + advances).
   useEffect(() => { if (done) onComplete(); }, [done, onComplete]);
 
+  function markMissIfNeeded(payload) {
+    if (payload?.correct) return;
+    const itemId = payload?.wordId || payload?.itemId || payload?.questionId;
+    if (itemId) missedItemIdsRef.current.add(itemId);
+  }
+
   function handleRecord(kind, payload) {
     if (kind === "answer" && payload?.wordId && updateProgress) {
+      markMissIfNeeded(payload);
       updateProgress((state) => recordWordAnswer(state, payload.wordId, !!payload.correct));
+    } else if (kind === "builderComplete") {
+      markMissIfNeeded(payload);
     } else if (kind === "over" && payload && updateProgress) {
-      updateProgress((state) => recordArcadeResult(state, `ladder-${round.mode}`, payload));
-      onRoundEnd(payload);
+      const result = {
+        ...payload,
+        missedItemIds: [...missedItemIdsRef.current],
+      };
+      updateProgress((state) => recordArcadeResult(state, `ladder-${round.mode}`, result));
+      onRoundEnd(result);
     }
   }
 
