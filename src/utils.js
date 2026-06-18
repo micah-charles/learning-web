@@ -116,6 +116,31 @@ export function isSpeechSynthesisSupported() {
     && typeof window.SpeechSynthesisUtterance !== "undefined";
 }
 
+function normalizeSpeechLang(value) {
+  return stringValue(value).toLowerCase().replace("_", "-");
+}
+
+function findVoiceForSpeech(synth, language, options) {
+  const voices = synth.getVoices();
+  if (options.voiceName) {
+    const named = voices.find((v) => v.name === options.voiceName);
+    if (named) return named;
+  }
+  const candidates = [language, ...(Array.isArray(options.languageFallbacks) ? options.languageFallbacks : [])]
+    .map(normalizeSpeechLang)
+    .filter(Boolean);
+  for (const candidate of candidates) {
+    const exact = voices.find((voice) => normalizeSpeechLang(voice.lang) === candidate);
+    if (exact) return exact;
+  }
+  for (const candidate of candidates) {
+    const base = candidate.split("-")[0];
+    const regional = voices.find((voice) => normalizeSpeechLang(voice.lang).startsWith(`${base}-`));
+    if (regional) return regional;
+  }
+  return null;
+}
+
 export function speakText(text, language = "de-DE", voiceNameOrOptions = "") {
   if (!isSpeechSynthesisSupported() || !text) return false;
   const synth = window.speechSynthesis;
@@ -125,19 +150,30 @@ export function speakText(text, language = "de-DE", voiceNameOrOptions = "") {
 
   const doSpeak = () => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = language;
+    const voice = findVoiceForSpeech(synth, language, options);
+    utterance.lang = voice?.lang || language;
     utterance.rate = options.rate ?? (language.startsWith("de") ? 0.95 : 1);
     if (typeof options.pitch === "number") utterance.pitch = options.pitch;
     if (typeof options.volume === "number") utterance.volume = options.volume;
-    if (options.voiceName) {
-      const match = synth.getVoices().find((v) => v.name === options.voiceName);
-      if (match) utterance.voice = match;
-    }
+    if (voice) utterance.voice = voice;
     if (options.onStart) utterance.onstart = options.onStart;
     if (options.onEnd) utterance.onend = options.onEnd;
     if (options.onError) utterance.onerror = options.onError;
     synth.speak(utterance);
   };
+
+  if (!synth.getVoices().length && typeof synth.addEventListener === "function") {
+    let started = false;
+    const speakWhenVoicesReady = () => {
+      if (started) return;
+      started = true;
+      synth.removeEventListener("voiceschanged", speakWhenVoicesReady);
+      doSpeak();
+    };
+    synth.addEventListener("voiceschanged", speakWhenVoicesReady);
+    setTimeout(speakWhenVoicesReady, 350);
+    return true;
+  }
 
   if (synth.speaking || synth.pending) {
     // Chrome bug: calling speak() immediately after cancel() silently drops

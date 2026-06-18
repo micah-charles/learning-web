@@ -86,6 +86,12 @@ function getFoxTutorState(tutorState) {
   return FOX_TUTOR_STATE.idle;
 }
 
+function speechSynthesisFallbacksForSession(session) {
+  if (session?.language !== "zh") return [];
+  if (session.voiceLocale === "zh-TW") return ["zh-TW", "zh-HK", "zh"];
+  return ["zh-HK", "zh-TW", "zh"];
+}
+
 const AI_PACK_PROMPT = `You are generating a Read Aloud practice pack for the Learning Web platform.
 
 Convert the following text into strict JSON only.
@@ -294,6 +300,8 @@ export default function SpeakShadowPage() {
   const [promptCopied, setPromptCopied] = useState(false);
   const currentPhraseRef = useRef(null);
   const autoTimerRef = useRef(null);
+  const listenTimerRef = useRef(null);
+  const speechTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
 
   const recognitionSupported = isSpeechRecognitionSupported();
@@ -326,6 +334,8 @@ export default function SpeakShadowPage() {
     stopSpeaking();
     stopListening();
     if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
+    if (listenTimerRef.current) window.clearTimeout(listenTimerRef.current);
+    if (speechTimerRef.current) window.clearTimeout(speechTimerRef.current);
   }, []);
 
   useEffect(() => {
@@ -367,6 +377,41 @@ export default function SpeakShadowPage() {
     }
   }
 
+  function clearListenTimer() {
+    if (listenTimerRef.current) {
+      window.clearTimeout(listenTimerRef.current);
+      listenTimerRef.current = null;
+    }
+  }
+
+  function clearSpeechTimer() {
+    if (speechTimerRef.current) {
+      window.clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+  }
+
+  function handleRecognitionFailure(reason = "no-result") {
+    clearListenTimer();
+    setTutorState(TUTOR_STATES.RETRY);
+    const message = reason === "not-allowed"
+      ? "Microphone permission was blocked. Allow microphone access or use the manual transcript fallback."
+      : "I did not receive a clear transcript. Try again, or paste what the browser heard below.";
+    setTutorMessage(message);
+  }
+
+  function stopAllAudio() {
+    clearListenTimer();
+    clearSpeechTimer();
+    stopSpeaking();
+    stopListening();
+    setIsSpeaking(false);
+    if (tutorState === TUTOR_STATES.STUDENT_SPEAKING) {
+      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+      setTutorMessage(TUTOR_MESSAGES.speak);
+    }
+  }
+
   function beginTutorReading(targetSession = session, { message = TUTOR_MESSAGES.intro } = {}) {
     const phrase = getCurrentPhrase(targetSession);
     if (!phrase) return;
@@ -381,21 +426,41 @@ export default function SpeakShadowPage() {
       return;
     }
     stopSpeaking();
+    clearSpeechTimer();
     setIsSpeaking(true);
     setTutorState(TUTOR_STATES.TUTOR_READING);
     setTutorMessage(message);
-    speakText(phrase.text, targetSession.ttsLang || "en-GB", {
+    speechTimerRef.current = window.setTimeout(() => {
+      setIsSpeaking(false);
+      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+      setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or continue with manual practice.");
+    }, 20000);
+    const didStart = speakText(phrase.text, targetSession.ttsLang || "en-GB", {
       rate: 0.9,
+      languageFallbacks: speechSynthesisFallbacksForSession(targetSession),
+      onStart: () => {
+        setIsSpeaking(true);
+        setTutorState(TUTOR_STATES.TUTOR_READING);
+      },
       onEnd: () => {
+        clearSpeechTimer();
         setIsSpeaking(false);
         setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
         setTutorMessage(TUTOR_MESSAGES.speak);
       },
       onError: () => {
+        clearSpeechTimer();
         setIsSpeaking(false);
         setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+        setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or use manual practice.");
       },
     });
+    if (!didStart) {
+      clearSpeechTimer();
+      setIsSpeaking(false);
+      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+      setTutorMessage(TUTOR_MESSAGES.unsupportedTts);
+    }
   }
 
   function startSession(nextSession) {
@@ -464,6 +529,7 @@ export default function SpeakShadowPage() {
 
   function handleScoredTranscript(transcript, confidence = null, alternatives = []) {
     if (!session || !currentPhrase || !String(transcript || "").trim()) return;
+    clearListenTimer();
     clearAutoTimer();
     setTutorState(TUTOR_STATES.CHECKING);
     const transcriptOptions = (Array.isArray(alternatives) && alternatives.length ? alternatives : [{ transcript, confidence }])
@@ -623,8 +689,7 @@ export default function SpeakShadowPage() {
       lastOpenedAt: new Date().toISOString(),
     };
     stopSpeaking();
-    stopListening();
-    setIsSpeaking(false);
+    stopAllAudio();
     commitPreferences({ chineseVoiceLocale: speech.voiceLocale });
     commitSession(updated);
     setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
@@ -642,13 +707,15 @@ export default function SpeakShadowPage() {
     setTutorMessage("Listening...");
     setLastAttempt(null);
     setManualTranscript("");
+    clearListenTimer();
+    listenTimerRef.current = window.setTimeout(() => {
+      stopListening();
+      handleRecognitionFailure("timeout");
+    }, 10000);
     startListening(
       session.recognitionLang || session.ttsLang || "en-GB",
       handleScoredTranscript,
-      () => {
-        setTutorState(TUTOR_STATES.RETRY);
-        setTutorMessage("I could not hear that clearly. Try once more.");
-      },
+      handleRecognitionFailure,
     );
   }
 
@@ -911,7 +978,7 @@ export default function SpeakShadowPage() {
             >
               {tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
             </button>
-            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => { stopSpeaking(); stopListening(); setIsSpeaking(false); }}>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={stopAllAudio}>
               Stop
             </button>
           </div>

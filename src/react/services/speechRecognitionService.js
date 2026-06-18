@@ -33,6 +33,9 @@ let recognizer = null;
 let isRunning = false;
 let resultCallback = null;
 let errorCallback = null;
+let didReceiveResult = false;
+let didReceiveError = false;
+let stopRequested = false;
 
 function getRecognizer() {
   if (typeof window === "undefined") return null;
@@ -46,6 +49,7 @@ function getRecognizer() {
 
   recognizer.onresult = (event) => {
     isRunning = false;
+    didReceiveResult = true;
     const last = event.results.length - 1;
     const alternatives = Array.from(event.results[last] || []).map((result) => ({
       transcript: result.transcript,
@@ -57,11 +61,15 @@ function getRecognizer() {
 
   recognizer.onerror = (event) => {
     isRunning = false;
+    didReceiveError = true;
     if (errorCallback) errorCallback(event.error);
   };
 
   recognizer.onend = () => {
     isRunning = false;
+    if (!didReceiveResult && !didReceiveError && !stopRequested && errorCallback) {
+      errorCallback("no-result");
+    }
   };
 
   return recognizer;
@@ -81,6 +89,9 @@ export function startListening(languageCode, onResult, onError) {
   sr.lang = getSpeechRecognitionLang(languageCode);
   resultCallback = onResult;
   errorCallback = onError;
+  didReceiveResult = false;
+  didReceiveError = false;
+  stopRequested = false;
   try {
     sr.start();
     isRunning = true;
@@ -91,6 +102,7 @@ export function startListening(languageCode, onResult, onError) {
 
 export function stopListening() {
   if (recognizer && isRunning) {
+    stopRequested = true;
     try { recognizer.stop(); } catch (e) { }
   }
   isRunning = false;
