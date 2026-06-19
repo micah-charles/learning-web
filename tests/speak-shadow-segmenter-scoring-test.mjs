@@ -6,6 +6,7 @@ import {
   tokenizePhrase,
 } from "../src/react/utils/speakShadowSegmenter.js";
 import { scoreSpeakShadowAttempt } from "../src/react/utils/speakShadowScoring.js";
+import { evaluateBufferedUtterance, joinUtteranceChunks } from "../src/react/utils/speakShadowUtteranceBuffer.js";
 
 assert.equal(normalizeForSpeechCompare("傳家寶", "zh"), normalizeForSpeechCompare("传家宝", "zh"));
 assert.deepEqual(tokenizePhrase("Der kleine Junge liest.", "de").filter((token) => /[\p{L}\p{N}]/u.test(token)), [
@@ -106,5 +107,114 @@ const lowConfidence = scoreSpeakShadowAttempt({
 });
 assert.equal(lowConfidence.passed, false);
 assert.equal(lowConfidence.matchType, "exact");
+
+const bufferedSettings = {
+  minSimilarity: 0.85,
+  minConfidence: 0.6,
+  partialUtteranceGraceMs: 2200,
+  maxUtteranceChunks: 3,
+  scorePartialImmediatelyIfPass: true,
+  waitForContinuationIfTooShort: true,
+  minCompletionRatioBeforeFail: 0.65,
+};
+
+const chinesePartial = evaluateBufferedUtterance({
+  expected: "奇玉就是這樣的一個故事",
+  chunks: ["奇玉"],
+  confidence: 0.9,
+  language: "zh",
+  settings: bufferedSettings,
+});
+assert.equal(chinesePartial.status, "pendingContinuation");
+assert.equal(chinesePartial.combinedTranscript, "奇玉");
+assert.equal(chinesePartial.score.passed, false);
+
+const chineseComplete = evaluateBufferedUtterance({
+  expected: "奇玉就是這樣的一個故事",
+  chunks: ["奇玉", "就是這樣的一個故事"],
+  confidence: 0.9,
+  language: "zh",
+  settings: bufferedSettings,
+});
+assert.equal(chineseComplete.status, "pass");
+assert.equal(chineseComplete.combinedTranscript, "奇玉就是這樣的一個故事");
+assert.equal(chineseComplete.score.passed, true);
+
+const chineseTimedOut = evaluateBufferedUtterance({
+  expected: "奇玉就是這樣的一個故事",
+  chunks: ["奇玉"],
+  confidence: 0.9,
+  language: "zh",
+  settings: bufferedSettings,
+  forceFinalize: true,
+});
+assert.equal(chineseTimedOut.status, "fail");
+
+assert.equal(joinUtteranceChunks(["I have", "a red book"], "en"), "I have a red book");
+assert.equal(joinUtteranceChunks(["奇玉", "就是這樣"], "zh-HK"), "奇玉就是這樣");
+assert.equal(joinUtteranceChunks(["奇玉", "就是這樣"], "yue-Hant-HK"), "奇玉就是這樣");
+assert.equal(joinUtteranceChunks(["私は", "学校へ"], "ja-JP"), "私は学校へ");
+const latinComplete = evaluateBufferedUtterance({
+  expected: "I have a red book",
+  chunks: ["I have", "a red book"],
+  confidence: 0.9,
+  language: "en",
+  settings: bufferedSettings,
+});
+assert.equal(latinComplete.status, "pass");
+assert.equal(latinComplete.combinedTranscript, "I have a red book");
+
+const pauseCases = [
+  {
+    language: "de",
+    expected: "Ich habe ein rotes Buch",
+    first: "Ich habe",
+    second: "ein rotes Buch",
+  },
+  {
+    language: "fr",
+    expected: "J'aime le cafe chaud",
+    first: "J'aime",
+    second: "le cafe chaud",
+  },
+  {
+    language: "es",
+    expected: "Tengo un libro rojo",
+    first: "Tengo",
+    second: "un libro rojo",
+  },
+  {
+    language: "it",
+    expected: "Ho un libro rosso",
+    first: "Ho un",
+    second: "libro rosso",
+  },
+  {
+    language: "ja",
+    expected: "私は学校へ行きます",
+    first: "私は",
+    second: "学校へ行きます",
+  },
+];
+
+for (const pauseCase of pauseCases) {
+  const partial = evaluateBufferedUtterance({
+    expected: pauseCase.expected,
+    chunks: [pauseCase.first],
+    confidence: 0.9,
+    language: pauseCase.language,
+    settings: bufferedSettings,
+  });
+  assert.equal(partial.status, "pendingContinuation", `${pauseCase.language} first chunk should wait for continuation`);
+
+  const complete = evaluateBufferedUtterance({
+    expected: pauseCase.expected,
+    chunks: [pauseCase.first, pauseCase.second],
+    confidence: 0.9,
+    language: pauseCase.language,
+    settings: bufferedSettings,
+  });
+  assert.equal(complete.status, "pass", `${pauseCase.language} combined chunks should pass`);
+}
 
 console.log("Speak Shadow segmenter and scoring tests passed");

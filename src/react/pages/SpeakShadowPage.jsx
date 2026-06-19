@@ -24,7 +24,7 @@ import {
   getSpeakShadowTextLimit,
   normalizeTranscriptForDisplay,
 } from "../utils/speakShadowSegmenter.js";
-import { scoreSpeakShadowAttempt } from "../utils/speakShadowScoring.js";
+import { evaluateBufferedUtterance } from "../utils/speakShadowUtteranceBuffer.js";
 
 const INITIAL_FORM = {
   title: "",
@@ -78,6 +78,11 @@ function settingsFromForm(form) {
     maxAutoListenRetries: mode === "tutor" ? 2 : 1,
     maxFailedAttemptsBeforeHint: 2,
     autoAdvanceDelayMs: mode === "tutor" ? 1200 : 1000,
+    partialUtteranceGraceMs: 2200,
+    maxUtteranceChunks: 3,
+    scorePartialImmediatelyIfPass: true,
+    waitForContinuationIfTooShort: true,
+    minCompletionRatioBeforeFail: 0.65,
   };
 }
 
@@ -87,6 +92,7 @@ function getFoxTutorState(tutorState) {
     tutorState === TUTOR_STATES.WAITING_FOR_STUDENT
     || tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING
     || tutorState === TUTOR_STATES.STUDENT_SPEAKING
+    || tutorState === TUTOR_STATES.PENDING_CONTINUATION
   ) return FOX_TUTOR_STATE.listening;
   if (tutorState === TUTOR_STATES.CHECKING) return FOX_TUTOR_STATE.thinking;
   if (tutorState === TUTOR_STATES.PASSED || tutorState === TUTOR_STATES.COMPLETED) return FOX_TUTOR_STATE.happy;
@@ -354,9 +360,11 @@ export default function SpeakShadowPage() {
   const currentPhraseRef = useRef(null);
   const autoTimerRef = useRef(null);
   const listenTimerRef = useRef(null);
+  const partialTimerRef = useRef(null);
   const speechTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
   const activeRecognitionRef = useRef(null);
+  const utteranceBufferRef = useRef(null);
   const {
     supported: recognitionSupported,
     listening: recognitionListening,
@@ -397,6 +405,7 @@ export default function SpeakShadowPage() {
     abortAttempt();
     if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
     if (listenTimerRef.current) window.clearTimeout(listenTimerRef.current);
+    if (partialTimerRef.current) window.clearTimeout(partialTimerRef.current);
     if (speechTimerRef.current) window.clearTimeout(speechTimerRef.current);
   }, [abortAttempt]);
 
@@ -451,11 +460,23 @@ export default function SpeakShadowPage() {
     }
   }
 
+  function clearPartialTimer() {
+    if (partialTimerRef.current) {
+      window.clearTimeout(partialTimerRef.current);
+      partialTimerRef.current = null;
+    }
+  }
+
   function clearSpeechTimer() {
     if (speechTimerRef.current) {
       window.clearTimeout(speechTimerRef.current);
       speechTimerRef.current = null;
     }
+  }
+
+  function resetUtteranceBuffer() {
+    clearPartialTimer();
+    utteranceBufferRef.current = null;
   }
 
   function withModeSettings(targetSession) {
@@ -488,7 +509,7 @@ export default function SpeakShadowPage() {
 
   function handleRecognitionFailure(reason = "no-result") {
     clearListenTimer();
-    clearAutoTimer();
+    if (!utteranceBufferRef.current?.chunks?.length) clearAutoTimer();
     if (reason === "aborted") return;
     const activeSession = sessionStateRef.current || session;
     const activePhrase = getCurrentPhrase(activeSession);
@@ -500,6 +521,17 @@ export default function SpeakShadowPage() {
     if (reason === "not-allowed") {
       setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
       setTutorMessage("Microphone permission was blocked. Allow microphone access or use the manual transcript fallback.");
+      return;
+    }
+    const pendingBuffer = utteranceBufferRef.current;
+    if (
+      pendingBuffer?.chunks?.length
+      && pendingBuffer.sessionId === activeSession.sessionId
+      && pendingBuffer.phraseId === activePhrase.id
+      && (reason === "no-result" || reason === "timeout")
+    ) {
+      setTutorState(TUTOR_STATES.PENDING_CONTINUATION);
+      setTutorMessage(TUTOR_MESSAGES.continueSentence);
       return;
     }
     const updated = incrementSilentCount(activeSession, activePhrase.id);
@@ -521,12 +553,14 @@ export default function SpeakShadowPage() {
     clearAutoTimer();
     clearListenTimer();
     clearSpeechTimer();
+    resetUtteranceBuffer();
     stopSpeaking();
     abortAttempt();
     setIsSpeaking(false);
     if (
       tutorState === TUTOR_STATES.STUDENT_SPEAKING
       || tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING
+      || tutorState === TUTOR_STATES.PENDING_CONTINUATION
       || tutorState === TUTOR_STATES.TUTOR_READING
     ) {
       setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
@@ -534,7 +568,7 @@ export default function SpeakShadowPage() {
     }
   }
 
-  function startRecognitionForSession(targetSession = session) {
+  function startRecognitionForSession(targetSession = session, { continuation = false, message } = {}) {
     const phrase = getCurrentPhrase(targetSession);
     if (!targetSession || !phrase) return;
     if (!recognitionSupported) {
@@ -545,11 +579,16 @@ export default function SpeakShadowPage() {
     const settings = withModeSettings(targetSession);
     clearAutoTimer();
     clearListenTimer();
-    resetAttempt();
-    setTutorState(TUTOR_STATES.STUDENT_SPEAKING);
-    setTutorMessage(modeMessages(targetSession).listening);
-    setLastAttempt(null);
-    setManualTranscript("");
+    if (!continuation) {
+      resetUtteranceBuffer();
+      resetAttempt();
+    }
+    setTutorState(continuation ? TUTOR_STATES.PENDING_CONTINUATION : TUTOR_STATES.STUDENT_SPEAKING);
+    setTutorMessage(message || modeMessages(targetSession).listening);
+    if (!continuation) {
+      setLastAttempt(null);
+      setManualTranscript("");
+    }
     const attemptId = startAttempt({
       languageCode: targetSession.recognitionLang || targetSession.ttsLang || "en-GB",
       interimResults: true,
@@ -563,6 +602,7 @@ export default function SpeakShadowPage() {
       attemptId,
       sessionId: targetSession.sessionId,
       phraseId: phrase.id,
+      continuation,
     };
   }
 
@@ -607,6 +647,7 @@ export default function SpeakShadowPage() {
     abortAttempt();
     clearAutoTimer();
     clearListenTimer();
+    resetUtteranceBuffer();
     clearSpeechTimer();
     setIsSpeaking(true);
     setTutorState(TUTOR_STATES.TUTOR_READING);
@@ -657,6 +698,7 @@ export default function SpeakShadowPage() {
     setLastAttempt(null);
     setManualTranscript("");
     resetAttempt();
+    resetUtteranceBuffer();
     clearAutoTimer();
     const speech = resolveSpeakShadowSpeech({ language: nextSession.language, voiceLocale: nextSession.voiceLocale });
     const mode = nextSession.settings?.mode || (nextSession.settings?.tutorMode === false ? "challenge" : "tutor");
@@ -701,6 +743,7 @@ export default function SpeakShadowPage() {
       const next = markCurrentPhrase(sourceSession, nextPhrase.id);
       setLastAttempt(null);
       setManualTranscript("");
+      resetUtteranceBuffer();
       commitSession(next);
       if (isTutorMode(next) && next.settings?.autoReadNextPhrase) {
         beginTutorReading(next);
@@ -719,35 +762,7 @@ export default function SpeakShadowPage() {
     }
   }
 
-  function handleScoredTranscript(transcript, confidence = null, alternatives = [], recognitionPayload = null) {
-    const activeSession = sessionStateRef.current || session;
-    const activePhrase = getCurrentPhrase(activeSession);
-    if (!activeSession || !activePhrase || !String(transcript || "").trim()) return;
-    const activeRecognition = activeRecognitionRef.current;
-    if (
-      recognitionPayload?.attemptId
-      && activeRecognition
-      && (
-        recognitionPayload.attemptId !== activeRecognition.attemptId
-        || activeRecognition.sessionId !== activeSession.sessionId
-        || activeRecognition.phraseId !== activePhrase.id
-      )
-    ) {
-      return;
-    }
-    clearListenTimer();
-    clearAutoTimer();
-    setTutorState(TUTOR_STATES.CHECKING);
-    const score = scoreSpeakShadowAttempt({
-      expected: activePhrase,
-      transcript,
-      confidence,
-      alternatives,
-      language: activeSession.language,
-      voiceLocale: activeSession.voiceLocale || activeSession.recognitionLang,
-      settings: activeSession.settings,
-    });
-    if (!score?.transcript) return;
+  function makeAttemptFromScore(score, activeSession) {
     const attempt = {
       transcript: normalizeTranscriptForDisplay(score.transcript, activeSession.language),
       confidence: score.confidence,
@@ -769,6 +784,13 @@ export default function SpeakShadowPage() {
       nextAction: score.nextAction,
       createdAt: new Date().toISOString(),
     };
+    return attempt;
+  }
+
+  function applyFinalScore(score, activeSession, activePhrase) {
+    if (!score?.transcript) return;
+    resetUtteranceBuffer();
+    const attempt = makeAttemptFromScore(score, activeSession);
     setLastAttempt(attempt);
 
     const updated = {
@@ -819,6 +841,103 @@ export default function SpeakShadowPage() {
         setTutorMessage(messages.slowDown);
       }
     }
+  }
+
+  function finalizeBufferedUtterance(reason = "grace-timeout") {
+    const buffer = utteranceBufferRef.current;
+    if (!buffer?.chunks?.length) return;
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase || buffer.sessionId !== activeSession.sessionId || buffer.phraseId !== activePhrase.id) return;
+    abortAttempt();
+    clearPartialTimer();
+    setTutorState(TUTOR_STATES.CHECKING);
+    const evaluation = evaluateBufferedUtterance({
+      expected: activePhrase,
+      chunks: buffer.chunks,
+      confidence: buffer.confidence,
+      alternatives: buffer.alternatives,
+      language: activeSession.language,
+      voiceLocale: activeSession.voiceLocale || activeSession.recognitionLang,
+      settings: activeSession.settings,
+      forceFinalize: true,
+    });
+    const finalScore = {
+      ...evaluation.score,
+      transcript: evaluation.combinedTranscript,
+      nextAction: reason === "grace-timeout" ? "retry_after_pause" : evaluation.score.nextAction,
+    };
+    applyFinalScore(finalScore, activeSession, activePhrase);
+  }
+
+  function scheduleContinuationWait(activeSession, activePhrase, evaluation) {
+    clearPartialTimer();
+    setTutorState(TUTOR_STATES.PENDING_CONTINUATION);
+    setTutorMessage(evaluation.chunkCount <= 1 ? TUTOR_MESSAGES.pendingContinuation : TUTOR_MESSAGES.continueSentence);
+    partialTimerRef.current = window.setTimeout(() => {
+      finalizeBufferedUtterance("grace-timeout");
+    }, activeSession.settings?.partialUtteranceGraceMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.partialUtteranceGraceMs);
+    startRecognitionForSession(activeSession, {
+      continuation: true,
+      message: TUTOR_MESSAGES.continueSentence,
+    });
+  }
+
+  function handleScoredTranscript(transcript, confidence = null, alternatives = [], recognitionPayload = null) {
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase || !String(transcript || "").trim()) return;
+    const activeRecognition = activeRecognitionRef.current;
+    if (
+      recognitionPayload?.attemptId
+      && activeRecognition
+      && (
+        recognitionPayload.attemptId !== activeRecognition.attemptId
+        || activeRecognition.sessionId !== activeSession.sessionId
+        || activeRecognition.phraseId !== activePhrase.id
+      )
+    ) {
+      return;
+    }
+    clearListenTimer();
+    clearPartialTimer();
+    const isManual = Boolean(recognitionPayload?.manual);
+    const existingBuffer = utteranceBufferRef.current;
+    const chunks = isManual
+      ? [transcript]
+      : [
+        ...((existingBuffer?.sessionId === activeSession.sessionId && existingBuffer?.phraseId === activePhrase.id)
+          ? existingBuffer.chunks
+          : []),
+        transcript,
+      ];
+    const evaluation = evaluateBufferedUtterance({
+      expected: activePhrase,
+      chunks,
+      confidence,
+      alternatives,
+      language: activeSession.language,
+      voiceLocale: activeSession.voiceLocale || activeSession.recognitionLang,
+      settings: activeSession.settings,
+      forceFinalize: isManual,
+    });
+    utteranceBufferRef.current = {
+      sessionId: activeSession.sessionId,
+      phraseId: activePhrase.id,
+      chunks,
+      confidence: evaluation.score.confidence,
+      alternatives,
+    };
+    if (evaluation.status === "pendingContinuation") {
+      scheduleContinuationWait(activeSession, activePhrase, evaluation);
+      return;
+    }
+    clearAutoTimer();
+    setTutorState(TUTOR_STATES.CHECKING);
+    applyFinalScore({
+      ...evaluation.score,
+      transcript: evaluation.combinedTranscript,
+    }, activeSession, activePhrase);
   }
 
   function handleMarkCurrentPhraseOk() {
@@ -971,7 +1090,7 @@ export default function SpeakShadowPage() {
   }
 
   function handleManualTranscriptSubmit() {
-    handleScoredTranscript(manualTranscript, null);
+    handleScoredTranscript(manualTranscript, null, [], { manual: true });
   }
 
   function moveToPhrase(phraseId) {
@@ -980,6 +1099,7 @@ export default function SpeakShadowPage() {
     const next = markCurrentPhrase(session, phraseId);
     setLastAttempt(null);
     setManualTranscript("");
+    resetUtteranceBuffer();
     commitSession(next);
     if (isTutorMode(next) && next.settings?.autoReadNextPhrase) beginTutorReading(next);
     else if (!isTutorMode(next) && next.settings?.guidedAutoListen) startChallengePhrase(next);
@@ -992,6 +1112,7 @@ export default function SpeakShadowPage() {
 
   function handleSkipPhrase() {
     if (!session || !currentPhrase) return;
+    resetUtteranceBuffer();
     const updated = {
       ...session,
       phrases: session.phrases.map((phrase) => (
@@ -1006,6 +1127,7 @@ export default function SpeakShadowPage() {
 
   function restartSession(targetSession = session, mode = getSessionMode(targetSession)) {
     if (!targetSession) return;
+    resetUtteranceBuffer();
     const tutorMode = mode === "tutor";
     const restarted = {
       ...targetSession,
@@ -1031,6 +1153,7 @@ export default function SpeakShadowPage() {
 
   function practiseWeakPhrases(mode = "tutor") {
     if (!session) return;
+    resetUtteranceBuffer();
     const weak = session.phrases.filter((phrase) => (phrase.attempts || []).some((attempt) => !attempt.passed));
     if (!weak.length) return;
     const now = new Date().toISOString();

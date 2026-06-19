@@ -44,6 +44,11 @@ export const DEFAULT_SPEAK_SHADOW_SETTINGS = {
   autoAdvanceDelayMs: 1200,
   autoReadNextPhrase: true,
   retryBeforeManualHelp: 2,
+  partialUtteranceGraceMs: 2200,
+  maxUtteranceChunks: 3,
+  scorePartialImmediatelyIfPass: true,
+  waitForContinuationIfTooShort: true,
+  minCompletionRatioBeforeFail: 0.65,
 };
 
 export const PHRASE_LENGTHS = {
@@ -66,6 +71,7 @@ export const TUTOR_STATES = {
   AUTO_LISTEN_PENDING: "auto_listen_pending",
   WAITING_FOR_STUDENT: "waiting_for_student",
   STUDENT_SPEAKING: "student_speaking",
+  PENDING_CONTINUATION: "pending_continuation",
   CHECKING: "checking",
   RETRY: "retry",
   SILENCE_TIMEOUT: "silence_timeout",
@@ -79,6 +85,8 @@ export const TUTOR_MESSAGES = {
   getReady: "Get ready...",
   speak: "Now you try.",
   listening: "Listening... speak now.",
+  pendingContinuation: "Keep going...",
+  continueSentence: "I heard the first part. Continue the sentence.",
   retry: "Almost. Listen again and try once more.",
   slowDown: "Good try. Try reading it a little more slowly.",
   passed: "Good. Let's go to the next sentence.",
