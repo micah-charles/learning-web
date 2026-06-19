@@ -1,5 +1,42 @@
 import { normalizeForSpeechCompare, tokenizePhrase } from "./speakShadowSegmenter.js";
 
+const GERMAN_ARTICLES = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"]);
+
+const ZH_HK_EQUIVALENTS = [
+  ["稀世", "欺世"],
+  ["翠玉", "脆玉"],
+  ["傳家寶", "传家宝"],
+];
+
+const JA_EQUIVALENTS = [
+  ["学校", "がっこう", "ガッコウ"],
+  ["猫", "ねこ", "ネコ"],
+  ["私", "わたし", "ワタシ"],
+  ["行きます", "いきます"],
+];
+
+const EN_CONTRACTIONS = [
+  ["don't", "do not"],
+  ["doesn't", "does not"],
+  ["didn't", "did not"],
+  ["can't", "cannot"],
+  ["won't", "will not"],
+  ["i'm", "i am"],
+  ["you're", "you are"],
+  ["he's", "he is"],
+  ["she's", "she is"],
+  ["it's", "it is"],
+  ["we're", "we are"],
+  ["they're", "they are"],
+  ["i've", "i have"],
+  ["we've", "we have"],
+  ["they've", "they have"],
+  ["i'll", "i will"],
+  ["you'll", "you will"],
+  ["we'll", "we will"],
+  ["they'll", "they will"],
+];
+
 function levenshteinDistance(a, b) {
   const left = String(a || "");
   const right = String(b || "");
@@ -15,13 +52,88 @@ function levenshteinDistance(a, b) {
   return matrix[right.length][left.length];
 }
 
-function tokenMatches(expectedToken, transcriptTokens) {
-  return transcriptTokens.some((token) => token === expectedToken || levenshteinDistance(expectedToken, token) <= 1);
+function stripDiacritics(text) {
+  return String(text || "").normalize("NFD").replace(/\p{Diacritic}/gu, "");
 }
 
-function similarityScore(expected, transcript, language) {
-  const normalizedExpected = normalizeForSpeechCompare(expected, language);
-  const normalizedTranscript = normalizeForSpeechCompare(transcript, language);
+function normalizeLatinBase(text) {
+  return stripDiacritics(String(text || "").toLowerCase())
+    .replace(/[’']/g, "")
+    .replace(/[!?.,;:()[\]{}"“”¿¡]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function expandEnglishContractions(text) {
+  let value = String(text || "").toLowerCase();
+  for (const [short, expanded] of EN_CONTRACTIONS) {
+    value = value.replace(new RegExp(`\\b${short.replace("'", "[’']")}\\b`, "g"), expanded);
+  }
+  return value;
+}
+
+function normalizeGerman(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replaceAll("ä", "ae")
+    .replaceAll("ö", "oe")
+    .replaceAll("ü", "ue")
+    .replaceAll("ß", "ss")
+    .replace(/[!?.,;:()[\]{}"“”]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeJapanese(text) {
+  return String(text || "")
+    .normalize("NFC")
+    .replace(/[!?.,;:，。！？；：、"'`()[\]{}「」『』]/g, "")
+    .replace(/\s+/g, "")
+    .trim();
+}
+
+function canonicalizeEquivalent(text, groups) {
+  let value = String(text || "");
+  for (const group of groups) {
+    const canonical = group[0];
+    for (const item of group) {
+      value = value.split(item).join(canonical);
+    }
+  }
+  return value;
+}
+
+function getNormalizer(language) {
+  if (language === "de") return normalizeGerman;
+  if (language === "ja") return normalizeJapanese;
+  if (language === "zh") return (text) => normalizeForSpeechCompare(text, "zh");
+  if (language === "en") return (text) => normalizeLatinBase(expandEnglishContractions(text));
+  if (["fr", "es", "it"].includes(language)) return normalizeLatinBase;
+  return (text) => normalizeForSpeechCompare(text, language);
+}
+
+function getEquivalentNormalizer(language, voiceLocale) {
+  const normalizedVoice = String(voiceLocale || "").toLowerCase();
+  if (language === "zh" && (normalizedVoice.includes("hk") || normalizedVoice.includes("yue") || !normalizedVoice)) {
+    return (text) => normalizeForSpeechCompare(canonicalizeEquivalent(text, ZH_HK_EQUIVALENTS), "zh");
+  }
+  if (language === "ja") {
+    return (text) => normalizeJapanese(canonicalizeEquivalent(text, JA_EQUIVALENTS));
+  }
+  return null;
+}
+
+function tokenMatches(expectedToken, transcriptTokens, language) {
+  return transcriptTokens.some((token) => {
+    if (token === expectedToken) return true;
+    if (language === "de" && (GERMAN_ARTICLES.has(expectedToken) || GERMAN_ARTICLES.has(token))) return false;
+    return expectedToken.length > 4 && token.length > 4 && levenshteinDistance(expectedToken, token) <= 1;
+  });
+}
+
+function similarityScore(expected, transcript, language, normalizer = getNormalizer(language)) {
+  const normalizedExpected = normalizer(expected);
+  const normalizedTranscript = normalizer(transcript);
   if (!normalizedExpected || !normalizedTranscript) return 0;
   if (normalizedExpected === normalizedTranscript) return 1;
 
@@ -30,34 +142,116 @@ function similarityScore(expected, transcript, language) {
   const expectedTokens = tokenizePhrase(normalizedExpected, language).filter(Boolean);
   const transcriptTokens = tokenizePhrase(normalizedTranscript, language).filter(Boolean);
   if (!expectedTokens.length || !transcriptTokens.length) return charSimilarity;
-  const matched = expectedTokens.filter((token) => tokenMatches(token, transcriptTokens)).length;
+  const matched = expectedTokens.filter((token) => tokenMatches(token, transcriptTokens, language)).length;
   const tokenSimilarity = matched / Math.max(expectedTokens.length, transcriptTokens.length);
   return Math.max(charSimilarity, tokenSimilarity);
 }
 
-function tokenDiff(expected, transcript, language) {
-  const expectedTokens = tokenizePhrase(normalizeForSpeechCompare(expected, language), language).filter(Boolean);
-  const transcriptTokens = tokenizePhrase(normalizeForSpeechCompare(transcript, language), language).filter(Boolean);
-  const missingTokens = expectedTokens.filter((token) => !tokenMatches(token, transcriptTokens)).slice(0, 8);
-  const extraTokens = transcriptTokens.filter((token) => !tokenMatches(token, expectedTokens)).slice(0, 8);
+function tokenDiff(expected, transcript, language, normalizer = getNormalizer(language)) {
+  const expectedTokens = tokenizePhrase(normalizer(expected), language).filter(Boolean);
+  const transcriptTokens = tokenizePhrase(normalizer(transcript), language).filter(Boolean);
+  const missingTokens = expectedTokens.filter((token) => !tokenMatches(token, transcriptTokens, language)).slice(0, 8);
+  const extraTokens = transcriptTokens.filter((token) => !tokenMatches(token, expectedTokens, language)).slice(0, 8);
   return { missingTokens, extraTokens };
 }
 
-export function scoreSpeakShadowAttempt({ expected, transcript, confidence, language, settings = {} }) {
-  const similarity = similarityScore(expected, transcript, language);
+function scoreOneTranscript({ expected, transcript, confidence, language, voiceLocale, settings, source }) {
+  const normalizer = getNormalizer(language);
+  const equivalentNormalizer = getEquivalentNormalizer(language, voiceLocale);
+  const rawExpected = String(expected || "").trim();
+  const rawTranscript = String(transcript || "").trim();
+  const normalizedExpected = normalizer(rawExpected);
+  const normalizedTranscript = normalizer(rawTranscript);
   const numericConfidence = Number.isFinite(confidence) ? confidence : null;
   const minSimilarity = settings.minSimilarity ?? 0.85;
   const minConfidence = settings.minConfidence ?? 0.6;
   const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence;
+  let similarity = similarityScore(rawExpected, rawTranscript, language, normalizer);
+  let matchType = "similarity";
+
+  if (rawExpected && rawExpected === rawTranscript) {
+    similarity = 1;
+    matchType = "exact";
+  } else if (normalizedExpected && normalizedExpected === normalizedTranscript) {
+    similarity = Math.max(similarity, 0.95);
+    matchType = source === "alternative" ? "alternative" : "normalized";
+  } else if (equivalentNormalizer) {
+    const equivalentExpected = equivalentNormalizer(rawExpected);
+    const equivalentTranscript = equivalentNormalizer(rawTranscript);
+    if (equivalentExpected && equivalentExpected === equivalentTranscript) {
+      similarity = Math.max(similarity, 0.88);
+      matchType = "equivalent";
+    }
+  }
+
+  if (source === "alternative" && matchType !== "equivalent" && similarity >= minSimilarity) {
+    matchType = "alternative";
+    similarity = Math.max(similarity, 0.9);
+  }
+
   const passed = similarity >= minSimilarity && confidencePasses;
-  const { missingTokens, extraTokens } = tokenDiff(expected, transcript, language);
+  const diffNormalizer = matchType === "equivalent" && equivalentNormalizer ? equivalentNormalizer : normalizer;
+  const { missingTokens, extraTokens } = tokenDiff(rawExpected, rawTranscript, language, diffNormalizer);
 
   return {
+    transcript: rawTranscript,
     similarity,
     confidence: numericConfidence,
     passed,
+    matchType,
+    source,
     missingTokens,
     extraTokens,
     feedback: passed ? "Good match" : "Try that phrase again",
   };
+}
+
+export function scoreSpeakShadowAttempt({
+  expected,
+  transcript,
+  confidence,
+  alternatives = [],
+  language,
+  voiceLocale = "",
+  settings = {},
+}) {
+  const transcriptOptions = [
+    { transcript, confidence, source: "primary" },
+    ...(Array.isArray(alternatives) ? alternatives : []).map((option) => ({
+      transcript: option?.transcript,
+      confidence: Number.isFinite(option?.confidence) ? option.confidence : confidence,
+      source: "alternative",
+    })),
+  ]
+    .map((option) => ({
+      ...option,
+      transcript: String(option.transcript || "").trim(),
+    }))
+    .filter((option, index, all) => (
+      option.transcript && all.findIndex((item) => item.transcript === option.transcript) === index
+    ));
+
+  const scored = transcriptOptions.map((option) => scoreOneTranscript({
+    expected,
+    transcript: option.transcript,
+    confidence: option.confidence,
+    language,
+    voiceLocale,
+    settings,
+    source: option.source,
+  }));
+
+  return scored.sort((left, right) => (
+    Number(right.passed) - Number(left.passed)
+    || (right.similarity - left.similarity)
+    || ((right.confidence || 0) - (left.confidence || 0))
+  ))[0] || scoreOneTranscript({
+    expected,
+    transcript,
+    confidence,
+    language,
+    voiceLocale,
+    settings,
+    source: "primary",
+  });
 }

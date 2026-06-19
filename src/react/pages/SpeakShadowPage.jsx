@@ -713,36 +713,26 @@ export default function SpeakShadowPage() {
     clearListenTimer();
     clearAutoTimer();
     setTutorState(TUTOR_STATES.CHECKING);
-    const transcriptOptions = (Array.isArray(alternatives) && alternatives.length ? alternatives : [{ transcript, confidence }])
-      .map((option) => ({
-        transcript: String(option?.transcript || "").trim(),
-        confidence: Number.isFinite(option?.confidence) ? option.confidence : confidence,
-      }))
-      .filter((option) => option.transcript);
-    const scoredOptions = transcriptOptions.map((option) => {
-      const displayTranscript = normalizeTranscriptForDisplay(option.transcript, activeSession.language);
-      const scoreResult = scoreSpeakShadowAttempt({
-        expected: activePhrase.text,
-        transcript: displayTranscript,
-        confidence: option.confidence,
-        language: activeSession.language,
-        settings: activeSession.settings,
-      });
-      return { ...option, displayTranscript, score: scoreResult };
+    const score = scoreSpeakShadowAttempt({
+      expected: activePhrase.text,
+      transcript,
+      confidence,
+      alternatives,
+      language: activeSession.language,
+      voiceLocale: activeSession.voiceLocale || activeSession.recognitionLang,
+      settings: activeSession.settings,
     });
-    const bestOption = scoredOptions.sort((left, right) => (
-      (right.score.similarity - left.score.similarity) || ((right.score.confidence || 0) - (left.score.confidence || 0))
-    ))[0];
-    if (!bestOption) return;
-    const score = bestOption.score;
+    if (!score?.transcript) return;
     const attempt = {
-      transcript: bestOption.displayTranscript,
+      transcript: normalizeTranscriptForDisplay(score.transcript, activeSession.language),
       confidence: score.confidence,
       similarity: score.similarity,
       minSimilarity: activeSession.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity,
       minConfidence: activeSession.settings?.minConfidence ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minConfidence,
       passed: score.passed,
       mode: getSessionMode(activeSession),
+      matchType: score.matchType,
+      source: score.source,
       missingTokens: score.missingTokens,
       extraTokens: score.extraTokens,
       createdAt: new Date().toISOString(),
@@ -796,6 +786,42 @@ export default function SpeakShadowPage() {
         setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
         setTutorMessage(messages.slowDown);
       }
+    }
+  }
+
+  function handleMarkCurrentPhraseOk() {
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase || !lastAttempt) return;
+    clearAutoTimer();
+    const acceptedAttempt = {
+      ...lastAttempt,
+      passed: true,
+      acceptedManually: true,
+      matchType: "manual",
+      similarity: Math.max(lastAttempt.similarity || 0, activeSession.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity),
+      acceptedAt: new Date().toISOString(),
+    };
+    const updated = {
+      ...activeSession,
+      lastOpenedAt: new Date().toISOString(),
+      phrases: activeSession.phrases.map((phrase) => {
+        if (phrase.id !== activePhrase.id) return phrase;
+        const attempts = [...(phrase.attempts || [])];
+        const lastIndex = attempts.length - 1;
+        if (lastIndex >= 0) attempts[lastIndex] = acceptedAttempt;
+        else attempts.push(acceptedAttempt);
+        return { ...phrase, status: PHRASE_STATUS.PASSED, attempts };
+      }),
+    };
+    setLastAttempt(acceptedAttempt);
+    commitSession(updated);
+    setTutorState(TUTOR_STATES.PASSED);
+    setTutorMessage("Marked OK. Let's go to the next sentence.");
+    if (updated.settings?.autoAdvanceOnPass) {
+      moveToNextPhraseFrom(updated, activePhrase.id, {
+        delayMs: updated.settings?.autoAdvanceDelayMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.autoAdvanceDelayMs,
+      });
     }
   }
 
@@ -1072,6 +1098,16 @@ export default function SpeakShadowPage() {
     );
   }
 
+  function getAttemptMatchLabel(attempt) {
+    if (!attempt) return "";
+    if (attempt.acceptedManually || attempt.matchType === "manual") return "Marked OK manually";
+    if (attempt.matchType === "exact") return "Exact match";
+    if (attempt.matchType === "normalized") return "Accepted after language normalisation";
+    if (attempt.matchType === "alternative") return "Accepted from browser alternative";
+    if (attempt.matchType === "equivalent") return "Accepted as near-equivalent";
+    return "Similarity score";
+  }
+
   function renderPracticeSettings(activeLanguage = form.language) {
     return (
       <div className="ss-settings-grid">
@@ -1243,8 +1279,14 @@ export default function SpeakShadowPage() {
               <span>You said</span>
               <p>{lastAttempt.transcript}</p>
               <strong>Score: {Math.round(lastAttempt.similarity * 100)}% / Pass: {Math.round((lastAttempt.minSimilarity || 0.85) * 100)}%</strong>
+              <small>{getAttemptMatchLabel(lastAttempt)}</small>
               {lastAttempt.missingTokens?.length > 0 && (
                 <small>Listen for: {lastAttempt.missingTokens.join(", ")}</small>
+              )}
+              {!lastAttempt.passed && (
+                <button className="lw-btn lw-btn-ghost ss-mark-ok-btn" type="button" onClick={handleMarkCurrentPhraseOk}>
+                  Mark as OK
+                </button>
               )}
             </div>
           )}

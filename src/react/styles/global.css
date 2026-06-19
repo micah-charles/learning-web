@@ -1436,6 +1436,11 @@ body {
   color: var(--lw-muted);
 }
 
+.ss-mark-ok-btn {
+  justify-self: start;
+  min-height: 36px;
+}
+
 .ss-summary-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
