@@ -1028,6 +1028,38 @@ body {
   align-items: end;
 }
 
+.ss-mode-start {
+  display: grid;
+  gap: 12px;
+}
+
+.ss-mode-start h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--lw-ink);
+}
+
+.ss-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.ss-mode-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 14px;
+  border: 1px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  background: #fff;
+}
+
+.ss-mode-card strong {
+  line-height: 1.35;
+  color: var(--lw-ink);
+}
+
 .ss-field {
   display: grid;
   gap: 6px;
