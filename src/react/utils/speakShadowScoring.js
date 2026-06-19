@@ -155,10 +155,46 @@ function tokenDiff(expected, transcript, language, normalizer = getNormalizer(la
   return { missingTokens, extraTokens };
 }
 
+function orderedTokenScore(expectedTokens, transcriptTokens, language) {
+  if (!expectedTokens.length || !transcriptTokens.length) return 0;
+  let matched = 0;
+  let cursor = 0;
+  for (const expectedToken of expectedTokens) {
+    const index = transcriptTokens.findIndex((token, offset) => offset >= cursor && tokenMatches(expectedToken, [token], language));
+    if (index >= cursor) {
+      matched += 1;
+      cursor = index + 1;
+    }
+  }
+  return matched / expectedTokens.length;
+}
+
+function requiredTokenScore(requiredTokens, transcriptTokens, language) {
+  if (!requiredTokens.length) return 1;
+  const matched = requiredTokens.filter((token) => tokenMatches(token, transcriptTokens, language)).length;
+  return matched / requiredTokens.length;
+}
+
+function buildHint({ passed, missingTokens, requiredTokenScore: keywordScore, confidenceScore }) {
+  if (passed) return "Great! Next sentence.";
+  if (confidenceScore !== null && confidenceScore < 0.35) return "I could not hear clearly. Try speaking a little closer to the microphone.";
+  if (missingTokens.length) return `Almost - try the key words: ${missingTokens.slice(0, 4).join(", ")}.`;
+  if (keywordScore < 0.75) return "Almost - try the bold words again.";
+  return "Good try. Read it again slowly.";
+}
+
+function nextActionForScore({ passed, confidenceScore, missingTokens }) {
+  if (passed) return "advance";
+  if (confidenceScore !== null && confidenceScore < 0.35) return "manual_or_retry";
+  if (missingTokens.length > 3) return "replay_with_hint";
+  return "retry";
+}
+
 function scoreOneTranscript({ expected, transcript, confidence, language, voiceLocale, settings, source }) {
   const normalizer = getNormalizer(language);
   const equivalentNormalizer = getEquivalentNormalizer(language, voiceLocale);
-  const rawExpected = String(expected || "").trim();
+  const expectedPhrase = typeof expected === "object" && expected !== null ? expected : null;
+  const rawExpected = String(expectedPhrase?.speechTarget || expectedPhrase?.text || expected || "").trim();
   const rawTranscript = String(transcript || "").trim();
   const normalizedExpected = normalizer(rawExpected);
   const normalizedTranscript = normalizer(rawTranscript);
@@ -166,6 +202,12 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
   const minSimilarity = settings.minSimilarity ?? 0.85;
   const minConfidence = settings.minConfidence ?? 0.6;
   const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence;
+  const expectedTokens = tokenizePhrase(normalizedExpected, language).filter(Boolean);
+  const transcriptTokens = tokenizePhrase(normalizedTranscript, language).filter(Boolean);
+  const strictTokens = language === "de" ? expectedTokens.filter((token) => GERMAN_ARTICLES.has(token)) : [];
+  const requiredTokens = Array.isArray(expectedPhrase?.requiredTokens) && expectedPhrase.requiredTokens.length
+    ? expectedPhrase.requiredTokens.map((token) => normalizer(token)).filter(Boolean)
+    : expectedTokens.filter((token) => token.length > 3 || strictTokens.includes(token));
   let similarity = similarityScore(rawExpected, rawTranscript, language, normalizer);
   let matchType = "similarity";
 
@@ -189,20 +231,51 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
     similarity = Math.max(similarity, 0.9);
   }
 
-  const passed = similarity >= minSimilarity && confidencePasses;
+  const keywordScore = requiredTokenScore(requiredTokens, transcriptTokens, language);
+  const orderScore = orderedTokenScore(expectedTokens, transcriptTokens, language);
+  const strictTokenScore = strictTokens.length ? requiredTokenScore(strictTokens, transcriptTokens, language) : 1;
+  const confidenceScore = numericConfidence;
+  const characterScore = similarity;
+  const overallScore = Math.max(
+    similarity,
+    Math.min(1, (keywordScore * 0.45) + (orderScore * 0.25) + (characterScore * 0.3)),
+  );
+  const requiredGatePasses = !requiredTokens.length || keywordScore >= 0.75;
+  const strictGatePasses = strictTokenScore >= 1;
+  const passed = (
+    (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses))
+    && confidencePasses
+    && strictGatePasses
+  );
   const diffNormalizer = matchType === "equivalent" && equivalentNormalizer ? equivalentNormalizer : normalizer;
   const { missingTokens, extraTokens } = tokenDiff(rawExpected, rawTranscript, language, diffNormalizer);
+  const requiredMissing = requiredTokens.filter((token) => !tokenMatches(token, transcriptTokens, language));
+  const feedbackLevel = passed ? "success" : requiredMissing.length ? "hint" : "retry";
+  const hint = buildHint({
+    passed,
+    missingTokens: requiredMissing.length ? requiredMissing : missingTokens,
+    requiredTokenScore: keywordScore,
+    confidenceScore,
+  });
 
   return {
     transcript: rawTranscript,
     similarity,
+    overallScore,
+    similarityScore: similarity,
+    requiredTokenScore: keywordScore,
+    orderScore,
+    confidenceScore,
     confidence: numericConfidence,
     passed,
     matchType,
     source,
-    missingTokens,
+    feedbackLevel,
+    missingTokens: (requiredMissing.length ? requiredMissing : missingTokens).slice(0, 8),
     extraTokens,
-    feedback: passed ? "Good match" : "Try that phrase again",
+    hint,
+    nextAction: nextActionForScore({ passed, confidenceScore, missingTokens: requiredMissing.length ? requiredMissing : missingTokens }),
+    feedback: hint,
   };
 }
 

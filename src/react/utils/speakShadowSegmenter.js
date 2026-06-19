@@ -51,9 +51,11 @@ const SIMPLIFIED_TO_TRADITIONAL_CHINESE = {
   无: "無",
   业: "業",
   专: "專",
+  传: "傳",
   变: "變",
   当: "當",
   实: "實",
+  宝: "寶",
   对: "對",
   将: "將",
   尔: "爾",
@@ -173,6 +175,13 @@ function tokenCount(text, language) {
   return tokenizePhrase(text, language).filter((token) => /[\p{L}\p{N}]/u.test(token)).length;
 }
 
+function spokenTokens(text, language) {
+  return tokenizePhrase(text, language).filter((token) => {
+    if (isCjkLanguage(language)) return token.trim();
+    return /[\p{L}\p{N}]/u.test(token);
+  });
+}
+
 function splitByCharacterSet(text, breakSet) {
   const chunks = [];
   let current = "";
@@ -208,28 +217,113 @@ function splitLongTokenRun(tokens, maxTokens) {
   return chunks;
 }
 
-export function splitSentenceIntoPhrases(sentence, language = "en", maxTokens = PHRASE_LENGTHS.medium.maxTokens) {
-  if (tokenCount(sentence, language) <= maxTokens) return [sentence.trim()].filter(Boolean);
+function mergeTooShortPhrases(phrases, language, minTokens, maxTokens, maxChars) {
+  const merged = [];
+  for (const phrase of phrases) {
+    const last = merged[merged.length - 1];
+    const joined = last ? `${last} ${phrase}`.replace(/\s+([!?.,;:，。！？；：、])/g, "$1").trim() : phrase;
+    if (
+      last
+      && tokenCount(last, language) < minTokens
+      && tokenCount(joined, language) <= maxTokens
+      && (!maxChars || [...joined].length <= maxChars)
+    ) {
+      merged[merged.length - 1] = isCjkLanguage(language) ? `${last}${phrase}` : joined;
+    } else {
+      merged.push(phrase);
+    }
+  }
+  return merged;
+}
+
+function splitLongCjkPhrase(text, language, maxTokens, maxChars) {
+  const tokens = tokenizePhrase(text, language);
+  const chunks = [];
+  let current = "";
+  let count = 0;
+  for (const token of tokens) {
+    const next = `${current}${token}`;
+    if (current && (count >= maxTokens || (maxChars && [...next].length > maxChars))) {
+      chunks.push(current);
+      current = token;
+      count = 1;
+    } else {
+      current = next;
+      count += 1;
+    }
+  }
+  if (current) chunks.push(current);
+  return chunks;
+}
+
+export function splitSentenceIntoPhrases(sentence, language = "en", options = PHRASE_LENGTHS.medium) {
+  const lengthConfig = typeof options === "number"
+    ? { minTokens: 1, maxTokens: options, maxChars: 0, preferNaturalBreaks: true, mergeTooShortPhrases: true, splitLongCjkByWordOrChar: true }
+    : {
+      minTokens: 1,
+      maxTokens: PHRASE_LENGTHS.medium.maxTokens,
+      maxChars: 0,
+      preferNaturalBreaks: true,
+      mergeTooShortPhrases: true,
+      splitLongCjkByWordOrChar: true,
+      ...(options || {}),
+    };
+  const { minTokens, maxTokens, maxChars } = lengthConfig;
+  if (tokenCount(sentence, language) <= maxTokens && (!maxChars || [...sentence].length <= maxChars)) {
+    return [sentence.trim()].filter(Boolean);
+  }
   const phraseChunks = splitByCharacterSet(sentence, PHRASE_BREAKS);
   const phrases = [];
 
   for (const chunk of phraseChunks) {
-    if (tokenCount(chunk, language) <= maxTokens) {
+    if (tokenCount(chunk, language) <= maxTokens && (!maxChars || [...chunk].length <= maxChars)) {
       phrases.push(chunk);
       continue;
     }
     const tokens = tokenizePhrase(chunk, language);
     if (isCjkLanguage(language)) {
-      for (let i = 0; i < tokens.length; i += maxTokens) {
-        const text = tokens.slice(i, i + maxTokens).join("").trim();
-        if (text) phrases.push(text);
-      }
+      phrases.push(...splitLongCjkPhrase(chunk, language, maxTokens, maxChars));
     } else {
       phrases.push(...splitLongTokenRun(tokens, maxTokens));
     }
   }
 
-  return phrases.filter(Boolean);
+  const cleaned = phrases.filter(Boolean);
+  return lengthConfig.mergeTooShortPhrases
+    ? mergeTooShortPhrases(cleaned, language, minTokens, maxTokens, maxChars)
+    : cleaned;
+}
+
+function classifyPhraseDifficulty(tokens) {
+  if (tokens.length <= 4) return "easy";
+  if (tokens.length <= 9) return "medium";
+  return "hard";
+}
+
+function createSpeechFields(phrase, speech) {
+  const speechTarget = normalizeForSpeechCompare(phrase, speech.language);
+  const speechTokens = spokenTokens(speechTarget || phrase, speech.language);
+  const requiredTokens = speechTokens.filter((token) => {
+    if (speech.language === "de" && ["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"].includes(token)) {
+      return true;
+    }
+    if (isCjkLanguage(speech.language)) return token.length > 1 || speechTokens.length <= 4;
+    return token.length > 3;
+  });
+  const finalRequiredTokens = requiredTokens.length ? requiredTokens : speechTokens.slice(0, Math.min(3, speechTokens.length));
+  return {
+    speechTarget,
+    speechTokens,
+    requiredTokens: finalRequiredTokens,
+    optionalTokens: speechTokens.filter((token) => !finalRequiredTokens.includes(token)),
+    equivalentGroups: [],
+    localeHints: {
+      ttsLang: speech.ttsLang,
+      recognitionLang: speech.recognitionLang,
+      voiceLocale: speech.voiceLocale,
+    },
+    difficulty: classifyPhraseDifficulty(speechTokens),
+  };
 }
 
 export function getSpeakShadowTextLimit(text, language = "en") {
@@ -257,7 +351,14 @@ export function createSpeakShadowSession({
   const speech = resolveSpeakShadowSpeech({ language, voiceLocale });
   const lengthConfig = PHRASE_LENGTHS[phraseLength] || PHRASE_LENGTHS.medium;
   const sentences = splitIntoSentences(text);
-  const phrases = sentences.flatMap((sentence) => splitSentenceIntoPhrases(sentence, speech.language, lengthConfig.maxTokens));
+  const phrases = sentences.flatMap((sentence) => splitSentenceIntoPhrases(sentence, speech.language, {
+    minTokens: lengthConfig.minTokens,
+    maxTokens: lengthConfig.maxTokens,
+    maxChars: lengthConfig.maxChars,
+    preferNaturalBreaks: true,
+    mergeTooShortPhrases: true,
+    splitLongCjkByWordOrChar: true,
+  }));
   const now = new Date().toISOString();
   const sessionId = makeSessionId();
   const mergedSettings = {
@@ -265,6 +366,8 @@ export function createSpeakShadowSession({
     ...settings,
     phraseLength,
     maxTokensPerPhrase: lengthConfig.maxTokens,
+    minTokensPerPhrase: lengthConfig.minTokens,
+    maxCharsPerPhrase: lengthConfig.maxChars,
   };
 
   return {
@@ -288,6 +391,7 @@ export function createSpeakShadowSession({
       text: phrase,
       tokens: tokenizePhrase(phrase, speech.language),
       expectedNormalized: normalizeForSpeechCompare(phrase, speech.language),
+      ...createSpeechFields(phrase, speech),
       status: index === 0 ? PHRASE_STATUS.CURRENT : PHRASE_STATUS.NOT_STARTED,
       attempts: [],
     })),
@@ -328,14 +432,26 @@ export function ensureSpeakShadowSession(input, { savedToBrowser = true } = {}) 
       recognitionLang: speech.language === "zh" ? speech.recognitionLang : input.recognitionLang || speech.recognitionLang,
       settings: { ...DEFAULT_SPEAK_SHADOW_SETTINGS, ...(input.settings || {}) },
       lastOpenedAt: new Date().toISOString(),
-      phrases: input.phrases.map((phrase, index) => ({
-        id: phrase.id || `phrase-${String(index + 1).padStart(3, "0")}`,
-        text: phrase.text || "",
-        tokens: phrase.tokens || tokenizePhrase(phrase.text || "", speech.language),
-        expectedNormalized: phrase.expectedNormalized || normalizeForSpeechCompare(phrase.text || "", speech.language),
-        status: index === 0 ? PHRASE_STATUS.CURRENT : phrase.status || PHRASE_STATUS.NOT_STARTED,
-        attempts: Array.isArray(phrase.attempts) ? phrase.attempts : [],
-      })),
+      phrases: input.phrases.map((phrase, index) => {
+        const text = phrase.text || "";
+        const speechFields = createSpeechFields(text, speech);
+        return {
+          id: phrase.id || `phrase-${String(index + 1).padStart(3, "0")}`,
+          text,
+          tokens: phrase.tokens || tokenizePhrase(text, speech.language),
+          expectedNormalized: phrase.expectedNormalized || normalizeForSpeechCompare(text, speech.language),
+          ...speechFields,
+          speechTarget: phrase.speechTarget || speechFields.speechTarget,
+          speechTokens: phrase.speechTokens || speechFields.speechTokens,
+          requiredTokens: phrase.requiredTokens || speechFields.requiredTokens,
+          optionalTokens: phrase.optionalTokens || speechFields.optionalTokens,
+          equivalentGroups: phrase.equivalentGroups || speechFields.equivalentGroups,
+          localeHints: phrase.localeHints || speechFields.localeHints,
+          difficulty: phrase.difficulty || speechFields.difficulty,
+          status: index === 0 ? PHRASE_STATUS.CURRENT : phrase.status || PHRASE_STATUS.NOT_STARTED,
+          attempts: Array.isArray(phrase.attempts) ? phrase.attempts : [],
+        };
+      }),
     };
   }
   return createSpeakShadowSessionFromPack({ pack: input, savedToBrowser });

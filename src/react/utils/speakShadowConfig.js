@@ -47,9 +47,9 @@ export const DEFAULT_SPEAK_SHADOW_SETTINGS = {
 };
 
 export const PHRASE_LENGTHS = {
-  short: { label: "Short", maxTokens: 8 },
-  medium: { label: "Medium", maxTokens: 12 },
-  long: { label: "Long", maxTokens: 20 },
+  short: { label: "Short", minTokens: 3, maxTokens: 7, maxChars: 24 },
+  medium: { label: "Medium", minTokens: 5, maxTokens: 10, maxChars: 42 },
+  long: { label: "Long", minTokens: 8, maxTokens: 14, maxChars: 64 },
 };
 
 export const PHRASE_STATUS = {

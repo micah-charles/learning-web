@@ -4,11 +4,7 @@ import { useProgress } from "../context/ProgressContext.jsx";
 import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
 import { listPassageGroups, loadPassagePack } from "@/data.js";
 import { isSpeechSynthesisSupported, speakText, stopSpeaking } from "@/utils.js";
-import {
-  isSpeechRecognitionSupported,
-  startListening,
-  stopListening,
-} from "../services/speechRecognitionService.js";
+import { useSpeechRecognitionAttempt } from "../hooks/useSpeechRecognitionAttempt.js";
 import {
   CHINESE_VOICE_LOCALES,
   DEFAULT_CHINESE_VOICE_LOCALE,
@@ -360,8 +356,17 @@ export default function SpeakShadowPage() {
   const listenTimerRef = useRef(null);
   const speechTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
-
-  const recognitionSupported = isSpeechRecognitionSupported();
+  const activeRecognitionRef = useRef(null);
+  const {
+    supported: recognitionSupported,
+    listening: recognitionListening,
+    interimTranscript,
+    lastError: recognitionLastError,
+    microphoneBlocked,
+    startAttempt,
+    abortAttempt,
+    resetAttempt,
+  } = useSpeechRecognitionAttempt();
   const synthesisSupported = isSpeechSynthesisSupported();
 
   const savedSessions = useMemo(() => {
@@ -389,11 +394,11 @@ export default function SpeakShadowPage() {
 
   useEffect(() => () => {
     stopSpeaking();
-    stopListening();
+    abortAttempt();
     if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
     if (listenTimerRef.current) window.clearTimeout(listenTimerRef.current);
     if (speechTimerRef.current) window.clearTimeout(speechTimerRef.current);
-  }, []);
+  }, [abortAttempt]);
 
   useEffect(() => {
     if (formPrefsLoadedRef.current || !progress) return;
@@ -484,6 +489,7 @@ export default function SpeakShadowPage() {
   function handleRecognitionFailure(reason = "no-result") {
     clearListenTimer();
     clearAutoTimer();
+    if (reason === "aborted") return;
     const activeSession = sessionStateRef.current || session;
     const activePhrase = getCurrentPhrase(activeSession);
     if (!activeSession || !activePhrase) {
@@ -516,7 +522,7 @@ export default function SpeakShadowPage() {
     clearListenTimer();
     clearSpeechTimer();
     stopSpeaking();
-    stopListening();
+    abortAttempt();
     setIsSpeaking(false);
     if (
       tutorState === TUTOR_STATES.STUDENT_SPEAKING
@@ -539,19 +545,25 @@ export default function SpeakShadowPage() {
     const settings = withModeSettings(targetSession);
     clearAutoTimer();
     clearListenTimer();
+    resetAttempt();
     setTutorState(TUTOR_STATES.STUDENT_SPEAKING);
     setTutorMessage(modeMessages(targetSession).listening);
     setLastAttempt(null);
     setManualTranscript("");
-    listenTimerRef.current = window.setTimeout(() => {
-      stopListening();
-      handleRecognitionFailure("timeout");
-    }, settings.speechSilenceTimeoutMs || 7000);
-    startListening(
-      targetSession.recognitionLang || targetSession.ttsLang || "en-GB",
-      handleScoredTranscript,
-      handleRecognitionFailure,
-    );
+    const attemptId = startAttempt({
+      languageCode: targetSession.recognitionLang || targetSession.ttsLang || "en-GB",
+      interimResults: true,
+      continuous: false,
+      maxAlternatives: 5,
+      timeoutMs: settings.speechSilenceTimeoutMs || 7000,
+      onFinal: (payload) => handleScoredTranscript(payload.transcript, payload.confidence, payload.alternatives, payload),
+      onError: handleRecognitionFailure,
+    });
+    activeRecognitionRef.current = {
+      attemptId,
+      sessionId: targetSession.sessionId,
+      phraseId: phrase.id,
+    };
   }
 
   function scheduleAutoListen(targetSession = session, { message } = {}) {
@@ -592,7 +604,7 @@ export default function SpeakShadowPage() {
       return;
     }
     stopSpeaking();
-    stopListening();
+    abortAttempt();
     clearAutoTimer();
     clearListenTimer();
     clearSpeechTimer();
@@ -644,6 +656,7 @@ export default function SpeakShadowPage() {
     setError("");
     setLastAttempt(null);
     setManualTranscript("");
+    resetAttempt();
     clearAutoTimer();
     const speech = resolveSpeakShadowSpeech({ language: nextSession.language, voiceLocale: nextSession.voiceLocale });
     const mode = nextSession.settings?.mode || (nextSession.settings?.tutorMode === false ? "challenge" : "tutor");
@@ -706,15 +719,27 @@ export default function SpeakShadowPage() {
     }
   }
 
-  function handleScoredTranscript(transcript, confidence = null, alternatives = []) {
+  function handleScoredTranscript(transcript, confidence = null, alternatives = [], recognitionPayload = null) {
     const activeSession = sessionStateRef.current || session;
     const activePhrase = getCurrentPhrase(activeSession);
     if (!activeSession || !activePhrase || !String(transcript || "").trim()) return;
+    const activeRecognition = activeRecognitionRef.current;
+    if (
+      recognitionPayload?.attemptId
+      && activeRecognition
+      && (
+        recognitionPayload.attemptId !== activeRecognition.attemptId
+        || activeRecognition.sessionId !== activeSession.sessionId
+        || activeRecognition.phraseId !== activePhrase.id
+      )
+    ) {
+      return;
+    }
     clearListenTimer();
     clearAutoTimer();
     setTutorState(TUTOR_STATES.CHECKING);
     const score = scoreSpeakShadowAttempt({
-      expected: activePhrase.text,
+      expected: activePhrase,
       transcript,
       confidence,
       alternatives,
@@ -727,14 +752,21 @@ export default function SpeakShadowPage() {
       transcript: normalizeTranscriptForDisplay(score.transcript, activeSession.language),
       confidence: score.confidence,
       similarity: score.similarity,
+      overallScore: score.overallScore,
+      requiredTokenScore: score.requiredTokenScore,
+      orderScore: score.orderScore,
+      confidenceScore: score.confidenceScore,
       minSimilarity: activeSession.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity,
       minConfidence: activeSession.settings?.minConfidence ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minConfidence,
       passed: score.passed,
       mode: getSessionMode(activeSession),
       matchType: score.matchType,
       source: score.source,
+      feedbackLevel: score.feedbackLevel,
       missingTokens: score.missingTokens,
       extraTokens: score.extraTokens,
+      hint: score.hint,
+      nextAction: score.nextAction,
       createdAt: new Date().toISOString(),
     };
     setLastAttempt(attempt);
@@ -770,7 +802,7 @@ export default function SpeakShadowPage() {
     const currentWithAttempt = updated.phrases.find((phrase) => phrase.id === activePhrase.id);
     const failedAttempts = (currentWithAttempt?.attempts || []).filter((attemptItem) => !attemptItem.passed).length;
     const maxBeforeHint = updated.settings?.maxFailedAttemptsBeforeHint || updated.settings?.retryBeforeManualHelp || 2;
-    setTutorMessage(failedAttempts >= maxBeforeHint ? messages.slowDown : messages.retry);
+    setTutorMessage(score.hint || (failedAttempts >= maxBeforeHint ? messages.slowDown : messages.retry));
     if (isTutorMode(updated) && failedAttempts <= (updated.settings.retryBeforeManualHelp || 2)) {
       autoTimerRef.current = window.setTimeout(() => {
         beginTutorReading(updated, { message: failedAttempts >= maxBeforeHint ? messages.slowDown : messages.retry });
@@ -1227,9 +1259,13 @@ export default function SpeakShadowPage() {
             <span>Current sentence</span>
             <strong>{currentPhrase.text}</strong>
           </div>
+          <p className="ss-privacy-note">
+            Speech recognition is handled by your browser. In Chrome or Edge, audio may be processed by the browser provider. Learning Web stores practice attempts locally in this browser.
+          </p>
           <div className="ss-criteria-row">
             <span>Pass at {Math.round((session.settings?.minSimilarity ?? 0.85) * 100)}%</span>
             <span>Confidence {Math.round((session.settings?.minConfidence ?? 0.6) * 100)}%+</span>
+            <span>{currentPhrase.difficulty || "medium"} phrase</span>
           </div>
           <div className="ss-token-row" aria-label="Current phrase tokens">
             {currentPhrase.tokens.map((token, index) => (
@@ -1244,9 +1280,9 @@ export default function SpeakShadowPage() {
               className="lw-btn lw-btn-primary"
               type="button"
               onClick={handleSpeakNow}
-              disabled={!recognitionSupported || tutorState === TUTOR_STATES.STUDENT_SPEAKING}
+              disabled={!recognitionSupported || recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING}
             >
-              {tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
+              {recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
             </button>
             <button className="lw-btn lw-btn-ghost" type="button" onClick={stopAllAudio}>
               Stop
@@ -1254,6 +1290,18 @@ export default function SpeakShadowPage() {
           </div>
           {!recognitionSupported && (
             <p className="ss-alert">{TUTOR_MESSAGES.unsupportedRecognition} Listen-only practice is still available.</p>
+          )}
+          {microphoneBlocked && (
+            <p className="ss-alert">Microphone permission is blocked. Allow microphone access in the browser, or use manual transcript fallback.</p>
+          )}
+          {recognitionLastError && recognitionLastError !== "aborted" && !microphoneBlocked && (
+            <p className="ss-alert">Speech recognition issue: {recognitionLastError}. Chrome or Edge usually works best.</p>
+          )}
+          {interimTranscript && (
+            <div className="ss-interim" aria-live="polite">
+              <span>I heard so far</span>
+              <p>{normalizeTranscriptForDisplay(interimTranscript, session.language)}</p>
+            </div>
           )}
           <div className="ss-manual-transcript">
             <label className="ss-field">
@@ -1276,12 +1324,22 @@ export default function SpeakShadowPage() {
           </div>
           {lastAttempt && (
             <div className="ss-result">
-              <span>You said</span>
+              <span>Heard</span>
               <p>{lastAttempt.transcript}</p>
-              <strong>Score: {Math.round(lastAttempt.similarity * 100)}% / Pass: {Math.round((lastAttempt.minSimilarity || 0.85) * 100)}%</strong>
-              <small>{getAttemptMatchLabel(lastAttempt)}</small>
+              <span>Expected</span>
+              <p>{currentPhrase.text}</p>
+              <strong>Overall: {Math.round((lastAttempt.overallScore ?? lastAttempt.similarity) * 100)}% / Pass: {Math.round((lastAttempt.minSimilarity || 0.85) * 100)}%</strong>
+              <small>Similarity: {Math.round((lastAttempt.similarity || 0) * 100)}% · Required words: {Math.round((lastAttempt.requiredTokenScore ?? 0) * 100)}% · Order: {Math.round((lastAttempt.orderScore ?? 0) * 100)}%</small>
+              {lastAttempt.confidence !== null && lastAttempt.confidence !== undefined && (
+                <small>Confidence: {Math.round(lastAttempt.confidence * 100)}%</small>
+              )}
+              <small>Match type: {getAttemptMatchLabel(lastAttempt)}</small>
+              {lastAttempt.hint && <small>{lastAttempt.hint}</small>}
               {lastAttempt.missingTokens?.length > 0 && (
-                <small>Listen for: {lastAttempt.missingTokens.join(", ")}</small>
+                <small>Missing words: {lastAttempt.missingTokens.join(", ")}</small>
+              )}
+              {lastAttempt.extraTokens?.length > 0 && (
+                <small>Extra words: {lastAttempt.extraTokens.join(", ")}</small>
               )}
               {!lastAttempt.passed && (
                 <button className="lw-btn lw-btn-ghost ss-mark-ok-btn" type="button" onClick={handleMarkCurrentPhraseOk}>
@@ -1322,6 +1380,9 @@ export default function SpeakShadowPage() {
         <span className="lw-chip blue">New module</span>
         <h1>Speak & Shadow Lab</h1>
         <p className="lw-subtitle">Practise reading aloud with a guided tutor</p>
+        <p className="ss-privacy-note">
+          For best speech recognition, use Chrome or Edge. Speech recognition is handled by your browser; Learning Web keeps your practice locally unless you export or share it.
+        </p>
 
         <div className="ss-source-tabs" role="tablist" aria-label="Start from">
           {[

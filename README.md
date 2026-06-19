@@ -63,3 +63,7 @@ Open the local URL printed by Vite, usually:
 ```txt
 http://127.0.0.1:5173
 ```
+
+## Third-Party Notices
+
+Open-source dependencies and architectural references are recorded in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
