@@ -25,6 +25,12 @@ import {
   normalizeTranscriptForDisplay,
 } from "../utils/speakShadowSegmenter.js";
 import { evaluateBufferedUtterance } from "../utils/speakShadowUtteranceBuffer.js";
+import {
+  buildTutorChatMessages,
+  getFoxTutorState,
+  getNextStepLabel,
+  getTutorStatusLabel,
+} from "../utils/foxTutorEngine.js";
 
 const INITIAL_FORM = {
   title: "",
@@ -38,15 +44,6 @@ const INITIAL_FORM = {
   autoAdvanceOnPass: true,
   autoReadNextPhrase: true,
   savedToBrowser: true,
-};
-
-const FOX_TUTOR_STATE = {
-  idle: { label: "Ready", face: "🦊", className: "idle" },
-  talking: { label: "Speaking", face: "🦊", className: "talking" },
-  listening: { label: "Listening", face: "🦊", className: "listening" },
-  thinking: { label: "Checking", face: "🦊", className: "thinking" },
-  happy: { label: "Passed", face: "🦊", className: "happy" },
-  encouraging: { label: "Try again", face: "🦊", className: "encouraging" },
 };
 
 function clampPercent(value, fallback) {
@@ -84,23 +81,6 @@ function settingsFromForm(form) {
     waitForContinuationIfTooShort: true,
     minCompletionRatioBeforeFail: 0.65,
   };
-}
-
-function getFoxTutorState(tutorState) {
-  if (tutorState === TUTOR_STATES.TUTOR_READING) return FOX_TUTOR_STATE.talking;
-  if (
-    tutorState === TUTOR_STATES.WAITING_FOR_STUDENT
-    || tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING
-    || tutorState === TUTOR_STATES.STUDENT_SPEAKING
-    || tutorState === TUTOR_STATES.PENDING_CONTINUATION
-  ) return FOX_TUTOR_STATE.listening;
-  if (tutorState === TUTOR_STATES.CHECKING) return FOX_TUTOR_STATE.thinking;
-  if (tutorState === TUTOR_STATES.PASSED || tutorState === TUTOR_STATES.COMPLETED) return FOX_TUTOR_STATE.happy;
-  if (
-    tutorState === TUTOR_STATES.RETRY
-    || tutorState === TUTOR_STATES.SILENCE_TIMEOUT
-  ) return FOX_TUTOR_STATE.encouraging;
-  return FOX_TUTOR_STATE.idle;
 }
 
 function speechSynthesisFallbacksForSession(session) {
@@ -354,6 +334,7 @@ export default function SpeakShadowPage() {
   const [lastAttempt, setLastAttempt] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [manualTranscript, setManualTranscript] = useState("");
+  const [manualFallbackOpen, setManualFallbackOpen] = useState(false);
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
   const sessionStateRef = useRef(null);
@@ -391,10 +372,30 @@ export default function SpeakShadowPage() {
   const completed = session?.phrases?.length
     ? session.phrases.every((phrase) => phrase.status === PHRASE_STATUS.PASSED || phrase.status === PHRASE_STATUS.SKIPPED)
     : false;
+  const sessionMode = session ? getSessionMode(session) : (form.tutorMode ? "tutor" : "challenge");
   const progressPct = session?.phrases?.length
     ? Math.round((session.phrases.filter((phrase) => phrase.status === PHRASE_STATUS.PASSED).length / session.phrases.length) * 100)
     : 0;
-  const foxTutor = getFoxTutorState(tutorState);
+  const tutorContext = {
+    mode: sessionMode,
+    tutorState,
+    tutorMessage,
+    currentPhrase,
+    phraseIndex: session?.phrases?.findIndex((phrase) => phrase.id === session.currentPhraseId) ?? 0,
+    totalPhrases: session?.phrases?.length || 0,
+    lastAttempt,
+    isSpeaking,
+    recognitionListening,
+    interimTranscript,
+    browserSupportsRecognition: recognitionSupported,
+    microphoneBlocked,
+  };
+  const foxTutor = getFoxTutorState(tutorContext);
+  const tutorStatusLabel = getTutorStatusLabel(tutorContext);
+  const tutorChatMessages = buildTutorChatMessages(tutorContext);
+  const tutorNextStepLabel = getNextStepLabel(tutorContext);
+  const shouldAutoOpenManualFallback = !recognitionSupported || microphoneBlocked || tutorState === TUTOR_STATES.MANUAL_FALLBACK;
+  const manualFallbackPanelOpen = manualFallbackOpen || shouldAutoOpenManualFallback;
   const selectedPackage = passageGroups.find((item) => item.id === packageId);
   const selectedPackageLanguage = getSpeakShadowLanguageByLocale(
     selectedPackage?.sourceLanguageCode || selectedPackage?.speechLanguage || selectedPackage?.targetLanguageCode,
@@ -937,6 +938,7 @@ export default function SpeakShadowPage() {
     applyFinalScore({
       ...evaluation.score,
       transcript: evaluation.combinedTranscript,
+      source: isManual ? "manual_fallback" : evaluation.score.source,
     }, activeSession, activePhrase);
   }
 
@@ -1263,6 +1265,12 @@ export default function SpeakShadowPage() {
     return "Similarity score";
   }
 
+  function getChatMessageLabel(message) {
+    if (message.from === "learner") return "You";
+    if (message.from === "system") return "System";
+    return "Fox";
+  }
+
   function renderPracticeSettings(activeLanguage = form.language) {
     return (
       <div className="ss-settings-grid">
@@ -1360,17 +1368,37 @@ export default function SpeakShadowPage() {
           </div>
         </section>
 
-        <aside className="ss-tutor-panel" aria-label="Reading Tutor">
+        <aside className={`ss-tutor-panel ss-tutor-panel--${sessionMode}`} aria-label={isTutorMode(session) ? "Fox Tutor coach" : "Fox Challenge coach"}>
           <div className="ss-tutor-header">
-            <span className="lw-chip blue">Reading Tutor</span>
-            <strong>{tutorState.replace(/_/g, " ")}</strong>
+            <div>
+              <span className="lw-chip blue">{isTutorMode(session) ? "Fox Tutor" : "Fox Coach"}</span>
+              <strong>{isTutorMode(session) ? "Tutor Mode" : "Challenge Mode"}</strong>
+            </div>
+            <span className="ss-tutor-status">{tutorStatusLabel}</span>
           </div>
           <div className={`ss-fox-tutor ss-fox-${foxTutor.className}`}>
-            <div className="ss-fox-avatar" aria-hidden="true">{foxTutor.face}</div>
+            <div className="ss-fox-avatar" aria-hidden="true">
+              <img src="/images/foxchild-fox.png" alt="" />
+            </div>
             <div className="ss-fox-bubble">
               <span>{foxTutor.label}</span>
               <p>{tutorMessage}</p>
             </div>
+          </div>
+          <div className="ss-next-step-line" aria-live="polite">
+            <span>Next step</span>
+            <strong>{tutorNextStepLabel}</strong>
+          </div>
+          <div className="ss-tutor-chat" role="log" aria-live="polite" aria-label="Fox Tutor chat messages">
+            {tutorChatMessages.map((message) => (
+              <article key={message.id} className={`ss-chat-message ss-chat-message--${message.from} ss-chat-message--${message.type}`}>
+                <span>{getChatMessageLabel(message)}</span>
+                <p>{message.text}</p>
+                {message.type === "checking" && (
+                  <span className="ss-chat-dots" aria-hidden="true"><i /><i /><i /></span>
+                )}
+              </article>
+            ))}
           </div>
           {renderChineseVoiceSelector({
             activeLanguage: session.language,
@@ -1426,25 +1454,33 @@ export default function SpeakShadowPage() {
               <p>{normalizeTranscriptForDisplay(interimTranscript, session.language)}</p>
             </div>
           )}
-          <div className="ss-manual-transcript">
-            <label className="ss-field">
-              <span>Manual transcript fallback</span>
-              <textarea
-                value={manualTranscript}
-                onChange={(event) => setManualTranscript(event.target.value)}
-                placeholder="Paste or type what the browser heard..."
-                rows={3}
-              />
-            </label>
-            <button
-              className="lw-btn lw-btn-secondary"
-              type="button"
-              onClick={handleManualTranscriptSubmit}
-              disabled={!manualTranscript.trim()}
-            >
-              Check transcript
-            </button>
-          </div>
+          <details
+            className="ss-manual-transcript"
+            open={manualFallbackPanelOpen}
+            onToggle={(event) => setManualFallbackOpen(event.currentTarget.open)}
+          >
+            <summary>Voice not working?</summary>
+            <div className="ss-manual-transcript-body">
+              <p>Manual transcript fallback. Use this only if the microphone or browser speech recognition is not working.</p>
+              <label className="ss-field">
+                <span>What did the learner say?</span>
+                <textarea
+                  value={manualTranscript}
+                  onChange={(event) => setManualTranscript(event.target.value)}
+                  placeholder="Paste or type what the browser heard..."
+                  rows={3}
+                />
+              </label>
+              <button
+                className="lw-btn lw-btn-secondary"
+                type="button"
+                onClick={handleManualTranscriptSubmit}
+                disabled={!manualTranscript.trim()}
+              >
+                Check transcript
+              </button>
+            </div>
+          </details>
           {lastAttempt && (
             <div className="ss-result">
               <span>Heard</span>

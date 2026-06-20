@@ -385,6 +385,7 @@ export function createSpeakShadowSession({
     lastOpenedAt: now,
     savedToBrowser,
     currentPhraseId: "phrase-001",
+    chatMessages: [],
     settings: mergedSettings,
     phrases: phrases.map((phrase, index) => ({
       id: `phrase-${String(index + 1).padStart(3, "0")}`,
@@ -430,6 +431,7 @@ export function ensureSpeakShadowSession(input, { savedToBrowser = true } = {}) 
       voiceLocale: input.voiceLocale || speech.voiceLocale,
       ttsLang: speech.language === "zh" ? speech.ttsLang : input.ttsLang || speech.ttsLang,
       recognitionLang: speech.language === "zh" ? speech.recognitionLang : input.recognitionLang || speech.recognitionLang,
+      chatMessages: Array.isArray(input.chatMessages) ? input.chatMessages.slice(-6) : [],
       settings: { ...DEFAULT_SPEAK_SHADOW_SETTINGS, ...(input.settings || {}) },
       lastOpenedAt: new Date().toISOString(),
       phrases: input.phrases.map((phrase, index) => {
