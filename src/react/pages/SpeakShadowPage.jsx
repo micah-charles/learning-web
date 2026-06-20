@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
-import { listPassageGroups, loadPassagePack } from "@/data.js";
 import { isSpeechSynthesisSupported, speakText, stopSpeaking } from "@/utils.js";
 import { useSpeechRecognitionAttempt } from "../hooks/useSpeechRecognitionAttempt.js";
 import {
@@ -15,7 +14,6 @@ import {
   TUTOR_MESSAGES,
   TUTOR_STATES,
   getChineseVoiceLocale,
-  getSpeakShadowLanguageByLocale,
   resolveSpeakShadowSpeech,
 } from "../utils/speakShadowConfig.js";
 import {
@@ -31,6 +29,10 @@ import {
   getNextStepLabel,
   getTutorStatusLabel,
 } from "../utils/foxTutorEngine.js";
+import {
+  listSpeakLabPackageOptions,
+  loadSpeakLabPackageSelection,
+} from "../utils/speakLabPackageCatalog.js";
 
 const INITIAL_FORM = {
   title: "",
@@ -331,7 +333,11 @@ export default function SpeakShadowPage() {
   const { progress, updateProgress } = useProgress();
   const [sourceMode, setSourceMode] = useState("paste");
   const [form, setForm] = useState(INITIAL_FORM);
+  const [packageLanguage, setPackageLanguage] = useState("zh");
   const [packageId, setPackageId] = useState("");
+  const [speakLabPackages, setSpeakLabPackages] = useState([]);
+  const [packageLoading, setPackageLoading] = useState(false);
+  const [packageLoadError, setPackageLoadError] = useState("");
   const [session, setSession] = useState(null);
   const [tutorState, setTutorState] = useState(TUTOR_STATES.READY);
   const [tutorMessage, setTutorMessage] = useState(TUTOR_MESSAGES.intro);
@@ -372,7 +378,6 @@ export default function SpeakShadowPage() {
       .filter(Boolean);
   }, [progress?.speakShadow]);
 
-  const passageGroups = useMemo(() => listPassageGroups(manifest || {}), [manifest]);
   const textLimit = useMemo(() => getSpeakShadowTextLimit(form.text, form.language), [form.text, form.language]);
   const currentPhrase = getCurrentPhrase(session);
   const completed = session?.phrases?.length
@@ -401,10 +406,20 @@ export default function SpeakShadowPage() {
   const tutorChatMessages = buildTutorChatMessages(tutorContext);
   const tutorNextStepLabel = getNextStepLabel(tutorContext);
   const isEasyCurrentPhrase = currentPhrase?.difficulty === "easy";
-  const selectedPackage = passageGroups.find((item) => item.id === packageId);
-  const selectedPackageLanguage = getSpeakShadowLanguageByLocale(
-    selectedPackage?.sourceLanguageCode || selectedPackage?.speechLanguage || selectedPackage?.targetLanguageCode,
-  ).id;
+  const packageLanguageOptions = useMemo(() => {
+    const counts = new Map();
+    speakLabPackages.forEach((item) => counts.set(item.language, (counts.get(item.language) || 0) + 1));
+    return SPEAK_SHADOW_LANGUAGES
+      .filter((language) => counts.has(language.id))
+      .sort((left, right) => (left.id === "zh" ? -1 : right.id === "zh" ? 1 : left.label.localeCompare(right.label)))
+      .map((language) => ({ ...language, count: counts.get(language.id) }));
+  }, [speakLabPackages]);
+  const filteredSpeakLabPackages = useMemo(
+    () => speakLabPackages.filter((item) => item.language === packageLanguage),
+    [packageLanguage, speakLabPackages],
+  );
+  const selectedPackage = speakLabPackages.find((item) => item.id === packageId);
+  const selectedPackageLanguage = selectedPackage?.language || packageLanguage;
 
   useEffect(() => () => {
     stopSpeaking();
@@ -414,6 +429,34 @@ export default function SpeakShadowPage() {
     if (partialTimerRef.current) window.clearTimeout(partialTimerRef.current);
     if (speechTimerRef.current) window.clearTimeout(speechTimerRef.current);
   }, [abortAttempt]);
+
+  useEffect(() => {
+    if (!manifest) return;
+    let cancelled = false;
+    setPackageLoading(true);
+    setPackageLoadError("");
+    listSpeakLabPackageOptions(manifest)
+      .then((options) => {
+        if (cancelled) return;
+        setSpeakLabPackages(options);
+        const hasCurrentLanguage = options.some((item) => item.language === packageLanguage);
+        if (!hasCurrentLanguage) {
+          setPackageLanguage(options.some((item) => item.language === "zh") ? "zh" : options[0]?.language || "en");
+          setPackageId("");
+        }
+      })
+      .catch((loadError) => {
+        if (cancelled) return;
+        setSpeakLabPackages([]);
+        setPackageLoadError(loadError.message || "Could not load Speak Lab packages.");
+      })
+      .finally(() => {
+        if (!cancelled) setPackageLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [manifest]);
 
   useEffect(() => {
     if (formPrefsLoadedRef.current || !progress) return;
@@ -1018,13 +1061,11 @@ export default function SpeakShadowPage() {
       setError("Choose a reading package first.");
       return;
     }
+    const packageOption = speakLabPackages.find((item) => item.id === packageId);
     try {
-      const passages = await loadPassagePack(manifest, packageId);
-      const group = passageGroups.find((item) => item.id === packageId);
-      const text = passages.map((passage) => passage.sourceText || passage.targetText).filter(Boolean).join(" ");
-      const language = getSpeakShadowLanguageByLocale(passages[0]?.speech_language || group?.sourceLanguageCode).id;
+      const selection = await loadSpeakLabPackageSelection(manifest, packageOption);
       const settings = settingsForMode(mode);
-      const voiceLocale = language === "zh" ? form.voiceLocale : "";
+      const voiceLocale = selection.language === "zh" ? form.voiceLocale : "";
       commitPreferences({
         chineseVoiceLocale: form.voiceLocale,
         passThreshold: settings.minSimilarity,
@@ -1034,14 +1075,14 @@ export default function SpeakShadowPage() {
         autoReadNextPhrase: settings.autoReadNextPhrase,
       });
       startSession(createSpeakShadowSession({
-        title: group?.displayName || "Reading package practice",
-        text,
-        language,
+        title: selection.title,
+        text: selection.text,
+        language: selection.language,
         voiceLocale,
         phraseLength: form.phraseLength,
         savedToBrowser: form.savedToBrowser,
-        sourceType: "existing_package",
-        sourcePackageId: packageId,
+        sourceType: selection.sourceType,
+        sourcePackageId: selection.sourcePackageId,
         settings,
       }));
     } catch (loadError) {
@@ -1219,6 +1260,11 @@ export default function SpeakShadowPage() {
       language,
       voiceLocale: language === "zh" ? form.voiceLocale || DEFAULT_CHINESE_VOICE_LOCALE : form.voiceLocale,
     });
+  }
+
+  function handlePackageLanguageChange(language) {
+    setPackageLanguage(language);
+    setPackageId("");
   }
 
   function renderChineseVoiceSelector({ activeLanguage, value, onChange, compact = false }) {
@@ -1734,15 +1780,34 @@ export default function SpeakShadowPage() {
 
         {sourceMode === "package" && (
           <div className="ss-form-grid">
-            <p className="lw-subtitle">Choose a Reading pack and the lab will turn its passage text into phrase-by-phrase shadowing practice.</p>
+            <p className="lw-subtitle">Choose a Speak Lab language, then pick from Chinese readings or curated language Reading packs.</p>
+            <LabeledSelect
+              label="Language"
+              value={packageLanguage}
+              onChange={handlePackageLanguageChange}
+              selectTestId="speak-shadow-package-language-select"
+            >
+              {!packageLanguageOptions.length && (
+                <option value={packageLanguage}>{packageLoading ? "Loading languages..." : "No Speak Lab languages found"}</option>
+              )}
+              {packageLanguageOptions.map((language) => (
+                <option key={language.id} value={language.id}>{language.label} ({language.count})</option>
+              ))}
+            </LabeledSelect>
             <LabeledSelect
               label="Reading package"
               value={packageId}
               onChange={setPackageId}
               selectTestId="speak-shadow-package-select"
             >
-              <option value="">{passageGroups.length ? "Choose a package" : "No reading packages found"}</option>
-              {passageGroups.map((group) => (
+              <option value="">
+                {packageLoading
+                  ? "Loading packages..."
+                  : filteredSpeakLabPackages.length
+                    ? "Choose a package"
+                    : "No Speak Lab packages for this language"}
+              </option>
+              {filteredSpeakLabPackages.map((group) => (
                 <option key={group.id} value={group.id}>{group.displayName || group.id}</option>
               ))}
             </LabeledSelect>
@@ -1765,11 +1830,12 @@ export default function SpeakShadowPage() {
               <span>Save to browser profile</span>
             </label>
             {renderPracticeSettings(selectedPackageLanguage)}
+            {packageLoadError && <p className="ss-alert">{packageLoadError}</p>}
             {error && <p className="ss-alert">{error}</p>}
             {renderModeStartActions({
               onTutorStart: () => createFromPackage("tutor"),
               onChallengeStart: () => createFromPackage("challenge"),
-              disabled: !packageId,
+              disabled: !packageId || packageLoading,
             })}
           </div>
         )}
