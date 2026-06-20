@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
-import { listPassageGroups, loadPassagePack } from "@/data.js";
 import { isSpeechSynthesisSupported, speakText, stopSpeaking } from "@/utils.js";
 import { useSpeechRecognitionAttempt } from "../hooks/useSpeechRecognitionAttempt.js";
 import {
@@ -15,7 +14,6 @@ import {
   TUTOR_MESSAGES,
   TUTOR_STATES,
   getChineseVoiceLocale,
-  getSpeakShadowLanguageByLocale,
   resolveSpeakShadowSpeech,
 } from "../utils/speakShadowConfig.js";
 import {
@@ -25,6 +23,16 @@ import {
   normalizeTranscriptForDisplay,
 } from "../utils/speakShadowSegmenter.js";
 import { evaluateBufferedUtterance } from "../utils/speakShadowUtteranceBuffer.js";
+import {
+  buildTutorChatMessages,
+  getFoxTutorState,
+  getNextStepLabel,
+  getTutorStatusLabel,
+} from "../utils/foxTutorEngine.js";
+import {
+  listSpeakLabPackageOptions,
+  loadSpeakLabPackageSelection,
+} from "../utils/speakLabPackageCatalog.js";
 
 const INITIAL_FORM = {
   title: "",
@@ -40,14 +48,18 @@ const INITIAL_FORM = {
   savedToBrowser: true,
 };
 
-const FOX_TUTOR_STATE = {
-  idle: { label: "Ready", face: "🦊", className: "idle" },
-  talking: { label: "Speaking", face: "🦊", className: "talking" },
-  listening: { label: "Listening", face: "🦊", className: "listening" },
-  thinking: { label: "Checking", face: "🦊", className: "thinking" },
-  happy: { label: "Passed", face: "🦊", className: "happy" },
-  encouraging: { label: "Try again", face: "🦊", className: "encouraging" },
-};
+function getSpeakLabDeepLinkParams() {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+  const source = params.get("source");
+  const pack = params.get("pack");
+  return {
+    mode: mode === "tutor" || mode === "challenge" ? mode : "",
+    source: source === "existing" || source === "package" ? "package" : source === "paste" ? "paste" : "",
+    pack: pack?.trim() || "",
+  };
+}
 
 function clampPercent(value, fallback) {
   const numeric = Number(value);
@@ -59,6 +71,10 @@ function percentFromPreference(value, fallback) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) return fallback;
   return clampPercent(numeric > 1 ? numeric : numeric * 100, fallback);
+}
+
+function isSpeakablePhraseToken(token) {
+  return /[A-Za-zÀ-ž0-9\u4e00-\u9fff]/.test(String(token || ""));
 }
 
 function settingsFromForm(form) {
@@ -84,23 +100,6 @@ function settingsFromForm(form) {
     waitForContinuationIfTooShort: true,
     minCompletionRatioBeforeFail: 0.65,
   };
-}
-
-function getFoxTutorState(tutorState) {
-  if (tutorState === TUTOR_STATES.TUTOR_READING) return FOX_TUTOR_STATE.talking;
-  if (
-    tutorState === TUTOR_STATES.WAITING_FOR_STUDENT
-    || tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING
-    || tutorState === TUTOR_STATES.STUDENT_SPEAKING
-    || tutorState === TUTOR_STATES.PENDING_CONTINUATION
-  ) return FOX_TUTOR_STATE.listening;
-  if (tutorState === TUTOR_STATES.CHECKING) return FOX_TUTOR_STATE.thinking;
-  if (tutorState === TUTOR_STATES.PASSED || tutorState === TUTOR_STATES.COMPLETED) return FOX_TUTOR_STATE.happy;
-  if (
-    tutorState === TUTOR_STATES.RETRY
-    || tutorState === TUTOR_STATES.SILENCE_TIMEOUT
-  ) return FOX_TUTOR_STATE.encouraging;
-  return FOX_TUTOR_STATE.idle;
 }
 
 function speechSynthesisFallbacksForSession(session) {
@@ -345,15 +344,22 @@ function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }
 export default function SpeakShadowPage() {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
+  const deepLinkParams = useMemo(() => getSpeakLabDeepLinkParams(), []);
   const [sourceMode, setSourceMode] = useState("paste");
   const [form, setForm] = useState(INITIAL_FORM);
+  const [packageLanguage, setPackageLanguage] = useState("zh");
   const [packageId, setPackageId] = useState("");
+  const [speakLabPackages, setSpeakLabPackages] = useState([]);
+  const [packageLoading, setPackageLoading] = useState(false);
+  const [packageLoadError, setPackageLoadError] = useState("");
   const [session, setSession] = useState(null);
   const [tutorState, setTutorState] = useState(TUTOR_STATES.READY);
   const [tutorMessage, setTutorMessage] = useState(TUTOR_MESSAGES.intro);
   const [lastAttempt, setLastAttempt] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [manualTranscript, setManualTranscript] = useState("");
+  const [tutorPanelPosition, setTutorPanelPosition] = useState(null);
+  const [tutorPanelMinimized, setTutorPanelMinimized] = useState(true);
+  const [tutorChatCollapsed, setTutorChatCollapsed] = useState(true);
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
   const sessionStateRef = useRef(null);
@@ -363,8 +369,10 @@ export default function SpeakShadowPage() {
   const partialTimerRef = useRef(null);
   const speechTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
+  const packageDeepLinkHandledRef = useRef(false);
   const activeRecognitionRef = useRef(null);
   const utteranceBufferRef = useRef(null);
+  const tutorDragRef = useRef(null);
   const {
     supported: recognitionSupported,
     listening: recognitionListening,
@@ -385,20 +393,48 @@ export default function SpeakShadowPage() {
       .filter(Boolean);
   }, [progress?.speakShadow]);
 
-  const passageGroups = useMemo(() => listPassageGroups(manifest || {}), [manifest]);
   const textLimit = useMemo(() => getSpeakShadowTextLimit(form.text, form.language), [form.text, form.language]);
   const currentPhrase = getCurrentPhrase(session);
   const completed = session?.phrases?.length
     ? session.phrases.every((phrase) => phrase.status === PHRASE_STATUS.PASSED || phrase.status === PHRASE_STATUS.SKIPPED)
     : false;
+  const sessionMode = session ? getSessionMode(session) : (form.tutorMode ? "tutor" : "challenge");
   const progressPct = session?.phrases?.length
     ? Math.round((session.phrases.filter((phrase) => phrase.status === PHRASE_STATUS.PASSED).length / session.phrases.length) * 100)
     : 0;
-  const foxTutor = getFoxTutorState(tutorState);
-  const selectedPackage = passageGroups.find((item) => item.id === packageId);
-  const selectedPackageLanguage = getSpeakShadowLanguageByLocale(
-    selectedPackage?.sourceLanguageCode || selectedPackage?.speechLanguage || selectedPackage?.targetLanguageCode,
-  ).id;
+  const tutorContext = {
+    mode: sessionMode,
+    tutorState,
+    tutorMessage,
+    currentPhrase,
+    phraseIndex: session?.phrases?.findIndex((phrase) => phrase.id === session.currentPhraseId) ?? 0,
+    totalPhrases: session?.phrases?.length || 0,
+    lastAttempt,
+    isSpeaking,
+    recognitionListening,
+    interimTranscript,
+    browserSupportsRecognition: recognitionSupported,
+    microphoneBlocked,
+  };
+  const foxTutor = getFoxTutorState(tutorContext);
+  const tutorStatusLabel = getTutorStatusLabel(tutorContext);
+  const tutorChatMessages = buildTutorChatMessages(tutorContext);
+  const tutorNextStepLabel = getNextStepLabel(tutorContext);
+  const isEasyCurrentPhrase = currentPhrase?.difficulty === "easy";
+  const packageLanguageOptions = useMemo(() => {
+    const counts = new Map();
+    speakLabPackages.forEach((item) => counts.set(item.language, (counts.get(item.language) || 0) + 1));
+    return SPEAK_SHADOW_LANGUAGES
+      .filter((language) => counts.has(language.id))
+      .sort((left, right) => (left.id === "zh" ? -1 : right.id === "zh" ? 1 : left.label.localeCompare(right.label)))
+      .map((language) => ({ ...language, count: counts.get(language.id) }));
+  }, [speakLabPackages]);
+  const filteredSpeakLabPackages = useMemo(
+    () => speakLabPackages.filter((item) => item.language === packageLanguage),
+    [packageLanguage, speakLabPackages],
+  );
+  const selectedPackage = speakLabPackages.find((item) => item.id === packageId);
+  const selectedPackageLanguage = selectedPackage?.language || packageLanguage;
 
   useEffect(() => () => {
     stopSpeaking();
@@ -410,19 +446,78 @@ export default function SpeakShadowPage() {
   }, [abortAttempt]);
 
   useEffect(() => {
+    if (!manifest) return;
+    let cancelled = false;
+    setPackageLoading(true);
+    setPackageLoadError("");
+    listSpeakLabPackageOptions(manifest)
+      .then((options) => {
+        if (cancelled) return;
+        setSpeakLabPackages(options);
+        const hasCurrentLanguage = options.some((item) => item.language === packageLanguage);
+        if (!hasCurrentLanguage) {
+          setPackageLanguage(options.some((item) => item.language === "zh") ? "zh" : options[0]?.language || "en");
+          setPackageId("");
+        }
+      })
+      .catch((loadError) => {
+        if (cancelled) return;
+        setSpeakLabPackages([]);
+        setPackageLoadError(loadError.message || "Could not load Speak Lab packages.");
+      })
+      .finally(() => {
+        if (!cancelled) setPackageLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [manifest]);
+
+  useEffect(() => {
+    if (deepLinkParams.source) {
+      setSourceMode(deepLinkParams.source);
+    }
+  }, [deepLinkParams.source]);
+
+  useEffect(() => {
     if (formPrefsLoadedRef.current || !progress) return;
     const prefs = preferencesFromProgress(progress);
+    const tutorMode = deepLinkParams.mode ? deepLinkParams.mode === "tutor" : prefs.tutorMode;
     setForm((current) => ({
       ...current,
       voiceLocale: prefs.chineseVoiceLocale,
       passThreshold: prefs.passThreshold,
       minConfidence: prefs.minConfidence,
-      tutorMode: prefs.tutorMode,
+      tutorMode,
       autoAdvanceOnPass: prefs.autoAdvanceOnPass,
-      autoReadNextPhrase: prefs.autoReadNextPhrase,
+      autoReadNextPhrase: tutorMode ? prefs.autoReadNextPhrase : false,
     }));
     formPrefsLoadedRef.current = true;
-  }, [progress]);
+  }, [deepLinkParams.mode, progress]);
+
+  useEffect(() => {
+    if (!deepLinkParams.pack || packageDeepLinkHandledRef.current || packageLoading) return;
+    if (!speakLabPackages.length) return;
+    const requestedPack = deepLinkParams.pack.toLowerCase();
+    const match = speakLabPackages.find((option) => {
+      return [
+        option.id,
+        option.packId,
+        option.groupId,
+        option.itemId,
+        option.sourcePackageId,
+      ].filter(Boolean).some((value) => String(value).toLowerCase() === requestedPack);
+    });
+    setSourceMode("package");
+    packageDeepLinkHandledRef.current = true;
+    if (match) {
+      setPackageLanguage(match.language || packageLanguage);
+      setPackageId(match.id);
+      setError("");
+      return;
+    }
+    setError(`I could not find the Speak Lab package "${deepLinkParams.pack}". Choose a package from the list.`);
+  }, [deepLinkParams.pack, packageLanguage, packageLoading, speakLabPackages]);
 
   useEffect(() => {
     sessionStateRef.current = session;
@@ -519,8 +614,8 @@ export default function SpeakShadowPage() {
       return;
     }
     if (reason === "not-allowed") {
-      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-      setTutorMessage("Microphone permission was blocked. Allow microphone access or use the manual transcript fallback.");
+      setTutorState(TUTOR_STATES.RETRY);
+      setTutorMessage("Microphone permission was blocked. Allow microphone access in the browser, then press Speak Now again.");
       return;
     }
     const pendingBuffer = utteranceBufferRef.current;
@@ -541,8 +636,8 @@ export default function SpeakShadowPage() {
     const settings = withModeSettings(updated);
     commitSession(updated);
     if (count >= (settings.maxAutoListenRetries || 1)) {
-      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-      setTutorMessage(TUTOR_MESSAGES.manualFallback);
+      setTutorState(TUTOR_STATES.SILENCE_TIMEOUT);
+      setTutorMessage(TUTOR_MESSAGES.silent);
       return;
     }
     setTutorState(TUTOR_STATES.SILENCE_TIMEOUT);
@@ -587,7 +682,6 @@ export default function SpeakShadowPage() {
     setTutorMessage(message || modeMessages(targetSession).listening);
     if (!continuation) {
       setLastAttempt(null);
-      setManualTranscript("");
     }
     const attemptId = startAttempt({
       languageCode: targetSession.recognitionLang || targetSession.ttsLang || "en-GB",
@@ -655,7 +749,7 @@ export default function SpeakShadowPage() {
     speechTimerRef.current = window.setTimeout(() => {
       setIsSpeaking(false);
       setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-      setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or continue with manual practice.");
+      setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, then press Listen Again.");
     }, 20000);
     const didStart = speakText(phrase.text, targetSession.ttsLang || "en-GB", {
       rate: 0.9,
@@ -678,7 +772,7 @@ export default function SpeakShadowPage() {
         clearSpeechTimer();
         setIsSpeaking(false);
         setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-        setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or use manual practice.");
+        setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, then press Listen Again.");
       },
     });
     if (!didStart) {
@@ -696,7 +790,6 @@ export default function SpeakShadowPage() {
     }
     setError("");
     setLastAttempt(null);
-    setManualTranscript("");
     resetAttempt();
     resetUtteranceBuffer();
     clearAutoTimer();
@@ -742,7 +835,6 @@ export default function SpeakShadowPage() {
       }
       const next = markCurrentPhrase(sourceSession, nextPhrase.id);
       setLastAttempt(null);
-      setManualTranscript("");
       resetUtteranceBuffer();
       commitSession(next);
       if (isTutorMode(next) && next.settings?.autoReadNextPhrase) {
@@ -937,6 +1029,7 @@ export default function SpeakShadowPage() {
     applyFinalScore({
       ...evaluation.score,
       transcript: evaluation.combinedTranscript,
+      source: isManual ? "manual_fallback" : evaluation.score.source,
     }, activeSession, activePhrase);
   }
 
@@ -1014,13 +1107,11 @@ export default function SpeakShadowPage() {
       setError("Choose a reading package first.");
       return;
     }
+    const packageOption = speakLabPackages.find((item) => item.id === packageId);
     try {
-      const passages = await loadPassagePack(manifest, packageId);
-      const group = passageGroups.find((item) => item.id === packageId);
-      const text = passages.map((passage) => passage.sourceText || passage.targetText).filter(Boolean).join(" ");
-      const language = getSpeakShadowLanguageByLocale(passages[0]?.speech_language || group?.sourceLanguageCode).id;
+      const selection = await loadSpeakLabPackageSelection(manifest, packageOption);
       const settings = settingsForMode(mode);
-      const voiceLocale = language === "zh" ? form.voiceLocale : "";
+      const voiceLocale = selection.language === "zh" ? form.voiceLocale : "";
       commitPreferences({
         chineseVoiceLocale: form.voiceLocale,
         passThreshold: settings.minSimilarity,
@@ -1030,14 +1121,14 @@ export default function SpeakShadowPage() {
         autoReadNextPhrase: settings.autoReadNextPhrase,
       });
       startSession(createSpeakShadowSession({
-        title: group?.displayName || "Reading package practice",
-        text,
-        language,
+        title: selection.title,
+        text: selection.text,
+        language: selection.language,
         voiceLocale,
         phraseLength: form.phraseLength,
         savedToBrowser: form.savedToBrowser,
-        sourceType: "existing_package",
-        sourcePackageId: packageId,
+        sourceType: selection.sourceType,
+        sourcePackageId: selection.sourcePackageId,
         settings,
       }));
     } catch (loadError) {
@@ -1066,6 +1157,24 @@ export default function SpeakShadowPage() {
     });
   }
 
+  function handleListenToToken(token) {
+    const spokenToken = String(token || "").trim();
+    if (!session || !spokenToken || !isSpeakablePhraseToken(spokenToken) || !synthesisSupported) return;
+    clearAutoTimer();
+    clearListenTimer();
+    clearSpeechTimer();
+    abortAttempt();
+    stopSpeaking();
+    setIsSpeaking(true);
+    const didStart = speakText(spokenToken, session.ttsLang || "en-GB", {
+      rate: 0.85,
+      languageFallbacks: speechSynthesisFallbacksForSession(session),
+      onEnd: () => setIsSpeaking(false),
+      onError: () => setIsSpeaking(false),
+    });
+    if (!didStart) setIsSpeaking(false);
+  }
+
   function handleSessionVoiceLocaleChange(localeId) {
     if (!session || session.language !== "zh") return;
     const speech = resolveSpeakShadowSpeech({ language: "zh", voiceLocale: localeId });
@@ -1089,16 +1198,11 @@ export default function SpeakShadowPage() {
     startRecognitionForSession(session);
   }
 
-  function handleManualTranscriptSubmit() {
-    handleScoredTranscript(manualTranscript, null, [], { manual: true });
-  }
-
   function moveToPhrase(phraseId) {
     if (!session) return;
     clearAutoTimer();
     const next = markCurrentPhrase(session, phraseId);
     setLastAttempt(null);
-    setManualTranscript("");
     resetUtteranceBuffer();
     commitSession(next);
     if (isTutorMode(next) && next.settings?.autoReadNextPhrase) beginTutorReading(next);
@@ -1204,6 +1308,11 @@ export default function SpeakShadowPage() {
     });
   }
 
+  function handlePackageLanguageChange(language) {
+    setPackageLanguage(language);
+    setPackageId("");
+  }
+
   function renderChineseVoiceSelector({ activeLanguage, value, onChange, compact = false }) {
     if (activeLanguage !== "zh") return null;
     return (
@@ -1230,6 +1339,7 @@ export default function SpeakShadowPage() {
   }
 
   function renderModeStartActions({ onTutorStart, onChallengeStart, disabled = false }) {
+    const defaultMode = form.tutorMode ? "tutor" : "challenge";
     return (
       <div className="ss-mode-start" aria-label="Choose your practice mode">
         <h2>Choose your practice mode</h2>
@@ -1237,14 +1347,14 @@ export default function SpeakShadowPage() {
           <div className="ss-mode-card">
             <span className="lw-chip blue">Tutor Mode</span>
             <strong>Fox reads first. You listen and follow.</strong>
-            <button className="lw-btn lw-btn-primary" type="button" onClick={onTutorStart} disabled={disabled}>
+            <button className={`lw-btn ${defaultMode === "tutor" ? "lw-btn-primary" : "lw-btn-secondary"}`} type="button" onClick={onTutorStart} disabled={disabled}>
               Start with Fox Tutor
             </button>
           </div>
           <div className="ss-mode-card">
             <span className="lw-chip amber">Challenge Mode</span>
             <strong>Read by yourself and see your score.</strong>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={onChallengeStart} disabled={disabled}>
+            <button className={`lw-btn ${defaultMode === "challenge" ? "lw-btn-primary" : "lw-btn-secondary"}`} type="button" onClick={onChallengeStart} disabled={disabled}>
               Start Challenge
             </button>
           </div>
@@ -1261,6 +1371,50 @@ export default function SpeakShadowPage() {
     if (attempt.matchType === "alternative") return "Accepted from browser alternative";
     if (attempt.matchType === "equivalent") return "Accepted as near-equivalent";
     return "Similarity score";
+  }
+
+  function getChatMessageLabel(message) {
+    if (message.from === "learner") return "You";
+    if (message.from === "system") return "System";
+    return "Fox";
+  }
+
+  function clampTutorPanelPosition(left, top) {
+    if (typeof window === "undefined") return { left, top };
+    const panelWidth = tutorPanelMinimized ? 260 : 390;
+    const panelHeight = tutorPanelMinimized ? 92 : 520;
+    const margin = 12;
+    return {
+      left: Math.min(Math.max(margin, left), Math.max(margin, window.innerWidth - panelWidth - margin)),
+      top: Math.min(Math.max(margin, top), Math.max(margin, window.innerHeight - panelHeight - margin)),
+    };
+  }
+
+  function handleTutorDragStart(event) {
+    if (event.button !== 0) return;
+    const panel = event.currentTarget.closest(".ss-tutor-panel");
+    if (!panel) return;
+    const rect = panel.getBoundingClientRect();
+    tutorDragRef.current = {
+      offsetX: event.clientX - rect.left,
+      offsetY: event.clientY - rect.top,
+    };
+    setTutorPanelPosition({ left: rect.left, top: rect.top });
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  }
+
+  function handleTutorDragMove(event) {
+    if (!tutorDragRef.current) return;
+    const next = clampTutorPanelPosition(
+      event.clientX - tutorDragRef.current.offsetX,
+      event.clientY - tutorDragRef.current.offsetY,
+    );
+    setTutorPanelPosition(next);
+  }
+
+  function handleTutorDragEnd(event) {
+    tutorDragRef.current = null;
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
   }
 
   function renderPracticeSettings(activeLanguage = form.language) {
@@ -1347,6 +1501,13 @@ export default function SpeakShadowPage() {
           <div className="ss-progress" aria-label={`Speak and Shadow progress ${progressPct}%`}>
             <span style={{ width: `${progressPct}%` }} />
           </div>
+          <div className="ss-current-top" aria-live="polite">
+            <div>
+              <span>Current sentence</span>
+              <strong>{currentPhrase.text}</strong>
+            </div>
+            <small>{tutorNextStepLabel}</small>
+          </div>
           <div className="ss-article">
             {session.phrases.map((phrase) => (
               <span
@@ -1360,18 +1521,96 @@ export default function SpeakShadowPage() {
           </div>
         </section>
 
-        <aside className="ss-tutor-panel" aria-label="Reading Tutor">
+        <aside
+          className={`ss-tutor-panel ss-tutor-panel--${sessionMode}${tutorPanelMinimized ? " is-minimized" : ""}${tutorChatCollapsed ? " is-chat-collapsed" : ""}`}
+          aria-label={isTutorMode(session) ? "Fox Tutor coach" : "Fox Challenge coach"}
+          style={tutorPanelPosition ? { left: `${tutorPanelPosition.left}px`, top: `${tutorPanelPosition.top}px` } : undefined}
+        >
           <div className="ss-tutor-header">
-            <span className="lw-chip blue">Reading Tutor</span>
-            <strong>{tutorState.replace(/_/g, " ")}</strong>
+            <div
+              className="ss-tutor-drag-handle"
+              onPointerDown={handleTutorDragStart}
+              onPointerMove={handleTutorDragMove}
+              onPointerUp={handleTutorDragEnd}
+              onPointerCancel={handleTutorDragEnd}
+              title="Drag Fox Tutor"
+            >
+              <span className="lw-chip blue">{isTutorMode(session) ? "Fox Tutor" : "Fox Coach"}</span>
+              <strong>{isTutorMode(session) ? "Tutor Mode" : "Challenge Mode"}</strong>
+            </div>
+            <div className="ss-tutor-controls">
+              <span className="ss-tutor-status">{tutorStatusLabel}</span>
+              <button
+                className="ss-tutor-icon-btn"
+                type="button"
+                onClick={() => {
+                  if (tutorChatCollapsed) {
+                    setTutorPanelMinimized(false);
+                    setTutorChatCollapsed(false);
+                  } else {
+                    setTutorChatCollapsed(true);
+                  }
+                }}
+                aria-pressed={tutorChatCollapsed}
+              >
+                {tutorChatCollapsed ? "Show chat" : "Hide chat"}
+              </button>
+              <button
+                className="ss-tutor-icon-btn"
+                type="button"
+                onClick={() => setTutorPanelMinimized((value) => !value)}
+                aria-pressed={tutorPanelMinimized}
+              >
+                {tutorPanelMinimized ? "Open" : "Min"}
+              </button>
+            </div>
           </div>
           <div className={`ss-fox-tutor ss-fox-${foxTutor.className}`}>
-            <div className="ss-fox-avatar" aria-hidden="true">{foxTutor.face}</div>
+            <div className="ss-fox-avatar" aria-hidden="true">
+              <img src="/images/foxchild-fox.png" alt="" />
+            </div>
             <div className="ss-fox-bubble">
               <span>{foxTutor.label}</span>
               <p>{tutorMessage}</p>
             </div>
           </div>
+          {tutorPanelMinimized && (
+            <div className="ss-tutor-mini-actions">
+              <button className="lw-btn lw-btn-secondary" type="button" onClick={handleListenAgain} disabled={isSpeaking}>
+                {isSpeaking ? "Reading..." : (isTutorMode(session) ? "Listen Again" : "Listen")}
+              </button>
+              <button
+                className="lw-btn lw-btn-primary"
+                type="button"
+                onClick={handleSpeakNow}
+                disabled={!recognitionSupported || recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING}
+              >
+                {recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
+              </button>
+            </div>
+          )}
+          {!tutorPanelMinimized && (
+            <>
+              <div className="ss-next-step-line" aria-live="polite">
+                <span>Next step</span>
+                <strong>{tutorNextStepLabel}</strong>
+              </div>
+              {!tutorChatCollapsed && (
+                <div className="ss-tutor-chat" role="log" aria-live="polite" aria-label="Fox Tutor chat messages">
+                  {tutorChatMessages.map((message) => (
+                    <article key={message.id} className={`ss-chat-message ss-chat-message--${message.from} ss-chat-message--${message.type}`}>
+                      <span>{getChatMessageLabel(message)}</span>
+                      <p>{message.text}</p>
+                      {message.type === "checking" && (
+                        <span className="ss-chat-dots" aria-hidden="true"><i /><i /><i /></span>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          <div className="ss-tutor-detail">
           {renderChineseVoiceSelector({
             activeLanguage: session.language,
             value: session.voiceLocale || DEFAULT_CHINESE_VOICE_LOCALE,
@@ -1391,9 +1630,23 @@ export default function SpeakShadowPage() {
             <span>{currentPhrase.difficulty || "medium"} phrase</span>
           </div>
           <div className="ss-token-row" aria-label="Current phrase tokens">
-            {currentPhrase.tokens.map((token, index) => (
-              <span key={`${token}-${index}`}>{token}</span>
-            ))}
+            {currentPhrase.tokens.map((token, index) => {
+              const tokenKey = `${token}-${index}`;
+              if (isEasyCurrentPhrase && isSpeakablePhraseToken(token)) {
+                return (
+                  <button
+                    key={tokenKey}
+                    className="ss-token-btn"
+                    type="button"
+                    onClick={() => handleListenToToken(token)}
+                    aria-label={`Listen to ${token}`}
+                  >
+                    {token}
+                  </button>
+                );
+              }
+              return <span key={tokenKey}>{token}</span>;
+            })}
           </div>
           <div className="lw-btn-group ss-action-row">
             <button className="lw-btn lw-btn-secondary" type="button" onClick={handleListenAgain} disabled={isSpeaking}>
@@ -1415,7 +1668,7 @@ export default function SpeakShadowPage() {
             <p className="ss-alert">{TUTOR_MESSAGES.unsupportedRecognition} Listen-only practice is still available.</p>
           )}
           {microphoneBlocked && (
-            <p className="ss-alert">Microphone permission is blocked. Allow microphone access in the browser, or use manual transcript fallback.</p>
+            <p className="ss-alert">Microphone permission is blocked. Allow microphone access in the browser, then press Speak Now again.</p>
           )}
           {recognitionLastError && recognitionLastError !== "aborted" && !microphoneBlocked && (
             <p className="ss-alert">Speech recognition issue: {recognitionLastError}. Chrome or Edge usually works best.</p>
@@ -1426,25 +1679,6 @@ export default function SpeakShadowPage() {
               <p>{normalizeTranscriptForDisplay(interimTranscript, session.language)}</p>
             </div>
           )}
-          <div className="ss-manual-transcript">
-            <label className="ss-field">
-              <span>Manual transcript fallback</span>
-              <textarea
-                value={manualTranscript}
-                onChange={(event) => setManualTranscript(event.target.value)}
-                placeholder="Paste or type what the browser heard..."
-                rows={3}
-              />
-            </label>
-            <button
-              className="lw-btn lw-btn-secondary"
-              type="button"
-              onClick={handleManualTranscriptSubmit}
-              disabled={!manualTranscript.trim()}
-            >
-              Check transcript
-            </button>
-          </div>
           {lastAttempt && (
             <div className="ss-result">
               <span>Heard</span>
@@ -1485,6 +1719,7 @@ export default function SpeakShadowPage() {
             <button className="lw-btn lw-btn-ghost" type="button" onClick={handleSkipPhrase}>
               Skip
             </button>
+          </div>
           </div>
         </aside>
       </div>
@@ -1599,15 +1834,34 @@ export default function SpeakShadowPage() {
 
         {sourceMode === "package" && (
           <div className="ss-form-grid">
-            <p className="lw-subtitle">Choose a Reading pack and the lab will turn its passage text into phrase-by-phrase shadowing practice.</p>
+            <p className="lw-subtitle">Choose a Speak Lab language, then pick from Chinese readings or curated language Reading packs.</p>
+            <LabeledSelect
+              label="Language"
+              value={packageLanguage}
+              onChange={handlePackageLanguageChange}
+              selectTestId="speak-shadow-package-language-select"
+            >
+              {!packageLanguageOptions.length && (
+                <option value={packageLanguage}>{packageLoading ? "Loading languages..." : "No Speak Lab languages found"}</option>
+              )}
+              {packageLanguageOptions.map((language) => (
+                <option key={language.id} value={language.id}>{language.label} ({language.count})</option>
+              ))}
+            </LabeledSelect>
             <LabeledSelect
               label="Reading package"
               value={packageId}
               onChange={setPackageId}
               selectTestId="speak-shadow-package-select"
             >
-              <option value="">{passageGroups.length ? "Choose a package" : "No reading packages found"}</option>
-              {passageGroups.map((group) => (
+              <option value="">
+                {packageLoading
+                  ? "Loading packages..."
+                  : filteredSpeakLabPackages.length
+                    ? "Choose a package"
+                    : "No Speak Lab packages for this language"}
+              </option>
+              {filteredSpeakLabPackages.map((group) => (
                 <option key={group.id} value={group.id}>{group.displayName || group.id}</option>
               ))}
             </LabeledSelect>
@@ -1630,11 +1884,12 @@ export default function SpeakShadowPage() {
               <span>Save to browser profile</span>
             </label>
             {renderPracticeSettings(selectedPackageLanguage)}
+            {packageLoadError && <p className="ss-alert">{packageLoadError}</p>}
             {error && <p className="ss-alert">{error}</p>}
             {renderModeStartActions({
               onTutorStart: () => createFromPackage("tutor"),
               onChallengeStart: () => createFromPackage("challenge"),
-              disabled: !packageId,
+              disabled: !packageId || packageLoading,
             })}
           </div>
         )}

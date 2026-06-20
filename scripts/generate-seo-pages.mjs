@@ -3,6 +3,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { resolve } from "path";
 import { marked, extractTOC } from "../src/study-book-core.js";
+import { PUBLIC_SITEMAP_MODULES } from "../src/react/utils/appRoutes.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
 const MANIFEST_PATH = resolve(ROOT, "data/generated/manifest.json");
@@ -281,7 +282,11 @@ function main() {
   const sortedSubjects = [...bySubject.values()].sort((a, b) => a.label.localeCompare(b.label));
 
   // Collect all URLs for sitemap
-  const sitemapUrls = [];
+  const sitemapUrls = PUBLIC_SITEMAP_MODULES.map((module) => ({
+    loc: `${BASE_URL}${module.path}`,
+    priority: module.priority || "0.7",
+    changefreq: "weekly",
+  }));
 
   // ── Compute build-time stats for the hero banner ─────────────────────────
   const coreExists = !!manifest.core;
@@ -484,13 +489,16 @@ function main() {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     const seen = new Set();
     // Homepage (highest priority)
-    xml += `  <url><loc>${BASE_URL}/</loc><priority>1.0</priority></url>\n`;
+    xml += `  <url><loc>${BASE_URL}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n`;
     seen.add(`${BASE_URL}/`);
-    // SEO pages
-    for (const url of sitemapUrls) {
+    // SEO pages and standalone module URLs
+    for (const entry of sitemapUrls) {
+      const url = typeof entry === "string" ? entry : entry.loc;
       if (seen.has(url)) continue;
       seen.add(url);
-      xml += `  <url><loc>${url}</loc><priority>0.7</priority></url>\n`;
+      const priority = typeof entry === "string" ? "0.7" : entry.priority || "0.7";
+      const changefreq = typeof entry === "string" ? "" : entry.changefreq;
+      xml += `  <url><loc>${url}</loc>${changefreq ? `<changefreq>${changefreq}</changefreq>` : ""}<priority>${priority}</priority></url>\n`;
     }
     xml += `</urlset>`;
     writeFileSync(SITEMAP_PATH, xml);

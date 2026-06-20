@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { pathForTab } from "../../utils/appRoutes.js";
 
 export const TABS = [
   { id: "home",       label: "Home"        },
@@ -57,16 +58,19 @@ function DesktopNav({ active, onChange, allowedTabs }) {
     <div className="lw-nav-desktop">
       <div className="lw-nav-inner">
         {visibleTabs.map((tab) => (
-          <button
+          <a
             key={tab.id}
+            href={pathForTab(tab.id)}
             className={`lw-nav-pill${active === tab.id ? " active" : ""}${tab.tone ? ` tone-${tab.tone}` : ""}`}
             data-testid={`nav-${tab.id}`}
-            onClick={() => onChange(tab.id)}
-            type="button"
+            onClick={(event) => {
+              event.preventDefault();
+              onChange(tab.id);
+            }}
             aria-current={active === tab.id ? "page" : undefined}
           >
             {tab.label}
-          </button>
+          </a>
         ))}
       </div>
     </div>
@@ -75,16 +79,19 @@ function DesktopNav({ active, onChange, allowedTabs }) {
 
 function MobileTabButton({ tab, active, onClick }) {
   return (
-    <button
+    <a
+      href={pathForTab(tab.id)}
       className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test" || tab.id === "speak-shadow") ? " tone-blue" : ""}`}
       data-testid={`nav-${tab.id}`}
-      onClick={onClick}
-      type="button"
+      onClick={(event) => {
+        event.preventDefault();
+        onClick();
+      }}
       aria-current={active ? "page" : undefined}
     >
       <span aria-hidden="true">{tab.icon}</span>
       <span>{tab.label}</span>
-    </button>
+    </a>
   );
 }
 
@@ -128,17 +135,20 @@ function MobileNav({ active, onChange, allowedTabs }) {
         {moreOpen && (
           <div className="lw-mobile-more-menu" role="menu">
             {moreTabs.map((tab) => (
-              <button
+              <a
                 key={tab.id}
+                href={pathForTab(tab.id)}
                 className={`lw-mobile-more-item${active === tab.id ? " is-active" : ""}`}
                 data-testid={`nav-${tab.id}`}
-                type="button"
                 role="menuitem"
-                onClick={() => choose(tab.id)}
+                onClick={(event) => {
+                  event.preventDefault();
+                  choose(tab.id);
+                }}
               >
                 <span aria-hidden="true">{tab.icon}</span>
                 <span>{tab.label}</span>
-              </button>
+              </a>
             ))}
           </div>
         )}

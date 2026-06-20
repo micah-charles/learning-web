@@ -98,6 +98,17 @@ const alternativeMatch = scoreSpeakShadowAttempt({
 assert.equal(alternativeMatch.passed, true);
 assert.equal(alternativeMatch.source, "alternative");
 
+const lowConfidenceExactAlternative = scoreSpeakShadowAttempt({
+  expected: "跳跳舞，真高興!",
+  transcript: "跳跳舞增高興",
+  confidence: 0,
+  alternatives: [{ transcript: "跳跳舞，真高興!", confidence: 0 }],
+  language: "zh",
+  settings: { minSimilarity: 0.85, minConfidence: 0.6 },
+});
+assert.equal(lowConfidenceExactAlternative.passed, true);
+assert.equal(lowConfidenceExactAlternative.source, "alternative");
+
 const lowConfidence = scoreSpeakShadowAttempt({
   expected: "I am ready",
   transcript: "I am ready",
