@@ -344,7 +344,7 @@ export default function SpeakShadowPage() {
   const [lastAttempt, setLastAttempt] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [tutorPanelPosition, setTutorPanelPosition] = useState(null);
-  const [tutorPanelMinimized, setTutorPanelMinimized] = useState(false);
+  const [tutorPanelMinimized, setTutorPanelMinimized] = useState(true);
   const [tutorChatCollapsed, setTutorChatCollapsed] = useState(true);
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
@@ -1496,7 +1496,14 @@ export default function SpeakShadowPage() {
               <button
                 className="ss-tutor-icon-btn"
                 type="button"
-                onClick={() => setTutorChatCollapsed((value) => !value)}
+                onClick={() => {
+                  if (tutorChatCollapsed) {
+                    setTutorPanelMinimized(false);
+                    setTutorChatCollapsed(false);
+                  } else {
+                    setTutorChatCollapsed(true);
+                  }
+                }}
                 aria-pressed={tutorChatCollapsed}
               >
                 {tutorChatCollapsed ? "Show chat" : "Hide chat"}

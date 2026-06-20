@@ -201,7 +201,6 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
   const numericConfidence = Number.isFinite(confidence) ? confidence : null;
   const minSimilarity = settings.minSimilarity ?? 0.85;
   const minConfidence = settings.minConfidence ?? 0.6;
-  const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence;
   const expectedTokens = tokenizePhrase(normalizedExpected, language).filter(Boolean);
   const transcriptTokens = tokenizePhrase(normalizedTranscript, language).filter(Boolean);
   const strictTokens = language === "de" ? expectedTokens.filter((token) => GERMAN_ARTICLES.has(token)) : [];
@@ -242,6 +241,8 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
   );
   const requiredGatePasses = !requiredTokens.length || keywordScore >= 0.75;
   const strictGatePasses = strictTokenScore >= 1;
+  const strongAlternativeMatch = source === "alternative" && similarity >= 0.95 && requiredGatePasses && strictGatePasses;
+  const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence || strongAlternativeMatch;
   const passed = (
     (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses))
     && confidencePasses
