@@ -1028,6 +1028,38 @@ body {
   align-items: end;
 }
 
+.ss-mode-start {
+  display: grid;
+  gap: 12px;
+}
+
+.ss-mode-start h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--lw-ink);
+}
+
+.ss-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.ss-mode-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 14px;
+  border: 1px solid var(--lw-line);
+  border-radius: var(--lw-radius-sm);
+  background: #fff;
+}
+
+.ss-mode-card strong {
+  line-height: 1.35;
+  color: var(--lw-ink);
+}
+
 .ss-field {
   display: grid;
   gap: 6px;
@@ -1387,6 +1419,27 @@ body {
   min-height: 84px;
 }
 
+.ss-interim {
+  display: grid;
+  gap: 4px;
+  border-radius: var(--lw-radius-sm);
+  background: var(--lw-amber-soft);
+  border: 1px solid rgba(143, 81, 0, 0.22);
+  color: var(--lw-ink);
+  padding: 10px 12px;
+}
+
+.ss-interim span {
+  color: var(--lw-muted);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ss-interim p {
+  font-weight: 700;
+}
+
 .ss-result {
   display: grid;
   gap: 5px;
@@ -1402,6 +1455,11 @@ body {
 
 .ss-result small {
   color: var(--lw-muted);
+}
+
+.ss-mark-ok-btn {
+  justify-self: start;
+  min-height: 36px;
 }
 
 .ss-summary-grid {

@@ -4,7 +4,7 @@ export const SPEAK_SHADOW_LANGUAGES = [
   { id: "fr", label: "French", ttsLang: "fr-FR", recognitionLang: "fr-FR" },
   { id: "es", label: "Spanish", ttsLang: "es-ES", recognitionLang: "es-ES" },
   { id: "it", label: "Italian", ttsLang: "it-IT", recognitionLang: "it-IT" },
-  { id: "zh", label: "Chinese", ttsLang: "zh-HK", recognitionLang: "zh-HK" },
+  { id: "zh", label: "Chinese", ttsLang: "zh-HK", recognitionLang: "yue-Hant-HK" },
   { id: "ja", label: "Japanese", ttsLang: "ja-JP", recognitionLang: "ja-JP" },
 ];
 
@@ -15,13 +15,13 @@ export const CHINESE_VOICE_LOCALES = [
     nativeLabel: "粵語",
     description: "Hong Kong Cantonese speech",
     ttsLang: "zh-HK",
-    recognitionLang: "zh-HK",
+    recognitionLang: "yue-Hant-HK",
   },
   {
     id: "zh-TW",
-    label: "Mandarin",
-    nativeLabel: "國語",
-    description: "Mandarin speech with Traditional Chinese text",
+    label: "Taiwan Mandarin",
+    nativeLabel: "台灣國語",
+    description: "Taiwan Mandarin speech with Traditional Chinese output",
     ttsLang: "zh-TW",
     recognitionLang: "zh-TW",
   },
@@ -30,19 +30,31 @@ export const CHINESE_VOICE_LOCALES = [
 export const DEFAULT_CHINESE_VOICE_LOCALE = "zh-HK";
 
 export const DEFAULT_SPEAK_SHADOW_SETTINGS = {
+  mode: "tutor",
   tutorMode: true,
+  guidedAutoListen: true,
   phraseLength: "medium",
   minSimilarity: 0.85,
   minConfidence: 0.6,
+  autoListenDelayMs: 1000,
+  speechSilenceTimeoutMs: 7000,
+  maxAutoListenRetries: 2,
+  maxFailedAttemptsBeforeHint: 2,
   autoAdvanceOnPass: true,
+  autoAdvanceDelayMs: 1200,
   autoReadNextPhrase: true,
   retryBeforeManualHelp: 2,
+  partialUtteranceGraceMs: 2200,
+  maxUtteranceChunks: 3,
+  scorePartialImmediatelyIfPass: true,
+  waitForContinuationIfTooShort: true,
+  minCompletionRatioBeforeFail: 0.65,
 };
 
 export const PHRASE_LENGTHS = {
-  short: { label: "Short", maxTokens: 8 },
-  medium: { label: "Medium", maxTokens: 12 },
-  long: { label: "Long", maxTokens: 20 },
+  short: { label: "Short", minTokens: 3, maxTokens: 7, maxChars: 24 },
+  medium: { label: "Medium", minTokens: 5, maxTokens: 10, maxChars: 42 },
+  long: { label: "Long", minTokens: 8, maxTokens: 14, maxChars: 64 },
 };
 
 export const PHRASE_STATUS = {
@@ -56,23 +68,42 @@ export const PHRASE_STATUS = {
 export const TUTOR_STATES = {
   READY: "ready",
   TUTOR_READING: "tutor_reading",
+  AUTO_LISTEN_PENDING: "auto_listen_pending",
   WAITING_FOR_STUDENT: "waiting_for_student",
   STUDENT_SPEAKING: "student_speaking",
+  PENDING_CONTINUATION: "pending_continuation",
   CHECKING: "checking",
   RETRY: "retry",
+  SILENCE_TIMEOUT: "silence_timeout",
+  MANUAL_FALLBACK: "manual_fallback",
   PASSED: "passed",
   COMPLETED: "completed",
 };
 
 export const TUTOR_MESSAGES = {
   intro: "Listen carefully. I will read this sentence first.",
+  getReady: "Get ready...",
   speak: "Now you try.",
+  listening: "Listening... speak now.",
+  pendingContinuation: "Keep going...",
+  continueSentence: "I heard the first part. Continue the sentence.",
   retry: "Almost. Listen again and try once more.",
+  slowDown: "Good try. Try reading it a little more slowly.",
   passed: "Good. Let's go to the next sentence.",
+  excellent: "Excellent. That was very clear.",
+  silent: "I did not hear anything. Tap Speak Now when you are ready.",
+  manualFallback: "Take your time. Press Speak Now when ready.",
+  challengeStart: "Read this sentence aloud.",
+  challengeRetry: "Good try. Read it again slowly.",
+  challengePassed: "Good job. Keep going.",
+  challengeExcellent: "Excellent pronunciation.",
+  listenHint: "Need help? Listen once, then try again.",
+  browserNeedsManual: "Your browser needs you to press Speak Now manually.",
   completed: "Excellent. You have finished the whole passage.",
+  challengeCompleted: "Challenge completed. Well done.",
   unsupportedTts: "Text-to-speech is not supported in this browser.",
   unsupportedRecognition: "Speech recognition is not supported in this browser. Try Chrome or Edge.",
-  cantoneseSupportWarning: "Cantonese speech recognition may not be fully supported in this browser. You can still use Cantonese listening, or switch to Mandarin recognition.",
+  cantoneseSupportWarning: "Cantonese speech recognition uses the browser's Cantonese locale. If the browser still returns Mandarin text, use the manual transcript fallback or switch to Taiwan Mandarin recognition.",
 };
 
 export function getSpeakShadowLanguage(languageId) {

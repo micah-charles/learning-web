@@ -128,6 +128,8 @@ export const DEFAULT_STATE = {
       chineseVoiceLocale: "zh-HK",
       passThreshold: 0.85,
       minConfidence: 0.6,
+      defaultMode: "tutor",
+      guidedAutoListen: true,
       tutorMode: true,
       autoAdvanceOnPass: true,
       autoReadNextPhrase: true,

@@ -4,11 +4,7 @@ import { useProgress } from "../context/ProgressContext.jsx";
 import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
 import { listPassageGroups, loadPassagePack } from "@/data.js";
 import { isSpeechSynthesisSupported, speakText, stopSpeaking } from "@/utils.js";
-import {
-  isSpeechRecognitionSupported,
-  startListening,
-  stopListening,
-} from "../services/speechRecognitionService.js";
+import { useSpeechRecognitionAttempt } from "../hooks/useSpeechRecognitionAttempt.js";
 import {
   CHINESE_VOICE_LOCALES,
   DEFAULT_CHINESE_VOICE_LOCALE,
@@ -26,8 +22,9 @@ import {
   createSpeakShadowSession,
   ensureSpeakShadowSession,
   getSpeakShadowTextLimit,
+  normalizeTranscriptForDisplay,
 } from "../utils/speakShadowSegmenter.js";
-import { scoreSpeakShadowAttempt } from "../utils/speakShadowScoring.js";
+import { evaluateBufferedUtterance } from "../utils/speakShadowUtteranceBuffer.js";
 
 const INITIAL_FORM = {
   title: "",
@@ -65,24 +62,83 @@ function percentFromPreference(value, fallback) {
 }
 
 function settingsFromForm(form) {
+  const mode = form.tutorMode ? "tutor" : "challenge";
   return {
     ...DEFAULT_SPEAK_SHADOW_SETTINGS,
+    mode,
     phraseLength: form.phraseLength,
     minSimilarity: clampPercent(form.passThreshold, 85) / 100,
     minConfidence: clampPercent(form.minConfidence, 60) / 100,
     tutorMode: Boolean(form.tutorMode),
+    guidedAutoListen: true,
     autoAdvanceOnPass: Boolean(form.autoAdvanceOnPass),
-    autoReadNextPhrase: Boolean(form.autoReadNextPhrase),
+    autoReadNextPhrase: mode === "tutor" ? Boolean(form.autoReadNextPhrase) : false,
+    autoListenDelayMs: mode === "tutor" ? 1000 : 800,
+    speechSilenceTimeoutMs: 7000,
+    maxAutoListenRetries: mode === "tutor" ? 2 : 1,
+    maxFailedAttemptsBeforeHint: 2,
+    autoAdvanceDelayMs: mode === "tutor" ? 1200 : 1000,
+    partialUtteranceGraceMs: 2200,
+    maxUtteranceChunks: 3,
+    scorePartialImmediatelyIfPass: true,
+    waitForContinuationIfTooShort: true,
+    minCompletionRatioBeforeFail: 0.65,
   };
 }
 
 function getFoxTutorState(tutorState) {
   if (tutorState === TUTOR_STATES.TUTOR_READING) return FOX_TUTOR_STATE.talking;
-  if (tutorState === TUTOR_STATES.WAITING_FOR_STUDENT || tutorState === TUTOR_STATES.STUDENT_SPEAKING) return FOX_TUTOR_STATE.listening;
+  if (
+    tutorState === TUTOR_STATES.WAITING_FOR_STUDENT
+    || tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING
+    || tutorState === TUTOR_STATES.STUDENT_SPEAKING
+    || tutorState === TUTOR_STATES.PENDING_CONTINUATION
+  ) return FOX_TUTOR_STATE.listening;
   if (tutorState === TUTOR_STATES.CHECKING) return FOX_TUTOR_STATE.thinking;
   if (tutorState === TUTOR_STATES.PASSED || tutorState === TUTOR_STATES.COMPLETED) return FOX_TUTOR_STATE.happy;
-  if (tutorState === TUTOR_STATES.RETRY) return FOX_TUTOR_STATE.encouraging;
+  if (
+    tutorState === TUTOR_STATES.RETRY
+    || tutorState === TUTOR_STATES.SILENCE_TIMEOUT
+  ) return FOX_TUTOR_STATE.encouraging;
   return FOX_TUTOR_STATE.idle;
+}
+
+function speechSynthesisFallbacksForSession(session) {
+  if (session?.language !== "zh") return [];
+  if (session.voiceLocale === "zh-TW") return ["zh-TW", "zh-HK", "zh"];
+  return ["zh-HK", "zh-TW", "zh"];
+}
+
+function getSessionMode(session) {
+  return session?.settings?.mode || (session?.settings?.tutorMode ? "tutor" : "challenge");
+}
+
+function isTutorMode(session) {
+  return getSessionMode(session) === "tutor";
+}
+
+function modeMessages(session) {
+  return isTutorMode(session)
+    ? {
+      start: TUTOR_MESSAGES.intro,
+      getReady: TUTOR_MESSAGES.getReady,
+      listening: TUTOR_MESSAGES.listening,
+      passed: TUTOR_MESSAGES.passed,
+      excellent: TUTOR_MESSAGES.excellent,
+      retry: TUTOR_MESSAGES.retry,
+      slowDown: TUTOR_MESSAGES.slowDown,
+      completed: TUTOR_MESSAGES.completed,
+    }
+    : {
+      start: TUTOR_MESSAGES.challengeStart,
+      getReady: TUTOR_MESSAGES.challengeStart,
+      listening: TUTOR_MESSAGES.listening,
+      passed: TUTOR_MESSAGES.challengePassed,
+      excellent: TUTOR_MESSAGES.challengeExcellent,
+      retry: TUTOR_MESSAGES.challengeRetry,
+      slowDown: "Try once more slowly. You can use Listen Hint if you need help.",
+      completed: TUTOR_MESSAGES.challengeCompleted,
+    };
 }
 
 const AI_PACK_PROMPT = `You are generating a Read Aloud practice pack for the Learning Web platform.
@@ -247,12 +303,14 @@ function RecentSessions({ sessions, onResume, onStartNew }) {
   );
 }
 
-function CompletionScreen({ session, onRestart, onWeakOnly, onNew }) {
+function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }) {
   const summary = summarizeSession(session);
+  const mode = getSessionMode(session);
+  const isTutor = mode === "tutor";
   return (
     <section className="lw-card ss-completion" data-testid="speak-shadow-complete">
       <span className="lw-chip green">Complete</span>
-      <h2 className="lw-section-title">Excellent. You have finished the whole passage.</h2>
+      <h2 className="lw-section-title">{isTutor ? "Great work! What would you like to do next?" : "Challenge completed"}</h2>
       <div className="ss-summary-grid">
         <div><span>Phrases completed</span><strong>{summary.completed} / {session.phrases.length}</strong></div>
         <div><span>Average score</span><strong>{summary.average}%</strong></div>
@@ -265,13 +323,20 @@ function CompletionScreen({ session, onRestart, onWeakOnly, onNew }) {
         </div>
       )}
       <div className="lw-btn-group">
-        <button className="lw-btn lw-btn-primary" type="button" onClick={onRestart}>Restart</button>
-        {summary.weakPhrases.length > 0 && (
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={onWeakOnly}>
-            Practise weak phrases
+        <button className="lw-btn lw-btn-primary" type="button" onClick={onRestart}>
+          {isTutor ? "Practise with Fox again" : "Try Challenge Again"}
+        </button>
+        {isTutor && (
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={onChallenge}>
+            Try Challenge Mode
           </button>
         )}
-        <button className="lw-btn lw-btn-ghost" type="button" onClick={onNew}>Start new</button>
+        {summary.weakPhrases.length > 0 && (
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={onWeakOnly}>
+            {isTutor ? "Review weak sentences" : "Practise weak sentences with Fox"}
+          </button>
+        )}
+        <button className="lw-btn lw-btn-ghost" type="button" onClick={onNew}>Back to setup</button>
       </div>
     </section>
   );
@@ -291,11 +356,25 @@ export default function SpeakShadowPage() {
   const [manualTranscript, setManualTranscript] = useState("");
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
+  const sessionStateRef = useRef(null);
   const currentPhraseRef = useRef(null);
   const autoTimerRef = useRef(null);
+  const listenTimerRef = useRef(null);
+  const partialTimerRef = useRef(null);
+  const speechTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
-
-  const recognitionSupported = isSpeechRecognitionSupported();
+  const activeRecognitionRef = useRef(null);
+  const utteranceBufferRef = useRef(null);
+  const {
+    supported: recognitionSupported,
+    listening: recognitionListening,
+    interimTranscript,
+    lastError: recognitionLastError,
+    microphoneBlocked,
+    startAttempt,
+    abortAttempt,
+    resetAttempt,
+  } = useSpeechRecognitionAttempt();
   const synthesisSupported = isSpeechSynthesisSupported();
 
   const savedSessions = useMemo(() => {
@@ -323,9 +402,12 @@ export default function SpeakShadowPage() {
 
   useEffect(() => () => {
     stopSpeaking();
-    stopListening();
+    abortAttempt();
     if (autoTimerRef.current) window.clearTimeout(autoTimerRef.current);
-  }, []);
+    if (listenTimerRef.current) window.clearTimeout(listenTimerRef.current);
+    if (partialTimerRef.current) window.clearTimeout(partialTimerRef.current);
+    if (speechTimerRef.current) window.clearTimeout(speechTimerRef.current);
+  }, [abortAttempt]);
 
   useEffect(() => {
     if (formPrefsLoadedRef.current || !progress) return;
@@ -343,12 +425,17 @@ export default function SpeakShadowPage() {
   }, [progress]);
 
   useEffect(() => {
+    sessionStateRef.current = session;
+  }, [session]);
+
+  useEffect(() => {
     if (currentPhraseRef.current) {
       currentPhraseRef.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
   }, [session?.currentPhraseId]);
 
   function commitSession(nextSession) {
+    sessionStateRef.current = nextSession;
     setSession(nextSession);
     if (nextSession?.savedToBrowser) {
       updateProgress((state) => upsertSavedSession(state, nextSession));
@@ -366,35 +453,240 @@ export default function SpeakShadowPage() {
     }
   }
 
-  function beginTutorReading(targetSession = session, { message = TUTOR_MESSAGES.intro } = {}) {
+  function clearListenTimer() {
+    if (listenTimerRef.current) {
+      window.clearTimeout(listenTimerRef.current);
+      listenTimerRef.current = null;
+    }
+  }
+
+  function clearPartialTimer() {
+    if (partialTimerRef.current) {
+      window.clearTimeout(partialTimerRef.current);
+      partialTimerRef.current = null;
+    }
+  }
+
+  function clearSpeechTimer() {
+    if (speechTimerRef.current) {
+      window.clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+  }
+
+  function resetUtteranceBuffer() {
+    clearPartialTimer();
+    utteranceBufferRef.current = null;
+  }
+
+  function withModeSettings(targetSession) {
+    const mode = getSessionMode(targetSession);
+    return {
+      ...DEFAULT_SPEAK_SHADOW_SETTINGS,
+      mode,
+      tutorMode: mode === "tutor",
+      autoReadNextPhrase: mode === "tutor",
+      ...(targetSession?.settings || {}),
+    };
+  }
+
+  function incrementSilentCount(targetSession, phraseId) {
+    if (!targetSession || !phraseId) return targetSession;
+    const mode = getSessionMode(targetSession);
+    return {
+      ...targetSession,
+      lastOpenedAt: new Date().toISOString(),
+      phrases: targetSession.phrases.map((phrase) => {
+        if (phrase.id !== phraseId) return phrase;
+        const silentCounts = {
+          ...(phrase.silentCounts || {}),
+          [mode]: ((phrase.silentCounts || {})[mode] || 0) + 1,
+        };
+        return { ...phrase, silentCounts };
+      }),
+    };
+  }
+
+  function handleRecognitionFailure(reason = "no-result") {
+    clearListenTimer();
+    if (!utteranceBufferRef.current?.chunks?.length) clearAutoTimer();
+    if (reason === "aborted") return;
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase) {
+      setTutorState(TUTOR_STATES.RETRY);
+      setTutorMessage(TUTOR_MESSAGES.browserNeedsManual);
+      return;
+    }
+    if (reason === "not-allowed") {
+      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+      setTutorMessage("Microphone permission was blocked. Allow microphone access or use the manual transcript fallback.");
+      return;
+    }
+    const pendingBuffer = utteranceBufferRef.current;
+    if (
+      pendingBuffer?.chunks?.length
+      && pendingBuffer.sessionId === activeSession.sessionId
+      && pendingBuffer.phraseId === activePhrase.id
+      && (reason === "no-result" || reason === "timeout")
+    ) {
+      setTutorState(TUTOR_STATES.PENDING_CONTINUATION);
+      setTutorMessage(TUTOR_MESSAGES.continueSentence);
+      return;
+    }
+    const updated = incrementSilentCount(activeSession, activePhrase.id);
+    const mode = getSessionMode(updated);
+    const phrase = updated.phrases.find((item) => item.id === activePhrase.id);
+    const count = (phrase?.silentCounts || {})[mode] || 0;
+    const settings = withModeSettings(updated);
+    commitSession(updated);
+    if (count >= (settings.maxAutoListenRetries || 1)) {
+      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+      setTutorMessage(TUTOR_MESSAGES.manualFallback);
+      return;
+    }
+    setTutorState(TUTOR_STATES.SILENCE_TIMEOUT);
+    setTutorMessage(TUTOR_MESSAGES.silent);
+  }
+
+  function stopAllAudio() {
+    clearAutoTimer();
+    clearListenTimer();
+    clearSpeechTimer();
+    resetUtteranceBuffer();
+    stopSpeaking();
+    abortAttempt();
+    setIsSpeaking(false);
+    if (
+      tutorState === TUTOR_STATES.STUDENT_SPEAKING
+      || tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING
+      || tutorState === TUTOR_STATES.PENDING_CONTINUATION
+      || tutorState === TUTOR_STATES.TUTOR_READING
+    ) {
+      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+      setTutorMessage(isTutorMode(session) ? TUTOR_MESSAGES.speak : TUTOR_MESSAGES.browserNeedsManual);
+    }
+  }
+
+  function startRecognitionForSession(targetSession = session, { continuation = false, message } = {}) {
+    const phrase = getCurrentPhrase(targetSession);
+    if (!targetSession || !phrase) return;
+    if (!recognitionSupported) {
+      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+      setTutorMessage(TUTOR_MESSAGES.unsupportedRecognition);
+      return;
+    }
+    const settings = withModeSettings(targetSession);
+    clearAutoTimer();
+    clearListenTimer();
+    if (!continuation) {
+      resetUtteranceBuffer();
+      resetAttempt();
+    }
+    setTutorState(continuation ? TUTOR_STATES.PENDING_CONTINUATION : TUTOR_STATES.STUDENT_SPEAKING);
+    setTutorMessage(message || modeMessages(targetSession).listening);
+    if (!continuation) {
+      setLastAttempt(null);
+      setManualTranscript("");
+    }
+    const attemptId = startAttempt({
+      languageCode: targetSession.recognitionLang || targetSession.ttsLang || "en-GB",
+      interimResults: true,
+      continuous: false,
+      maxAlternatives: 5,
+      timeoutMs: settings.speechSilenceTimeoutMs || 7000,
+      onFinal: (payload) => handleScoredTranscript(payload.transcript, payload.confidence, payload.alternatives, payload),
+      onError: handleRecognitionFailure,
+    });
+    activeRecognitionRef.current = {
+      attemptId,
+      sessionId: targetSession.sessionId,
+      phraseId: phrase.id,
+      continuation,
+    };
+  }
+
+  function scheduleAutoListen(targetSession = session, { message } = {}) {
+    const phrase = getCurrentPhrase(targetSession);
+    if (!targetSession || !phrase) return;
+    const settings = withModeSettings(targetSession);
+    if (!settings.guidedAutoListen) {
+      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+      setTutorMessage(isTutorMode(targetSession) ? TUTOR_MESSAGES.speak : TUTOR_MESSAGES.browserNeedsManual);
+      return;
+    }
+    clearAutoTimer();
+    setTutorState(TUTOR_STATES.AUTO_LISTEN_PENDING);
+    setTutorMessage(message || modeMessages(targetSession).getReady);
+    autoTimerRef.current = window.setTimeout(() => {
+      startRecognitionForSession(targetSession);
+    }, settings.autoListenDelayMs || 1000);
+  }
+
+  function startChallengePhrase(targetSession = session, { message } = {}) {
+    const phrase = getCurrentPhrase(targetSession);
+    if (!targetSession || !phrase) return;
+    setTutorState(TUTOR_STATES.AUTO_LISTEN_PENDING);
+    setTutorMessage(message || TUTOR_MESSAGES.challengeStart);
+    scheduleAutoListen(targetSession, { message: message || TUTOR_MESSAGES.challengeStart });
+  }
+
+  function beginTutorReading(targetSession = session, { message, forceRead = false, autoListenAfter = true } = {}) {
     const phrase = getCurrentPhrase(targetSession);
     if (!phrase) return;
-    if (!targetSession.settings?.tutorMode) {
-      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
-      setTutorMessage(TUTOR_MESSAGES.speak);
+    if (!isTutorMode(targetSession) && !forceRead) {
+      startChallengePhrase(targetSession);
       return;
     }
     if (!synthesisSupported) {
-      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
       setTutorMessage(TUTOR_MESSAGES.unsupportedTts);
       return;
     }
     stopSpeaking();
+    abortAttempt();
+    clearAutoTimer();
+    clearListenTimer();
+    resetUtteranceBuffer();
+    clearSpeechTimer();
     setIsSpeaking(true);
     setTutorState(TUTOR_STATES.TUTOR_READING);
-    setTutorMessage(message);
-    speakText(phrase.text, targetSession.ttsLang || "en-GB", {
+    setTutorMessage(message || modeMessages(targetSession).start);
+    speechTimerRef.current = window.setTimeout(() => {
+      setIsSpeaking(false);
+      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+      setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or continue with manual practice.");
+    }, 20000);
+    const didStart = speakText(phrase.text, targetSession.ttsLang || "en-GB", {
       rate: 0.9,
+      languageFallbacks: speechSynthesisFallbacksForSession(targetSession),
+      onStart: () => {
+        setIsSpeaking(true);
+        setTutorState(TUTOR_STATES.TUTOR_READING);
+      },
       onEnd: () => {
+        clearSpeechTimer();
         setIsSpeaking(false);
-        setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
-        setTutorMessage(TUTOR_MESSAGES.speak);
+        if (autoListenAfter) {
+          scheduleAutoListen(targetSession, { message: TUTOR_MESSAGES.getReady });
+        } else {
+          setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+          setTutorMessage(isTutorMode(targetSession) ? TUTOR_MESSAGES.speak : TUTOR_MESSAGES.browserNeedsManual);
+        }
       },
       onError: () => {
+        clearSpeechTimer();
         setIsSpeaking(false);
-        setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
+        setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+        setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or use manual practice.");
       },
     });
+    if (!didStart) {
+      clearSpeechTimer();
+      setIsSpeaking(false);
+      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+      setTutorMessage(TUTOR_MESSAGES.unsupportedTts);
+    }
   }
 
   function startSession(nextSession) {
@@ -405,23 +697,29 @@ export default function SpeakShadowPage() {
     setError("");
     setLastAttempt(null);
     setManualTranscript("");
+    resetAttempt();
+    resetUtteranceBuffer();
     clearAutoTimer();
     const speech = resolveSpeakShadowSpeech({ language: nextSession.language, voiceLocale: nextSession.voiceLocale });
+    const mode = nextSession.settings?.mode || (nextSession.settings?.tutorMode === false ? "challenge" : "tutor");
     const withDefaults = {
       ...nextSession,
       language: speech.language,
       voiceLocale: speech.voiceLocale,
-      ttsLang: nextSession.ttsLang || speech.ttsLang,
-      recognitionLang: nextSession.recognitionLang || speech.recognitionLang,
-      settings: { ...DEFAULT_SPEAK_SHADOW_SETTINGS, ...(nextSession.settings || {}) },
+      ttsLang: speech.language === "zh" ? speech.ttsLang : nextSession.ttsLang || speech.ttsLang,
+      recognitionLang: speech.language === "zh" ? speech.recognitionLang : nextSession.recognitionLang || speech.recognitionLang,
+      settings: {
+        ...DEFAULT_SPEAK_SHADOW_SETTINGS,
+        ...(nextSession.settings || {}),
+        mode,
+        tutorMode: mode === "tutor",
+        autoReadNextPhrase: mode === "tutor" ? (nextSession.settings?.autoReadNextPhrase ?? true) : false,
+      },
     };
     const normalized = markCurrentPhrase(withDefaults, withDefaults.currentPhraseId || withDefaults.phrases[0].id);
     commitSession(normalized);
-    if (normalized.settings?.tutorMode) beginTutorReading(normalized);
-    else {
-      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
-      setTutorMessage(TUTOR_MESSAGES.speak);
-    }
+    if (isTutorMode(normalized)) beginTutorReading(normalized);
+    else startChallengePhrase(normalized);
   }
 
   function moveToNextPhraseFrom(sourceSession, phraseId, { delayMs = 0 } = {}) {
@@ -439,18 +737,21 @@ export default function SpeakShadowPage() {
         };
         commitSession(done);
         setTutorState(TUTOR_STATES.COMPLETED);
-        setTutorMessage(TUTOR_MESSAGES.completed);
+        setTutorMessage(modeMessages(done).completed);
         return;
       }
       const next = markCurrentPhrase(sourceSession, nextPhrase.id);
       setLastAttempt(null);
       setManualTranscript("");
+      resetUtteranceBuffer();
       commitSession(next);
-      if (next.settings?.tutorMode && next.settings?.autoReadNextPhrase) {
+      if (isTutorMode(next) && next.settings?.autoReadNextPhrase) {
         beginTutorReading(next);
+      } else if (!isTutorMode(next) && next.settings?.guidedAutoListen) {
+        startChallengePhrase(next);
       } else {
         setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
-        setTutorMessage(TUTOR_MESSAGES.speak);
+        setTutorMessage(isTutorMode(next) ? TUTOR_MESSAGES.speak : TUTOR_MESSAGES.browserNeedsManual);
       }
     };
 
@@ -461,35 +762,42 @@ export default function SpeakShadowPage() {
     }
   }
 
-  function handleScoredTranscript(transcript, confidence = null) {
-    if (!session || !currentPhrase || !String(transcript || "").trim()) return;
-    clearAutoTimer();
-    setTutorState(TUTOR_STATES.CHECKING);
-    const score = scoreSpeakShadowAttempt({
-      expected: currentPhrase.text,
-      transcript,
-      confidence,
-      language: session.language,
-      settings: session.settings,
-    });
+  function makeAttemptFromScore(score, activeSession) {
     const attempt = {
-      transcript,
+      transcript: normalizeTranscriptForDisplay(score.transcript, activeSession.language),
       confidence: score.confidence,
       similarity: score.similarity,
-      minSimilarity: session.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity,
-      minConfidence: session.settings?.minConfidence ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minConfidence,
+      overallScore: score.overallScore,
+      requiredTokenScore: score.requiredTokenScore,
+      orderScore: score.orderScore,
+      confidenceScore: score.confidenceScore,
+      minSimilarity: activeSession.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity,
+      minConfidence: activeSession.settings?.minConfidence ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minConfidence,
       passed: score.passed,
+      mode: getSessionMode(activeSession),
+      matchType: score.matchType,
+      source: score.source,
+      feedbackLevel: score.feedbackLevel,
       missingTokens: score.missingTokens,
       extraTokens: score.extraTokens,
+      hint: score.hint,
+      nextAction: score.nextAction,
       createdAt: new Date().toISOString(),
     };
+    return attempt;
+  }
+
+  function applyFinalScore(score, activeSession, activePhrase) {
+    if (!score?.transcript) return;
+    resetUtteranceBuffer();
+    const attempt = makeAttemptFromScore(score, activeSession);
     setLastAttempt(attempt);
 
     const updated = {
-      ...session,
+      ...activeSession,
       lastOpenedAt: new Date().toISOString(),
-      phrases: session.phrases.map((phrase) => {
-        if (phrase.id !== currentPhrase.id) return phrase;
+      phrases: activeSession.phrases.map((phrase) => {
+        if (phrase.id !== activePhrase.id) return phrase;
         return {
           ...phrase,
           status: score.passed ? PHRASE_STATUS.PASSED : PHRASE_STATUS.RETRY,
@@ -500,26 +808,184 @@ export default function SpeakShadowPage() {
     commitSession(updated);
 
     if (score.passed) {
+      const messages = modeMessages(updated);
       setTutorState(TUTOR_STATES.PASSED);
-      setTutorMessage(TUTOR_MESSAGES.passed);
+      setTutorMessage(score.similarity >= 0.95 ? messages.excellent : messages.passed);
       if (updated.settings?.autoAdvanceOnPass) {
-        moveToNextPhraseFrom(updated, currentPhrase.id, { delayMs: 950 });
+        moveToNextPhraseFrom(updated, activePhrase.id, {
+          delayMs: updated.settings?.autoAdvanceDelayMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.autoAdvanceDelayMs,
+        });
       }
       return;
     }
 
     setTutorState(TUTOR_STATES.RETRY);
-    setTutorMessage(TUTOR_MESSAGES.retry);
-    const currentWithAttempt = updated.phrases.find((phrase) => phrase.id === currentPhrase.id);
+    const messages = modeMessages(updated);
+    const currentWithAttempt = updated.phrases.find((phrase) => phrase.id === activePhrase.id);
     const failedAttempts = (currentWithAttempt?.attempts || []).filter((attemptItem) => !attemptItem.passed).length;
-    if (updated.settings?.tutorMode && failedAttempts <= (updated.settings.retryBeforeManualHelp || 2)) {
+    const maxBeforeHint = updated.settings?.maxFailedAttemptsBeforeHint || updated.settings?.retryBeforeManualHelp || 2;
+    setTutorMessage(score.hint || (failedAttempts >= maxBeforeHint ? messages.slowDown : messages.retry));
+    if (isTutorMode(updated) && failedAttempts <= (updated.settings.retryBeforeManualHelp || 2)) {
       autoTimerRef.current = window.setTimeout(() => {
-        beginTutorReading(updated, { message: TUTOR_MESSAGES.retry });
+        beginTutorReading(updated, { message: failedAttempts >= maxBeforeHint ? messages.slowDown : messages.retry });
       }, 850);
+      return;
+    }
+    if (!isTutorMode(updated)) {
+      if (failedAttempts <= (updated.settings?.maxAutoListenRetries || 1)) {
+        autoTimerRef.current = window.setTimeout(() => {
+          startChallengePhrase(updated, { message: messages.retry });
+        }, 1000);
+      } else {
+        setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
+        setTutorMessage(messages.slowDown);
+      }
     }
   }
 
-  function createFromPaste() {
+  function finalizeBufferedUtterance(reason = "grace-timeout") {
+    const buffer = utteranceBufferRef.current;
+    if (!buffer?.chunks?.length) return;
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase || buffer.sessionId !== activeSession.sessionId || buffer.phraseId !== activePhrase.id) return;
+    abortAttempt();
+    clearPartialTimer();
+    setTutorState(TUTOR_STATES.CHECKING);
+    const evaluation = evaluateBufferedUtterance({
+      expected: activePhrase,
+      chunks: buffer.chunks,
+      confidence: buffer.confidence,
+      alternatives: buffer.alternatives,
+      language: activeSession.language,
+      voiceLocale: activeSession.voiceLocale || activeSession.recognitionLang,
+      settings: activeSession.settings,
+      forceFinalize: true,
+    });
+    const finalScore = {
+      ...evaluation.score,
+      transcript: evaluation.combinedTranscript,
+      nextAction: reason === "grace-timeout" ? "retry_after_pause" : evaluation.score.nextAction,
+    };
+    applyFinalScore(finalScore, activeSession, activePhrase);
+  }
+
+  function scheduleContinuationWait(activeSession, activePhrase, evaluation) {
+    clearPartialTimer();
+    setTutorState(TUTOR_STATES.PENDING_CONTINUATION);
+    setTutorMessage(evaluation.chunkCount <= 1 ? TUTOR_MESSAGES.pendingContinuation : TUTOR_MESSAGES.continueSentence);
+    partialTimerRef.current = window.setTimeout(() => {
+      finalizeBufferedUtterance("grace-timeout");
+    }, activeSession.settings?.partialUtteranceGraceMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.partialUtteranceGraceMs);
+    startRecognitionForSession(activeSession, {
+      continuation: true,
+      message: TUTOR_MESSAGES.continueSentence,
+    });
+  }
+
+  function handleScoredTranscript(transcript, confidence = null, alternatives = [], recognitionPayload = null) {
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase || !String(transcript || "").trim()) return;
+    const activeRecognition = activeRecognitionRef.current;
+    if (
+      recognitionPayload?.attemptId
+      && activeRecognition
+      && (
+        recognitionPayload.attemptId !== activeRecognition.attemptId
+        || activeRecognition.sessionId !== activeSession.sessionId
+        || activeRecognition.phraseId !== activePhrase.id
+      )
+    ) {
+      return;
+    }
+    clearListenTimer();
+    clearPartialTimer();
+    const isManual = Boolean(recognitionPayload?.manual);
+    const existingBuffer = utteranceBufferRef.current;
+    const chunks = isManual
+      ? [transcript]
+      : [
+        ...((existingBuffer?.sessionId === activeSession.sessionId && existingBuffer?.phraseId === activePhrase.id)
+          ? existingBuffer.chunks
+          : []),
+        transcript,
+      ];
+    const evaluation = evaluateBufferedUtterance({
+      expected: activePhrase,
+      chunks,
+      confidence,
+      alternatives,
+      language: activeSession.language,
+      voiceLocale: activeSession.voiceLocale || activeSession.recognitionLang,
+      settings: activeSession.settings,
+      forceFinalize: isManual,
+    });
+    utteranceBufferRef.current = {
+      sessionId: activeSession.sessionId,
+      phraseId: activePhrase.id,
+      chunks,
+      confidence: evaluation.score.confidence,
+      alternatives,
+    };
+    if (evaluation.status === "pendingContinuation") {
+      scheduleContinuationWait(activeSession, activePhrase, evaluation);
+      return;
+    }
+    clearAutoTimer();
+    setTutorState(TUTOR_STATES.CHECKING);
+    applyFinalScore({
+      ...evaluation.score,
+      transcript: evaluation.combinedTranscript,
+    }, activeSession, activePhrase);
+  }
+
+  function handleMarkCurrentPhraseOk() {
+    const activeSession = sessionStateRef.current || session;
+    const activePhrase = getCurrentPhrase(activeSession);
+    if (!activeSession || !activePhrase || !lastAttempt) return;
+    clearAutoTimer();
+    const acceptedAttempt = {
+      ...lastAttempt,
+      passed: true,
+      acceptedManually: true,
+      matchType: "manual",
+      similarity: Math.max(lastAttempt.similarity || 0, activeSession.settings?.minSimilarity ?? DEFAULT_SPEAK_SHADOW_SETTINGS.minSimilarity),
+      acceptedAt: new Date().toISOString(),
+    };
+    const updated = {
+      ...activeSession,
+      lastOpenedAt: new Date().toISOString(),
+      phrases: activeSession.phrases.map((phrase) => {
+        if (phrase.id !== activePhrase.id) return phrase;
+        const attempts = [...(phrase.attempts || [])];
+        const lastIndex = attempts.length - 1;
+        if (lastIndex >= 0) attempts[lastIndex] = acceptedAttempt;
+        else attempts.push(acceptedAttempt);
+        return { ...phrase, status: PHRASE_STATUS.PASSED, attempts };
+      }),
+    };
+    setLastAttempt(acceptedAttempt);
+    commitSession(updated);
+    setTutorState(TUTOR_STATES.PASSED);
+    setTutorMessage("Marked OK. Let's go to the next sentence.");
+    if (updated.settings?.autoAdvanceOnPass) {
+      moveToNextPhraseFrom(updated, activePhrase.id, {
+        delayMs: updated.settings?.autoAdvanceDelayMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.autoAdvanceDelayMs,
+      });
+    }
+  }
+
+  function settingsForMode(mode) {
+    const tutorMode = mode === "tutor";
+    return settingsFromForm({
+      ...form,
+      tutorMode,
+      autoReadNextPhrase: tutorMode ? form.autoReadNextPhrase : false,
+    });
+  }
+
+  function createFromPaste(mode = "tutor") {
     if (!form.text.trim()) {
       setError("Paste a short passage first.");
       return;
@@ -528,7 +994,7 @@ export default function SpeakShadowPage() {
       setError(`This text is ${textLimit.count} ${textLimit.unit}. Keep it within ${textLimit.limit} ${textLimit.unit} for the MVP.`);
       return;
     }
-    const settings = settingsFromForm(form);
+    const settings = settingsForMode(mode);
     commitPreferences({
       chineseVoiceLocale: form.voiceLocale,
       passThreshold: settings.minSimilarity,
@@ -543,7 +1009,7 @@ export default function SpeakShadowPage() {
     }));
   }
 
-  async function createFromPackage() {
+  async function createFromPackage(mode = "tutor") {
     if (!packageId) {
       setError("Choose a reading package first.");
       return;
@@ -553,7 +1019,7 @@ export default function SpeakShadowPage() {
       const group = passageGroups.find((item) => item.id === packageId);
       const text = passages.map((passage) => passage.sourceText || passage.targetText).filter(Boolean).join(" ");
       const language = getSpeakShadowLanguageByLocale(passages[0]?.speech_language || group?.sourceLanguageCode).id;
-      const settings = settingsFromForm(form);
+      const settings = settingsForMode(mode);
       const voiceLocale = language === "zh" ? form.voiceLocale : "";
       commitPreferences({
         chineseVoiceLocale: form.voiceLocale,
@@ -593,7 +1059,11 @@ export default function SpeakShadowPage() {
   }
 
   function handleListenAgain() {
-    beginTutorReading();
+    beginTutorReading(session, {
+      message: isTutorMode(session) ? TUTOR_MESSAGES.retry : TUTOR_MESSAGES.listenHint,
+      forceRead: !isTutorMode(session),
+      autoListenAfter: true,
+    });
   }
 
   function handleSessionVoiceLocaleChange(localeId) {
@@ -607,37 +1077,20 @@ export default function SpeakShadowPage() {
       lastOpenedAt: new Date().toISOString(),
     };
     stopSpeaking();
-    stopListening();
-    setIsSpeaking(false);
+    stopAllAudio();
     commitPreferences({ chineseVoiceLocale: speech.voiceLocale });
     commitSession(updated);
     setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
-    setTutorMessage(`${getChineseVoiceLocale(speech.voiceLocale).label} voice selected. ${TUTOR_MESSAGES.speak}`);
+    setTutorMessage(`${getChineseVoiceLocale(speech.voiceLocale).label} voice selected. ${isTutorMode(updated) ? TUTOR_MESSAGES.speak : TUTOR_MESSAGES.challengeStart}`);
   }
 
   function handleSpeakNow() {
     if (!session || !currentPhrase) return;
-    if (!recognitionSupported) {
-      setTutorState(TUTOR_STATES.WAITING_FOR_STUDENT);
-      setTutorMessage(TUTOR_MESSAGES.unsupportedRecognition);
-      return;
-    }
-    setTutorState(TUTOR_STATES.STUDENT_SPEAKING);
-    setTutorMessage("Listening...");
-    setLastAttempt(null);
-    setManualTranscript("");
-    startListening(
-      session.recognitionLang || session.ttsLang || "en-GB",
-      handleScoredTranscript,
-      () => {
-        setTutorState(TUTOR_STATES.RETRY);
-        setTutorMessage("I could not hear that clearly. Try once more.");
-      },
-    );
+    startRecognitionForSession(session);
   }
 
   function handleManualTranscriptSubmit() {
-    handleScoredTranscript(manualTranscript, null);
+    handleScoredTranscript(manualTranscript, null, [], { manual: true });
   }
 
   function moveToPhrase(phraseId) {
@@ -646,8 +1099,10 @@ export default function SpeakShadowPage() {
     const next = markCurrentPhrase(session, phraseId);
     setLastAttempt(null);
     setManualTranscript("");
+    resetUtteranceBuffer();
     commitSession(next);
-    if (next.settings?.tutorMode && next.settings?.autoReadNextPhrase) beginTutorReading(next);
+    if (isTutorMode(next) && next.settings?.autoReadNextPhrase) beginTutorReading(next);
+    else if (!isTutorMode(next) && next.settings?.guidedAutoListen) startChallengePhrase(next);
   }
 
   function handleNextPhrase() {
@@ -657,6 +1112,7 @@ export default function SpeakShadowPage() {
 
   function handleSkipPhrase() {
     if (!session || !currentPhrase) return;
+    resetUtteranceBuffer();
     const updated = {
       ...session,
       phrases: session.phrases.map((phrase) => (
@@ -669,25 +1125,39 @@ export default function SpeakShadowPage() {
     if (nextPhrase) moveToNextPhraseFrom(updated, currentPhrase.id);
   }
 
-  function restartSession(targetSession = session) {
+  function restartSession(targetSession = session, mode = getSessionMode(targetSession)) {
     if (!targetSession) return;
+    resetUtteranceBuffer();
+    const tutorMode = mode === "tutor";
     const restarted = {
       ...targetSession,
       currentPhraseId: targetSession.phrases[0]?.id || "",
+      settings: {
+        ...withModeSettings(targetSession),
+        mode,
+        tutorMode,
+        autoReadNextPhrase: tutorMode ? targetSession.settings?.autoReadNextPhrase ?? true : false,
+        maxAutoListenRetries: tutorMode ? 2 : 1,
+        autoListenDelayMs: tutorMode ? 1000 : 800,
+        autoAdvanceDelayMs: tutorMode ? 1200 : 1000,
+      },
       phrases: targetSession.phrases.map((phrase, index) => ({
         ...phrase,
         status: index === 0 ? PHRASE_STATUS.CURRENT : PHRASE_STATUS.NOT_STARTED,
         attempts: [],
+        silentCounts: {},
       })),
     };
     startSession(restarted);
   }
 
-  function practiseWeakPhrases() {
+  function practiseWeakPhrases(mode = "tutor") {
     if (!session) return;
+    resetUtteranceBuffer();
     const weak = session.phrases.filter((phrase) => (phrase.attempts || []).some((attempt) => !attempt.passed));
     if (!weak.length) return;
     const now = new Date().toISOString();
+    const tutorMode = mode === "tutor";
     startSession({
       ...session,
       sessionId: `${session.sessionId}-weak-${Date.now()}`,
@@ -695,10 +1165,20 @@ export default function SpeakShadowPage() {
       createdAt: now,
       lastOpenedAt: now,
       currentPhraseId: weak[0].id,
+      settings: {
+        ...withModeSettings(session),
+        mode,
+        tutorMode,
+        autoReadNextPhrase: tutorMode ? session.settings?.autoReadNextPhrase ?? true : false,
+        maxAutoListenRetries: tutorMode ? 2 : 1,
+        autoListenDelayMs: tutorMode ? 1000 : 800,
+        autoAdvanceDelayMs: tutorMode ? 1200 : 1000,
+      },
       phrases: weak.map((phrase, index) => ({
         ...phrase,
         status: index === 0 ? PHRASE_STATUS.CURRENT : PHRASE_STATUS.NOT_STARTED,
         attempts: [],
+        silentCounts: {},
       })),
     });
   }
@@ -749,6 +1229,40 @@ export default function SpeakShadowPage() {
     );
   }
 
+  function renderModeStartActions({ onTutorStart, onChallengeStart, disabled = false }) {
+    return (
+      <div className="ss-mode-start" aria-label="Choose your practice mode">
+        <h2>Choose your practice mode</h2>
+        <div className="ss-mode-grid">
+          <div className="ss-mode-card">
+            <span className="lw-chip blue">Tutor Mode</span>
+            <strong>Fox reads first. You listen and follow.</strong>
+            <button className="lw-btn lw-btn-primary" type="button" onClick={onTutorStart} disabled={disabled}>
+              Start with Fox Tutor
+            </button>
+          </div>
+          <div className="ss-mode-card">
+            <span className="lw-chip amber">Challenge Mode</span>
+            <strong>Read by yourself and see your score.</strong>
+            <button className="lw-btn lw-btn-secondary" type="button" onClick={onChallengeStart} disabled={disabled}>
+              Start Challenge
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function getAttemptMatchLabel(attempt) {
+    if (!attempt) return "";
+    if (attempt.acceptedManually || attempt.matchType === "manual") return "Marked OK manually";
+    if (attempt.matchType === "exact") return "Exact match";
+    if (attempt.matchType === "normalized") return "Accepted after language normalisation";
+    if (attempt.matchType === "alternative") return "Accepted from browser alternative";
+    if (attempt.matchType === "equivalent") return "Accepted as near-equivalent";
+    return "Similarity score";
+  }
+
   function renderPracticeSettings(activeLanguage = form.language) {
     return (
       <div className="ss-settings-grid">
@@ -783,14 +1297,6 @@ export default function SpeakShadowPage() {
         <label className="ss-checkbox">
           <input
             type="checkbox"
-            checked={form.tutorMode}
-            onChange={(event) => updateForm({ tutorMode: event.target.checked })}
-          />
-          <span>Tutor mode</span>
-        </label>
-        <label className="ss-checkbox">
-          <input
-            type="checkbox"
             checked={form.autoAdvanceOnPass}
             onChange={(event) => updateForm({ autoAdvanceOnPass: event.target.checked })}
           />
@@ -802,7 +1308,7 @@ export default function SpeakShadowPage() {
             checked={form.autoReadNextPhrase}
             onChange={(event) => updateForm({ autoReadNextPhrase: event.target.checked })}
           />
-          <span>Auto-read next phrase</span>
+          <span>Auto-read next phrase in Tutor Mode</span>
         </label>
       </div>
     );
@@ -816,7 +1322,8 @@ export default function SpeakShadowPage() {
         <CompletionScreen
           session={session}
           onRestart={() => restartSession(session)}
-          onWeakOnly={practiseWeakPhrases}
+          onChallenge={() => restartSession(session, "challenge")}
+          onWeakOnly={() => practiseWeakPhrases("tutor")}
           onNew={() => setSession(null)}
         />
       </div>
@@ -830,6 +1337,7 @@ export default function SpeakShadowPage() {
           <div className="ss-session-top">
             <div>
               <span className="lw-chip amber">Speak & Shadow Lab</span>
+              <span className="lw-chip blue">{isTutorMode(session) ? "Tutor Mode" : "Challenge Mode"}</span>
               <h1>{session.title}</h1>
             </div>
             <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setSession(null)}>
@@ -874,9 +1382,13 @@ export default function SpeakShadowPage() {
             <span>Current sentence</span>
             <strong>{currentPhrase.text}</strong>
           </div>
+          <p className="ss-privacy-note">
+            Speech recognition is handled by your browser. In Chrome or Edge, audio may be processed by the browser provider. Learning Web stores practice attempts locally in this browser.
+          </p>
           <div className="ss-criteria-row">
             <span>Pass at {Math.round((session.settings?.minSimilarity ?? 0.85) * 100)}%</span>
             <span>Confidence {Math.round((session.settings?.minConfidence ?? 0.6) * 100)}%+</span>
+            <span>{currentPhrase.difficulty || "medium"} phrase</span>
           </div>
           <div className="ss-token-row" aria-label="Current phrase tokens">
             {currentPhrase.tokens.map((token, index) => (
@@ -885,22 +1397,34 @@ export default function SpeakShadowPage() {
           </div>
           <div className="lw-btn-group ss-action-row">
             <button className="lw-btn lw-btn-secondary" type="button" onClick={handleListenAgain} disabled={isSpeaking}>
-              {isSpeaking ? "Reading..." : "Listen Again"}
+              {isSpeaking ? "Reading..." : (isTutorMode(session) ? "Listen Again" : "Listen Hint")}
             </button>
             <button
               className="lw-btn lw-btn-primary"
               type="button"
               onClick={handleSpeakNow}
-              disabled={!recognitionSupported || tutorState === TUTOR_STATES.STUDENT_SPEAKING}
+              disabled={!recognitionSupported || recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING}
             >
-              {tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
+              {recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
             </button>
-            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => { stopSpeaking(); stopListening(); setIsSpeaking(false); }}>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={stopAllAudio}>
               Stop
             </button>
           </div>
           {!recognitionSupported && (
             <p className="ss-alert">{TUTOR_MESSAGES.unsupportedRecognition} Listen-only practice is still available.</p>
+          )}
+          {microphoneBlocked && (
+            <p className="ss-alert">Microphone permission is blocked. Allow microphone access in the browser, or use manual transcript fallback.</p>
+          )}
+          {recognitionLastError && recognitionLastError !== "aborted" && !microphoneBlocked && (
+            <p className="ss-alert">Speech recognition issue: {recognitionLastError}. Chrome or Edge usually works best.</p>
+          )}
+          {interimTranscript && (
+            <div className="ss-interim" aria-live="polite">
+              <span>I heard so far</span>
+              <p>{normalizeTranscriptForDisplay(interimTranscript, session.language)}</p>
+            </div>
           )}
           <div className="ss-manual-transcript">
             <label className="ss-field">
@@ -923,11 +1447,27 @@ export default function SpeakShadowPage() {
           </div>
           {lastAttempt && (
             <div className="ss-result">
-              <span>You said</span>
+              <span>Heard</span>
               <p>{lastAttempt.transcript}</p>
-              <strong>Score: {Math.round(lastAttempt.similarity * 100)}% / Pass: {Math.round((lastAttempt.minSimilarity || 0.85) * 100)}%</strong>
+              <span>Expected</span>
+              <p>{currentPhrase.text}</p>
+              <strong>Overall: {Math.round((lastAttempt.overallScore ?? lastAttempt.similarity) * 100)}% / Pass: {Math.round((lastAttempt.minSimilarity || 0.85) * 100)}%</strong>
+              <small>Similarity: {Math.round((lastAttempt.similarity || 0) * 100)}% · Required words: {Math.round((lastAttempt.requiredTokenScore ?? 0) * 100)}% · Order: {Math.round((lastAttempt.orderScore ?? 0) * 100)}%</small>
+              {lastAttempt.confidence !== null && lastAttempt.confidence !== undefined && (
+                <small>Confidence: {Math.round(lastAttempt.confidence * 100)}%</small>
+              )}
+              <small>Match type: {getAttemptMatchLabel(lastAttempt)}</small>
+              {lastAttempt.hint && <small>{lastAttempt.hint}</small>}
               {lastAttempt.missingTokens?.length > 0 && (
-                <small>Listen for: {lastAttempt.missingTokens.join(", ")}</small>
+                <small>Missing words: {lastAttempt.missingTokens.join(", ")}</small>
+              )}
+              {lastAttempt.extraTokens?.length > 0 && (
+                <small>Extra words: {lastAttempt.extraTokens.join(", ")}</small>
+              )}
+              {!lastAttempt.passed && (
+                <button className="lw-btn lw-btn-ghost ss-mark-ok-btn" type="button" onClick={handleMarkCurrentPhraseOk}>
+                  Mark as OK
+                </button>
               )}
             </div>
           )}
@@ -939,7 +1479,7 @@ export default function SpeakShadowPage() {
             )}
             {tutorState === TUTOR_STATES.RETRY && (
               <button className="lw-btn lw-btn-secondary" type="button" onClick={handleListenAgain}>
-                Retry phrase
+                {isTutorMode(session) ? "Retry phrase" : "Listen Hint"}
               </button>
             )}
             <button className="lw-btn lw-btn-ghost" type="button" onClick={handleSkipPhrase}>
@@ -963,6 +1503,9 @@ export default function SpeakShadowPage() {
         <span className="lw-chip blue">New module</span>
         <h1>Speak & Shadow Lab</h1>
         <p className="lw-subtitle">Practise reading aloud with a guided tutor</p>
+        <p className="ss-privacy-note">
+          For best speech recognition, use Chrome or Edge. Speech recognition is handled by your browser; Learning Web keeps your practice locally unless you export or share it.
+        </p>
 
         <div className="ss-source-tabs" role="tablist" aria-label="Start from">
           {[
@@ -1038,10 +1581,12 @@ export default function SpeakShadowPage() {
               <p className="ss-alert">This text is {textLimit.count} {textLimit.unit}. Keep it within {textLimit.limit} {textLimit.unit}.</p>
             )}
             {error && <p className="ss-alert">{error}</p>}
+            {renderModeStartActions({
+              onTutorStart: () => createFromPaste("tutor"),
+              onChallengeStart: () => createFromPaste("challenge"),
+              disabled: !form.text.trim() || !textLimit.ok,
+            })}
             <div className="lw-btn-group">
-              <button className="lw-btn lw-btn-primary" type="button" onClick={createFromPaste}>
-                Create Practice
-              </button>
               <button className="lw-btn lw-btn-secondary" type="button" onClick={copyAiPackPrompt}>
                 {promptCopied ? "Prompt copied" : "Generate AI Pack Prompt"}
               </button>
@@ -1086,9 +1631,11 @@ export default function SpeakShadowPage() {
             </label>
             {renderPracticeSettings(selectedPackageLanguage)}
             {error && <p className="ss-alert">{error}</p>}
-            <button className="lw-btn lw-btn-primary" type="button" onClick={createFromPackage} disabled={!packageId}>
-              Create from package
-            </button>
+            {renderModeStartActions({
+              onTutorStart: () => createFromPackage("tutor"),
+              onChallengeStart: () => createFromPackage("challenge"),
+              disabled: !packageId,
+            })}
           </div>
         )}
 
