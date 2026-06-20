@@ -65,7 +65,7 @@ pipeline {
                 lock("learning-web-deploy") {
                     sh """
                         echo "=== Deploying learning-web to ${DEPLOY_URL} ==="
-                        bash scripts/deploy-local.sh
+                        JENKINS_NODE_COOKIE=dontKillMe bash scripts/deploy-local.sh
                     """
 
                     sh """
