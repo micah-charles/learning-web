@@ -30,5 +30,10 @@ qa/reports/
 # Audit pipeline outputs (separate repo: micah-charles/learning-web-audit)
 audit/
 
+# Jenkins runtime files (PID, log, temp)
+.jenkins/*.pid
+.jenkins/*.log
+.jenkins/*.tmp
+
 # Temp files
 PR_DESCRIPTION.md
