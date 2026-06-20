@@ -48,6 +48,19 @@ const INITIAL_FORM = {
   savedToBrowser: true,
 };
 
+function getSpeakLabDeepLinkParams() {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+  const source = params.get("source");
+  const pack = params.get("pack");
+  return {
+    mode: mode === "tutor" || mode === "challenge" ? mode : "",
+    source: source === "existing" || source === "package" ? "package" : source === "paste" ? "paste" : "",
+    pack: pack?.trim() || "",
+  };
+}
+
 function clampPercent(value, fallback) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) return fallback;
@@ -331,6 +344,7 @@ function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }
 export default function SpeakShadowPage() {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
+  const deepLinkParams = useMemo(() => getSpeakLabDeepLinkParams(), []);
   const [sourceMode, setSourceMode] = useState("paste");
   const [form, setForm] = useState(INITIAL_FORM);
   const [packageLanguage, setPackageLanguage] = useState("zh");
@@ -355,6 +369,7 @@ export default function SpeakShadowPage() {
   const partialTimerRef = useRef(null);
   const speechTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
+  const packageDeepLinkHandledRef = useRef(false);
   const activeRecognitionRef = useRef(null);
   const utteranceBufferRef = useRef(null);
   const tutorDragRef = useRef(null);
@@ -459,19 +474,50 @@ export default function SpeakShadowPage() {
   }, [manifest]);
 
   useEffect(() => {
+    if (deepLinkParams.source) {
+      setSourceMode(deepLinkParams.source);
+    }
+  }, [deepLinkParams.source]);
+
+  useEffect(() => {
     if (formPrefsLoadedRef.current || !progress) return;
     const prefs = preferencesFromProgress(progress);
+    const tutorMode = deepLinkParams.mode ? deepLinkParams.mode === "tutor" : prefs.tutorMode;
     setForm((current) => ({
       ...current,
       voiceLocale: prefs.chineseVoiceLocale,
       passThreshold: prefs.passThreshold,
       minConfidence: prefs.minConfidence,
-      tutorMode: prefs.tutorMode,
+      tutorMode,
       autoAdvanceOnPass: prefs.autoAdvanceOnPass,
-      autoReadNextPhrase: prefs.autoReadNextPhrase,
+      autoReadNextPhrase: tutorMode ? prefs.autoReadNextPhrase : false,
     }));
     formPrefsLoadedRef.current = true;
-  }, [progress]);
+  }, [deepLinkParams.mode, progress]);
+
+  useEffect(() => {
+    if (!deepLinkParams.pack || packageDeepLinkHandledRef.current || packageLoading) return;
+    if (!speakLabPackages.length) return;
+    const requestedPack = deepLinkParams.pack.toLowerCase();
+    const match = speakLabPackages.find((option) => {
+      return [
+        option.id,
+        option.packId,
+        option.groupId,
+        option.itemId,
+        option.sourcePackageId,
+      ].filter(Boolean).some((value) => String(value).toLowerCase() === requestedPack);
+    });
+    setSourceMode("package");
+    packageDeepLinkHandledRef.current = true;
+    if (match) {
+      setPackageLanguage(match.language || packageLanguage);
+      setPackageId(match.id);
+      setError("");
+      return;
+    }
+    setError(`I could not find the Speak Lab package "${deepLinkParams.pack}". Choose a package from the list.`);
+  }, [deepLinkParams.pack, packageLanguage, packageLoading, speakLabPackages]);
 
   useEffect(() => {
     sessionStateRef.current = session;
@@ -1293,6 +1339,7 @@ export default function SpeakShadowPage() {
   }
 
   function renderModeStartActions({ onTutorStart, onChallengeStart, disabled = false }) {
+    const defaultMode = form.tutorMode ? "tutor" : "challenge";
     return (
       <div className="ss-mode-start" aria-label="Choose your practice mode">
         <h2>Choose your practice mode</h2>
@@ -1300,14 +1347,14 @@ export default function SpeakShadowPage() {
           <div className="ss-mode-card">
             <span className="lw-chip blue">Tutor Mode</span>
             <strong>Fox reads first. You listen and follow.</strong>
-            <button className="lw-btn lw-btn-primary" type="button" onClick={onTutorStart} disabled={disabled}>
+            <button className={`lw-btn ${defaultMode === "tutor" ? "lw-btn-primary" : "lw-btn-secondary"}`} type="button" onClick={onTutorStart} disabled={disabled}>
               Start with Fox Tutor
             </button>
           </div>
           <div className="ss-mode-card">
             <span className="lw-chip amber">Challenge Mode</span>
             <strong>Read by yourself and see your score.</strong>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={onChallengeStart} disabled={disabled}>
+            <button className={`lw-btn ${defaultMode === "challenge" ? "lw-btn-primary" : "lw-btn-secondary"}`} type="button" onClick={onChallengeStart} disabled={disabled}>
               Start Challenge
             </button>
           </div>

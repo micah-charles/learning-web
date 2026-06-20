@@ -374,6 +374,9 @@ body {
 
 /* ── Nav pills (overrides the old .lw-nav-pills / .lw-nav-pill rules) ── */
 .lw-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 11px;          /* tight enough for 11 tabs at 1280px+ */
   border-radius: 999px;
   border: 1.5px solid #e5d9c4;
@@ -387,6 +390,7 @@ body {
   white-space: nowrap;
   line-height: 1;
   flex-shrink: 0;              /* prevent pills from squishing */
+  text-decoration: none;
 }
 
 .lw-nav-pill:hover:not(.active) {
@@ -439,6 +443,7 @@ body {
 .lw-mobile-nav-pill,
 .lw-mobile-more-item {
   font-family: var(--lw-font-sans);
+  text-decoration: none;
 }
 
 .lw-mobile-more {
