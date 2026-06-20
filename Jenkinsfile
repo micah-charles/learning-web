@@ -18,7 +18,7 @@ pipeline {
     agent any
 
     options {
-        timestamps()
+        // timestamps() — requires Timestamper plugin, install manually if wanted
         buildDiscarder(logRotator(numToKeepStr: "10", artifactNumToKeepStr: "3"))
     }
 
