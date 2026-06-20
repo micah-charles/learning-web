@@ -22,6 +22,10 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: "10", artifactNumToKeepStr: "3"))
     }
 
+    environment {
+        PATH = "/opt/homebrew/bin:${env.PATH}"
+    }
+
     stages {
         stage("Checkout") {
             steps {
