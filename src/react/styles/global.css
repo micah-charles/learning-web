@@ -1612,8 +1612,8 @@ body {
 }
 
 .ss-tutor-panel.is-minimized {
-  width: min(310px, calc(100vw - 24px));
-  max-height: 180px;
+  width: min(330px, calc(100vw - 24px));
+  max-height: 240px;
   resize: none;
 }
 
@@ -1625,6 +1625,17 @@ body {
 
 .ss-tutor-panel.is-minimized .ss-fox-bubble p {
   display: none;
+}
+
+.ss-tutor-mini-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ss-tutor-mini-actions .lw-btn {
+  min-height: 40px;
+  padding-inline: 10px;
 }
 
 .ss-current-phrase span,
@@ -1657,7 +1668,8 @@ body {
   gap: 6px;
 }
 
-.ss-token-row span {
+.ss-token-row span,
+.ss-token-row button {
   border-radius: 999px;
   background: #fff;
   border: 1px solid var(--lw-line);
@@ -1667,40 +1679,20 @@ body {
   font-weight: 650;
 }
 
+.ss-token-row button {
+  cursor: pointer;
+}
+
+.ss-token-row button:hover,
+.ss-token-row button:focus-visible {
+  border-color: rgba(42, 109, 181, 0.38);
+  background: var(--lw-blue-soft);
+  color: var(--lw-blue);
+}
+
 .ss-action-row .lw-btn,
 .ss-next-row .lw-btn {
   min-height: 44px;
-}
-
-.ss-manual-transcript {
-  display: grid;
-  gap: 8px;
-}
-
-.ss-manual-transcript summary {
-  cursor: pointer;
-  color: var(--lw-blue);
-  font-weight: 850;
-}
-
-.ss-manual-transcript-body {
-  display: grid;
-  gap: 8px;
-  margin-top: 8px;
-  border: 1px solid var(--lw-line);
-  border-radius: var(--lw-radius-sm);
-  background: rgba(255, 255, 255, 0.75);
-  padding: 10px;
-}
-
-.ss-manual-transcript-body p {
-  color: var(--lw-muted);
-  font-size: 0.88rem;
-  line-height: 1.35;
-}
-
-.ss-manual-transcript .ss-field textarea {
-  min-height: 84px;
 }
 
 .ss-interim {

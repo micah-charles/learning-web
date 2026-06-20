@@ -58,6 +58,10 @@ function percentFromPreference(value, fallback) {
   return clampPercent(numeric > 1 ? numeric : numeric * 100, fallback);
 }
 
+function isSpeakablePhraseToken(token) {
+  return /[A-Za-zÀ-ž0-9\u4e00-\u9fff]/.test(String(token || ""));
+}
+
 function settingsFromForm(form) {
   const mode = form.tutorMode ? "tutor" : "challenge";
   return {
@@ -333,11 +337,9 @@ export default function SpeakShadowPage() {
   const [tutorMessage, setTutorMessage] = useState(TUTOR_MESSAGES.intro);
   const [lastAttempt, setLastAttempt] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [manualTranscript, setManualTranscript] = useState("");
-  const [manualFallbackOpen, setManualFallbackOpen] = useState(false);
   const [tutorPanelPosition, setTutorPanelPosition] = useState(null);
   const [tutorPanelMinimized, setTutorPanelMinimized] = useState(false);
-  const [tutorChatCollapsed, setTutorChatCollapsed] = useState(false);
+  const [tutorChatCollapsed, setTutorChatCollapsed] = useState(true);
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
   const sessionStateRef = useRef(null);
@@ -398,8 +400,7 @@ export default function SpeakShadowPage() {
   const tutorStatusLabel = getTutorStatusLabel(tutorContext);
   const tutorChatMessages = buildTutorChatMessages(tutorContext);
   const tutorNextStepLabel = getNextStepLabel(tutorContext);
-  const shouldAutoOpenManualFallback = !recognitionSupported || microphoneBlocked || tutorState === TUTOR_STATES.MANUAL_FALLBACK;
-  const manualFallbackPanelOpen = manualFallbackOpen || shouldAutoOpenManualFallback;
+  const isEasyCurrentPhrase = currentPhrase?.difficulty === "easy";
   const selectedPackage = passageGroups.find((item) => item.id === packageId);
   const selectedPackageLanguage = getSpeakShadowLanguageByLocale(
     selectedPackage?.sourceLanguageCode || selectedPackage?.speechLanguage || selectedPackage?.targetLanguageCode,
@@ -524,8 +525,8 @@ export default function SpeakShadowPage() {
       return;
     }
     if (reason === "not-allowed") {
-      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-      setTutorMessage("Microphone permission was blocked. Allow microphone access or use the manual transcript fallback.");
+      setTutorState(TUTOR_STATES.RETRY);
+      setTutorMessage("Microphone permission was blocked. Allow microphone access in the browser, then press Speak Now again.");
       return;
     }
     const pendingBuffer = utteranceBufferRef.current;
@@ -546,8 +547,8 @@ export default function SpeakShadowPage() {
     const settings = withModeSettings(updated);
     commitSession(updated);
     if (count >= (settings.maxAutoListenRetries || 1)) {
-      setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-      setTutorMessage(TUTOR_MESSAGES.manualFallback);
+      setTutorState(TUTOR_STATES.SILENCE_TIMEOUT);
+      setTutorMessage(TUTOR_MESSAGES.silent);
       return;
     }
     setTutorState(TUTOR_STATES.SILENCE_TIMEOUT);
@@ -592,7 +593,6 @@ export default function SpeakShadowPage() {
     setTutorMessage(message || modeMessages(targetSession).listening);
     if (!continuation) {
       setLastAttempt(null);
-      setManualTranscript("");
     }
     const attemptId = startAttempt({
       languageCode: targetSession.recognitionLang || targetSession.ttsLang || "en-GB",
@@ -660,7 +660,7 @@ export default function SpeakShadowPage() {
     speechTimerRef.current = window.setTimeout(() => {
       setIsSpeaking(false);
       setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-      setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or continue with manual practice.");
+      setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, then press Listen Again.");
     }, 20000);
     const didStart = speakText(phrase.text, targetSession.ttsLang || "en-GB", {
       rate: 0.9,
@@ -683,7 +683,7 @@ export default function SpeakShadowPage() {
         clearSpeechTimer();
         setIsSpeaking(false);
         setTutorState(TUTOR_STATES.MANUAL_FALLBACK);
-        setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, or use manual practice.");
+        setTutorMessage("I could not play that voice in this browser. Try the other Chinese voice, then press Listen Again.");
       },
     });
     if (!didStart) {
@@ -701,7 +701,6 @@ export default function SpeakShadowPage() {
     }
     setError("");
     setLastAttempt(null);
-    setManualTranscript("");
     resetAttempt();
     resetUtteranceBuffer();
     clearAutoTimer();
@@ -747,7 +746,6 @@ export default function SpeakShadowPage() {
       }
       const next = markCurrentPhrase(sourceSession, nextPhrase.id);
       setLastAttempt(null);
-      setManualTranscript("");
       resetUtteranceBuffer();
       commitSession(next);
       if (isTutorMode(next) && next.settings?.autoReadNextPhrase) {
@@ -1072,6 +1070,24 @@ export default function SpeakShadowPage() {
     });
   }
 
+  function handleListenToToken(token) {
+    const spokenToken = String(token || "").trim();
+    if (!session || !spokenToken || !isSpeakablePhraseToken(spokenToken) || !synthesisSupported) return;
+    clearAutoTimer();
+    clearListenTimer();
+    clearSpeechTimer();
+    abortAttempt();
+    stopSpeaking();
+    setIsSpeaking(true);
+    const didStart = speakText(spokenToken, session.ttsLang || "en-GB", {
+      rate: 0.85,
+      languageFallbacks: speechSynthesisFallbacksForSession(session),
+      onEnd: () => setIsSpeaking(false),
+      onError: () => setIsSpeaking(false),
+    });
+    if (!didStart) setIsSpeaking(false);
+  }
+
   function handleSessionVoiceLocaleChange(localeId) {
     if (!session || session.language !== "zh") return;
     const speech = resolveSpeakShadowSpeech({ language: "zh", voiceLocale: localeId });
@@ -1095,16 +1111,11 @@ export default function SpeakShadowPage() {
     startRecognitionForSession(session);
   }
 
-  function handleManualTranscriptSubmit() {
-    handleScoredTranscript(manualTranscript, null, [], { manual: true });
-  }
-
   function moveToPhrase(phraseId) {
     if (!session) return;
     clearAutoTimer();
     const next = markCurrentPhrase(session, phraseId);
     setLastAttempt(null);
-    setManualTranscript("");
     resetUtteranceBuffer();
     commitSession(next);
     if (isTutorMode(next) && next.settings?.autoReadNextPhrase) beginTutorReading(next);
@@ -1463,6 +1474,21 @@ export default function SpeakShadowPage() {
               <p>{tutorMessage}</p>
             </div>
           </div>
+          {tutorPanelMinimized && (
+            <div className="ss-tutor-mini-actions">
+              <button className="lw-btn lw-btn-secondary" type="button" onClick={handleListenAgain} disabled={isSpeaking}>
+                {isSpeaking ? "Reading..." : (isTutorMode(session) ? "Listen Again" : "Listen")}
+              </button>
+              <button
+                className="lw-btn lw-btn-primary"
+                type="button"
+                onClick={handleSpeakNow}
+                disabled={!recognitionSupported || recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING}
+              >
+                {recognitionListening || tutorState === TUTOR_STATES.STUDENT_SPEAKING ? "Listening..." : "Speak Now"}
+              </button>
+            </div>
+          )}
           {!tutorPanelMinimized && (
             <>
               <div className="ss-next-step-line" aria-live="polite">
@@ -1504,9 +1530,23 @@ export default function SpeakShadowPage() {
             <span>{currentPhrase.difficulty || "medium"} phrase</span>
           </div>
           <div className="ss-token-row" aria-label="Current phrase tokens">
-            {currentPhrase.tokens.map((token, index) => (
-              <span key={`${token}-${index}`}>{token}</span>
-            ))}
+            {currentPhrase.tokens.map((token, index) => {
+              const tokenKey = `${token}-${index}`;
+              if (isEasyCurrentPhrase && isSpeakablePhraseToken(token)) {
+                return (
+                  <button
+                    key={tokenKey}
+                    className="ss-token-btn"
+                    type="button"
+                    onClick={() => handleListenToToken(token)}
+                    aria-label={`Listen to ${token}`}
+                  >
+                    {token}
+                  </button>
+                );
+              }
+              return <span key={tokenKey}>{token}</span>;
+            })}
           </div>
           <div className="lw-btn-group ss-action-row">
             <button className="lw-btn lw-btn-secondary" type="button" onClick={handleListenAgain} disabled={isSpeaking}>
@@ -1528,7 +1568,7 @@ export default function SpeakShadowPage() {
             <p className="ss-alert">{TUTOR_MESSAGES.unsupportedRecognition} Listen-only practice is still available.</p>
           )}
           {microphoneBlocked && (
-            <p className="ss-alert">Microphone permission is blocked. Allow microphone access in the browser, or use manual transcript fallback.</p>
+            <p className="ss-alert">Microphone permission is blocked. Allow microphone access in the browser, then press Speak Now again.</p>
           )}
           {recognitionLastError && recognitionLastError !== "aborted" && !microphoneBlocked && (
             <p className="ss-alert">Speech recognition issue: {recognitionLastError}. Chrome or Edge usually works best.</p>
@@ -1539,33 +1579,6 @@ export default function SpeakShadowPage() {
               <p>{normalizeTranscriptForDisplay(interimTranscript, session.language)}</p>
             </div>
           )}
-          <details
-            className="ss-manual-transcript"
-            open={manualFallbackPanelOpen}
-            onToggle={(event) => setManualFallbackOpen(event.currentTarget.open)}
-          >
-            <summary>Voice not working?</summary>
-            <div className="ss-manual-transcript-body">
-              <p>Manual transcript fallback. Use this only if the microphone or browser speech recognition is not working.</p>
-              <label className="ss-field">
-                <span>What did the learner say?</span>
-                <textarea
-                  value={manualTranscript}
-                  onChange={(event) => setManualTranscript(event.target.value)}
-                  placeholder="Paste or type what the browser heard..."
-                  rows={3}
-                />
-              </label>
-              <button
-                className="lw-btn lw-btn-secondary"
-                type="button"
-                onClick={handleManualTranscriptSubmit}
-                disabled={!manualTranscript.trim()}
-              >
-                Check transcript
-              </button>
-            </div>
-          </details>
           {lastAttempt && (
             <div className="ss-result">
               <span>Heard</span>

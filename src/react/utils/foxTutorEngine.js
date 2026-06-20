@@ -128,7 +128,7 @@ export function getFoxTutorMessage(context = {}) {
     return buildFeedbackText({ mode, attempt: context.lastAttempt, tutorMessage: context.tutorMessage });
   }
   if (state === TUTOR_STATES.SILENCE_TIMEOUT) return "I didn’t hear anything yet. Take your time. Press Speak Now when you are ready.";
-  if (state === TUTOR_STATES.MANUAL_FALLBACK) return context.tutorMessage || "Your browser needs manual help. Use Voice not working? if needed.";
+  if (state === TUTOR_STATES.MANUAL_FALLBACK) return context.tutorMessage || "Your browser needs a moment. Try Listen Again, then press Speak Now.";
   if (state === TUTOR_STATES.COMPLETED) return mode === "challenge"
     ? "Challenge completed! Look at your score and choose what to practise next."
     : "Amazing work! You finished the whole passage with me. What would you like to do next?";
