@@ -335,6 +335,9 @@ export default function SpeakShadowPage() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [manualTranscript, setManualTranscript] = useState("");
   const [manualFallbackOpen, setManualFallbackOpen] = useState(false);
+  const [tutorPanelPosition, setTutorPanelPosition] = useState(null);
+  const [tutorPanelMinimized, setTutorPanelMinimized] = useState(false);
+  const [tutorChatCollapsed, setTutorChatCollapsed] = useState(false);
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
   const sessionStateRef = useRef(null);
@@ -346,6 +349,7 @@ export default function SpeakShadowPage() {
   const formPrefsLoadedRef = useRef(false);
   const activeRecognitionRef = useRef(null);
   const utteranceBufferRef = useRef(null);
+  const tutorDragRef = useRef(null);
   const {
     supported: recognitionSupported,
     listening: recognitionListening,
@@ -1271,6 +1275,44 @@ export default function SpeakShadowPage() {
     return "Fox";
   }
 
+  function clampTutorPanelPosition(left, top) {
+    if (typeof window === "undefined") return { left, top };
+    const panelWidth = tutorPanelMinimized ? 260 : 390;
+    const panelHeight = tutorPanelMinimized ? 92 : 520;
+    const margin = 12;
+    return {
+      left: Math.min(Math.max(margin, left), Math.max(margin, window.innerWidth - panelWidth - margin)),
+      top: Math.min(Math.max(margin, top), Math.max(margin, window.innerHeight - panelHeight - margin)),
+    };
+  }
+
+  function handleTutorDragStart(event) {
+    if (event.button !== 0) return;
+    const panel = event.currentTarget.closest(".ss-tutor-panel");
+    if (!panel) return;
+    const rect = panel.getBoundingClientRect();
+    tutorDragRef.current = {
+      offsetX: event.clientX - rect.left,
+      offsetY: event.clientY - rect.top,
+    };
+    setTutorPanelPosition({ left: rect.left, top: rect.top });
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  }
+
+  function handleTutorDragMove(event) {
+    if (!tutorDragRef.current) return;
+    const next = clampTutorPanelPosition(
+      event.clientX - tutorDragRef.current.offsetX,
+      event.clientY - tutorDragRef.current.offsetY,
+    );
+    setTutorPanelPosition(next);
+  }
+
+  function handleTutorDragEnd(event) {
+    tutorDragRef.current = null;
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
+  }
+
   function renderPracticeSettings(activeLanguage = form.language) {
     return (
       <div className="ss-settings-grid">
@@ -1355,6 +1397,13 @@ export default function SpeakShadowPage() {
           <div className="ss-progress" aria-label={`Speak and Shadow progress ${progressPct}%`}>
             <span style={{ width: `${progressPct}%` }} />
           </div>
+          <div className="ss-current-top" aria-live="polite">
+            <div>
+              <span>Current sentence</span>
+              <strong>{currentPhrase.text}</strong>
+            </div>
+            <small>{tutorNextStepLabel}</small>
+          </div>
           <div className="ss-article">
             {session.phrases.map((phrase) => (
               <span
@@ -1368,13 +1417,42 @@ export default function SpeakShadowPage() {
           </div>
         </section>
 
-        <aside className={`ss-tutor-panel ss-tutor-panel--${sessionMode}`} aria-label={isTutorMode(session) ? "Fox Tutor coach" : "Fox Challenge coach"}>
+        <aside
+          className={`ss-tutor-panel ss-tutor-panel--${sessionMode}${tutorPanelMinimized ? " is-minimized" : ""}${tutorChatCollapsed ? " is-chat-collapsed" : ""}`}
+          aria-label={isTutorMode(session) ? "Fox Tutor coach" : "Fox Challenge coach"}
+          style={tutorPanelPosition ? { left: `${tutorPanelPosition.left}px`, top: `${tutorPanelPosition.top}px` } : undefined}
+        >
           <div className="ss-tutor-header">
-            <div>
+            <div
+              className="ss-tutor-drag-handle"
+              onPointerDown={handleTutorDragStart}
+              onPointerMove={handleTutorDragMove}
+              onPointerUp={handleTutorDragEnd}
+              onPointerCancel={handleTutorDragEnd}
+              title="Drag Fox Tutor"
+            >
               <span className="lw-chip blue">{isTutorMode(session) ? "Fox Tutor" : "Fox Coach"}</span>
               <strong>{isTutorMode(session) ? "Tutor Mode" : "Challenge Mode"}</strong>
             </div>
-            <span className="ss-tutor-status">{tutorStatusLabel}</span>
+            <div className="ss-tutor-controls">
+              <span className="ss-tutor-status">{tutorStatusLabel}</span>
+              <button
+                className="ss-tutor-icon-btn"
+                type="button"
+                onClick={() => setTutorChatCollapsed((value) => !value)}
+                aria-pressed={tutorChatCollapsed}
+              >
+                {tutorChatCollapsed ? "Show chat" : "Hide chat"}
+              </button>
+              <button
+                className="ss-tutor-icon-btn"
+                type="button"
+                onClick={() => setTutorPanelMinimized((value) => !value)}
+                aria-pressed={tutorPanelMinimized}
+              >
+                {tutorPanelMinimized ? "Open" : "Min"}
+              </button>
+            </div>
           </div>
           <div className={`ss-fox-tutor ss-fox-${foxTutor.className}`}>
             <div className="ss-fox-avatar" aria-hidden="true">
@@ -1385,21 +1463,28 @@ export default function SpeakShadowPage() {
               <p>{tutorMessage}</p>
             </div>
           </div>
-          <div className="ss-next-step-line" aria-live="polite">
-            <span>Next step</span>
-            <strong>{tutorNextStepLabel}</strong>
-          </div>
-          <div className="ss-tutor-chat" role="log" aria-live="polite" aria-label="Fox Tutor chat messages">
-            {tutorChatMessages.map((message) => (
-              <article key={message.id} className={`ss-chat-message ss-chat-message--${message.from} ss-chat-message--${message.type}`}>
-                <span>{getChatMessageLabel(message)}</span>
-                <p>{message.text}</p>
-                {message.type === "checking" && (
-                  <span className="ss-chat-dots" aria-hidden="true"><i /><i /><i /></span>
-                )}
-              </article>
-            ))}
-          </div>
+          {!tutorPanelMinimized && (
+            <>
+              <div className="ss-next-step-line" aria-live="polite">
+                <span>Next step</span>
+                <strong>{tutorNextStepLabel}</strong>
+              </div>
+              {!tutorChatCollapsed && (
+                <div className="ss-tutor-chat" role="log" aria-live="polite" aria-label="Fox Tutor chat messages">
+                  {tutorChatMessages.map((message) => (
+                    <article key={message.id} className={`ss-chat-message ss-chat-message--${message.from} ss-chat-message--${message.type}`}>
+                      <span>{getChatMessageLabel(message)}</span>
+                      <p>{message.text}</p>
+                      {message.type === "checking" && (
+                        <span className="ss-chat-dots" aria-hidden="true"><i /><i /><i /></span>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          <div className="ss-tutor-detail">
           {renderChineseVoiceSelector({
             activeLanguage: session.language,
             value: session.voiceLocale || DEFAULT_CHINESE_VOICE_LOCALE,
@@ -1521,6 +1606,7 @@ export default function SpeakShadowPage() {
             <button className="lw-btn lw-btn-ghost" type="button" onClick={handleSkipPhrase}>
               Skip
             </button>
+          </div>
           </div>
         </aside>
       </div>
