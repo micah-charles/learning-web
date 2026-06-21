@@ -84,7 +84,7 @@ function percentFromPreference(value, fallback) {
 }
 
 function isSpeakablePhraseToken(token) {
-  return /[A-Za-zÀ-ž0-9\u4e00-\u9fff]/.test(String(token || ""));
+  return /[A-Za-zÀ-ž0-9\u3040-\u30ff\u3400-\u9fff\uff66-\uff9fー々〆ヵヶ]/.test(String(token || ""));
 }
 
 function settingsFromForm(form) {
