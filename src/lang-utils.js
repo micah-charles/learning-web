@@ -17,7 +17,7 @@ const LANG_NORM = {
   nl: "nl-NL",
   el: "el-GR",
   ru: "ru-RU",
-  zh: "zh-CN",
+  zh: "zh-HK",
   ja: "ja-JP",
   ko: "ko-KR",
   ar: "ar-SA",
