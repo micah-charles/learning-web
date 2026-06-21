@@ -49,6 +49,7 @@ export const DEFAULT_SPEAK_SHADOW_SETTINGS = {
   scorePartialImmediatelyIfPass: true,
   waitForContinuationIfTooShort: true,
   minCompletionRatioBeforeFail: 0.65,
+  maxIncompleteCompletionRatio: 0.92,
 };
 
 export const PHRASE_LENGTHS = {

@@ -71,14 +71,23 @@ export function evaluateBufferedUtterance({
   const ratio = completionRatio(expected, combinedTranscript, language);
   const maxChunks = settings.maxUtteranceChunks ?? 3;
   const minRatio = settings.minCompletionRatioBeforeFail ?? 0.65;
+  const maxIncompleteRatio = settings.maxIncompleteCompletionRatio ?? 0.92;
+  const likelyPrefix = isLikelyPrefix(expected, combinedTranscript, language);
   const canWaitForContinuation = (
     Boolean(settings.waitForContinuationIfTooShort ?? true)
     && chunkCount < maxChunks
-    && ratio < minRatio
-    && isLikelyPrefix(expected, combinedTranscript, language)
+    && likelyPrefix
+    && (
+      ratio < minRatio
+      || (
+        ratio < maxIncompleteRatio
+        && (score.requiredTokenScore < 1 || score.missingTokens?.length > 0)
+        && score.orderScore >= 0.75
+      )
+    )
   );
 
-  if (score.passed && (settings.scorePartialImmediatelyIfPass ?? true)) {
+  if (!canWaitForContinuation && score.passed && (settings.scorePartialImmediatelyIfPass ?? true)) {
     return {
       status: "pass",
       combinedTranscript,
@@ -92,7 +101,14 @@ export function evaluateBufferedUtterance({
     return {
       status: "pendingContinuation",
       combinedTranscript,
-      score,
+      score: {
+        ...score,
+        passed: false,
+        feedbackLevel: "continue",
+        hint: "Keep going...",
+        nextAction: "continue",
+        feedback: "Keep going...",
+      },
       completionRatio: ratio,
       chunkCount,
     };

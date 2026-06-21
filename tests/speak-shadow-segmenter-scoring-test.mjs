@@ -163,6 +163,26 @@ assert.equal(chineseComplete.status, "pass");
 assert.equal(chineseComplete.combinedTranscript, "奇玉就是這樣的一個故事");
 assert.equal(chineseComplete.score.passed, true);
 
+const chineseMissingEnding = evaluateBufferedUtterance({
+  expected: "走走路，打打球，拍拍手，",
+  chunks: ["走走路打打球"],
+  confidence: 0.94,
+  language: "zh",
+  settings: bufferedSettings,
+});
+assert.equal(chineseMissingEnding.status, "pendingContinuation");
+assert.equal(chineseMissingEnding.score.passed, false);
+assert.ok(chineseMissingEnding.score.missingTokens.includes("拍拍手"));
+
+const chineseWrongOrder = evaluateBufferedUtterance({
+  expected: "走走路，打打球，拍拍手，",
+  chunks: ["拍拍手走走路"],
+  confidence: 0.94,
+  language: "zh",
+  settings: bufferedSettings,
+});
+assert.equal(chineseWrongOrder.status, "fail");
+
 const chineseTimedOut = evaluateBufferedUtterance({
   expected: "奇玉就是這樣的一個故事",
   chunks: ["奇玉"],
