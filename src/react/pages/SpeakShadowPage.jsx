@@ -285,7 +285,7 @@ function RecentSessions({ sessions, onResume, onStartNew }) {
           Continue
         </button>
         <button className="lw-btn lw-btn-ghost" type="button" onClick={onStartNew}>
-          Start New
+          Start New Practice
         </button>
       </div>
       {sessions.length > 1 && (
@@ -302,7 +302,7 @@ function RecentSessions({ sessions, onResume, onStartNew }) {
   );
 }
 
-function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }) {
+function CompletionScreen({ session, onRestart, onTutor, onChallenge, onWeakOnly, onNew }) {
   const summary = summarizeSession(session);
   const mode = getSessionMode(session);
   const isTutor = mode === "tutor";
@@ -328,6 +328,11 @@ function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }
         {isTutor && (
           <button className="lw-btn lw-btn-secondary" type="button" onClick={onChallenge}>
             Try Challenge Mode
+          </button>
+        )}
+        {!isTutor && (
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={onTutor}>
+            Practise with Fox Tutor
           </button>
         )}
         {summary.weakPhrases.length > 0 && (
@@ -420,7 +425,6 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
   const tutorStatusLabel = getTutorStatusLabel(tutorContext);
   const tutorChatMessages = buildTutorChatMessages(tutorContext);
   const tutorNextStepLabel = getNextStepLabel(tutorContext);
-  const isEasyCurrentPhrase = currentPhrase?.difficulty === "easy";
   const packageLanguageOptions = useMemo(() => {
     const counts = new Map();
     speakLabPackages.forEach((item) => counts.set(item.language, (counts.get(item.language) || 0) + 1));
@@ -1487,6 +1491,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         <CompletionScreen
           session={session}
           onRestart={() => restartSession(session)}
+          onTutor={() => restartSession(session, "tutor")}
           onChallenge={() => restartSession(session, "challenge")}
           onWeakOnly={() => practiseWeakPhrases("tutor")}
           onNew={() => setSession(null)}
@@ -1643,7 +1648,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
           <div className="ss-token-row" aria-label="Current phrase tokens">
             {currentPhrase.tokens.map((token, index) => {
               const tokenKey = `${token}-${index}`;
-              if (isEasyCurrentPhrase && isSpeakablePhraseToken(token)) {
+              if (isSpeakablePhraseToken(token)) {
                 return (
                   <button
                     key={tokenKey}
