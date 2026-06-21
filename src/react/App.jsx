@@ -190,6 +190,7 @@ function AppContent() {
       noindex: true,
     }
     : metadataForTab(activeTab);
+  const hideGlobalTutorWidget = activeTab === "language" || activeTab === "speak-shadow";
 
   if (shouldShowOnboarding) {
     return (
@@ -248,8 +249,8 @@ function AppContent() {
       {/* Study Book drawer — rendered once here so it persists across tab switches */}
       <StudyBookDrawer />
 
-      {/* FoxChild Tutor widget — rendered once at App level */}
-      <TutorWidget />
+      {/* FoxChild Tutor widget — hidden where the page has its own focused tutor UX */}
+      {!hideGlobalTutorWidget && <TutorWidget />}
     </div>
   );
 }
