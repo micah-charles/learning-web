@@ -341,7 +341,7 @@ function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }
   );
 }
 
-export default function SpeakShadowPage() {
+export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed } = {}) {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
   const deepLinkParams = useMemo(() => getSpeakLabDeepLinkParams(), []);
@@ -435,6 +435,19 @@ export default function SpeakShadowPage() {
   );
   const selectedPackage = speakLabPackages.find((item) => item.id === packageId);
   const selectedPackageLanguage = selectedPackage?.language || packageLanguage;
+
+  useEffect(() => {
+    if (!initialResumeId || session) return;
+    const saved = progress?.speakShadow?.sessions?.[initialResumeId];
+    if (!saved) {
+      onResumeConsumed?.();
+      return;
+    }
+    startSession(saved);
+    onResumeConsumed?.();
+  // startSession intentionally omitted so this handoff runs once for the requested id.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialResumeId, onResumeConsumed, progress?.speakShadow?.sessions, session]);
 
   useEffect(() => () => {
     stopSpeaking();
