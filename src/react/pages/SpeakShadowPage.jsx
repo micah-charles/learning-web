@@ -358,6 +358,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
   const [packageLoading, setPackageLoading] = useState(false);
   const [packageLoadError, setPackageLoadError] = useState("");
   const [session, setSession] = useState(null);
+  const [showSavedPracticePrompt, setShowSavedPracticePrompt] = useState(true);
   const [tutorState, setTutorState] = useState(TUTOR_STATES.READY);
   const [tutorMessage, setTutorMessage] = useState(TUTOR_MESSAGES.intro);
   const [lastAttempt, setLastAttempt] = useState(null);
@@ -368,6 +369,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
   const sessionStateRef = useRef(null);
+  const setupCardRef = useRef(null);
   const currentPhraseRef = useRef(null);
   const autoTimerRef = useRef(null);
   const listenTimerRef = useRef(null);
@@ -1173,6 +1175,16 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     });
   }
 
+  function handleStartNewPractice() {
+    stopAllAudio();
+    setSession(null);
+    setShowSavedPracticePrompt(false);
+    window.requestAnimationFrame(() => {
+      setupCardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setupCardRef.current?.focus({ preventScroll: true });
+    });
+  }
+
   function handleListenToToken(token) {
     const spokenToken = String(token || "").trim();
     if (!session || !spokenToken || !isSpeakablePhraseToken(spokenToken) || !synthesisSupported) return;
@@ -1744,13 +1756,15 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
 
   return (
     <div className="lw-page ss-page">
-      <RecentSessions
-        sessions={savedSessions}
-        onResume={(saved) => startSession(saved)}
-        onStartNew={() => setSession(null)}
-      />
+      {showSavedPracticePrompt && (
+        <RecentSessions
+          sessions={savedSessions}
+          onResume={(saved) => startSession(saved)}
+          onStartNew={handleStartNewPractice}
+        />
+      )}
 
-      <section className="lw-card ss-entry-card">
+      <section className="lw-card ss-entry-card" ref={setupCardRef} tabIndex={-1}>
         <span className="lw-chip blue">New module</span>
         <h1>Speak & Shadow Lab</h1>
         <p className="lw-subtitle">Practise reading aloud with a guided tutor</p>
