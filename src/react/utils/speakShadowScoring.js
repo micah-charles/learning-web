@@ -6,6 +6,8 @@ const ZH_HK_EQUIVALENTS = [
   ["稀世", "欺世"],
   ["翠玉", "脆玉"],
   ["傳家寶", "传家宝"],
+  ["讀", "篤"],
+  ["黑板", "黑版"],
 ];
 
 const JA_EQUIVALENTS = [
@@ -201,14 +203,9 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
   const numericConfidence = Number.isFinite(confidence) ? confidence : null;
   const minSimilarity = settings.minSimilarity ?? 0.85;
   const minConfidence = settings.minConfidence ?? 0.6;
-  const expectedTokens = tokenizePhrase(normalizedExpected, language).filter(Boolean);
-  const transcriptTokens = tokenizePhrase(normalizedTranscript, language).filter(Boolean);
-  const strictTokens = language === "de" ? expectedTokens.filter((token) => GERMAN_ARTICLES.has(token)) : [];
-  const requiredTokens = Array.isArray(expectedPhrase?.requiredTokens) && expectedPhrase.requiredTokens.length
-    ? expectedPhrase.requiredTokens.map((token) => normalizer(token)).filter(Boolean)
-    : expectedTokens.filter((token) => token.length > 3 || strictTokens.includes(token));
   let similarity = similarityScore(rawExpected, rawTranscript, language, normalizer);
   let matchType = "similarity";
+  let scoringNormalizer = normalizer;
 
   if (rawExpected && rawExpected === rawTranscript) {
     similarity = 1;
@@ -222,6 +219,7 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
     if (equivalentExpected && equivalentExpected === equivalentTranscript) {
       similarity = Math.max(similarity, 0.88);
       matchType = "equivalent";
+      scoringNormalizer = equivalentNormalizer;
     }
   }
 
@@ -230,6 +228,14 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
     similarity = Math.max(similarity, 0.9);
   }
 
+  const scoringExpected = scoringNormalizer(rawExpected);
+  const scoringTranscript = scoringNormalizer(rawTranscript);
+  const expectedTokens = tokenizePhrase(scoringExpected, language).filter(Boolean);
+  const transcriptTokens = tokenizePhrase(scoringTranscript, language).filter(Boolean);
+  const strictTokens = language === "de" ? expectedTokens.filter((token) => GERMAN_ARTICLES.has(token)) : [];
+  const requiredTokens = Array.isArray(expectedPhrase?.requiredTokens) && expectedPhrase.requiredTokens.length
+    ? expectedPhrase.requiredTokens.map((token) => scoringNormalizer(token)).filter(Boolean)
+    : expectedTokens.filter((token) => token.length > 3 || strictTokens.includes(token));
   const keywordScore = requiredTokenScore(requiredTokens, transcriptTokens, language);
   const orderScore = orderedTokenScore(expectedTokens, transcriptTokens, language);
   const strictTokenScore = strictTokens.length ? requiredTokenScore(strictTokens, transcriptTokens, language) : 1;
@@ -242,7 +248,8 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
   const requiredGatePasses = !requiredTokens.length || keywordScore >= 0.75;
   const strictGatePasses = strictTokenScore >= 1;
   const strongAlternativeMatch = source === "alternative" && similarity >= 0.95 && requiredGatePasses && strictGatePasses;
-  const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence || strongAlternativeMatch;
+  const strongCjkEquivalentMatch = ["zh", "ja"].includes(language) && ["exact", "normalized", "equivalent"].includes(matchType) && similarity >= minSimilarity && requiredGatePasses && strictGatePasses;
+  const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence || strongAlternativeMatch || strongCjkEquivalentMatch;
   const passed = (
     (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses))
     && confidencePasses

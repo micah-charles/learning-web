@@ -78,6 +78,18 @@ const chineseEquivalent = scoreSpeakShadowAttempt({
 });
 assert.equal(chineseEquivalent.passed, true);
 
+const chineseHomophoneEquivalent = scoreSpeakShadowAttempt({
+  expected: "讀讀課文，看看黑板，",
+  transcript: "篤篤課文看看黑版",
+  confidence: 0,
+  language: "zh",
+  voiceLocale: "zh-HK",
+  settings: { minSimilarity: 0.85, minConfidence: 0.6 },
+});
+assert.equal(chineseHomophoneEquivalent.passed, true);
+assert.equal(chineseHomophoneEquivalent.matchType, "equivalent");
+assert.deepEqual(chineseHomophoneEquivalent.missingTokens, []);
+
 const japaneseEquivalent = scoreSpeakShadowAttempt({
   expected: "私は学校へ行きます",
   transcript: "私はがっこうへいきます",
