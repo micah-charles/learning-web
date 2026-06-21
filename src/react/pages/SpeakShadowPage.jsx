@@ -3,6 +3,7 @@ import { useManifest } from "../context/ManifestContext.jsx";
 import { useProgress } from "../context/ProgressContext.jsx";
 import { LabeledSelect, LoadingText } from "../components/layout/Controls.jsx";
 import { isSpeechSynthesisSupported, speakText, stopSpeaking } from "@/utils.js";
+import { useFloatingTutorPosition } from "../hooks/useFloatingTutorPosition.js";
 import { useSpeechRecognitionAttempt } from "../hooks/useSpeechRecognitionAttempt.js";
 import {
   CHINESE_VOICE_LOCALES,
@@ -33,6 +34,7 @@ import {
   listSpeakLabPackageOptions,
   loadSpeakLabPackageSelection,
 } from "../utils/speakLabPackageCatalog.js";
+import { SOUND_CUES, playSoundCue, primeSoundCues } from "../utils/soundCues.js";
 
 const INITIAL_FORM = {
   title: "",
@@ -45,7 +47,15 @@ const INITIAL_FORM = {
   tutorMode: true,
   autoAdvanceOnPass: true,
   autoReadNextPhrase: true,
+  soundCuesEnabled: true,
   savedToBrowser: true,
+};
+
+const MOBILE_TUTOR_DISPLAY = {
+  BUBBLE: "bubble",
+  HINT: "hint",
+  FEEDBACK: "feedback",
+  EXPANDED: "expanded",
 };
 
 function getSpeakLabDeepLinkParams() {
@@ -74,7 +84,7 @@ function percentFromPreference(value, fallback) {
 }
 
 function isSpeakablePhraseToken(token) {
-  return /[A-Za-zÀ-ž0-9\u4e00-\u9fff]/.test(String(token || ""));
+  return /[A-Za-zÀ-ž0-9\u3040-\u30ff\u3400-\u9fff\uff66-\uff9fー々〆ヵヶ]/.test(String(token || ""));
 }
 
 function settingsFromForm(form) {
@@ -89,7 +99,9 @@ function settingsFromForm(form) {
     guidedAutoListen: true,
     autoAdvanceOnPass: Boolean(form.autoAdvanceOnPass),
     autoReadNextPhrase: mode === "tutor" ? Boolean(form.autoReadNextPhrase) : false,
-    autoListenDelayMs: mode === "tutor" ? 1000 : 800,
+    autoListenDelayMs: mode === "tutor" ? 250 : 350,
+    readyBeepAfterListenStartsMs: 80,
+    soundCuesEnabled: Boolean(form.soundCuesEnabled),
     speechSilenceTimeoutMs: 7000,
     maxAutoListenRetries: mode === "tutor" ? 2 : 1,
     maxFailedAttemptsBeforeHint: 2,
@@ -254,7 +266,36 @@ function preferencesFromProgress(progress) {
     tutorMode: progress?.speakShadow?.preferences?.tutorMode ?? true,
     autoAdvanceOnPass: progress?.speakShadow?.preferences?.autoAdvanceOnPass ?? true,
     autoReadNextPhrase: progress?.speakShadow?.preferences?.autoReadNextPhrase ?? true,
+    soundCuesEnabled: progress?.speakShadow?.preferences?.soundCuesEnabled ?? true,
   };
+}
+
+function getMobileTutorDisplay({ minimized, tutorState }) {
+  if (!minimized) return MOBILE_TUTOR_DISPLAY.EXPANDED;
+  if (tutorState === TUTOR_STATES.READY) return MOBILE_TUTOR_DISPLAY.BUBBLE;
+  if (
+    tutorState === TUTOR_STATES.PASSED
+    || tutorState === TUTOR_STATES.RETRY
+    || tutorState === TUTOR_STATES.SILENCE_TIMEOUT
+    || tutorState === TUTOR_STATES.COMPLETED
+  ) {
+    return MOBILE_TUTOR_DISPLAY.FEEDBACK;
+  }
+  return MOBILE_TUTOR_DISPLAY.HINT;
+}
+
+function getMobileTutorMessage({ tutorState, session, recognitionListening }) {
+  if (tutorState === TUTOR_STATES.TUTOR_READING) return "Listen first...";
+  if (tutorState === TUTOR_STATES.AUTO_LISTEN_PENDING) return "Get ready...";
+  if (tutorState === TUTOR_STATES.STUDENT_SPEAKING || recognitionListening) return "Fox is listening...";
+  if (tutorState === TUTOR_STATES.PENDING_CONTINUATION) return "Keep going...";
+  if (tutorState === TUTOR_STATES.CHECKING) return "Checking...";
+  if (tutorState === TUTOR_STATES.PASSED) return "Great! Next one.";
+  if (tutorState === TUTOR_STATES.RETRY || tutorState === TUTOR_STATES.SILENCE_TIMEOUT) return "Try again slowly.";
+  if (tutorState === TUTOR_STATES.COMPLETED) return "Well done!";
+  if (tutorState === TUTOR_STATES.WAITING_FOR_STUDENT) return isTutorMode(session) ? "Your turn." : "Read aloud.";
+  if (tutorState === TUTOR_STATES.MANUAL_FALLBACK) return "Tap Speak Now.";
+  return "";
 }
 
 function summarizeSession(session) {
@@ -375,6 +416,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
   const listenTimerRef = useRef(null);
   const partialTimerRef = useRef(null);
   const speechTimerRef = useRef(null);
+  const soundCueTimerRef = useRef(null);
   const formPrefsLoadedRef = useRef(false);
   const packageDeepLinkHandledRef = useRef(false);
   const activeRecognitionRef = useRef(null);
@@ -441,6 +483,18 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
   );
   const selectedPackage = speakLabPackages.find((item) => item.id === packageId);
   const selectedPackageLanguage = selectedPackage?.language || packageLanguage;
+  const floatingTutorPosition = useFloatingTutorPosition(currentPhraseRef, {
+    enabled: Boolean(session && currentPhrase),
+    deps: [session?.currentPhraseId, tutorState, tutorPanelMinimized],
+  });
+  const isMobileTutorPlacement = floatingTutorPosition.placement !== "desktop";
+  const mobileTutorDisplay = isMobileTutorPlacement && tutorPanelMinimized && floatingTutorPosition.placement === "compact"
+    ? MOBILE_TUTOR_DISPLAY.BUBBLE
+    : getMobileTutorDisplay({ minimized: tutorPanelMinimized, tutorState });
+  const mobileTutorMessage = getMobileTutorMessage({ tutorState, session, recognitionListening });
+  const tutorPanelStyle = isMobileTutorPlacement
+    ? (floatingTutorPosition.placement === "compact" && !tutorPanelMinimized ? undefined : floatingTutorPosition.style)
+    : (tutorPanelPosition ? { left: `${tutorPanelPosition.left}px`, top: `${tutorPanelPosition.top}px` } : undefined);
 
   useEffect(() => {
     if (!initialResumeId || session) return;
@@ -462,6 +516,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     if (listenTimerRef.current) window.clearTimeout(listenTimerRef.current);
     if (partialTimerRef.current) window.clearTimeout(partialTimerRef.current);
     if (speechTimerRef.current) window.clearTimeout(speechTimerRef.current);
+    if (soundCueTimerRef.current) window.clearTimeout(soundCueTimerRef.current);
   }, [abortAttempt]);
 
   useEffect(() => {
@@ -510,6 +565,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       tutorMode,
       autoAdvanceOnPass: prefs.autoAdvanceOnPass,
       autoReadNextPhrase: tutorMode ? prefs.autoReadNextPhrase : false,
+      soundCuesEnabled: prefs.soundCuesEnabled,
     }));
     formPrefsLoadedRef.current = true;
   }, [deepLinkParams.mode, progress]);
@@ -547,6 +603,21 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       currentPhraseRef.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
     }
   }, [session?.currentPhraseId]);
+
+  useEffect(() => {
+    if (!session || tutorPanelMinimized || !isMobileTutorPlacement) return;
+    currentPhraseRef.current?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    const adjustTimer = window.setTimeout(() => {
+      const phraseRect = currentPhraseRef.current?.getBoundingClientRect();
+      const tutorRect = document.querySelector(".ss-tutor-panel")?.getBoundingClientRect();
+      if (!phraseRect || !tutorRect || phraseRect.bottom <= tutorRect.top - 18) return;
+      window.scrollBy({
+        top: phraseRect.bottom - tutorRect.top + 24,
+        behavior: "smooth",
+      });
+    }, 260);
+    return () => window.clearTimeout(adjustTimer);
+  }, [isMobileTutorPlacement, session?.currentPhraseId, tutorPanelMinimized]);
 
   function commitSession(nextSession) {
     sessionStateRef.current = nextSession;
@@ -586,6 +657,17 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       window.clearTimeout(speechTimerRef.current);
       speechTimerRef.current = null;
     }
+  }
+
+  function clearSoundCueTimer() {
+    if (soundCueTimerRef.current) {
+      window.clearTimeout(soundCueTimerRef.current);
+      soundCueTimerRef.current = null;
+    }
+  }
+
+  function playSessionSoundCue(type, targetSession = session) {
+    playSoundCue(type, { enabled: targetSession?.settings?.soundCuesEnabled !== false });
   }
 
   function resetUtteranceBuffer() {
@@ -646,6 +728,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     ) {
       setTutorState(TUTOR_STATES.PENDING_CONTINUATION);
       setTutorMessage(TUTOR_MESSAGES.continueSentence);
+      playSessionSoundCue(SOUND_CUES.INCOMPLETE_KEEP_GOING, activeSession);
       return;
     }
     const updated = incrementSilentCount(activeSession, activePhrase.id);
@@ -667,6 +750,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     clearAutoTimer();
     clearListenTimer();
     clearSpeechTimer();
+    clearSoundCueTimer();
     resetUtteranceBuffer();
     stopSpeaking();
     abortAttempt();
@@ -693,6 +777,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     const settings = withModeSettings(targetSession);
     clearAutoTimer();
     clearListenTimer();
+    clearSoundCueTimer();
     if (!continuation) {
       resetUtteranceBuffer();
       resetAttempt();
@@ -717,6 +802,12 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       phraseId: phrase.id,
       continuation,
     };
+    if (attemptId && !continuation) {
+      const cueDelay = settings.readyBeepAfterListenStartsMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.readyBeepAfterListenStartsMs ?? 80;
+      soundCueTimerRef.current = window.setTimeout(() => {
+        playSessionSoundCue(SOUND_CUES.READY_TO_SPEAK, targetSession);
+      }, cueDelay);
+    }
   }
 
   function scheduleAutoListen(targetSession = session, { message } = {}) {
@@ -733,7 +824,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     setTutorMessage(message || modeMessages(targetSession).getReady);
     autoTimerRef.current = window.setTimeout(() => {
       startRecognitionForSession(targetSession);
-    }, settings.autoListenDelayMs || 1000);
+    }, settings.autoListenDelayMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.autoListenDelayMs ?? 250);
   }
 
   function startChallengePhrase(targetSession = session, { message } = {}) {
@@ -811,6 +902,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     resetAttempt();
     resetUtteranceBuffer();
     clearAutoTimer();
+    clearSoundCueTimer();
     const speech = resolveSpeakShadowSpeech({ language: nextSession.language, voiceLocale: nextSession.voiceLocale });
     const mode = nextSession.settings?.mode || (nextSession.settings?.tutorMode === false ? "challenge" : "tutor");
     const withDefaults = {
@@ -828,6 +920,9 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       },
     };
     const normalized = markCurrentPhrase(withDefaults, withDefaults.currentPhraseId || withDefaults.phrases[0].id);
+    primeSoundCues();
+    setTutorPanelMinimized(true);
+    setTutorChatCollapsed(true);
     commitSession(normalized);
     if (isTutorMode(normalized)) beginTutorReading(normalized);
     else startChallengePhrase(normalized);
@@ -849,6 +944,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         commitSession(done);
         setTutorState(TUTOR_STATES.COMPLETED);
         setTutorMessage(modeMessages(done).completed);
+        playSessionSoundCue(SOUND_CUES.CORRECT, done);
         return;
       }
       const next = markCurrentPhrase(sourceSession, nextPhrase.id);
@@ -921,6 +1017,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       const messages = modeMessages(updated);
       setTutorState(TUTOR_STATES.PASSED);
       setTutorMessage(score.similarity >= 0.95 ? messages.excellent : messages.passed);
+      playSessionSoundCue(SOUND_CUES.CORRECT, updated);
       if (updated.settings?.autoAdvanceOnPass) {
         moveToNextPhraseFrom(updated, activePhrase.id, {
           delayMs: updated.settings?.autoAdvanceDelayMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.autoAdvanceDelayMs,
@@ -930,6 +1027,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     }
 
     setTutorState(TUTOR_STATES.RETRY);
+    playSessionSoundCue(SOUND_CUES.RETRY, updated);
     const messages = modeMessages(updated);
     const currentWithAttempt = updated.phrases.find((phrase) => phrase.id === activePhrase.id);
     const failedAttempts = (currentWithAttempt?.attempts || []).filter((attemptItem) => !attemptItem.passed).length;
@@ -984,6 +1082,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     clearPartialTimer();
     setTutorState(TUTOR_STATES.PENDING_CONTINUATION);
     setTutorMessage(evaluation.chunkCount <= 1 ? TUTOR_MESSAGES.pendingContinuation : TUTOR_MESSAGES.continueSentence);
+    playSessionSoundCue(SOUND_CUES.INCOMPLETE_KEEP_GOING, activeSession);
     partialTimerRef.current = window.setTimeout(() => {
       finalizeBufferedUtterance("grace-timeout");
     }, activeSession.settings?.partialUtteranceGraceMs ?? DEFAULT_SPEAK_SHADOW_SETTINGS.partialUtteranceGraceMs);
@@ -1113,6 +1212,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       tutorMode: settings.tutorMode,
       autoAdvanceOnPass: settings.autoAdvanceOnPass,
       autoReadNextPhrase: settings.autoReadNextPhrase,
+      soundCuesEnabled: settings.soundCuesEnabled,
     });
     startSession(createSpeakShadowSession({
       ...form,
@@ -1137,6 +1237,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         tutorMode: settings.tutorMode,
         autoAdvanceOnPass: settings.autoAdvanceOnPass,
         autoReadNextPhrase: settings.autoReadNextPhrase,
+        soundCuesEnabled: settings.soundCuesEnabled,
       });
       startSession(createSpeakShadowSession({
         title: selection.title,
@@ -1269,7 +1370,8 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         tutorMode,
         autoReadNextPhrase: tutorMode ? targetSession.settings?.autoReadNextPhrase ?? true : false,
         maxAutoListenRetries: tutorMode ? 2 : 1,
-        autoListenDelayMs: tutorMode ? 1000 : 800,
+        autoListenDelayMs: tutorMode ? 250 : 350,
+        readyBeepAfterListenStartsMs: 80,
         autoAdvanceDelayMs: tutorMode ? 1200 : 1000,
       },
       phrases: targetSession.phrases.map((phrase, index) => ({
@@ -1302,7 +1404,8 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         tutorMode,
         autoReadNextPhrase: tutorMode ? session.settings?.autoReadNextPhrase ?? true : false,
         maxAutoListenRetries: tutorMode ? 2 : 1,
-        autoListenDelayMs: tutorMode ? 1000 : 800,
+        autoListenDelayMs: tutorMode ? 250 : 350,
+        readyBeepAfterListenStartsMs: 80,
         autoAdvanceDelayMs: tutorMode ? 1200 : 1000,
       },
       phrases: weak.map((phrase, index) => ({
@@ -1491,6 +1594,14 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
           />
           <span>Auto-read next phrase in Tutor Mode</span>
         </label>
+        <label className="ss-checkbox">
+          <input
+            type="checkbox"
+            checked={form.soundCuesEnabled}
+            onChange={(event) => updateForm({ soundCuesEnabled: event.target.checked })}
+          />
+          <span>Sound cues</span>
+        </label>
       </div>
     );
   }
@@ -1550,10 +1661,21 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         </section>
 
         <aside
-          className={`ss-tutor-panel ss-tutor-panel--${sessionMode}${tutorPanelMinimized ? " is-minimized" : ""}${tutorChatCollapsed ? " is-chat-collapsed" : ""}`}
+          className={`ss-tutor-panel ss-tutor-panel--${sessionMode} ss-mobile-display--${mobileTutorDisplay} ss-mobile-placement--${floatingTutorPosition.placement}${isMobileTutorPlacement ? " is-mobile-managed" : ""}${tutorPanelMinimized ? " is-minimized" : ""}${tutorChatCollapsed ? " is-chat-collapsed" : ""}`}
           aria-label={isTutorMode(session) ? "Fox Tutor coach" : "Fox Challenge coach"}
-          style={tutorPanelPosition ? { left: `${tutorPanelPosition.left}px`, top: `${tutorPanelPosition.top}px` } : undefined}
+          style={tutorPanelStyle}
         >
+          <button
+            className="ss-mobile-bubble-button"
+            type="button"
+            onClick={() => {
+              setTutorPanelMinimized(false);
+              setTutorChatCollapsed(false);
+            }}
+            aria-label="Open Fox Tutor chat"
+          >
+            <img src="/images/foxchild-fox.png" alt="" />
+          </button>
           <div className="ss-tutor-header">
             <div
               className="ss-tutor-drag-handle"
@@ -1599,7 +1721,8 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
             </div>
             <div className="ss-fox-bubble">
               <span>{foxTutor.label}</span>
-              <p>{tutorMessage}</p>
+              <p className="ss-fox-message-full">{tutorMessage}</p>
+              <p className="ss-fox-message-mobile">{mobileTutorMessage}</p>
             </div>
           </div>
           {tutorPanelMinimized && (

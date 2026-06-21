@@ -4,12 +4,12 @@ import { pathForTab } from "../../utils/appRoutes.js";
 export const TABS = [
   { id: "home",       label: "Home"        },
   { id: "language",   label: "Language Ladder ✨", tone: "orange" },
+  { id: "speak-shadow", label: "Speak Lab", tone: "blue" },
   { id: "quiz",       label: "Quiz", tone: "blue" },
-  { id: "smart-test", label: "Smart Test 🧪", tone: "blue" },
   { id: "arcade",     label: "Arcade 🎮", tone: "orange" },
+  { id: "smart-test", label: "Smart Test 🧪", tone: "blue" },
   { id: "vocab",      label: "Vocabulary"  },
   { id: "reading",    label: "Reading"     },
-  { id: "speak-shadow", label: "Speak Lab", tone: "blue" },
   { id: "builder",    label: "Builder"     },
   { id: "crossword",  label: "Crossword"   },
   { id: "progress",   label: "Progress"    },
@@ -24,15 +24,15 @@ const DESKTOP_UTILITY_TABS = [
 export const MOBILE_PRIMARY_TABS = [
   { id: "home",       label: "Home",       icon: "🏠" },
   { id: "language",   label: "Ladder",     icon: "✨" },
-  { id: "quiz",       label: "Quiz",       icon: "✨" },
-  { id: "smart-test", label: "Smart Test", icon: "🧪" },
+  { id: "speak-shadow", label: "Speak",     icon: "S" },
   { id: "arcade",     label: "Arcade",     icon: "🎮" },
+  { id: "quiz",       label: "Quiz",       icon: "✨" },
 ];
 
 export const MOBILE_MORE_TABS = [
+  { id: "smart-test", label: "Smart Test", icon: "🧪" },
   { id: "vocab",      label: "Vocab",      icon: "📚" },
   { id: "reading",    label: "Read",       icon: "📖" },
-  { id: "speak-shadow", label: "Speak",     icon: "S" },
   { id: "builder",    label: "Builder",    icon: "🧩" },
   { id: "crossword",  label: "Crossword",  icon: "✏️" },
   { id: "progress",   label: "Progress",   icon: "📈" },
