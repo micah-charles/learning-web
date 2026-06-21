@@ -737,7 +737,6 @@ export default function SpeakShadowPage() {
       setTutorMessage(TUTOR_MESSAGES.unsupportedTts);
       return;
     }
-    stopSpeaking();
     abortAttempt();
     clearAutoTimer();
     clearListenTimer();
@@ -1164,7 +1163,6 @@ export default function SpeakShadowPage() {
     clearListenTimer();
     clearSpeechTimer();
     abortAttempt();
-    stopSpeaking();
     setIsSpeaking(true);
     const didStart = speakText(spokenToken, session.ttsLang || "en-GB", {
       rate: 0.85,
