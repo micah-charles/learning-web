@@ -140,6 +140,17 @@ export function resolveSpeakShadowSpeech({ language, voiceLocale } = {}) {
       recognitionLang: chineseVoice.recognitionLang,
     };
   }
+  const requestedLocale = String(voiceLocale || "").trim();
+  const localeMatchesLanguage = requestedLocale
+    && requestedLocale.toLowerCase().startsWith(`${languageConfig.id.toLowerCase()}-`);
+  if (localeMatchesLanguage) {
+    return {
+      language: languageConfig.id,
+      voiceLocale: requestedLocale,
+      ttsLang: requestedLocale,
+      recognitionLang: requestedLocale,
+    };
+  }
   return {
     language: languageConfig.id,
     voiceLocale: "",

@@ -1129,7 +1129,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     try {
       const selection = await loadSpeakLabPackageSelection(manifest, packageOption);
       const settings = settingsForMode(mode);
-      const voiceLocale = selection.language === "zh" ? form.voiceLocale : "";
+      const voiceLocale = selection.language === "zh" ? form.voiceLocale : selection.voiceLocale || "";
       commitPreferences({
         chineseVoiceLocale: form.voiceLocale,
         passThreshold: settings.minSimilarity,
