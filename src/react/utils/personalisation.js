@@ -10,12 +10,12 @@ export const ONBOARDING_VERSION = 1;
 export const ALL_MODULE_IDS = [
   "home",
   "language",
+  "speak-shadow",
   "quiz",
-  "smart-test",
   "arcade",
+  "smart-test",
   "vocab",
   "reading",
-  "speak-shadow",
   "builder",
   "crossword",
   "progress",
@@ -208,6 +208,14 @@ export function getWizardNeedsLevel(primaryGoal) {
   return primaryGoal === "school-revision" || primaryGoal === "reading";
 }
 
+function addLearnerEssentials(prefs, learnerType) {
+  if (!["student", "parent"].includes(learnerType) || isEverythingMode(prefs)) return prefs;
+  return {
+    ...prefs,
+    selectedModules: unique([...(prefs.selectedModules || []), "speak-shadow", "arcade"]),
+  };
+}
+
 function curriculumFromWizardLevel(level) {
   if (level === "ks3") return ["ks3"];
   if (level === "gcse") return ["gcse"];
@@ -215,60 +223,60 @@ function curriculumFromWizardLevel(level) {
   return [];
 }
 
-export function getPresetPrefsFromWizard({ primaryGoal, level } = {}) {
+export function getPresetPrefsFromWizard({ learnerType, primaryGoal, level } = {}) {
   if (primaryGoal === "explore") return getEverythingPrefs();
 
   if (primaryGoal === "languages") {
-    return normaliseOnboardingPrefs({
+    return addLearnerEssentials(normaliseOnboardingPrefs({
       selectedInterests: ["languages"],
       selectedModules: ["home", "language", "quiz", "vocab", "builder", "reading", "progress"],
       selectedSubjects: ["language"],
       selectedCurriculums: [],
-    });
+    }), learnerType);
   }
 
   if (primaryGoal === "school-revision") {
-    return normaliseOnboardingPrefs({
+    return addLearnerEssentials(normaliseOnboardingPrefs({
       selectedInterests: ["ks3-gcse"],
       selectedModules: ["home", "quiz", "reading", "builder", "progress"],
       selectedSubjects: [],
       selectedCurriculums: level === "unsure" || !level ? ["ks3", "gcse"] : curriculumFromWizardLevel(level),
-    });
+    }), learnerType);
   }
 
   if (primaryGoal === "reading") {
-    return normaliseOnboardingPrefs({
+    return addLearnerEssentials(normaliseOnboardingPrefs({
       selectedInterests: ["reading"],
       selectedModules: ["home", "reading", "quiz", "progress"],
       selectedSubjects: [],
       selectedCurriculums: curriculumFromWizardLevel(level),
-    });
+    }), learnerType);
   }
 
   if (primaryGoal === "games") {
-    return normaliseOnboardingPrefs({
+    return addLearnerEssentials(normaliseOnboardingPrefs({
       selectedInterests: ["mini-games"],
       selectedModules: ["home", "arcade", "quiz", "builder", "progress"],
       selectedSubjects: [],
       selectedCurriculums: [],
-    });
+    }), learnerType);
   }
 
   if (primaryGoal === "create-packs") {
-    return normaliseOnboardingPrefs({
+    return addLearnerEssentials(normaliseOnboardingPrefs({
       selectedInterests: ["create-packs"],
       selectedModules: ["home", "mypacks", "ai-prompt", "quiz", "reading", "progress"],
       selectedSubjects: [],
       selectedCurriculums: [],
-    });
+    }), learnerType);
   }
 
-  return normaliseOnboardingPrefs({
+  return addLearnerEssentials(normaliseOnboardingPrefs({
     selectedInterests: ["overview"],
     selectedModules: ["home", "about", "quiz", "reading", "arcade"],
     selectedSubjects: [],
     selectedCurriculums: [],
-  });
+  }), learnerType);
 }
 
 export function getWizardRecommendationLabels(prefs = {}) {
