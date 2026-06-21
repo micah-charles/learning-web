@@ -58,11 +58,7 @@ export function getVoices(lang) {
  * @param {string} lang - BCP-47 language code.
  * @returns {SpeechSynthesisVoice|null}
  */
-export function getPreferredVoice(lang) {
-  const voices = getVoices(lang);
-  if (!voices.length) return null;
-
-  // Prefer female-sounding voices, then high-quality ones
+function pickPreferredVoice(voices) {
   const preferredKeywords = ["female", "woman", "girl", "natural", "premium", "enhanced"];
   const avoidedKeywords = ["male", "man", "boy", "robotic", "default"];
 
@@ -71,7 +67,6 @@ export function getPreferredVoice(lang) {
     if (match) return match;
   }
 
-  // Avoid obviously male/robotic voices
   for (const voice of voices) {
     const name = voice.name.toLowerCase();
     if (!avoidedKeywords.some(k => name.includes(k))) {
@@ -80,6 +75,31 @@ export function getPreferredVoice(lang) {
   }
 
   return voices[0];
+}
+
+export function getPreferredVoice(lang) {
+  const primary = (lang || "").toLowerCase();
+  if (!primary) return null;
+
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+  const allVoices = window.speechSynthesis.getVoices();
+
+  // First try exact language match
+  const exact = allVoices.filter(v => v.lang.toLowerCase().replace("_", "-") === primary);
+  if (exact.length) {
+    const picked = pickPreferredVoice(exact);
+    if (picked) return picked;
+  }
+
+  // Fall back to any voice starting with the base language code
+  const base = primary.split("-")[0];
+  const regional = allVoices.filter(v => v.lang.toLowerCase().replace("_", "-").startsWith(base + "-"));
+  if (regional.length) {
+    const picked = pickPreferredVoice(regional);
+    if (picked) return picked;
+  }
+
+  return null;
 }
 
 /**
