@@ -5,7 +5,7 @@
  * Uses admin-storage.js for localStorage-backed pack management.
  * Supports single .json files and .zip bundles containing multiple JSON packs.
  */
-import { useState, useRef, useCallback } from "react";
+import { useMemo, useState, useRef, useCallback } from "react";
 import {
   listUploadedPacks,
   saveUploadedPack,
@@ -13,6 +13,12 @@ import {
   validatePack,
 } from "@/admin-storage.js";
 import { useManifest } from "../context/ManifestContext.jsx";
+import { useProgress } from "../context/ProgressContext.jsx";
+import {
+  getSpeakShadowSessions,
+  summarizeSpeakShadowSession,
+  formatLocalDateTime,
+} from "../utils/localLearningAssets.js";
 
 // Compact "How it works" timeline shown on the AI Learning Pack Creator card.
 const HOW_IT_WORKS_STEPS = [
@@ -145,10 +151,62 @@ function PackRow({ pack, onDelete }) {
   );
 }
 
+function exportJsonFile(filename, payload) {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
+function SavedPracticeRow({ session, onResume, onDelete, onExport }) {
+  const [confirming, setConfirming] = useState(false);
+  const summary = summarizeSpeakShadowSession(session);
+  return (
+    <div className="mp-asset-row" data-testid={`saved-speak-lab-${summary.id}`}>
+      <div>
+        <div className="mp-asset-title">{summary.title}</div>
+        <div className="mp-asset-meta">
+          <span className="lw-chip blue">Speak Lab</span>
+          <span className="lw-chip">{summary.mode === "challenge" ? "Challenge" : "Tutor"}</span>
+          <span className="lw-chip">{summary.passedPhrases}/{summary.phraseCount} phrases</span>
+          {summary.averageScore !== null && <span className="lw-chip green">{summary.averageScore}% avg</span>}
+          <span className="lw-chip">{formatLocalDateTime(summary.lastPractisedAt)}</span>
+        </div>
+      </div>
+      <div className="mp-asset-actions">
+        <button className="lw-btn lw-btn-primary" type="button" onClick={() => onResume(session.sessionId)}>
+          Continue
+        </button>
+        <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onExport(session)}>
+          Export
+        </button>
+        {confirming ? (
+          <>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => { onDelete(session.sessionId); setConfirming(false); }}>
+              Yes, delete
+            </button>
+            <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setConfirming(false)}>
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => setConfirming(true)}>
+            Remove
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── MyPacksPage ──────────────────────────────────────────────────────────────
 
 export default function MyPacksPage({ onNavigate }) {
   const { rehydrate } = useManifest();
+  const { progress, updateProgress } = useProgress();
   const fileInputRef = useRef(null);
   const [packs, setPacks]       = useState(() => listUploadedPacks());
   const [results, setResults]   = useState(null); // upload results
@@ -191,6 +249,39 @@ export default function MyPacksPage({ onNavigate }) {
 
   const successCount = (results || []).filter((r) => r.ok).length;
   const failCount    = (results || []).filter((r) => !r.ok).length;
+  const savedSpeakLabSessions = useMemo(() => getSpeakShadowSessions(progress), [progress]);
+
+  function handleResumeSpeakLabSession(sessionId) {
+    updateProgress((state) => {
+      if (!state.speakShadow?.sessions?.[sessionId]) return;
+      state.speakShadow.lastSessionId = sessionId;
+      state.speakShadow.recentSessionIds = [
+        sessionId,
+        ...(state.speakShadow.recentSessionIds || []).filter((id) => id !== sessionId),
+      ];
+    });
+    onNavigate?.("speak-shadow", { resumeSessionId: sessionId });
+  }
+
+  function handleDeleteSpeakLabSession(sessionId) {
+    updateProgress((state) => {
+      if (!state.speakShadow) return;
+      delete state.speakShadow.sessions?.[sessionId];
+      state.speakShadow.recentSessionIds = (state.speakShadow.recentSessionIds || []).filter((id) => id !== sessionId);
+      if (state.speakShadow.lastSessionId === sessionId) {
+        state.speakShadow.lastSessionId = state.speakShadow.recentSessionIds[0] || "";
+      }
+    });
+  }
+
+  function handleExportSpeakLabSession(session) {
+    const safeTitle = String(session.title || "speak-lab-practice").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "speak-lab-practice";
+    exportJsonFile(`${safeTitle}-${new Date().toISOString().slice(0, 10)}.json`, {
+      schemaVersion: "speak-shadow-session.v1",
+      exportedAt: new Date().toISOString(),
+      session,
+    });
+  }
 
   return (
     <div className="lw-page">
@@ -310,6 +401,28 @@ export default function MyPacksPage({ onNavigate }) {
         ) : (
           packs.map((pack) => (
             <PackRow key={pack.id} pack={pack} onDelete={handleDelete} />
+          ))
+        )}
+      </div>
+
+      <div className="lw-card" style={{ marginTop: "20px" }}>
+        <h2 className="lw-section-title">Saved Speak Lab Practices ({savedSpeakLabSessions.length})</h2>
+        <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem", marginBottom: "16px" }}>
+          Manage read-aloud practices saved from Speak Lab. These are local browser practices, separate from uploaded JSON packs.
+        </p>
+        {savedSpeakLabSessions.length === 0 ? (
+          <p style={{ color: "var(--lw-muted)", fontSize: "0.88rem" }}>
+            No Speak Lab practices saved yet. Start a Speak Lab session with “Save to browser profile” enabled.
+          </p>
+        ) : (
+          savedSpeakLabSessions.map((session) => (
+            <SavedPracticeRow
+              key={session.sessionId}
+              session={session}
+              onResume={handleResumeSpeakLabSession}
+              onDelete={handleDeleteSpeakLabSession}
+              onExport={handleExportSpeakLabSession}
+            />
           ))
         )}
       </div>

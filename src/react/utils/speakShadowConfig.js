@@ -49,6 +49,7 @@ export const DEFAULT_SPEAK_SHADOW_SETTINGS = {
   scorePartialImmediatelyIfPass: true,
   waitForContinuationIfTooShort: true,
   minCompletionRatioBeforeFail: 0.65,
+  maxIncompleteCompletionRatio: 0.92,
 };
 
 export const PHRASE_LENGTHS = {
@@ -137,6 +138,17 @@ export function resolveSpeakShadowSpeech({ language, voiceLocale } = {}) {
       voiceLocale: chineseVoice.id,
       ttsLang: chineseVoice.ttsLang,
       recognitionLang: chineseVoice.recognitionLang,
+    };
+  }
+  const requestedLocale = String(voiceLocale || "").trim();
+  const localeMatchesLanguage = requestedLocale
+    && requestedLocale.toLowerCase().startsWith(`${languageConfig.id.toLowerCase()}-`);
+  if (localeMatchesLanguage) {
+    return {
+      language: languageConfig.id,
+      voiceLocale: requestedLocale,
+      ttsLang: requestedLocale,
+      recognitionLang: requestedLocale,
     };
   }
   return {

@@ -1,7 +1,15 @@
 import { listPassageGroups, loadPassagePack } from "@/data.js";
 import { getSpeakShadowLanguageByLocale } from "./speakShadowConfig.js";
 
-const CHINESE_SPEAK_LAB_PACK_PATH = "data/SpeakLabPacks/chinese_reading/pack_unified.json";
+const SPEAK_LAB_PACK_PATHS = [
+  "data/SpeakLabPacks/chinese_reading/pack_unified.json",
+  "data/SpeakLabPacks/speak_lab_french_reading/pack_unified.json",
+  "data/SpeakLabPacks/speak_lab_german_reading/pack_unified.json",
+  "data/SpeakLabPacks/speak_lab_japanese_reading/pack_unified.json",
+  "data/SpeakLabPacks/speak_lab_spanish_reading/pack_unified.json",
+  "data/SpeakLabPacks/speak_lab_uk_english_reading/pack_unified.json",
+  "data/SpeakLabPacks/speak_lab_us_english_reading/pack_unified.json",
+];
 const LANGUAGE_READING_PACK_IDS = new Set([
   "bbc_bitesize_german",
   "deutsche_welle_nicos_weg",
@@ -10,7 +18,7 @@ const LANGUAGE_READING_PACK_IDS = new Set([
   "others",
 ]);
 
-let chineseSpeakLabPackPromise = null;
+const speakLabPackPromises = new Map();
 
 async function fetchJson(path) {
   const response = await fetch(`./${path}`);
@@ -18,11 +26,11 @@ async function fetchJson(path) {
   return response.json();
 }
 
-async function loadChineseSpeakLabPack() {
-  if (!chineseSpeakLabPackPromise) {
-    chineseSpeakLabPackPromise = fetchJson(CHINESE_SPEAK_LAB_PACK_PATH);
+async function loadSpeakLabPack(path) {
+  if (!speakLabPackPromises.has(path)) {
+    speakLabPackPromises.set(path, fetchJson(path));
   }
-  return chineseSpeakLabPackPromise;
+  return speakLabPackPromises.get(path);
 }
 
 function passageItemTitle(item) {
@@ -43,21 +51,25 @@ function readingGroupLanguage(group) {
 }
 
 export async function listSpeakLabPackageOptions(manifest) {
-  const chinesePack = await loadChineseSpeakLabPack();
-  const chineseItems = Array.isArray(chinesePack.items) ? chinesePack.items : [];
-  const chineseOptions = chineseItems
-    .filter((item) => item?.type === "passage" && passageItemText(item))
-    .map((item) => ({
-      id: `${chinesePack.packId}::${item.id}`,
-      source: "speak_lab_chinese",
-      packPath: CHINESE_SPEAK_LAB_PACK_PATH,
-      packId: chinesePack.packId,
-      itemId: item.id,
-      displayName: passageItemTitle(item),
-      language: "zh",
-      sourceLanguageCode: chinesePack.sourceLanguageCode || chinesePack.speechLanguage || "zh-HK",
-      speechLanguage: chinesePack.speechLanguage || chinesePack.sourceLanguageCode || "zh-HK",
-    }));
+  const speakLabPacks = await Promise.all(SPEAK_LAB_PACK_PATHS.map(async (packPath) => ({ packPath, pack: await loadSpeakLabPack(packPath) })));
+  const speakLabOptions = speakLabPacks.flatMap(({ packPath, pack }) => {
+    const items = Array.isArray(pack?.items) ? pack.items : [];
+    const speechLanguage = pack?.speechLanguage || pack?.sourceLanguageCode || "";
+    const language = getSpeakShadowLanguageByLocale(speechLanguage).id;
+    return items
+      .filter((item) => item?.type === "passage" && passageItemText(item))
+      .map((item) => ({
+        id: `${pack.packId}::${item.id}`,
+        source: "speak_lab_pack",
+        packPath,
+        packId: pack.packId,
+        itemId: item.id,
+        displayName: passageItemTitle(item),
+        language,
+        sourceLanguageCode: pack.sourceLanguageCode || speechLanguage,
+        speechLanguage,
+      }));
+  });
 
   const languageReadingOptions = listPassageGroups(manifest || {})
     .filter((group) => group?.subject === "language" && LANGUAGE_READING_PACK_IDS.has(group.id))
@@ -71,22 +83,24 @@ export async function listSpeakLabPackageOptions(manifest) {
       speechLanguage: group.speechLanguage,
     }));
 
-  return [...chineseOptions, ...languageReadingOptions];
+  return [...speakLabOptions, ...languageReadingOptions];
 }
 
 export async function loadSpeakLabPackageSelection(manifest, option) {
   if (!option) throw new Error("Choose a reading package first.");
 
-  if (option.source === "speak_lab_chinese") {
-    const pack = await loadChineseSpeakLabPack();
+  if (option.source === "speak_lab_pack" || option.source === "speak_lab_chinese") {
+    const pack = await loadSpeakLabPack(option.packPath || SPEAK_LAB_PACK_PATHS[0]);
     const item = (pack.items || []).find((entry) => entry.id === option.itemId);
     const text = passageItemText(item);
     if (!item || !text) throw new Error("That Speak Lab package has no readable text.");
+    const speechLanguage = item?.data?.speechLanguage || option.speechLanguage || pack.speechLanguage || pack.sourceLanguageCode || "";
+    const language = getSpeakShadowLanguageByLocale(speechLanguage).id;
     return {
       title: passageItemTitle(item),
       text,
-      language: "zh",
-      voiceLocale: "zh-HK",
+      language,
+      voiceLocale: speechLanguage,
       sourceType: "speak_lab_package",
       sourcePackageId: option.id,
     };

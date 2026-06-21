@@ -285,7 +285,7 @@ function RecentSessions({ sessions, onResume, onStartNew }) {
           Continue
         </button>
         <button className="lw-btn lw-btn-ghost" type="button" onClick={onStartNew}>
-          Start New
+          Start New Practice
         </button>
       </div>
       {sessions.length > 1 && (
@@ -302,7 +302,7 @@ function RecentSessions({ sessions, onResume, onStartNew }) {
   );
 }
 
-function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }) {
+function CompletionScreen({ session, onRestart, onTutor, onChallenge, onWeakOnly, onNew }) {
   const summary = summarizeSession(session);
   const mode = getSessionMode(session);
   const isTutor = mode === "tutor";
@@ -330,6 +330,11 @@ function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }
             Try Challenge Mode
           </button>
         )}
+        {!isTutor && (
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={onTutor}>
+            Practise with Fox Tutor
+          </button>
+        )}
         {summary.weakPhrases.length > 0 && (
           <button className="lw-btn lw-btn-secondary" type="button" onClick={onWeakOnly}>
             {isTutor ? "Review weak sentences" : "Practise weak sentences with Fox"}
@@ -341,7 +346,7 @@ function CompletionScreen({ session, onRestart, onChallenge, onWeakOnly, onNew }
   );
 }
 
-export default function SpeakShadowPage() {
+export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed } = {}) {
   const { manifest, loading: manifestLoading } = useManifest();
   const { progress, updateProgress } = useProgress();
   const deepLinkParams = useMemo(() => getSpeakLabDeepLinkParams(), []);
@@ -353,6 +358,7 @@ export default function SpeakShadowPage() {
   const [packageLoading, setPackageLoading] = useState(false);
   const [packageLoadError, setPackageLoadError] = useState("");
   const [session, setSession] = useState(null);
+  const [showSavedPracticePrompt, setShowSavedPracticePrompt] = useState(true);
   const [tutorState, setTutorState] = useState(TUTOR_STATES.READY);
   const [tutorMessage, setTutorMessage] = useState(TUTOR_MESSAGES.intro);
   const [lastAttempt, setLastAttempt] = useState(null);
@@ -363,6 +369,7 @@ export default function SpeakShadowPage() {
   const [error, setError] = useState("");
   const [promptCopied, setPromptCopied] = useState(false);
   const sessionStateRef = useRef(null);
+  const setupCardRef = useRef(null);
   const currentPhraseRef = useRef(null);
   const autoTimerRef = useRef(null);
   const listenTimerRef = useRef(null);
@@ -420,7 +427,6 @@ export default function SpeakShadowPage() {
   const tutorStatusLabel = getTutorStatusLabel(tutorContext);
   const tutorChatMessages = buildTutorChatMessages(tutorContext);
   const tutorNextStepLabel = getNextStepLabel(tutorContext);
-  const isEasyCurrentPhrase = currentPhrase?.difficulty === "easy";
   const packageLanguageOptions = useMemo(() => {
     const counts = new Map();
     speakLabPackages.forEach((item) => counts.set(item.language, (counts.get(item.language) || 0) + 1));
@@ -435,6 +441,19 @@ export default function SpeakShadowPage() {
   );
   const selectedPackage = speakLabPackages.find((item) => item.id === packageId);
   const selectedPackageLanguage = selectedPackage?.language || packageLanguage;
+
+  useEffect(() => {
+    if (!initialResumeId || session) return;
+    const saved = progress?.speakShadow?.sessions?.[initialResumeId];
+    if (!saved) {
+      onResumeConsumed?.();
+      return;
+    }
+    startSession(saved);
+    onResumeConsumed?.();
+  // startSession intentionally omitted so this handoff runs once for the requested id.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialResumeId, onResumeConsumed, progress?.speakShadow?.sessions, session]);
 
   useEffect(() => () => {
     stopSpeaking();
@@ -737,7 +756,6 @@ export default function SpeakShadowPage() {
       setTutorMessage(TUTOR_MESSAGES.unsupportedTts);
       return;
     }
-    stopSpeaking();
     abortAttempt();
     clearAutoTimer();
     clearListenTimer();
@@ -1111,7 +1129,7 @@ export default function SpeakShadowPage() {
     try {
       const selection = await loadSpeakLabPackageSelection(manifest, packageOption);
       const settings = settingsForMode(mode);
-      const voiceLocale = selection.language === "zh" ? form.voiceLocale : "";
+      const voiceLocale = selection.language === "zh" ? form.voiceLocale : selection.voiceLocale || "";
       commitPreferences({
         chineseVoiceLocale: form.voiceLocale,
         passThreshold: settings.minSimilarity,
@@ -1157,6 +1175,16 @@ export default function SpeakShadowPage() {
     });
   }
 
+  function handleStartNewPractice() {
+    stopAllAudio();
+    setSession(null);
+    setShowSavedPracticePrompt(false);
+    window.requestAnimationFrame(() => {
+      setupCardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setupCardRef.current?.focus({ preventScroll: true });
+    });
+  }
+
   function handleListenToToken(token) {
     const spokenToken = String(token || "").trim();
     if (!session || !spokenToken || !isSpeakablePhraseToken(spokenToken) || !synthesisSupported) return;
@@ -1164,7 +1192,6 @@ export default function SpeakShadowPage() {
     clearListenTimer();
     clearSpeechTimer();
     abortAttempt();
-    stopSpeaking();
     setIsSpeaking(true);
     const didStart = speakText(spokenToken, session.ttsLang || "en-GB", {
       rate: 0.85,
@@ -1476,6 +1503,7 @@ export default function SpeakShadowPage() {
         <CompletionScreen
           session={session}
           onRestart={() => restartSession(session)}
+          onTutor={() => restartSession(session, "tutor")}
           onChallenge={() => restartSession(session, "challenge")}
           onWeakOnly={() => practiseWeakPhrases("tutor")}
           onNew={() => setSession(null)}
@@ -1632,7 +1660,7 @@ export default function SpeakShadowPage() {
           <div className="ss-token-row" aria-label="Current phrase tokens">
             {currentPhrase.tokens.map((token, index) => {
               const tokenKey = `${token}-${index}`;
-              if (isEasyCurrentPhrase && isSpeakablePhraseToken(token)) {
+              if (isSpeakablePhraseToken(token)) {
                 return (
                   <button
                     key={tokenKey}
@@ -1728,13 +1756,15 @@ export default function SpeakShadowPage() {
 
   return (
     <div className="lw-page ss-page">
-      <RecentSessions
-        sessions={savedSessions}
-        onResume={(saved) => startSession(saved)}
-        onStartNew={() => setSession(null)}
-      />
+      {showSavedPracticePrompt && (
+        <RecentSessions
+          sessions={savedSessions}
+          onResume={(saved) => startSession(saved)}
+          onStartNew={handleStartNewPractice}
+        />
+      )}
 
-      <section className="lw-card ss-entry-card">
+      <section className="lw-card ss-entry-card" ref={setupCardRef} tabIndex={-1}>
         <span className="lw-chip blue">New module</span>
         <h1>Speak & Shadow Lab</h1>
         <p className="lw-subtitle">Practise reading aloud with a guided tutor</p>

@@ -30,6 +30,11 @@ import {
   getDatasetCurriculum,
 } from "@/data.js";
 import { formatPercent } from "@/utils.js";
+import {
+  formatLocalDateTime,
+  getLanguageLadderSummary,
+  getSpeakShadowSummary,
+} from "../utils/localLearningAssets.js";
 
 // ─── Progress catalog builder ─────────────────────────────────────────────────
 
@@ -161,6 +166,49 @@ function ActivityDayCard({ row }) {
   );
 }
 
+function HistoryTable({ columns, rows, emptyText, renderRow }) {
+  if (!rows.length) {
+    return (
+      <p style={{ color: "var(--lw-muted)", fontSize: "0.85rem", margin: "8px 0 0" }}>
+        {emptyText}
+      </p>
+    );
+  }
+  return (
+    <div className="lw-history-table-wrap">
+      <table className="lw-history-table">
+        <thead>
+          <tr>
+            {columns.map((column) => <th key={column}>{column}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(renderRow)}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function languageLabel(code) {
+  const labels = {
+    de: "German",
+    es: "Spanish",
+    fr: "French",
+    zh: "Chinese",
+    "de-DE": "German",
+    "es-ES": "Spanish",
+    "fr-FR": "French",
+    "zh-CN": "Chinese",
+    "zh-HK": "Chinese",
+  };
+  return labels[code] || code || "Language";
+}
+
+function statusLabel(status) {
+  return String(status || "in_progress").replace(/_/g, " ");
+}
+
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function ProgressPage() {
@@ -198,6 +246,8 @@ export default function ProgressPage() {
   const recentDays   = useMemo(() => getRecentActivity(progress, 5),                        [progress]);
   const struggled    = useMemo(() => catalog ? getStruggledItems(progress, 20, catalog)    : [], [progress, catalog]);
   const recommend    = useMemo(() => catalog ? getRecommendedPractice(progress, catalog, 6) : [], [progress, catalog]);
+  const speakLabSummary = useMemo(() => getSpeakShadowSummary(progress), [progress]);
+  const languageLadderSummary = useMemo(() => getLanguageLadderSummary(progress), [progress]);
 
   function handleClearSessions() {
     if (!window.confirm(`Clear all ${sessionCount} quiz sessions? This cannot be undone.`)) return;
@@ -250,6 +300,8 @@ export default function ProgressPage() {
           label={lastQuizPct !== null ? "last quiz score" : "no quiz yet"}
           icon={lastQuizPct !== null ? "✅" : "🔒"}
         />
+        <SnapshotCard value={speakLabSummary.practiceCount} label="speak lab practices" icon="🎙️" />
+        <SnapshotCard value={languageLadderSummary.completed} label="ladder lessons done" icon="✨" />
       </div>
 
       {/* ── Management card ─────────────────────────────────────────────── */}
@@ -324,6 +376,71 @@ export default function ProgressPage() {
             {recentDays.map((row, i) => <ActivityDayCard key={i} row={row} />)}
           </div>
         )}
+      </div>
+
+      {/* ── Speak Lab and Language Ladder History ───────────────────────── */}
+      <div className="lw-card" style={{ marginBottom: "16px" }}>
+        <h2 className="lw-section-title">Speak Lab & Language Ladder History</h2>
+        <p style={{ color: "var(--lw-muted)", fontSize: "0.85rem", marginBottom: "14px" }}>
+          Read-aloud practice and language lessons are tracked in this browser alongside quiz progress.
+        </p>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "16px" }}>
+          <SummaryCard label="Speak Lab practices" value={speakLabSummary.practiceCount} />
+          <SummaryCard label="Speak Lab attempts" value={speakLabSummary.totalAttempts} />
+          <SummaryCard label="Phrases passed" value={`${speakLabSummary.passedPhrases}/${speakLabSummary.totalPhrases}`} />
+          <SummaryCard label="Speak Lab avg" value={speakLabSummary.averageScore !== null ? `${speakLabSummary.averageScore}%` : "—"} />
+          <SummaryCard label="Ladder complete" value={languageLadderSummary.completed} />
+          <SummaryCard label="Ladder review" value={languageLadderSummary.needsReview} />
+          <SummaryCard label="Ladder attempts" value={languageLadderSummary.attempts} />
+          <SummaryCard label="Ladder avg" value={languageLadderSummary.averageScore !== null ? `${languageLadderSummary.averageScore}%` : "—"} />
+        </div>
+
+        <div className="lw-history-grid">
+          <section>
+            <h3 className="lw-history-heading">Speak Lab Practice</h3>
+            <HistoryTable
+              columns={["Practice", "Mode", "Progress", "Attempts", "Average", "Last practised"]}
+              rows={speakLabSummary.rows.slice(0, 12)}
+              emptyText="No saved Speak Lab practice yet."
+              renderRow={(row) => (
+                <tr key={row.id}>
+                  <td>
+                    <strong>{row.title}</strong>
+                    <div className="lw-history-muted">{languageLabel(row.language)}</div>
+                  </td>
+                  <td><span className="lw-chip blue">{row.mode === "challenge" ? "Challenge" : "Tutor"}</span></td>
+                  <td>{row.passedPhrases}/{row.phraseCount} passed</td>
+                  <td>{row.attempts}</td>
+                  <td>{row.averageScore !== null ? `${row.averageScore}%` : "—"}</td>
+                  <td>{formatLocalDateTime(row.lastPractisedAt)}</td>
+                </tr>
+              )}
+            />
+          </section>
+
+          <section>
+            <h3 className="lw-history-heading">Language Ladder Lessons</h3>
+            <HistoryTable
+              columns={["Lesson", "Language", "Status", "Attempts", "Score", "Last practised"]}
+              rows={languageLadderSummary.rows.slice(0, 12)}
+              emptyText="No Language Ladder lesson history yet."
+              renderRow={(row) => {
+                const tone = row.status === "completed" ? "green" : row.status === "needs_review" ? "coral" : "blue";
+                return (
+                  <tr key={row.id}>
+                    <td><strong>{row.lessonId}</strong></td>
+                    <td>{languageLabel(row.targetLang)}</td>
+                    <td><span className={`lw-chip ${tone}`}>{statusLabel(row.status)}</span></td>
+                    <td>{row.attempts}</td>
+                    <td>{row.lastScore !== null ? `${row.lastScore}%` : "—"}</td>
+                    <td>{formatLocalDateTime(row.practisedAt)}</td>
+                  </tr>
+                );
+              }}
+            />
+          </section>
+        </div>
       </div>
 
       {/* ── Package Progress ─────────────────────────────────────────────── */}

@@ -73,6 +73,7 @@ function AppContent() {
   const [activeTab, setActiveTab]         = useState(() => getCurrentRoute().tab);
   const [routeNotFound, setRouteNotFound] = useState(() => getCurrentRoute().notFound);
   const [quizCustomWords, setQuizCustomWords] = useState(null);
+  const [speakShadowResumeId, setSpeakShadowResumeId] = useState("");
 
   const prefs = progress?.prefs || {};
   const hasUploadedPacks = useMemo(() => listUploadedPacks().length > 0, []);
@@ -98,6 +99,7 @@ function AppContent() {
     } else if (tab !== "__reset__") {
       setQuizCustomWords(null);
     }
+    setSpeakShadowResumeId(tab === "speak-shadow" && opts.resumeSessionId ? opts.resumeSessionId : "");
     setRouteNotFound(false);
     setActiveTab(tab);
     if (typeof window === "undefined" || tab === "__reset__") return;
@@ -217,7 +219,12 @@ function AppContent() {
         {activeTab === "vocab"     && <VocabPage     />}
         {activeTab === "quiz"      && <QuizPage      initialCustomWords={quizCustomWords} />}
         {activeTab === "reading"   && <ReadingPage   />}
-        {activeTab === "speak-shadow" && <SpeakShadowPage />}
+        {activeTab === "speak-shadow" && (
+          <SpeakShadowPage
+            initialResumeId={speakShadowResumeId}
+            onResumeConsumed={() => setSpeakShadowResumeId("")}
+          />
+        )}
         {activeTab === "builder"   && <BuilderPage   />}
         {activeTab === "language"  && <LanguagePage  />}
         {activeTab === "crossword" && <CrosswordPage />}
