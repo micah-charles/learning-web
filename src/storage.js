@@ -133,6 +133,7 @@ export const DEFAULT_STATE = {
       tutorMode: true,
       autoAdvanceOnPass: true,
       autoReadNextPhrase: true,
+      soundCuesEnabled: true,
     },
     recentSessionIds: [],
     lastSessionId: "",
