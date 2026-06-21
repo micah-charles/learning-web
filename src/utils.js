@@ -129,14 +129,26 @@ function findVoiceForSpeech(synth, language, options) {
   const candidates = [language, ...(Array.isArray(options.languageFallbacks) ? options.languageFallbacks : [])]
     .map(normalizeSpeechLang)
     .filter(Boolean);
+
+  // First pass: exact language match
   for (const candidate of candidates) {
     const exact = voices.find((voice) => normalizeSpeechLang(voice.lang) === candidate);
     if (exact) return exact;
   }
+
+  // Second pass: region-specific match (e.g. "zh-hk" -> voices with "zh-hk" prefix)
+  for (const candidate of candidates) {
+    const parts = candidate.split("-");
+    const regionKey = parts.length >= 2 ? `${parts[0]}-${parts[1]}` : parts[0];
+    const regional = voices.find((voice) => normalizeSpeechLang(voice.lang).startsWith(regionKey));
+    if (regional) return regional;
+  }
+
+  // Final fallback: any voice with the same base language
   for (const candidate of candidates) {
     const base = candidate.split("-")[0];
-    const regional = voices.find((voice) => normalizeSpeechLang(voice.lang).startsWith(`${base}-`));
-    if (regional) return regional;
+    const anyRegional = voices.find((voice) => normalizeSpeechLang(voice.lang).startsWith(`${base}-`));
+    if (anyRegional) return anyRegional;
   }
   return null;
 }
