@@ -253,8 +253,17 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
     Math.min(1, (keywordScore * 0.45) + (orderScore * 0.25) + (characterScore * 0.3)),
   );
   const cjkCompletion = ["zh", "ja"].includes(language) ? cjkCompletionScore(scoringExpected, scoringTranscript) : 1;
+  const isCjkLanguage = ["zh", "ja"].includes(language);
+  const cjkScoringMode = settings.cjkScoringMode || "smooth";
+  const cjkSmoothConfidencePasses = (
+    isCjkLanguage
+    && cjkScoringMode === "smooth"
+    && numericConfidence !== null
+    && numericConfidence >= (settings.cjkSmoothMinConfidence ?? 0.8)
+    && cjkCompletion >= (settings.cjkSmoothMinCompletion ?? 0.85)
+  );
   const cjkNearMatchPasses = (
-    ["zh", "ja"].includes(language)
+    isCjkLanguage
     && numericConfidence !== null
     && numericConfidence >= (settings.highConfidenceNearMatchMinConfidence ?? 0.8)
     && similarity >= (settings.highConfidenceNearMatchMinSimilarity ?? 0.8)
@@ -263,17 +272,20 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
   );
   const requiredGatePasses = !requiredTokens.length || keywordScore >= 0.75;
   const strictGatePasses = strictTokenScore >= 1;
-  const cjkCompletionGatePasses = !["zh", "ja"].includes(language) || cjkCompletion >= (settings.minCjkCompletionForPass ?? 0.85);
+  const cjkCompletionGatePasses = !isCjkLanguage || cjkCompletion >= (settings.minCjkCompletionForPass ?? 0.85);
   const strongAlternativeMatch = source === "alternative" && similarity >= 0.95 && requiredGatePasses && strictGatePasses;
-  const strongCjkEquivalentMatch = ["zh", "ja"].includes(language) && ["exact", "normalized", "equivalent"].includes(matchType) && similarity >= minSimilarity && requiredGatePasses && strictGatePasses;
+  const strongCjkEquivalentMatch = isCjkLanguage && ["exact", "normalized", "equivalent"].includes(matchType) && similarity >= minSimilarity && requiredGatePasses && strictGatePasses;
   const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence || strongAlternativeMatch || strongCjkEquivalentMatch;
   const passed = (
-    (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses) || cjkNearMatchPasses)
+    (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses) || cjkNearMatchPasses || cjkSmoothConfidencePasses)
     && confidencePasses
     && strictGatePasses
     && cjkCompletionGatePasses
   );
-  if (cjkNearMatchPasses && !["exact", "normalized", "equivalent", "alternative"].includes(matchType)) {
+  if (cjkSmoothConfidencePasses && !["exact", "normalized", "equivalent", "alternative"].includes(matchType)) {
+    matchType = "high_confidence_cjk";
+  }
+  if (cjkNearMatchPasses && !["exact", "normalized", "equivalent", "alternative", "high_confidence_cjk"].includes(matchType)) {
     matchType = "high_confidence_near_match";
   }
   const diffNormalizer = matchType === "equivalent" && equivalentNormalizer ? equivalentNormalizer : normalizer;
