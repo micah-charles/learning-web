@@ -44,6 +44,7 @@ const INITIAL_FORM = {
   phraseLength: "medium",
   passThreshold: 85,
   minConfidence: 60,
+  cjkScoringMode: "smooth",
   tutorMode: true,
   autoAdvanceOnPass: true,
   autoReadNextPhrase: true,
@@ -95,6 +96,7 @@ function settingsFromForm(form) {
     phraseLength: form.phraseLength,
     minSimilarity: clampPercent(form.passThreshold, 85) / 100,
     minConfidence: clampPercent(form.minConfidence, 60) / 100,
+    cjkScoringMode: form.cjkScoringMode || DEFAULT_SPEAK_SHADOW_SETTINGS.cjkScoringMode,
     tutorMode: Boolean(form.tutorMode),
     guidedAutoListen: true,
     autoAdvanceOnPass: Boolean(form.autoAdvanceOnPass),
@@ -263,6 +265,7 @@ function preferencesFromProgress(progress) {
     chineseVoiceLocale: progress?.speakShadow?.preferences?.chineseVoiceLocale || DEFAULT_CHINESE_VOICE_LOCALE,
     passThreshold: percentFromPreference(progress?.speakShadow?.preferences?.passThreshold ?? 0.85, 85),
     minConfidence: percentFromPreference(progress?.speakShadow?.preferences?.minConfidence ?? 0.6, 60),
+    cjkScoringMode: progress?.speakShadow?.preferences?.cjkScoringMode || DEFAULT_SPEAK_SHADOW_SETTINGS.cjkScoringMode,
     tutorMode: progress?.speakShadow?.preferences?.tutorMode ?? true,
     autoAdvanceOnPass: progress?.speakShadow?.preferences?.autoAdvanceOnPass ?? true,
     autoReadNextPhrase: progress?.speakShadow?.preferences?.autoReadNextPhrase ?? true,
@@ -562,6 +565,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       voiceLocale: prefs.chineseVoiceLocale,
       passThreshold: prefs.passThreshold,
       minConfidence: prefs.minConfidence,
+      cjkScoringMode: prefs.cjkScoringMode,
       tutorMode,
       autoAdvanceOnPass: prefs.autoAdvanceOnPass,
       autoReadNextPhrase: tutorMode ? prefs.autoReadNextPhrase : false,
@@ -1209,6 +1213,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
       chineseVoiceLocale: form.voiceLocale,
       passThreshold: settings.minSimilarity,
       minConfidence: settings.minConfidence,
+      cjkScoringMode: settings.cjkScoringMode,
       tutorMode: settings.tutorMode,
       autoAdvanceOnPass: settings.autoAdvanceOnPass,
       autoReadNextPhrase: settings.autoReadNextPhrase,
@@ -1234,6 +1239,7 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
         chineseVoiceLocale: form.voiceLocale,
         passThreshold: settings.minSimilarity,
         minConfidence: settings.minConfidence,
+        cjkScoringMode: settings.cjkScoringMode,
         tutorMode: settings.tutorMode,
         autoAdvanceOnPass: settings.autoAdvanceOnPass,
         autoReadNextPhrase: settings.autoReadNextPhrase,
@@ -1500,6 +1506,8 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
     if (attempt.matchType === "normalized") return "Accepted after language normalisation";
     if (attempt.matchType === "alternative") return "Accepted from browser alternative";
     if (attempt.matchType === "equivalent") return "Accepted as near-equivalent";
+    if (attempt.matchType === "high_confidence_cjk") return "Accepted by smooth CJK confidence";
+    if (attempt.matchType === "high_confidence_near_match") return "Accepted from high-confidence near match";
     return "Similarity score";
   }
 
@@ -1578,6 +1586,19 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
             onChange={(event) => updateForm({ minConfidence: clampPercent(event.target.value, 60) })}
           />
         </label>
+        {["zh", "ja"].includes(activeLanguage) && (
+          <label className="ss-field">
+            <span>Chinese/Japanese scoring</span>
+            <select
+              value={form.cjkScoringMode}
+              onChange={(event) => updateForm({ cjkScoringMode: event.target.value })}
+              data-testid="speak-shadow-cjk-scoring-mode"
+            >
+              <option value="smooth">Smooth: confidence-first</option>
+              <option value="careful">Careful: text match</option>
+            </select>
+          </label>
+        )}
         <label className="ss-checkbox">
           <input
             type="checkbox"
@@ -1778,6 +1799,9 @@ export default function SpeakShadowPage({ initialResumeId = "", onResumeConsumed
           <div className="ss-criteria-row">
             <span>Pass at {Math.round((session.settings?.minSimilarity ?? 0.85) * 100)}%</span>
             <span>Confidence {Math.round((session.settings?.minConfidence ?? 0.6) * 100)}%+</span>
+            {["zh", "ja"].includes(session.language) && session.settings?.cjkScoringMode === "smooth" && (
+              <span>Smooth CJK</span>
+            )}
             <span>{currentPhrase.difficulty || "medium"} phrase</span>
           </div>
           <div className="ss-token-row" aria-label="Current phrase tokens">
