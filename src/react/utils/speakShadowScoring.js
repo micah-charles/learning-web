@@ -3,6 +3,9 @@ import { normalizeForSpeechCompare, tokenizePhrase } from "./speakShadowSegmente
 const GERMAN_ARTICLES = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"]);
 
 const ZH_HK_EQUIVALENTS = [
+  ["為甚麼", "為什麼"],
+  ["甚麼", "什麼"],
+  ["立德", "立得"],
   ["稀世", "欺世"],
   ["翠玉", "脆玉"],
   ["傳家寶", "传家宝"],
