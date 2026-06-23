@@ -45,6 +45,8 @@ export default function Seo({
   ogTitle,
   ogDescription,
   image,
+  imageAlt,
+  keywords,
   noindex = false,
   structuredData,
 }) {
@@ -52,6 +54,7 @@ export default function Seo({
     document.title = title;
     upsertCanonical(canonical);
     upsertMeta('meta[name="description"]', { name: "description", content: description });
+    upsertMeta('meta[name="keywords"]', { name: "keywords", content: keywords || "" });
     upsertMeta('meta[name="robots"]', { name: "robots", content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" });
     upsertMeta('meta[property="og:type"]', { property: "og:type", content: "website" });
     upsertMeta('meta[property="og:site_name"]', { property: "og:site_name", content: "FoxChild@Learn" });
@@ -59,14 +62,14 @@ export default function Seo({
     upsertMeta('meta[property="og:description"]', { property: "og:description", content: ogDescription || description });
     upsertMeta('meta[property="og:url"]', { property: "og:url", content: canonical });
     upsertMeta('meta[property="og:image"]', { property: "og:image", content: image });
-    upsertMeta('meta[property="og:image:alt"]', { property: "og:image:alt", content: `${ogTitle || title} preview` });
+    upsertMeta('meta[property="og:image:alt"]', { property: "og:image:alt", content: imageAlt || `${ogTitle || title} preview` });
     upsertMeta('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
     upsertMeta('meta[name="twitter:title"]', { name: "twitter:title", content: ogTitle || title });
     upsertMeta('meta[name="twitter:description"]', { name: "twitter:description", content: ogDescription || description });
     upsertMeta('meta[name="twitter:image"]', { name: "twitter:image", content: image });
-    upsertMeta('meta[name="twitter:image:alt"]', { name: "twitter:image:alt", content: `${ogTitle || title} preview` });
+    upsertMeta('meta[name="twitter:image:alt"]', { name: "twitter:image:alt", content: imageAlt || `${ogTitle || title} preview` });
     upsertStructuredData(structuredData);
-  }, [canonical, description, image, noindex, ogDescription, ogTitle, structuredData, title]);
+  }, [canonical, description, image, imageAlt, keywords, noindex, ogDescription, ogTitle, structuredData, title]);
 
   return null;
 }
