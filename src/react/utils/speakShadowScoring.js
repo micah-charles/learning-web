@@ -3,9 +3,6 @@ import { normalizeForSpeechCompare, tokenizePhrase } from "./speakShadowSegmente
 const GERMAN_ARTICLES = new Set(["der", "die", "das", "den", "dem", "des", "ein", "eine", "einen", "einem", "einer", "eines"]);
 
 const ZH_HK_EQUIVALENTS = [
-  ["為甚麼", "為什麼"],
-  ["甚麼", "什麼"],
-  ["立德", "立得"],
   ["稀世", "欺世"],
   ["翠玉", "脆玉"],
   ["傳家寶", "传家宝"],
@@ -195,6 +192,13 @@ function nextActionForScore({ passed, confidenceScore, missingTokens }) {
   return "retry";
 }
 
+function cjkCompletionScore(expectedText, transcriptText) {
+  const expectedLength = [...String(expectedText || "").replace(/\s+/g, "")].length;
+  const transcriptLength = [...String(transcriptText || "").replace(/\s+/g, "")].length;
+  if (!expectedLength || !transcriptLength) return 0;
+  return Math.min(expectedLength, transcriptLength) / Math.max(expectedLength, transcriptLength);
+}
+
 function scoreOneTranscript({ expected, transcript, confidence, language, voiceLocale, settings, source }) {
   const normalizer = getNormalizer(language);
   const equivalentNormalizer = getEquivalentNormalizer(language, voiceLocale);
@@ -248,23 +252,39 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
     similarity,
     Math.min(1, (keywordScore * 0.45) + (orderScore * 0.25) + (characterScore * 0.3)),
   );
+  const cjkCompletion = ["zh", "ja"].includes(language) ? cjkCompletionScore(scoringExpected, scoringTranscript) : 1;
+  const cjkNearMatchPasses = (
+    ["zh", "ja"].includes(language)
+    && numericConfidence !== null
+    && numericConfidence >= (settings.highConfidenceNearMatchMinConfidence ?? 0.8)
+    && similarity >= (settings.highConfidenceNearMatchMinSimilarity ?? 0.8)
+    && orderScore >= (settings.highConfidenceNearMatchMinOrder ?? 0.6)
+    && cjkCompletion >= (settings.highConfidenceNearMatchMinCompletion ?? 0.85)
+  );
   const requiredGatePasses = !requiredTokens.length || keywordScore >= 0.75;
   const strictGatePasses = strictTokenScore >= 1;
+  const cjkCompletionGatePasses = !["zh", "ja"].includes(language) || cjkCompletion >= (settings.minCjkCompletionForPass ?? 0.85);
   const strongAlternativeMatch = source === "alternative" && similarity >= 0.95 && requiredGatePasses && strictGatePasses;
   const strongCjkEquivalentMatch = ["zh", "ja"].includes(language) && ["exact", "normalized", "equivalent"].includes(matchType) && similarity >= minSimilarity && requiredGatePasses && strictGatePasses;
   const confidencePasses = numericConfidence === null || numericConfidence >= minConfidence || strongAlternativeMatch || strongCjkEquivalentMatch;
   const passed = (
-    (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses))
+    (similarity >= minSimilarity || (overallScore >= minSimilarity && requiredGatePasses) || cjkNearMatchPasses)
     && confidencePasses
     && strictGatePasses
+    && cjkCompletionGatePasses
   );
+  if (cjkNearMatchPasses && !["exact", "normalized", "equivalent", "alternative"].includes(matchType)) {
+    matchType = "high_confidence_near_match";
+  }
   const diffNormalizer = matchType === "equivalent" && equivalentNormalizer ? equivalentNormalizer : normalizer;
   const { missingTokens, extraTokens } = tokenDiff(rawExpected, rawTranscript, language, diffNormalizer);
   const requiredMissing = requiredTokens.filter((token) => !tokenMatches(token, transcriptTokens, language));
+  const displayMissingTokens = passed ? [] : (requiredMissing.length ? requiredMissing : missingTokens).slice(0, 8);
+  const displayExtraTokens = passed ? [] : extraTokens;
   const feedbackLevel = passed ? "success" : requiredMissing.length ? "hint" : "retry";
   const hint = buildHint({
     passed,
-    missingTokens: requiredMissing.length ? requiredMissing : missingTokens,
+    missingTokens: displayMissingTokens,
     requiredTokenScore: keywordScore,
     confidenceScore,
   });
@@ -282,10 +302,10 @@ function scoreOneTranscript({ expected, transcript, confidence, language, voiceL
     matchType,
     source,
     feedbackLevel,
-    missingTokens: (requiredMissing.length ? requiredMissing : missingTokens).slice(0, 8),
-    extraTokens,
+    missingTokens: displayMissingTokens,
+    extraTokens: displayExtraTokens,
     hint,
-    nextAction: nextActionForScore({ passed, confidenceScore, missingTokens: requiredMissing.length ? requiredMissing : missingTokens }),
+    nextAction: nextActionForScore({ passed, confidenceScore, missingTokens: displayMissingTokens }),
     feedback: hint,
   };
 }

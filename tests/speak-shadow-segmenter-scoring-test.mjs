@@ -99,8 +99,17 @@ const chineseWhyLideEquivalent = scoreSpeakShadowAttempt({
   settings: { minSimilarity: 0.85, minConfidence: 0.6 },
 });
 assert.equal(chineseWhyLideEquivalent.passed, true);
-assert.equal(chineseWhyLideEquivalent.matchType, "equivalent");
-assert.deepEqual(chineseWhyLideEquivalent.missingTokens, []);
+assert.equal(chineseWhyLideEquivalent.matchType, "high_confidence_near_match");
+
+const chineseHighConfidencePartial = scoreSpeakShadowAttempt({
+  expected: "走走路，打打球，拍拍手，",
+  transcript: "走走路打打球",
+  confidence: 0.94,
+  language: "zh",
+  voiceLocale: "zh-HK",
+  settings: { minSimilarity: 0.85, minConfidence: 0.6 },
+});
+assert.equal(chineseHighConfidencePartial.passed, false, "High-confidence CJK near-match must still reject incomplete phrases");
 
 const japaneseEquivalent = scoreSpeakShadowAttempt({
   expected: "私は学校へ行きます",
