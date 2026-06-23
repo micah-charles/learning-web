@@ -99,7 +99,28 @@ const chineseWhyLideEquivalent = scoreSpeakShadowAttempt({
   settings: { minSimilarity: 0.85, minConfidence: 0.6 },
 });
 assert.equal(chineseWhyLideEquivalent.passed, true);
-assert.equal(chineseWhyLideEquivalent.matchType, "high_confidence_near_match");
+assert.equal(chineseWhyLideEquivalent.matchType, "high_confidence_cjk");
+
+const chineseSmoothShortPhrase = scoreSpeakShadowAttempt({
+  expected: "真真問：",
+  transcript: "珍珍問",
+  confidence: 0.91,
+  language: "zh",
+  voiceLocale: "zh-HK",
+  settings: { minSimilarity: 0.85, minConfidence: 0.6, cjkScoringMode: "smooth" },
+});
+assert.equal(chineseSmoothShortPhrase.passed, true);
+assert.equal(chineseSmoothShortPhrase.matchType, "high_confidence_cjk");
+
+const chineseCarefulShortPhrase = scoreSpeakShadowAttempt({
+  expected: "真真問：",
+  transcript: "珍珍問",
+  confidence: 0.91,
+  language: "zh",
+  voiceLocale: "zh-HK",
+  settings: { minSimilarity: 0.85, minConfidence: 0.6, cjkScoringMode: "careful" },
+});
+assert.equal(chineseCarefulShortPhrase.passed, false);
 
 const chineseHighConfidencePartial = scoreSpeakShadowAttempt({
   expected: "走走路，打打球，拍拍手，",
