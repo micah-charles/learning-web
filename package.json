@@ -14,13 +14,15 @@
     "build": "npm run prepare:studybook-search && vite build && npm run generate:seo",
     "preview": "vite preview",
     "qa:config-check": "node scripts/validate-qa-behaviour-config.mjs",
+    "qa:games": "npx playwright test -c playwright.config.ts qa/tests/games-hosting.spec.ts",
     "qa:smoke": "npx playwright test -c playwright.config.ts qa/tests/smoke-home.spec.ts qa/tests/onboarding.spec.ts",
     "qa:data-sample": "npx playwright test -c playwright.config.ts --grep @data-sample",
     "qa:full": "QA_FULL_DATA=true npx playwright test -c playwright.config.ts",
     "qa:report": "npx playwright show-report qa/reports/html",
     "test:speak-shadow": "node --loader ./tests/resolve-alias.mjs tests/speak-shadow-segmenter-scoring-test.mjs && node --loader ./tests/resolve-alias.mjs tests/speech-recognition-service-test.mjs",
     "test:tutor-studybook:unit": "node --loader ./tests/resolve-alias.mjs tests/tutor-engine-test.mjs && node --loader ./tests/resolve-alias.mjs tests/tutor-studybook-integration-test.mjs",
-    "test:tutor-studybook:e2e": "npx playwright test -c playwright.config.mjs tests/playwright/tutor-studybook.spec.mjs"
+    "test:tutor-studybook:e2e": "npx playwright test -c playwright.config.mjs tests/playwright/tutor-studybook.spec.mjs",
+    "refresh:rail": "node scripts/refresh-rail-adventure.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

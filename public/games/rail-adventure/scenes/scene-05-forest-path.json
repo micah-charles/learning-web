@@ -1,0 +1,141 @@
+{
+  "id": "forest-path",
+  "name": "Forest Path",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "forest-grass",
+    "baseColor": "#2f7f38",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 0.95
+  },
+  "sky": {
+    "type": "forest-day",
+    "colorTop": "#74bfff",
+    "colorBottom": "#d8f4ff",
+    "brightness": 0.96
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#9fc9b6",
+    "near": 24,
+    "far": 105
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.5,
+    "directionalIntensity": 1.85,
+    "sunPosition": [
+      -18,
+      24,
+      12
+    ]
+  },
+  "railway": {
+    "railColor": "#dedede",
+    "sleeperColor": "#7b4a24"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 1250,
+    "bladeHeight": 0.72,
+    "colorNear": "#4fae49",
+    "colorFar": "#7ec96b",
+    "sideWidth": 42,
+    "trackClearance": 3.6,
+    "drawAhead": 120,
+    "drawBehind": 42,
+    "windStrength": 0.13
+  },
+  "objects": [
+    {
+      "id": "forest-pines",
+      "type": "pine-tree",
+      "assetKey": "tree-tall-pine",
+      "count": 96,
+      "color": "#1f6a32",
+      "radius": 1.15,
+      "height": 5.4,
+      "sideWidth": 48,
+      "trackClearance": 7,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 1.2
+    },
+    {
+      "id": "forest-rocks",
+      "type": "small-rock",
+      "count": 42,
+      "color": "#667467",
+      "radius": 0.4,
+      "sideWidth": 34,
+      "trackClearance": 5.6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "forest-mushrooms",
+      "type": "soft-hill",
+      "count": 48,
+      "color": "#e5d85f",
+      "radius": 0.18,
+      "height": 0.36,
+      "sideWidth": 32,
+      "trackClearance": 5.4,
+      "drawAhead": 128,
+      "drawBehind": 44,
+      "scale": 0.65
+    },
+    {
+      "id": "forest-flowers",
+      "type": "flower",
+      "assetKey": "ez-tree-flower-blue-glb",
+      "count": 30,
+      "sideWidth": 36,
+      "trackClearance": 5.5,
+      "drawAhead": 125,
+      "drawBehind": 44,
+      "scale": 0.7
+    }
+  ],
+  "particles": {
+    "enabled": false,
+    "density": 0
+  },
+  "ambience": {
+    "sound": null
+  },
+  "clouds": {
+    "enabled": true,
+    "color": "#e8f4ff",
+    "opacity": 0.75,
+    "coverage": 0.5,
+    "verticalFade": 0.45,
+    "altitude": 120,
+    "size": 2000,
+    "speed": 0.2
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 24,
+    "fogFar": 105,
+    "objectDensity": 1,
+    "terrainSpeed": 0.95,
+    "windStrength": 0.13,
+    "particleDensity": 0,
+    "skyBrightness": 0.96,
+    "lightIntensity": 1
+  },
+  "title": "Forest Path",
+  "assets": {
+    "textures": [],
+    "models": [
+      "assets/models/ez-tree/flower_blue.glb"
+    ],
+    "audio": []
+  }
+}

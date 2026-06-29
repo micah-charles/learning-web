@@ -1,0 +1,154 @@
+{
+  "id": "beach-coast",
+  "name": "Beach Coast",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "sand-grass",
+    "baseColor": "#c9b56c",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 0.96
+  },
+  "sky": {
+    "type": "coastal-day",
+    "colorTop": "#68c8ff",
+    "colorBottom": "#e6fbff",
+    "brightness": 1.05
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#c7efff",
+    "near": 30,
+    "far": 130
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.85,
+    "directionalIntensity": 2.15,
+    "sunPosition": [
+      -18,
+      24,
+      16
+    ]
+  },
+  "railway": {
+    "railColor": "#dedede",
+    "sleeperColor": "#79502e"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 760,
+    "bladeHeight": 0.52,
+    "colorNear": "#7bbf51",
+    "colorFar": "#d1c973",
+    "sideWidth": 42,
+    "trackClearance": 3.8,
+    "drawAhead": 122,
+    "drawBehind": 44,
+    "windStrength": 0.18
+  },
+  "objects": [
+    {
+      "id": "ocean-strip",
+      "type": "ocean",
+      "moves": false,
+      "recycle": false,
+      "position": [
+        -60,
+        0.03,
+        -52
+      ]
+    },
+    {
+      "id": "beach-palms",
+      "type": "palm-tree",
+      "assetKey": "tree-tropical-palm",
+      "count": 28,
+      "color": "#2e8f3d",
+      "radius": 1,
+      "height": 4.7,
+      "sideWidth": 48,
+      "trackClearance": 8,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "beach-buildings",
+      "type": "city-building",
+      "assetKey": "building-lighthouse",
+      "count": 8,
+      "color": "#f2f0e7",
+      "width": 1.1,
+      "height": 5.2,
+      "depth": 1.1,
+      "sideWidth": 58,
+      "trackClearance": 20,
+      "drawAhead": 145,
+      "drawBehind": 48,
+      "scale": 1
+    },
+    {
+      "id": "beach-grass",
+      "type": "soft-hill",
+      "count": 70,
+      "color": "#9cb756",
+      "radius": 0.18,
+      "height": 0.5,
+      "sideWidth": 48,
+      "trackClearance": 5.2,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 0.75
+    },
+    {
+      "id": "beach-stones",
+      "type": "small-rock",
+      "count": 44,
+      "color": "#9a927e",
+      "radius": 0.34,
+      "sideWidth": 34,
+      "trackClearance": 5.8,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 0.9
+    }
+  ],
+  "particles": {
+    "enabled": false,
+    "density": 0
+  },
+  "ambience": {
+    "sound": null
+  },
+  "clouds": {
+    "enabled": true,
+    "color": "#ffffff",
+    "opacity": 0.8,
+    "coverage": 0.35,
+    "verticalFade": 0.4,
+    "speed": 0.4,
+    "altitude": 120,
+    "size": 2000
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 30,
+    "fogFar": 130,
+    "objectDensity": 1,
+    "terrainSpeed": 0.96,
+    "windStrength": 0.18,
+    "particleDensity": 0,
+    "skyBrightness": 1.05,
+    "lightIntensity": 1
+  },
+  "title": "Beach Coast",
+  "assets": {
+    "textures": [],
+    "models": [],
+    "audio": []
+  }
+}

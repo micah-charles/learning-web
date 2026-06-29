@@ -1,0 +1,114 @@
+{
+  "id": "city-lights",
+  "name": "City Lights",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "asphalt",
+    "baseColor": "#303742",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 1
+  },
+  "sky": {
+    "type": "city-night",
+    "colorTop": "#0d1b3d",
+    "colorBottom": "#263a69",
+    "brightness": 0.82
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#31446e",
+    "near": 26,
+    "far": 118
+  },
+  "lighting": {
+    "hemisphereIntensity": 0.95,
+    "directionalIntensity": 1.1,
+    "sunPosition": [
+      18,
+      24,
+      12
+    ]
+  },
+  "railway": {
+    "railColor": "#d8e0e8",
+    "sleeperColor": "#5d4233"
+  },
+  "grass": {
+    "enabled": false,
+    "density": 0,
+    "bladeHeight": 0.1,
+    "colorNear": "#3f8d54",
+    "colorFar": "#719a72",
+    "sideWidth": 40,
+    "trackClearance": 4,
+    "drawAhead": 118,
+    "drawBehind": 42,
+    "windStrength": 0
+  },
+  "objects": [
+    {
+      "id": "city-buildings",
+      "type": "city-building",
+      "assetKey": "building-city-apartment",
+      "count": 90,
+      "color": "#1e2534",
+      "emissive": "#ffd66e",
+      "emissiveIntensity": 0.22,
+      "width": 1.4,
+      "height": 5.8,
+      "depth": 1.4,
+      "sideWidth": 54,
+      "trackClearance": 12,
+      "drawAhead": 142,
+      "drawBehind": 46,
+      "scale": 1
+    },
+    {
+      "id": "street-lights",
+      "type": "lava-light",
+      "count": 64,
+      "color": "#f7d36a",
+      "emissive": "#ffd95a",
+      "emissiveIntensity": 1.2,
+      "width": 0.16,
+      "height": 0.08,
+      "depth": 0.55,
+      "sideWidth": 18,
+      "trackClearance": 5.6,
+      "drawAhead": 132,
+      "drawBehind": 44,
+      "scale": 1
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 10,
+    "color": "#9fc8ff",
+    "opacity": 0.2
+  },
+  "ambience": {
+    "sound": null
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 26,
+    "fogFar": 118,
+    "objectDensity": 1,
+    "terrainSpeed": 1,
+    "windStrength": 0,
+    "particleDensity": 10,
+    "skyBrightness": 0.82,
+    "lightIntensity": 1
+  },
+  "title": "City Lights",
+  "assets": {
+    "textures": [],
+    "models": [],
+    "audio": []
+  }
+}

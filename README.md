@@ -64,6 +64,34 @@ Open the local URL printed by Vite, usually:
 http://127.0.0.1:5173
 ```
 
+## Standalone Games Hosting
+
+Learning Web hosts exported games under `/games`. This is separate from the Learning Web `/arcade` mode.
+
+- `/games/` — standalone games gallery
+- `/games/rail-adventure/` — exported Rail Adventure game
+- `/games/rail-adventure/manifest.json` — export manifest
+- `/games/rail-adventure/scenes/` — exported scene JSON files
+- `/games/rail-adventure/assets/` — exported static assets
+
+Refresh Rail Adventure from the FoxChildGameEngine export:
+
+```bash
+npm run refresh:rail
+```
+
+By default, the refresh script expects the engine checkout at `./number-mage-phaser`. For another checkout:
+
+```bash
+FOXCHILD_GAME_ENGINE_DIR=/path/to/FoxChildGameEngine npm run refresh:rail
+```
+
+Verify static hosting routes:
+
+```bash
+npm run qa:games
+```
+
 ## Third-Party Notices
 
 Open-source dependencies and architectural references are recorded in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

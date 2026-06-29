@@ -1,0 +1,170 @@
+{
+  "id": "sunset-valley",
+  "name": "Sunset Valley",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "valley-grass",
+    "baseColor": "#4f8f3d",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 0.92
+  },
+  "sky": {
+    "type": "sunset",
+    "colorTop": "#6ca5ff",
+    "colorBottom": "#ffc36f",
+    "brightness": 0.98
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#ffc98f",
+    "near": 26,
+    "far": 118
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.45,
+    "directionalIntensity": 2.05,
+    "sunPosition": [
+      -22,
+      12,
+      8
+    ]
+  },
+  "railway": {
+    "railColor": "#dedede",
+    "sleeperColor": "#7b4a24"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 980,
+    "bladeHeight": 0.66,
+    "colorNear": "#5ca441",
+    "colorFar": "#c7b65c",
+    "sideWidth": 40,
+    "trackClearance": 3.5,
+    "drawAhead": 120,
+    "drawBehind": 42,
+    "windStrength": 0.14
+  },
+  "objects": [
+    {
+      "id": "low-sun",
+      "type": "sun",
+      "moves": false,
+      "recycle": false,
+      "radius": 4.8,
+      "opacity": 0.82,
+      "position": [
+        -28,
+        26,
+        -96
+      ]
+    },
+    {
+      "id": "sunset-trees",
+      "type": "tree",
+      "assetKey": "tree-low-poly-oak",
+      "count": 36,
+      "color": "#4d8936",
+      "radius": 1.1,
+      "height": 4.4,
+      "sideWidth": 48,
+      "trackClearance": 8,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "sunset-buildings",
+      "type": "city-building",
+      "assetKey": "building-windmill-farm",
+      "count": 8,
+      "color": "#d6c29b",
+      "width": 1.4,
+      "height": 4.2,
+      "depth": 1.2,
+      "sideWidth": 58,
+      "trackClearance": 20,
+      "drawAhead": 145,
+      "drawBehind": 48,
+      "scale": 1
+    },
+    {
+      "id": "valley-patches",
+      "type": "soft-hill",
+      "count": 96,
+      "color": "#6fa14a",
+      "radius": 0.2,
+      "height": 0.52,
+      "sideWidth": 48,
+      "trackClearance": 5,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 0.85
+    },
+    {
+      "id": "warm-stones",
+      "type": "small-rock",
+      "count": 28,
+      "color": "#7b8171",
+      "radius": 0.36,
+      "sideWidth": 32,
+      "trackClearance": 6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 0.9
+    },
+    {
+      "id": "valley-flowers",
+      "type": "flower",
+      "assetKey": "ez-tree-flower-white-glb",
+      "count": 36,
+      "sideWidth": 38,
+      "trackClearance": 6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 0.8
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 10,
+    "color": "#ffe1a3"
+  },
+  "ambience": {
+    "sound": null
+  },
+  "clouds": {
+    "enabled": true,
+    "color": "#ffd8a0",
+    "opacity": 0.75,
+    "coverage": 0.4,
+    "verticalFade": 0.45,
+    "speed": 0.25,
+    "altitude": 120,
+    "size": 2000
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 26,
+    "fogFar": 118,
+    "objectDensity": 1,
+    "terrainSpeed": 0.92,
+    "windStrength": 0.14,
+    "particleDensity": 10,
+    "skyBrightness": 0.98,
+    "lightIntensity": 1
+  },
+  "title": "Sunset Valley",
+  "assets": {
+    "textures": [],
+    "models": [
+      "assets/models/ez-tree/flower_white.glb"
+    ],
+    "audio": []
+  }
+}

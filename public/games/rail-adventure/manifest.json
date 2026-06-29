@@ -1,0 +1,167 @@
+{
+  "gameId": "rail-adventure",
+  "title": "Rail Adventure",
+  "version": "1.0.0",
+  "engineVersion": "0.2.0",
+  "baseUrl": "./",
+  "entryScene": "green-meadow",
+  "scenes": [
+    {
+      "id": "green-meadow",
+      "title": "Green Meadow",
+      "file": "scenes/scene-01-green-meadow.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        1
+      ],
+      "description": "Bright grassy rail meadow, compatible with the original Rail Adventure look."
+    },
+    {
+      "id": "beach-coast",
+      "title": "Beach Coast",
+      "file": "scenes/scene-02-beach-coast.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        2
+      ],
+      "description": "Warm sand, blue sky, and coastal ambience."
+    },
+    {
+      "id": "desert-canyon",
+      "title": "Desert Canyon",
+      "file": "scenes/scene-03-desert-canyon.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        3
+      ],
+      "description": "Orange canyon terrain with dry rocks and long visibility."
+    },
+    {
+      "id": "sunset-valley",
+      "title": "Sunset Valley",
+      "file": "scenes/scene-04-sunset-valley.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        4
+      ],
+      "description": "Golden valley lighting with warm horizon fog."
+    },
+    {
+      "id": "forest-path",
+      "title": "Forest Path",
+      "file": "scenes/scene-05-forest-path.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        5
+      ],
+      "description": "Dense green forest with pine silhouettes, rocks, and mushrooms."
+    },
+    {
+      "id": "snowy-mountain",
+      "title": "Snowy Mountain",
+      "file": "scenes/scene-06-snowy-mountain.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        6
+      ],
+      "description": "Cold snow-covered terrain with pale blue fog and pine objects."
+    },
+    {
+      "id": "volcanic-land",
+      "title": "Volcanic Land",
+      "file": "scenes/scene-07-volcanic-land.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        7
+      ],
+      "description": "Dark volcanic dusk terrain with warm red lighting and lava accents."
+    },
+    {
+      "id": "night-sky",
+      "title": "Night Sky",
+      "file": "scenes/scene-08-night-sky.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        8
+      ],
+      "description": "Moonlit night rail environment with cool fog."
+    },
+    {
+      "id": "city-lights",
+      "title": "City Lights",
+      "file": "scenes/scene-09-city-lights.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        9
+      ],
+      "description": "Night city route with building silhouettes and neon-like lights."
+    },
+    {
+      "id": "autumn-forest",
+      "title": "Autumn Forest",
+      "file": "scenes/scene-10-autumn-forest.json",
+      "supports": [
+        "rail-adventure"
+      ],
+      "levels": [
+        10
+      ],
+      "description": "Warm autumn forest with orange ground tones and leaf colors."
+    }
+  ],
+  "stageScenes": {
+    "rail-adventure": {
+      "gender": {
+        "1": "green-meadow",
+        "2": "beach-coast",
+        "3": "desert-canyon",
+        "4": "sunset-valley",
+        "5": "forest-path",
+        "6": "snowy-mountain",
+        "7": "volcanic-land",
+        "8": "night-sky",
+        "9": "city-lights",
+        "10": "autumn-forest"
+      },
+      "accusative": {
+        "1": "green-meadow",
+        "2": "beach-coast",
+        "3": "desert-canyon",
+        "4": "sunset-valley",
+        "5": "forest-path",
+        "6": "snowy-mountain",
+        "7": "volcanic-land",
+        "8": "night-sky",
+        "9": "city-lights",
+        "10": "autumn-forest"
+      }
+    }
+  },
+  "assets": {
+    "textures": [],
+    "models": [
+      "assets/models/ez-tree/flower_blue.glb",
+      "assets/models/ez-tree/flower_white.glb",
+      "assets/models/ez-tree/flower_yellow.glb"
+    ],
+    "audio": []
+  }
+}

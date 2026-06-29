@@ -1,0 +1,107 @@
+{
+  "id": "snowy-mountain",
+  "name": "Snowy Mountain",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "snow",
+    "baseColor": "#dfefff",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 0.9
+  },
+  "sky": {
+    "type": "snow-day",
+    "colorTop": "#73b9ff",
+    "colorBottom": "#edf8ff",
+    "brightness": 1.08
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#dff4ff",
+    "near": 26,
+    "far": 120
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.85,
+    "directionalIntensity": 2,
+    "sunPosition": [
+      -14,
+      24,
+      18
+    ]
+  },
+  "railway": {
+    "railColor": "#e6eef7",
+    "sleeperColor": "#805536"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 360,
+    "bladeHeight": 0.32,
+    "colorNear": "#bfe7d5",
+    "colorFar": "#f4fbff",
+    "sideWidth": 42,
+    "trackClearance": 3.8,
+    "drawAhead": 116,
+    "drawBehind": 42,
+    "windStrength": 0.08
+  },
+  "objects": [
+    {
+      "id": "snow-pines",
+      "type": "pine-tree",
+      "assetKey": "tree-snow-pine",
+      "count": 76,
+      "color": "#e8f5f7",
+      "radius": 1,
+      "height": 4.8,
+      "sideWidth": 48,
+      "trackClearance": 7,
+      "drawAhead": 132,
+      "drawBehind": 45,
+      "scale": 1.1
+    },
+    {
+      "id": "ice-rocks",
+      "type": "small-rock",
+      "count": 46,
+      "color": "#a7b5bd",
+      "radius": 0.42,
+      "sideWidth": 34,
+      "trackClearance": 5.8,
+      "drawAhead": 128,
+      "drawBehind": 45,
+      "scale": 0.95
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 36,
+    "color": "#ffffff",
+    "opacity": 0.34
+  },
+  "ambience": {
+    "sound": null
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 26,
+    "fogFar": 120,
+    "objectDensity": 1,
+    "terrainSpeed": 0.9,
+    "windStrength": 0.08,
+    "particleDensity": 36,
+    "skyBrightness": 1.08,
+    "lightIntensity": 1
+  },
+  "title": "Snowy Mountain",
+  "assets": {
+    "textures": [],
+    "models": [],
+    "audio": []
+  }
+}
