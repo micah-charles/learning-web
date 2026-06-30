@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FoxChild Games</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, Arial, sans-serif;
+        color: #172033;
+        background: #eef7ff;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #dff4ff 0%, #f8fbff 100%);
+      }
+      main {
+        width: min(920px, calc(100% - 32px));
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(34px, 6vw, 58px);
+        color: #134e4a;
+      }
+      p {
+        margin: 0 0 24px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      a.game-card {
+        display: block;
+        max-width: 420px;
+        padding: 22px;
+        border: 2px solid #99d4c4;
+        border-radius: 12px;
+        background: #ffffff;
+        color: inherit;
+        text-decoration: none;
+        box-shadow: 0 18px 40px rgba(19, 78, 74, 0.16);
+      }
+      .game-card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 24px;
+        color: #0f766e;
+      }
+      .game-card span {
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>FoxChild Games</h1>
+      <p>Standalone exported web games hosted separately from the FoxChild Learn arcade.</p>
+      <a class="game-card" href="./rail-adventure/index.html">
+        <strong>Rail Adventure</strong>
+        <span>Ride the railway and practise German articles.</span>
+      </a>
+    </main>
+  </body>
+</html>

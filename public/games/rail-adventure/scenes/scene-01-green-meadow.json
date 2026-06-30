@@ -1,0 +1,156 @@
+{
+  "id": "green-meadow",
+  "name": "Green Meadow",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "grass",
+    "baseColor": "#55ad43",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 1
+  },
+  "sky": {
+    "type": "day",
+    "colorTop": "#87c9ff",
+    "colorBottom": "#dff7ff",
+    "brightness": 1.08
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#b8e6ff",
+    "near": 34,
+    "far": 138
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.95,
+    "directionalIntensity": 2.35,
+    "sunPosition": [
+      -16,
+      22,
+      14
+    ]
+  },
+  "railway": {
+    "railColor": "#dedede",
+    "sleeperColor": "#7b4a24"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 1100,
+    "bladeHeight": 0.62,
+    "colorNear": "#70c94f",
+    "colorFar": "#b5e96f",
+    "sideWidth": 40,
+    "trackClearance": 3.4,
+    "drawAhead": 118,
+    "drawBehind": 42,
+    "windStrength": 0.12
+  },
+  "objects": [
+    {
+      "id": "meadow-trees",
+      "type": "tree",
+      "assetKey": "tree-low-poly-oak",
+      "count": 34,
+      "color": "#3f9b3f",
+      "radius": 1.05,
+      "height": 4.4,
+      "sideWidth": 48,
+      "trackClearance": 8,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "meadow-buildings",
+      "type": "city-building",
+      "assetKey": "building-cottage-house",
+      "count": 10,
+      "color": "#b58b5a",
+      "width": 1.8,
+      "height": 2.4,
+      "depth": 1.5,
+      "sideWidth": 58,
+      "trackClearance": 18,
+      "drawAhead": 145,
+      "drawBehind": 48,
+      "scale": 1
+    },
+    {
+      "id": "meadow-patches",
+      "type": "soft-hill",
+      "count": 90,
+      "color": "#65ba4d",
+      "radius": 0.18,
+      "height": 0.55,
+      "sideWidth": 48,
+      "trackClearance": 5,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 0.8
+    },
+    {
+      "id": "meadow-rocks",
+      "type": "small-rock",
+      "count": 34,
+      "color": "#878e7a",
+      "radius": 0.38,
+      "sideWidth": 28,
+      "trackClearance": 6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "meadow-flowers",
+      "type": "flower",
+      "assetKey": "ez-tree-flower-yellow-glb",
+      "count": 42,
+      "sideWidth": 38,
+      "trackClearance": 6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 0.8
+    }
+  ],
+  "particles": {
+    "enabled": false,
+    "density": 0
+  },
+  "ambience": {
+    "sound": null
+  },
+  "clouds": {
+    "enabled": true,
+    "color": "#ffffff",
+    "opacity": 0.85,
+    "coverage": 0.45,
+    "verticalFade": 0.45,
+    "speed": 0.3,
+    "altitude": 120,
+    "size": 2000
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 34,
+    "fogFar": 138,
+    "objectDensity": 1,
+    "terrainSpeed": 1,
+    "windStrength": 0.12,
+    "particleDensity": 0,
+    "skyBrightness": 1.08,
+    "lightIntensity": 1
+  },
+  "title": "Green Meadow",
+  "assets": {
+    "textures": [],
+    "models": [
+      "assets/models/ez-tree/flower_yellow.glb"
+    ],
+    "audio": []
+  }
+}

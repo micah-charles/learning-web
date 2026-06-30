@@ -1,0 +1,123 @@
+{
+  "id": "volcanic-land",
+  "name": "Volcanic Land",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "volcanic",
+    "baseColor": "#26212a",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 1
+  },
+  "sky": {
+    "type": "volcanic-dusk",
+    "colorTop": "#2a233c",
+    "colorBottom": "#a13d30",
+    "brightness": 0.86
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#8f3b32",
+    "near": 28,
+    "far": 120
+  },
+  "lighting": {
+    "hemisphereIntensity": 0.85,
+    "directionalIntensity": 1.9,
+    "sunPosition": [
+      10,
+      18,
+      12
+    ]
+  },
+  "railway": {
+    "railColor": "#d8d8d8",
+    "sleeperColor": "#5d3425"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 180,
+    "bladeHeight": 0.36,
+    "colorNear": "#533c30",
+    "colorFar": "#b84a2f",
+    "sideWidth": 42,
+    "trackClearance": 4,
+    "drawAhead": 116,
+    "drawBehind": 42,
+    "windStrength": 0.06
+  },
+  "objects": [
+    {
+      "id": "volcanic-dead-trees",
+      "type": "dead-tree",
+      "assetKey": "tree-dead-dry",
+      "count": 20,
+      "color": "#4f352b",
+      "radius": 0.55,
+      "height": 4.1,
+      "sideWidth": 45,
+      "trackClearance": 8,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "lava-cracks",
+      "type": "lava-light",
+      "count": 92,
+      "color": "#ff5d22",
+      "emissive": "#ff3b00",
+      "emissiveIntensity": 1.5,
+      "width": 0.22,
+      "height": 0.04,
+      "depth": 1.8,
+      "sideWidth": 42,
+      "trackClearance": 4.8,
+      "drawAhead": 128,
+      "drawBehind": 44,
+      "scale": 1
+    },
+    {
+      "id": "volcanic-rocks",
+      "type": "canyon-rock",
+      "count": 72,
+      "color": "#2f2b30",
+      "radius": 0.5,
+      "sideWidth": 42,
+      "trackClearance": 6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 1.35
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 48,
+    "color": "#ff8b42",
+    "opacity": 0.28
+  },
+  "ambience": {
+    "sound": null
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 28,
+    "fogFar": 120,
+    "objectDensity": 1,
+    "terrainSpeed": 1,
+    "windStrength": 0.06,
+    "particleDensity": 48,
+    "skyBrightness": 0.86,
+    "lightIntensity": 1
+  },
+  "title": "Volcanic Land",
+  "assets": {
+    "textures": [],
+    "models": [],
+    "audio": []
+  }
+}

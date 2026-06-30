@@ -1,0 +1,119 @@
+{
+  "id": "desert-canyon",
+  "name": "Desert Canyon",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "desert",
+    "baseColor": "#c98445",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 1
+  },
+  "sky": {
+    "type": "dry-day",
+    "colorTop": "#77bfff",
+    "colorBottom": "#ffe2b2",
+    "brightness": 1
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#f0c48c",
+    "near": 34,
+    "far": 145
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.25,
+    "directionalIntensity": 2.55,
+    "sunPosition": [
+      -8,
+      28,
+      18
+    ]
+  },
+  "railway": {
+    "railColor": "#dedede",
+    "sleeperColor": "#7b4a24"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 420,
+    "bladeHeight": 0.46,
+    "colorNear": "#b79c44",
+    "colorFar": "#d9b765",
+    "sideWidth": 44,
+    "trackClearance": 4,
+    "drawAhead": 126,
+    "drawBehind": 46,
+    "windStrength": 0.1
+  },
+  "objects": [
+    {
+      "id": "desert-dead-trees",
+      "type": "dead-tree",
+      "assetKey": "tree-dead-dry",
+      "count": 24,
+      "color": "#6a4930",
+      "radius": 0.55,
+      "height": 4.3,
+      "sideWidth": 45,
+      "trackClearance": 8,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "canyon-rocks",
+      "type": "canyon-rock",
+      "count": 72,
+      "color": "#a35f37",
+      "radius": 0.58,
+      "sideWidth": 45,
+      "trackClearance": 6,
+      "drawAhead": 138,
+      "drawBehind": 46,
+      "scale": 1.45
+    },
+    {
+      "id": "dry-grass-tufts",
+      "type": "soft-hill",
+      "count": 56,
+      "color": "#be9d3f",
+      "radius": 0.16,
+      "height": 0.62,
+      "sideWidth": 42,
+      "trackClearance": 5.5,
+      "drawAhead": 132,
+      "drawBehind": 46,
+      "scale": 0.7
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 18,
+    "color": "#f0d19a"
+  },
+  "ambience": {
+    "sound": null
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 34,
+    "fogFar": 145,
+    "objectDensity": 1,
+    "terrainSpeed": 1,
+    "windStrength": 0.1,
+    "particleDensity": 18,
+    "skyBrightness": 1,
+    "lightIntensity": 1
+  },
+  "title": "Desert Canyon",
+  "assets": {
+    "textures": [],
+    "models": [],
+    "audio": []
+  }
+}

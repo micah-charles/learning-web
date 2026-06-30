@@ -1,0 +1,158 @@
+{
+  "id": "autumn-forest",
+  "name": "Autumn Forest",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "autumn-leaves",
+    "baseColor": "#b87427",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 0.94
+  },
+  "sky": {
+    "type": "autumn-day",
+    "colorTop": "#78bfff",
+    "colorBottom": "#ffe0a3",
+    "brightness": 1
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#e6b172",
+    "near": 28,
+    "far": 126
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.45,
+    "directionalIntensity": 2.05,
+    "sunPosition": [
+      -16,
+      22,
+      16
+    ]
+  },
+  "railway": {
+    "railColor": "#dedede",
+    "sleeperColor": "#6b3f20"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 920,
+    "bladeHeight": 0.5,
+    "colorNear": "#d8892b",
+    "colorFar": "#f0c35d",
+    "sideWidth": 42,
+    "trackClearance": 3.6,
+    "drawAhead": 120,
+    "drawBehind": 42,
+    "windStrength": 0.13
+  },
+  "objects": [
+    {
+      "id": "autumn-trees",
+      "type": "pine-tree",
+      "assetKey": "tree-autumn-orange",
+      "count": 88,
+      "color": "#c46f1e",
+      "radius": 1.05,
+      "height": 4.8,
+      "sideWidth": 48,
+      "trackClearance": 7,
+      "drawAhead": 135,
+      "drawBehind": 45,
+      "scale": 1.15
+    },
+    {
+      "id": "autumn-buildings",
+      "type": "city-building",
+      "assetKey": "building-japanese-house",
+      "count": 8,
+      "color": "#6f4b38",
+      "width": 2.2,
+      "height": 2.3,
+      "depth": 1.5,
+      "sideWidth": 58,
+      "trackClearance": 20,
+      "drawAhead": 145,
+      "drawBehind": 48,
+      "scale": 1
+    },
+    {
+      "id": "autumn-leaf-patches",
+      "type": "soft-hill",
+      "count": 120,
+      "color": "#e5a832",
+      "radius": 0.18,
+      "height": 0.34,
+      "sideWidth": 44,
+      "trackClearance": 4.6,
+      "drawAhead": 132,
+      "drawBehind": 45,
+      "scale": 0.75
+    },
+    {
+      "id": "autumn-rocks",
+      "type": "small-rock",
+      "count": 30,
+      "color": "#75695c",
+      "radius": 0.38,
+      "sideWidth": 34,
+      "trackClearance": 5.8,
+      "drawAhead": 128,
+      "drawBehind": 45,
+      "scale": 0.95
+    },
+    {
+      "id": "autumn-flowers",
+      "type": "flower",
+      "assetKey": "ez-tree-flower-yellow-glb",
+      "count": 28,
+      "sideWidth": 36,
+      "trackClearance": 5.5,
+      "drawAhead": 125,
+      "drawBehind": 44,
+      "scale": 0.7
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 16,
+    "color": "#f2b84d",
+    "opacity": 0.3
+  },
+  "ambience": {
+    "sound": null
+  },
+  "clouds": {
+    "enabled": true,
+    "color": "#ffe8c8",
+    "opacity": 0.8,
+    "coverage": 0.42,
+    "verticalFade": 0.45,
+    "altitude": 120,
+    "size": 2000,
+    "speed": 0.25
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 28,
+    "fogFar": 126,
+    "objectDensity": 1,
+    "terrainSpeed": 0.94,
+    "windStrength": 0.13,
+    "particleDensity": 16,
+    "skyBrightness": 1,
+    "lightIntensity": 1
+  },
+  "title": "Autumn Forest",
+  "assets": {
+    "textures": [],
+    "models": [
+      "assets/models/ez-tree/flower_yellow.glb"
+    ],
+    "audio": []
+  }
+}

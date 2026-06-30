@@ -1,0 +1,132 @@
+{
+  "id": "night-sky",
+  "name": "Night Sky",
+  "supports": [
+    "rail-adventure"
+  ],
+  "terrain": {
+    "type": "night-grass",
+    "baseColor": "#24633a",
+    "texture": "procedural-noise",
+    "moves": true,
+    "speedMultiplier": 0.88
+  },
+  "sky": {
+    "type": "night",
+    "colorTop": "#10233f",
+    "colorBottom": "#5f91c7",
+    "brightness": 0.88
+  },
+  "fog": {
+    "enabled": true,
+    "color": "#6f9bc5",
+    "near": 24,
+    "far": 112
+  },
+  "lighting": {
+    "hemisphereIntensity": 1.15,
+    "directionalIntensity": 1.2,
+    "sunPosition": [
+      18,
+      24,
+      10
+    ]
+  },
+  "railway": {
+    "railColor": "#d8e0e8",
+    "sleeperColor": "#684322"
+  },
+  "grass": {
+    "enabled": true,
+    "density": 850,
+    "bladeHeight": 0.58,
+    "colorNear": "#3f8d54",
+    "colorFar": "#719a72",
+    "sideWidth": 40,
+    "trackClearance": 3.6,
+    "drawAhead": 118,
+    "drawBehind": 42,
+    "windStrength": 0.09
+  },
+  "objects": [
+    {
+      "id": "moon",
+      "type": "moon",
+      "moves": false,
+      "recycle": false,
+      "radius": 3.4,
+      "opacity": 0.9,
+      "position": [
+        30,
+        36,
+        -94
+      ]
+    },
+    {
+      "id": "night-pines",
+      "type": "pine-tree",
+      "assetKey": "tree-tall-pine",
+      "count": 54,
+      "color": "#1b4d35",
+      "radius": 1,
+      "height": 4.8,
+      "sideWidth": 48,
+      "trackClearance": 8,
+      "drawAhead": 132,
+      "drawBehind": 45,
+      "scale": 1
+    },
+    {
+      "id": "night-patches",
+      "type": "soft-hill",
+      "count": 76,
+      "color": "#2f7650",
+      "radius": 0.18,
+      "height": 0.48,
+      "sideWidth": 46,
+      "trackClearance": 5,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 0.78
+    },
+    {
+      "id": "cool-rocks",
+      "type": "small-rock",
+      "count": 40,
+      "color": "#68727b",
+      "radius": 0.36,
+      "sideWidth": 32,
+      "trackClearance": 6,
+      "drawAhead": 130,
+      "drawBehind": 45,
+      "scale": 0.95
+    }
+  ],
+  "particles": {
+    "enabled": true,
+    "density": 14,
+    "color": "#d6eaff"
+  },
+  "ambience": {
+    "sound": null
+  },
+  "motion": {
+    "speedMultiplier": 1
+  },
+  "admin": {
+    "fogNear": 24,
+    "fogFar": 112,
+    "objectDensity": 1,
+    "terrainSpeed": 0.88,
+    "windStrength": 0.09,
+    "particleDensity": 14,
+    "skyBrightness": 0.88,
+    "lightIntensity": 1
+  },
+  "title": "Night Sky",
+  "assets": {
+    "textures": [],
+    "models": [],
+    "audio": []
+  }
+}

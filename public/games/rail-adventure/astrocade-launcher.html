@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rail Adventure - Astrocade Launcher</title>
+    <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
+  }
+}
+    </script>
+    <style>
+      html, body, #game-container { width: 100%; height: 100%; margin: 0; background: #0b1020; }
+    </style>
+  </head>
+  <body>
+    <div id="game-container"></div>
+    <!-- If Astrocade blocks external fetch/import, use the single-file bundled export instead. -->
+    <script type="module">
+      window.FOXCHILD_GAME_BASE =
+        "https://www.foxchildidea.com/games/rail-adventure/";
+      import("https://www.foxchildidea.com/games/rail-adventure/main.js");
+    </script>
+  </body>
+</html>
