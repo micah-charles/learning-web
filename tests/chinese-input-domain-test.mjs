@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { appendInputKey, codePoints, normaliseCode } from "../src/features/chinese-input/domain/code-normalisation.js";
-import { evaluateAnswer } from "../src/features/chinese-input/domain/answer-evaluator.js";
+import { evaluateAnswer, shouldAutoSubmitAnswer } from "../src/features/chinese-input/domain/answer-evaluator.js";
 import { createSeededRandom } from "../src/features/chinese-input/domain/random.js";
 import { generateSessionPlan } from "../src/features/chinese-input/domain/question-generator.js";
 import { resolveKeyState } from "../src/features/chinese-input/domain/key-state.js";
@@ -24,6 +24,11 @@ assert.equal(evaluateAnswer({ input: "DA", expectedCodes: ["AD"], method: "cangj
 assert.equal(evaluateAnswer({ input: "A", expectedCodes: ["AB"], method: "cangjie" }).errorType, "missing-key");
 assert.equal(evaluateAnswer({ input: "AB", expectedCodes: ["AB", "AC"], method: "cangjie" }).matchedCode, "AB");
 assert.equal(evaluateAnswer({ input: "DD", expectedCodes: ["D"], method: "quick", questionMethod: "cangjie" }).errorType, "wrong-method");
+assert.equal(shouldAutoSubmitAnswer("D", ["DD"]), false);
+assert.equal(shouldAutoSubmitAnswer("DD", ["DD"]), true);
+assert.equal(shouldAutoSubmitAnswer("A", ["A", "AB"]), false);
+assert.equal(shouldAutoSubmitAnswer("AB", ["A", "AB"]), true);
+assert.equal(shouldAutoSubmitAnswer("ZZ", ["AB", "AC"]), true);
 
 assert.equal(resolveKeyState(["available", "expected", "pressed"]), "pressed");
 assert.equal(createSeededRandom(42)(), createSeededRandom(42)());

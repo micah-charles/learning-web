@@ -19,6 +19,19 @@ function classifyError(input, expectedCodes, method) {
   return "wrong-key";
 }
 
+export function shouldAutoSubmitAnswer(input, expectedCodes = []) {
+  const normalisedInput = normaliseCode(input);
+  const codes = [...new Set((expectedCodes || []).map(normaliseCode).filter(Boolean))];
+  if (!normalisedInput || !codes.length) return false;
+  const isAccepted = codes.includes(normalisedInput);
+  const hasLongerAcceptedCode = codes.some((code) => (
+    code.length > normalisedInput.length && code.startsWith(normalisedInput)
+  ));
+  const maximumExpectedLength = Math.max(...codes.map((code) => code.length));
+  return (isAccepted && !hasLongerAcceptedCode)
+    || normalisedInput.length >= maximumExpectedLength;
+}
+
 export function evaluateAnswer({
   input,
   expectedCodes,

@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { appendInputKey } from "../domain/code-normalisation.js";
-import { evaluateAnswer } from "../domain/answer-evaluator.js";
+import { evaluateAnswer, shouldAutoSubmitAnswer } from "../domain/answer-evaluator.js";
 import { generateSessionPlan } from "../domain/question-generator.js";
 import { findChineseInputCharacter } from "../dataset.js";
 import usePhysicalKeyboard from "../hooks/usePhysicalKeyboard.js";
@@ -153,7 +153,9 @@ export default function LessonPlayer({
     window.setTimeout(() => setPressedKey(""), 130);
     const nextBuffer = appendInputKey(buffer, key, method);
     setBuffer(nextBuffer);
-    if (question.type === "root-recognition") submitAnswer(nextBuffer);
+    if (shouldAutoSubmitAnswer(nextBuffer, question.expectedCodes)) {
+      submitAnswer(nextBuffer);
+    }
   }, [buffer, feedback, lesson.activeKeys, method, nextQuestion, question, submitAnswer, summary]);
 
   usePhysicalKeyboard({ enabled: !summary, onKey: handleInput });

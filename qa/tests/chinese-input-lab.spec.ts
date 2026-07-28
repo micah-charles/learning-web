@@ -65,8 +65,8 @@ test("direct route is discoverable and first lesson supports physical and pointe
   const pointerKey = characterByGlyph.get(secondGlyph)?.cangjie.preferredCode;
   if (!pointerKey) throw new Error(`No pointer key for ${secondGlyph}`);
   await page.getByTestId(`chinese-input-key-${pointerKey}`).click();
-  await page.getByTestId("chinese-input-submit").click();
   await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct");
+  await expect(page.getByTestId("chinese-input-submit")).toHaveCount(0);
   await expectNoConsoleErrors(errors);
 });
 
@@ -79,12 +79,18 @@ test("repeated keys stay in the guided typing buffer and wrong order has specifi
   await page.getByTestId("chinese-input-key-D").click();
   await expect(page.getByTestId("chinese-input-buffer")).toContainText("DD");
 
-  await page.getByRole("button", { name: "Clear" }).click();
+  if (await page.getByTestId("chinese-input-feedback").isVisible()) {
+    await page.keyboard.press("Enter");
+  } else {
+    await page.getByRole("button", { name: "Clear" }).click();
+  }
   const glyph = (await page.locator(".cil-question-character").innerText()).trim();
   const code = characterByGlyph.get(glyph)?.cangjie.preferredCode || "";
   const reversed = Array.from(code).reverse();
   for (const key of reversed) await page.getByTestId(`chinese-input-key-${key}`).click();
-  await page.getByTestId("chinese-input-submit").click();
+  if (await page.getByTestId("chinese-input-submit").isVisible()) {
+    await page.getByTestId("chinese-input-submit").click();
+  }
   const feedback = page.getByTestId("chinese-input-feedback");
   await expect(feedback).toBeVisible();
   if (code.length > 1 && reversed.join("") !== code) {
@@ -135,7 +141,9 @@ test("adaptive review starts with a weak or due character", async ({ page }) => 
   const expected = characterByGlyph.get(glyph)?.cangjie.preferredCode || "";
   const wrongKey = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ").find((key) => key !== expected[0]) || "A";
   await page.getByTestId(`chinese-input-key-${wrongKey}`).click();
-  await page.getByTestId("chinese-input-submit").click();
+  if (await page.getByTestId("chinese-input-submit").isVisible()) {
+    await page.getByTestId("chinese-input-submit").click();
+  }
   await expect(page.getByTestId("chinese-input-feedback")).toBeVisible();
   await page.getByRole("button", { name: "Exit lesson" }).click();
   await page.getByRole("button", { name: "Chinese Input dashboard" }).click();
