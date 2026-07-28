@@ -1,4 +1,9 @@
 import { clone } from "./utils.js";
+import {
+  createChineseInputPrefs,
+  createChineseInputProgress,
+  migrateChineseInputState,
+} from "./features/chinese-input/domain/progress-migration.js";
 
 const STORAGE_KEY = "learningGermanWeb.v1";
 
@@ -112,6 +117,7 @@ export const DEFAULT_STATE = {
       readingVoicePractice: false,
       vocabVoicePractice: false,
     },
+    chineseInputLab: createChineseInputPrefs(),
   },
   progress: {
     words: {},
@@ -121,6 +127,7 @@ export const DEFAULT_STATE = {
     passageStats: {},
     arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
     voicePractice: {},            // keyed by lesson/activity: { attempts, successes, lastScore }
+    chineseInputLab: createChineseInputProgress(),
   },
   speakShadow: {
     sessions: {},
@@ -213,10 +220,17 @@ export function loadStoredState() {
       return clone(DEFAULT_STATE);
     }
     const parsed = JSON.parse(raw);
+    const requiresChineseInputMigration = !parsed?.prefs?.chineseInputLab
+      || !parsed?.progress?.chineseInputLab
+      || parsed?.progress?.chineseInputLab?.schemaVersion !== 1;
+    migrateChineseInputState(parsed);
     migrateLanguageLadder(parsed);
     const merged = mergeState(DEFAULT_STATE, parsed);
     if (!Array.isArray(merged.prefs.quiz.modes) || merged.prefs.quiz.modes.length === 0) {
       merged.prefs.quiz.modes = [...DEFAULT_STATE.prefs.quiz.modes];
+    }
+    if (requiresChineseInputMigration) {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
     }
     return merged;
   } catch (_error) {

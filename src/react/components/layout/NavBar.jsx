@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { pathForTab } from "../../utils/appRoutes.js";
+import { getChineseInputLabAvailability } from "../../../config/chineseInputLabConfig.js";
+
+const CHINESE_INPUT_DISCOVERABLE = getChineseInputLabAvailability().discoverable;
 
 export const TABS = [
   { id: "home",       label: "Home"        },
   { id: "language",   label: "Language Ladder ✨", tone: "orange" },
   { id: "speak-shadow", label: "Speak Lab", tone: "blue" },
+  ...(CHINESE_INPUT_DISCOVERABLE ? [{ id: "chinese-input", label: "Chinese Input 中文", tone: "orange" }] : []),
   { id: "quiz",       label: "Quiz", tone: "blue" },
   { id: "arcade",     label: "Arcade 🎮", tone: "orange" },
   { id: "smart-test", label: "Smart Test 🧪", tone: "blue" },
@@ -31,6 +35,7 @@ export const MOBILE_PRIMARY_TABS = [
 
 export const MOBILE_MORE_TABS = [
   { id: "smart-test", label: "Smart Test", icon: "🧪" },
+  ...(CHINESE_INPUT_DISCOVERABLE ? [{ id: "chinese-input", label: "Chinese Input", icon: "字" }] : []),
   { id: "vocab",      label: "Vocab",      icon: "📚" },
   { id: "reading",    label: "Read",       icon: "📖" },
   { id: "builder",    label: "Builder",    icon: "🧩" },
@@ -81,7 +86,7 @@ function MobileTabButton({ tab, active, onClick }) {
   return (
     <a
       href={pathForTab(tab.id)}
-      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test" || tab.id === "speak-shadow") ? " tone-blue" : ""}`}
+      className={`lw-mobile-nav-pill${active ? " is-active" : ""}${(tab.id === "language" || tab.id === "arcade" || tab.id === "chinese-input") ? " tone-orange" : ""}${(tab.id === "quiz" || tab.id === "smart-test" || tab.id === "speak-shadow") ? " tone-blue" : ""}`}
       data-testid={`nav-${tab.id}`}
       onClick={(event) => {
         event.preventDefault();

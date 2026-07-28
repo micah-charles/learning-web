@@ -36,6 +36,7 @@ import AboutPage        from "./pages/AboutPage.jsx";
 import AIPromptBuilder  from "./pages/AIPromptBuilder.jsx";
 import ArcadeGamePage   from "./games/arcade/ArcadeGamePage.jsx";
 import SmartTestPage    from "./pages/SmartTestPage.jsx";
+import ChineseInputPage from "../features/chinese-input/ChineseInputPage.jsx";
 import OnboardingPage   from "./pages/OnboardingPage.jsx";
 import { useProgress } from "./context/ProgressContext.jsx";
 import { listUploadedPacks } from "@/admin-storage.js";
@@ -46,13 +47,19 @@ import {
   isLikelyExistingUser,
 } from "./utils/personalisation.js";
 import { metadataForTab, pathForTab, resolveAppRoute } from "./utils/appRoutes.js";
+import { getChineseInputLabAvailability } from "../config/chineseInputLabConfig.js";
 
 // Tabs that have active sessions — re-clicking asks the user to confirm reload.
-const SESSION_TABS = new Set(["quiz", "reading", "speak-shadow", "builder", "language", "crossword", "smart-test"]);
+const SESSION_TABS = new Set(["quiz", "reading", "speak-shadow", "builder", "language", "crossword", "smart-test", "chinese-input"]);
+const CHINESE_INPUT_AVAILABILITY = getChineseInputLabAvailability();
 
 function getCurrentRoute() {
   if (typeof window === "undefined") return { tab: "home", notFound: false, canonicalPath: "/" };
-  return resolveAppRoute(window.location);
+  const route = resolveAppRoute(window.location);
+  if (route.tab === "chinese-input" && !CHINESE_INPUT_AVAILABILITY.routeEnabled) {
+    return { ...route, tab: "not-found", notFound: true };
+  }
+  return route;
 }
 
 function NotFoundPage({ onNavigateHome }) {
@@ -88,6 +95,7 @@ function AppContent() {
 
   const canAccessTab = useCallback((tab) => {
     if (tab === "not-found") return true;
+    if (tab === "chinese-input" && CHINESE_INPUT_AVAILABILITY.routeEnabled) return true;
     if (!Array.isArray(allowedTabs) || isEverythingMode(prefs)) return true;
     return allowedTabs.includes(tab);
   }, [allowedTabs, prefs]);
@@ -160,10 +168,10 @@ function AppContent() {
     if (!Array.isArray(allowedTabs)) return;
     if (activeTab === "__reset__") return;
     if (activeTab === "not-found") return;
-    if (!allowedTabs.includes(activeTab)) {
+    if (!canAccessTab(activeTab)) {
       navigateToTab("home", { replace: true, force: true });
     }
-  }, [activeTab, allowedTabs, navigateToTab]);
+  }, [activeTab, allowedTabs, canAccessTab, navigateToTab]);
 
   function handleTabChange(tab) {
     if (!canAccessTab(tab)) {
@@ -190,7 +198,7 @@ function AppContent() {
       noindex: true,
     }
     : metadataForTab(activeTab);
-  const hideGlobalTutorWidget = activeTab === "language" || activeTab === "speak-shadow";
+  const hideGlobalTutorWidget = activeTab === "language" || activeTab === "speak-shadow" || activeTab === "chinese-input";
 
   if (shouldShowOnboarding) {
     return (
@@ -236,6 +244,7 @@ function AppContent() {
         {activeTab === "ai-prompt" && <AIPromptBuilder onNavigate={handleNavigate} />}
         {activeTab === "arcade"     && <ArcadeGamePage />}
         {activeTab === "smart-test" && <SmartTestPage  />}
+        {activeTab === "chinese-input" && CHINESE_INPUT_AVAILABILITY.routeEnabled && <ChineseInputPage />}
         {activeTab === "learning-settings" && (
           <OnboardingPage
             editMode

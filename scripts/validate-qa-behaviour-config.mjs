@@ -45,6 +45,13 @@ const fieldsToCompare = [
   "onboarding.enabled",
   "onboarding.firstTimeUserFlowEnabled",
   "onboarding.defaultPresetMode",
+  "chineseInputLab.enabled",
+  "chineseInputLab.rollout",
+  "chineseInputLab.cangjieVersion",
+  "chineseInputLab.locale",
+  "chineseInputLab.defaultMethod",
+  "chineseInputLab.quickProgressSeparated",
+  "chineseInputLab.physicalKeyboardEnabled",
   "mobile.gameControlsMode",
 ];
 

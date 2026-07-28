@@ -16,6 +16,9 @@ import {
 } from "../utils/personalisation.js";
 import ResumeCard from "../components/dashboard/ResumeCard.jsx";
 import { loadProgressiveLessonCatalog } from "@/progressive-language-lesson.js";
+import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
+
+const CHINESE_INPUT_DISCOVERABLE = getChineseInputLabAvailability().discoverable;
 
 // ─── Decorative star used in section headings ────────────────────────────────
 function SectionStar() {
@@ -72,6 +75,7 @@ function PackCard({ pack, onClick }) {
 
 const START_ACTIONS = [
   { id: "language", label: "Start language learning", tab: "language", primary: true },
+  ...(CHINESE_INPUT_DISCOVERABLE ? [{ id: "chinese-input", label: "Chinese Input Lab 中文輸入", tab: "chinese-input", primary: true }] : []),
   { id: "quiz", label: "Start a quiz", tab: "quiz", primary: true },
   { id: "arcade", label: "Play mini game", tab: "arcade" },
   { id: "reading", label: "Open reading practice", tab: "reading" },

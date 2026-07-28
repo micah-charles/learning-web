@@ -12,11 +12,15 @@ import {
   isEverythingMode,
   normaliseOnboardingPrefs,
 } from "../utils/personalisation.js";
+import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
+
+const CHINESE_INPUT_DISCOVERABLE = getChineseInputLabAvailability().discoverable;
 
 const MODULE_OPTIONS = [
   { id: "home", label: "Home", description: "A gentle overview and quick starts." },
   { id: "language", label: "Language Ladder", description: "Structured language practice." },
   { id: "speak-shadow", label: "Speak Lab", description: "Guided read-aloud and shadowing practice." },
+  ...(CHINESE_INPUT_DISCOVERABLE ? [{ id: "chinese-input", label: "Chinese Input Lab", description: "Learn Cangjie and Quick Chinese typing." }] : []),
   { id: "quiz", label: "Quiz", description: "Fast recall and revision checks." },
   { id: "arcade", label: "Arcade", description: "Mini games for revision." },
   { id: "smart-test", label: "Smart Test", description: "Adaptive test-style practice." },
