@@ -62,6 +62,15 @@ migrateChineseInputState(oldState);
 migrateChineseInputState(oldState);
 assert.equal(oldState.prefs.quiz.datasetId, "core");
 assert.deepEqual(oldState.progress.chineseInputLab, createChineseInputProgress());
+assert.equal(oldState.prefs.chineseInputLab.locale, "zh-HK");
+assert.equal(oldState.prefs.chineseInputLab.autoPronounce, true);
+const emptyLocaleState = {
+  prefs: { chineseInputLab: { locale: "", autoPronounce: false } },
+  progress: { chineseInputLab: createChineseInputProgress() },
+};
+migrateChineseInputState(emptyLocaleState);
+assert.equal(emptyLocaleState.prefs.chineseInputLab.locale, "zh-HK");
+assert.equal(emptyLocaleState.prefs.chineseInputLab.autoPronounce, false);
 
 const validation = validateChineseInputDataset(dataset);
 assert.equal(validation.valid, true, validation.errors.join("\n"));

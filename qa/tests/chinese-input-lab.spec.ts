@@ -17,6 +17,44 @@ async function openLab(page: Page) {
   await expect(page.getByTestId("chinese-input-page")).toBeVisible();
 }
 
+async function installSpeechSynthesisMock(page: Page) {
+  await page.addInitScript(() => {
+    class MockSpeechSynthesisUtterance {
+      text: string;
+      lang = "";
+      rate = 1;
+      voice: unknown = null;
+
+      constructor(text: string) {
+        this.text = text;
+      }
+    }
+    const voices = [
+      { name: "Mock Cantonese", lang: "zh-HK" },
+      { name: "Mock Taiwan Mandarin", lang: "zh-TW" },
+    ];
+    Object.defineProperty(window, "SpeechSynthesisUtterance", {
+      configurable: true,
+      value: MockSpeechSynthesisUtterance,
+    });
+    Object.defineProperty(window, "speechSynthesis", {
+      configurable: true,
+      value: {
+        speaking: false,
+        pending: false,
+        getVoices: () => voices,
+        speak: (utterance: MockSpeechSynthesisUtterance) => {
+          (window as any).__chineseInputSpoken.push({ text: utterance.text, lang: utterance.lang });
+        },
+        cancel: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      },
+    });
+    (window as any).__chineseInputSpoken = [];
+  });
+}
+
 async function answerCurrentQuestion(page: Page) {
   const glyph = (await page.locator(".cil-question-character").innerText()).trim();
   const character = characterByGlyph.get(glyph);
@@ -130,6 +168,64 @@ test("Quick attempts are stored in method-specific mastery", async ({ page }) =>
   const mastery = stored.progress.chineseInputLab.characters[event.characterId];
   expect(mastery.quick.attempts).toBe(1);
   expect(mastery.cangjie.attempts).toBeUndefined();
+});
+
+test("pronunciation locale and auto-pronounce preferences persist", async ({ page }) => {
+  await installSpeechSynthesisMock(page);
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.evaluate((storageKey) => {
+    window.localStorage.setItem(
+      storageKey,
+      JSON.stringify({
+        prefs: {
+          onboardingCompleted: true,
+          learningMode: "everything",
+          selectedInterests: ["everything"],
+          selectedModules: [],
+          selectedCurriculums: [],
+          selectedSubjects: [],
+          onboardingVersion: 1,
+        },
+        progress: {
+          words: {},
+          sessions: [],
+          attemptEvents: [],
+        },
+      }),
+    );
+  }, STORAGE_KEY);
+  await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
+  await expect(page.getByTestId("chinese-input-page")).toBeVisible();
+  const localeSelect = page.getByTestId("chinese-input-pronunciation-locale");
+  const autoPronounce = page.getByTestId("chinese-input-auto-pronounce");
+  await expect(localeSelect).toHaveValue("zh-HK");
+  await expect(autoPronounce).toBeChecked();
+
+  await localeSelect.selectOption("zh-TW");
+  await page.getByTestId("chinese-input-start-lesson").click();
+  const glyph = (await page.locator(".cil-question-character").innerText()).trim();
+  await expect.poll(() => page.evaluate(() => (window as any).__chineseInputSpoken.at(-1))).toEqual({
+    text: glyph,
+    lang: "zh-TW",
+  });
+
+  await page.getByRole("button", { name: "Exit lesson" }).click();
+  await autoPronounce.uncheck();
+  await page.evaluate(() => {
+    (window as any).__chineseInputSpoken = [];
+  });
+  const keyboardTour = page.locator(".cil-lesson-card").filter({ hasText: "Keyboard tour" });
+  await keyboardTour.getByRole("button", { name: /Start|Practise/ }).click();
+  await page.waitForTimeout(250);
+  expect(await page.evaluate(() => (window as any).__chineseInputSpoken)).toEqual([]);
+
+  await page.getByRole("button", { name: "Exit lesson" }).click();
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect(localeSelect).toHaveValue("zh-TW");
+  await expect(autoPronounce).not.toBeChecked();
+  const stored = await readStoredState(page);
+  expect(stored.prefs.chineseInputLab.locale).toBe("zh-TW");
+  expect(stored.prefs.chineseInputLab.autoPronounce).toBe(false);
 });
 
 test("adaptive review starts with a weak or due character", async ({ page }) => {

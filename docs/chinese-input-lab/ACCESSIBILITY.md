@@ -8,6 +8,7 @@
 - Focus indicators are visible and key touch targets remain usable on mobile.
 - Layout scales without horizontal keyboard scrolling.
 - Reduced-motion preferences disable transitions and transforms.
-- Audio is user initiated, can be disabled and has a Jyutping/text fallback.
+- Pronunciation defaults to Cantonese, can switch persistently to Taiwan Mandarin, and has a text fallback.
+- Auto-pronunciation is enabled by default but can be disabled independently from manual pronunciation controls.
 
 Manual screen-reader and 200% zoom checks remain release checklist items.

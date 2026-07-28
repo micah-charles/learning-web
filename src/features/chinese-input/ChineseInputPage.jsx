@@ -92,7 +92,9 @@ export default function ChineseInputPage() {
   const [view, setView] = useState(() => prefs.lastView || "dashboard");
   const [lessonId, setLessonId] = useState("");
   const [sessionLesson, setSessionLesson] = useState(null);
-  const { pronounce, message: speechMessage } = useChineseSpeech(prefs.speechEnabled !== false);
+  const speechLocale = prefs.locale === "zh-TW" ? "zh-TW" : "zh-HK";
+  const speechEnabled = prefs.speechEnabled !== false;
+  const { pronounce, message: speechMessage } = useChineseSpeech(speechEnabled, speechLocale);
   const datasetResult = useMemo(() => {
     try {
       return { dataset: loadChineseInputDataset(), error: null };
@@ -156,6 +158,7 @@ export default function ChineseInputPage() {
           method={activeLesson.method}
           guidanceLevel={prefs.guidanceLevel || "full"}
           pronounce={pronounce}
+          autoPronounce={speechEnabled && prefs.autoPronounce !== false}
           recordAttempt={recordAttempt}
           completeSession={completeSession}
           onExit={() => {
@@ -205,9 +208,30 @@ export default function ChineseInputPage() {
               <option value="off">Off</option>
             </select>
           </label>
+          <label>
+            <span>Pronunciation voice</span>
+            <select
+              data-testid="chinese-input-pronunciation-locale"
+              value={speechLocale}
+              onChange={(event) => updatePrefs({ locale: event.target.value })}
+            >
+              <option value="zh-HK">Cantonese</option>
+              <option value="zh-TW">Mandarin (Taiwan)</option>
+            </select>
+          </label>
           <label className="cil-checkbox">
-            <input type="checkbox" checked={prefs.speechEnabled !== false} onChange={(event) => updatePrefs({ speechEnabled: event.target.checked })} />
+            <input type="checkbox" checked={speechEnabled} onChange={(event) => updatePrefs({ speechEnabled: event.target.checked })} />
             <span>Enable pronunciation controls</span>
+          </label>
+          <label className="cil-checkbox">
+            <input
+              data-testid="chinese-input-auto-pronounce"
+              type="checkbox"
+              checked={prefs.autoPronounce !== false}
+              disabled={!speechEnabled}
+              onChange={(event) => updatePrefs({ autoPronounce: event.target.checked })}
+            />
+            <span>Auto-pronounce each new character</span>
           </label>
         </section>
       )}

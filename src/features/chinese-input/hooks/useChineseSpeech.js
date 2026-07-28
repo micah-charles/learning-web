@@ -1,9 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSpeech } from "../../../react/hooks/useSpeech.js";
 import { getVoicesForLanguage } from "../../../utils.js";
 
-export default function useChineseSpeech(enabled = true) {
-  const { speak, stop } = useSpeech("zh-HK");
+export default function useChineseSpeech(enabled = true, locale = "zh-HK") {
+  const speechLocale = locale === "zh-TW" ? "zh-TW" : "zh-HK";
+  const languageLabel = speechLocale === "zh-TW" ? "Mandarin (Taiwan)" : "Cantonese";
+  const { speak, stop } = useSpeech();
   const [message, setMessage] = useState("");
 
   const pronounce = useCallback((text) => {
@@ -12,18 +14,20 @@ export default function useChineseSpeech(enabled = true) {
       return false;
     }
     if (typeof window === "undefined" || !window.speechSynthesis) {
-      setMessage("Cantonese speech is not available in this browser. You can still use the Jyutping guide.");
+      setMessage(`${languageLabel} speech is not available in this browser.`);
       return false;
     }
     const loadedVoices = window.speechSynthesis.getVoices();
-    if (loadedVoices.length && !getVoicesForLanguage("zh-HK").length) {
-      setMessage("A compatible Chinese voice is not installed. You can still use the Jyutping guide.");
+    if (loadedVoices.length && !getVoicesForLanguage(speechLocale).length) {
+      setMessage(`A compatible ${languageLabel} voice is not installed.`);
       return false;
     }
     setMessage("");
-    speak(text, "zh-HK");
+    speak(text, speechLocale);
     return true;
-  }, [enabled, speak]);
+  }, [enabled, languageLabel, speak, speechLocale]);
 
-  return { pronounce, stop, message };
+  useEffect(() => () => stop(), [speechLocale, stop]);
+
+  return { pronounce, stop, message, speechLocale };
 }

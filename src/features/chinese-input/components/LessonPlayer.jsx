@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { appendInputKey } from "../domain/code-normalisation.js";
 import { evaluateAnswer, shouldAutoSubmitAnswer } from "../domain/answer-evaluator.js";
 import { generateSessionPlan } from "../domain/question-generator.js";
@@ -33,6 +33,7 @@ export default function LessonPlayer({
   method,
   guidanceLevel,
   pronounce,
+  autoPronounce = true,
   onExit,
   recordAttempt,
   completeSession,
@@ -59,6 +60,14 @@ export default function LessonPlayer({
   const expectedKey = question?.expectedKeys?.[buffer.length] || "";
   const allLearnedKeys = lesson.activeKeys;
   const questionStartedAt = useRef(Date.now());
+  const lastAutoPronouncedQuestion = useRef("");
+
+  useEffect(() => {
+    if (!autoPronounce || !question?.id || !character?.char) return;
+    if (lastAutoPronouncedQuestion.current === question.id) return;
+    lastAutoPronouncedQuestion.current = question.id;
+    pronounce(character.char);
+  }, [autoPronounce, character?.char, pronounce, question?.id]);
 
   const submitAnswer = useCallback((inputOverride) => {
     if (!question || feedback) return;
