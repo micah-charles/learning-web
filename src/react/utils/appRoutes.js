@@ -1,3 +1,5 @@
+import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
+
 const BASE_URL = "https://www.foxchildidea.com";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og/default.png`;
 const SPEAK_LAB_OG_IMAGE = `${BASE_URL}/og/speak-lab.png`;
@@ -11,6 +13,8 @@ const DEFAULT_AUDIENCE = {
   "educationalRole": "student",
 };
 const DEFAULT_APP_LANGUAGES = ["en-GB"];
+
+const CHINESE_INPUT_AVAILABILITY = getChineseInputLabAvailability();
 
 export const APP_MODULES = [
   {
@@ -58,6 +62,31 @@ export const APP_MODULES = [
     inLanguage: ["en-GB", "de-DE", "la"],
     priority: "0.8",
   },
+  ...(CHINESE_INPUT_AVAILABILITY.routeEnabled ? [{
+    id: "chinese-input",
+    label: "Chinese Input Lab",
+    path: "/chinese-input",
+    title: "Chinese Input Lab | Learn Cangjie and Quick | FoxChild@Learn",
+    description: "Learn Traditional Chinese typing with a visual Cangjie keyboard, progressive root lessons, guided character building, Quick practice and adaptive review.",
+    ogTitle: "Chinese Input Lab | Cangjie 5 and Quick practice",
+    ogDescription: "Explore a verified Cangjie keyboard, learn roots, type Traditional Chinese characters and review locally.",
+    keywords: [
+      "Chinese Input Lab",
+      "learn Cangjie",
+      "Cangjie 5",
+      "Quick input method",
+      "Traditional Chinese typing",
+      "倉頡",
+      "速成",
+      "中文輸入",
+    ],
+    learningResourceType: "Language learning activity",
+    educationalUse: ["Practice", "Language learning", "Keyboard skills"],
+    teaches: ["Cangjie roots", "Traditional Chinese typing", "Quick codes", "Character construction"],
+    inLanguage: ["en-GB", "zh-Hant", "yue-Hant-HK"],
+    priority: CHINESE_INPUT_AVAILABILITY.discoverable ? "0.9" : undefined,
+    noindex: !CHINESE_INPUT_AVAILABILITY.discoverable,
+  }] : []),
   {
     id: "quiz",
     label: "Quiz",

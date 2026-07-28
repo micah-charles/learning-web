@@ -8,6 +8,7 @@ const TAB_READY_TEST_IDS: Record<string, string[]> = {
   vocab: ["vocab-pack-select", "vocab-card"],
   reading: ["reading-group-select", "reading-session"],
   builder: ["builder-pack-select", "builder-card"],
+  "chinese-input": ["chinese-input-dashboard", "chinese-input-lesson-player"],
 };
 
 function baseEverythingState() {

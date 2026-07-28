@@ -1,0 +1,232 @@
+.cil-page {
+  --cil-ink: #243634;
+  --cil-jade: #2e7d6d;
+  --cil-jade-soft: #dff2ea;
+  --cil-gold: #f2c75c;
+  color: var(--cil-ink);
+}
+
+.cil-dashboard-hero,
+.cil-section-heading,
+.cil-lesson-header,
+.cil-continue-card,
+.cil-character-detail-heading,
+.cil-settings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cil-dashboard-hero h1,
+.cil-section-heading h2 { margin: 4px 0 8px; }
+.cil-standard-note { font-size: .86rem; color: #526662; }
+.cil-method-switch { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.cil-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.cil-stat-grid > * {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cil-stat-grid strong { font-size: 1.55rem; color: var(--cil-jade); }
+.cil-stat-grid span { color: #61716e; }
+
+.cil-dashboard-grid,
+.cil-lesson-grid,
+.cil-character-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.cil-dashboard-link {
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cil-dashboard-link strong { font-size: 1.05rem; }
+.cil-dashboard-link:hover { transform: translateY(-2px); }
+
+.cil-back-button { margin-bottom: 12px; }
+.cil-lesson-card { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.cil-lesson-card .lw-btn { margin-top: auto; }
+.cil-lesson-progress { font-weight: 800; color: var(--cil-jade); }
+
+.cil-activity-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.cil-question-character,
+.cil-root-glyph {
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-size: clamp(4rem, 10vw, 7rem);
+  line-height: 1.1;
+  margin: 16px 0;
+}
+
+.cil-input-buffer {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 2px solid #abc8c1;
+  border-radius: 14px;
+  background: #fbfffd;
+  margin: 10px 0 14px;
+}
+
+.cil-input-buffer span {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--cil-jade-soft);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.cil-hint,
+.cil-feedback {
+  padding: 12px;
+  border-radius: 12px;
+  margin: 10px 0;
+}
+
+.cil-hint { background: #fff5cc; }
+.cil-feedback.is-correct { background: #ddf5e8; border: 1px solid #77b995; }
+.cil-feedback.is-incorrect { background: #fff0eb; border: 1px solid #df9b86; }
+
+.cil-keyboard {
+  width: 100%;
+  max-width: 980px;
+  margin: 20px auto;
+  padding: 14px;
+  border-radius: 18px;
+  background: #e9eee9;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cil-keyboard-row {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 7px;
+  margin-bottom: 7px;
+}
+
+.cil-keyboard-row-2 { grid-template-columns: repeat(9, minmax(0, 1fr)); margin-inline: 4.5%; }
+.cil-keyboard-row-3 { grid-template-columns: repeat(7, minmax(0, 1fr)); margin-inline: 14%; }
+
+.cil-key {
+  min-width: 0;
+  min-height: 68px;
+  padding: 5px 2px;
+  border: 2px solid #8ea6a0;
+  border-radius: 10px;
+  background: #fffdf7;
+  color: #20332f;
+  display: grid;
+  grid-template-areas: "latin root" "state state";
+  align-items: center;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.cil-key-latin { grid-area: latin; font-size: .8rem; font-weight: 800; }
+.cil-key-root { grid-area: root; font-size: 1.4rem; font-weight: 800; }
+.cil-key-state-label { grid-area: state; font-size: .58rem; text-transform: capitalize; }
+.cil-key-inactive { opacity: .42; filter: grayscale(.6); cursor: not-allowed; }
+.cil-key-learned { background: #edf7f1; }
+.cil-key-expected { background: #fff0ad; border-color: #a67600; box-shadow: 0 0 0 3px rgba(242, 199, 92, .35); }
+.cil-key-pressed { transform: translateY(2px); background: #d9edf8; border-color: #367da2; }
+.cil-key-correct { background: #bfe8d0; border-color: #26764b; }
+.cil-key-incorrect { background: #ffd4c8; border-color: #a8432e; }
+.cil-key:focus-visible { outline: 3px solid #214d99; outline-offset: 2px; }
+
+.cil-root-detail {
+  display: grid;
+  grid-template-columns: minmax(120px, 220px) 1fr;
+  gap: 24px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.cil-code-flow { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.cil-code-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--cil-jade-soft);
+}
+.cil-code-step span { font-size: 1.35rem; }
+.cil-decomposition { margin: 16px 0; padding: 18px; border-radius: 16px; background: #fffdf7; border: 1px solid #d6ddd8; }
+
+.cil-collection-filters { display: flex; gap: 12px; flex-wrap: wrap; }
+.cil-collection-filters label,
+.cil-settings label { display: flex; flex-direction: column; gap: 5px; }
+.cil-character-card {
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.cil-character-glyph { font-size: 3rem; line-height: 1; }
+.cil-character-detail { position: relative; margin-top: 18px; }
+.cil-detail-close { position: absolute; right: 14px; top: 14px; }
+.cil-checkbox { flex-direction: row !important; align-items: center; }
+.cil-session-summary { text-align: center; }
+
+@media (max-width: 900px) {
+  .cil-dashboard-grid,
+  .cil-lesson-grid,
+  .cil-character-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cil-activity-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .cil-dashboard-hero,
+  .cil-section-heading,
+  .cil-lesson-header,
+  .cil-continue-card,
+  .cil-settings { align-items: stretch; flex-direction: column; }
+  .cil-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cil-dashboard-grid,
+  .cil-lesson-grid,
+  .cil-character-grid { grid-template-columns: 1fr; }
+  .cil-root-detail { grid-template-columns: 1fr; }
+  .cil-keyboard { padding: 7px 4px; border-radius: 12px; }
+  .cil-keyboard-row { gap: 3px; margin-bottom: 4px; }
+  .cil-key { min-height: 58px; border-radius: 7px; }
+  .cil-key-root { font-size: 1.05rem; }
+  .cil-key-latin { font-size: .68rem; }
+  .cil-key-state-label { font-size: .48rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cil-key,
+  .cil-dashboard-link { transition: none; }
+  .cil-dashboard-link:hover,
+  .cil-key-pressed { transform: none; }
+}

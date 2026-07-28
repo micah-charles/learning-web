@@ -83,6 +83,16 @@ export const learningBehaviourConfig = {
     showEverythingShortcut: true,
   },
 
+  chineseInputLab: {
+    enabled: true,
+    rollout: "public",
+    cangjieVersion: "5",
+    locale: "zh-HK",
+    defaultMethod: "cangjie",
+    quickProgressSeparated: true,
+    physicalKeyboardEnabled: true,
+  },
+
   mobile: {
     enabled: true,
     gameControlsMode: "overlay-on-small-screens",

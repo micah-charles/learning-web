@@ -32,6 +32,10 @@ The long-term vision is to allow anyone — even without programming experience 
 
 The project is still experimental and evolving, but it already demonstrates how AI can assist in transforming raw educational content into reusable learning experiences.
 
+## Chinese Input Lab
+
+Chinese Input Lab is a first-class local learning module at `/chinese-input`. It teaches Traditional Chinese typing with a verified Cangjie 5 root keyboard, progressive lessons, independent Quick practice, character analysis, adaptive local review and Jyutping-supported Cantonese pronunciation controls. Correct answers come from a versioned static dataset rather than a runtime AI service.
+
 ## In Progress
 
 The platform is currently under active development, with ongoing work focused on:

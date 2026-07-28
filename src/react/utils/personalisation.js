@@ -4,13 +4,16 @@ import {
   getDatasetSubject,
   getPassageGroupSubject,
 } from "@/data.js";
+import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
 
 export const ONBOARDING_VERSION = 1;
+const CHINESE_INPUT_DISCOVERABLE = getChineseInputLabAvailability().discoverable;
 
 export const ALL_MODULE_IDS = [
   "home",
   "language",
   "speak-shadow",
+  ...(CHINESE_INPUT_DISCOVERABLE ? ["chinese-input"] : []),
   "quiz",
   "arcade",
   "smart-test",
@@ -32,9 +35,16 @@ export const INTEREST_OPTIONS = [
     id: "languages",
     title: "Learn languages",
     description: "Language Ladder, vocabulary, quizzes, reading and sentence practice.",
-    modules: ["language", "quiz", "vocab", "builder", "reading", "speak-shadow"],
+    modules: ["language", ...(CHINESE_INPUT_DISCOVERABLE ? ["chinese-input"] : []), "quiz", "vocab", "builder", "reading", "speak-shadow"],
     subjects: ["language"],
   },
+  ...(CHINESE_INPUT_DISCOVERABLE ? [{
+    id: "chinese-typing",
+    title: "Chinese typing / 中文輸入",
+    description: "Learn Cangjie and Quick with a visual keyboard and guided character practice.",
+    modules: ["chinese-input", "language", "progress"],
+    subjects: ["language"],
+  }] : []),
   {
     id: "mini-games",
     title: "Play learning mini games",
@@ -229,7 +239,7 @@ export function getPresetPrefsFromWizard({ learnerType, primaryGoal, level } = {
   if (primaryGoal === "languages") {
     return addLearnerEssentials(normaliseOnboardingPrefs({
       selectedInterests: ["languages"],
-      selectedModules: ["home", "language", "quiz", "vocab", "builder", "reading", "progress"],
+      selectedModules: ["home", "language", ...(CHINESE_INPUT_DISCOVERABLE ? ["chinese-input"] : []), "quiz", "vocab", "builder", "reading", "progress"],
       selectedSubjects: ["language"],
       selectedCurriculums: [],
     }), learnerType);
@@ -331,6 +341,7 @@ export function onboardingSummaryLabels(prefs = {}) {
   const moduleLabels = (prefs.selectedModules || []).map((id) => {
     const label = {
       "ai-prompt": "AI Pack Creator",
+      "chinese-input": "Chinese Input Lab",
       "learning-settings": "Manage Learning",
       mypacks: "My Packs",
       vocab: "Vocabulary",
