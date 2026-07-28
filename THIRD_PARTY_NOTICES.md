@@ -56,6 +56,22 @@ Used as: Authoritative Quick 5 rule and standard identification. The pinned sche
 Project: Unicode Unihan 17.0.0
 Source: https://www.unicode.org/Public/17.0.0/ucd/Unihan.zip
 Licence: Unicode-3.0
-Used as: `kCantonese` Jyutping and `kDefinition` English definition metadata for seed characters.
+Used as: `kCantonese`, `kMandarin`, `kDefinition`, radical/stroke and variant metadata for seed and canonical characters.
+
+Project: Hong Kong EDB online character inventory
+Source: https://www.edbchinese.hk/lexlist_ch/
+Publisher: Hong Kong Education Bureau
+Used as: Hong Kong character-coverage reference for the canonical dataset. Education Bureau copyright and redistribution terms apply; raw snapshots are local-only.
+
+Project: Taiwan MOE character and word frequency tables
+Source: https://language.moe.gov.tw/001/Upload/files/SITE_CONTENT/M0001/MAINLAND/ch2.htm
+Publisher: Ministry of Education, Taiwan
+Used as: Traditional Chinese character and word frequency ranking for the canonical dataset. Ministry website terms apply; raw snapshots are local-only.
+
+Project: Open Chinese Convert (OpenCC)
+Source: https://github.com/BYVoid/OpenCC
+Pinned commit: 2904aa4dd06df17c538fbeae9f1efa14e25bb4a5
+Licence: Apache-2.0
+Used as: Independent Simplified-to-Traditional character verification for canonical dataset selection.
 
 The generated dataset records these sources per character. For full licence texts and source terms, use the upstream source links above and https://www.unicode.org/license.txt.

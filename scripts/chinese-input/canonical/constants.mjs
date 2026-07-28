@@ -1,0 +1,102 @@
+export const DATASET_VERSION = "1.0.0";
+export const GENERATED_AT = "2026-07-28T00:00:00.000Z";
+
+export const SOURCE_DEFINITIONS = Object.freeze({
+  edb: {
+    id: "hk-edb-primary-lexical-list",
+    name: "Hong Kong EDB online character inventory",
+    publisher: "Hong Kong Education Bureau",
+    version: "2007 (online edition accessed 2026-07-28)",
+    baseUrl: "https://www.edbchinese.hk/lexlist_ch",
+    expectedCharacterCount: 4804,
+    license: "Hong Kong Education Bureau copyright; redistribution review required",
+  },
+  frequency: {
+    id: "tw-moe-character-frequency-mainland",
+    name: "Traditional Chinese Character Frequency Table",
+    publisher: "Ministry of Education, Taiwan",
+    version: "online table accessed 2026-07-28",
+    url: "https://language.moe.gov.tw/001/Upload/files/SITE_CONTENT/M0001/MAINLAND/download/dlrest1.zip",
+    expectedCharacterCount: 3951,
+    expectedTotalFrequency: 728902,
+    license: "Taiwan Ministry of Education website terms apply",
+  },
+  wordFrequency: {
+    id: "tw-moe-word-frequency-mainland",
+    name: "Traditional Chinese Word Frequency Table",
+    publisher: "Ministry of Education, Taiwan",
+    version: "online archive accessed 2026-07-28",
+    url: "https://language.moe.gov.tw/001/Upload/files/SITE_CONTENT/M0001/MAINLAND/download/dlrest2.zip",
+    expectedWordCount: 23007,
+    expectedTotalFrequency: 470028,
+    license: "Taiwan Ministry of Education website terms apply",
+  },
+  cangjie: {
+    id: "rime-cangjie5",
+    name: "Rime Cangjie 5 base dictionary",
+    repository: "https://github.com/rime/rime-cangjie",
+    commit: "52d90a1b1312e74042b38c1cbc8142defbc53171",
+    relativePath: "rime-cangjie@52d90a1b1312e74042b38c1cbc8142defbc53171/cangjie5.base.dict.yaml",
+    sha256: "8690f2ad8aafd38780846881aa916b5779e6d9247a351a1da426d3f3257afca4",
+    license: "GPL table header; repository LGPL-3.0",
+  },
+  quick: {
+    id: "rime-quick5",
+    name: "Rime Quick 5 schema",
+    repository: "https://github.com/rime/rime-quick",
+    commit: "5dcdb9e353d314239e9c8cddc0f42d52da4837bb",
+    relativePath: "rime-quick@5dcdb9e353d314239e9c8cddc0f42d52da4837bb/quick5.schema.yaml",
+    sha256: "0eed4b8b10cd50132a691c8027cb774f481eb571c9d5c0b901d54bc7c5867c53",
+    rule: "first and last Cangjie keys, except z-prefixed special codes",
+    license: "LGPL-3.0",
+  },
+  unihan: {
+    id: "unicode-unihan-17",
+    name: "Unicode Unihan Database",
+    publisher: "Unicode Consortium",
+    version: "17.0.0",
+    baseUrl: "https://www.unicode.org/Public/17.0.0/ucd/Unihan.zip",
+    relativePaths: {
+      readings: "unihan@17.0.0/Unihan_Readings.txt",
+      radicalStrokes: "unihan@17.0.0/Unihan_IRGSources.txt",
+      variants: "unihan@17.0.0/Unihan_Variants.txt",
+    },
+    license: "Unicode-3.0",
+  },
+  opencc: {
+    id: "opencc-st-characters",
+    name: "OpenCC Simplified-to-Traditional character map",
+    repository: "https://github.com/BYVoid/OpenCC",
+    commit: "2904aa4dd06df17c538fbeae9f1efa14e25bb4a5",
+    sourcePath: "data/dictionary/STCharacters.txt",
+    relativePath: "opencc@2904aa4dd06df17c538fbeae9f1efa14e25bb4a5/STCharacters.txt",
+    sha256: "a0ca1601c70648cf48b33c3c6210ccbecc5c7eead4b4c3daf76587ba2c03582b",
+    license: "Apache-2.0",
+  },
+});
+
+export const CHARACTER_COLUMNS = Object.freeze([
+  "character", "unicode", "unicode_hex", "present_in_edb", "edb_version",
+  "frequency_rank", "frequency_score", "frequency_band", "frequency_source",
+  "difficulty_level", "school_level", "recommended_lesson", "recommended_unit", "curriculum_tier",
+  "cangjie", "quick", "root_count", "code_length", "first_root", "last_root",
+  "radical", "total_strokes", "structure", "left_right", "top_bottom", "surround", "single",
+  "english", "category", "sub_category", "meaning", "example_word", "example_phrase", "example_sentence",
+  "jyutping", "mandarin_pinyin",
+  "is_high_frequency", "is_beginner", "is_common_word", "review_priority", "review_interval", "mastery_weight",
+  "unlock_after", "teaching_notes",
+  "component_1", "component_2", "component_3", "component_4",
+  "similar_characters", "confusable_characters", "derived_characters",
+  "stroke_difficulty", "typing_difficulty", "memory_difficulty", "shape_complexity", "code_uniqueness",
+  "family_grouping", "phonetic_grouping", "semantic_grouping", "component_grouping",
+  "source_frequency", "source_cangjie", "source_unihan", "source_edb", "source_opencc",
+  "last_verified", "dataset_version",
+]);
+
+export const WORD_COLUMNS = Object.freeze([
+  "word", "unicode_sequence", "character_ids", "frequency_rank", "frequency_score",
+  "frequency_source", "school_level", "curriculum_tier", "recommended_lesson",
+  "jyutping", "mandarin_pinyin", "english", "meaning", "category", "sub_category",
+  "example_sentence", "review_priority", "source_edb", "last_verified", "dataset_version",
+  "source_frequency",
+]);
