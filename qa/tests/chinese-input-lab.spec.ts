@@ -57,7 +57,9 @@ test("direct route is discoverable and first lesson supports physical and pointe
   if (!expectedKey) throw new Error(`No expected key for ${firstGlyph}`);
   await page.keyboard.press(expectedKey);
   await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct");
-  await page.getByTestId("chinese-input-next").click();
+  await page.keyboard.press("Enter");
+  await expect(page.getByTestId("chinese-input-feedback")).toHaveCount(0);
+  await expect(page.locator(".cil-lesson-progress")).toHaveAttribute("aria-label", "Question 2 of 10");
 
   const secondGlyph = (await page.locator(".cil-question-character").innerText()).trim();
   const pointerKey = characterByGlyph.get(secondGlyph)?.cangjie.preferredCode;

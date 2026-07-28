@@ -103,36 +103,7 @@ export default function LessonPlayer({
     recordAttempt,
   ]);
 
-  const handleInput = useCallback((key) => {
-    if (!question || feedback || summary) return;
-    if (key === "Enter") {
-      submitAnswer();
-      return;
-    }
-    if (key === "Backspace") {
-      setBuffer((current) => current.slice(0, -1));
-      return;
-    }
-    if (key === "Escape") {
-      setBuffer("");
-      return;
-    }
-    if (!/^[A-Z]$/.test(key) || !lesson.activeKeys.includes(key)) return;
-    setPressedKey(key);
-    window.setTimeout(() => setPressedKey(""), 130);
-    const nextBuffer = appendInputKey(buffer, key, method);
-    setBuffer(nextBuffer);
-    if (question.type === "root-recognition") submitAnswer(nextBuffer);
-  }, [buffer, feedback, lesson.activeKeys, method, question, submitAnswer, summary]);
-
-  usePhysicalKeyboard({ enabled: !summary, onKey: handleInput });
-
-  function showHint() {
-    if (!question || feedback) return;
-    setHintCount((count) => Math.min(count + 1, question.hintSteps.length));
-  }
-
-  function nextQuestion() {
+  const nextQuestion = useCallback(() => {
     if (!feedback) return;
     if (index >= plan.questions.length - 1) {
       const accuracy = stats.answered ? Math.round(stats.correct / stats.answered * 100) : 0;
@@ -159,6 +130,37 @@ export default function LessonPlayer({
     setHintCount(0);
     setAttemptedCurrent(false);
     questionStartedAt.current = Date.now();
+  }, [completeSession, feedback, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
+
+  const handleInput = useCallback((key) => {
+    if (!question || summary) return;
+    if (key === "Enter") {
+      if (feedback) nextQuestion();
+      else submitAnswer();
+      return;
+    }
+    if (feedback) return;
+    if (key === "Backspace") {
+      setBuffer((current) => current.slice(0, -1));
+      return;
+    }
+    if (key === "Escape") {
+      setBuffer("");
+      return;
+    }
+    if (!/^[A-Z]$/.test(key) || !lesson.activeKeys.includes(key)) return;
+    setPressedKey(key);
+    window.setTimeout(() => setPressedKey(""), 130);
+    const nextBuffer = appendInputKey(buffer, key, method);
+    setBuffer(nextBuffer);
+    if (question.type === "root-recognition") submitAnswer(nextBuffer);
+  }, [buffer, feedback, lesson.activeKeys, method, nextQuestion, question, submitAnswer, summary]);
+
+  usePhysicalKeyboard({ enabled: !summary, onKey: handleInput });
+
+  function showHint() {
+    if (!question || feedback) return;
+    setHintCount((count) => Math.min(count + 1, question.hintSteps.length));
   }
 
   if (summary) {
@@ -229,9 +231,9 @@ export default function LessonPlayer({
             <button className="lw-btn lw-btn-secondary" type="button" onClick={() => setBuffer("")} disabled={!buffer || Boolean(feedback)}>Clear</button>
             <button className="lw-btn lw-btn-secondary" type="button" onClick={showHint} disabled={Boolean(feedback)}>Hint</button>
             {!feedback ? (
-              <button className="lw-btn lw-btn-primary" data-testid="chinese-input-submit" type="button" onClick={() => submitAnswer()} disabled={!buffer}>Submit</button>
+              <button className="lw-btn lw-btn-primary" data-testid="chinese-input-submit" type="button" aria-keyshortcuts="Enter" onClick={() => submitAnswer()} disabled={!buffer}>Submit</button>
             ) : (
-              <button className="lw-btn lw-btn-primary" data-testid="chinese-input-next" type="button" onClick={nextQuestion}>
+              <button className="lw-btn lw-btn-primary" data-testid="chinese-input-next" type="button" aria-keyshortcuts="Enter" onClick={nextQuestion}>
                 {index === plan.questions.length - 1 ? "Finish" : "Next"}
               </button>
             )}
