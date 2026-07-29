@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "datasetVersion": "1.1.0",
+  "schemaVersion": 3,
+  "datasetVersion": "1.2.0",
   "generatedAt": "2026-07-29T00:00:00.000Z",
   "sourceDefinitions": {
     "edb": {
@@ -60,7 +60,8 @@
       "relativePaths": {
         "readings": "unihan@17.0.0/Unihan_Readings.txt",
         "radicalStrokes": "unihan@17.0.0/Unihan_IRGSources.txt",
-        "variants": "unihan@17.0.0/Unihan_Variants.txt"
+        "variants": "unihan@17.0.0/Unihan_Variants.txt",
+        "dictionaryLikeData": "unihan@17.0.0/Unihan_DictionaryLikeData.txt"
       },
       "license": "Unicode-3.0"
     },
@@ -73,20 +74,30 @@
       "relativePath": "opencc@2904aa4dd06df17c538fbeae9f1efa14e25bb4a5/STCharacters.txt",
       "sha256": "a0ca1601c70648cf48b33c3c6210ccbecc5c7eead4b4c3daf76587ba2c03582b",
       "license": "Apache-2.0"
+    },
+    "ids": {
+      "id": "chise-ids-ucs-basic",
+      "name": "CHISE IDS for CJK Unified Ideographs",
+      "repository": "https://github.com/chise/ids",
+      "commit": "352e13378e411c322cfa16bfd7a6d21d670d7eca",
+      "sourcePath": "IDS-UCS-Basic.txt",
+      "relativePath": "chise-ids@352e13378e411c322cfa16bfd7a6d21d670d7eca/IDS-UCS-Basic.txt",
+      "sha256": "296f2ad81911e92bba6387a7cf0713c955a0047ec95304039507e94144bee302",
+      "license": "GPL-2.0-or-later"
     }
   },
   "sourceFiles": {
     "edb": {
       "path": "data-source/authoritative/hk-edb/characters.json",
-      "sha256": "e7df0dd8b3f031326dce93be06b0a6f7f2c7566f2ebffbc3bbb56a274e82a37e"
+      "sha256": "a28e2815b9036336a8bad5525454d05580f52ad1bb42059f990cadc63d429640"
     },
     "frequency": {
       "path": "data-source/authoritative/tw-moe/frequency.json",
-      "sha256": "00453f4e28f852c1ab8fbde4bb8450ec14991739c4d98ba772fb0ea7224f554a"
+      "sha256": "8e919da082a2434ee4f5734b58fa0fb0cab04634b9037bc1f03939102e88dad7"
     },
     "wordFrequency": {
       "path": "data-source/authoritative/tw-moe/word-frequency.json",
-      "sha256": "d56b8d236f45a1169476029cf4c668cc3f25ad005fa95ca3d31070eebe228fda"
+      "sha256": "d0e8bcc4509b208e00bcfd3e3fb7e35051b46df0248ce6e87bb9e7d9c8d79af0"
     },
     "cangjie": {
       "path": "data-source/authoritative/rime-cangjie@52d90a1b1312e74042b38c1cbc8142defbc53171/cangjie5.base.dict.yaml",
@@ -108,9 +119,17 @@
       "path": "data-source/authoritative/unihan@17.0.0/Unihan_Variants.txt",
       "sha256": "3f23cd71872633f3350875d25bd388e83b60fa71807634c9a600ec26f38a68ab"
     },
+    "dictionaryLikeData": {
+      "path": "data-source/authoritative/unihan@17.0.0/Unihan_DictionaryLikeData.txt",
+      "sha256": "d0caf58b8be0683a34c9a4090d87c2fd8737067e089d34def83b8d8a4060297a"
+    },
     "opencc": {
       "path": "data-source/authoritative/opencc@2904aa4dd06df17c538fbeae9f1efa14e25bb4a5/STCharacters.txt",
       "sha256": "a0ca1601c70648cf48b33c3c6210ccbecc5c7eead4b4c3daf76587ba2c03582b"
+    },
+    "ids": {
+      "path": "data-source/authoritative/chise-ids@352e13378e411c322cfa16bfd7a6d21d670d7eca/IDS-UCS-Basic.txt",
+      "sha256": "296f2ad81911e92bba6387a7cf0713c955a0047ec95304039507e94144bee302"
     }
   },
   "acquisition": "Run fetch-authoritative-sources.mjs explicitly; normal builds are offline."

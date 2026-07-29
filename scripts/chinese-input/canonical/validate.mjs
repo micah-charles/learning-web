@@ -3,7 +3,10 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import {
   CHARACTER_COLUMNS,
+  CHARACTER_DECOMPOSITION_COLUMNS,
+  CHARACTER_FAMILY_COLUMNS,
   CHARACTER_READING_COLUMNS,
+  CHARACTER_REVIEW_QUEUE_COLUMNS,
   DATASET_VERSION,
   SEMANTIC_ANCHOR_CHARACTERS,
   WORD_COLUMNS,
@@ -17,12 +20,19 @@ const fixturePath = resolve(import.meta.dirname, "fixtures/semantic-anchor-revie
 const charactersDocument = readJson(resolve(outputRoot, "canonical_characters.json"));
 const wordsDocument = readJson(resolve(outputRoot, "canonical_words.json"));
 const readingsDocument = readJson(resolve(outputRoot, "canonical_character_readings.json"));
+const decompositionsDocument = readJson(resolve(outputRoot, "canonical_character_decompositions.json"));
+const familiesDocument = readJson(resolve(outputRoot, "canonical_character_families.json"));
+const reviewQueueDocument = readJson(resolve(outputRoot, "character_review_queue.json"));
+const cangjieAudit = readJson(resolve(outputRoot, "cangjie_reference_audit.json"));
 const statistics = readJson(resolve(outputRoot, "canonical_statistics.json"));
 const semanticAudit = readJson(resolve(outputRoot, "semantic_audit.json"));
 const fixture = readJson(fixturePath);
 const characters = charactersDocument.characters;
 const words = wordsDocument.words;
 const readings = readingsDocument.readings;
+const decompositions = decompositionsDocument.decompositions;
+const familyMemberships = familiesDocument.memberships;
+const reviewQueue = reviewQueueDocument.reviews;
 const errors = [];
 const warnings = [];
 
@@ -48,12 +58,16 @@ function csvHeader(fileName) {
   return readFileSync(resolve(outputRoot, fileName), "utf8").split(/\r?\n/, 1)[0];
 }
 
-check(charactersDocument.schemaVersion === 2, "Character schema version must be 2.");
-check(wordsDocument.schemaVersion === 2, "Word schema version must be 2.");
-check(readingsDocument.schemaVersion === 2, "Character-reading schema version must be 2.");
+check(charactersDocument.schemaVersion === 3, "Character schema version must be 3.");
+check(wordsDocument.schemaVersion === 3, "Word schema version must be 3.");
+check(readingsDocument.schemaVersion === 3, "Character-reading schema version must be 3.");
+check(decompositionsDocument.schemaVersion === 3, "Character-decomposition schema version must be 3.");
+check(familiesDocument.schemaVersion === 3, "Character-family schema version must be 3.");
 check(charactersDocument.datasetVersion === DATASET_VERSION, "Character dataset version mismatch.");
 check(wordsDocument.datasetVersion === DATASET_VERSION, "Word dataset version mismatch.");
 check(readingsDocument.datasetVersion === DATASET_VERSION, "Character-reading dataset version mismatch.");
+check(decompositionsDocument.datasetVersion === DATASET_VERSION, "Character-decomposition dataset version mismatch.");
+check(familiesDocument.datasetVersion === DATASET_VERSION, "Character-family dataset version mismatch.");
 check(characters.length >= 2500 && characters.length <= 3500, `Character count ${characters.length} is outside 2500–3500.`);
 check(words.length >= 8000 && words.length <= 15000, `Word count ${words.length} is outside 8000–15000.`);
 check(duplicates(characters.map((row) => row.character)).length === 0, "Duplicate character rows found.");
@@ -61,6 +75,11 @@ check(duplicates(characters.map((row) => row.foxchild_selection_rank)).length ==
 check(duplicates(words.map((row) => row.word)).length === 0, "Duplicate word rows found.");
 check(duplicates(words.map((row) => row.foxchild_selection_rank)).length === 0, "Duplicate word selection ranks found.");
 check(duplicates(readings.map((row) => `${row.character}:${row.language}:${row.reading}`)).length === 0, "Duplicate character-reading rows found.");
+check(decompositions.length === characters.length, "Every character must have exactly one decomposition row.");
+check(duplicates(decompositions.map((row) => row.character)).length === 0, "Duplicate character-decomposition rows found.");
+check(duplicates(familyMemberships.map((row) => `${row.family_id}:${row.character}`)).length === 0, "Duplicate character-family memberships found.");
+check(reviewQueue.length === characters.length, "Every character must be present in the human-review queue.");
+check(cangjieAudit.status === "PASS" && cangjieAudit.mismatchCount === 0, "Pinned Cangjie reference audit did not pass.");
 
 const characterSet = new Set(characters.map((row) => row.character));
 const characterByGlyph = new Map(characters.map((row) => [row.character, row]));
@@ -78,6 +97,7 @@ const requiredCharacterFields = [
   "cangjie", "quick", "root_count", "code_length",
   "first_root", "last_root", "cangjie_difficulty", "cangjie_difficulty_method",
   "simple_code_candidate_method", "total_strokes", "structure",
+  "decomposition_status", "structure_source",
   "visual_complexity", "visual_complexity_method", "visual_complexity_confidence",
   "unihan_definition", "learner_definition_status", "category_review_status",
   "code_uniqueness", "code_uniqueness_method", "source_cangjie", "source_unihan",
@@ -98,11 +118,36 @@ for (const row of characters) {
   check(row.quick === (row.cangjie.length === 1 ? row.cangjie : `${row.cangjie[0]}${row.cangjie.at(-1)}`), `${row.character}: Quick code is not first/last Cangjie.`);
   check(row.accepted_cangjie_codes.includes(row.cangjie), `${row.character}: preferred Cangjie code is not accepted.`);
   check(row.accepted_quick_codes.includes(row.quick), `${row.character}: preferred Quick code is not accepted.`);
-  check(row.structure === "unknown", `${row.character}: structure must remain unknown without an approved structure source.`);
-  check([row.left_right, row.top_bottom, row.surround, row.single].every((value) => value === ""), `${row.character}: layout flags must be blank while structure is unknown.`);
+  check(["left-right", "top-bottom", "surround", "overlay", "single", "other"].includes(row.structure), `${row.character}: invalid source-backed structure ${row.structure}.`);
+  check(row.left_right === (row.structure === "left-right"), `${row.character}: left-right flag disagrees with structure.`);
+  check(row.top_bottom === (row.structure === "top-bottom"), `${row.character}: top-bottom flag disagrees with structure.`);
+  check(row.surround === (row.structure === "surround"), `${row.character}: surround flag disagrees with structure.`);
+  check(row.single === (row.structure === "single"), `${row.character}: single flag disagrees with structure.`);
+  check(row.decomposition_status === "source-attested-unreviewed", `${row.character}: decomposition review boundary is missing.`);
   check(row.learner_definition_en === "" && row.learner_definition_status === "unreviewed", `${row.character}: Unihan gloss must not be promoted to a learner definition.`);
   check(row.category_confidence === "low" && row.category_review_status === "pending", `${row.character}: heuristic category must remain a low-confidence pending proposal.`);
   check(row.hk_frequency_rank === "" && row.usage_level === "" && row.curriculum_priority === "", `${row.character}: missing Hong Kong/usage/curriculum evidence must remain blank.`);
+}
+
+const decompositionByCharacter = new Map(decompositions.map((row) => [row.character, row]));
+for (const row of decompositions) {
+  check(characterSet.has(row.character), `${row.character}: decomposition references a character outside the canonical set.`);
+  check(row.ids !== "", `${row.character}: blank IDS decomposition.`);
+  check(row.component_count === row.components.length && row.component_count >= 1, `${row.character}: invalid component count.`);
+  check(row.source === "chise-ids-ucs-basic" && row.source_commit !== "", `${row.character}: decomposition lacks pinned CHISE provenance.`);
+  check(row.review_status === "unreviewed", `${row.character}: source decomposition was incorrectly marked educationally reviewed.`);
+}
+for (const row of familyMemberships) {
+  check(characterSet.has(row.character), `${row.character}: family membership references a character outside the canonical set.`);
+  check(["component-shared", "phonetic-class", "semantic-variant"].includes(row.family_type), `${row.character}: invalid family type ${row.family_type}.`);
+  check(row.basis !== "" && row.source !== "", `${row.character}: family membership lacks basis/provenance.`);
+  check(row.review_status === "unreviewed", `${row.character}: source-derived family was incorrectly marked reviewed.`);
+}
+for (const character of ["青", "清", "情", "請", "晴", "精"]) {
+  check(
+    familyMemberships.some((row) => row.family_type === "component-shared" && row.basis === "青" && row.character === character),
+    `${character}: 青 component-family fixture is missing.`,
+  );
 }
 
 for (const row of words) {
@@ -123,9 +168,12 @@ for (const row of readings) {
   check(row.review_status === "source-attested-unreviewed", `${row.character}: reading review status is not honest.`);
 }
 
-check(csvHeader("canonical_characters.csv") === CHARACTER_COLUMNS.join(","), "Character CSV header does not match schema 2.");
-check(csvHeader("canonical_words.csv") === WORD_COLUMNS.join(","), "Word CSV header does not match schema 2.");
-check(csvHeader("canonical_character_readings.csv") === CHARACTER_READING_COLUMNS.join(","), "Character-reading CSV header does not match schema 2.");
+check(csvHeader("canonical_characters.csv") === CHARACTER_COLUMNS.join(","), "Character CSV header does not match schema 3.");
+check(csvHeader("canonical_words.csv") === WORD_COLUMNS.join(","), "Word CSV header does not match schema 3.");
+check(csvHeader("canonical_character_readings.csv") === CHARACTER_READING_COLUMNS.join(","), "Character-reading CSV header does not match schema 3.");
+check(csvHeader("canonical_character_decompositions.csv") === CHARACTER_DECOMPOSITION_COLUMNS.join(","), "Character-decomposition CSV header does not match schema 3.");
+check(csvHeader("canonical_character_families.csv") === CHARACTER_FAMILY_COLUMNS.join(","), "Character-family CSV header does not match schema 3.");
+check(csvHeader("character_review_queue.csv") === CHARACTER_REVIEW_QUEUE_COLUMNS.join(","), "Character review-queue CSV header does not match schema.");
 
 const fixtureCharacters = Array.from(fixture.characters);
 check(fixture.reviewStatus === "manual-fixture-review-complete", "Semantic anchor fixture has not completed manual fixture review.");
@@ -137,7 +185,7 @@ for (const character of fixtureCharacters) {
   check(characterSet.has(character) !== expectedAbsent, `${character}: semantic anchor presence differs from reviewed fixture.`);
   if (expectedAbsent) continue;
   const row = characterByGlyph.get(character);
-  check(row.structure === "unknown", `${character}: anchor structure was invented.`);
+  check(decompositionByCharacter.has(character), `${character}: anchor decomposition is missing.`);
   check(row.category_review_status === "pending", `${character}: anchor category bypassed review.`);
   check(row.learner_definition_status === "unreviewed", `${character}: anchor learner definition bypassed review.`);
 }
@@ -166,6 +214,8 @@ for (const character of fixture.polyphonicAnchors) {
 
 check(semanticAudit.flags.polyphonicCharactersWithOneReading.length === 0, "Polyphonic source signals remain represented by only one reading.");
 check(semanticAudit.flags.unknownStructureWithPopulatedFlags.length === 0, "Unknown structures still have populated layout flags.");
+check(semanticAudit.flags.structureFlagMismatches.length === 0, "Source-backed structures disagree with layout flags.");
+check(semanticAudit.flags.missingDecompositions.length === 0, "Canonical characters are missing pinned decompositions.");
 for (const character of fixture.expectedAbsent) {
   check(
     semanticAudit.flags.missingHongKongCantoneseCharacters.some((row) => row.character === character)
@@ -174,7 +224,8 @@ for (const character of fixture.expectedAbsent) {
   );
 }
 
-warn(characters.every((row) => row.structure !== "unknown"), "Structural layout remains unknown until a pinned IDS/structure source is approved.");
+warn(decompositions.every((row) => row.review_status === "reviewed"), "CHISE decompositions are source-backed but not yet reviewed for FoxChild teaching use.");
+warn(familyMemberships.every((row) => row.review_status === "reviewed"), "Source-derived character families are not yet reviewed for FoxChild teaching use.");
 warn(characters.every((row) => row.learner_definition_status === "reviewed"), "Learner-facing English definitions remain unreviewed.");
 warn(words.every((row) => row.learner_definition_status === "reviewed"), "Word learner definitions remain unreviewed.");
 warn(words.every((row) => row.pronunciation_status === "reviewed"), "Context-sensitive word pronunciations require a pinned lexical source.");
@@ -211,6 +262,8 @@ writeText(resolve(outputRoot, "coverage_report.md"), [
   "",
   `- Canonical characters: ${statistics.characterCount}`,
   `- Source-attested character readings: ${statistics.characterReadingCount}`,
+  `- Source-attested character decompositions: ${statistics.characterDecompositionCount}`,
+  `- Source-derived family memberships: ${statistics.characterFamilyMembershipCount} across ${statistics.characterFamilyCount} families`,
   `- Canonical words: ${statistics.wordCount}`,
   `- EDB online inventory represented: ${statistics.edbCoveragePercent}%`,
   `- Characters with MOE frequency evidence: ${statistics.moeFrequencyCoveragePercent}%`,
@@ -228,7 +281,9 @@ writeText(resolve(outputRoot, "coverage_report.md"), [
   "- Frequency buckets are descriptive corpus buckets, not lessons.",
   "- Character readings are relational, multi-valued and source-attested; none is selected as a pedagogical default.",
   "- Word pronunciations are blank until a context-sensitive lexical source is approved.",
-  "- Structure, layout flags, literacy levels, curriculum priorities and learner definitions remain unknown or unreviewed.",
+  "- Structure/components are source-attested from pinned CHISE IDS; their teaching interpretation remains unreviewed.",
+  "- Phonetic classes and semantic-variant families are provisional Unihan evidence; component families are deterministic CHISE-derived memberships.",
+  "- Literacy levels, curriculum priorities and learner definitions remain unknown or unreviewed.",
   "- Category values are low-confidence proposals and cannot be consumed as reviewed categories.",
   "",
 ].join("\n"));

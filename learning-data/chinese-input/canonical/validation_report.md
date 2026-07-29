@@ -7,7 +7,7 @@ Status: **PASS**
 - Words: 10000
 - Semantic QA anchors: 300
 - Errors: 0
-- Warnings: 8
+- Warnings: 9
 
 ## Errors
 
@@ -15,7 +15,8 @@ Status: **PASS**
 
 ## Warnings
 
-- Structural layout remains unknown until a pinned IDS/structure source is approved.
+- CHISE decompositions are source-backed but not yet reviewed for FoxChild teaching use.
+- Source-derived character families are not yet reviewed for FoxChild teaching use.
 - Learner-facing English definitions remain unreviewed.
 - Word learner definitions remain unreviewed.
 - Context-sensitive word pronunciations require a pinned lexical source.

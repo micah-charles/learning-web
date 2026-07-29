@@ -49,3 +49,27 @@ Renaming a corpus bucket as a lesson, treating code length as visual structure, 
 
 ### Guidance for future agents
 Keep MOE, EDB, calculated selection and curriculum concepts in separate fields. Unknown values stay blank. Calculated proxies must name their method and confidence. Heuristic categories stay pending proposals. Character readings are relational and multi-valued; never concatenate them into context-sensitive word pronunciation or select a pedagogical primary reading without review.
+
+## Decomposition and families require pinned relationships
+code: `scripts/chinese-input/canonical/`, `learning-data/chinese-input/canonical/canonical_character_decompositions.*`, `learning-data/chinese-input/canonical/canonical_character_families.*` | updated: 2026-07-29 | status: active
+
+### Context
+CHISE IDS supplies complete source-backed decomposition for the selected set. Unicode Unihan supplies provisional phonetic classes and semantic-variant relationships.
+
+### Why it matters
+Component, phonetic and semantic relationships are different facts. Combining them into one invented “family” field would make hints and teaching explanations unreliable.
+
+### Guidance for future agents
+Keep family memberships relational and typed. Record basis, source, confidence and review status. Derive layout only from IDS, never from Cangjie length. CHISE-derived outputs carry GPL-2.0-or-later obligations and must retain attribution.
+
+## Curriculum compilation is fail-closed on human review
+code: `scripts/chinese-input/curriculum/`, `learning-data/chinese-input/reviewed/`, `learning-data/chinese-input/curriculum/` | updated: 2026-07-29 | status: active
+
+### Context
+Learner definitions, Hong Kong suitability, display readings, curriculum priority and stage are human educational decisions.
+
+### Why it matters
+A deterministic compiler can preserve reviewed decisions but cannot replace them. Allowing an empty or heuristic review table to emit production lessons would recreate the schema-v1 error at another layer.
+
+### Guidance for future agents
+Keep the production threshold fail-closed. Test with explicitly labelled fixtures only. Canonical data feeds the compiler; reviewed input controls inclusion and order; lesson, assessment and game graphs remain separate outputs.

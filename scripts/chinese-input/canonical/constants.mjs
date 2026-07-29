@@ -1,5 +1,5 @@
-export const DATASET_VERSION = "1.1.0";
-export const SCHEMA_VERSION = 2;
+export const DATASET_VERSION = "1.2.0";
+export const SCHEMA_VERSION = 3;
 export const GENERATED_AT = "2026-07-29T00:00:00.000Z";
 
 export const SOURCE_DEFINITIONS = Object.freeze({
@@ -61,6 +61,7 @@ export const SOURCE_DEFINITIONS = Object.freeze({
       readings: "unihan@17.0.0/Unihan_Readings.txt",
       radicalStrokes: "unihan@17.0.0/Unihan_IRGSources.txt",
       variants: "unihan@17.0.0/Unihan_Variants.txt",
+      dictionaryLikeData: "unihan@17.0.0/Unihan_DictionaryLikeData.txt",
     },
     license: "Unicode-3.0",
   },
@@ -74,6 +75,16 @@ export const SOURCE_DEFINITIONS = Object.freeze({
     sha256: "a0ca1601c70648cf48b33c3c6210ccbecc5c7eead4b4c3daf76587ba2c03582b",
     license: "Apache-2.0",
   },
+  ids: {
+    id: "chise-ids-ucs-basic",
+    name: "CHISE IDS for CJK Unified Ideographs",
+    repository: "https://github.com/chise/ids",
+    commit: "352e13378e411c322cfa16bfd7a6d21d670d7eca",
+    sourcePath: "IDS-UCS-Basic.txt",
+    relativePath: "chise-ids@352e13378e411c322cfa16bfd7a6d21d670d7eca/IDS-UCS-Basic.txt",
+    sha256: "296f2ad81911e92bba6387a7cf0713c955a0047ec95304039507e94144bee302",
+    license: "GPL-2.0-or-later",
+  },
 });
 
 export const CHARACTER_COLUMNS = Object.freeze([
@@ -86,6 +97,7 @@ export const CHARACTER_COLUMNS = Object.freeze([
   "cangjie_difficulty", "cangjie_difficulty_method",
   "simple_code_candidate", "simple_code_candidate_method",
   "radical", "total_strokes", "structure", "left_right", "top_bottom", "surround", "single",
+  "decomposition_status", "structure_source",
   "visual_complexity", "visual_complexity_method", "visual_complexity_confidence",
   "unihan_definition", "learner_definition_en", "learner_definition_status",
   "suggested_category", "category_method", "category_confidence", "category_review_status",
@@ -110,6 +122,23 @@ export const WORD_COLUMNS = Object.freeze([
 export const CHARACTER_READING_COLUMNS = Object.freeze([
   "character", "language", "reading", "usage", "word_example",
   "is_default_for_display", "source", "source_property", "review_status",
+]);
+
+export const CHARACTER_DECOMPOSITION_COLUMNS = Object.freeze([
+  "character", "ids", "top_level_operator", "structure",
+  "components", "component_count", "source", "source_commit",
+  "confidence", "review_status", "license",
+]);
+
+export const CHARACTER_FAMILY_COLUMNS = Object.freeze([
+  "family_id", "family_type", "character", "basis", "relationship",
+  "source", "confidence", "review_status",
+]);
+
+export const CHARACTER_REVIEW_QUEUE_COLUMNS = Object.freeze([
+  "character", "foxchild_selection_rank", "moe_frequency_rank",
+  "unihan_definition", "suggested_category", "cangjie", "quick",
+  "reading_count", "decomposition_status", "review_tasks", "review_priority_band",
 ]);
 
 export const SEMANTIC_ANCHOR_CHARACTERS = Object.freeze(Array.from(

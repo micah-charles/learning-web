@@ -3,7 +3,10 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import {
   CHARACTER_COLUMNS,
+  CHARACTER_DECOMPOSITION_COLUMNS,
+  CHARACTER_FAMILY_COLUMNS,
   CHARACTER_READING_COLUMNS,
+  CHARACTER_REVIEW_QUEUE_COLUMNS,
   DATASET_VERSION,
   GENERATED_AT,
   HONG_KONG_CANTONESE_CHARACTER_ANCHORS,
@@ -38,7 +41,9 @@ const paths = {
   readings: resolve(sourceRoot, `authoritative/${SOURCE_DEFINITIONS.unihan.relativePaths.readings}`),
   radicalStrokes: resolve(sourceRoot, `authoritative/${SOURCE_DEFINITIONS.unihan.relativePaths.radicalStrokes}`),
   variants: resolve(sourceRoot, `authoritative/${SOURCE_DEFINITIONS.unihan.relativePaths.variants}`),
+  dictionaryLikeData: resolve(sourceRoot, `authoritative/${SOURCE_DEFINITIONS.unihan.relativePaths.dictionaryLikeData}`),
   opencc: resolve(sourceRoot, `authoritative/${SOURCE_DEFINITIONS.opencc.relativePath}`),
+  ids: resolve(sourceRoot, `authoritative/${SOURCE_DEFINITIONS.ids.relativePath}`),
 };
 
 function assert(condition, message) {
@@ -83,10 +88,66 @@ function parseUnihan() {
   mergeUnihanFile(records, readFileSync(paths.radicalStrokes, "utf8"), new Set([
     "kRSUnicode", "kTotalStrokes",
   ]));
+  mergeUnihanFile(records, readFileSync(paths.dictionaryLikeData, "utf8"), new Set([
+    "kPhonetic",
+  ]));
   mergeUnihanFile(records, readFileSync(paths.variants, "utf8"), new Set([
-    "kSimplifiedVariant", "kTraditionalVariant",
+    "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant", "kTraditionalVariant",
   ]));
   return records;
+}
+
+const IDS_OPERATORS = new Set(Array.from("⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻㇯"));
+
+function structureFromIds(ids, character) {
+  const operator = Array.from(ids)[0] || "";
+  if (ids === character || !IDS_OPERATORS.has(operator)) return { operator: "", structure: "single" };
+  if (["⿰", "⿲"].includes(operator)) return { operator, structure: "left-right" };
+  if (["⿱", "⿳"].includes(operator)) return { operator, structure: "top-bottom" };
+  if (["⿴", "⿵", "⿶", "⿷", "⿸", "⿹", "⿺"].includes(operator)) return { operator, structure: "surround" };
+  if (operator === "⿻") return { operator, structure: "overlay" };
+  return { operator, structure: "other" };
+}
+
+function idsComponents(ids) {
+  const tokens = String(ids).match(/&[^;]+;|./gu) || [];
+  return unique(tokens.filter((token) => {
+    if (IDS_OPERATORS.has(token) || /^\s+$/.test(token)) return false;
+    const codePoint = token.codePointAt(0);
+    if (codePoint >= 0xFE00 && codePoint <= 0xFE0F) return false;
+    return !/^[()[\]{}<>@=,;:+*/\\-]$/.test(token);
+  }));
+}
+
+function parseIds(text) {
+  const records = new Map();
+  for (const line of text.split(/\r?\n/)) {
+    if (!line || line.startsWith(";;")) continue;
+    const [codePoint, character, ids] = line.split("\t");
+    if (!/^U\+[0-9A-F]+$/.test(codePoint || "") || Array.from(character || "").length !== 1 || !ids) continue;
+    if (records.has(character)) continue;
+    const { operator, structure } = structureFromIds(ids, character);
+    records.set(character, {
+      character,
+      ids,
+      top_level_operator: operator,
+      structure,
+      components: idsComponents(ids),
+    });
+  }
+  return records;
+}
+
+function parseVariantTargets(value) {
+  return unique(String(value || "").split(/\s+/).map((token) => {
+    const match = token.match(/^U\+([0-9A-F]+)/);
+    return match ? String.fromCodePoint(Number.parseInt(match[1], 16)) : "";
+  }));
+}
+
+function stableBasisId(value) {
+  if (value.startsWith("&")) return value.replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return Array.from(value).map((character) => character.codePointAt(0).toString(16).toLowerCase()).join("-");
 }
 
 function quickCode(code) {
@@ -244,6 +305,7 @@ assert(targetCount >= 2500 && targetCount <= 3500, "--count must be between 2500
 assert(sha256File(paths.cangjie) === SOURCE_DEFINITIONS.cangjie.sha256, "Pinned Cangjie source checksum mismatch.");
 assert(sha256File(paths.quick) === SOURCE_DEFINITIONS.quick.sha256, "Pinned Quick source checksum mismatch.");
 assert(sha256File(paths.opencc) === SOURCE_DEFINITIONS.opencc.sha256, "Pinned OpenCC source checksum mismatch.");
+assert(sha256File(paths.ids) === SOURCE_DEFINITIONS.ids.sha256, "Pinned CHISE IDS source checksum mismatch.");
 assert(readFileSync(paths.quick, "utf8").includes("derive/^([^z])\\w+(\\w)$/$1$2/"), "Pinned Quick first/last rule is missing.");
 
 const edbSnapshot = readJson(paths.edb);
@@ -256,6 +318,7 @@ assert(wordFrequencySnapshot.count === SOURCE_DEFINITIONS.wordFrequency.expected
 const cangjie = parseCangjie(readFileSync(paths.cangjie, "utf8"));
 const unihan = parseUnihan();
 const opencc = parseOpenCcSimplifiedCharacters(readFileSync(paths.opencc, "utf8"));
+const idsRecords = parseIds(readFileSync(paths.ids, "utf8"));
 const frequency = new Map();
 for (const row of frequencySnapshot.rows) {
   const existing = frequency.get(row.character);
@@ -274,6 +337,7 @@ for (const edb of edbSnapshot.characters) {
   if (!language.kDefinition) reasons.push("missing-definition");
   if (!language.kCantonese) reasons.push("missing-jyutping");
   if (!language.kMandarin) reasons.push("missing-mandarin");
+  if (!idsRecords.has(character)) reasons.push("missing-decomposition");
   if (isSimplifiedOnly(character, language, opencc)) reasons.push("simplified-only");
   if (reasons.length) {
     rejected.push({ character, reasons });
@@ -306,6 +370,8 @@ const characters = selected.map((record, index) => {
   const cangjieDifficulty = Math.min(5, preferredCode.length);
   const visualComplexity = Math.min(5, Math.max(1, Math.ceil(strokes / 6)));
   const suggestedCategory = suggestedCategoryFromDefinition(definition);
+  const decomposition = idsRecords.get(record.character);
+  const structure = decomposition.structure;
   return {
     character: record.character,
     unicode: unicodeValue(record.character),
@@ -341,11 +407,13 @@ const characters = selected.map((record, index) => {
     simple_code_candidate_method: "preferred-code-length-at-most-3-v1",
     radical: parseRadical(record.language.kRSUnicode),
     total_strokes: strokes,
-    structure: "unknown",
-    left_right: "",
-    top_bottom: "",
-    surround: "",
-    single: "",
+    structure,
+    left_right: structure === "left-right",
+    top_bottom: structure === "top-bottom",
+    surround: structure === "surround",
+    single: structure === "single",
+    decomposition_status: "source-attested-unreviewed",
+    structure_source: `${SOURCE_DEFINITIONS.ids.id}@${SOURCE_DEFINITIONS.ids.commit}`,
     visual_complexity: visualComplexity,
     visual_complexity_method: "total-stroke-count-proxy-v1",
     visual_complexity_confidence: "low",
@@ -379,6 +447,127 @@ const selectedRecordByGlyph = new Map(selected.map((record) => [record.character
 const characterReadings = characters.flatMap((character) => (
   characterReadingRows(character.character, selectedRecordByGlyph.get(character.character).language)
 ));
+const characterDecompositions = characters.map((character) => {
+  const decomposition = idsRecords.get(character.character);
+  return {
+    character: character.character,
+    ids: decomposition.ids,
+    top_level_operator: decomposition.top_level_operator,
+    structure: decomposition.structure,
+    components: decomposition.components,
+    component_count: decomposition.components.length,
+    source: SOURCE_DEFINITIONS.ids.id,
+    source_commit: SOURCE_DEFINITIONS.ids.commit,
+    confidence: "source-attested",
+    review_status: "unreviewed",
+    license: SOURCE_DEFINITIONS.ids.license,
+  };
+});
+
+const familyRows = [];
+const componentMembers = new Map();
+for (const row of characterDecompositions) {
+  for (const component of row.components) {
+    if (["？", "〾", "〿"].includes(component)) continue;
+    if (!componentMembers.has(component)) componentMembers.set(component, new Set());
+    componentMembers.get(component).add(row.character);
+  }
+}
+for (const [component, members] of componentMembers) {
+  if (characterByGlyph.has(component)) members.add(component);
+}
+for (const [component, members] of [...componentMembers].sort(([a], [b]) => a.localeCompare(b))) {
+  if (members.size < 2) continue;
+  const familyId = `component-${stableBasisId(component)}`;
+  for (const character of [...members].sort()) {
+    familyRows.push({
+      family_id: familyId,
+      family_type: "component-shared",
+      character,
+      basis: component,
+      relationship: "contains-component",
+      source: `${SOURCE_DEFINITIONS.ids.id}@${SOURCE_DEFINITIONS.ids.commit}`,
+      confidence: "source-derived",
+      review_status: "unreviewed",
+    });
+  }
+}
+
+const phoneticMembers = new Map();
+for (const record of selected) {
+  for (const phoneticClass of parseSpaceSeparatedReadings(record.language.kPhonetic)) {
+    if (!phoneticMembers.has(phoneticClass)) phoneticMembers.set(phoneticClass, new Set());
+    phoneticMembers.get(phoneticClass).add(record.character);
+  }
+}
+for (const [phoneticClass, members] of [...phoneticMembers].sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))) {
+  if (members.size < 2) continue;
+  for (const character of [...members].sort()) {
+    familyRows.push({
+      family_id: `unihan-phonetic-${phoneticClass.replaceAll("*", "x")}`,
+      family_type: "phonetic-class",
+      character,
+      basis: phoneticClass,
+      relationship: "shares-unihan-phonetic-class",
+      source: `${SOURCE_DEFINITIONS.unihan.id}@${SOURCE_DEFINITIONS.unihan.version}:kPhonetic`,
+      confidence: "provisional-source-attested",
+      review_status: "unreviewed",
+    });
+  }
+}
+
+const semanticParent = new Map(characters.map((row) => [row.character, row.character]));
+function semanticFind(character) {
+  let current = character;
+  while (semanticParent.get(current) !== current) current = semanticParent.get(current);
+  let node = character;
+  while (semanticParent.get(node) !== node) {
+    const next = semanticParent.get(node);
+    semanticParent.set(node, current);
+    node = next;
+  }
+  return current;
+}
+function semanticUnion(left, right) {
+  const leftRoot = semanticFind(left);
+  const rightRoot = semanticFind(right);
+  if (leftRoot === rightRoot) return;
+  const [first, second] = [leftRoot, rightRoot].sort();
+  semanticParent.set(second, first);
+}
+for (const record of selected) {
+  const targets = [
+    ...parseVariantTargets(record.language.kSemanticVariant),
+    ...parseVariantTargets(record.language.kSpecializedSemanticVariant),
+  ];
+  for (const target of targets) {
+    if (characterByGlyph.has(target)) semanticUnion(record.character, target);
+  }
+}
+const semanticGroups = new Map();
+for (const character of characterByGlyph.keys()) {
+  const root = semanticFind(character);
+  if (!semanticGroups.has(root)) semanticGroups.set(root, []);
+  semanticGroups.get(root).push(character);
+}
+for (const members of semanticGroups.values()) {
+  if (members.length < 2) continue;
+  members.sort();
+  const familyId = `unihan-semantic-${members[0].codePointAt(0).toString(16).toLowerCase()}`;
+  for (const character of members) {
+    familyRows.push({
+      family_id: familyId,
+      family_type: "semantic-variant",
+      character,
+      basis: members.join("|"),
+      relationship: "unihan-semantic-variant-component",
+      source: `${SOURCE_DEFINITIONS.unihan.id}@${SOURCE_DEFINITIONS.unihan.version}:kSemanticVariant`,
+      confidence: "provisional-source-attested",
+      review_status: "unreviewed",
+    });
+  }
+}
+
 const words = wordFrequencySnapshot.rows
   .filter((row) => {
     const glyphs = Array.from(row.word.normalize("NFC"));
@@ -473,8 +662,16 @@ const complexSimpleCodeCandidates = characters
     total_strokes: row.total_strokes,
     visual_complexity: row.visual_complexity,
   }));
-const unknownStructureWithFlags = characters
-  .filter((row) => row.structure === "unknown" && [row.left_right, row.top_bottom, row.surround, row.single].some((value) => value !== ""))
+const structureFlagMismatches = characters
+  .filter((row) => (
+    row.left_right !== (row.structure === "left-right")
+    || row.top_bottom !== (row.structure === "top-bottom")
+    || row.surround !== (row.structure === "surround")
+    || row.single !== (row.structure === "single")
+  ))
+  .map((row) => ({ character: row.character, structure: row.structure }));
+const missingDecompositions = characters
+  .filter((row) => row.decomposition_status !== "source-attested-unreviewed")
   .map((row) => ({ character: row.character }));
 const taiwanHighFrequencyWithoutHongKongRank = characters
   .filter((row) => Number(row.moe_frequency_rank) <= 100 && row.hk_frequency_rank === "")
@@ -504,7 +701,9 @@ const semanticAudit = {
     polyphonicCharactersWithOneReading: polyphonicSingleReading,
     weakCategoryProposals,
     complexSimpleCodeCandidates,
-    unknownStructureWithPopulatedFlags: unknownStructureWithFlags,
+    unknownStructureWithPopulatedFlags: [],
+    structureFlagMismatches,
+    missingDecompositions,
     lessonRootLoad: {
       status: "not-applicable",
       reason: "No curriculum lesson assignments are generated by this canonical source pipeline.",
@@ -514,6 +713,140 @@ const semanticAudit = {
     missingHongKongCantoneseWords: missingHongKongWords,
   },
 };
+
+const readingCountByCharacter = new Map();
+for (const reading of characterReadings) {
+  readingCountByCharacter.set(reading.character, (readingCountByCharacter.get(reading.character) || 0) + 1);
+}
+const characterReviewQueue = characters.map((row) => ({
+  character: row.character,
+  foxchild_selection_rank: row.foxchild_selection_rank,
+  moe_frequency_rank: row.moe_frequency_rank,
+  unihan_definition: row.unihan_definition,
+  suggested_category: row.suggested_category,
+  cangjie: row.cangjie,
+  quick: row.quick,
+  reading_count: readingCountByCharacter.get(row.character) || 0,
+  decomposition_status: row.decomposition_status,
+  review_tasks: [
+    "hk-selection",
+    "learner-definition",
+    "category",
+    "display-reading",
+    "curriculum-priority",
+  ],
+  review_priority_band: row.foxchild_selection_rank <= 100
+    ? "top-100"
+    : row.foxchild_selection_rank <= 500
+      ? "top-500"
+      : "remaining",
+}));
+
+const polyphonicCharacters = characters.filter((row) => (
+  ["yue-HK", "zh-Hant-TW"].some((language) => (
+    (readingsByCharacterAndLanguage.get(`${row.character}:${language}`) || []).length > 1
+  ))
+));
+const missingCantoneseReadings = characters.filter((row) => (
+  !(readingsByCharacterAndLanguage.get(`${row.character}:yue-HK`) || []).length
+));
+const missingCangjieCodes = characters.filter((row) => !row.cangjie);
+const reviewDashboard = {
+  schemaVersion: 1,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  releaseStatus: "draft-human-review-required",
+  samples: {
+    top100Characters: characters.slice(0, 100).map((row) => ({
+      character: row.character,
+      moe_frequency_rank: row.moe_frequency_rank,
+      cangjie: row.cangjie,
+      unihan_definition: row.unihan_definition,
+    })),
+    top500Words: words.slice(0, 500).map((row) => ({
+      word: row.word,
+      moe_frequency_rank: row.moe_frequency_rank,
+      pronunciation_status: row.pronunciation_status,
+    })),
+    newAdditions: {
+      status: "baseline-required",
+      rows: [],
+      note: "A prior reviewed release must be supplied before additions can be classified.",
+    },
+    polyphonicCharacters: polyphonicCharacters.map((row) => row.character),
+    pendingCategoryCharacters: characters.filter((row) => row.category_review_status !== "reviewed").map((row) => row.character),
+    missingCantoneseReadings: missingCantoneseReadings.map((row) => row.character),
+    missingCangjieCodes: missingCangjieCodes.map((row) => row.character),
+    decompositionCoverage: {
+      covered: characterDecompositions.length - missingDecompositions.length,
+      total: characters.length,
+      percent: Number(((characterDecompositions.length - missingDecompositions.length) / characters.length * 100).toFixed(2)),
+    },
+    rejectedCharacters: rejected,
+  },
+  queues: {
+    characterReviewCount: characterReviewQueue.length,
+    learnerDefinitionReviewedCount: characters.filter((row) => row.learner_definition_status === "reviewed").length,
+    categoryReviewedCount: characters.filter((row) => row.category_review_status === "reviewed").length,
+    curriculumApprovedCount: characters.filter((row) => row.curriculum_priority !== "").length,
+  },
+};
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function dashboardRows(rows, fields) {
+  return rows.map((row) => `<tr>${fields.map((field) => `<td>${escapeHtml(row[field])}</td>`).join("")}</tr>`).join("");
+}
+
+const reviewDashboardHtml = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FoxChild canonical Chinese review dashboard</title>
+  <style>
+    body{font-family:system-ui,sans-serif;margin:0;background:#f6f3ec;color:#243532}main{max-width:1180px;margin:auto;padding:24px}
+    h1,h2{line-height:1.2}.warning{background:#fff0cd;border:1px solid #d39a1b;padding:12px;border-radius:8px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.card{background:white;padding:16px;border-radius:10px}
+    table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;padding:8px;border-bottom:1px solid #ddd;vertical-align:top}
+    .scroll{max-height:520px;overflow:auto;border-radius:10px}code{background:#eee;padding:2px 4px}
+  </style>
+</head>
+<body><main>
+  <h1>FoxChild canonical Chinese review dashboard</h1>
+  <p class="warning"><strong>Draft:</strong> source-backed pipeline output, not an approved curriculum release.</p>
+  <div class="cards">
+    <div class="card"><strong>Characters</strong><br>${characters.length}</div>
+    <div class="card"><strong>Words</strong><br>${words.length}</div>
+    <div class="card"><strong>Readings</strong><br>${characterReadings.length}</div>
+    <div class="card"><strong>IDS coverage</strong><br>${reviewDashboard.samples.decompositionCoverage.percent}%</div>
+    <div class="card"><strong>Pending definitions</strong><br>${characterReviewQueue.length}</div>
+    <div class="card"><strong>Missing HK anchors</strong><br>${missingHongKongCharacters.length} chars / ${missingHongKongWords.length} words</div>
+  </div>
+  <h2>Top 100 selected characters</h2>
+  <div class="scroll"><table><thead><tr><th>Character</th><th>MOE rank</th><th>Cangjie</th><th>Source definition</th></tr></thead>
+  <tbody>${dashboardRows(reviewDashboard.samples.top100Characters, ["character", "moe_frequency_rank", "cangjie", "unihan_definition"])}</tbody></table></div>
+  <h2>Top 500 selected words</h2>
+  <div class="scroll"><table><thead><tr><th>Word</th><th>MOE rank</th><th>Pronunciation</th></tr></thead>
+  <tbody>${dashboardRows(reviewDashboard.samples.top500Words, ["word", "moe_frequency_rank", "pronunciation_status"])}</tbody></table></div>
+  <h2>Release queues</h2>
+  <ul>
+    <li>Polyphonic characters: ${polyphonicCharacters.length}</li>
+    <li>Pending category review: ${reviewDashboard.samples.pendingCategoryCharacters.length}</li>
+    <li>Missing Cantonese readings: ${missingCantoneseReadings.length}</li>
+    <li>Missing Cangjie codes: ${missingCangjieCodes.length}</li>
+    <li>New-addition diff: baseline required</li>
+    <li>Rejected candidates: ${rejected.length}</li>
+  </ul>
+</main></body></html>
+`;
 const sourceFiles = Object.fromEntries(Object.entries(paths).map(([id, path]) => [
   id,
   { path: path.replace(`${projectRoot}/`, ""), sha256: sha256File(path) },
@@ -549,10 +882,44 @@ writeCompactJson(resolve(outputRoot, "canonical_character_readings.json"), {
   columns: CHARACTER_READING_COLUMNS,
   readings: characterReadings,
 });
+writeText(resolve(outputRoot, "canonical_character_decompositions.csv"), toCsv(CHARACTER_DECOMPOSITION_COLUMNS, characterDecompositions));
+writeCompactJson(resolve(outputRoot, "canonical_character_decompositions.json"), {
+  schemaVersion: SCHEMA_VERSION,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  columns: CHARACTER_DECOMPOSITION_COLUMNS,
+  decompositions: characterDecompositions,
+});
+familyRows.sort((left, right) => (
+  left.family_type.localeCompare(right.family_type)
+  || left.family_id.localeCompare(right.family_id)
+  || left.character.localeCompare(right.character)
+));
+writeText(resolve(outputRoot, "canonical_character_families.csv"), toCsv(CHARACTER_FAMILY_COLUMNS, familyRows));
+writeCompactJson(resolve(outputRoot, "canonical_character_families.json"), {
+  schemaVersion: SCHEMA_VERSION,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  columns: CHARACTER_FAMILY_COLUMNS,
+  memberships: familyRows,
+});
+writeText(resolve(outputRoot, "character_review_queue.csv"), toCsv(CHARACTER_REVIEW_QUEUE_COLUMNS, characterReviewQueue));
+writeCompactJson(resolve(outputRoot, "character_review_queue.json"), {
+  schemaVersion: 1,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  columns: CHARACTER_REVIEW_QUEUE_COLUMNS,
+  reviews: characterReviewQueue,
+});
+writeJson(resolve(outputRoot, "review_dashboard.json"), reviewDashboard);
+writeText(resolve(outputRoot, "review_dashboard.html"), reviewDashboardHtml);
 
 const statistics = {
   characterCount: characters.length,
   characterReadingCount: characterReadings.length,
+  characterDecompositionCount: characterDecompositions.length,
+  characterFamilyMembershipCount: familyRows.length,
+  characterFamilyCount: new Set(familyRows.map((row) => row.family_id)).size,
   wordCount: words.length,
   sourceCandidateCount: candidates.length,
   rejectedCount: rejected.length,
@@ -565,6 +932,7 @@ const statistics = {
   byFoxchildFrequencyTier: histogram(characters, "foxchild_frequency_tier"),
   byRadical: histogram(characters, "radical"),
   byStructure: histogram(characters, "structure"),
+  byFamilyType: histogram(familyRows, "family_type"),
   byFrequencyBucket: histogram(characters, "frequency_bucket"),
   top100: characters.slice(0, 100).map((row) => row.character).join(""),
   top500Count: Math.min(500, characters.length),
@@ -582,7 +950,8 @@ writeText(resolve(outputRoot, "semantic_audit_report.md"), [
   `- Polyphonic source signals represented by only one reading: ${polyphonicSingleReading.length}`,
   `- Low-confidence category proposals awaiting review: ${weakCategoryProposals.length}`,
   `- Visually complex simple-code candidates: ${complexSimpleCodeCandidates.length}`,
-  `- Unknown structures with populated layout flags: ${unknownStructureWithFlags.length}`,
+  `- Structure/flag mismatches: ${structureFlagMismatches.length}`,
+  `- Missing pinned decompositions: ${missingDecompositions.length}`,
   `- MOE top-100 characters without a Hong Kong frequency rank: ${taiwanHighFrequencyWithoutHongKongRank.length}`,
   `- Missing Hong Kong Cantonese character anchors: ${missingHongKongCharacters.length}`,
   `- Missing Hong Kong Cantonese word anchors: ${missingHongKongWords.length}`,
@@ -595,7 +964,8 @@ writeText(resolve(outputRoot, "semantic_audit_report.md"), [
   "## Curriculum boundary",
   "",
   "- The generator creates frequency buckets, not lessons.",
-  "- No Hong Kong frequency rank, curriculum priority, literacy level, structure or pedagogical primary reading is inferred.",
+  "- No Hong Kong frequency rank, curriculum priority, literacy level or pedagogical primary reading is inferred.",
+  "- Structure and components come from pinned CHISE IDS and remain educationally unreviewed.",
   "- Lesson root-load auditing remains not applicable until reviewed lesson assignments exist.",
   "",
 ].join("\n"));
@@ -613,6 +983,9 @@ writeJson(resolve(outputRoot, "dataset_version.json"), {
   generatedAt: GENERATED_AT,
   characterCount: characters.length,
   characterReadingCount: characterReadings.length,
+  characterDecompositionCount: characterDecompositions.length,
+  characterFamilyMembershipCount: familyRows.length,
+  characterFamilyCount: new Set(familyRows.map((row) => row.family_id)).size,
   wordCount: words.length,
 });
 writeJson(resolve(outputRoot, "rejected_characters.json"), { rejected });

@@ -235,7 +235,12 @@ async function fetchPinnedRimeSources() {
 async function fetchUnihanSources() {
   const response = await fetchChecked(SOURCE_DEFINITIONS.unihan.baseUrl);
   const bytes = new Uint8Array(await response.arrayBuffer());
-  const names = new Set(["Unihan_Readings.txt", "Unihan_IRGSources.txt", "Unihan_Variants.txt"]);
+  const names = new Set([
+    "Unihan_Readings.txt",
+    "Unihan_IRGSources.txt",
+    "Unihan_Variants.txt",
+    "Unihan_DictionaryLikeData.txt",
+  ]);
   const entries = unzipEntries(bytes, names);
   const results = {};
   for (const [name, value] of entries) {
@@ -244,6 +249,16 @@ async function fetchUnihanSources() {
     results[name] = { path: relativePath, sha256: sha256(value) };
   }
   return results;
+}
+
+async function fetchIdsSource() {
+  const definition = SOURCE_DEFINITIONS.ids;
+  const url = `${definition.repository.replace("github.com", "raw.githubusercontent.com")}/${definition.commit}/${definition.sourcePath}`;
+  const response = await fetchChecked(url);
+  const text = await response.text();
+  if (sha256(text) !== definition.sha256) throw new Error(`${definition.id} checksum mismatch.`);
+  writeText(resolve(outputRoot, definition.relativePath), text);
+  return { url, path: definition.relativePath, sha256: definition.sha256 };
 }
 
 async function fetchOpenCcSource() {
@@ -256,18 +271,19 @@ async function fetchOpenCcSource() {
   return { url, path: definition.relativePath, sha256: definition.sha256 };
 }
 
-const [edb, frequency, wordFrequency, rime, unihan, opencc] = await Promise.all([
+const [edb, frequency, wordFrequency, rime, unihan, opencc, ids] = await Promise.all([
   fetchEdbCharacters(),
   fetchMoeFrequency(),
   fetchMoeWordFrequency(),
   fetchPinnedRimeSources(),
   fetchUnihanSources(),
   fetchOpenCcSource(),
+  fetchIdsSource(),
 ]);
 writeJson(resolve(outputRoot, "acquisition-manifest.json"), {
   schemaVersion: 1,
   fetchedAt,
-  sources: { edb, frequency, wordFrequency, rime, unihan, opencc },
+  sources: { edb, frequency, wordFrequency, rime, unihan, opencc, ids },
   note: "Normal builds consume these local snapshots and never scrape live websites.",
 });
 console.log(`Fetched ${edb.count} EDB characters, ${frequency.count} MOE character rows, and ${wordFrequency.count} MOE word rows into ${outputRoot}.`);

@@ -74,4 +74,10 @@ Pinned commit: 2904aa4dd06df17c538fbeae9f1efa14e25bb4a5
 Licence: Apache-2.0
 Used as: Independent Simplified-to-Traditional character verification for canonical dataset selection.
 
+Project: CHISE IDS
+Source: https://github.com/chise/ids
+Pinned commit: 352e13378e411c322cfa16bfd7a6d21d670d7eca
+Licence: GPL-2.0-or-later
+Used as: Source-backed Ideographic Description Sequences and component membership for canonical Chinese characters. Generated decomposition and component-family outputs retain source, commit, licence and unreviewed status.
+
 The generated dataset records these sources per character. For full licence texts and source terms, use the upstream source links above and https://www.unicode.org/license.txt.

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "status": "draft-human-approval-required",
+  "minimumReviewedCharacters": 2500,
+  "lessonSize": 10,
+  "maxNewCangjieRootsPerLesson": 5,
+  "requiredReviewStatus": "approved",
+  "selectionPolicy": {
+    "includeStatus": "include",
+    "sort": ["curriculum_priority", "foxchild_selection_rank"],
+    "note": "All curriculum fields come from the human review table. Canonical corpus rank is only a tie-breaker."
+  },
+  "outputGraphs": ["lesson", "assessment", "game"]
+}

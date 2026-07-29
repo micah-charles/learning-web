@@ -6,7 +6,8 @@ Inputs:
 
 - pinned Rime Cangjie `cangjie5.base.dict.yaml`;
 - pinned Rime Quick schema for the documented first/last-key Quick rule;
-- Unicode Unihan 17.0.0 `Unihan_Readings.txt`.
+- Unicode Unihan 17.0.0 readings, dictionary-like data and variants;
+- pinned CHISE IDS decomposition data.
 
 Example:
 
@@ -28,4 +29,18 @@ npm run fetch:chinese-canonical
 npm run build:chinese-canonical
 ```
 
-It produces 3,000 canonical characters and 10,000 canonical words under `learning-data/chinese-input/canonical/`. See `docs/chinese-input-lab/CANONICAL_DATASET.md` for the source policy, schemas, validation gates and known enrichment boundary.
+It produces 3,000 canonical characters, 10,000 canonical words, source-backed
+decompositions, character-family memberships, a Cangjie reference audit and a
+human-review dashboard under `learning-data/chinese-input/canonical/`.
+
+Curriculum is a separate, fail-closed compilation step:
+
+```bash
+npm run test:chinese-curriculum
+npm run build:chinese-curriculum
+```
+
+The production compiler reads `learning-data/chinese-input/reviewed/character_reviews.csv`
+and will not publish until the policy's minimum number of Hong Kong learner
+reviews has been reached. See `docs/chinese-input-lab/CANONICAL_DATASET.md` for
+the source policy, schemas, validation gates and human-review boundary.
