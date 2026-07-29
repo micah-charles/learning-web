@@ -3,18 +3,20 @@
 - Canonical characters: 3000
 - Source-attested character readings: 9022
 - Source-attested character decompositions: 3000
-- Source-derived family memberships: 9018 across 1851 families
+- Display-safe component metadata records: 1384
+- Components still requiring an SVG fallback: 110
+- Source-derived family memberships: 9016 across 1851 families
 - Canonical words: 10000
 - EDB online inventory represented: 62.45%
 - Characters with MOE frequency evidence: 100%
-- MOE corpus occurrence coverage: 98.3684%
+- MOE corpus occurrence coverage: 98.8276%
 - Average stroke count: 11.54
 - Average Cangjie code length: 3.9
 
 ## MOE frequency bands
 
-- extended: 561
-- top-100: 98
+- extended: 560
+- top-100: 99
 - top-1000: 492
 - top-2500: 1450
 - top-500: 399

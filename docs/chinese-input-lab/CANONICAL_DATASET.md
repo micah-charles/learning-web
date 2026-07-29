@@ -1,6 +1,6 @@
 # FoxChild Chinese canonical dataset
 
-The canonical pipeline builds a deterministic Hong Kong-focused Traditional Chinese character and word dataset without using runtime AI or live web requests during normal application builds.
+The canonical pipeline builds a deterministic Hong Kong-aware Traditional Chinese research dataset without using runtime AI or live web requests during normal application builds. Its current ordering is EDB-filtered and Taiwan-MOE-ranked; it is not yet Hong Kong-frequency-ranked.
 
 ## Outputs
 
@@ -9,6 +9,7 @@ Generated artifacts live in `learning-data/chinese-input/canonical/`:
 - `canonical_characters.csv` and `canonical_characters.json` — 3,000 characters;
 - `canonical_character_readings.csv` and `canonical_character_readings.json` — relational, multi-valued Cantonese and Mandarin readings;
 - `canonical_character_decompositions.csv` and `.json` — pinned CHISE IDS structure and leaf components for every selected character;
+- `canonical_component_metadata.csv` and `.json` — display-safe component resolution and unresolved-fallback status;
 - `canonical_character_families.csv` and `.json` — component, Unihan phonetic-class and semantic-variant family memberships;
 - `canonical_words.csv` and `canonical_words.json` — 10,000 words;
 - `canonical_statistics.json`;
@@ -36,6 +37,8 @@ The explicit acquisition step pins local snapshots under `data-source/authoritat
 - CHISE IDS commit `352e13378e411c322cfa16bfd7a6d21d670d7eca` for source-backed decomposition (GPL-2.0-or-later).
 
 EDB order is never used as lesson order. The generator filters to records with verified Cangjie, source-attested Cantonese and Mandarin readings, and a Unihan definition. It rejects simplified-only records only when OpenCC and Unihan variant evidence agree, orders eligible records by the pinned MOE corpus, and then selects the requested 2,500–3,500 range. Requiring both simplified-variant sources avoids falsely excluding context-dependent Traditional characters such as `了`, `干` and `只`.
+
+Cross-source glyph aliases are reviewed constants, not broad automatic variant conversion. The current alias reconciles EDB `説` with the common Traditional `說`, backed by Unihan `kZVariant`, MOE and Rime evidence. The original EDB glyph remains in `edb_source_glyph`.
 
 MOE rank remains `moe_frequency_rank`. The current sources do not provide `hk_frequency_rank`, `edb_grade_level`, `usage_level`, `curriculum_priority`, `literacy_level` or `curriculum_stage`, so those fields remain blank. `foxchild_selection_rank` records deterministic inclusion order only. `frequency_bucket` and `foxchild_frequency_tier` are descriptive corpus calculations with explicit methods; neither is a lesson recommendation.
 
@@ -85,7 +88,7 @@ The count must stay between 2,500 and 3,500.
 
 ## Semantic-correctness boundary
 
-Schema version 3 deliberately separates sourced facts, calculations and unresolved educational review:
+Schema version 4 deliberately separates sourced facts, calculations and unresolved educational review:
 
 - Structure and components come only from pinned CHISE IDS. Layout flags are derived from the top-level IDS operator, never from Cangjie length. The source records are complete but remain educationally unreviewed.
 - Unihan `kDefinition` is stored as `unihan_definition`; `learner_definition_en` remains blank with `learner_definition_status=unreviewed`.
@@ -93,10 +96,13 @@ Schema version 3 deliberately separates sourced facts, calculations and unresolv
 - Code length produces `simple_code_candidate` and `cangjie_difficulty`; it does not produce a beginner, literacy or school claim.
 - Stroke count produces only a low-confidence `visual_complexity` proxy with its method recorded.
 - Review priority, mastery weight, unlock order and lesson assignment are not canonical-source outputs.
+- Register fields remain blank and unreviewed; formal Chinese, written Cantonese and typing-extension decisions belong to human review.
 
 Character pronunciation is relational. `canonical_character_readings` retains distinct readings from pinned Unihan properties and records property-level provenance. No row is automatically marked as the pedagogical display default. Word pronunciation is `contextual-lexical-source-required`; character readings are never concatenated into a supposed word pronunciation.
 
-The 300-character fixture at `scripts/chinese-input/canonical/fixtures/semantic-anchor-review.json` checks anchor presence, pinned codes/readings/decomposition, and unreviewed educational-field safety. It is not a curriculum order. The semantic audit separately flags polyphony loss, weak category proposals, complex simple-code candidates, structure/flag mismatches, missing decomposition, unavailable lesson-root load, Taiwan-high-frequency records without Hong Kong rank, and missing Hong Kong Cantonese character/word anchors.
+The 300-character fixture at `scripts/chinese-input/canonical/fixtures/semantic-anchor-review.json` checks anchor presence, pinned codes/readings/decomposition, and unreviewed educational-field safety. It is not a curriculum order. The semantic audit separately flags polyphony loss, weak category proposals, complex simple-code candidates, structure/flag mismatches, missing decomposition, unavailable lesson-root load, Taiwan-high-frequency records without Hong Kong rank, and Hong Kong character/word anchors. Every HK anchor now includes gate-by-gate evidence and a precise exclusion reason.
+
+IDS leaf order and repetition are retained. `多 = ⿱夕夕` therefore has two ordered component occurrences but one unique component. Component-family generation uses the unique set; teaching displays use the ordered occurrence IDs.
 
 Family membership is a separate relation:
 
@@ -110,7 +116,9 @@ These relations support search and review, but `review_status=unreviewed` preven
 
 The generated review dashboard is the release workbench. It shows top characters and words, polyphony, pending categories, missing Cantonese readings/Cangjie codes, decomposition coverage, rejected candidates and Hong Kong anchor gaps.
 
-Human approvals belong in `learning-data/chinese-input/reviewed/character_reviews.csv`. The production curriculum compiler requires at least 2,500 approved included characters by default and validates learner definitions, HK selection, curriculum priority/stage, reviewer/date and an approved source-attested Cantonese reading.
+Human approvals belong in `learning-data/chinese-input/reviewed/character_reviews.csv`. The production curriculum compiler requires at least 2,500 approved included characters by default and validates learner definitions, HK selection, language register, curriculum priority/stage, reviewer/date, supporting words, an approved source-attested Cantonese reading, and evidence from a policy-approved Hong Kong corpus.
+
+The production policy currently contains no approved Hong Kong corpus source, so approval remains blocked even if someone manually fills the CSV. See `HK_CORPUS_SOURCE_REVIEW.md`.
 
 ```bash
 npm run build:chinese-curriculum

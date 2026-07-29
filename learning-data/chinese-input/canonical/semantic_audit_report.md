@@ -8,14 +8,16 @@ This report records unresolved semantic risk. Flags are not automatically promot
 - Visually complex simple-code candidates: 9
 - Structure/flag mismatches: 0
 - Missing pinned decompositions: 0
-- MOE top-100 characters without a Hong Kong frequency rank: 98
-- Missing Hong Kong Cantonese character anchors: 11
+- MOE top-100 characters without a Hong Kong frequency rank: 99
+- Missing Hong Kong Cantonese character anchors: 10
 - Missing Hong Kong Cantonese word anchors: 8
 
 ## Hong Kong gaps
 
-- Characters: 佢 說 嘅 唔 咗 啲 嚟 冇 喺 咁 哋
-- Words: 唔該 · 多謝 · 而家 · 點解 · 冇嘢 · 咁樣 · 佢哋 · 喺度
+- Characters: 佢 (missing-edb) · 嘅 (missing-edb) · 唔 (outside-target-count) · 咗 (missing-edb) · 啲 (missing-edb) · 嚟 (missing-edb) · 冇 (missing-edb) · 喺 (missing-edb) · 咁 (missing-edb) · 哋 (missing-edb)
+- Words: 唔該 (missing-moe-word-source: 唔) · 多謝 (missing-moe-word-source) · 而家 (missing-moe-word-source) · 點解 (missing-moe-word-source) · 冇嘢 (missing-moe-word-source: 冇 嘢) · 咁樣 (missing-moe-word-source: 咁) · 佢哋 (missing-moe-word-source: 佢 哋) · 喺度 (missing-moe-word-source: 喺)
+
+The machine-readable audit includes gate-by-gate EDB, MOE, Cangjie, reading, definition, decomposition, rank and selection evidence for every Hong Kong anchor.
 
 ## Curriculum boundary
 

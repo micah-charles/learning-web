@@ -30,8 +30,10 @@ npm run build:chinese-canonical
 ```
 
 It produces 3,000 canonical characters, 10,000 canonical words, source-backed
-decompositions, character-family memberships, a Cangjie reference audit and a
-human-review dashboard under `learning-data/chinese-input/canonical/`.
+decompositions with repeated components preserved, display-safe component
+metadata, character-family memberships, a Cangjie reference audit, detailed
+Hong Kong anchor diagnostics and a human-review dashboard under
+`learning-data/chinese-input/canonical/`.
 
 Curriculum is a separate, fail-closed compilation step:
 
@@ -42,5 +44,7 @@ npm run build:chinese-curriculum
 
 The production compiler reads `learning-data/chinese-input/reviewed/character_reviews.csv`
 and will not publish until the policy's minimum number of Hong Kong learner
-reviews has been reached. See `docs/chinese-input-lab/CANONICAL_DATASET.md` for
-the source policy, schemas, validation gates and human-review boundary.
+reviews has been reached from a policy-approved Hong Kong corpus source. See
+`docs/chinese-input-lab/CANONICAL_DATASET.md` and
+`docs/chinese-input-lab/HK_CORPUS_SOURCE_REVIEW.md` for the source policy,
+schemas, validation gates and human-review boundary.

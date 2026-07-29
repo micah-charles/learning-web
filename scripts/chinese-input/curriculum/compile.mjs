@@ -57,6 +57,14 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+const booleanReviewValues = new Set(["true", "false"]);
+const registerValues = new Set([
+  "formal-written-chinese",
+  "written-cantonese",
+  "shared-formal-and-cantonese",
+  "spoken-cantonese-transcription",
+]);
+
 const characters = charactersDocument.characters;
 const characterByGlyph = new Map(characters.map((row) => [row.character, row]));
 const decompositionByGlyph = new Map(decompositionsDocument.decompositions.map((row) => [row.character, row]));
@@ -85,6 +93,27 @@ for (const review of reviews) {
   }
   if (review.hk_selection_status === "include" && canonical) {
     if (!review.learner_definition_en) errors.push(`${prefix}: approved inclusion lacks learner definition.`);
+    if (!registerValues.has(review.register)) errors.push(`${prefix}: approved inclusion lacks a valid register.`);
+    for (const field of [
+      "formal_written_chinese", "written_cantonese", "spoken_cantonese_transcription",
+      "hk_education_core", "hk_typing_extension",
+    ]) {
+      if (!booleanReviewValues.has(review[field])) errors.push(`${prefix}: ${field} must be true or false.`);
+    }
+    if (!["formal_written_chinese", "written_cantonese", "spoken_cantonese_transcription"]
+      .some((field) => review[field] === "true")) {
+      errors.push(`${prefix}: approved inclusion must belong to at least one language register.`);
+    }
+    if (review.hk_education_core !== "true" && review.hk_typing_extension !== "true") {
+      errors.push(`${prefix}: approved inclusion must be HK education core or a typing extension.`);
+    }
+    if (!Number.isInteger(Number(review.hk_corpus_rank)) || Number(review.hk_corpus_rank) < 1) {
+      errors.push(`${prefix}: approved inclusion lacks a valid Hong Kong corpus rank.`);
+    }
+    if (!policy.approvedHongKongCorpusSources.includes(review.hk_corpus_source)) {
+      errors.push(`${prefix}: Hong Kong corpus source is not approved by curriculum policy.`);
+    }
+    if (!review.supporting_words) errors.push(`${prefix}: approved inclusion lacks supporting Hong Kong words.`);
     if (!Number.isInteger(Number(review.curriculum_priority)) || Number(review.curriculum_priority) < 1) errors.push(`${prefix}: invalid curriculum priority.`);
     if (!review.curriculum_stage) errors.push(`${prefix}: approved inclusion lacks curriculum stage.`);
     if (!(cantoneseReadings.get(review.character) || new Set()).has(review.approved_cantonese_reading)) {
@@ -150,6 +179,18 @@ const assessmentItems = approved.map((review) => ({
   modes: ["cangjie", "quick", "recognition"],
   approved_cantonese_reading: review.approved_cantonese_reading,
   learner_definition_en: review.learner_definition_en,
+  register: review.register,
+  formal_written_chinese: review.formal_written_chinese === "true",
+  written_cantonese: review.written_cantonese === "true",
+  spoken_cantonese_transcription: review.spoken_cantonese_transcription === "true",
+  hk_education_core: review.hk_education_core === "true",
+  hk_typing_extension: review.hk_typing_extension === "true",
+  hk_corpus_rank: Number(review.hk_corpus_rank),
+  hk_corpus_source: review.hk_corpus_source,
+  hk_news_frequency: review.hk_news_frequency === "" ? null : Number(review.hk_news_frequency),
+  hk_child_text_frequency: review.hk_child_text_frequency === "" ? null : Number(review.hk_child_text_frequency),
+  written_cantonese_frequency: review.written_cantonese_frequency === "" ? null : Number(review.written_cantonese_frequency),
+  supporting_words: review.supporting_words.split("|").filter(Boolean),
   source_reviewed_at: review.reviewed_at,
   source_reviewer: review.reviewer,
 }));

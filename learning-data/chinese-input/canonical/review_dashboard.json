@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "datasetVersion": "1.2.0",
+  "datasetVersion": "1.3.0",
   "generatedAt": "2026-07-29T00:00:00.000Z",
   "releaseStatus": "draft-human-review-required",
   "samples": {
@@ -172,6 +172,12 @@
         "moe_frequency_rank": 28,
         "cangjie": "HDR",
         "unihan_definition": "harmony, peace; peaceful, calm"
+      },
+      {
+        "character": "說",
+        "moe_frequency_rank": 29,
+        "cangjie": "YRCRU",
+        "unihan_definition": "speak, say, talk; scold, upbraid"
       },
       {
         "character": "麼",
@@ -598,12 +604,6 @@
         "moe_frequency_rank": 101,
         "cangjie": "SGJWP",
         "unihan_definition": "hear, listen; understand; obey"
-      },
-      {
-        "character": "從",
-        "moe_frequency_rank": 102,
-        "cangjie": "HOOOO",
-        "unihan_definition": "from, by, since, whence, through"
       }
     ],
     "top500Words": [
@@ -988,6 +988,11 @@
         "pronunciation_status": "contextual-lexical-source-required"
       },
       {
+        "word": "說說",
+        "moe_frequency_rank": 268,
+        "pronunciation_status": "contextual-lexical-source-required"
+      },
+      {
         "word": "實際",
         "moe_frequency_rank": 269,
         "pronunciation_status": "contextual-lexical-source-required"
@@ -1070,6 +1075,11 @@
       {
         "word": "音樂",
         "moe_frequency_rank": 306,
+        "pronunciation_status": "contextual-lexical-source-required"
+      },
+      {
+        "word": "說一說",
+        "moe_frequency_rank": 311,
         "pronunciation_status": "contextual-lexical-source-required"
       },
       {
@@ -1328,6 +1338,11 @@
         "pronunciation_status": "contextual-lexical-source-required"
       },
       {
+        "word": "說出",
+        "moe_frequency_rank": 409,
+        "pronunciation_status": "contextual-lexical-source-required"
+      },
+      {
         "word": "開始",
         "moe_frequency_rank": 416,
         "pronunciation_status": "contextual-lexical-source-required"
@@ -1350,6 +1365,11 @@
       {
         "word": "乘法",
         "moe_frequency_rank": 420,
+        "pronunciation_status": "contextual-lexical-source-required"
+      },
+      {
+        "word": "說明",
+        "moe_frequency_rank": 421,
         "pronunciation_status": "contextual-lexical-source-required"
       },
       {
@@ -2523,6 +2543,11 @@
         "pronunciation_status": "contextual-lexical-source-required"
       },
       {
+        "word": "說話",
+        "moe_frequency_rank": 807,
+        "pronunciation_status": "contextual-lexical-source-required"
+      },
+      {
         "word": "職工",
         "moe_frequency_rank": 808,
         "pronunciation_status": "contextual-lexical-source-required"
@@ -3080,31 +3105,6 @@
       {
         "word": "小小",
         "moe_frequency_rank": 984,
-        "pronunciation_status": "contextual-lexical-source-required"
-      },
-      {
-        "word": "不知",
-        "moe_frequency_rank": 985,
-        "pronunciation_status": "contextual-lexical-source-required"
-      },
-      {
-        "word": "不懂",
-        "moe_frequency_rank": 986,
-        "pronunciation_status": "contextual-lexical-source-required"
-      },
-      {
-        "word": "外婆",
-        "moe_frequency_rank": 988,
-        "pronunciation_status": "contextual-lexical-source-required"
-      },
-      {
-        "word": "長江",
-        "moe_frequency_rank": 989,
-        "pronunciation_status": "contextual-lexical-source-required"
-      },
-      {
-        "word": "怎麼辦",
-        "moe_frequency_rank": 990,
         "pronunciation_status": "contextual-lexical-source-required"
       }
     ],
@@ -4742,6 +4742,7 @@
       "中",
       "出",
       "和",
+      "說",
       "麼",
       "子",
       "到",
@@ -7712,8 +7713,7 @@
       "穗",
       "蕾",
       "竅",
-      "簞",
-      "謹"
+      "簞"
     ],
     "missingCantoneseReadings": [],
     "missingCangjieCodes": [],
@@ -7722,6 +7722,349 @@
       "total": 3000,
       "percent": 100
     },
+    "componentRendering": {
+      "unicodeReady": 1274,
+      "missingSvgFallback": 110,
+      "total": 1384
+    },
+    "hongKongCharacterAnchorDiagnostics": [
+      {
+        "character": "佢",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "說",
+        "presentInEdb": true,
+        "edbSourceGlyph": "説",
+        "edbCanonicalizationMethod": "reviewed-cross-source-glyph-alias-v1",
+        "presentInMoe": true,
+        "moeFrequencyRank": 29,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": 29,
+        "selectedRank": 29,
+        "selected": true,
+        "exclusionReason": ""
+      },
+      {
+        "character": "嘅",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "唔",
+        "presentInEdb": true,
+        "edbSourceGlyph": "唔",
+        "edbCanonicalizationMethod": "identity",
+        "presentInMoe": true,
+        "moeFrequencyRank": 3486,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": 3314,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "outside-target-count"
+      },
+      {
+        "character": "咗",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "啲",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "嚟",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "冇",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "喺",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "咁",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      },
+      {
+        "character": "呢",
+        "presentInEdb": true,
+        "edbSourceGlyph": "呢",
+        "edbCanonicalizationMethod": "identity",
+        "presentInMoe": true,
+        "moeFrequencyRank": 311,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": 309,
+        "selectedRank": 309,
+        "selected": true,
+        "exclusionReason": ""
+      },
+      {
+        "character": "咩",
+        "presentInEdb": true,
+        "edbSourceGlyph": "咩",
+        "edbCanonicalizationMethod": "identity",
+        "presentInMoe": true,
+        "moeFrequencyRank": 1622,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": 1598,
+        "selectedRank": 1598,
+        "selected": true,
+        "exclusionReason": ""
+      },
+      {
+        "character": "哋",
+        "presentInEdb": false,
+        "edbSourceGlyph": "",
+        "edbCanonicalizationMethod": "",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "hasCangjie": true,
+        "hasCantonese": true,
+        "hasMandarin": true,
+        "hasDefinition": true,
+        "hasDecomposition": true,
+        "simplifiedFilterResult": "passed",
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-edb"
+      }
+    ],
+    "hongKongWordAnchorDiagnostics": [
+      {
+        "word": "唔該",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": false,
+        "missingCharacters": [
+          "唔"
+        ],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "多謝",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": true,
+        "missingCharacters": [],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "而家",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": true,
+        "missingCharacters": [],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "點解",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": true,
+        "missingCharacters": [],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "冇嘢",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": false,
+        "missingCharacters": [
+          "冇",
+          "嘢"
+        ],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "咁樣",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": false,
+        "missingCharacters": [
+          "咁"
+        ],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "佢哋",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": false,
+        "missingCharacters": [
+          "佢",
+          "哋"
+        ],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      },
+      {
+        "word": "喺度",
+        "presentInMoe": false,
+        "moeFrequencyRank": null,
+        "allCharactersSelected": false,
+        "missingCharacters": [
+          "喺"
+        ],
+        "candidateRank": null,
+        "selectedRank": null,
+        "selected": false,
+        "exclusionReason": "missing-moe-word-source"
+      }
+    ],
     "rejectedCharacters": [
       {
         "character": "囱",

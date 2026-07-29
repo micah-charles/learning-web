@@ -7,4 +7,5 @@
 - [Canonical source facts are not curriculum facts](chinese-input/business-rules.md#canonical-source-facts-are-not-curriculum-facts) - active - Keep corpus, Hong Kong, calculated and reviewed educational concepts separate.
 - [Decomposition and families require pinned relationships](chinese-input/business-rules.md#decomposition-and-families-require-pinned-relationships) - active - Keep component, phonetic and semantic relationships typed and sourced.
 - [Curriculum compilation is fail-closed on human review](chinese-input/business-rules.md#curriculum-compilation-is-fail-closed-on-human-review) - active - Reviewed inputs, not heuristics, control lesson output.
+- [Cross-source glyph reconciliation is explicit](chinese-input/business-rules.md#cross-source-glyph-reconciliation-is-explicit) - active - Reviewed aliases preserve source glyphs and prevent silent anchor loss.
 - [Chinese Input Lab is not a Language Ladder pack](chinese-input/business-rules.md#chinese-input-lab-is-not-a-language-ladder-pack) - active - Share infrastructure while keeping input-method rules isolated.

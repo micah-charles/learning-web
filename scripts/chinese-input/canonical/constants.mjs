@@ -1,6 +1,18 @@
-export const DATASET_VERSION = "1.2.0";
-export const SCHEMA_VERSION = 3;
+export const DATASET_VERSION = "1.3.0";
+export const SCHEMA_VERSION = 4;
 export const GENERATED_AT = "2026-07-29T00:00:00.000Z";
+
+export const EDB_CANONICAL_GLYPH_ALIASES = Object.freeze({
+  "説": Object.freeze({
+    canonical: "說",
+    method: "reviewed-cross-source-glyph-alias-v1",
+    evidence: Object.freeze([
+      "unicode-unihan-17:kZVariant",
+      "tw-moe-character-frequency-mainland",
+      "rime-cangjie5",
+    ]),
+  }),
+});
 
 export const SOURCE_DEFINITIONS = Object.freeze({
   edb: {
@@ -88,11 +100,14 @@ export const SOURCE_DEFINITIONS = Object.freeze({
 });
 
 export const CHARACTER_COLUMNS = Object.freeze([
-  "character", "unicode", "unicode_hex", "edb_presence", "edb_version", "edb_grade_level",
+  "character", "unicode", "unicode_hex", "edb_presence", "edb_source_glyph", "edb_version", "edb_grade_level",
   "moe_frequency_rank", "moe_frequency_score", "moe_frequency_band", "hk_frequency_rank",
   "foxchild_selection_rank", "foxchild_selection_score", "foxchild_selection_method",
   "frequency_bucket", "foxchild_frequency_tier", "foxchild_frequency_tier_method",
   "usage_level", "literacy_level", "curriculum_stage", "curriculum_priority",
+  "register", "formal_written_chinese", "written_cantonese",
+  "spoken_cantonese_transcription", "hk_education_core", "hk_typing_extension",
+  "register_review_status",
   "cangjie", "quick", "root_count", "code_length", "first_root", "last_root",
   "cangjie_difficulty", "cangjie_difficulty_method",
   "simple_code_candidate", "simple_code_candidate_method",
@@ -113,6 +128,9 @@ export const WORD_COLUMNS = Object.freeze([
   "foxchild_selection_rank", "foxchild_selection_score", "foxchild_selection_method",
   "frequency_bucket", "foxchild_frequency_tier", "foxchild_frequency_tier_method",
   "usage_level", "curriculum_priority",
+  "register", "formal_written_chinese", "written_cantonese",
+  "spoken_cantonese_transcription", "hk_education_core", "hk_typing_extension",
+  "register_review_status",
   "character_selection_ceiling", "pronunciation_status",
   "learner_definition_en", "learner_definition_status",
   "suggested_category", "category_method", "category_confidence", "category_review_status",
@@ -126,8 +144,15 @@ export const CHARACTER_READING_COLUMNS = Object.freeze([
 
 export const CHARACTER_DECOMPOSITION_COLUMNS = Object.freeze([
   "character", "ids", "top_level_operator", "structure",
-  "components", "component_count", "source", "source_commit",
+  "ordered_component_occurrences", "ordered_component_ids", "unique_components",
+  "component_occurrence_count", "unique_component_count", "source", "source_commit",
   "confidence", "review_status", "license",
+]);
+
+export const COMPONENT_METADATA_COLUMNS = Object.freeze([
+  "component_id", "source_token", "unicode_character", "display_glyph",
+  "svg_fallback", "plain_name_zh_hk", "plain_name_en", "render_status",
+  "name_review_status", "source", "source_commit", "license",
 ]);
 
 export const CHARACTER_FAMILY_COLUMNS = Object.freeze([
@@ -136,9 +161,11 @@ export const CHARACTER_FAMILY_COLUMNS = Object.freeze([
 ]);
 
 export const CHARACTER_REVIEW_QUEUE_COLUMNS = Object.freeze([
-  "character", "foxchild_selection_rank", "moe_frequency_rank",
+  "character", "foxchild_selection_rank", "moe_frequency_rank", "hk_frequency_rank",
+  "edb_presence", "edb_source_glyph",
   "unihan_definition", "suggested_category", "cangjie", "quick",
-  "reading_count", "decomposition_status", "review_tasks", "review_priority_band",
+  "reading_count", "decomposition_status", "top_level_operator",
+  "register_review_status", "review_tasks", "review_priority_band",
 ]);
 
 export const SEMANTIC_ANCHOR_CHARACTERS = Object.freeze(Array.from(

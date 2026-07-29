@@ -7,6 +7,7 @@ import {
   CHARACTER_FAMILY_COLUMNS,
   CHARACTER_READING_COLUMNS,
   CHARACTER_REVIEW_QUEUE_COLUMNS,
+  COMPONENT_METADATA_COLUMNS,
   DATASET_VERSION,
   SEMANTIC_ANCHOR_CHARACTERS,
   WORD_COLUMNS,
@@ -21,6 +22,7 @@ const charactersDocument = readJson(resolve(outputRoot, "canonical_characters.js
 const wordsDocument = readJson(resolve(outputRoot, "canonical_words.json"));
 const readingsDocument = readJson(resolve(outputRoot, "canonical_character_readings.json"));
 const decompositionsDocument = readJson(resolve(outputRoot, "canonical_character_decompositions.json"));
+const componentsDocument = readJson(resolve(outputRoot, "canonical_component_metadata.json"));
 const familiesDocument = readJson(resolve(outputRoot, "canonical_character_families.json"));
 const reviewQueueDocument = readJson(resolve(outputRoot, "character_review_queue.json"));
 const cangjieAudit = readJson(resolve(outputRoot, "cangjie_reference_audit.json"));
@@ -31,6 +33,7 @@ const characters = charactersDocument.characters;
 const words = wordsDocument.words;
 const readings = readingsDocument.readings;
 const decompositions = decompositionsDocument.decompositions;
+const components = componentsDocument.components;
 const familyMemberships = familiesDocument.memberships;
 const reviewQueue = reviewQueueDocument.reviews;
 const errors = [];
@@ -58,15 +61,17 @@ function csvHeader(fileName) {
   return readFileSync(resolve(outputRoot, fileName), "utf8").split(/\r?\n/, 1)[0];
 }
 
-check(charactersDocument.schemaVersion === 3, "Character schema version must be 3.");
-check(wordsDocument.schemaVersion === 3, "Word schema version must be 3.");
-check(readingsDocument.schemaVersion === 3, "Character-reading schema version must be 3.");
-check(decompositionsDocument.schemaVersion === 3, "Character-decomposition schema version must be 3.");
-check(familiesDocument.schemaVersion === 3, "Character-family schema version must be 3.");
+check(charactersDocument.schemaVersion === 4, "Character schema version must be 4.");
+check(wordsDocument.schemaVersion === 4, "Word schema version must be 4.");
+check(readingsDocument.schemaVersion === 4, "Character-reading schema version must be 4.");
+check(decompositionsDocument.schemaVersion === 4, "Character-decomposition schema version must be 4.");
+check(componentsDocument.schemaVersion === 4, "Component-metadata schema version must be 4.");
+check(familiesDocument.schemaVersion === 4, "Character-family schema version must be 4.");
 check(charactersDocument.datasetVersion === DATASET_VERSION, "Character dataset version mismatch.");
 check(wordsDocument.datasetVersion === DATASET_VERSION, "Word dataset version mismatch.");
 check(readingsDocument.datasetVersion === DATASET_VERSION, "Character-reading dataset version mismatch.");
 check(decompositionsDocument.datasetVersion === DATASET_VERSION, "Character-decomposition dataset version mismatch.");
+check(componentsDocument.datasetVersion === DATASET_VERSION, "Component-metadata dataset version mismatch.");
 check(familiesDocument.datasetVersion === DATASET_VERSION, "Character-family dataset version mismatch.");
 check(characters.length >= 2500 && characters.length <= 3500, `Character count ${characters.length} is outside 2500–3500.`);
 check(words.length >= 8000 && words.length <= 15000, `Word count ${words.length} is outside 8000–15000.`);
@@ -77,6 +82,7 @@ check(duplicates(words.map((row) => row.foxchild_selection_rank)).length === 0, 
 check(duplicates(readings.map((row) => `${row.character}:${row.language}:${row.reading}`)).length === 0, "Duplicate character-reading rows found.");
 check(decompositions.length === characters.length, "Every character must have exactly one decomposition row.");
 check(duplicates(decompositions.map((row) => row.character)).length === 0, "Duplicate character-decomposition rows found.");
+check(duplicates(components.map((row) => row.component_id)).length === 0, "Duplicate component metadata IDs found.");
 check(duplicates(familyMemberships.map((row) => `${row.family_id}:${row.character}`)).length === 0, "Duplicate character-family memberships found.");
 check(reviewQueue.length === characters.length, "Every character must be present in the human-review queue.");
 check(cangjieAudit.status === "PASS" && cangjieAudit.mismatchCount === 0, "Pinned Cangjie reference audit did not pass.");
@@ -91,7 +97,7 @@ const forbiddenEducationalFields = [
   "jyutping", "mandarin_pinyin", "english", "meaning", "category",
 ];
 const requiredCharacterFields = [
-  "character", "unicode", "unicode_hex", "edb_version", "foxchild_selection_rank",
+  "character", "unicode", "unicode_hex", "edb_source_glyph", "edb_version", "foxchild_selection_rank",
   "foxchild_selection_score", "foxchild_selection_method", "frequency_bucket",
   "foxchild_frequency_tier", "foxchild_frequency_tier_method",
   "cangjie", "quick", "root_count", "code_length",
@@ -126,17 +132,64 @@ for (const row of characters) {
   check(row.decomposition_status === "source-attested-unreviewed", `${row.character}: decomposition review boundary is missing.`);
   check(row.learner_definition_en === "" && row.learner_definition_status === "unreviewed", `${row.character}: Unihan gloss must not be promoted to a learner definition.`);
   check(row.category_confidence === "low" && row.category_review_status === "pending", `${row.character}: heuristic category must remain a low-confidence pending proposal.`);
+  check(
+    row.register === ""
+      && row.formal_written_chinese === ""
+      && row.written_cantonese === ""
+      && row.spoken_cantonese_transcription === ""
+      && row.hk_education_core === ""
+      && row.hk_typing_extension === ""
+      && row.register_review_status === "unreviewed",
+    `${row.character}: language register was asserted without human review.`,
+  );
   check(row.hk_frequency_rank === "" && row.usage_level === "" && row.curriculum_priority === "", `${row.character}: missing Hong Kong/usage/curriculum evidence must remain blank.`);
 }
 
 const decompositionByCharacter = new Map(decompositions.map((row) => [row.character, row]));
+const componentById = new Map(components.map((row) => [row.component_id, row]));
 for (const row of decompositions) {
   check(characterSet.has(row.character), `${row.character}: decomposition references a character outside the canonical set.`);
   check(row.ids !== "", `${row.character}: blank IDS decomposition.`);
-  check(row.component_count === row.components.length && row.component_count >= 1, `${row.character}: invalid component count.`);
+  check(
+    row.component_occurrence_count === row.ordered_component_occurrences.length
+      && row.component_occurrence_count === row.ordered_component_ids.length
+      && row.component_occurrence_count >= 1,
+    `${row.character}: invalid ordered component occurrence count.`,
+  );
+  check(
+    row.unique_component_count === row.unique_components.length
+      && row.unique_component_count === new Set(row.ordered_component_occurrences).size,
+    `${row.character}: invalid unique component count.`,
+  );
+  check(
+    row.ordered_component_ids.every((componentId, index) => (
+      componentById.get(componentId)?.source_token === row.ordered_component_occurrences[index]
+    )),
+    `${row.character}: component occurrence does not resolve through display metadata.`,
+  );
   check(row.source === "chise-ids-ucs-basic" && row.source_commit !== "", `${row.character}: decomposition lacks pinned CHISE provenance.`);
   check(row.review_status === "unreviewed", `${row.character}: source decomposition was incorrectly marked educationally reviewed.`);
 }
+for (const row of components) {
+  check(row.source_token !== "" && row.component_id !== "", `${row.component_id}: component metadata lacks identity.`);
+  check(
+    ["unicode-ready", "missing-svg-fallback"].includes(row.render_status),
+    `${row.component_id}: invalid component render status.`,
+  );
+  if (row.render_status === "unicode-ready") {
+    check(row.unicode_character !== "" && row.display_glyph === row.unicode_character, `${row.component_id}: Unicode component is not display-safe.`);
+  } else {
+    check(row.source_token.startsWith("&") && row.display_glyph === "", `${row.component_id}: unresolved CHISE entity leaked into the display glyph.`);
+  }
+  check(row.name_review_status === "unreviewed", `${row.component_id}: component name was marked reviewed without human input.`);
+}
+const multipleDecomposition = decompositionByCharacter.get("多");
+check(
+  multipleDecomposition?.ordered_component_occurrences.join("|") === "夕|夕"
+    && multipleDecomposition?.component_occurrence_count === 2
+    && multipleDecomposition?.unique_component_count === 1,
+  "多: repeated IDS components were not preserved.",
+);
 for (const row of familyMemberships) {
   check(characterSet.has(row.character), `${row.character}: family membership references a character outside the canonical set.`);
   check(["component-shared", "phonetic-class", "semantic-variant"].includes(row.family_type), `${row.character}: invalid family type ${row.family_type}.`);
@@ -155,6 +208,16 @@ for (const row of words) {
   check(row.pronunciation_status === "contextual-lexical-source-required", `${row.word}: unsafe derived word pronunciation was generated.`);
   check(!("jyutping" in row) && !("mandarin_pinyin" in row), `${row.word}: character readings must not be concatenated into word pronunciations.`);
   check(row.learner_definition_en === "" && row.learner_definition_status === "unreviewed", `${row.word}: unsupported learner definition was generated.`);
+  check(
+    row.register === ""
+      && row.formal_written_chinese === ""
+      && row.written_cantonese === ""
+      && row.spoken_cantonese_transcription === ""
+      && row.hk_education_core === ""
+      && row.hk_typing_extension === ""
+      && row.register_review_status === "unreviewed",
+    `${row.word}: language register was asserted without human review.`,
+  );
   check(row.hk_frequency_rank === "" && row.usage_level === "" && row.curriculum_priority === "", `${row.word}: missing Hong Kong/usage/curriculum evidence must remain blank.`);
   check(row.source_frequency !== "", `${row.word}: missing word-frequency provenance.`);
 }
@@ -168,11 +231,12 @@ for (const row of readings) {
   check(row.review_status === "source-attested-unreviewed", `${row.character}: reading review status is not honest.`);
 }
 
-check(csvHeader("canonical_characters.csv") === CHARACTER_COLUMNS.join(","), "Character CSV header does not match schema 3.");
-check(csvHeader("canonical_words.csv") === WORD_COLUMNS.join(","), "Word CSV header does not match schema 3.");
-check(csvHeader("canonical_character_readings.csv") === CHARACTER_READING_COLUMNS.join(","), "Character-reading CSV header does not match schema 3.");
-check(csvHeader("canonical_character_decompositions.csv") === CHARACTER_DECOMPOSITION_COLUMNS.join(","), "Character-decomposition CSV header does not match schema 3.");
-check(csvHeader("canonical_character_families.csv") === CHARACTER_FAMILY_COLUMNS.join(","), "Character-family CSV header does not match schema 3.");
+check(csvHeader("canonical_characters.csv") === CHARACTER_COLUMNS.join(","), "Character CSV header does not match schema 4.");
+check(csvHeader("canonical_words.csv") === WORD_COLUMNS.join(","), "Word CSV header does not match schema 4.");
+check(csvHeader("canonical_character_readings.csv") === CHARACTER_READING_COLUMNS.join(","), "Character-reading CSV header does not match schema 4.");
+check(csvHeader("canonical_character_decompositions.csv") === CHARACTER_DECOMPOSITION_COLUMNS.join(","), "Character-decomposition CSV header does not match schema 4.");
+check(csvHeader("canonical_component_metadata.csv") === COMPONENT_METADATA_COLUMNS.join(","), "Component-metadata CSV header does not match schema 4.");
+check(csvHeader("canonical_character_families.csv") === CHARACTER_FAMILY_COLUMNS.join(","), "Character-family CSV header does not match schema 4.");
 check(csvHeader("character_review_queue.csv") === CHARACTER_REVIEW_QUEUE_COLUMNS.join(","), "Character review-queue CSV header does not match schema.");
 
 const fixtureCharacters = Array.from(fixture.characters);
@@ -216,6 +280,25 @@ check(semanticAudit.flags.polyphonicCharactersWithOneReading.length === 0, "Poly
 check(semanticAudit.flags.unknownStructureWithPopulatedFlags.length === 0, "Unknown structures still have populated layout flags.");
 check(semanticAudit.flags.structureFlagMismatches.length === 0, "Source-backed structures disagree with layout flags.");
 check(semanticAudit.flags.missingDecompositions.length === 0, "Canonical characters are missing pinned decompositions.");
+const sayDiagnostic = semanticAudit.flags.hongKongCharacterAnchorDiagnostics.find((row) => row.character === "說");
+check(
+  sayDiagnostic?.selected === true
+    && sayDiagnostic?.edbSourceGlyph === "説"
+    && sayDiagnostic?.exclusionReason === "",
+  "說: reviewed EDB glyph alias did not produce a transparent selected anchor.",
+);
+for (const diagnostic of semanticAudit.flags.hongKongCharacterAnchorDiagnostics) {
+  check(
+    diagnostic.selected || diagnostic.exclusionReason !== "",
+    `${diagnostic.character}: missing Hong Kong anchor lacks an exclusion reason.`,
+  );
+}
+for (const diagnostic of semanticAudit.flags.hongKongWordAnchorDiagnostics) {
+  check(
+    diagnostic.selected || diagnostic.exclusionReason !== "",
+    `${diagnostic.word}: missing Hong Kong word anchor lacks an exclusion reason.`,
+  );
+}
 for (const character of fixture.expectedAbsent) {
   check(
     semanticAudit.flags.missingHongKongCantoneseCharacters.some((row) => row.character === character)
@@ -263,6 +346,8 @@ writeText(resolve(outputRoot, "coverage_report.md"), [
   `- Canonical characters: ${statistics.characterCount}`,
   `- Source-attested character readings: ${statistics.characterReadingCount}`,
   `- Source-attested character decompositions: ${statistics.characterDecompositionCount}`,
+  `- Display-safe component metadata records: ${statistics.componentMetadataCount}`,
+  `- Components still requiring an SVG fallback: ${statistics.componentMissingSvgFallbackCount}`,
   `- Source-derived family memberships: ${statistics.characterFamilyMembershipCount} across ${statistics.characterFamilyCount} families`,
   `- Canonical words: ${statistics.wordCount}`,
   `- EDB online inventory represented: ${statistics.edbCoveragePercent}%`,

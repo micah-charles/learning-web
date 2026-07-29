@@ -62,6 +62,8 @@ Component, phonetic and semantic relationships are different facts. Combining th
 ### Guidance for future agents
 Keep family memberships relational and typed. Record basis, source, confidence and review status. Derive layout only from IDS, never from Cangjie length. CHISE-derived outputs carry GPL-2.0-or-later obligations and must retain attribution.
 
+Preserve ordered IDS leaf occurrences separately from the unique component set. Repetition is structural data: `多` has `夕|夕`, occurrence count 2 and unique count 1. Learner UI must resolve component IDs through display metadata and must never render raw CHISE entity syntax.
+
 ## Curriculum compilation is fail-closed on human review
 code: `scripts/chinese-input/curriculum/`, `learning-data/chinese-input/reviewed/`, `learning-data/chinese-input/curriculum/` | updated: 2026-07-29 | status: active
 
@@ -73,3 +75,17 @@ A deterministic compiler can preserve reviewed decisions but cannot replace them
 
 ### Guidance for future agents
 Keep the production threshold fail-closed. Test with explicitly labelled fixtures only. Canonical data feeds the compiler; reviewed input controls inclusion and order; lesson, assessment and game graphs remain separate outputs.
+
+Production review also requires a policy-approved Hong Kong corpus source. An empty approved-source list is an intentional block, not a configuration omission. Formal written Chinese, written Cantonese and typing-extension status are separate reviewed fields.
+
+## Cross-source glyph reconciliation is explicit
+code: `scripts/chinese-input/canonical/constants.mjs`, `scripts/chinese-input/canonical/generate.mjs`, `learning-data/chinese-input/canonical/semantic_audit.json` | updated: 2026-07-29 | status: active
+
+### Context
+The EDB list represents the common formal character `說` with source glyph `説`, while MOE, Rime, Unihan and CHISE use `說`. Exact glyph joining silently excluded a top-frequency formal character.
+
+### Why it matters
+Broad variant normalisation can merge characters that have distinct Hong Kong educational or typing significance. Exact matching alone can also lose valid cross-source records.
+
+### Guidance for future agents
+Maintain a small reviewed alias table with source evidence. Preserve the original glyph in `edb_source_glyph`, validate every alias against pinned Unihan and ranking/code sources, and expose anchor gate diagnostics. Never apply every `kZVariant` automatically.

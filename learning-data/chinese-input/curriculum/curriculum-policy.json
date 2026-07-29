@@ -5,6 +5,12 @@
   "lessonSize": 10,
   "maxNewCangjieRootsPerLesson": 5,
   "requiredReviewStatus": "approved",
+  "approvedHongKongCorpusSources": [],
+  "hongKongCorpusGate": {
+    "status": "blocked-source-approval-required",
+    "requiredFields": ["hk_corpus_rank", "hk_corpus_source", "supporting_words"],
+    "note": "Add a versioned, licensed Hong Kong corpus source here only after source review. Empty means production approval is intentionally impossible."
+  },
   "selectionPolicy": {
     "includeStatus": "include",
     "sort": ["curriculum_priority", "foxchild_selection_rank"],

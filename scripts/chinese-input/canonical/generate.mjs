@@ -7,7 +7,9 @@ import {
   CHARACTER_FAMILY_COLUMNS,
   CHARACTER_READING_COLUMNS,
   CHARACTER_REVIEW_QUEUE_COLUMNS,
+  COMPONENT_METADATA_COLUMNS,
   DATASET_VERSION,
+  EDB_CANONICAL_GLYPH_ALIASES,
   GENERATED_AT,
   HONG_KONG_CANTONESE_CHARACTER_ANCHORS,
   HONG_KONG_CANTONESE_WORD_ANCHORS,
@@ -92,7 +94,8 @@ function parseUnihan() {
     "kPhonetic",
   ]));
   mergeUnihanFile(records, readFileSync(paths.variants, "utf8"), new Set([
-    "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant", "kTraditionalVariant",
+    "kSemanticVariant", "kSimplifiedVariant", "kSpecializedSemanticVariant",
+    "kTraditionalVariant", "kZVariant",
   ]));
   return records;
 }
@@ -111,12 +114,12 @@ function structureFromIds(ids, character) {
 
 function idsComponents(ids) {
   const tokens = String(ids).match(/&[^;]+;|./gu) || [];
-  return unique(tokens.filter((token) => {
+  return tokens.filter((token) => {
     if (IDS_OPERATORS.has(token) || /^\s+$/.test(token)) return false;
     const codePoint = token.codePointAt(0);
     if (codePoint >= 0xFE00 && codePoint <= 0xFE0F) return false;
     return !/^[()[\]{}<>@=,;:+*/\\-]$/.test(token);
-  }));
+  });
 }
 
 function parseIds(text) {
@@ -132,7 +135,7 @@ function parseIds(text) {
       ids,
       top_level_operator: operator,
       structure,
-      components: idsComponents(ids),
+      component_occurrences: idsComponents(ids),
     });
   }
   return records;
@@ -148,6 +151,10 @@ function parseVariantTargets(value) {
 function stableBasisId(value) {
   if (value.startsWith("&")) return value.replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "");
   return Array.from(value).map((character) => character.codePointAt(0).toString(16).toLowerCase()).join("-");
+}
+
+function componentId(value) {
+  return `component-${stableBasisId(value)}`;
 }
 
 function quickCode(code) {
@@ -325,9 +332,30 @@ for (const row of frequencySnapshot.rows) {
   if (!existing || row.rank < existing.rank) frequency.set(row.character, row);
 }
 
+const canonicalEdbRecords = new Map();
+for (const sourceRecord of edbSnapshot.characters) {
+  const alias = EDB_CANONICAL_GLYPH_ALIASES[sourceRecord.character];
+  const character = (alias?.canonical || sourceRecord.character).normalize("NFC");
+  if (alias) {
+    const sourceUnihan = unihan.get(sourceRecord.character) || {};
+    const variantTargets = parseVariantTargets(sourceUnihan.kZVariant);
+    assert(variantTargets.includes(character), `${sourceRecord.character}: EDB glyph alias lacks pinned Unihan kZVariant evidence.`);
+    assert(frequency.has(character), `${sourceRecord.character}: EDB glyph alias target lacks MOE frequency evidence.`);
+    assert(cangjie.has(character), `${sourceRecord.character}: EDB glyph alias target lacks pinned Cangjie evidence.`);
+  }
+  if (!canonicalEdbRecords.has(character)) {
+    canonicalEdbRecords.set(character, {
+      ...sourceRecord,
+      character,
+      sourceGlyph: sourceRecord.character,
+      canonicalizationMethod: alias?.method || "identity",
+    });
+  }
+}
+
 const rejected = [];
 const candidates = [];
-for (const edb of edbSnapshot.characters) {
+for (const edb of canonicalEdbRecords.values()) {
   const character = edb.character.normalize("NFC");
   const codes = cangjie.get(character);
   const language = unihan.get(character) || {};
@@ -377,6 +405,7 @@ const characters = selected.map((record, index) => {
     unicode: unicodeValue(record.character),
     unicode_hex: record.character.codePointAt(0).toString(16).toUpperCase(),
     edb_presence: true,
+    edb_source_glyph: record.edb.sourceGlyph,
     edb_version: SOURCE_DEFINITIONS.edb.version,
     edb_grade_level: "",
     moe_frequency_rank: moeRank ?? "",
@@ -395,6 +424,13 @@ const characters = selected.map((record, index) => {
     literacy_level: "",
     curriculum_stage: "",
     curriculum_priority: "",
+    register: "",
+    formal_written_chinese: "",
+    written_cantonese: "",
+    spoken_cantonese_transcription: "",
+    hk_education_core: "",
+    hk_typing_extension: "",
+    register_review_status: "unreviewed",
     cangjie: preferredCode,
     quick: preferredQuick,
     root_count: preferredCode.length,
@@ -449,13 +485,18 @@ const characterReadings = characters.flatMap((character) => (
 ));
 const characterDecompositions = characters.map((character) => {
   const decomposition = idsRecords.get(character.character);
+  const occurrences = decomposition.component_occurrences;
+  const uniqueComponents = unique(occurrences);
   return {
     character: character.character,
     ids: decomposition.ids,
     top_level_operator: decomposition.top_level_operator,
     structure: decomposition.structure,
-    components: decomposition.components,
-    component_count: decomposition.components.length,
+    ordered_component_occurrences: occurrences,
+    ordered_component_ids: occurrences.map(componentId),
+    unique_components: uniqueComponents,
+    component_occurrence_count: occurrences.length,
+    unique_component_count: uniqueComponents.length,
     source: SOURCE_DEFINITIONS.ids.id,
     source_commit: SOURCE_DEFINITIONS.ids.commit,
     confidence: "source-attested",
@@ -464,10 +505,30 @@ const characterDecompositions = characters.map((character) => {
   };
 });
 
+const componentMetadata = unique(characterDecompositions.flatMap((row) => row.unique_components))
+  .sort((left, right) => left.localeCompare(right))
+  .map((token) => {
+    const isEntity = token.startsWith("&");
+    return {
+      component_id: componentId(token),
+      source_token: token,
+      unicode_character: isEntity ? "" : token,
+      display_glyph: isEntity ? "" : token,
+      svg_fallback: "",
+      plain_name_zh_hk: "",
+      plain_name_en: "",
+      render_status: isEntity ? "missing-svg-fallback" : "unicode-ready",
+      name_review_status: "unreviewed",
+      source: SOURCE_DEFINITIONS.ids.id,
+      source_commit: SOURCE_DEFINITIONS.ids.commit,
+      license: SOURCE_DEFINITIONS.ids.license,
+    };
+  });
+
 const familyRows = [];
 const componentMembers = new Map();
 for (const row of characterDecompositions) {
-  for (const component of row.components) {
+  for (const component of row.unique_components) {
     if (["？", "〾", "〿"].includes(component)) continue;
     if (!componentMembers.has(component)) componentMembers.set(component, new Set());
     componentMembers.get(component).add(row.character);
@@ -568,13 +629,13 @@ for (const members of semanticGroups.values()) {
   }
 }
 
-const words = wordFrequencySnapshot.rows
-  .filter((row) => {
-    const glyphs = Array.from(row.word.normalize("NFC"));
-    return glyphs.length >= 2
-      && glyphs.length <= 4
-      && glyphs.every((glyph) => characterByGlyph.has(glyph));
-  })
+const eligibleWordCandidates = wordFrequencySnapshot.rows.filter((row) => {
+  const glyphs = Array.from(row.word.normalize("NFC"));
+  return glyphs.length >= 2
+    && glyphs.length <= 4
+    && glyphs.every((glyph) => characterByGlyph.has(glyph));
+});
+const words = eligibleWordCandidates
   .slice(0, 10000)
   .map((row, index) => {
     const glyphs = Array.from(row.word.normalize("NFC"));
@@ -596,6 +657,13 @@ const words = wordFrequencySnapshot.rows
       foxchild_frequency_tier_method: "moe-rank-bands-v1",
       usage_level: "",
       curriculum_priority: "",
+      register: "",
+      formal_written_chinese: "",
+      written_cantonese: "",
+      spoken_cantonese_transcription: "",
+      hk_education_core: "",
+      hk_typing_extension: "",
+      register_review_status: "unreviewed",
       character_selection_ceiling: memberSelectionCeiling,
       pronunciation_status: "contextual-lexical-source-required",
       learner_definition_en: "",
@@ -682,12 +750,84 @@ const taiwanHighFrequencyWithoutHongKongRank = characters
   }));
 const selectedCharacterSet = new Set(characters.map((row) => row.character));
 const selectedWordSet = new Set(words.map((row) => row.word));
-const missingHongKongCharacters = HONG_KONG_CANTONESE_CHARACTER_ANCHORS
-  .filter((character) => !selectedCharacterSet.has(character))
-  .map((character) => ({ character, status: "missing-from-edb-gated-selection" }));
-const missingHongKongWords = HONG_KONG_CANTONESE_WORD_ANCHORS
-  .filter((word) => !selectedWordSet.has(word))
-  .map((word) => ({ word, status: "missing-from-taiwan-word-frequency-selection" }));
+const candidateRankByCharacter = new Map(candidates.map((record, index) => [record.character, index + 1]));
+const wordSourceByWord = new Map(wordFrequencySnapshot.rows.map((row) => [row.word.normalize("NFC"), row]));
+const eligibleWordRankByWord = new Map(eligibleWordCandidates.map((row, index) => [row.word.normalize("NFC"), index + 1]));
+
+function characterAnchorDiagnostic(character) {
+  const edb = canonicalEdbRecords.get(character);
+  const codes = cangjie.get(character);
+  const language = unihan.get(character) || {};
+  const reasons = [];
+  if (!edb) reasons.push("missing-edb");
+  if (!codes?.length) reasons.push("missing-cangjie");
+  if (!language.kCantonese) reasons.push("missing-jyutping");
+  if (!language.kMandarin) reasons.push("missing-mandarin");
+  if (!language.kDefinition) reasons.push("missing-definition");
+  if (!idsRecords.has(character)) reasons.push("missing-decomposition");
+  const simplifiedOnly = isSimplifiedOnly(character, language, opencc);
+  if (simplifiedOnly) reasons.push("simplified-only");
+  const candidateRank = candidateRankByCharacter.get(character) || null;
+  const selectedRank = characterByGlyph.get(character)?.foxchild_selection_rank || null;
+  return {
+    character,
+    presentInEdb: Boolean(edb),
+    edbSourceGlyph: edb?.sourceGlyph || "",
+    edbCanonicalizationMethod: edb?.canonicalizationMethod || "",
+    presentInMoe: frequency.has(character),
+    moeFrequencyRank: frequency.get(character)?.rank || null,
+    hasCangjie: Boolean(codes?.length),
+    hasCantonese: Boolean(language.kCantonese),
+    hasMandarin: Boolean(language.kMandarin),
+    hasDefinition: Boolean(language.kDefinition),
+    hasDecomposition: idsRecords.has(character),
+    simplifiedFilterResult: simplifiedOnly ? "rejected-simplified-only" : "passed",
+    candidateRank,
+    selectedRank,
+    selected: selectedCharacterSet.has(character),
+    exclusionReason: selectedCharacterSet.has(character)
+      ? ""
+      : reasons.length
+        ? reasons.join("|")
+        : candidateRank && candidateRank > targetCount
+          ? "outside-target-count"
+          : "unexplained-pipeline-exclusion",
+  };
+}
+
+function wordAnchorDiagnostic(word) {
+  const normalized = word.normalize("NFC");
+  const source = wordSourceByWord.get(normalized);
+  const glyphs = Array.from(normalized);
+  const missingCharacters = glyphs.filter((glyph) => !selectedCharacterSet.has(glyph));
+  const candidateRank = eligibleWordRankByWord.get(normalized) || null;
+  let exclusionReason = "";
+  if (!selectedWordSet.has(normalized)) {
+    if (!source) exclusionReason = "missing-moe-word-source";
+    else if (glyphs.length < 2 || glyphs.length > 4) exclusionReason = "outside-supported-word-length";
+    else if (missingCharacters.length) exclusionReason = "contains-unselected-characters";
+    else if (candidateRank && candidateRank > 10000) exclusionReason = "outside-target-count";
+    else exclusionReason = "unexplained-pipeline-exclusion";
+  }
+  return {
+    word: normalized,
+    presentInMoe: Boolean(source),
+    moeFrequencyRank: source?.rank || null,
+    allCharactersSelected: missingCharacters.length === 0,
+    missingCharacters,
+    candidateRank,
+    selectedRank: words.find((row) => row.word === normalized)?.foxchild_selection_rank || null,
+    selected: selectedWordSet.has(normalized),
+    exclusionReason,
+  };
+}
+
+const hongKongCharacterAnchorDiagnostics = HONG_KONG_CANTONESE_CHARACTER_ANCHORS
+  .map(characterAnchorDiagnostic);
+const hongKongWordAnchorDiagnostics = HONG_KONG_CANTONESE_WORD_ANCHORS
+  .map(wordAnchorDiagnostic);
+const missingHongKongCharacters = hongKongCharacterAnchorDiagnostics.filter((row) => !row.selected);
+const missingHongKongWords = hongKongWordAnchorDiagnostics.filter((row) => !row.selected);
 
 const semanticAudit = {
   schemaVersion: 1,
@@ -709,6 +849,8 @@ const semanticAudit = {
       reason: "No curriculum lesson assignments are generated by this canonical source pipeline.",
     },
     taiwanHighFrequencyWithoutHongKongRank,
+    hongKongCharacterAnchorDiagnostics,
+    hongKongWordAnchorDiagnostics,
     missingHongKongCantoneseCharacters: missingHongKongCharacters,
     missingHongKongCantoneseWords: missingHongKongWords,
   },
@@ -722,17 +864,23 @@ const characterReviewQueue = characters.map((row) => ({
   character: row.character,
   foxchild_selection_rank: row.foxchild_selection_rank,
   moe_frequency_rank: row.moe_frequency_rank,
+  hk_frequency_rank: row.hk_frequency_rank,
+  edb_presence: row.edb_presence,
+  edb_source_glyph: row.edb_source_glyph,
   unihan_definition: row.unihan_definition,
   suggested_category: row.suggested_category,
   cangjie: row.cangjie,
   quick: row.quick,
   reading_count: readingCountByCharacter.get(row.character) || 0,
   decomposition_status: row.decomposition_status,
+  top_level_operator: idsRecords.get(row.character).top_level_operator,
+  register_review_status: row.register_review_status,
   review_tasks: [
     "hk-selection",
     "learner-definition",
     "category",
     "display-reading",
+    "register",
     "curriculum-priority",
   ],
   review_priority_band: row.foxchild_selection_rank <= 100
@@ -782,6 +930,13 @@ const reviewDashboard = {
       total: characters.length,
       percent: Number(((characterDecompositions.length - missingDecompositions.length) / characters.length * 100).toFixed(2)),
     },
+    componentRendering: {
+      unicodeReady: componentMetadata.filter((row) => row.render_status === "unicode-ready").length,
+      missingSvgFallback: componentMetadata.filter((row) => row.render_status === "missing-svg-fallback").length,
+      total: componentMetadata.length,
+    },
+    hongKongCharacterAnchorDiagnostics,
+    hongKongWordAnchorDiagnostics,
     rejectedCharacters: rejected,
   },
   queues: {
@@ -844,7 +999,14 @@ const reviewDashboardHtml = `<!doctype html>
     <li>Missing Cangjie codes: ${missingCangjieCodes.length}</li>
     <li>New-addition diff: baseline required</li>
     <li>Rejected candidates: ${rejected.length}</li>
+    <li>Components needing SVG fallback: ${reviewDashboard.samples.componentRendering.missingSvgFallback}</li>
   </ul>
+  <h2>Hong Kong character anchor diagnostics</h2>
+  <div class="scroll"><table><thead><tr><th>Character</th><th>EDB glyph</th><th>MOE rank</th><th>Candidate rank</th><th>Selected</th><th>Exclusion reason</th></tr></thead>
+  <tbody>${dashboardRows(hongKongCharacterAnchorDiagnostics, ["character", "edbSourceGlyph", "moeFrequencyRank", "candidateRank", "selected", "exclusionReason"])}</tbody></table></div>
+  <h2>Hong Kong word anchor diagnostics</h2>
+  <div class="scroll"><table><thead><tr><th>Word</th><th>MOE rank</th><th>Missing characters</th><th>Candidate rank</th><th>Selected</th><th>Exclusion reason</th></tr></thead>
+  <tbody>${dashboardRows(hongKongWordAnchorDiagnostics.map((row) => ({...row, missingCharacters: row.missingCharacters.join(" ")})), ["word", "moeFrequencyRank", "missingCharacters", "candidateRank", "selected", "exclusionReason"])}</tbody></table></div>
 </main></body></html>
 `;
 const sourceFiles = Object.fromEntries(Object.entries(paths).map(([id, path]) => [
@@ -890,6 +1052,14 @@ writeCompactJson(resolve(outputRoot, "canonical_character_decompositions.json"),
   columns: CHARACTER_DECOMPOSITION_COLUMNS,
   decompositions: characterDecompositions,
 });
+writeText(resolve(outputRoot, "canonical_component_metadata.csv"), toCsv(COMPONENT_METADATA_COLUMNS, componentMetadata));
+writeCompactJson(resolve(outputRoot, "canonical_component_metadata.json"), {
+  schemaVersion: SCHEMA_VERSION,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  columns: COMPONENT_METADATA_COLUMNS,
+  components: componentMetadata,
+});
 familyRows.sort((left, right) => (
   left.family_type.localeCompare(right.family_type)
   || left.family_id.localeCompare(right.family_id)
@@ -918,6 +1088,8 @@ const statistics = {
   characterCount: characters.length,
   characterReadingCount: characterReadings.length,
   characterDecompositionCount: characterDecompositions.length,
+  componentMetadataCount: componentMetadata.length,
+  componentMissingSvgFallbackCount: componentMetadata.filter((row) => row.render_status === "missing-svg-fallback").length,
   characterFamilyMembershipCount: familyRows.length,
   characterFamilyCount: new Set(familyRows.map((row) => row.family_id)).size,
   wordCount: words.length,
@@ -958,8 +1130,10 @@ writeText(resolve(outputRoot, "semantic_audit_report.md"), [
   "",
   "## Hong Kong gaps",
   "",
-  `- Characters: ${missingHongKongCharacters.map((row) => row.character).join(" ") || "None"}`,
-  `- Words: ${missingHongKongWords.map((row) => row.word).join(" · ") || "None"}`,
+  `- Characters: ${missingHongKongCharacters.map((row) => `${row.character} (${row.exclusionReason})`).join(" · ") || "None"}`,
+  `- Words: ${missingHongKongWords.map((row) => `${row.word} (${row.exclusionReason}${row.missingCharacters.length ? `: ${row.missingCharacters.join(" ")}` : ""})`).join(" · ") || "None"}`,
+  "",
+  "The machine-readable audit includes gate-by-gate EDB, MOE, Cangjie, reading, definition, decomposition, rank and selection evidence for every Hong Kong anchor.",
   "",
   "## Curriculum boundary",
   "",
@@ -984,6 +1158,7 @@ writeJson(resolve(outputRoot, "dataset_version.json"), {
   characterCount: characters.length,
   characterReadingCount: characterReadings.length,
   characterDecompositionCount: characterDecompositions.length,
+  componentMetadataCount: componentMetadata.length,
   characterFamilyMembershipCount: familyRows.length,
   characterFamilyCount: new Set(familyRows.map((row) => row.family_id)).size,
   wordCount: words.length,
