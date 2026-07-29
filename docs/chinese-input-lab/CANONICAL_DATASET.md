@@ -46,6 +46,8 @@ Quick codes are derived only from the pinned Rime Quick first/last-key rule. Can
 
 The build runs a second Cangjie audit after generation. That script reparses the pinned Rime table independently and compares every character's complete accepted Cangjie set, preferred Cangjie code, complete Quick set and preferred Quick code. Any mismatch fails the build.
 
+CI acquires only this pinned audit table with `npm run fetch:chinese-cangjie-reference`. The command verifies the expected SHA-256 before writing the ignored local snapshot; it does not refresh or mutate the canonical dataset.
+
 ## Commands
 
 Refresh source snapshots deliberately:
