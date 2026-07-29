@@ -1,6 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
 import { loadChineseInputDataset } from "./dataset.js";
+import {
+  configuredChineseCurriculumSource,
+  loadGeneratedChineseInputDataset,
+} from "./data/generated-curriculum-adapter.js";
 import useChineseInputProgress from "./hooks/useChineseInputProgress.js";
 import useChineseSpeech from "./hooks/useChineseSpeech.js";
 import ChineseInputDashboard from "./components/ChineseInputDashboard.jsx";
@@ -87,7 +91,14 @@ function LessonsView({ dataset, method, moduleProgress, onStartLesson }) {
 
 export default function ChineseInputPage() {
   const availability = getChineseInputLabAvailability();
-  const { prefs, moduleProgress, updatePrefs, recordAttempt, completeSession } = useChineseInputProgress();
+  const {
+    prefs,
+    moduleProgress,
+    updatePrefs,
+    recordAttempt,
+    completeSession,
+    migrateCurriculum,
+  } = useChineseInputProgress();
   const method = prefs.method === "quick" ? "quick" : "cangjie";
   const [view, setView] = useState(() => prefs.lastView || "dashboard");
   const [lessonId, setLessonId] = useState("");
@@ -95,13 +106,40 @@ export default function ChineseInputPage() {
   const speechLocale = prefs.locale === "zh-TW" ? "zh-TW" : "zh-HK";
   const speechEnabled = prefs.speechEnabled !== false;
   const { pronounce, message: speechMessage } = useChineseSpeech(speechEnabled, speechLocale);
-  const datasetResult = useMemo(() => {
+  const curriculumSource = useMemo(() => configuredChineseCurriculumSource(), []);
+  const legacyDatasetResult = useMemo(() => {
     try {
-      return { dataset: loadChineseInputDataset(), error: null };
+      return { dataset: loadChineseInputDataset(), error: null, warning: "", loading: false };
     } catch (error) {
-      return { dataset: null, error };
+      return { dataset: null, error, warning: "", loading: false };
     }
   }, []);
+  const [generatedDatasetResult, setGeneratedDatasetResult] = useState({
+    dataset: null,
+    error: null,
+    warning: "",
+    loading: curriculumSource !== "legacy",
+  });
+  useEffect(() => {
+    if (curriculumSource === "legacy") return undefined;
+    let cancelled = false;
+    loadGeneratedChineseInputDataset({ source: curriculumSource })
+      .then((result) => {
+        if (!cancelled) {
+          migrateCurriculum({
+            migration: result.bundle.migration,
+            lessons: result.bundle.lessons.lessons,
+            inputDigest: result.bundle.manifest.inputDigest,
+          });
+          setGeneratedDatasetResult({ ...result, error: null, loading: false });
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) setGeneratedDatasetResult({ dataset: null, error, warning: "", loading: false });
+      });
+    return () => { cancelled = true; };
+  }, [curriculumSource, migrateCurriculum]);
+  const datasetResult = curriculumSource === "legacy" ? legacyDatasetResult : generatedDatasetResult;
 
   if (!availability.routeEnabled) {
     return (
@@ -116,6 +154,14 @@ export default function ChineseInputPage() {
       <section className="lw-page lw-card" data-testid="chinese-input-data-error">
         <h1>Chinese Input Lab data could not be loaded</h1>
         <p>The verified dataset failed its safety checks. Other learning modules are unaffected.</p>
+      </section>
+    );
+  }
+  if (datasetResult.loading) {
+    return (
+      <section className="lw-page lw-card" data-testid="chinese-input-curriculum-loading">
+        <h1>Loading generated Chinese curriculum…</h1>
+        <p>The curriculum schema and source digests are being checked before rendering.</p>
       </section>
     );
   }
@@ -146,6 +192,12 @@ export default function ChineseInputPage() {
 
   return (
     <div className="lw-page cil-page" data-testid="chinese-input-page">
+      {datasetResult.warning && (
+        <section className="lw-card" role="status" data-testid="chinese-input-preview-warning">
+          <strong>Preview curriculum</strong>
+          <p>{datasetResult.warning}</p>
+        </section>
+      )}
       {view !== "dashboard" && !activeLesson && (
         <button className="lw-btn lw-btn-ghost cil-back-button" type="button" onClick={() => openView("dashboard")}>
           ← Chinese Input dashboard

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "status": "test-fixture-only",
+  "minimumReviewedCharacters": 10,
+  "lessonSize": 10,
+  "maxNewCangjieRootsPerLesson": 5,
+  "requiredReviewStatus": "approved",
+  "approvedHongKongCorpusSources": ["test-fixture"],
+  "hongKongCorpusGate": {
+    "status": "fixture",
+    "requiredFields": ["hk_corpus_rank", "hk_corpus_source", "supporting_words"]
+  },
+  "selectionPolicy": {
+    "includeStatus": "include",
+    "sort": ["curriculum_priority", "foxchild_selection_rank"]
+  },
+  "outputGraphs": ["lesson", "assessment", "game"]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "targetCharactersPerCoreLesson": 6,
+  "minCharactersPerLesson": 4,
+  "maxCharactersPerLesson": 8,
+  "targetSupportingWordsPerLesson": 8,
+  "minSupportingWordsPerLesson": 0,
+  "maxSupportingWordsPerLesson": 14,
+  "reviewCharactersPerLesson": 8,
+  "assessmentInterval": 5,
+  "stageAssessmentInterval": 20,
+  "maxEstimatedMinutes": 12,
+  "maxStructuresPerLesson": 3,
+  "maxPolyphonicCharactersPerLesson": 4,
+  "weights": {
+    "hkFrequency": 1,
+    "approvedCurriculumPriority": 1,
+    "moeFrequencyFallback": 0.45,
+    "rootReuse": 0.8,
+    "wordSupport": 0.65,
+    "componentFamily": 0.45,
+    "structureContinuity": 0.35,
+    "newRootPenalty": -0.8,
+    "confusionPenalty": -0.6,
+    "polyphonyPenalty": -0.25,
+    "unreviewedRegisterPenalty": -0.3
+  }
+}

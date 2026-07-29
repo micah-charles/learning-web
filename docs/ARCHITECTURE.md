@@ -478,3 +478,37 @@ packs under `data/Packs/**` plus `public/assets/**`.
 - **My Packs ZIP upload is JSON-only**. It does not import image files or
   markdown files from ZIP archives; visual packs need HTTPS images or served
   public assets.
+
+---
+
+## 13. Chinese Input canonical and curriculum pipeline
+
+Chinese Input Lab keeps source facts and educational decisions in separate build layers:
+
+```text
+Pinned EDB / MOE / Rime / Unihan / CHISE snapshots
+  → canonical generator
+  → characters + readings + ordered decomposition + component display metadata
+  → independent Cangjie audit + semantic/HK-anchor audit
+  → human review table with approved HK corpus evidence
+  → curriculum compiler
+  → lesson graph + assessment graph + game graph
+```
+
+The canonical generator is deterministic and offline after explicit source acquisition. Cross-source glyph aliases are reviewed constants with source-glyph lineage. CHISE entities are never learner-facing glyphs; decomposition occurrence IDs resolve through `canonical_component_metadata`.
+
+The production curriculum compiler is fail-closed on three independent conditions:
+
+1. an approved Hong Kong corpus source exists in curriculum policy;
+2. each included record has reviewed meaning, register, HK evidence and display reading;
+3. at least 2,500 included character reviews are approved.
+
+Fixture compilation uses a separate fixture policy and cannot weaken production policy.
+
+The complete preview compiler reads versioned policy files from
+`learning-data/chinese-input/curriculum-policy/` and emits disposable graphs
+under `learning-data/chinese-input/generated-curriculum/preview/`. Stable
+root, character and word entities drive progress migration. The runtime remains
+legacy by default; `VITE_CHINESE_CURRICULUM_SOURCE=generated-preview` enables a
+schema-checked adapter with an explicit provisional warning.
+`generated-production` is rejected unless its manifest is production-approved.

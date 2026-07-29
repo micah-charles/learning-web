@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "lessonPassAccuracy": 0.8,
+  "stagePassAccuracy": 0.85,
+  "finalPassAccuracy": 0.9,
+  "checkpointEveryLessons": 5,
+  "retryPolicy": "target-errors-then-retry-v1",
+  "selectionPolicy": "stable-entity-order-v1"
+}

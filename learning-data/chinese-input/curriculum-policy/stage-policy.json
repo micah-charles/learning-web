@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "1.0.0",
+  "stages": [
+    {"id":"cj-stage-00","name":"Keyboard and Root Orientation","purpose":"Introduce the 26 Cangjie keys and roots.","branch":"formal-core"},
+    {"id":"cj-stage-01","name":"Single-root and High-utility Characters","purpose":"Type single-key and high-utility characters.","branch":"formal-core"},
+    {"id":"cj-stage-02","name":"Two-root Character Construction","purpose":"Build characters from two-key codes.","branch":"formal-core"},
+    {"id":"cj-stage-03","name":"Common Left–Right Structures","purpose":"Practise left–right extraction patterns.","branch":"formal-core"},
+    {"id":"cj-stage-04","name":"Common Top–Bottom Structures","purpose":"Practise top–bottom extraction patterns.","branch":"formal-core"},
+    {"id":"cj-stage-05","name":"Enclosing and Complex Structures","purpose":"Recognise enclosing, overlay and other structures.","branch":"formal-core"},
+    {"id":"cj-stage-06","name":"Longer Cangjie Codes and Extraction Rules","purpose":"Practise four- and five-key extraction.","branch":"formal-core"},
+    {"id":"cj-stage-07","name":"Character Families and Component Transfer","purpose":"Transfer structural knowledge between component families.","branch":"formal-core"},
+    {"id":"cj-stage-08","name":"Words, Context and Polyphonic Characters","purpose":"Review characters through source-attested word contexts.","branch":"formal-core"},
+    {"id":"cj-stage-09","name":"Written Cantonese and HK Typing Extension","purpose":"Optional structural placeholder pending reviewed HK lexical evidence.","branch":"hk-extension"},
+    {"id":"cj-stage-10","name":"Quick Input Method","purpose":"Teach first/last-key logic, collisions and disambiguation.","branch":"quick"},
+    {"id":"cj-stage-11","name":"Fluency, Speed, Accuracy and Mixed Review","purpose":"Build typing fluency through cumulative review.","branch":"formal-core"},
+    {"id":"cj-stage-12","name":"Comprehensive Mastery and Adaptive Challenge","purpose":"Provide final cumulative assessment opportunities.","branch":"formal-core"}
+  ]
+}

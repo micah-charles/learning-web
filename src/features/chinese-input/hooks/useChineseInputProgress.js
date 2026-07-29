@@ -6,6 +6,7 @@ import {
   appendBounded,
 } from "../domain/progress-migration.js";
 import { updateCharacterMastery, updateRootMastery } from "../domain/mastery-engine.js";
+import { migrateChineseInputCurriculumProgress } from "../domain/curriculum-migration.js";
 
 export default function useChineseInputProgress() {
   const { progress, updateProgress } = useProgress();
@@ -85,5 +86,18 @@ export default function useChineseInputProgress() {
     });
   }, [updateProgress]);
 
-  return { prefs, moduleProgress, updatePrefs, recordAttempt, completeSession };
+  const migrateCurriculum = useCallback(({ migration, lessons, inputDigest }) => {
+    updateProgress((state) => {
+      const current = state.progress.chineseInputLab;
+      if (current.curriculumInputDigest === inputDigest) return;
+      state.progress.chineseInputLab = migrateChineseInputCurriculumProgress(
+        current,
+        migration,
+        lessons,
+        inputDigest,
+      );
+    });
+  }, [updateProgress]);
+
+  return { prefs, moduleProgress, updatePrefs, recordAttempt, completeSession, migrateCurriculum };
 }
