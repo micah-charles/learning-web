@@ -8,4 +8,5 @@
 - [Decomposition and families require pinned relationships](chinese-input/business-rules.md#decomposition-and-families-require-pinned-relationships) - active - Keep component, phonetic and semantic relationships typed and sourced.
 - [Curriculum compilation is fail-closed on human review](chinese-input/business-rules.md#curriculum-compilation-is-fail-closed-on-human-review) - active - Reviewed inputs, not heuristics, control lesson output.
 - [Cross-source glyph reconciliation is explicit](chinese-input/business-rules.md#cross-source-glyph-reconciliation-is-explicit) - active - Reviewed aliases preserve source glyphs and prevent silent anchor loss.
+- [Generated curriculum is disposable and entity-stable](chinese-input/business-rules.md#generated-curriculum-is-disposable-and-entity-stable) - active - Policy and reviewed inputs regenerate lessons while progress remains attached to stable entities.
 - [Chinese Input Lab is not a Language Ladder pack](chinese-input/business-rules.md#chinese-input-lab-is-not-a-language-ladder-pack) - active - Share infrastructure while keeping input-method rules isolated.

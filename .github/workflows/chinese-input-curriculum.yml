@@ -1,0 +1,53 @@
+name: Chinese Input Curriculum
+
+on:
+  pull_request:
+    paths:
+      - "learning-data/chinese-input/**"
+      - "scripts/chinese-input/**"
+      - "src/features/chinese-input/**"
+      - "docs/chinese-input-lab/**"
+      - "package.json"
+      - "vite.config.js"
+      - ".github/workflows/chinese-input-curriculum.yml"
+  push:
+    branches: [main]
+    paths:
+      - "learning-data/chinese-input/**"
+      - "scripts/chinese-input/**"
+      - "src/features/chinese-input/**"
+      - "package.json"
+      - "vite.config.js"
+  workflow_dispatch:
+
+jobs:
+  curriculum:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Canonical validation
+        run: npm run validate:chinese-canonical
+      - name: Independent Cangjie audit
+        run: npm run audit:chinese-cangjie
+      - name: Generate preview curriculum
+        run: npm run build:chinese-curriculum:preview
+      - name: Validate curriculum
+        run: npm run validate:chinese-curriculum
+      - name: Semantic curriculum audit
+        run: npm run audit:chinese-curriculum
+      - name: Curriculum tests
+        run: npm run test:chinese-curriculum
+      - name: Determinism verification
+        run: npm run check:chinese-curriculum-determinism
+      - name: Generated-output drift
+        run: git diff --exit-code -- learning-data/chinese-input/generated-curriculum
+      - name: Chinese Input domain tests
+        run: npm run test:chinese-input
+      - name: Application build
+        run: npm run build

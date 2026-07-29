@@ -26,6 +26,14 @@ export default defineConfig(({ command }) => ({
           targets: [
             { src: "data",  dest: "." },
             { src: "brand", dest: "." },
+            {
+              src: "learning-data/chinese-input/generated-curriculum",
+              dest: "learning-data/chinese-input",
+            },
+            {
+              src: "learning-data/chinese-input/canonical",
+              dest: "learning-data/chinese-input",
+            },
           ],
         })]
       : []),

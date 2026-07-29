@@ -89,3 +89,15 @@ Broad variant normalisation can merge characters that have distinct Hong Kong ed
 
 ### Guidance for future agents
 Maintain a small reviewed alias table with source evidence. Preserve the original glyph in `edb_source_glyph`, validate every alias against pinned Unihan and ranking/code sources, and expose anchor gate diagnostics. Never apply every `kZVariant` automatically.
+
+## Generated curriculum is disposable and entity-stable
+code: `scripts/chinese-input/curriculum/`, `learning-data/chinese-input/curriculum-policy/`, `learning-data/chinese-input/generated-curriculum/`, `src/features/chinese-input/domain/curriculum-migration.js` | updated: 2026-07-29 | status: active
+
+### Context
+Curriculum shape changes whenever reviewed evidence or policy changes. Lesson position is therefore not a durable learner identity.
+
+### Why it matters
+Hand-edited generated lessons create drift, while lesson-number-only progress either erases mastery or falsely grants it after regeneration.
+
+### Guidance for future agents
+Edit canonical, reviewed or policy inputs and regenerate. Keep generated/do-not-edit headers and deterministic input digests. Attach mastery to `cj-<key>`, Unicode character IDs and deterministic word IDs; use lesson migration metadata only to reconstruct partial/completed lesson state. Preview and production status must remain impossible to confuse.

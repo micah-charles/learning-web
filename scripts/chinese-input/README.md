@@ -48,3 +48,23 @@ reviews has been reached from a policy-approved Hong Kong corpus source. See
 `docs/chinese-input-lab/CANONICAL_DATASET.md` and
 `docs/chinese-input-lab/HK_CORPUS_SOURCE_REVIEW.md` for the source policy,
 schemas, validation gates and human-review boundary.
+
+## Complete curriculum generator
+
+The re-runnable curriculum system consumes canonical JSON, reviewed CSV inputs
+and versioned policy files under `learning-data/chinese-input/curriculum-policy/`.
+
+```bash
+npm run build:chinese-curriculum:preview
+npm run validate:chinese-curriculum
+npm run audit:chinese-curriculum
+npm run test:chinese-curriculum
+npm run check:chinese-curriculum-determinism
+npm run qa:chinese-curriculum
+```
+
+Preview output covers the complete canonical character set but is explicitly
+provisional. Production generation intentionally fails until an approved,
+pinned HK corpus and the required human reviews exist. Generated files under
+`learning-data/chinese-input/generated-curriculum/` are disposable and must not
+be edited.

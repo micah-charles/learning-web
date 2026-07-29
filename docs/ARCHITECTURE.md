@@ -504,3 +504,11 @@ The production curriculum compiler is fail-closed on three independent condition
 3. at least 2,500 included character reviews are approved.
 
 Fixture compilation uses a separate fixture policy and cannot weaken production policy.
+
+The complete preview compiler reads versioned policy files from
+`learning-data/chinese-input/curriculum-policy/` and emits disposable graphs
+under `learning-data/chinese-input/generated-curriculum/preview/`. Stable
+root, character and word entities drive progress migration. The runtime remains
+legacy by default; `VITE_CHINESE_CURRICULUM_SOURCE=generated-preview` enables a
+schema-checked adapter with an explicit provisional warning.
+`generated-production` is rejected unless its manifest is production-approved.
