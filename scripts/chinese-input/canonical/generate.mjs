@@ -3,8 +3,13 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import {
   CHARACTER_COLUMNS,
+  CHARACTER_READING_COLUMNS,
   DATASET_VERSION,
   GENERATED_AT,
+  HONG_KONG_CANTONESE_CHARACTER_ANCHORS,
+  HONG_KONG_CANTONESE_WORD_ANCHORS,
+  SCHEMA_VERSION,
+  SEMANTIC_ANCHOR_CHARACTERS,
   SOURCE_DEFINITIONS,
   WORD_COLUMNS,
 } from "./constants.mjs";
@@ -72,7 +77,8 @@ function mergeUnihanFile(records, text, acceptedProperties) {
 function parseUnihan() {
   const records = new Map();
   mergeUnihanFile(records, readFileSync(paths.readings, "utf8"), new Set([
-    "kCantonese", "kDefinition", "kMandarin",
+    "kCantonese", "kDefinition", "kHanyuPinlu", "kHanyuPinyin", "kMandarin",
+    "kSMSZD2003Readings",
   ]));
   mergeUnihanFile(records, readFileSync(paths.radicalStrokes, "utf8"), new Set([
     "kRSUnicode", "kTotalStrokes",
@@ -96,6 +102,7 @@ function sourceRank(record) {
 }
 
 function frequencyBand(rank) {
+  if (!Number.isInteger(rank)) return "unranked";
   if (rank <= 100) return "top-100";
   if (rank <= 500) return "top-500";
   if (rank <= 1000) return "top-1000";
@@ -103,14 +110,15 @@ function frequencyBand(rank) {
   return "extended";
 }
 
-function curriculumTier(rank) {
-  if (rank <= 500) return "foundation";
-  if (rank <= 1500) return "core";
-  if (rank <= 2500) return "expansion";
-  return "extension";
+function frequencyTier(rank) {
+  if (!Number.isInteger(rank)) return "unranked";
+  if (rank <= 500) return "tier-1-moe-top-500";
+  if (rank <= 1500) return "tier-2-moe-501-1500";
+  if (rank <= 2500) return "tier-3-moe-1501-2500";
+  return "tier-4-moe-beyond-2500";
 }
 
-function categoryFromDefinition(definition) {
+function suggestedCategoryFromDefinition(definition) {
   const value = String(definition).toLowerCase();
   if (/\b(person|man|woman|father|mother|child|surname)\b/.test(value)) return "people";
   if (/\b(eat|drink|food|rice|tea|fruit|meat)\b/.test(value)) return "food";
@@ -119,6 +127,90 @@ function categoryFromDefinition(definition) {
   if (/\b(go|come|make|do|take|give|see|hear|speak)\b/.test(value)) return "actions";
   if (/\b(number|one|two|three|four|five|six|seven|eight|nine|ten)\b/.test(value)) return "numbers";
   return "general";
+}
+
+function frequencyBucket(rank, type = "character") {
+  if (!Number.isInteger(rank)) return "unranked";
+  const size = type === "word" ? 100 : 10;
+  const start = Math.floor((rank - 1) / size) * size + 1;
+  const end = start + size - 1;
+  return `moe-${type}-${String(start).padStart(5, "0")}-${String(end).padStart(5, "0")}`;
+}
+
+function unique(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function parseSpaceSeparatedReadings(value) {
+  return unique(String(value || "").split(/\s+/).map((reading) => reading.trim()));
+}
+
+function parseHanyuPinlu(value) {
+  const readings = [];
+  for (const match of String(value || "").matchAll(/([^\s()]+)\((\d+)\)/g)) {
+    readings.push({ reading: match[1], usage: `attested-count:${match[2]}` });
+  }
+  return readings;
+}
+
+function parseHanyuPinyin(value) {
+  const readings = [];
+  for (const group of String(value || "").split(/\s+/)) {
+    const separator = group.indexOf(":");
+    const rawReadings = separator >= 0 ? group.slice(separator + 1) : group;
+    for (const reading of rawReadings.split(",")) {
+      if (reading) readings.push({ reading, usage: "" });
+    }
+  }
+  return readings;
+}
+
+function parseSmszdReadings(value) {
+  const readings = [];
+  for (const group of String(value || "").split(/\s+/)) {
+    const marker = group.indexOf("粵");
+    if (marker < 0) continue;
+    const mandarinUsage = group.slice(0, marker);
+    for (const reading of group.slice(marker + 1).split(",")) {
+      if (reading) readings.push({ reading, usage: mandarinUsage ? `mandarin-mapping:${mandarinUsage}` : "" });
+    }
+  }
+  return readings;
+}
+
+function characterReadingRows(character, language) {
+  const sourcePrefix = `${SOURCE_DEFINITIONS.unihan.id}@${SOURCE_DEFINITIONS.unihan.version}`;
+  const rows = [];
+  const add = (languageCode, reading, usage, property) => {
+    if (!reading || rows.some((row) => row.language === languageCode && row.reading === reading)) return;
+    rows.push({
+      character,
+      language: languageCode,
+      reading,
+      usage,
+      word_example: "",
+      is_default_for_display: false,
+      source: `${sourcePrefix}:${property}`,
+      source_property: property,
+      review_status: "source-attested-unreviewed",
+    });
+  };
+  for (const reading of parseSpaceSeparatedReadings(language.kCantonese)) {
+    add("yue-HK", reading, "", "kCantonese");
+  }
+  for (const { reading, usage } of parseSmszdReadings(language.kSMSZD2003Readings)) {
+    add("yue-HK", reading, usage, "kSMSZD2003Readings");
+  }
+  for (const reading of parseSpaceSeparatedReadings(language.kMandarin)) {
+    add("zh-Hant-TW", reading, "", "kMandarin");
+  }
+  for (const { reading, usage } of parseHanyuPinlu(language.kHanyuPinlu)) {
+    add("zh-Hant-TW", reading, usage, "kHanyuPinlu");
+  }
+  for (const { reading, usage } of parseHanyuPinyin(language.kHanyuPinyin)) {
+    add("zh-Hant-TW", reading, usage, "kHanyuPinyin");
+  }
+  return rows;
 }
 
 function parseRadical(value) {
@@ -205,77 +297,71 @@ for (const record of selected) {
 }
 
 const characters = selected.map((record, index) => {
-  const rank = index + 1;
+  const selectionRank = index + 1;
+  const moeRank = Number.isInteger(record.frequency?.rank) ? record.frequency.rank : null;
   const preferredCode = record.codes[0];
   const preferredQuick = quickCode(preferredCode);
   const definition = record.language.kDefinition;
   const strokes = parseStrokeCount(record.language.kTotalStrokes, record.edb.totalStrokes);
-  const typingDifficulty = Math.min(5, preferredCode.length);
-  const strokeDifficulty = Math.min(5, Math.max(1, Math.ceil(strokes / 6)));
-  const category = categoryFromDefinition(definition);
-  const lesson = Math.ceil(rank / 10);
-  const unit = Math.ceil(lesson / 10);
+  const cangjieDifficulty = Math.min(5, preferredCode.length);
+  const visualComplexity = Math.min(5, Math.max(1, Math.ceil(strokes / 6)));
+  const suggestedCategory = suggestedCategoryFromDefinition(definition);
   return {
     character: record.character,
     unicode: unicodeValue(record.character),
     unicode_hex: record.character.codePointAt(0).toString(16).toUpperCase(),
-    present_in_edb: true,
+    edb_presence: true,
     edb_version: SOURCE_DEFINITIONS.edb.version,
-    frequency_rank: rank,
-    frequency_score: record.frequency ? Number((record.frequency.count / SOURCE_DEFINITIONS.frequency.expectedTotalFrequency).toFixed(10)) : 0,
-    frequency_band: frequencyBand(rank),
-    frequency_source: record.frequency ? SOURCE_DEFINITIONS.frequency.id : `${SOURCE_DEFINITIONS.edb.id}:fallback`,
-    difficulty_level: Math.min(5, Math.ceil((typingDifficulty + strokeDifficulty) / 2)),
-    school_level: rank <= 1200 ? "FoxChild primary foundation" : rank <= 2500 ? "FoxChild primary core" : "FoxChild primary extension",
-    recommended_lesson: `character-${String(lesson).padStart(3, "0")}`,
-    recommended_unit: `unit-${String(unit).padStart(2, "0")}`,
-    curriculum_tier: curriculumTier(rank),
+    edb_grade_level: "",
+    moe_frequency_rank: moeRank ?? "",
+    moe_frequency_score: record.frequency
+      ? Number((record.frequency.count / SOURCE_DEFINITIONS.frequency.expectedTotalFrequency).toFixed(10))
+      : "",
+    moe_frequency_band: frequencyBand(moeRank),
+    hk_frequency_rank: "",
+    foxchild_selection_rank: selectionRank,
+    foxchild_selection_score: Number((1 - ((selectionRank - 1) / Math.max(1, candidates.length - 1))).toFixed(10)),
+    foxchild_selection_method: "edb-eligible-then-moe-corpus-order-v1",
+    frequency_bucket: frequencyBucket(moeRank),
+    foxchild_frequency_tier: frequencyTier(moeRank),
+    foxchild_frequency_tier_method: "moe-rank-bands-v1",
+    usage_level: "",
+    literacy_level: "",
+    curriculum_stage: "",
+    curriculum_priority: "",
     cangjie: preferredCode,
     quick: preferredQuick,
     root_count: preferredCode.length,
     code_length: preferredCode.length,
     first_root: preferredCode[0],
     last_root: preferredCode.at(-1),
+    cangjie_difficulty: cangjieDifficulty,
+    cangjie_difficulty_method: "preferred-code-length-v1",
+    simple_code_candidate: preferredCode.length <= 3,
+    simple_code_candidate_method: "preferred-code-length-at-most-3-v1",
     radical: parseRadical(record.language.kRSUnicode),
     total_strokes: strokes,
-    structure: "unclassified",
-    left_right: false,
-    top_bottom: false,
-    surround: false,
-    single: preferredCode.length === 1,
-    english: definition,
-    category,
-    sub_category: "unclassified",
-    meaning: definition,
+    structure: "unknown",
+    left_right: "",
+    top_bottom: "",
+    surround: "",
+    single: "",
+    visual_complexity: visualComplexity,
+    visual_complexity_method: "total-stroke-count-proxy-v1",
+    visual_complexity_confidence: "low",
+    unihan_definition: definition,
+    learner_definition_en: "",
+    learner_definition_status: "unreviewed",
+    suggested_category: suggestedCategory,
+    category_method: "unihan-definition-keyword-proposal-v1",
+    category_confidence: "low",
+    category_review_status: "pending",
     example_word: "",
     example_phrase: "",
     example_sentence: "",
-    jyutping: record.language.kCantonese.split(" ")[0],
-    mandarin_pinyin: record.language.kMandarin.split(" ")[0],
-    is_high_frequency: rank <= 1000,
-    is_beginner: rank <= 500 && preferredCode.length <= 3,
-    is_common_word: rank <= 1500,
-    review_priority: Number((1 + (typingDifficulty / 5) + (rank / targetCount)).toFixed(3)),
-    review_interval: rank <= 500 ? 1 : rank <= 1500 ? 3 : rank <= 2500 ? 7 : 14,
-    mastery_weight: Number((1 + (targetCount - rank) / targetCount).toFixed(3)),
-    unlock_after: lesson === 1 ? "" : `character-${String(lesson - 1).padStart(3, "0")}`,
-    teaching_notes: `Teach the verified Cangjie 5 code ${preferredCode}; Quick code ${preferredQuick}.`,
-    component_1: "",
-    component_2: "",
-    component_3: "",
-    component_4: "",
-    similar_characters: "",
-    confusable_characters: "",
-    derived_characters: "",
-    stroke_difficulty: strokeDifficulty,
-    typing_difficulty: typingDifficulty,
-    memory_difficulty: Math.min(5, Math.ceil((typingDifficulty + Math.log2(rank + 1) / 3) / 2)),
-    shape_complexity: strokeDifficulty,
     code_uniqueness: Number((1 / codeCounts.get(preferredCode)).toFixed(4)),
-    family_grouping: `cangjie-${preferredCode[0]}`,
-    phonetic_grouping: record.language.kMandarin.replace(/[1-5\s]/g, "").split(" ")[0],
-    semantic_grouping: category,
-    component_grouping: "unclassified",
+    code_uniqueness_method: "inverse-selected-preferred-code-collision-count-v1",
+    cangjie_first_root_group: `cangjie-${preferredCode[0]}`,
     source_frequency: record.frequency ? SOURCE_DEFINITIONS.frequency.id : "",
     source_cangjie: `${SOURCE_DEFINITIONS.cangjie.id}@${SOURCE_DEFINITIONS.cangjie.commit}`,
     source_unihan: `${SOURCE_DEFINITIONS.unihan.id}@${SOURCE_DEFINITIONS.unihan.version}`,
@@ -289,6 +375,10 @@ const characters = selected.map((record, index) => {
 });
 
 const characterByGlyph = new Map(characters.map((character) => [character.character, character]));
+const selectedRecordByGlyph = new Map(selected.map((record) => [record.character, record]));
+const characterReadings = characters.flatMap((character) => (
+  characterReadingRows(character.character, selectedRecordByGlyph.get(character.character).language)
+));
 const words = wordFrequencySnapshot.rows
   .filter((row) => {
     const glyphs = Array.from(row.word.normalize("NFC"));
@@ -300,37 +390,130 @@ const words = wordFrequencySnapshot.rows
   .map((row, index) => {
     const glyphs = Array.from(row.word.normalize("NFC"));
     const members = glyphs.map((glyph) => characterByGlyph.get(glyph));
-    const unlockRank = Math.max(...members.map((member) => member.frequency_rank));
-    const lesson = Math.ceil(unlockRank / 10);
-    const categoryCounts = new Map();
-    for (const member of members) {
-      categoryCounts.set(member.category, (categoryCounts.get(member.category) || 0) + 1);
-    }
-    const category = [...categoryCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0] || "general";
+    const selectionRank = index + 1;
+    const memberSelectionCeiling = Math.max(...members.map((member) => member.foxchild_selection_rank));
     return {
       word: row.word,
       unicode_sequence: glyphs.map(unicodeValue).join(" "),
       character_ids: glyphs.map((glyph) => `u${glyph.codePointAt(0).toString(16).toLowerCase()}`),
-      frequency_rank: index + 1,
-      frequency_score: Number((row.count / SOURCE_DEFINITIONS.wordFrequency.expectedTotalFrequency).toFixed(10)),
-      frequency_source: SOURCE_DEFINITIONS.wordFrequency.id,
-      school_level: index < 4000 ? "FoxChild primary foundation" : index < 8000 ? "FoxChild primary core" : "FoxChild primary extension",
-      curriculum_tier: index < 2000 ? "foundation" : index < 6000 ? "core" : index < 9000 ? "expansion" : "extension",
-      recommended_lesson: `character-${String(lesson).padStart(3, "0")}`,
-      jyutping: members.map((member) => member.jyutping).join(" "),
-      mandarin_pinyin: members.map((member) => member.mandarin_pinyin).join(" "),
-      english: "",
-      meaning: "",
-      category,
-      sub_category: "unclassified",
+      moe_frequency_rank: row.rank,
+      moe_frequency_score: Number((row.count / SOURCE_DEFINITIONS.wordFrequency.expectedTotalFrequency).toFixed(10)),
+      hk_frequency_rank: "",
+      foxchild_selection_rank: selectionRank,
+      foxchild_selection_score: Number((1 - (index / 9999)).toFixed(10)),
+      foxchild_selection_method: "moe-word-order-filtered-to-selected-characters-v1",
+      frequency_bucket: frequencyBucket(row.rank, "word"),
+      foxchild_frequency_tier: frequencyTier(row.rank),
+      foxchild_frequency_tier_method: "moe-rank-bands-v1",
+      usage_level: "",
+      curriculum_priority: "",
+      character_selection_ceiling: memberSelectionCeiling,
+      pronunciation_status: "contextual-lexical-source-required",
+      learner_definition_en: "",
+      learner_definition_status: "unreviewed",
+      suggested_category: "",
+      category_method: "",
+      category_confidence: "",
+      category_review_status: "unreviewed",
       example_sentence: "",
-      review_priority: Number((1 + ((index + 1) / 10000)).toFixed(3)),
-      source_edb: "",
+      source_frequency: SOURCE_DEFINITIONS.wordFrequency.id,
       last_verified: GENERATED_AT.slice(0, 10),
       dataset_version: DATASET_VERSION,
-      source_frequency: SOURCE_DEFINITIONS.wordFrequency.id,
     };
   });
+
+const readingsByCharacterAndLanguage = new Map();
+for (const reading of characterReadings) {
+  const key = `${reading.character}:${reading.language}`;
+  if (!readingsByCharacterAndLanguage.has(key)) readingsByCharacterAndLanguage.set(key, []);
+  readingsByCharacterAndLanguage.get(key).push(reading);
+}
+
+function sourceSignalsMultipleReadings(record, languageCode) {
+  if (languageCode === "yue-HK") {
+    return unique([
+      ...parseSpaceSeparatedReadings(record.language.kCantonese),
+      ...parseSmszdReadings(record.language.kSMSZD2003Readings).map((row) => row.reading),
+    ]).length > 1;
+  }
+  return unique([
+    ...parseSpaceSeparatedReadings(record.language.kMandarin),
+    ...parseHanyuPinlu(record.language.kHanyuPinlu).map((row) => row.reading),
+    ...parseHanyuPinyin(record.language.kHanyuPinyin).map((row) => row.reading),
+  ]).length > 1;
+}
+
+const polyphonicSingleReading = [];
+for (const record of selected) {
+  for (const languageCode of ["yue-HK", "zh-Hant-TW"]) {
+    if (!sourceSignalsMultipleReadings(record, languageCode)) continue;
+    const represented = readingsByCharacterAndLanguage.get(`${record.character}:${languageCode}`) || [];
+    if (represented.length <= 1) {
+      polyphonicSingleReading.push({
+        character: record.character,
+        language: languageCode,
+        represented_reading_count: represented.length,
+      });
+    }
+  }
+}
+
+const weakCategoryProposals = characters
+  .filter((row) => row.suggested_category && row.category_confidence === "low")
+  .map((row) => ({
+    character: row.character,
+    suggested_category: row.suggested_category,
+    category_method: row.category_method,
+  }));
+const complexSimpleCodeCandidates = characters
+  .filter((row) => row.simple_code_candidate && row.visual_complexity >= 4)
+  .map((row) => ({
+    character: row.character,
+    cangjie: row.cangjie,
+    total_strokes: row.total_strokes,
+    visual_complexity: row.visual_complexity,
+  }));
+const unknownStructureWithFlags = characters
+  .filter((row) => row.structure === "unknown" && [row.left_right, row.top_bottom, row.surround, row.single].some((value) => value !== ""))
+  .map((row) => ({ character: row.character }));
+const taiwanHighFrequencyWithoutHongKongRank = characters
+  .filter((row) => Number(row.moe_frequency_rank) <= 100 && row.hk_frequency_rank === "")
+  .map((row) => ({
+    character: row.character,
+    moe_frequency_rank: row.moe_frequency_rank,
+    status: "hong-kong-relevance-unverified",
+  }));
+const selectedCharacterSet = new Set(characters.map((row) => row.character));
+const selectedWordSet = new Set(words.map((row) => row.word));
+const missingHongKongCharacters = HONG_KONG_CANTONESE_CHARACTER_ANCHORS
+  .filter((character) => !selectedCharacterSet.has(character))
+  .map((character) => ({ character, status: "missing-from-edb-gated-selection" }));
+const missingHongKongWords = HONG_KONG_CANTONESE_WORD_ANCHORS
+  .filter((word) => !selectedWordSet.has(word))
+  .map((word) => ({ word, status: "missing-from-taiwan-word-frequency-selection" }));
+
+const semanticAudit = {
+  schemaVersion: 1,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  fixture: {
+    reviewedAnchorCount: SEMANTIC_ANCHOR_CHARACTERS.length,
+    note: "Anchors verify schema safety and expected presence; they are not a lesson order.",
+  },
+  flags: {
+    polyphonicCharactersWithOneReading: polyphonicSingleReading,
+    weakCategoryProposals,
+    complexSimpleCodeCandidates,
+    unknownStructureWithPopulatedFlags: unknownStructureWithFlags,
+    lessonRootLoad: {
+      status: "not-applicable",
+      reason: "No curriculum lesson assignments are generated by this canonical source pipeline.",
+    },
+    taiwanHighFrequencyWithoutHongKongRank,
+    missingHongKongCantoneseCharacters: missingHongKongCharacters,
+    missingHongKongCantoneseWords: missingHongKongWords,
+  },
+};
 const sourceFiles = Object.fromEntries(Object.entries(paths).map(([id, path]) => [
   id,
   { path: path.replace(`${projectRoot}/`, ""), sha256: sha256File(path) },
@@ -344,7 +527,7 @@ function histogram(rows, field) {
 
 writeText(resolve(outputRoot, "canonical_characters.csv"), toCsv(CHARACTER_COLUMNS, characters));
 writeCompactJson(resolve(outputRoot, "canonical_characters.json"), {
-  schemaVersion: 1,
+  schemaVersion: SCHEMA_VERSION,
   datasetVersion: DATASET_VERSION,
   generatedAt: GENERATED_AT,
   columns: CHARACTER_COLUMNS,
@@ -352,36 +535,72 @@ writeCompactJson(resolve(outputRoot, "canonical_characters.json"), {
 });
 writeText(resolve(outputRoot, "canonical_words.csv"), toCsv(WORD_COLUMNS, words));
 writeCompactJson(resolve(outputRoot, "canonical_words.json"), {
-  schemaVersion: 1,
+  schemaVersion: SCHEMA_VERSION,
   datasetVersion: DATASET_VERSION,
   generatedAt: GENERATED_AT,
   columns: WORD_COLUMNS,
   words,
 });
+writeText(resolve(outputRoot, "canonical_character_readings.csv"), toCsv(CHARACTER_READING_COLUMNS, characterReadings));
+writeCompactJson(resolve(outputRoot, "canonical_character_readings.json"), {
+  schemaVersion: SCHEMA_VERSION,
+  datasetVersion: DATASET_VERSION,
+  generatedAt: GENERATED_AT,
+  columns: CHARACTER_READING_COLUMNS,
+  readings: characterReadings,
+});
 
 const statistics = {
   characterCount: characters.length,
+  characterReadingCount: characterReadings.length,
   wordCount: words.length,
   sourceCandidateCount: candidates.length,
   rejectedCount: rejected.length,
   edbCoveragePercent: Number((characters.length / edbSnapshot.count * 100).toFixed(2)),
   moeFrequencyCoveragePercent: Number((characters.filter((row) => row.source_frequency).length / characters.length * 100).toFixed(2)),
-  moeCorpusOccurrenceCoveragePercent: Number((characters.reduce((sum, row) => sum + row.frequency_score, 0) * 100).toFixed(4)),
+  moeCorpusOccurrenceCoveragePercent: Number((characters.reduce((sum, row) => sum + (row.moe_frequency_score || 0), 0) * 100).toFixed(4)),
   averageStrokeCount: Number((characters.reduce((sum, row) => sum + row.total_strokes, 0) / characters.length).toFixed(2)),
   averageCodeLength: Number((characters.reduce((sum, row) => sum + row.code_length, 0) / characters.length).toFixed(2)),
-  byFrequencyBand: histogram(characters, "frequency_band"),
-  byCurriculumTier: histogram(characters, "curriculum_tier"),
+  byMoeFrequencyBand: histogram(characters, "moe_frequency_band"),
+  byFoxchildFrequencyTier: histogram(characters, "foxchild_frequency_tier"),
   byRadical: histogram(characters, "radical"),
   byStructure: histogram(characters, "structure"),
-  byLesson: histogram(characters, "recommended_lesson"),
+  byFrequencyBucket: histogram(characters, "frequency_bucket"),
   top100: characters.slice(0, 100).map((row) => row.character).join(""),
   top500Count: Math.min(500, characters.length),
   top1000Count: Math.min(1000, characters.length),
   top2500Count: Math.min(2500, characters.length),
 };
 writeJson(resolve(outputRoot, "canonical_statistics.json"), statistics);
+writeJson(resolve(outputRoot, "semantic_audit.json"), semanticAudit);
+writeText(resolve(outputRoot, "semantic_audit_report.md"), [
+  "# Canonical Chinese semantic audit",
+  "",
+  "This report records unresolved semantic risk. Flags are not automatically promoted into curriculum facts.",
+  "",
+  `- Reviewed semantic QA anchors: ${SEMANTIC_ANCHOR_CHARACTERS.length}`,
+  `- Polyphonic source signals represented by only one reading: ${polyphonicSingleReading.length}`,
+  `- Low-confidence category proposals awaiting review: ${weakCategoryProposals.length}`,
+  `- Visually complex simple-code candidates: ${complexSimpleCodeCandidates.length}`,
+  `- Unknown structures with populated layout flags: ${unknownStructureWithFlags.length}`,
+  `- MOE top-100 characters without a Hong Kong frequency rank: ${taiwanHighFrequencyWithoutHongKongRank.length}`,
+  `- Missing Hong Kong Cantonese character anchors: ${missingHongKongCharacters.length}`,
+  `- Missing Hong Kong Cantonese word anchors: ${missingHongKongWords.length}`,
+  "",
+  "## Hong Kong gaps",
+  "",
+  `- Characters: ${missingHongKongCharacters.map((row) => row.character).join(" ") || "None"}`,
+  `- Words: ${missingHongKongWords.map((row) => row.word).join(" · ") || "None"}`,
+  "",
+  "## Curriculum boundary",
+  "",
+  "- The generator creates frequency buckets, not lessons.",
+  "- No Hong Kong frequency rank, curriculum priority, literacy level, structure or pedagogical primary reading is inferred.",
+  "- Lesson root-load auditing remains not applicable until reviewed lesson assignments exist.",
+  "",
+].join("\n"));
 writeJson(resolve(outputRoot, "source_manifest.json"), {
-  schemaVersion: 1,
+  schemaVersion: SCHEMA_VERSION,
   datasetVersion: DATASET_VERSION,
   generatedAt: GENERATED_AT,
   sourceDefinitions: SOURCE_DEFINITIONS,
@@ -390,9 +609,10 @@ writeJson(resolve(outputRoot, "source_manifest.json"), {
 });
 writeJson(resolve(outputRoot, "dataset_version.json"), {
   datasetVersion: DATASET_VERSION,
-  schemaVersion: 1,
+  schemaVersion: SCHEMA_VERSION,
   generatedAt: GENERATED_AT,
   characterCount: characters.length,
+  characterReadingCount: characterReadings.length,
   wordCount: words.length,
 });
 writeJson(resolve(outputRoot, "rejected_characters.json"), { rejected });

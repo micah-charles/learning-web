@@ -1,5 +1,6 @@
-export const DATASET_VERSION = "1.0.0";
-export const GENERATED_AT = "2026-07-28T00:00:00.000Z";
+export const DATASET_VERSION = "1.1.0";
+export const SCHEMA_VERSION = 2;
+export const GENERATED_AT = "2026-07-29T00:00:00.000Z";
 
 export const SOURCE_DEFINITIONS = Object.freeze({
   edb: {
@@ -76,27 +77,49 @@ export const SOURCE_DEFINITIONS = Object.freeze({
 });
 
 export const CHARACTER_COLUMNS = Object.freeze([
-  "character", "unicode", "unicode_hex", "present_in_edb", "edb_version",
-  "frequency_rank", "frequency_score", "frequency_band", "frequency_source",
-  "difficulty_level", "school_level", "recommended_lesson", "recommended_unit", "curriculum_tier",
+  "character", "unicode", "unicode_hex", "edb_presence", "edb_version", "edb_grade_level",
+  "moe_frequency_rank", "moe_frequency_score", "moe_frequency_band", "hk_frequency_rank",
+  "foxchild_selection_rank", "foxchild_selection_score", "foxchild_selection_method",
+  "frequency_bucket", "foxchild_frequency_tier", "foxchild_frequency_tier_method",
+  "usage_level", "literacy_level", "curriculum_stage", "curriculum_priority",
   "cangjie", "quick", "root_count", "code_length", "first_root", "last_root",
+  "cangjie_difficulty", "cangjie_difficulty_method",
+  "simple_code_candidate", "simple_code_candidate_method",
   "radical", "total_strokes", "structure", "left_right", "top_bottom", "surround", "single",
-  "english", "category", "sub_category", "meaning", "example_word", "example_phrase", "example_sentence",
-  "jyutping", "mandarin_pinyin",
-  "is_high_frequency", "is_beginner", "is_common_word", "review_priority", "review_interval", "mastery_weight",
-  "unlock_after", "teaching_notes",
-  "component_1", "component_2", "component_3", "component_4",
-  "similar_characters", "confusable_characters", "derived_characters",
-  "stroke_difficulty", "typing_difficulty", "memory_difficulty", "shape_complexity", "code_uniqueness",
-  "family_grouping", "phonetic_grouping", "semantic_grouping", "component_grouping",
+  "visual_complexity", "visual_complexity_method", "visual_complexity_confidence",
+  "unihan_definition", "learner_definition_en", "learner_definition_status",
+  "suggested_category", "category_method", "category_confidence", "category_review_status",
+  "example_word", "example_phrase", "example_sentence",
+  "code_uniqueness", "code_uniqueness_method", "cangjie_first_root_group",
   "source_frequency", "source_cangjie", "source_unihan", "source_edb", "source_opencc",
   "last_verified", "dataset_version",
 ]);
 
 export const WORD_COLUMNS = Object.freeze([
-  "word", "unicode_sequence", "character_ids", "frequency_rank", "frequency_score",
-  "frequency_source", "school_level", "curriculum_tier", "recommended_lesson",
-  "jyutping", "mandarin_pinyin", "english", "meaning", "category", "sub_category",
-  "example_sentence", "review_priority", "source_edb", "last_verified", "dataset_version",
-  "source_frequency",
+  "word", "unicode_sequence", "character_ids",
+  "moe_frequency_rank", "moe_frequency_score", "hk_frequency_rank",
+  "foxchild_selection_rank", "foxchild_selection_score", "foxchild_selection_method",
+  "frequency_bucket", "foxchild_frequency_tier", "foxchild_frequency_tier_method",
+  "usage_level", "curriculum_priority",
+  "character_selection_ceiling", "pronunciation_status",
+  "learner_definition_en", "learner_definition_status",
+  "suggested_category", "category_method", "category_confidence", "category_review_status",
+  "example_sentence", "source_frequency", "last_verified", "dataset_version",
+]);
+
+export const CHARACTER_READING_COLUMNS = Object.freeze([
+  "character", "language", "reading", "usage", "word_example",
+  "is_default_for_display", "source", "source_property", "review_status",
+]);
+
+export const SEMANTIC_ANCHOR_CHARACTERS = Object.freeze(Array.from(
+  "一二三人口日月木水火我你他她佢們的是有在學校書讀寫聽說話行長著地為和得還了個小數多上不來少這下米面大分用中出麼子到時天要把方想每看國以算什成年千生就樣同兩去可起幾做十第好動作家比後過位能它題平計各練那體文自曲法也形會種課從高歌表邊克都對習怎兒又花四心工加些老再音發車共意圖相哪唱物聲開事本果進點樹現然合積產前沒山條頭走民求道組給正快媽段重明公向路紅樂手先字除全五百部叫啦主思回畫答機氣元當師像間例實放最萬情知解角隊很白運次隻化活句電釐等美倍經完量球飛軍之詞色度根問呀打光空如見原節身爸線己乘嗎只內填變星別外件愛連級式於力直張均班被噸帶應已理風奏照立常西結或真總新約示塊請整圓買號海並而所商河馬東列吃陽",
+));
+
+export const HONG_KONG_CANTONESE_CHARACTER_ANCHORS = Object.freeze([
+  "佢", "說", "嘅", "唔", "咗", "啲", "嚟", "冇", "喺", "咁", "呢", "咩", "哋",
+]);
+
+export const HONG_KONG_CANTONESE_WORD_ANCHORS = Object.freeze([
+  "唔該", "多謝", "而家", "點解", "冇嘢", "咁樣", "佢哋", "喺度",
 ]);

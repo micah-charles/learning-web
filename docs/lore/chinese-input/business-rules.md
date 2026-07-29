@@ -37,3 +37,15 @@ Live website changes, Unicode-order placeholders, mixed source versions or AI-fi
 Keep source row-count and anchor checks, hashes and deterministic timestamps. Do not weaken missing-enrichment warnings by inventing meanings, examples or structure. Add a new source only with a documented version, licence and conflict policy.
 
 OpenCC mappings alone do not prove that a glyph is Simplified-only: valid Traditional characters such as `了`, `干` and `只` have context-dependent conversions. Reject a glyph only when OpenCC and Unihan `kTraditionalVariant` evidence agree.
+
+## Canonical source facts are not curriculum facts
+code: `scripts/chinese-input/canonical/`, `learning-data/chinese-input/canonical/`, `docs/chinese-input-lab/CANONICAL_DATASET.md` | updated: 2026-07-29 | status: active
+
+### Context
+The EDB inventory establishes Hong Kong presence, while the pinned Taiwan MOE tables provide corpus frequency. Neither source defines FoxChild lesson order, Hong Kong frequency rank, literacy stage, school grade or pedagogical difficulty.
+
+### Why it matters
+Renaming a corpus bucket as a lesson, treating code length as visual structure, or promoting a dictionary gloss/category heuristic into reviewed learning metadata creates false educational certainty.
+
+### Guidance for future agents
+Keep MOE, EDB, calculated selection and curriculum concepts in separate fields. Unknown values stay blank. Calculated proxies must name their method and confidence. Heuristic categories stay pending proposals. Character readings are relational and multi-valued; never concatenate them into context-sensitive word pronunciation or select a pedagogical primary reading without review.

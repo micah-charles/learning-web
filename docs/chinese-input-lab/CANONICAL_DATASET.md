@@ -7,10 +7,12 @@ The canonical pipeline builds a deterministic Hong Kong-focused Traditional Chin
 Generated artifacts live in `learning-data/chinese-input/canonical/`:
 
 - `canonical_characters.csv` and `canonical_characters.json` — 3,000 characters;
+- `canonical_character_readings.csv` and `canonical_character_readings.json` — relational, multi-valued Cantonese and Mandarin readings;
 - `canonical_words.csv` and `canonical_words.json` — 10,000 words;
 - `canonical_statistics.json`;
 - `validation_report.md`;
 - `coverage_report.md`;
+- `semantic_audit.json` and `semantic_audit_report.md`;
 - `source_manifest.json`;
 - `dataset_version.json`;
 - `rejected_characters.json`.
@@ -28,7 +30,9 @@ The explicit acquisition step pins local snapshots under `data-source/authoritat
 - Unicode Unihan 17.0.0 readings, IRG radical/stroke data and variants.
 - OpenCC commit `2904aa4dd06df17c538fbeae9f1efa14e25bb4a5` for independent Simplified-to-Traditional verification.
 
-EDB order is never used as lesson order. The generator filters to records with verified Cangjie, Jyutping, Mandarin and definitions, rejects simplified-only records only when OpenCC and Unihan variant evidence agree, ranks by the pinned MOE corpus and then selects the requested 2,500–3,500 range. Requiring both sources avoids falsely excluding context-dependent traditional characters such as `了`, `干` and `只`.
+EDB order is never used as lesson order. The generator filters to records with verified Cangjie, source-attested Cantonese and Mandarin readings, and a Unihan definition. It rejects simplified-only records only when OpenCC and Unihan variant evidence agree, orders eligible records by the pinned MOE corpus, and then selects the requested 2,500–3,500 range. Requiring both simplified-variant sources avoids falsely excluding context-dependent Traditional characters such as `了`, `干` and `只`.
+
+MOE rank remains `moe_frequency_rank`. The current sources do not provide `hk_frequency_rank`, `edb_grade_level`, `usage_level`, `curriculum_priority`, `literacy_level` or `curriculum_stage`, so those fields remain blank. `foxchild_selection_rank` records deterministic inclusion order only. `frequency_bucket` and `foxchild_frequency_tier` are descriptive corpus calculations with explicit methods; neither is a lesson recommendation.
 
 Quick codes are derived only from the pinned Rime Quick first/last-key rule. Cangjie alternatives remain in JSON as `accepted_cangjie_codes`; preferred codes are used in the flat CSV.
 
@@ -71,18 +75,22 @@ The count must stay between 2,500 and 3,500.
 - Source snapshots and reports retain hashes and provenance.
 - Lessons and games should reference canonical character IDs; they must not copy character metadata into lesson files.
 
-## Current enrichment boundary
+## Semantic-correctness boundary
 
-Core validation passes with complete input codes, readings, definitions, frequency, difficulty, curriculum and provenance. The validation report intentionally keeps four warnings:
+Schema version 2 deliberately separates sourced facts, calculations and unresolved educational review:
 
-- structural layout/components remain unclassified until a pinned IDS source is approved;
-- character example sentences have no approved corpus;
-- the MOE word-frequency source does not provide English word meanings;
-- word example sentences have no approved redistributable corpus.
+- `structure` is `unknown`, and `left_right`, `top_bottom`, `surround` and `single` remain blank. Cangjie code length never determines visual layout.
+- Unihan `kDefinition` is stored as `unihan_definition`; `learner_definition_en` remains blank with `learner_definition_status=unreviewed`.
+- Definition-keyword categories are retained only as `suggested_category`, with an explicit weak method, low confidence and pending review.
+- Code length produces `simple_code_candidate` and `cangjie_difficulty`; it does not produce a beginner, literacy or school claim.
+- Stroke count produces only a low-confidence `visual_complexity` proxy with its method recorded.
+- Review priority, mastery weight, unlock order and lesson assignment are not canonical-source outputs.
 
-These values remain blank instead of being invented by AI. Adding an enrichment source requires documenting its version, licence, checksum, parser and conflict policy before regenerating the dataset.
+Character pronunciation is relational. `canonical_character_readings` retains distinct readings from pinned Unihan properties and records property-level provenance. No row is automatically marked as the pedagogical display default. Word pronunciation is `contextual-lexical-source-required`; character readings are never concatenated into a supposed word pronunciation.
 
-The current word Jyutping and Mandarin fields are deterministic sequences of the canonical character readings. They are useful fallbacks, not context-sensitive lexical pronunciations.
+The 300-character fixture at `scripts/chinese-input/canonical/fixtures/semantic-anchor-review.json` checks anchor presence and the unknown/unreviewed safety rules. It is not a curriculum order. The semantic audit separately flags polyphony loss, weak category proposals, complex simple-code candidates, unsafe structure flags, unavailable lesson-root load, Taiwan-high-frequency records without Hong Kong rank, and missing Hong Kong Cantonese character/word anchors.
+
+These unresolved values remain blank or explicitly pending instead of being invented by AI. Adding an enrichment source requires documenting its version, licence, checksum, parser and conflict policy before regeneration.
 
 ## Licensing
 
