@@ -10,6 +10,14 @@ import {
 
 const seedDataset = JSON.parse(readFileSync(new URL("../../src/features/chinese-input/data/seed-dataset.json", import.meta.url), "utf8"));
 const characterByGlyph = new Map(seedDataset.characters.map((character) => [character.char, character]));
+const canonicalDataset = JSON.parse(readFileSync(new URL("../../learning-data/chinese-input/canonical/canonical_characters.json", import.meta.url), "utf8"));
+const canonicalByGlyph = new Map(canonicalDataset.characters.map((character) => [character.character, character]));
+
+function codeForGlyph(glyph: string, method: "cangjie" | "quick") {
+  return characterByGlyph.get(glyph)?.[method]?.preferredCode
+    || canonicalByGlyph.get(glyph)?.[method]
+    || "";
+}
 
 async function openLab(page: Page) {
   await seedEverythingMode(page);
@@ -57,11 +65,10 @@ async function installSpeechSynthesisMock(page: Page) {
 
 async function answerCurrentQuestion(page: Page) {
   const glyph = (await page.locator(".cil-question-character").innerText()).trim();
-  const character = characterByGlyph.get(glyph);
-  if (!character) throw new Error(`No seed record for visible character ${glyph}`);
   const methodText = await page.locator(".cil-lesson-header .lw-eyebrow").innerText();
   const method = methodText.includes("Quick") ? "quick" : "cangjie";
-  const code = character[method].preferredCode;
+  const code = codeForGlyph(glyph, method);
+  if (!code) throw new Error(`No ${method} code for visible character ${glyph}`);
   for (const key of Array.from(code)) {
     await page.getByTestId(`chinese-input-key-${key}`).click();
   }
@@ -88,28 +95,125 @@ test("direct route is discoverable and first lesson supports physical and pointe
   });
   await page.getByTestId("chinese-input-start-lesson").click();
   await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
-  await expect(page.locator("[data-key-state='inactive']")).toHaveCount(22);
+  const inactiveKeys = page.locator("[data-key-state='inactive']");
+  const activeKeys = page.locator("[data-key-state='learned']");
+  await expect(inactiveKeys.first()).toHaveCSS("background-color", "rgb(215, 220, 218)");
+  await expect(activeKeys.first()).toHaveCSS("background-color", "rgb(223, 242, 234)");
+  expect(await inactiveKeys.count() + await activeKeys.count()).toBe(26);
+  await expect(page.locator("[data-key-state='expected']")).toHaveCount(0);
+  await expect(page.getByTestId("chinese-input-question-type")).toHaveText("Root recognition");
 
   const firstGlyph = (await page.locator(".cil-question-character").innerText()).trim();
-  const expectedKey = characterByGlyph.get(firstGlyph)?.cangjie.preferredCode;
+  const expectedKey = codeForGlyph(firstGlyph, "cangjie");
   if (!expectedKey) throw new Error(`No expected key for ${firstGlyph}`);
+  const hintToggle = page.getByTestId("chinese-input-hint-toggle");
+  await expect(hintToggle).toHaveText("Hint: Off");
+  await expect(hintToggle).toHaveAttribute("aria-pressed", "false");
+  await hintToggle.click();
+  await expect(hintToggle).toHaveText("Hint: On");
+  await expect(page.getByTestId(`chinese-input-key-${expectedKey}`)).toHaveAttribute("data-key-state", "expected");
+  await expect(page.getByTestId(`chinese-input-key-${expectedKey}`)).toHaveCSS("background-color", "rgb(255, 224, 138)");
+  await hintToggle.click();
+  await expect(page.locator("[data-key-state='expected']")).toHaveCount(0);
   await page.keyboard.press(expectedKey);
-  await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct");
+  await expect(page.getByTestId("chinese-input-feedback")).toHaveText(`Correct: ${firstGlyph} is mapped to ${expectedKey}.`);
+  await expect(page.getByRole("heading", { name: "Canonical input sequence" })).toHaveCount(0);
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("chinese-input-feedback")).toHaveCount(0);
-  await expect(page.locator(".cil-lesson-progress")).toHaveAttribute("aria-label", "Question 2 of 10");
+  await expect(page.locator(".cil-lesson-progress")).toHaveAttribute("aria-label", /Question 2 of \d+/);
+  await expect(page.getByTestId("chinese-input-question-type")).toHaveText("Guided typing");
 
   const secondGlyph = (await page.locator(".cil-question-character").innerText()).trim();
-  const pointerKey = characterByGlyph.get(secondGlyph)?.cangjie.preferredCode;
-  if (!pointerKey) throw new Error(`No pointer key for ${secondGlyph}`);
-  await page.getByTestId(`chinese-input-key-${pointerKey}`).click();
+  const pointerCode = codeForGlyph(secondGlyph, "cangjie");
+  if (!pointerCode) throw new Error(`No pointer code for ${secondGlyph}`);
+  for (const key of pointerCode) await page.getByTestId(`chinese-input-key-${key}`).click();
   await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct");
   await expect(page.getByTestId("chinese-input-submit")).toHaveCount(0);
   await expectNoConsoleErrors(errors);
 });
 
-test("repeated keys stay in the guided typing buffer and wrong order has specific feedback", async ({ page }) => {
+test("generated curriculum keeps root recognition separate from multi-key guided typing", async ({ page }) => {
+  const errors = collectConsoleErrors(page);
   await openLab(page);
+  test.skip(
+    !(await page.getByTestId("chinese-input-preview-warning").isVisible()),
+    "Generated-preview curriculum only",
+  );
+  await page.getByRole("button", { name: "Lessons" }).click();
+  await page.locator(".cil-lesson-card").first().getByRole("button", { name: /^Start|^Practise/ }).click();
+
+  await expect(page.getByTestId("chinese-input-question-type")).toHaveText("Root recognition");
+  const rootGlyph = (await page.getByTestId("chinese-input-root-glyph").innerText()).trim();
+  const rootKey = canonicalByGlyph.get(rootGlyph)?.cangjie;
+  if (!rootKey || rootKey.length !== 1) throw new Error(`No one-key canonical root mapping for ${rootGlyph}`);
+  await page.getByTestId(`chinese-input-key-${rootKey}`).click();
+  await expect(page.getByTestId("chinese-input-feedback")).toHaveText(`Correct: ${rootGlyph} is mapped to ${rootKey}.`);
+  await expect(page.getByRole("heading", { name: "Canonical input sequence" })).toHaveCount(0);
+
+  await page.getByTestId("chinese-input-next").click();
+  await expect(page.getByTestId("chinese-input-question-type")).toHaveText("Guided typing");
+  const characterGlyph = (await page.locator(".cil-question-character").innerText()).trim();
+  const fullCode = canonicalByGlyph.get(characterGlyph)?.cangjie || "";
+  if (fullCode.length < 2) throw new Error(`Expected a multi-key generated character, received ${characterGlyph} = ${fullCode}`);
+  await page.getByTestId(`chinese-input-key-${fullCode[0]}`).click();
+  await expect(page.getByTestId("chinese-input-buffer")).toHaveText(fullCode[0]);
+  await expect(page.getByTestId("chinese-input-feedback")).toHaveCount(0);
+  for (const key of fullCode.slice(1)) await page.getByTestId(`chinese-input-key-${key}`).click();
+  await expect(page.getByTestId("chinese-input-feedback")).toContainText(`Correct: ${characterGlyph}`);
+  await expect(page.getByRole("heading", { name: "Canonical input sequence" })).toBeVisible();
+  await expectNoConsoleErrors(errors);
+});
+
+test("football uses nine goal zones and the goalkeeper saves the typed lesson character", async ({ page }) => {
+  const errors = collectConsoleErrors(page);
+  await openLab(page);
+  test.skip(
+    await page.getByTestId("chinese-input-preview-warning").isVisible(),
+    "Legacy seed lesson and target contract only",
+  );
+  await page.getByRole("button", { name: "Lessons" }).click();
+  await page.getByRole("button", { name: "Play football for Keyboard tour" }).click();
+
+  const game = page.getByTestId("chinese-football-game");
+  await expect(game).toBeVisible();
+  expect(await game.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+  const targets = game.locator(".cil-football-target");
+  await expect(targets).toHaveCount(9);
+  const occupiedTargets = targets.filter({ has: page.locator("strong") });
+  await expect(occupiedTargets).toHaveCount(4);
+  expect((await occupiedTargets.locator("strong").allInnerTexts()).map((value) => value.trim()).sort()).toEqual(
+    ["日", "尸", "木", "火"].sort(),
+  );
+
+  const highlighted = game.locator(".cil-football-target.is-target strong");
+  const targetGlyph = (await highlighted.innerText()).trim();
+  const code = codeForGlyph(targetGlyph, "cangjie");
+  if (!code) throw new Error(`No Keyboard tour code found for ${targetGlyph}`);
+
+  await expect(game.locator(".cil-football-stadium")).toHaveClass(/is-active/, { timeout: 2_000 });
+  for (const key of code) await page.keyboard.press(key);
+  const stadium = game.locator(".cil-football-stadium");
+  await expect(stadium).toHaveClass(/is-result/);
+  await expect(stadium).toHaveClass(/is-save/);
+  await expect(stadium).toHaveAttribute("style", /--target-[xy]: \d+%/);
+  await expect(page.getByTestId("chinese-football-feedback")).toContainText("SAVE!");
+
+  const stored = await readStoredState(page);
+  const event = stored.progress.chineseInputLab.attemptEvents.at(-1);
+  expect(event.lessonId).toBe("cj-orientation-01");
+  expect(event.correct).toBe(true);
+  await expectNoConsoleErrors(errors);
+});
+
+test("repeated keys stay in the guided typing buffer and wrong order has specific feedback", async ({ page }) => {
+  await page.addInitScript(() => {
+    Date.now = () => 75_000;
+  });
+  await openLab(page);
+  test.skip(
+    await page.getByTestId("chinese-input-preview-warning").isVisible(),
+    "Legacy seed repeated-key challenge contract only",
+  );
   await page.getByRole("button", { name: "Lessons" }).click();
   const challenge = page.locator(".cil-lesson-card").filter({ hasText: "Cangjie typing challenge" });
   await challenge.getByRole("button", { name: /Start|Practise/ }).click();
@@ -123,7 +227,7 @@ test("repeated keys stay in the guided typing buffer and wrong order has specifi
     await page.getByRole("button", { name: "Clear" }).click();
   }
   const glyph = (await page.locator(".cil-question-character").innerText()).trim();
-  const code = characterByGlyph.get(glyph)?.cangjie.preferredCode || "";
+  const code = codeForGlyph(glyph, "cangjie");
   const reversed = Array.from(code).reverse();
   for (const key of reversed) await page.getByTestId(`chinese-input-key-${key}`).click();
   if (await page.getByTestId("chinese-input-submit").isVisible()) {
@@ -170,6 +274,33 @@ test("Quick attempts are stored in method-specific mastery", async ({ page }) =>
   expect(mastery.cangjie.attempts).toBeUndefined();
 });
 
+test("Quick teaches the standard first-and-last code for 的 instead of the Rime X shortcut", async ({ page }) => {
+  const errors = collectConsoleErrors(page);
+  await openLab(page);
+  test.skip(
+    !(await page.getByTestId("chinese-input-preview-warning").isVisible()),
+    "Generated-preview curriculum only",
+  );
+  expect(canonicalByGlyph.get("的")?.cangjie).toBe("HAPI");
+  expect(canonicalByGlyph.get("的")?.quick).toBe("HI");
+
+  await page.getByRole("button", { name: "Quick 速成" }).click();
+  await page.getByRole("button", { name: "Lessons" }).click();
+  const possessiveParticleLesson = page.locator(".cil-lesson-card").filter({ hasText: "Quick first/last-key practice 19" });
+  await possessiveParticleLesson.getByRole("button", { name: /Start|Practise/ }).click();
+
+  await expect(page.locator(".cil-question-character")).toHaveText("的");
+  await page.getByTestId("chinese-input-hint-toggle").click();
+  await expect(page.getByTestId("chinese-input-key-H")).toHaveAttribute("data-key-state", "expected");
+  await page.getByTestId("chinese-input-key-H").click();
+  await expect(page.getByTestId("chinese-input-buffer")).toHaveText("H");
+  await expect(page.getByTestId("chinese-input-feedback")).toHaveCount(0);
+  await expect(page.getByTestId("chinese-input-key-I")).toHaveAttribute("data-key-state", "expected");
+  await page.getByTestId("chinese-input-key-I").click();
+  await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct: 的 = H I.");
+  await expectNoConsoleErrors(errors);
+});
+
 test("pronunciation locale and auto-pronounce preferences persist", async ({ page }) => {
   await installSpeechSynthesisMock(page);
   await page.goto("/", { waitUntil: "domcontentloaded" });
@@ -196,6 +327,10 @@ test("pronunciation locale and auto-pronounce preferences persist", async ({ pag
   }, STORAGE_KEY);
   await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
   await expect(page.getByTestId("chinese-input-page")).toBeVisible();
+  test.skip(
+    await page.getByTestId("chinese-input-preview-warning").isVisible(),
+    "Legacy seed pronunciation lesson contract only",
+  );
   const localeSelect = page.getByTestId("chinese-input-pronunciation-locale");
   const autoPronounce = page.getByTestId("chinese-input-auto-pronounce");
   await expect(localeSelect).toHaveValue("zh-HK");
@@ -230,11 +365,15 @@ test("pronunciation locale and auto-pronounce preferences persist", async ({ pag
 
 test("adaptive review starts with a weak or due character", async ({ page }) => {
   await openLab(page);
+  test.skip(
+    await page.getByTestId("chinese-input-preview-warning").isVisible(),
+    "Legacy seed adaptive-review setup contract only",
+  );
   await page.getByRole("button", { name: "Lessons" }).click();
   const challenge = page.locator(".cil-lesson-card").filter({ hasText: "Cangjie typing challenge" });
   await challenge.getByRole("button", { name: /Start|Practise/ }).click();
   const glyph = (await page.locator(".cil-question-character").innerText()).trim();
-  const expected = characterByGlyph.get(glyph)?.cangjie.preferredCode || "";
+  const expected = codeForGlyph(glyph, "cangjie");
   const wrongKey = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ").find((key) => key !== expected[0]) || "A";
   await page.getByTestId(`chinese-input-key-${wrongKey}`).click();
   if (await page.getByTestId("chinese-input-submit").isVisible()) {
@@ -265,6 +404,11 @@ test("completed lesson persists and old stored state migrates without resetting 
     }));
   }, STORAGE_KEY);
   await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
+  await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible();
+  test.skip(
+    await page.getByTestId("chinese-input-preview-warning").isVisible(),
+    "Legacy seed completion and migration contract only",
+  );
   await page.getByTestId("chinese-input-start-lesson").click();
   for (let index = 0; index < 10; index += 1) {
     await answerCurrentQuestion(page);
@@ -300,7 +444,7 @@ test("mobile keyboard does not overflow and unknown query falls back safely", as
   await page.getByTestId("chinese-input-start-lesson").click();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(1);
-  const firstKey = page.getByTestId("chinese-input-key-A");
+  const firstKey = page.locator("[data-key-state='learned']").first();
   await firstKey.focus();
   await expect(firstKey).toBeFocused();
 });

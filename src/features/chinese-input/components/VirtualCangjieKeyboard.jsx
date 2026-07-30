@@ -8,14 +8,13 @@ function stateForKey(key, {
   pressedKey,
   feedbackKey,
   feedbackCorrect,
-  guidanceLevel,
 }) {
   const states = [];
   const active = activeKeys.includes(key);
-  if (active || guidanceLevel === "off") states.push("available");
+  if (active) states.push("available");
   else states.push("inactive");
   if (learnedKeys.includes(key)) states.push("learned");
-  if (guidanceLevel !== "off" && expectedKey === key) states.push("expected");
+  if (expectedKey === key) states.push("expected");
   if (pressedKey === key) states.push("pressed");
   if (feedbackKey === key) states.push(feedbackCorrect ? "correct" : "incorrect");
   return resolveKeyState(states);
@@ -28,7 +27,6 @@ export default function VirtualCangjieKeyboard({
   pressedKey = "",
   feedbackKey = "",
   feedbackCorrect = false,
-  guidanceLevel = "full",
   disabled = false,
   onKey,
 }) {
@@ -45,7 +43,6 @@ export default function VirtualCangjieKeyboard({
               pressedKey,
               feedbackKey,
               feedbackCorrect,
-              guidanceLevel,
             });
             const inactive = state === "inactive";
             return (

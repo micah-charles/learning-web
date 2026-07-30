@@ -14,6 +14,7 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { ManifestProvider } from "./context/ManifestContext.jsx";
 import { ProgressProvider } from "./context/ProgressContext.jsx";
+import { MiniGameProvider } from "./games/framework/MiniGameProvider.jsx";
 import { StudyBookProvider } from "./context/StudyBookContext.jsx";
 import { TutorProvider } from "../features/tutor/TutorProvider.jsx";
 import { StudyBookDrawer } from "./components/learning/StudyBookDrawer.jsx";
@@ -268,11 +269,13 @@ export default function App() {
   return (
     <ManifestProvider>
       <ProgressProvider>
-        <StudyBookProvider>
-          <TutorProvider>
-            <AppContent />
-          </TutorProvider>
-        </StudyBookProvider>
+        <MiniGameProvider>
+          <StudyBookProvider>
+            <TutorProvider>
+              <AppContent />
+            </TutorProvider>
+          </StudyBookProvider>
+        </MiniGameProvider>
       </ProgressProvider>
     </ManifestProvider>
   );

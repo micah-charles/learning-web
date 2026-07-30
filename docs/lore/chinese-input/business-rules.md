@@ -24,6 +24,30 @@ Forcing it into Progressive Language packs would couple character input codes to
 ### Guidance for future agents
 Share shell, storage, speech and design primitives. Keep input-method domain logic inside the feature boundary.
 
+## X-prefixed Rime shortcuts are not educational canonical codes
+code: `scripts/chinese-input/canonical/code-policy.mjs`, `scripts/chinese-input/canonical/generate.mjs`, `scripts/chinese-input/canonical/audit-cangjie-reference.mjs` | updated: 2026-07-30 | status: active
+
+### Context
+The pinned Rime table includes optional X-prefixed shortcut rows alongside standard Cangjie codes. Sorting all accepted rows by length promoted `的 → X` over `的 → HAPI`, then incorrectly derived Quick `X` instead of `HI`. The same pattern affected `顏` and left other selected characters accepting shortcut variants.
+
+### Why it matters
+An input method may accept a convenience shortcut without that shortcut being the standard code a learner should be taught. Treating every table row as equally canonical corrupts both Cangjie and derived Quick lessons.
+
+### Guidance for future agents
+When a character has any non-X code, exclude its X-prefixed shortcut rows before choosing the preferred code, accepted educational codes or derived Quick codes. Preserve an X-prefixed code only when no standard non-X code exists. Apply the policy in both generation and the independent source audit.
+
+## Lesson Hint controls only next-key highlighting
+code: `src/features/chinese-input/components/LessonPlayer.jsx`, `src/features/chinese-input/components/VirtualCangjieKeyboard.jsx`, `src/features/chinese-input/styles/chinese-input.css` | updated: 2026-07-30 | status: active
+
+### Context
+The old Hint button repeated meaning or code metadata already visible on screen while expected-key highlighting was always enabled by a separate setting.
+
+### Why it matters
+Learners need a predictable assistance control: no answer cue until requested, then one yellow next-key cue that advances after each input. Mixing text hints and automatic highlighting makes it unclear whether an answer was completed independently.
+
+### Guidance for future agents
+Start lesson Hint off. The in-session Hint button toggles expected-next-key highlighting and stays on or off across questions. Keep inactive lesson keys grey, active lesson keys light green, and only the next hinted key yellow. Do not reveal a textual answer sequence through this control.
+
 ## Canonical source acquisition is explicit and offline at build time
 code: `scripts/chinese-input/canonical/`, `learning-data/chinese-input/canonical/`, `docs/chinese-input-lab/CANONICAL_DATASET.md` | updated: 2026-07-28 | status: active
 
@@ -102,6 +126,8 @@ Hand-edited generated lessons create drift, while lesson-number-only progress ei
 ### Guidance for future agents
 Edit canonical, reviewed or policy inputs and regenerate. Keep generated/do-not-edit headers and deterministic input digests. Attach mastery to `cj-<key>`, Unicode character IDs and deterministic word IDs; use lesson migration metadata only to reconstruct partial/completed lesson state. Preview and production status must remain impossible to confuse.
 
+Root-recognition and guided-typing questions are different contracts. Root recognition must select a real one-key root character, expose `rootKey` and `rootLabel`, update root mastery only, and render root-to-key feedback without a character decomposition. Guided typing must retain every accepted code for the displayed character and must not auto-submit a multi-key code after its first key.
+
 ## Render selects committed curriculum at Vite build time
 code: `render.yaml`, `src/features/chinese-input/data/generated-curriculum-adapter.js` | updated: 2026-07-30 | status: active
 
@@ -113,3 +139,15 @@ Relying only on an unsynchronised Blueprint variable produced a successful deplo
 
 ### Guidance for future agents
 Keep generated lesson artifacts committed and verified by CI. Keep the Render Blueprint value as declarative configuration, but do not assume an existing dashboard-created service synchronises it. Verify the deployed bundle or UI after release. Render must build and serve committed files only; curriculum regeneration remains a deliberate local or CI command.
+
+## Football is a goalkeeper typing game using lesson characters and canonical grading
+code: `src/features/chinese-input/domain/football-game.js`, `src/features/chinese-input/components/ChineseFootballGame.jsx` | updated: 2026-07-30 | status: active
+
+### Context
+Chinese football places the active lesson's eligible characters in nine fixed goal zones. It briefly highlights one character, then gives the learner three seconds to enter its canonical Cangjie or Quick code as the goalkeeper.
+
+### Why it matters
+Embedding a game-specific answer map would drift from the validated curriculum. Treating the game as click-to-shoot also reverses the intended learning loop: the ball chooses the highlighted character and the learner's typing determines whether the goalkeeper reaches it.
+
+### Guidance for future agents
+Build game questions through `generateSessionPlan` and grade through `evaluateAnswer`. Render all nine zones, leave surplus zones empty for small lessons, and rotate deterministic character subsets for larger lessons. Record mastery attempts normally, store game statistics in the shared mini-game profile, and use normal lesson completion for passed matches so the next lesson unlocks.

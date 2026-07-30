@@ -1,4 +1,4 @@
-export const DATASET_VERSION = "1.3.0";
+export const DATASET_VERSION = "1.3.1";
 export const SCHEMA_VERSION = 4;
 export const GENERATED_AT = "2026-07-29T00:00:00.000Z";
 
@@ -51,6 +51,7 @@ export const SOURCE_DEFINITIONS = Object.freeze({
     commit: "52d90a1b1312e74042b38c1cbc8142defbc53171",
     relativePath: "rime-cangjie@52d90a1b1312e74042b38c1cbc8142defbc53171/cangjie5.base.dict.yaml",
     sha256: "8690f2ad8aafd38780846881aa916b5779e6d9247a351a1da426d3f3257afca4",
+    educationalCodePolicy: "exclude X-prefixed Rime shortcuts when a standard non-X code exists",
     license: "GPL table header; repository LGPL-3.0",
   },
   quick: {

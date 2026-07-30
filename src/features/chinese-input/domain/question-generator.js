@@ -1,6 +1,6 @@
 import { deterministicShuffle, createSeededRandom } from "./random.js";
 
-function eligibleCharacters(dataset, lesson, method) {
+export function eligibleCharacters(dataset, lesson, method) {
   const active = new Set(lesson.activeKeys || []);
   const explicitIds = lesson.characterIds || [];
   const candidates = explicitIds.length
@@ -11,6 +11,16 @@ function eligibleCharacters(dataset, lesson, method) {
     if (!methodData || character.lessonEligibility?.[method] === false) return false;
     return methodData.keySequence.every((key) => active.has(key));
   });
+}
+
+function rootKeysForLesson(lesson) {
+  const active = new Set(lesson.activeKeys || []);
+  const ordered = [
+    ...(lesson.introducedKeys || []),
+    ...(lesson.reviewedKeys || []),
+    ...(lesson.activeKeys || []),
+  ];
+  return [...new Set(ordered)].filter((key) => active.has(key));
 }
 
 export function generateSessionPlan({
@@ -33,39 +43,58 @@ export function generateSessionPlan({
   const rootQuestionTarget = lesson.stage <= 4 && rootWeight > 0
     ? Math.max(1, Math.round(questionCount * rootWeight / Math.max(1, rootWeight + typingWeight)))
     : 0;
+  const lessonRootKeys = rootKeysForLesson(lesson);
   let rootQuestionsGenerated = 0;
   const questions = Array.from({ length: questionCount }, (_, index) => {
-    const character = characters[index % characters.length];
-    const methodData = character[method];
+    const fallbackCharacter = characters[index % characters.length];
     const type = rootQuestionsGenerated < rootQuestionTarget && index % 2 === 0
       ? "root-recognition"
       : "guided-typing";
+    const rootKey = type === "root-recognition"
+      ? lessonRootKeys[rootQuestionsGenerated % lessonRootKeys.length]
+        || fallbackCharacter[method].keySequence[0]
+      : "";
+    const root = type === "root-recognition"
+      ? dataset.roots.find((candidate) => candidate.key === rootKey)
+      : null;
+    const character = fallbackCharacter;
+    const methodData = character[method];
     if (type === "root-recognition") rootQuestionsGenerated += 1;
     const expectedCodes = type === "root-recognition"
-      ? [methodData.keySequence[0]]
+      ? [rootKey]
       : [...methodData.acceptedCodes];
     const expectedKeys = type === "root-recognition"
-      ? [methodData.keySequence[0]]
+      ? [rootKey]
       : [...methodData.keySequence];
     return {
       id: `${lesson.id}-${seed}-${index + 1}`,
       type,
       method,
       prompt: type === "root-recognition"
-        ? `Press the key for ${methodData.rootSequence[0]}.`
+        ? "Press the keyboard key mapped to this Cangjie root."
         : `Enter the ${method === "quick" ? "Quick" : "Cangjie"} code for ${character.char}.`,
-      characterId: character.id,
+      characterId: type === "root-recognition" ? null : character.id,
+      rootKey,
+      rootLabel: root?.primaryRoot || methodData.rootSequence[0],
+      rootLabelEn: root?.labelEn || "",
       expectedCodes,
       preferredCode: type === "root-recognition" ? expectedCodes[0] : methodData.preferredCode,
       expectedKeys,
       distractors: [],
       guidanceLevel: lesson.stage <= 2 ? "full" : "learned",
-      hintSteps: [
-        character.meaning.en,
-        `${expectedKeys.length} key${expectedKeys.length === 1 ? "" : "s"}`,
-        methodData.keySequence[0],
-        type === "root-recognition" ? expectedCodes[0] : methodData.preferredCode,
-      ],
+      hintSteps: type === "root-recognition"
+        ? [
+            `This is the ${root?.labelEn || "shown"} root.`,
+            "The answer is one keyboard letter.",
+            root?.mnemonic?.en || `${rootKey} represents ${root?.primaryRoot || "this root"}.`,
+            rootKey,
+          ]
+        : [
+            character.meaning.en,
+            `${expectedKeys.length} key${expectedKeys.length === 1 ? "" : "s"}`,
+            methodData.keySequence[0],
+            methodData.preferredCode,
+          ],
       metadata: { stage: lesson.stage, datasetVersion: dataset.manifest.datasetVersion },
     };
   });

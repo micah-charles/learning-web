@@ -7,4 +7,4 @@ Status: **PASS**
 - Characters checked: 3000
 - Mismatches: 0
 
-The audit reparses the pinned Rime Cangjie table independently from dataset generation and compares each complete accepted-code set, preferred code, and derived Quick set.
+The audit reparses the pinned Rime Cangjie table independently, applies the educational policy that excludes X-prefixed shortcuts when a standard code exists, and compares each policy-approved code set, preferred code, and derived Quick set.

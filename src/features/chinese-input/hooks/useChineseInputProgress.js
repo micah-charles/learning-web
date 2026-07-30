@@ -57,7 +57,7 @@ export default function useChineseInputProgress() {
         lessonId,
         questionId: question.id,
         method,
-        characterId: character.id,
+        characterId: character?.id || null,
         codeLength: result.normalisedInput.length,
         correct: result.correct,
         errorType: result.errorType,
@@ -86,6 +86,13 @@ export default function useChineseInputProgress() {
     });
   }, [updateProgress]);
 
+  const completeGameSession = useCallback((session) => {
+    updateProgress((state) => {
+      const lab = state.progress.chineseInputLab;
+      lab.gameSessions = appendBounded(lab.gameSessions, session, CHINESE_INPUT_SESSION_LIMIT);
+    });
+  }, [updateProgress]);
+
   const migrateCurriculum = useCallback(({ migration, lessons, inputDigest }) => {
     updateProgress((state) => {
       const current = state.progress.chineseInputLab;
@@ -99,5 +106,13 @@ export default function useChineseInputProgress() {
     });
   }, [updateProgress]);
 
-  return { prefs, moduleProgress, updatePrefs, recordAttempt, completeSession, migrateCurriculum };
+  return {
+    prefs,
+    moduleProgress,
+    updatePrefs,
+    recordAttempt,
+    completeSession,
+    completeGameSession,
+    migrateCurriculum,
+  };
 }

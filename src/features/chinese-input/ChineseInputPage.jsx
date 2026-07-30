@@ -11,6 +11,9 @@ import ChineseInputDashboard from "./components/ChineseInputDashboard.jsx";
 import RootExplorer from "./components/RootExplorer.jsx";
 import CharacterCollection from "./components/CharacterCollection.jsx";
 import LessonPlayer from "./components/LessonPlayer.jsx";
+import ChineseFootballGame from "./components/ChineseFootballGame.jsx";
+import RewardShop from "../../react/games/framework/RewardShop.jsx";
+import { useMiniGame } from "../../react/games/framework/MiniGameProvider.jsx";
 import "./styles/chinese-input.css";
 
 function buildAdaptiveReviewLesson(dataset, moduleProgress, method, now = Date.now()) {
@@ -48,7 +51,15 @@ function buildAdaptiveReviewLesson(dataset, moduleProgress, method, now = Date.n
   };
 }
 
-function LessonsView({ dataset, method, moduleProgress, onStartLesson }) {
+function LessonsView({
+  dataset,
+  method,
+  moduleProgress,
+  miniGameProfile,
+  onMiniGameProfileChange,
+  onStartLesson,
+  onStartFootball,
+}) {
   const lessons = dataset.lessons.filter((lesson) => lesson.method === method);
   return (
     <div data-testid="chinese-input-lessons">
@@ -73,17 +84,37 @@ function LessonsView({ dataset, method, moduleProgress, onStartLesson }) {
               <span className={`lw-chip ${saved?.status === "completed" ? "green" : "blue"}`}>
                 {saved?.status || (locked ? "Recommended after earlier lesson" : "Ready")}
               </span>
-              <button
-                className="lw-btn lw-btn-primary"
-                type="button"
-                onClick={() => onStartLesson(lesson.id)}
-                aria-label={`Start ${lesson.title.en}`}
-              >
-                {saved?.status === "completed" ? "Practise again" : "Start"}
-              </button>
+              <div className="lw-btn-group">
+                <button
+                  className="lw-btn lw-btn-primary"
+                  type="button"
+                  onClick={() => onStartLesson(lesson.id)}
+                  aria-label={`Start ${lesson.title.en}`}
+                >
+                  {saved?.status === "completed" ? "Practise again" : "Start"}
+                </button>
+                <button
+                  className="lw-btn lw-btn-secondary"
+                  type="button"
+                  onClick={() => onStartFootball(lesson.id)}
+                  aria-label={`Play football for ${lesson.title.en}`}
+                >
+                  ⚽ Play football
+                </button>
+              </div>
             </article>
           );
         })}
+      </section>
+      <section className="lw-card">
+        <h2>Mini-game profile</h2>
+        <div className="mini-profile" aria-label="Mini-game profile">
+          <span><strong>{miniGameProfile.xp}</strong> XP</span>
+          <span><strong>{miniGameProfile.coins}</strong> coins</span>
+          <span><strong>{miniGameProfile.skillTier}</strong> rating</span>
+          <span><strong>{miniGameProfile.achievements.length}</strong> achievements</span>
+        </div>
+        <RewardShop profile={miniGameProfile} onChange={onMiniGameProfileChange} />
       </section>
     </div>
   );
@@ -97,12 +128,19 @@ export default function ChineseInputPage() {
     updatePrefs,
     recordAttempt,
     completeSession,
+    completeGameSession,
     migrateCurriculum,
   } = useChineseInputProgress();
+  const {
+    profile: miniGameProfile,
+    recordResult: recordMiniGameResult,
+    updateProfile: updateMiniGameProfile,
+  } = useMiniGame();
   const method = prefs.method === "quick" ? "quick" : "cangjie";
   const [view, setView] = useState(() => prefs.lastView || "dashboard");
   const [lessonId, setLessonId] = useState("");
   const [sessionLesson, setSessionLesson] = useState(null);
+  const [lessonActivity, setLessonActivity] = useState("lesson");
   const speechLocale = prefs.locale === "zh-TW" ? "zh-TW" : "zh-HK";
   const speechEnabled = prefs.speechEnabled !== false;
   const { pronounce, message: speechMessage } = useChineseSpeech(speechEnabled, speechLocale);
@@ -173,6 +211,7 @@ export default function ChineseInputPage() {
   function openView(nextView) {
     setLessonId("");
     setSessionLesson(null);
+    setLessonActivity("lesson");
     setView(nextView);
     updatePrefs({ lastView: nextView });
   }
@@ -180,7 +219,16 @@ export default function ChineseInputPage() {
   function startLesson(nextLessonId, lessonOverride = null) {
     if (!nextLessonId) return;
     setSessionLesson(lessonOverride);
+    setLessonActivity("lesson");
     setLessonId(nextLessonId);
+    updatePrefs({ lastLessonId: nextLessonId, lastView: "lessons" });
+  }
+
+  function startFootball(nextLessonId, lessonOverride = null) {
+    if (!nextLessonId) return;
+    setSessionLesson(lessonOverride);
+    setLessonId(nextLessonId);
+    setLessonActivity("football");
     updatePrefs({ lastLessonId: nextLessonId, lastView: "lessons" });
   }
 
@@ -188,6 +236,7 @@ export default function ChineseInputPage() {
     updatePrefs({ method: nextMethod });
     setLessonId("");
     setSessionLesson(null);
+    setLessonActivity("lesson");
   }
 
   return (
@@ -204,25 +253,51 @@ export default function ChineseInputPage() {
         </button>
       )}
       {activeLesson ? (
-        <LessonPlayer
-          dataset={dataset}
-          lesson={activeLesson}
-          method={activeLesson.method}
-          guidanceLevel={prefs.guidanceLevel || "full"}
-          pronounce={pronounce}
-          autoPronounce={speechEnabled && prefs.autoPronounce !== false}
-          recordAttempt={recordAttempt}
-          completeSession={completeSession}
-          onExit={() => {
-            setLessonId("");
-            setSessionLesson(null);
-            setView("lessons");
-          }}
-        />
+        lessonActivity === "football" ? (
+          <ChineseFootballGame
+            dataset={dataset}
+            lesson={activeLesson}
+            method={activeLesson.method}
+            recordAttempt={recordAttempt}
+            completeSession={completeSession}
+            completeGameSession={completeGameSession}
+            miniGameProfile={miniGameProfile}
+            recordMiniGameResult={recordMiniGameResult}
+            onExit={() => {
+              setLessonId("");
+              setSessionLesson(null);
+              setLessonActivity("lesson");
+              setView("lessons");
+            }}
+          />
+        ) : (
+          <LessonPlayer
+            dataset={dataset}
+            lesson={activeLesson}
+            method={activeLesson.method}
+            pronounce={pronounce}
+            autoPronounce={speechEnabled && prefs.autoPronounce !== false}
+            recordAttempt={recordAttempt}
+            completeSession={completeSession}
+            onExit={() => {
+              setLessonId("");
+              setSessionLesson(null);
+              setView("lessons");
+            }}
+          />
+        )
       ) : view === "roots" ? (
         <RootExplorer pronounce={pronounce} />
       ) : view === "lessons" ? (
-        <LessonsView dataset={dataset} method={method} moduleProgress={moduleProgress} onStartLesson={startLesson} />
+        <LessonsView
+          dataset={dataset}
+          method={method}
+          moduleProgress={moduleProgress}
+          miniGameProfile={miniGameProfile}
+          onMiniGameProfileChange={updateMiniGameProfile}
+          onStartLesson={startLesson}
+          onStartFootball={startFootball}
+        />
       ) : view === "review" ? (
         <CharacterCollection
           dataset={dataset}
@@ -251,15 +326,6 @@ export default function ChineseInputPage() {
       {!activeLesson && (
         <section className="lw-card cil-settings">
           <h2>Lab settings</h2>
-          <label>
-            <span>Keyboard guidance</span>
-            <select value={prefs.guidanceLevel || "full"} onChange={(event) => updatePrefs({ guidanceLevel: event.target.value })}>
-              <option value="full">Full</option>
-              <option value="expected">Expected key only</option>
-              <option value="learned">Learned keys only</option>
-              <option value="off">Off</option>
-            </select>
-          </label>
           <label>
             <span>Pronunciation voice</span>
             <select

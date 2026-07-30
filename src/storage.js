@@ -5,6 +5,7 @@ import {
   createChineseInputProgress,
   migrateChineseInputState,
 } from "./features/chinese-input/domain/progress-migration.js";
+import { DEFAULT_MINI_GAME_PROFILE } from "./react/games/framework/progressEngine.js";
 
 const STORAGE_KEY = "learningGermanWeb.v1";
 
@@ -127,6 +128,7 @@ export const DEFAULT_STATE = {
     builderStats: {},
     passageStats: {},
     arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
+    miniGames: clone(DEFAULT_MINI_GAME_PROFILE),
     voicePractice: {},            // keyed by lesson/activity: { attempts, successes, lastScore }
     chineseInputLab: createChineseInputProgress(),
   },

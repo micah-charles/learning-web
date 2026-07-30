@@ -42,9 +42,9 @@ Cross-source glyph aliases are reviewed constants, not broad automatic variant c
 
 MOE rank remains `moe_frequency_rank`. The current sources do not provide `hk_frequency_rank`, `edb_grade_level`, `usage_level`, `curriculum_priority`, `literacy_level` or `curriculum_stage`, so those fields remain blank. `foxchild_selection_rank` records deterministic inclusion order only. `frequency_bucket` and `foxchild_frequency_tier` are descriptive corpus calculations with explicit methods; neither is a lesson recommendation.
 
-Quick codes are derived only from the pinned Rime Quick first/last-key rule. Cangjie alternatives remain in JSON as `accepted_cangjie_codes`; preferred codes are used in the flat CSV.
+Quick codes are derived only from the pinned Rime Quick first/last-key rule. Rime's X-prefixed shortcut rows are not educational canonical codes when the same character has a standard non-X code. The generator removes those shortcuts before selecting the preferred Cangjie code or deriving Quick. For example, `的` is taught as Cangjie `HAPI` and Quick `HI`, not the Rime shortcut `X`. Policy-approved Cangjie alternatives remain in JSON as `accepted_cangjie_codes`; preferred codes are used in the flat CSV.
 
-The build runs a second Cangjie audit after generation. That script reparses the pinned Rime table independently and compares every character's complete accepted Cangjie set, preferred Cangjie code, complete Quick set and preferred Quick code. Any mismatch fails the build.
+The build runs a second Cangjie audit after generation. That script reparses the pinned Rime table independently, applies the same X-shortcut exclusion policy, and compares every character's policy-approved Cangjie set, preferred Cangjie code, Quick set and preferred Quick code. Any mismatch fails the build.
 
 CI acquires only this pinned audit table with `npm run fetch:chinese-cangjie-reference`. The command verifies the expected SHA-256 before writing the ignored local snapshot; it does not refresh or mutate the canonical dataset.
 

@@ -517,3 +517,9 @@ The repository's Render Blueprint also selects the committed preview artifacts,
 but the production default does not depend on the existing Render service being
 managed or synchronised as a Blueprint. Render does not generate curriculum files.
 `generated-production` is rejected unless its manifest is production-approved.
+
+---
+
+## 14. Mini-game framework
+
+Shared game infrastructure lives in `src/react/games/framework/`. It provides the game registry, generic challenge adapter, adaptive difficulty, session runtime, performance scoring, achievements, cosmetic rewards, replay storage and the app-wide mini-game profile provider. Domain games retain their canonical data and grading contracts; Chinese football is the first specialised implementation and records learning mastery separately from game rewards.

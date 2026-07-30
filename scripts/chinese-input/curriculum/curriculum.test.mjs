@@ -6,6 +6,13 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { migrateChineseInputCurriculumProgress } from "../../../src/features/chinese-input/domain/curriculum-migration.js";
 import {
+  createFootballSessionPlan,
+  createGoalTargets,
+} from "../../../src/features/chinese-input/domain/football-game.js";
+import { shouldAutoSubmitAnswer } from "../../../src/features/chinese-input/domain/answer-evaluator.js";
+import { generateSessionPlan } from "../../../src/features/chinese-input/domain/question-generator.js";
+import { educationalCangjieCodes } from "../canonical/code-policy.mjs";
+import {
   configuredChineseCurriculumSource,
   loadGeneratedChineseInputDataset,
   validateGeneratedCurriculumBundle,
@@ -39,6 +46,12 @@ test("production copy targets preserve the runtime Chinese data URLs", () => {
       dest: ".",
     },
   ]);
+});
+
+test("educational code policy rejects Rime X-prefixed shortcuts when a standard code exists", () => {
+  assert.deepEqual(educationalCangjieCodes(["X", "HAPI"]), ["HAPI"]);
+  assert.deepEqual(educationalCangjieCodes(["XYHMB", "YHMBC"]), ["YHMBC"]);
+  assert.deepEqual(educationalCangjieCodes(["X"]), ["X"]);
 });
 
 test("preview generation covers all canonical characters and adapts safely at runtime", async () => {
@@ -77,8 +90,73 @@ test("preview generation covers all canonical characters and adapts safely at ru
       fetchImpl,
     });
     assert.equal(adapted.dataset.characters.length, 3000);
+    const possessiveParticle = adapted.dataset.characters.find((character) => character.char === "的");
+    assert.equal(possessiveParticle.cangjie.preferredCode, "HAPI");
+    assert.equal(possessiveParticle.quick.preferredCode, "HI");
+    assert.deepEqual(possessiveParticle.cangjie.acceptedCodes, ["HAPI"]);
+    assert.deepEqual(possessiveParticle.quick.acceptedCodes, ["HI"]);
     assert.ok(adapted.dataset.lessons.length > 500);
     assert.match(adapted.warning, /not production-approved/);
+    const lessonCounts = adapted.dataset.lessons.reduce((counts, lesson) => {
+      counts[lesson.method] = (counts[lesson.method] || 0) + 1;
+      const lessonPlan = generateSessionPlan({
+        dataset: adapted.dataset,
+        lesson,
+        method: lesson.method,
+        seed: 42,
+        questionCount: lesson.passCriteria.minimumQuestions,
+      });
+      for (const question of lessonPlan.questions) {
+        if (question.type === "root-recognition") {
+          assert.equal(question.expectedCodes.length, 1, `${lesson.id} root question has multiple answers`);
+          assert.equal(question.expectedCodes[0], question.rootKey, `${lesson.id} root answer differs from root key`);
+          assert.equal(question.characterId, null, `${lesson.id} root question borrowed an unrelated character`);
+          assert.equal(
+            adapted.dataset.roots.find((root) => root.key === question.rootKey)?.primaryRoot,
+            question.rootLabel,
+            `${lesson.id} displays a character instead of the tested root`,
+          );
+        } else {
+          const character = adapted.dataset.characters.find((candidate) => candidate.id === question.characterId);
+          assert.deepEqual(
+            question.expectedCodes,
+            character[lesson.method].acceptedCodes,
+            `${lesson.id} guided typing truncated an accepted character code`,
+          );
+          if (question.preferredCode.length > 1) {
+            assert.equal(
+              shouldAutoSubmitAnswer(question.preferredCode[0], question.expectedCodes),
+              false,
+              `${lesson.id} guided typing submitted ${character.char} after its first key`,
+            );
+          }
+        }
+      }
+      const plan = createFootballSessionPlan({
+        dataset: adapted.dataset,
+        lesson,
+        method: lesson.method,
+        seed: 42,
+        questionCount: 1,
+      });
+      const targets = createGoalTargets({
+        dataset: adapted.dataset,
+        lesson,
+        method: lesson.method,
+        question: plan.questions[0],
+      });
+      assert.ok(targets.length >= 1 && targets.length <= 9, `${lesson.id} produced ${targets.length} football targets`);
+      assert.ok(
+        targets.some((character) => character.id === plan.questions[0].characterId),
+        `${lesson.id} omitted its football question target`,
+      );
+      assert.ok(
+        targets.every((character) => lesson.characterIds.includes(character.id)),
+        `${lesson.id} used a character outside its lesson pool`,
+      );
+      return counts;
+    }, {});
+    assert.deepEqual(lessonCounts, { cangjie: 530, quick: 30 });
   } finally {
     rmSync(temp, { recursive: true, force: true });
   }
