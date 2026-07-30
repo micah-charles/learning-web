@@ -5,8 +5,9 @@ const SUPPORTED_CURRICULUM_SCHEMA_VERSION = 1;
 export const CHINESE_CURRICULUM_SOURCES = ["legacy", "generated-preview", "generated-production"];
 
 export function configuredChineseCurriculumSource(env = import.meta.env) {
-  const source = String(env?.VITE_CHINESE_CURRICULUM_SOURCE || "legacy");
-  return CHINESE_CURRICULUM_SOURCES.includes(source) ? source : "legacy";
+  const defaultSource = env?.PROD === true ? "generated-preview" : "legacy";
+  const source = String(env?.VITE_CHINESE_CURRICULUM_SOURCE || defaultSource);
+  return CHINESE_CURRICULUM_SOURCES.includes(source) ? source : defaultSource;
 }
 
 export function validateGeneratedCurriculumBundle(bundle, requestedSource) {
