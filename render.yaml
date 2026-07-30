@@ -4,6 +4,9 @@ services:
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    envVars:
+      - key: VITE_CHINESE_CURRICULUM_SOURCE
+        value: generated-preview
     headers:
       - path: /*
         name: Cache-Control
