@@ -92,6 +92,7 @@ export const learningBehaviourConfig = {
     quickProgressSeparated: true,
     physicalKeyboardEnabled: true,
     footballGameEnabled: true,
+    footballPronunciationEnabled: true,
     lessonHintToggleEnabled: true,
     lessonHintDefault: "off",
     keyboardKeyStates: {

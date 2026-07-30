@@ -22,6 +22,7 @@ Chinese football is the first implementation of this contract:
 - The lesson's eligible character list is the only target pool.
 - The goal always has nine numbered zones. Up to nine lesson characters occupy distinct zones; larger pools rotate deterministic subsets between shots.
 - One lesson character is highlighted for 0.8 seconds, followed by a three-second typing window.
+- Each new target follows the learner's Chinese Input auto-pronounce and Cantonese/Mandarin locale settings. An in-game pronunciation control can replay the current target without changing the timer or answer.
 - The learner is the goalkeeper and enters that character's canonical Cangjie or Quick code. The answer auto-submits as soon as it can be graded.
 - The ball always travels to the highlighted zone. Correct input sends the keeper to the same zone for a save; wrong input or timeout sends the keeper to a different zone and awards the shooter a goal.
 - `createFootballSessionPlan()` delegates question creation to `generateSessionPlan()`.

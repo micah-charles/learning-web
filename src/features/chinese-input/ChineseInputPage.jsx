@@ -263,6 +263,8 @@ export default function ChineseInputPage() {
             completeGameSession={completeGameSession}
             miniGameProfile={miniGameProfile}
             recordMiniGameResult={recordMiniGameResult}
+            pronounce={pronounce}
+            autoPronounce={speechEnabled && prefs.autoPronounce !== false}
             onExit={() => {
               setLessonId("");
               setSessionLesson(null);

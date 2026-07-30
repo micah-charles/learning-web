@@ -10,6 +10,7 @@ import {
   scoreFootballSave,
 } from "../domain/football-game.js";
 import usePhysicalKeyboard from "../hooks/usePhysicalKeyboard.js";
+import PronunciationButton from "./PronunciationButton.jsx";
 import VirtualCangjieKeyboard from "./VirtualCangjieKeyboard.jsx";
 import { calculatePerformance } from "../../../react/games/framework/performanceEngine.js";
 
@@ -68,6 +69,8 @@ export default function ChineseFootballGame({
   completeGameSession,
   miniGameProfile,
   recordMiniGameResult,
+  pronounce,
+  autoPronounce = true,
   onExit,
 }) {
   const seedRef = useRef(Math.floor(Date.now() / 1000));
@@ -76,6 +79,7 @@ export default function ChineseFootballGame({
   const resolvedRef = useRef(false);
   const transitionTimerRef = useRef(null);
   const attemptsRef = useRef([]);
+  const lastAutoPronouncedQuestionRef = useRef("");
   const plan = useMemo(() => createFootballSessionPlan({
     dataset,
     lesson,
@@ -117,6 +121,13 @@ export default function ChineseFootballGame({
   const missPosition = footballTargetPosition((targetZoneIndex + 4) % 9);
   const expectedKey = question?.expectedKeys?.[buffer.length] || "";
   const timeSeconds = Math.max(0, timeLeftMs / 1000).toFixed(2);
+
+  useEffect(() => {
+    if (!autoPronounce || !question?.id || !targetCharacter?.char) return;
+    if (lastAutoPronouncedQuestionRef.current === question.id) return;
+    lastAutoPronouncedQuestionRef.current = question.id;
+    pronounce(targetCharacter.char);
+  }, [autoPronounce, pronounce, question?.id, targetCharacter?.char]);
 
   const finishGame = useCallback((finalStats, finalLives) => {
     const completedAt = new Date().toISOString();
@@ -446,6 +457,13 @@ export default function ChineseFootballGame({
         <div className="cil-football-actions">
           <button type="button" onClick={() => handleInput("Backspace")} disabled={!buffer || phase !== "active"}>← Backspace</button>
           <button type="button" onClick={() => setBuffer("")} disabled={!buffer || phase !== "active"}>↻ Clear</button>
+          <PronunciationButton
+            text={targetCharacter?.char || ""}
+            label="Pronounce target"
+            pronounce={pronounce}
+            disabled={!targetCharacter}
+            testId="chinese-football-pronounce"
+          />
           <button type="button" onClick={() => setHintVisible(true)} disabled={phase !== "active" || hintVisible}>💡 Hint</button>
           {hintVisible && <p className="cil-football-hint">Code: <strong>{question.preferredCode}</strong></p>}
         </div>
