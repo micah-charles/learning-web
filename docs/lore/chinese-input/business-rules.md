@@ -101,3 +101,15 @@ Hand-edited generated lessons create drift, while lesson-number-only progress ei
 
 ### Guidance for future agents
 Edit canonical, reviewed or policy inputs and regenerate. Keep generated/do-not-edit headers and deterministic input digests. Attach mastery to `cj-<key>`, Unicode character IDs and deterministic word IDs; use lesson migration metadata only to reconstruct partial/completed lesson state. Preview and production status must remain impossible to confuse.
+
+## Render selects committed curriculum at Vite build time
+code: `render.yaml`, `src/features/chinese-input/data/generated-curriculum-adapter.js` | updated: 2026-07-30 | status: active
+
+### Context
+The adapter falls back to the legacy seed when `VITE_CHINESE_CURRICULUM_SOURCE` is absent. Render serves static Vite output, so this variable is resolved during `npm run build`, not when a browser requests the site.
+
+### Why it matters
+Uploading generated artifacts without selecting them still displays the legacy five-lesson seed. Conversely, asking Render to regenerate lessons would duplicate the deterministic compiler and create deployment drift.
+
+### Guidance for future agents
+Keep generated lesson artifacts committed and verified by CI. Set `VITE_CHINESE_CURRICULUM_SOURCE=generated-preview` in the Render Blueprint while preview is intended for deployment. Render must build and serve those files only; curriculum regeneration remains a deliberate local or CI command.
