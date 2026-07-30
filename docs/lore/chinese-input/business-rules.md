@@ -153,3 +153,10 @@ Embedding a game-specific answer map would drift from the validated curriculum. 
 Build game questions through `generateSessionPlan` and grade through `evaluateAnswer`. Render all nine zones, leave surplus zones empty for small lessons, and rotate deterministic character subsets for larger lessons. Record mastery attempts normally, store game statistics in the shared mini-game profile, and use normal lesson completion for passed matches so the next lesson unlocks.
 
 Football pronunciation must reuse `useChineseSpeech` through the parent Chinese Input page. Respect the existing speech-enabled, auto-pronounce and `zh-HK`/`zh-TW` locale preferences; do not create a game-only speech setting or call the browser speech API directly. Auto-pronounce each new target at most once, and keep a manual replay control available during the round.
+## The Floating Flower owns Chinese Input module navigation
+
+Status: active
+
+Chinese Input Kingdom is one current knowledge world, not a dashboard of permanent destination buildings. The Floating Flower is the only primary navigation inside the module and exposes Continue, Explore, Review, Football, Collection, Keyboard, Progress and Search. These actions open sessions or overlays over the world. The application NavBar remains visible because it navigates between FoxChild@Learn products, not within Chinese Input.
+
+Do not add a permanent module sidebar, a second module tab bar, numbered stage/lesson menus, hard locks, or fixed mode buildings. Readiness is advisory and every learning action remains available. Persist current-root, journey and discovered-node context through `ProgressContext`; never replace older mastery, session or reward records during migration.

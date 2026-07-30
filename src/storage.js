@@ -1,6 +1,7 @@
 import { clone } from "./utils.js";
 import {
   CHINESE_INPUT_PREFS_MIGRATION_VERSION,
+  CHINESE_INPUT_PROGRESS_SCHEMA_VERSION,
   createChineseInputPrefs,
   createChineseInputProgress,
   migrateChineseInputState,
@@ -225,7 +226,7 @@ export function loadStoredState() {
     const parsed = JSON.parse(raw);
     const requiresChineseInputMigration = !parsed?.prefs?.chineseInputLab
       || !parsed?.progress?.chineseInputLab
-      || parsed?.progress?.chineseInputLab?.schemaVersion !== 1
+      || parsed?.progress?.chineseInputLab?.schemaVersion !== CHINESE_INPUT_PROGRESS_SCHEMA_VERSION
       || parsed?.prefs?.chineseInputLab?.migrationVersion !== CHINESE_INPUT_PREFS_MIGRATION_VERSION;
     migrateChineseInputState(parsed);
     migrateLanguageLadder(parsed);

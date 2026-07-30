@@ -1,5 +1,5 @@
-export const CHINESE_INPUT_PROGRESS_SCHEMA_VERSION = 1;
-export const CHINESE_INPUT_PREFS_MIGRATION_VERSION = 2;
+export const CHINESE_INPUT_PROGRESS_SCHEMA_VERSION = 2;
+export const CHINESE_INPUT_PREFS_MIGRATION_VERSION = 3;
 export const CHINESE_INPUT_DATASET_VERSION = "0.1.0";
 export const CHINESE_INPUT_EVENT_LIMIT = 500;
 export const CHINESE_INPUT_SESSION_LIMIT = 100;
@@ -16,7 +16,12 @@ export function createChineseInputPrefs() {
     autoPronounce: true,
     autoSubmit: false,
     lastLessonId: "",
-    lastView: "dashboard",
+    lastView: "kingdom",
+    lastWorldView: "kingdom",
+    currentRootKey: "A",
+    activeJourneyId: "",
+    companionMinimized: false,
+    accessibleListView: false,
     migrationVersion: CHINESE_INPUT_PREFS_MIGRATION_VERSION,
   };
 }
@@ -34,6 +39,7 @@ export function createChineseInputProgress() {
     gameSessions: [],
     attemptEvents: [],
     achievements: {},
+    discoveredNodes: {},
     curriculumMigrationVersion: 0,
     curriculumInputDigest: "",
   };
@@ -65,6 +71,7 @@ export function migrateChineseInputState(state) {
     words: objectOrEmpty(incoming.words),
     reviewQueue: objectOrEmpty(incoming.reviewQueue),
     achievements: objectOrEmpty(incoming.achievements),
+    discoveredNodes: objectOrEmpty(incoming.discoveredNodes),
     sessions: Array.isArray(incoming.sessions) ? incoming.sessions.slice(-CHINESE_INPUT_SESSION_LIMIT) : [],
     gameSessions: Array.isArray(incoming.gameSessions) ? incoming.gameSessions.slice(-CHINESE_INPUT_SESSION_LIMIT) : [],
     attemptEvents: Array.isArray(incoming.attemptEvents) ? incoming.attemptEvents.slice(-CHINESE_INPUT_EVENT_LIMIT) : [],

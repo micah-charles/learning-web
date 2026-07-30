@@ -17,6 +17,12 @@ import { updateCharacterMastery } from "../src/features/chinese-input/domain/mas
 import { scheduleNextReview } from "../src/features/chinese-input/domain/review-scheduler.js";
 import { createChineseInputProgress, migrateChineseInputState } from "../src/features/chinese-input/domain/progress-migration.js";
 import { validateChineseInputDataset } from "../src/features/chinese-input/domain/schemas.js";
+import {
+  FOOTBALL_CHALLENGES,
+  buildFootballChallengeLesson,
+  buildKingdomModel,
+  readinessForLesson,
+} from "../src/features/chinese-input/kingdom/kingdom-model.js";
 
 const dataset = JSON.parse(readFileSync(resolve("src/features/chinese-input/data/seed-dataset.json"), "utf8"));
 
@@ -109,6 +115,35 @@ assert.deepEqual(
 );
 assert.equal(scoreFootballSave({ correct: false, reactionMs: 500, streak: 5 }).score, 0);
 
+const emptyModuleProgress = createChineseInputProgress();
+const firstJourney = dataset.lessons.find((entry) => entry.method === "cangjie");
+assert.equal(readinessForLesson(firstJourney, emptyModuleProgress).band, "ready");
+const kingdomModel = buildKingdomModel({
+  dataset,
+  moduleProgress: emptyModuleProgress,
+  miniGameProfile: { xp: 0, coins: 0 },
+  method: "cangjie",
+  currentRootKey: "A",
+});
+assert.equal(kingdomModel.currentRoot.key, "A");
+assert.ok(kingdomModel.journey);
+assert.equal(kingdomModel.dimensions.length, 9);
+assert.equal(FOOTBALL_CHALLENGES.length, 9);
+for (const challenge of FOOTBALL_CHALLENGES) {
+  const challengeLesson = buildFootballChallengeLesson({
+    challengeId: challenge.id,
+    dataset,
+    moduleProgress: emptyModuleProgress,
+    method: "cangjie",
+    journeyLesson: kingdomModel.journey.lesson,
+    reviewLesson: null,
+    currentRootKey: "A",
+    now: new Date("2026-07-31T00:00:00Z"),
+  });
+  assert.ok(challengeLesson.characterIds.length > 0, `${challenge.id} should have a playable pool`);
+  assert.ok(challengeLesson.activeKeys.length > 0, `${challenge.id} should expose its keyboard keys`);
+}
+
 const result = evaluateAnswer({ input: "DD", expectedCodes: ["DD"], method: "cangjie" });
 const mastery = updateCharacterMastery({}, result, { now: 0 });
 assert.equal(mastery.correct, 1);
@@ -129,6 +164,8 @@ const emptyLocaleState = {
 migrateChineseInputState(emptyLocaleState);
 assert.equal(emptyLocaleState.prefs.chineseInputLab.locale, "zh-HK");
 assert.equal(emptyLocaleState.prefs.chineseInputLab.autoPronounce, false);
+assert.equal(emptyLocaleState.prefs.chineseInputLab.currentRootKey, "A");
+assert.deepEqual(emptyLocaleState.progress.chineseInputLab.discoveredNodes, {});
 
 const validation = validateChineseInputDataset(dataset);
 assert.equal(validation.valid, true, validation.errors.join("\n"));

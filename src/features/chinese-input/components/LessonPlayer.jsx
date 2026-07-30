@@ -186,14 +186,14 @@ export default function LessonPlayer({
   if (summary) {
     return (
       <section className="lw-card cil-session-summary" data-testid="chinese-input-session-summary" aria-live="polite">
-        <p className="lw-eyebrow">Session complete</p>
-        <h2>{summary.passed ? "Lesson passed" : "Good practice — review and try again"}</h2>
+        <p className="lw-eyebrow">Journey complete</p>
+        <h2>{summary.passed ? "Knowledge gained" : "Good practice — revisit when you wish"}</h2>
         <div className="cil-stat-grid">
           <div><strong>{summary.accuracy}%</strong><span>accuracy</span></div>
           <div><strong>{summary.correct}/{summary.answered}</strong><span>correct</span></div>
           <div><strong>{summary.hints}</strong><span>hints used</span></div>
         </div>
-        <button className="lw-btn lw-btn-primary" type="button" onClick={onExit}>Back to lessons</button>
+        <button className="lw-btn lw-btn-primary" type="button" onClick={() => onExit({ completed: true, passed: summary.passed })}>Choose what’s next</button>
       </section>
     );
   }
@@ -202,14 +202,14 @@ export default function LessonPlayer({
     <div className="cil-lesson-player" data-testid="chinese-input-lesson-player">
       <section className="lw-card cil-lesson-header">
         <div>
-          <p className="lw-eyebrow">Stage {lesson.stage} · {method === "quick" ? "Quick 速成" : "Cangjie 倉頡"}</p>
+          <p className="lw-eyebrow">{method === "quick" ? "Quick 速成" : "Cangjie 倉頡"} journey</p>
           <h2>{lesson.title.en}</h2>
           <p className="lw-subtitle" lang="zh-Hant">{lesson.title.zhHant}</p>
         </div>
         <div className="cil-lesson-progress" aria-label={`Question ${index + 1} of ${plan.questions.length}`}>
           {index + 1}/{plan.questions.length}
         </div>
-        <button className="lw-btn lw-btn-ghost" type="button" onClick={onExit}>Exit lesson</button>
+        <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onExit({ completed: false })}>Exit to Kingdom</button>
       </section>
 
       <section className="cil-activity-layout">

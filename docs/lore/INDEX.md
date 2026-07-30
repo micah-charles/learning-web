@@ -14,6 +14,7 @@
 - [Render selects committed curriculum at Vite build time](chinese-input/business-rules.md#render-selects-committed-curriculum-at-vite-build-time) - active - The Blueprint selects committed preview artifacts; Render never regenerates lessons.
 - [Chinese Input Lab is not a Language Ladder pack](chinese-input/business-rules.md#chinese-input-lab-is-not-a-language-ladder-pack) - active - Share infrastructure while keeping input-method rules isolated.
 - [Mini-games use lesson characters and canonical grading](chinese-input/business-rules.md#mini-games-use-lesson-characters-and-canonical-grading) - active - Generate and grade from canonical Chinese Input contracts; never embed a game answer map.
+- [The Floating Flower owns Chinese Input module navigation](chinese-input/business-rules.md#the-floating-flower-owns-chinese-input-module-navigation) - active - Keep one knowledge world; open learning modes as sessions or overlays while global navigation remains in the platform menu.
 
 ## Mini-game framework
 

@@ -54,6 +54,10 @@ const fieldsToCompare = [
   "chineseInputLab.physicalKeyboardEnabled",
   "chineseInputLab.footballGameEnabled",
   "chineseInputLab.footballPronunciationEnabled",
+  "chineseInputLab.kingdomNavigationEnabled",
+  "chineseInputLab.floatingFlowerEnabled",
+  "chineseInputLab.advisoryReadinessEnabled",
+  "chineseInputLab.accessibleListViewEnabled",
   "mobile.gameControlsMode",
 ];
 
