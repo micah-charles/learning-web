@@ -511,4 +511,7 @@ under `learning-data/chinese-input/generated-curriculum/preview/`. Stable
 root, character and word entities drive progress migration. The runtime remains
 legacy by default; `VITE_CHINESE_CURRICULUM_SOURCE=generated-preview` enables a
 schema-checked adapter with an explicit provisional warning.
+The repository's Render Blueprint sets this build-time variable so the deployed
+static site serves the committed preview artifacts; Render does not generate
+curriculum files.
 `generated-production` is rejected unless its manifest is production-approved.
