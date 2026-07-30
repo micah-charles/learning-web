@@ -3,6 +3,17 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
+export const CHINESE_INPUT_STATIC_COPY_TARGETS = [
+  {
+    src: "learning-data/chinese-input/generated-curriculum",
+    dest: ".",
+  },
+  {
+    src: "learning-data/chinese-input/canonical",
+    dest: ".",
+  },
+];
+
 export default defineConfig(({ command }) => ({
   root: path.resolve(__dirname),
   // Use absolute base "/" in dev (localhost works fine with absolute paths).
@@ -26,14 +37,7 @@ export default defineConfig(({ command }) => ({
           targets: [
             { src: "data",  dest: "." },
             { src: "brand", dest: "." },
-            {
-              src: "learning-data/chinese-input/generated-curriculum",
-              dest: "learning-data/chinese-input",
-            },
-            {
-              src: "learning-data/chinese-input/canonical",
-              dest: "learning-data/chinese-input",
-            },
+            ...CHINESE_INPUT_STATIC_COPY_TARGETS,
           ],
         })]
       : []),
