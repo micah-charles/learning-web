@@ -164,8 +164,9 @@ test("generated curriculum keeps root recognition separate from multi-key guided
   await expectNoConsoleErrors(errors);
 });
 
-test("football uses nine goal zones and the goalkeeper saves the typed lesson character", async ({ page }) => {
+test("football pronounces each target and the goalkeeper saves the typed lesson character", async ({ page }) => {
   const errors = collectConsoleErrors(page);
+  await installSpeechSynthesisMock(page);
   await openLab(page);
   test.skip(
     await page.getByTestId("chinese-input-preview-warning").isVisible(),
@@ -189,6 +190,17 @@ test("football uses nine goal zones and the goalkeeper saves the typed lesson ch
   const targetGlyph = (await highlighted.innerText()).trim();
   const code = codeForGlyph(targetGlyph, "cangjie");
   if (!code) throw new Error(`No Keyboard tour code found for ${targetGlyph}`);
+  await expect.poll(() => page.evaluate(() => (window as any).__chineseInputSpoken.at(-1))).toEqual({
+    text: targetGlyph,
+    lang: "zh-HK",
+  });
+  const spokenCount = await page.evaluate(() => (window as any).__chineseInputSpoken.length);
+  await page.getByTestId("chinese-football-pronounce").click();
+  await expect.poll(() => page.evaluate(() => (window as any).__chineseInputSpoken.length)).toBe(spokenCount + 1);
+  await expect.poll(() => page.evaluate(() => (window as any).__chineseInputSpoken.at(-1))).toEqual({
+    text: targetGlyph,
+    lang: "zh-HK",
+  });
 
   await expect(game.locator(".cil-football-stadium")).toHaveClass(/is-active/, { timeout: 2_000 });
   for (const key of code) await page.keyboard.press(key);

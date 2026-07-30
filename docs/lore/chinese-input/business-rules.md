@@ -151,3 +151,5 @@ Embedding a game-specific answer map would drift from the validated curriculum. 
 
 ### Guidance for future agents
 Build game questions through `generateSessionPlan` and grade through `evaluateAnswer`. Render all nine zones, leave surplus zones empty for small lessons, and rotate deterministic character subsets for larger lessons. Record mastery attempts normally, store game statistics in the shared mini-game profile, and use normal lesson completion for passed matches so the next lesson unlocks.
+
+Football pronunciation must reuse `useChineseSpeech` through the parent Chinese Input page. Respect the existing speech-enabled, auto-pronounce and `zh-HK`/`zh-TW` locale preferences; do not create a game-only speech setting or call the browser speech API directly. Auto-pronounce each new target at most once, and keep a manual replay control available during the round.
