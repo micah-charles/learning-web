@@ -1082,6 +1082,37 @@ const phase = !speechPlaybackSupported && session.phase === "listen"
 
 ---
 
+### ⚠️ RC24. Question types must own distinct data and UI contracts; randomized QA must pin its seed
+
+**Mistake (Chinese Input, 2026-07-30):** A root-recognition question borrowed a multi-key character record, reduced its accepted answer to the first root key, and then rendered the borrowed character's full canonical sequence after submission. The evaluator behaved correctly, but learners saw `二 = MM`, typed `M`, and appeared to receive a premature full-character answer. A Playwright repeated-key test also passed or failed depending on `Date.now()` because it assumed the shuffled first character always used `DD`.
+
+**Rule:**
+
+- Root-recognition questions carry `rootKey` and `rootLabel`, not a borrowed `characterId`.
+- Root feedback explains the root-to-key mapping and never renders character decomposition.
+- Guided-typing questions retain the displayed character's complete accepted-code set.
+- For every multi-key guided question, the first-key prefix must not auto-submit.
+- Browser tests that depend on shuffled content must pin the random seed or discover a suitable data-driven question before interacting.
+- Generated-curriculum tests must assert these invariants across every adapted lesson, because legacy fixtures may contain only one-key root characters and hide the bug.
+
+---
+
+### ⚠️ RC25. Assistance controls must own the cue they reveal; keyboard states need one visual meaning
+
+**Mistake (Chinese Input, 2026-07-30):** The Hint button repeated meaning and code metadata already visible on the question card, while the expected keyboard key was highlighted independently and by default. Disabling guidance also made inactive lesson keys appear available, so grey, green and yellow no longer had stable meanings.
+
+**Rule:**
+
+- Lesson Hint starts off and toggles only the expected-next-key highlight.
+- When Hint is on, the yellow cue advances after each correctly positioned input key.
+- Inactive lesson keys remain disabled grey regardless of hint state.
+- Active lesson keys are light green.
+- Only the currently hinted key is yellow.
+- Do not perform another state update inside a React state-updater callback when toggling Hint.
+- Browser QA must assert both `data-key-state` and the computed colour for grey, light green and yellow.
+
+---
+
 ## PART C — Build & Deployment
 
 ---
@@ -1281,7 +1312,7 @@ A second issue in the same PR: the commit appended a full `.lw-btn { … }` rede
 
 ---
 
-*Last updated: 2026-06-16*
+*Last updated: 2026-07-30*
 *Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120, #127, #179*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
 *For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*

@@ -5,6 +5,13 @@ import { appendInputKey, codePoints, normaliseCode } from "../src/features/chine
 import { evaluateAnswer, shouldAutoSubmitAnswer } from "../src/features/chinese-input/domain/answer-evaluator.js";
 import { createSeededRandom } from "../src/features/chinese-input/domain/random.js";
 import { generateSessionPlan } from "../src/features/chinese-input/domain/question-generator.js";
+import {
+  createFootballSessionPlan,
+  createGoalTargets,
+  evaluateGoalkeeperInput,
+  footballTargetPosition,
+  scoreFootballSave,
+} from "../src/features/chinese-input/domain/football-game.js";
 import { resolveKeyState } from "../src/features/chinese-input/domain/key-state.js";
 import { updateCharacterMastery } from "../src/features/chinese-input/domain/mastery-engine.js";
 import { scheduleNextReview } from "../src/features/chinese-input/domain/review-scheduler.js";
@@ -50,6 +57,57 @@ const analysisPlan = generateSessionPlan({ dataset, lesson: analysisLesson, seed
 const rootQuestion = analysisPlan.questions.find((question) => question.type === "root-recognition");
 assert.equal(rootQuestion.expectedCodes[0].length, 1);
 assert.equal(rootQuestion.expectedKeys.length, 1);
+
+const footballLesson = dataset.lessons.find((entry) => entry.id === "cj-construction-03");
+const footballPlan = createFootballSessionPlan({
+  dataset,
+  lesson: footballLesson,
+  seed: 42,
+  questionCount: 6,
+});
+assert.ok(footballPlan.questions.every((question) => question.type === "guided-typing"));
+const footballTargets = createGoalTargets({
+  dataset,
+  lesson: footballLesson,
+  method: "cangjie",
+  question: footballPlan.questions[0],
+});
+assert.equal(footballTargets.length, 9);
+assert.ok(footballTargets.some((character) => character.id === footballPlan.questions[0].characterId));
+const footballTarget = dataset.characters.find((character) => character.id === footballPlan.questions[0].characterId);
+const correctShot = evaluateGoalkeeperInput({
+  input: footballPlan.questions[0].preferredCode,
+  question: footballPlan.questions[0],
+  method: "cangjie",
+  startedAt: 1_000,
+  answeredAt: 1_700,
+});
+assert.equal(correctShot.correct, true);
+const wrongShot = evaluateGoalkeeperInput({
+  input: "ZZZZZ",
+  question: footballPlan.questions[0],
+  method: "cangjie",
+  startedAt: 1_000,
+  answeredAt: 2_000,
+});
+assert.equal(wrongShot.correct, false);
+const timedOutShot = evaluateGoalkeeperInput({
+  input: "",
+  question: footballPlan.questions[0],
+  method: "cangjie",
+  startedAt: 1_000,
+  answeredAt: 4_000,
+  timedOut: true,
+});
+assert.equal(timedOutShot.correct, false);
+assert.equal(timedOutShot.errorType, "timeout");
+assert.deepEqual(footballTargetPosition(0), { zone: 1, column: 0, row: 0, x: 26, y: 20 });
+assert.deepEqual(footballTargetPosition(8), { zone: 9, column: 2, row: 2, x: 74, y: 48 });
+assert.deepEqual(
+  scoreFootballSave({ correct: true, reactionMs: 700, streak: 2 }),
+  { score: 110, coins: 55, xp: 30, rating: "Lightning", multiplier: 1.1 },
+);
+assert.equal(scoreFootballSave({ correct: false, reactionMs: 500, streak: 5 }).score, 0);
 
 const result = evaluateAnswer({ input: "DD", expectedCodes: ["DD"], method: "cangjie" });
 const mastery = updateCharacterMastery({}, result, { now: 0 });

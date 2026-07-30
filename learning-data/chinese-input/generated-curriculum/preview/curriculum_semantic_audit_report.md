@@ -8,7 +8,7 @@ Status: PASS_WITH_PROVISIONAL_WARNINGS
 - repeatedIdsMany: pass
 - saySourceGlyph: pass
 - polyphonicCharacter: u5927
-- complexCodeCharacter: u662f
+- complexCodeCharacter: u7684
 - writtenCantonesePlaceholder: pass
 - quickCollision: pass
 - migration: pass

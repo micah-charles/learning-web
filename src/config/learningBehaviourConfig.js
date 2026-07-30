@@ -91,6 +91,14 @@ export const learningBehaviourConfig = {
     defaultMethod: "cangjie",
     quickProgressSeparated: true,
     physicalKeyboardEnabled: true,
+    footballGameEnabled: true,
+    lessonHintToggleEnabled: true,
+    lessonHintDefault: "off",
+    keyboardKeyStates: {
+      inactive: "grey",
+      active: "light-green",
+      hinted: "yellow",
+    },
   },
 
   mobile: {

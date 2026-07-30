@@ -10,7 +10,13 @@ import PronunciationButton from "./PronunciationButton.jsx";
 
 function feedbackCopy(result, character, question) {
   if (result.correct) {
+    if (question.type === "root-recognition") {
+      return `Correct: ${question.rootLabel} is mapped to ${question.rootKey}.`;
+    }
     return `Correct: ${character.char} = ${question.expectedKeys.join(" ")}.`;
+  }
+  if (question.type === "root-recognition") {
+    return `That key is not mapped to ${question.rootLabel}. The correct key is ${question.rootKey}.`;
   }
   if (result.errorType === "wrong-order") {
     return `Almost: those keys are in the wrong order. Check position ${result.firstWrongPosition + 1}.`;
@@ -31,7 +37,6 @@ export default function LessonPlayer({
   dataset,
   lesson,
   method,
-  guidanceLevel,
   pronounce,
   autoPronounce = true,
   onExit,
@@ -51,23 +56,26 @@ export default function LessonPlayer({
   const [buffer, setBuffer] = useState("");
   const [pressedKey, setPressedKey] = useState("");
   const [feedback, setFeedback] = useState(null);
-  const [hintCount, setHintCount] = useState(0);
+  const [hintEnabled, setHintEnabled] = useState(false);
+  const [hintUsedCurrent, setHintUsedCurrent] = useState(false);
   const [attemptedCurrent, setAttemptedCurrent] = useState(false);
   const [stats, setStats] = useState({ correct: 0, answered: 0, hints: 0 });
   const [summary, setSummary] = useState(null);
   const question = plan.questions[index];
   const character = findChineseInputCharacter(dataset, question?.characterId);
+  const isRootRecognition = question?.type === "root-recognition";
+  const spokenText = isRootRecognition ? question.rootLabel : character?.char;
   const expectedKey = question?.expectedKeys?.[buffer.length] || "";
   const allLearnedKeys = lesson.activeKeys;
   const questionStartedAt = useRef(Date.now());
   const lastAutoPronouncedQuestion = useRef("");
 
   useEffect(() => {
-    if (!autoPronounce || !question?.id || !character?.char) return;
+    if (!autoPronounce || !question?.id || !spokenText) return;
     if (lastAutoPronouncedQuestion.current === question.id) return;
     lastAutoPronouncedQuestion.current = question.id;
-    pronounce(character.char);
-  }, [autoPronounce, character?.char, pronounce, question?.id]);
+    pronounce(spokenText);
+  }, [autoPronounce, pronounce, question?.id, spokenText]);
 
   const submitAnswer = useCallback((inputOverride) => {
     if (!question || feedback) return;
@@ -87,14 +95,14 @@ export default function LessonPlayer({
     setStats((current) => ({
       correct: current.correct + (result.correct ? 1 : 0),
       answered: current.answered + 1,
-      hints: current.hints + hintCount,
+      hints: current.hints + (hintUsedCurrent ? 1 : 0),
     }));
     recordAttempt({
       lessonId: lesson.id,
       question,
       character,
       result,
-      hintCount,
+      hintCount: hintUsedCurrent ? 1 : 0,
       firstTry: !attemptedCurrent,
       rootKey: question.type === "root-recognition" ? question.expectedKeys[0] : "",
       occurredAt: new Date(answeredAt).toISOString(),
@@ -105,7 +113,7 @@ export default function LessonPlayer({
     buffer,
     character,
     feedback,
-    hintCount,
+    hintUsedCurrent,
     lesson.id,
     method,
     question,
@@ -136,10 +144,10 @@ export default function LessonPlayer({
     setIndex((current) => current + 1);
     setBuffer("");
     setFeedback(null);
-    setHintCount(0);
+    setHintUsedCurrent(hintEnabled);
     setAttemptedCurrent(false);
     questionStartedAt.current = Date.now();
-  }, [completeSession, feedback, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
+  }, [completeSession, feedback, hintEnabled, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
 
   const handleInput = useCallback((key) => {
     if (!question || summary) return;
@@ -169,9 +177,10 @@ export default function LessonPlayer({
 
   usePhysicalKeyboard({ enabled: !summary, onKey: handleInput });
 
-  function showHint() {
+  function toggleHint() {
     if (!question || feedback) return;
-    setHintCount((count) => Math.min(count + 1, question.hintSteps.length));
+    if (!hintEnabled) setHintUsedCurrent(true);
+    setHintEnabled(!hintEnabled);
   }
 
   if (summary) {
@@ -205,29 +214,46 @@ export default function LessonPlayer({
 
       <section className="cil-activity-layout">
         <div className="lw-card cil-prompt-card">
-          <p className="lw-eyebrow">{question.type === "root-recognition" ? "Root recognition" : "Guided typing"}</p>
+          <p className="lw-eyebrow" data-testid="chinese-input-question-type">
+            {isRootRecognition ? "Root recognition" : "Guided typing"}
+          </p>
           <h3>{question.prompt}</h3>
-          <div className="cil-question-character" lang="zh-Hant">{character.char}</div>
-          <p>{character.meaning.en}</p>
-          <p><strong>Jyutping:</strong> {character.pronunciations[0].value}</p>
-          <PronunciationButton text={character.char} pronounce={pronounce} />
+          {isRootRecognition ? (
+            <>
+              <p className="lw-subtitle">Root</p>
+              <div
+                className="cil-question-character"
+                data-testid="chinese-input-root-glyph"
+                lang="zh-Hant"
+                aria-label={`${question.rootLabelEn || "Cangjie"} root ${question.rootLabel}`}
+              >
+                {question.rootLabel}
+              </div>
+              <p><strong>Keyboard key:</strong> ?</p>
+              <PronunciationButton text={question.rootLabel} pronounce={pronounce} />
+            </>
+          ) : (
+            <>
+              <div className="cil-question-character" lang="zh-Hant">{character.char}</div>
+              <p>{character.meaning.en}</p>
+              <p><strong>Jyutping:</strong> {character.pronunciations[0].value}</p>
+              <PronunciationButton text={character.char} pronounce={pronounce} />
+            </>
+          )}
         </div>
 
         <div className="lw-card cil-answer-card">
-          <h3>Input buffer</h3>
+          <h3>{isRootRecognition ? "Keyboard key" : "Input buffer"}</h3>
           <div
             className="cil-input-buffer"
             data-testid="chinese-input-buffer"
             aria-live="polite"
             aria-label={`Typed keys: ${buffer || "empty"}`}
           >
-            {buffer ? Array.from(buffer).map((key, keyIndex) => <span key={`${key}-${keyIndex}`}>{key}</span>) : <em>Press a key</em>}
+            {buffer
+              ? Array.from(buffer).map((key, keyIndex) => <span key={`${key}-${keyIndex}`}>{key}</span>)
+              : <em>{isRootRecognition ? "Press one key" : "Start typing the code"}</em>}
           </div>
-          {hintCount > 0 && (
-            <div className="cil-hint" data-testid="chinese-input-hint">
-              Hint {hintCount}: {question.hintSteps[hintCount - 1]}
-            </div>
-          )}
           {feedback && (
             <div
               className={`cil-feedback ${feedback.result.correct ? "is-correct" : "is-incorrect"}`}
@@ -240,7 +266,16 @@ export default function LessonPlayer({
           <div className="lw-btn-group">
             <button className="lw-btn lw-btn-secondary" type="button" onClick={() => setBuffer((current) => current.slice(0, -1))} disabled={!buffer || Boolean(feedback)}>Backspace</button>
             <button className="lw-btn lw-btn-secondary" type="button" onClick={() => setBuffer("")} disabled={!buffer || Boolean(feedback)}>Clear</button>
-            <button className="lw-btn lw-btn-secondary" type="button" onClick={showHint} disabled={Boolean(feedback)}>Hint</button>
+            <button
+              className={`lw-btn lw-btn-secondary cil-hint-toggle${hintEnabled ? " is-on" : ""}`}
+              data-testid="chinese-input-hint-toggle"
+              type="button"
+              aria-pressed={hintEnabled}
+              onClick={toggleHint}
+              disabled={Boolean(feedback)}
+            >
+              Hint: {hintEnabled ? "On" : "Off"}
+            </button>
             {!feedback ? (
               <button className="lw-btn lw-btn-primary" data-testid="chinese-input-submit" type="button" aria-keyshortcuts="Enter" onClick={() => submitAnswer()} disabled={!buffer}>Submit</button>
             ) : (
@@ -252,16 +287,15 @@ export default function LessonPlayer({
         </div>
       </section>
 
-      {feedback && <CharacterDecomposition character={character} method={method} />}
+      {feedback && !isRootRecognition && <CharacterDecomposition character={character} method={method} />}
 
       <VirtualCangjieKeyboard
         activeKeys={lesson.activeKeys}
         learnedKeys={allLearnedKeys}
-        expectedKey={guidanceLevel === "full" || guidanceLevel === "expected" ? expectedKey : ""}
+        expectedKey={hintEnabled ? expectedKey : ""}
         pressedKey={pressedKey}
         feedbackKey={feedback ? buffer[feedback.result.firstWrongPosition] || expectedKey : ""}
         feedbackCorrect={feedback?.result.correct}
-        guidanceLevel={guidanceLevel}
         disabled={Boolean(feedback)}
         onKey={handleInput}
       />

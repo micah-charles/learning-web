@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { DATASET_VERSION, GENERATED_AT, SOURCE_DEFINITIONS } from "./constants.mjs";
+import { educationalCangjieCodes, quickCode } from "./code-policy.mjs";
 import { parseArgs, readJson, sha256File, writeJson, writeText } from "./io.mjs";
 
 const args = parseArgs(process.argv.slice(2));
@@ -24,12 +25,8 @@ function parseReference(text) {
   }
   return new Map([...records].map(([character, codes]) => [
     character,
-    [...codes].sort((left, right) => left.length - right.length || left.localeCompare(right)),
+    educationalCangjieCodes([...codes]),
   ]));
-}
-
-function quickCode(code) {
-  return code.length === 1 ? code : `${code[0]}${code.at(-1)}`;
 }
 
 function sameValues(left, right) {
@@ -92,7 +89,7 @@ writeText(resolve(outputRoot, "cangjie_reference_audit_report.md"), [
   `- Characters checked: ${audit.checkedCharacterCount}`,
   `- Mismatches: ${audit.mismatchCount}`,
   "",
-  "The audit reparses the pinned Rime Cangjie table independently from dataset generation and compares each complete accepted-code set, preferred code, and derived Quick set.",
+  "The audit reparses the pinned Rime Cangjie table independently, applies the educational policy that excludes X-prefixed shortcuts when a standard code exists, and compares each policy-approved code set, preferred code, and derived Quick set.",
   "",
   ...(mismatches.length
     ? ["## Mismatches", "", ...mismatches.map((row) => `- ${row.character}: ${row.reasons.join(", ")}`), ""]

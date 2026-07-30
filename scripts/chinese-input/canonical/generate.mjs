@@ -18,6 +18,7 @@ import {
   SOURCE_DEFINITIONS,
   WORD_COLUMNS,
 } from "./constants.mjs";
+import { educationalCangjieCodes, quickCode } from "./code-policy.mjs";
 import {
   parseArgs,
   readJson,
@@ -65,7 +66,7 @@ function parseCangjie(text) {
   }
   return new Map([...records].map(([character, codes]) => [
     character,
-    [...codes].sort((a, b) => a.length - b.length || a.localeCompare(b)),
+    educationalCangjieCodes([...codes]),
   ]));
 }
 
@@ -155,10 +156,6 @@ function stableBasisId(value) {
 
 function componentId(value) {
   return `component-${stableBasisId(value)}`;
-}
-
-function quickCode(code) {
-  return code.length < 2 ? code : `${code[0]}${code.at(-1)}`;
 }
 
 function unicodeValue(character) {

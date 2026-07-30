@@ -12,7 +12,7 @@ test("generated preview is explicitly labelled and starts a validated lesson", a
 
   await expect(page.getByTestId("chinese-input-preview-warning")).toContainText("not production-approved");
   await expect(page.getByRole("heading", { name: "Chinese Input Lab" })).toBeVisible();
-  await expect(page.locator(".cil-standard-note")).toContainText("seed v1.3.0");
+  await expect(page.locator(".cil-standard-note")).toContainText("seed v1.3.1");
 
   await page.getByTestId("chinese-input-start-lesson").click();
   await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();

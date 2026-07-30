@@ -52,6 +52,7 @@ const fieldsToCompare = [
   "chineseInputLab.defaultMethod",
   "chineseInputLab.quickProgressSeparated",
   "chineseInputLab.physicalKeyboardEnabled",
+  "chineseInputLab.footballGameEnabled",
   "mobile.gameControlsMode",
 ];
 

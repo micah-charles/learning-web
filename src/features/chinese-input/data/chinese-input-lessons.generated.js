@@ -1,0 +1,408 @@
+export const STATIC_CHINESE_INPUT_LESSONS = [
+  {
+    "id": "cj-orientation-01",
+    "method": "cangjie",
+    "stage": 1,
+    "order": 1,
+    "title": {
+      "en": "Keyboard tour",
+      "zhHant": "鍵盤導覽"
+    },
+    "introducedKeys": [
+      "A",
+      "S",
+      "D",
+      "F"
+    ],
+    "reviewedKeys": [],
+    "activeKeys": [
+      "A",
+      "S",
+      "D",
+      "F"
+    ],
+    "characterIds": [
+      "u65e5",
+      "u5c38",
+      "u6728",
+      "u706b"
+    ],
+    "activityMix": {
+      "keyboardExplore": 4,
+      "rootRecognition": 4,
+      "guidedTyping": 4,
+      "characterBuild": 0
+    },
+    "passCriteria": {
+      "minimumAccuracy": 0.75,
+      "minimumQuestions": 8
+    },
+    "prerequisites": [],
+    "estimatedMinutes": 5,
+    "accessibilityNotes": "All activities support pointer, touch and physical keyboard input."
+  },
+  {
+    "id": "cj-foundation-02",
+    "method": "cangjie",
+    "stage": 2,
+    "order": 2,
+    "title": {
+      "en": "Nature roots",
+      "zhHant": "自然字根"
+    },
+    "introducedKeys": [
+      "G",
+      "H",
+      "T",
+      "Y"
+    ],
+    "reviewedKeys": [
+      "A",
+      "S",
+      "D",
+      "F"
+    ],
+    "activeKeys": [
+      "A",
+      "S",
+      "D",
+      "F",
+      "G",
+      "H",
+      "T",
+      "Y"
+    ],
+    "characterIds": [
+      "u571f",
+      "u7af9",
+      "u5eff",
+      "u535c"
+    ],
+    "activityMix": {
+      "keyboardExplore": 4,
+      "rootRecognition": 6,
+      "guidedTyping": 4,
+      "characterBuild": 2
+    },
+    "passCriteria": {
+      "minimumAccuracy": 0.8,
+      "minimumQuestions": 10
+    },
+    "prerequisites": [
+      "cj-orientation-01"
+    ],
+    "estimatedMinutes": 7,
+    "accessibilityNotes": "Expected keys include a text label and do not rely on colour."
+  },
+  {
+    "id": "cj-construction-03",
+    "method": "cangjie",
+    "stage": 3,
+    "order": 3,
+    "title": {
+      "en": "People and actions",
+      "zhHant": "人物與動作"
+    },
+    "introducedKeys": [
+      "I",
+      "J",
+      "K",
+      "L",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R"
+    ],
+    "reviewedKeys": [
+      "A",
+      "D",
+      "F"
+    ],
+    "activeKeys": [
+      "A",
+      "D",
+      "F",
+      "I",
+      "J",
+      "K",
+      "L",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R"
+    ],
+    "characterIds": [
+      "u6208",
+      "u5341",
+      "u5927",
+      "u4e2d",
+      "u5f13",
+      "u4eba",
+      "u5fc3",
+      "u624b",
+      "u53e3"
+    ],
+    "activityMix": {
+      "keyboardExplore": 3,
+      "rootRecognition": 5,
+      "guidedTyping": 6,
+      "characterBuild": 4
+    },
+    "passCriteria": {
+      "minimumAccuracy": 0.8,
+      "minimumQuestions": 12
+    },
+    "prerequisites": [
+      "cj-foundation-02"
+    ],
+    "estimatedMinutes": 9,
+    "accessibilityNotes": "Construction steps are available as text as well as visual blocks."
+  },
+  {
+    "id": "cj-analysis-04",
+    "method": "cangjie",
+    "stage": 4,
+    "order": 4,
+    "title": {
+      "en": "Shapes and whole characters",
+      "zhHant": "字形與整字分析"
+    },
+    "introducedKeys": [
+      "B",
+      "C",
+      "E",
+      "M",
+      "U",
+      "V",
+      "W",
+      "X"
+    ],
+    "reviewedKeys": [
+      "A",
+      "D",
+      "O",
+      "R"
+    ],
+    "activeKeys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y"
+    ],
+    "characterIds": [
+      "u6708",
+      "u91d1",
+      "u6c34",
+      "u4e00",
+      "u5c71",
+      "u5973",
+      "u7530",
+      "u96e3"
+    ],
+    "activityMix": {
+      "keyboardExplore": 2,
+      "rootRecognition": 4,
+      "guidedTyping": 6,
+      "characterBuild": 6
+    },
+    "passCriteria": {
+      "minimumAccuracy": 0.8,
+      "minimumQuestions": 12
+    },
+    "prerequisites": [
+      "cj-construction-03"
+    ],
+    "estimatedMinutes": 10,
+    "accessibilityNotes": "Character analysis separates the visual explanation from the canonical key code."
+  },
+  {
+    "id": "cj-challenge-05",
+    "method": "cangjie",
+    "stage": 5,
+    "order": 5,
+    "title": {
+      "en": "Cangjie typing challenge",
+      "zhHant": "倉頡輸入挑戰"
+    },
+    "introducedKeys": [
+      "Z"
+    ],
+    "reviewedKeys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y"
+    ],
+    "activeKeys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "characterIds": [],
+    "activityMix": {
+      "keyboardExplore": 0,
+      "rootRecognition": 3,
+      "guidedTyping": 10,
+      "characterBuild": 3
+    },
+    "passCriteria": {
+      "minimumAccuracy": 0.8,
+      "minimumQuestions": 12
+    },
+    "prerequisites": [
+      "cj-analysis-04"
+    ],
+    "estimatedMinutes": 10,
+    "accessibilityNotes": "Timed mode is optional; the default challenge has no time limit."
+  },
+  {
+    "id": "quick-foundation-01",
+    "method": "quick",
+    "stage": 5,
+    "order": 6,
+    "title": {
+      "en": "Quick: first and last",
+      "zhHant": "速成：首尾取碼"
+    },
+    "introducedKeys": [],
+    "reviewedKeys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "activeKeys": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "characterIds": [],
+    "activityMix": {
+      "keyboardExplore": 0,
+      "rootRecognition": 2,
+      "guidedTyping": 10,
+      "characterBuild": 2
+    },
+    "passCriteria": {
+      "minimumAccuracy": 0.8,
+      "minimumQuestions": 10
+    },
+    "prerequisites": [
+      "cj-analysis-04"
+    ],
+    "estimatedMinutes": 8,
+    "accessibilityNotes": "Quick codes are displayed independently from full Cangjie codes."
+  }
+];

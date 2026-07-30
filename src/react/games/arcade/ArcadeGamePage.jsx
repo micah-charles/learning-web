@@ -27,6 +27,9 @@ import { useArcadeContent } from "./hooks/useArcadeContent.js";
 import { useArcadeSound } from "./hooks/useArcadeSound.js";
 import QuizHuntGame from "./QuizHuntGame.jsx";
 import SnakeBuilderGame from "./SnakeBuilderGame.jsx";
+import RewardShop from "../framework/RewardShop.jsx";
+import { useMiniGame } from "../framework/MiniGameProvider.jsx";
+import { calculatePerformance } from "../framework/performanceEngine.js";
 
 const MODES = [
   { id: "quiz-hunt", label: "Quiz Hunt", icon: "/images/foxchild-fox.png", desc: "Eat the correct answer" },
@@ -65,6 +68,7 @@ export default function ArcadeGamePage() {
   // the provider so normal progress writes (recordWordAnswer/recordArcadeResult)
   // never clobber them with stale provider state.
   const { progress, updateProgress } = useProgress();
+  const { profile: miniGameProfile, recordResult: recordMiniGameResult, updateProfile: updateMiniGameProfile } = useMiniGame();
 
   const [prefs, setPrefs] = useState(() => progress.prefs.arcade);
   const [started, setStarted] = useState(false);
@@ -165,9 +169,21 @@ export default function ArcadeGamePage() {
       updateProgress((state) => recordWordAnswer(state, payload.wordId, !!payload.correct));
     } else if (kind === "over" && payload) {
       updateProgress((state) => recordArcadeResult(state, prefs.mode, payload));
+      const answered = payload.answered || payload.correct || 0;
+      const attempts = Array.from({ length: answered }, (_, index) => ({
+        correct: index < (payload.correct || 0),
+        reactionMs: 0,
+      }));
+      recordMiniGameResult({
+        ...calculatePerformance({ attempts, previousSkillRating: miniGameProfile.skillRating }),
+        gameId: prefs.mode,
+        playMode: "arcade",
+        completed: true,
+        completedAt: new Date().toISOString(),
+      });
     }
     // "builderComplete" is summarised into the "over" record (kept light for MVP).
-  }, [updateProgress, prefs.mode]);
+  }, [miniGameProfile.skillRating, prefs.mode, recordMiniGameResult, updateProgress]);
 
   const exitToSetup = useCallback(() => { sound.stop(); setStarted(false); }, [sound]);
 
@@ -279,6 +295,14 @@ export default function ArcadeGamePage() {
             ▶ Start game
           </button>
         </div>
+
+        <div className="mini-profile" aria-label="Mini-game profile">
+          <span><strong>{miniGameProfile.xp}</strong> XP</span>
+          <span><strong>{miniGameProfile.coins}</strong> coins</span>
+          <span><strong>{miniGameProfile.skillTier}</strong> rating</span>
+          <span><strong>{miniGameProfile.achievements.length}</strong> achievements</span>
+        </div>
+        <RewardShop profile={miniGameProfile} onChange={updateMiniGameProfile} />
       </div>
     </div>
   );

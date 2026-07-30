@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { CANGJIE_ROOTS, ROOT_BY_KEY } from "../../src/features/chinese-input/data/keyboard-layout.js";
 import { CHINESE_INPUT_LESSONS } from "../../src/features/chinese-input/data/lesson-catalog.js";
+import { educationalCangjieCodes, quickCode } from "./canonical/code-policy.mjs";
 
 const ROOT = resolve(import.meta.dirname, "../..");
 const args = Object.fromEntries(process.argv.slice(2).map((entry) => {
@@ -58,10 +59,6 @@ function parseUnihan(text) {
   return records;
 }
 
-function quickCode(code) {
-  return code.length <= 1 ? code : `${code[0]}${code.at(-1)}`;
-}
-
 function characterId(char) {
   return `u${char.codePointAt(0).toString(16).toLowerCase()}`;
 }
@@ -73,7 +70,7 @@ const characters = [];
 for (const char of SEED_CHARACTERS) {
   if (seen.has(char)) continue;
   seen.add(char);
-  const codes = [...(cangjie.get(char) || [])].sort((a, b) => a.length - b.length || a.localeCompare(b));
+  const codes = educationalCangjieCodes([...(cangjie.get(char) || [])]);
   const reading = unihan.get(char);
   if (!codes.length || !reading?.kCantonese || !reading?.kDefinition) continue;
   const acceptedCodes = codes;
@@ -181,6 +178,9 @@ const dataset = {
 };
 const serializedForChecksum = JSON.stringify(dataset);
 dataset.manifest.checksum = `sha256:${createHash("sha256").update(serializedForChecksum).digest("hex")}`;
+const lessonsModule = resolve(ROOT, "src/features/chinese-input/data/chinese-input-lessons.generated.js");
+writeFileSync(lessonsModule, ["export const STATIC_CHINESE_INPUT_LESSONS = " + JSON.stringify(dataset.lessons, null, 2) + ";", ""].join("\n"));
 const output = resolve(ROOT, "src/features/chinese-input/data/seed-dataset.json");
 writeFileSync(output, `${JSON.stringify(dataset, null, 2)}\n`);
 console.log(`Wrote ${characters.length} verified characters to ${output}`);
+console.log(`Wrote ${dataset.lessons.length} static lessons to ${lessonsModule}`);

@@ -276,6 +276,7 @@ function summaryOf(g) {
   return {
     score: g.score, correct: g.correct, bestStreak: g.bestStreak,
     accuracy: answered ? Math.round((g.correct / answered) * 100) : 0,
+    answered,
     lives: g.lives,       // required by onRoundEnd win check (lives > 0 = won)
     totalInSet: g.totalInSet,
   };
