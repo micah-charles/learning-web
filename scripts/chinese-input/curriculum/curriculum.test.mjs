@@ -6,12 +6,40 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { migrateChineseInputCurriculumProgress } from "../../../src/features/chinese-input/domain/curriculum-migration.js";
 import {
+  configuredChineseCurriculumSource,
   loadGeneratedChineseInputDataset,
   validateGeneratedCurriculumBundle,
 } from "../../../src/features/chinese-input/data/generated-curriculum-adapter.js";
+import { CHINESE_INPUT_STATIC_COPY_TARGETS } from "../../../vite.config.js";
 
 const projectRoot = resolve(import.meta.dirname, "../../..");
 const generator = resolve(import.meta.dirname, "generate.mjs");
+
+test("production builds default to generated preview without weakening explicit overrides", () => {
+  assert.equal(configuredChineseCurriculumSource({ PROD: true }), "generated-preview");
+  assert.equal(configuredChineseCurriculumSource({ PROD: false }), "legacy");
+  assert.equal(
+    configuredChineseCurriculumSource({ PROD: true, VITE_CHINESE_CURRICULUM_SOURCE: "legacy" }),
+    "legacy",
+  );
+  assert.equal(
+    configuredChineseCurriculumSource({ PROD: true, VITE_CHINESE_CURRICULUM_SOURCE: "unsupported" }),
+    "generated-preview",
+  );
+});
+
+test("production copy targets preserve the runtime Chinese data URLs", () => {
+  assert.deepEqual(CHINESE_INPUT_STATIC_COPY_TARGETS, [
+    {
+      src: "learning-data/chinese-input/generated-curriculum",
+      dest: ".",
+    },
+    {
+      src: "learning-data/chinese-input/canonical",
+      dest: ".",
+    },
+  ]);
+});
 
 test("preview generation covers all canonical characters and adapts safely at runtime", async () => {
   const temp = mkdtempSync(resolve(tmpdir(), "foxchild-curriculum-test-"));

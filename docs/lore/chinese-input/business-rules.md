@@ -106,10 +106,10 @@ Edit canonical, reviewed or policy inputs and regenerate. Keep generated/do-not-
 code: `render.yaml`, `src/features/chinese-input/data/generated-curriculum-adapter.js` | updated: 2026-07-30 | status: active
 
 ### Context
-The adapter falls back to the legacy seed when `VITE_CHINESE_CURRICULUM_SOURCE` is absent. Render serves static Vite output, so this variable is resolved during `npm run build`, not when a browser requests the site.
+Render serves static Vite output, so `VITE_CHINESE_CURRICULUM_SOURCE` is resolved during `npm run build`, not when a browser requests the site. The existing Render service auto-deploys repository commits but does not automatically synchronise `render.yaml` Blueprint fields. Production builds therefore default to `generated-preview`; development defaults to `legacy`, and an explicit valid environment value overrides either default.
 
 ### Why it matters
-Uploading generated artifacts without selecting them still displays the legacy five-lesson seed. Conversely, asking Render to regenerate lessons would duplicate the deterministic compiler and create deployment drift.
+Relying only on an unsynchronised Blueprint variable produced a successful deployment whose compiled bundle still contained the legacy fallback. Asking Render to regenerate lessons would instead duplicate the deterministic compiler and create deployment drift.
 
 ### Guidance for future agents
-Keep generated lesson artifacts committed and verified by CI. Set `VITE_CHINESE_CURRICULUM_SOURCE=generated-preview` in the Render Blueprint while preview is intended for deployment. Render must build and serve those files only; curriculum regeneration remains a deliberate local or CI command.
+Keep generated lesson artifacts committed and verified by CI. Keep the Render Blueprint value as declarative configuration, but do not assume an existing dashboard-created service synchronises it. Verify the deployed bundle or UI after release. Render must build and serve committed files only; curriculum regeneration remains a deliberate local or CI command.
