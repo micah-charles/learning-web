@@ -16,7 +16,7 @@ export default function RootExplorer({ pronounce }) {
     <div data-testid="chinese-input-root-explorer">
       <section className="lw-card cil-section-heading">
         <div>
-          <p className="lw-eyebrow">Stage 1</p>
+          <p className="lw-eyebrow">Root keyboard</p>
           <h2>Root Explorer</h2>
           <p className="lw-subtitle">Press a physical key or choose a keycap to inspect its verified Cangjie label.</p>
         </div>

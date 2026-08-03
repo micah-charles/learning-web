@@ -17,8 +17,29 @@ import { updateCharacterMastery } from "../src/features/chinese-input/domain/mas
 import { scheduleNextReview } from "../src/features/chinese-input/domain/review-scheduler.js";
 import { createChineseInputProgress, migrateChineseInputState } from "../src/features/chinese-input/domain/progress-migration.js";
 import { validateChineseInputDataset } from "../src/features/chinese-input/domain/schemas.js";
+import { adaptGeneratedChineseInputDataset } from "../src/features/chinese-input/data/adapt-generated-curriculum.js";
+import {
+  FOOTBALL_CHALLENGES,
+  buildFootballChallengeLesson,
+  buildKingdomModel,
+  readinessForLesson,
+} from "../src/features/chinese-input/kingdom/kingdom-model.js";
 
-const dataset = JSON.parse(readFileSync(resolve("src/features/chinese-input/data/seed-dataset.json"), "utf8"));
+const readJson = (path) => JSON.parse(readFileSync(resolve(path), "utf8"));
+const generatedRoot = "learning-data/chinese-input/generated-curriculum/preview";
+const dataset = adaptGeneratedChineseInputDataset({
+  bundle: {
+    manifest: readJson(`${generatedRoot}/curriculum_manifest.json`),
+    stages: readJson(`${generatedRoot}/stages.json`),
+    lessons: readJson(`${generatedRoot}/lessons.json`),
+    assessments: readJson(`${generatedRoot}/assessment_graph.json`),
+    games: readJson(`${generatedRoot}/game_graph.json`),
+    migration: readJson(`${generatedRoot}/learner_progress_migration.json`),
+    source: "generated-preview",
+  },
+  characterDocument: readJson("learning-data/chinese-input/canonical/canonical_characters.json"),
+  readingDocument: readJson("learning-data/chinese-input/canonical/canonical_character_readings.json"),
+});
 
 assert.equal(normaliseCode(" d d "), "DD");
 assert.equal(appendInputKey("D", "d", "cangjie"), "DD");
@@ -40,7 +61,9 @@ assert.equal(shouldAutoSubmitAnswer("ZZ", ["AB", "AC"]), true);
 assert.equal(resolveKeyState(["available", "expected", "pressed"]), "pressed");
 assert.equal(createSeededRandom(42)(), createSeededRandom(42)());
 
-const lesson = dataset.lessons.find((entry) => entry.id === "cj-challenge-05");
+assert.equal(dataset.characters.length, 3000);
+assert.ok(dataset.lessons.length >= 500);
+const lesson = dataset.lessons.find((entry) => entry.method === "cangjie" && entry.characterIds.length >= 8);
 const planA = generateSessionPlan({ dataset, lesson, seed: 42, questionCount: 8 });
 const planB = generateSessionPlan({ dataset, lesson, seed: 42, questionCount: 8 });
 assert.deepEqual(planA, planB);
@@ -52,13 +75,13 @@ const orderedReview = {
 };
 const reviewPlan = generateSessionPlan({ dataset, lesson: orderedReview, seed: 42, questionCount: 2 });
 assert.deepEqual(reviewPlan.questions.map((question) => question.characterId), ["u6797", "u65e5"]);
-const analysisLesson = dataset.lessons.find((entry) => entry.id === "cj-analysis-04");
+const analysisLesson = dataset.lessons.find((entry) => entry.method === "cangjie" && entry.characterIds.length >= 6);
 const analysisPlan = generateSessionPlan({ dataset, lesson: analysisLesson, seed: 42, questionCount: 6 });
 const rootQuestion = analysisPlan.questions.find((question) => question.type === "root-recognition");
 assert.equal(rootQuestion.expectedCodes[0].length, 1);
 assert.equal(rootQuestion.expectedKeys.length, 1);
 
-const footballLesson = dataset.lessons.find((entry) => entry.id === "cj-construction-03");
+const footballLesson = dataset.lessons.find((entry) => entry.method === "cangjie" && entry.characterIds.length >= 9);
 const footballPlan = createFootballSessionPlan({
   dataset,
   lesson: footballLesson,
@@ -109,6 +132,35 @@ assert.deepEqual(
 );
 assert.equal(scoreFootballSave({ correct: false, reactionMs: 500, streak: 5 }).score, 0);
 
+const emptyModuleProgress = createChineseInputProgress();
+const firstJourney = dataset.lessons.find((entry) => entry.method === "cangjie");
+assert.equal(readinessForLesson(firstJourney, emptyModuleProgress).band, "ready");
+const kingdomModel = buildKingdomModel({
+  dataset,
+  moduleProgress: emptyModuleProgress,
+  miniGameProfile: { xp: 0, coins: 0 },
+  method: "cangjie",
+  currentRootKey: "A",
+});
+assert.equal(kingdomModel.currentRoot.key, "A");
+assert.ok(kingdomModel.journey);
+assert.equal(kingdomModel.dimensions.length, 9);
+assert.equal(FOOTBALL_CHALLENGES.length, 9);
+for (const challenge of FOOTBALL_CHALLENGES) {
+  const challengeLesson = buildFootballChallengeLesson({
+    challengeId: challenge.id,
+    dataset,
+    moduleProgress: emptyModuleProgress,
+    method: "cangjie",
+    journeyLesson: kingdomModel.journey.lesson,
+    reviewLesson: null,
+    currentRootKey: "A",
+    now: new Date("2026-07-31T00:00:00Z"),
+  });
+  assert.ok(challengeLesson.characterIds.length > 0, `${challenge.id} should have a playable pool`);
+  assert.ok(challengeLesson.activeKeys.length > 0, `${challenge.id} should expose its keyboard keys`);
+}
+
 const result = evaluateAnswer({ input: "DD", expectedCodes: ["DD"], method: "cangjie" });
 const mastery = updateCharacterMastery({}, result, { now: 0 });
 assert.equal(mastery.correct, 1);
@@ -129,6 +181,8 @@ const emptyLocaleState = {
 migrateChineseInputState(emptyLocaleState);
 assert.equal(emptyLocaleState.prefs.chineseInputLab.locale, "zh-HK");
 assert.equal(emptyLocaleState.prefs.chineseInputLab.autoPronounce, false);
+assert.equal(emptyLocaleState.prefs.chineseInputLab.currentRootKey, "A");
+assert.deepEqual(emptyLocaleState.progress.chineseInputLab.discoveredNodes, {});
 
 const validation = validateChineseInputDataset(dataset);
 assert.equal(validation.valid, true, validation.errors.join("\n"));

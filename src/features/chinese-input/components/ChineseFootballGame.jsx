@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { appendInputKey } from "../domain/code-normalisation.js";
 import { shouldAutoSubmitAnswer } from "../domain/answer-evaluator.js";
-import { findChineseInputCharacter } from "../dataset.js";
+import { findChineseInputCharacter } from "../domain/character-lookup.js";
 import {
   createFootballSessionPlan,
   createGoalTargets,
@@ -334,7 +334,7 @@ export default function ChineseFootballGame({
       <section className="lw-card cil-football-summary" data-testid="chinese-football-summary" aria-live="polite">
         <span className="cil-football-summary-icon" aria-hidden="true">{summary.passed ? "🏆" : "🧤"}</span>
         <p className="lw-eyebrow">Full time · {lesson.title.en}</p>
-        <h2>{summary.passed ? "Lesson cleared!" : "Training complete — try for more saves"}</h2>
+        <h2>{summary.passed ? "Challenge cleared!" : "Training complete — try for more saves"}</h2>
         <div className="cil-stat-grid">
           <div><strong>{summary.score}</strong><span>score</span></div>
           <div><strong>{summary.accuracy}%</strong><span>accuracy</span></div>
@@ -343,7 +343,7 @@ export default function ChineseFootballGame({
           <div><strong>{summary.xp}</strong><span>XP</span></div>
         </div>
         <div className="lw-btn-group">
-          <button className="lw-btn lw-btn-primary" type="button" onClick={onExit}>Back to lessons</button>
+          <button className="lw-btn lw-btn-primary" type="button" onClick={() => onExit({ completed: true, passed: summary.passed })}>Choose what’s next</button>
         </div>
       </section>
     );
@@ -364,12 +364,12 @@ export default function ChineseFootballGame({
         <div><small>Coins</small><strong>◎ {stats.coins}</strong></div>
         <div><small>Combo</small><strong>×{stats.streak}</strong></div>
         <div className="cil-football-clock"><strong>{timeSeconds}</strong></div>
-        <div className="cil-football-lesson-name"><small>Lesson {lesson.order}</small><strong>{lesson.title.en}</strong></div>
+        <div className="cil-football-lesson-name"><small>Current journey</small><strong>{lesson.title.en}</strong></div>
         <div className="cil-football-hearts" aria-label={`${lives} lives remaining`}>{hearts(lives)}</div>
         <button type="button" className="cil-football-icon-button" onClick={togglePause} disabled={phase !== "active"} aria-label={paused ? "Resume game" : "Pause game"}>
           {paused ? "▶" : "Ⅱ"}
         </button>
-        <button type="button" className="cil-football-icon-button" onClick={onExit} aria-label="Exit game">×</button>
+        <button type="button" className="cil-football-icon-button" onClick={() => onExit({ completed: false })} aria-label="Exit game to Kingdom">×</button>
       </header>
 
       <section className={`cil-football-stadium ${stageClass}`} style={pitchStyle} aria-label="Penalty save arena">

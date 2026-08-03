@@ -1,6 +1,7 @@
 import { clone } from "./utils.js";
 import {
   CHINESE_INPUT_PREFS_MIGRATION_VERSION,
+  CHINESE_INPUT_PROGRESS_SCHEMA_VERSION,
   createChineseInputPrefs,
   createChineseInputProgress,
   migrateChineseInputState,
@@ -130,6 +131,7 @@ export const DEFAULT_STATE = {
     arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
     miniGames: clone(DEFAULT_MINI_GAME_PROFILE),
     voicePractice: {},            // keyed by lesson/activity: { attempts, successes, lastScore }
+    learningRuntime: { schemaVersion: 1, worlds: {} },
     chineseInputLab: createChineseInputProgress(),
   },
   speakShadow: {
@@ -225,7 +227,7 @@ export function loadStoredState() {
     const parsed = JSON.parse(raw);
     const requiresChineseInputMigration = !parsed?.prefs?.chineseInputLab
       || !parsed?.progress?.chineseInputLab
-      || parsed?.progress?.chineseInputLab?.schemaVersion !== 1
+      || parsed?.progress?.chineseInputLab?.schemaVersion !== CHINESE_INPUT_PROGRESS_SCHEMA_VERSION
       || parsed?.prefs?.chineseInputLab?.migrationVersion !== CHINESE_INPUT_PREFS_MIGRATION_VERSION;
     migrateChineseInputState(parsed);
     migrateLanguageLadder(parsed);

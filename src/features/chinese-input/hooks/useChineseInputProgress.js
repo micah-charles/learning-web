@@ -93,6 +93,19 @@ export default function useChineseInputProgress() {
     });
   }, [updateProgress]);
 
+  const discoverNode = useCallback((id, kind = "knowledge") => {
+    if (!id) return;
+    updateProgress((state) => {
+      const lab = state.progress.chineseInputLab;
+      lab.discoveredNodes[id] = {
+        ...(lab.discoveredNodes[id] || {}),
+        kind,
+        discoveredAt: lab.discoveredNodes[id]?.discoveredAt || new Date().toISOString(),
+        lastVisitedAt: new Date().toISOString(),
+      };
+    });
+  }, [updateProgress]);
+
   const migrateCurriculum = useCallback(({ migration, lessons, inputDigest }) => {
     updateProgress((state) => {
       const current = state.progress.chineseInputLab;
@@ -113,6 +126,7 @@ export default function useChineseInputProgress() {
     recordAttempt,
     completeSession,
     completeGameSession,
+    discoverNode,
     migrateCurriculum,
   };
 }

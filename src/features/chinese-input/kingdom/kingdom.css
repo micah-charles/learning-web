@@ -1,0 +1,209 @@
+.cik-shell {
+  --ink: #173b35;
+  --jade: #167766;
+  --deep-jade: #0e554b;
+  --gold: #d89b2b;
+  --paper: #fff9e9;
+  --paper-edge: #dcc58c;
+  position: relative;
+  min-height: 760px;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.cik-header {
+  min-height: 76px;
+  padding: 10px clamp(16px, 3vw, 42px);
+  background: linear-gradient(90deg, #103c37, #176c5c 58%, #255b51);
+  color: #fffbed;
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) auto minmax(330px, 1fr);
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 5px 18px #12352f3d;
+  position: relative;
+  z-index: 5;
+}
+
+.cik-brand, .cik-root-heading, .cik-hud, .cik-reward-line, .cik-football-teaser, .cik-root-workbench {
+  display: flex;
+  align-items: center;
+}
+
+.cik-brand img { object-fit: contain; filter: drop-shadow(0 2px 3px #0018); }
+.cik-brand span { font: 700 12px/1.1 Georgia, serif; letter-spacing: .08em; opacity: .82; }
+.cik-brand h1 { margin: 2px 0 0; font: 700 clamp(19px, 2vw, 28px)/1 Georgia, serif; }
+
+.cik-method-switch {
+  margin: 0;
+  padding: 3px;
+  border: 1px solid #efd99e80;
+  border-radius: 999px;
+  display: flex;
+  background: #082f2a7a;
+}
+.cik-method-switch button {
+  min-height: 38px;
+  padding: 7px 17px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: transparent;
+  font-weight: 750;
+}
+.cik-method-switch button.is-active { color: #173b35; background: #ffe8a9; box-shadow: inset 0 0 0 1px #fff6cc; }
+
+.cik-hud { justify-content: flex-end; gap: 16px; }
+.cik-hud > span { display: grid; min-width: 54px; text-align: center; }
+.cik-hud strong { color: #ffe39a; font-size: 14px; }
+.cik-hud small { opacity: .82; font-size: 10px; }
+.cik-icon-button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d8b66b;
+  border-radius: 50%;
+  background: #fff8e7;
+  color: var(--ink);
+  font: 800 20px/1 sans-serif;
+}
+.cik-preview { padding: 8px 24px; background: #fff4cb; border-bottom: 1px solid #dfc16a; position: relative; z-index: 4; }
+.cik-preview summary { cursor: pointer; font-weight: 750; }
+.cik-preview p { margin: 6px 0; }
+
+.cik-world { position: relative; min-height: 680px; overflow: hidden; background: #d9eadc; }
+.cik-world-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 46%; }
+.cik-world::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0c393524 0%, transparent 34%, transparent 68%, #0a383024 100%), linear-gradient(0deg, #0e443d33, transparent 38%); pointer-events: none; }
+.cik-world-content { position: relative; z-index: 2; width: min(1440px, 100%); min-height: 680px; margin: auto; padding: 32px clamp(18px, 4vw, 60px) 104px; display: grid; grid-template-columns: minmax(280px, 380px) 1fr minmax(260px, 330px); align-items: start; gap: 22px; }
+.cik-parchment { padding: 23px; border: 1px solid var(--paper-edge); border-radius: 7px 20px 7px 20px; background: linear-gradient(135deg, #fffdf4f2, #fff1cfe8); box-shadow: 0 12px 34px #17382f42, inset 0 0 22px #d6b86627; backdrop-filter: blur(5px); }
+.cik-parchment h2 { margin: 4px 0; font: 750 30px/1.05 Georgia, serif; color: #173f36; }
+.cik-eyebrow { margin: 0 0 4px; color: #9c6018; font: 800 11px/1.2 sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.cik-zh-subtitle { margin: 5px 0; }
+.cik-readiness { display: flex; gap: 8px; align-items: center; margin: 12px 0; }
+.cik-readiness-stars { color: #c88718; letter-spacing: 1px; }
+.cik-journey-reason { font-size: 13px; line-height: 1.45; }
+.cik-today ul { margin: 10px 0; padding-left: 20px; font-size: 13px; }
+.cik-today li { margin: 5px 0; }
+.cik-reward-line { justify-content: space-between; gap: 10px; font-size: 11px; color: #4e655d; margin: 13px 0; }
+.cik-primary, .cik-secondary {
+  min-height: 44px; border: 1px solid #f7dc8c; border-radius: 9px; padding: 9px 16px; font-weight: 800;
+}
+.cik-primary { width: 100%; color: #fff; background: linear-gradient(#268c72, #126452); box-shadow: 0 3px 0 #0c483b; }
+.cik-secondary { color: #143d34; background: #fff4cf; border-color: #c79b45; }
+.cik-link-button { min-height: 44px; border: 0; background: transparent; color: #145f54; text-decoration: underline; font-weight: 750; width: 100%; }
+
+.cik-root-focus { grid-column: 3; }
+.cik-root-heading { gap: 16px; }
+.cik-root-heading > div { display: grid; }
+.cik-root-heading strong { font: 800 28px/1 Georgia, serif; }
+.cik-root-heading span { text-transform: capitalize; }
+.cik-root-glyph { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; background: #fff4cb; border: 2px solid #b9862a; font: 700 52px/1 serif; box-shadow: inset 0 0 0 5px #fffaf0; }
+.cik-related-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0; }
+.cik-related-row button { min-width: 48px; min-height: 50px; border: 1px solid #9a8a62; border-radius: 8px; background: #fffbec; display: grid; }
+.cik-related-row button span { font-size: 22px; }
+
+.cik-companion { position: absolute; left: 43%; bottom: 26px; transform: translateX(-50%); width: min(380px, 35vw); display: flex; align-items: flex-end; gap: 8px; }
+.cik-companion img { object-fit: contain; filter: drop-shadow(0 4px 5px #123a); }
+.cik-companion p { margin: 0 0 30px; padding: 10px 14px; border: 1px solid #d0ad65; border-radius: 17px 17px 17px 4px; background: #fff9e9eb; font-size: 12px; box-shadow: 0 4px 14px #17382f33; }
+.cik-companion button { min-width: 44px; min-height: 44px; border-radius: 50%; border: 1px solid #b98c39; background: #fff5d3; }
+.cik-companion.is-minimized { left: 50%; width: auto; }
+.cik-companion.is-minimized img { width: 58px; height: 58px; }
+.cik-football-teaser { position: absolute; right: clamp(18px, 4vw, 60px); bottom: 28px; width: min(410px, 35vw); min-height: 70px; gap: 14px; padding: 10px 18px; border: 1px solid #d2ad60; border-radius: 14px; color: var(--ink); background: #fff7dbea; text-align: left; box-shadow: 0 8px 25px #17382f3a; }
+.cik-football-teaser > span:first-child { font-size: 36px; }
+.cik-football-teaser span:last-child { display: grid; }
+.cik-football-teaser small { margin-top: 3px; }
+.cik-view-toggle { position: absolute; z-index: 3; top: 12px; right: 14px; min-height: 44px; border: 1px solid #af8c4e; border-radius: 999px; background: #fff9e8dd; color: var(--ink); padding: 7px 14px; font-weight: 700; }
+.cik-action-list { display: none; }
+
+.cik-flower { position: fixed; z-index: 80; right: 34px; bottom: 30px; width: 92px; height: 92px; transition: bottom .2s ease; }
+.cik-flower.is-open { right: 170px; bottom: 170px; }
+.cik-flower-centre { position: absolute; z-index: 4; inset: 0; width: 92px; height: 92px; border: 3px solid #f7d173; border-radius: 50%; background: radial-gradient(circle, #ffda64 0 27%, #f7a23a 29% 45%, #d65c3c 47% 60%, #317b65 62%); color: #fff; box-shadow: 0 8px 24px #17382f80; font-weight: 850; text-shadow: 0 1px 2px #0008; }
+.cik-flower-centre span { display: block; }
+.cik-flower-centre span:first-child { font-size: 26px; }
+.cik-flower-shortcut { position: absolute; right: -5px; top: -5px; z-index: 5; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: #fff; background: #173b35; font-size: 11px; }
+.cik-flower-petals { position: absolute; z-index: 2; inset: 0; pointer-events: none; }
+.cik-flower-petal { position: absolute; left: 4px; top: 4px; width: 84px; height: 84px; border: 2px solid #e4bb60; border-radius: 48% 52% 48% 52%; background: #fff5cc; color: #17483d; box-shadow: 0 5px 17px #17382f5e; opacity: 0; transform: rotate(calc(var(--petal-index) * 45deg)) translateY(0) rotate(calc(var(--petal-index) * -45deg)) scale(.3); transition: transform .25s ease, opacity .2s ease; font-weight: 800; pointer-events: none; }
+.cik-flower-petal span { display: block; }
+.cik-flower-petal span:first-child { font-size: 22px; }
+.cik-flower.is-open .cik-flower-petal { opacity: 1; pointer-events: auto; transform: rotate(calc(var(--petal-index) * 45deg)) translateY(-145px) rotate(calc(var(--petal-index) * -45deg)) scale(1); }
+.cik-flower-backdrop { position: fixed; inset: 0; border: 0; background: #092a2666; backdrop-filter: blur(2px); }
+
+.cik-overlay-layer { position: fixed; z-index: 70; inset: 0; display: grid; place-items: center; padding: 95px 22px 30px; }
+.cik-overlay-scrim { position: absolute; inset: 0; border: 0; background: #092a2680; backdrop-filter: blur(4px); }
+.cik-overlay { position: relative; width: min(780px, 100%); max-height: calc(100vh - 135px); overflow: auto; border: 2px solid #d2ae62; border-radius: 20px 5px 20px 5px; background: #fffaf0; box-shadow: 0 25px 80px #031a17a3; outline: none; }
+.cik-overlay-wide { width: min(1180px, 100%); }
+.cik-overlay-header { position: sticky; top: 0; z-index: 4; display: flex; justify-content: space-between; align-items: center; padding: 17px 22px; color: #fff; background: linear-gradient(90deg, #174e44, #267961); border-bottom: 2px solid #d9b15c; }
+.cik-overlay-header h2 { margin: 0; font: 750 27px/1.1 Georgia, serif; }
+.cik-overlay-header .cik-eyebrow { color: #ffe2a0; }
+.cik-overlay-body { padding: clamp(18px, 3vw, 34px); }
+.cik-intro { margin-top: 0; }
+.cik-root-map { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 9px; }
+.cik-root-map button, .cik-constellation button { min-height: 78px; border: 1px solid #9fb8ad; border-radius: 9px; background: #edf6ef; color: var(--ink); display: grid; place-items: center; }
+.cik-root-map button.is-current, .cik-constellation button.is-current { border: 3px solid #d99425; background: #fff0aa; }
+.cik-root-map button span, .cik-constellation button span { font-size: 29px; }
+.cik-root-map small { text-transform: capitalize; }
+.cik-panel-keyboard { margin-top: 25px; }
+.cik-choice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; }
+.cik-choice-grid > button { min-height: 150px; padding: 18px; border: 1px solid #bca56f; border-radius: 14px 5px 14px 5px; color: var(--ink); background: linear-gradient(135deg, #fffdf3, #f1f5df); display: grid; align-content: center; gap: 6px; text-align: left; box-shadow: 0 4px 12px #294b4330; }
+.cik-choice-grid > button:hover, .cik-choice-grid > button:focus-visible { border-color: #b77616; transform: translateY(-2px); }
+.cik-choice-icon { font-size: 26px; }
+.cik-state-label { width: max-content; padding: 3px 8px; border-radius: 999px; background: #cfe9d6; font-size: 11px; font-weight: 800; }
+.cik-root-workbench { gap: 20px; margin-bottom: 22px; }
+.cik-root-workbench > span { font-size: 80px; }
+.cik-root-workbench h3 { margin: 0; font: 750 26px Georgia, serif; }
+.cik-dimension-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px 25px; }
+.cik-dimension-list > div { display: grid; grid-template-columns: 1fr auto; gap: 5px; }
+.cik-dimension-list progress { grid-column: 1 / -1; width: 100%; accent-color: var(--jade); }
+.cik-constellation { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 30px; background: radial-gradient(circle, #e8f1d7, #d5e8d7); border-radius: 50%; }
+.cik-constellation button { width: 105px; border-radius: 50%; }
+.cik-settings { display: grid; gap: 18px; }
+.cik-settings label { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; }
+.cik-settings select { min-height: 44px; }
+
+@media (max-width: 900px) {
+  .cik-header { grid-template-columns: 1fr auto; }
+  .cik-hud { grid-column: 1 / -1; justify-content: center; padding-top: 5px; border-top: 1px solid #ffffff30; }
+  .cik-world-content { grid-template-columns: 1fr 1fr; }
+  .cik-root-focus { grid-column: 2; }
+  .cik-companion { left: 25%; width: 42vw; }
+  .cik-football-teaser { width: 44vw; }
+}
+
+@media (max-width: 680px) {
+  .cik-shell { min-height: 100vh; }
+  .cik-header { grid-template-columns: 1fr; gap: 8px; padding: 8px 12px; }
+  .cik-brand img { width: 46px; height: 46px; }
+  .cik-brand h1 { font-size: 21px; }
+  .cik-method-switch { justify-self: center; }
+  .cik-hud { overflow-x: auto; justify-content: flex-start; width: 100%; }
+  .cik-world { min-height: 900px; }
+  .cik-world-art { height: 340px; object-position: center; }
+  .cik-world::after { background: linear-gradient(0deg, #edf4e9 55%, transparent 90%); }
+  .cik-world-content { min-height: 880px; padding: 290px 12px 110px; display: flex; flex-direction: column; }
+  .cik-parchment { width: 100%; }
+  .cik-root-focus { order: 2; }
+  .cik-companion { position: static; order: 3; transform: none; width: 100%; }
+  .cik-companion.is-minimized { width: auto; }
+  .cik-football-teaser { position: static; order: 4; width: 100%; }
+  .cik-view-toggle { top: 10px; right: 8px; }
+  .cik-flower { right: 16px; bottom: 18px; }
+  .cik-flower.is-open { width: calc(100vw - 24px); height: auto; right: 12px; bottom: 12px; padding: 12px; border-radius: 20px; background: #fff8e9; }
+  .cik-flower.is-open .cik-flower-petals { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .cik-flower.is-open .cik-flower-petal { position: static; width: auto; height: 55px; opacity: 1; transform: none; display: flex; align-items: center; justify-content: flex-start; gap: 9px; padding: 8px 12px; border-radius: 12px; }
+  .cik-flower.is-open .cik-flower-centre { position: static; width: 100%; height: 50px; margin-top: 10px; border-radius: 12px; background: #236e5b; }
+  .cik-flower.is-open .cik-flower-shortcut { display: none; }
+  .cik-overlay-layer { align-items: end; padding: 70px 0 0; }
+  .cik-overlay, .cik-overlay-wide { width: 100%; max-height: calc(100vh - 70px); border-radius: 22px 22px 0 0; border-width: 2px 0 0; }
+  .cik-choice-grid, .cik-dimension-list { grid-template-columns: 1fr; }
+  .cik-overlay-body { padding: 18px 12px 28px; }
+}
+
+.cik-world.is-list-view { min-height: auto; background: #eef4e8; }
+.cik-world.is-list-view .cik-world-art, .cik-world.is-list-view .cik-world-content { display: none; }
+.cik-world.is-list-view .cik-view-toggle { position: relative; float: right; margin: 12px; }
+.cik-world.is-list-view .cik-action-list { clear: both; position: relative; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; padding: 20px clamp(16px, 4vw, 60px) 110px; }
+.cik-action-list button { min-height: 90px; border: 1px solid #a5b7a7; border-radius: 12px; background: #fffdf5; color: var(--ink); display: flex; gap: 13px; align-items: center; padding: 15px; }
+.cik-action-list span { font-size: 27px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cik-flower-petal, .cik-choice-grid > button { transition: none; }
+}

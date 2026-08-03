@@ -14,6 +14,9 @@
 - [Render selects committed curriculum at Vite build time](chinese-input/business-rules.md#render-selects-committed-curriculum-at-vite-build-time) - active - The Blueprint selects committed preview artifacts; Render never regenerates lessons.
 - [Chinese Input Lab is not a Language Ladder pack](chinese-input/business-rules.md#chinese-input-lab-is-not-a-language-ladder-pack) - active - Share infrastructure while keeping input-method rules isolated.
 - [Mini-games use lesson characters and canonical grading](chinese-input/business-rules.md#mini-games-use-lesson-characters-and-canonical-grading) - active - Generate and grade from canonical Chinese Input contracts; never embed a game answer map.
+- [The Floating Flower owns Chinese Input module navigation](chinese-input/business-rules.md#the-floating-flower-owns-chinese-input-module-navigation) - active - Keep one knowledge world; open learning modes as sessions or overlays while global navigation remains in the platform menu.
+- [The FoxChild Learning Runtime must remain domain-neutral](chinese-input/business-rules.md#the-foxchild-learning-runtime-must-remain-domain-neutral) - active - Module adapters, never the Director, own subject nouns, evaluators and challenge construction.
+- [Runtime curriculum has no legacy seed fallback](chinese-input/business-rules.md#runtime-curriculum-has-no-legacy-seed-fallback) - active - Runtime and QA use the committed 3,000-character generated curriculum or fail visibly.
 
 ## Mini-game framework
 

@@ -22,12 +22,12 @@ import { CHINESE_INPUT_STATIC_COPY_TARGETS } from "../../../vite.config.js";
 const projectRoot = resolve(import.meta.dirname, "../../..");
 const generator = resolve(import.meta.dirname, "generate.mjs");
 
-test("production builds default to generated preview without weakening explicit overrides", () => {
+test("all builds default to generated preview and reject removed legacy overrides", () => {
   assert.equal(configuredChineseCurriculumSource({ PROD: true }), "generated-preview");
-  assert.equal(configuredChineseCurriculumSource({ PROD: false }), "legacy");
+  assert.equal(configuredChineseCurriculumSource({ PROD: false }), "generated-preview");
   assert.equal(
     configuredChineseCurriculumSource({ PROD: true, VITE_CHINESE_CURRICULUM_SOURCE: "legacy" }),
-    "legacy",
+    "generated-preview",
   );
   assert.equal(
     configuredChineseCurriculumSource({ PROD: true, VITE_CHINESE_CURRICULUM_SOURCE: "unsupported" }),
@@ -96,7 +96,7 @@ test("preview generation covers all canonical characters and adapts safely at ru
     assert.deepEqual(possessiveParticle.cangjie.acceptedCodes, ["HAPI"]);
     assert.deepEqual(possessiveParticle.quick.acceptedCodes, ["HI"]);
     assert.ok(adapted.dataset.lessons.length > 500);
-    assert.match(adapted.warning, /not production-approved/);
+    assert.equal(adapted.warning, "");
     const lessonCounts = adapted.dataset.lessons.reduce((counts, lesson) => {
       counts[lesson.method] = (counts[lesson.method] || 0) + 1;
       const lessonPlan = generateSessionPlan({

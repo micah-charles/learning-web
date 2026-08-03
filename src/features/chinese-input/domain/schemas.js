@@ -1,5 +1,4 @@
 import { CANGJIE_ROOTS, ROOT_BY_KEY } from "../data/keyboard-layout.js";
-import { CHINESE_INPUT_LESSONS } from "../data/lesson-catalog.js";
 import { unicodeCodePoint } from "./code-normalisation.js";
 
 function assert(condition, message, errors) {
@@ -55,7 +54,7 @@ export function validateChineseInputDataset(dataset) {
     validateMethodData(character, "cangjie", errors);
     validateMethodData(character, "quick", errors);
   }
-  for (const lesson of dataset?.lessons || CHINESE_INPUT_LESSONS) {
+  for (const lesson of dataset?.lessons || []) {
     for (const characterId of lesson.characterIds || []) {
       assert(charactersById.has(characterId), `${lesson.id}: unknown character ${characterId}`, errors);
       const character = charactersById.get(characterId);

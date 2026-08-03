@@ -1,7 +1,7 @@
 # Chinese Input Lab Business Rules
 
 ## Canonical codes are pinned static data
-code: `src/features/chinese-input/data/seed-dataset.json`, `scripts/chinese-input/build-dataset.mjs`, `docs/chinese-input-lab/DATA_PROVENANCE.md` | updated: 2026-07-28 | status: active
+code: `learning-data/chinese-input/canonical/`, `src/features/chinese-input/data/adapt-generated-curriculum.js`, `scripts/validate-chinese-input-data.mjs` | updated: 2026-08-03 | status: active
 
 ### Context
 Chinese Input correctness comes from pinned Rime Cangjie 5 and Quick sources. Unihan supplies language metadata. Runtime AI is not authoritative.
@@ -132,10 +132,10 @@ Root-recognition and guided-typing questions are different contracts. Root recog
 code: `render.yaml`, `src/features/chinese-input/data/generated-curriculum-adapter.js` | updated: 2026-07-30 | status: active
 
 ### Context
-Render serves static Vite output, so `VITE_CHINESE_CURRICULUM_SOURCE` is resolved during `npm run build`, not when a browser requests the site. The existing Render service auto-deploys repository commits but does not automatically synchronise `render.yaml` Blueprint fields. Production builds therefore default to `generated-preview`; development defaults to `legacy`, and an explicit valid environment value overrides either default.
+Render serves static Vite output, so `VITE_CHINESE_CURRICULUM_SOURCE` is resolved during `npm run build`, not when a browser requests the site. The existing Render service auto-deploys repository commits but does not automatically synchronise `render.yaml` Blueprint fields. Development and production builds default to `generated-preview`; an explicit valid generated source overrides the default.
 
 ### Why it matters
-Relying only on an unsynchronised Blueprint variable produced a successful deployment whose compiled bundle still contained the legacy fallback. Asking Render to regenerate lessons would instead duplicate the deterministic compiler and create deployment drift.
+Relying only on an unsynchronised Blueprint variable previously produced a successful deployment whose compiled bundle still contained the obsolete seed fallback. That fallback has now been removed. Asking Render to regenerate lessons would duplicate the deterministic compiler and create deployment drift.
 
 ### Guidance for future agents
 Keep generated lesson artifacts committed and verified by CI. Keep the Render Blueprint value as declarative configuration, but do not assume an existing dashboard-created service synchronises it. Verify the deployed bundle or UI after release. Render must build and serve committed files only; curriculum regeneration remains a deliberate local or CI command.
@@ -153,3 +153,34 @@ Embedding a game-specific answer map would drift from the validated curriculum. 
 Build game questions through `generateSessionPlan` and grade through `evaluateAnswer`. Render all nine zones, leave surplus zones empty for small lessons, and rotate deterministic character subsets for larger lessons. Record mastery attempts normally, store game statistics in the shared mini-game profile, and use normal lesson completion for passed matches so the next lesson unlocks.
 
 Football pronunciation must reuse `useChineseSpeech` through the parent Chinese Input page. Respect the existing speech-enabled, auto-pronounce and `zh-HK`/`zh-TW` locale preferences; do not create a game-only speech setting or call the browser speech API directly. Auto-pronounce each new target at most once, and keep a manual replay control available during the round.
+## The Floating Flower owns Chinese Input module navigation
+
+Status: active
+
+Chinese Input Kingdom is one current knowledge world, not a dashboard of permanent destination buildings. The generic Runtime Floating Flower is the only primary navigation inside the module and exposes exactly Journey, Training, Review, Arena, Explore and Collection. Settings stays in the world HUD. These actions open sessions or immersive overlays over the world. The application NavBar remains visible because it navigates between FoxChild@Learn products, not within Chinese Input.
+
+Do not add a permanent module sidebar, a second module tab bar, numbered stage/lesson menus, hard locks, or fixed mode buildings. Readiness is advisory and every learning action remains available. Persist current-root, journey and discovered-node context through `ProgressContext`; never replace older mastery, session or reward records during migration.
+
+## The FoxChild Learning Runtime must remain domain-neutral
+code: `src/learning-runtime/`, `src/features/chinese-input/runtime/chinese-input-world-adapter.ts` | updated: 2026-08-03 | status: active
+
+### Context
+The Learning Director, immutable session planner, checkpoint controller, activity registry and reusable world UI serve multiple future learning modules. Chinese characters, roots, Cangjie/Quick evaluator references and football pools are supplied by the Chinese Input adapter.
+
+### Why it matters
+A runtime that constructs `characterIds`, Chinese skill IDs or module evaluator references is only a renamed Chinese feature and cannot safely support another world.
+
+### Guidance for future agents
+Keep module nouns and evaluator contracts out of `src/learning-runtime/`. Adapters must build generic nodes, chapters, evidence, candidates, activity blocks and challenges. The Director may rank generic evidence but must not invent or grade subject knowledge.
+
+## Runtime curriculum has no legacy seed fallback
+code: `src/features/chinese-input/data/generated-curriculum-adapter.js`, `src/features/chinese-input/data/adapt-generated-curriculum.js`, `scripts/validate-chinese-input-data.mjs` | updated: 2026-08-03 | status: active
+
+### Context
+The former 115-character, six-lesson seed dataset caused development and QA to render a different product from the committed 3,000-character generated curriculum. It has been removed. A small map under `learning-data/chinese-input/migrations/` remains solely to preserve stable entity progress and is deliberately outside curriculum policy so it cannot change lesson content digests.
+
+### Why it matters
+Silent fallback can make browser QA pass while learners see only the obsolete curriculum.
+
+### Guidance for future agents
+Runtime loading must fail visibly if the generated bundle or canonical dataset is invalid. The build gate must prove exactly 3,000 characters and at least 500 adapted lessons. Never restore a runtime `legacy` source option.
