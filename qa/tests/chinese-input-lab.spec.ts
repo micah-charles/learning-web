@@ -477,4 +477,9 @@ test("world home exposes one recommendation and Flower navigation", async ({ pag
   await expect(page.getByRole("dialog", { name: /Explore the Knowledge World/ })).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog", { name: /Explore the Knowledge World/ })).toBeHidden();
+
+  const flowerTrigger = page.getByRole("button", { name: "Open learning navigation" });
+  await flowerTrigger.click();
+  await page.keyboard.press("Escape");
+  await expect(flowerTrigger).toBeFocused();
 });
