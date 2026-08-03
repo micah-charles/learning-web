@@ -44,6 +44,12 @@ test("Learner signals stay method-specific", () => {
   });
   assert.equal(signals.weakCount, 1);
   assert.equal(signals.recentAttempts.length, 0);
+  assert.equal(signals.hasEvidence, true);
+});
+
+test("Learner signals expose an honest no-evidence state", () => {
+  const signals = buildLearnerSignals({ moduleProgress: {}, method: "quick", now: Date.parse("2026-08-03T12:00:00Z") });
+  assert.equal(signals.hasEvidence, false);
 });
 
 test("Session plans are deterministic, mixed when review is due, and frozen", () => {
@@ -57,6 +63,7 @@ test("Session plans are deterministic, mixed when review is due, and frozen", ()
   assert.equal(digestPlan({ ...first, planDigest: undefined }), digestPlan({ ...second, planDigest: undefined }));
   assert.equal(first.blocks.length, 2);
   assert.equal(first.blocks[1].purpose, "retention");
+  assert.equal(first.blocks[0].challenges[0].responseContract.type, "keyboard-code");
   assert.ok(Object.isFrozen(first));
   assert.ok(isCompatibleSessionPlan(first, { worldId: "chinese-input", contentRevision: "0.1.0", method: "cangjie" }));
   assert.ok(isValidSessionPlan(first, { worldId: "chinese-input", contentRevision: "0.1.0", method: "cangjie" }));

@@ -48,11 +48,13 @@ function blockForCandidate(candidate, { purpose, worldId, contentRevision, metho
     chapterId: isReview ? undefined : id,
     nodeIds,
     skillIds: method ? [`chinese-input:${method}`] : [],
-    challengeRefs: (candidate.characterIds || []).map((characterId) => ({
+    challenges: (candidate.characterIds || []).map((characterId) => ({
       challengeId: `${id}:${characterId}`,
       worldId,
       chapterId: isReview ? undefined : id,
       nodeIds: [`character:${characterId}`],
+      prompt: { en: "Verified practice challenge" },
+      responseContract: { type: "keyboard-code", method: method || "default" },
       skillIds: method ? [`chinese-input:${method}`] : [],
       evaluatorRef: `chinese-input.${method || "default"}.canonical-evaluator`,
       contentRevision,

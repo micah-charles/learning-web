@@ -68,5 +68,5 @@ export function buildLearnerSignals({ moduleProgress = {}, method = "cangjie", n
     const methodRecord = record?.[method];
     return methodRecord?.attempts && (methodRecord.masteryScore || 0) < 60;
   }).length;
-  return { completedById, dueCount, weakCount, activeSession: moduleProgress.activeSession || null, recentAttempts: events.slice(-30), lastAttemptAt: events.at(-1)?.occurredAt || "" };
+  return { completedById, dueCount, weakCount, activeSession: moduleProgress.activeSession || null, hasEvidence: events.length > 0 || Object.keys(completedById).length > 0, recentAttempts: events.slice(-30), lastAttemptAt: events.at(-1)?.occurredAt || "" };
 }

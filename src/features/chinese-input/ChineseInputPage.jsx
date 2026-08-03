@@ -21,7 +21,7 @@ function JourneyPicker({ model, onStart, onStartFootball }) {
 
 function WhyPanel({ model }) {
   const copy = { REVIEW_DUE: "Some characters are ready to revisit.", RESUME_SESSION: "You can safely continue the saved session from this world.", CONTINUE_CHAPTER: "It continues the journey you were already exploring.", NEW_FOUNDATION: "It introduces a reviewed foundation for the next group of characters.", WEAK_KNOWLEDGE: "It gives extra practice to a developing skill.", LEARNER_SELECTED_NODE: "It follows the focus you selected.", ARENA_READY: "This content is ready for a compatible game challenge.", EXPEDITION_PRIORITY: "It supports an active optional objective." };
-  return <div className="cik-why-panel" data-testid="chinese-input-why"><p className="lw-subtitle">FoxChild chose this as a useful next step from your local learning evidence.</p><ul>{model.reasonCodes.map((reason) => <li key={reason}>{copy[reason] || "It is a useful next step for your current practice."}</li>)}</ul><p className="cik-standard-note">Recommendations are guidance, not locks. You can choose another activity at any time.</p></div>;
+  return <div className="cik-why-panel" data-testid="chinese-input-why"><p className="lw-subtitle">{model.learner.hasEvidence ? "FoxChild chose this as a useful next step from your local learning evidence." : "This is a reviewed starting point while FoxChild learns what you want to practise."}</p><ul>{model.reasonCodes.map((reason) => <li key={reason}>{copy[reason] || "It is a useful next step for your current practice."}</li>)}</ul><p className="cik-standard-note">Recommendations are guidance, not locks. You can choose another activity at any time.</p></div>;
 }
 
 function ProgressPanel({ model, moduleProgress }) {
