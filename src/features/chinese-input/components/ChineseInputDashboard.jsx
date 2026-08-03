@@ -1,4 +1,5 @@
 import { isReviewDue } from "../domain/review-scheduler.js";
+import { INPUT_TOOL_KEYS } from "../data/keyboard-layout.js";
 
 function countMastered(records, method) {
   return Object.values(records || {}).filter((record) => (record?.[method]?.masteryScore || 0) >= 80).length;
@@ -18,7 +19,8 @@ export default function ChineseInputDashboard({
   const events = (moduleProgress.attemptEvents || []).filter((event) => event.method === method).slice(-20);
   const accuracy = events.length ? Math.round(events.filter((event) => event.correct).length / events.length * 100) : 0;
   const due = Object.values(moduleProgress.characters || {}).filter((record) => isReviewDue(record?.[method])).length;
-  const learnedRoots = Object.values(moduleProgress.roots || {}).filter((root) => (root.exposures || 0) > 0).length;
+  const progressRoots = dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key));
+  const learnedRoots = progressRoots.filter((root) => (moduleProgress.roots?.[root.key]?.exposures || 0) > 0).length;
 
   return (
     <div data-testid="chinese-input-dashboard">
@@ -50,7 +52,7 @@ export default function ChineseInputDashboard({
 
       <section className="cil-stat-grid" aria-label="Chinese Input progress">
         <div className="lw-card"><strong>{due}</strong><span>reviews due</span></div>
-        <div className="lw-card"><strong>{learnedRoots}/26</strong><span>roots practised</span></div>
+        <div className="lw-card"><strong>{learnedRoots}/{progressRoots.length}</strong><span>roots practised</span></div>
         <div className="lw-card"><strong>{countMastered(moduleProgress.characters, method)}</strong><span>characters mastered</span></div>
         <div className="lw-card"><strong>{accuracy}%</strong><span>recent accuracy</span></div>
       </section>

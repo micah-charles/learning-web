@@ -17,6 +17,7 @@
 - [The Floating Flower owns Chinese Input module navigation](chinese-input/business-rules.md#the-floating-flower-owns-chinese-input-module-navigation) - active - Keep one knowledge world; open learning modes as sessions or overlays while global navigation remains in the platform menu.
 - [The FoxChild Learning Runtime must remain domain-neutral](chinese-input/business-rules.md#the-foxchild-learning-runtime-must-remain-domain-neutral) - active - Module adapters, never the Director, own subject nouns, evaluators and challenge construction.
 - [Knowledge regions are gateways, not lesson links](chinese-input/business-rules.md#knowledge-regions-are-gateways-not-lesson-links) - active - Selecting a root opens reusable region actions; the Director remains the only session generator.
+- [Input Tools are not character-root mastery](chinese-input/business-rules.md#input-tools-are-not-character-root-mastery) - active - Special IME keys such as Z remain teachable, but stay out of root progress, region completion and character relationships.
 - [Runtime curriculum has no legacy seed fallback](chinese-input/business-rules.md#runtime-curriculum-has-no-legacy-seed-fallback) - active - Runtime and QA use the committed 3,000-character generated curriculum or fail visibly.
 
 ## Mini-game framework

@@ -43,7 +43,7 @@ export default function useChineseInputProgress() {
           }),
         };
       }
-      if (rootKey) {
+      if (rootKey && !question.metadata?.inputToolKey) {
         lab.roots[rootKey] = updateRootMastery(lab.roots[rootKey], result, {
           durationMs: result.durationMs,
           now: Date.parse(occurredAt),

@@ -16,6 +16,7 @@ import { resolveKeyState } from "../src/features/chinese-input/domain/key-state.
 import { updateCharacterMastery } from "../src/features/chinese-input/domain/mastery-engine.js";
 import { scheduleNextReview } from "../src/features/chinese-input/domain/review-scheduler.js";
 import { createChineseInputProgress, migrateChineseInputState } from "../src/features/chinese-input/domain/progress-migration.js";
+import { migrateChineseInputCurriculumProgress } from "../src/features/chinese-input/domain/curriculum-migration.js";
 import { validateChineseInputDataset } from "../src/features/chinese-input/domain/schemas.js";
 import { adaptGeneratedChineseInputDataset } from "../src/features/chinese-input/data/adapt-generated-curriculum.js";
 import {
@@ -63,10 +64,17 @@ assert.equal(createSeededRandom(42)(), createSeededRandom(42)());
 
 assert.equal(dataset.characters.length, 3000);
 assert.ok(dataset.lessons.length >= 500);
+assert.equal(dataset.characters.filter((character) => character.cangjie.keySequence.includes("Z") || character.quick.keySequence.includes("Z")).length, 0);
+const inputToolsLesson = dataset.lessons.find((entry) => entry.id === "cj-stage-00-lesson-013");
+assert.equal(inputToolsLesson.category, "input-tools");
+assert.equal(inputToolsLesson.title.en, "Input Tools: Z special key");
+assert.deepEqual(inputToolsLesson.inputToolKeys, ["Z"]);
 const lesson = dataset.lessons.find((entry) => entry.method === "cangjie" && entry.characterIds.length >= 8);
 const planA = generateSessionPlan({ dataset, lesson, seed: 42, questionCount: 8 });
 const planB = generateSessionPlan({ dataset, lesson, seed: 42, questionCount: 8 });
 assert.deepEqual(planA, planB);
+const inputToolsPlan = generateSessionPlan({ dataset, lesson: inputToolsLesson, seed: 42, questionCount: 8 });
+assert.ok(inputToolsPlan.questions.some((question) => question.metadata.inputToolKey === "Z"));
 const orderedReview = {
   ...lesson,
   id: "adaptive-review-test",
@@ -145,6 +153,15 @@ const kingdomModel = buildKingdomModel({
 assert.equal(kingdomModel.currentRoot.key, "A");
 assert.ok(kingdomModel.journey);
 assert.equal(kingdomModel.dimensions.length, 9);
+const toolOnlyProgress = createChineseInputProgress();
+toolOnlyProgress.roots.Z = { exposures: 4, masteryScore: 100 };
+assert.equal(buildKingdomModel({
+  dataset,
+  moduleProgress: toolOnlyProgress,
+  miniGameProfile: { xp: 0, coins: 0 },
+  method: "cangjie",
+  currentRootKey: "A",
+}).practisedRootCount, 0);
 assert.equal(FOOTBALL_CHALLENGES.length, 9);
 for (const challenge of FOOTBALL_CHALLENGES) {
   const challengeLesson = buildFootballChallengeLesson({
@@ -191,5 +208,13 @@ invalidDataset.characters[0].cangjie.acceptedCodes = [];
 const invalidValidation = validateChineseInputDataset(invalidDataset);
 assert.equal(invalidValidation.valid, false);
 assert.ok(invalidValidation.errors.some((error) => error.includes("acceptedCodes is empty")));
+
+const migrated = migrateChineseInputCurriculumProgress(
+  createChineseInputProgress(),
+  { migrationVersion: 1 },
+  [{ lessonId: "cj-stage-00-lesson-013", newRoots: ["cj-A", "cj-Z"], newCharacters: [] }],
+  "digest",
+);
+assert.deepEqual(migrated.lessons["cj-stage-00-lesson-013"].requiredEntityIds, ["cj-A"]);
 
 console.log("Chinese Input domain tests passed.");

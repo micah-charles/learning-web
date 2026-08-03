@@ -14,6 +14,7 @@ import { playSoundCue, SOUND_CUES } from "../../../react/utils/soundCues.js";
 import CharacterCollection from "../components/CharacterCollection.jsx";
 import PronunciationButton from "../components/PronunciationButton.jsx";
 import VirtualCangjieKeyboard from "../components/VirtualCangjieKeyboard.jsx";
+import { INPUT_TOOL_KEYS } from "../data/keyboard-layout.js";
 import { FOOTBALL_CHALLENGES } from "./kingdom-model.js";
 import "../../../learning-runtime/theme/runtime.css";
 import "./kingdom.css";
@@ -116,7 +117,7 @@ export default function ChineseInputKingdom({
     || moduleProgress.discoveredNodes?.[character.id]
   )).length, [dataset.characters, method, moduleProgress.characters, moduleProgress.discoveredNodes]);
   const museumWings = [
-    { id: "characters", label: "Characters & Roots", description: "Verified glyphs and keyboard roots", icon: "字", discovered: discoveredCharacterCount + model.practisedRootCount, total: dataset.characters.length + dataset.roots.length, samples: model.relatedCharacters.slice(0, 4).map((item) => item.char) },
+    { id: "characters", label: "Characters & Roots", description: "Verified glyphs and keyboard roots", icon: "字", discovered: discoveredCharacterCount + model.practisedRootCount, total: dataset.characters.length + dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key)).length, samples: model.relatedCharacters.slice(0, 4).map((item) => item.char) },
     { id: "achievements", label: "Achievements", description: "Milestones from your adventures", icon: "★", discovered: Object.keys(moduleProgress.achievements || {}).length, total: 24, samples: ["✦", "◆", "♛"] },
     { id: "companions", label: "Companions", description: "Friends met across the world", icon: "♧", discovered: 1, total: 8, samples: ["狐", "友"] },
     { id: "cosmetics", label: "Cosmetics", description: "Banners, trails and Flower styles", icon: "✿", discovered: Math.max(1, Math.floor(miniGameProfile.xp / 750)), total: 18, samples: ["❀", "✧", "◇"] },
@@ -249,7 +250,7 @@ export default function ChineseInputKingdom({
         <div className="flr-home-layout">
           <AdventureBoard recommendation={recommendation} localTitle={recommendedLesson?.title?.zhHant} outcomes={model.journey?.outcomes || []} reward={model.journey?.reward || { xp: 80, coins: 12 }} onStart={() => startDirectedLesson()} onChoose={() => onOpenPanel("journey")} />
           <div className="flr-world-quick-actions">
-            <WorldShortcut icon="⌖" label="Knowledge World" detail={`${model.practisedRootCount}/26 roots explored`} onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "explore"))} testId="chinese-input-open-world" />
+        <WorldShortcut icon="⌖" label="Knowledge World" detail={`${model.practisedRootCount}/${dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key)).length} roots explored`} onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "explore"))} testId="chinese-input-open-world" />
             <WorldShortcut icon="⚽" label="Arena" detail="Goalkeeper challenge ready" onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "arena"))} />
             <WorldShortcut icon="↻" label="Review Library" detail={runtime.evidence.dueCount ? `${runtime.evidence.dueCount} memories ready` : "Shelves are peaceful"} onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "review"))} />
           </div>

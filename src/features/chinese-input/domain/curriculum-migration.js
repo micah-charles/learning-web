@@ -2,6 +2,8 @@ function objectOrEmpty(value) {
   return value && typeof value === "object" && !Array.isArray(value) ? value : {};
 }
 
+const INPUT_TOOL_ROOT_IDS = new Set(["cj-Z"]);
+
 /**
  * Applies a generated entity-based migration without erasing existing progress.
  * Lesson completion is recalculated from stable character/root mastery; newly
@@ -17,7 +19,8 @@ export function migrateChineseInputCurriculumProgress(moduleProgress, migration,
   const lessons = { ...oldLessons };
 
   for (const generated of generatedLessons || []) {
-    const entityIds = [...(generated.newRoots || []), ...(generated.newCharacters || [])];
+    const entityIds = [...(generated.newRoots || []), ...(generated.newCharacters || [])]
+      .filter((entityId) => !INPUT_TOOL_ROOT_IDS.has(entityId));
     const mastered = entityIds.filter((entityId) => {
       if (entityId.startsWith("cj-")) return (roots[entityId] || roots[entityId.slice(-1)] || {}).masteryScore >= 80;
       return Math.max(

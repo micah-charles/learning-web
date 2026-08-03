@@ -121,6 +121,18 @@ test("Knowledge World supports region actions and a mixed custom adventure", asy
   await expect(page.getByRole("heading", { name: "Custom Knowledge Adventure" })).toBeVisible();
 });
 
+test("Input Tools keeps Z outside root regions and character mastery", async ({ page }) => {
+  await openKingdom(page);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  await expect(page.getByRole("region", { name: "Input Tools category" })).toBeVisible();
+  await page.getByTestId("knowledge-node-root-z").click();
+  const panel = page.getByRole("region", { name: /Input Tools actions/ });
+  await expect(panel).toBeVisible();
+  await expect(panel.getByText("0 related characters")).toBeVisible();
+  await expect(panel.getByText("Input Tools: Z special key")).toBeVisible();
+});
+
 test("all six world destinations render their distinct game environments", async ({ page }) => {
   await openKingdom(page);
   const destinations = [

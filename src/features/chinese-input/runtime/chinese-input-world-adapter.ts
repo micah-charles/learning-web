@@ -38,6 +38,7 @@ interface ChineseRoot {
   labelEn: string;
   category: string;
   mnemonic?: { en?: string };
+  inputTool?: boolean;
 }
 
 interface ChineseLesson {
@@ -53,6 +54,8 @@ interface ChineseLesson {
   estimatedMinutes: number;
   passCriteria?: { minimumAccuracy?: number; minimumQuestions?: number };
   prerequisites?: string[];
+  category?: "journey" | "input-tools";
+  inputToolKeys?: string[];
 }
 
 export interface ChineseInputDataset {
@@ -106,9 +109,17 @@ function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProg
       };
     });
   const lessons = dataset.lessons
-    .filter((lesson) => lesson.method === method && (lesson.activeKeys.includes(root.key) || lesson.introducedKeys.includes(root.key) || lesson.reviewedKeys.includes(root.key)))
+    .filter((lesson) => {
+      if (lesson.method !== method) return false;
+      if (lesson.inputToolKeys?.includes(root.key)) return true;
+      if (lesson.introducedKeys.includes(root.key) || lesson.reviewedKeys.includes(root.key)) return true;
+      return lesson.characterIds.some((characterId) => {
+        const character = dataset.characters.find((candidate) => candidate.id === characterId);
+        return character?.[method]?.keySequence.includes(root.key) || false;
+      });
+    })
     .slice(0, 8)
-    .map((lesson) => ({ id: lesson.id, label: lesson.title.en, progress: clamp(progress.lessons?.[lesson.id]?.lastScore || 0) }));
+    .map((lesson) => ({ id: lesson.id, label: lesson.title.en, category: lesson.category || "journey", progress: clamp(progress.lessons?.[lesson.id]?.lastScore || 0) }));
   const weakCharacters = relatedCharacters.filter((character) => character.state === "weak");
   const masteredCharacters = relatedCharacters.filter((character) => character.state === "mastered");
   const completion = relatedCharacters.length
@@ -199,20 +210,27 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         regionId: root.category,
         description: root.mnemonic?.en,
         glyph: root.primaryRoot,
-        metadata: { key: root.key, ...regionMetadata(dataset, progress, root, context.method) },
+        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method) },
       };
     });
-    const chapters: LearningChapter[] = lessons.map((lesson, index) => ({
+    const chapters: LearningChapter[] = lessons.map((lesson, index) => {
+      const teachingKeys = new Set([
+        ...lesson.introducedKeys,
+        ...lesson.reviewedKeys,
+        ...lesson.characterIds.flatMap((characterId) => dataset.characters.find((character) => character.id === characterId)?.[context.method]?.keySequence || []),
+      ]);
+      return {
       id: lesson.id,
       label: { en: lesson.title.en, local: lesson.title.zhHant },
-      nodeIds: [...new Set([...lesson.introducedKeys, ...lesson.reviewedKeys, ...lesson.activeKeys])].map((key) => `root-${key.toLowerCase()}`),
+      nodeIds: [...teachingKeys].map((key) => `root-${key.toLowerCase()}`),
       state: stateForLesson(lesson, progress, context.preferredJourneyId),
       progress: clamp(progress.lessons?.[lesson.id]?.lastScore || 0),
       estimatedMinutes: lesson.estimatedMinutes,
       description: `Stage ${lesson.stage ?? 0} · ${lesson.characterIds.length} characters`,
       position: chapterPosition(index),
-      metadata: { lessonId: lesson.id, method: lesson.method, stage: lesson.stage ?? 0 },
-    }));
+      metadata: { lessonId: lesson.id, method: lesson.method, stage: lesson.stage ?? 0, category: lesson.category || "journey", inputToolKeys: lesson.inputToolKeys || [] },
+    };
+    });
     return {
       worldId: this.worldId,
       contentRevision: dataset.manifest.checksum || dataset.manifest.datasetVersion,
