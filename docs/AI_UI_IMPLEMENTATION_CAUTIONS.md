@@ -1113,6 +1113,23 @@ const phase = !speechPlaybackSupported && session.phase === "listen"
 
 ---
 
+### ⚠️ RC26. Large static learning worlds need cached topology, session boundaries, and post-paint persistence
+
+**Bug found (Chinese Input, 2026-08-03):** The Learning Runtime built 26 root regions by repeatedly scanning 3,000 characters, 560 lessons and 10,000 words. React StrictMode also started the uncached dataset loader twice, while `ProgressContext` cloned and synchronously serialized the entire app state inside the answer event. The result was a 1.6-second keyboard interaction and delayed discovery of the LCP world image.
+
+**Rule:**
+
+- Cache validated dataset promises so StrictMode and remounts share one fetch/parse operation.
+- Precompute immutable root-to-character, root-to-lesson and root-to-word topology once per dataset object.
+- Never call `find()` over the canonical character array from inside a per-lesson or per-root loop.
+- Do not mount or rebuild the full Learning Runtime world while a lesson or game owns the screen.
+- Persist state from an effect after React paints; use `pagehide` for the final synchronous flush.
+- Fetch only generated artifacts with an active runtime consumer. Build-only assessment and game graphs stay out of the browser request path.
+- Preload route-specific LCP art before asynchronous curriculum parsing completes.
+- Browser QA must record the longest task, image request start, dashboard-ready time, duplicate data requests and physical-key response time.
+
+---
+
 ## PART C — Build & Deployment
 
 ---
@@ -1312,7 +1329,7 @@ A second issue in the same PR: the commit appended a full `.lw-btn { … }` rede
 
 ---
 
-*Last updated: 2026-07-30*
+*Last updated: 2026-08-03*
 *Covers PRs #55, #57, #58, #72, #83, #85, #89, #90, #95, #110, #111, #113, #120, #127, #179*
 *Architecture: React 18 + Vite, vanilla JS engine modules, Render.com static site deployment*
 *For full React component/hook/context map, see `docs/REACT_ARCHITECTURE.md`*

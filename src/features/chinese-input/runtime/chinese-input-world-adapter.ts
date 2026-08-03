@@ -103,19 +103,68 @@ export interface ChineseInputRuntimeContext {
 }
 
 type ChineseWordIndex = ReturnType<typeof buildWordDependencyIndex>;
-const wordIndexCache = new WeakMap<object, ChineseWordIndex>();
+type ChineseMethod = "cangjie" | "quick";
+interface ChineseRuntimeTopology {
+  characterById: Map<string, ChineseCharacter>;
+  lessonById: Map<string, ChineseLesson>;
+  characterIdsByRoot: Record<ChineseMethod, Record<string, string[]>>;
+  lessonIdsByRoot: Record<ChineseMethod, Record<string, string[]>>;
+  wordIdsByRoot: Record<ChineseMethod, Record<string, string[]>>;
+  wordIndex: ChineseWordIndex;
+}
 
-function wordIndexForDataset(dataset: ChineseInputDataset): ChineseWordIndex {
+const topologyCache = new WeakMap<object, ChineseRuntimeTopology>();
+
+function emptyRootBuckets(dataset: ChineseInputDataset): Record<string, string[]> {
+  return Object.fromEntries(dataset.roots.map((root) => [root.key, []]));
+}
+
+function topologyForDataset(dataset: ChineseInputDataset): ChineseRuntimeTopology {
   const cacheKey = dataset as unknown as object;
-  const cached = wordIndexCache.get(cacheKey);
+  const cached = topologyCache.get(cacheKey);
   if (cached) return cached;
-  const index = buildWordDependencyIndex({
+  const wordIndex = buildWordDependencyIndex({
     words: (dataset.words || []) as any[],
     wordGraph: dataset.wordGraph,
     datasetVersion: dataset.manifest.datasetVersion,
   });
-  wordIndexCache.set(cacheKey, index);
-  return index;
+  const characterById = new Map(dataset.characters.map((character) => [character.id, character]));
+  const lessonById = new Map(dataset.lessons.map((lesson) => [lesson.id, lesson]));
+  const characterIdsByRoot = { cangjie: emptyRootBuckets(dataset), quick: emptyRootBuckets(dataset) };
+  const lessonIdsByRoot = { cangjie: emptyRootBuckets(dataset), quick: emptyRootBuckets(dataset) };
+  const wordIdsByRoot = { cangjie: emptyRootBuckets(dataset), quick: emptyRootBuckets(dataset) };
+  const wordsById = wordIndex.wordsById as Record<string, any>;
+
+  for (const character of dataset.characters) {
+    for (const method of ["cangjie", "quick"] as const) {
+      for (const key of new Set(character[method]?.keySequence || [])) {
+        if (characterIdsByRoot[method][key]) characterIdsByRoot[method][key].push(character.id);
+      }
+    }
+  }
+  for (const lesson of dataset.lessons) {
+    const method = lesson.method;
+    const keys = new Set([
+      ...(lesson.inputToolKeys || []),
+      ...lesson.introducedKeys,
+      ...lesson.reviewedKeys,
+      ...lesson.characterIds.flatMap((characterId) => characterById.get(characterId)?.[method]?.keySequence || []),
+    ]);
+    for (const key of keys) {
+      if (lessonIdsByRoot[method][key]) lessonIdsByRoot[method][key].push(lesson.id);
+    }
+  }
+  for (const word of Object.values(wordsById)) {
+    for (const method of ["cangjie", "quick"] as const) {
+      const keys = new Set<string>(word.requiredCharacterIds.flatMap((characterId: string) => characterById.get(characterId)?.[method]?.keySequence || []));
+      for (const key of keys) {
+        if (wordIdsByRoot[method][key]) wordIdsByRoot[method][key].push(word.wordId);
+      }
+    }
+  }
+  const topology = { characterById, lessonById, characterIdsByRoot, lessonIdsByRoot, wordIdsByRoot, wordIndex };
+  topologyCache.set(cacheKey, topology);
+  return topology;
 }
 
 function regionMetadata(
@@ -123,10 +172,11 @@ function regionMetadata(
   progress: ChineseInputProgress,
   root: ChineseRoot,
   method: "cangjie" | "quick",
-  wordIndex: ChineseWordIndex,
+  topology: ChineseRuntimeTopology,
 ) {
-  const relatedCharacters = dataset.characters
-    .filter((character) => character[method]?.keySequence.includes(root.key))
+  const relatedCharacters = (topology.characterIdsByRoot[method][root.key] || [])
+    .map((characterId) => topology.characterById.get(characterId))
+    .filter((character): character is ChineseCharacter => Boolean(character))
     .map((character) => {
       const mastery = characterMastery(progress, character.id, method);
       const score = clamp(mastery.masteryScore || 0);
@@ -138,26 +188,20 @@ function regionMetadata(
         state: score >= 80 ? "mastered" : mastery.attempts ? "weak" : "available",
       };
     });
-  const lessons = dataset.lessons
-    .filter((lesson) => {
-      if (lesson.method !== method) return false;
-      if (lesson.inputToolKeys?.includes(root.key)) return true;
-      if (lesson.introducedKeys.includes(root.key) || lesson.reviewedKeys.includes(root.key)) return true;
-      return lesson.characterIds.some((characterId) => {
-        const character = dataset.characters.find((candidate) => candidate.id === characterId);
-        return character?.[method]?.keySequence.includes(root.key) || false;
-      });
-    })
+  const lessons = (topology.lessonIdsByRoot[method][root.key] || [])
     .slice(0, 8)
+    .map((lessonId) => topology.lessonById.get(lessonId))
+    .filter((lesson): lesson is ChineseLesson => Boolean(lesson))
     .map((lesson) => ({ id: lesson.id, label: lesson.title.en, category: lesson.category || "journey", progress: clamp(progress.lessons?.[lesson.id]?.lastScore || 0) }));
   const weakCharacters = relatedCharacters.filter((character) => character.state === "weak");
   const masteredCharacters = relatedCharacters.filter((character) => character.state === "mastered");
   const completion = relatedCharacters.length
     ? clamp(relatedCharacters.reduce((sum, character) => sum + character.progress, 0) / relatedCharacters.length)
     : 0;
-  const relatedWords = Object.values(wordIndex.wordsById)
-    .filter((word) => word.requiredCharacterIds.some((id: string) => relatedCharacters.some((character) => character.id === id)))
+  const relatedWords = (topology.wordIdsByRoot[method][root.key] || [])
     .slice(0, 6)
+    .map((wordId) => (topology.wordIndex.wordsById as Record<string, any>)[wordId])
+    .filter(Boolean)
     .map((word) => ({ wordId: word.wordId, word: word.word, meaning: word.meaning, meaningStatus: word.meaningStatus, state: progress.words?.[word.wordId]?.state || "hidden" }));
   return {
     completion,
@@ -230,7 +274,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
     const lessons = dataset.lessons.filter((lesson) => lesson.method === context.method);
     // This index is independent of learner progress. Build it once per world
     // snapshot instead of once for every root region (26 × 10k canonical words).
-    const wordIndex = wordIndexForDataset(dataset);
+    const topology = topologyForDataset(dataset);
     const nodes: LearningNode[] = dataset.roots.map((root) => {
       const state = stateForRoot(root, progress, context.currentRootKey);
       const rootProgress = progress.roots?.[root.key] || {};
@@ -243,7 +287,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         regionId: root.category,
         description: root.mnemonic?.en,
         glyph: root.primaryRoot,
-        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method, wordIndex) },
+        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method, topology) },
       };
     });
     const chapters: LearningChapter[] = lessons.map((lesson, index) => {

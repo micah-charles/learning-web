@@ -122,6 +122,16 @@ export default function ChineseInputPage() {
     .slice(-8)
     .map((event) => wordIndex.wordsById[event.wordId])
     .filter(Boolean), [moduleProgress.wordDiscoveryEvents, wordIndex]);
+  const dataset = datasetResult.dataset;
+  const reviewLesson = useMemo(() => !dataset || sessionLesson ? null : buildAdaptiveReviewLesson(dataset, moduleProgress, method), [dataset, method, moduleProgress, sessionLesson]);
+  const model = useMemo(() => !dataset || sessionLesson ? null : buildKingdomModel({
+    dataset,
+    moduleProgress,
+    miniGameProfile,
+    method,
+    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId,
+    currentRootKey: prefs.currentRootKey || "A",
+  }), [dataset, method, miniGameProfile, moduleProgress, prefs.activeJourneyId, prefs.currentRootKey, prefs.lastLessonId, sessionLesson]);
 
   if (!availability.routeEnabled) {
     return <section className="lw-page lw-card"><h1>Chinese Input Kingdom is not available</h1><p>This module is currently disabled.</p></section>;
@@ -132,17 +142,6 @@ export default function ChineseInputPage() {
   if (datasetResult.loading) {
     return <section className="lw-page lw-card" data-testid="chinese-input-curriculum-loading"><h1>Opening Chinese Input Kingdom…</h1><p>The curriculum schema and source digests are being checked before rendering.</p></section>;
   }
-
-  const dataset = datasetResult.dataset;
-  const reviewLesson = buildAdaptiveReviewLesson(dataset, moduleProgress, method);
-  const model = buildKingdomModel({
-    dataset,
-    moduleProgress,
-    miniGameProfile,
-    method,
-    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId,
-    currentRootKey: prefs.currentRootKey || "A",
-  });
 
   function startLesson(lesson) {
     if (!lesson) return;
@@ -207,8 +206,44 @@ export default function ChineseInputPage() {
   const runtimeContext = {
     method,
     currentRootKey: prefs.currentRootKey || "A",
-    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId || model.journey?.id || "",
+    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId || model?.journey?.id || "",
   };
+
+  if (sessionLesson) {
+    return (
+      <div className="lw-page cil-page flr-session-shell" data-testid="chinese-input-page">
+      {sessionType === "word" ? (
+        <WordChallenge word={wordChallenge} dataset={dataset} pronounce={pronounce} recordWordAttempt={recordWordAttempt} onExit={finishSession} />
+      ) : sessionType === "football" ? (
+        <ChineseFootballGame
+          dataset={dataset}
+          lesson={sessionLesson}
+          method={sessionLesson.method}
+          recordAttempt={recordChineseAttempt}
+          completeSession={completeSession}
+          completeGameSession={completeGameSession}
+          miniGameProfile={miniGameProfile}
+          recordMiniGameResult={recordMiniGameResult}
+          pronounce={pronounce}
+          autoPronounce={speechEnabled && prefs.autoPronounce !== false}
+          onExit={finishSession}
+        />
+      ) : (
+        <LessonPlayer
+          dataset={dataset}
+          lesson={sessionLesson}
+          method={sessionLesson.method}
+          pronounce={pronounce}
+          autoPronounce={speechEnabled && prefs.autoPronounce !== false}
+          recordAttempt={recordChineseAttempt}
+          completeSession={completeSession}
+          onExit={finishSession}
+        />
+      )}
+      {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
+      </div>
+    );
+  }
 
   return (
     <LearningRuntimeProvider
@@ -221,40 +256,7 @@ export default function ChineseInputPage() {
       checkpoint={runtimeCheckpoint}
       onCheckpointChange={saveRuntimeCheckpoint}
     >
-      {sessionLesson ? (
-        <div className="lw-page cil-page flr-session-shell" data-testid="chinese-input-page">
-        {sessionType === "word" ? (
-          <WordChallenge word={wordChallenge} dataset={dataset} pronounce={pronounce} recordWordAttempt={recordWordAttempt} onExit={finishSession} />
-        ) : sessionType === "football" ? (
-          <ChineseFootballGame
-            dataset={dataset}
-            lesson={sessionLesson}
-            method={sessionLesson.method}
-            recordAttempt={recordChineseAttempt}
-            completeSession={completeSession}
-            completeGameSession={completeGameSession}
-            miniGameProfile={miniGameProfile}
-            recordMiniGameResult={recordMiniGameResult}
-            pronounce={pronounce}
-            autoPronounce={speechEnabled && prefs.autoPronounce !== false}
-            onExit={finishSession}
-          />
-        ) : (
-          <LessonPlayer
-            dataset={dataset}
-            lesson={sessionLesson}
-            method={sessionLesson.method}
-            pronounce={pronounce}
-            autoPronounce={speechEnabled && prefs.autoPronounce !== false}
-            recordAttempt={recordChineseAttempt}
-            completeSession={completeSession}
-            onExit={finishSession}
-          />
-        )}
-        {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
-        </div>
-      ) : (
-        <div data-testid="chinese-input-page">
+      <div data-testid="chinese-input-page">
           <ChineseInputKingdom
             dataset={dataset}
             method={method}
@@ -298,8 +300,7 @@ export default function ChineseInputPage() {
             </div>
           )}
           {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
-        </div>
-      )}
+      </div>
     </LearningRuntimeProvider>
   );
 }

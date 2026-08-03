@@ -78,6 +78,80 @@ test("lesson type, runtime checkpoint, and keyboard hint states are explicit", a
   await expect(page.locator('[data-key-state="expected"]')).toHaveCount(0);
 });
 
+test("Chinese Input load and physical-key feedback stay within the interaction budget", async ({ page }, testInfo) => {
+  await seedEverythingMode(page);
+  await page.addInitScript(() => {
+    (window as any).__chineseInputLongTasks = [];
+    new PerformanceObserver((list) => {
+      (window as any).__chineseInputLongTasks.push(...list.getEntries().map((entry) => ({
+        startTime: Math.round(entry.startTime),
+        duration: Math.round(entry.duration),
+      })));
+    }).observe({ type: "longtask", buffered: true });
+    (window as any).__chineseInputLcp = 0;
+    new PerformanceObserver((list) => {
+      const entry = list.getEntries().at(-1);
+      if (entry) (window as any).__chineseInputLcp = Math.round(entry.startTime);
+    }).observe({ type: "largest-contentful-paint", buffered: true });
+  });
+  const navigationStartedAt = Date.now();
+  await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
+  await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible({ timeout: 30_000 });
+  const dashboardReadyMs = Date.now() - navigationStartedAt;
+  const loadMetrics = await page.evaluate(() => ({
+    longTasks: (window as any).__chineseInputLongTasks || [],
+    lcp: (window as any).__chineseInputLcp || 0,
+    resources: performance.getEntriesByType("resource").map((entry) => entry.name),
+    worldImage: performance.getEntriesByType("resource")
+      .filter((entry) => entry.name.includes("kingdom-world.webp"))
+      .map((entry) => ({ startTime: Math.round(entry.startTime), duration: Math.round(entry.duration) }))[0] || null,
+    dataResources: performance.getEntriesByType("resource")
+      .filter((entry) => entry.name.endsWith(".json"))
+      .map((entry) => ({ name: entry.name.split("/").at(-1), bytes: (entry as PerformanceResourceTiming).decodedBodySize })),
+    heapUsedMb: (performance as Performance & { memory?: { usedJSHeapSize: number } }).memory
+      ? Math.round((performance as Performance & { memory: { usedJSHeapSize: number } }).memory.usedJSHeapSize / 1024 / 1024)
+      : null,
+    preload: Boolean(document.head.querySelector('link[rel="preload"][href="/images/chinese-input/kingdom-world.webp"]')),
+  }));
+  expect(loadMetrics.preload).toBe(true);
+  expect(loadMetrics.resources.some((url) => url.endsWith("assessment_graph.json"))).toBe(false);
+  expect(loadMetrics.resources.some((url) => url.endsWith("game_graph.json"))).toBe(false);
+  expect(loadMetrics.resources.filter((url) => url.endsWith("canonical_words.json"))).toHaveLength(1);
+  expect(loadMetrics.resources.filter((url) => url.endsWith("canonical_characters.json"))).toHaveLength(1);
+  expect(loadMetrics.worldImage?.startTime || Number.POSITIVE_INFINITY).toBeLessThan(750);
+  expect(Math.max(0, ...loadMetrics.longTasks.map((task: { duration: number }) => task.duration))).toBeLessThan(1_000);
+  expect(dashboardReadyMs).toBeLessThan(4_000);
+
+  await page.getByRole("button", { name: /Start Adventure/ }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await page.getByTestId("chinese-input-hint-toggle").click();
+  const responseTimes: number[] = [];
+  for (let step = 0; step < 5; step += 1) {
+    const expectedKey = page.locator('[data-key-state="expected"]');
+    await expect(expectedKey).toHaveCount(1);
+    const testId = await expectedKey.getAttribute("data-testid");
+    const key = String(testId).replace("chinese-input-key-", "");
+    const previousBuffer = await page.getByTestId("chinese-input-buffer").textContent();
+    const startedAt = Date.now();
+    await page.keyboard.press(key);
+    await expect.poll(async () => (
+      await page.locator(".cil-feedback").isVisible()
+      || await page.getByTestId("chinese-input-buffer").textContent() !== previousBuffer
+    )).toBe(true);
+    responseTimes.push(Date.now() - startedAt);
+    if (await page.locator(".cil-feedback").isVisible()) break;
+  }
+  await expect(page.locator(".cil-feedback")).toBeVisible();
+  expect(Math.max(...responseTimes)).toBeLessThan(750);
+  if (process.env.QA_LOG_PERFORMANCE === "true") {
+    console.log(JSON.stringify({ dashboardReadyMs, responseTimes, lcp: loadMetrics.lcp, worldImage: loadMetrics.worldImage, longTasks: loadMetrics.longTasks, heapUsedMb: loadMetrics.heapUsedMb, dataResources: loadMetrics.dataResources }));
+  }
+  await testInfo.attach("chinese-input-performance.json", {
+    body: Buffer.from(JSON.stringify({ dashboardReadyMs, responseTimes, longTasks: loadMetrics.longTasks }, null, 2)),
+    contentType: "application/json",
+  });
+});
+
 test("Floating Flower has six destinations, keyboard support, and draggable persisted position", async ({ page }, testInfo) => {
   await openKingdom(page);
   const flower = page.getByTestId("learning-flower");
