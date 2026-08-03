@@ -484,6 +484,23 @@ test("world home exposes one recommendation and Flower navigation", async ({ pag
   await expect(flowerTrigger).toBeFocused();
 });
 
+test("Flower can be dragged to a new viewport position", async ({ page }) => {
+  await openLab(page);
+  const flower = page.getByTestId("learning-flower");
+  const centre = page.getByRole("button", { name: "Open learning navigation" });
+  const before = await flower.boundingBox();
+  expect(before).not.toBeNull();
+  await centre.hover();
+  await page.mouse.down();
+  await page.mouse.move(180, 180, { steps: 4 });
+  await page.mouse.up();
+  const after = await flower.boundingBox();
+  expect(after).not.toBeNull();
+  expect(after!.x).not.toBeCloseTo(before!.x, 0);
+  expect(after!.y).not.toBeCloseTo(before!.y, 0);
+  await expect(centre).toHaveAttribute("aria-expanded", "false");
+});
+
 test("lesson pause exposes a resumable local checkpoint", async ({ page }) => {
   await openLab(page);
   await page.getByTestId("chinese-input-start-lesson").click();
