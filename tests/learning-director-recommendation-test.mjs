@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildLearnerSignals, buildRecommendation } from "../src/learning-director/domain/recommendation.js";
+import { buildSessionPlan, digestPlan, isCompatibleSessionPlan } from "../src/learning-director/domain/session-plan.js";
 
 test("Director prefers an explicit unfinished journey and explains it", () => {
   const candidates = [
@@ -43,4 +44,19 @@ test("Learner signals stay method-specific", () => {
   });
   assert.equal(signals.weakCount, 1);
   assert.equal(signals.recentAttempts.length, 0);
+});
+
+test("Session plans are deterministic, mixed when review is due, and frozen", () => {
+  const request = { requestId: "req-1", worldId: "chinese-input", learnerSnapshotId: "snap-1", intent: "journey", method: "cangjie", now: "2026-08-03T12:00:00.000Z", seed: "fixture" };
+  const candidate = { id: "chapter-a", kind: "chapter", title: { en: "Roots A" }, activeKeys: ["A", "M"], characterIds: ["char-1"], passCriteria: { minimumAccuracy: 0.8 } };
+  const review = { id: "review-a", kind: "review", characterIds: ["char-2"] };
+  const args = { request, candidate, reviewCandidate: review, learnerSnapshot: { dueCount: 2 }, contentRevision: "0.1.0", recommendation: { title: "Roots A", reasonCodes: ["NEW_FOUNDATION"] } };
+  const first = buildSessionPlan(args);
+  const second = buildSessionPlan(args);
+  assert.equal(first.planDigest, second.planDigest);
+  assert.equal(digestPlan({ ...first, planDigest: undefined }), digestPlan({ ...second, planDigest: undefined }));
+  assert.equal(first.blocks.length, 2);
+  assert.equal(first.blocks[1].purpose, "retention");
+  assert.ok(Object.isFrozen(first));
+  assert.ok(isCompatibleSessionPlan(first, { worldId: "chinese-input", contentRevision: "0.1.0", method: "cangjie" }));
 });

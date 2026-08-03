@@ -27,6 +27,7 @@ export default function useChineseInputProgress() {
     hintCount,
     firstTry,
     rootKey,
+    sessionId = "",
     occurredAt = new Date().toISOString(),
   }) => {
     updateProgress((state) => {
@@ -53,7 +54,7 @@ export default function useChineseInputProgress() {
         eventVersion: 1,
         eventType: "chinese-input-attempt",
         occurredAt,
-        sessionId: question.id.split("-").slice(0, -1).join("-"),
+        sessionId: sessionId || question.id.split("-").slice(0, -1).join("-"),
         lessonId,
         questionId: question.id,
         method,
@@ -72,6 +73,7 @@ export default function useChineseInputProgress() {
   const completeSession = useCallback((session) => {
     updateProgress((state) => {
       const lab = state.progress.chineseInputLab;
+      if (lab.activeSession?.plan?.sessionId === session.sessionId) lab.activeSession = null;
       lab.sessions = appendBounded(lab.sessions, session, CHINESE_INPUT_SESSION_LIMIT);
       const previous = lab.lessons[session.lessonId] || {};
       lab.lessons[session.lessonId] = {
@@ -83,6 +85,28 @@ export default function useChineseInputProgress() {
         lastOpenedAt: session.completedAt,
       };
       state.prefs.chineseInputLab.lastLessonId = session.lessonId;
+    });
+  }, [updateProgress]);
+
+  const beginSession = useCallback((plan) => {
+    if (!plan?.sessionId) return;
+    updateProgress((state) => {
+      state.progress.chineseInputLab.activeSession = {
+        plan,
+        status: "active",
+        startedAt: new Date().toISOString(),
+        lastCheckpointAt: new Date().toISOString(),
+      };
+    });
+  }, [updateProgress]);
+
+  const abandonSession = useCallback((reason = "user-exit") => {
+    updateProgress((state) => {
+      const lab = state.progress.chineseInputLab;
+      if (lab.activeSession) {
+        lab.activeSession = { ...lab.activeSession, status: "abandoned", abandonedAt: new Date().toISOString(), abandonmentReason: reason };
+      }
+      lab.activeSession = null;
     });
   }, [updateProgress]);
 
@@ -126,6 +150,8 @@ export default function useChineseInputProgress() {
     updatePrefs,
     recordAttempt,
     completeSession,
+    beginSession,
+    abandonSession,
     completeGameSession,
     discoverNode,
     migrateCurriculum,

@@ -8,6 +8,15 @@ import VirtualCangjieKeyboard from "./VirtualCangjieKeyboard.jsx";
 import CharacterDecomposition from "./CharacterDecomposition.jsx";
 import PronunciationButton from "./PronunciationButton.jsx";
 
+function hashSeed(value) {
+  let hash = 2166136261;
+  for (const character of String(value)) {
+    hash ^= character.charCodeAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
 function feedbackCopy(result, character, question) {
   if (result.correct) {
     if (question.type === "root-recognition") {
@@ -36,6 +45,7 @@ function feedbackCopy(result, character, question) {
 export default function LessonPlayer({
   dataset,
   lesson,
+  directorPlan = null,
   method,
   pronounce,
   autoPronounce = true,
@@ -43,7 +53,7 @@ export default function LessonPlayer({
   recordAttempt,
   completeSession,
 }) {
-  const seedRef = useRef(Math.floor(Date.now() / 1000));
+  const seedRef = useRef(directorPlan?.seed ? hashSeed(directorPlan.seed) : Math.floor(Date.now() / 1000));
   const plan = useMemo(() => generateSessionPlan({
     dataset,
     lesson,
@@ -97,7 +107,8 @@ export default function LessonPlayer({
       answered: current.answered + 1,
       hints: current.hints + (hintUsedCurrent ? 1 : 0),
     }));
-    recordAttempt({
+      recordAttempt({
+      sessionId: directorPlan?.sessionId || plan.sessionId,
       lessonId: lesson.id,
       question,
       character,
@@ -118,6 +129,7 @@ export default function LessonPlayer({
     method,
     question,
     recordAttempt,
+    directorPlan?.sessionId,
   ]);
 
   const nextQuestion = useCallback(() => {
@@ -126,7 +138,7 @@ export default function LessonPlayer({
       const accuracy = stats.answered ? Math.round(stats.correct / stats.answered * 100) : 0;
       const completedAt = new Date().toISOString();
       const session = {
-        sessionId: plan.sessionId,
+        sessionId: directorPlan?.sessionId || plan.sessionId,
         lessonId: lesson.id,
         method,
         datasetVersion: plan.datasetVersion,
@@ -147,7 +159,7 @@ export default function LessonPlayer({
     setHintUsedCurrent(hintEnabled);
     setAttemptedCurrent(false);
     questionStartedAt.current = Date.now();
-  }, [completeSession, feedback, hintEnabled, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
+  }, [completeSession, directorPlan?.sessionId, feedback, hintEnabled, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
 
   const handleInput = useCallback((key) => {
     if (!question || summary) return;

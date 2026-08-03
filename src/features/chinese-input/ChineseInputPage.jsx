@@ -20,7 +20,7 @@ function JourneyPicker({ model, onStart, onStartFootball }) {
 }
 
 function WhyPanel({ model }) {
-  const copy = { REVIEW_DUE: "Some characters are ready to revisit.", CONTINUE_CHAPTER: "It continues the journey you were already exploring.", NEW_FOUNDATION: "It introduces a reviewed foundation for the next group of characters.", WEAK_KNOWLEDGE: "It gives extra practice to a developing skill.", LEARNER_SELECTED_NODE: "It follows the focus you selected.", ARENA_READY: "This content is ready for a compatible game challenge.", EXPEDITION_PRIORITY: "It supports an active optional objective." };
+  const copy = { REVIEW_DUE: "Some characters are ready to revisit.", RESUME_SESSION: "You can safely continue the saved session from this world.", CONTINUE_CHAPTER: "It continues the journey you were already exploring.", NEW_FOUNDATION: "It introduces a reviewed foundation for the next group of characters.", WEAK_KNOWLEDGE: "It gives extra practice to a developing skill.", LEARNER_SELECTED_NODE: "It follows the focus you selected.", ARENA_READY: "This content is ready for a compatible game challenge.", EXPEDITION_PRIORITY: "It supports an active optional objective." };
   return <div className="cik-why-panel" data-testid="chinese-input-why"><p className="lw-subtitle">FoxChild chose this as a useful next step from your local learning evidence.</p><ul>{model.reasonCodes.map((reason) => <li key={reason}>{copy[reason] || "It is a useful next step for your current practice."}</li>)}</ul><p className="cik-standard-note">Recommendations are guidance, not locks. You can choose another activity at any time.</p></div>;
 }
 
@@ -40,7 +40,7 @@ function SettingsPanel({ prefs, updatePrefs }) {
 
 export default function ChineseInputPage() {
   const availability = getChineseInputLabAvailability();
-  const { prefs, moduleProgress, updatePrefs, recordAttempt, completeSession, completeGameSession, discoverNode, migrateCurriculum } = useChineseInputProgress();
+  const { prefs, moduleProgress, updatePrefs, recordAttempt, completeSession, completeGameSession, beginSession, abandonSession, discoverNode, migrateCurriculum } = useChineseInputProgress();
   const { profile: miniGameProfile, recordResult: recordMiniGameResult } = useMiniGame();
   const method = prefs.method === "quick" ? "quick" : "cangjie";
   const speechLocale = prefs.locale === "zh-TW" ? "zh-TW" : "zh-HK";
@@ -70,13 +70,23 @@ export default function ChineseInputPage() {
   if (datasetResult.loading || !dataset || !model) return <section className="lw-page lw-card" data-testid="chinese-input-curriculum-loading"><h1>Opening Chinese Input Kingdom…</h1><p>The curriculum schema and source digests are being checked before rendering.</p></section>;
 
   function openPanel(nextPanel) { setPanel(nextPanel === "world" ? "" : nextPanel); }
-  function startSession(candidate, type = "lesson") { if (!candidate) return; setPanel(""); setCompletion(null); setSessionLesson(candidate); setSessionType(type); updatePrefs({ activeJourneyId: candidate.kind === "review" ? "" : candidate.id, lastLessonId: candidate.id, lastView: "session" }); }
+  function planFor(candidate, intent = "journey") {
+    if (candidate?.id === model.selected?.id && model.sessionPlan) return model.sessionPlan;
+    return buildChineseDirectorModel({ dataset, moduleProgress, method, preferredId: candidate?.id || "", intent, currentRootKey: prefs.currentRootKey || "A", now: Date.now() }).sessionPlan;
+  }
+  function startSession(candidate, type = "lesson") {
+    if (!candidate) return;
+    const plan = planFor(candidate, type === "football" ? "arena" : type === "review" ? "review" : type === "training" ? "training" : "journey");
+    setPanel(""); setCompletion(null); setSessionLesson(candidate); setSessionType(type);
+    beginSession(plan);
+    updatePrefs({ activeJourneyId: candidate.kind === "review" ? "" : candidate.id, lastLessonId: candidate.id, lastView: "session" });
+  }
   function startFootball(candidate = model.selected) { startSession(candidate, "football"); }
-  function finishSession() { const finishedType = sessionType; setSessionLesson(null); setSessionType(""); setCompletion({ type: finishedType }); updatePrefs({ lastView: "world" }); }
+  function finishSession() { const finishedType = sessionType; abandonSession("user-exit"); setSessionLesson(null); setSessionType(""); setCompletion({ type: finishedType }); updatePrefs({ lastView: "world" }); }
   function selectRoot(key) { updatePrefs({ currentRootKey: key, lastWorldView: "world" }); discoverNode(`root-${key.toLowerCase()}`, "root"); }
   function changeMethod(nextMethod) { updatePrefs({ method: nextMethod, activeJourneyId: "", lastWorldView: "world" }); setPanel(""); }
 
-  if (sessionLesson) return <div className="lw-page cil-page" data-testid="chinese-input-page">{sessionType === "football" ? <ChineseFootballGame dataset={dataset} lesson={sessionLesson} method={sessionLesson.method} recordAttempt={recordAttempt} completeSession={completeSession} completeGameSession={completeGameSession} miniGameProfile={miniGameProfile} recordMiniGameResult={recordMiniGameResult} pronounce={pronounce} autoPronounce={speechEnabled && prefs.autoPronounce !== false} onExit={finishSession} /> : <LessonPlayer dataset={dataset} lesson={sessionLesson} method={sessionLesson.method} pronounce={pronounce} autoPronounce={speechEnabled && prefs.autoPronounce !== false} recordAttempt={recordAttempt} completeSession={completeSession} onExit={finishSession} />}{speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}</div>;
+  if (sessionLesson) return <div className="lw-page cil-page" data-testid="chinese-input-page">{sessionType === "football" ? <ChineseFootballGame dataset={dataset} lesson={sessionLesson} directorPlan={moduleProgress.activeSession?.plan || model.sessionPlan} method={sessionLesson.method} recordAttempt={recordAttempt} completeSession={completeSession} completeGameSession={completeGameSession} miniGameProfile={miniGameProfile} recordMiniGameResult={recordMiniGameResult} pronounce={pronounce} autoPronounce={speechEnabled && prefs.autoPronounce !== false} onExit={finishSession} /> : <LessonPlayer dataset={dataset} lesson={sessionLesson} directorPlan={moduleProgress.activeSession?.plan || model.sessionPlan} method={sessionLesson.method} pronounce={pronounce} autoPronounce={speechEnabled && prefs.autoPronounce !== false} recordAttempt={recordAttempt} completeSession={completeSession} onExit={finishSession} />}{speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}</div>;
 
   const actions = [{ id: "journeys", label: "Choose Journey", shortLabel: "Journey", icon: "▶", recommended: Boolean(model.selected && model.selected.kind !== "review") }, { id: "training", label: "Training", shortLabel: "Training", icon: "✦", description: "Practise a focused skill." }, { id: "review", label: "Review", shortLabel: "Review", icon: "↻", status: model.learner.dueCount ? `${model.learner.dueCount} ready` : "Healthy" }, { id: "explore", label: "Explore", shortLabel: "Explore", icon: "⌕" }, { id: "football", label: "Football Arena", shortLabel: "Arena", icon: "⚽" }, { id: "collection", label: "Collection & Search", shortLabel: "Collection", icon: "▣" }, { id: "progress", label: "Knowledge Garden", shortLabel: "Garden", icon: "◔" }, { id: "settings", label: "Settings", shortLabel: "Settings", icon: "⚙" }];
   const panelTitles = { journeys: "Choose a Journey", training: "Focused Training", review: "Review", explore: "Explore the Knowledge World", football: "Football Arena", collection: "Collection & Search", progress: "Knowledge Garden", keyboard: "Root Workbench", why: "Why this Journey?", settings: "Kingdom Settings" };

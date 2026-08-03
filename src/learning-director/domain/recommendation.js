@@ -13,6 +13,7 @@ function candidateStatus(candidate, learner) {
 function scoreCandidate(candidate, { intent, learner, preferredId = "", now = Date.now() }) {
   const status = candidateStatus(candidate, learner);
   const isPreferred = candidate.id === preferredId;
+  const activeChapterId = learner.activeSession?.plan?.chapterRefs?.[0]?.chapterId;
   const isReview = candidate.kind === "review";
   const isChapter = candidate.kind === "chapter";
   let score = 0;
@@ -32,6 +33,10 @@ function scoreCandidate(candidate, { intent, learner, preferredId = "", now = Da
     if (isPreferred) { score += 35; reasons.push("CONTINUE_CHAPTER"); }
     if (isChapter && !status.completed) { score += 22; reasons.push("NEW_FOUNDATION"); }
   }
+  if (activeChapterId && candidate.id === activeChapterId) {
+    score += 120;
+    reasons.push("RESUME_SESSION");
+  }
   if (candidate.weaknessValue) { score += Math.min(30, Number(candidate.weaknessValue) || 0); if (candidate.weaknessValue >= 10) reasons.push("WEAK_KNOWLEDGE"); }
   if (candidate.expeditionPriority) { score += Math.min(25, Number(candidate.expeditionPriority) || 0); reasons.push("EXPEDITION_PRIORITY"); }
   if (candidate.recentlyUsed && intent !== "review") score -= 12;
@@ -48,7 +53,7 @@ export function buildRecommendation({ candidates = [], learner = {}, intent = "j
   const reasonCodes = selected.reasons.length ? selected.reasons : ["LEARNER_SELECTED_NODE"];
   const alternatives = scored.slice(1, 4).map(({ candidate }) => ({ id: candidate.id, title: candidate.title?.en || candidate.title || candidate.id, intent: candidate.intent || safeIntent }));
   const focus = selected.candidate.focusLabel || selected.candidate.outcomeLabel || "the next useful step";
-  const summary = reasonCodes.includes("REVIEW_DUE") ? `Revisit ${focus} while it is ready to strengthen.` : reasonCodes.includes("CONTINUE_CHAPTER") ? `Continue building on ${focus}.` : `A good next step for ${focus}.`;
+  const summary = reasonCodes.includes("RESUME_SESSION") ? `Resume ${focus} where you left off.` : reasonCodes.includes("REVIEW_DUE") ? `Revisit ${focus} while it is ready to strengthen.` : reasonCodes.includes("CONTINUE_CHAPTER") ? `Continue building on ${focus}.` : `A good next step for ${focus}.`;
   return { intent: safeIntent, selected: selected.candidate, alternatives, reasonCodes, seed, estimatedMinutes: selected.candidate.estimatedMinutes || 5, title: selected.candidate.title?.en || selected.candidate.title || "Recommended practice", summary, score: selected.score };
 }
 
@@ -63,5 +68,5 @@ export function buildLearnerSignals({ moduleProgress = {}, method = "cangjie", n
     const methodRecord = record?.[method];
     return methodRecord?.attempts && (methodRecord.masteryScore || 0) < 60;
   }).length;
-  return { completedById, dueCount, weakCount, recentAttempts: events.slice(-30), lastAttemptAt: events.at(-1)?.occurredAt || "" };
+  return { completedById, dueCount, weakCount, activeSession: moduleProgress.activeSession || null, recentAttempts: events.slice(-30), lastAttemptAt: events.at(-1)?.occurredAt || "" };
 }

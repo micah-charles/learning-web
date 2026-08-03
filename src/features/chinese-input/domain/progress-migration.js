@@ -40,6 +40,7 @@ export function createChineseInputProgress() {
     attemptEvents: [],
     achievements: {},
     discoveredNodes: {},
+    activeSession: null,
     curriculumMigrationVersion: 0,
     curriculumInputDigest: "",
   };
@@ -72,6 +73,7 @@ export function migrateChineseInputState(state) {
     reviewQueue: objectOrEmpty(incoming.reviewQueue),
     achievements: objectOrEmpty(incoming.achievements),
     discoveredNodes: objectOrEmpty(incoming.discoveredNodes),
+    activeSession: incoming.activeSession && typeof incoming.activeSession === "object" ? incoming.activeSession : null,
     sessions: Array.isArray(incoming.sessions) ? incoming.sessions.slice(-CHINESE_INPUT_SESSION_LIMIT) : [],
     gameSessions: Array.isArray(incoming.gameSessions) ? incoming.gameSessions.slice(-CHINESE_INPUT_SESSION_LIMIT) : [],
     attemptEvents: Array.isArray(incoming.attemptEvents) ? incoming.attemptEvents.slice(-CHINESE_INPUT_EVENT_LIMIT) : [],

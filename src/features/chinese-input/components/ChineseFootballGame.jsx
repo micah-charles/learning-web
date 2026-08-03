@@ -19,6 +19,15 @@ const ROUND_DEADLINE_MS = 3000;
 const RESULT_HOLD_MS = 1400;
 const STARTING_LIVES = 4;
 
+function hashSeed(value) {
+  let hash = 2166136261;
+  for (const character of String(value)) {
+    hash ^= character.charCodeAt(0);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
 function hearts(lives) {
   return Array.from({ length: STARTING_LIVES }, (_, index) => (
     <span className={index < lives ? "is-live" : "is-lost"} key={index} aria-hidden="true">♥</span>
@@ -63,6 +72,7 @@ function playCue(kind) {
 export default function ChineseFootballGame({
   dataset,
   lesson,
+  directorPlan = null,
   method,
   recordAttempt,
   completeSession,
@@ -73,7 +83,7 @@ export default function ChineseFootballGame({
   autoPronounce = true,
   onExit,
 }) {
-  const seedRef = useRef(Math.floor(Date.now() / 1000));
+  const seedRef = useRef(directorPlan?.seed ? hashSeed(directorPlan.seed) : Math.floor(Date.now() / 1000));
   const roundStartedAtRef = useRef(0);
   const pauseStartedAtRef = useRef(0);
   const resolvedRef = useRef(false);
@@ -143,8 +153,8 @@ export default function ChineseFootballGame({
       && accuracy >= (lesson.passCriteria?.minimumAccuracy || .8) * 100;
     const gameSession = {
       ...performance,
-      id: `football-${plan.sessionId}`,
-      sessionId: `football-${plan.sessionId}`,
+      id: `football-${directorPlan?.sessionId || plan.sessionId}`,
+      sessionId: `football-${directorPlan?.sessionId || plan.sessionId}`,
       gameId: "chinese-football",
       playMode: "lesson",
       completed: true,
@@ -163,7 +173,7 @@ export default function ChineseFootballGame({
       passed,
     };
     completeSession({
-      sessionId: gameSession.sessionId,
+      sessionId: directorPlan?.sessionId || plan.sessionId,
       lessonId: lesson.id,
       method,
       datasetVersion: plan.datasetVersion,
@@ -181,6 +191,7 @@ export default function ChineseFootballGame({
   }, [
     completeGameSession,
     completeSession,
+    directorPlan?.sessionId,
     lesson.id,
     lesson.passCriteria?.minimumAccuracy,
     method,
@@ -227,6 +238,7 @@ export default function ChineseFootballGame({
     setPhase("result");
     playCue(result.correct ? "save" : "goal");
     recordAttempt({
+      sessionId: `football-${directorPlan?.sessionId || plan.sessionId}`,
       lessonId: lesson.id,
       question,
       character: targetCharacter,
@@ -250,6 +262,7 @@ export default function ChineseFootballGame({
       setPhase("preview");
     }, RESULT_HOLD_MS);
   }, [
+    directorPlan?.sessionId,
     finishGame,
     hintVisible,
     index,

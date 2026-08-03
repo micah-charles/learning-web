@@ -1,5 +1,6 @@
 import { isReviewDue } from "../domain/review-scheduler.js";
 import { buildLearnerSignals, buildRecommendation } from "../../../learning-director/domain/recommendation.js";
+import { buildSessionPlan } from "../../../learning-director/domain/session-plan.js";
 
 function masteryForCharacter(moduleProgress, characterId, method) { return moduleProgress.characters?.[characterId]?.[method] || {}; }
 
@@ -32,8 +33,29 @@ export function buildChineseDirectorModel({ dataset, moduleProgress, method, pre
   const lessons = dataset.lessons.filter((lesson) => lesson.method === method).map((lesson) => chapterCandidate(lesson, moduleProgress, method, now));
   const reviewLesson = buildChineseReviewLesson(dataset, moduleProgress, method, now);
   const learner = buildLearnerSignals({ moduleProgress, method, now });
-  const recommendation = buildRecommendation({ candidates: reviewLesson ? [reviewLesson, ...lessons] : lessons, learner, intent, preferredId, now, seed: `${dataset.manifest.datasetVersion}:${method}:${new Date(now).toISOString().slice(0, 10)}` });
+  const seed = `${dataset.manifest.datasetVersion}:${method}:${new Date(now).toISOString().slice(0, 10)}`;
+  const recommendation = buildRecommendation({ candidates: reviewLesson ? [reviewLesson, ...lessons] : lessons, learner, intent, preferredId, now, seed });
+  const sessionPlan = recommendation.selected ? buildSessionPlan({
+    request: {
+      requestId: `${recommendation.selected.id}:${method}:${seed}`,
+      worldId: "chinese-input",
+      learnerSnapshotId: `local:${method}:${moduleProgress.attemptEvents?.length || 0}`,
+      intent: recommendation.intent,
+      targetMinutes: recommendation.estimatedMinutes || 5,
+      locale: "en-GB",
+      method,
+      now: new Date(now).toISOString(),
+      seed,
+    },
+    candidate: recommendation.selected,
+    reviewCandidate: reviewLesson,
+    learnerSnapshot: learner,
+    recommendation,
+    worldId: "chinese-input",
+    contentRevision: dataset.manifest.datasetVersion,
+    estimatedMinutes: recommendation.estimatedMinutes || 5,
+  }) : null;
   const currentRoot = dataset.roots.find((root) => root.key === currentRootKey) || dataset.roots[0];
   const relatedCharacters = dataset.characters.filter((character) => character[method]?.keySequence?.includes(currentRoot?.key)).slice(0, 6);
-  return { ...recommendation, learner, reviewLesson, lessons, currentRoot, relatedCharacters, method };
+  return { ...recommendation, learner, reviewLesson, lessons, currentRoot, relatedCharacters, method, sessionPlan };
 }
