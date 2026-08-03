@@ -102,7 +102,29 @@ export interface ChineseInputRuntimeContext {
   preferredJourneyId: string;
 }
 
-function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProgress, root: ChineseRoot, method: "cangjie" | "quick") {
+type ChineseWordIndex = ReturnType<typeof buildWordDependencyIndex>;
+const wordIndexCache = new WeakMap<object, ChineseWordIndex>();
+
+function wordIndexForDataset(dataset: ChineseInputDataset): ChineseWordIndex {
+  const cacheKey = dataset as unknown as object;
+  const cached = wordIndexCache.get(cacheKey);
+  if (cached) return cached;
+  const index = buildWordDependencyIndex({
+    words: (dataset.words || []) as any[],
+    wordGraph: dataset.wordGraph,
+    datasetVersion: dataset.manifest.datasetVersion,
+  });
+  wordIndexCache.set(cacheKey, index);
+  return index;
+}
+
+function regionMetadata(
+  dataset: ChineseInputDataset,
+  progress: ChineseInputProgress,
+  root: ChineseRoot,
+  method: "cangjie" | "quick",
+  wordIndex: ChineseWordIndex,
+) {
   const relatedCharacters = dataset.characters
     .filter((character) => character[method]?.keySequence.includes(root.key))
     .map((character) => {
@@ -133,7 +155,6 @@ function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProg
   const completion = relatedCharacters.length
     ? clamp(relatedCharacters.reduce((sum, character) => sum + character.progress, 0) / relatedCharacters.length)
     : 0;
-  const wordIndex = buildWordDependencyIndex({ words: (dataset.words || []) as any[], wordGraph: dataset.wordGraph, datasetVersion: dataset.manifest.datasetVersion });
   const relatedWords = Object.values(wordIndex.wordsById)
     .filter((word) => word.requiredCharacterIds.some((id: string) => relatedCharacters.some((character) => character.id === id)))
     .slice(0, 6)
@@ -207,6 +228,9 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
 
   buildWorld(dataset, progress, context): LearningWorldDefinition {
     const lessons = dataset.lessons.filter((lesson) => lesson.method === context.method);
+    // This index is independent of learner progress. Build it once per world
+    // snapshot instead of once for every root region (26 × 10k canonical words).
+    const wordIndex = wordIndexForDataset(dataset);
     const nodes: LearningNode[] = dataset.roots.map((root) => {
       const state = stateForRoot(root, progress, context.currentRootKey);
       const rootProgress = progress.roots?.[root.key] || {};
@@ -219,7 +243,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         regionId: root.category,
         description: root.mnemonic?.en,
         glyph: root.primaryRoot,
-        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method) },
+        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method, wordIndex) },
       };
     });
     const chapters: LearningChapter[] = lessons.map((lesson, index) => {
