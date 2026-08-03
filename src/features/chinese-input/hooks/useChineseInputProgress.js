@@ -106,6 +106,20 @@ export default function useChineseInputProgress() {
     });
   }, [updateProgress]);
 
+  const discoverNode = useCallback((id, kind = "knowledge") => {
+    if (!id) return;
+    updateProgress((state) => {
+      const lab = state.progress.chineseInputLab;
+      const previous = lab.discoveredNodes?.[id];
+      lab.discoveredNodes[id] = {
+        ...(previous || {}),
+        kind,
+        discoveredAt: previous?.discoveredAt || new Date().toISOString(),
+        lastVisitedAt: new Date().toISOString(),
+      };
+    });
+  }, [updateProgress]);
+
   return {
     prefs,
     moduleProgress,
@@ -113,6 +127,7 @@ export default function useChineseInputProgress() {
     recordAttempt,
     completeSession,
     completeGameSession,
+    discoverNode,
     migrateCurriculum,
   };
 }

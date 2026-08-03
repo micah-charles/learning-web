@@ -193,7 +193,7 @@ export default function LessonPlayer({
           <div><strong>{summary.correct}/{summary.answered}</strong><span>correct</span></div>
           <div><strong>{summary.hints}</strong><span>hints used</span></div>
         </div>
-        <button className="lw-btn lw-btn-primary" type="button" onClick={onExit}>Back to lessons</button>
+        <button className="lw-btn lw-btn-primary" type="button" onClick={onExit}>Back to world</button>
       </section>
     );
   }
@@ -202,7 +202,7 @@ export default function LessonPlayer({
     <div className="cil-lesson-player" data-testid="chinese-input-lesson-player">
       <section className="lw-card cil-lesson-header">
         <div>
-          <p className="lw-eyebrow">Stage {lesson.stage} · {method === "quick" ? "Quick 速成" : "Cangjie 倉頡"}</p>
+          <p className="lw-eyebrow">Learning Session · {method === "quick" ? "Quick 速成" : "Cangjie 倉頡"}</p>
           <h2>{lesson.title.en}</h2>
           <p className="lw-subtitle" lang="zh-Hant">{lesson.title.zhHant}</p>
         </div>

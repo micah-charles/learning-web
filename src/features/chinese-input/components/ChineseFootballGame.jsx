@@ -343,7 +343,7 @@ export default function ChineseFootballGame({
           <div><strong>{summary.xp}</strong><span>XP</span></div>
         </div>
         <div className="lw-btn-group">
-          <button className="lw-btn lw-btn-primary" type="button" onClick={onExit}>Back to lessons</button>
+          <button className="lw-btn lw-btn-primary" type="button" onClick={onExit}>Back to world</button>
         </div>
       </section>
     );
@@ -364,7 +364,7 @@ export default function ChineseFootballGame({
         <div><small>Coins</small><strong>◎ {stats.coins}</strong></div>
         <div><small>Combo</small><strong>×{stats.streak}</strong></div>
         <div className="cil-football-clock"><strong>{timeSeconds}</strong></div>
-        <div className="cil-football-lesson-name"><small>Lesson {lesson.order}</small><strong>{lesson.title.en}</strong></div>
+        <div className="cil-football-lesson-name"><small>Session focus</small><strong>{lesson.title.en}</strong></div>
         <div className="cil-football-hearts" aria-label={`${lives} lives remaining`}>{hearts(lives)}</div>
         <button type="button" className="cil-football-icon-button" onClick={togglePause} disabled={phase !== "active"} aria-label={paused ? "Resume game" : "Pause game"}>
           {paused ? "▶" : "Ⅱ"}

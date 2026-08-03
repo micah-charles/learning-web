@@ -460,3 +460,21 @@ test("mobile keyboard does not overflow and unknown query falls back safely", as
   await firstKey.focus();
   await expect(firstKey).toBeFocused();
 });
+
+test("world home exposes one recommendation and Flower navigation", async ({ page }) => {
+  await openLab(page);
+  await expect(page.getByTestId("chinese-input-recommendation")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-start-lesson")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-knowledge-world")).toBeVisible();
+
+  await page.getByRole("button", { name: "Open learning navigation" }).click();
+  const menu = page.getByRole("menu", { name: "Learning actions" });
+  await expect(menu).toBeVisible();
+  await expect(menu.getByRole("menuitem", { name: "Journey" })).toBeVisible();
+  await expect(menu.getByRole("menuitem", { name: "Arena" })).toBeVisible();
+
+  await menu.getByRole("menuitem", { name: "Explore" }).click();
+  await expect(page.getByRole("dialog", { name: /Explore the Knowledge World/ })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog", { name: /Explore the Knowledge World/ })).toBeHidden();
+});

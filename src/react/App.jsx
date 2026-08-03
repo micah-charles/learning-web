@@ -214,16 +214,18 @@ function AppContent() {
   return (
     <div className="lw-app">
       <Seo {...seoMetadata} />
-      <Hero
-        variant="standard"
-        onNavigate={handleNavigate}
-        showAiPrompt={!Array.isArray(allowedTabs) || allowedTabs.includes("ai-prompt")}
-      />
+      {activeTab !== "chinese-input" && (
+        <Hero
+          variant="standard"
+          onNavigate={handleNavigate}
+          showAiPrompt={!Array.isArray(allowedTabs) || allowedTabs.includes("ai-prompt")}
+        />
+      )}
 
       <NavBar active={activeTab} onChange={handleTabChange} allowedTabs={allowedTabs} />
 
       {/* Page content */}
-      <main className="lw-main">
+      <main className={`lw-main ${activeTab === "chinese-input" ? "is-chinese-input" : ""}`}>
         {routeNotFound && <NotFoundPage onNavigateHome={() => navigateToTab("home", { replace: true, force: true })} />}
         {activeTab === "home"      && <HomePage      onNavigate={handleNavigate} onManageLearning={() => navigateToTab("learning-settings", { force: true })} onShowEverything={saveEverything} />}
         {activeTab === "vocab"     && <VocabPage     />}

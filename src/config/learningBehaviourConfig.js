@@ -100,6 +100,11 @@ export const learningBehaviourConfig = {
       active: "light-green",
       hinted: "yellow",
     },
+    worldHomeEnabled: true,
+    flowerNavigationEnabled: true,
+    onePrimaryRecommendation: true,
+    readinessAdvisoryOnly: true,
+    accessibleKnowledgeListEnabled: true,
   },
 
   mobile: {
