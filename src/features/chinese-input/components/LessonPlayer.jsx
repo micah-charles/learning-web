@@ -62,7 +62,7 @@ export default function LessonPlayer({
     const reviewPlan = generateSessionPlan({ dataset, lesson: reviewLesson, method, seed: seedRef.current + 1, questionCount: Math.max(2, Math.round(mainPlan.questions.length * .2)), createdAt: new Date().toISOString() });
     return { ...mainPlan, questions: [...mainPlan.questions, ...reviewPlan.questions], mixedReview: true };
   }, [dataset, lesson, method, reviewLesson]);
-  const [index, setIndex] = useState(() => Number(directorPlan?.cursor?.index) || 0);
+  const [index, setIndex] = useState(() => Math.min(Math.max(0, Number(directorPlan?.cursor?.index) || 0), Math.max(0, plan.questions.length - 1)));
   const [paused, setPaused] = useState(directorPlan?.status === "paused");
   const [buffer, setBuffer] = useState("");
   const [pressedKey, setPressedKey] = useState("");
