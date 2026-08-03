@@ -68,9 +68,9 @@
 .cik-settings-panel .cil-checkbox { flex-direction: row; align-items: center; }
 .cil-session-paused { max-width: 640px; margin: 48px auto; text-align: center; }
 
-.lw-flower { position: fixed; right: 24px; bottom: 24px; z-index: 100; width: 82px; height: 82px; }
+.lw-flower { position: fixed; right: 24px; bottom: 24px; z-index: 1000; width: 96px; height: 96px; }
 .lw-flower-backdrop { position: fixed; inset: 0; z-index: -1; border: 0; background: rgba(20, 42, 38, .1); }
-.lw-flower-centre { position: absolute; inset: 12px; z-index: 3; display: grid; place-items: center; border: 2px solid #a67600; border-radius: 50%; background: #ffe08a; color: #4d3d0d; box-shadow: 0 8px 22px rgba(65, 62, 32, .2); cursor: pointer; font-weight: 800; }
+.lw-flower-centre { position: absolute; inset: 8px; z-index: 3; display: grid; place-items: center; border: 3px solid #a67600; border-radius: 50%; background: #ffe08a; color: #4d3d0d; box-shadow: 0 8px 22px rgba(65, 62, 32, .2); cursor: pointer; font-weight: 800; }
 .lw-flower-centre span:first-child { font-size: 1.3rem; line-height: 1; }
 .lw-flower-centre span:last-child { font-size: .63rem; }
 .lw-flower-actions { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
@@ -80,7 +80,7 @@
 .lw-flower-action span:first-child { font-size: 1.15rem; line-height: 1; }
 .lw-flower-action span:nth-child(2) { font-size: .72rem; font-weight: 800; }
 .lw-flower-action small { color: #5e6d68; font-size: .6rem; }
-.lw-flower-shortcut { position: absolute; right: -2px; bottom: -4px; z-index: 4; font-size: .64rem; color: #64746e; }
+.lw-flower-shortcut { position: absolute; right: -2px; bottom: -4px; z-index: 4; font-size: .7rem; font-weight: 800; color: #4d3d0d; }
 .lw-world-overlay-layer { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 20px; }
 .lw-world-overlay-scrim { position: absolute; inset: 0; border: 0; background: rgba(22, 40, 36, .32); }
 .lw-world-overlay { position: relative; width: min(680px, 100%); max-height: min(86vh, 820px); overflow: auto; border: 1px solid #d5dfd9; border-radius: 22px; background: #fffdf7; box-shadow: 0 22px 70px rgba(28, 51, 43, .26); }

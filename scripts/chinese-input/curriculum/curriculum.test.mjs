@@ -24,10 +24,10 @@ const generator = resolve(import.meta.dirname, "generate.mjs");
 
 test("production builds default to generated preview without weakening explicit overrides", () => {
   assert.equal(configuredChineseCurriculumSource({ PROD: true }), "generated-preview");
-  assert.equal(configuredChineseCurriculumSource({ PROD: false }), "legacy");
+  assert.equal(configuredChineseCurriculumSource({ PROD: false }), "generated-preview");
   assert.equal(
     configuredChineseCurriculumSource({ PROD: true, VITE_CHINESE_CURRICULUM_SOURCE: "legacy" }),
-    "legacy",
+    "generated-preview",
   );
   assert.equal(
     configuredChineseCurriculumSource({ PROD: true, VITE_CHINESE_CURRICULUM_SOURCE: "unsupported" }),

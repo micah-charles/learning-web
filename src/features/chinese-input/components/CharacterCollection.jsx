@@ -39,7 +39,7 @@ export default function CharacterCollection({
     <div data-testid={reviewOnly ? "chinese-input-review" : "chinese-input-collection"}>
       <section className="lw-card cil-section-heading">
         <div>
-          <p className="lw-eyebrow">{reviewOnly ? "Adaptive queue" : "Verified seed set"}</p>
+          <p className="lw-eyebrow">{reviewOnly ? "Adaptive queue" : "Verified character catalogue"}</p>
           <h2>{reviewOnly ? "Review" : "Character Collection"}</h2>
           <p className="lw-subtitle">
             {reviewOnly ? "Due and weaker characters appear here after practice." : "Search by character, meaning, Jyutping or input code."}

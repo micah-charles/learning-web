@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
 import { buildChineseDirectorModel } from "./director/chinese-director.js";
-import { loadChineseInputDataset } from "./dataset.js";
 import { configuredChineseCurriculumSource, loadGeneratedChineseInputDataset } from "./data/generated-curriculum-adapter.js";
 import useChineseInputProgress from "./hooks/useChineseInputProgress.js";
 import useChineseSpeech from "./hooks/useChineseSpeech.js";
@@ -47,21 +46,19 @@ export default function ChineseInputPage() {
   const speechEnabled = prefs.speechEnabled !== false;
   const { pronounce, message: speechMessage } = useChineseSpeech(speechEnabled, speechLocale);
   const curriculumSource = useMemo(() => configuredChineseCurriculumSource(), []);
-  const legacyDatasetResult = useMemo(() => { try { return { dataset: loadChineseInputDataset(), error: null, warning: "", loading: false }; } catch (error) { return { dataset: null, error, warning: "", loading: false }; } }, []);
-  const [generatedDatasetResult, setGeneratedDatasetResult] = useState({ dataset: null, error: null, warning: "", loading: curriculumSource !== "legacy" });
+  const [generatedDatasetResult, setGeneratedDatasetResult] = useState({ dataset: null, error: null, warning: "", loading: true });
   const [panel, setPanel] = useState("");
   const [sessionLesson, setSessionLesson] = useState(null);
   const [sessionType, setSessionType] = useState("");
   const [completion, setCompletion] = useState(null);
 
   useEffect(() => {
-    if (curriculumSource === "legacy") return undefined;
     let cancelled = false;
     loadGeneratedChineseInputDataset({ source: curriculumSource }).then((result) => { if (!cancelled) { migrateCurriculum({ migration: result.bundle.migration, lessons: result.bundle.lessons.lessons, inputDigest: result.bundle.manifest.inputDigest }); setGeneratedDatasetResult({ ...result, error: null, loading: false }); } }).catch((error) => { if (!cancelled) setGeneratedDatasetResult({ dataset: null, error, warning: "", loading: false }); });
     return () => { cancelled = true; };
   }, [curriculumSource, migrateCurriculum]);
 
-  const datasetResult = curriculumSource === "legacy" ? legacyDatasetResult : generatedDatasetResult;
+  const datasetResult = generatedDatasetResult;
   const dataset = datasetResult.dataset;
   const model = useMemo(() => dataset ? buildChineseDirectorModel({ dataset, moduleProgress, method, preferredId: prefs.activeJourneyId || prefs.lastLessonId, currentRootKey: prefs.currentRootKey || "A", now: Date.now() }) : null, [dataset, method, moduleProgress, prefs.activeJourneyId, prefs.currentRootKey, prefs.lastLessonId]);
 

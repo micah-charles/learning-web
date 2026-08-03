@@ -30,7 +30,7 @@ export default function ChineseInputDashboard({
             Learn Traditional Chinese typing with verified Cangjie 5 and Quick codes, a visual keyboard, guided lessons and local review.
           </p>
           <p className="cil-standard-note">
-            Dataset: Cangjie 5 · Traditional Chinese · zh-HK · Jyutping · seed v{dataset.manifest.datasetVersion}
+            Dataset: Cangjie 5 · Traditional Chinese · zh-HK · Jyutping · {dataset.characters.length.toLocaleString()} characters · {dataset.lessons.length.toLocaleString()} lessons · v{dataset.manifest.datasetVersion}
           </p>
         </div>
         <div className="cil-method-switch" role="group" aria-label="Input method">

@@ -2,10 +2,12 @@ import { CANGJIE_ROOTS, ROOT_BY_KEY } from "./keyboard-layout.js";
 import { validateChineseInputDataset } from "../domain/schemas.js";
 
 const SUPPORTED_CURRICULUM_SCHEMA_VERSION = 1;
-export const CHINESE_CURRICULUM_SOURCES = ["legacy", "generated-preview", "generated-production"];
+export const CHINESE_CURRICULUM_SOURCES = ["generated-preview", "generated-production"];
 
 export function configuredChineseCurriculumSource(env = import.meta.env) {
-  const defaultSource = env?.PROD === true ? "generated-preview" : "legacy";
+  // The generated curriculum is the canonical 3,000-character / ~500-lesson
+  // experience. Development must exercise the same content as production;
+  const defaultSource = "generated-preview";
   const source = String(env?.VITE_CHINESE_CURRICULUM_SOURCE || defaultSource);
   return CHINESE_CURRICULUM_SOURCES.includes(source) ? source : defaultSource;
 }
@@ -42,7 +44,6 @@ export async function loadGeneratedCurriculumBundle({
   fetchImpl = fetch,
   basePath = "learning-data/chinese-input/generated-curriculum",
 } = {}) {
-  if (source === "legacy") return null;
   const mode = source === "generated-production" ? "production" : "preview";
   const root = `${basePath}/${mode}`;
   const load = async (name) => {
