@@ -131,6 +131,7 @@ export const DEFAULT_STATE = {
     arcadeStats: {},              // keyed by game mode: { plays, bestScore, bestStreak }
     miniGames: clone(DEFAULT_MINI_GAME_PROFILE),
     voicePractice: {},            // keyed by lesson/activity: { attempts, successes, lastScore }
+    learningRuntime: { schemaVersion: 1, worlds: {} },
     chineseInputLab: createChineseInputProgress(),
   },
   speakShadow: {

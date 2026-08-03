@@ -1,16 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
 import { useMiniGame } from "../../react/games/framework/MiniGameProvider.jsx";
+import { LearningRuntimeProvider } from "../../learning-runtime/runtime/LearningRuntimeProvider.tsx";
+import { useLearningRuntimeProgress } from "../../learning-runtime/runtime/useLearningRuntimeProgress.ts";
 import ChineseFootballGame from "./components/ChineseFootballGame.jsx";
 import LessonPlayer from "./components/LessonPlayer.jsx";
 import {
   configuredChineseCurriculumSource,
   loadGeneratedChineseInputDataset,
 } from "./data/generated-curriculum-adapter.js";
-import { loadChineseInputDataset } from "./dataset.js";
 import useChineseInputProgress from "./hooks/useChineseInputProgress.js";
 import useChineseSpeech from "./hooks/useChineseSpeech.js";
 import ChineseInputKingdom from "./kingdom/ChineseInputKingdom.jsx";
+import { chineseInputWorldAdapter } from "./runtime/chinese-input-world-adapter.ts";
 import {
   buildFootballChallengeLesson,
   buildKingdomModel,
@@ -67,6 +69,7 @@ export default function ChineseInputPage() {
     profile: miniGameProfile,
     recordResult: recordMiniGameResult,
   } = useMiniGame();
+  const { checkpoint: runtimeCheckpoint, saveCheckpoint: saveRuntimeCheckpoint } = useLearningRuntimeProgress("foxchild.chinese-input");
   const method = prefs.method === "quick" ? "quick" : "cangjie";
   const [panel, setPanel] = useState("");
   const [sessionLesson, setSessionLesson] = useState(null);
@@ -76,22 +79,15 @@ export default function ChineseInputPage() {
   const speechEnabled = prefs.speechEnabled !== false;
   const { pronounce, message: speechMessage } = useChineseSpeech(speechEnabled, speechLocale);
   const curriculumSource = useMemo(() => configuredChineseCurriculumSource(), []);
-  const legacyDatasetResult = useMemo(() => {
-    try {
-      return { dataset: loadChineseInputDataset(), error: null, warning: "", loading: false };
-    } catch (error) {
-      return { dataset: null, error, warning: "", loading: false };
-    }
-  }, []);
+  const runtimeClock = useMemo(() => new Date().toISOString(), [curriculumSource, method]);
   const [generatedDatasetResult, setGeneratedDatasetResult] = useState({
     dataset: null,
     error: null,
     warning: "",
-    loading: curriculumSource !== "legacy",
+    loading: true,
   });
 
   useEffect(() => {
-    if (curriculumSource === "legacy") return undefined;
     let cancelled = false;
     loadGeneratedChineseInputDataset({ source: curriculumSource })
       .then((result) => {
@@ -110,7 +106,7 @@ export default function ChineseInputPage() {
     return () => { cancelled = true; };
   }, [curriculumSource, migrateCurriculum]);
 
-  const datasetResult = curriculumSource === "legacy" ? legacyDatasetResult : generatedDatasetResult;
+  const datasetResult = generatedDatasetResult;
 
   if (!availability.routeEnabled) {
     return <section className="lw-page lw-card"><h1>Chinese Input Kingdom is not available</h1><p>This module is currently disabled.</p></section>;
@@ -167,6 +163,7 @@ export default function ChineseInputPage() {
     const finishedType = sessionType;
     setSessionLesson(null);
     setSessionType("");
+    saveRuntimeCheckpoint(null);
     setCompletion(result.completed === false ? null : { type: finishedType, passed: result.passed !== false });
   }
 
@@ -177,13 +174,30 @@ export default function ChineseInputPage() {
   }
 
   function changeMethod(nextMethod) {
+    saveRuntimeCheckpoint(null);
     updatePrefs({ method: nextMethod, activeJourneyId: "" });
     setPanel("");
   }
 
-  if (sessionLesson) {
-    return (
-      <div className="lw-page cil-page" data-testid="chinese-input-page">
+  const runtimeContext = {
+    method,
+    currentRootKey: prefs.currentRootKey || "A",
+    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId || model.journey?.id || "",
+  };
+
+  return (
+    <LearningRuntimeProvider
+      adapter={chineseInputWorldAdapter}
+      dataset={dataset}
+      progress={moduleProgress}
+      adapterContext={runtimeContext}
+      now={runtimeClock}
+      seed={`${runtimeClock.slice(0, 10)}:${method}`}
+      checkpoint={runtimeCheckpoint}
+      onCheckpointChange={saveRuntimeCheckpoint}
+    >
+      {sessionLesson ? (
+        <div className="lw-page cil-page flr-session-shell" data-testid="chinese-input-page">
         {sessionType === "football" ? (
           <ChineseFootballGame
             dataset={dataset}
@@ -211,52 +225,50 @@ export default function ChineseInputPage() {
           />
         )}
         {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
-      </div>
-    );
-  }
-
-  return (
-    <div data-testid="chinese-input-page">
-      <ChineseInputKingdom
-        dataset={dataset}
-        method={method}
-        moduleProgress={moduleProgress}
-        miniGameProfile={miniGameProfile}
-        model={model}
-        panel={panel}
-        warning={datasetResult.warning}
-        prefs={prefs}
-        reviewLesson={reviewLesson}
-        pronounce={pronounce}
-        onMethodChange={changeMethod}
-        onOpenPanel={setPanel}
-        onStartLesson={startLesson}
-        onStartReview={startReview}
-        onStartFootballChallenge={startFootballChallenge}
-        onSelectRoot={selectRoot}
-        onUpdatePrefs={updatePrefs}
-      />
-      {completion && (
-        <div className="cik-overlay-layer">
-          <div className="cik-overlay-scrim" />
-          <section className="cik-overlay cik-completion" role="dialog" aria-modal="true" aria-labelledby="cik-completion-title">
-            <div className="cik-overlay-body">
-              <p className="cik-eyebrow">Journey recorded</p>
-              <h2 id="cik-completion-title">{completion.passed ? "Knowledge gained" : "Practice added"}</h2>
-              <p>Choose your next action. Nothing is locked and your mastery evidence is saved locally.</p>
-              <div className="cik-choice-grid">
-                <button type="button" onClick={() => { setCompletion(null); startLesson(model.journey?.lesson); }}><strong>Continue journey</strong><span>Follow the next recommendation.</span></button>
-                <button type="button" onClick={() => { setCompletion(null); setPanel("explore"); }}><strong>Choose another root</strong><span>Explore any keyboard mapping.</span></button>
-                <button type="button" onClick={() => { setCompletion(null); setPanel("review"); }}><strong>Review</strong><span>Revisit due or weaker characters.</span></button>
-                <button type="button" onClick={() => { setCompletion(null); setPanel("football"); }}><strong>Football</strong><span>Use a game challenge pool.</span></button>
-                <button type="button" onClick={() => { setCompletion(null); setPanel("collection"); }}><strong>Collection</strong><span>Search verified characters.</span></button>
-                <button type="button" onClick={() => setCompletion(null)}><strong>Return to Kingdom</strong><span>See the knowledge world.</span></button>
-              </div>
+        </div>
+      ) : (
+        <div data-testid="chinese-input-page">
+          <ChineseInputKingdom
+            dataset={dataset}
+            method={method}
+            moduleProgress={moduleProgress}
+            miniGameProfile={miniGameProfile}
+            model={model}
+            panel={panel}
+            prefs={prefs}
+            reviewLesson={reviewLesson}
+            pronounce={pronounce}
+            onMethodChange={changeMethod}
+            onOpenPanel={setPanel}
+            onStartLesson={startLesson}
+            onStartReview={startReview}
+            onStartFootballChallenge={startFootballChallenge}
+            onSelectRoot={selectRoot}
+            onUpdatePrefs={updatePrefs}
+          />
+          {completion && (
+            <div className="cik-overlay-layer">
+              <div className="cik-overlay-scrim" />
+              <section className="cik-overlay cik-completion" role="dialog" aria-modal="true" aria-labelledby="cik-completion-title">
+                <div className="cik-overlay-body">
+                  <p className="cik-eyebrow">Journey recorded</p>
+                  <h2 id="cik-completion-title">{completion.passed ? "Knowledge gained" : "Practice added"}</h2>
+                  <p>Choose your next action. Nothing is locked and your mastery evidence is saved locally.</p>
+                  <div className="cik-choice-grid">
+                    <button type="button" onClick={() => { setCompletion(null); startLesson(model.journey?.lesson); }}><strong>Continue journey</strong><span>Follow the next recommendation.</span></button>
+                    <button type="button" onClick={() => { setCompletion(null); setPanel("explore"); }}><strong>Choose another root</strong><span>Explore any keyboard mapping.</span></button>
+                    <button type="button" onClick={() => { setCompletion(null); setPanel("review"); }}><strong>Review</strong><span>Revisit due or weaker characters.</span></button>
+                    <button type="button" onClick={() => { setCompletion(null); setPanel("arena"); }}><strong>Arena</strong><span>Use a compatible game challenge.</span></button>
+                    <button type="button" onClick={() => { setCompletion(null); setPanel("collection"); }}><strong>Collection</strong><span>Visit your museum.</span></button>
+                    <button type="button" onClick={() => setCompletion(null)}><strong>Return to Kingdom</strong><span>See the knowledge world.</span></button>
+                  </div>
+                </div>
+              </section>
             </div>
-          </section>
+          )}
+          {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
         </div>
       )}
-      {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
-    </div>
+    </LearningRuntimeProvider>
   );
 }

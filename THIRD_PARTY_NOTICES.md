@@ -42,10 +42,10 @@ Project: Rime Cangjie
 Source: https://github.com/rime/rime-cangjie
 Pinned commit: 52d90a1b1312e74042b38c1cbc8142defbc53171
 Licence: repository LGPL-3.0; `cangjie5` table header declares GPL
-Used as: Canonical Cangjie 5 character codes in the committed seed dataset. The app contains a normalized, attributed subset and does not fetch Rime at runtime.
+Used as: Canonical Cangjie 5 character codes in the committed 3,000-character canonical dataset. The app does not fetch Rime at runtime.
 Files affected:
-- src/features/chinese-input/data/seed-dataset.json
-- scripts/chinese-input/build-dataset.mjs
+- learning-data/chinese-input/canonical/canonical_characters.json
+- scripts/chinese-input/canonical/
 
 Project: Rime Quick
 Source: https://github.com/rime/rime-quick
@@ -56,7 +56,7 @@ Used as: Authoritative Quick 5 rule and standard identification. The pinned sche
 Project: Unicode Unihan 17.0.0
 Source: https://www.unicode.org/Public/17.0.0/ucd/Unihan.zip
 Licence: Unicode-3.0
-Used as: `kCantonese`, `kMandarin`, `kDefinition`, radical/stroke and variant metadata for seed and canonical characters.
+Used as: `kCantonese`, `kMandarin`, `kDefinition`, radical/stroke and variant metadata for canonical characters.
 
 Project: Hong Kong EDB online character inventory
 Source: https://www.edbchinese.hk/lexlist_ch/

@@ -737,15 +737,15 @@ const stages = stagePolicy.stages.map((stage) => {
   };
 });
 
-const legacyDataset = readJson(resolve(projectRoot, "src/features/chinese-input/data/seed-dataset.json"));
-const legacyMappings = legacyDataset.lessons.map((legacyLesson) => {
-  const entityTargets = (legacyLesson.characterIds || []).map((characterId) => ({
+const legacyMigration = readJson(resolve(projectRoot, "learning-data/chinese-input/migrations/legacy-lesson-migration.json"));
+const legacyMappings = legacyMigration.legacyLessons.map((legacyLesson) => {
+  const entityTargets = (legacyLesson.legacyCharacterIds || []).map((characterId) => ({
     characterId,
     generatedLessonId: characterToLesson.get(characterId)?.lessonId || null,
   }));
   return {
-    legacyLessonId: legacyLesson.id,
-    legacyCharacterIds: legacyLesson.characterIds || [],
+    legacyLessonId: legacyLesson.legacyLessonId,
+    legacyCharacterIds: legacyLesson.legacyCharacterIds || [],
     entityTargets,
     completionPolicy: "preserve-entity-mastery-and-mark-generated-lessons-partial",
   };

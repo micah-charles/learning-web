@@ -508,15 +508,21 @@ Fixture compilation uses a separate fixture policy and cannot weaken production 
 The complete preview compiler reads versioned policy files from
 `learning-data/chinese-input/curriculum-policy/` and emits disposable graphs
 under `learning-data/chinese-input/generated-curriculum/preview/`. Stable
-root, character and word entities drive progress migration. Production builds
-default to the schema-checked generated preview with an explicit provisional
-warning. Development remains on legacy by default. The
-`VITE_CHINESE_CURRICULUM_SOURCE` build variable can explicitly select `legacy`,
+root, character and word entities drive progress migration. Development and
+production builds default to the schema-checked generated preview. The former
+runtime seed dataset and its `legacy` source option have been removed. The
+`VITE_CHINESE_CURRICULUM_SOURCE` build variable can select
 `generated-preview` or an approved `generated-production`.
 The repository's Render Blueprint also selects the committed preview artifacts,
 but the production default does not depend on the existing Render service being
 managed or synchronised as a Blueprint. Render does not generate curriculum files.
 `generated-production` is rejected unless its manifest is production-approved.
+
+Chinese Input is the first adapter for the domain-neutral FoxChild Learning
+Runtime in `src/learning-runtime/`. The Learning Director, session planner,
+checkpoint controller, activity registry, and reusable world UI receive generic
+world contracts. Chinese characters, input methods, roots, evaluator references,
+and football pools remain in `src/features/chinese-input/`.
 
 ---
 

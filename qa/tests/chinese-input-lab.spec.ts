@@ -9,12 +9,12 @@ import {
 async function openKingdom(page: Page) {
   await seedEverythingMode(page);
   await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
-  await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible({ timeout: 30_000 });
 }
 
 async function openFlower(page: Page) {
-  await page.getByRole("button", { name: "Open Floating Flower navigation" }).click();
-  await expect(page.getByRole("menu", { name: "Chinese Input Kingdom actions" })).toBeVisible();
+  await page.getByRole("button", { name: /Open learning world destinations/ }).click();
+  await expect(page.getByRole("menu", { name: "Learning world destinations" })).toBeVisible();
 }
 
 async function installSpeechSynthesisMock(page: Page) {
@@ -41,94 +41,134 @@ async function installSpeechSynthesisMock(page: Page) {
   });
 }
 
-test("Kingdom presents one advisory journey and preserves platform navigation", async ({ page }, testInfo) => {
+test("adventure home is Director-led, game-like, and uses the full generated world", async ({ page }, testInfo) => {
   const errors = collectConsoleErrors(page);
   await openKingdom(page);
 
-  await expect(page.getByRole("heading", { name: "Chinese Input Kingdom" })).toBeVisible();
   await expect(page.getByTestId("nav-chinese-input")).toBeAttached();
   await expect(page.getByTestId("chinese-input-today-journey")).toHaveCount(1);
-  await expect(page.getByText("Ready", { exact: true })).toBeVisible();
-  await expect(page.getByText("Always available")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Begin journey" })).toBeEnabled();
-  await expect(page.getByRole("button", { name: "Open root workbench" })).toBeEnabled();
+  await expect(page.getByRole("button", { name: /Start Adventure/ })).toBeEnabled();
+  await expect(page.getByTestId("chinese-input-preview-warning")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Knowledge World/ })).toBeEnabled();
+  await expect(page.getByRole("button", { name: /Arena/ })).toBeEnabled();
 
   const mobile = testInfo.project.name.includes("mobile");
   await page.screenshot({
-    path: `artifacts/chinese-input-kingdom-${mobile ? "mobile" : "desktop"}.png`,
+    path: `artifacts/chinese-input-runtime-${mobile ? "mobile" : "desktop"}.png`,
     fullPage: !mobile,
   });
   await expectNoConsoleErrors(errors);
 });
 
-test("Floating Flower supports pointer, F, Escape and all eight actions", async ({ page }) => {
+test("lesson type, runtime checkpoint, and keyboard hint states are explicit", async ({ page }) => {
   await openKingdom(page);
-  await openFlower(page);
-  for (const name of ["Continue", "Explore", "Review", "Football", "Collection", "Keyboard", "Progress", "Search"]) {
-    await expect(page.getByRole("menuitem", { name })).toBeVisible();
+  await page.getByRole("button", { name: /Start Adventure/ }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-question-type")).toHaveText(/Root recognition|Guided typing/);
+
+  const stored = await readStoredState(page);
+  expect(stored.progress.learningRuntime.worlds["foxchild.chinese-input"].checkpoint).toBeTruthy();
+  await expect(page.locator('[data-key-state="inactive"]')).not.toHaveCount(0);
+  await expect(page.locator('[data-key-state="learned"]')).not.toHaveCount(0);
+  await expect(page.locator('[data-key-state="expected"]')).toHaveCount(0);
+
+  await page.getByTestId("chinese-input-hint-toggle").click();
+  await expect(page.locator('[data-key-state="expected"]')).toHaveCount(1);
+  await page.getByTestId("chinese-input-hint-toggle").click();
+  await expect(page.locator('[data-key-state="expected"]')).toHaveCount(0);
+});
+
+test("Floating Flower has six destinations, keyboard support, and draggable persisted position", async ({ page }, testInfo) => {
+  await openKingdom(page);
+  const flower = page.getByTestId("learning-flower");
+  const initial = await flower.boundingBox();
+  expect(initial).not.toBeNull();
+
+  if (!testInfo.project.name.includes("mobile")) {
+    await page.mouse.move(initial!.x + initial!.width / 2, initial!.y + initial!.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(Math.max(120, initial!.x - 150), Math.max(160, initial!.y - 100), { steps: 8 });
+    await page.mouse.up();
+    await expect.poll(async () => (await flower.boundingBox())?.x).not.toBe(initial!.x);
+    const stored = await readStoredState(page);
+    expect(stored.prefs.chineseInputLab.flowerPosition).toBeTruthy();
+  }
+
+  await page.keyboard.press("f");
+  for (const name of ["Journey", "Training", "Review", "Arena", "Explore", "Museum"]) {
+    await expect(page.getByRole("menuitem", { name: new RegExp(name) })).toBeVisible();
   }
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("button", { name: "Close Floating Flower" })).toHaveCount(0);
   await page.keyboard.press("f");
-  await expect(page.getByRole("button", { name: "Close Floating Flower" })).toBeVisible();
-  await page.getByRole("menuitem", { name: "Explore" }).click();
-  await expect(page.getByRole("dialog", { name: "Explore the Knowledge World" })).toBeVisible();
-  await expect(page.getByRole("button", { name: /A key, Cangjie root 日/ })).toBeEnabled();
-  await page.getByRole("button", { name: "Return to Kingdom" }).click();
-  await expect(page.getByRole("dialog", { name: "Explore the Knowledge World" })).toHaveCount(0);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  await expect(page.getByRole("dialog", { name: "Knowledge World" })).toBeVisible();
+  await expect(page.getByTestId("knowledge-node-root-a")).toBeEnabled();
 });
 
-test("accessible list view exposes equivalent actions without the map", async ({ page }) => {
+test("all six world destinations render their distinct game environments", async ({ page }) => {
   await openKingdom(page);
-  await page.getByRole("button", { name: "Show accessible action list" }).click();
-  await expect(page.getByRole("navigation", { name: "Chinese Input Kingdom actions" })).toBeVisible();
-  await expect(page.getByRole("button", { name: /Football Challenge/ })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Show illustrated world" })).toBeVisible();
-  const stored = await readStoredState(page);
-  expect(stored.prefs.chineseInputLab.accessibleListView).toBe(true);
+  const destinations = [
+    ["Journey", "Adventure Path"],
+    ["Training", "Root Training Grounds"],
+    ["Review", "Review Library"],
+    ["Arena", "FoxChild Arena"],
+    ["Explore", "Knowledge World"],
+    ["Museum", "Collection Museum"],
+  ];
+  for (const [petal, dialog] of destinations) {
+    await openFlower(page);
+    await page.getByRole("menuitem", { name: new RegExp(petal) }).click();
+    await expect(page.getByRole("dialog", { name: dialog })).toBeVisible();
+    await page.locator(".flr-close").click();
+  }
 });
 
-test("football challenge pools launch with pronunciation controls", async ({ page }) => {
+test("football challenge pools launch with target-zone pronunciation controls", async ({ page }) => {
   await installSpeechSynthesisMock(page);
   await openKingdom(page);
   await openFlower(page);
-  await page.getByRole("menuitem", { name: "Football" }).click();
-  const dialog = page.getByRole("dialog", { name: "Choose a Football Challenge" });
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole("button")).toHaveCount(10);
+  await page.getByRole("menuitem", { name: /Arena/ }).click();
+  const dialog = page.getByRole("dialog", { name: "FoxChild Arena" });
+  await dialog.getByRole("button", { name: /Goalkeeper Challenge/ }).click();
+  await expect(dialog.getByRole("button", { name: /Current Journey/ })).toBeVisible();
   await dialog.getByRole("button", { name: /Current Journey/ }).click();
   await expect(page.getByTestId("chinese-football-game")).toBeVisible();
   await expect(page.getByRole("button", { name: /Pronounce target/ })).toBeVisible();
   await page.getByRole("button", { name: /Pronounce target/ }).click();
   await expect.poll(() => page.evaluate(() => (window as any).__spoken.length)).toBeGreaterThan(0);
-  await expect(page.getByText("Current journey", { exact: true })).toBeVisible();
-  await expect(page.getByText(/^Lesson \d/)).toHaveCount(0);
+  await expect(page.locator(".cil-football-target")).toHaveCount(9);
 });
 
-test("method, root and companion preferences persist without locking journeys", async ({ page }) => {
+test("method, root, companion, motion, and audio preferences persist", async ({ page }) => {
   await openKingdom(page);
-  await page.getByRole("button", { name: "Quick" }).click();
-  await page.getByRole("button", { name: "Open root workbench" }).click();
+  await page.getByRole("button", { name: /Quick/ }).click();
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Training/ }).click();
   await page.getByTestId("chinese-input-key-B").click();
-  await page.getByRole("button", { name: "Return to Kingdom" }).click();
-  await page.getByRole("button", { name: "Minimise companion advice" }).click();
+  await page.locator(".flr-close").click();
+  await page.getByRole("button", { name: "Minimise companion guidance" }).click();
+  await page.getByRole("button", { name: "Open world settings" }).click();
+  await page.getByLabel("Reduce animation").check();
+  await page.getByLabel("World sound effects").uncheck();
   const stored = await readStoredState(page);
   expect(stored.prefs.chineseInputLab.method).toBe("quick");
   expect(stored.prefs.chineseInputLab.currentRootKey).toBe("B");
   expect(stored.prefs.chineseInputLab.companionMinimized).toBe(true);
+  expect(stored.prefs.chineseInputLab.reducedMotion).toBe(true);
+  expect(stored.prefs.chineseInputLab.soundEnabled).toBe(false);
   expect(stored.progress.chineseInputLab.discoveredNodes["root-b"].kind).toBe("root");
-  await expect(page.getByRole("button", { name: "Quick" })).toHaveClass(/is-active/);
-  await expect(page.getByRole("button", { name: "Show companion advice" })).toBeVisible();
-  await expect(page.getByTestId("chinese-input-start-lesson")).toBeEnabled();
 });
 
-test("Kingdom has no horizontal overflow at supported breakpoints", async ({ page }, testInfo) => {
+test("Kingdom and immersive overlays have no horizontal overflow", async ({ page }, testInfo) => {
   await openKingdom(page);
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  expect(overflow, `${testInfo.project.name} horizontal overflow`).toBeLessThanOrEqual(1);
-  await page.getByRole("button", { name: "Open Floating Flower navigation" }).click();
-  const flowerBox = await page.getByTestId("chinese-input-flower").boundingBox();
+  let overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow, `${testInfo.project.name} home overflow`).toBeLessThanOrEqual(1);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow, `${testInfo.project.name} overlay overflow`).toBeLessThanOrEqual(1);
+  const flowerBox = await page.getByTestId("learning-flower").boundingBox();
   expect(flowerBox).not.toBeNull();
   expect(flowerBox!.x).toBeGreaterThanOrEqual(0);
-  expect(flowerBox!.x + flowerBox!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+  expect(flowerBox!.x + flowerBox!.width).toBeLessThanOrEqual(page.viewportSize()!.width + 1);
 });

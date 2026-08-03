@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { appendInputKey } from "../domain/code-normalisation.js";
 import { evaluateAnswer, shouldAutoSubmitAnswer } from "../domain/answer-evaluator.js";
 import { generateSessionPlan } from "../domain/question-generator.js";
-import { findChineseInputCharacter } from "../dataset.js";
+import { findChineseInputCharacter } from "../domain/character-lookup.js";
 import usePhysicalKeyboard from "../hooks/usePhysicalKeyboard.js";
 import VirtualCangjieKeyboard from "./VirtualCangjieKeyboard.jsx";
 import CharacterDecomposition from "./CharacterDecomposition.jsx";

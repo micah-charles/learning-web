@@ -1,72 +1,73 @@
-# Chinese Input Kingdom implementation map
+# FoxChild Learning Runtime and Chinese Input world
 
-Status: implementation checklist for the RPG knowledge-world pilot  
-Source: `FoxChild_Chinese_Input_RPG_UI_Codex_Master_Prompt_v4.md`  
-Visual reference: `ChatGPT Image Jul 30, 2026, 11_57_32 PM.png`
+Status: implemented on the Chinese Input Kingdom pilot
+UI specification: `FoxChild_Chinese_Input_UI_Implementation_Prompt_v2.md`
 
-## Superseding navigation decision
+## Architecture boundary
 
-Section 26 of the master prompt supersedes the earlier fixed-building map. The learner remains in one current knowledge world. Functional modes open from the Floating Flower as overlays or existing learning sessions; they are not permanent destinations or a locked route chain.
+`src/learning-runtime/` is the reusable, subject-neutral platform layer. It owns the Learning Director, recommendation and immutable session planning, checkpoint control, activity registry, and reusable world UI. It does not know about Chinese characters, roots, Cangjie, Quick, or football grading.
 
-## Existing components retained
+`src/features/chinese-input/runtime/chinese-input-world-adapter.ts` is the domain adapter. It maps the verified Chinese dataset and learner evidence into generic world nodes, chapters, candidates, activity blocks, and challenges. Existing lesson and game components continue to perform domain-specific presentation and grading.
 
-| Capability | Existing implementation retained |
+## Runtime curriculum
+
+The browser loads only committed generated curriculum through `generated-curriculum-adapter.js` and `adapt-generated-curriculum.js`. Runtime fallback to the former seed dataset has been removed. The build validator requires exactly 3,000 canonical characters and at least 500 adapted lessons; the current preview produces 560 runtime lessons.
+
+Preview and production bundles are distinguished by manifest status. An invalid or missing bundle fails visibly instead of silently serving reduced content. `learning-data/chinese-input/migrations/legacy-lesson-migration.json` contains only stable migration identifiers and is not a lesson source or curriculum-policy input.
+
+## World navigation
+
+The Floating Flower is the module navigator and exposes exactly six destinations:
+
+1. Journey
+2. Training
+3. Review
+4. Arena
+5. Explore
+6. Collection
+
+Settings remains in the world HUD. The Flower can be dragged with pointer or touch input, is clamped to the visible viewport, persists its position through `ProgressContext`, and expands into a mobile grid. The `F` key toggles it for keyboard users.
+
+## Preserved learning capabilities
+
+| Capability | Implementation |
 |---|---|
-| Curriculum loading and validation | `generated-curriculum-adapter.js`, `dataset.js` |
-| Lesson/session engine | `LessonPlayer.jsx`, question generator and evaluator |
-| Football challenge | `ChineseFootballGame.jsx`, deterministic football adapter |
-| Root keyboard | `VirtualCangjieKeyboard.jsx`, verified keyboard layout |
-| Review and collection | `CharacterCollection.jsx`, review scheduler |
-| Character detail | `CharacterDecomposition.jsx`, pronunciation control |
-| Learner history | `useChineseInputProgress.js`, existing local storage migration |
-| Rewards | shared mini-game profile and reward engine |
+| Lesson generation and grading | `LessonPlayer.jsx`, question generator, answer evaluator |
+| Root recognition | Explicit one-key root contract and root-to-key feedback |
+| Guided typing | Complete accepted code; no first-key completion for multi-key characters |
+| Keyboard hints | Toggleable expected-key highlight; inactive grey, lesson keys green, hint yellow |
+| Football | Nine goal zones, lesson character pools, typed canonical grading, pronunciation |
+| Review and collection | Existing mastery, scheduler, character collection, and detail views |
+| Progress | Existing Chinese progress plus schema-versioned generic runtime checkpoint |
 
-## New reusable platform pieces
+## Environment map
 
-- `kingdom/kingdom-model.js`: deterministic journey, readiness, mastery-dimension and companion adapter.
-- `kingdom/ChineseInputKingdom.jsx`: current-world composition and contextual panels.
-- `kingdom/FloatingFlower.jsx`: authoritative module navigator with focus management and keyboard support.
-- `kingdom/KingdomOverlay.jsx`: accessible shared dialog/bottom-sheet frame for Explore, Review, Collection, Keyboard, Progress, Search and challenge content.
-- `kingdom/kingdom.css`: responsive world layout, drawers, bottom sheets and reduced-motion behavior.
-- `public/images/chinese-input/kingdom-world.webp`: optimized, text-free scenic artwork. All functional content remains HTML.
-
-## Page and menu relationship
-
-| Platform or module control | Destination/behavior |
+| Flower destination | Environment |
 |---|---|
-| Existing FoxChild top navigation | Switches between platform modules; remains compact and scrollable |
-| Flower centre | Returns to the Chinese Input Kingdom current-world home |
-| Continue Journey | Launches the existing recommended lesson/session |
-| Explore | Opens root/character discovery without leaving the current world |
-| Review | Opens the existing due/weak-character experience |
-| Football Challenge | Opens challenge-pool choices, then launches the existing football engine |
-| Collection | Opens the existing character archive |
-| Keyboard | Opens the full verified 26-key keyboard and root focus |
-| Progress | Opens multi-dimensional mastery and an interactive knowledge constellation |
-| Search | Opens discovery with search focused |
+| Journey | Illustrated chapter path generated from all runtime lessons |
+| Training | Root focus and verified 26-key keyboard |
+| Review | Review Library shelves for due, weak, recent, and mastered knowledge |
+| Arena | Activity hall; Goalkeeper Challenge is playable and other plugins are represented honestly |
+| Explore | Five-region Knowledge World built from verified root nodes |
+| Collection | Museum wings; Characters & Roots opens the full existing collection |
 
-No permanent secondary sidebar or duplicate bottom navigation is introduced.
+No destination uses hard locks. Readiness and recommendations are advisory.
 
-## Compatibility and migration risks
+## Accessibility and sensory controls
 
-- Existing lesson IDs, mastery records, sessions, review records, achievements and coins remain unchanged.
-- New world preferences are merged through the Chinese Input preference migration; old `lastView` values are retained but no longer control the primary navigation.
-- Readiness is derived at render time and never written into mastery records.
-- Adventure rank derives only from cosmetic mini-game XP and is labelled separately from learning mastery.
-- Generated preview evidence warnings remain available through a compact disclosure rather than developer-facing dominant copy.
-- The old page remains recoverable through Git history until the replacement passes unit, browser, responsive and production-build gates.
+- Dialog focus, Escape closing, labelled controls, keyboard activation, and touch-sized targets are retained.
+- Reduced-motion disables decorative animation.
+- Pronunciation follows the existing Cantonese/Mandarin, speech-enabled, and auto-pronounce preferences.
+- World sound effects use short Web Audio cues only after direct user interaction and can be disabled.
 
-## Verification evidence
+## Verification gates
 
-| Gate | Evidence |
-|---|---|
-| Navigation and interaction | Flower pointer/keyboard/Escape tests; focus trapping in Flower and overlays |
-| Journey model | Unit coverage for readiness, one deterministic recommendation and nine football pools |
-| Open access | Browser coverage confirms all Flower actions and challenge pools remain enabled |
-| Compatibility | Migration tests preserve prior records while adding world context and discovered nodes |
-| Responsive behavior | Desktop and Pixel-size mobile suites pass with horizontal-overflow checks |
-| Speech | Mocked Cantonese speech synthesis confirms football’s Pronounce Target control invokes speech |
-| Visual review | Desktop/mobile screenshots in `artifacts/`; mobile backdrop stacking and desktop radial overflow fixed during review |
-| Production | Vite production bundle passes and uses the 232 KB text-free WebP with explicit intrinsic dimensions |
+- `npm run typecheck`
+- `npm run test:learning-runtime`
+- `npm run test:chinese-input`
+- `npm run validate:chinese-input-data`
+- `npm run qa:config-check`
+- desktop and mobile Playwright coverage in `qa/tests/chinese-input-lab.spec.ts`
+- `npm run build`
 
-The full site’s existing large JavaScript chunk warning remains outside this feature’s scope; the Kingdom adds no new runtime dependency.
+Generated Study Book or search artifacts that change incidentally during build are not part of this feature commit.

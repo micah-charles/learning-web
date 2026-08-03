@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { appendInputKey } from "../domain/code-normalisation.js";
 import { shouldAutoSubmitAnswer } from "../domain/answer-evaluator.js";
-import { findChineseInputCharacter } from "../dataset.js";
+import { findChineseInputCharacter } from "../domain/character-lookup.js";
 import {
   createFootballSessionPlan,
   createGoalTargets,

@@ -1,5 +1,5 @@
 export const CHINESE_INPUT_PROGRESS_SCHEMA_VERSION = 2;
-export const CHINESE_INPUT_PREFS_MIGRATION_VERSION = 3;
+export const CHINESE_INPUT_PREFS_MIGRATION_VERSION = 4;
 export const CHINESE_INPUT_DATASET_VERSION = "0.1.0";
 export const CHINESE_INPUT_EVENT_LIMIT = 500;
 export const CHINESE_INPUT_SESSION_LIMIT = 100;
@@ -22,6 +22,8 @@ export function createChineseInputPrefs() {
     activeJourneyId: "",
     companionMinimized: false,
     accessibleListView: false,
+    flowerPosition: null,
+    reducedMotion: false,
     migrationVersion: CHINESE_INPUT_PREFS_MIGRATION_VERSION,
   };
 }

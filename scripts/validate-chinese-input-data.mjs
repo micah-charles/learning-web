@@ -1,53 +1,41 @@
 #!/usr/bin/env node
-import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { adaptGeneratedChineseInputDataset } from "../src/features/chinese-input/data/adapt-generated-curriculum.js";
 import { validateChineseInputDataset } from "../src/features/chinese-input/domain/schemas.js";
 
 const ROOT = resolve(import.meta.dirname, "..");
-const datasetPath = resolve(ROOT, "src/features/chinese-input/data/seed-dataset.json");
-const dataset = JSON.parse(readFileSync(datasetPath, "utf8"));
+const read = (path) => JSON.parse(readFileSync(resolve(ROOT, path), "utf8"));
+const bundleRoot = "learning-data/chinese-input/generated-curriculum/preview";
+const bundle = {
+  manifest: read(`${bundleRoot}/curriculum_manifest.json`),
+  stages: read(`${bundleRoot}/stages.json`),
+  lessons: read(`${bundleRoot}/lessons.json`),
+  assessments: read(`${bundleRoot}/assessment_graph.json`),
+  games: read(`${bundleRoot}/game_graph.json`),
+  migration: read(`${bundleRoot}/learner_progress_migration.json`),
+  source: "generated-preview",
+};
+const dataset = adaptGeneratedChineseInputDataset({
+  bundle,
+  characterDocument: read("learning-data/chinese-input/canonical/canonical_characters.json"),
+  readingDocument: read("learning-data/chinese-input/canonical/canonical_character_readings.json"),
+});
 const validation = validateChineseInputDataset(dataset);
-const checksumSource = structuredClone(dataset);
-const expectedChecksum = checksumSource.manifest.checksum;
-delete checksumSource.manifest.checksum;
-const actualChecksum = `sha256:${createHash("sha256").update(JSON.stringify(checksumSource)).digest("hex")}`;
-if (actualChecksum !== expectedChecksum) {
-  validation.valid = false;
-  validation.errors.push(`manifest: checksum mismatch (expected ${expectedChecksum}, calculated ${actualChecksum})`);
-}
-const distribution = {};
-const codeOwners = new Map();
-for (const character of dataset.characters || []) {
-  const length = character.cangjie.preferredCode.length;
-  distribution[length] = (distribution[length] || 0) + 1;
-  for (const code of character.cangjie.acceptedCodes) {
-    if (!codeOwners.has(code)) codeOwners.set(code, []);
-    codeOwners.get(code).push(character.id);
-  }
-}
+if (dataset.characters.length !== 3000) validation.errors.push(`Expected 3000 canonical characters, found ${dataset.characters.length}.`);
+if (dataset.lessons.length < 500) validation.errors.push(`Expected at least 500 runtime lessons, found ${dataset.lessons.length}.`);
+validation.valid = validation.errors.length === 0;
 const report = {
   generatedAt: dataset.manifest.generatedAt,
   datasetId: dataset.manifest.datasetId,
   datasetVersion: dataset.manifest.datasetVersion,
+  source: bundle.source,
   valid: validation.valid,
-  counts: validation.counts,
+  counts: { ...validation.counts, rawGeneratedLessons: bundle.lessons.lessons.length },
   errors: validation.errors,
   warnings: validation.warnings,
-  checksum: { expected: expectedChecksum, calculated: actualChecksum, valid: expectedChecksum === actualChecksum },
-  duplicateCodes: [...codeOwners.entries()]
-    .filter(([, characterIds]) => characterIds.length > 1)
-    .map(([code, characterIds]) => ({ code, characterIds })),
-  unknownRoots: validation.errors.filter((error) => error.includes("unknown root")),
-  unsupportedVersions: validation.errors.filter((error) => error.includes("Cangjie 5")),
-  lessonCoverage: Object.fromEntries(dataset.lessons.map((lesson) => [
-    lesson.id,
-    lesson.characterIds.length || dataset.characters.filter((character) => character[lesson.method]?.keySequence.every((key) => lesson.activeKeys.includes(key))).length,
-  ])),
-  codeLengthDistribution: distribution,
-  charactersMissingQuick: dataset.characters.filter((character) => !character.quick).map((character) => character.id),
-  pronunciationCoverage: dataset.characters.filter((character) => character.pronunciations?.length).length,
-  provenanceCoverage: dataset.characters.filter((character) => character.provenance?.verified).length,
+  checksum: dataset.manifest.checksum,
+  curriculumInputDigest: bundle.manifest.inputDigest,
 };
 const artifactDir = resolve(ROOT, "artifacts");
 mkdirSync(artifactDir, { recursive: true });
@@ -56,4 +44,4 @@ if (!validation.valid) {
   console.error(validation.errors.join("\n"));
   process.exit(1);
 }
-console.log(`Chinese Input dataset valid: ${validation.counts.characters} characters, ${validation.counts.roots} roots, ${validation.counts.lessons} lessons.`);
+console.log(`Chinese Input generated dataset valid: ${dataset.characters.length} characters, ${dataset.roots.length} roots, ${dataset.lessons.length} runtime lessons (${bundle.lessons.lessons.length} generated lessons).`);
