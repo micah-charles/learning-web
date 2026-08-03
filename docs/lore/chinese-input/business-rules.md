@@ -173,6 +173,13 @@ A runtime that constructs `characterIds`, Chinese skill IDs or module evaluator 
 ### Guidance for future agents
 Keep module nouns and evaluator contracts out of `src/learning-runtime/`. Adapters must build generic nodes, chapters, evidence, candidates, activity blocks and challenges. The Director may rank generic evidence but must not invent or grade subject knowledge.
 
+## Knowledge regions are gateways, not lesson links
+code: `src/learning-runtime/ui/KnowledgeWorld.tsx`, `src/learning-runtime/ui/RegionActionPanel.tsx` | updated: 2026-08-03 | status: active
+
+Selecting a root in Knowledge World opens a reusable Region Action Panel. It shows region mastery, related characters, words, nearby lessons and the Director's recommendation. Continue Journey, Practice, Review, Arena, Collection and Statistics remain learner choices; Reading is an honest future placeholder. No region click navigates directly to a numbered lesson.
+
+Custom Adventures may combine several root regions into one mixed activity session. The selection is ephemeral; learner progress continues through the existing ProgressContext and session APIs.
+
 ## Runtime curriculum has no legacy seed fallback
 code: `src/features/chinese-input/data/generated-curriculum-adapter.js`, `src/features/chinese-input/data/adapt-generated-curriculum.js`, `scripts/validate-chinese-input-data.mjs` | updated: 2026-08-03 | status: active
 

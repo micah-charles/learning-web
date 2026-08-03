@@ -18,6 +18,8 @@ test("Chinese Input adapter maps module data into generic world contracts", () =
   assert.equal(world.nodes[0].id, "root-a");
   assert.equal(world.chapters[0].id, "lesson-1");
   assert.equal(world.capabilities.includes("chinese-input.football"), true);
+  assert.equal(Array.isArray(world.nodes[0].metadata?.relatedCharacters), true);
+  assert.equal(world.nodes[0].metadata?.completion, 0);
 });
 
 test("Chinese Input adapter owns Chinese evaluator references outside the generic Director", () => {
@@ -29,4 +31,15 @@ test("Chinese Input adapter owns Chinese evaluator references outside the generi
   const blocks = chineseInputWorldAdapter.buildActivityBlocks(recommendation, world, evidence, context);
   assert.equal(blocks[0].capabilityId, "chinese-input.lesson");
   assert.equal(JSON.stringify(blocks).includes("input-method:cangjie"), true);
+});
+
+test("Chinese Input adapter can assemble a mixed region block", () => {
+  const world = chineseInputWorldAdapter.buildWorld(dataset, progress, context);
+  const evidence = chineseInputWorldAdapter.buildEvidence(dataset, progress, context, "2026-08-03T12:00:00.000Z");
+  const candidates = chineseInputWorldAdapter.buildCandidates(world, evidence, context);
+  const candidate = { ...candidates[0], objectiveRefs: ["root-a"], metadata: { ...candidates[0].metadata, customNodeIds: ["root-a"] } };
+  const recommendation = { selected: candidate, reasonCodes: [], title: "Custom", summary: "Custom", alternatives: [], intent: "journey" as const, score: 1, seed: "test", estimatedMinutes: 5 };
+  const blocks = chineseInputWorldAdapter.buildActivityBlocks(recommendation, world, evidence, context);
+  assert.equal(blocks[0].nodeIds[0], "root-a");
+  assert.equal(blocks[0].challenges.length, 1);
 });

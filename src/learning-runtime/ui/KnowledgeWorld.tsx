@@ -1,4 +1,8 @@
+import { lazy, Suspense, useState } from "react";
 import type { LearningNode } from "../types";
+import type { RegionAction } from "./RegionActionPanel";
+
+const RegionActionPanel = lazy(() => import("./RegionActionPanel"));
 
 const REGION_LABELS: Record<string, { label: string; icon: string; copy: string }> = {
   philosophical: { label: "Element Springs", icon: "◉", copy: "Nature and elemental roots" },
@@ -8,11 +12,16 @@ const REGION_LABELS: Record<string, { label: string; icon: string; copy: string 
   special: { label: "Mystery Peaks", icon: "✦", copy: "Special keyboard symbols" },
 };
 
-export default function KnowledgeWorld({ nodes, onSelect }: { nodes: readonly LearningNode[]; onSelect: (node: LearningNode) => void }) {
+export default function KnowledgeWorld({ nodes, selectedNode, onSelect, onRegionAction, onCloseRegion, actions, onStartCustomAdventure }: { nodes: readonly LearningNode[]; selectedNode?: LearningNode | null; onSelect: (node: LearningNode) => void; onRegionAction?: (action: RegionAction, node: LearningNode) => void; onCloseRegion?: () => void; actions?: readonly RegionAction[]; onStartCustomAdventure?: (nodes: readonly LearningNode[]) => void }) {
   const regions = [...new Set(nodes.map((node) => node.regionId || "world"))];
+  const [customRegionIds, setCustomRegionIds] = useState<string[]>([]);
+  const selectedRegion = selectedNode?.regionId || "world";
+  const region = REGION_LABELS[selectedRegion] || { label: selectedRegion, icon: "✦", copy: "Knowledge region" };
   return (
     <div className="flr-knowledge-world">
-      <div className="flr-map-sky"><p className="flr-eyebrow">Living Knowledge World</p><h3>Explore the root regions</h3><p>Undiscovered places are invitations, not barriers.</p></div>
+      {!selectedNode && <div className="flr-map-sky"><p className="flr-eyebrow">Living Knowledge World</p><h3>Explore the root regions</h3><p>Undiscovered places are invitations, not barriers.</p></div>}
+      {selectedNode && actions && <Suspense fallback={<div className="flr-region-action-panel" role="status">Opening region actions…</div>}><RegionActionPanel node={selectedNode} regionLabel={region.label} regionIcon={region.icon} actions={actions} onAction={(action) => onRegionAction?.(action, selectedNode)} onClose={() => onCloseRegion?.()} /></Suspense>}
+      {!selectedNode && (
       <div className="flr-region-map">
         {regions.map((regionId, regionIndex) => {
           const regionNodes = nodes.filter((node) => (node.regionId || "world") === regionId);
@@ -32,7 +41,9 @@ export default function KnowledgeWorld({ nodes, onSelect }: { nodes: readonly Le
           );
         })}
       </div>
-      <div className="flr-map-legend" aria-label="Map legend"><span><i className="is-mastered" />Mastered</span><span><i className="is-current" />Current</span><span><i className="is-weak" />Needs care</span><span><i className="is-undiscovered" />Undiscovered</span></div>
+      )}
+      {!selectedNode && <div className="flr-custom-adventure"><div><p className="flr-eyebrow">Freedom to choose</p><h4>Build a Custom Adventure</h4><p>Select multiple regions and let the Director mix a practice session.</p></div><div className="flr-custom-region-list">{regions.map((regionId) => { const region = REGION_LABELS[regionId] || { label: regionId, icon: "✦", copy: "Knowledge region" }; const selected = customRegionIds.includes(regionId); return <button type="button" key={regionId} className={selected ? "is-selected" : ""} aria-pressed={selected} onClick={() => setCustomRegionIds((current) => selected ? current.filter((id) => id !== regionId) : [...current, regionId])}><span aria-hidden="true">{region.icon}</span>{region.label} {selected ? "✓" : ""}</button>; })}</div><button type="button" className="flr-custom-adventure-start" disabled={!customRegionIds.length} onClick={() => onStartCustomAdventure?.(nodes.filter((node) => customRegionIds.includes(node.regionId || "world")))}>Start Custom Adventure</button></div>}
+      {!selectedNode && <div className="flr-map-legend" aria-label="Map legend"><span><i className="is-mastered" />Mastered</span><span><i className="is-current" />Current</span><span><i className="is-weak" />Needs care</span><span><i className="is-undiscovered" />Undiscovered</span></div>}
     </div>
   );
 }

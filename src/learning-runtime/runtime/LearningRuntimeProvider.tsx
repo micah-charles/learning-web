@@ -30,7 +30,7 @@ interface RuntimeContextValue {
   recommendation: DirectorRecommendation;
   session: SessionControllerSnapshot;
   setIntent: (intent: DirectorIntent) => void;
-  startSession: (candidateId?: string) => SessionPlan;
+  startSession: (candidateId?: string, options?: { nodeIds?: readonly string[] }) => SessionPlan;
   advanceSession: () => void;
   clearSession: () => void;
 }
@@ -99,14 +99,17 @@ export function LearningRuntimeProvider<TDataset, TProgress, TContext>({
     }
   }, [checkpoint, onCheckpointChange, world.contentRevision, world.worldId]);
 
-  const startSession = useCallback((candidateId = "") => {
-    const candidate = candidates.find((item) => item.id === candidateId)
+  const startSession = useCallback((candidateId = "", options: { nodeIds?: readonly string[] } = {}) => {
+    const baseCandidate = candidates.find((item) => item.id === candidateId)
       || recommendation.selected
       || candidates[0];
-    if (!candidate) throw new Error("The Learning Director has no available activity candidate.");
-    const selectedRecommendation = candidate.id === recommendation.selected?.id
+    if (!baseCandidate) throw new Error("The Learning Director has no available activity candidate.");
+    const candidate = options.nodeIds?.length
+      ? { ...baseCandidate, objectiveRefs: options.nodeIds, metadata: { ...baseCandidate.metadata, customNodeIds: options.nodeIds, customSession: true } }
+      : baseCandidate;
+    const selectedRecommendation = candidate.id === recommendation.selected?.id && !options.nodeIds?.length
       ? recommendation
-      : buildRecommendation({ candidates, evidence, intent: candidate.intent, preferredId: candidate.id, now, seed });
+      : { ...buildRecommendation({ candidates, evidence, intent: candidate.intent, preferredId: candidate.id, now, seed }), selected: candidate };
     const blocks = adapter.buildActivityBlocks(selectedRecommendation, world, evidence, adapterContext);
     requestSequenceRef.current += 1;
     const plan = buildSessionPlan({

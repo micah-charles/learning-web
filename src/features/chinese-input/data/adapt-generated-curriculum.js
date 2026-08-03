@@ -15,7 +15,7 @@ function methodData(code, acceptedCodes) {
   };
 }
 
-export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, readingDocument }) {
+export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, readingDocument, wordDocument }) {
   const readingsByCharacter = new Map();
   for (const reading of readingDocument.readings) {
     if (!readingsByCharacter.has(reading.character)) readingsByCharacter.set(reading.character, []);
@@ -49,6 +49,12 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
     },
   }));
   const characterById = new Map(characters.map((character) => [character.id, character]));
+  const words = (wordDocument?.words || []).map((row) => ({
+    id: row.word_id || row.wordId || row.word,
+    word: row.word,
+    characterIds: Array.isArray(row.character_ids) ? row.character_ids : [],
+    meaning: row.learner_definition_status === "approved" ? row.learner_definition_en : "",
+  }));
   const converted = [];
   const activeRootKeys = new Set();
   for (const lesson of bundle.lessons.lessons) {
@@ -120,6 +126,7 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
     },
     roots: CANGJIE_ROOTS,
     characters,
+    words,
     lessons: converted,
   };
   const runtimeValidation = validateChineseInputDataset(dataset);

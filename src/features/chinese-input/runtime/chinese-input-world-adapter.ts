@@ -24,6 +24,13 @@ interface ChineseCharacter {
   quick: MethodData;
 }
 
+interface ChineseWord {
+  id: string;
+  word: string;
+  characterIds: string[];
+  meaning: string;
+}
+
 interface ChineseRoot {
   id: string;
   key: string;
@@ -57,6 +64,7 @@ export interface ChineseInputDataset {
   };
   roots: ChineseRoot[];
   characters: ChineseCharacter[];
+  words?: ChineseWord[];
   lessons: ChineseLesson[];
 }
 
@@ -81,6 +89,50 @@ export interface ChineseInputRuntimeContext {
   method: "cangjie" | "quick";
   currentRootKey: string;
   preferredJourneyId: string;
+}
+
+function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProgress, root: ChineseRoot, method: "cangjie" | "quick") {
+  const relatedCharacters = dataset.characters
+    .filter((character) => character[method]?.keySequence.includes(root.key))
+    .map((character) => {
+      const mastery = characterMastery(progress, character.id, method);
+      const score = clamp(mastery.masteryScore || 0);
+      return {
+        id: character.id,
+        glyph: character.char,
+        label: character.meaning.en,
+        progress: score,
+        state: score >= 80 ? "mastered" : mastery.attempts ? "weak" : "available",
+      };
+    });
+  const lessons = dataset.lessons
+    .filter((lesson) => lesson.method === method && (lesson.activeKeys.includes(root.key) || lesson.introducedKeys.includes(root.key) || lesson.reviewedKeys.includes(root.key)))
+    .slice(0, 8)
+    .map((lesson) => ({ id: lesson.id, label: lesson.title.en, progress: clamp(progress.lessons?.[lesson.id]?.lastScore || 0) }));
+  const weakCharacters = relatedCharacters.filter((character) => character.state === "weak");
+  const masteredCharacters = relatedCharacters.filter((character) => character.state === "mastered");
+  const completion = relatedCharacters.length
+    ? clamp(relatedCharacters.reduce((sum, character) => sum + character.progress, 0) / relatedCharacters.length)
+    : 0;
+  const relatedWords = (dataset.words || [])
+    .filter((word) => word.characterIds.some((id) => relatedCharacters.some((character) => character.id === id)))
+    .slice(0, 6)
+    .map((word) => ({ word: word.word, meaning: word.meaning }));
+  return {
+    completion,
+    characterIds: relatedCharacters.map((character) => character.id),
+    relatedCharacters: relatedCharacters.slice(0, 8),
+    weakCharacters: weakCharacters.slice(0, 6),
+    masteredCharacters: masteredCharacters.slice(0, 6),
+    relatedWords,
+    relatedLessons: lessons,
+    upcomingDiscoveries: relatedCharacters.filter((character) => character.state === "available").length,
+    recommendationReason: weakCharacters.length
+      ? `${weakCharacters.length} weak character${weakCharacters.length === 1 ? "" : "s"} need review.`
+      : lessons.length
+        ? "Required by a nearby journey chapter."
+        : "A fresh region is ready to explore.",
+  };
 }
 
 function clamp(value: number): number {
@@ -147,7 +199,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         regionId: root.category,
         description: root.mnemonic?.en,
         glyph: root.primaryRoot,
-        metadata: { key: root.key },
+        metadata: { key: root.key, ...regionMetadata(dataset, progress, root, context.method) },
       };
     });
     const chapters: LearningChapter[] = lessons.map((lesson, index) => ({
@@ -259,18 +311,22 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
     if (!candidate) return [];
     const metadata = candidate.metadata || {};
     const chapter = world.chapters.find((item) => item.id === candidate.id);
-    const characterIds = ((metadata.characterIds as string[] | undefined) || []) as string[];
+    const customNodeIds = (metadata.customNodeIds as string[] | undefined) || [];
+    const customCharacterIds = customNodeIds.flatMap((id) => (world.nodes.find((node) => node.id === id)?.metadata?.characterIds as string[] | undefined) || []);
+    const characterIds = customCharacterIds.length
+      ? [...new Set(customCharacterIds)].slice(0, 24)
+      : ((metadata.characterIds as string[] | undefined) || []) as string[];
     const capabilityId = candidate.kind === "arena"
       ? "chinese-input.football"
       : candidate.kind === "review"
         ? "chinese-input.review"
         : "chinese-input.lesson";
-    const nodeIds = chapter?.nodeIds || characterIds.map((id) => `character:${id}`);
+    const nodeIds = customNodeIds.length ? customNodeIds : chapter?.nodeIds || characterIds.map((id) => `character:${id}`);
     return [{
       blockId: `${candidate.kind}:${candidate.id}`,
       purpose: candidate.kind === "review" ? "retention" : candidate.kind === "arena" ? "challenge" : candidate.kind === "explore" ? "discovery" : "new",
       capabilityId,
-      chapterId: chapter?.id,
+      chapterId: customNodeIds.length ? undefined : chapter?.id,
       nodeIds,
       skillIds: [`input-method:${context.method}`],
       challenges: characterIds.map((characterId) => ({
