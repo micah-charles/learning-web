@@ -68,13 +68,14 @@ test("preview generation covers all canonical characters and adapts safely at ru
     const lessons = JSON.parse(readFileSync(resolve(output, "lessons.json")));
     const assessments = JSON.parse(readFileSync(resolve(output, "assessment_graph.json")));
     const games = JSON.parse(readFileSync(resolve(output, "game_graph.json")));
+    const migration = JSON.parse(readFileSync(resolve(output, "learner_progress_migration.json")));
     const wordGraph = JSON.parse(readFileSync(resolve(output, "word_unlock_graph.json")));
     assert.equal(manifest.releaseStatus, "provisional-preview");
     assert.equal(manifest.productionEligible, false);
     assert.equal(manifest.counts.characters, 3000);
     assert.equal(manifest.counts.roots, 26);
     assert.equal(lessons.lessons.flatMap((lesson) => lesson.newCharacters).length, 3000);
-    assert.equal(validateGeneratedCurriculumBundle({ manifest, stages, lessons, assessments, games, wordGraph }, "generated-preview").valid, true);
+    assert.equal(validateGeneratedCurriculumBundle({ manifest, stages, lessons, assessments, games, migration, wordGraph }, "generated-preview").valid, true);
     const canonicalRoot = resolve(projectRoot, "learning-data/chinese-input/canonical");
     const fetchImpl = async (path) => {
       try {
