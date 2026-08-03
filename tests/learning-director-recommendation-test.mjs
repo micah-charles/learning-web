@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildLearnerSignals, buildRecommendation } from "../src/learning-director/domain/recommendation.js";
-import { buildSessionPlan, digestPlan, isCompatibleSessionPlan } from "../src/learning-director/domain/session-plan.js";
+import { buildSessionPlan, digestPlan, isCompatibleSessionPlan, isValidSessionPlan } from "../src/learning-director/domain/session-plan.js";
 
 test("Director prefers an explicit unfinished journey and explains it", () => {
   const candidates = [
@@ -59,4 +59,5 @@ test("Session plans are deterministic, mixed when review is due, and frozen", ()
   assert.equal(first.blocks[1].purpose, "retention");
   assert.ok(Object.isFrozen(first));
   assert.ok(isCompatibleSessionPlan(first, { worldId: "chinese-input", contentRevision: "0.1.0", method: "cangjie" }));
+  assert.ok(isValidSessionPlan(first, { worldId: "chinese-input", contentRevision: "0.1.0", method: "cangjie" }));
 });

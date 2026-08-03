@@ -104,7 +104,16 @@ export default function useChineseInputProgress() {
     updateProgress((state) => {
       const lab = state.progress.chineseInputLab;
       if (lab.activeSession) {
-        lab.activeSession = { ...lab.activeSession, status: "abandoned", abandonedAt: new Date().toISOString(), abandonmentReason: reason };
+        const abandonedAt = new Date().toISOString();
+        lab.sessions = appendBounded(lab.sessions, {
+          sessionId: lab.activeSession.plan.sessionId,
+          lessonId: lab.activeSession.plan.chapterRefs?.[0]?.chapterId || "",
+          method: lab.activeSession.plan.presentation?.method || "",
+          datasetVersion: lab.activeSession.plan.contentRevision,
+          status: "abandoned",
+          abandonedAt,
+          abandonmentReason: reason,
+        }, CHINESE_INPUT_SESSION_LIMIT);
       }
       lab.activeSession = null;
     });

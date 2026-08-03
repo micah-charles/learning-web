@@ -123,3 +123,9 @@ export function isCompatibleSessionPlan(plan, { worldId, contentRevision, method
     && (!contentRevision || plan.contentRevision === contentRevision)
     && (!method || plan.presentation?.method === method));
 }
+
+export function isValidSessionPlan(plan, constraints = {}) {
+  return isCompatibleSessionPlan(plan, constraints)
+    && typeof plan.planDigest === "string"
+    && digestPlan({ ...plan, planDigest: undefined }) === plan.planDigest;
+}

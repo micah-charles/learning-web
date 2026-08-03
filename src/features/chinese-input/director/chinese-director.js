@@ -29,7 +29,7 @@ function chapterCandidate(lesson, moduleProgress, method, now) {
   return { ...lesson, kind: "chapter", focusLabel: lesson.title?.en || "verified keyboard practice", outcomeLabel: lesson.characterIds?.length ? `${lesson.characterIds.length} verified characters` : "verified keyboard practice", supportsArena: true, lastAttemptAt: lastAttempt?.occurredAt || saved?.lastOpenedAt || "", recentlyUsed: Boolean(lastAttempt && now - Date.parse(lastAttempt.occurredAt) < 24 * 60 * 60 * 1000), weaknessValue: (lesson.activeKeys || []).length <= 5 ? 4 : 0 };
 }
 
-export function buildChineseDirectorModel({ dataset, moduleProgress, method, preferredId = "", intent = "journey", currentRootKey = "A", now = Date.now() } = {}) {
+export function buildChineseDirectorModel({ dataset, moduleProgress, method, preferredId = "", intent = "journey", currentRootKey = "A", requestId = "", now = Date.now() } = {}) {
   const lessons = dataset.lessons.filter((lesson) => lesson.method === method).map((lesson) => chapterCandidate(lesson, moduleProgress, method, now));
   const reviewLesson = buildChineseReviewLesson(dataset, moduleProgress, method, now);
   const learner = buildLearnerSignals({ moduleProgress, method, now });
@@ -37,7 +37,7 @@ export function buildChineseDirectorModel({ dataset, moduleProgress, method, pre
   const recommendation = buildRecommendation({ candidates: reviewLesson ? [reviewLesson, ...lessons] : lessons, learner, intent, preferredId, now, seed });
   const sessionPlan = recommendation.selected ? buildSessionPlan({
     request: {
-      requestId: `${recommendation.selected.id}:${method}:${seed}`,
+      requestId: requestId || `${recommendation.selected.id}:${method}:${seed}`,
       worldId: "chinese-input",
       learnerSnapshotId: `local:${method}:${moduleProgress.attemptEvents?.length || 0}`,
       intent: recommendation.intent,

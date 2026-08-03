@@ -71,8 +71,8 @@ export default function ChineseInputPage() {
 
   function openPanel(nextPanel) { setPanel(nextPanel === "world" ? "" : nextPanel); }
   function planFor(candidate, intent = "journey") {
-    if (candidate?.id === model.selected?.id && model.sessionPlan) return model.sessionPlan;
-    return buildChineseDirectorModel({ dataset, moduleProgress, method, preferredId: candidate?.id || "", intent, currentRootKey: prefs.currentRootKey || "A", now: Date.now() }).sessionPlan;
+    if (candidate?.id === model.selected?.id && model.learner.activeSession?.plan?.sessionId && model.reasonCodes.includes("RESUME_SESSION")) return model.learner.activeSession.plan;
+    return buildChineseDirectorModel({ dataset, moduleProgress, method, preferredId: candidate?.id || "", intent, requestId: `start:${Date.now()}:${candidate?.id || "unknown"}`, currentRootKey: prefs.currentRootKey || "A", now: Date.now() }).sessionPlan;
   }
   function startSession(candidate, type = "lesson") {
     if (!candidate) return;
