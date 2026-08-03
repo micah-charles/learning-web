@@ -24,7 +24,7 @@
     "test:tutor-studybook:unit": "node --loader ./tests/resolve-alias.mjs tests/tutor-engine-test.mjs && node --loader ./tests/resolve-alias.mjs tests/tutor-studybook-integration-test.mjs",
     "test:tutor-studybook:e2e": "npx playwright test -c playwright.config.mjs tests/playwright/tutor-studybook.spec.mjs",
     "validate:chinese-input-data": "node scripts/validate-chinese-input-data.mjs",
-    "test:chinese-input": "node tests/chinese-input-domain-test.mjs",
+    "test:chinese-input": "node tests/chinese-input-domain-test.mjs && node --test tests/learning-director-recommendation-test.mjs",
     "test:mini-games": "node --loader ./tests/resolve-alias.mjs tests/mini-game-framework-test.mjs",
     "fetch:chinese-canonical": "node scripts/chinese-input/canonical/fetch-authoritative-sources.mjs",
     "fetch:chinese-cangjie-reference": "node scripts/chinese-input/canonical/fetch-cangjie-reference.mjs",
