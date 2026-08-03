@@ -68,6 +68,7 @@ export function generateSessionPlan({
       : [...methodData.keySequence];
     return {
       id: `${lesson.id}-${seed}-${index + 1}`,
+      lessonId: lesson.id,
       type,
       method,
       prompt: type === "root-recognition"

@@ -57,6 +57,13 @@ const analysisPlan = generateSessionPlan({ dataset, lesson: analysisLesson, seed
 const rootQuestion = analysisPlan.questions.find((question) => question.type === "root-recognition");
 assert.equal(rootQuestion.expectedCodes[0].length, 1);
 assert.equal(rootQuestion.expectedKeys.length, 1);
+const mixedReviewPlan = generateSessionPlan({
+  dataset,
+  lesson: { ...analysisLesson, id: "mixed-review-test", characterIds: ["u65e5"], preserveCharacterOrder: true },
+  seed: 43,
+  questionCount: 2,
+});
+assert.equal(mixedReviewPlan.questions[0].lessonId, "mixed-review-test");
 
 const footballLesson = dataset.lessons.find((entry) => entry.id === "cj-construction-03");
 const footballPlan = createFootballSessionPlan({

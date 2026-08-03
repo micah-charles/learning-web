@@ -45,6 +45,7 @@ function feedbackCopy(result, character, question) {
 export default function LessonPlayer({
   dataset,
   lesson,
+  reviewLesson = null,
   directorPlan = null,
   method,
   pronounce,
@@ -54,14 +55,12 @@ export default function LessonPlayer({
   completeSession,
 }) {
   const seedRef = useRef(directorPlan?.seed ? hashSeed(directorPlan.seed) : Math.floor(Date.now() / 1000));
-  const plan = useMemo(() => generateSessionPlan({
-    dataset,
-    lesson,
-    method,
-    seed: seedRef.current,
-    questionCount: Math.max(lesson.passCriteria.minimumQuestions, 10),
-    createdAt: new Date().toISOString(),
-  }), [dataset, lesson, method]);
+  const plan = useMemo(() => {
+    const mainPlan = generateSessionPlan({ dataset, lesson, method, seed: seedRef.current, questionCount: Math.max(lesson.passCriteria.minimumQuestions, 10), createdAt: new Date().toISOString() });
+    if (!reviewLesson || lesson.kind === "review") return mainPlan;
+    const reviewPlan = generateSessionPlan({ dataset, lesson: reviewLesson, method, seed: seedRef.current + 1, questionCount: Math.max(2, Math.round(mainPlan.questions.length * .2)), createdAt: new Date().toISOString() });
+    return { ...mainPlan, questions: [...mainPlan.questions, ...reviewPlan.questions], mixedReview: true };
+  }, [dataset, lesson, method, reviewLesson]);
   const [index, setIndex] = useState(0);
   const [buffer, setBuffer] = useState("");
   const [pressedKey, setPressedKey] = useState("");
@@ -76,7 +75,8 @@ export default function LessonPlayer({
   const isRootRecognition = question?.type === "root-recognition";
   const spokenText = isRootRecognition ? question.rootLabel : character?.char;
   const expectedKey = question?.expectedKeys?.[buffer.length] || "";
-  const allLearnedKeys = lesson.activeKeys;
+  const availableKeys = useMemo(() => [...new Set([...(lesson.activeKeys || []), ...(reviewLesson?.activeKeys || [])])], [lesson.activeKeys, reviewLesson?.activeKeys]);
+  const allLearnedKeys = availableKeys;
   const questionStartedAt = useRef(Date.now());
   const lastAutoPronouncedQuestion = useRef("");
 
@@ -109,7 +109,7 @@ export default function LessonPlayer({
     }));
       recordAttempt({
       sessionId: directorPlan?.sessionId || plan.sessionId,
-      lessonId: lesson.id,
+      lessonId: question.lessonId || lesson.id,
       question,
       character,
       result,
@@ -177,7 +177,7 @@ export default function LessonPlayer({
       setBuffer("");
       return;
     }
-    if (!/^[A-Z]$/.test(key) || !lesson.activeKeys.includes(key)) return;
+    if (!/^[A-Z]$/.test(key) || !availableKeys.includes(key)) return;
     setPressedKey(key);
     window.setTimeout(() => setPressedKey(""), 130);
     const nextBuffer = appendInputKey(buffer, key, method);
@@ -185,7 +185,7 @@ export default function LessonPlayer({
     if (shouldAutoSubmitAnswer(nextBuffer, question.expectedCodes)) {
       submitAnswer(nextBuffer);
     }
-  }, [buffer, feedback, lesson.activeKeys, method, nextQuestion, question, submitAnswer, summary]);
+  }, [availableKeys, buffer, feedback, method, nextQuestion, question, submitAnswer, summary]);
 
   usePhysicalKeyboard({ enabled: !summary, onKey: handleInput });
 
@@ -302,7 +302,7 @@ export default function LessonPlayer({
       {feedback && !isRootRecognition && <CharacterDecomposition character={character} method={method} />}
 
       <VirtualCangjieKeyboard
-        activeKeys={lesson.activeKeys}
+        activeKeys={availableKeys}
         learnedKeys={allLearnedKeys}
         expectedKey={hintEnabled ? expectedKey : ""}
         pressedKey={pressedKey}
