@@ -1,5 +1,10 @@
 export const CANGJIE_ROOT_LABELS = "日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符";
 
+// Z is retained as an advanced Cangjie/IME tool key, not as a normal
+// character root. It can be taught and practised, but must not inflate root
+// or character-region mastery.
+export const INPUT_TOOL_KEYS = new Set(["Z"]);
+
 export const KEYBOARD_ROWS = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
   ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -30,6 +35,7 @@ export const CANGJIE_ROOTS = Array.from(KEYS, (key, index) => {
     id: `root-${key.toLowerCase()}`,
     key,
     primaryRoot,
+    inputTool: INPUT_TOOL_KEYS.has(key),
     labelZhHant: primaryRoot,
     labelEn,
     category: ROOT_CATEGORIES[index],

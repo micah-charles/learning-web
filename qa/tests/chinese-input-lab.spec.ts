@@ -103,6 +103,34 @@ test("Floating Flower has six destinations, keyboard support, and draggable pers
   await page.getByRole("menuitem", { name: /Explore/ }).click();
   await expect(page.getByRole("dialog", { name: "Knowledge World" })).toBeVisible();
   await expect(page.getByTestId("knowledge-node-root-a")).toBeEnabled();
+  await page.getByTestId("knowledge-node-root-a").click();
+  await expect(page.getByRole("region", { name: /Element Springs actions/ })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Continue Journey/ })).toBeEnabled();
+  await expect(page.getByRole("button", { name: /Reading/ })).toBeDisabled();
+});
+
+test("Knowledge World supports region actions and a mixed custom adventure", async ({ page }) => {
+  await openKingdom(page);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  await page.getByRole("button", { name: /Element Springs/ }).click();
+  await page.getByRole("button", { name: /Stroke Highlands/ }).click();
+  await expect(page.getByRole("button", { name: /Start Custom Adventure/ })).toBeEnabled();
+  await page.getByRole("button", { name: /Start Custom Adventure/ }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Custom Knowledge Adventure" })).toBeVisible();
+});
+
+test("Input Tools keeps Z outside root regions and character mastery", async ({ page }) => {
+  await openKingdom(page);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  await expect(page.getByRole("region", { name: "Input Tools category" })).toBeVisible();
+  await page.getByTestId("knowledge-node-root-z").click();
+  const panel = page.getByRole("region", { name: /Input Tools actions/ });
+  await expect(panel).toBeVisible();
+  await expect(panel.getByText("0 related characters")).toBeVisible();
+  await expect(panel.getByText("Input Tools: Z special key")).toBeVisible();
 });
 
 test("all six world destinations render their distinct game environments", async ({ page }) => {

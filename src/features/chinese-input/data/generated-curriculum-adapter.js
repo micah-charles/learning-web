@@ -69,8 +69,9 @@ export async function loadGeneratedChineseInputDataset(options = {}) {
     loadCanonical("canonical_characters.json"),
     loadCanonical("canonical_character_readings.json"),
   ]);
+  const wordDocument = await loadCanonical("canonical_words.json");
   return {
-    dataset: adaptGeneratedChineseInputDataset({ bundle, characterDocument, readingDocument }),
+    dataset: adaptGeneratedChineseInputDataset({ bundle, characterDocument, readingDocument, wordDocument }),
     bundle,
     warning: "",
   };

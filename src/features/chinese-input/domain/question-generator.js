@@ -95,7 +95,12 @@ export function generateSessionPlan({
             methodData.keySequence[0],
             methodData.preferredCode,
           ],
-      metadata: { stage: lesson.stage, datasetVersion: dataset.manifest.datasetVersion },
+      metadata: {
+        stage: lesson.stage,
+        datasetVersion: dataset.manifest.datasetVersion,
+        inputToolKey: type === "root-recognition" && lesson.inputToolKeys?.includes(rootKey) ? rootKey : "",
+        lessonCategory: lesson.category || "journey",
+      },
     };
   });
   return {

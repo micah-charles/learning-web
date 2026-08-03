@@ -1,4 +1,5 @@
 import { isReviewDue } from "../domain/review-scheduler.js";
+import { INPUT_TOOL_KEYS } from "../data/keyboard-layout.js";
 
 export const FLOWER_ACTIONS = [
   { id: "continue", label: "Continue Journey", shortLabel: "Continue", icon: "▶" },
@@ -113,7 +114,8 @@ function recentAccuracy(moduleProgress, method) {
 }
 
 function masteryDimensions(dataset, moduleProgress, method) {
-  const roots = Object.values(moduleProgress.roots || {});
+  const rootKeys = dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key)).map((root) => root.key);
+  const roots = rootKeys.map((key) => moduleProgress.roots?.[key] || {});
   const characterRecords = dataset.characters
     .map((character) => masteryForCharacter(moduleProgress, character.id, method))
     .filter((record) => record.attempts);
@@ -127,7 +129,7 @@ function masteryDimensions(dataset, moduleProgress, method) {
     ...dataset.characters.filter((character) => masteryForCharacter(moduleProgress, character.id, method).attempts).map((character) => character.id),
   ]).size;
   return [
-    { id: "keyboard", label: "Keyboard familiarity", value: clamp(roots.filter((root) => root.exposures > 0).length / 26 * 100) },
+    { id: "keyboard", label: "Keyboard familiarity", value: clamp(roots.filter((root) => root.exposures > 0).length / Math.max(1, rootKeys.length) * 100) },
     { id: "roots", label: "Root recognition", value: clamp(average(roots.map((root) => root.masteryScore || 0))) },
     { id: "construction", label: "Character construction", value: clamp(average(characterRecords.map((record) => record.masteryScore || 0))) },
     { id: "recall", label: "Character recall", value: clamp(characterRecords.filter((record) => (record.streak || 0) >= 2).length / Math.max(1, characterRecords.length) * 100) },
@@ -156,7 +158,10 @@ export function buildKingdomModel({
   const dimensions = masteryDimensions(dataset, moduleProgress, method);
   const dueCount = Object.values(moduleProgress.characters || {}).filter((record) => isReviewDue(record?.[method])).length;
   const rank = deriveAdventureRank(miniGameProfile.xp);
-  const learnedRootCount = Object.values(moduleProgress.roots || {}).filter((record) => record.exposures > 0).length;
+  const learnedRootCount = dataset.roots
+    .filter((root) => !INPUT_TOOL_KEYS.has(root.key))
+    .filter((root) => (moduleProgress.roots?.[root.key]?.exposures || 0) > 0)
+    .length;
   const recommendationReason = dueCount >= 5
     ? `You have ${dueCount} characters ready for review. This journey keeps new work light while recall settles.`
     : lesson?.introducedKeys?.length

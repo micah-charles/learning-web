@@ -14,6 +14,7 @@ import { playSoundCue, SOUND_CUES } from "../../../react/utils/soundCues.js";
 import CharacterCollection from "../components/CharacterCollection.jsx";
 import PronunciationButton from "../components/PronunciationButton.jsx";
 import VirtualCangjieKeyboard from "../components/VirtualCangjieKeyboard.jsx";
+import { INPUT_TOOL_KEYS } from "../data/keyboard-layout.js";
 import { FOOTBALL_CHALLENGES } from "./kingdom-model.js";
 import "../../../learning-runtime/theme/runtime.css";
 import "./kingdom.css";
@@ -93,6 +94,7 @@ export default function ChineseInputKingdom({
   const runtime = useLearningRuntime();
   const [arenaMode, setArenaMode] = useState("");
   const [museumWing, setMuseumWing] = useState("");
+  const [selectedRegionNode, setSelectedRegionNode] = useState(null);
   const recommendedLesson = dataset.lessons.find((lesson) => lesson.id === runtime.recommendation.selected?.id)
     || model.journey?.lesson;
   const recommendation = recommendedLesson
@@ -115,7 +117,7 @@ export default function ChineseInputKingdom({
     || moduleProgress.discoveredNodes?.[character.id]
   )).length, [dataset.characters, method, moduleProgress.characters, moduleProgress.discoveredNodes]);
   const museumWings = [
-    { id: "characters", label: "Characters & Roots", description: "Verified glyphs and keyboard roots", icon: "字", discovered: discoveredCharacterCount + model.practisedRootCount, total: dataset.characters.length + dataset.roots.length, samples: model.relatedCharacters.slice(0, 4).map((item) => item.char) },
+    { id: "characters", label: "Characters & Roots", description: "Verified glyphs and keyboard roots", icon: "字", discovered: discoveredCharacterCount + model.practisedRootCount, total: dataset.characters.length + dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key)).length, samples: model.relatedCharacters.slice(0, 4).map((item) => item.char) },
     { id: "achievements", label: "Achievements", description: "Milestones from your adventures", icon: "★", discovered: Object.keys(moduleProgress.achievements || {}).length, total: 24, samples: ["✦", "◆", "♛"] },
     { id: "companions", label: "Companions", description: "Friends met across the world", icon: "♧", discovered: 1, total: 8, samples: ["狐", "友"] },
     { id: "cosmetics", label: "Cosmetics", description: "Banners, trails and Flower styles", icon: "✿", discovered: Math.max(1, Math.floor(miniGameProfile.xp / 750)), total: 18, samples: ["❀", "✧", "◇"] },
@@ -162,6 +164,65 @@ export default function ChineseInputKingdom({
   function selectKnowledgeNode(node) {
     const key = String(node.metadata?.key || "");
     if (key) onSelectRoot(key);
+    setSelectedRegionNode(node);
+  }
+
+  const regionActions = [
+    { id: "journey", label: "Continue Journey", description: "Follow the Learning Director’s plan.", icon: "🦊", recommended: true, hint: "Recommended" },
+    { id: "training", label: "Practice", description: "Personalised practice for this root.", icon: "🎯" },
+    { id: "review", label: "Review", description: "Revisit what you have learned.", icon: "📖" },
+    { id: "arena", label: "Arena", description: "Fun challenge with this root.", icon: "⚽" },
+    { id: "reading", label: "Reading", description: "Reading River is coming soon.", icon: "📚", disabled: true, hint: "Future activity" },
+    { id: "collection", label: "Collection", description: "View this root in your collection.", icon: "🧰" },
+    { id: "statistics", label: "Statistics", description: "See your progress and patterns.", icon: "📊" },
+  ];
+
+  function closeWorldPanel() {
+    setSelectedRegionNode(null);
+    onOpenPanel("");
+  }
+
+  function handleRegionAction(action, node) {
+    const key = String(node.metadata?.key || "");
+    const chapterCandidate = runtime.candidates.find((candidate) => candidate.kind === "chapter" && candidate.objectiveRefs?.includes(node.id))
+      || runtime.recommendation.selected;
+    if (action.id === "journey") {
+      runtime.setIntent("journey");
+      if (chapterCandidate?.id) {
+        const lesson = dataset.lessons.find((item) => item.id === chapterCandidate.id);
+        if (lesson) {
+          runtime.startSession(lesson.id);
+          onStartLesson(lesson);
+          return;
+        }
+      }
+      onOpenPanel("journey");
+    } else if (action.id === "training") {
+      runtime.setIntent("training");
+      if (key) onSelectRoot(key);
+      onOpenPanel("training");
+    } else if (action.id === "review") {
+      startDirectedReview();
+    } else if (action.id === "arena") {
+      runtime.setIntent("arena");
+      onOpenPanel("arena");
+    } else if (action.id === "collection") {
+      onOpenPanel("collection");
+    }
+  }
+
+  function startCustomAdventure(regionNodes) {
+    if (!regionNodes?.length) return;
+    const candidate = runtime.candidates.find((item) => item.kind === "chapter") || runtime.recommendation.selected;
+    if (!candidate) return;
+    runtime.setIntent("journey");
+    runtime.startSession(candidate.id, { nodeIds: regionNodes.map((node) => node.id) });
+    const baseLesson = dataset.lessons.find((item) => item.id === candidate.id) || model.journey?.lesson;
+    if (!baseLesson) return;
+    const characterIds = [...new Set(regionNodes.flatMap((node) => node.metadata?.characterIds || []))].slice(0, 24);
+    const activeKeys = [...new Set(characterIds.flatMap((id) => dataset.characters.find((character) => character.id === id)?.[method]?.keySequence || []))].sort();
+    const lesson = { ...baseLesson, id: `custom-adventure-${method}-${regionNodes.map((node) => node.id).join("-")}`, title: { en: "Custom Knowledge Adventure", zhHant: "自訂知識冒險" }, characterIds, activeKeys, introducedKeys: [], reviewedKeys: regionNodes.map((node) => String(node.metadata?.key || "")).filter(Boolean), prerequisites: [], estimatedMinutes: 6 };
+    onStartLesson(lesson);
   }
 
   const titleByPanel = {
@@ -189,7 +250,7 @@ export default function ChineseInputKingdom({
         <div className="flr-home-layout">
           <AdventureBoard recommendation={recommendation} localTitle={recommendedLesson?.title?.zhHant} outcomes={model.journey?.outcomes || []} reward={model.journey?.reward || { xp: 80, coins: 12 }} onStart={() => startDirectedLesson()} onChoose={() => onOpenPanel("journey")} />
           <div className="flr-world-quick-actions">
-            <WorldShortcut icon="⌖" label="Knowledge World" detail={`${model.practisedRootCount}/26 roots explored`} onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "explore"))} testId="chinese-input-open-world" />
+        <WorldShortcut icon="⌖" label="Knowledge World" detail={`${model.practisedRootCount}/${dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key)).length} roots explored`} onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "explore"))} testId="chinese-input-open-world" />
             <WorldShortcut icon="⚽" label="Arena" detail="Goalkeeper challenge ready" onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "arena"))} />
             <WorldShortcut icon="↻" label="Review Library" detail={runtime.evidence.dueCount ? `${runtime.evidence.dueCount} memories ready` : "Shelves are peaceful"} onClick={() => openDestination(FLOWER_ACTIONS.find((item) => item.id === "review"))} />
           </div>
@@ -201,10 +262,10 @@ export default function ChineseInputKingdom({
       <FloatingFlower actions={flowerActions} activeIntent={panel || undefined} position={prefs.flowerPosition || null} onPositionChange={(flowerPosition) => onUpdatePrefs({ flowerPosition })} onAction={openDestination} />
 
       {panel && (
-        <WorldOverlay title={titleByPanel[panel] || "Chinese Input Kingdom"} eyebrow="FoxChild Learning World" onClose={() => onOpenPanel("")} wide={panel !== "settings"} immersive={["journey", "explore", "arena", "collection"].includes(panel)}>
+        <WorldOverlay title={titleByPanel[panel] || "Chinese Input Kingdom"} eyebrow="FoxChild Learning World" onClose={closeWorldPanel} wide={panel !== "settings"} immersive={["journey", "explore", "arena", "collection"].includes(panel)}>
           {panel === "journey" && <JourneyPath chapters={runtime.world.chapters} currentId={recommendedLesson?.id} onSelect={(chapter) => startDirectedLesson(dataset.lessons.find((lesson) => lesson.id === chapter.id))} />}
           {panel === "training" && <TrainingGround dataset={dataset} model={model} onSelectRoot={onSelectRoot} pronounce={pronounce} />}
-          {panel === "explore" && <KnowledgeWorld nodes={runtime.world.nodes} onSelect={selectKnowledgeNode} />}
+          {panel === "explore" && <KnowledgeWorld nodes={runtime.world.nodes} selectedNode={selectedRegionNode} actions={regionActions} onSelect={selectKnowledgeNode} onCloseRegion={() => setSelectedRegionNode(null)} onRegionAction={handleRegionAction} onStartCustomAdventure={startCustomAdventure} />}
           {panel === "review" && <ReviewLibrary shelves={reviewShelves} onStart={startDirectedReview} />}
           {panel === "arena" && !arenaMode && <ArenaFrame activities={arenaActivities} onSelect={(activity) => activity.id === "football" && setArenaMode("football")} />}
           {panel === "arena" && arenaMode === "football" && <ArenaChallengePicker method={method} onBack={() => setArenaMode("")} onStart={startDirectedFootball} />}

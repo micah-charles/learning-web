@@ -1,4 +1,4 @@
-import { CANGJIE_ROOTS, ROOT_BY_KEY } from "./keyboard-layout.js";
+import { CANGJIE_ROOTS, INPUT_TOOL_KEYS, ROOT_BY_KEY } from "./keyboard-layout.js";
 import { validateChineseInputDataset } from "../domain/schemas.js";
 
 function canonicalCharacterId(character) {
@@ -15,7 +15,7 @@ function methodData(code, acceptedCodes) {
   };
 }
 
-export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, readingDocument }) {
+export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, readingDocument, wordDocument }) {
   const readingsByCharacter = new Map();
   for (const reading of readingDocument.readings) {
     if (!readingsByCharacter.has(reading.character)) readingsByCharacter.set(reading.character, []);
@@ -49,6 +49,12 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
     },
   }));
   const characterById = new Map(characters.map((character) => [character.id, character]));
+  const words = (wordDocument?.words || []).map((row) => ({
+    id: row.word_id || row.wordId || row.word,
+    word: row.word,
+    characterIds: Array.isArray(row.character_ids) ? row.character_ids : [],
+    meaning: row.learner_definition_status === "approved" ? row.learner_definition_en : "",
+  }));
   const converted = [];
   const activeRootKeys = new Set();
   for (const lesson of bundle.lessons.lessons) {
@@ -73,12 +79,20 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
         for (const key of characterById.get(id).cangjie.keySequence) activeRootKeys.add(key);
       }
     }
+    const inputToolKeys = lesson.newRoots
+      .map((id) => id.slice(-1))
+      .filter((key) => INPUT_TOOL_KEYS.has(key));
+    const isInputToolsLesson = inputToolKeys.length > 0;
     converted.push({
       id: lesson.lessonId,
       method,
       stage: Number(lesson.stageId.slice(-2)),
       order: converted.length + 1,
-      title: { en: lesson.title, zhHant: lesson.shortTitle },
+      title: isInputToolsLesson
+        ? { en: "Input Tools: Z special key", zhHant: "輸入工具：Z 特殊鍵" }
+        : { en: lesson.title, zhHant: lesson.shortTitle },
+      category: isInputToolsLesson ? "input-tools" : "journey",
+      inputToolKeys,
       introducedKeys: lesson.newRoots.map((id) => id.slice(-1)),
       reviewedKeys: lesson.reviewRoots.map((id) => id.slice(-1)),
       activeKeys: method === "quick" ? Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ") : [...activeRootKeys].sort(),
@@ -120,6 +134,7 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
     },
     roots: CANGJIE_ROOTS,
     characters,
+    words,
     lessons: converted,
   };
   const runtimeValidation = validateChineseInputDataset(dataset);
