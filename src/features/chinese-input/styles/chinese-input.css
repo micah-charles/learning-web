@@ -676,3 +676,11 @@
   .cil-football-keeper,
   .cil-football-ball { transition-duration: 1ms; }
 }
+.cik-word-discovery{margin:1.25rem 0;padding:1rem;border:1px solid rgba(240,178,68,.55);border-radius:18px;background:linear-gradient(135deg,#fff8df,#fff)}
+.cik-word-discovery h3{margin:.15rem 0 .75rem}
+.cik-word-discovery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem}
+.cik-word-discovery-grid article{display:grid;gap:.2rem;padding:.7rem;border-radius:14px;background:#fff;box-shadow:0 4px 12px rgba(31,38,58,.08)}
+.cik-word-discovery-grid strong{font-size:1.65rem;color:#182445}
+.cik-word-discovery-grid span{font-size:.8rem;color:#566078}
+.cik-word-discovery-grid small,.cik-word-discovery-note{font-size:.72rem;color:#8a6a2a}
+@media (max-width:640px){.cik-word-discovery-grid{grid-template-columns:1fr}.cik-word-discovery-grid article{grid-template-columns:auto 1fr;align-items:center}.cik-word-discovery-grid small{grid-column:2}}

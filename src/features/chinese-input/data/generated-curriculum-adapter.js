@@ -17,7 +17,8 @@ export function validateGeneratedCurriculumBundle(bundle, requestedSource) {
   if (manifest?.inputDigest !== bundle?.stages?.inputDigest
     || manifest?.inputDigest !== bundle?.lessons?.inputDigest
     || manifest?.inputDigest !== bundle?.assessments?.inputDigest
-    || manifest?.inputDigest !== bundle?.games?.inputDigest) {
+    || manifest?.inputDigest !== bundle?.games?.inputDigest
+    || manifest?.inputDigest !== bundle?.wordGraph?.inputDigest) {
     errors.push("Generated curriculum input digests do not agree.");
   }
   if (requestedSource === "generated-preview") {
@@ -26,7 +27,7 @@ export function validateGeneratedCurriculumBundle(bundle, requestedSource) {
   if (requestedSource === "generated-production") {
     if (manifest?.releaseStatus !== "production-approved" || manifest?.productionEligible !== true) errors.push("Production source was selected without a successful production curriculum.");
   }
-  if (!Array.isArray(bundle?.stages?.stages) || !Array.isArray(bundle?.lessons?.lessons)) errors.push("Generated stage or lesson collections are missing.");
+  if (!Array.isArray(bundle?.stages?.stages) || !Array.isArray(bundle?.lessons?.lessons) || !Array.isArray(bundle?.wordGraph?.words)) errors.push("Generated stage, lesson, or word collections are missing.");
   return { valid: errors.length === 0, errors };
 }
 
@@ -42,11 +43,11 @@ export async function loadGeneratedCurriculumBundle({
     if (!response.ok) throw new Error(`Could not load generated Chinese curriculum ${name} (${response.status}).`);
     return response.json();
   };
-  const [manifest, stages, lessons, assessments, games, migration] = await Promise.all([
+  const [manifest, stages, lessons, assessments, games, migration, wordGraph] = await Promise.all([
     load("curriculum_manifest.json"), load("stages.json"), load("lessons.json"),
-    load("assessment_graph.json"), load("game_graph.json"), load("learner_progress_migration.json"),
+    load("assessment_graph.json"), load("game_graph.json"), load("learner_progress_migration.json"), load("word_unlock_graph.json"),
   ]);
-  const bundle = { manifest, stages, lessons, assessments, games, migration, source };
+  const bundle = { manifest, stages, lessons, assessments, games, migration, wordGraph, source };
   const validation = validateGeneratedCurriculumBundle(bundle, source);
   if (!validation.valid) {
     const error = new Error(`Generated Chinese curriculum failed validation:\n- ${validation.errors.join("\n- ")}`);

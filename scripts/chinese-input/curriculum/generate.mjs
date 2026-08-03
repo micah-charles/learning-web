@@ -489,6 +489,7 @@ for (const word of [...words].sort((left, right) => left.foxchild_selection_rank
   target.supportingWords.push(wordId);
   placedWords.push({
     wordId,
+    text: word.word,
     word: word.word,
     characterIds: word.character_ids,
     lessonId: target.lessonId,
@@ -705,6 +706,7 @@ const characterUnlockGraph = characterReadiness.map((row) => ({
 }));
 const wordUnlockGraph = placedWords.map((row) => ({
   wordId: row.wordId,
+  text: row.text,
   lessonId: row.lessonId,
   characterPrerequisites: row.characterIds,
   pronunciationEligibility: row.pronunciationStatus === "approved-contextual-lexical",

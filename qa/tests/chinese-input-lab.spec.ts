@@ -133,6 +133,31 @@ test("Input Tools keeps Z outside root regions and character mastery", async ({ 
   await expect(panel.getByText("Input Tools: Z special key")).toBeVisible();
 });
 
+test("Word Collection exposes discovered canonical words and the four-part challenge", async ({ page }) => {
+  await openKingdom(page);
+  await page.addInitScript(() => {
+    const key = "learningGermanWeb.v1";
+    const state = JSON.parse(localStorage.getItem(key) || "{}");
+    state.progress = state.progress || {};
+    state.progress.chineseInputLab = state.progress.chineseInputLab || { words: {} };
+    const lab = state.progress.chineseInputLab;
+    lab.words = { ...(lab.words || {}), "word-fb8f01cb6d4b": { wordId: "word-fb8f01cb6d4b", state: "discovered", attempts: 0, correct: 0, hintCount: 0, meaningMastery: 0, readingMastery: 0, typingMastery: 0, contextMastery: 0 } };
+    localStorage.setItem(key, JSON.stringify(state));
+  });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible({ timeout: 30_000 });
+  await page.waitForTimeout(1_000);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Museum/ }).click();
+  await page.getByRole("button", { name: /Words/ }).click();
+  await expect(page.getByTestId("chinese-input-word-collection")).toBeVisible();
+  await expect(page.getByText("多少")).toBeVisible();
+  await page.getByText("多少").first().click();
+  await page.getByRole("button", { name: /Try word challenge/ }).click();
+  await expect(page.getByTestId("chinese-input-word-challenge")).toBeVisible();
+  await expect(page.getByText(/Meaning recognition/)).toBeVisible();
+});
+
 test("all six world destinations render their distinct game environments", async ({ page }) => {
   await openKingdom(page);
   const destinations = [

@@ -54,6 +54,10 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
     word: row.word,
     characterIds: Array.isArray(row.character_ids) ? row.character_ids : [],
     meaning: row.learner_definition_status === "approved" ? row.learner_definition_en : "",
+    meaningStatus: row.learner_definition_status || "unreviewed",
+    reviewStatus: "approved",
+    frequencyRank: row.foxchild_selection_rank || row.moe_frequency_rank || null,
+    example: row.example_sentence || "",
   }));
   const converted = [];
   const activeRootKeys = new Set();
@@ -135,6 +139,7 @@ export function adaptGeneratedChineseInputDataset({ bundle, characterDocument, r
     roots: CANGJIE_ROOTS,
     characters,
     words,
+    wordGraph: bundle.wordGraph,
     lessons: converted,
   };
   const runtimeValidation = validateChineseInputDataset(dataset);

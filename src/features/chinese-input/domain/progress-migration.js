@@ -1,4 +1,4 @@
-export const CHINESE_INPUT_PROGRESS_SCHEMA_VERSION = 2;
+export const CHINESE_INPUT_PROGRESS_SCHEMA_VERSION = 3;
 export const CHINESE_INPUT_PREFS_MIGRATION_VERSION = 4;
 export const CHINESE_INPUT_DATASET_VERSION = "0.1.0";
 export const CHINESE_INPUT_EVENT_LIMIT = 500;
@@ -36,6 +36,8 @@ export function createChineseInputProgress() {
     roots: {},
     characters: {},
     words: {},
+    wordDiscoveryEvents: [],
+    wordProjectionRevision: 1,
     reviewQueue: {},
     sessions: [],
     gameSessions: [],
@@ -71,6 +73,8 @@ export function migrateChineseInputState(state) {
     roots: objectOrEmpty(incoming.roots),
     characters: objectOrEmpty(incoming.characters),
     words: objectOrEmpty(incoming.words),
+    wordDiscoveryEvents: Array.isArray(incoming.wordDiscoveryEvents) ? incoming.wordDiscoveryEvents.slice(-CHINESE_INPUT_EVENT_LIMIT) : [],
+    wordProjectionRevision: 1,
     reviewQueue: objectOrEmpty(incoming.reviewQueue),
     achievements: objectOrEmpty(incoming.achievements),
     discoveredNodes: objectOrEmpty(incoming.discoveredNodes),

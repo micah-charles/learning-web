@@ -12,6 +12,7 @@ import WorldHUD from "../../../learning-runtime/ui/WorldHUD.tsx";
 import WorldOverlay from "../../../learning-runtime/ui/WorldOverlay.tsx";
 import { playSoundCue, SOUND_CUES } from "../../../react/utils/soundCues.js";
 import CharacterCollection from "../components/CharacterCollection.jsx";
+import WordCollection from "../components/WordCollection.jsx";
 import PronunciationButton from "../components/PronunciationButton.jsx";
 import VirtualCangjieKeyboard from "../components/VirtualCangjieKeyboard.jsx";
 import { INPUT_TOOL_KEYS } from "../data/keyboard-layout.js";
@@ -79,6 +80,8 @@ export default function ChineseInputKingdom({
   moduleProgress,
   miniGameProfile,
   model,
+  wordIndex,
+  onStartWordChallenge,
   panel,
   prefs,
   reviewLesson,
@@ -118,6 +121,7 @@ export default function ChineseInputKingdom({
   )).length, [dataset.characters, method, moduleProgress.characters, moduleProgress.discoveredNodes]);
   const museumWings = [
     { id: "characters", label: "Characters & Roots", description: "Verified glyphs and keyboard roots", icon: "字", discovered: discoveredCharacterCount + model.practisedRootCount, total: dataset.characters.length + dataset.roots.filter((root) => !INPUT_TOOL_KEYS.has(root.key)).length, samples: model.relatedCharacters.slice(0, 4).map((item) => item.char) },
+    { id: "words", label: "Words", description: "Newly discovered vocabulary", icon: "詞", discovered: Object.keys(moduleProgress.words || {}).length, total: wordIndex.wordCount, samples: Object.values(wordIndex.wordsById).filter((word) => moduleProgress.words?.[word.wordId]).slice(0, 4).map((word) => word.word) },
     { id: "achievements", label: "Achievements", description: "Milestones from your adventures", icon: "★", discovered: Object.keys(moduleProgress.achievements || {}).length, total: 24, samples: ["✦", "◆", "♛"] },
     { id: "companions", label: "Companions", description: "Friends met across the world", icon: "♧", discovered: 1, total: 8, samples: ["狐", "友"] },
     { id: "cosmetics", label: "Cosmetics", description: "Banners, trails and Flower styles", icon: "✿", discovered: Math.max(1, Math.floor(miniGameProfile.xp / 750)), total: 18, samples: ["❀", "✧", "◇"] },
@@ -271,6 +275,7 @@ export default function ChineseInputKingdom({
           {panel === "arena" && arenaMode === "football" && <ArenaChallengePicker method={method} onBack={() => setArenaMode("")} onStart={startDirectedFootball} />}
           {panel === "collection" && !museumWing && <CollectionMuseum wings={museumWings} onOpen={(wing) => setMuseumWing(wing.id)} />}
           {panel === "collection" && museumWing === "characters" && <div className="flr-museum-detail"><button className="flr-text-button" type="button" onClick={() => setMuseumWing("")}>← Museum hall</button><CharacterCollection dataset={dataset} method={method} moduleProgress={moduleProgress} pronounce={pronounce} /></div>}
+          {panel === "collection" && museumWing === "words" && <div className="flr-museum-detail"><button className="flr-text-button" type="button" onClick={() => setMuseumWing("")}>← Museum hall</button><WordCollection wordIndex={wordIndex} moduleProgress={moduleProgress} pronounce={pronounce} onStartChallenge={onStartWordChallenge} /></div>}
           {panel === "collection" && museumWing && museumWing !== "characters" && <div className="flr-empty-wing"><button className="flr-text-button" type="button" onClick={() => setMuseumWing("")}>← Museum hall</button><span aria-hidden="true">{museumWings.find((wing) => wing.id === museumWing)?.icon}</span><h3>{museumWings.find((wing) => wing.id === museumWing)?.label}</h3><p>This wing grows as you complete adventures and Arena challenges.</p></div>}
           {panel === "settings" && <div className="flr-settings"><label><span>Pronunciation voice</span><select data-testid="chinese-input-pronunciation-locale" value={prefs.locale === "zh-TW" ? "zh-TW" : "zh-HK"} onChange={(event) => onUpdatePrefs({ locale: event.target.value })}><option value="zh-HK">Cantonese</option><option value="zh-TW">Mandarin (Taiwan)</option></select></label><label><input type="checkbox" checked={prefs.speechEnabled !== false} onChange={(event) => onUpdatePrefs({ speechEnabled: event.target.checked })} /> Pronunciation controls</label><label><input data-testid="chinese-input-auto-pronounce" type="checkbox" checked={prefs.autoPronounce !== false} disabled={prefs.speechEnabled === false} onChange={(event) => onUpdatePrefs({ autoPronounce: event.target.checked })} /> Auto-pronounce new characters</label><label><input type="checkbox" checked={prefs.soundEnabled !== false} onChange={(event) => onUpdatePrefs({ soundEnabled: event.target.checked })} /> World sound effects</label><label><input type="checkbox" checked={prefs.reducedMotion === true} onChange={(event) => onUpdatePrefs({ reducedMotion: event.target.checked })} /> Reduce animation</label></div>}
         </WorldOverlay>

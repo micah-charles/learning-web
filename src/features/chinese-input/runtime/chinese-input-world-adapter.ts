@@ -9,6 +9,7 @@ import type {
   LearningWorldDefinition,
   KnowledgeState,
 } from "../../../learning-runtime/types";
+import { buildWordDependencyIndex } from "../domain/word-unlock-engine.js";
 
 interface MethodData {
   preferredCode: string;
@@ -29,6 +30,10 @@ interface ChineseWord {
   word: string;
   characterIds: string[];
   meaning: string;
+  meaningStatus?: string;
+  reviewStatus?: string;
+  frequencyRank?: number | null;
+  example?: string;
 }
 
 interface ChineseRoot {
@@ -68,6 +73,7 @@ export interface ChineseInputDataset {
   roots: ChineseRoot[];
   characters: ChineseCharacter[];
   words?: ChineseWord[];
+  wordGraph?: { words?: Array<{ wordId: string; text?: string; lessonId?: string; characterPrerequisites?: string[]; pronunciationEligibility?: boolean; registerEligibility?: boolean }>; inputDigest?: string };
   lessons: ChineseLesson[];
 }
 
@@ -86,6 +92,8 @@ export interface ChineseInputProgress {
   sessions?: Array<{ lessonId?: string }>;
   discoveredNodes?: Record<string, unknown>;
   curriculumInputDigest?: string;
+  words?: Record<string, { state?: string; attempts?: number; correct?: number; nextReviewAt?: string }>;
+  wordDiscoveryEvents?: Array<{ wordId?: string; occurredAt?: string }>;
 }
 
 export interface ChineseInputRuntimeContext {
@@ -125,10 +133,11 @@ function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProg
   const completion = relatedCharacters.length
     ? clamp(relatedCharacters.reduce((sum, character) => sum + character.progress, 0) / relatedCharacters.length)
     : 0;
-  const relatedWords = (dataset.words || [])
-    .filter((word) => word.characterIds.some((id) => relatedCharacters.some((character) => character.id === id)))
+  const wordIndex = buildWordDependencyIndex({ words: (dataset.words || []) as any[], wordGraph: dataset.wordGraph, datasetVersion: dataset.manifest.datasetVersion });
+  const relatedWords = Object.values(wordIndex.wordsById)
+    .filter((word) => word.requiredCharacterIds.some((id: string) => relatedCharacters.some((character) => character.id === id)))
     .slice(0, 6)
-    .map((word) => ({ word: word.word, meaning: word.meaning }));
+    .map((word) => ({ wordId: word.wordId, word: word.word, meaning: word.meaning, meaningStatus: word.meaningStatus, state: progress.words?.[word.wordId]?.state || "hidden" }));
   return {
     completion,
     characterIds: relatedCharacters.map((character) => character.id),
@@ -244,7 +253,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
       },
       nodes,
       chapters,
-      capabilities: ["chinese-input.lesson", "chinese-input.review", "chinese-input.football"],
+      capabilities: ["chinese-input.lesson", "chinese-input.review", "chinese-input.football", "chinese-input.word-introduction", "chinese-input.word-review", "chinese-input.word-typing"],
     };
   },
 
@@ -258,17 +267,20 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
     const recentAccuracy = relevantEvents.length
       ? relevantEvents.filter((event) => event.correct).length / relevantEvents.length * 100
       : 0;
+    const wordStates = Object.values(progress.words || {});
+    const discoveredWordCount = wordStates.filter((word) => ["discovered", "introduced", "learning", "ready-to-review", "secure"].includes(word.state || "")).length;
+    const dueWordCount = wordStates.filter((word) => word.nextReviewAt && Date.parse(word.nextReviewAt) <= Date.parse(now)).length;
     return {
       id: `chinese-input:${context.method}:${progress.curriculumInputDigest || dataset.manifest.datasetVersion}`,
       worldId: this.worldId,
       capturedAt: now,
       completedById: progress.lessons || {},
-      dueCount: dueIds.length,
+      dueCount: dueIds.length + dueWordCount,
       weakCount,
       recentAccuracy: clamp(recentAccuracy),
       hasEvidence: relevantEvents.length > 0 || Object.keys(progress.lessons || {}).length > 0,
       preferredChapterId: context.preferredJourneyId || dataset.lessons.find((lesson) => lesson.method === context.method)?.id,
-      metadata: { method: context.method, reviewCharacterIds: dueIds },
+      metadata: { method: context.method, reviewCharacterIds: dueIds, discoveredWordCount, dueWordCount, wordStates },
     };
   },
 
@@ -287,6 +299,8 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
       metadata: { ...chapter.metadata, minimumAccuracy: 0.8 },
     }));
     const reviewIds = (evidence.metadata?.reviewCharacterIds as string[] | undefined) || [];
+    const discoveredWordCount = Number(evidence.metadata?.discoveredWordCount || 0);
+    const dueWordCount = Number(evidence.metadata?.dueWordCount || 0);
     return [
       ...chapterCandidates,
       {
@@ -299,6 +313,26 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         dueValue: evidence.dueCount,
         weaknessValue: evidence.weakCount,
         metadata: { characterIds: reviewIds, method: context.method, minimumAccuracy: 0.8 },
+      },
+      {
+        id: `word-introduction:${context.method}`,
+        kind: "training",
+        intent: "training",
+        label: { en: "New Word Discovery", local: "新詞發現" },
+        focusLabel: `${discoveredWordCount} discovered words`,
+        estimatedMinutes: 3,
+        weaknessValue: discoveredWordCount ? 20 : 0,
+        metadata: { method: context.method, wordMode: "introduction", minimumAccuracy: 0.7 },
+      },
+      {
+        id: `word-review:${context.method}`,
+        kind: "review",
+        intent: "review",
+        label: { en: "Word Review", local: "詞語複習" },
+        focusLabel: `${dueWordCount} words ready to review`,
+        estimatedMinutes: 3,
+        dueValue: dueWordCount,
+        metadata: { method: context.method, wordMode: "review", minimumAccuracy: 0.7 },
       },
       {
         id: `training:${context.currentRootKey}`,
@@ -328,6 +362,32 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
     const candidate = recommendation.selected;
     if (!candidate) return [];
     const metadata = candidate.metadata || {};
+    const wordMode = String(metadata.wordMode || "");
+    if (wordMode) {
+      const wordStates = evidence.metadata?.wordStates as Array<{ wordId: string; state?: string; nextReviewAt?: string }> | undefined;
+      const selectedWords = (wordStates || [])
+        .filter((word) => wordMode === "review" ? ["ready-to-review", "learning", "secure"].includes(word.state || "") : ["discovered", "introduced"].includes(word.state || ""))
+        .slice(0, 5);
+      return [{
+        blockId: `${wordMode}:${candidate.id}`,
+        purpose: wordMode === "review" ? "retention" : "discovery",
+        capabilityId: `chinese-input.word-${wordMode}`,
+        nodeIds: selectedWords.map((word) => `word:${word.wordId}`),
+        skillIds: ["chinese-input:word-meaning", "chinese-input:word-reading", "chinese-input:word-typing"],
+        challenges: selectedWords.map((word) => ({
+          challengeId: `${candidate.id}:${word.wordId}`,
+          capabilityId: `chinese-input.word-${wordMode}`,
+          evaluatorRef: "chinese-input.word.canonical-evaluator",
+          prompt: { wordId: word.wordId, mode: wordMode },
+          responseContract: { type: "word-challenge", modes: ["meaning", "reading", "order", "typing"] },
+          nodeIds: [`word:${word.wordId}`],
+          skillIds: ["chinese-input:word-typing"],
+          contentRevision: world.contentRevision,
+        })),
+        contentRevision: world.contentRevision,
+        metadata: { candidateId: candidate.id, method: context.method, wordMode, evidenceSnapshotId: evidence.id, wordCount: selectedWords.length },
+      }];
+    }
     const chapter = world.chapters.find((item) => item.id === candidate.id);
     const customNodeIds = (metadata.customNodeIds as string[] | undefined) || [];
     const customCharacterIds = customNodeIds.flatMap((id) => (world.nodes.find((node) => node.id === id)?.metadata?.characterIds as string[] | undefined) || []);
@@ -338,7 +398,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
       ? "chinese-input.football"
       : candidate.kind === "review"
         ? "chinese-input.review"
-        : "chinese-input.lesson";
+      : "chinese-input.lesson";
     const nodeIds = customNodeIds.length ? customNodeIds : chapter?.nodeIds || characterIds.map((id) => `character:${id}`);
     return [{
       blockId: `${candidate.kind}:${candidate.id}`,
