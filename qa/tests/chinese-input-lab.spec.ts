@@ -483,3 +483,14 @@ test("world home exposes one recommendation and Flower navigation", async ({ pag
   await page.keyboard.press("Escape");
   await expect(flowerTrigger).toBeFocused();
 });
+
+test("lesson pause exposes a resumable local checkpoint", async ({ page }) => {
+  await openLab(page);
+  await page.getByTestId("chinese-input-start-lesson").click();
+  await page.getByRole("button", { name: "Pause" }).click();
+  await expect(page.getByTestId("chinese-input-session-paused")).toBeVisible();
+  const stored = await readStoredState(page);
+  expect(stored.progress.chineseInputLab.activeSession.status).toBe("paused");
+  await page.getByRole("button", { name: "Resume session" }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+});

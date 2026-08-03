@@ -119,6 +119,19 @@ export default function useChineseInputProgress() {
     });
   }, [updateProgress]);
 
+  const checkpointSession = useCallback((cursor = {}, status = "active") => {
+    updateProgress((state) => {
+      const active = state.progress.chineseInputLab.activeSession;
+      if (!active) return;
+      state.progress.chineseInputLab.activeSession = {
+        ...active,
+        status,
+        cursor: { ...(active.cursor || {}), ...cursor },
+        lastCheckpointAt: new Date().toISOString(),
+      };
+    });
+  }, [updateProgress]);
+
   const completeGameSession = useCallback((session) => {
     updateProgress((state) => {
       const lab = state.progress.chineseInputLab;
@@ -161,6 +174,7 @@ export default function useChineseInputProgress() {
     completeSession,
     beginSession,
     abandonSession,
+    checkpointSession,
     completeGameSession,
     discoverNode,
     migrateCurriculum,

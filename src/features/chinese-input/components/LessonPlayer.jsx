@@ -53,6 +53,7 @@ export default function LessonPlayer({
   onExit,
   recordAttempt,
   completeSession,
+  checkpointSession,
 }) {
   const seedRef = useRef(directorPlan?.seed ? hashSeed(directorPlan.seed) : Math.floor(Date.now() / 1000));
   const plan = useMemo(() => {
@@ -61,7 +62,8 @@ export default function LessonPlayer({
     const reviewPlan = generateSessionPlan({ dataset, lesson: reviewLesson, method, seed: seedRef.current + 1, questionCount: Math.max(2, Math.round(mainPlan.questions.length * .2)), createdAt: new Date().toISOString() });
     return { ...mainPlan, questions: [...mainPlan.questions, ...reviewPlan.questions], mixedReview: true };
   }, [dataset, lesson, method, reviewLesson]);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => Number(directorPlan?.cursor?.index) || 0);
+  const [paused, setPaused] = useState(directorPlan?.status === "paused");
   const [buffer, setBuffer] = useState("");
   const [pressedKey, setPressedKey] = useState("");
   const [feedback, setFeedback] = useState(null);
@@ -88,7 +90,7 @@ export default function LessonPlayer({
   }, [autoPronounce, pronounce, question?.id, spokenText]);
 
   const submitAnswer = useCallback((inputOverride) => {
-    if (!question || feedback) return;
+    if (!question || feedback || paused) return;
     const input = typeof inputOverride === "string" ? inputOverride : buffer;
     if (!input) return;
     const answeredAt = Date.now();
@@ -130,6 +132,7 @@ export default function LessonPlayer({
     question,
     recordAttempt,
     directorPlan?.sessionId,
+    paused,
   ]);
 
   const nextQuestion = useCallback(() => {
@@ -154,12 +157,13 @@ export default function LessonPlayer({
       return;
     }
     setIndex((current) => current + 1);
+    checkpointSession?.({ index: index + 1 }, "active");
     setBuffer("");
     setFeedback(null);
     setHintUsedCurrent(hintEnabled);
     setAttemptedCurrent(false);
     questionStartedAt.current = Date.now();
-  }, [completeSession, directorPlan?.sessionId, feedback, hintEnabled, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
+  }, [checkpointSession, completeSession, directorPlan?.sessionId, feedback, hintEnabled, index, lesson.id, lesson.passCriteria.minimumAccuracy, method, plan, stats]);
 
   const handleInput = useCallback((key) => {
     if (!question || summary) return;
@@ -187,7 +191,13 @@ export default function LessonPlayer({
     }
   }, [availableKeys, buffer, feedback, method, nextQuestion, question, submitAnswer, summary]);
 
-  usePhysicalKeyboard({ enabled: !summary, onKey: handleInput });
+  usePhysicalKeyboard({ enabled: !summary && !paused, onKey: handleInput });
+
+  function togglePause() {
+    const nextPaused = !paused;
+    setPaused(nextPaused);
+    checkpointSession?.({ index }, nextPaused ? "paused" : "active");
+  }
 
   function toggleHint() {
     if (!question || feedback) return;
@@ -210,6 +220,10 @@ export default function LessonPlayer({
     );
   }
 
+  if (paused) {
+    return <section className="lw-card cil-session-paused" data-testid="chinese-input-session-paused" aria-live="polite"><p className="lw-eyebrow">Session paused</p><h2>Your progress is saved on this device.</h2><p className="lw-subtitle">Resume when you are ready, or return to the world. Completed answers remain recorded.</p><div className="lw-btn-group"><button className="lw-btn lw-btn-primary" type="button" onClick={togglePause}>Resume session</button><button className="lw-btn lw-btn-secondary" type="button" onClick={onExit}>Exit to world</button></div></section>;
+  }
+
   return (
     <div className="cil-lesson-player" data-testid="chinese-input-lesson-player">
       <section className="lw-card cil-lesson-header">
@@ -221,7 +235,7 @@ export default function LessonPlayer({
         <div className="cil-lesson-progress" aria-label={`Question ${index + 1} of ${plan.questions.length}`}>
           {index + 1}/{plan.questions.length}
         </div>
-        <button className="lw-btn lw-btn-ghost" type="button" onClick={onExit}>Exit lesson</button>
+        <div className="lw-btn-group"><button className="lw-btn lw-btn-ghost" type="button" onClick={togglePause}>Pause</button><button className="lw-btn lw-btn-ghost" type="button" onClick={onExit}>Exit lesson</button></div>
       </section>
 
       <section className="cil-activity-layout">
