@@ -9,6 +9,7 @@ import type {
   LearningWorldDefinition,
   KnowledgeState,
 } from "../../../learning-runtime/types";
+import { buildWordDependencyIndex } from "../domain/word-unlock-engine.js";
 
 interface MethodData {
   preferredCode: string;
@@ -29,6 +30,10 @@ interface ChineseWord {
   word: string;
   characterIds: string[];
   meaning: string;
+  meaningStatus?: string;
+  reviewStatus?: string;
+  frequencyRank?: number | null;
+  example?: string;
 }
 
 interface ChineseRoot {
@@ -68,6 +73,7 @@ export interface ChineseInputDataset {
   roots: ChineseRoot[];
   characters: ChineseCharacter[];
   words?: ChineseWord[];
+  wordGraph?: { words?: Array<{ wordId: string; text?: string; lessonId?: string; characterPrerequisites?: string[]; pronunciationEligibility?: boolean; registerEligibility?: boolean }>; inputDigest?: string };
   lessons: ChineseLesson[];
 }
 
@@ -86,6 +92,8 @@ export interface ChineseInputProgress {
   sessions?: Array<{ lessonId?: string }>;
   discoveredNodes?: Record<string, unknown>;
   curriculumInputDigest?: string;
+  words?: Record<string, { state?: string; attempts?: number; correct?: number; nextReviewAt?: string }>;
+  wordDiscoveryEvents?: Array<{ wordId?: string; occurredAt?: string }>;
 }
 
 export interface ChineseInputRuntimeContext {
@@ -94,9 +102,81 @@ export interface ChineseInputRuntimeContext {
   preferredJourneyId: string;
 }
 
-function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProgress, root: ChineseRoot, method: "cangjie" | "quick") {
-  const relatedCharacters = dataset.characters
-    .filter((character) => character[method]?.keySequence.includes(root.key))
+type ChineseWordIndex = ReturnType<typeof buildWordDependencyIndex>;
+type ChineseMethod = "cangjie" | "quick";
+interface ChineseRuntimeTopology {
+  characterById: Map<string, ChineseCharacter>;
+  lessonById: Map<string, ChineseLesson>;
+  characterIdsByRoot: Record<ChineseMethod, Record<string, string[]>>;
+  lessonIdsByRoot: Record<ChineseMethod, Record<string, string[]>>;
+  wordIdsByRoot: Record<ChineseMethod, Record<string, string[]>>;
+  wordIndex: ChineseWordIndex;
+}
+
+const topologyCache = new WeakMap<object, ChineseRuntimeTopology>();
+
+function emptyRootBuckets(dataset: ChineseInputDataset): Record<string, string[]> {
+  return Object.fromEntries(dataset.roots.map((root) => [root.key, []]));
+}
+
+function topologyForDataset(dataset: ChineseInputDataset): ChineseRuntimeTopology {
+  const cacheKey = dataset as unknown as object;
+  const cached = topologyCache.get(cacheKey);
+  if (cached) return cached;
+  const wordIndex = buildWordDependencyIndex({
+    words: (dataset.words || []) as any[],
+    wordGraph: dataset.wordGraph,
+    datasetVersion: dataset.manifest.datasetVersion,
+  });
+  const characterById = new Map(dataset.characters.map((character) => [character.id, character]));
+  const lessonById = new Map(dataset.lessons.map((lesson) => [lesson.id, lesson]));
+  const characterIdsByRoot = { cangjie: emptyRootBuckets(dataset), quick: emptyRootBuckets(dataset) };
+  const lessonIdsByRoot = { cangjie: emptyRootBuckets(dataset), quick: emptyRootBuckets(dataset) };
+  const wordIdsByRoot = { cangjie: emptyRootBuckets(dataset), quick: emptyRootBuckets(dataset) };
+  const wordsById = wordIndex.wordsById as Record<string, any>;
+
+  for (const character of dataset.characters) {
+    for (const method of ["cangjie", "quick"] as const) {
+      for (const key of new Set(character[method]?.keySequence || [])) {
+        if (characterIdsByRoot[method][key]) characterIdsByRoot[method][key].push(character.id);
+      }
+    }
+  }
+  for (const lesson of dataset.lessons) {
+    const method = lesson.method;
+    const keys = new Set([
+      ...(lesson.inputToolKeys || []),
+      ...lesson.introducedKeys,
+      ...lesson.reviewedKeys,
+      ...lesson.characterIds.flatMap((characterId) => characterById.get(characterId)?.[method]?.keySequence || []),
+    ]);
+    for (const key of keys) {
+      if (lessonIdsByRoot[method][key]) lessonIdsByRoot[method][key].push(lesson.id);
+    }
+  }
+  for (const word of Object.values(wordsById)) {
+    for (const method of ["cangjie", "quick"] as const) {
+      const keys = new Set<string>(word.requiredCharacterIds.flatMap((characterId: string) => characterById.get(characterId)?.[method]?.keySequence || []));
+      for (const key of keys) {
+        if (wordIdsByRoot[method][key]) wordIdsByRoot[method][key].push(word.wordId);
+      }
+    }
+  }
+  const topology = { characterById, lessonById, characterIdsByRoot, lessonIdsByRoot, wordIdsByRoot, wordIndex };
+  topologyCache.set(cacheKey, topology);
+  return topology;
+}
+
+function regionMetadata(
+  dataset: ChineseInputDataset,
+  progress: ChineseInputProgress,
+  root: ChineseRoot,
+  method: "cangjie" | "quick",
+  topology: ChineseRuntimeTopology,
+) {
+  const relatedCharacters = (topology.characterIdsByRoot[method][root.key] || [])
+    .map((characterId) => topology.characterById.get(characterId))
+    .filter((character): character is ChineseCharacter => Boolean(character))
     .map((character) => {
       const mastery = characterMastery(progress, character.id, method);
       const score = clamp(mastery.masteryScore || 0);
@@ -108,27 +188,21 @@ function regionMetadata(dataset: ChineseInputDataset, progress: ChineseInputProg
         state: score >= 80 ? "mastered" : mastery.attempts ? "weak" : "available",
       };
     });
-  const lessons = dataset.lessons
-    .filter((lesson) => {
-      if (lesson.method !== method) return false;
-      if (lesson.inputToolKeys?.includes(root.key)) return true;
-      if (lesson.introducedKeys.includes(root.key) || lesson.reviewedKeys.includes(root.key)) return true;
-      return lesson.characterIds.some((characterId) => {
-        const character = dataset.characters.find((candidate) => candidate.id === characterId);
-        return character?.[method]?.keySequence.includes(root.key) || false;
-      });
-    })
+  const lessons = (topology.lessonIdsByRoot[method][root.key] || [])
     .slice(0, 8)
+    .map((lessonId) => topology.lessonById.get(lessonId))
+    .filter((lesson): lesson is ChineseLesson => Boolean(lesson))
     .map((lesson) => ({ id: lesson.id, label: lesson.title.en, category: lesson.category || "journey", progress: clamp(progress.lessons?.[lesson.id]?.lastScore || 0) }));
   const weakCharacters = relatedCharacters.filter((character) => character.state === "weak");
   const masteredCharacters = relatedCharacters.filter((character) => character.state === "mastered");
   const completion = relatedCharacters.length
     ? clamp(relatedCharacters.reduce((sum, character) => sum + character.progress, 0) / relatedCharacters.length)
     : 0;
-  const relatedWords = (dataset.words || [])
-    .filter((word) => word.characterIds.some((id) => relatedCharacters.some((character) => character.id === id)))
+  const relatedWords = (topology.wordIdsByRoot[method][root.key] || [])
     .slice(0, 6)
-    .map((word) => ({ word: word.word, meaning: word.meaning }));
+    .map((wordId) => (topology.wordIndex.wordsById as Record<string, any>)[wordId])
+    .filter(Boolean)
+    .map((word) => ({ wordId: word.wordId, word: word.word, meaning: word.meaning, meaningStatus: word.meaningStatus, state: progress.words?.[word.wordId]?.state || "hidden" }));
   return {
     completion,
     characterIds: relatedCharacters.map((character) => character.id),
@@ -198,6 +272,9 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
 
   buildWorld(dataset, progress, context): LearningWorldDefinition {
     const lessons = dataset.lessons.filter((lesson) => lesson.method === context.method);
+    // This index is independent of learner progress. Build it once per world
+    // snapshot instead of once for every root region (26 × 10k canonical words).
+    const topology = topologyForDataset(dataset);
     const nodes: LearningNode[] = dataset.roots.map((root) => {
       const state = stateForRoot(root, progress, context.currentRootKey);
       const rootProgress = progress.roots?.[root.key] || {};
@@ -210,7 +287,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         regionId: root.category,
         description: root.mnemonic?.en,
         glyph: root.primaryRoot,
-        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method) },
+        metadata: { key: root.key, contentCategory: root.inputTool ? "input-tools" : "journey", ...regionMetadata(dataset, progress, root, context.method, topology) },
       };
     });
     const chapters: LearningChapter[] = lessons.map((lesson, index) => {
@@ -244,7 +321,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
       },
       nodes,
       chapters,
-      capabilities: ["chinese-input.lesson", "chinese-input.review", "chinese-input.football"],
+      capabilities: ["chinese-input.lesson", "chinese-input.review", "chinese-input.football", "chinese-input.word-introduction", "chinese-input.word-review", "chinese-input.word-typing"],
     };
   },
 
@@ -258,17 +335,20 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
     const recentAccuracy = relevantEvents.length
       ? relevantEvents.filter((event) => event.correct).length / relevantEvents.length * 100
       : 0;
+    const wordStates = Object.values(progress.words || {});
+    const discoveredWordCount = wordStates.filter((word) => ["discovered", "introduced", "learning", "ready-to-review", "secure"].includes(word.state || "")).length;
+    const dueWordCount = wordStates.filter((word) => word.nextReviewAt && Date.parse(word.nextReviewAt) <= Date.parse(now)).length;
     return {
       id: `chinese-input:${context.method}:${progress.curriculumInputDigest || dataset.manifest.datasetVersion}`,
       worldId: this.worldId,
       capturedAt: now,
       completedById: progress.lessons || {},
-      dueCount: dueIds.length,
+      dueCount: dueIds.length + dueWordCount,
       weakCount,
       recentAccuracy: clamp(recentAccuracy),
       hasEvidence: relevantEvents.length > 0 || Object.keys(progress.lessons || {}).length > 0,
       preferredChapterId: context.preferredJourneyId || dataset.lessons.find((lesson) => lesson.method === context.method)?.id,
-      metadata: { method: context.method, reviewCharacterIds: dueIds },
+      metadata: { method: context.method, reviewCharacterIds: dueIds, discoveredWordCount, dueWordCount, wordStates },
     };
   },
 
@@ -287,6 +367,8 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
       metadata: { ...chapter.metadata, minimumAccuracy: 0.8 },
     }));
     const reviewIds = (evidence.metadata?.reviewCharacterIds as string[] | undefined) || [];
+    const discoveredWordCount = Number(evidence.metadata?.discoveredWordCount || 0);
+    const dueWordCount = Number(evidence.metadata?.dueWordCount || 0);
     return [
       ...chapterCandidates,
       {
@@ -299,6 +381,26 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
         dueValue: evidence.dueCount,
         weaknessValue: evidence.weakCount,
         metadata: { characterIds: reviewIds, method: context.method, minimumAccuracy: 0.8 },
+      },
+      {
+        id: `word-introduction:${context.method}`,
+        kind: "training",
+        intent: "training",
+        label: { en: "New Word Discovery", local: "新詞發現" },
+        focusLabel: `${discoveredWordCount} discovered words`,
+        estimatedMinutes: 3,
+        weaknessValue: discoveredWordCount ? 20 : 0,
+        metadata: { method: context.method, wordMode: "introduction", minimumAccuracy: 0.7 },
+      },
+      {
+        id: `word-review:${context.method}`,
+        kind: "review",
+        intent: "review",
+        label: { en: "Word Review", local: "詞語複習" },
+        focusLabel: `${dueWordCount} words ready to review`,
+        estimatedMinutes: 3,
+        dueValue: dueWordCount,
+        metadata: { method: context.method, wordMode: "review", minimumAccuracy: 0.7 },
       },
       {
         id: `training:${context.currentRootKey}`,
@@ -328,6 +430,32 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
     const candidate = recommendation.selected;
     if (!candidate) return [];
     const metadata = candidate.metadata || {};
+    const wordMode = String(metadata.wordMode || "");
+    if (wordMode) {
+      const wordStates = evidence.metadata?.wordStates as Array<{ wordId: string; state?: string; nextReviewAt?: string }> | undefined;
+      const selectedWords = (wordStates || [])
+        .filter((word) => wordMode === "review" ? ["ready-to-review", "learning", "secure"].includes(word.state || "") : ["discovered", "introduced"].includes(word.state || ""))
+        .slice(0, 5);
+      return [{
+        blockId: `${wordMode}:${candidate.id}`,
+        purpose: wordMode === "review" ? "retention" : "discovery",
+        capabilityId: `chinese-input.word-${wordMode}`,
+        nodeIds: selectedWords.map((word) => `word:${word.wordId}`),
+        skillIds: ["chinese-input:word-meaning", "chinese-input:word-reading", "chinese-input:word-typing"],
+        challenges: selectedWords.map((word) => ({
+          challengeId: `${candidate.id}:${word.wordId}`,
+          capabilityId: `chinese-input.word-${wordMode}`,
+          evaluatorRef: "chinese-input.word.canonical-evaluator",
+          prompt: { wordId: word.wordId, mode: wordMode },
+          responseContract: { type: "word-challenge", modes: ["meaning", "reading", "order", "typing"] },
+          nodeIds: [`word:${word.wordId}`],
+          skillIds: ["chinese-input:word-typing"],
+          contentRevision: world.contentRevision,
+        })),
+        contentRevision: world.contentRevision,
+        metadata: { candidateId: candidate.id, method: context.method, wordMode, evidenceSnapshotId: evidence.id, wordCount: selectedWords.length },
+      }];
+    }
     const chapter = world.chapters.find((item) => item.id === candidate.id);
     const customNodeIds = (metadata.customNodeIds as string[] | undefined) || [];
     const customCharacterIds = customNodeIds.flatMap((id) => (world.nodes.find((node) => node.id === id)?.metadata?.characterIds as string[] | undefined) || []);
@@ -338,7 +466,7 @@ export const chineseInputWorldAdapter: LearningWorldAdapter<ChineseInputDataset,
       ? "chinese-input.football"
       : candidate.kind === "review"
         ? "chinese-input.review"
-        : "chinese-input.lesson";
+      : "chinese-input.lesson";
     const nodeIds = customNodeIds.length ? customNodeIds : chapter?.nodeIds || characterIds.map((id) => `character:${id}`);
     return [{
       blockId: `${candidate.kind}:${candidate.id}`,

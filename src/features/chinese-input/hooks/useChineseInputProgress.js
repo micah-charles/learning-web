@@ -7,6 +7,7 @@ import {
 } from "../domain/progress-migration.js";
 import { updateCharacterMastery, updateRootMastery } from "../domain/mastery-engine.js";
 import { migrateChineseInputCurriculumProgress } from "../domain/curriculum-migration.js";
+import { evaluateAffectedWords } from "../domain/word-unlock-engine.js";
 
 export default function useChineseInputProgress() {
   const { progress, updateProgress } = useProgress();
@@ -28,6 +29,7 @@ export default function useChineseInputProgress() {
     firstTry,
     rootKey,
     occurredAt = new Date().toISOString(),
+    wordIndex,
   }) => {
     updateProgress((state) => {
       const lab = state.progress.chineseInputLab;
@@ -66,6 +68,22 @@ export default function useChineseInputProgress() {
         datasetVersion: question.metadata.datasetVersion,
       };
       lab.attemptEvents = appendBounded(lab.attemptEvents, event, CHINESE_INPUT_EVENT_LIMIT);
+      if (wordIndex && character?.id) {
+        const projection = evaluateAffectedWords({
+          changedCharacterIds: [character.id],
+          dependencyIndex: wordIndex,
+          progress: lab,
+          now: occurredAt,
+        });
+        for (const nextWord of projection.updatedWords) lab.words[nextWord.wordId] = nextWord;
+        for (const discovery of projection.discoveries) {
+          lab.wordDiscoveryEvents = appendBounded(
+            lab.wordDiscoveryEvents,
+            { ...discovery, sessionId: event.sessionId },
+            CHINESE_INPUT_EVENT_LIMIT,
+          );
+        }
+      }
     });
   }, [updateProgress]);
 
@@ -90,6 +108,29 @@ export default function useChineseInputProgress() {
     updateProgress((state) => {
       const lab = state.progress.chineseInputLab;
       lab.gameSessions = appendBounded(lab.gameSessions, session, CHINESE_INPUT_SESSION_LIMIT);
+    });
+  }, [updateProgress]);
+
+  const recordWordAttempt = useCallback(({ wordId, mode, correct, hintCount = 0, occurredAt = new Date().toISOString() }) => {
+    updateProgress((state) => {
+      const lab = state.progress.chineseInputLab;
+      const previous = lab.words[wordId] || {
+        wordId, state: "discovered", attempts: 0, correct: 0, hintCount: 0,
+        meaningMastery: 0, readingMastery: 0, typingMastery: 0, contextMastery: 0,
+      };
+      const dimension = mode === "meaning" ? "meaningMastery" : mode === "reading" ? "readingMastery" : mode === "typing" ? "typingMastery" : "contextMastery";
+      const nextMastery = Math.max(0, Math.min(100, (previous[dimension] || 0) + (correct ? 20 : -12) - hintCount * 3));
+      const next = {
+        ...previous,
+        state: correct && nextMastery >= 80 ? "secure" : "learning",
+        attempts: (previous.attempts || 0) + 1,
+        correct: (previous.correct || 0) + (correct ? 1 : 0),
+        hintCount: (previous.hintCount || 0) + hintCount,
+        [dimension]: nextMastery,
+        lastAttemptAt: occurredAt,
+      };
+      lab.words[wordId] = next;
+      lab.attemptEvents = appendBounded(lab.attemptEvents, { eventVersion: 1, eventType: "chinese-input-word-attempt", occurredAt, wordId, mode, correct, hintLevel: hintCount, datasetVersion: lab.datasetVersion }, CHINESE_INPUT_EVENT_LIMIT);
     });
   }, [updateProgress]);
 
@@ -126,6 +167,7 @@ export default function useChineseInputProgress() {
     recordAttempt,
     completeSession,
     completeGameSession,
+    recordWordAttempt,
     discoverNode,
     migrateCurriculum,
   };

@@ -17,6 +17,7 @@ import { updateCharacterMastery } from "../src/features/chinese-input/domain/mas
 import { scheduleNextReview } from "../src/features/chinese-input/domain/review-scheduler.js";
 import { createChineseInputProgress, migrateChineseInputState } from "../src/features/chinese-input/domain/progress-migration.js";
 import { migrateChineseInputCurriculumProgress } from "../src/features/chinese-input/domain/curriculum-migration.js";
+import { buildWordDependencyIndex, evaluateAffectedWords } from "../src/features/chinese-input/domain/word-unlock-engine.js";
 import { validateChineseInputDataset } from "../src/features/chinese-input/domain/schemas.js";
 import { adaptGeneratedChineseInputDataset } from "../src/features/chinese-input/data/adapt-generated-curriculum.js";
 import {
@@ -36,10 +37,12 @@ const dataset = adaptGeneratedChineseInputDataset({
     assessments: readJson(`${generatedRoot}/assessment_graph.json`),
     games: readJson(`${generatedRoot}/game_graph.json`),
     migration: readJson(`${generatedRoot}/learner_progress_migration.json`),
+    wordGraph: readJson(`${generatedRoot}/word_unlock_graph.json`),
     source: "generated-preview",
   },
   characterDocument: readJson("learning-data/chinese-input/canonical/canonical_characters.json"),
   readingDocument: readJson("learning-data/chinese-input/canonical/canonical_character_readings.json"),
+  wordDocument: readJson("learning-data/chinese-input/canonical/canonical_words.json"),
 });
 
 assert.equal(normaliseCode(" d d "), "DD");
@@ -63,6 +66,7 @@ assert.equal(resolveKeyState(["available", "expected", "pressed"]), "pressed");
 assert.equal(createSeededRandom(42)(), createSeededRandom(42)());
 
 assert.equal(dataset.characters.length, 3000);
+assert.equal(dataset.wordGraph.words.length, 5972);
 assert.ok(dataset.lessons.length >= 500);
 assert.equal(dataset.characters.filter((character) => character.cangjie.keySequence.includes("Z") || character.quick.keySequence.includes("Z")).length, 0);
 const inputToolsLesson = dataset.lessons.find((entry) => entry.id === "cj-stage-00-lesson-013");
@@ -163,6 +167,24 @@ assert.equal(buildKingdomModel({
   currentRootKey: "A",
 }).practisedRootCount, 0);
 assert.equal(FOOTBALL_CHALLENGES.length, 9);
+const wordIndex = buildWordDependencyIndex({ words: dataset.words, wordGraph: dataset.wordGraph, datasetVersion: dataset.manifest.datasetVersion });
+assert.equal(wordIndex.wordCount, 10000);
+assert.equal(wordIndex.mappedWordCount, 5972);
+assert.equal(wordIndex.excludedWords.length, 4028);
+const sampleWord = Object.values(wordIndex.wordsById)[0];
+const wordProgress = createChineseInputProgress();
+for (const characterId of sampleWord.requiredCharacterIds) {
+  wordProgress.characters[characterId] = { cangjie: { attempts: 1, correct: 1 }, quick: {} };
+}
+const wordProjection = evaluateAffectedWords({
+  changedCharacterIds: [sampleWord.requiredCharacterIds[0]],
+  dependencyIndex: wordIndex,
+  progress: wordProgress,
+  now: "2026-08-03T00:00:00.000Z",
+});
+assert.ok(wordProjection.updatedWords.some((word) => word.wordId === sampleWord.wordId));
+assert.ok(wordProjection.discoveries.some((event) => event.wordId === sampleWord.wordId));
+assert.equal(wordProjection.updatedWords.find((word) => word.wordId === sampleWord.wordId).state, "discovered");
 for (const challenge of FOOTBALL_CHALLENGES) {
   const challengeLesson = buildFootballChallengeLesson({
     challengeId: challenge.id,

@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./brand/logo.png" />
+    <script>
+      if (window.location.pathname.startsWith("/chinese-input")) {
+        const preload = document.createElement("link");
+        preload.rel = "preload";
+        preload.as = "image";
+        preload.href = "/images/chinese-input/kingdom-world.webp";
+        preload.fetchPriority = "high";
+        preload.dataset.chineseInputWorldPreload = "true";
+        document.head.appendChild(preload);
+      }
+    </script>
     <title>FoxChild@Learn | AI-powered Learning Packs</title>
     <meta
       name="description"

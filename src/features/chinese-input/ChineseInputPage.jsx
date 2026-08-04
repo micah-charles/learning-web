@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { getChineseInputLabAvailability } from "../../config/chineseInputLabConfig.js";
 import { useMiniGame } from "../../react/games/framework/MiniGameProvider.jsx";
 import { LearningRuntimeProvider } from "../../learning-runtime/runtime/LearningRuntimeProvider.tsx";
 import { useLearningRuntimeProgress } from "../../learning-runtime/runtime/useLearningRuntimeProgress.ts";
 import ChineseFootballGame from "./components/ChineseFootballGame.jsx";
 import LessonPlayer from "./components/LessonPlayer.jsx";
+import WordChallenge from "./components/WordChallenge.jsx";
 import {
   configuredChineseCurriculumSource,
   loadGeneratedChineseInputDataset,
@@ -17,6 +18,7 @@ import {
   buildFootballChallengeLesson,
   buildKingdomModel,
 } from "./kingdom/kingdom-model.js";
+import { buildWordDependencyIndex } from "./domain/word-unlock-engine.js";
 import "./styles/chinese-input.css";
 
 function buildAdaptiveReviewLesson(dataset, moduleProgress, method, now = Date.now()) {
@@ -62,6 +64,7 @@ export default function ChineseInputPage() {
     recordAttempt,
     completeSession,
     completeGameSession,
+    recordWordAttempt,
     discoverNode,
     migrateCurriculum,
   } = useChineseInputProgress();
@@ -74,6 +77,7 @@ export default function ChineseInputPage() {
   const [panel, setPanel] = useState("");
   const [sessionLesson, setSessionLesson] = useState(null);
   const [sessionType, setSessionType] = useState("");
+  const [wordChallenge, setWordChallenge] = useState(null);
   const [completion, setCompletion] = useState(null);
   const speechLocale = prefs.locale === "zh-TW" ? "zh-TW" : "zh-HK";
   const speechEnabled = prefs.speechEnabled !== false;
@@ -107,6 +111,27 @@ export default function ChineseInputPage() {
   }, [curriculumSource, migrateCurriculum]);
 
   const datasetResult = generatedDatasetResult;
+  const datasetForIndex = datasetResult.dataset;
+  const wordIndex = useMemo(() => datasetForIndex ? buildWordDependencyIndex({
+    words: datasetForIndex.words,
+    wordGraph: datasetForIndex.wordGraph,
+    datasetVersion: datasetForIndex.manifest.datasetVersion,
+  }) : { wordsById: {}, wordIdsByCharacterId: {}, wordIdsByLessonId: {}, wordCount: 0, mappedWordCount: 0, excludedWords: [] }, [datasetForIndex]);
+  const recordChineseAttempt = useCallback((attempt) => recordAttempt({ ...attempt, wordIndex }), [recordAttempt, wordIndex]);
+  const recentWordDiscoveries = useMemo(() => (moduleProgress.wordDiscoveryEvents || [])
+    .slice(-8)
+    .map((event) => wordIndex.wordsById[event.wordId])
+    .filter(Boolean), [moduleProgress.wordDiscoveryEvents, wordIndex]);
+  const dataset = datasetResult.dataset;
+  const reviewLesson = useMemo(() => !dataset || sessionLesson ? null : buildAdaptiveReviewLesson(dataset, moduleProgress, method), [dataset, method, moduleProgress, sessionLesson]);
+  const model = useMemo(() => !dataset || sessionLesson ? null : buildKingdomModel({
+    dataset,
+    moduleProgress,
+    miniGameProfile,
+    method,
+    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId,
+    currentRootKey: prefs.currentRootKey || "A",
+  }), [dataset, method, miniGameProfile, moduleProgress, prefs.activeJourneyId, prefs.currentRootKey, prefs.lastLessonId, sessionLesson]);
 
   if (!availability.routeEnabled) {
     return <section className="lw-page lw-card"><h1>Chinese Input Kingdom is not available</h1><p>This module is currently disabled.</p></section>;
@@ -118,17 +143,6 @@ export default function ChineseInputPage() {
     return <section className="lw-page lw-card" data-testid="chinese-input-curriculum-loading"><h1>Opening Chinese Input Kingdom…</h1><p>The curriculum schema and source digests are being checked before rendering.</p></section>;
   }
 
-  const dataset = datasetResult.dataset;
-  const reviewLesson = buildAdaptiveReviewLesson(dataset, moduleProgress, method);
-  const model = buildKingdomModel({
-    dataset,
-    moduleProgress,
-    miniGameProfile,
-    method,
-    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId,
-    currentRootKey: prefs.currentRootKey || "A",
-  });
-
   function startLesson(lesson) {
     if (!lesson) return;
     setPanel("");
@@ -136,6 +150,15 @@ export default function ChineseInputPage() {
     setSessionLesson(lesson);
     setSessionType("lesson");
     updatePrefs({ activeJourneyId: lesson.id, lastLessonId: lesson.id, lastWorldView: "kingdom" });
+  }
+
+  function startWordChallenge(word) {
+    if (!word) return;
+    setPanel("");
+    setCompletion(null);
+    setWordChallenge(word);
+    setSessionLesson({ id: `word-challenge-${word.wordId}`, title: { en: `Word challenge: ${word.word}` }, method });
+    setSessionType("word");
   }
 
   function startReview() {
@@ -163,6 +186,7 @@ export default function ChineseInputPage() {
     const finishedType = sessionType;
     setSessionLesson(null);
     setSessionType("");
+    setWordChallenge(null);
     saveRuntimeCheckpoint(null);
     setCompletion(result.completed === false ? null : { type: finishedType, passed: result.passed !== false });
   }
@@ -182,8 +206,44 @@ export default function ChineseInputPage() {
   const runtimeContext = {
     method,
     currentRootKey: prefs.currentRootKey || "A",
-    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId || model.journey?.id || "",
+    preferredJourneyId: prefs.activeJourneyId || prefs.lastLessonId || model?.journey?.id || "",
   };
+
+  if (sessionLesson) {
+    return (
+      <div className="lw-page cil-page flr-session-shell" data-testid="chinese-input-page">
+      {sessionType === "word" ? (
+        <WordChallenge word={wordChallenge} dataset={dataset} pronounce={pronounce} recordWordAttempt={recordWordAttempt} onExit={finishSession} />
+      ) : sessionType === "football" ? (
+        <ChineseFootballGame
+          dataset={dataset}
+          lesson={sessionLesson}
+          method={sessionLesson.method}
+          recordAttempt={recordChineseAttempt}
+          completeSession={completeSession}
+          completeGameSession={completeGameSession}
+          miniGameProfile={miniGameProfile}
+          recordMiniGameResult={recordMiniGameResult}
+          pronounce={pronounce}
+          autoPronounce={speechEnabled && prefs.autoPronounce !== false}
+          onExit={finishSession}
+        />
+      ) : (
+        <LessonPlayer
+          dataset={dataset}
+          lesson={sessionLesson}
+          method={sessionLesson.method}
+          pronounce={pronounce}
+          autoPronounce={speechEnabled && prefs.autoPronounce !== false}
+          recordAttempt={recordChineseAttempt}
+          completeSession={completeSession}
+          onExit={finishSession}
+        />
+      )}
+      {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
+      </div>
+    );
+  }
 
   return (
     <LearningRuntimeProvider
@@ -196,44 +256,15 @@ export default function ChineseInputPage() {
       checkpoint={runtimeCheckpoint}
       onCheckpointChange={saveRuntimeCheckpoint}
     >
-      {sessionLesson ? (
-        <div className="lw-page cil-page flr-session-shell" data-testid="chinese-input-page">
-        {sessionType === "football" ? (
-          <ChineseFootballGame
-            dataset={dataset}
-            lesson={sessionLesson}
-            method={sessionLesson.method}
-            recordAttempt={recordAttempt}
-            completeSession={completeSession}
-            completeGameSession={completeGameSession}
-            miniGameProfile={miniGameProfile}
-            recordMiniGameResult={recordMiniGameResult}
-            pronounce={pronounce}
-            autoPronounce={speechEnabled && prefs.autoPronounce !== false}
-            onExit={finishSession}
-          />
-        ) : (
-          <LessonPlayer
-            dataset={dataset}
-            lesson={sessionLesson}
-            method={sessionLesson.method}
-            pronounce={pronounce}
-            autoPronounce={speechEnabled && prefs.autoPronounce !== false}
-            recordAttempt={recordAttempt}
-            completeSession={completeSession}
-            onExit={finishSession}
-          />
-        )}
-        {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
-        </div>
-      ) : (
-        <div data-testid="chinese-input-page">
+      <div data-testid="chinese-input-page">
           <ChineseInputKingdom
             dataset={dataset}
             method={method}
             moduleProgress={moduleProgress}
             miniGameProfile={miniGameProfile}
             model={model}
+            wordIndex={wordIndex}
+            onStartWordChallenge={startWordChallenge}
             panel={panel}
             prefs={prefs}
             reviewLesson={reviewLesson}
@@ -254,7 +285,9 @@ export default function ChineseInputPage() {
                   <p className="cik-eyebrow">Journey recorded</p>
                   <h2 id="cik-completion-title">{completion.passed ? "Knowledge gained" : "Practice added"}</h2>
                   <p>Choose your next action. Nothing is locked and your mastery evidence is saved locally.</p>
+                  {recentWordDiscoveries.length > 0 && <section className="cik-word-discovery" data-testid="chinese-input-word-discovery"><p className="cik-eyebrow">New words discovered</p><h3>{recentWordDiscoveries.length} new word{recentWordDiscoveries.length === 1 ? "" : "s"}</h3><div className="cik-word-discovery-grid">{recentWordDiscoveries.slice(0, 3).map((word) => <article key={word.wordId}><strong lang="zh-Hant">{word.word}</strong><span>{word.meaning || "Meaning pending educational review"}</span><small>Discovered · not mastered</small></article>)}</div><p className="cik-word-discovery-note">These words are now available for a short challenge or later review.</p></section>}
                   <div className="cik-choice-grid">
+                    {recentWordDiscoveries[0] && <button type="button" onClick={() => startWordChallenge(recentWordDiscoveries[0])}><strong>Try a word challenge</strong><span>Practise meaning, order and typing.</span></button>}
                     <button type="button" onClick={() => { setCompletion(null); startLesson(model.journey?.lesson); }}><strong>Continue journey</strong><span>Follow the next recommendation.</span></button>
                     <button type="button" onClick={() => { setCompletion(null); setPanel("explore"); }}><strong>Choose another root</strong><span>Explore any keyboard mapping.</span></button>
                     <button type="button" onClick={() => { setCompletion(null); setPanel("review"); }}><strong>Review</strong><span>Revisit due or weaker characters.</span></button>
@@ -267,8 +300,7 @@ export default function ChineseInputPage() {
             </div>
           )}
           {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}
-        </div>
-      )}
+      </div>
     </LearningRuntimeProvider>
   );
 }

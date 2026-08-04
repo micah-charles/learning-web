@@ -2,6 +2,7 @@ import { adaptGeneratedChineseInputDataset } from "./adapt-generated-curriculum.
 
 const SUPPORTED_CURRICULUM_SCHEMA_VERSION = 1;
 export const CHINESE_CURRICULUM_SOURCES = ["generated-preview", "generated-production"];
+const generatedDatasetPromiseCache = new Map();
 
 export function configuredChineseCurriculumSource(env = import.meta.env) {
   const defaultSource = "generated-preview";
@@ -16,8 +17,8 @@ export function validateGeneratedCurriculumBundle(bundle, requestedSource) {
   if (manifest?.schemaVersion !== SUPPORTED_CURRICULUM_SCHEMA_VERSION) errors.push(`Unsupported curriculum schema version: ${manifest?.schemaVersion}`);
   if (manifest?.inputDigest !== bundle?.stages?.inputDigest
     || manifest?.inputDigest !== bundle?.lessons?.inputDigest
-    || manifest?.inputDigest !== bundle?.assessments?.inputDigest
-    || manifest?.inputDigest !== bundle?.games?.inputDigest) {
+    || manifest?.inputDigest !== bundle?.migration?.inputDigest
+    || manifest?.inputDigest !== bundle?.wordGraph?.inputDigest) {
     errors.push("Generated curriculum input digests do not agree.");
   }
   if (requestedSource === "generated-preview") {
@@ -26,7 +27,7 @@ export function validateGeneratedCurriculumBundle(bundle, requestedSource) {
   if (requestedSource === "generated-production") {
     if (manifest?.releaseStatus !== "production-approved" || manifest?.productionEligible !== true) errors.push("Production source was selected without a successful production curriculum.");
   }
-  if (!Array.isArray(bundle?.stages?.stages) || !Array.isArray(bundle?.lessons?.lessons)) errors.push("Generated stage or lesson collections are missing.");
+  if (!Array.isArray(bundle?.stages?.stages) || !Array.isArray(bundle?.lessons?.lessons) || !Array.isArray(bundle?.wordGraph?.words)) errors.push("Generated stage, lesson, or word collections are missing.");
   return { valid: errors.length === 0, errors };
 }
 
@@ -42,11 +43,14 @@ export async function loadGeneratedCurriculumBundle({
     if (!response.ok) throw new Error(`Could not load generated Chinese curriculum ${name} (${response.status}).`);
     return response.json();
   };
-  const [manifest, stages, lessons, assessments, games, migration] = await Promise.all([
+  // Only fetch artifacts consumed by the browser runtime. Assessment and game
+  // graphs remain build-time validation inputs and were adding ~2.5 MB of JSON
+  // parsing to every Chinese Input visit without a runtime consumer.
+  const [manifest, stages, lessons, migration, wordGraph] = await Promise.all([
     load("curriculum_manifest.json"), load("stages.json"), load("lessons.json"),
-    load("assessment_graph.json"), load("game_graph.json"), load("learner_progress_migration.json"),
+    load("learner_progress_migration.json"), load("word_unlock_graph.json"),
   ]);
-  const bundle = { manifest, stages, lessons, assessments, games, migration, source };
+  const bundle = { manifest, stages, lessons, migration, wordGraph, source };
   const validation = validateGeneratedCurriculumBundle(bundle, source);
   if (!validation.valid) {
     const error = new Error(`Generated Chinese curriculum failed validation:\n- ${validation.errors.join("\n- ")}`);
@@ -56,7 +60,7 @@ export async function loadGeneratedCurriculumBundle({
   return bundle;
 }
 
-export async function loadGeneratedChineseInputDataset(options = {}) {
+async function loadGeneratedChineseInputDatasetUncached(options = {}) {
   const bundle = await loadGeneratedCurriculumBundle(options);
   const fetchImpl = options.fetchImpl || fetch;
   const canonicalBasePath = options.canonicalBasePath || "learning-data/chinese-input/canonical";
@@ -75,4 +79,22 @@ export async function loadGeneratedChineseInputDataset(options = {}) {
     bundle,
     warning: "",
   };
+}
+
+export function loadGeneratedChineseInputDataset(options = {}) {
+  // Custom fetch implementations are normally tests and must remain isolated.
+  if (options.fetchImpl) return loadGeneratedChineseInputDatasetUncached(options);
+  const source = options.source || configuredChineseCurriculumSource();
+  const basePath = options.basePath || "learning-data/chinese-input/generated-curriculum";
+  const canonicalBasePath = options.canonicalBasePath || "learning-data/chinese-input/canonical";
+  const cacheKey = `${source}|${basePath}|${canonicalBasePath}`;
+  if (!generatedDatasetPromiseCache.has(cacheKey)) {
+    const pending = loadGeneratedChineseInputDatasetUncached({ ...options, source })
+      .catch((error) => {
+        generatedDatasetPromiseCache.delete(cacheKey);
+        throw error;
+      });
+    generatedDatasetPromiseCache.set(cacheKey, pending);
+  }
+  return generatedDatasetPromiseCache.get(cacheKey);
 }
