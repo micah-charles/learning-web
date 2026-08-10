@@ -43,6 +43,7 @@ export default function LessonPlayer({
   recordAttempt,
   completeSession,
   onContinue,
+  onPracticeCharacters,
   onExploreWords,
   collectionStats = {},
   recentWordDiscoveries = [],
@@ -258,7 +259,7 @@ export default function LessonPlayer({
 
         <div className="cil-completion-actions">
           <button className="lw-btn lw-btn-primary" type="button" onClick={() => { if (onContinue) onContinue(); else onExit({ completed: true, passed: summary.passed, nextAction: "continue" }); }}>▶ Continue journey</button>
-          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => { if (onExploreWords) onExploreWords(); else onExit({ completed: true, passed: summary.passed, nextAction: "collection" }); }}>📖 Explore vocabulary</button>
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => { if (onPracticeCharacters) onPracticeCharacters(); else if (onExploreWords) onExploreWords(); else onExit({ completed: true, passed: summary.passed, nextAction: "collection" }); }}>⚽ Practice new characters</button>
           <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onExit({ completed: true, passed: summary.passed, nextAction: "kingdom" })}>🏰 Return to Kingdom</button>
         </div>
       </section>

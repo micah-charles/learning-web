@@ -193,15 +193,15 @@ export default function ChineseInputPage() {
     }
   }
 
-  function startFootballChallenge(challengeId) {
+  function startFootballChallenge(challengeId, journeyLessonOverride = null) {
     const lesson = buildFootballChallengeLesson({
       challengeId,
       dataset,
       moduleProgress,
       method,
-      journeyLesson: model.journey?.lesson,
+      journeyLesson: journeyLessonOverride || model?.journey?.lesson,
       reviewLesson,
-      currentRootKey: model.currentRoot.key,
+      currentRootKey: model?.currentRoot?.key || prefs.currentRootKey || "A",
     });
     if (!lesson) return;
     setPanel("");
@@ -278,6 +278,7 @@ export default function ChineseInputPage() {
           completeSession={completeSession}
           onExit={finishSession}
           onContinue={() => continueJourney(sessionLesson)}
+          onPracticeCharacters={() => startFootballChallenge("current-journey", sessionLesson)}
           collectionStats={collectionStats}
           recentWordDiscoveries={recentWordDiscoveries}
         />

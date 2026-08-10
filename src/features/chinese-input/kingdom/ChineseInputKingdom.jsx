@@ -57,16 +57,34 @@ function TrainingGround({ dataset, model, onSelectRoot, pronounce }) {
   );
 }
 
-function ArenaChallengePicker({ method, onBack, onStart }) {
+function ArenaChallengePicker({ method, onBack, onStart, dataset, moduleProgress, currentRootKey, journeyLesson, reviewLesson }) {
+  const weakCount = dataset.characters.filter((character) => {
+    const mastery = moduleProgress.characters?.[character.id]?.[method];
+    return mastery?.attempts && (mastery.masteryScore || 0) < 80;
+  }).length;
+  const currentRootCount = dataset.characters.filter((character) => character[method]?.keySequence?.includes(currentRootKey)).length;
+  const reviewCount = reviewLesson?.characterIds?.length || 0;
+  const metadata = {
+    "current-journey": { icon: "🌟", detail: `${journeyLesson?.characterIds?.length || 0} characters · 3 mins · +120 XP`, tone: "recommended", label: "Recommended for you" },
+    "current-root": { icon: "🌿", detail: `${currentRootCount} characters`, tone: "learning" },
+    "review-queue": { icon: "📋", detail: `${reviewCount} due`, tone: "review" },
+    "weak-characters": { icon: "⚠️", detail: `${weakCount} weak`, tone: "review" },
+    "random-daily": { icon: "🧬", detail: "Fresh verified mix", tone: "challenge" },
+    speed: { icon: "⚡", detail: "Faster recall", tone: "challenge" },
+    accuracy: { icon: "🎯", detail: "Order matters", tone: "challenge" },
+    "mixed-review": { icon: "🌀", detail: "Practised + new", tone: "challenge" },
+    boss: { icon: "👑", detail: "Unlocked · high target", tone: "boss" },
+  };
   return (
-    <div className="flr-challenge-picker">
-      <button className="flr-text-button" type="button" onClick={onBack}>← Arena hall</button>
+    <div className="flr-challenge-picker" data-testid="chinese-input-arena-pools">
+      <button className="flr-text-button" type="button" onClick={onBack}>← Arena Hall</button>
       <div className="flr-arena-banner"><span aria-hidden="true">⚽</span><div><p className="flr-eyebrow">Goalkeeper trials</p><h3>Choose a character pool</h3><p>Every target uses the verified {method === "quick" ? "Quick" : "Cangjie"} evaluator.</p></div><span aria-hidden="true">⚽</span></div>
       <div className="flr-challenge-grid">
         {FOOTBALL_CHALLENGES.map((challenge, index) => (
-          <button type="button" key={challenge.id} onClick={() => onStart(challenge.id)} className={index === 0 ? "is-recommended" : ""}>
-            <span aria-hidden="true">{challenge.id === "boss" ? "♛" : index % 3 === 0 ? "⚽" : index % 3 === 1 ? "✦" : "◆"}</span>
-            <strong>{challenge.label}</strong><p>{challenge.description}</p><small>{index === 0 ? "Director pick" : "Always available"} · Pronunciation on</small>
+          <button type="button" key={challenge.id} onClick={() => onStart(challenge.id)} className={`flr-challenge-card ${metadata[challenge.id]?.tone || ""}${index === 0 ? " is-recommended" : ""}`}>
+            <span aria-hidden="true">{metadata[challenge.id]?.icon || "⚽"}</span>
+            <strong>{challenge.label}</strong><p>{challenge.description}</p><small>{metadata[challenge.id]?.label || metadata[challenge.id]?.detail || "Always available"} · Pronunciation on</small>
+            <b>{metadata[challenge.id]?.detail || "Play now"}</b><em>Play</em>
           </button>
         ))}
       </div>
@@ -271,8 +289,8 @@ export default function ChineseInputKingdom({
           {panel === "training" && <TrainingGround dataset={dataset} model={model} onSelectRoot={onSelectRoot} pronounce={pronounce} />}
           {panel === "explore" && <KnowledgeWorld nodes={runtime.world.nodes} selectedNode={selectedRegionNode} actions={regionActions} onSelect={selectKnowledgeNode} onCloseRegion={() => setSelectedRegionNode(null)} onRegionAction={handleRegionAction} onStartCustomAdventure={startCustomAdventure} />}
           {panel === "review" && <ReviewLibrary shelves={reviewShelves} onStart={startDirectedReview} />}
-          {panel === "arena" && !arenaMode && <ArenaFrame activities={arenaActivities} onSelect={(activity) => activity.id === "football" && setArenaMode("football")} />}
-          {panel === "arena" && arenaMode === "football" && <ArenaChallengePicker method={method} onBack={() => setArenaMode("")} onStart={startDirectedFootball} />}
+          {panel === "arena" && !arenaMode && <ArenaFrame activities={arenaActivities} stats={{ level: `Lv. ${Math.max(1, Math.floor((miniGameProfile.xp || 0) / 500) + 1)}`, accuracy: `${runtime.evidence.recentAccuracy || 0}%`, streak: `${Math.max(0, runtime.evidence.recentAccuracy ? Math.round(runtime.evidence.recentAccuracy / 8) : 0)}`, goal: `${Math.min(20, model.masteredCharacterCount || 0)} / 20` }} onSelect={(activity) => activity.id === "football" && setArenaMode("football")} />}
+          {panel === "arena" && arenaMode === "football" && <ArenaChallengePicker method={method} dataset={dataset} moduleProgress={moduleProgress} currentRootKey={model.currentRoot.key} journeyLesson={recommendedLesson} reviewLesson={reviewLesson} onBack={() => setArenaMode("")} onStart={startDirectedFootball} />}
           {panel === "collection" && !museumWing && <CollectionMuseum wings={museumWings} onOpen={(wing) => setMuseumWing(wing.id)} />}
           {panel === "collection" && museumWing === "characters" && <div className="flr-museum-detail"><button className="flr-text-button" type="button" onClick={() => setMuseumWing("")}>← Museum hall</button><CharacterCollection dataset={dataset} method={method} moduleProgress={moduleProgress} pronounce={pronounce} /></div>}
           {panel === "collection" && museumWing === "words" && <div className="flr-museum-detail"><button className="flr-text-button" type="button" onClick={() => setMuseumWing("")}>← Museum hall</button><WordCollection wordIndex={wordIndex} moduleProgress={moduleProgress} pronounce={pronounce} onStartChallenge={onStartWordChallenge} /></div>}
