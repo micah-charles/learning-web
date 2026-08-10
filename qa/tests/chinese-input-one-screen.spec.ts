@@ -62,6 +62,7 @@ test("lesson gameplay stays in one viewport at every supported size", async ({ p
 
 test("lesson completion celebrates the knowledge gained and offers meaningful next steps", async ({ page }, testInfo) => {
   await openLesson(page, VIEWPORTS[2]);
+  const firstLessonTitle = await page.getByTestId("chinese-input-lesson-banner").locator("h2").innerText();
   await page.getByTestId("chinese-input-hint-toggle").click();
 
   for (let question = 0; question < 30; question += 1) {
@@ -88,4 +89,9 @@ test("lesson completion celebrates the knowledge gained and offers meaningful ne
     body: await page.screenshot({ fullPage: false }),
     contentType: "image/png",
   });
+  const completedLessonTitle = await page.getByTestId("chinese-input-lesson-player").count();
+  expect(completedLessonTitle).toBe(0);
+  await page.getByRole("button", { name: /Continue journey/ }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-lesson-banner").locator("h2")).not.toHaveText(firstLessonTitle);
 });

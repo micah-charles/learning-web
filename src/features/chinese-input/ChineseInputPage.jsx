@@ -175,6 +175,24 @@ export default function ChineseInputPage() {
     if (reviewLesson) startLesson(reviewLesson);
   }
 
+  function continueJourney(fromLesson = sessionLesson) {
+    if (!dataset || !fromLesson) return;
+    const orderedLessons = dataset.lessons
+      .filter((candidate) => candidate.method === method)
+      .sort((left, right) => (left.order || 0) - (right.order || 0));
+    const currentIndex = orderedLessons.findIndex((candidate) => candidate.id === fromLesson.id);
+    const forward = orderedLessons.slice(Math.max(0, currentIndex + 1));
+    const next = forward.find((candidate) => moduleProgress.lessons?.[candidate.id]?.status !== "completed")
+      || orderedLessons.find((candidate) => candidate.id !== fromLesson.id && moduleProgress.lessons?.[candidate.id]?.status !== "completed")
+      || forward[0];
+    if (next) startLesson(next);
+    else {
+      setSessionLesson(null);
+      setSessionType("");
+      setPanel("");
+    }
+  }
+
   function startFootballChallenge(challengeId) {
     const lesson = buildFootballChallengeLesson({
       challengeId,
@@ -250,6 +268,7 @@ export default function ChineseInputPage() {
         />
       ) : (
         <LessonPlayer
+          key={sessionLesson.id}
           dataset={dataset}
           lesson={sessionLesson}
           method={sessionLesson.method}
@@ -258,6 +277,7 @@ export default function ChineseInputPage() {
           recordAttempt={recordChineseAttempt}
           completeSession={completeSession}
           onExit={finishSession}
+          onContinue={() => continueJourney(sessionLesson)}
           collectionStats={collectionStats}
           recentWordDiscoveries={recentWordDiscoveries}
         />
