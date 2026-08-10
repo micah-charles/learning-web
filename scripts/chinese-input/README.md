@@ -35,6 +35,17 @@ metadata, character-family memberships, a Cangjie reference audit, detailed
 Hong Kong anchor diagnostics and a human-review dashboard under
 `learning-data/chinese-input/canonical/`.
 
+Approved learner meanings are kept in
+`learning-data/chinese-input/canonical/learner_meaning_review.csv` and applied
+to both canonical JSON and CSV exports with:
+
+```bash
+npm run apply:chinese-learner-meanings
+```
+
+The importer fails closed unless all 3,000 character rows and 10,000 word rows
+are present, unique, non-empty, and explicitly marked `approved`.
+
 Curriculum is a separate, fail-closed compilation step:
 
 ```bash

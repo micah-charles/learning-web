@@ -768,7 +768,8 @@ const migration = {
 
 const unresolvedWarnings = [
   "All preview character placements use derived MOE/EDB/Cangjie proxies and are not approved curriculum decisions.",
-  "Learner definitions remain hidden or labelled pending review.",
+  ...(characters.some((row) => row.learner_definition_status !== "approved")
+    ? ["Learner definitions remain hidden or labelled pending review."] : []),
   "Register claims remain hidden pending review.",
   "Context-sensitive word pronunciation is not generated.",
   "Written Cantonese and HK typing extension remain structural placeholders pending an approved lexical source.",

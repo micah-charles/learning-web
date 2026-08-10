@@ -41,6 +41,7 @@
     "check:chinese-curriculum-determinism": "node scripts/chinese-input/curriculum/check-determinism.mjs",
     "qa:chinese-curriculum": "npm run validate:chinese-canonical && npm run audit:chinese-cangjie && npm run build:chinese-curriculum:preview && npm run validate:chinese-curriculum && npm run audit:chinese-curriculum && npm run test:chinese-curriculum && npm run check:chinese-curriculum-determinism && npm run test:chinese-input && npm run qa:config-check && npm run build",
     "validate:chinese-canonical": "node scripts/chinese-input/canonical/validate.mjs",
+    "apply:chinese-learner-meanings": "node scripts/chinese-input/canonical/apply-learner-meanings.mjs",
     "refresh:rail": "node scripts/refresh-rail-adventure.js"
   },
   "devDependencies": {

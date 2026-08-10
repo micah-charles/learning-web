@@ -7,7 +7,7 @@ Status: **PASS**
 - Words: 10000
 - Semantic QA anchors: 300
 - Errors: 0
-- Warnings: 9
+- Warnings: 7
 
 ## Errors
 
@@ -17,8 +17,6 @@ Status: **PASS**
 
 - CHISE decompositions are source-backed but not yet reviewed for FoxChild teaching use.
 - Source-derived character families are not yet reviewed for FoxChild teaching use.
-- Learner-facing English definitions remain unreviewed.
-- Word learner definitions remain unreviewed.
 - Context-sensitive word pronunciations require a pinned lexical source.
 - 3000 low-confidence category proposals await review.
 - MOE top-frequency records still lack independent Hong Kong frequency ranks.
