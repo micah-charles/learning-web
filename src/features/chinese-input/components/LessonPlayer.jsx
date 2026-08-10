@@ -199,8 +199,8 @@ export default function LessonPlayer({
   }
 
   return (
-    <div className="cil-lesson-player" data-testid="chinese-input-lesson-player">
-      <section className="lw-card cil-lesson-header">
+    <div className="cil-lesson-player cil-one-screen-lesson" data-testid="chinese-input-lesson-player">
+      <section className="lw-card cil-lesson-header" data-testid="chinese-input-lesson-banner">
         <div>
           <p className="lw-eyebrow">{method === "quick" ? "Quick 速成" : "Cangjie 倉頡"} journey</p>
           <h2>{lesson.title.en}</h2>
@@ -212,7 +212,7 @@ export default function LessonPlayer({
         <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onExit({ completed: false })}>Exit to Kingdom</button>
       </section>
 
-      <section className="cil-activity-layout">
+      <section className="cil-activity-layout" data-testid="chinese-input-lesson-content">
         <div className="lw-card cil-prompt-card">
           <p className="lw-eyebrow" data-testid="chinese-input-question-type">
             {isRootRecognition ? "Root recognition" : "Guided typing"}
@@ -287,7 +287,11 @@ export default function LessonPlayer({
         </div>
       </section>
 
-      {feedback && !isRootRecognition && <CharacterDecomposition character={character} method={method} />}
+      {feedback && !isRootRecognition && (
+        <div className="cil-lesson-auxiliary" aria-live="polite">
+          <CharacterDecomposition character={character} method={method} />
+        </div>
+      )}
 
       <VirtualCangjieKeyboard
         activeKeys={lesson.activeKeys}

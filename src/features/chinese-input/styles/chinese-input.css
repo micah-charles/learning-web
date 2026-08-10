@@ -667,6 +667,255 @@
   .cil-key-state-label { font-size: .48rem; }
 }
 
+/* ── One-screen lesson shell ───────────────────────────────────────────────
+   Gameplay is a console-like surface: the app nav stays above it, while the
+   lesson itself owns the remaining dynamic viewport.  Keep this block scoped
+   to LessonPlayer so the Kingdom, word challenges, and football arena retain
+   their existing layouts. */
+.flr-session-shell.is-lesson-session {
+  --cil-session-nav-height: 54px;
+  height: calc(100dvh - var(--cil-session-nav-height));
+  max-height: calc(100dvh - var(--cil-session-nav-height));
+  min-height: 0;
+  box-sizing: border-box;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  overflow: hidden;
+  position: relative;
+}
+
+.flr-session-shell.is-lesson-session > [role="status"] {
+  position: fixed;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.cil-one-screen-lesson {
+  width: min(1220px, 100%);
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  padding: clamp(6px, 1dvh, 14px) clamp(10px, 2vw, 24px) 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: clamp(64px, 11dvh, 120px) minmax(0, 1fr) auto;
+  grid-template-areas: "banner" "content" "keyboard";
+  gap: clamp(5px, 1dvh, 12px);
+  overflow: hidden;
+}
+
+.cil-one-screen-lesson .cil-lesson-header {
+  grid-area: banner;
+  min-height: 0;
+  margin: 0;
+  padding: clamp(8px, 1.4dvh, 16px) clamp(12px, 2vw, 28px);
+  gap: clamp(8px, 1.5vw, 20px);
+  overflow: hidden;
+}
+
+.cil-one-screen-lesson .cil-lesson-header > div:first-child {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cil-one-screen-lesson .cil-lesson-header h2,
+.cil-one-screen-lesson .cil-lesson-header .lw-subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cil-one-screen-lesson .cil-lesson-header h2 {
+  margin: 2px 0 3px;
+  font-size: clamp(1.1rem, 2.4dvw, 2.1rem);
+}
+
+.cil-one-screen-lesson .cil-lesson-header .lw-eyebrow,
+.cil-one-screen-lesson .cil-lesson-header .lw-subtitle {
+  margin: 0;
+  font-size: clamp(.62rem, 1.25dvw, .9rem);
+}
+
+.cil-one-screen-lesson .cil-lesson-progress {
+  flex: 0 0 auto;
+  width: clamp(42px, 6dvh, 72px);
+  height: clamp(42px, 6dvh, 72px);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cil-jade);
+  color: #fff;
+  font-size: clamp(.8rem, 1.8dvw, 1.15rem);
+}
+
+.cil-one-screen-lesson .cil-lesson-header .lw-btn {
+  flex: 0 0 auto;
+  padding: clamp(6px, 1dvh, 10px) clamp(9px, 1.4vw, 16px);
+  font-size: clamp(.68rem, 1.25dvw, .9rem);
+  white-space: nowrap;
+}
+
+.cil-one-screen-lesson .cil-activity-layout {
+  grid-area: content;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  gap: clamp(8px, 1.5vw, 20px);
+  overflow: hidden;
+}
+
+.cil-one-screen-lesson .cil-prompt-card,
+.cil-one-screen-lesson .cil-answer-card {
+  min-height: 0;
+  margin: 0;
+  padding: clamp(10px, 1.7dvh, 24px) clamp(12px, 2vw, 28px);
+  overflow: hidden;
+}
+
+.cil-one-screen-lesson .cil-prompt-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cil-one-screen-lesson .cil-answer-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cil-one-screen-lesson .cil-prompt-card h3,
+.cil-one-screen-lesson .cil-answer-card h3 {
+  margin: 3px 0;
+  font-size: clamp(.9rem, 1.65dvw, 1.35rem);
+  line-height: 1.2;
+}
+
+.cil-one-screen-lesson .cil-prompt-card p {
+  margin: 3px 0;
+  font-size: clamp(.68rem, 1.25dvw, .92rem);
+}
+
+.cil-one-screen-lesson .cil-question-character,
+.cil-one-screen-lesson .cil-root-glyph {
+  flex: 0 0 auto;
+  margin: clamp(4px, 1dvh, 14px) 0;
+  font-size: clamp(4.5rem, 14dvh, 8.75rem);
+  line-height: .95;
+}
+
+.cil-one-screen-lesson .cil-input-buffer {
+  flex: 0 0 auto;
+  min-height: clamp(42px, 8dvh, 74px);
+  margin: clamp(4px, 1dvh, 10px) 0;
+  padding: clamp(6px, 1dvh, 12px);
+  border-radius: 12px;
+}
+
+.cil-one-screen-lesson .cil-input-buffer span {
+  width: clamp(30px, 4dvh, 44px);
+  height: clamp(30px, 4dvh, 44px);
+  font-size: clamp(.95rem, 2.4dvh, 1.3rem);
+}
+
+.cil-one-screen-lesson .cil-feedback {
+  flex: 0 0 auto;
+  max-height: 3.2em;
+  overflow: hidden;
+  margin: 4px 0;
+  padding: 7px 9px;
+  font-size: clamp(.7rem, 1.5dvw, .9rem);
+}
+
+.cil-one-screen-lesson .lw-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(4px, .7vw, 8px);
+  margin-top: 2px;
+}
+
+.cil-one-screen-lesson .lw-btn-group .lw-btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: clamp(6px, 1dvh, 10px) clamp(8px, 1.2vw, 14px);
+  font-size: clamp(.67rem, 1.2dvw, .88rem);
+  white-space: nowrap;
+}
+
+.cil-one-screen-lesson > .cil-lesson-auxiliary {
+  display: none;
+}
+
+.cil-one-screen-lesson > .cil-keyboard {
+  grid-area: keyboard;
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  width: min(100%, 1040px);
+  margin: 0 auto;
+  padding: clamp(4px, 1dvh, 10px);
+  border-radius: clamp(10px, 1.5vw, 18px) clamp(10px, 1.5vw, 18px) 0 0;
+}
+
+.cil-one-screen-lesson > .cil-keyboard .cil-keyboard-row {
+  gap: clamp(2px, .45vw, 7px);
+  margin-bottom: clamp(2px, .55dvh, 7px);
+}
+
+.cil-one-screen-lesson > .cil-keyboard .cil-key {
+  min-height: clamp(28px, 7dvh, 68px);
+  padding: clamp(2px, .5dvh, 5px) 2px;
+  border-radius: clamp(6px, .8vw, 10px);
+}
+
+.cil-one-screen-lesson > .cil-keyboard .cil-key-latin { font-size: clamp(.55rem, 1.2dvw, .8rem); }
+.cil-one-screen-lesson > .cil-keyboard .cil-key-root { font-size: clamp(.85rem, 2.4dvw, 1.4rem); }
+.cil-one-screen-lesson > .cil-keyboard .cil-key-state-label { font-size: clamp(.42rem, .8dvw, .58rem); }
+
+@media (max-width: 768px) {
+  .flr-session-shell.is-lesson-session {
+    --cil-session-nav-height: 50px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: portrait), (max-height: 600px) {
+  .cil-one-screen-lesson .cil-activity-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .cil-one-screen-lesson .cil-question-character,
+  .cil-one-screen-lesson .cil-root-glyph {
+    font-size: clamp(4.5rem, 12dvh, 6rem);
+  }
+}
+
+@media (max-width: 620px) {
+  .cil-one-screen-lesson {
+    padding-inline: 6px;
+    gap: 4px;
+  }
+
+  .cil-one-screen-lesson .cil-lesson-header {
+    padding-inline: 8px;
+    gap: 6px;
+  }
+
+  .cil-one-screen-lesson .cil-lesson-header h2 { font-size: clamp(.92rem, 4.2vw, 1.25rem); }
+  .cil-one-screen-lesson .cil-lesson-header .lw-btn { padding-inline: 7px; }
+  .cil-one-screen-lesson .cil-lesson-progress { width: 38px; height: 38px; font-size: .7rem; }
+  .cil-one-screen-lesson .cil-prompt-card,
+  .cil-one-screen-lesson .cil-answer-card { padding: 7px 9px; }
+  .cil-one-screen-lesson .cil-prompt-card p { font-size: .65rem; }
+  .cil-one-screen-lesson .cil-prompt-card h3,
+  .cil-one-screen-lesson .cil-answer-card h3 { font-size: .82rem; }
+  .cil-one-screen-lesson .cil-question-character,
+  .cil-one-screen-lesson .cil-root-glyph { font-size: clamp(4.5rem, 15dvh, 5.5rem); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cil-key,
   .cil-dashboard-link { transition: none; }
