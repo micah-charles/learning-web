@@ -122,6 +122,16 @@ export default function ChineseInputPage() {
     .slice(-8)
     .map((event) => wordIndex.wordsById[event.wordId])
     .filter(Boolean), [moduleProgress.wordDiscoveryEvents, wordIndex]);
+  const collectionStats = useMemo(() => {
+    const charactersMastered = Object.values(moduleProgress.characters || {}).filter((records) => Object.values(records || {}).some((record) => (record?.masteryScore || 0) >= 80)).length;
+    const wordsDiscovered = Object.values(moduleProgress.words || {}).filter((word) => word?.state && word.state !== "hidden").length;
+    return {
+      charactersMastered,
+      charactersTotal: datasetForIndex?.characters?.length || 0,
+      wordsDiscovered,
+      wordsTotal: datasetForIndex?.words?.length || 0,
+    };
+  }, [datasetForIndex, moduleProgress.characters, moduleProgress.words]);
   const dataset = datasetResult.dataset;
   const reviewLesson = useMemo(() => !dataset || sessionLesson ? null : buildAdaptiveReviewLesson(dataset, moduleProgress, method), [dataset, method, moduleProgress, sessionLesson]);
   const model = useMemo(() => !dataset || sessionLesson ? null : buildKingdomModel({
@@ -165,6 +175,24 @@ export default function ChineseInputPage() {
     if (reviewLesson) startLesson(reviewLesson);
   }
 
+  function continueJourney(fromLesson = sessionLesson) {
+    if (!dataset || !fromLesson) return;
+    const orderedLessons = dataset.lessons
+      .filter((candidate) => candidate.method === method)
+      .sort((left, right) => (left.order || 0) - (right.order || 0));
+    const currentIndex = orderedLessons.findIndex((candidate) => candidate.id === fromLesson.id);
+    const forward = orderedLessons.slice(Math.max(0, currentIndex + 1));
+    const next = forward.find((candidate) => moduleProgress.lessons?.[candidate.id]?.status !== "completed")
+      || orderedLessons.find((candidate) => candidate.id !== fromLesson.id && moduleProgress.lessons?.[candidate.id]?.status !== "completed")
+      || forward[0];
+    if (next) startLesson(next);
+    else {
+      setSessionLesson(null);
+      setSessionType("");
+      setPanel("");
+    }
+  }
+
   function startFootballChallenge(challengeId) {
     const lesson = buildFootballChallengeLesson({
       challengeId,
@@ -188,6 +216,16 @@ export default function ChineseInputPage() {
     setSessionType("");
     setWordChallenge(null);
     saveRuntimeCheckpoint(null);
+    if (result.nextAction === "collection") {
+      setCompletion(null);
+      setPanel("collection");
+      return;
+    }
+    if (result.nextAction === "continue" || result.nextAction === "kingdom") {
+      setCompletion(null);
+      setPanel("");
+      return;
+    }
     setCompletion(result.completed === false ? null : { type: finishedType, passed: result.passed !== false });
   }
 
@@ -211,7 +249,7 @@ export default function ChineseInputPage() {
 
   if (sessionLesson) {
     return (
-      <div className="lw-page cil-page flr-session-shell" data-testid="chinese-input-page">
+      <div className={`lw-page cil-page flr-session-shell${sessionType === "lesson" ? " is-lesson-session" : ""}`} data-testid="chinese-input-page">
       {sessionType === "word" ? (
         <WordChallenge word={wordChallenge} dataset={dataset} pronounce={pronounce} recordWordAttempt={recordWordAttempt} onExit={finishSession} />
       ) : sessionType === "football" ? (
@@ -230,6 +268,7 @@ export default function ChineseInputPage() {
         />
       ) : (
         <LessonPlayer
+          key={sessionLesson.id}
           dataset={dataset}
           lesson={sessionLesson}
           method={sessionLesson.method}
@@ -238,6 +277,9 @@ export default function ChineseInputPage() {
           recordAttempt={recordChineseAttempt}
           completeSession={completeSession}
           onExit={finishSession}
+          onContinue={() => continueJourney(sessionLesson)}
+          collectionStats={collectionStats}
+          recentWordDiscoveries={recentWordDiscoveries}
         />
       )}
       {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}

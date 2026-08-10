@@ -19,6 +19,7 @@
     "qa:data-sample": "npx playwright test -c playwright.config.ts --grep @data-sample",
     "qa:full": "QA_FULL_DATA=true npx playwright test -c playwright.config.ts",
     "qa:chinese-input": "npx playwright test -c playwright.config.ts qa/tests/chinese-input-lab.spec.ts",
+    "qa:chinese-input-one-screen": "npx playwright test -c playwright.config.ts qa/tests/chinese-input-one-screen.spec.ts",
     "qa:report": "npx playwright show-report qa/reports/html",
     "test:speak-shadow": "node --loader ./tests/resolve-alias.mjs tests/speak-shadow-segmenter-scoring-test.mjs && node --loader ./tests/resolve-alias.mjs tests/speech-recognition-service-test.mjs",
     "test:tutor-studybook:unit": "node --loader ./tests/resolve-alias.mjs tests/tutor-engine-test.mjs && node --loader ./tests/resolve-alias.mjs tests/tutor-studybook-integration-test.mjs",
