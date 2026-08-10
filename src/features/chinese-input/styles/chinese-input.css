@@ -259,6 +259,10 @@
 .cil-knowledge-group h4 { margin: 0 0 6px; font-size: clamp(.72rem, 1.25dvw, .96rem); color: #5e4629; }
 .cil-knowledge-items { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 6px; overflow: hidden; }
 .cil-knowledge-items > span { min-width: 0; display: grid; gap: 1px; padding: 6px 8px; border-radius: 10px; background: #f8edc9; border: 1px solid #e2c77d; text-align: left; }
+.cil-knowledge-items > span { animation: cil-reward-rise 420ms ease both; }
+.cil-knowledge-items > span:nth-child(2) { animation-delay: 80ms; }
+.cil-knowledge-items > span:nth-child(3) { animation-delay: 160ms; }
+.cil-knowledge-items > span:nth-child(4) { animation-delay: 240ms; }
 .cil-knowledge-items strong { font-size: clamp(1rem, 2.5dvw, 1.6rem); color: #1c5948; }
 .cil-knowledge-items b { font-size: clamp(1.3rem, 3dvw, 2rem); color: #1c5948; }
 .cil-knowledge-items small { color: #77654b; font-size: clamp(.55rem, .9dvw, .7rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
@@ -276,6 +280,15 @@
 .cil-collection-progress strong { color: #205c4c; }
 .cil-completion-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .cil-completion-actions .lw-btn { min-width: 0; padding: clamp(7px, 1.2dvh, 12px) 8px; font-size: clamp(.66rem, 1.25dvw, .9rem); white-space: nowrap; }
+
+@keyframes cil-reward-rise {
+  from { opacity: 0; transform: translateY(8px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cil-knowledge-items > span { animation: none; }
+}
 
 @media (max-width: 620px) {
   .cil-session-summary { width: calc(100% - 10px); padding: 9px; gap: 5px; }
