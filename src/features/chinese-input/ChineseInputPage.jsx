@@ -122,6 +122,16 @@ export default function ChineseInputPage() {
     .slice(-8)
     .map((event) => wordIndex.wordsById[event.wordId])
     .filter(Boolean), [moduleProgress.wordDiscoveryEvents, wordIndex]);
+  const collectionStats = useMemo(() => {
+    const charactersMastered = Object.values(moduleProgress.characters || {}).filter((records) => Object.values(records || {}).some((record) => (record?.masteryScore || 0) >= 80)).length;
+    const wordsDiscovered = Object.values(moduleProgress.words || {}).filter((word) => word?.state && word.state !== "hidden").length;
+    return {
+      charactersMastered,
+      charactersTotal: datasetForIndex?.characters?.length || 0,
+      wordsDiscovered,
+      wordsTotal: datasetForIndex?.words?.length || 0,
+    };
+  }, [datasetForIndex, moduleProgress.characters, moduleProgress.words]);
   const dataset = datasetResult.dataset;
   const reviewLesson = useMemo(() => !dataset || sessionLesson ? null : buildAdaptiveReviewLesson(dataset, moduleProgress, method), [dataset, method, moduleProgress, sessionLesson]);
   const model = useMemo(() => !dataset || sessionLesson ? null : buildKingdomModel({
@@ -188,6 +198,16 @@ export default function ChineseInputPage() {
     setSessionType("");
     setWordChallenge(null);
     saveRuntimeCheckpoint(null);
+    if (result.nextAction === "collection") {
+      setCompletion(null);
+      setPanel("collection");
+      return;
+    }
+    if (result.nextAction === "continue" || result.nextAction === "kingdom") {
+      setCompletion(null);
+      setPanel("");
+      return;
+    }
     setCompletion(result.completed === false ? null : { type: finishedType, passed: result.passed !== false });
   }
 
@@ -238,6 +258,8 @@ export default function ChineseInputPage() {
           recordAttempt={recordChineseAttempt}
           completeSession={completeSession}
           onExit={finishSession}
+          collectionStats={collectionStats}
+          recentWordDiscoveries={recentWordDiscoveries}
         />
       )}
       {speechMessage && <p className="lw-card lw-subtitle" role="status">{speechMessage}</p>}

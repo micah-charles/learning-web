@@ -59,3 +59,33 @@ test("lesson gameplay stays in one viewport at every supported size", async ({ p
     });
   }
 });
+
+test("lesson completion celebrates the knowledge gained and offers meaningful next steps", async ({ page }, testInfo) => {
+  await openLesson(page, VIEWPORTS[2]);
+  await page.getByTestId("chinese-input-hint-toggle").click();
+
+  for (let question = 0; question < 30; question += 1) {
+    for (let keypress = 0; keypress < 6 && !(await page.getByTestId("chinese-input-feedback").isVisible()); keypress += 1) {
+      const expected = page.locator('[data-key-state="expected"]');
+      await expect(expected).toHaveCount(1);
+      await expected.click();
+    }
+    await expect(page.getByTestId("chinese-input-feedback")).toBeVisible();
+    const nextButton = page.getByTestId("chinese-input-next");
+    const isFinalQuestion = (await nextButton.innerText()).includes("Finish");
+    await nextButton.click();
+    if (isFinalQuestion) break;
+  }
+
+  await expect(page.getByTestId("chinese-input-session-summary")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-knowledge-unlocked")).toBeVisible();
+  await expect(page.getByText(/Knowledge unlocked!/)).toBeVisible();
+  await expect(page.getByText(/Continue journey/)).toBeVisible();
+  await expect(page.getByText(/Explore vocabulary/)).toBeVisible();
+  await expect(page.getByText(/Return to Kingdom/)).toBeVisible();
+  await expect(page.getByTestId("chinese-input-collection-progress")).toBeVisible();
+  await testInfo.attach("chinese-input-lesson-completed.png", {
+    body: await page.screenshot({ fullPage: false }),
+    contentType: "image/png",
+  });
+});

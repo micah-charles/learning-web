@@ -42,6 +42,10 @@ export default function LessonPlayer({
   onExit,
   recordAttempt,
   completeSession,
+  onContinue,
+  onExploreWords,
+  collectionStats = {},
+  recentWordDiscoveries = [],
 }) {
   const seedRef = useRef(Math.floor(Date.now() / 1000));
   const plan = useMemo(() => generateSessionPlan({
@@ -69,6 +73,28 @@ export default function LessonPlayer({
   const allLearnedKeys = lesson.activeKeys;
   const questionStartedAt = useRef(Date.now());
   const lastAutoPronouncedQuestion = useRef("");
+  const completionKnowledge = useMemo(() => {
+    const rootKeys = [...new Set([
+      ...(lesson.introducedKeys || []),
+      ...(lesson.reviewedKeys || []),
+      ...plan.questions.map((candidate) => candidate.rootKey).filter(Boolean),
+    ])];
+    const roots = rootKeys.map((key) => dataset.roots.find((root) => root.key === key)).filter(Boolean).slice(0, 4);
+    const characterIds = [...new Set([
+      ...(lesson.characterIds || []),
+      ...plan.questions.map((candidate) => candidate.characterId).filter(Boolean),
+    ])];
+    const characters = characterIds.map((id) => dataset.characters.find((candidate) => candidate.id === id)).filter(Boolean).slice(0, 6);
+    const linkedWordTexts = new Set((dataset.wordGraph?.words || [])
+      .filter((word) => word.lessonId === lesson.id)
+      .map((word) => word.text)
+      .filter(Boolean));
+    const linkedWords = (dataset.words || []).filter((word) => linkedWordTexts.has(word.word)).slice(0, 6);
+    const discoveredWords = recentWordDiscoveries
+      .filter((word) => word && (!linkedWordTexts.size || linkedWordTexts.has(word.word)))
+      .slice(0, 6);
+    return { roots, characters, words: discoveredWords.length ? discoveredWords : linkedWords };
+  }, [dataset, lesson, plan.questions, recentWordDiscoveries]);
 
   useEffect(() => {
     if (!autoPronounce || !question?.id || !spokenText) return;
@@ -136,6 +162,7 @@ export default function LessonPlayer({
         accuracy,
         hints: stats.hints,
         passed: accuracy >= lesson.passCriteria.minimumAccuracy * 100,
+        xp: 60 + stats.correct * 5,
       };
       completeSession(session);
       setSummary(session);
@@ -186,14 +213,54 @@ export default function LessonPlayer({
   if (summary) {
     return (
       <section className="lw-card cil-session-summary" data-testid="chinese-input-session-summary" aria-live="polite">
-        <p className="lw-eyebrow">Journey complete</p>
-        <h2>{summary.passed ? "Knowledge gained" : "Good practice — revisit when you wish"}</h2>
-        <div className="cil-stat-grid">
-          <div><strong>{summary.accuracy}%</strong><span>accuracy</span></div>
-          <div><strong>{summary.correct}/{summary.answered}</strong><span>correct</span></div>
-          <div><strong>{summary.hints}</strong><span>hints used</span></div>
+        <div className="cil-completion-banner">
+          <p className="lw-eyebrow">✨ Journey complete</p>
+          <h2>{summary.passed ? "Knowledge unlocked!" : "Practice added"}</h2>
+          <p>{summary.passed ? "Here is what you learned in this lesson." : "You are building the next part of your knowledge world."}</p>
         </div>
-        <button className="lw-btn lw-btn-primary" type="button" onClick={() => onExit({ completed: true, passed: summary.passed })}>Choose what’s next</button>
+
+        <section className="cil-knowledge-unlocked" data-testid="chinese-input-knowledge-unlocked" aria-labelledby="cil-knowledge-unlocked-title">
+          <h3 id="cil-knowledge-unlocked-title">Knowledge unlocked</h3>
+          <div className="cil-knowledge-columns">
+            <div className="cil-knowledge-group cil-knowledge-roots">
+              <h4>🌿 Roots learned</h4>
+              <div className="cil-knowledge-items">
+                {completionKnowledge.roots.map((root) => <span className="cil-root-reward" key={root.key}><strong>{root.key}</strong><b lang="zh-Hant">{root.primaryRoot}</b><small>{root.labelEn}</small></span>)}
+              </div>
+            </div>
+            <div className="cil-knowledge-group">
+              <h4>🧩 Characters</h4>
+              <div className="cil-knowledge-items">
+                {completionKnowledge.characters.map((candidate) => <span className="cil-character-reward" key={candidate.id}><strong lang="zh-Hant">{candidate.char}</strong><small>{candidate.meaning.en}</small></span>)}
+              </div>
+            </div>
+            <div className="cil-knowledge-group">
+              <h4>📖 Words discovered</h4>
+              <div className="cil-knowledge-items">
+                {completionKnowledge.words.map((word) => <span className="cil-word-reward" key={word.wordId || word.id || word.word}><strong lang="zh-Hant">{word.word}</strong><small>{word.meaning || "Meaning pending review"}</small></span>)}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="cil-completion-rewards">
+          <div><strong>+{summary.xp} XP</strong><span>lesson reward</span></div>
+          <div><strong>{summary.accuracy}%</strong><span>{summary.correct}/{summary.answered} correct</span></div>
+          <div><strong>{summary.hints}</strong><span>hints used</span></div>
+          <div><strong>+{completionKnowledge.roots.length}</strong><span>knowledge seeds</span></div>
+        </div>
+
+        <div className="cil-collection-progress" data-testid="chinese-input-collection-progress">
+          <span>Collection updated</span>
+          <span>Characters <strong>{collectionStats.charactersMastered || 0}/{collectionStats.charactersTotal || dataset.characters.length}</strong></span>
+          <span>Words <strong>{collectionStats.wordsDiscovered || 0}/{collectionStats.wordsTotal || dataset.words?.length || 0}</strong></span>
+        </div>
+
+        <div className="cil-completion-actions">
+          <button className="lw-btn lw-btn-primary" type="button" onClick={() => onContinue?.() || onExit({ completed: true, passed: summary.passed, nextAction: "continue" })}>▶ Continue journey</button>
+          <button className="lw-btn lw-btn-secondary" type="button" onClick={() => onExploreWords?.() || onExit({ completed: true, passed: summary.passed, nextAction: "collection" })}>📖 Explore vocabulary</button>
+          <button className="lw-btn lw-btn-ghost" type="button" onClick={() => onExit({ completed: true, passed: summary.passed, nextAction: "kingdom" })}>🏰 Return to Kingdom</button>
+        </div>
       </section>
     );
   }
