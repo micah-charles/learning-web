@@ -93,7 +93,7 @@ The count must stay between 2,500 and 3,500.
 Schema version 4 deliberately separates sourced facts, calculations and unresolved educational review:
 
 - Structure and components come only from pinned CHISE IDS. Layout flags are derived from the top-level IDS operator, never from Cangjie length. The source records are complete but remain educationally unreviewed.
-- Unihan `kDefinition` is stored as `unihan_definition`; `learner_definition_en` remains blank with `learner_definition_status=unreviewed`.
+- Unihan `kDefinition` is stored as `unihan_definition`. Learner-facing English meanings are maintained separately in `learner_definition_en` and may be published only when `learner_definition_status=approved`; otherwise the field remains blank with `unreviewed` status.
 - Definition-keyword categories are retained only as `suggested_category`, with an explicit weak method, low confidence and pending review.
 - Code length produces `simple_code_candidate` and `cangjie_difficulty`; it does not produce a beginner, literacy or school claim.
 - Stroke count produces only a low-confidence `visual_complexity` proxy with its method recorded.

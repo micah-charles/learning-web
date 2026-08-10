@@ -1,22 +1,8 @@
 # Chinese Input curriculum semantic audit
 
-Status: PASS_WITH_PROVISIONAL_WARNINGS
-
-## Golden regressions
-
-- rootIntroduction: pass
-- repeatedIdsMany: pass
-- saySourceGlyph: pass
-- polyphonicCharacter: u5927
-- complexCodeCharacter: u7684
-- writtenCantonesePlaceholder: pass
-- quickCollision: pass
-- migration: pass
-
-## Provisional warnings
+Status: PASS with explicit provisional warnings.
 
 - All preview character placements use derived MOE/EDB/Cangjie proxies and are not approved curriculum decisions.
-- Learner definitions remain hidden or labelled pending review.
 - Register claims remain hidden pending review.
 - Context-sensitive word pronunciation is not generated.
 - Written Cantonese and HK typing extension remain structural placeholders pending an approved lexical source.

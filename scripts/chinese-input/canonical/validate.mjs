@@ -130,7 +130,11 @@ for (const row of characters) {
   check(row.surround === (row.structure === "surround"), `${row.character}: surround flag disagrees with structure.`);
   check(row.single === (row.structure === "single"), `${row.character}: single flag disagrees with structure.`);
   check(row.decomposition_status === "source-attested-unreviewed", `${row.character}: decomposition review boundary is missing.`);
-  check(row.learner_definition_en === "" && row.learner_definition_status === "unreviewed", `${row.character}: Unihan gloss must not be promoted to a learner definition.`);
+  check(
+    (row.learner_definition_status === "unreviewed" && row.learner_definition_en === "")
+      || (row.learner_definition_status === "approved" && row.learner_definition_en !== ""),
+    `${row.character}: learner definition/status pair is invalid.`,
+  );
   check(row.category_confidence === "low" && row.category_review_status === "pending", `${row.character}: heuristic category must remain a low-confidence pending proposal.`);
   check(
     row.register === ""
@@ -207,7 +211,11 @@ for (const row of words) {
   check(Array.from(row.word).every((glyph) => characterSet.has(glyph)), `${row.word}: references a character outside the canonical set.`);
   check(row.pronunciation_status === "contextual-lexical-source-required", `${row.word}: unsafe derived word pronunciation was generated.`);
   check(!("jyutping" in row) && !("mandarin_pinyin" in row), `${row.word}: character readings must not be concatenated into word pronunciations.`);
-  check(row.learner_definition_en === "" && row.learner_definition_status === "unreviewed", `${row.word}: unsupported learner definition was generated.`);
+  check(
+    (row.learner_definition_status === "unreviewed" && row.learner_definition_en === "")
+      || (row.learner_definition_status === "approved" && row.learner_definition_en !== ""),
+    `${row.word}: learner definition/status pair is invalid.`,
+  );
   check(
     row.register === ""
       && row.formal_written_chinese === ""
@@ -251,7 +259,7 @@ for (const character of fixtureCharacters) {
   const row = characterByGlyph.get(character);
   check(decompositionByCharacter.has(character), `${character}: anchor decomposition is missing.`);
   check(row.category_review_status === "pending", `${character}: anchor category bypassed review.`);
-  check(row.learner_definition_status === "unreviewed", `${character}: anchor learner definition bypassed review.`);
+  check(["unreviewed", "approved"].includes(row.learner_definition_status), `${character}: invalid anchor learner definition status.`);
 }
 
 const readingCounts = new Map();
@@ -309,8 +317,8 @@ for (const character of fixture.expectedAbsent) {
 
 warn(decompositions.every((row) => row.review_status === "reviewed"), "CHISE decompositions are source-backed but not yet reviewed for FoxChild teaching use.");
 warn(familyMemberships.every((row) => row.review_status === "reviewed"), "Source-derived character families are not yet reviewed for FoxChild teaching use.");
-warn(characters.every((row) => row.learner_definition_status === "reviewed"), "Learner-facing English definitions remain unreviewed.");
-warn(words.every((row) => row.learner_definition_status === "reviewed"), "Word learner definitions remain unreviewed.");
+warn(characters.every((row) => row.learner_definition_status === "approved"), "Learner-facing English definitions remain unapproved.");
+warn(words.every((row) => row.learner_definition_status === "approved"), "Word learner definitions remain unapproved.");
 warn(words.every((row) => row.pronunciation_status === "reviewed"), "Context-sensitive word pronunciations require a pinned lexical source.");
 warn(semanticAudit.flags.weakCategoryProposals.length === 0, `${semanticAudit.flags.weakCategoryProposals.length} low-confidence category proposals await review.`);
 warn(semanticAudit.flags.taiwanHighFrequencyWithoutHongKongRank.length === 0, "MOE top-frequency records still lack independent Hong Kong frequency ranks.");
