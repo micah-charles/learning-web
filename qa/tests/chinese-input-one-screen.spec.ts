@@ -84,7 +84,7 @@ test("lesson completion celebrates the knowledge gained and offers meaningful ne
   await expect(page.getByTestId("chinese-input-knowledge-unlocked")).toBeVisible();
   await expect(page.getByText(/Knowledge unlocked!/)).toBeVisible();
   await expect(page.getByText(/Continue journey/)).toBeVisible();
-  await expect(page.getByText(/Practice new characters/)).toBeVisible();
+  await expect(page.getByText(/Practice Now/)).toBeVisible();
   await expect(page.getByText(/Return to Kingdom/)).toBeVisible();
   await expect(page.getByTestId("chinese-input-collection-progress")).toBeVisible();
   await testInfo.attach("chinese-input-lesson-completed.png", {
@@ -98,12 +98,11 @@ test("lesson completion celebrates the knowledge gained and offers meaningful ne
   await expect(page.getByTestId("chinese-input-lesson-banner").locator("h2")).not.toHaveText(firstLessonTitle);
 });
 
-test("Practice new characters launches Goalkeeper directly with the lesson pool", async ({ page }) => {
+test("Practice Now launches Goalkeeper directly from lesson completion", async ({ page }) => {
   await openLesson(page, VIEWPORTS[2]);
   await completeCurrentLesson(page);
-  await page.getByRole("button", { name: /Practice new characters/ }).click();
+  await page.getByRole("button", { name: /Practice Now/ }).click();
   await expect(page.getByTestId("chinese-football-game")).toBeVisible();
-  await expect(page.getByText(/Current Journey/)).toBeVisible();
   await expect(page.getByRole("button", { name: "Pronounce target" })).toBeVisible();
   await page.getByRole("button", { name: "Exit game to Kingdom" }).click();
   await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible();

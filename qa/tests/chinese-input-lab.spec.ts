@@ -345,7 +345,7 @@ test("football challenge pools launch with target-zone pronunciation controls", 
   await openFlower(page);
   await page.getByRole("menuitem", { name: /Arena/ }).click();
   const dialog = page.getByRole("dialog", { name: "FoxChild Arena" });
-  await dialog.getByRole("button", { name: /Goalkeeper Challenge/ }).click();
+  await dialog.getByRole("button", { name: /Advanced practice/ }).click();
   await expect(dialog.getByRole("button", { name: /Current Journey/ })).toBeVisible();
   await dialog.getByRole("button", { name: /Current Journey/ }).click();
   await expect(page.getByTestId("chinese-football-game")).toBeVisible();
