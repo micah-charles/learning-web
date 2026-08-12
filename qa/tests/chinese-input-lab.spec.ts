@@ -232,6 +232,50 @@ test("Word Collection exposes discovered canonical words and the four-part chall
   await expect(page.getByText(/Meaning recognition/)).toBeVisible();
 });
 
+test("Word Challenge keeps prompt, answer cards, and feedback inside every target viewport", async ({ page }, testInfo) => {
+  const viewports = [
+    [1920, 1080], [1600, 900], [1366, 768], [1024, 768],
+    [768, 1024], [844, 390], [390, 844],
+  ] as const;
+  for (const [width, height] of viewports) {
+    await page.setViewportSize({ width, height });
+    await seedEverythingMode(page);
+    await page.addInitScript(() => {
+      const key = "learningGermanWeb.v1";
+      const state = JSON.parse(localStorage.getItem(key) || "{}");
+      state.progress = state.progress || {};
+      state.progress.chineseInputLab = state.progress.chineseInputLab || { words: {} };
+      state.progress.chineseInputLab.words = { ...(state.progress.chineseInputLab.words || {}), "word-fb8f01cb6d4b": { wordId: "word-fb8f01cb6d4b", state: "discovered", attempts: 0, correct: 0, hintCount: 0, meaningMastery: 0, readingMastery: 0, typingMastery: 0, contextMastery: 0 } };
+      localStorage.setItem(key, JSON.stringify(state));
+    });
+    await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
+    await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible({ timeout: 30_000 });
+    await page.waitForTimeout(300);
+    await page.getByRole("button", { name: /Open learning world destinations/ }).click();
+    await page.getByRole("menuitem", { name: /Museum/ }).click();
+    await page.getByRole("button", { name: /Words/ }).click();
+    await page.getByText("多少").first().click();
+    await page.getByRole("button", { name: /Try word challenge/ }).click();
+    const challenge = page.getByTestId("chinese-input-word-challenge");
+    await expect(challenge).toBeVisible();
+    await expect(challenge.locator(".cik-word-option")).toHaveCount(4);
+    const geometry = await page.evaluate(() => {
+      const shell = document.querySelector<HTMLElement>(".flr-session-shell");
+      const challenge = document.querySelector<HTMLElement>("[data-testid=chinese-input-word-challenge]");
+      const options = [...document.querySelectorAll<HTMLElement>(".cik-word-option")].map((element) => element.getBoundingClientRect());
+      return { shell: shell?.getBoundingClientRect(), challenge: challenge?.getBoundingClientRect(), options, scrollWidth: document.documentElement.scrollWidth, scrollHeight: document.documentElement.scrollHeight };
+    });
+    expect(geometry.scrollWidth).toBeLessThanOrEqual(width + 1);
+    expect(geometry.scrollHeight).toBeLessThanOrEqual(height + 1);
+    expect(geometry.challenge?.bottom || 0).toBeLessThanOrEqual(height + 1);
+    expect(geometry.options.every((box) => box.width >= 40 && box.height >= 40 && box.right <= width + 1 && box.bottom <= height + 1)).toBe(true);
+    await challenge.locator(".cik-word-option").first().click();
+    await expect(challenge.locator("[role=status]")).toBeVisible();
+    await expect(challenge.getByRole("button", { name: /Next/ })).toBeVisible();
+    await testInfo.attach(`word-challenge-${width}x${height}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  }
+});
+
 test("all six world destinations render their distinct game environments", async ({ page }) => {
   await openKingdom(page);
   const destinations = [

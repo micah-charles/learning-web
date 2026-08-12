@@ -290,6 +290,107 @@
   .cil-knowledge-items > span { animation: none; }
 }
 
+/* Word Challenge gameplay contract: header, prompt, answers, stable feedback. */
+.flr-session-shell.is-lesson-session:has(.cil-word-challenge) {
+  overflow: hidden;
+}
+.cil-word-challenge {
+  width: min(1180px, calc(100% - clamp(16px, 4vw, 64px)));
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+  padding: clamp(10px, 2dvh, 24px) clamp(12px, 3vw, 36px);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  gap: clamp(8px, 1.5dvh, 16px);
+  overflow: hidden;
+}
+.cik-word-challenge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(10px, 1.6dvh, 18px) clamp(12px, 2vw, 24px);
+  border: 3px solid #8a5b30;
+  border-radius: 16px;
+  background: repeating-linear-gradient(0deg, #fff5ce 0 3px, #ffefb6 3px 6px);
+  box-shadow: 0 5px 0 #5b3822;
+}
+.cik-word-challenge-header h2 { margin: 3px 0 0; font-size: clamp(1.1rem, 2.8dvw, 2rem); }
+.cik-word-challenge-header .lw-eyebrow { margin: 0; font-size: clamp(.65rem, 1.3dvw, .9rem); }
+.cik-word-progress { flex: 0 0 auto; font-weight: 900; color: #17644f; }
+.cik-word-prompt-area {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1dvh, 12px);
+  text-align: center;
+}
+.cik-word-prompt {
+  max-width: 100%;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-size: clamp(3.5rem, 11dvh, 7.4rem);
+  line-height: 1;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  color: #17644f;
+  text-shadow: 0 3px 0 #b9dec5, 0 8px 18px #244f3b28;
+}
+.cik-word-prompt-length-2 { font-size: clamp(3rem, 8dvh, 6rem); }
+.cik-word-prompt-length-3 { font-size: clamp(2.6rem, 6.5dvh, 4.8rem); }
+.cik-word-prompt-length-4 { font-size: clamp(2.2rem, 5.5dvh, 4rem); }
+.cik-word-instruction { margin: 0; color: #526662; font-size: clamp(.78rem, 1.5dvw, 1rem); }
+.cik-word-answer-area { min-height: 0; display: flex; justify-content: center; }
+.cik-word-options {
+  width: min(760px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 16px);
+}
+.cik-word-option {
+  min-height: clamp(48px, 7dvh, 72px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(9px, 1.5dvh, 16px) clamp(10px, 1.5vw, 18px);
+  border: 2px solid #abc8c1;
+  border-radius: 14px;
+  color: #243634;
+  background: #f8fffb;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.cik-word-option strong { flex: 0 0 auto; color: #17644f; }
+.cik-word-option span { min-width: 0; overflow-wrap: anywhere; }
+.cik-word-option:hover, .cik-word-option:focus-visible { border-color: #17644f; background: #e8f7ed; transform: translateY(-1px); }
+.cik-word-option.is-correct { border-color: #2d9166; background: #d9f4e4; }
+.cik-word-typing { width: min(760px, 100%); display: flex; gap: 10px; align-items: center; }
+.cik-word-typing .cil-input-buffer { flex: 1; margin: 0; }
+.cik-word-feedback-area { min-height: clamp(58px, 9dvh, 84px); display: flex; align-items: center; justify-content: center; gap: 10px; }
+.cik-word-feedback-area .cil-feedback { flex: 1; max-width: 760px; margin: 0; }
+.cik-word-feedback-placeholder { min-height: 44px; }
+.cik-word-next { flex: 0 0 auto; }
+@media (max-width: 620px) {
+  .cil-word-challenge { width: 100%; padding: 8px 10px; gap: 7px; }
+  .cik-word-challenge-header { padding: 8px 10px; border-width: 2px; box-shadow: 0 3px 0 #5b3822; }
+  .cik-word-challenge-header h2 { font-size: clamp(.95rem, 4.2vw, 1.35rem); }
+  .cik-word-prompt { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .cik-word-prompt-length-2 { font-size: clamp(2.8rem, 13vw, 4.4rem); }
+  .cik-word-prompt-length-3 { font-size: clamp(2.3rem, 10vw, 3.5rem); }
+  .cik-word-options { grid-template-columns: 1fr; gap: 6px; }
+  .cik-word-option { min-height: 44px; padding: 8px 10px; }
+  .cik-word-feedback-area { min-height: 72px; align-items: stretch; flex-direction: column; }
+  .cik-word-feedback-area .cil-feedback { max-width: none; }
+  .cik-word-next { width: 100%; }
+  .cik-word-typing { align-items: stretch; flex-direction: column; }
+  .cik-word-typing .lw-btn { width: 100%; }
+}
+
 @media (max-width: 620px) {
   .cil-session-summary { width: calc(100% - 10px); padding: 9px; gap: 5px; }
   .cil-completion-banner { padding: 7px 9px; }

@@ -249,7 +249,7 @@ export default function ChineseInputPage() {
 
   if (sessionLesson) {
     return (
-      <div className={`lw-page cil-page flr-session-shell${sessionType === "lesson" ? " is-lesson-session" : ""}`} data-testid="chinese-input-page">
+      <div className={`lw-page cil-page flr-session-shell${sessionType === "lesson" || sessionType === "word" ? " is-lesson-session" : ""}`} data-testid="chinese-input-page">
       {sessionType === "word" ? (
         <WordChallenge word={wordChallenge} dataset={dataset} pronounce={pronounce} recordWordAttempt={recordWordAttempt} onExit={finishSession} />
       ) : sessionType === "football" ? (
