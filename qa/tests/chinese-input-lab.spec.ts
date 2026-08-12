@@ -78,6 +78,36 @@ test("lesson type, runtime checkpoint, and keyboard hint states are explicit", a
   await expect(page.locator('[data-key-state="expected"]')).toHaveCount(0);
 });
 
+test("incorrect ordered code feedback includes the complete correct answer", async ({ page }) => {
+  await openKingdom(page);
+  await page.getByRole("button", { name: /Start Adventure/ }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await page.getByTestId("chinese-input-hint-toggle").click();
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const questionType = await page.getByTestId("chinese-input-question-type").innerText();
+    if (questionType.includes("Guided typing")) {
+      const expectedKeyId = await page.locator('[data-key-state="expected"]').getAttribute("data-testid");
+      const wrongKeyId = await page.locator('button[data-key-state]:not(:disabled)').evaluateAll((buttons, expectedId) => buttons.find((button) => button.getAttribute("data-testid") !== expectedId)?.getAttribute("data-testid") || "", expectedKeyId);
+      await expect(wrongKeyId).not.toBe("");
+      await page.getByTestId(wrongKeyId).click();
+      await page.getByTestId("chinese-input-submit").click();
+      await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct answer:");
+      return;
+    }
+    const expected = page.locator('[data-key-state="expected"]');
+    await expect(expected).toHaveCount(1);
+    const expectedKey = await expected.getAttribute("data-testid");
+    await page.getByTestId(String(expectedKey)).click();
+    const feedback = page.getByTestId("chinese-input-feedback");
+    if (await feedback.isVisible()) {
+      const text = await feedback.innerText();
+      if (text.includes("Correct answer:")) break;
+      await page.getByTestId("chinese-input-next").click();
+    }
+  }
+  throw new Error("Did not encounter a guided typing question");
+});
+
 test("Chinese Input load and physical-key feedback stay within the interaction budget", async ({ page }, testInfo) => {
   await seedEverythingMode(page);
   await page.addInitScript(() => {

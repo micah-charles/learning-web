@@ -9,6 +9,9 @@ import CharacterDecomposition from "./CharacterDecomposition.jsx";
 import PronunciationButton from "./PronunciationButton.jsx";
 
 function feedbackCopy(result, character, question) {
+  const correctSequence = question.expectedKeys?.length
+    ? ` Correct answer: ${question.expectedKeys.join(" ")}.`
+    : "";
   if (result.correct) {
     if (question.type === "root-recognition") {
       return `Correct: ${question.rootLabel} is mapped to ${question.rootKey}.`;
@@ -19,18 +22,18 @@ function feedbackCopy(result, character, question) {
     return `That key is not mapped to ${question.rootLabel}. The correct key is ${question.rootKey}.`;
   }
   if (result.errorType === "wrong-order") {
-    return `Almost: those keys are in the wrong order. Check position ${result.firstWrongPosition + 1}.`;
+    return `Almost: those keys are in the wrong order. Check position ${result.firstWrongPosition + 1}.${correctSequence}`;
   }
   if (result.errorType === "missing-key") {
-    return `Almost: the code needs another key after position ${result.normalisedInput.length}.`;
+    return `Almost: the code needs another key after position ${result.normalisedInput.length}.${correctSequence}`;
   }
   if (result.errorType === "extra-key") {
-    return "There is one key too many. Compare the code length and try it in review.";
+    return `There is one key too many. Compare the code length.${correctSequence}`;
   }
   if (result.firstWrongPosition >= 0) {
-    return `Check key ${result.firstWrongPosition + 1}. The order matters.`;
+    return `Check key ${result.firstWrongPosition + 1}. The order matters.${correctSequence}`;
   }
-  return "That code is not accepted for this method. Review the highlighted sequence.";
+  return `That code is not accepted for this method. Review the highlighted sequence.${correctSequence}`;
 }
 
 export default function LessonPlayer({
