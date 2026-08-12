@@ -78,6 +78,36 @@ test("lesson type, runtime checkpoint, and keyboard hint states are explicit", a
   await expect(page.locator('[data-key-state="expected"]')).toHaveCount(0);
 });
 
+test("incorrect ordered code feedback includes the complete correct answer", async ({ page }) => {
+  await openKingdom(page);
+  await page.getByRole("button", { name: /Start Adventure/ }).click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await page.getByTestId("chinese-input-hint-toggle").click();
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const questionType = await page.getByTestId("chinese-input-question-type").innerText();
+    if (questionType.includes("Guided typing")) {
+      const expectedKeyId = await page.locator('[data-key-state="expected"]').getAttribute("data-testid");
+      const wrongKeyId = await page.locator('button[data-key-state]:not(:disabled)').evaluateAll((buttons, expectedId) => buttons.find((button) => button.getAttribute("data-testid") !== expectedId)?.getAttribute("data-testid") || "", expectedKeyId);
+      await expect(wrongKeyId).not.toBe("");
+      await page.getByTestId(wrongKeyId).click();
+      await page.getByTestId("chinese-input-submit").click();
+      await expect(page.getByTestId("chinese-input-feedback")).toContainText("Correct answer:");
+      return;
+    }
+    const expected = page.locator('[data-key-state="expected"]');
+    await expect(expected).toHaveCount(1);
+    const expectedKey = await expected.getAttribute("data-testid");
+    await page.getByTestId(String(expectedKey)).click();
+    const feedback = page.getByTestId("chinese-input-feedback");
+    if (await feedback.isVisible()) {
+      const text = await feedback.innerText();
+      if (text.includes("Correct answer:")) break;
+      await page.getByTestId("chinese-input-next").click();
+    }
+  }
+  throw new Error("Did not encounter a guided typing question");
+});
+
 test("Chinese Input load and physical-key feedback stay within the interaction budget", async ({ page }, testInfo) => {
   await seedEverythingMode(page);
   await page.addInitScript(() => {
@@ -195,6 +225,21 @@ test("Knowledge World supports region actions and a mixed custom adventure", asy
   await expect(page.getByRole("heading", { name: "Custom Knowledge Adventure" })).toBeVisible();
 });
 
+test("Knowledge World related lessons launch the selected lesson", async ({ page }) => {
+  await openKingdom(page);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  await page.getByTestId("knowledge-node-root-h").click();
+  const panel = page.getByRole("region", { name: /Stroke Highlands actions/ });
+  await expect(panel).toBeVisible();
+  const relatedLesson = panel.locator(".flr-related-lesson").first();
+  await expect(relatedLesson).toBeVisible();
+  const lessonLabel = await relatedLesson.locator("b").innerText();
+  await relatedLesson.click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-lesson-banner").locator("h2")).toHaveText(lessonLabel);
+});
+
 test("Input Tools keeps Z outside root regions and character mastery", async ({ page }) => {
   await openKingdom(page);
   await openFlower(page);
@@ -232,6 +277,50 @@ test("Word Collection exposes discovered canonical words and the four-part chall
   await expect(page.getByText(/Meaning recognition/)).toBeVisible();
 });
 
+test("Word Challenge keeps prompt, answer cards, and feedback inside every target viewport", async ({ page }, testInfo) => {
+  const viewports = [
+    [1920, 1080], [1600, 900], [1366, 768], [1024, 768],
+    [768, 1024], [844, 390], [390, 844],
+  ] as const;
+  for (const [width, height] of viewports) {
+    await page.setViewportSize({ width, height });
+    await seedEverythingMode(page);
+    await page.addInitScript(() => {
+      const key = "learningGermanWeb.v1";
+      const state = JSON.parse(localStorage.getItem(key) || "{}");
+      state.progress = state.progress || {};
+      state.progress.chineseInputLab = state.progress.chineseInputLab || { words: {} };
+      state.progress.chineseInputLab.words = { ...(state.progress.chineseInputLab.words || {}), "word-fb8f01cb6d4b": { wordId: "word-fb8f01cb6d4b", state: "discovered", attempts: 0, correct: 0, hintCount: 0, meaningMastery: 0, readingMastery: 0, typingMastery: 0, contextMastery: 0 } };
+      localStorage.setItem(key, JSON.stringify(state));
+    });
+    await page.goto("/chinese-input", { waitUntil: "domcontentloaded" });
+    await expect(page.getByTestId("chinese-input-dashboard")).toBeVisible({ timeout: 30_000 });
+    await page.waitForTimeout(300);
+    await page.getByRole("button", { name: /Open learning world destinations/ }).click();
+    await page.getByRole("menuitem", { name: /Museum/ }).click();
+    await page.getByRole("button", { name: /Words/ }).click();
+    await page.getByText("多少").first().click();
+    await page.getByRole("button", { name: /Try word challenge/ }).click();
+    const challenge = page.getByTestId("chinese-input-word-challenge");
+    await expect(challenge).toBeVisible();
+    await expect(challenge.locator(".cik-word-option")).toHaveCount(4);
+    const geometry = await page.evaluate(() => {
+      const shell = document.querySelector<HTMLElement>(".flr-session-shell");
+      const challenge = document.querySelector<HTMLElement>("[data-testid=chinese-input-word-challenge]");
+      const options = [...document.querySelectorAll<HTMLElement>(".cik-word-option")].map((element) => element.getBoundingClientRect());
+      return { shell: shell?.getBoundingClientRect(), challenge: challenge?.getBoundingClientRect(), options, scrollWidth: document.documentElement.scrollWidth, scrollHeight: document.documentElement.scrollHeight };
+    });
+    expect(geometry.scrollWidth).toBeLessThanOrEqual(width + 1);
+    expect(geometry.scrollHeight).toBeLessThanOrEqual(height + 1);
+    expect(geometry.challenge?.bottom || 0).toBeLessThanOrEqual(height + 1);
+    expect(geometry.options.every((box) => box.width >= 40 && box.height >= 40 && box.right <= width + 1 && box.bottom <= height + 1)).toBe(true);
+    await challenge.locator(".cik-word-option").first().click();
+    await expect(challenge.locator("[role=status]")).toBeVisible();
+    await expect(challenge.getByRole("button", { name: /Next/ })).toBeVisible();
+    await testInfo.attach(`word-challenge-${width}x${height}.png`, { body: await page.screenshot({ fullPage: false }), contentType: "image/png" });
+  }
+});
+
 test("all six world destinations render their distinct game environments", async ({ page }) => {
   await openKingdom(page);
   const destinations = [
@@ -256,7 +345,7 @@ test("football challenge pools launch with target-zone pronunciation controls", 
   await openFlower(page);
   await page.getByRole("menuitem", { name: /Arena/ }).click();
   const dialog = page.getByRole("dialog", { name: "FoxChild Arena" });
-  await dialog.getByRole("button", { name: /Goalkeeper Challenge/ }).click();
+  await dialog.getByRole("button", { name: /Advanced practice/ }).click();
   await expect(dialog.getByRole("button", { name: /Current Journey/ })).toBeVisible();
   await dialog.getByRole("button", { name: /Current Journey/ }).click();
   await expect(page.getByTestId("chinese-football-game")).toBeVisible();
